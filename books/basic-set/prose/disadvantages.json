@@ -2192,46 +2192,6 @@
     "description": "<p>-5 to -20 points</p><p>You belong to a race, class, sex, or other group that your society deems inferior. To be worth points, this must be obvious from your physical appearance (a visible brand, tattoo, or magical mark counts), dress, manner, or</p><p>Valuable Property: Your society regards you as somebody's property rather than as a \"legal person.\" This takes the form of limited freedom or lack of intellectual respect more than as a reaction modifier. Examples: a woman in 18th-century America or 16th-century Japan. -10 points.</p>"
   },
   {
-    "_id": "09a08e3a9de2c881",
-    "name": "_Unused Quirk 1",
-    "pages": "B163",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
-  },
-  {
-    "_id": "b9b26834c88857a7",
-    "name": "_Unused Quirk 2",
-    "pages": "B163",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
-  },
-  {
-    "_id": "e0e4570e6c0733f9",
-    "name": "_Unused Quirk 3",
-    "pages": "B163",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
-  },
-  {
-    "_id": "446391dd1f9a36a2",
-    "name": "_Unused Quirk 4",
-    "pages": "B163",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
-  },
-  {
-    "_id": "b6b06b64d0f6517d",
-    "name": "_Unused Quirk 5",
-    "pages": "B163",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
-  },
-  {
     "_id": "1cc080e7ace5a002",
     "name": "Attentive",
     "pages": "B163",

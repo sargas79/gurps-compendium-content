@@ -1,0 +1,93 @@
+[
+  {
+    "_id": "6c22473d9d78ed16",
+    "name": "Compulsive Snooping",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": -5,
+      "costTable": [],
+      "levelNames": [
+        "",
+        "Invasive"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 15"
+    }
+  },
+  {
+    "_id": "4300e5039777e4b4",
+    "name": "Compulsive Thrill-Seeking",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": -10,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 7"
+    }
+  },
+  {
+    "_id": "bbb17e619ecca410",
+    "name": "Obsession (Rid the world of monsters)",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": -10,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 7"
+    }
+  },
+  {
+    "_id": "dba2e6a2e8efc8fd",
+    "name": "Divine Curse (Monster Magnet)",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": -15,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 7"
+    }
+  }
+]

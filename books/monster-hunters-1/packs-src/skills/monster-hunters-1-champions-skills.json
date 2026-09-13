@@ -1,0 +1,563 @@
+[
+  {
+    "_id": "6660690b8515bfed",
+    "name": "Hidden Lore (Cryptozoology)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "49274b1a641e14c8",
+    "name": "Hidden Lore (Demons)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "40d096ad3969a45b",
+    "name": "Hidden Lore (Free Spirits)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "cb7ece65d386aa51",
+    "name": "Hidden Lore (Restless Undead)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "6d218a51bc3b0cc5",
+    "name": "Hidden Lore (Lycanthropes)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "d71d4ac4fd2c7b26",
+    "name": "Hidden Lore (Mummies)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "fe53914f7d30a952",
+    "name": "Hidden Lore (Angels)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "478d21173bc02f1e",
+    "name": "Hidden Lore (Sacred Places)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "ebbe115a3c9f3d51",
+    "name": "Hidden Lore (Vampires)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 16"
+    }
+  },
+  {
+    "_id": "0615c019021cb266",
+    "name": "Religious Ritual (Abrahamic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Ritual Magic",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "50f11b1f18d492b8",
+    "name": "Religious Ritual (Shamanic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Ritual Magic",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "0306f0325eceee62",
+    "name": "Religious Ritual (Voodoo)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Ritual Magic",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "46ba37bcce71d251",
+    "name": "Path of Body",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 32"
+    }
+  },
+  {
+    "_id": "076de7716ebf57f1",
+    "name": "Path of Chance",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 32"
+    }
+  },
+  {
+    "_id": "77a74b43af929a8c",
+    "name": "Path of Crossroads",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 32"
+    }
+  },
+  {
+    "_id": "832748d1250d6f24",
+    "name": "Path of Energy",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 32"
+    }
+  },
+  {
+    "_id": "0c3ed9d01d98d86d",
+    "name": "Path of Magic",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 33"
+    }
+  },
+  {
+    "_id": "53c336efc99ad2ea",
+    "name": "Path of Matter",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 33"
+    }
+  },
+  {
+    "_id": "c9ddee534a3baefe",
+    "name": "Path of Mind",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 33"
+    }
+  },
+  {
+    "_id": "59ae290ba3dca90f",
+    "name": "Path of Spirit",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 33"
+    }
+  },
+  {
+    "_id": "84c285f255ef5d47",
+    "name": "Path of Undead",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 33"
+    }
+  },
+  {
+    "_id": "3bfa64501133f813",
+    "name": "Theology (Abrahamic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Religious Ritual",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "9144edb992dd3836",
+    "name": "Theology (Shamanic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Religious Ritual",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "df18e18d235d95c8",
+    "name": "Theology (Voodoo)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Religious Ritual",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Theology",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 11"
+    }
+  },
+  {
+    "_id": "b33e1e4bdef97d90",
+    "name": "Blade!",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 29"
+    }
+  },
+  {
+    "_id": "9285e1cdca0bab6d",
+    "name": "Blunt!",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 20"
+    }
+  },
+  {
+    "_id": "728a09ff51229a21",
+    "name": "Inventor!",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 29"
+    }
+  },
+  {
+    "_id": "cb34832fc4fc6dd8",
+    "name": "Lore!",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 30"
+    }
+  },
+  {
+    "_id": "9cb0f04047adc482",
+    "name": "Medic!",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 30"
+    }
+  },
+  {
+    "_id": "282076ee3e0b20dc",
+    "name": "Talker!",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 30"
+    }
+  },
+  {
+    "_id": "a5acf3081d6e8b33",
+    "name": "Ten-Hut!",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "W",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 31"
+    }
+  }
+]

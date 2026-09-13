@@ -1,0 +1,240 @@
+duplicate name	Basic Gear
+longer label for Basic Gear	Basic Gear: Bandages, Cigarette Lighter, Duct Tape, Flashlight, Mirror, Multi-Tool, Notebook, Pencil, Chalk, and Wristwatch.
+duplicate name	Bandages (per wound)
+duplicate name	Cigarette Lighter
+duplicate name	Duct Tape, 15 yds.
+duplicate name	Duct Tape, 60 yds.
+duplicate name	Mirror, Pocket
+duplicate name	Multi-Tool
+duplicate name	Notebook, Pencil, & Chalk
+duplicate name	Wristwatch
+duplicate name	Camcorder, Micro
+duplicate name	Camera, Digital
+quality variant of Camera, Digital, whose quality is a field	Camera, Digital (Good)
+quality variant of Camera, Digital, whose quality is a field	Camera, Digital (Fine)
+duplicate name	Camera, Film
+quality variant of Camera, Film, whose quality is a field	Camera, Film (Good)
+quality variant of Camera, Film, whose quality is a field	Camera, Film (Fine)
+duplicate name	Film, 36 exp.
+duplicate name	Film, Infared, 36 exp.
+duplicate name	Film, Kirlian, 36 exp.
+duplicate name	Cell Phone
+duplicate name	Flare, Pen
+duplicate name	Headset, Bluetooth
+duplicate name	Radio, Handheld (5 mi.)
+duplicate name	Radio, Pocket (2 mi.)
+duplicate name	Computer, Desktop (C3)
+duplicate name	Computer, Laptop (C3)
+duplicate name	PDA, Basic (C1)
+duplicate name	PDA, Full-Featured (C2)
+duplicate name	Backpack, Small (50 lbs.)
+duplicate name	Balloon, Empty
+duplicate name	Balloon, Filled
+duplicate name	Bottle, Empty
+duplicate name	Bottle, Filled
+duplicate name	Load-Bearing Vest (20 lbs.)
+duplicate name	Bolt Cutters (8d(2) cut)
+duplicate name	Detonator, Fuse
+duplicate name	Detonator, Remote
+duplicate name	Detonator, Timed
+duplicate name	Dynamite, Stick (9d+1 cr ex)
+duplicate name	Go-Bar
+duplicate name	Lockpicks
+quality variant of Lockpicks, whose quality is a field	Lockpicks (Good)
+quality variant of Lockpicks, whose quality is a field	Lockpicks (Fine)
+duplicate name	Plastique (5dx3 cr ex)
+duplicate name	Thermite (3d burn/25 sec)
+duplicate name	Wire Cutters (2d(2) cut)
+duplicate name	Bayonet, Long Arm
+duplicate name	Bayonet, Long Arm (Wooden)
+duplicate name	Bayonet, Pistol
+duplicate name	Bayonet, Pistol (Wooden)
+duplicate name	Holster
+duplicate name	Holster, Concealed
+duplicate name	Reflex Sight
+duplicate name	Scope (+1)
+duplicate name	Scope (+2)
+duplicate name	Scope (+3)
+duplicate name	Scope (+4)
+duplicate name	Scope (+5)
+duplicate name	Silencer
+duplicate name	Sling
+duplicate name	Tactical Light
+duplicate name	Targeting Laser, Integral (Sidearm/Bow)
+duplicate name	Targeting Laser, Integral (Rifle)
+name is a GCA placeholder	Lab, Belt (-2 to [skill])
+name is a GCA placeholder	Lab, Box (for [skill])
+name is a GCA placeholder	Lab, Field (+1 to [skill])
+name is a GCA placeholder	Lab, Shop (+2 to [skill])
+name is a GCA placeholder	Tool Kit, Belt (-2 to [skill])
+name is a GCA placeholder	Tool Kit, Box (for [skill])
+name is a GCA placeholder	Tool Kit, Field (+1 to [skill])
+name is a GCA placeholder	Tool Kit, Shop (+2 to [skill])
+duplicate name	Tool Kit, Belt (-2 to Electronics Repair)
+duplicate name	Tool Kit, Box (for Electronics Repair)
+duplicate name	Tool Kit, Field (+1 to Electronics Repair)
+duplicate name	Tool Kit, Shop (+2 to Electronics Repair)
+duplicate name	Flashlight, Mini (5 yds.)
+duplicate name	Flashlight, Regular (10 yds.)
+duplicate name	Flashlight, Smart (5/50 yds.)
+duplicate name	Glow Stick (2 yds.)
+duplicate name	Lantern, Electric (5 yds.)
+duplicate name	UV Bulb
+duplicate name	Body Bag
+duplicate name	Crash Kit
+duplicate name	First Aid Kit
+quality variant of First Aid Kit, whose quality is a field	First Aid Kit (Good)
+duplicate name	Surgical Kit
+duplicate name	Climbing Kit (w/100 yds. rope)
+duplicate name	Disguise Kit
+quality variant of Disguise Kit, whose quality is a field	Disguise Kit (Good)
+quality variant of Disguise Kit, whose quality is a field	Disguise Kit (Fine)
+duplicate name	Grapnel
+duplicate name	Industrial Cleanser
+duplicate name	Library
+duplicate name	Media Player
+duplicate name	Reloading Press
+duplicate name	Rope, 3/8 in. x 10 yds.
+duplicate name	Binoculars
+duplicate name	Binoculars, Night-Vision
+duplicate name	Binoculars, Thermal-Imaging
+duplicate name	Goggles, Night-Vision
+duplicate name	Goggles, Thermal-Imaging
+name is a GCA placeholder	Grimoire (+2 to [ritual])
+name is a GCA placeholder	Grimoire (+3 to [ritual])
+name is a GCA placeholder	Grimoire (+4 to [ritual])
+name is a GCA placeholder	Grimoire (+5 to [ritual])
+name is a GCA placeholder	Grimoire (+6 to [ritual])
+name is a GCA placeholder	Grimoire (+7 to [ritual])
+name is a GCA placeholder	Grimoire (+8 to [ritual])
+name is a GCA placeholder	Grimoire (+9 to [ritual])
+name is a GCA placeholder	Grimoire (+10 to [ritual])
+duplicate name	Grimoire Collection
+duplicate name	Charm, Homemade
+duplicate name	Charm, Purchased
+duplicate name	Workspace Kit, Basic
+duplicate name	Workspace Kit, Good
+duplicate name	Workspace Kit, Fine
+duplicate name	Esoteric Kit
+duplicate name	Holy Symbol
+duplicate name	Holy Symbol, Aged
+duplicate name	Holy Symbol, Ancient
+duplicate name	Holy Symbol, Mass-Produced
+duplicate name	Holy Water (per half-pint)
+duplicate name	EWD
+duplicate name	Ethereal Barrier Power Converter
+duplicate name	Ethereal Barrier Cord (per yd.)
+duplicate name	Mental Shield (+4)
+duplicate name	Spiricom
+duplicate name	Ghost Blaster
+duplicate name	Mind Disruptor
+duplicate name	Neutralizer
+duplicate name	Psi-Block (Pill)
+duplicate name	Psi-Block (Syringe)
+duplicate name	Psi-Boost (Pill)
+duplicate name	Psi-Boost (Syringe)
+split DR footnote and TL0 disagree	Boots, Reinforced
+unknown location "all"	Clothing, Extra Outfit
+duplicate name	Coat, Long
+duplicate name	Coat, Long Leather
+duplicate name	Collar, Reinforced
+split DR footnote and TL0 disagree	Cup, Athletic
+duplicate name	Glasses, Ballistic
+duplicate name	Gloves, Sap
+duplicate name	Gloves, Shooting
+duplicate name	Hat, Leather
+split DR footnote and TL0 disagree	Helmet, Motorcycle
+duplicate name	Helmet, Motorcycle (Visor)
+duplicate name	Jacket, Leather
+split DR footnote and TL0 disagree	Leggings, Sharp-Proof
+duplicate name	Pants, Leather
+duplicate name	Shoes, Climbing
+split DR footnote and TL0 disagree	Sleeves, Sharp-Proof
+split DR footnote and TL0 disagree	Vest, Advanced
+split DR footnote and TL0 disagree	Vest, Concealable
+duplicate name	Tonfa
+duplicate name	Chainsaw
+duplicate name	Chainsaw, Low-End
+duplicate name	Circular Saw
+duplicate name	Pool Cue
+duplicate name	Power Drill
+duplicate name	Road Flare
+duplicate name	Shovel
+duplicate name	Scissors
+duplicate name	Screwdriver
+duplicate name	Tire Iron
+duplicate name	Bow Sights
+duplicate name	Arrow, Standard (imp)
+duplicate name	Arrow, Bodkin (pi(2))
+duplicate name	Arrow, Willow-Leaf (cut)
+duplicate name	Arrow, Silver Standard (imp)
+duplicate name	Arrow, Silver Bodkin (pi(2))
+duplicate name	Arrow, Silver Willow-Leaf (cut)
+duplicate name	Bolt, Standard (imp)
+duplicate name	Bolt, Bodkin (pi(2))
+duplicate name	Bolt, Willow-Leaf (cut)
+duplicate name	Bolt, Silver Standard (imp)
+duplicate name	Bolt, Silver Bodkin (pi(2))
+duplicate name	Bolt, Silver Willow-Leaf (cut)
+duplicate name	Auto Pistol, .40
+duplicate name	Auto Pistol, .50AE
+duplicate name	Backup Auto Pistol, .40
+duplicate name	Revolver, 44M
+duplicate name	Revolver, Snub .38
+duplicate name	Assault Carbine, 5.56mm
+duplicate name	Assault Rifle, 5.56mm
+duplicate name	Entry Rifle, .50BW
+duplicate name	Sniper Rifle, 7.62mm
+duplicate name	Auto Shotgun, 12G
+duplicate name	Compact Pump Shotgun, 12G
+duplicate name	Pump Shotgun, 12G
+duplicate name	Machine Pistol, 9mm
+duplicate name	SMG, .45
+duplicate name	SMG, 9mm
+duplicate name	SMG, Compact 9mm
+duplicate name	Backpack Flamethrower
+duplicate name	Handheld Flamethrower
+attack: damage "spec." 	Handheld Sprayer
+attack: damage "spec." 	Backpack Squirt Gun
+attack: damage "spec." 	Squirt Carbine
+attack: damage "1d+1" cr dkb inc	Flare Gun
+duplicate name	Nail Gun
+duplicate name	Spray Can and Lighter
+duplicate name	Auto .40, Magazine
+duplicate name	Auto 50AE, Magazine
+duplicate name	Backup .40, Magazine
+duplicate name	Revolver, Speedloader
+duplicate name	Assault 5.56mm, Magazine
+duplicate name	Entry Rifle, Magazine
+duplicate name	Sniper Rifle, Magazine
+duplicate name	Machine Pistol, Magazine
+duplicate name	SMG .45, Magazine
+duplicate name	SMG 9mm, Magazine
+duplicate name	SMG Compact, Magazine
+duplicate name	Backpack Squirt Gun, Reservoir
+duplicate name	Squirt Carbine Reservoir
+duplicate name	Auto .40, Reload
+duplicate name	Auto .50AE, Reload
+duplicate name	Backup .40, Reload
+duplicate name	Revolver 44M, Reload
+duplicate name	Revolver .38, Reload
+duplicate name	Assault 5.56mm, Reload
+duplicate name	Entry Rifle, Reload
+duplicate name	Sniper Rifle, Reload
+duplicate name	Auto Shotgun, Reload
+duplicate name	Compact Shotgun, Reload
+duplicate name	Pump Shotgun, Reload
+duplicate name	Machine Pistol, Reload
+duplicate name	SMG .45, Reload
+duplicate name	SMG 9mm, Reload
+duplicate name	SMG Compact, Reload
+duplicate name	Backpack Flamethrower, Reload
+duplicate name	Handheld Flamethrower, Reload
+duplicate name	Backpack Squirt Gun, Reload
+duplicate name	Squirt Carbine, Reload
+duplicate name	Concussion Grenade
+duplicate name	Fragmentation Grenade
+duplicate name	Smoke Grenade
+duplicate name	Tear Gas Grenade
+duplicate name	WP Grenade
+not modelled	MYS: Smite: priced for 2 levels, capped there rather than at 3

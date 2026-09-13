@@ -1,0 +1,92 @@
+[
+  {
+    "_id": "5109e02ec49b3f47",
+    "name": "Bioenhancement",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "e9225771b5bb8fbc",
+    "name": "Mysticism",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "02cd43277a805bb5",
+    "name": "Psionic: ESP",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "8806b2669ba1a53f",
+    "name": "Psionic: Psychokinesis",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "dc0e32d28755c3b5",
+    "name": "Psionic: Telepathy",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "0be72fc8483839b3",
+    "name": "Psionic: Teleportation",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Power Modifiers",
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  }
+]

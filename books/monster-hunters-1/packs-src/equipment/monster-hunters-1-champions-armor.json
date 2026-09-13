@@ -1,0 +1,319 @@
+[
+  {
+    "_id": "bc5fc57be5bd28fc",
+    "name": "Coat, Long",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "leg",
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "2891e0a56854e950",
+    "name": "Coat, Long Leather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "leg",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "74e4a5e115cb0d4a",
+    "name": "Collar, Reinforced",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "neck"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "b0a81deeeaa54331",
+    "name": "Glasses, Ballistic",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 35,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "5c6e9af9687d017c",
+    "name": "Gloves, Sap",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 60,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "8e179da6922a7115",
+    "name": "Gloves, Shooting",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "038e49ca17dd21b6",
+    "name": "Hat, Leather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 60,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "10a507bf3d9b49d4",
+    "name": "Helmet, Motorcycle (Visor)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "f57cdf904b4f1a53",
+    "name": "Jacket, Leather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "98725efe62fe4ad5",
+    "name": "Pants, Leather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "edbdbebda7e06f9f",
+    "name": "Shoes, Climbing",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 80,
+      "carried": true,
+      "equipped": false,
+      "tl": "",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 59",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  }
+]
