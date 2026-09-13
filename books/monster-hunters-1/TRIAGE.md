@@ -108,6 +108,67 @@ records are never changed from here. What they express:
 | Body Control, Mental Strength, Research: `needs()` cleared | GCA prerequisite bookkeeping | nothing |
 | ST:Money starts at 100% of starting wealth | GCA sheet setup | nothing |
 
+## Templates, kept by hand (#26)
+
+`packs-src/templates/monster-hunters-1-by-hand.json` holds the ten 400-point
+character templates (pp. 9-21) and the ten 15-point motivational lenses
+(pp. 6-9), `kind: "lens"`. Every one passes the system's stated-cost check.
+
+How the book's lists become choice groups:
+
+- **The lens slot** in every template, and the inhuman's 200-point racial
+  template, are points groups with no options: the lens or race is applied as a
+  template of its own. The apply dialog shows such a group as chosen apart from
+  the template (GWorldVTT#180). A template applied alone therefore bills 385,
+  and 400 once its lens is applied. (#26 originally said Witch plus Chosen One
+  bills 415; the book's 400 already includes the lens.)
+- **"Another X points chosen from among the previous traits or …"** is joined
+  to the list before it: one points group for both amounts, labelled with the
+  split. The dialog does not hold a player to the first list's share.
+- **"One of", "two of" and so on** are count groups. A skill offered in several
+  specialties, such as Guns (Pistol, Rifle, Shotgun, or SMG), is one option
+  per specialty.
+- **Power allotments** (75 points of Mysticism, 60 of Bioenhancement, 100 of
+  psionic abilities and 20 of psionic Talents) are points groups over this
+  book's abilities, each at its level-1 cost.
+- **Know Thy Enemy** (p. 16) allotments are points groups over its skills at
+  2 points, or 4 for the inhuman's own race. The psi's and the witch's leave out
+  the skills for their own kind.
+- **Packages** are each one points group holding every package's skills, with
+  the packages spelled out in the label: the sleuth's wildcards, the
+  experiment's unarmed skills, the warrior's ranged skills, the inhuman's
+  subject-matter skills, the philanthropist's Wealth, and the avenger/atoner's
+  skills.
+- **Points spent raising what the sheet already has**, such as "or 12 points
+  to raise Gun! by one level" or a skill "at -2", go in the group's label rather
+  than being offered as options. The soldier lens's 4 points are a requirement
+  of their own, so they are a group with no options.
+- **A lens's unchosen options** that join the template's lists are listed as
+  the lens's features. The system doesn't merge them, by decision (below).
+- **[Varies]** is priced at the cheapest real level and noted "varies":
+  Wealth 10 or -10, Appearance 4 or -4, Reputation 5 or -5, Sense of Duty -2,
+  Resistant and Signature Gear 1, and -5 for the other disadvantages.
+- **A self-control number** goes in the entry's note rather than its name, so
+  Greed (12) is Greed.
+
+An entry links its compendium document, from this book's packs first and then
+the Basic Set's. With GWorldVTT#180 the item carries the template's cost
+whatever the document's pricing, and keeps a qualifier the document lacks, as
+with Vow (Never kill a human).
+
+These 59 names have no document and apply as plain items, with the entry's
+name and cost:
+
+| Entries | Why |
+|---|---|
+| ST, DX, IQ, HT, HP, FP, Will, Per and Basic Speed options | bought on the sheet, as in the Basic Set templates |
+| Extraordinary and Ridiculous Luck, Enhanced Time Sense in place of Combat Reflexes, higher Magery, Mysticism Talent, Parapsychologist and Craftiness, worse self-control for Curious and Compulsive Gadgeteering | upgrades of a trait the template already has |
+| Language (any) | named on the sheet |
+| Acute Senses, Armoury, Bioengineering, Current Affairs, Driving, Innate Attack, Quick Reload and Thrown Weapon, each "(any)" | no one document to link |
+| Addiction (Psi-Boost), Bad Sight (Mitigator, Glasses, -60%), Compulsive Gadgeteering, Current Affairs (Regional), Disciplines of Faith, Enhanced Parry (Blade!) and (All Weapons), Gun Fu Perks, Mechanic in five specialties | in neither pack |
+| Enemies, in three forms | the Basic Set pack files Enemy only by the size of the group |
+| DR (Tough Skin, -40%) | Damage Resistance without the limitation would bill 5 a level, not 3 |
+
 ## Text: what the PDF looks like
 
 For `tools/transcribe.mjs` (#23). Reading-order `pdftotext`, one page per form feed.
@@ -126,6 +187,9 @@ beyond psionics, #141 attacks on traits, #142 Vulnerability and Weakness, #143
 holy attacks, #144-#147 Ritual Path Magic, #148 gadget and clothing improvements,
 #149 weapon improvements, #150 special ammunition, #151 bonus and destiny points.
 #152 is Basic Set cleanup found along the way; this book does not wait on it.
+Also found along the way and merged: #174 and #176 (extraction), #178 (the
+split-DR validator check), and #180 (applying template entries that link a
+document).
 
 Not filed, by decision: Hearing Shots (p. 61), and a lens adding its unchosen
 options to the template it is applied to (p. 6).
