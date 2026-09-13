@@ -23,9 +23,14 @@ async function main() {
     process.exit(1);
   }
 
+  // Item and Actor packs go where the system's validator can be pointed at
+  // them; JournalEntry packs go beside it, because that validator reads every
+  // document as one of the system's own types and a journal page is not one.
   const source = join(buildRoot, "packs-src");
+  const journalSource = join(buildRoot, "journals-src");
   await rm(buildRoot, { recursive: true, force: true });
   await mkdir(source, { recursive: true });
+  await mkdir(journalSource, { recursive: true });
 
   const packs = [];
   const problems = [];
@@ -60,7 +65,7 @@ async function main() {
   }
 
   for (const pack of packs) {
-    const dir = join(source, pack.id);
+    const dir = join(pack.type === "JournalEntry" ? journalSource : source, pack.id);
     await mkdir(dir, { recursive: true });
     await writeFile(
       join(dir, "documents.json"),

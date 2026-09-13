@@ -1,0 +1,1 @@
+If struck by a potentially lethal attack (including a rapid-fire attack that inflicts multiple hits), the hero can choose to convert his failed defense roll into a success. This costs him 1 FP and he loses his next turn.

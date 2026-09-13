@@ -1,0 +1,11 @@
+When you inflict piercing, impaling, or tight-beam burning damage with a ranged attack, there is a chance that damage might pass through your target and harm something on the far side; e.g., an innocent bystander. Similarly, a powerful attack might go right through cover (see Cover, above) or a shield (see Damage to Shields, p. 484) - or even penetrate a building or vehicle, damaging it and its occupants.
+
+The GM decides who is likely to be hit due to overpenetration. A hit is automatic if the second target is immediately behind the first; e.g., someone taking cover or blocking with a shield. Otherwise, see Hitting the Wrong Target (p. 389) and Occupant Hit Table (p. 555) to determine who is hit.
+
+An attack only overpenetrates if its basic damage exceeds the target's "cover DR." To find this value, add together the target or cover's DR - on both sides, for a person in armor - and HP (for flesh), 1/2 HP (for a machine, vehicle, or other Unliving target), or 1/4 HP (for a Homogenous object). Use the object's DR alone if it's a thin slab, like a wall or a door. Finally, apply any armor divisor.
+
+If the attack does enough damage to penetrate cover DR, determine if anyone on the other side is hit. If so, they get the cover DR plus their own DR against the damage.
+
+Example: Special Agent Ira Gray spots an assassin with a rifle, and throws himself in front of the VIP he's protecting just as the gunman fires. The armor-piercing rifle bullet - a 7d(2) pi- attack - hits him in the chest! The bullet's basic damage is 20 points. Gray's DR 8 ballistic vest stops only 4 points due to the armor divisor of (2). Gray takes 16 points of penetrating damage. Halved for small piercing, this inflicts an 8 HP wound. What about the VIP? Gray's vest gives DR 16, since both sides count, and Gray has 12 HP. The total cover DR is 28, halved for the armor divisor of (2) to give DR 14. Since the bullet's basic damage was 20, it overpenetrated. The VIP wasn't wearing armor, so he takes 6 points of damage, halved for small piercing, and suffers a 3 HP injury. He's wounded, but not badly - Special Agent Gray saved his life.
+
+The following additional rules are for use in conjunction with Rapid Fire (p. 373). They only apply when making a ranged attack at RoF 2+.

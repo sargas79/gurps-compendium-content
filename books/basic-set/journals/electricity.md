@@ -1,0 +1,3 @@
+If an uninsulated person is exposed to electricity, he may receive a shock. The effects of electric shock are highly variable, ranging from momentary stunning to instant death! This section helps the GM assess these effects if a character receives a shock during an adventure. If a specific attack or scenario gives different rules, they override the guidelines below.
+
+All electrical damage falls into one of two classes: nonlethal or lethal. Against either, metallic armor (e.g., plate armor) provides only DR 1 - and if the wearer is grounded, he actually attracts electrical attacks, giving the attacker +2 to hit.

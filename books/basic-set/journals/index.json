@@ -1,0 +1,513 @@
+{
+  "pages": [
+    {
+      "id": "collisions",
+      "title": "Collisions",
+      "chapter": "Activities",
+      "pages": "B430",
+      "reference": "Basic Set: Campaigns p. 430",
+      "rule": "collisions",
+      "file": "collisions.md"
+    },
+    {
+      "id": "disease",
+      "title": "Disease",
+      "chapter": "Activities",
+      "pages": "B442",
+      "reference": "Basic Set: Campaigns p. 442",
+      "rule": "disease",
+      "file": "disease.md"
+    },
+    {
+      "id": "electricity",
+      "title": "Electricity",
+      "chapter": "Activities",
+      "pages": "B432",
+      "reference": "Basic Set: Campaigns p. 432",
+      "rule": "electricity",
+      "file": "electricity.md"
+    },
+    {
+      "id": "fire",
+      "title": "Fire",
+      "chapter": "Activities",
+      "pages": "B433",
+      "reference": "Basic Set: Campaigns p. 433",
+      "rule": "fire",
+      "file": "fire.md"
+    },
+    {
+      "id": "hiking",
+      "title": "Hiking",
+      "chapter": "Activities",
+      "pages": "B351",
+      "reference": "Basic Set: Campaigns p. 351",
+      "rule": "hiking",
+      "file": "hiking.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "jobs",
+      "title": "Jobs",
+      "chapter": "Activities",
+      "pages": "B516",
+      "reference": "Basic Set: Campaigns p. 516",
+      "rule": "jobs",
+      "file": "jobs.md"
+    },
+    {
+      "id": "poison",
+      "title": "Poison",
+      "chapter": "Activities",
+      "pages": "B437",
+      "reference": "Basic Set: Campaigns p. 437",
+      "rule": "poison",
+      "file": "poison.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "radiation",
+      "title": "Radiation",
+      "chapter": "Activities",
+      "pages": "B435",
+      "reference": "Basic Set: Campaigns p. 435",
+      "rule": "radiation",
+      "file": "radiation.md"
+    },
+    {
+      "id": "socialBackground",
+      "title": "Social Background",
+      "chapter": "Activities",
+      "pages": "B23",
+      "reference": "Basic Set: Characters p. 23",
+      "rule": "socialBackground",
+      "file": "socialBackground.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "vehicles",
+      "title": "Vehicles",
+      "chapter": "Activities",
+      "pages": "B462",
+      "reference": "Basic Set: Campaigns p. 462",
+      "rule": "vehicles",
+      "file": "vehicles.md"
+    },
+    {
+      "id": "bulletproofNudity",
+      "title": "Bulletproof Nudity",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "bulletproofNudity",
+      "file": "bulletproofNudity.md"
+    },
+    {
+      "id": "cannonFodder",
+      "title": "Cannon Fodder",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "cannonFodder",
+      "file": "cannonFodder.md"
+    },
+    {
+      "id": "cinematicExplosions",
+      "title": "Cinematic Explosions",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "cinematicExplosions",
+      "file": "cinematicExplosions.md"
+    },
+    {
+      "id": "cinematicKnockback",
+      "title": "Cinematic Knockback",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "cinematicKnockback",
+      "file": "cinematicKnockback.md"
+    },
+    {
+      "id": "fleshWounds",
+      "title": "Flesh Wounds",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "fleshWounds",
+      "file": "fleshWounds.md"
+    },
+    {
+      "id": "infiniteAmmunition",
+      "title": "Infinite Ammunition",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "infiniteAmmunition",
+      "file": "infiniteAmmunition.md"
+    },
+    {
+      "id": "meleeEtiquette",
+      "title": "Melee Etiquette",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "meleeEtiquette",
+      "file": "meleeEtiquette.md"
+    },
+    {
+      "id": "tvActionViolence",
+      "title": "Tv Action Violence",
+      "chapter": "Cinematic",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "tvActionViolence",
+      "file": "tvActionViolence.md"
+    },
+    {
+      "id": "closeCombat",
+      "title": "Close Combat",
+      "chapter": "Combat",
+      "pages": "B391",
+      "reference": "Basic Set: Campaigns p. 391",
+      "rule": "closeCombat",
+      "file": "closeCombat.md"
+    },
+    {
+      "id": "deceptiveAttack",
+      "title": "Deceptive Attack",
+      "chapter": "Combat",
+      "pages": "B369",
+      "reference": "Basic Set: Campaigns p. 369",
+      "rule": "deceptiveAttack",
+      "file": "deceptiveAttack.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; mostly a cross-reference"
+    },
+    {
+      "id": "dirtyTricks",
+      "title": "Dirty Tricks",
+      "chapter": "Combat",
+      "pages": "B405",
+      "reference": "Basic Set: Campaigns p. 405",
+      "rule": "dirtyTricks",
+      "file": "dirtyTricks.md"
+    },
+    {
+      "id": "evading",
+      "title": "Evading",
+      "chapter": "Combat",
+      "pages": "B368",
+      "reference": "Basic Set: Campaigns p. 368",
+      "rule": "evading",
+      "file": "evading.md"
+    },
+    {
+      "id": "feint",
+      "title": "Feint",
+      "chapter": "Combat",
+      "pages": "B365",
+      "reference": "Basic Set: Campaigns p. 365",
+      "rule": "feint",
+      "file": "feint.md"
+    },
+    {
+      "id": "grappling",
+      "title": "Grappling",
+      "chapter": "Combat",
+      "pages": "B370",
+      "reference": "Basic Set: Campaigns p. 370",
+      "rule": "grappling",
+      "file": "grappling.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "malfunctions",
+      "title": "Malfunctions",
+      "chapter": "Combat",
+      "pages": "B407",
+      "reference": "Basic Set: Campaigns p. 407",
+      "rule": "malfunctions",
+      "file": "malfunctions.md"
+    },
+    {
+      "id": "mountedCombat",
+      "title": "Mounted Combat",
+      "chapter": "Combat",
+      "pages": "B396",
+      "reference": "Basic Set: Campaigns p. 396",
+      "rule": "mountedCombat",
+      "file": "mountedCombat.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "opportunityFire",
+      "title": "Opportunity Fire",
+      "chapter": "Combat",
+      "pages": "B390",
+      "reference": "Basic Set: Campaigns p. 390",
+      "rule": "opportunityFire",
+      "file": "opportunityFire.md"
+    },
+    {
+      "id": "overpenetration",
+      "title": "Overpenetration",
+      "chapter": "Combat",
+      "pages": "B408",
+      "reference": "Basic Set: Campaigns p. 408",
+      "rule": "overpenetration",
+      "file": "overpenetration.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "rapidFire",
+      "title": "Rapid Fire",
+      "chapter": "Combat",
+      "pages": "B373",
+      "reference": "Basic Set: Campaigns p. 373",
+      "rule": "rapidFire",
+      "file": "rapidFire.md"
+    },
+    {
+      "id": "rapidStrike",
+      "title": "Rapid Strike",
+      "chapter": "Combat",
+      "pages": "B370",
+      "reference": "Basic Set: Campaigns p. 370",
+      "rule": "rapidStrike",
+      "file": "rapidStrike.md"
+    },
+    {
+      "id": "retreat",
+      "title": "Retreat",
+      "chapter": "Combat",
+      "pages": "B377",
+      "reference": "Basic Set: Campaigns p. 377",
+      "rule": "retreat",
+      "file": "retreat.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "scatter",
+      "title": "Scatter",
+      "chapter": "Combat",
+      "pages": "B414",
+      "reference": "Basic Set: Campaigns p. 414",
+      "rule": "scatter",
+      "file": "scatter.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "slams",
+      "title": "Slams",
+      "chapter": "Combat",
+      "pages": "B371",
+      "reference": "Basic Set: Campaigns p. 371",
+      "rule": "slams",
+      "file": "slams.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "trampling",
+      "title": "Trampling",
+      "chapter": "Combat",
+      "pages": "B404",
+      "reference": "Basic Set: Campaigns p. 404",
+      "rule": "trampling",
+      "file": "trampling.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "ammunitionTypes",
+      "title": "Ammunition Types",
+      "chapter": "Equipment",
+      "pages": "B276",
+      "reference": "Basic Set: Characters p. 276",
+      "rule": "ammunitionTypes",
+      "file": "ammunitionTypes.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "damageToShields",
+      "title": "Damage To Shields",
+      "chapter": "Equipment",
+      "pages": "B484",
+      "reference": "Basic Set: Campaigns p. 484",
+      "rule": "damageToShields",
+      "file": "damageToShields.md"
+    },
+    {
+      "id": "equipmentModifiers",
+      "title": "Equipment Modifiers",
+      "chapter": "Equipment",
+      "pages": "B345",
+      "reference": "Basic Set: Campaigns p. 345",
+      "rule": "equipmentModifiers",
+      "file": "equipmentModifiers.md"
+    },
+    {
+      "id": "legalityClass",
+      "title": "Legality Class",
+      "chapter": "Equipment",
+      "pages": "B267",
+      "reference": "Basic Set: Characters p. 267",
+      "rule": "legalityClass",
+      "file": "legalityClass.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "reloading",
+      "title": "Reloading",
+      "chapter": "Equipment",
+      "pages": "B373",
+      "reference": "Basic Set: Campaigns p. 373",
+      "rule": "reloading",
+      "file": "reloading.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "repairs",
+      "title": "Repairs",
+      "chapter": "Equipment",
+      "pages": "B484",
+      "reference": "Basic Set: Campaigns p. 484",
+      "rule": "repairs",
+      "file": "repairs.md"
+    },
+    {
+      "id": "weaponQuality",
+      "title": "Weapon Quality",
+      "chapter": "Equipment",
+      "pages": "B274",
+      "reference": "Basic Set: Characters p. 274",
+      "rule": "weaponQuality",
+      "file": "weaponQuality.md",
+      "notes": "very short"
+    },
+    {
+      "id": "bleeding",
+      "title": "Bleeding",
+      "chapter": "Injury",
+      "pages": "B420",
+      "reference": "Basic Set: Campaigns p. 420",
+      "rule": "bleeding",
+      "file": "bleeding.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "explosions",
+      "title": "Explosions",
+      "chapter": "Injury",
+      "pages": "B414",
+      "reference": "Basic Set: Campaigns p. 414",
+      "rule": "explosions",
+      "file": "explosions.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "hitLocations",
+      "title": "Hit Locations",
+      "chapter": "Injury",
+      "pages": "B398",
+      "reference": "Basic Set: Campaigns p. 398",
+      "rule": "hitLocations",
+      "file": "hitLocations.md"
+    },
+    {
+      "id": "knockback",
+      "title": "Knockback",
+      "chapter": "Injury",
+      "pages": "B378",
+      "reference": "Basic Set: Campaigns p. 378",
+      "rule": "knockback",
+      "file": "knockback.md"
+    },
+    {
+      "id": "knockdown",
+      "title": "Knockdown",
+      "chapter": "Injury",
+      "pages": "B420",
+      "reference": "Basic Set: Campaigns p. 420",
+      "rule": "knockdown",
+      "file": "knockdown.md"
+    },
+    {
+      "id": "criticalSpellFailure",
+      "title": "Critical Spell Failure",
+      "chapter": "Magic",
+      "pages": "B236",
+      "reference": "Basic Set: Characters p. 236",
+      "rule": "criticalSpellFailure",
+      "file": "criticalSpellFailure.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "magic",
+      "title": "Magic",
+      "chapter": "Magic",
+      "pages": "B234",
+      "reference": "Basic Set: Characters p. 234",
+      "rule": "magic",
+      "file": "magic.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "magicItems",
+      "title": "Magic Items",
+      "chapter": "Magic",
+      "pages": "B480",
+      "reference": "Basic Set: Campaigns p. 480",
+      "rule": "magicItems",
+      "file": "magicItems.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "magicRituals",
+      "title": "Magic Rituals",
+      "chapter": "Magic",
+      "pages": "B237",
+      "reference": "Basic Set: Characters p. 237",
+      "rule": "magicRituals",
+      "file": "magicRituals.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "manaLevels",
+      "title": "Mana Levels",
+      "chapter": "Magic",
+      "pages": "B235",
+      "reference": "Basic Set: Characters p. 235",
+      "rule": "manaLevels",
+      "file": "manaLevels.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "extraEffort",
+      "title": "Extra Effort",
+      "chapter": "Rolls",
+      "pages": "B356",
+      "reference": "Basic Set: Campaigns p. 356",
+      "rule": "extraEffort",
+      "file": "extraEffort.md"
+    },
+    {
+      "id": "frightChecks",
+      "title": "Fright Checks",
+      "chapter": "Rolls",
+      "pages": "B360",
+      "reference": "Basic Set: Campaigns p. 360",
+      "rule": "frightChecks",
+      "file": "frightChecks.md",
+      "notes": "a sentence breaks across lines, so another column may be spliced in"
+    },
+    {
+      "id": "regularContests",
+      "title": "Regular Contests",
+      "chapter": "Rolls",
+      "pages": "B349",
+      "reference": "Basic Set: Campaigns p. 349",
+      "rule": "regularContests",
+      "file": "regularContests.md"
+    }
+  ]
+}

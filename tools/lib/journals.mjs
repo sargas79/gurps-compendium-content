@@ -87,9 +87,15 @@ export async function journalPack(bk) {
     const id = await stableId(bk.slug, page.id);
     const pageId = await stableId(bk.slug, page.id, "page");
     const body = render(readFileSync(file, "utf8"));
-    const citation = page.pages
-      ? `<p class="gcc-source"><em>${bk.reference} p. ${String(page.pages).replace(/^B/, "")}</em></p>`
-      : "";
+    // A page may name its own volume: the Basic Set is two books sharing one
+    // run of page numbers, and the book's default reference is only right for
+    // the first of them.
+    const cite = page.reference
+      ? page.reference
+      : page.pages
+        ? `${bk.reference} p. ${String(page.pages).replace(/^B/, "")}`
+        : "";
+    const citation = cite ? `<p class="gcc-source"><em>${cite}</em></p>` : "";
 
     if (page.chapter) chapters.add(page.chapter);
 
@@ -121,6 +127,10 @@ export async function journalPack(bk) {
           rule: page.rule ?? null,
           chapter: page.chapter ?? null,
           ...(page.pages ? { pages: page.pages } : {}),
+          // Carried through so a page whose extraction is doubtful says so
+          // wherever it is read, not only in the file it was written from.
+          status: page.notes ? 'needs-review' : 'transcribed',
+          ...(page.notes ? { notes: page.notes } : {}),
         },
       },
     });

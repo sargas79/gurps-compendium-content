@@ -1,0 +1,5 @@
+A Fright Check is a Will roll made to resist fear. Fright Checks can occur as often or as rarely as the GM wishes. In a horror campaign where ordinary people meet shockingly gruesome Things, Fright Checks might be very common! With only minor adaptation, the GM can use these rules for awe, confusion, etc. as well as fear.
+
+As a general rule, "ordinary" frightening things do not require Fright Checks. Fright Checks are for events so unusual and terrifying that they might stun or even permanently scar someone.
+
+What counts as "ordinary" depends on the characters and the setting. This is one place where a character story can be helpful! An ordinary, 21st-century American might have to make Fright Checks for encounters with monsters, dead bodies, and the supernatural. A battle-hardened commando in the same game might not have to roll for dead bodies. And in a fantasy campaign, all these things may be quite normal . . . threatening, but normal. On the other hand, a fantasy character might have to make a Fright Check if transported to the 21st century and given a ride down the interstate . . .

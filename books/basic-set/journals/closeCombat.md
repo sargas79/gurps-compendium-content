@@ -1,0 +1,1 @@
+"Close combat" is any situation in which you occupy the same hex as your foe or try to move through his hex. Use the rules given under Evading (p. 368) and Unarmed Combat (p. 370) in Chapter 11, but with the additions below.
