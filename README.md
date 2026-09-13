@@ -26,6 +26,46 @@ A document this module ships is the system's own document with
 `system.description` filled in. **It never changes a statistic**, and the build
 fails if it tries to. Nothing here is a second copy of the rules.
 
+## Installing
+
+In Foundry, go to **Add-on Modules → Install Module** and paste this manifest
+URL:
+
+```
+https://github.com/sargas79/gurps-compendium-content/releases/latest/download/module.json
+```
+
+**That URL does not work yet, and the reason is worth knowing.** Foundry fetches
+a manifest and its download anonymously, with no credentials to offer. This
+repository is private and must stay private, so GitHub answers that request with
+a 404 rather than the file. The URL above is the shape this module publishes
+under, kept here so there is one place to correct once the files are served from
+somewhere reachable.
+
+Until then, install a release by hand:
+
+1. Download `gurps-compendium-content.zip` from the release on GitHub, where you
+   are signed in and can read it.
+2. Unpack it into your Foundry **Data/modules** directory, as a folder named
+   `gurps-compendium-content`.
+3. Enable it in the world under **Manage Modules**.
+
+`tools/release.mjs` writes whatever manifest and download URLs
+`release-config.json` names into `dist/module.json` at release time, so pointing
+the module at a host is a matter of creating that file. It is gitignored, which
+keeps the location out of a repository that is otherwise all book text:
+
+```json
+{
+  "manifest": "https://example.invalid/gcc/module.json",
+  "download": "https://example.invalid/gcc/{version}/gurps-compendium-content.zip"
+}
+```
+
+`{version}` is replaced with the release's version, so a per-version path needs
+no editing each time. Whatever host you choose must serve both files to an
+anonymous request, and must not be public: the zip contains the books' text.
+
 ## Requirements
 
 - Foundry VTT v14 (verified against 14.367) with the GWorld system installed
@@ -154,15 +194,12 @@ npm run release
 ```
 
 That builds, writes the zip, and prints the tag and `gh release create` command.
+Attach both the zip and a loose `dist/module.json` to the release: the manifest
+URL points at the loose one.
 
-Two ways to install a release:
-
-- **By hand.** Download the zip from the GitHub release and unpack it into
-  `Data/modules`.
-- **By manifest URL.** Foundry fetches the manifest and the zip without
-  credentials, so a private GitHub release cannot serve them. The URLs come from
-  `release-config.json`, which is gitignored and points somewhere the owner
-  controls. Until that is set up, the manual route is the only one.
+See **Installing** above for the two ways a release reaches a Foundry install,
+and for the `release-config.json` that decides whether the manifest URL is one
+of them.
 
 ## Licensing note
 
