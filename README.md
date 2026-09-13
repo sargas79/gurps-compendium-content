@@ -35,12 +35,12 @@ URL:
 https://github.com/sargas79/gurps-compendium-content/releases/latest/download/module.json
 ```
 
-**That URL does not work yet, and the reason is worth knowing.** Foundry fetches
-a manifest and its download anonymously, with no credentials to offer. This
-repository is private and must stay private, so GitHub answers that request with
-a 404 rather than the file. The URL above is the shape this module publishes
-under, kept here so there is one place to correct once the files are served from
-somewhere reachable.
+The manifest is written as it would be for a public repository, and the module
+publishes under exactly this URL. **While the repository is private it does not
+resolve:** Foundry fetches a manifest and its download anonymously, and GitHub
+answers that with a 404. It is kept here as the module's own documentation, and
+so that the day the content is licensed and the repository made public, the
+install works with nothing to change.
 
 Until then, install a release by hand:
 
@@ -188,6 +188,11 @@ Set `GURPS_GDF_DIR` if your GCA files are not in `E:/data files`.
 Versions are this module's own and start at v0.0.1. They do not track the
 system's; the system release a build was made against is recorded in the
 manifest's `relationships.systems`.
+
+**Releases stay at 0.0.x until the Basic Set is done** — v0.0.1, v0.0.2, and so
+on — and **v0.1.0 is reserved for that milestone**. It means every Basic Set
+pack carries its text and the rules journal is complete, not merely that the
+tooling works.
 
 ```bash
 npm run release

@@ -31,6 +31,9 @@ import {
   systemManifest,
 } from "./lib/books.mjs";
 
+/** Where this module's source and releases live. */
+const REPOSITORY = "sargas79/gurps-compendium-content";
+
 /** What the system gives its own packs, so the module's behave the same way. */
 const OWNERSHIP = { PLAYER: "OBSERVER", ASSISTANT: "OWNER" };
 
@@ -77,6 +80,14 @@ async function main() {
       "whose members own the books.",
     version: pkg.version,
     authors: [{ name: "Diego Vescovini" }],
+    // Written as they would be for a public repository. They do not resolve
+    // while this one is private -- Foundry fetches both anonymously, and GitHub
+    // answers that with a 404 -- but they are the right URLs the day it is
+    // licensed and made public, and until then they document where a release
+    // lives. release-config.json overrides both at release time.
+    url: `https://github.com/${REPOSITORY}`,
+    manifest: `https://github.com/${REPOSITORY}/releases/latest/download/module.json`,
+    download: `https://github.com/${REPOSITORY}/releases/download/v${pkg.version}/${MODULE_ID}.zip`,
     compatibility: { minimum: "14", verified: "14.367" },
     relationships: {
       systems: [
