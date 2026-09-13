@@ -1,0 +1,4 @@
+[submodule "system"]
+	path = system
+	url = https://github.com/sargas79/GWorldVTT.git
+	branch = main

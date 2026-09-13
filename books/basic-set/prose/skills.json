@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "7540371fbe32dbc7",
+    "name": "Acrobatics",
+    "pages": "B174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the ability to perform gymnastic stunts, roll, take falls, etc. This can be handy on an adventure, as tightrope walking, human pyramids, and trapeze swinging all have useful applications. Each trick requires a separate skill roll, at whatever penalties the GM sees fit. If you are performing stunts on a moving vehicle or mount, roll against the lower of Acrobatics and the appropriate Driving or Riding skill.</p><p>You may substitute an Acrobatics roll for a DX roll in any attempt to jump, roll, avoid falling down, etc. As well, you may attempt an Acrobatic Dodge in combat &mdash; a jump or roll that avoids an attack in a flashy way (see Acrobatic Dodge, p. 375). Finally, a successful Acrobatics roll will reduce the effective distance of any fall by five yards (see Falling, p. 431).</p><p>Acrobatics, Aerobatics, and Aquabatics default to one another at -4. Add +1 to these three skills if you have Perfect Balance (p. 74).</p>"
+  },
+  {
+    "_id": "27814a5a242c007c",
+    "name": "Climbing",
+    "pages": "B183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the ability to climb mountains, rock walls, trees, the sides of buildings, etc. See Climbing (p. 349) for details.</p><p><em>Modifiers:</em> +2 for Brachiator (p. 41); +3 for Flexibility or +5 for Double-Jointed (p. 56); +1 for Perfect Balance (p. 74); a penalty equal to encumbrance level (e.g., -1 for Light encumbrance).</p>"
+  },
+  {
+    "_id": "a4795ae613e011f7",
+    "name": "Stealth",
+    "pages": "B222",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the ability to hide and to move silently. A successful roll lets you conceal yourself anywhere except in a totally bare room, or move so quietly that nobody will hear you, or follow someone without being noticed. (To follow someone through a crowd, use Shadowing, p. 219.)</p><p>If someone is specifically on the alert for intruders, the GM will roll a Quick Contest between your Stealth and the sentinel's Perception.</p><p>You can also use this skill to stalk game. A successful roll (and about 30 minutes) gets you within 30 yards of most animals. Another roll, at -5, gets you within 15 yards.</p><p><em>Modifiers:</em> A penalty equal to your encumbrance level. -5 to hide in an area without &ldquo;natural&rdquo; hiding places, or +3 or more if there are many hiding places. -5 to move silently if you are moving faster than Move 1. -5 to fool those with Discriminatory Smell (e.g., dogs).</p>"
+  }
+]

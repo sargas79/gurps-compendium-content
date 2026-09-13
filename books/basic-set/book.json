@@ -1,0 +1,9 @@
+{
+  "slug": "basic-set",
+  "title": "GURPS Basic Set",
+  "label": "GURPS Basic Set",
+  "prefix": "B",
+  "statistics": "system",
+  "reference": "Basic Set: Characters",
+  "notes": "The Basic Set's statistics are the GWorld system's own packs, generated there from the GCA data file. This book contributes only the text."
+}

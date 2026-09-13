@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "15c6dba121ef7202",
+    "name": "Acute Vision",
+    "pages": "B35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have superior senses. Each Acute Sense is a separate advantage that gives +1 per level to all Sense rolls (p. 358) you make &mdash; or the GM makes for you &mdash; using that one sense.</p><p>Acute Vision gives you a bonus to spot things visually, and whenever you do a visual search (for instance, looking for traps or footprints). 2 points/level.</p><p>You cannot usually buy Acute Senses in play &mdash; raise your Perception instead. However, if you lose a sense, the GM may allow you to spend earned points on other Acute Senses to compensate. For instance, if you are blinded, you might acquire Acute Hearing.</p>"
+  },
+  {
+    "_id": "4f01fcff86293bec",
+    "name": "Ambidexterity",
+    "pages": "B39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can fight or otherwise act equally well with either hand, and never suffer the -4 DX penalty for using the &ldquo;off&rdquo; hand (see p. 14). Note that this does not allow you to take extra actions in combat &mdash; that's Extra Attack (p. 53). Should some accident befall one of your arms or hands, assume it is the left one.</p>"
+  },
+  {
+    "_id": "7e0b5b4a89b6987c",
+    "name": "Combat Reflexes",
+    "pages": "B43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have extraordinary reactions, and are rarely surprised for more than a moment. You get +1 to all active defense rolls (see Defending, p. 374), +1 to Fast-Draw skill, and +2 to Fright Checks (see Fright Checks, p. 360). You never &ldquo;freeze&rdquo; in a surprise situation, and get +6 on all IQ rolls to wake up, or to recover from surprise or mental &ldquo;stun.&rdquo; Your side gets +1 on initiative rolls to avoid a surprise attack &mdash; +2 if you are the leader. For details, see Surprise Attacks and Initiative (p. 393).</p><p>Combat Reflexes is included in Enhanced Time Sense (p. 52). If you have ETS, you cannot also take Combat Reflexes.</p>"
+  }
+]

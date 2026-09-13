@@ -1,0 +1,23 @@
+{
+  "name": "gurps-compendium-content",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Private Foundry VTT module: the GURPS books' text overlaid onto the GWorld system's compendia, plus other books' statistics.",
+  "type": "module",
+  "engines": {
+    "node": ">=24.13.1"
+  },
+  "scripts": {
+    "coverage": "node tools/coverage.mjs",
+    "merge": "node tools/merge.mjs",
+    "validate": "node tools/merge.mjs && node tools/validate.mjs",
+    "build": "npm run validate && node tools/pack.mjs && node tools/manifest.mjs",
+    "extract": "node tools/extract.mjs",
+    "deploy": "node tools/deploy.mjs",
+    "release": "npm run build && node tools/release.mjs"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^3.0.4",
+    "marked": "^16.0.0"
+  }
+}
