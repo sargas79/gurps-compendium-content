@@ -150,11 +150,11 @@
           "note": ""
         },
         {
-          "name": "DR (Tough Skin, -40%)",
+          "name": "Damage Resistance (Tough Skin, -40%)",
           "itemType": "trait",
           "points": 3,
           "levels": 1,
-          "uuid": "",
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
           "group": "g2",
           "note": "1-2; 3 or 6"
         },
@@ -307,7 +307,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -397,7 +397,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -1915,7 +1915,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g3",
           "note": "4, 6, or 8"
         },
@@ -2041,7 +2041,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g3",
           "note": "varies"
         },
@@ -3589,7 +3589,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g3",
           "note": "4, 6, or 8"
         },
@@ -3868,7 +3868,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g3",
           "note": "varies"
         },
@@ -5344,7 +5344,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g3",
           "note": "4, 6, or 8"
         },
@@ -5560,7 +5560,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g3",
           "note": "varies"
         },
@@ -7597,7 +7597,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g4",
           "note": "4, 6, or 8"
         },
@@ -7813,7 +7813,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g4",
           "note": "varies"
         },
@@ -9154,7 +9154,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -9222,11 +9222,11 @@
           "note": "5 to 15"
         },
         {
-          "name": "DR (Tough Skin, -40%)",
+          "name": "Damage Resistance (Tough Skin, -40%)",
           "itemType": "trait",
           "points": 3,
           "levels": 1,
-          "uuid": "",
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
           "group": "g2",
           "note": "1-2; 3 or 6"
         },
@@ -9415,7 +9415,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -10927,7 +10927,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -11116,7 +11116,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -12364,7 +12364,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -12544,7 +12544,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -14107,7 +14107,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -14175,11 +14175,11 @@
           "note": "5 to 15"
         },
         {
-          "name": "DR (Tough Skin, -40%)",
+          "name": "Damage Resistance (Tough Skin, -40%)",
           "itemType": "trait",
           "points": 3,
           "levels": 1,
-          "uuid": "",
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
           "group": "g2",
           "note": "1-5; 3/level"
         },
@@ -14386,7 +14386,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -15694,7 +15694,7 @@
           "itemType": "trait",
           "points": 4,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7624d99eace35be2",
+          "uuid": "",
           "group": "g2",
           "note": "4, 6, or 8"
         },
@@ -15775,7 +15775,7 @@
           "itemType": "trait",
           "points": 1,
           "levels": 0,
-          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "uuid": "",
           "group": "g2",
           "note": "varies"
         },
@@ -19016,6 +19016,964 @@
       "tabooTraits": [],
       "description": "",
       "reference": "Monster Hunters 1: Champions p. 9"
+    }
+  },
+  {
+    "_id": "5a60f81128b2eca4",
+    "name": "Demon",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 5,
+        "DX": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 1,
+        "per": 1,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 120,
+      "entries": [
+        {
+          "name": "Claws (Hooves)",
+          "itemType": "trait",
+          "points": 3,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9a7f64cf2771ae1a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance (Tough Skin, -40%)",
+          "itemType": "trait",
+          "points": 12,
+          "levels": 4,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Demontongue",
+          "itemType": "language",
+          "points": 6,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": "native"
+        },
+        {
+          "name": "Dark Vision",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.2da2241be3697b6d",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Acute Taste and Smell",
+          "itemType": "trait",
+          "points": 2,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.eeaa855416d6df78",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Discriminatory Smell (Emotion Sense, +50%)",
+          "itemType": "trait",
+          "points": 23,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Single-Minded",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.af775997a754fe92",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Enhanced Move 0.5 (Air; Handling Penalty -2, -10%)",
+          "itemType": "trait",
+          "points": 9,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Flight (Gliding, -50%; Small Wings, -10%)",
+          "itemType": "trait",
+          "points": 16,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Magery 0",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5460dd41ccf80939",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Magic Resistance (Improved, +150%)",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 4,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.e9801756c11b2bac",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Penetrating Voice",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.29204e3747d7ec5e",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Terror (Audible; Takes Recharge, 15 seconds, -20%)",
+          "itemType": "trait",
+          "points": 24,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Regeneration (Regular)",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d3676c554d1e8782",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Striker (Horns; Large Piercing)",
+          "itemType": "trait",
+          "points": 6,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Teeth (Sharp)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance 6 (Tough Skin, -40%) (in place of DR 4)",
+          "itemType": "trait",
+          "points": 18,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": "DR 6 [30] replacing DR 4 [12]"
+        },
+        {
+          "name": "Striking ST",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 5,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.179c1ca124004fb4",
+          "group": "g1",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.58cf7865c24a6c57",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Frightens Animals",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5f10051fcdf9c6ec",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Monster)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.577b93e1d12ca956",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vow (Always hold to the letter of a signed contract)",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4ecbcc5ef909355d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Weakness (Contact with holy water and artifacts; 1d per minute)",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.195c4c75a582d2ae",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [
+        {
+          "id": "g1",
+          "label": "Three 25-point racial packages, chosen for good: 1. Dark Vision; 2. Acute Taste and Smell 1 and Discriminatory Smell (Emotion Sense); 3. Doesn't Sleep and Single-Minded; 4. Enhanced Move 0.5 (Air) and Flight (Gliding); 5. Magery 0 and Magic Resistance 4 (Improved); 6. Penetrating Voice and Terror; 7. Regeneration (Regular); 8. Striker (Horns), Teeth (Sharp) and DR 6 in place of DR 4; 9. Striking ST 5",
+          "kind": "points",
+          "required": 75
+        }
+      ],
+      "features": [
+        "Affected by True Faith, and by Path of Spirit magic instead of Body and Mind.",
+        "Cannot use holy items.",
+        "Vestigial tail, horns, and wings, if not functional ones.",
+        "An obvious demon has no legal rights if arrested or captured."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions pp. 49-50"
+    }
+  },
+  {
+    "_id": "bf8d880ac6f01589",
+    "name": "Demonspawn",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 5,
+        "DX": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 1,
+        "per": 1,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 120,
+      "entries": [
+        {
+          "name": "Damage Resistance (No Signature, +20%; Tough Skin, -40%)",
+          "itemType": "trait",
+          "points": 12,
+          "levels": 3,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Demontongue",
+          "itemType": "language",
+          "points": 6,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": "native"
+        },
+        {
+          "name": "Night Vision",
+          "itemType": "trait",
+          "points": 7,
+          "levels": 7,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.10309529f2b178ce",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Regeneration (Regular)",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d3676c554d1e8782",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards, +8)",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Striking ST",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 4,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.179c1ca124004fb4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Divine Curse (The truly devout find you disturbing; -2 to all reactions and a Per roll to consciously realize your unholy nature)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.23dc58ea0e30e462",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Path of Body, Mind, and Spirit magic."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 50"
+    }
+  },
+  {
+    "_id": "7aa8377eb771562f",
+    "name": "Lycanthrope",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 2,
+        "HT": 1
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 1,
+        "fp": 0,
+        "basicSpeed": -0.25,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 30,
+      "entries": [
+        {
+          "name": "Alternate Form (Reduced Time 4, +80%; Uncontrollable during full moons, -5%)",
+          "itemType": "trait",
+          "points": 140,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.08c9cc8b9e1d43d9",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Animal Empathy",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7766db385ba9a170",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Immunity to Transformation",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Regeneration (Fast; Cannot heal damage from silver, -10%)",
+          "itemType": "trait",
+          "points": 45,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Infectious Attack",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.01480540a8921ab1",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Lunacy",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.6aa1d685cfd9d335",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Silver ×4)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Were-form (Bear)",
+          "itemType": "trait",
+          "points": 0,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": "ST+10, DX+1, HT+2, Bad Grip 1, Cannot Speak, Claws (Blunt), DR 5 (Tough Skin), Fur, Ham-Fisted 2, Semi-Upright, Teeth (Sharp)"
+        },
+        {
+          "name": "Were-form (Eagle)",
+          "itemType": "trait",
+          "points": 0,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": "DX+4, HT+2, Cannot Speak, Claws (Sharp), Enhanced Move 2 (Air), Flight (Winged), No Fine Manipulators, Penetrating Voice, Teeth (Sharp Beak), Telescopic Vision 5"
+        },
+        {
+          "name": "Were-form (Tiger)",
+          "itemType": "trait",
+          "points": 0,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": "ST+10, DX+4, HT+2, Cannot Speak, Claws (Sharp), Discriminatory Smell, DR 4 (Tough Skin), Fur, Night Vision 2, Quadruped, Silence 2, Teeth (Fangs)"
+        },
+        {
+          "name": "Were-form (Wolf)",
+          "itemType": "trait",
+          "points": 0,
+          "levels": 0,
+          "uuid": "",
+          "group": "g1",
+          "note": "ST+3, DX+4, HT+2, Cannot Speak, Claws (Blunt), Discriminatory Hearing, Discriminatory Smell (Emotion Sense), DR 4 (Tough Skin), Enhanced Move 1.5 (Ground), Fur, Night Vision 3, Penetrating Voice, Quadruped, Teeth (Sharp)"
+        }
+      ],
+      "choices": [
+        {
+          "id": "g1",
+          "label": "Were-form, chosen when the template is taken (paid for by Alternate Form; its traits apply only in that form)",
+          "kind": "count",
+          "required": 1
+        }
+      ],
+      "features": [
+        "Silver-coated weapons do 3× injury rather than the 4× of pure silver.",
+        "Unarmed attacks, in either form, can infect a human.",
+        "Transforming takes a Ready maneuver, or a free action for 2 FP and a HT-2 roll."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions pp. 50-51"
+    }
+  },
+  {
+    "_id": "252b96f751e5b64d",
+    "name": "Outcast Angel",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 2,
+        "DX": 2,
+        "IQ": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 120,
+      "entries": [
+        {
+          "name": "Appearance (Handsome; Androgynous; Universal, +25%)",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Close to Heaven",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.monster-hunters-1-advantages.Item.3e1f146151129255",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Detect (Evil Supernatural Beings)",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.febaea525a083c4b",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Adamic",
+          "itemType": "language",
+          "points": 6,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": "native"
+        },
+        {
+          "name": "Shtick (Can hide wings under any clothes thicker than a T-shirt)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a350bd661857941f",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Code of Honor (Angelic)",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.782b275881c8b86d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Divine Curse (Cannot act directly against God)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.23dc58ea0e30e462",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Charitable",
+          "itemType": "trait",
+          "points": -7,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.524abc86c6da5746",
+          "group": "g1",
+          "note": "self-control 15"
+        },
+        {
+          "name": "Overconfidence",
+          "itemType": "trait",
+          "points": -7,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.79f85a949c7420cb",
+          "group": "g1",
+          "note": "self-control 9"
+        }
+      ],
+      "choices": [
+        {
+          "id": "g1",
+          "label": "Serving humanity or above it",
+          "kind": "count",
+          "required": 1
+        }
+      ],
+      "features": [
+        "Affected by Path of Spirit magic instead of Body and Mind.",
+        "No -4 penalty to use Exorcism.",
+        "Sterile.",
+        "Vestigial wings."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 51"
+    }
+  },
+  {
+    "_id": "6e927cdda915054b",
+    "name": "Vampire",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 5,
+        "DX": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 2,
+        "fp": 0,
+        "basicSpeed": 1,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 140,
+      "entries": [
+        {
+          "name": "Acute Taste and Smell (Accessibility, Exposed blood only, -60%)",
+          "itemType": "trait",
+          "points": 4,
+          "levels": 5,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.eeaa855416d6df78",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Can burn HP for extra effort",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Discriminatory Smell (Emotion Sense, +50%)",
+          "itemType": "trait",
+          "points": 23,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Unliving)",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Mind Control (Blood Agent, -40%; Suggestion, -40%)",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4484aa77ae692ce4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Night Vision",
+          "itemType": "trait",
+          "points": 9,
+          "levels": 9,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.10309529f2b178ce",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unkillable (Achilles' Heel, Fire, stake, or sunlight, -50%)",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3ae3e140f49ab049",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vampiric Bite",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5ca4001046fd050f",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Divine Curse (Cannot enter a private home without permission)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.23dc58ea0e30e462",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Draining (Blood)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.b30eb9d0d1b69ef7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Supernatural Features (No Body Heat; No Reflection; Pallor)",
+          "itemType": "trait",
+          "points": -16,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Partial)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Heat/Fire ×2)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Weakness (Sunlight; 1d per minute; Variable, -40%)",
+          "itemType": "trait",
+          "points": -36,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Weakness (Contact with holy water and artifacts; 1d per minute)",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.195c4c75a582d2ae",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by True Faith, and by Path of Undead magic instead of Body and Mind.",
+        "Cannot use holy items.",
+        "Neither has nor uses FP.",
+        "Sterile.",
+        "No Body Heat and Pallor pass off after feeding."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 51"
+    }
+  },
+  {
+    "_id": "5f9579105e5c2f55",
+    "name": "Dhampir",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 4,
+        "DX": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 1,
+        "will": 0,
+        "per": 1,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 107,
+      "entries": [
+        {
+          "name": "Breath-Holding",
+          "itemType": "trait",
+          "points": 6,
+          "levels": 3,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.bb183880daa791ba",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Discriminatory Smell (Emotion Sense, +50%)",
+          "itemType": "trait",
+          "points": 23,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards, +8)",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Night Vision",
+          "itemType": "trait",
+          "points": 9,
+          "levels": 9,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.10309529f2b178ce",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vampiric Bite",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5ca4001046fd050f",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 51"
     }
   }
 ]

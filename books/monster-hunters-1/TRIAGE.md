@@ -108,11 +108,39 @@ records are never changed from here. What they express:
 | Body Control, Mental Strength, Research: `needs()` cleared | GCA prerequisite bookkeeping | nothing |
 | ST:Money starts at 100% of starting wealth | GCA sheet setup | nothing |
 
-## Templates, kept by hand (#26)
+## Templates, kept by hand (#26, #27)
 
 `packs-src/templates/monster-hunters-1-by-hand.json` holds the ten 400-point
-character templates (pp. 9-21) and the ten 15-point motivational lenses
-(pp. 6-9), `kind: "lens"`. Every one passes the system's stated-cost check.
+character templates (pp. 9-21), the ten 15-point motivational lenses
+(pp. 6-9, `kind: "lens"`), and the six 200-point racial templates (pp. 49-51,
+`kind: "racial"`). Every one passes the system's stated-cost check.
+
+The racial templates (#27):
+
+- **Modifiers.** Attribute and secondary modifiers are granted, and the cost
+  the book prints for them is `attributeCost`. For example, the vampire's is
+  ST+5, DX+2, HT+2, Per+2 and Basic Speed+1.00, which comes to 140.
+- **The demon's packages.** "Three of these 25-point racial packages" is a
+  75-point points group holding every package's traits, labelled with the
+  nine packages. It is not a count group, because six of the packages are two
+  or three traits, and a count group counts items. Package 8's DR 6 in place
+  of DR 4 is an 18-point option on its own.
+- **The were-form** is a count group of four 0-point records, "Were-form
+  (Bear)" and so on, with the form's traits in the note. The form is paid for
+  by the template's Alternate Form [140], and its traits apply only while
+  transformed. The system has no alternate forms. Applying a form's traits as
+  a template would move the character's own attributes for good and bill them
+  a second time. A separate template per form was ruled out too: the forms'
+  traits don't add up to one figure (the book suggests about 125 points of
+  traits for a new form, and its own forms price differently), so any stated
+  cost would be ours rather than the book's. The record keeps the choice on
+  the sheet until alternate forms exist.
+- **Native languages** (Demontongue, Adamic) are language items, spoken and
+  written at native level, which bills the 6 points printed.
+- **Taboo traits.** None are printed. The book only says that racial
+  disadvantages can't be bought off, and that every template leaves out
+  Unaging. The features are the "Features:" lines, plus short notes of rules
+  the page states about the race.
 
 How the book's lists become choice groups:
 
@@ -152,22 +180,29 @@ How the book's lists become choice groups:
   Greed (12) is Greed.
 
 An entry links its compendium document, from this book's packs first and then
-the Basic Set's. With GWorldVTT#180 the item carries the template's cost
-whatever the document's pricing, and keeps a qualifier the document lacks, as
-with Vow (Never kill a human).
+the Basic Set's. With GWorldVTT#180 the item carries the template's cost and
+keeps a qualifier the document lacks, as with Vow (Never kill a human).
 
-These 59 names have no document and apply as plain items, with the entry's
-name and cost:
+A document priced per level can carry any cost, because `points` makes up the
+difference. That is how Damage Resistance 4 (Tough Skin, -40%) bills 12. A
+tabled document is different: it can only carry a cost that is one of its
+steps. So an entry priced off the table, by a modifier or a partial level, is
+not linked.
+
+These names have no document, or are not linked, and apply as plain items
+with the entry's name and cost:
 
 | Entries | Why |
 |---|---|
 | ST, DX, IQ, HT, HP, FP, Will, Per and Basic Speed options | bought on the sheet, as in the Basic Set templates |
 | Extraordinary and Ridiculous Luck, Enhanced Time Sense in place of Combat Reflexes, higher Magery, Mysticism Talent, Parapsychologist and Craftiness, worse self-control for Curious and Compulsive Gadgeteering | upgrades of a trait the template already has |
-| Language (any) | named on the sheet |
+| Language (any); Demontongue and Adamic | a language is its own item. Language (any) bills 6 (native) until its levels are set on the sheet |
 | Acute Senses, Armoury, Bioengineering, Current Affairs, Driving, Innate Attack, Quick Reload and Thrown Weapon, each "(any)" | no one document to link |
-| Addiction (Psi-Boost), Bad Sight (Mitigator, Glasses, -60%), Compulsive Gadgeteering, Current Affairs (Regional), Disciplines of Faith, Enhanced Parry (Blade!) and (All Weapons), Gun Fu Perks, Mechanic in five specialties | in neither pack |
+| Addiction (Psi-Boost), Bad Sight (Mitigator, Glasses, -60%), Compulsive Gadgeteering, Current Affairs (Regional), Disciplines of Faith, Enhanced Parry (Blade!) and (All Weapons), Gun Fu Perks, Mechanic in five specialties; Can burn HP for extra effort, Enhanced Move 0.5 (Air), Immunity to Transformation, Striker (Horns), Supernatural Features, Teeth (Sharp) | in neither pack |
 | Enemies, in three forms | the Basic Set pack files Enemy only by the size of the group |
-| DR (Tough Skin, -40%) | Damage Resistance without the limitation would bill 5 a level, not 3 |
+| Ally (Sidekick) [4, 6, or 8], Resistant [Varies] at 1; Appearance (Handsome; Androgynous; Universal), Regeneration (Fast; Cannot heal damage from silver), Terror (Audible; Takes Recharge), Weakness (Sunlight; Variable) | priced off the document's cost table |
+| DR 6 in place of DR 4 (demon package 8) | an upgrade of the DR the template already has |
+| Were-form (Bear), (Eagle), (Tiger), (Wolf) | the chosen form, recorded at 0 points (above) |
 
 ## Text: what the PDF looks like
 
