@@ -54,7 +54,11 @@ async function main() {
     label: pack.label,
     path: `packs/${pack.id}`,
     type: pack.type,
-    system: SYSTEM_ID,
+    // Only a pack whose documents carry system data belongs to a system. A
+    // JournalEntry has none, and declaring one on it fails the manifest's joint
+    // validation -- which Foundry reports by quietly refusing to enable the
+    // module, with the packs themselves looking perfectly fine.
+    ...(pack.type === "Item" || pack.type === "Actor" ? { system: SYSTEM_ID } : {}),
     ownership: OWNERSHIP,
     flags: {
       [SYSTEM_ID]: { book: pack.book, bookTitle: pack.bookTitle },

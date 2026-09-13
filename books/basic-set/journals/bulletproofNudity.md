@@ -1,0 +1,1 @@
+PCs with Attractive or better appearance can get a bonus to active defenses simply by undressing! Any outfit that bares legs, chest, or midriff is +1. Just a loincloth or skimpy swimwear is +2. Topless females get an extra +1. Total nudity gives no further bonus to defense, but adds +1 to Move and +2 water Move.

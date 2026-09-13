@@ -1,0 +1,202 @@
+[
+  {
+    "_id": "3d2f0d95331ba999",
+    "name": "Dragon",
+    "pages": "B261",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
+    "description": "<p>A winged, fire-breathing \"lizard,\" as smart as a man, and around 20 feet long excluding its tail. It can be good or evil, but it always lusts for treasure. This is a young dragon, but still a fierce foe for a group of adventurers. It might even be suitable as a PC in a high-powered game. Some dragons are reputed to have other abilities, including Alternate Form (Human) (p. 83), Indomitable (p. 60), Terror (p. 93), Unaging (p. 95), and Unfazeable (p. 95).</p><p>Attribute Modifiers: ST+15 (Size, -20%) [120].</p><p>Secondary Characteristic Modifiers: SM +2; Will+3 [15]; Per+3 [15].</p><p>Advantages: Burning Attack 4d (Cone, 5 yards, +100%; Limited Use, 3/day, -20%; Reduced Range, �1/5, -20%) [32]; Claws (Talons) [8]; Discriminatory Smell [15]; DR 6 (Can't Wear Armor, -40%) [18]; Enhanced Move 1/2 (Air) [10]; Extra Attack [25]; Extra Legs (Four Legs) [5]; Flight (Winged, -25%) [30]; Longevity [2]; Magery 0 [5]; Night Vision 8 [8]; Striker (Tail; Crushing) [5]; Teeth (Fangs) [2].</p><p>Disadvantages: Bad Grip 3 [-15]; Gluttony (12) [-5]; Greed (12) [-15]; Horizontal [-10]; Miserliness (12) [-10].</p>"
+  },
+  {
+    "_id": "cb0361542647ff1e",
+    "name": "Dwarf",
+    "pages": "B261",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dwarves might be only 2/3 as tall as humans, but they are much longer-lived, with a nose for gold and a flair for all forms of craftsmanship. Dwarves often live in underground halls, and their eyes are adapted to dim light. Many dwarves have Greed or Miserliness, but these are not racial traits.</p><p>Attribute Modifiers: HT+1 [10]. Secondary Characteristic Modifiers:</p><p>SM -1; Will+1 [5]. Advantages: Artificer 1 [10]; Detect Gold (Vague, -50%) [3]; Extended Lifespan 1 [2]; Night Vision 5 [5].</p>"
+  },
+  {
+    "_id": "137e4b1da33f6425",
+    "name": "Felinoid",
+    "pages": "B261",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Cat people\" often appear in science fiction, fantasy, and horror settings. This is a typical felinoid: humanoid, but with a number of catlike features, including a tail. This could also be the \"were-form\" of a human with the Alternate Form advantage (p. 83).</p><p>Attribute Modifiers: ST-1 [-10]; DX+1 [20].</p><p>Advantages: Acute Hearing 2 [4]; Acute Taste and Smell 1 [2]; Catfall [10]; Claws (Sharp) [5]; Combat Reflexes [15]; DR 1 [5]; Teeth (Sharp) [1]; Temperature Tolerance 1 [1].</p><p>Disadvantages: Impulsiveness (12) [-10]; Sleepy (1/2 of the time) [-8].</p><p>Features: Purring Voice; Tail.</p>"
+  },
+  {
+    "_id": "10d40018a74365a7",
+    "name": "Vampire",
+    "pages": "B262",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short; ends on what looks like the next heading",
+    "description": "<p>This is a \"Bram Stoker\"-style vampire. It possesses some, but not all, of the powers and weaknesses that fiction ascribes to bloodsucking undead. Notably, horror-movie vampires often have Supernatural Durability instead of Unkillable (increases cost by 100 points).</p><p>Attribute Modifiers: ST+6 [60]. Secondary Characteristic Modifiers:</p><p>HP+4 [8]; Per+3 [15]. Advantages: Alternate Forms (Bat, Wolf) [30]; Doesn't Breathe [20]; Dominance [20]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Unliving) [20]; Insubstantiality (Costs Fatigue, 2 FP, -10%) [72]; Night Vision 5 [5]; Speak With Animals (Wolves and bats, -60%) [10]; Unaging [15]; Unkillable 2 (Achilles' Heel: Wood, -50%) [50]; Vampiric Bite [30].</p><p>Omitting Racial Traits If you have a good explanation, the GM may permit you to omit a racial trait. If the missing trait has a positive point value, you have a disadvantage that exactly cancels its cost; e.g., omitting racial Combat Reflexes gives \"No Combat Reflexes [-15].\" Such disadvantages do count against campaign disadvantage limits. If the missing trait has a negative point value, you have an advantage worth just enough to negate it; e.g., omitting racial Paranoia [-10] results in \"No Paranoia [10].\" You can apply enhancements and limitations to either kind of \"replacement trait.\"</p><p>Disadvantages: Dependency (Coffin with soil of homeland; Daily) [-60]; Divine Curse (Cannot enter dwelling for first time unless invited) [-10]; Draining (Human Blood; Illegal) [-10]; Dread (Garlic) [-10]; Dread (Religious Symbols; 5 yards) [-14]; Dread (Running Water) [-20];</p><p>Supernatural Features (No Body Heat*, No Reflection, Pallor*) [-16]; Uncontrollable Appetite (12) (Human Blood) [-15]; Unhealing (Partial) [-20]; Weakness (Sunlight; 1d/minute) [-60]. Features: Sterile.</p><p>* Except after feeding.</p><p>A \"meta-trait\" is a collection of traits take the relevant meta-trait as their (Water; 1d/minute) [-40]; and Taboo that are typical of a particular mental, alternate racial template.</p><p>Trait (Fixed ST) [0]. 6 points.</p><p>physical, or supernatural state. In game terms, it functions much like a regular advantage or disadvantage. A metatrait can be part of a racial template or bought by an individual with exotic abilities. Record a meta-trait instead of its components on templates and character sheets.</p><p>With GM approval, you may modify elements of a meta-trait, altering its cost; e.g., to be able to carry things when you have Body of Air (see below), reduce the ST penalty and the corresponding HP bonus, and delete No Manipulators.</p><p>Elemental Meta-Traits 31</p>"
+  },
+  {
+    "_id": "daa502faf9f75e83",
+    "name": "Body of Air",
+    "pages": "B262",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
+    "description": "<p>Your body is made of gas. ST 0 [-100]; +10 HP [20]; Doesn't Breathe [20]; Flight (Lighter Than Air, -10%) [36]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Legs (Aerial) [0]; No Manipulators [-50]; Vulnerability (Vacuum and wind-based attacks �2) [-20]; and Taboo Trait (Fixed ST) [0]. 36 points.</p>"
+  },
+  {
+    "_id": "561d8591021c67bb",
+    "name": "Body of Earth",
+    "pages": "B262",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of sand or earth. Doesn't Breathe [20]; DR 2 [10]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Invertebrate [-20]. 175 points.</p>"
+  },
+  {
+    "_id": "d23afc3837dca7f7",
+    "name": "Body of Fire",
+    "pages": "B262",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
+    "description": "<p>Your body is a living flame! If your flames are very hot, increase Burning Attack and DR. ST 0 [-100]; +10 HP [20]; Burning Attack 1d (Always On, -40%; Aura, +80%; Melee Attack, Reach C, -30%) [6]; Doesn't Breathe (Oxygen Combustion, -50%) [10]; DR 10 (Limited: Heat/Fire, -40%) [30]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Manipulators [-50]; Weakness</p>"
+  },
+  {
+    "_id": "ea41b779ec6cf11d",
+    "name": "Body of Ice",
+    "pages": "B262",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
+    "description": "<p>Your body is made of ice. Doesn't Breathe [20]; DR 3 [15]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Slippery 3 [6]; Terrain Adaptation (Ice) [5]; Vacuum Support [5]; Fragile (Brittle) [-15]; Vulnerability (Heat/fire attacks �2) [-30]; and Weakness (Intense normal heat; 1d/minute; Variable, -40%) [-12]. 99 points.</p>"
+  },
+  {
+    "_id": "2affb01aa1a45347",
+    "name": "Body of Metal",
+    "pages": "B262",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of metal. Doesn't Breathe [20]; DR 9 [45]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; and Vacuum Support [5]. 175 points.</p>"
+  },
+  {
+    "_id": "b06d244099810c6d",
+    "name": "Body of Stone",
+    "pages": "B262",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of rock. Doesn't Breathe [20]; DR 5 [25]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Fragile (Brittle) [-15]. 140 points.</p>"
+  },
+  {
+    "_id": "2927aae234131197",
+    "name": "Body of Water",
+    "pages": "B262",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
+    "description": "<p>Your body is made of liquid. Amphibious [10]; Chameleon 1 [5]; Constriction Attack [15]; Doesn't</p>"
+  },
+  {
+    "_id": "2119170f636ea592",
+    "name": "Machine",
+    "pages": "B263",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short; ends on what looks like the next heading",
+    "description": "<p>Your body is mostly or completely mechanical, composed of non-living materials such as metal, plastic, and composites - although you might have a few organic parts, such as an outer layer of skin or a brain. Examples include robots, vehicles, and full cyborgs.</p><p>This meta-trait includes Immunity to Metabolic Hazards [30], Injury Tolerance (No Blood, Unliving) [25], Unhealing (Total) [-30], and several 0point features:</p><p>Maintenance, Numb, Restricted Diet, and Social Stigma (Valuable Property).</p><p>Mentality Meta-Traits 21</p>"
+  },
+  {
+    "_id": "ac51cf5688ff19b7",
+    "name": "AI",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A computer mind. Absolute Timing [2]; Digital Mind [5]; Doesn't Sleep [20]; Intuitive Mathematician [5]; Photographic Memory [10]; and Reprogrammable [-10]. 32 points.</p>"
+  },
+  {
+    "_id": "8593dbad7c2a1f59",
+    "name": "Automaton",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A mind lacking selfawareness and creativity. This is typical of many hive-creatures, magical constructs, undead, and simple AIs. You can combine this with the AI meta-trait. Hidebound [-5]; Incurious (6) [-10]; Low Empathy [-20]; No Sense of Humor [-10]; and Slave Mentality [-40]. -85 points.</p>"
+  },
+  {
+    "_id": "21c74a668fc41278",
+    "name": "Domestic Animal",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A farm animal, pet, mount, or a trained wild animal. Cannot Speak [-15]; Hidebound [-5]; Social Stigma (Valuable Property) [-10]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
+  },
+  {
+    "_id": "46a683f1196667f8",
+    "name": "Wild Animal",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An ordinary animal found in nature. Bestial [-10]; Cannot Speak [-15]; Hidebound [-5]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
+  },
+  {
+    "_id": "b647fbb1347a4584",
+    "name": "Ground Vehicle",
+    "pages": "B263",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
+    "description": "<p>Your body is like a car, tank, etc. Horizontal [-10]; No Legs (Tracked or Wheeled) [-20]; No</p>"
+  },
+  {
+    "_id": "354a29f4d82ed5fa",
+    "name": "Ichthyoid",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have a fish-like body (a \"merman\" would just delete No Manipulators). No Legs (Aquatic) [0] and No Manipulators [-50]. -50 points.</p>"
+  },
+  {
+    "_id": "2da60dc72d2e4596",
+    "name": "Quadruped",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are a four-legged creature with no arms (a \"centauroid\" would simply take Extra Legs - plus Hooves, if equine). Extra Legs (Four Legs) [5]; Horizontal [-10]; and No Fine Manipulators [-30]. -35 points.</p>"
+  },
+  {
+    "_id": "5ffdbc71e72e6a09",
+    "name": "Vermiform",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is similar to that of a snake or a worm (a snakeman with a humanoid upper torso would drop No Manipulators). Double-Jointed [15]; No Legs (Slithers) [0]; and No Manipulators [-50]. -35 points.</p>"
+  },
+  {
+    "_id": "4464bd34ab311e21",
+    "name": "Spirit",
+    "pages": "B263",
+    "status": "needs-review",
+    "notes": "a price is still in the text",
+    "description": "<p>You are a noncorporeal entity: ghost, being of pure thought, etc. You are invisible and intangible (except to others with this meta-trait!). You can temporarily become visible, or even solid, but this is draining. However, your senses can perceive the material world at all times, and your magical or psionic abilities, if any, can always affect the physical world.</p><p>Spirit includes Doesn't Breathe [20], Doesn't Eat or Drink [10], Doesn't Sleep [20], Immunity to Metabolic Hazards [30], Insubstantiality (Affect Substantial, +100%; Usually On, -40%) [128], Invisibility (Substantial Only, -10%; Usually On, +5%) [38], and Unaging [15].</p><p>Many spirit abilities from folklore are not part of this meta-trait; e.g., Injury Tolerance (Homogenous or Diffuse), Magery, and almost any ESP, PK, Telepathy, or Teleportation psi ability (see Chapter 6). Common spirit disadvantages include Compulsive Behavior, Dependency, Divine Curse, Dread, Maintenance, Obsession, and Weakness.</p><p>Astral Entity: An astral entity is a spirit that cannot materialize, become visible, or use its supernatural powers in the physical world. Doesn't Breathe [20]; Doesn't Eat or Drink [10]; Doesn't Sleep [20]; Immunity to Metabolic Hazards [30]; Insubstantiality (Always On, -50%) [40]; Invisibility (Substantial Only, -10%) [36]; and Unaging [15]. 171 points.</p><p>Now it's time to decide what possessions you have! You can skip this step if you're Dead Broke or plan to buy equipment only as needed . . . but otherwise, you should choose your gear and figure out how much it costs. If you are a warrior, you need to know how powerful your weapons are and how well your armor protects you. And if you plan to fight or travel, you need to determine the weight of your gear, and specify how you are carrying it.</p><p>Starting Wealth The amount of money you have available to spend on equipment at the start of your career is your \"starting wealth\" - see Starting Wealth (p. 26). To calculate this, start with the basic amount appropriate to your campaign's tech level, found under Tech Level and Starting Wealth (p. 27), and multiply it for your \"wealth level\" (see Wealth, p. 25).</p><p>Prices All prices in GURPS appear in \"$\": a convenient abbreviation for any baseline unit of currency suitable to the setting. One $ may be one dollar, one credit, one copper piece, or whatever else is appropriate - see Tech Level and Starting Wealth. Prices in this chapter assume a typical sale made by an ordinary merchant, in a locale where the item is usually found, at a time when there is neither a shortage nor a surplus.</p><p>Money The currency in use depends on the game world; see Economics (p. 514). Coin is almost universal. Paper money is conceivable at TL3, common by TL5, and ubiquitous at TL6. Electronic credit and debit cards supplement or possibly replace other currency at TL8. Two specific examples:</p><p>Medieval Coinage: The default assumption is that $1 is a copper farthing, $4 is a silver coin, and $1,000 in silver weighs 1 pound. Gold coins of the same weight are worth about 20 times as much. Modern Money: The default assumption is that $1 is a bank note (or alloy coin), its value backed by a government or private bank.</p><p>These assumptions may vary from world to world.</p>"
+  },
+  {
+    "_id": "0a6cf480496834f8",
+    "name": "Astral Entity",
+    "pages": "B263",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An astral entity is a spirit that cannot materialize, become visible, or use its supernatural powers in the physical world. Doesn't Breathe [20]; Doesn't Eat or Drink [10]; Doesn't Sleep [20]; Immunity to Metabolic Hazards [30]; Insubstantiality (Always On, -50%) [40]; Invisibility (Substantial Only, -10%) [36]; and Unaging [15]. 171 points.</p>"
+  },
+  {
+    "_id": "92c8d28cd3c3096e",
+    "name": "Investigator",
+    "pages": "B259",
+    "status": "needs-review",
+    "notes": "a cost in brackets with no name before it, so a line was lost; read and found wanting: a line of the disadvantage list was lost",
+    "description": "<p>You are a detective, investigative reporter, occult investigator, spy, or thief.</p><p>[-5*], Duty [-2 to -15], Greed [-15*], Honesty [-10*], Pacifism [-5 to -15], Secret [-5 to -30], Sense of Duty (Comrades) [-5], Stubbornness [-5], Wealth (Struggling) [-10], Workaholic [-5], and -1 to ST [-10].</p><p>the templates are incompatible, and that you should not take both. For instance, in most settings, it would be illogical to combine a Status -3 beggar template and Status 2 knight template to create a Status 2 beggar-knight.</p><p>Attributes: ST 10 [0]; DX 12 [40]; IQ 12 [40]; HT 11 [10].</p><p>Secondary Characteristics: Dmg 1d2/1d; BL 20 lbs.; HP 11 [2]; Will 12 [0]; Per 13 [5]; FP 11 [0]; Basic Speed 5.75 [0]; Basic Move 5 [0].</p><p>Primary Skills: Select three skills from: Climbing, Filch, or Stealth, all (A) DX+1 [4]-13; Criminology, Disguise, Electronics Operation (any), Holdout, Interrogation, Lockpicking, Occultism, Photography, Research, Shadowing, Smuggling, Traps, or Writing, all (A)</p><p>IQ+1 [4]-13; Observation or Search, Uniqueness both (A) Per+1 [4]-14; Pickpocket (H) DX [4]-12; Computer Program- You might think that two characters built on the same template ming, Diagnosis, Expert Skill (any), would be rather alike. In practice, though, players rarely pick the same Forensics, Intelligence Analysis, or options on a given template, and almost always make different pur- Law (any), all (H) IQ [4]-12; Detect chases with their remaining points. These choices, being the players'</p><p>Lies (H) Per [4]-13; or Computer own, color how the characters are played, which in turn keeps them Hacking (VH) IQ-1 [4]-11. You may distinct, even though they share a template.</p><p>opt to trade one choice for two extra secondary or background skills.</p><p>Secondary Skills: Select two skills from: Beam Weapons (Pistol or Rifle), Brawling, Crossbow, Forced Entry, Garrote, Guns (Pistol, Rifle, or Shotgun), Knife, or Thrown Weapon (any), all (E) DX+1 [2]-13; Boxing, Cloak, Rapier, or Shortsword, all (A) DX [2]-12; Acting or Fast-Talk, both (A) IQ [2]12; Sex Appeal (A) HT [2]-11; or Acrobatics, Judo, or Karate, all (H) DX-1 [2]-11.</p><p>Background Skills: Select one skill from: Area Knowledge (any), Computer Operation, or Current Affairs (any), all (E) IQ+1 [2]-13; Carousing or Swimming, both (E) HT+1 [2]-12; Boating (any), Driving (any), Piloting (any), or Riding (any), all (A) DX [2]-12; Streetwise (A) IQ [2]-12; or Hiking or Running, both (A) HT [2]-11.</p><p>* Multiplied for self-control number; see p. 120.</p>"
+  },
+  {
+    "_id": "a12079c9633acec0",
+    "name": "Mage",
+    "pages": "B260",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a sorcerer, a wizard, a witch, an adept of the black arts . . .</p><p>Attributes: ST 9 [-10]; DX 11 [20]; IQ 13 [60]; HT 11 [10].</p><p>Secondary Characteristics: Dmg 1d2/1d-1; BL 16 lbs.; HP 10 [2]; Will 13 [0]; Per 10 [-15]; FP 13 [6]; Basic Speed 5.50 [0]; Basic Move 5 [0].</p><p>Advantages: Language (Accented) [4]; Magery 2 [25]; and one of Eidetic Memory [5]; Reputation +1 [5], Single-Minded [5], Status 1 [5], Versatile [5], or +1 to Will [5].</p><p>Disadvantages: -30 points chosen from among Absent-Mindedness [-15], Bad Sight (Mitigator: Glasses, -60%) [-10], Bad Temper [-10*], Curious [-5*], Duty [-2 to -15], Gluttony [-5*], Obsession [-5* or -10*], Secret [-5 to -30], Sense of Duty [-2 to -15], and Shyness [-5, -10, or -20].</p><p>Primary Skills: Select two spells, each (H) IQ+2 [4]-15 or (VH) IQ+1 [4]14. Select 10 more spells, each (H) IQ [1]-13 or (VH) IQ-1 [1]-12. See Chapter 5 for spell list.</p><p>Secondary Skills: Select two skills from: Hidden Lore (any), Occultism, or Research, all (A) IQ [2]-13; Expert Skill (any), Mathematics (any), Naturalist, or Theology (any), all (H) IQ-1 [2]-12; Dreaming or Meditation, both (H) Will-1 [2]12; or Alchemy or Thaumatology, both (VH) IQ-2 [2]-11.</p><p>Background Skills: Select one skill from: Guns (Pistol or Shotgun) or Knife, both (E) DX [1]-11; Computer Operation (E) IQ [1]-13; or Driving (any), Riding (any), Shortsword, or Staff, all (A) DX-1 [1]-10.</p><p>* Multiplied for self-control number; see p. 120.</p><p>Includes +2 for Magery.</p><p>Note: Choose your 12 spells from pp. 242-253. Be sure to give each spell the proper prerequisite. You can modify template cost and your skill with spells by taking a higher or lower level of Magery, or by applying a limitation such as Dark-Aspected.</p>"
+  },
+  {
+    "_id": "6b6bc2d65d0e9d80",
+    "name": "Soldier of Fortune",
+    "pages": "B260",
+    "status": "needs-review",
+    "notes": "very long, may have run past the entry; many paragraphs, may have run past the entry",
+    "description": "<p>You're a warrior. You could be a soldier, pirate, knight-errant, gunslinger, street fighter, or guerrilla.</p><p>Attributes: ST 11 [10]; DX 13 [60]; IQ 11 [20]; HT 11 [10].</p><p>Secondary Characteristics: Dmg 1d1/1d+1; BL 24 lbs.; HP 11 [0]; Will 11 [0]; Per 11 [0]; FP 11 [0]; Basic Speed 6.00 [0]; Basic Move 6 [0].</p><p>Advantages: 20 points chosen from among Ambidexterity [5], Charisma 1-4 [5-20], Combat Reflexes [15], Fit or Very Fit [5 or 15], High Pain Threshold [10], Luck [15], Magic Resistance 1-10 [2-20], Outdoorsman 1 [10], Rank 1-4 [520], Rapid Healing [5], Reputation [varies], Status 1-4 [5-20], Wealth (Comfortable) [10], +1 to ST or HT [10], +1 to +4 to HP [2-8], and +1 to +4 to Per [5-20]. Disadvantages: -35 points chosen from among Alcoholism [-15], Bad Temper [-10*], Bloodlust [-10*], Code of Honor [-5 to -15], Compulsive Carousing or Spending [-5*], Duty [-2 to -15], Fanaticism [-15], Flashbacks (Mild) [-5], Honesty [-10*], Impulsiveness [-10*], Lecherousness [-15*], Overconfidence [-5*], Sense of Duty (Comrades) [-5], and Trademark (Simple) [-5]. Primary Skills: Select two skills from: Beam Weapons (any), Crossbow, or Guns (any), all (E) DX+2 [4]-15; Axe/Mace, Bow, Broadsword, Lance, Rapier, or Spear, all (A) DX+1 [4]-14; Karate (H) DX [4]-13; or Tactics (H) IQ [4]-11. Secondary Skills: Select one skill from: Brawling, Fast-Draw (any), Gunner (any), Knife, or Shield (any), all (E) DX+1 [2]-14; or Artillery (any) or Forward Observer, both (A) IQ [2]-11. Select one skill from: Crewman (any) (E) IQ+1 [2]-12; Driving (any), Environment Suit (any), Piloting (any), Riding (any), all (A) DX [2]-13; Hiking (A) HT [2]-11; or Acrobatics (H) DX-1 [2]-12. Background Skills: First Aid (E) IQ [1]-11. Select two skills from: Camouflage or Savoir-Faire (any), both (E) IQ [1]-11; Carousing or Swimming, both (E) HT [1]-11; Free Fall or Stealth, both (A) DX-1 [1]-12; Electronics Operation (Comm or Sensors), Explosives (any), or Leadership, all (A) IQ-1 [1]-10; or Observation, Survival (any), Tracking, or Urban Survival, all (A) Per-1 [1]-10.</p><p>* Multiplied for self-control number; see p. 120.</p><p>In many game worlds, you can play vampire, or other undead, regardless race. These traits might define the a character that does not belong to the of its species in life); or a particular race's physiology, its psychology, its human race. These rules define a variety of artificial construct (e.g., a supernatural powers (if any), and even \"race\" as a single, distinct nonhuman given model of robot).</p><p>its dominant culture (at least for a species; or one specific type of super- A \"racial template\" is a collection of sapient race).</p><p>natural being (which might be a ghost, traits that apply to every member of a When you play a member of a nonhuman race, you must normally take all the traits in its racial template.</p><p>Unlike the traits in a character template, racial traits are rarely optional. The sum of the point costs of these traits is the race's \"racial cost.\" You must pay this cost to belong to the race. Racial templates express deviations from the human norm; therefore, it costs 0 points to play a human.</p><p>Some templates are too expensive for PCs in low-powered campaigns, but the GM may still use them for powerful villains or patrons. The GM might wish to produce weaker versions of such templates for PCs (e.g., a vampire that lacks some of the powers given in legend), but he is also free to reserve such templates for NPCs.</p><p>Guidelines for creating racial templates appear in Chapter 15. These are intended for GMs, but the GM might allow players to create their own racial templates in campaigns that feature a vast array of nonhumans - especially supers games, where lone aliens with amazing powers are common. Many GURPS books also feature racial templates.</p><p>Attribute and Secondary Characteristic Modifiers Racial templates often have attribute or secondary characteristic modifiers; e.g., ST+2 or HP-3. Apply attribute modifiers to the attributes you purchase for your character. Next, recalculate your secondary characteristics to reflect your modified attributes. Finally, apply secondary characteristic modifiers. There is no added point cost for any of this! You paid for these bonuses or penalties when you paid your racial cost.</p><p>If an attribute or secondary characteristic does not appear in the racial template, assume it is unchanged from the human norm.</p><p>Example: Sangria spends 10 points to buy ST 11. This gives her HP 11, and she spends another 4 points to get HP 13. She then buys the Vampire template (p. 262). This template includes ST+6, giving Sangria ST 17. This ST improvement raises her HP to 19. Since the template gives HP+4 as well, she ends up with HP 23! The racial ST and HP bonuses have no extra cost - Sangria paid for these when she purchased her racial template.</p><p>Features and Taboo Traits A \"feature\" is a note on how the race differs from humanity when that difference does not grant an advantage or a disadvantage. Features cost 0 points. Examples of features include sterility and an ordinary tail.</p><p>A \"taboo trait\" is an attribute level, advantage, disadvantage, or skill that is off-limits to members of the race. This, too, is worth 0 points. Normally, only mundane traits are labeled \"taboo,\" as exotic or supernatural traits require the GM's permission in any case.</p><p>Stacking Templates You can buy both a racial template and a character template, if you have enough points. Use the guidelines given under Combining Character Templates (p. 259), but bear in mind that while you can discard elements of character templates, you cannot do the same with racial traits.</p><p>You might even be able to stack two racial templates in some situations. For instance, an Elf might also be a Vampire. Keep all compatible traits from both templates. Add traits that come in levels (e.g., if an Elf has ST-1 and a Vampire has ST+6, a Vampire Elf has ST+5). Where two traits conflict (e.g., Acute Vision and Blindness), the GM decides which to keep and which to discard. Adjust the combined template cost appropriately.</p><p>Below are four examples of racial templates.</p>"
+  }
+]

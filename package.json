@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@foundryvtt/foundryvtt-cli": "^3.0.4",
-    "marked": "^16.0.0"
+    "marked": "^16.0.0",
+    "pdfjs-dist": "^4.10.38"
   }
 }

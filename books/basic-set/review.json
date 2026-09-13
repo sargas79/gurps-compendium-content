@@ -1,0 +1,67 @@
+{
+  "_standard": "Every captured entry was read and judged coherent and complete. This is not word-by-word collation against the printed page. An entry listed here was read and found wanting, and stays needs-review until fixed by hand.",
+  "advantages": {
+    "Morph (Cosmetic)": "carries Alternate Form's Cosmetic limitation, not Morph's",
+    "Morph": "starts at a later paragraph; the opening description is missing",
+    "Absolute Timing": "runs into the GM's note on exotic and supernatural traits",
+    "Legal Enforcement Powers": "only the trailing note about Duty; the description is missing",
+    "Social Regard (Feared)": "the family's opening and the variant label are spliced mid-sentence",
+    "Social Regard (Respected)": "the family's opening and the variant label are spliced mid-sentence",
+    "Social Regard (Venerated)": "the family's opening and the variant label are spliced mid-sentence",
+    "Shtick": "runs on past the perk into the modifiers chapter",
+    "Zeroed": "runs on into the introduction to perks",
+    "Special Rapport": "runs into Spines",
+    "Warp": "only the Warp Jump enhancement; the description is missing",
+    "ESP Talent": "runs into the Psychic Healing abilities",
+    "Psychic Healing Talent": "runs into the PK abilities",
+    "PK Talent": "runs into the Teleportation ability",
+    "Unaging": "cut off mid-word in its special enhancements"
+  },
+  "disadvantages": {
+    "Short Lifespan": "a table's figures are spliced into the sentences",
+    "Sleepy": "a table is flattened into the text",
+    "Bestial": "only a trailing note; the description is missing",
+    "Stress Atavism": "only a trailing note; the description is missing",
+    "Skinny": "the Build table is spliced into the middle of a sentence",
+    "Bad Grip": "runs into a limitation from another entry",
+    "Unique": "the ending belongs to a fatigue rule, not to Unique",
+    "Restricted Diet": "only a trailing note; the description is missing",
+    "Wounded": "runs on into the disadvantage-limit example",
+    "Phantom Voices": "only a trailing note; the description is missing",
+    "Trademark": "a character-creation sidebar is spliced in",
+    "Vow": "runs on into the section on physical quirks",
+    "Mistaken Identity": "runs into Odious Personal Habits",
+    "Reputation (Disadvantage)": "carries Affliction's Disadvantage enhancement, not Reputation",
+    "Congenial": "runs into the next quirk, Delusions",
+    "Dull": "runs into the next quirk, Habits or Expressions",
+    "Imaginative": "runs into the next quirk, Incompetence",
+    "Nosy": "runs into the next quirk, Obsessions",
+    "Cannot Float": "runs into the next quirk, Distinctive Features",
+    "Horrible Hangovers": "runs into the next quirk, Minor Addiction"
+  },
+  "templates": {
+    "Investigator": "a line of the disadvantage list was lost"
+  },
+  "skills": {
+    "Flight": "opens with a stray prerequisite label, \"Flight advantage\"",
+    "Sports": "runs into Streetwise",
+    "Cloak": "runs on into the sidebar on Combat Art and Sport",
+    "Counterfeiting/TL": "runs on as far as Submariner",
+    "Holdout": "runs into the sidebar on Search",
+    "Dreaming": "runs into Driving",
+    "Throwing Art": "runs into the Stick specialty of Thrown Weapon",
+    "Blowpipe": "runs into Boating",
+    "Bolas": "runs into another skill's Physiology note",
+    "Research/TL": "runs into Riding",
+    "Teaching": "runs into Symbol Drawing",
+    "Anthropology": "runs on as far as the Musical Ability talent",
+    "Linguistics": "the ending belongs to Literature",
+    "Lip Reading": "runs into Armoury",
+    "Freight Handling/TL": "the ending belongs to Gambling",
+    "Thrown Weapon (Knife)": "runs into the Stick specialty"
+  },
+  "journals": {
+    "magicItems": "Enchant's paragraph beside the Fortify table was read as that table's first column, and the Power cost table ran into Accuracy's",
+    "ammunitionTypes": "the APDS paragraph carries on past the Ultra-Tech Firearm Table, and its end was not captured"
+  }
+}

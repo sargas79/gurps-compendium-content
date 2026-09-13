@@ -38,13 +38,19 @@ async function main() {
   await rm(OUT, { recursive: true, force: true });
   await mkdir(OUT, { recursive: true });
 
-  const names = (await readdir(SOURCE, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort();
+  // Two source directories: the system's validator is pointed at packs-src, so
+  // journal packs are kept beside it rather than in it. Both compile the same.
+  const roots = [SOURCE, join(buildRoot, "journals-src")].filter((dir) => existsSync(dir));
+  const found = [];
+  for (const root of roots) {
+    for (const entry of await readdir(root, { withFileTypes: true })) {
+      if (entry.isDirectory()) found.push([entry.name, join(root, entry.name)]);
+    }
+  }
+  found.sort(([a], [b]) => a.localeCompare(b));
+  const names = found.map(([name]) => name);
 
-  for (const name of names) {
-    const dir = join(SOURCE, name);
+  for (const [name, dir] of found) {
     const documents = [];
     for (const file of (await readdir(dir)).filter((f) => f.endsWith(".json"))) {
       const raw = JSON.parse(await readFile(join(dir, file), "utf8"));

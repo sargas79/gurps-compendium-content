@@ -1,0 +1,1 @@
+In reality, a grenade or anti-tank rocket will almost certainly kill an unarmored man. In cinematic combat, explosions do no direct damage! Ignore fragmentation, too. All a blast does is disarray clothing, blacken faces, and (most importantly) cause knockback. Every yard of knockback from a cinematic explosion causes a token 1 HP of crushing damage.

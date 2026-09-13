@@ -62,13 +62,18 @@ function main() {
     let bookTotal = 0;
 
     for (const pack of results) {
-      const total = pack.documents.length;
-      const missing = pack.byStatus.get(NO_PROSE) ?? 0;
-      const done = total - missing;
+      // An entry the book prints nothing for can never have text, so counting
+      // it would hold the bar permanently short of full. It is reported beside
+      // the count instead, which is what makes the remainder real work.
+      const absent = pack.documents.filter(
+        (d) => d.flags[MODULE_ID].status === "no-entry",
+      ).length;
+      const total = pack.documents.length - absent;
+      const textOf = (d) => d.system?.description ?? d.system?.details?.description ?? "";
+      const done = pack.documents.filter((d) => textOf(d).trim().length > 0).length;
 
-      // A pack of actors takes no text yet, so counting it against the total
-      // would put a book's coverage permanently short of 100%.
-      if (pack.type !== "Item") {
+      // Items and creatures take text; anything else is built elsewhere.
+      if (pack.type !== "Item" && pack.type !== "Actor") {
         console.log(
           `  ${pack.pack.padEnd(16)} ${" ".repeat(26)} ${total} ${pack.type} documents, no text`,
         );
@@ -79,7 +84,7 @@ function main() {
       bookTotal += total;
 
       const states = [...pack.byStatus]
-        .filter(([status]) => status !== NO_PROSE)
+        .filter(([status]) => status !== NO_PROSE && status !== "no-entry")
         .sort()
         .map(([status, count]) => `${status} ${count}`)
         .join(", ");
@@ -87,7 +92,8 @@ function main() {
       const percent = total === 0 ? 0 : Math.round((done / total) * 100);
       console.log(
         `  ${pack.pack.padEnd(16)} ${bar(done, total)} ${String(percent).padStart(3)}%  ` +
-          `${done}/${total}${states ? `  (${states})` : ""}`,
+          `${done}/${total}${absent ? ` (+${absent} the book has no entry for)` : ""}` +
+          `${states ? `  ${states}` : ""}`,
       );
 
       if (wantStatus) {
@@ -97,7 +103,7 @@ function main() {
             console.log(`      ${document.name}${note ? ` — ${note}` : ""}`);
           }
         }
-      } else if (list && missing > 0) {
+      } else if (list) {
         for (const document of pack.documents) {
           if (document.flags[MODULE_ID].status === NO_PROSE) console.log(`      ${document.name}`);
         }
