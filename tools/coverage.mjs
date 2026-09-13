@@ -63,8 +63,11 @@ function main() {
 
     for (const pack of results) {
       const total = pack.documents.length;
-      const missing = pack.byStatus.get(NO_PROSE) ?? 0;
-      const done = total - missing;
+      // What counts as done is text on the page, not a record in the file. A
+      // record saying "the book has no entry for this" is progress, but a bar
+      // that filled up for those would say the pack was finished when nothing
+      // had been written.
+      const done = pack.documents.filter((d) => (d.system.description ?? "").trim().length > 0).length;
 
       // A pack of actors takes no text yet, so counting it against the total
       // would put a book's coverage permanently short of 100%.
@@ -97,7 +100,7 @@ function main() {
             console.log(`      ${document.name}${note ? ` — ${note}` : ""}`);
           }
         }
-      } else if (list && missing > 0) {
+      } else if (list) {
         for (const document of pack.documents) {
           if (document.flags[MODULE_ID].status === NO_PROSE) console.log(`      ${document.name}`);
         }
