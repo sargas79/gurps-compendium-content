@@ -669,7 +669,7 @@ function doubts(paragraphs, kind) {
   // A quirk's heading is printed inline, so a short entry runs straight into
   // the next: "...group action. Delusions You may take a completely trivial".
   // The seam is a sentence ending, a capitalised name, and then "You".
-  if (/[.!?]\s+(?:[A-Z][a-z]+\s){1,4}(?:You|Your)/.test(text)) {
+  if (/[.!?]\s+(?:[A-Z][a-z]+\s){1,4}(?:You|Your)\b/.test(text)) {
     found.push("runs into the next entry, whose heading is printed inline");
   }
   if (/[.:]\s+\[[-+]?\d/.test(text)) {

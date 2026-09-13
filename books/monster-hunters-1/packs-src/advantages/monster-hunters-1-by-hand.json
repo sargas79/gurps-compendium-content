@@ -1,0 +1,112 @@
+[
+  {
+    "_id": "fc33772d24e8cd05",
+    "name": "Blessed (Heroic Feats, ST)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "8b31e096f2dc45c7",
+    "name": "Blessed (Heroic Feats, DX)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "04a8548a8644be72",
+    "name": "Blessed (Heroic Feats, HT)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "a256821a32041300",
+    "name": "Higher Purpose (Hunt a Specific Type of Monster)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 24"
+    }
+  },
+  {
+    "_id": "4e03fae26c31b9ed",
+    "name": "PK: Telekinesis",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46-47"
+    }
+  }
+]

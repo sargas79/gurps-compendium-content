@@ -12,6 +12,12 @@
  * than discarded, because a supplement sometimes revises an entry it reprints,
  * and those revisions are added by hand after reading the list.
  *
+ * Records the data file gets wrong or never had are kept by hand, in
+ * `packs-src/<pack>/<slug>-by-hand.json`. --write only ever writes the parsers'
+ * own files (named for the book), so it leaves those files alone. A name kept by hand
+ * also wins: the parser reports its own record as a duplicate and writes nothing
+ * for it.
+ *
  * Usage: node tools/extract.mjs <book> [--write]
  *
  * Without --write nothing is written and the counts are reported, which is how a
@@ -47,6 +53,7 @@ async function main() {
 
   if (!slug || slug.startsWith("--")) {
     console.error("Usage: node tools/extract.mjs <book> [--write]\n");
+    console.error("  --write writes the parsers' files only; packs-src/<pack>/<book>-by-hand.json is never touched.\n");
     console.error(`Books: ${books().map((bk) => bk.slug).join(", ")}`);
     process.exit(1);
   }
