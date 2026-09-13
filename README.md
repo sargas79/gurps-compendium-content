@@ -161,9 +161,33 @@ the entry in the system exactly; the build checks both.
 }
 ```
 
-`status` is one of `draft`, `transcribed`, `reviewed`, `needs-review`. Use
-`needs-review` with a note wherever the extraction was uncertain, or where the
-book gives an entry no text of its own.
+`status` is one of these:
+
+| Status | Means |
+| --- | --- |
+| `draft` | Started, not finished |
+| `transcribed` | Captured from the book and passed every automatic check, but not yet read |
+| `reviewed` | Read and judged coherent and complete — see below |
+| `needs-review` | Something is wrong with it, and the note says what |
+| `no-entry` | The book was consulted and prints nothing under this name |
+
+**What "reviewed" means here.** A person read the entry and judged it coherent
+and complete: it starts where the entry starts, stops where it stops, and is
+about its own subject. It does **not** mean the entry was collated word by word
+against the printed page. That distinction matters, because a transcription can
+read perfectly and still have dropped a clause, and nothing in this repository
+claims otherwise.
+
+Reading finds what no automatic check can — a tail that runs into the next
+section, a variant that picked up another family's note, a description that is
+only its trailing remark. Those decisions are kept in `books/<book>/review.json`
+with the reason for each, so re-running the transcription tool does not quietly
+undo them.
+
+`no-entry` is for names the book never uses. Most come from the GCA data file,
+which writes buying an attribute as "Extra ST" and a row of the barding table as
+"Horse Mail Face Mask". They are left out of the coverage count, because they can
+never have text.
 
 ```bash
 npm run coverage -- basic-set --status needs-review

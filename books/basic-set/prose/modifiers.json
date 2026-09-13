@@ -3,7 +3,7 @@
     "_id": "005c10e3ffe81878",
     "name": "Accessibility",
     "pages": "B110",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Accessibility is a catchall limitation you can use to cover any restriction not specifically defined elsewhere. Accessibility limitations fall into two broad categories: those that limit the targets your ability can affect and those that limit the situations in which it works.</p><p>If your ability can only affect certain targets, the limitation depends on how common the target group is. \"Only on women,\" \"Only on men,\" or anything else that covers about half of the population is worth -20%. \"Only on Electrical\" or \"Only on machines\" is worth -20% in a technological setting. \"Only on sea creatures\" is worth -30% - unless the campaign is set on a world mostly covered with water, in which case it isn't worth more than -10%. \"Only on aliens\" is worth -30% or -40%, depending on the world. \"Only on psis\" is worth -50% in most Only in altered body form (Invisible, Insubstantial, etc.): -10%.</p><p>Only while playing trumpet: -20%. Only while flying, Only while swimming, Only in hypnotic trance: -30%. Only by one side of split personality: -40%.</p><p>In all cases, if the ability is only weakened (half power) instead of becoming useless, halve the value of the limitation.</p><p>The GM shouldn't allow meaningless Accessibility limitations. For instance, buying a helpful ability with the limitation \"Only on friends\" gives no cost break. Buying it with \"Only on enemies\" would be interesting, though! Likewise, the GM should reject any proposed limitation that is already implicit in the ability. For instance, \"Only while flying\" is not an acceptable limitation for Enhanced Move (Air).</p>"
   },
@@ -11,15 +11,15 @@
     "_id": "998cfdfe05e33261",
     "name": "Accessibility: half power",
     "pages": "B110",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "7f15c99f63b11ca1",
     "name": "Accurate",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack is unusually accurate. Each +1 to Accuracy is a +5% enhancement.</p>"
   },
@@ -27,7 +27,7 @@
     "_id": "ad8339145d139e40",
     "name": "Affects Insubstantial",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your ability affects insubstantial targets in addition to normal, substantial things.</p><p>Note to GMs: This enhancement is very powerful. It lets insubstantial characters affect the material world with little fear of retribution. Feel free to disallow it, restrict it to NPCs, or to make sure that lots of foes have the Affects Insubstantial enhancement!</p>"
   },
@@ -35,7 +35,7 @@
     "_id": "4436a024e00fad21",
     "name": "Affects Substantial",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your ability affects substantial targets even when you are insubstantial. It also affects insubstantial creatures normally. (Do not add this enhancement to magical or psi abilities; these can already affect the substantial world at -3.)</p><p>Further levels continue to double the radius. If applied to an advantage that already covers an area, each level doubles the base radius.</p><p>Area Effect is a prerequisite for Mobile (p. 107), Persistent (p. 107), Selective Area (p. 108), Bombardment (p. 111), and Emanation (p. 112).</p>"
   },
@@ -43,7 +43,7 @@
     "_id": "4a8726ff491df12d",
     "name": "Always On",
     "pages": "B110",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You cannot switch your advantage off. You may only add this to an ability that can normally be switched off and that is inconvenient if you can't turn it off. It is worth -10% if the effects are social or cosmetic, -20% if they are physically inconvenient, and -40% if they are dangerous (to you!). Always On appears as a \"special limitation\" for most of the traits to which it would apply. The GM can add new costs as appropriate for other abilities.</p>"
   },
@@ -51,7 +51,7 @@
     "_id": "5af9a9fdeb43b7c8",
     "name": "Area Effect",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your ability works as an area power instead of affecting a single target. Everything in the area suffers the attack's damage or other effects. On a miss, use the scatter rules (p. 414) to see where the area is centered. Active defenses don't protect against an area attack, but victims may attempt to dive for cover or dodge and retreat to leave the area. For more information, see Area and Spreading Attacks (p. 413).</p><p>Radius 2 yards 4 yards 8 yards 16 yards Modifier +50% +100% +150% +200% Attack Enhancements and Limitations Some enhancements and limitations are intended only for Affliction, Binding, and Innate Attack, and for advantages modified with the Ranged enhancement (p. 107). They are called \"attack\" modifiers. Certain of these have additional restrictions; e.g., Armor Divisor applies only to Affliction and Innate Attack. Attack enhancements and limitations are marked 6.</p><p>Turning Enhancements Off and On When you use an enhanced trait, you must use all of its enhancements unless a particular enhancement - or the underlying ability itself - explicitly allows you to turn an enhancement \"off.\" (The extended capabilities that many enhancements provide might have no effect in certain situations, but they are still on.) To be able to pick which enhancements are \"on\" at any given moment, take the Selectivity enhancement (p. 108).</p>"
   },
@@ -59,7 +59,7 @@
     "_id": "014e708e6356cbec",
     "name": "Armor Divisor",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack can pierce more armor than its base damage would indicate.</p><p>Armor Divisor (2) (3) (5) (10)</p><p>Modifier +50% +100% +150% +200% Only Innate Attacks and Afflictions can have this enhancement. Armor Divisor is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Contact Agent (p. 103) and Follow-Up (p. 105).</p>"
   },
@@ -67,15 +67,15 @@
     "_id": "eccb6e67be099a1e",
     "name": "Armor Divisor (Attack Limitations)",
     "pages": "B110",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "d2446d5b91d66bf7",
     "name": "Aura",
     "pages": "B102",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack takes the form of a malefic aura that affects anyone you touch (reach C) or who touches you. If a weapon strikes you, your aura affects the weapon. You can switch the aura on or off at the start of your turn (if not, take Always On, p. 110). You must take Aura in conjunction with Melee Attack (p. 112) at the -30% level (reach C), and you cannot claim the extra -5% for \"cannot parry\" - an aura cannot parry in the first place.</p><p>The classic example of an Aura is the sheath of flame surrounding a fire elemental. See Body of Fire (p. 262) for how to write this up.</p><p>Based on (Different Attribute) 6 +20% This enhancement is only available for abilities that allow a resistance roll against ST, DX, IQ, HT, Perception, or Will. It moves the resistance roll from the usual attribute or characteristic to a different one, specified when you buy the ability. This is considered an enhancement because it lets you finetune your ability to be more effective against targets with known weaknesses.</p>"
   },
@@ -83,55 +83,55 @@
     "_id": "989b9af848840033",
     "name": "Based On DX (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "d3a467de29aa7351",
     "name": "Based On HT (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "0ab4f6ba8bef69a3",
     "name": "Based On IQ (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "7cca1f8ddb181ded",
     "name": "Based On Per (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "ca02ad43ee97be45",
     "name": "Based On ST (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "30935a5d463b0844",
     "name": "Based On Will (Target Roll)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "87039affa27d3ca9",
     "name": "Blood Agent",
     "pages": "B110",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack must reach a mucous membrane (eyes, open mouth, nose, etc.) or an open wound to have any effect at all. DR always stops it.</p><p>This limitation is intended for Afflictions, and for Innate Attacks that inflict fatigue or toxic damage. It is especially appropriate for poisonous spit or spray. In conjunction with Aura (p. 102), it can also represent an attack that is delivered via intimate physical contact.</p><p>Exception: If the attack also has Area Effect (p. 102) or Cone (p. 103), Blood Agent works as described above and also when inhaled (like Respiratory Agent, p. 108). This lets it ignore all DR. Only targets with the Sealed advantage (p. 82) - or with one of Doesn't Breathe (p. 49) or Filter Lungs (p. 55) and one of Nictitating Membrane (p. 71) or Protected Vision (p. 78) - are immune. This powerful ability converts Blood Agent into a +100% enhancement when combined with Area Effect or Cone!</p><p>This is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Follow-Up (p. 105).</p>"
   },
@@ -139,15 +139,15 @@
     "_id": "f9963b5c79e71bfa",
     "name": "Blood Agent (Attack Enhancements)",
     "pages": "B102",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a09a76329a6e5b75",
     "name": "Bombardment",
     "pages": "B111",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only take this limitation in conjunction with Area Effect (p. 102) or Cone (p. 103). The attack does not automatically hit everyone in the area. Instead, it attacks each potential target in the area at an effective skill, which sets the value of the limitation.</p><p>Effective Skill 14 12 10 8 Modifier -5% -10% -15% -20% Modify effective skill for target size only - not for range or for any other factor. Determine hit location randomly. If the target is under cover, the cover protects normally against the damage.</p><p>This limitation is intended for attacks like electrical or ice storms, which could affect some but not all individuals within a given area.</p>"
   },
@@ -155,7 +155,7 @@
     "_id": "acbb12b285ea8f68",
     "name": "Cone",
     "pages": "B103",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack spreads to affect everyone in a cone-shaped area. Cones use special rules; see Area and Spreading Attacks (p. 413). Decide on the maximum width of the cone, in yards, at the attack's maximum range. Cone costs +50% plus +10% per yard of maximum width.</p><p>You cannot combine Cone with Area Effect, Aura, Jet, Melee Attack, Rapid Fire, or Emanation.</p>"
   },
@@ -163,72 +163,72 @@
     "_id": "5ecc4c9d8858e27e",
     "name": "Contact Agent",
     "pages": "B103",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>On an attack with Area Effect or Cone, this is an enhancement. See the Contact Agent limitation (p. 111) for more information.</p><p>Cosmic</p>"
   },
   {
     "_id": "7bb2eb752abf3742",
     "name": "Contact Agent (Affliction Limitations)",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "eb304e4292bcac6b",
     "name": "Contact Agent (Fatigue Attack Limitations)",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "9c0b96d8637c24e9",
     "name": "Contact Agent (Toxic Attack Limitations)",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "30c5ae06446d97ef",
     "name": "Cosmic: ability other than an attack or a defense",
     "pages": "B103",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "fc4713d6935a5c8a",
     "name": "Cosmic: Attack with a lingering special effect",
     "pages": "B103",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "f582001259fe7460",
     "name": "Cosmic: Defense or countermeasure",
     "pages": "B103",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "2d941f3bca9d3434",
     "name": "Cosmic: Irresistible attack",
     "pages": "B103",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "879bd091695993b6",
     "name": "Costs Fatigue",
     "pages": "B111",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short; ends on what looks like the next heading",
     "description": "<p>Your ability costs FP to use. This is worth -5% per FP per use. What constitutes a \"use\" depends on the underlying trait.</p><p>For abilities that produce instantaneous effects (e.g., Innate Attack), you must pay this FP cost every time you trigger the ability.</p><p>For advantages that produce continuing effects (e.g., Flight), you must pay this FP cost to activate the ability for one minute. However, once you have paid this initial cost, you need only pay half as many FP (round up) per minute to keep the ability active. If an advantage that produces continuing effects only lasts one second, and you must pay the cost to maintain it every second, this doubles the value of the limitation to -10% per FP.</p><p>Damage Limitations 6</p>"
   },
   {
@@ -236,7 +236,7 @@
     "name": "Cyclic (1 day interval)",
     "pages": "B104",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Cyclic attacks are often Resistible (p. 115); if so, an extra resistance roll is allowed for each cycle, with a success preventing any further damage. If the attack is Resistible, halve the value of Cyclic.</p>"
   },
   {
@@ -244,7 +244,7 @@
     "name": "Cyclic (1 hour interval)",
     "pages": "B104",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Cyclic attacks are often Resistible (p. 115); if so, an extra resistance roll is allowed for each cycle, with a success preventing any further damage. If the attack is Resistible, halve the value of Cyclic.</p>"
   },
   {
@@ -252,7 +252,7 @@
     "name": "Cyclic (1 minute interval)",
     "pages": "B104",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Cyclic attacks are often Resistible (p. 115); if so, an extra resistance roll is allowed for each cycle, with a success preventing any further damage. If the attack is Resistible, halve the value of Cyclic.</p>"
   },
   {
@@ -260,7 +260,7 @@
     "name": "Cyclic (1 second interval)",
     "pages": "B104",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Cyclic attacks are often Resistible (p. 115); if so, an extra resistance roll is allowed for each cycle, with a success preventing any further damage. If the attack is Resistible, halve the value of Cyclic.</p>"
   },
   {
@@ -268,198 +268,198 @@
     "name": "Cyclic (10 second interval)",
     "pages": "B104",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Cyclic attacks are often Resistible (p. 115); if so, an extra resistance roll is allowed for each cycle, with a success preventing any further damage. If the attack is Resistible, halve the value of Cyclic.</p>"
   },
   {
     "_id": "9d3a215b334e8a25",
     "name": "Cyclic: Contagious",
     "pages": "B103",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "0ed0732d5409aa7b",
     "name": "Damage Limitation: No Blunt Trauma",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "b315146697b60f8e",
     "name": "Damage Limitation: No Knockback",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "87427844b1e9d017",
     "name": "Damage Limitation: No Wounding",
     "pages": "B111",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "47aecf8078fe227c",
     "name": "Damage Modifier: Dehydration Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "cdfc020ef21d644d",
     "name": "Damage Modifier: Double Blunt Trauma",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "f3cddaee494c32e4",
     "name": "Damage Modifier: Double Knockback",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "6b57c3ba7dedbc30",
     "name": "Damage Modifier: Drowning Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c1f310334cedae0e",
     "name": "Damage Modifier: Explosion",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "1a550fa6ce335a4e",
     "name": "Damage Modifier: Fragmentation",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "04d181b23eed96dc",
     "name": "Damage Modifier: Fragmentation (hot fragments)",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "6e3826826da85519",
     "name": "Damage Modifier: Freezing Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "5c43ec9d49767eea",
     "name": "Damage Modifier: Incendiary",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "102f15268a5cbfd1",
     "name": "Damage Modifier: Missed Sleep Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4f5a2b1de3f3fb5a",
     "name": "Damage Modifier: Radiation",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "cf5c6e1ce6f782e8",
     "name": "Damage Modifier: Radiation (Toxic Attack Enhancements)",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "45100cd9d06cc007",
     "name": "Damage Modifier: Starvation Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a70c8f0f4f310e10",
     "name": "Damage Modifier: Suffocation Hazard",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "877dccba3521a900",
     "name": "Damage Modifier: Surge",
     "pages": "B104",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "abd69eb54175dfa1",
     "name": "Delay: Fixed",
     "pages": "B105",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "6c98f667bc53c52f",
     "name": "Delay: Triggered",
     "pages": "B105",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "00516edb7aa944f1",
     "name": "Delay: Variable (10 seconds or less)",
     "pages": "B105",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "9f0a512903ba6063",
     "name": "Delay: Variable (longer than 10 seconds)",
     "pages": "B105",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "23458fb7d1f57ae4",
     "name": "Dissipation",
     "pages": "B112",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only take this limitation in conjunction with Area Effect (p. 102) or Cone (p. 103). The further the victim is from the center of the area or the apex of the cone, the less effective your attack is. See Area and Spreading Attacks (p. 413) for details.</p>"
   },
@@ -467,7 +467,7 @@
     "_id": "665b168e0d5f6529",
     "name": "Drifting",
     "pages": "B105",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may add this enhancement to any attack with Delay (above) or Persistent (p. 107). The initial attack roll places the effect. It then drifts from that point with the wind, water currents, solar wind, etc., as appropriate. Use this for poison gas, ball lightning, floating mines, and so forth.</p>"
   },
@@ -475,7 +475,7 @@
     "_id": "b6174771a6bc5652",
     "name": "Emanation",
     "pages": "B112",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only take this limitation in conjunction with Area Effect (p. 102). It means the effect has no range or Accuracy, but radiates from your body (without affecting you, if the effect is a bad one). This is incompatible with Melee Attack and ranged attack modifiers.</p>"
   },
@@ -483,7 +483,7 @@
     "_id": "f1655020cce10c11",
     "name": "Emergencies Only",
     "pages": "B112",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your ability is triggered by your fear or excitement; you cannot use it under \"routine\" conditions. The GM is the final arbiter. He may rule that multiple successive failures of your power make you angry enough that it begins to work, but this is entirely up to him.</p><p>Full Power in Emergencies Only: If your ability works at half power under normal conditions, but at full power under stress, this limitation is not worth as much. For traits that come in levels, \"half power\" means half as many levels. The GM must decide what this means for other traits (half range, duration, bonuses, etc.). -20%.</p>"
   },
@@ -491,32 +491,32 @@
     "_id": "a275afc65aca47d3",
     "name": "Emergencies Only (Half-power normally)",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c442063cd0dba94a",
     "name": "Extended Duration",
     "pages": "B105",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
     "description": "<p>This enhancement increases the normal duration of your ability. \"Multiple\" applies to the original duration (or changes it to permanent).</p><p>Multiple 3� duration 10� duration 30� duration 100� duration 300� duration 1,000� duration Permanent* Modifier +20% +40% +60% +80% +100% +120% +150% * You must specify a reasonable set of conditions that will dispel the effect (or cure it, for abilities such as Affliction and Mind Control). The GM is the judge of what is \"reasonable.\" If there is no way to end the effect, the enhancement is +300%. To keep PCs from granting each other free advantages, the GM may wish to forbid this level of Extended Duration on Afflictions with the Advantage modifier.</p><p>To add Extended Duration to an attack, the attack must either have Aura, Persistent, or Wall, or specifically allow this enhancement. You can also add Extended Duration to any advantage that has the Ranged enhancement (p. 107).</p><p>If the modified trait has multiple facets with separate durations, you must specify which duration you are extending. For instance, a cloud of sleeping gas could have this enhancement to extend the duration of the sleep it induces or the length of time the cloud persists; to do both, buy this enhancement twice.</p>"
   },
   {
     "_id": "2581b62cf6c1be19",
     "name": "Extra Recoil",
     "pages": "B112",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>By default, a ranged attack has Recoil 1, making it virtually recoilless (see p. 271). You may give an attack with Rapid Fire (p. 108) a higher Recoil (Rcl) as a limitation.</p><p>Recoil (Rcl) 2 3 4 5+ Modifier -10% -20% -30% -40%</p>"
   },
   {
     "_id": "8ac3647be8c63b37",
     "name": "Follow-Up",
     "pages": "B105",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>Your attack's effects are delivered by a \"carrier.\" Use this to represent poison on a dart, an explosive in an armor-piercing shell, etc. Pick a different attack as the carrier. This can be either body weaponry (e.g., Claws or Teeth) or an Innate Attack (usually one that does cutting, impaling, or piercing damage).</p><p>A Follow-Up attack need only list its damage amount and type. All other details depend on the carrier attack. The Follow-Up attack only hits if the carrier attack hits. If the carrier attack penetrates the target's DR, DR has no effect on the Follow-Up attack's damage or HT rolls.</p><p>If the carrier attack is a natural weapon, such as Claws or Teeth, Follow-Up is a +0% enhancement. (Exception: On a passive carrier attack such as Spines, Follow-Up is a -50% limitation.)</p><p>If the carrier attack is an Innate Attack, the cost of Follow-Up depends on the modifiers on the carrier attack. The cost of Follow-Up equals the sum of the costs of whichever of the following modifiers apply to the carrier attack: Always On, Aura, Cone, Drifting, Emanation, Emergencies Only, Extra Recoil, Guided, Homing, Increased Range, Jet, Limited Use, Malediction, Melee Attack, Preparation Required, Rapid Fire, Reduced Range, Takes Extra Time, Takes Recharge, Unconscious Only, Uncontrollable, or Unreliable. If none of these modifiers apply to the carrier attack, Follow-Up costs +0%. Note that the Follow-Up attack itself cannot take any of these modifiers. Only its carrier attack may have them.</p><p>Follow-Up is a \"penetration modifier\"; you cannot combine it with other penetration modifiers (although the carrier attack can have them).</p><p>Guided or Homing 6</p>"
   },
   {
@@ -524,7 +524,7 @@
     "name": "Follow-Up (Attack Limitations)",
     "pages": "B105",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Follow-Up is a \"penetration modifier\"; you cannot combine it with other penetration modifiers (although the carrier attack can have them).</p>"
   },
   {
@@ -532,158 +532,158 @@
     "name": "Follow-Up (Passive)",
     "pages": "B105",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Follow-Up is a \"penetration modifier\"; you cannot combine it with other penetration modifiers (although the carrier attack can have them).</p>"
   },
   {
     "_id": "b94017d6aa6a37ee",
     "name": "Gadget/Breakable: Cannot repair",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c654bf4085c4ee6e",
     "name": "Gadget/Breakable: DR 16-25",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a79edfd971470176",
     "name": "Gadget/Breakable: DR 2 or less",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "5ded519972ddcdf1",
     "name": "Gadget/Breakable: DR 26 or higher",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "f28318c4268de7d7",
     "name": "Gadget/Breakable: DR 3-5",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "87bbf6bd2237038f",
     "name": "Gadget/Breakable: DR 6-15",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "cf193c72e4c84d0c",
     "name": "Gadget/Breakable: Object is complex machine",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "e570a846c932b64f",
     "name": "Gadget/Breakable: Size -1 or -2",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a57f166b640f5675",
     "name": "Gadget/Breakable: Size -3 or -4",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "9b5ff2c8095684f2",
     "name": "Gadget/Breakable: Size -5 or -6",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a9f3e6b05e6932a3",
     "name": "Gadget/Breakable: Size -7 or -8",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4827f02ac6fb1356",
     "name": "Gadget/Breakable: Size -9 or less",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "f420cecbcc63ce82",
     "name": "Gadget/Breakable: Size 0 or more",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "2dac0b2429f5f4f3",
     "name": "Gadget/Can Be Stolen: Can only be taken by stealth or trickery",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4ac2a70876e90738",
     "name": "Gadget/Can Be Stolen: Easily snatched with unopposed DX roll",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "385e2dd61c6fbec2",
     "name": "Gadget/Can Be Stolen: Must be forcefully removed",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "e3d17e45be528cd7",
     "name": "Gadget/Can Be Stolen: Thief must win a Quick Contest of DX or ST",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "9fd0a12fe420cd5f",
     "name": "Gadget/Unique",
     "pages": "B117",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "da551373be9bcadd",
     "name": "Guided",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You steer your attack to the target using your own skill. This lets you ignore all range penalties to hit! If the target is so distant that your attack needs multiple turns to reach it (see below), you must take a Concentrate maneuver each turn. If you lose sight of the target while the attack is en route, your attack automatically misses. +50%.</p>"
   },
@@ -691,7 +691,7 @@
     "_id": "eee2f10acc84f96b",
     "name": "Homing",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack steers itself. Decide how it seeks its target: with ordinary vision or a sensory advantage such as Detect (p. 48), Infravision (p. 60), Night Vision (p. 71), Scanning Sense (p. 81), or Vibration Sense (p. 96). The attack uses this sense for the purpose of combat modifiers; e.g., radar ignores darkness but can be jammed. To \"lock on,\" you must Aim at the target and make an unmodified skill roll. Do not roll against your skill to hit. Instead, use the attack's skill of 10 - plus Accuracy, if you made your skill roll - and ignore all range penalties. Homing costs a base +50%, plus 1% per point the chosen homing mechanism would cost if bought as an advantage (without any modifiers); e.g., Infravision costs 10 points, making Homing (Infravision) +60%. Ordinary vision uses the base +50%.</p>"
   },
@@ -699,7 +699,7 @@
     "_id": "867504e8598f6db1",
     "name": "Inaccurate",
     "pages": "B112",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack benefits little from careful aiming. Most attacks start with Accuracy (Acc) 3. Each -1 to Acc is a -5% limitation. You may not reduce Acc below 0.</p>"
   },
@@ -708,46 +708,46 @@
     "name": "Increased Range",
     "pages": "B106",
     "status": "needs-review",
-    "notes": "an unbalanced quotation mark",
+    "notes": "a character did not survive extraction; an unbalanced quotation mark",
     "description": "<p>You may add this enhancement to any advantage that has a range; e.g., Innate Attack or Scanning Sense. Each level increases range as follows:</p><p>Range Multiple 2� 5� 10� 20� 50� 100� Modifier +10% +20% +30% +40% +50% +60% Further levels follow the same \"2-510\" progression.</p><p>If applied to a ranged attack, each level increases 1/2D and Max. You may increase 1/2D or Max individually at half cost (that is, \"Increased 1/2D\" and \"Increased Max\" are +5%/level). However, you cannot increase 1/2D past Max. At most, you can make 1/2D equal to Max - this means the attack has no 1/2D range. For attacks that already have no 1/2D range, you can increase Max for +5%/level.</p>"
   },
   {
     "_id": "e8350f6852da2129",
     "name": "Increased Range (1/2D Range only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a74f5a03c0cb9b10",
     "name": "Increased Range (1/2D Range Only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "fa27258ebf1f8ce7",
     "name": "Increased Range (Max Range only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "8dfb35ed0da118a2",
     "name": "Increased Range (Max Range Only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "df6c3203420af9b0",
     "name": "Jet",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack is a continuous stream, like a flamethrower. Treat it as a melee weapon with a very long reach rather than as a ranged weapon. Do not apply penalties for target range and speed.</p><p>An attack with Jet has no Acc, and has 1/2D 5 and Max 10 instead of its usual range. Increased Range increases range by 100% per level instead of its usual effects.</p><p>Jet is incompatible with Area Effect, Aura, Cone, Follow-Up, Melee Attack, and Rapid Fire.</p>"
   },
@@ -755,55 +755,55 @@
     "_id": "3b7c2adf7831e298",
     "name": "Jet: Increased Range",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "137d7b8e7ca84a1e",
     "name": "Jet: Increased Range (1/2D Range Only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "aa546689b7406fc5",
     "name": "Jet: Increased Range (Max Range Only)",
     "pages": "B106",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "7b8147b8a77298f6",
     "name": "Limited Use",
     "pages": "B112",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short; ends on what looks like the next heading",
     "description": "<p>You can use your ability only a limited number of times in a 24-hour period. For most advantages, each \"use\" is 1 minute of activation. For an attack, each \"use\" gives shots equal to your RoF, with a minimum one shot per use; for instance, three uses of an attack with RoF 2 would give six shots. The value depends on the number of uses you get.</p><p>Uses Per Day 1 2 3-4 5-10 Modifier -40% -30% -20% -10% More than 10 uses per day is not a significant limitation.</p><p>Two special options are available for attacks (and optionally, other abilities) that have this enhancement:</p><p>Fast Reload: You can replace all your uses in 3 to 5 seconds simply by replenishing ammunition. The GM determines the weight and cost of the ammunition. This halves the value of the limitation; e.g., three or four uses would be worth only -10%.</p><p>Slow Reload: As above, except if you have two or more shots (not uses!) you must reload each shot individually (taking 3 or more seconds per shot). If you have only one shot, it must take at least 6 seconds to reload - possibly longer, if using this limitation to represent a very slow-firing weapon such as a flintlock. This makes the limitation worth 5% less than usual; e.g., three or four uses would be worth only -15%.</p><p>Melee Attack 6</p>"
   },
   {
     "_id": "dd31c5b657a6feb4",
     "name": "Limited Use (Fast Reload)",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>You can use your ability only a limited number of times in a 24-hour period. For most advantages, each \"use\" is 1 minute of activation. For an attack, each \"use\" gives shots equal to your RoF, with a minimum one shot per use; for instance, three uses of an attack with RoF 2 would give six shots. The value depends on the number of uses you get.</p><p>Uses Per Day 1 2 3-4</p><p>Fast Reload: You can replace all your uses in 3 to 5 seconds simply by replenishing ammunition. The GM determines the weight and cost of the ammunition. This halves the value of the limitation; e.g., three or four uses would be worth only -10%.</p>"
   },
   {
     "_id": "b218a760cd14a78e",
     "name": "Limited Use (Slow Reload)",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>You can use your ability only a limited number of times in a 24-hour period. For most advantages, each \"use\" is 1 minute of activation. For an attack, each \"use\" gives shots equal to your RoF, with a minimum one shot per use; for instance, three uses of an attack with RoF 2 would give six shots. The value depends on the number of uses you get.</p><p>Uses Per Day 1 2 3-4</p><p>Slow Reload: As above, except if you have two or more shots (not uses!) you must reload each shot individually (taking 3 or more seconds per shot). If you have only one shot, it must take at least 6 seconds to reload - possibly longer, if using this limitation to represent a very slow-firing weapon such as a flintlock. This makes the limitation worth 5% less than usual; e.g., three or four uses would be worth only -15%.</p>"
   },
   {
     "_id": "6f154c64c1154f40",
     "name": "Link",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You can use two or more advantages simultaneously, as if they were a single ability. For +10%, your abilities are permanently linked into a single power, and must be used together - you cannot use them separately. For +20%, you can also use them separately. You must add this enhancement to all the abilities you wish to link.</p><p>If you link two attacks into one and give them identical Malf., 1/2D, Max, Acc, RoF, Shots, and Recoil, you can treat them as a single attack with one attack roll but separate rolls for damage. This is not the same as the Follow-Up enhancement (p. 105)!</p><p>Low or No Signature 6 +10% or +20% An attack normally has a \"signature\": a flash of light, a sound, etc. If left unspecified, this is assumed to be similar to a gunshot or a stroke of lightning - that is, a brilliant flash and a loud report. This enhancement makes your attack less obvious.</p><p>Low Signature: The attack is no more easily identifiable as an attack than the loud pop of a champagne cork; e.g., a suppressed pistol shot. +10%.</p><p>No Signature: The attack is almost completely unnoticeable; e.g., a blowgun's dart. Alternatively, it is utterly undetectable by normal means, but leaves a magical or psionic trace. +20%.</p>"
   },
@@ -811,7 +811,7 @@
     "_id": "15c52d7de55afeac",
     "name": "Low Signature",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The attack is no more easily identifiable as an attack than the loud pop of a champagne cork; e.g., a suppressed pistol shot. +10%.</p>"
   },
@@ -819,7 +819,7 @@
     "_id": "4ff6352208211aca",
     "name": "Malediction",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack is not a conventional ranged attack; it works more like a Regular spell (p. 239). It lacks Malf., 1/2D, Max, Acc, RoF, Shots, and Recoil statistics, and cannot have any enhancement or limitation that modifies those statistics. Most importantly, the target's DR has no effect on the attack's damage, resistance roll, or other effects!</p><p>Malediction requires a Concentrate maneuver rather than an Attack maneuver to use. It can target any victim you can see or otherwise clearly perceive. To determine if the attack succeeds, roll against your Will, applying the range penalties detailed below. Your foe may choose to resist; if so, resolve the attack as a Quick Contest of Will. You must win to affect the victim.</p><p>When enhancing an Affliction, the Quick Contest above replaces the usual resistance roll. You roll against Will, but your target rolls against HT - or other attribute, if the attack has Based on (Different Attribute) - modified as usual for the Affliction. For instance, an Affliction that allows a HT-1 roll to resist would result in a Quick Contest of your Will vs. the target's HT-1.</p><p>The value of Malediction depends on the range modifiers it uses. If it takes -1 per yard of range, like a Regular spell, it costs +100%. If it uses the range penalties on the Size and Speed/Range Table (p. 550), it costs +150%. And if it uses the penalties given under Long-Distance Modifiers (p. 241), it costs +200%.</p><p>Malediction is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, nor with modifiers that apply only to conventional ranged attacks.</p>"
   },
@@ -827,143 +827,143 @@
     "_id": "7865c3983104d15b",
     "name": "Melee Attack: Cannot Parry",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "62af98de956e7530",
     "name": "Melee Attack: Reach 1",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "23a72feb278fd114",
     "name": "Melee Attack: Reach 1-4 (like a whip)",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4cbdb8f06a16740b",
     "name": "Melee Attack: Reach 1,2",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "7b34a1f0ff6cba52",
     "name": "Melee Attack: Reach 2",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "8404bf0b83c42e37",
     "name": "Melee Attack: Reach 2,3",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "b662f7f62c1a0981",
     "name": "Melee Attack: Reach C",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "e1daa1e69e8eb1e4",
     "name": "Melee Attack: Reach C,1",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4e048a87ca9be75c",
     "name": "Melee Non-Attack: Reach C",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "1f8c2028b870ce2f",
     "name": "Mitigator: Artificial Eyes",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c3e5735de4e67db9",
     "name": "Mitigator: daily treatment",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "1f7382fbee5240e5",
     "name": "Mitigator: Glasses",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "b04417fc41c55661",
     "name": "Mitigator: Hearing Aid",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "0b51152f35200228",
     "name": "Mitigator: monthly treatment",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "829e622a90141e22",
     "name": "Mitigator: Prosthetic Leg",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "13abad09f65485ec",
     "name": "Mitigator: vulnerable",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "a47c94723875392f",
     "name": "Mitigator: weekly treatment",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "19ddfc720ed25ba0",
     "name": "Mobile",
     "pages": "B107",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only add this enhancement to an attack that has both Area Effect (p. 102) and Persistent (below). The area of effect moves under your control. Move equals the level of the enhancement (Move 1 at +40%, Move 2 at +80%, and so on), and cannot exceed the attack's Max range.</p><p>To move the area of effect, you must take a Concentrate maneuver. To make the mobile area autonomous, add Homing (which causes it to attack the nearest valid target) and possibly Selective Area (so it only seeks out enemies). Buy these enhancements twice if they're intended to apply to both the initial attack roll and the autonomous area.</p><p>Mobile is mutually exclusive with Drifting (p. 105).</p>"
   },
@@ -971,7 +971,7 @@
     "_id": "e4d2ab5db1a77a7e",
     "name": "No Signature",
     "pages": "B106",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The attack is almost completely unnoticeable; e.g., a blowgun's dart. Alternatively, it is utterly undetectable by normal means, but leaves a magical or psionic trace. +20%.</p>"
   },
@@ -979,31 +979,31 @@
     "_id": "5170a129dfac51e4",
     "name": "Nuisance Effect: ability earns a reaction penalty from those around you",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "fed4048916101522",
     "name": "Nuisance Effect: ability makes you obvious",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "855ed871eedafcc9",
     "name": "Nuisance Effect: ability physically inconveniences you",
     "pages": "B112",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "0196b518bcde6b6c",
     "name": "Onset",
     "pages": "B113",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You must \"stack\" this limitation with one of Blood Agent, Contact Agent, Follow-Up, Malediction, or Respiratory Agent. It delays the damage or affliction caused by the attack until some time after exposure. The delay determines the value of the limitation.</p><p>Delay 1 minute 1 hour 1 day 1 week (or more)</p><p>Modifier -10% -20% -30% -40% Delays that fall between two values use the smaller limitation; e.g., 30 minutes is -10%. If you can control the onset time, take Delay (p. 105) instead.</p><p>A variant limitation is Exposure Time, which is only available for attacks with Aura or Persistent. Use it to represent radioactivity, mildly toxic gases, etc. It works just like Onset, except that the victim must be exposed for the entire period to suffer the effect (or repeat it, if you continue exposure). This is worth an extra -20%; e.g., 1 minute is -30%.</p>"
   },
@@ -1011,15 +1011,15 @@
     "_id": "76d47efb39feadc4",
     "name": "Onset (Exposure Time)",
     "pages": "B113",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "b382e7c0e70c547f",
     "name": "Overhead",
     "pages": "B107",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack can alter its angle to strike from a different side of the target - usually the top. This bypasses any cover that does not provide overhead protection, and negates attack penalties to hit crouching, kneeling, sitting, or prone targets. (If you are already above or below your target, adjust this appropriately.) Use this to represent a rain of fire, a missile that swoops up and then dives down at the last moment, an airburst grenade, etc.</p>"
   },
@@ -1027,7 +1027,7 @@
     "_id": "7b2910d8ca1fbc38",
     "name": "Pact",
     "pages": "B113",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>A Higher Power - god, spirit, etc. - grants your ability under the condition that you follow a strict moral code. This code must take the form of one or more of the traits listed under Self-Imposed Mental Disadvantages (p. 121). These disadvantages give you the usual number of points. Should you ever stray from the path, your ability immediately ceases to function until you repent. The limitation value is numerically equivalent to the point cost of the required disadvantages; e.g., a -10-point Vow gives a -10% Pact limitation.</p>"
   },
@@ -1035,7 +1035,7 @@
     "_id": "ed53b0fbfa2222b1",
     "name": "Persistent",
     "pages": "B107",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only add this enhancement to an Area Effect (p. 102) attack. This causes the area of effect to remain in place for 10 seconds, continuing to damage (or attack and possibly damage, if taken with Bombardment, p. 111) anyone entering or passing through it. Use Extended Duration to increase the duration.</p>"
   },
@@ -1043,23 +1043,23 @@
     "_id": "92185f6b40712739",
     "name": "Preparation Required",
     "pages": "B114",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
     "description": "<p>Your ability requires special preparation before you can use it. Perhaps you have to meditate first, or perform some ritual to focus concentration.</p><p>This limitation is particularly appropriate for supernatural traits such as Channeling (p. 41) and Medium (p. 68).</p><p>You cannot use an unprepared ability. To prepare, take the Concentrate maneuver for the required Examples of Modified Attacks Banshee's Wail: Affliction 3 (HT-2; Area Effect, 64 yards, +300%; Emanation, -20%; Hearing-Based, +150%; Heart Attack, +300%; Limited Use, 1/day, -40%; Selective Area, +20%) [243].</p><p>Dragon's Breath: Burning Attack 4d (Cone, 5 yards, +100%; Limited Use, 3/day, -20%; Reduced Range, �1/5, -20%) [32].</p><p>Hand of Death: Toxic Attack 6d (Contact Agent, -30%; Costs Fatigue, 2 FP, -10%; Delay, Variable, +20%; Low Signature, +10%; Melee Attack, Reach C, -30%; Resistible, HT-4, -10%) [12].</p><p>Implanted 9mm SMG: Piercing Attack 3d-1 (Accurate +2, +10%; Extra Recoil +1, -10%; Increased Range, �20, +40%; Limited Use, 3 uses/30 shots, Fast Reload, -10%; Rapid Fire, RoF 10, +100%) [33].</p><p>Lightning Bolt: Burning Attack 6d (Side Effect, Stunning, +50%; Surge, +20%) [51].</p><p>Mind Blast: Affliction 1 (Will; Based on Will, +20%; Malediction 2, +150%; Secondary Unconsciousness, +40%; Telepathic, -10%) [30].</p><p>Poison Bite: Sharp Teeth [1], plus Toxic Attack 2d (Cyclic, 1 hour, 5 cycles, resistible, +40%; Follow-Up, Sharp Teeth, +0%; Resistible, HT-3, -15%) [10].</p><p>amount of time. You need not specify how you plan to use your ability while you are preparing it, but you must specify which ability you are preparing if you have more than one trait with this limitation.</p><p>You can use a prepared ability normally - either immediately or at a later time. However, you can only have one advantage with this limitation prepared at a time, and it becomes unprepared immediately after use, regardless of success or failure (but if your ability has continuing effects, you can maintain them once activated).</p><p>The value of this limitation depends on the time required to prepare the ability.</p><p>Preparation Time 1 minute 10 minutes 1 hour 8 hours Modifier -20% -30% -50% -60% Weakened Without Preparation: Your ability works if you do not prepare it beforehand, but at half duration, range, effect, etc. This does not make sense for all advantages (GM's decision as to when it does). Weakened Without Preparation is worth exactly half as much as listed above.</p>"
   },
   {
     "_id": "a116ecdfa4eb922c",
     "name": "Preparation Required: Weakened Without Preparation",
     "pages": "B114",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "d558b104b1c1eec6",
     "name": "Ranged",
     "pages": "B107",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This enhancement gives range to an advantage that normally affects your immediate area, or that requires a touch to affect others. By default, it has 1/2D 10, Max 100, Acc 3, RoF 1, Shots N/A, and Recoil 1. Duration is 10 seconds, unless the ability lists another duration (like Neutralize or Possession) or is instantaneous (like Healing), and you cannot use the ability again until all existing effects have worn off. You can apply other modifiers to change the ranged combat statistics and duration.</p><p>This enhancement is normally restricted to Healing, Mana Damper, Mana Enhancer, Neutralize, Possession, and Psi Static. The GM is free to allow it on other traits, but it should never modify body weaponry (such as Strikers or Vampiric Bite) or abilities that already have a range.</p>"
   },
@@ -1067,31 +1067,31 @@
     "_id": "0bcdc8fd09db9344",
     "name": "Rapid Fire",
     "pages": "B108",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
     "description": "<p>An Innate Attack's base Rate of Fire (RoF) is 1. Consult the table below to find the cost for a higher RoF:</p><p>RoF 2 3 4-7 8-15 16-30 31-70 71-150 151-300 Cost +40% +50% +70% +100% +150% +200% +250% +300% Two special options are available for attacks with this enhancement:</p><p>Multiple Projectile: Each shot splits into multiple projectiles after you attack, like a shotgun blast or forked lightning. Express this as a multiplier following RoF; for instance, RoF 3�4 means each of three shots fired divides into four individual projectiles. Modifier cost is based on the RoF times the multiplier; e.g., RoF 3�4 costs the same as RoF 12.</p><p>Selective Fire: You may designate a RoF 5+ attack as Selective Fire, allowing it to fire as if it had RoF 1-3. This costs an extra +10%.</p>"
   },
   {
     "_id": "707228f7f1f1ba6f",
     "name": "Rapid Fire (Multiple Projectiles)",
     "pages": "B108",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "93d76eeb3c3fda51",
     "name": "Rapid Fire: Selective Fire",
     "pages": "B108",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "f25a4b0d8d87db04",
     "name": "Reduced Fatigue Cost",
     "pages": "B108",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only take this enhancement for abilities that cost FP, and never in conjunction with the special modifier \"Usually On.\" You can take it any number of times. Each level cuts the cost to use the ability by 1 FP. If you must \"maintain\" the ability by spending FP on a regular basis, reduce this maintenance cost by a like amount.</p>"
   },
@@ -1099,7 +1099,7 @@
     "_id": "9bcd3ffdba389a3b",
     "name": "Reduced Range",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may add this limitation to any advantage that has a range; e.g., Innate Attack or Scanning Sense. It comes in three levels, depending on the range divisor.</p><p>Range Divisor 2 5 10 Modifier -10% -20% -30% If applied to a ranged attack that has a 1/2D range, each level reduces both 1/2D and Max. You may reduce 1/2D only at half value (that is, \"Reduced 1/2D\" is -5%/level). You may not reduce Max independently.</p>"
   },
@@ -1107,15 +1107,15 @@
     "_id": "30c3ff3fa4328d00",
     "name": "Reduced Range (1/2D Range Only)",
     "pages": "B115",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "b39a68f7898e5820",
     "name": "Reduced Time",
     "pages": "B108",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only add this enhancement to abilities that require time to activate. You can take it any number of times. Each level halves the time required to use the ability (round up). Once time is reduced to one second, a further level of Reduced Time makes the ability instantaneous - using it is a free action.</p><p>Note that you cannot add Reduced Time to attack powers, to traits that list any kind of special modifier that affects activation time, or to Magery (to reduce casting times).</p>"
   },
@@ -1123,7 +1123,7 @@
     "_id": "2ad3da391b5683cc",
     "name": "Resistible",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This limitation is only available for Innate Attacks that inflict fatigue or toxic damage. You must combine it with one of Blood Agent, Contact Agent, Follow-Up, Respiratory Agent, or Sense-Based. It represents poison, disease, or a similar effect that a sufficiently healthy victim can resist or \"shrug off.\"</p><p>The victim gets a HT roll to avoid the effect. A resistance roll against HT5 is worth -5%. Each +1 to the roll is a worth another -5% (e.g., HT-4 is -10%, and HT+4 is -50%).</p><p>If the attack is also Cyclic (p. 103), the victim rolls before each cycle (including the first). Success means the attack ends without further injury; failure means the target takes damage normally and the attack continues.</p>"
   },
@@ -1131,7 +1131,7 @@
     "_id": "622288c8f8dff3ca",
     "name": "Respiratory Agent",
     "pages": "B108",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your attack must be inhaled to have any effect, but it ignores all DR. Only Doesn't Breathe and Filter Lungs protect completely - although a victim who makes a Sense roll to notice the attack in time may hold his breath (see Holding Your Breath, p. 351). To make your attack less noticeable, take Low Signature (p. 106).</p><p>You may only add this enhancement to an Affliction or to an Innate Attack that inflicts toxic or fatigue damage, and you must combine it with one of Area Effect (p. 102), Cone (p. 103), or Jet (p. 106). Persistent (p. 107) is common but not required.</p><p>Respiratory Agent is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Follow-Up (p. 105).</p>"
   },
@@ -1139,7 +1139,7 @@
     "_id": "d506f6e7286ebcaa",
     "name": "Selective Area",
     "pages": "B108",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may add this enhancement to any Area Effect (p. 102) or Cone (p. 103) attack. It lets you choose which targets within your area are actually affected.</p>"
   },
@@ -1147,7 +1147,7 @@
     "_id": "a871d9ac6c3d41a7",
     "name": "Selectivity",
     "pages": "B108",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This enhancement lets you turn a trait's other enhancements off and on at will. For instance, if you had an attack with Area Effect, you could turn this enhancement off to affect only one other person. You must specify which enhancements you wish to ignore before you activate the ability. The default assumption is that you are always using all of your enhancements.</p><p>By allowing you to select which enhancements you use, Selectivity permits you to have multiple versions of the same ability without having to buy the ability multiple times. This can be extremely useful when creating comic-book supers!</p>"
   },
@@ -1164,7 +1164,7 @@
     "name": "Sense-Based (Hearing)",
     "pages": "B109",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Sense-Based is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Follow-Up (p. 105).</p>"
   },
   {
@@ -1172,7 +1172,7 @@
     "name": "Sense-Based (Smell)",
     "pages": "B109",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Sense-Based is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Follow-Up (p. 105).</p>"
   },
   {
@@ -1180,30 +1180,30 @@
     "name": "Sense-Based (Vision)",
     "pages": "B109",
     "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
+    "notes": "shares its text with its sibling variants, so it is the family's note, not its own",
     "description": "<p>Sense-Based is a \"penetration modifier\"; you cannot combine it with other penetration modifiers, such as Follow-Up (p. 105).</p>"
   },
   {
     "_id": "c9e00f0d737bc197",
     "name": "Sense-Based (with Malediction)",
     "pages": "B115",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "bc997c7c8be7d72b",
     "name": "Side Effect",
     "pages": "B109",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>You may only add this enhancement to an Innate Attack, and you cannot combine it with penetration modifiers other than Armor Divisor. If any damage penetrates the target's DR, he must make a HT roll, at -1 per 2 points of penetrating damage, or suffer a \"side effect.\"</p><p>Choose the side effects from the effects described for Affliction (p. 35). Valid choices are stunning, Attribute Penalty, Disadvantage, and Incapacitation. The cost of Side Effect is a base +50%, plus the cost of the Affliction enhancements. For instance, stunning would be +50%, while Disadvantage (Blindness) would be +100%.</p><p>You may specify more than one side effect. If the victim gets a single resistance roll against all of them, treat them as a single Side Effect enhancement, totaling their cost. If the victim must resist each effect individually, take a separate Side Effect enhancement for each effect.</p><p>Stunning wears off normally, while other effects last (20 - HT) minutes, minimum 1 minute. If Incapacitation is combined with other effects, the other effects last for another (20 - HT) minutes after the Incapacitation wears off.</p><p>Symptoms 6</p>"
   },
   {
     "_id": "7115612fa7aba49a",
     "name": "Takes Extra Time",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You can only apply this limitation to abilities that require time to activate and that work fast enough to be useful in an emergency (e.g., combat). This is up to the GM, who is free to restrict this limitation to advantages that take only 1 or 2 seconds to activate.</p><p>For abilities that require a Ready or Concentrate maneuver, each level of Takes Extra Time doubles the time required. Activation occurs at the end of this time. For instance, Takes Extra Time 1 on an advantage that usually requires a one-second Ready maneuver would increase the Ready time to 2 seconds.</p><p>For attacks, the first level of Takes Extra Time results in a one-second Ready maneuver before you can make your Attack maneuver. Successive levels double the Ready time.</p>"
   },
@@ -1211,7 +1211,7 @@
     "_id": "4184e78f7d189aec",
     "name": "Takes Recharge",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your ability requires \"recharging\" after each use. It is unavailable during the recharge period. Value depends on the time between uses: five seconds (or twice the time required to use the ability, if longer) is -10%, 15 seconds (or 5 times the time required to use the ability, if longer) is -20%, and one hour (or 10 times the time required to use the ability, if longer) is -30%. Longer recharge times are not valid as limitations (but see Limited Use, p. 112).</p>"
   },
@@ -1219,7 +1219,7 @@
     "_id": "e47b7dcda94210f7",
     "name": "Temporary Disadvantage",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may add this limitation to any advantage that can be switched off and on at will, and that takes at least one second to switch. When you switch on the advantage, you suffer one or more disadvantages until you switch it off again. This limitation is worth -1% per point the temporary disadvantages are worth, to a maximum of -80%.</p><p>Example: You can use your feet as hands, but can't walk while doing so. This is Extra Arms 2 (20 points) with Temporary Disadvantage: Legless (-30%), for 14 points.</p><p>The point break due to Temporary Disadvantage cannot exceed 80% of the value of the original disadvantage.</p><p>Example: You have Altered Time Rate 1 (100 points) with Temporary Disadvantage: Hemophilia (-30%) - you bleed faster, too! Since Hemophilia is worth -30 points normally, the most it can be worth as a Nuisance Effect is -24 points;</p><p>therefore, it reduces the cost of Altered Time Rate by 24 points (to 76 points) and not by 30 points (to 70 points).</p><p>You may only take Temporary Disadvantages that could logically inconvenience you for the period of time the advantage is normally on. In the case of mental disadvantages (Berserk, Lecherousness, etc.), if a failed self-control roll indicates that you give in to the disadvantage, you will suffer the disadvantage's effects until the GM rules you have regained your composure - which might be long after you deactivate the advantage with this limitation!</p><p>You can also use this limitation to remove an advantage temporarily. This is worth -1% per point the negated advantage is worth, and the point break cannot exceed 80% of the deactivated advantage's cost. Only one of the involved advantages can take this limitation - you cannot take two advantages, both with this limitation, each of which negates the other when used.</p>"
   },
@@ -1227,15 +1227,15 @@
     "_id": "c86eda475be287e9",
     "name": "Temporary Disadvantage: Electrical",
     "pages": "B115",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "2c918350a54088c2",
     "name": "Trigger",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Your advantage requires exposure to a specific substance or condition (e.g., a dose of a drug) to function. One dose or exposure is required per one-minute \"use.\" Cost depends on the rarity of the Trigger:</p><p>Very Common (available almost anywhere): -10%.</p><p>Common (expensive, somewhat hard to find): -20%.</p><p>Occasional (very expensive and hard to find): -30%.</p><p>Rare (cannot be bought; must be found or made): -40%.</p><p>Multiply the limitation value by 1.5 if the Trigger is illegal, addictive, or otherwise dangerous.</p>"
   },
@@ -1243,7 +1243,7 @@
     "_id": "2d1083a7c834b92e",
     "name": "Unconscious Only",
     "pages": "B115",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>You may only take this limitation in conjunction with Uncontrollable (below). You cannot consciously activate your ability at all; it can only come into play under GM control, as a result of stress. Like Uncontrollable, you may buy this off later on, as you gain control over your ability.</p>"
   },
@@ -1251,15 +1251,15 @@
     "_id": "50c5e64ccfb23951",
     "name": "Uncontrollable",
     "pages": "B116",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>Your ability tends to manifest itself at undesirable or inappropriate times. Whenever the GM rules that you are in a stressful situation - including any situation that requires a Fright Check or a self-control roll for a mental disadvantage - you must make a Will roll to keep your ability under control, even if you did not intend to use it! You need only roll once per stressful situation, but a roll of 14+ always fails, regardless of Will.</p><p>On a failure, the GM takes over your ability, playing it as though it were an entity of a prankish or hostile nature. The actions of your ability will often reflect your \"suppressed desires,\" as reflected in your quirks and mental disadvantages.</p><p>An ability that cannot inflict damage - for instance, Flight or Jumper - will activate unexpectedly. This is inconvenient and embarrassing, but not overly dangerous. After each uncontrolled act, you get another Will roll to control your power. This goes on until you make a Will roll. In this case, Uncontrollable is worth -10%.</p><p>A harmful ability goes after obvious foes first, and will never turn on you . . . but nobody else is safe! After each uncontrolled act (or before an attack on a Dependent or other loved one), you get another Will roll to control your power. This continues until you make a Will roll or destroy everything around you! For destructive powers, Uncontrollable is worth -30%.</p><p>You may buy this limitation off later on, as you gain control over your ability.</p><p>Unreliable</p>"
   },
   {
     "_id": "50a2de90f556ffe2",
     "name": "Underwater",
     "pages": "B109",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Attacks are assumed to be usable in air or in vacuum, but ineffective in liquid. This enhancement lets an attack work underwater at 1/10 range.</p>"
   },
@@ -1267,24 +1267,24 @@
     "_id": "1ef4e7ef81d18dc2",
     "name": "Unreliable/Activation",
     "pages": "B116",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "5d2fc0843ef06055",
     "name": "Unreliable/Malfunction",
     "pages": "B116",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "53c9d20747d43090",
     "name": "Untrainable",
     "pages": "B116",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
     "description": "<p>You may only apply this limitation to abilities that normally require a The GM may require you to pay points for any \"gadget\" that grants traits that usually cost points (attribute levels, advantages, etc.). However, he should charge points only for items that even the most advanced technology could not produce (e.g., a ring that bestows Luck) - and even then, only if those items are not for sale at any price in the game world.</p><p>In particular, the GM should never charge points for ordinary, manufactured equipment - or even for special equipment, if it is for sale - unless it happens to be Signature Gear (p. 85). Body armor, a rifle, and night-vision goggles effectively bestow Damage Resistance, Innate Attack, and Infravision, respectively . . . but since anyone could buy these items, they have a cash cost, not a point cost.</p><p>Traits bestowed by items have their usual point cost. You can give them any logical combination of modifiers, plus one or more of the special limitations below.</p><p>Breakable</p>"
   },
   {
@@ -1299,16 +1299,16 @@
     "_id": "700f260a543adcc4",
     "name": "Wall: Permeable",
     "pages": "B109",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c46697952d241bd2",
     "name": "Wall: Rigid",
     "pages": "B109",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   }
 ]

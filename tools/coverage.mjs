@@ -62,11 +62,13 @@ function main() {
     let bookTotal = 0;
 
     for (const pack of results) {
-      const total = pack.documents.length;
-      // What counts as done is text on the page, not a record in the file. A
-      // record saying "the book has no entry for this" is progress, but a bar
-      // that filled up for those would say the pack was finished when nothing
-      // had been written.
+      // An entry the book prints nothing for can never have text, so counting
+      // it would hold the bar permanently short of full. It is reported beside
+      // the count instead, which is what makes the remainder real work.
+      const absent = pack.documents.filter(
+        (d) => d.flags[MODULE_ID].status === "no-entry",
+      ).length;
+      const total = pack.documents.length - absent;
       const done = pack.documents.filter((d) => (d.system.description ?? "").trim().length > 0).length;
 
       // A pack of actors takes no text yet, so counting it against the total
@@ -82,7 +84,7 @@ function main() {
       bookTotal += total;
 
       const states = [...pack.byStatus]
-        .filter(([status]) => status !== NO_PROSE)
+        .filter(([status]) => status !== NO_PROSE && status !== "no-entry")
         .sort()
         .map(([status, count]) => `${status} ${count}`)
         .join(", ");
@@ -90,7 +92,8 @@ function main() {
       const percent = total === 0 ? 0 : Math.round((done / total) * 100);
       console.log(
         `  ${pack.pack.padEnd(16)} ${bar(done, total)} ${String(percent).padStart(3)}%  ` +
-          `${done}/${total}${states ? `  (${states})` : ""}`,
+          `${done}/${total}${absent ? ` (+${absent} the book has no entry for)` : ""}` +
+          `${states ? `  ${states}` : ""}`,
       );
 
       if (wantStatus) {

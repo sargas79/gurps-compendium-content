@@ -3,7 +3,7 @@
     "_id": "c38f48cd9cf135db",
     "name": "Purify Air",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell removes all impurities from the air in its area of effect. It is often used to neutralize the effects of poisonous gas or vapors. Note that a room full of smoke may safely be purified one section at a time - but truly deadly vapors must all be removed at once, or some may escape.</p><p>This spell also turns old \"stale\" air into fresh breathable air. The air in a one-yard radius, if not renewed from the outside, will last 45 minutes for one person at rest, less for multiple persons or someone violently exercising (GM's discretion).</p>"
   },
@@ -11,7 +11,7 @@
     "_id": "7b44967a2bd511a1",
     "name": "Create Air",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell manufactures air where none exists. When cast where there is already air, it produces an outward breeze lasting about five seconds. When cast in a vacuum, it instantly creates breathable air. When cast within earth, stone, or other material, it fills any empty spaces with air, but does not burst the stone. When cast underwater, it makes bubbles! It cannot be cast inside a living being.</p>"
   },
@@ -19,7 +19,7 @@
     "_id": "1a669a0fcd71f87b",
     "name": "Shape Air",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell lets the caster create movements of air over a small area. The caster must choose a starting point (calculate distance penalties to that point). The wind starts there and blows in a stream one yard wide, for a distance in yards equal to 5 times the energy put into the spell, and then dissipates. This may cause knockback (see Knockback, p. 378) on someone it hits; each second, roll 1d per full 2 points of energy in the spell. Treat this as damage for knockback purposes only (this spell does not cause injury).</p>"
   },
@@ -27,7 +27,7 @@
     "_id": "e3fd38eb2baefd99",
     "name": "No-Smell",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Removes the subject's odor and makes it (or him) totally undetectable by smell. Any possessions are also affected. This spell changes no other properties of the subject.</p>"
   },
@@ -35,7 +35,7 @@
     "_id": "fb98bfa94945d4e0",
     "name": "Predict Weather",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster forecast the weather accurately for a given location over a given time. This forecast does not take magical meddling into account, or predict the actions of other wizards!</p>"
   },
@@ -43,7 +43,7 @@
     "_id": "21cbaf55bbca261b",
     "name": "Breathe Water",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the subject breathe water as though it were air. Subject does not lose the ability to breathe ordinary air! This spell is also considered a Water spell.</p>"
   },
@@ -51,7 +51,7 @@
     "_id": "ec5df1a78277a1db",
     "name": "Walk on Air",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Temporarily grants the subject the Walk on Air advantage (p. 97). If the subject falls for any reason (e.g., injury), the spell is broken! If the spell is recast immediately, he falls for only one second (about 5 yards) and then \"lands\" on the air (taking 1d damage) - unless he hits ground before then. If he's 10 feet over a lava pit, too bad!</p>"
   },
@@ -59,7 +59,7 @@
     "_id": "cda28751dd204414",
     "name": "Earth to Air",
     "pages": "B243",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell turns earth or stone into air, which can be valuable to someone who is trapped underground! The more energy the caster spends, the more earth he can transform, but he is limited to regular shapes with the largest dimension no more than four times the smallest one. This spell is also considered an Earth spell.</p>"
   },
@@ -67,7 +67,7 @@
     "_id": "c6dec61aa40b3a3d",
     "name": "Stench",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Produces a cloud of vile, yellowish gas that reeks of brimstone. Until it dissipates, anyone who breathes it must make a HT roll or take 1d damage. Roll once per minute. Those in the area also begin to suffocate (see Suffocation, p. 436). The cloud is heavy, and \"rolls\" downhill if the ground is not level. The rate of dissipation depends on the area and presence of wind; indoors, it usually lasts until the spell expires, but outdoors on a windy day, it might only last 10 seconds or so.</p>"
   },
@@ -75,7 +75,7 @@
     "_id": "cc2c233555dbe6ad",
     "name": "Lightning",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster shoot a bolt of lightning from his fingertip. This has 1/2D 50, Max 100, Acc 3. Treat any metal armor as DR 1 against this spell! If the target is wounded, he must make a HT roll, at -1 per 2 HP suffered, or be stunned. He may attempt a HT roll each turn thereafter to recover. Against electronic equipment, treat this attack as if it had the Surge damage modifier (see Surge, p. 105).</p><p>Lightning behaves unpredictably around conductors. A lightning bolt cannot be fired through a metal grid, between bars, from within a car, etc. - it jumps to the metal and is lost. However, the GM may (for instance) allow a wizard to shoot a lightning bolt into a metal floor. This would not electrocute those on it, but could shock them all, interrupting concentration and doing slight damage (no more than 1 point, and possibly none at all). The GM may encourage creative use of lightning until it becomes a nuisance . . .</p>"
   },
@@ -83,7 +83,7 @@
     "_id": "19e843e76c33e0d5",
     "name": "Itch",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Causes the subject to itch fiercely in a spot of the caster's choice. The subject is at -2 DX until he takes one full turn to scratch (more, if armor, etc. is in the way!). Only one Itch spell can affect a given subject at a time.</p>"
   },
@@ -91,7 +91,7 @@
     "_id": "00f49e97204fb46b",
     "name": "Spasm",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Can be directed against any of the subject's voluntary muscles. Directed against a hand, it causes the subject to drop whatever he is holding (usually a weapon). If the subject is in the middle of a lengthy spell requiring gestures, he must make a DX roll or start over. Ingenious casters will find other uses . . .</p>"
   },
@@ -99,7 +99,7 @@
     "_id": "b1017e5ee910996a",
     "name": "Pain",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject feels a stab of agonizing pain. He must make a Will roll to avoid crying out. If he is in a precarious position (climbing, for instance), he must make a DX roll to avoid catastrophe! His DX and all DX-based skills are at -3 for the next turn only. If the subject is in the middle of a spell requiring gestures, he must roll vs. Will or start over. High Pain Threshold gives +3 to the Will and DX rolls above; Low Pain Threshold gives -4.</p>"
   },
@@ -107,7 +107,7 @@
     "_id": "ef7cc3ad50eb6835",
     "name": "Clumsiness",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject suffers -1 to his DX and DX-based skills for every point of energy put into the spell.</p>"
   },
@@ -115,7 +115,7 @@
     "_id": "7eb10042575628de",
     "name": "Hinder",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject is at -1 to his Move and Dodge scores for every point of energy put into the spell. This spell is also considered a Movement spell.</p>"
   },
@@ -123,7 +123,7 @@
     "_id": "e7d52f364f327944",
     "name": "Rooted Feet",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject's feet are glued in place! He may try another resistance roll at -5 every turn, against the original spell skill roll, to break free. While the spell continues, the subject's skill with any weapon except a ranged weapon is at -2 and his Dodge score is cut in half (round down).</p>"
   },
@@ -131,7 +131,7 @@
     "_id": "3976fe44cd1ef806",
     "name": "Paralyze Limb",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The caster must strike the subject on a limb to trigger this spell (hits elsewhere have no effect). Armor does not protect. Resolve resistance on contact. If the caster wins, the subject's limb is paralyzed; it is considered crippled for one minute.</p>"
   },
@@ -139,7 +139,7 @@
     "_id": "e58517ba7eb6ddfd",
     "name": "Wither Limb",
     "pages": "B244",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The caster must strike the subject on a limb to trigger this spell. Armor does not protect. Resolve resistance on contact. If the caster wins, the subject's limb withers immediately; it is crippled for all purposes. The subject also takes 1d damage.</p>"
   },
@@ -147,7 +147,7 @@
     "_id": "47dbea7065dbb260",
     "name": "Deathtouch",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The caster must strike the subject to trigger this spell; hit location is irrelevant. The subject takes 1d damage per point of energy in the spell. Armor does not protect. This spell does affect the undead.</p>"
   },
@@ -155,7 +155,7 @@
     "_id": "cf138aea8a3edbcd",
     "name": "Sense Foes",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Tells the caster if the subject has hostile intent, and what the degree of hostility is. Can be cast on one person or a whole area. If cast over an area, this spell only detects that someone is hostile, without telling who.</p>"
   },
@@ -163,7 +163,7 @@
     "_id": "5841bc297cb03b9e",
     "name": "Sense Emotion",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster know what emotions the subject is feeling at the moment. It works on any living being, but is not much use except on sapient creatures! This also tells how loyal the subject is to the caster (see Loyalty of Hirelings, p. 518).</p>"
   },
@@ -171,7 +171,7 @@
     "_id": "3210b7b117263993",
     "name": "Truthsayer",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This tells whether the subject is lying or not. May be cast in two ways:</p><p>1. To tell whether the subject has told any lies in the last five minutes.</p><p>2. To tell whether the last thing the subject said was a lie.</p><p>May also give an indication of how great the lie is. If the caster is not touching the subject, calculate range as for a Regular spell.</p>"
   },
@@ -179,7 +179,7 @@
     "_id": "25043245156b031f",
     "name": "Mind-Reading",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster read the subject's mind. Works on any living being, but is most useful on sapient creatures. Detects only surface thoughts (what the subject is thinking at that moment). The subject is not aware his mind is being read, except in the case of a critical failure.</p><p><em>Modifiers:</em> -2 if the caster does not know the subject's native language; -2 if the subject is of a different race - or -4 or more if the subject is totally alien!</p>"
   },
@@ -187,7 +187,7 @@
     "_id": "74b2f163cc3e9888",
     "name": "Hide Thoughts",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell resists all mind-reading and thought-control attempts on the subject. The \"attacking\" ability must win a Quick Contest against this spell in order to affect the subject. If the attacking ability pierces Hide Thoughts, the subject still gets his normal resistance roll (roll separately). This spell does not affect previously established mental control.</p>"
   },
@@ -195,7 +195,7 @@
     "_id": "8e5e012bdd20d1fc",
     "name": "Seek Earth",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell tells the caster the direction and approximate distance of the nearest significant amount of any one type of earth, metal, or stone. Use the long-distance modifiers (p. 241). Any known sources of that material may be excluded if the caster specifically mentions them before beginning.</p>"
   },
@@ -203,7 +203,7 @@
     "_id": "9c48867fa2710b86",
     "name": "Shape Earth",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster move earth and shape it into any form. If the form is stable (e.g., a hill), it remains permanently after shaping. An unstable form (e.g., a column or wall) lasts only while the spell continues - no special concentration is required - and then collapses.</p><p>Earth moved with this spell travels at only Move 2. It can harm no one except by flowing over an immobile person and burying him. If earth is moved onto a person to bury him - or from beneath him, to create a hole - he may move normally on his next turn, to escape. He is trapped only if he fails to do so.</p><p>Anyone buried by this spell may try to claw his way out of the loose earth. One roll, at ST-4, is allowed per turn. GMs may make this roll harder if the victim is buried under more than two cubic yards of earth! The victim can hold his breath (see Holding Your Breath, p. 351), but he eventually risks suffocation (see Suffocation, p. 436).</p>"
   },
@@ -211,7 +211,7 @@
     "_id": "7db6d353a9f35ade",
     "name": "Earth to Stone",
     "pages": "B245",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Turns an item of earth or clay into hard stone (but not gemstone).</p>"
   },
@@ -219,7 +219,7 @@
     "_id": "a584f59215b88c69",
     "name": "Create Earth",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster create good, solid earth where none existed before. This earth must be created in contact with the ground - not hanging in the air or floating in the sea!</p>"
   },
@@ -227,7 +227,7 @@
     "_id": "e392073084403efd",
     "name": "Flesh to Stone",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>\"Petrifies\" a living subject (and all his gear!), turning him to stone. Must affect the entire subject.</p>"
   },
@@ -235,7 +235,7 @@
     "_id": "dda19218344cd8b1",
     "name": "Stone to Earth",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Turns any kind of stone (including gemstone) into simple earth. Must be cast on a whole stone or block, rather than a part of it.</p>"
   },
@@ -243,7 +243,7 @@
     "_id": "cb6f58a53da109f5",
     "name": "Stone to Flesh",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Reverses the effects of Flesh to Stone and brings the victim back to life (stunned). Cannot be used to animate a statue that was never alive.</p>"
   },
@@ -251,7 +251,7 @@
     "_id": "904796349bb2fb59",
     "name": "Entombment",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The earth instantly swallows the subject. He remains in suspended animation, in a tiny spherical chamber 50 feet underground, until rescued by tunneling or the reverse of this spell. A mage who casts Entombment on himself may elect to stay awake, but this is unwise unless he also knows Earth to Air!</p>"
   },
@@ -259,63 +259,63 @@
     "_id": "20b2e35f0218d0ee",
     "name": "Accuracy",
     "pages": "B480",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4d3bd6ea0712524e",
     "name": "Deflect",
     "pages": "B480",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "2445ca05894854eb",
     "name": "Enchant",
     "pages": "B480",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "8718e261456cb3b3",
     "name": "Fortify",
     "pages": "B480",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "179d69002c3fd5d8",
     "name": "Power",
     "pages": "B480",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "61f8b47a2e806ecf",
     "name": "Puissance",
     "pages": "B481",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "d53b264cf3bf09de",
     "name": "Staff",
     "pages": "B481",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "c7f31f31b070e22e",
     "name": "Ignite Fire",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell produces a single spot of heat, and is used to set fire to a readily flammable object. It works best on paper and cloth, and cannot affect any item that would not burn in an ordinary fire. In particular, it cannot set fire to a living being! Once ignited, the fire burns normally.</p>"
   },
@@ -323,7 +323,7 @@
     "_id": "7e89b73dcac7a3a7",
     "name": "Create Fire",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Fills the area of effect with fire that requires no fuel (if cast in midair, it produces a sphere of flame, which falls to the ground). This is real fire, and will eventually ignite any flammable objects it touches. Cannot be cast within rock, foes, etc.</p>"
   },
@@ -331,7 +331,7 @@
     "_id": "18cda68f9089ee30",
     "name": "Shape Fire",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster control the shape of any flame. Each shape change requires a second of concentration. Once shaped, the flame keeps that shape until the spell expires, without concentration. Moving a flame requires constant concentration (the flame moves at Move 5, on the caster's turn). A natural fire cannot move to a place that it can't burn, but flame made with the Create Fire spell needs no fuel and can move almost anywhere.</p><p>Flame shaped with this spell normally retains its volume. If the fire is \"spread out\" across twice its original area, it only does half damage; if spread across three times its original area, it does 1/3 damage, and so on.</p>"
   },
@@ -339,7 +339,7 @@
     "_id": "df169676c88c8bfd",
     "name": "Deflect Energy",
     "pages": "B246",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Deflects one energy attack about to hit the subject - including a beam weapon attack or a Fireball or Lightning spell. Counts as a parry for combat purposes. If the caster is not the subject, apply distance modifiers as for a Regular spell. Deflected attacks may still hit a target beyond the subject.</p>"
   },
@@ -347,7 +347,7 @@
     "_id": "caf131de9afcb5b6",
     "name": "Extinguish Fire",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Puts out all ordinary and magical fires in its area of effect. Has no effect on molten steel, lava, plasma, etc.</p>"
   },
@@ -355,7 +355,7 @@
     "_id": "b7b1b8447d30a910",
     "name": "Heat",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell raises the temperature of an object. It does not necessarily produce fire, though most things burn if heated enough. Heat radiates away normally. (Use this as a guideline for playable effects - don't try to turn the spell into a physics exercise!)</p><p>Any wizard planning to make extensive use of this spell should arm himself with a list of the melting points of various materials. The spell can have drawbacks. If you were in jail, you might melt your way through the bars . . . but the radiated heat would probably broil you first.</p>"
   },
@@ -363,15 +363,15 @@
     "_id": "d4ec41f5a4881841",
     "name": "Cold",
     "pages": "B247",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
     "description": "<p>This spell is the reverse of Heat (above). It can reduce the temperature of any object to absolute zero, if maintained for long enough.</p><p>Duration, Cost, and Time to cast: As for Heat, except each minute lowers the target's temperature by 20�.</p>"
   },
   {
     "_id": "a0ca02dce2d13559",
     "name": "Resist Cold",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject (person, creature, or object) and anything he carries become immune to the effects of cold and frostbite (but not falling ice, magical ice spears, etc.).</p>"
   },
@@ -379,7 +379,7 @@
     "_id": "08a5a83377ae4831",
     "name": "Resist Fire",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject (person, creature, or object) and anything he carries become immune to the effects of heat and fire (but not electricity).</p>"
   },
@@ -387,7 +387,7 @@
     "_id": "4167b66ac1d93827",
     "name": "Fireball",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster throw a ball of fire from his hand. This has 1/2D 25, Max 50, Acc 1. When it strikes something, it vanishes in a puff of flame. This spell is likely to ignite flammable targets.</p>"
   },
@@ -395,7 +395,7 @@
     "_id": "1725c33a4bf63465",
     "name": "Explosive Fireball",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Creates a fireball that affects both its target and things nearby. This has 1/2D 25, Max 50, Acc 1. Can be thrown at a wall, floor, etc. (at +4 to hit) to catch foes in the blast. The target and anyone closer to the target than one yard take full damage. Those further away divide damage by 3 times their distance in yards (round down).</p>"
   },
@@ -403,7 +403,7 @@
     "_id": "aa768a34dfd97904",
     "name": "Planar Summons",
     "pages": "B247",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Summons a creature, such as a demon or a Thing Man Was Not Meant To Know, from another plane of existence. The GM determines the predisposition and abilities of this being. Each plane requires a different Planar Summons spell. Some exceptionally potent entities might require their own unique spells!</p><p>When the creature appears, the caster must immediately try to control it. Treat this as a Quick Contest between the caster's Planar Summons skill and the entity's Will. The caster is at +4 if he knows the creature's \"true name.\"</p><p>If the caster wins, he can give the creature a single command, which it must carry out. On completing this task - or after one hour in any event - the entity usually vanishes. However, some powerful entities can stay for as long as they wish . . .</p><p>If the caster ties or loses, the creature reacts badly. An \"evil\" being commits violence or vandalism, while a \"good\" one is more likely to depart in a huff and put in a bad word with the caster's gods. Wild or chaotic creatures are liable to engage in theft and mischief. Extremely alien entities might react in disturbing and unpredictable ways.</p>"
   },
@@ -411,15 +411,15 @@
     "_id": "faace63d44205eff",
     "name": "Plane Shift",
     "pages": "B248",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4174d7d25b2b9626",
     "name": "Lend Energy",
     "pages": "B248",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Restores the subject's lost Fatigue Points, at an energy cost to the caster. Cannot increase the subject's FP score above its normal maximum.</p>"
   },
@@ -427,7 +427,7 @@
     "_id": "373ec65ac46f8f86",
     "name": "Lend Vitality",
     "pages": "B248",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Temporarily restores the subject's lost Hit Points, at an energy cost to the caster. Cannot increase the subject's HP score above its normal maximum.</p><p>Since restored HP vanish after one hour and the spell cannot be maintained, this spell is only a stopgap measure.</p>"
   },
@@ -435,7 +435,7 @@
     "_id": "34dd48ed63008d55",
     "name": "Recover Energy",
     "pages": "B248",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell allows the caster to rest and recover Fatigue Points more quickly than normal by drawing energy from the mana around him. A normal person recovers 1 FP every 10 minutes. A mage who knows this spell at skill 15 or higher recovers 1 FP every 5 minutes. A mage who knows this spell at skill 20 or higher recovers 1 FP every 2 minutes. No further improvement is possible. Note that this spell works on the caster himself; it cannot restore FP to others.</p><p>The mage must rest quietly, but no ritual or die roll is required. While resting, he can maintain ordinary spells, but not those that require concentration.</p><p>This spell does not function in lowor no-mana areas.</p>"
   },
@@ -443,7 +443,7 @@
     "_id": "a0b9e1f4a6a6f6c5",
     "name": "Awaken",
     "pages": "B248",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell renders the subject(s) awake and alert. It instantly counters the effects of stunning. If the subject is very fatigued (less than 1/3 basic FP), this spell renders him alert for an hour but costs him 1 FP at the end of that time. It has no effect on those with 0 or fewer FP. Sleeping or unconscious subjects get a HT roll to awaken, at a bonus equal to the caster's margin of success. A subject rolls at -3 if unconscious due to injury, at -6 if drugged.</p>"
   },
@@ -451,7 +451,7 @@
     "_id": "df5eb569e19e51b1",
     "name": "Minor Healing",
     "pages": "B248",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Restores up to 3 HP to the subject. Does not eliminate disease or poison, but cures the damage they cause.</p><p>This spell is risky when used more than once per day by the same caster on the same subject. If you try, roll at -3 for the first repetition, -6 for the second, and so on.</p><p>If you have the Physician skill at level 15 or higher, a critical failure with this spell counts only as an ordinary failure - unless you are trying the spell more than once per day on the same subject.</p>"
   },
@@ -459,23 +459,23 @@
     "_id": "3fc75ec98b14d432",
     "name": "Major Healing",
     "pages": "B248",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "4a2ec4c7441b1bc0",
     "name": "Great Healing",
     "pages": "B248",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "14ee009b3230cba2",
     "name": "Detect Magic",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster determine whether any one object is magical. If the spell is successful, a second casting tells whether the magic is temporary or permanent. A critical success on either roll fully identifies the spell, as for Analyze Magic.</p>"
   },
@@ -483,7 +483,7 @@
     "_id": "ae172268cc072c9d",
     "name": "Aura",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Shows the caster a glowing halo, or \"aura,\" around the subject. This aura gives the caster a general insight into the subject's personality - the better the skill roll, the better the insight. The aura also shows whether the subject is a mage (and about how powerful); whether the subject is possessed or controlled in any way; and whether the subject is in the grip of any violent emotion. A critical success detects \"secret\" traits, such as lycanthropy, vampirism, and unnatural longevity.</p><p>All living beings have auras; inanimate things do not. A zombie is detectable by his faint, death-haunted aura, while a vampire retains the aura he had in life. Illusions and created beings have no aura, so a successful casting of this spell distinguishes them from real persons.</p>"
   },
@@ -491,7 +491,7 @@
     "_id": "30f81c5a9d92a143",
     "name": "Seeker",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Attunes the caster to one individual or manmade object he is looking for. A success gives the caster a vision of the item's whereabouts - or leads him to it, if it is within a mile.</p><p>To seek a person, the caster must either know his name or know him well enough to visualize him. For instance, you cannot use this spell to solve a murder by seeking \"the murderer\" if you don't know who that is - but if you do, Seeker will find him.</p><p><em>Modifiers:</em> Long-distance modifiers (p. 241). Something associated with the item sought (e.g., part of a lost person's clothing) should be available at the time of casting; if not, roll at -5. The roll is at +1 if the caster has held or is otherwise familiar with the item sought.</p>"
   },
@@ -499,7 +499,7 @@
     "_id": "a1e0e5f51de3cd19",
     "name": "Trace",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>May be cast on any object or living being. As long as the spell is maintained, the caster will know where the subject is if he concentrates for a second. Either the subject must be with the caster when the spell is first cast, or the caster must first cast Seeker successfully. Long-distance modifiers (p. 241) apply if subject is not in caster's presence.</p>"
   },
@@ -507,7 +507,7 @@
     "_id": "ce2cf03c599e3dd2",
     "name": "Identify Spell",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster know what spell or spells have just been cast (within the last five seconds), or are being cast at the moment, on or by the subject. It does not identify the spells on a permanently enchanted item. One casting identifies all spells cast on or by the subject. However, if any of these spells are totally unknown to the caster - not just spells he doesn't know, but spells he has never heard of - the GM should provide only a general, vague description; e.g., \"Some kind of physical protection.\" Wizards have heard of every spell in this list unless the GM rules that some are secret, but wizards have not heard of new spells created by the GM or players.</p>"
   },
@@ -515,7 +515,7 @@
     "_id": "1ba85784409fd881",
     "name": "Analyze Magic",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Tells the caster exactly what spells are on the subject. If the subject has more than one spell on it, Analyze Magic identifies the one that took the least energy and tells the caster \"there are more spells.\" It can then be cast again to determine the next spell, and so on. Like Identify Spell, above, it gives limited results when faced with a spell the caster has never heard of.</p>"
   },
@@ -523,7 +523,7 @@
     "_id": "e6b7db0aac3c0acf",
     "name": "Light",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Produces a small light, like a candle flame. It stays still unless the caster concentrates on moving it; then it can travel at Move 5.</p>"
   },
@@ -531,7 +531,7 @@
     "_id": "839ab6c1ca80315d",
     "name": "Continual Light",
     "pages": "B249",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>When cast on a small object (up to fist-sized or 1 lb.) or a small part of a larger object, this spell makes that object glow with white light.</p>"
   },
@@ -539,7 +539,7 @@
     "_id": "211df45d58459fd7",
     "name": "Darkness",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Cloaks the area of effect in pitch darkness. A person inside the area can see out normally, but can see nothing else within the area. Those outside the area can see only darkness within. Thus, attacks out of darkness suffer no penalty, but attacks into darkness are at a penalty; see Visibility (p. 394) for combat rules.</p><p>The Dark Vision advantage lets you see through a Darkness spell, but Night Vision and Infravision do not.</p>"
   },
@@ -547,7 +547,7 @@
     "_id": "7e299bcf9da9e482",
     "name": "Blur",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell makes the subject harder to see and therefore harder to hit with attacks. Each point of energy gives -1 to the effective skill of any attack on the subject, to a maximum of -5.</p>"
   },
@@ -555,7 +555,7 @@
     "_id": "941d6e3a71d3f69a",
     "name": "Counterspell",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell nullifies any one ongoing spell. It cannot \"counter\" spells that make a permanent change in the world (e.g., Extinguish Fire, Flesh to Stone, or Zombie) and it cannot affect permanently enchanted items, but it can counter spells cast using magic items. The \"subject\" of Counterspell may be either the subject of the spell to be countered or the person who cast that spell.</p><p>Counterspell is a single spell - but to counter a given spell, you must also know that spell. Roll against the lower of your Counterspell skill or your skill with the spell being countered. You must win a Quick Contest with the target spell to cancel it. You can cast multiple Counterspells to negate an Area spell piece by piece.</p>"
   },
@@ -563,7 +563,7 @@
     "_id": "ef95873dab72487a",
     "name": "Dispel Magic",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell, if successful, negates other spells within the area. It has no effect on enchanted items - just on spells. Each spell resists separately.</p><p>Dispel Magic is not selective! The caster need not know the spell(s) being dispelled. To nullify a specific spell without affecting others, use Counterspell.</p>"
   },
@@ -571,7 +571,7 @@
     "_id": "b7f12d4934d60563",
     "name": "Foolishness",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject suffers -1 to his IQ and IQ-based skills (including spells) for every point of energy put into the spell. The GM may also require an IQ roll to remember complex things while under the influence of this spell.</p>"
   },
@@ -579,7 +579,7 @@
     "_id": "ae4ef1476ef53392",
     "name": "Forgetfulness",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Causes the subject to forget one fact, skill, or spell temporarily. The skill or spell cannot be used while Forgetfulness is in effect. If (for instance) a forgotten spell is a prerequisite for other spells, the other spells can still be used, at -2 to skill.</p>"
   },
@@ -587,7 +587,7 @@
     "_id": "410e8818668190ea",
     "name": "Daze",
     "pages": "B250",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Subject looks and acts normal, but does not notice what is going on around him, and will not remember it later. A dazed guard will stand quietly while a thief walks past! Any injury, or successful resistance to a spell, causes the subject to snap out of the daze and return to full, alert status.</p>"
   },
@@ -603,7 +603,7 @@
     "_id": "b3cf97d65859476b",
     "name": "Sleep",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Subject falls asleep. If standing, he falls - but this does not wake him. He can be awakened by a blow, loud noise, etc., but will be mentally stunned (see Effects of Stun, p. 420). The Awaken spell (p. 248) arouses him instantly. If not awakened, he will sleep for around eight hours and awaken normally.</p>"
   },
@@ -619,7 +619,7 @@
     "_id": "ae5bbb4cd959759a",
     "name": "Command",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster give the subject one immediate command - a word and a gesture, or at most two words - which the subject must obey. If the subject is unable to fulfill the command immediately or on his next turn, the spell has no effect. Some examples:</p><p>\"Drop it!\" - the subject drops whatever he was holding.</p><p>\"Look!\" - the subject looks in the direction the caster indicates.</p><p>\"Wait!\" - the subject takes the Wait maneuver on his next turn.</p>"
   },
@@ -627,7 +627,7 @@
     "_id": "ff91d053f1a9ec4c",
     "name": "Haste",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Increases the subject's Move and Dodge scores by up to 3.</p>"
   },
@@ -635,15 +635,15 @@
     "_id": "8b6da22fb6224cb9",
     "name": "Great Haste",
     "pages": "B251",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
     "description": ""
   },
   {
     "_id": "cf50b9f67215e2b3",
     "name": "Apportation",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster move physical objects without touching them. This spell levitates its subject at Move 1 - not fast enough to do damage with it. Living subjects get to resist with Will.</p>"
   },
@@ -651,7 +651,7 @@
     "_id": "463cc9683e8996e5",
     "name": "Lockmaster",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Opens locks magically. A Magelock spell gets a roll to resist Lockmaster. Any modifiers for the difficulty of the lock that would apply Lockpicking skill also affect this spell.</p>"
   },
@@ -659,7 +659,7 @@
     "_id": "3f250244c2c9adc3",
     "name": "Deflect Missile",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Deflects one missile about to hit the subject - including any Missile spell. Counts as a parry for combat purposes. If the caster is not the subject, apply distance modifiers as for a Regular spell. Deflected attacks may still hit a target beyond the subject.</p>"
   },
@@ -667,7 +667,7 @@
     "_id": "4d811b00130b3626",
     "name": "Death Vision",
     "pages": "B251",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject sees a vivid presentiment of his own death. This might be a vision of the future or a false vision from another possible future - but it is always chilling. The subject is mentally stunned until he can make his IQ roll to shake off the effects of the spell. This spell can also be useful to the subject, by pointing out a possibly deadly hazard.</p>"
   },
@@ -675,7 +675,7 @@
     "_id": "8c42359d994cc529",
     "name": "Sense Spirit",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Tells the caster if there are any ghosts, spirits, undead, or similar supernatural entities within the area of effect. On a good roll, it gives a general impression of what kind of being is present. Caster may, at the time of casting, limit the spell to a specific type of entity, or exclude a given type.</p>"
   },
@@ -683,7 +683,7 @@
     "_id": "d491e4738f611d83",
     "name": "Summon Spirit",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster talk to the spirit of a dead person. The subject resists at -5 if he was a friend of the caster. If the spell succeeds, the subject will answer one question, to the best of his knowledge as of the time he died, and one more per minute he remains.</p><p>If the spell fails, that caster (or ceremonial group) may not summon that spirit again for one year. A critical failure means the caster summoned a malign spirit, who lies deliberately.</p><p><em>Modifiers:</em> -5 if you don't know the subject's full name. -1 if it has been more than a week since the subject's death, -2 if more than a month, -3 if more than a year, -4 if more than 10 years, -5 if more than 50 years, and -6 if more than 500 years.</p>"
   },
@@ -691,7 +691,7 @@
     "_id": "3d24d138b41bad11",
     "name": "Zombie",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>The subject of this spell must be a relatively complete dead body. The condition of the corpse determines the result: a fresh body produces a zombie, a skeleton produces an animated skeleton, and an old, dry body produces a walking mummy. The animated corpse becomes an undead servant of the caster. It attributes are based on those of the original body, as are its physical advantages and DX-based skills. It does not have the \"soul,\" mental traits, IQ-based skills, or memories of the living person. The GM determines its exact abilities, as appropriate to the campaign.</p>"
   },
@@ -699,7 +699,7 @@
     "_id": "7d7ed089e79d76f5",
     "name": "Turn Zombie",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Inflicts 1d of injury on anything in the area that was animated using the Zombie spell; DR does not protect. In addition, roll 1d for each zombie. On a 1, it turns and flees from the caster.</p>"
   },
@@ -707,7 +707,7 @@
     "_id": "abfdf1ef23d75380",
     "name": "Summon Demon",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This is the version of Planar Summons (p. 247) that raises demons; see that spell description for details. If the caster fails to control the demon, it always attacks him! If he manages to control the demon and give it a command, the demon carries out the letter of its orders, doing its best to pervert their spirit to the caster's disfavor. It also works incidental mischief, unless specifically instructed not to.</p>"
   },
@@ -715,7 +715,7 @@
     "_id": "7e7684872a7ab733",
     "name": "Banish",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell sends an extradimensional visitor (e.g., a demon) back to its plane of origin. It can only be cast if the caster is in his home dimension. In an alien plane, you could not \"banish\" yourself back home, but a native of that plane could banish you. This spell does not work on a creature that is already in its home dimension.</p><p>Resolve the Banish attempt as a Quick Contest: the caster's Banish skill vs. the subject's Will. If the caster wins, the subject immediately returns to its home plane. It cannot return for one month. Anything that it brought with it when it appeared (e.g., weapons) vanishes with it. Other things it may be carrying (e.g., screaming victims) stay behind.</p><p>Note that certain powerful creatures are resistant or even immune to this spell.</p><p><em>Modifiers:</em> +4 if the caster knows the entity's \"true name\"; -5 if the caster does not know the subject's plane of origin . . . and an extra -1 if he believes he knows where the creature came from, but is wrong!</p>"
   },
@@ -723,7 +723,7 @@
     "_id": "2aba63bc16a6ebc8",
     "name": "Shield",
     "pages": "B252",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Conjures an invisible shield of magical force that moves to protect the subject from frontal attacks. The Defense Bonus granted by this spell is cumulative with that from an actual shield, but this spell does not allow a subject without a shield to block.</p>"
   },
@@ -731,7 +731,7 @@
     "_id": "df21b92fa22c5b28",
     "name": "Armor",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Adds to the Damage Resistance of a living subject. DR from this spell is treated for all purposes like DR from armor, and is cumulative with that from actual armor.</p>"
   },
@@ -739,7 +739,7 @@
     "_id": "b7a3c579944a57bb",
     "name": "Magelock",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Locks a door magically. The door will not open unless the spell is removed (Counterspell and Lockmaster are both able to counter it) or the door itself is destroyed.</p>"
   },
@@ -747,7 +747,7 @@
     "_id": "bb551e1a0e867cf6",
     "name": "Seek Water",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>This spell lets the caster determine the direction, distance, and general nature of the nearest significant source of water. Use the long-distance modifiers (p. 241). Any known sources of water may be excluded if the caster specifically mentions them before beginning. Requires a forked stick; roll at -3 if this is not available.</p>"
   },
@@ -755,7 +755,7 @@
     "_id": "1aa7b205022bc8ba",
     "name": "Purify Water",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster remove all impurities from water by pouring it through any hoop or ring (or, in a pinch, his own fingers) into a container. Only one skill roll is required, as long as the flow continues.</p>"
   },
@@ -763,7 +763,7 @@
     "_id": "a8d84fb2ae7a0201",
     "name": "Create Water",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Lets the caster create pure water out of nothing. This water may appear in any of several forms. It may appear within a container, or as a globe in midair (it falls immediately). Or it may appear as a dense mist of droplets; in this form, one gallon of water extinguishes all fires in a oneyard radius. Water cannot be created inside a foe to drown him!</p>"
   },
@@ -771,7 +771,7 @@
     "_id": "dbdf804e1c4a0efe",
     "name": "Destroy Water",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Causes water (in any form) to vanish, leaving a vacuum - or perhaps specks of dry impurities. If more water is all around, it rushes in to fill the hole. Good for drying things out, saving a drowning victim, etc. Cannot be used as a \"dehydrating\" attack on a foe.</p>"
   },
@@ -779,15 +779,15 @@
     "_id": "4f6ec8deb1ba1c72",
     "name": "Shape Water",
     "pages": "B253",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a character did not survive extraction",
     "description": "<p>Lets the caster sculpt water (including ice or steam) into any form, and even move it about. Once given a shape, the water holds it without further concentration until the spell ends. Water moved with this spell travels at Move 3.</p><p>A useful shape is a wall of water to stop fiery attacks. Twenty gallons creates a wall 2 yards high � 1 yard wide. This stops Fireball spells and ordinary fire.</p>"
   },
   {
     "_id": "80617c2231f88f34",
     "name": "Fog",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Creates an area of dense fog. Even one yard of fog blocks vision. Flaming weapons and missiles lose their extra power in fog. A Fireball loses 1 point of damage per yard of fog it must traverse (e.g., a 3d Fireball that crosses 5 yards of fog inflicts 3d-5 damage), while victims of an Explosive Fireball may count each yard of fog as two yards of distance from the blast. However, no amount of fog can extinguish a fire.</p>"
   },
@@ -795,7 +795,7 @@
     "_id": "27e1c59bfbd3a6fc",
     "name": "Icy Weapon",
     "pages": "B253",
-    "status": "transcribed",
+    "status": "reviewed",
     "notes": "",
     "description": "<p>Causes any weapon to become freezing cold. This does not harm the user or the weapon, but an attack with the weapon does +2 damage to most foes if it penetrates DR. Multiply this bonus for any Vulnerability (p. 161) to ice or cold. Add this bonus to the final injury inflicted by the attack - for instance, an \"impaling\" icy attack is still only good for +2 damage, not +4.</p>"
   }

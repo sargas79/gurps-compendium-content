@@ -35,8 +35,26 @@ import {
 /** The only keys a text record may carry. */
 const PROSE_KEYS = new Set(["_id", "name", "description", "pages", "status", "notes"]);
 
-/** The states a text record may be in. */
-export const STATUSES = new Set(["draft", "transcribed", "reviewed", "needs-review"]);
+/**
+ * The states a text record may be in.
+ *
+ * `no-entry` is terminal and means something different from the rest: the book
+ * was consulted and prints nothing under that name. Most of the data file's
+ * constructed names are like this -- "Extra ST" is how it writes buying the
+ * attribute, "Horse Mail Face Mask" is a row of the barding table -- and there
+ * are 853 of them in the Basic Set. Left as needs-review they would sit in the
+ * queue forever and make the count of real work meaningless.
+ */
+export const STATUSES = new Set([
+  "draft",
+  "transcribed",
+  "reviewed",
+  "needs-review",
+  "no-entry",
+]);
+
+/** Statuses that legitimately carry no text. */
+export const WITHOUT_TEXT = new Set(["needs-review", "no-entry"]);
 
 /** What a document with no text yet is recorded as. */
 export const NO_PROSE = "none";
@@ -168,10 +186,10 @@ export function mergeBook(bk, packs) {
           );
           continue;
         }
-        if (prose.status !== "needs-review" && !String(prose.description ?? "").trim()) {
+        if (!WITHOUT_TEXT.has(prose.status) && !String(prose.description ?? "").trim()) {
           problems.push(
-            `${prosePath} — ${prose.name}: no description. An entry the book gives no text ` +
-              `for is recorded as needs-review with a note saying so.`,
+            `${prosePath} — ${prose.name}: no description. An entry the book prints no text ` +
+              `for is recorded as no-entry; one that needs a person is needs-review.`,
           );
           continue;
         }

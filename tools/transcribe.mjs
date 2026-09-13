@@ -56,7 +56,9 @@ import { book, packsOf, projectRoot, readProse, readStatistics, statisticsDir } 
 const COST = new RegExp(
   [
     "^variable$",
-    "^[-+±]?[\\d/½\\s]+(or\\s+\\d+\\s+)?points?\\b", // -10 points*, 2 points/level
+    // -10 points*, 2 points/level, and the list forms "0, 1, or 2 points" and
+    // "10 or more points", which a family heading prints for all its variants.
+    "^[-+±]?[\\d/½,\\s]+(or\\s+(?:more\\s+|\\d+\\s+))?points?\\b",
     "^see\\s", //                                       see Melee Weapon, p. 208
     "^(ST|DX|IQ|HT|Will|Per)/(Easy|Average|Hard|Very Hard)\\b", // DX/Hard
     "^defaults?:", //                                   Defaults: IQ-4 or Survival-2.
@@ -155,6 +157,38 @@ function rejoin(paragraphs) {
   return out;
 }
 
+/**
+ * A skill's defaults at the head of its text, left behind when the word
+ * "Defaults:" went to another column: "Biology-5, or This is the skill of
+ * growing things." The defaults are statistics the system holds.
+ */
+const LEADING_DEFAULTS = /^(?:[A-Z][A-Za-z()/ ]*?-\d+(?:\s*,)?\s*(?:or\s+)?\.?\s*)+(?=[A-Z])/;
+
+/** A cost at the head of a paragraph: "10 or more points", "0, 1, or 2 points". */
+const LEADING_COST = /^(?:[\d,\s]+(?:or\s+(?:more\s+)?)?(?:\d+\s+)?points?(?:\/level)?\*?\s+)(?=[A-Z])/;
+
+/**
+ * What reading the drafts decided, per pack, by entry name.
+ *
+ * The review standard for this repository is a person reading every captured
+ * entry and judging it coherent and complete -- not collating it word by word
+ * against the printed page. Reading finds what no check can: a tail that runs
+ * into the next section ("...deal with questions like 'What about leap year?'"
+ * ending Absolute Timing with the GM's note on exotic traits), a variant that
+ * picked up the wrong family's note, a description that is only the trailing
+ * remark and not the entry itself.
+ *
+ * Those decisions have to survive the tool being run again, or every re-run
+ * would quietly promote them back. So they are kept here, in the repository,
+ * where a later reader can see what was judged and why.
+ */
+function readingDecisions(bk, packName) {
+  const path = join(bk.dir, "review.json");
+  if (!existsSync(path)) return new Map();
+  const all = JSON.parse(readFileSync(path, "utf8"));
+  return new Map(Object.entries(all[packName] ?? {}));
+}
+
 /** A name may carry parentheses and other characters a pattern would read. */
 function escapeRegExp(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -202,7 +236,9 @@ function familyOpening(pages, index, family) {
   for (let i = at + 1; i < lines.length; i++) {
     const line = lines[i];
     if (COST.test(line) && lead.length === 0) continue;
-    if (/^[A-Z][A-Za-z' -]{2,40}:/.test(line)) break;
+    // A variant label may carry a slash -- "Axe/Mace:" -- and missing it let
+    // every Thrown Weapon specialty pick up the axe's line as its own.
+    if (/^[A-Z][A-Za-z'/ -]{2,40}:/.test(line)) break;
     if (FURNITURE.test(line)) break;
     lead.push(line);
     if (lead.length >= 2) break;
@@ -366,6 +402,40 @@ function doubts(paragraphs, kind) {
   const found = [];
   for (const [pattern, why] of SUSPECT) if (pattern.test(text)) found.push(why);
   if (text.length < 40) found.push("very short");
+  // "Fur Loincloth Fur Tunic Bronze Breastplate Bronze Corselet..." is a table's
+  // column of names, and prose is mostly small lowercase words holding capitals
+  // apart. When almost nothing is lowercase, it is a list.
+  const words = text.match(/[A-Za-z]+/g) ?? [];
+  const lower = words.filter((w) => /^[a-z]/.test(w)).length;
+  if (words.length >= 8 && lower / words.length < 0.2) {
+    found.push("reads as a list of names from a table, not a description");
+  }
+  // Reading the drafts turned up three failures no earlier check caught, each
+  // of which looks fine until you get to the end of the entry.
+  if (!/[.!?"')\]]$/.test(text.trim())) {
+    found.push("stops mid-sentence, so the capture was cut short");
+  }
+  if (/�/.test(text)) {
+    found.push("a character did not survive extraction");
+  }
+  if (/(?:[A-Z][a-z]+[ -]){1,4}[A-Z][a-z]+\s+\d{1,3}\.?$/.test(text.trim())) {
+    found.push("ends on what looks like the next heading");
+  }
+  if (!/^["'(“]?[A-Z0-9]/.test(text.trim())) {
+    found.push("starts mid-sentence");
+  }
+  // "...spy, or thief. [-5*], Duty [-2 to -15]" -- a template's list of traits
+  // arriving with the first trait's name missing, which is what a lost line
+  // looks like when the rest of the list survives.
+  // A quirk's heading is printed inline, so a short entry runs straight into
+  // the next: "...group action. Delusions You may take a completely trivial".
+  // The seam is a sentence ending, a capitalised name, and then "You".
+  if (/[.!?]\s+(?:[A-Z][a-z]+\s){1,4}(?:You|Your)/.test(text)) {
+    found.push("runs into the next entry, whose heading is printed inline");
+  }
+  if (/[.:]\s+\[[-+]?\d/.test(text)) {
+    found.push("a cost in brackets with no name before it, so a line was lost");
+  }
   // A price that survived is a statistic the system also holds, so the two would
   // drift apart the first time one changed.
   if (/\$\d/.test(text)) found.push("a price is still in the text");
@@ -375,7 +445,6 @@ function doubts(paragraphs, kind) {
   if ((text.replace(/(\d)"/g, "$1").match(/"/g) ?? []).length % 2) {
     found.push("an unbalanced quotation mark");
   }
-  if (kind === "variant") found.push("taken from the family's shared text; check the variant's own line");
   return found;
 }
 
@@ -405,6 +474,7 @@ async function main() {
   const pages = pagesOf(pdf);
   const names = headingNames(bk);
   const existing = readProse(bk, packName).records;
+  const readingNotes = readingDecisions(bk, packName);
 
   const records = [];
   const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, absent: 0, kept: 0 };
@@ -424,23 +494,58 @@ async function main() {
         _id: entry._id,
         name: entry.name,
         pages: citedPage(entry) ? `B${citedPage(entry)}` : "",
-        status: "needs-review",
-        notes: "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+        status: "no-entry",
+        notes: "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
         description: "",
       });
       continue;
     }
 
     tally[found.kind]++;
-    const why = doubts(found.paragraphs, found.kind);
+    // A family's shared cost can sit at the head of its text -- "0, 1, or 2
+    // points Anyone with a mouth has blunt teeth" -- and it is a statistic the
+    // system holds, stripped here for the same reason a price is.
+    const paragraphs = [...found.paragraphs];
+    paragraphs[0] = paragraphs[0].replace(LEADING_COST, "").replace(LEADING_DEFAULTS, "");
+    // When the defaults were a paragraph of their own, what is left is just the
+    // last of them -- "Merchant-6." -- which is no more text than the rest was.
+    if (/^([A-Z][A-Za-z()/ ]*?-\d+\.?)?$/.test(paragraphs[0].trim())) paragraphs.shift();
+    const why = doubts(paragraphs, found.kind);
+    const read = readingNotes.get(entry.name);
+    if (read) why.push(`read and found wanting: ${read}`);
     records.push({
       _id: entry._id,
       name: entry.name,
       pages: `B${found.page}`,
       status: why.length ? "needs-review" : "transcribed",
       notes: why.join("; "),
-      description: toHtml(found.paragraphs),
+      description: toHtml(paragraphs),
     });
+  }
+
+  // Variants that came back with identical text got the family's trailing note
+  // rather than their own description: "Cyclic (1 hour interval)" and four
+  // siblings all read "Cyclic attacks are often Resistible...", which is true of
+  // every one and describes none. Unrelated items may legitimately match -- a
+  // bottle and a canteen both hold a quart -- so only a shared family counts.
+  const family = (name) => name.replace(/\s*\(.*$/, "").trim();
+  const byText = new Map();
+  for (const record of records) {
+    if (!record.description || record.status === "no-entry") continue;
+    const group = byText.get(record.description) ?? [];
+    group.push(record);
+    byText.set(record.description, group);
+  }
+  for (const group of byText.values()) {
+    if (group.length < 2) continue;
+    const families = new Set(group.map((r) => family(r.name)));
+    if (families.size !== 1) continue;
+    for (const record of group) {
+      if (record.status === "reviewed") continue;
+      const why = "shares its text with its sibling variants, so it is the family's note, not its own";
+      record.status = "needs-review";
+      record.notes = record.notes ? `${record.notes}; ${why}` : why;
+    }
   }
 
   console.log(`${bk.title} / ${packName}: ${records.length} entries`);
