@@ -32,6 +32,14 @@
     "description": "<p>Higher Purpose (Hunt Monsters) is not allowed, as it's far too general, but one for a specific type of foe is fine; e.g., Higher Purpose (Hunt Lycanthropes). Such a trait adds +1 to any roll to research, track, or slay that particular type of creature.</p>"
   },
   {
+    "_id": "4e03fae26c31b9ed",
+    "name": "PK: Telekinesis",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With constant concentration, you can mentally grab, move, and even punch things - as long as they're no more than 20 yards away. With enough power, you can even lift yourself! (See p. B92 for more information.) Your level of this ability cannot exceed the total of your (ST + Will); e.g., with ST 12 and Will 13, you could have up to Telekinesis 25.</p><p><em>Statistics:</em> Telekinesis (Increased Range, ×2, +10%; PM, -10%) [5/level].</p>"
+  },
+  {
     "_id": "73d2265666710858",
     "name": "Dual Shooting (Gun!)",
     "pages": "MH1:23",
@@ -142,6 +150,566 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Prerequisite: Magery.</p><p>This new advantage represents inherent magical power, and is only available to dedicated spellcasters (e.g., witches). While the spells cast by an average person (even a mage) are slow and bound by several restrictions, yours are not. See Ritual Path Magic (pp. 32-39) for details.</p>"
+  },
+  {
+    "_id": "3c42d6cf4db0d396",
+    "name": "Bioenhancement Talent",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bioenhancement Talent represents an understanding of your body and its new gifts. It adds to any roll to use a Bioenhancement ability, as well as to any roll to diagnose (but not to fix) a problem with your own body or mind.</p>"
+  },
+  {
+    "_id": "50d7b21f9a06797a",
+    "name": "BIO: Adrenal-Muscular Trigger",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can temporarily boost your ST (but not your HP) by one for every level of this ability. This takes a Ready maneuver to activate and lasts for 1d×5 seconds, after which it is inaccessible for five minutes.</p><p><em>Statistics:</em> Extra ST without HP* (Maximum Duration, 1d×5 seconds, -65%; PM, -10%) [2/level].</p><p>* Normally costs 8 points/level.</p>"
+  },
+  {
+    "_id": "40265b0f20c4dbee",
+    "name": "BIO: Breath-Holding",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can go a long time without breathing. If you buy five or more levels, apply the -10% PM discount after calculating the total cost.</p><p><em>Statistics:</em> Breath-Holding (PM, -10%) [2/level].</p>"
+  },
+  {
+    "_id": "71b196d1e6cb945a",
+    "name": "BIO: Cellular Restoration",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You recover from injury very quickly. You regain consciousness 60 times faster than normal; you add +5 to rolls to recover from a crippling injury; and you heal 1 HP per 12 hours, 1 HP per hour, or 1 HP per minute, depending on your level.</p><p><em>Statistics:</em> Recovery (PM, -10%) [9] + Regeneration (Slow, Regular, or Fast; PM, -10%) [9, 23, or 45].</p>"
+  },
+  {
+    "_id": "70031537c2ae6c6e",
+    "name": "BIO: Cerebral-Motor Multitasking",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are not limited to one attack per turn! Depending on your level, you can attack two or three times per second without having to make an All-Out Attack or Rapid Strike, and you may use the same weapon if you wish. Bioenhancement Talent does not add to your attack rolls.</p><p><em>Statistics:</em> Extra Attack 1 or 2 (Multi-Strike, +20%; PM, -10%) [28 or 55].</p>"
+  },
+  {
+    "_id": "39202a6e55d2c6c9",
+    "name": "BIO: Circadian Rhythm Control",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can stay awake longer, requiring only half as much sleep as a normal person or no sleep at all, depending on your level!</p><p><em>Statistics:</em> Less Sleep 4 (PM, -10%) [8] or Doesn't Sleep (PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "e1fbbc38755432b2",
+    "name": "BIO: Discriminatory Hearing",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can automatically tell two sounds apart no matter how similar, can perfectly memorize sounds for later recollection, and make all Hearing rolls at +4.</p><p><em>Statistics:</em> Discriminatory Hearing (PM, -10%) [14].</p>"
+  },
+  {
+    "_id": "9065420effae040c",
+    "name": "BIO: Discriminatory Smell 1",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can identify people, places, and things by their scent, and even track by smell, all at +4. Level 2 adds the ability to smell emotion!</p><p><em>Statistics:</em> Discriminatory Smell (PM, -10%) [14] or Discriminatory Smell (Emotion Sense, +50%; PM, -10%) [21].</p>"
+  },
+  {
+    "_id": "4ee171a3a8bde1f0",
+    "name": "BIO: Discriminatory Smell 2",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can identify people, places, and things by their scent, and even track by smell, all at +4. Level 2 adds the ability to smell emotion!</p><p><em>Statistics:</em> Discriminatory Smell (PM, -10%) [14] or Discriminatory Smell (Emotion Sense, +50%; PM, -10%) [21].</p>"
+  },
+  {
+    "_id": "3474cf8f992e1f3d",
+    "name": "BIO: Eagle Eyes",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can \"zoom in\" with your eyes at will. Your range penalties for Vision rolls are reduced and you may use your eyes as a variable-power scope (p. B412). However, any blinding attacks (e.g., a flash-bang grenade) that affect you while using this ability have double the normal duration!</p><p><em>Statistics:</em> Telescopic Vision (PM, -10%; Temporary Disadvantage, Vulnerability (Blinding Attacks ×2), -10%) [4/level].</p>"
+  },
+  {
+    "_id": "75c6bbe699725517",
+    "name": "BIO: Enhanced Ground Move",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When you sprint, you can really run! Your top speed is 2× or 3× your Move, depending on your level.</p><p><em>Statistics:</em> Enhanced Move 1 or 1.5 (Ground; PM, -10%) [18 or 27].</p>"
+  },
+  {
+    "_id": "ae778eebc3294005",
+    "name": "BIO: Enhanced Speed",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body takes very little time to react to your impulses. Each level adds +1 to your Basic Speed (and thus to your Dodge and Basic Move)! Bioenhancement Talent does not add to your Dodge rolls, but it does add to Acrobatics skill when making a \"fancy\" dodge (p. B375).</p><p><em>Statistics:</em> Basic Speed +1.00, +2.00, or +3.00 (PM, -10%) [18, 36, or 54].</p>"
+  },
+  {
+    "_id": "6d09967d931c4c44",
+    "name": "BIO: Epidermal Resillience",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your skin is much tougher than it looks, providing flexible DR against anything except contact attacks. Anyone who touches it must make a Per-4 roll to notice. The level of this ability is limited to half your HT, rounded up.</p><p><em>Statistics:</em> DR (Low Signature, +10%; PM, -10%; Tough Skin, -40%) [3/level].</p>"
+  },
+  {
+    "_id": "397b99386e684602",
+    "name": "BIO: Equilibrium Enhancement",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can run along tightropes at full speed and perform similar feats of balance. If you do fall, you almost always end up on your feet, none the worse for wear.</p><p><em>Statistics:</em> Catfall (PM, -10%) [9] + Perfect Balance (PM, -10%) [14].</p>"
+  },
+  {
+    "_id": "ce2f36bdbb1f4769",
+    "name": "BIO: Injury Tolerance (Unliving)",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your redundant organs continue to function at full capacity even when wounded. This greatly reduces the amount of damage you take from bullets (Injury to Unliving, Homogenous, and Diffuse Targets, p. B380), unless struck directly in the skull or vitals.</p><p><em>Statistics:</em> Injury Tolerance (Unliving; PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "63148951dc3e9de8",
+    "name": "BIO: Neural Computational Matrix",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A portion of your mind has been wired to work as a high-speed computer. You can use this to store or process any information you know, or load actual raw data into it by reading a \"binary dump\" (printed or on a monitor). At level 1, you can do complex calculations and store general memories (an IQ roll is needed to recall specific details). At level 2, your mind can outperform all but the fastest computers, and you automatically remember everything.</p><p><em>Statistics:</em> Accessory (Computer) [1] + Eidetic Memory (PM, -10%) [5] + Lightning Calculator (PM, -10%) [2] or Accessory (Computer) [1] + Intuitive Mathematician (PM, -10%) [5] + Photographic Memory (PM, -10%) [9].</p>"
+  },
+  {
+    "_id": "7e6f1378c22264b1",
+    "name": "BIO: Ocular Adaptability 1",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The rods and cones in your eyes can adapt for different forms of light. At level 1, this gives you infrared vision. At level 2, it includes a whole spectrum of options!</p><p><em>Statistics:</em> Infravision (PM, -10%) [9] or Hyperspectral Vision (PM, -10%) [23].</p>"
+  },
+  {
+    "_id": "7160153fb48b1e56",
+    "name": "BIO: Ocular Adaptability 2",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The rods and cones in your eyes can adapt for different forms of light. At level 1, this gives you infrared vision. At level 2, it includes a whole spectrum of options!</p><p><em>Statistics:</em> Infravision (PM, -10%) [9] or Hyperspectral Vision (PM, -10%) [23].</p>"
+  },
+  {
+    "_id": "d13101e1d6c1b100",
+    "name": "BIO: Super Jump",
+    "pages": "MH1:42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can make impressive leaps! This allows you to jump two, four, or eight times farther than normal, depending on your level.</p><p><em>Statistics:</em> Super Jump 1, 2, or 3 (PM, -10%) [9, 18, or 27]</p>"
+  },
+  {
+    "_id": "51568bbf537653c0",
+    "name": "Mysticism Talent",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Mysticism Talent is a rough measure of your standing in your spiritual benefactor's eyes. It adds to any roll to use a Mysticism ability, as well as to any reaction roll made by your god or spirit toward you.</p>"
+  },
+  {
+    "_id": "e7dead34f381569e",
+    "name": "MYS: Armor of Faith",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your belief protects you physically as well as spiritually! When attacked by evil undead or spirit beings, you (and anything you're carrying) receive DR equal to your level. Against all other attacks and damage, you have DR equal to half your level (round down). This is not obvious - the attacks just seem to do less damage than they should. The level of this ability cannot exceed your Will.</p><p><em>Statistics:</em> DR (Force Field, +20%; Half-strength except against evil undead or spirit beings, -30%; No Signature, +20%; PM, -10%) [5/level].</p>"
+  },
+  {
+    "_id": "cdd18754f5e09e34",
+    "name": "MYS: Blessed",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can undergo a long and fatiguing ritual to receive spiritual wisdom. This works as per p. B40, except that it requires a Theology (plus Talent) roll to interpret.</p><p><em>Statistics:</em> Blessed (PM, -10%) [9] or Blessed (Very Blessed; PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "ba1828e0a12deaeb",
+    "name": "MYS: Extra Life",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When you die, you'll be sent back to the physical world to continue fighting the good fight. You lose this ability (and the points spent on it) when that happens, though you can always buy it again. You must truly die to trigger this ability, however - becoming a vampire, lycanthrope, etc., will not do so until your teammates kill your new form! This ability can be bought after death with spare character points; see p. 31 for details.</p><p><em>Statistics:</em> Extra Life 1 (PM, -10%) [23].</p>"
+  },
+  {
+    "_id": "9ad7092eafa1c988",
+    "name": "MYS: Eyes of the Dead",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>By touching a corpse, you can get a brief flash of the last thing the person saw before dying. The subject cannot resist, but your IQ (plus Talent) roll is at a penalty equal to the number of full days the subject has been dead, and you only get one try.</p><p><em>Statistics:</em> Mind Probe (Cosmic, Works on the dead, +50%; Only for last sight before death, -40%; PM, -10%) [20]. Feature: Time penalty replaces the normal Quick Contest.</p>"
+  },
+  {
+    "_id": "6c5723d4ffa14c8a",
+    "name": "MYS: Ghost Weapon",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can attack malevolent spirits as though they were physical, turning a gun into an effective exorcism tool! See Blessed (p. 23) for details.</p><p><em>Statistics:</em> Blessed (Ghost Weapon; PM, -10%) [14].</p>"
+  },
+  {
+    "_id": "976d984e869a06df",
+    "name": "MYS: Heroic Feats (ST)",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You may buy this for any of ST, DX, or HT. Once per session, you can add 1d or 2d to the chosen attribute for 3d seconds, depending on your level. This does temporarily boost secondary characteristics like HP, FP, and Basic Speed.</p><p><em>Statistics:</em> Blessed 1 or 2 (Heroic Feats; PM, -10%) [9 or 18].</p>"
+  },
+  {
+    "_id": "8a97aa911318765e",
+    "name": "MYS: Heroic Feats (DX)",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You may buy this for any of ST, DX, or HT. Once per session, you can add 1d or 2d to the chosen attribute for 3d seconds, depending on your level. This does temporarily boost secondary characteristics like HP, FP, and Basic Speed.</p><p><em>Statistics:</em> Blessed 1 or 2 (Heroic Feats; PM, -10%) [9 or 18].</p>"
+  },
+  {
+    "_id": "ace79015fb98f579",
+    "name": "MYS: Heroic Feats (HT)",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You may buy this for any of ST, DX, or HT. Once per session, you can add 1d or 2d to the chosen attribute for 3d seconds, depending on your level. This does temporarily boost secondary characteristics like HP, FP, and Basic Speed.</p><p><em>Statistics:</em> Blessed 1 or 2 (Heroic Feats; PM, -10%) [9 or 18].</p>"
+  },
+  {
+    "_id": "ff86f6b74952c95d",
+    "name": "MYS: Lay on Hands",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can spend FP to cure the wounds and illnesses of others. At level 2, you can also heal yourself.</p><p><em>Statistics:</em> Healing (Faith Healing, +20%; PM, -10%) [33] or Healing (Affects Self, +50%; Faith Healing, +20%; PM, -10%) [48].</p>"
+  },
+  {
+    "_id": "f0e67a1682e0c0e8",
+    "name": "MYS: Mind Shield",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your mind is guarded against invasion from outside forces. Add your level to any roll to resist mental attacks; if you successfully resist, you will be aware that you were attacked. Your level in this ability cannot exceed your Will; if you buy three or more levels, apply the -10% PM discount after calculating the total cost.</p><p><em>Statistics:</em> Mind Shield (PM, -10%) [4/level].</p>"
+  },
+  {
+    "_id": "0162151e5550b64c",
+    "name": "MYS: Mystic Coincidence",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Once per session per level, minor spirits will arrange a beneficial coincidence on your behalf (e.g., a book falls off the shelf, opened to exactly what you're looking for). However, if your spiritual patron wants you to be stuck in a particular situation, you may be stuck there - even if the GM would allow that use of Serendipity to someone whose gifts didn't flow from a higher power! You may have up to (your Mysticism Talent level) + 1 levels of this ability.</p><p><em>Statistics:</em> Serendipity (Aid will never violate god's/spirit's tenets, -10%; PM, -10%) [12/level]</p>"
+  },
+  {
+    "_id": "e062a421b2a1b607",
+    "name": "MYS: Prayer",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You may pray for direct divine or spiritual intervention! This takes at least 1d seconds of concentration, after which the GM rolls 3d against a target number of 6 or 9 (depending on your level) to see if your prayer is heard. If not, you cannot try again this session; otherwise, your patron immediately lends you a hand! It is only able to act freely in supernatural matters, however (e.g., banishing a demon). For all other requests, it is limited to subtle manipulation to bring about extreme coincidences (e.g., a construction crew demolishing the wrong building). You are limited to roughly one such \"miracle\" per adventure.</p><p><em>Statistics:</em> Patron (Limited manifestation of god or powerful spirit; 6 or less; Highly Accessible, +50%; PM, -10%; Special Abilities, +100%) [24] or (9 or less) [48].</p>"
+  },
+  {
+    "_id": "c20146cc58d17f41",
+    "name": "MYS: Resistant to Evil Supernatural Powers",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are especially resistant to the supernatural attacks of evil creatures. This gives you a bonus against any such ability that allows a resistance roll; e.g., it would help you avoid being mesmerized by a master vampire, but would do nothing if he decided to shoot you.</p><p><em>Statistics:</em> Resistant to Evil Supernatural Powers (+3) or (+8) (PM, -10%) [5 or 7].</p>"
+  },
+  {
+    "_id": "c9c46d4efae5c7f9",
+    "name": "MYS: Shock and Awe",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can momentarily channel visions of a higher plane, forcing everyone looking at you to make a Fright Check*! This is taxing - you can only do it once per hour. Level 2 adds a -4 penalty to the Fright Check.</p><p><em>Statistics:</em> Terror (PM, -10%; Takes Recharge, One hour, -30%) [18] or (-4 to Fright Checks) [42].</p><p>* If GURPS Powers is available, the GM may wish to use the Awe results from p. 85 instead.</p>"
+  },
+  {
+    "_id": "983c8b4c6760b13e",
+    "name": "MYS: Smite",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>By winning a Quick Contest of Will with any evil undead or spirit being, you can cause it to take burning damage, ignoring all DR! (Normal range penalties apply to your roll.) It will take 2d, 3d, or 4d damage, depending on your level. The attack is visible only to evil supernatural creatures, as a flaming aura connecting you to your target.</p><p><em>Statistics:</em> Burning Attack 2d, 3d or 4d (Accessibility, Evil undead or spirit beings, -50%; Low Signature, +10%; Malediction 2, +150%; PM, -10%) [20, 30, or 40].</p>"
+  },
+  {
+    "_id": "fc8da76497e8e76d",
+    "name": "MYS: Spirit Channeling",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can voluntarily let a spirit share your body to speak and write messages. This takes one minute and a Will roll (at +2 if you have Autotrance), after which the spirit can speak and write through you - but nothing more physical. You remain conscious and able to act while this is happening. If it tries to possess you outright, you get +5 to resist.</p><p><em>Statistics:</em> Channeling (Aware, +50%; PM, -10%) [14].</p>"
+  },
+  {
+    "_id": "4591c12daeecadab",
+    "name": "MYS: Spirit Communication",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can sense nearby spirits and speak with them; while doing so, you are able to clearly see what they looked like in life. With level 2, any spirit you're speaking with can manifest, so that everyone can see it, without having to spend FP.</p><p><em>Statistics:</em> Medium (PM, -10%; Visual, +50%) [14] or Medium (Manifestation, +100%; PM, -10%; Visual, +50%) [24].</p>"
+  },
+  {
+    "_id": "4130b293d743dc82",
+    "name": "MYS: Spirit Empathy",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prerequisite: Spirit Channeling or Spirit Communication.</p><p>You understand the spirits that you deal with, allowing you to sense their feelings and influence them.</p><p><em>Statistics:</em> Spirit Empathy (PM, -10%) [9].</p>"
+  },
+  {
+    "_id": "c3d2b95bc077ae88",
+    "name": "MYS: Supernatural Sense",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With a second of concentration and a Per roll (minus normal range penalties), you can sense the presence of supernatural beings, from angels to zombies. Level 1 just tells you that something is nearby, while level 2 indicates direction and lets you make a follow-up IQ roll to tell what kind of beings you're sensing.</p><p><em>Statistics:</em> Detect Supernatural Beings (PM, -10%; Vague, -50%) [8] or Detect Supernatural Beings (PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "6e67faa3d36892f1",
+    "name": "MYS: Turn Evil",
+    "pages": "MH1:44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Show a symbol of your faith, take a Concentrate maneuver, and roll a Quick Contest of Will with any evil undead or spirit being in sight. If you win, it cannot come closer than yards equal to your margin of victory; otherwise, it cannot come closer than one yard. Effects endure as long as you concentrate, and for 1d seconds afterward.</p><p><em>Statistics:</em> True Faith (PM, -10%; Turning, +65%) [24].</p>"
+  },
+  {
+    "_id": "8f597890bc88a145",
+    "name": "MYS: Visualization",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you take time to pray about a situation before it happens, mystical forces will give you a bonus on the task's success roll.</p><p><em>Statistics:</em> Visualization (PM, -10%) [9].</p>"
+  },
+  {
+    "_id": "79c6ee2e5d953e92",
+    "name": "ESP Talent",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Psis have a greater range of abilities to choose from than most \"empowered\" heroes, but this flexibility comes at a price. Instead of having a single Talent that gives a bonus to all rolls to use psi, there are four separate Talents, each of which gives a bonus to its specific group of abilities.</p><p>Adds to any roll to use an ESP ability.</p>"
+  },
+  {
+    "_id": "db85e4d0d4c0fefb",
+    "name": "ESP: Aura Reading",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can accurately read a person's general emotional and physical state. Treat this as Empathy, but you also gain insight into anything physically wrong with the person. This adds +3 to any skill rolls to diagnose or treat an illness or injury.</p><p><em>Statistics:</em> Empathy (Includes physical status, +50%; PM, -10%) [21].</p>"
+  },
+  {
+    "_id": "814f1d502e22081a",
+    "name": "ESP: Precognition",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can see the future! This is generally a passive ability, but you can use it actively (with effort). This includes Danger Sense; don't buy it separately.</p><p><em>Statistics:</em> Precognition (PM, -10%) [23].</p>"
+  },
+  {
+    "_id": "f62b7b6aec9ba188",
+    "name": "ESP: Psi Sense",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If anyone nearby uses or is targeted by psi, the GM will roll against your Per, plus Talent, minus range penalties. On a success, you know in which direction it was used or exactly where it was used, depending on your level. This is normally a passive sense, but you may always choose to use it actively if you think you missed something.</p><p><em>Statistics:</em> Detect Psionic Activity (PM, -10%; Reflexive, +40%) [13] or Detect Psionic Activity (PM, -10%; Precise, +100%; Reflexive, +40%) [23].</p>"
+  },
+  {
+    "_id": "15abe68cadd3991e",
+    "name": "ESP: Psychometry",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can see the past! This usually requires active effort, though you do get a passive roll (at a penalty) if an interesting event happened nearby.</p><p><em>Statistics:</em> Psychometry (PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "5017d52e85d50b19",
+    "name": "ESP: Remote Senses",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With four minutes of concentration and an IQ roll, you can project all of your senses up to 10 or 100 yards away, depending on your level. (You can double this range for 2 FP per minute.) This is good for seeing through walls, peeking into packages, and spying from far away.</p><p><em>Statistics:</em> Clairsentience (PM, -10%; Takes Extra Time 2, -20%) [35] or Clairsentience (Increased Range, ×10, +30%; PM, -10%; Takes Extra Time 2, -20%) [50].</p>"
+  },
+  {
+    "_id": "3d90f0a389b4d8f3",
+    "name": "ESP: Seekersense",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can \"home in\" on anyone or anything, provided you're touching a piece of it (or something deeply connected to it) to attune to. If so, take a Concentrate maneuver; the GM will roll against your (Per + ESP Talent), applying Long-Distance Modifiers (p. B241) for distance between you and the subject. Success means you know its direction, though not distance.</p><p><em>Statistics:</em> Super-Memorization 1 (8) (Limited to one advantage*, -50%; PM, -10%; Reduced Time 3, +60%) [29].</p><p>* Detect for any one thing (Long-Range 1, +50%) [8].</p>"
+  },
+  {
+    "_id": "7f6587a1d98b1a48",
+    "name": "ESP: Spirit Channeling",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for the Mysticism ability, but limited by the Psionic PM instead of the Mysticism one.</p>"
+  },
+  {
+    "_id": "24a5d216b597c26e",
+    "name": "ESP: Spirit Communication",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for the Mysticism ability, but limited by the Psionic PM instead of the Mysticism one.</p>"
+  },
+  {
+    "_id": "a4b7dddb29b19439",
+    "name": "Psychokinesis Talent",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Psis have a greater range of abilities to choose from than most \"empowered\" heroes, but this flexibility comes at a price. Instead of having a single Talent that gives a bonus to all rolls to use psi, there are four separate Talents, each of which gives a bonus to its specific group of abilities.</p><p>Adds to any roll to use a Psychokinesis ability.</p>"
+  },
+  {
+    "_id": "02da701c8ee25119",
+    "name": "PK: Cryokinesis",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can freeze anything or anyone! Roll a Quick Contest of Will (objects resist with HT); you take normal range penalties to the target. If you win, your subject takes 1d-1 fatigue damage per level, which can only be recovered with warmth. You may always choose to do less damage.</p><p>An object lacks FP, but once your cumulative \"damage\" exceeds its HP, it is frozen. At 2×HP, it locks up permanently, if possible!</p><p><em>Statistics:</em> Fatigue Attack 1d-1 (Freezing, +20%; Malediction 2, +150%; No Signature, +20%; PM, -10%; Variable, +5%) [20/level].</p>"
+  },
+  {
+    "_id": "2ba508e775458b9f",
+    "name": "PK: Psychic Healing",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can heal the injuries and illnesses of others. Depending on your level, you can heal only humans, any plant or animal, or anything (even demons, undead, and so on).</p><p><em>Statistics:</em> Healing (PM, -10%) [27]; Healing (PM, -10%; Xenohealing, All Earthly Life, +40%) [39]; or Healing (PM, -10%; Xenohealing, Anything Animate, +100%) [57].</p>"
+  },
+  {
+    "_id": "062892abaa4906c7",
+    "name": "PK: PK Shield",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While you are awake, your psi automatically saps energy from incoming attacks. This gives you (and everything you carry) additional DR equal to your level.</p><p><em>Statistics:</em> DR (Force Field, +20%; No Signature, +20%; Not when unconscious, -10%; PM, -10%) [6/level].</p>"
+  },
+  {
+    "_id": "d5610677522c3c42",
+    "name": "PK: Pyrokinesis",
+    "pages": "MH1:46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for Cryokinesis (above), but you set things on fire instead (1d burning damage per level), and each use costs you 1 FP. This is less expensive, but far more dangerous - you cannot safely subdue someone by burning him!</p><p><em>Statistics:</em> Burning Attack 1d (Costs Fatigue, 1 FP, -5%; Malediction 2, +150%; No Signature, +20%; PM, -10%; Variable, +5%) [13/level].</p>"
+  },
+  {
+    "_id": "9c37d32a7bd91676",
+    "name": "PK: Temperature Control",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With constant concentration, you can control the temperature of the air in a two-yard radius, up to 20 yards away. You can heat or cool the air by up to 20°F per level; it takes 10 seconds for the change to finish (at 2°F per level per second).</p><p><em>Statistics:</em> Temperature Control (Increased Range, ×2, +10%; PM, -10%) [5/level].</p>"
+  },
+  {
+    "_id": "718f8e45ceb03e5e",
+    "name": "Telepathy Talent",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Psis have a greater range of abilities to choose from than most \"empowered\" heroes, but this flexibility comes at a price. Instead of having a single Talent that gives a bonus to all rolls to use psi, there are four separate Talents, each of which gives a bonus to its specific group of abilities.</p><p>Adds to any roll to use a Telepathy ability.</p>"
+  },
+  {
+    "_id": "1778d59daebba213",
+    "name": "TEL: Mental Blow",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can mentally stun someone by winning a Quick Contest of Will (normal range penalties apply); on subsequent turns, he can roll against Will to snap out of it. If he loses by 5 or more, he passes out for minutes equal to your margin of victory.</p><p><em>Statistics:</em> Affliction 1 (Will; Based on Will, +20%; Malediction 2, +150%; No Signature, +20%; PM, -10%; Secondary Unconsciousness, +40%) [32].</p>"
+  },
+  {
+    "_id": "aefd05ffa29775cb",
+    "name": "TEL: Mind Control",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can give someone silent, mental orders to follow, as per p. B68. Level 1 is limited to simple, broad commands - \"Go away,\" is fine, but, \"Go to the police and tell them you saw drug dealers here,\" is too complex. Level 2 has no such restriction.</p><p><em>Statistics:</em> Mind Control (PM, -10%; Suggestion, -40%) [25] or Mind Control (PM, -10%) [45].</p>"
+  },
+  {
+    "_id": "4220f0b917e57412",
+    "name": "TEL: Mind Probe",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can retrieve memories and buried secrets from someone's mind. This requires either physical contact or the use of Mind Reading (below) first.</p><p><em>Statistics:</em> Mind Probe (PM, -10%) [18].</p>"
+  },
+  {
+    "_id": "a26ccce1d59a99ff",
+    "name": "TEL: Mind Reading",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can read someone's mind at a distance, picking up all surface thoughts.</p><p><em>Statistics:</em> Mind Reading (PM, -10%) [27].</p>"
+  },
+  {
+    "_id": "58e44d5ed40f6c9e",
+    "name": "TEL: Mind Shield",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for the Mysticism ability, but limited by the Psionic PM instead of the Mysticism one.</p>"
+  },
+  {
+    "_id": "c82d4eb7b0cc230f",
+    "name": "TEL: Mindwipe",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can wipe the last few minutes from someone's memory. If you win a Quick Contest of Will (normal range penalties apply), he forgets everything that's happened for minutes equal to your margin of victory. You can scale this back if you wish (e.g., \"just the last 20 seconds\"). Hypnotism, Psychology, and Mind Probe can restore the lost memories.</p><p><em>Statistics:</em> Affliction 1 (Will; Based on Will, +20%; Disadvantage, Total Amnesia, +25%; Malediction 2, +150%; No Signature, +20%; PM, -10%; Variable, +5%) [31]. Feature: Instead of the target getting amnesia for the next few minutes, it applies to the last few minutes.</p>"
+  },
+  {
+    "_id": "787d099df294f11b",
+    "name": "TEL: Telecontrol",
+    "pages": "MH1:47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can steal another human being's body! This follows the normal rules for Possession (p. B75) with the Telecontrol enhancement. If you succeed, you completely supplant his personality as your body goes into a trance. At level 1, your control is poor, giving you -4 on all physical rolls (against ST, DX, or HT, or any skill based on those attributes); passive rolls - such as resistance rolls or rolls to avoid blood loss - are unaffected. You also have -4 to Acting rolls to impersonate the subject, and -2 to all active defenses. Level 2 halves these penalties (to -2, -2, and -1, respectively).</p><p>If you are not human, decide (when buying this ability) whether you can possess humans or members of your own race. The option to possess either adds 20 points to this ability.</p><p><em>Statistics:</em> Possession (No Memory Access, -10%; PM, -10%; Poor Control -4, Cannot Adjust, -45%; Specialized, Humans, -40%; Telecontrol, +50%) [45] or Possession (No Memory Access, -10%; PM, -10%; Poor Control -2, Cannot Adjust, -30%; Specialized, Humans, -40%; Telecontrol, +50%) [60]. The ability to possess two races drops Specialized to -20%, for +20 points.</p>"
+  },
+  {
+    "_id": "edf4d36c470d54a4",
+    "name": "TEL: Telescan",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can locate anyone you know. You may either search for a specific person or the nearest person you know; in the latter case, you may exclude whomever you wish (e.g., to avoid \"locating\" the person standing next to you). The GM will roll Per, plus Talent, minus Long-Distance Modifiers (p. B241); if successful, you know exactly where the person is. If he has a Mind Shield and wishes to resist, this becomes a Quick Contest against his Will (plus Talent, if any).</p><p><em>Statistics:</em> Detect Known Minds (Cannot Analyze, -10%; Long-Range 1, +50%; PM, -10%; Precise, +100%; Selective Effect, +20%) [25].</p>"
+  },
+  {
+    "_id": "acd81a39e9de83d1",
+    "name": "TEL: Telesend",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can project your thoughts to anyone you can see or are familiar with.</p><p><em>Statistics:</em> Telesend (PM, -10%) [27].</p>"
+  },
+  {
+    "_id": "aef3a296795899c9",
+    "name": "Teleportation Talent",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Psis have a greater range of abilities to choose from than most \"empowered\" heroes, but this flexibility comes at a price. Instead of having a single Talent that gives a bonus to all rolls to use psi, there are four separate Talents, each of which gives a bonus to its specific group of abilities.</p><p>Adds to any roll to use a Teleportation ability.</p>"
+  },
+  {
+    "_id": "97f97f6a6f41f864",
+    "name": "TPN: Autoteleport",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can relocate yourself. This follows the normal rules for Warp (p. B97), except that you can make blind jumps at no penalty, and it costs 2 FP per +1 bonus to the roll. At level 1, you are limited to a 20-yard range. Level 2 raises this limit to 10 miles, and level 3 removes it completely!</p><p><em>Statistics:</em> Warp (Blind Only, -50%; PM, -10%; Range Limit, 20 yards, -45%; Reliable 5, +25%) [20]; Warp (Blind Only, -50%; PM, -10%; Range Limit, 10 miles, -25%; Reliable 5, +25%) [40]; or Warp (Blind Only, -50%; PM, -10%; Reliable 5, +25%) [65].</p>"
+  },
+  {
+    "_id": "d4e21cb3d400a56c",
+    "name": "TPN: Combat Teleport",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prerequisite: Autoteleport 1+.</p><p>Once per turn, you may roll against (IQ + Talent) as an active defense against any attack. Success means you disappear and reappear at a random, but safe, location within 10 yards. (If no such location exists, your roll fails.)</p><p><em>Statistics:</em> Add Blink (+25%) to Warp, for +25 points. This removes the -10 penalty for instantaneous use, but only to avoid one attack each turn.</p>"
+  },
+  {
+    "_id": "c6dd95c1a3df27d9",
+    "name": "TPN: Exoteleport",
+    "pages": "MH1:48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>By making contact with a subject - skin-to-skin contact if it's a person - you may teleport it away. This follows the normal rules for Warp, except that you cannot teleport anything instantly, you have no penalty for a blind jump, and it costs 2 FP per +1 bonus to the roll. If the subject wishes to resist, this becomes a Quick Contest of your modified IQ against his HT. You cannot teleport yourself - use Autoteleport (above) for that! At level 1, you can send things up to 20 yards away. Level 2 raises this to 10 miles. At level 3, you have no range limits.</p><p><em>Statistics:</em> Built on a base of Affliction 1 (HT; Based on IQ, Own Roll, +20%; Cannot warp self, -50%; Contact Agent, -30%; Malediction 1, +100%; Melee Attack, Range C, Cannot Parry, -35%; PM, -10%) [10]. Feature: Uses a single IQ roll instead of two.</p><p>Level 1 adds Advantage, Warp (Blind Only, -50%; Range Limit, 20 yards, -45%; Reliable 5, +25%), +300%, for +30 points. Level 2 adds Advantage, Warp (Blind Only, -50%; Range Limit, 10 miles, -25%; Reliable 5, +25%), +500%, for +50 points. Level 3 adds Advantage, Warp (Blind Only, -50%; Reliable 5, +25%), +750%, for +75 points.</p>"
   },
   {
     "_id": "b3fac7bdfc12d949",
