@@ -20,6 +20,17 @@
  *     attribute purchase, not entries the book names. They get no text, and
  *     saying so is the answer rather than a gap.
  *
+ * Other books print their entries in shapes of their own, and Monster Hunters
+ * 1 added four: a heading carrying its cost ("Seekersense 29 points"), a power
+ * modifier headed "Power Modifier: Psionic", several labelled entries run
+ * together on one line ("ESP Talent: ... Psychokinesis Talent: ..."), and a
+ * line of gear holding several items, each ending in its price.
+ *
+ * What differs between books is in their `book.json` under `transcription`:
+ * `pdfOffset` (book page + offset = PDF page), `pageLabel` (how a page is
+ * recorded, "B" or "MH1:"), and `namePrefix`, a pattern for the part of a
+ * data-file name the book does not print ("BIO: " before an ability).
+ *
  * The capture is deliberately literal. It does not repeat the cost line, which
  * is a statistic the system already holds, and it does not try to repair the
  * things a PDF extraction gets wrong -- a merged page range, an unbalanced
@@ -27,11 +38,12 @@
  * flag somebody reads.
  *
  * Usage:
- *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset 2] [--write]
+ *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--write]
  *   node tools/transcribe.mjs <book> <pack> --review [--write]
  *
- * `--offset` is book page + offset = PDF page; the Basic Set's is 2. Nothing is
- * written without `--write`.
+ * `--offset` is book page + offset = PDF page. It defaults to the book's
+ * `transcription.pdfOffset`, or 2, which is the Basic Set's Characters volume;
+ * Campaigns is -334. Nothing is written without `--write`.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -63,6 +75,11 @@ const COST = new RegExp(
     "^(ST|DX|IQ|HT|Will|Per)/(Easy|Average|Hard|Very Hard)\\b", // DX/Hard
     "^defaults?:", //                                   Defaults: IQ-4 or Survival-2.
     "^[-+]\\d+%", //                                    +50%, -10%
+    // Monster Hunters 1 prints a prerequisite above the cost -- "Ritual Adept /
+    // Prerequisite: Magery. / 40 points" -- and a wildcard skill's attribute
+    // alone: "Blade! / DX".
+    "^prerequisites?:",
+    "^(ST|DX|IQ|HT|Will|Per)$",
     // A spell's class stands where another chapter puts a cost: "Regular",
     // "Information; Area", "Special; Resisted by HT".
     "^(regular|area|missile|melee|blocking|information|special|enchantment)\\b[^.]{0,60}$",
@@ -77,6 +94,33 @@ const COST = new RegExp(
  * the system already holds, so the text stops here rather than repeating them.
  */
 const STATS = /^(duration|cost|base cost|time to cast|casting time|prerequisites?|item|energy cost)\s*:/i;
+
+/**
+ * How a power's ability is built: "Statistics: Recovery (PM, -10%) [9]".
+ *
+ * It is the last thing an ability prints, bar a footnote to it, and it is the
+ * only place the book says what the ability is made of, so it is kept, and
+ * the text stops once it and what belongs to it are done. Stopping at the
+ * next heading is not enough: a page's closing epigraph follows the last
+ * ability with no heading between them.
+ *
+ * What belongs to it is a footnote, a "Feature:", or a line still stating
+ * costs -- Exoteleport's "Level 1 adds Advantage, Warp (...), +300%, for +30
+ * points" -- none of which an epigraph ever carries.
+ */
+const STATISTICS = /^Statistics:/;
+const AFTER_STATISTICS = /^([*†‡]|Feature:)|\[[\d,/\s or]+(?:\/level)?\]|[-+]\d+%/;
+
+/**
+ * A section's own heading inside a chapter, which ends whatever came before
+ * it: "Psychokinesis Abilities", "Mysticism Skills", "Power Modifier: Psionic".
+ * A running head looks the same as a chapter's all-capitals section title, so
+ * those are no help; these are the ones that can be told apart.
+ */
+const SUBHEADING = /^(?:[A-Z][A-Za-z'-]*\s){1,3}(?:Abilities|Skills)$|^Power Modifier:/;
+
+/** A leading bullet or footnote mark, which stands before an inline label. */
+const LEADING_MARK = /^[^A-Za-z0-9"'(]+\s*/;
 
 /** A running head or a page number, which ends a page's text. */
 const FURNITURE = /^([A-Z][A-Z '&-]{3,}|\d{1,3})$/;
@@ -229,6 +273,14 @@ function rejoin(paragraphs) {
  */
 const LEADING_DEFAULTS = /^(?:[A-Z][A-Za-z()/ ]*?-\d+(?:\s*,)?\s*(?:or\s+)?\.?\s*)+(?=[A-Z])/;
 
+/**
+ * A variant's paragraph without the cost it ends on: "Craftiness: Acting, ...
+ * Reaction bonus: none! 5 points/level." The cost is the system's.
+ */
+function withoutTrailingCost(text) {
+  return text.replace(/\s+\d+(?:\s+or\s+\d+)?\s+points?(?:\/level)?\.$/, "");
+}
+
 /** A cost at the head of a paragraph: "10 or more points", "0, 1, or 2 points". */
 const LEADING_COST = /^(?:[\d,\s]+(?:or\s+(?:more\s+)?)?(?:\d+\s+)?points?(?:\/level)?\*?\s+)(?=[A-Z])/;
 
@@ -268,8 +320,9 @@ function escapeRegExp(text) {
  */
 function stripPrice(text) {
   return text
-    // "$50, 2 lbs.", "$40, 12 hrs.", "Per set: $50, 4 lbs.", "$200."
-    .replace(/\s*(Per\s+[\w\s]+:\s*)?\$[\d,]+(\.\d+)?(\s*,\s*[^.;]{1,24})?\.?\s*$/i, "")
+    // "$50, 2 lbs.", "$40, 12 hrs.", "Per set: $50, 4 lbs.", "$200.", and a
+    // weight with a decimal point in it, "$2, 0.5 lb.", "$250, 0.25 lb., 10 hrs."
+    .replace(/\s*(Per\s+[\w\s]+:\s*)?\$[\d,]+(\.\d+)?(\s*,\s*(?:[^.;]|\.(?=\d)|\.,){1,32})?\.?\s*$/i, "")
     .replace(/\s*,?\s*[\d./]+\s*lbs?\.?\s*$/i, "")
     .trim();
 }
@@ -321,9 +374,99 @@ function familyOpening(pages, index, family) {
 function headingNames(bk) {
   const names = new Set();
   for (const pack of packsOf(bk)) {
-    for (const { entry } of readStatistics(bk, pack)) names.add(normalise(entry.name));
+    for (const { entry } of readStatistics(bk, pack)) {
+      for (const printed of printedNames(entry.name, bk)) names.add(printed);
+    }
   }
   return names;
+}
+
+/**
+ * The names an entry may be printed under, the data file's own first.
+ *
+ * Monster Hunters 1's data file files a power's abilities under a prefix the
+ * book does not print -- "BIO: Discriminatory Smell 2" is the second level of
+ * "Discriminatory Smell", and "MYS: Heroic Feats (ST)" is "Heroic Feats"
+ * bought for ST -- so the book's name is the data file's with the prefix, a
+ * trailing level and a specialty taken off, in that order. A book with no
+ * such prefix gets its data file's name and nothing else.
+ */
+function printedNames(name, bk) {
+  const own = normalise(name);
+  const prefix = bk.transcription.namePrefix;
+  if (!prefix || !prefix.test(own)) return [own];
+  const bare = own.replace(prefix, "");
+  const unlevelled = bare.replace(/\s+\d$/, "");
+  const family = unlevelled.replace(/\s*\([^)]*\)$/, "");
+  return [...new Set([own, bare, unlevelled, family])];
+}
+
+/**
+ * Whether a line is the heading of some entry in the book.
+ *
+ * Either the name alone, as the Basic Set prints it, or the name with its cost
+ * on the same line, as Monster Hunters 1 prints a power's ability:
+ * "Seekersense 29 points", "Spirit Channeling see p. 44".
+ */
+function isHeading(line, names, next = "") {
+  if (line.length >= 60) return false;
+  // A wildcard skill printed in another book's list -- Detective! and Gun!
+  // are the Basic Set's, between Blade! and Inventor! -- is a name this book's
+  // packs do not know, but its shape gives it away: a short line with no
+  // closing punctuation, and its attribute alone on the next.
+  if (/^(ST|DX|IQ|HT|Will|Per)$/.test(next) && line.length < 30 && !/[.,;:]$/.test(line)) return true;
+  if (names.has(bare(line))) return true;
+  for (let at = line.indexOf(" "); at !== -1; at = line.indexOf(" ", at + 1)) {
+    if (names.has(line.slice(0, at)) && COST.test(line.slice(at + 1))) return true;
+  }
+  return false;
+}
+
+/** Whether a line heads this entry: its name, its name and cost, or its power modifier. */
+function headsEntry(line, candidate) {
+  // One power modifier can cover several powers the data file names apart:
+  // "Power Modifier: Psionic" is the modifier for "Psionic: ESP" and the rest.
+  const modifier = /^Power Modifier: (.+)$/.exec(line);
+  if (modifier && (candidate === modifier[1] || candidate.startsWith(`${modifier[1]}: `))) return "labelled";
+  if (line.startsWith(`${candidate} `) && line.length - candidate.length < 40 && COST.test(line.slice(candidate.length + 1))) {
+    return "costed";
+  }
+  return bare(line) === candidate ? "bare" : null;
+}
+
+/**
+ * A line of gear split into its items.
+ *
+ * The equipment chapter of Monster Hunters 1 runs several items together on
+ * one line -- "Cigarette Lighter. Useful even for non-smokers. $10, neg. Duct
+ * Tape. A 15-yard..." -- and each ends in its price and weight, so that is
+ * where one item stops and the next begins.
+ */
+const labelSplitters = new WeakMap();
+
+/**
+ * A line split before every entry label it carries.
+ *
+ * "ESP Talent: Adds to any roll to use an ESP ability. Psychokinesis Talent:
+ * Adds..." is four entries on one line, and taken whole the first would carry
+ * the other three.
+ */
+function labelledParts(line, names) {
+  if (!labelSplitters.has(names)) {
+    const labels = [...names]
+      .filter((name) => name.length > 3)
+      .sort((a, b) => b.length - a.length)
+      .map(escapeRegExp);
+    labelSplitters.set(names, labels.length ? new RegExp(`(?<=[.!?)]\\s)(?=(?:${labels.join("|")}):\\s)`) : null);
+  }
+  const splitter = labelSplitters.get(names);
+  return splitter ? line.split(splitter) : [line];
+}
+
+function itemsOf(line) {
+  // "$10, neg.", "$2, 0.5 lb.", and a running time after the weight: "$250,
+  // 0.25 lb., 10 hrs."
+  return line.split(/(?<=\$[\d,]+(?:\.\d+)?\s*,\s*(?:neg|[\d.,/]+\s*lbs?)\.(?:,\s*[\d.]+\s*hrs?\.)?)\s+(?=[A-Z])/);
 }
 
 /** Where a page's own text stops: a running head, a folio, or the end. */
@@ -339,15 +482,23 @@ function usefulLines(page) {
  *
  * Returns `{ kind, paragraphs, page }`, or null when the book has no such entry.
  */
-function capture(entry, pages, offset, names) {
+function capture(entry, pages, offset, names, bk) {
   const cited = citedPage(entry);
   if (cited === null) return null;
-  const name = normalise(entry.name);
+  const candidates = printedNames(entry.name, bk);
+  const name = candidates[candidates.length > 1 ? 1 : 0];
 
   // Outward from the cited page. Most entries are on it or beside it, but a
   // spell cites the page its college begins on, and a college runs for several
   // pages, so the sweep has to reach further before giving up.
-  const deltas = [0, 1, -1, 2, 3, -2, ...Array.from({ length: 12 }, (_, n) => n + 4)];
+  // Backwards it reaches only a little further, and last: a power's abilities
+  // cite their own pages while the power modifier they share was printed at
+  // the head of the section, three pages before "Psionic: Teleportation".
+  const deltas = [0, 1, -1, 2, 3, -2, ...Array.from({ length: 12 }, (_, n) => n + 4), -3];
+
+  // Where the entry's heading was seen with nothing captured under it: the book
+  // does print the entry, so it is not "no entry", whatever else fails.
+  let headedOn = null;
 
   for (const delta of deltas) {
     const index = cited + offset - 1 + delta;
@@ -356,38 +507,48 @@ function capture(entry, pages, offset, names) {
 
     // A heading, with the cost line under it.
     for (let i = 0; i < lines.length; i++) {
-      if (bare(lines[i]) !== name) continue;
+      const heads = candidates.map((c) => headsEntry(lines[i], c)).find(Boolean);
+      if (!heads) continue;
       const next = lines[i + 1] ?? "";
       // A perk prints no cost, being always worth one point, so a heading is
       // taken on the name plus either a cost line or the prose that follows it.
-      if (!COST.test(next) && next.length < 60) continue;
+      // A heading that carries its own cost needs neither.
+      if (heads === "bare" && !COST.test(next) && next.length < 60) continue;
 
       const body = [];
       // A skill states its difficulty and then its defaults, so more than one
       // signature line can stand between the heading and the text.
       let j = i + 1;
       while (j < lines.length && COST.test(lines[j])) j++;
+      let built = false;
       for (; j < lines.length; j++) {
         const line = lines[j];
         if (FURNITURE.test(line)) continue;
+        // After an ability's statistics, only their footnotes belong to it.
+        if (built && !AFTER_STATISTICS.test(line)) break;
         // The next entry begins. A heading is short and names something the
         // book lists; the cost line under it is the usual confirmation, but a
         // perk has none, so a short line bearing a known name is enough.
-        if (names.has(bare(line)) && line.length < 60) break;
+        if (isHeading(line, names, lines[j + 1]) || SUBHEADING.test(line)) break;
         if (STATS.test(line)) break;
         body.push(line);
+        if (STATISTICS.test(line)) built = true;
       }
       // An entry that runs to the foot of the page continues at the top of the
       // next one, before that page's first heading.
-      if (j >= lines.length && index + 1 < pages.length) {
-        for (const line of usefulLines(pages[index + 1])) {
+      if (j >= lines.length && !built && index + 1 < pages.length) {
+        const following = usefulLines(pages[index + 1]);
+        for (const [k, line] of following.entries()) {
           if (FURNITURE.test(line)) continue;
-          if (names.has(bare(line))) break;
+          if (built && !AFTER_STATISTICS.test(line)) break;
+          if (isHeading(line, names, following[k + 1]) || SUBHEADING.test(line)) break;
           if (COST.test(line) || STATS.test(line)) break;
           body.push(line);
+          if (STATISTICS.test(line)) built = true;
         }
       }
       if (body.length) return { kind: "heading", paragraphs: rejoin(body), page: cited + delta };
+      headedOn ??= cited + delta;
     }
 
     // An inline entry. The equipment chapter is lists, not headings: a piece of
@@ -398,11 +559,12 @@ function capture(entry, pages, offset, names) {
     // The parenthetical is usually a tech level but not always: "First Aid Kit
     // (var.)" varies by TL, and a name read without it repeats itself in its own
     // description.
-    const inline = new RegExp(`^${escapeRegExp(name)}\\s*(\\([^)]*\\))?\\s*[.:]\\s*(.+)$`, "i");
-    for (const line of lines) {
+    // A footnote mark may follow the name: "Camera, Digital*. Basic equipment..."
+    const inline = new RegExp(`^${escapeRegExp(name)}\\s*(\\([^)]*\\))?\\*?\\s*[.:]\\s*(.+)$`, "i");
+    for (const line of lines.flatMap(itemsOf).flatMap((l) => labelledParts(l, names))) {
       const match = inline.exec(line);
       if (!match) continue;
-      const text = stripPrice(match[2]);
+      const text = withoutTrailingCost(stripPrice(match[2]));
       if (text.length < 15) continue;
       // A weapon table row reads as an inline entry and is not one: "Pistol
       // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
@@ -424,27 +586,39 @@ function capture(entry, pages, offset, names) {
       .flatMap((label) => [label, spellNumber(label)])
       .filter(Boolean);
 
+    // A label may stand behind a bullet or a footnote mark, and the data file
+    // does not always capitalise it as the book does: "Higher Purpose (Defend
+    // the faith)" is printed "Defend the Faith:".
+    const unmarked = lines.flatMap((line) => labelledParts(line.replace(LEADING_MARK, ""), names));
+    const opens = (line, label) => line.toLowerCase().startsWith(`${label.toLowerCase()}:`);
     for (const label of labels) {
-      const at = lines.findIndex((line) => line.startsWith(label + ":"));
+      const at = unmarked.findIndex((line) => opens(line, label));
       if (at === -1) continue;
       const lead = family ? familyOpening(pages, index, family) : [];
       return {
         kind: "variant",
-        paragraphs: [...lead, lines[at]],
+        paragraphs: [...lead, withoutTrailingCost(unmarked[at])],
         page: cited + delta,
       };
     }
 
+    // A perk bought for a specialty is described once, under its own name:
+    // "Quick Reload (Magazine)" is what "Quick Reload:" says.
+    if (family) {
+      const at = unmarked.findIndex((line) => opens(line, family));
+      if (at !== -1) return { kind: "variant", paragraphs: [withoutTrailingCost(unmarked[at])], page: cited + delta };
+    }
+
     // A sub-entry with no colon: a paragraph that simply opens with the name.
     for (const candidate of [name, family].filter(Boolean)) {
-      for (const line of lines) {
+      for (const line of unmarked) {
         if (line.startsWith(candidate + " ") && line.length > candidate.length + 25 && !COST.test(line)) {
           return { kind: candidate === name ? "sub-entry" : "variant", paragraphs: [line], page: cited + delta };
         }
       }
     }
   }
-  return null;
+  return headedOn === null ? null : { kind: "empty", paragraphs: [], page: headedOn };
 }
 
 /** Paragraphs to the HTML the item sheet renders. */
@@ -452,7 +626,7 @@ function toHtml(paragraphs) {
   const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   return paragraphs
     .map((p) => {
-      const modifiers = /^(Modifiers|Special Enhancements|Special Limitations|Notes):/.exec(p);
+      const modifiers = /^(Modifiers|Special Enhancements|Special Limitations|Notes|Statistics):/.exec(p);
       if (modifiers) {
         return `<p><em>${modifiers[1]}:</em>${escape(p.slice(modifiers[0].length))}</p>`;
       }
@@ -504,6 +678,18 @@ function doubts(paragraphs, kind) {
   // A price that survived is a statistic the system also holds, so the two would
   // drift apart the first time one changed.
   if (/\$\d/.test(text)) found.push("a price is still in the text");
+  // A page with a sidebar through it reads out of order: a power's statistics
+  // arrive in the middle of another entry's sentence ("...limited by the
+  // Psionic PM Statistics: Fatigue Attack..."), and a word broken at the end of
+  // a sidebar line joins the first word of the column beside it ("the fol- and
+  // each use costs you 1 FP"). Within a column a paragraph is one line, so a
+  // broken word with a space in it only happens where two columns met.
+  if (/[^.!?)\]]\s+Statistics:/.test(text)) {
+    found.push("a statistics line interrupts a sentence, so the columns were read out of order");
+  }
+  if (/[a-z]- [a-z]/.test(text)) {
+    found.push("a word broken across lines, where columns meet; check the two halves belong together");
+  }
   if (text.length > 6000) found.push("very long, may have run past the entry");
   if (paragraphs.length > 18) found.push("many paragraphs, may have run past the entry");
   // A double quote after a digit is inches -- 12" of talon -- not a quotation.
@@ -520,7 +706,7 @@ async function main() {
   const review = process.argv.includes("--review");
 
   if (!slug || !packName || slug.startsWith("--")) {
-    console.error("Usage: node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset 2] [--write]");
+    console.error("Usage: node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--write]");
     process.exit(1);
   }
 
@@ -534,7 +720,10 @@ async function main() {
     console.error(`--pdf must name the book's PDF. Got: ${pdf}`);
     process.exit(1);
   }
-  const offset = Number(flag("--offset", "2"));
+  // The Basic Set's two volumes each have their own offset, so it is given on
+  // the command line; a single-volume book may state it once in book.json.
+  const offset = Number(flag("--offset", String(bk.transcription.pdfOffset ?? 2)));
+  const label = bk.transcription.pageLabel;
 
   const pages = pagesOf(pdf);
   const names = headingNames(bk);
@@ -542,7 +731,7 @@ async function main() {
   const readingNotes = readingDecisions(bk, packName);
 
   const records = [];
-  const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, absent: 0, kept: 0 };
+  const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, empty: 0, absent: 0, kept: 0 };
 
   for (const { entry } of readStatistics(bk, packName)) {
     const already = existing.get(entry._id);
@@ -554,18 +743,21 @@ async function main() {
 
     const found = ACTOR_TYPES.has(entry.type)
       ? captureCreature(entry, pages, offset)
-      : capture(entry, pages, offset, names);
+      : capture(entry, pages, offset, names, bk);
     if (!found) {
       tally.absent++;
       // For a trait or an item, not finding a name means the book never uses
       // it: "Extra ST" is the data file's. A creature is different -- every one
       // in the pack came out of the bestiary -- so not finding it means the
       // tool failed, and the book is still to be read.
-      const creature = ACTOR_TYPES.has(entry.type);
+      // A book that files abilities under a prefix it does not print describes
+      // every one of them, so not finding one is the tool's failure, as it is
+      // for a creature.
+      const creature = ACTOR_TYPES.has(entry.type) || Boolean(bk.transcription.namePrefix?.test(entry.name));
       records.push({
         _id: entry._id,
         name: entry.name,
-        pages: citedPage(entry) ? `B${citedPage(entry)}` : "",
+        pages: citedPage(entry) ? `${label}${citedPage(entry)}` : "",
         status: creature ? "needs-review" : "no-entry",
         notes: creature
           ? "not located, or located without a description of its own; the book does describe it"
@@ -576,6 +768,17 @@ async function main() {
     }
 
     tally[found.kind]++;
+    if (found.kind === "empty") {
+      records.push({
+        _id: entry._id,
+        name: entry.name,
+        pages: `${label}${found.page}`,
+        status: "needs-review",
+        notes: "its heading is on the page, but nothing was captured under it before the next section began",
+        description: "",
+      });
+      continue;
+    }
     // A family's shared cost can sit at the head of its text -- "0, 1, or 2
     // points Anyone with a mouth has blunt teeth" -- and it is a statistic the
     // system holds, stripped here for the same reason a price is.
@@ -594,7 +797,7 @@ async function main() {
     records.push({
       _id: entry._id,
       name: entry.name,
-      pages: `B${found.page}`,
+      pages: `${label}${found.page}`,
       status: why.length ? "needs-review" : "transcribed",
       notes: why.join("; "),
       description: toHtml(paragraphs),

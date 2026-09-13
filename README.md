@@ -203,7 +203,21 @@ npm run coverage -- basic-set --status needs-review
    system's already and were left out; where the book *revises* one rather than
    reprinting it, add the revision by hand.
 4. Write its text under `books/<slug>/prose/`, and its rules under
-   `books/<slug>/journals/`.
+   `books/<slug>/journals/`. `tools/transcribe.mjs` drafts the text from the
+   PDF. Tell it how to read the book in `book.json`:
+
+   ```json
+   "transcription": {
+     "pdfOffset": 0,
+     "pageLabel": "MH1:",
+     "namePrefix": "^(?:BIO|MYS|ESP|PK|TEL|TPN):\\s+"
+   }
+   ```
+
+   `pdfOffset` is what to add to a book page to get the PDF page. `pageLabel`
+   is how a page is recorded in a text record. `namePrefix` matches the part of
+   a data-file name the book does not print. A book whose entries it cannot find
+   gets `no-entry` records, so read the dry run's counts before trusting them.
 
 Set `GURPS_GDF_DIR` if your GCA files are not in `E:/data files`.
 

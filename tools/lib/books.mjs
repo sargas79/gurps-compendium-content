@@ -81,6 +81,14 @@ export function book(slug) {
     reference: raw.reference ?? raw.title ?? slug,
     statistics: raw.statistics === "system" ? "system" : "book",
     types: raw.types ?? {},
+    // How the book's PDF is read, for tools/transcribe.mjs: book page +
+    // pdfOffset = PDF page, the letters a page is recorded with, and a pattern
+    // for the part of a data-file name the book does not print.
+    transcription: {
+      pdfOffset: raw.transcription?.pdfOffset ?? null,
+      pageLabel: raw.transcription?.pageLabel ?? raw.prefix ?? "",
+      namePrefix: raw.transcription?.namePrefix ? new RegExp(raw.transcription.namePrefix) : null,
+    },
     dir: join(booksRoot, slug),
   };
 }
