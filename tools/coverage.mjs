@@ -69,11 +69,11 @@ function main() {
         (d) => d.flags[MODULE_ID].status === "no-entry",
       ).length;
       const total = pack.documents.length - absent;
-      const done = pack.documents.filter((d) => (d.system.description ?? "").trim().length > 0).length;
+      const textOf = (d) => d.system?.description ?? d.system?.details?.description ?? "";
+      const done = pack.documents.filter((d) => textOf(d).trim().length > 0).length;
 
-      // A pack of actors takes no text yet, so counting it against the total
-      // would put a book's coverage permanently short of 100%.
-      if (pack.type !== "Item") {
+      // Items and creatures take text; anything else is built elsewhere.
+      if (pack.type !== "Item" && pack.type !== "Actor") {
         console.log(
           `  ${pack.pack.padEnd(16)} ${" ".repeat(26)} ${total} ${pack.type} documents, no text`,
         );

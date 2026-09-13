@@ -38,7 +38,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
-import { book, packsOf, projectRoot, readProse, readStatistics, statisticsDir } from "./lib/books.mjs";
+import { ACTOR_TYPES, book, packsOf, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
 
 /**
  * The line under a heading that says what kind of thing the entry is.
@@ -119,8 +119,73 @@ function pagesOf(pdf) {
 
 /** The first page an entry cites, from the reference the system wrote. */
 function citedPage(entry) {
-  const match = /p\.\s*([\d,\s]+)$/.exec(entry.system?.reference ?? "");
+  // A creature keeps its page in its notes -- "Apes. Basic Set: Campaigns p.
+  // 456" -- having no reference field of its own.
+  const cite = entry.system?.reference || entry.system?.details?.notes || "";
+  // A range -- "pp. 459-460" -- cites its first page.
+  const match = /p\.\s*([\d,\s\-–]+)\.?\s*$/.exec(cite);
   return match ? Number(/\d+/.exec(match[1])[0]) : null;
+}
+
+/**
+ * The line where a creature's statistics begin, which is where its text ends.
+ *
+ * A bestiary entry is a name, a line or two about the animal, and then its
+ * numbers: "ST 11; DX 12; IQ 6; HT 12. Will 10; Per 10...", "Move 7. SM 0;
+ * 140 lbs.", "Traits: ...", "Skills: ...". The numbers are on the sheet
+ * already, so only what comes before them is the description.
+ */
+const CREATURE_STATS = /^(ST \d|Move \d|Traits( and Skills)?:|Skills:)/;
+
+/** Plurals an "s" does not make. */
+const IRREGULAR_PLURALS = { Ox: "Oxen", Wolf: "Wolves", Mouse: "Mice" };
+
+/**
+ * A creature's own words, or its family's when it has none.
+ *
+ * "Gorilla / A great ape." has a line of its own. "Grizzly Bear" goes straight
+ * to its numbers, because what the book says about bears it says once, under
+ * "Bears", for all four of them -- so that opening is the grizzly's
+ * description, the same way a trait variant takes its family's.
+ */
+function captureCreature(entry, pages, offset) {
+  const cited = citedPage(entry);
+  if (cited === null) return null;
+  const name = normalise(entry.name);
+  const family = normalise(String(entry.system?.details?.notes ?? "").split(".")[0] ?? "");
+
+  for (const delta of [0, 1, -1, 2]) {
+    const index = cited + offset - 1 + delta;
+    if (index < 0 || index >= pages.length) continue;
+    const lines = usefulLines(pages[index]);
+    // A creature the book treats as a kind rather than a breed is headed in
+    // the plural -- "Camels", "Elephants", "Oxen" -- with no line of its own
+    // in the singular.
+    const headings = [name, `${name}s`, `${name}es`, IRREGULAR_PLURALS[name]].filter(Boolean);
+    const at = lines.findIndex((line) => headings.includes(line));
+    if (at === -1) continue;
+
+    const own = [];
+    for (let i = at + 1; i < lines.length; i++) {
+      if (CREATURE_STATS.test(lines[i]) || FURNITURE.test(lines[i])) break;
+      own.push(lines[i]);
+    }
+    if (own.length) return { kind: "heading", paragraphs: rejoin(own), page: cited + delta };
+
+    // No line of its own: take what the book says under the family's name.
+    for (let back = at - 1; back >= 0; back--) {
+      if (lines[back] !== family) continue;
+      const opening = [];
+      for (let i = back + 1; i < lines.length; i++) {
+        if (CREATURE_STATS.test(lines[i]) || FURNITURE.test(lines[i]) || lines[i].length < 40) break;
+        opening.push(lines[i]);
+      }
+      if (opening.length) return { kind: "variant", paragraphs: rejoin(opening), page: cited + delta };
+      break;
+    }
+    return null;
+  }
+  return null;
 }
 
 /**
@@ -487,15 +552,24 @@ async function main() {
       continue;
     }
 
-    const found = capture(entry, pages, offset, names);
+    const found = ACTOR_TYPES.has(entry.type)
+      ? captureCreature(entry, pages, offset)
+      : capture(entry, pages, offset, names);
     if (!found) {
       tally.absent++;
+      // For a trait or an item, not finding a name means the book never uses
+      // it: "Extra ST" is the data file's. A creature is different -- every one
+      // in the pack came out of the bestiary -- so not finding it means the
+      // tool failed, and the book is still to be read.
+      const creature = ACTOR_TYPES.has(entry.type);
       records.push({
         _id: entry._id,
         name: entry.name,
         pages: citedPage(entry) ? `B${citedPage(entry)}` : "",
-        status: "no-entry",
-        notes: "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+        status: creature ? "needs-review" : "no-entry",
+        notes: creature
+          ? "not located, or located without a description of its own; the book does describe it"
+          : "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
         description: "",
       });
       continue;
@@ -510,7 +584,11 @@ async function main() {
     // When the defaults were a paragraph of their own, what is left is just the
     // last of them -- "Merchant-6." -- which is no more text than the rest was.
     if (/^([A-Z][A-Za-z()/ ]*?-\d+\.?)?$/.test(paragraphs[0].trim())) paragraphs.shift();
-    const why = doubts(paragraphs, found.kind);
+    // "A great ape." is the whole of the gorilla's entry, so shortness is no
+    // sign of a cut capture for a creature the way it is for a trait.
+    const why = doubts(paragraphs, found.kind).filter(
+      (reason) => !(ACTOR_TYPES.has(entry.type) && reason === "very short"),
+    );
     const read = readingNotes.get(entry.name);
     if (read) why.push(`read and found wanting: ${read}`);
     records.push({

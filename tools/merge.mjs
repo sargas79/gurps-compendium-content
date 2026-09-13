@@ -99,7 +99,11 @@ async function main() {
 
   console.log(`Merged against ${manifest.id} ${manifest.version}:`);
   for (const pack of packs) {
-    const written = pack.documents.length - (pack.byStatus.get(NO_PROSE) ?? 0);
+    // Text on the page, whichever field it lives in -- not records in the file,
+    // which would count the entries the book has no text for.
+    const written = pack.documents.filter(
+      (d) => (d.system?.description ?? d.system?.details?.description ?? "").trim(),
+    ).length;
     const detail =
       pack.type === "JournalEntry"
         ? `${pack.documents.length} rules`

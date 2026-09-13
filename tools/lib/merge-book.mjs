@@ -68,10 +68,20 @@ export const NO_PROSE = "none";
  * review status of a piece of text is the module's to carry.
  */
 function foundryDocument(entry, prose, bk) {
-  const system = { ...(entry.system ?? {}) };
-  if (prose) system.description = prose.description ?? "";
-
   const actor = ACTOR_TYPES.has(entry.type);
+  const system = { ...(entry.system ?? {}) };
+
+  // An item's text is system.description. A creature's goes into
+  // system.details.description, a field of its own beside the notes line that
+  // already carries its category and page -- so the book's words never land on
+  // top of what the statistics came with.
+  if (prose) {
+    if (actor) {
+      system.details = { ...(system.details ?? {}), description: prose.description ?? "" };
+    } else {
+      system.description = prose.description ?? "";
+    }
+  }
 
   return {
     _key: `!${actor ? "actors" : "items"}!${entry._id}`,
@@ -115,11 +125,15 @@ function assertOnlyDescriptionChanged(before, after, pack, name) {
   const strip = (system) => {
     const copy = { ...(system ?? {}) };
     delete copy.description;
+    if (copy.details) {
+      copy.details = { ...copy.details };
+      delete copy.details.description;
+    }
     return JSON.stringify(copy);
   };
   if (strip(before) !== strip(after)) {
     throw new Error(
-      `${pack} — ${name}: the merge changed a statistic. Only system.description may differ.`,
+      `${pack} — ${name}: the merge changed a statistic. Only the description may differ.`,
     );
   }
 }
@@ -145,14 +159,9 @@ export function mergeBook(bk, packs) {
     const documents = [];
     const byStatus = new Map();
 
-    // An actor's own text field is not `system.description`, and on a creature it
-    // already carries statistics the parser put there. Overlaying a book's text
-    // onto one is a decision of its own, not something to do by accident.
-    if (documentType !== "Item" && records.size > 0) {
-      problems.push(
-        `${prosePath}: ${pack} is a ${documentType} pack, and text is only overlaid on ` +
-          `items so far. Remove the file, or settle where an actor's text goes first.`,
-      );
+    // Only Item and Actor packs carry text; a journal pack is built elsewhere.
+    if (documentType !== "Item" && documentType !== "Actor" && records.size > 0) {
+      problems.push(`${prosePath}: ${pack} is a ${documentType} pack, which takes no text here.`);
       records.clear();
     }
 

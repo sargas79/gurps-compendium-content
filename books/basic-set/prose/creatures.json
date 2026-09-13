@@ -1,0 +1,298 @@
+[
+  {
+    "_id": "db753fa641ef7d61",
+    "name": "Chimpanzee",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A peaceful plant-eater. A chimp won't fight unless it or its young are threatened.</p>"
+  },
+  {
+    "_id": "49fe0d9522716ae2",
+    "name": "Gorilla",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A great ape.</p>"
+  },
+  {
+    "_id": "5554f5a61107e711",
+    "name": "Black Bear",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small, omnivorous bear.</p>"
+  },
+  {
+    "_id": "6540c0fe5102c47e",
+    "name": "Grizzly Bear",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When making reaction rolls for bears, remember that grizzly, polar, and cave bears are mostly carnivorous and ill-tempered. Any mother bear with cubs will be aggressive: -3 to reactions!</p><p>A bear walking or running on four legs is a two-hex creature. When it stands on its hind legs to fight, it is a one-hex creature.</p>"
+  },
+  {
+    "_id": "901493e390fd036c",
+    "name": "Polar Bear",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When making reaction rolls for bears, remember that grizzly, polar, and cave bears are mostly carnivorous and ill-tempered. Any mother bear with cubs will be aggressive: -3 to reactions!</p><p>A bear walking or running on four legs is a two-hex creature. When it stands on its hind legs to fight, it is a one-hex creature.</p>"
+  },
+  {
+    "_id": "48c366b1fa8fc2b9",
+    "name": "Cave Bear",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A prehistoric creature.</p>"
+  },
+  {
+    "_id": "1f0818254bb7904e",
+    "name": "House Cat",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A domestic feline, kept as a pet, familiar, or mouser.</p>"
+  },
+  {
+    "_id": "fc87dc232e6fb0f9",
+    "name": "Lion",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A big, lazy cat, found in both plains and jungle. Lions hunt in small groups.</p>"
+  },
+  {
+    "_id": "189a24180aaf59e4",
+    "name": "Tiger",
+    "pages": "B456",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A solitary hunting cat, usually a jungle dweller.</p>"
+  },
+  {
+    "_id": "83c51767e02ef639",
+    "name": "Red Deer",
+    "pages": "B457",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large deer, common in medieval Europe and still widespread today.</p>"
+  },
+  {
+    "_id": "5cd0aa14c011fe98",
+    "name": "Large Guard Dog",
+    "pages": "B457",
+    "status": "needs-review",
+    "notes": "a price is still in the text",
+    "description": "<p>Domesticated dogs are used for hunting or as pets (or, if large enough, as draft animals). There are many breeds; statistics can vary greatly. Cost ranges from negligible to $10,000+. A healthy, trained dog - even a mongrel - is always worth at least $200.</p>"
+  },
+  {
+    "_id": "6785fa6f966e725c",
+    "name": "Large Falcon",
+    "pages": "B457",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These birds of prey are commonly used for sport hunting. A trained falcon - or one disturbed by a stranger - might attack a human. A diving falcon can reach Move 70!</p>"
+  },
+  {
+    "_id": "8848c7447e952783",
+    "name": "Tiger Shark",
+    "pages": "B457",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large, aggressive shark.</p>"
+  },
+  {
+    "_id": "1cb39219f8593a88",
+    "name": "Great White Shark",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An apex predator!</p>"
+  },
+  {
+    "_id": "c5f39838ba059832",
+    "name": "Python",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large constrictor. Statistics are for a 15' Indian python, but lengths can reach 30'!</p>"
+  },
+  {
+    "_id": "8f8469581a85e656",
+    "name": "Rattlesnake",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A common poisonous snake. Even little ones are dangerous; the gigantic diamondback described here (8' long) is deadly. Modifiers to HT roll for venom: +1 if venom is immediately sucked out; +2 if antivenin (TL6+) is used.</p>"
+  },
+  {
+    "_id": "a307b858fcfb9f08",
+    "name": "Large Boar",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Wild hogs are hunted for food - but they're dangerous game. Boars are smart, evil-tempered, and likely to attack even when encountered by accident. They try to knock a man down with a slam and gore him while he's down. Sows are less aggressive and smaller (give them lower ST and weight).</p>"
+  },
+  {
+    "_id": "fc96b1c32cbc6007",
+    "name": "Small Boar",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A javelina or peccary.</p>"
+  },
+  {
+    "_id": "9fd51a0fe0e8eddc",
+    "name": "Timber Wolf",
+    "pages": "B458",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These wild carnivores hunt in packs. They can be domesticated, more or less, but never like a dog.</p>"
+  },
+  {
+    "_id": "baf470462402f9d5",
+    "name": "Camel",
+    "pages": "B459",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A dry-plains native, the camel can go for four days without drinking. Its stubborn temper gives -4 to Animal Handling rolls.</p>"
+  },
+  {
+    "_id": "5f34de6b224a4c87",
+    "name": "Cavalry Horse",
+    "pages": "B459",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A light warhorse.</p>"
+  },
+  {
+    "_id": "54a196cefd0416c6",
+    "name": "Donkey",
+    "pages": "B459",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sturdy, but too small for an adult to ride.</p>"
+  },
+  {
+    "_id": "be45bce7f70f9d2e",
+    "name": "Draft Horse",
+    "pages": "B459",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "58d22dcf45f1b5f6",
+    "name": "Heavy Warhorse",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "e793e80a20a8b02c",
+    "name": "Large Mule",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "1606a8b3b8795279",
+    "name": "Pony",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "fca722ce9cb9368f",
+    "name": "Racehorse",
+    "pages": "B460",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some are faster!</p>"
+  },
+  {
+    "_id": "66013e73b54d9b38",
+    "name": "Saddle Horse",
+    "pages": "B460",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An ordinary riding horse.</p>"
+  },
+  {
+    "_id": "3fa6018fee13bb29",
+    "name": "Small Mule",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "c366dfdb0603f17d",
+    "name": "Elephant",
+    "pages": "B460",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Often domesticated. Intelligent, loyal, and hardworking.</p>"
+  },
+  {
+    "_id": "78f0c3931389d7ac",
+    "name": "Ox",
+    "pages": "B460",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Oxen are steers trained to work in the fields. They are hardier and easier to keep than horses.</p>"
+  },
+  {
+    "_id": "df09ebb8d7e1b2a2",
+    "name": "Basilisk",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
+    "description": "<p>This creature resembles a small snake with a hideous face and a crested head. It attacks with a \"death gaze\": if it meets its victim's eyes, it can kill using the power of its mind.</p><p>A kick does thrust. Blunt Claws or Hooves give +1 per die, and inflict</p>"
+  },
+  {
+    "_id": "4703caa74e0c78db",
+    "name": "Gryphon",
+    "pages": "B460",
+    "status": "needs-review",
+    "notes": "stops mid-sentence, so the capture was cut short",
+    "description": "<p>The gryphon is a beautiful creature, with the head, wings, and forefeet of an eagle, and the hindquarters of a lion. It is immune to abilities that affect</p>"
+  },
+  {
+    "_id": "b0ea7e1ba08b1a04",
+    "name": "Strix",
+    "pages": "B461",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A strix (plural striges) is a bloodsucking, birdlike creature about the size of a crow, with a long beak and large eyes. Striges are nocturnal. A strix attacks with its long, barbed beak. If the attack penetrates armor, the strix sucks its victim's blood.</p><p>Striges have excellent aim, and can even attack through the eyeslits of a helm. Only two striges can strike thus in a second, but a successful hit can also blind the eye!</p>"
+  },
+  {
+    "_id": "6a61f2cf6fe14b35",
+    "name": "Swarm of Bats",
+    "pages": "B461",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "229da55bb2626809",
+    "name": "Swarm of Bees",
+    "pages": "B461",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  },
+  {
+    "_id": "59acedcbea811d1d",
+    "name": "Swarm of Rats",
+    "pages": "B461",
+    "status": "needs-review",
+    "notes": "not located, or located without a description of its own; the book does describe it",
+    "description": ""
+  }
+]
