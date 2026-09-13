@@ -61,22 +61,7 @@
     "Thrown Weapon (Knife)": "runs into the Stick specialty"
   },
   "journals": {
-    "collisions": "only the introduction; the rules themselves are missing",
-    "jobs": "only the introduction; the sections it announces are missing",
-    "radiation": "starts partway through, at a list of sources",
-    "vehicles": "ends in the key to a table that did not come across",
-    "cannonFodder": "cut off mid-sentence",
-    "meleeEtiquette": "the ending is spliced with Cannon Fodder",
-    "closeCombat": "only the introduction; the additions it announces are missing",
-    "rapidFire": "ends at a table that did not come across",
-    "rapidStrike": "a character did not survive extraction",
-    "damageToShields": "runs into Repairs and is cut off",
-    "equipmentModifiers": "ends at a table that did not come across",
-    "repairs": "cut off mid-sentence",
-    "hitLocations": "a character did not survive extraction",
-    "knockback": "runs into Damage Resistance",
-    "knockdown": "runs into Injury Tolerance",
-    "extraEffort": "cut off mid-sentence",
-    "fleshWounds": "ends on a sentence from another cinematic rule"
+    "magicItems": "Enchant's paragraph beside the Fortify table was read as that table's first column, and the Power cost table ran into Accuracy's",
+    "ammunitionTypes": "the APDS paragraph carries on past the Ultra-Tech Firearm Table, and its end was not captured"
   }
 }

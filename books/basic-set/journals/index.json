@@ -1,42 +1,91 @@
 {
   "pages": [
     {
-      "id": "collisions",
-      "title": "Collisions",
+      "id": "aging",
+      "title": "Age and Aging",
       "chapter": "Activities",
-      "pages": "B430",
-      "reference": "Basic Set: Campaigns p. 430",
+      "pages": "B444",
+      "reference": "Basic Set: Campaigns p. 444",
+      "rule": "aging",
+      "file": "aging.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "vehicleManeuvers",
+      "title": "Basic Vehicle Combat",
+      "chapter": "Activities",
+      "pages": "B467-470",
+      "reference": "Basic Set: Campaigns pp. 467-470",
+      "rule": "vehicleManeuvers",
+      "file": "vehicleManeuvers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "collisions",
+      "title": "Collisions and Falls",
+      "chapter": "Activities",
+      "pages": "B430-432",
+      "reference": "Basic Set: Campaigns pp. 430-432",
       "rule": "collisions",
       "file": "collisions.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: only the introduction; the rules themselves are missing"
+      "status": "reviewed"
     },
     {
       "id": "disease",
       "title": "Disease",
       "chapter": "Activities",
-      "pages": "B442",
-      "reference": "Basic Set: Campaigns p. 442",
+      "pages": "B442-444",
+      "reference": "Basic Set: Campaigns pp. 442-444",
       "rule": "disease",
       "file": "disease.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "intoxication",
+      "title": "Drinking and Intoxication",
+      "chapter": "Activities",
+      "pages": "B439-440",
+      "reference": "Basic Set: Campaigns pp. 439-440",
+      "rule": "intoxication",
+      "file": "intoxication.md",
       "status": "reviewed"
     },
     {
       "id": "electricity",
       "title": "Electricity",
       "chapter": "Activities",
-      "pages": "B432",
-      "reference": "Basic Set: Campaigns p. 432",
+      "pages": "B432-433",
+      "reference": "Basic Set: Campaigns pp. 432-433",
       "rule": "electricity",
       "file": "electricity.md",
       "status": "reviewed"
     },
     {
-      "id": "fire",
-      "title": "Fire",
+      "id": "exposure",
+      "title": "Exposure",
       "chapter": "Activities",
-      "pages": "B433",
-      "reference": "Basic Set: Campaigns p. 433",
+      "pages": "B430-434",
+      "reference": "Basic Set: Campaigns pp. 430-434",
+      "rule": "exposure",
+      "file": "exposure.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "battleFatigue",
+      "title": "Fighting a Battle",
+      "chapter": "Activities",
+      "pages": "B426",
+      "reference": "Basic Set: Campaigns p. 426",
+      "rule": "battleFatigue",
+      "file": "battleFatigue.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fire",
+      "title": "Flame",
+      "chapter": "Activities",
+      "pages": "B433-434",
+      "reference": "Basic Set: Campaigns pp. 433-434",
       "rule": "fire",
       "file": "fire.md",
       "status": "reviewed"
@@ -49,63 +98,89 @@
       "reference": "Basic Set: Campaigns p. 351",
       "rule": "hiking",
       "file": "hiking.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
+      "status": "reviewed"
+    },
+    {
+      "id": "study",
+      "title": "Improvement Through Study",
+      "chapter": "Activities",
+      "pages": "B292-294",
+      "reference": "Basic Set: Characters pp. 292-294",
+      "rule": "study",
+      "file": "study.md",
+      "status": "reviewed"
     },
     {
       "id": "jobs",
       "title": "Jobs",
       "chapter": "Activities",
-      "pages": "B516",
-      "reference": "Basic Set: Campaigns p. 516",
+      "pages": "B516-517",
+      "reference": "Basic Set: Campaigns pp. 516-517",
       "rule": "jobs",
       "file": "jobs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sleep",
+      "title": "Missed Sleep",
+      "chapter": "Activities",
+      "pages": "B426-427",
+      "reference": "Basic Set: Campaigns pp. 426-427",
+      "rule": "sleep",
+      "file": "sleep.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "physicalActivities",
+      "title": "Physical Feats",
+      "chapter": "Activities",
+      "pages": "B349-354",
+      "reference": "Basic Set: Campaigns pp. 349-354",
+      "rule": "physicalActivities",
+      "file": "physicalActivities.md",
       "status": "needs-review",
-      "notes": "read and found wanting: only the introduction; the sections it announces are missing"
+      "notes": "a long section, cut at a subsection; the rest is in the book"
     },
     {
       "id": "poison",
       "title": "Poison",
       "chapter": "Activities",
-      "pages": "B437",
-      "reference": "Basic Set: Campaigns p. 437",
+      "pages": "B437-441",
+      "reference": "Basic Set: Campaigns pp. 437-441",
       "rule": "poison",
       "file": "poison.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "radiation",
       "title": "Radiation",
       "chapter": "Activities",
-      "pages": "B435",
-      "reference": "Basic Set: Campaigns p. 435",
+      "pages": "B435-436",
+      "reference": "Basic Set: Campaigns pp. 435-436",
       "rule": "radiation",
       "file": "radiation.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: starts partway through, at a list of sources"
+      "status": "reviewed"
     },
     {
       "id": "socialBackground",
       "title": "Social Background",
       "chapter": "Activities",
-      "pages": "B23",
-      "reference": "Basic Set: Characters p. 23",
+      "pages": "B22-25",
+      "reference": "Basic Set: Characters pp. 22-25",
       "rule": "socialBackground",
       "file": "socialBackground.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "vehicles",
       "title": "Vehicles",
       "chapter": "Activities",
-      "pages": "B462",
-      "reference": "Basic Set: Campaigns p. 462",
+      "pages": "B462-468",
+      "reference": "Basic Set: Campaigns pp. 462-468",
       "rule": "vehicles",
       "file": "vehicles.md",
       "status": "needs-review",
-      "notes": "read and found wanting: ends in the key to a table that did not come across"
+      "notes": "a long section, cut at a subsection; the rest is in the book"
     },
     {
       "id": "bulletproofNudity",
@@ -125,8 +200,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cannonFodder",
       "file": "cannonFodder.md",
-      "status": "needs-review",
-      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
+      "status": "reviewed"
     },
     {
       "id": "cinematicExplosions",
@@ -156,8 +230,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "fleshWounds",
       "file": "fleshWounds.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: ends on a sentence from another cinematic rule"
+      "status": "reviewed"
     },
     {
       "id": "infiniteAmmunition",
@@ -177,12 +250,11 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "meleeEtiquette",
       "file": "meleeEtiquette.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: the ending is spliced with Cannon Fodder"
+      "status": "reviewed"
     },
     {
       "id": "tvActionViolence",
-      "title": "Tv Action Violence",
+      "title": "TV Action Violence",
       "chapter": "Cinematic",
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
@@ -194,23 +266,21 @@
       "id": "closeCombat",
       "title": "Close Combat",
       "chapter": "Combat",
-      "pages": "B391",
-      "reference": "Basic Set: Campaigns p. 391",
+      "pages": "B391-392",
+      "reference": "Basic Set: Campaigns pp. 391-392",
       "rule": "closeCombat",
       "file": "closeCombat.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: only the introduction; the additions it announces are missing"
+      "status": "reviewed"
     },
     {
       "id": "deceptiveAttack",
       "title": "Deceptive Attack",
       "chapter": "Combat",
-      "pages": "B369",
-      "reference": "Basic Set: Campaigns p. 369",
+      "pages": "B369-370",
+      "reference": "Basic Set: Campaigns pp. 369-370",
       "rule": "deceptiveAttack",
       "file": "deceptiveAttack.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short; mostly a cross-reference"
+      "status": "reviewed"
     },
     {
       "id": "dirtyTricks",
@@ -220,6 +290,16 @@
       "reference": "Basic Set: Campaigns p. 405",
       "rule": "dirtyTricks",
       "file": "dirtyTricks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dualWeaponAttack",
+      "title": "Dual-Weapon Attacks",
+      "chapter": "Combat",
+      "pages": "B417",
+      "reference": "Basic Set: Campaigns p. 417",
+      "rule": "dualWeaponAttack",
+      "file": "dualWeaponAttack.md",
       "status": "reviewed"
     },
     {
@@ -240,8 +320,7 @@
       "reference": "Basic Set: Campaigns p. 365",
       "rule": "feint",
       "file": "feint.md",
-      "status": "needs-review",
-      "notes": "a character did not survive extraction"
+      "status": "reviewed"
     },
     {
       "id": "grappling",
@@ -251,8 +330,17 @@
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "grappling",
       "file": "grappling.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
+    },
+    {
+      "id": "highSpeed",
+      "title": "High-Speed Movement",
+      "chapter": "Combat",
+      "pages": "B394-396",
+      "reference": "Basic Set: Campaigns pp. 394-396",
+      "rule": "highSpeed",
+      "file": "highSpeed.md",
+      "status": "reviewed"
     },
     {
       "id": "malfunctions",
@@ -268,12 +356,11 @@
       "id": "mountedCombat",
       "title": "Mounted Combat",
       "chapter": "Combat",
-      "pages": "B396",
-      "reference": "Basic Set: Campaigns p. 396",
+      "pages": "B396-398",
+      "reference": "Basic Set: Campaigns pp. 396-398",
       "rule": "mountedCombat",
       "file": "mountedCombat.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "opportunityFire",
@@ -293,19 +380,17 @@
       "reference": "Basic Set: Campaigns p. 408",
       "rule": "overpenetration",
       "file": "overpenetration.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "rapidFire",
       "title": "Rapid Fire",
       "chapter": "Combat",
-      "pages": "B373",
-      "reference": "Basic Set: Campaigns p. 373",
+      "pages": "B373-374",
+      "reference": "Basic Set: Campaigns pp. 373-374",
       "rule": "rapidFire",
       "file": "rapidFire.md",
-      "status": "needs-review",
-      "notes": "ends by introducing something that did not come across; read and found wanting: ends at a table that did not come across"
+      "status": "reviewed"
     },
     {
       "id": "rapidStrike",
@@ -315,8 +400,7 @@
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "rapidStrike",
       "file": "rapidStrike.md",
-      "status": "needs-review",
-      "notes": "a character did not survive extraction; read and found wanting: a character did not survive extraction"
+      "status": "reviewed"
     },
     {
       "id": "retreat",
@@ -326,8 +410,7 @@
       "reference": "Basic Set: Campaigns p. 377",
       "rule": "retreat",
       "file": "retreat.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "scatter",
@@ -337,19 +420,27 @@
       "reference": "Basic Set: Campaigns p. 414",
       "rule": "scatter",
       "file": "scatter.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
+      "status": "reviewed"
     },
     {
       "id": "slams",
-      "title": "Slams",
+      "title": "Slam",
       "chapter": "Combat",
-      "pages": "B371",
-      "reference": "Basic Set: Campaigns p. 371",
+      "pages": "B371-372",
+      "reference": "Basic Set: Campaigns pp. 371-372",
       "rule": "slams",
       "file": "slams.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
+      "status": "reviewed"
+    },
+    {
+      "id": "swarms",
+      "title": "Swarm Attacks",
+      "chapter": "Combat",
+      "pages": "B461",
+      "reference": "Basic Set: Campaigns p. 461",
+      "rule": "swarms",
+      "file": "swarms.md",
+      "status": "reviewed"
     },
     {
       "id": "trampling",
@@ -359,30 +450,48 @@
       "reference": "Basic Set: Campaigns p. 404",
       "rule": "trampling",
       "file": "trampling.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "ammunitionTypes",
-      "title": "Ammunition Types",
+      "title": "Ammunition",
       "chapter": "Equipment",
-      "pages": "B276",
-      "reference": "Basic Set: Characters p. 276",
+      "pages": "B279-280",
+      "reference": "Basic Set: Characters pp. 279-280",
       "rule": "ammunitionTypes",
       "file": "ammunitionTypes.md",
       "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: the APDS paragraph carries on past the Ultra-Tech Firearm Table, and its end was not captured"
+    },
+    {
+      "id": "frontArmor",
+      "title": "Armor Tables",
+      "chapter": "Equipment",
+      "pages": "B282",
+      "reference": "Basic Set: Characters p. 282",
+      "rule": "frontArmor",
+      "file": "frontArmor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "layeredArmor",
+      "title": "Combining and Layering Armor",
+      "chapter": "Equipment",
+      "pages": "B286",
+      "reference": "Basic Set: Characters p. 286",
+      "rule": "layeredArmor",
+      "file": "layeredArmor.md",
+      "status": "reviewed"
     },
     {
       "id": "damageToShields",
-      "title": "Damage To Shields",
+      "title": "Damage to Shields",
       "chapter": "Equipment",
       "pages": "B484",
       "reference": "Basic Set: Campaigns p. 484",
       "rule": "damageToShields",
       "file": "damageToShields.md",
-      "status": "needs-review",
-      "notes": "stops mid-sentence, so the capture was cut short; a character did not survive extraction; read and found wanting: runs into Repairs and is cut off"
+      "status": "reviewed"
     },
     {
       "id": "equipmentModifiers",
@@ -392,8 +501,17 @@
       "reference": "Basic Set: Campaigns p. 345",
       "rule": "equipmentModifiers",
       "file": "equipmentModifiers.md",
-      "status": "needs-review",
-      "notes": "ends by introducing something that did not come across; a character did not survive extraction; read and found wanting: ends at a table that did not come across"
+      "status": "reviewed"
+    },
+    {
+      "id": "bluntTrauma",
+      "title": "Flexible Armor and Blunt Trauma",
+      "chapter": "Equipment",
+      "pages": "B379",
+      "reference": "Basic Set: Campaigns p. 379",
+      "rule": "bluntTrauma",
+      "file": "bluntTrauma.md",
+      "status": "reviewed"
     },
     {
       "id": "legalityClass",
@@ -403,41 +521,67 @@
       "reference": "Basic Set: Characters p. 267",
       "rule": "legalityClass",
       "file": "legalityClass.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "reloading",
-      "title": "Reloading",
+      "title": "Reloading and Shots",
       "chapter": "Equipment",
       "pages": "B373",
       "reference": "Basic Set: Campaigns p. 373",
       "rule": "reloading",
       "file": "reloading.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
     },
     {
       "id": "repairs",
       "title": "Repairs",
       "chapter": "Equipment",
-      "pages": "B484",
-      "reference": "Basic Set: Campaigns p. 484",
+      "pages": "B484-485",
+      "reference": "Basic Set: Campaigns pp. 484-485",
       "rule": "repairs",
       "file": "repairs.md",
-      "status": "needs-review",
-      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
+      "status": "reviewed"
+    },
+    {
+      "id": "minimumSt",
+      "title": "ST (Strength)",
+      "chapter": "Equipment",
+      "pages": "B270",
+      "reference": "Basic Set: Characters p. 270",
+      "rule": "minimumSt",
+      "file": "minimumSt.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weaponBreakage",
+      "title": "Weapon Breakage",
+      "chapter": "Equipment",
+      "pages": "B376-485",
+      "reference": "Basic Set: Campaigns pp. 376-485",
+      "rule": "weaponBreakage",
+      "file": "weaponBreakage.md",
+      "status": "reviewed"
     },
     {
       "id": "weaponQuality",
       "title": "Weapon Quality",
       "chapter": "Equipment",
-      "pages": "B274",
-      "reference": "Basic Set: Characters p. 274",
+      "pages": "B274-277",
+      "reference": "Basic Set: Characters pp. 274-277",
       "rule": "weaponQuality",
       "file": "weaponQuality.md",
-      "status": "needs-review",
-      "notes": "very short; stops mid-sentence, so the capture was cut short"
+      "status": "reviewed"
+    },
+    {
+      "id": "afflictions",
+      "title": "Affliction",
+      "chapter": "Injury",
+      "pages": "B35-36",
+      "reference": "Basic Set: Characters pp. 35-36",
+      "rule": "afflictions",
+      "file": "afflictions.md",
+      "status": "reviewed"
     },
     {
       "id": "bleeding",
@@ -447,30 +591,37 @@
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "bleeding",
       "file": "bleeding.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
+    },
+    {
+      "id": "criticalTables",
+      "title": "Critical Success and Failure",
+      "chapter": "Injury",
+      "pages": "B556-557",
+      "reference": "Basic Set: Campaigns pp. 556-557",
+      "rule": "criticalTables",
+      "file": "criticalTables.md",
+      "status": "reviewed"
     },
     {
       "id": "explosions",
       "title": "Explosions",
       "chapter": "Injury",
-      "pages": "B414",
-      "reference": "Basic Set: Campaigns p. 414",
+      "pages": "B414-415",
+      "reference": "Basic Set: Campaigns pp. 414-415",
       "rule": "explosions",
       "file": "explosions.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
+      "status": "reviewed"
     },
     {
       "id": "hitLocations",
-      "title": "Hit Locations",
+      "title": "Hit Location",
       "chapter": "Injury",
-      "pages": "B398",
-      "reference": "Basic Set: Campaigns p. 398",
+      "pages": "B398-401",
+      "reference": "Basic Set: Campaigns pp. 398-401",
       "rule": "hitLocations",
       "file": "hitLocations.md",
-      "status": "needs-review",
-      "notes": "a character did not survive extraction; read and found wanting: a character did not survive extraction"
+      "status": "reviewed"
     },
     {
       "id": "knockback",
@@ -480,52 +631,59 @@
       "reference": "Basic Set: Campaigns p. 378",
       "rule": "knockback",
       "file": "knockback.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: runs into Damage Resistance"
+      "status": "reviewed"
     },
     {
       "id": "knockdown",
-      "title": "Knockdown",
+      "title": "Knockdown and Stunning",
       "chapter": "Injury",
       "pages": "B420",
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "knockdown",
       "file": "knockdown.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: runs into Injury Tolerance"
+      "status": "reviewed"
     },
     {
       "id": "criticalSpellFailure",
-      "title": "Critical Spell Failure",
+      "title": "Critical Spell Failure Table",
       "chapter": "Magic",
       "pages": "B236",
       "reference": "Basic Set: Characters p. 236",
       "rule": "criticalSpellFailure",
       "file": "criticalSpellFailure.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short"
+      "status": "reviewed"
+    },
+    {
+      "id": "spellDistraction",
+      "title": "Distraction and Injury",
+      "chapter": "Magic",
+      "pages": "B236",
+      "reference": "Basic Set: Characters p. 236",
+      "rule": "spellDistraction",
+      "file": "spellDistraction.md",
+      "status": "reviewed"
     },
     {
       "id": "magic",
       "title": "Magic",
       "chapter": "Magic",
-      "pages": "B234",
-      "reference": "Basic Set: Characters p. 234",
+      "pages": "B234-239",
+      "reference": "Basic Set: Characters pp. 234-239",
       "rule": "magic",
       "file": "magic.md",
       "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "notes": "a long section, cut at a subsection; the rest is in the book"
     },
     {
       "id": "magicItems",
       "title": "Magic Items",
       "chapter": "Magic",
-      "pages": "B480",
-      "reference": "Basic Set: Campaigns p. 480",
+      "pages": "B480-483",
+      "reference": "Basic Set: Campaigns pp. 480-483",
       "rule": "magicItems",
       "file": "magicItems.md",
       "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short"
+      "notes": "read and found wanting: Enchant's paragraph beside the Fortify table was read as that table's first column, and the Power cost table ran into Accuracy's"
     },
     {
       "id": "magicRituals",
@@ -535,41 +693,67 @@
       "reference": "Basic Set: Characters p. 237",
       "rule": "magicRituals",
       "file": "magicRituals.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
+    },
+    {
+      "id": "maintainingSpells",
+      "title": "Maintaining Spells",
+      "chapter": "Magic",
+      "pages": "B237-238",
+      "reference": "Basic Set: Characters pp. 237-238",
+      "rule": "maintainingSpells",
+      "file": "maintainingSpells.md",
+      "status": "reviewed"
     },
     {
       "id": "manaLevels",
-      "title": "Mana Levels",
+      "title": "Mana",
       "chapter": "Magic",
       "pages": "B235",
       "reference": "Basic Set: Characters p. 235",
       "rule": "manaLevels",
       "file": "manaLevels.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
+    },
+    {
+      "id": "ruleOf16",
+      "title": "The Rule of 16",
+      "chapter": "Magic",
+      "pages": "B349",
+      "reference": "Basic Set: Campaigns p. 349",
+      "rule": "ruleOf16",
+      "file": "ruleOf16.md",
+      "status": "reviewed"
     },
     {
       "id": "extraEffort",
       "title": "Extra Effort",
       "chapter": "Rolls",
-      "pages": "B356",
-      "reference": "Basic Set: Campaigns p. 356",
+      "pages": "B356-357",
+      "reference": "Basic Set: Campaigns pp. 356-357",
       "rule": "extraEffort",
       "file": "extraEffort.md",
-      "status": "needs-review",
-      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
+      "status": "reviewed"
     },
     {
       "id": "frightChecks",
       "title": "Fright Checks",
       "chapter": "Rolls",
-      "pages": "B360",
-      "reference": "Basic Set: Campaigns p. 360",
+      "pages": "B360-361",
+      "reference": "Basic Set: Campaigns pp. 360-361",
       "rule": "frightChecks",
       "file": "frightChecks.md",
-      "status": "needs-review",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "reviewed"
+    },
+    {
+      "id": "reactions",
+      "title": "Reaction Rolls",
+      "chapter": "Rolls",
+      "pages": "B494-495",
+      "reference": "Basic Set: Campaigns pp. 494-495",
+      "rule": "reactions",
+      "file": "reactions.md",
+      "status": "reviewed"
     },
     {
       "id": "regularContests",

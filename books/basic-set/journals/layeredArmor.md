@@ -1,0 +1,1 @@
+You can freely combine multiple pieces of armor that don’t cover the same hit location, but you can only layer armor if the inner layer is both flexible and concealable. Add the DR of both layers. Wearing an extra layer of armor anywhere but on the head gives -1 to DX and DX-based skills.
