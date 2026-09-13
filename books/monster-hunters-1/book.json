@@ -1,0 +1,9 @@
+{
+  "slug": "monster-hunters-1",
+  "title": "GURPS Monster Hunters 1: Champions",
+  "label": "GURPS Monster Hunters 1",
+  "prefix": "MH1:",
+  "reference": "Monster Hunters 1: Champions",
+  "gdf": "GURPS_Monster_Hunters_1_Champions.gdf",
+  "notes": "GCA cites this book as MH1:23. The system parser pinned at v1.0.0 only reads that with the colon in the prefix; from the release carrying sargas79/GWorldVTT#138 the prefix can be plain MH1. The data file has no templates, and PDF page = book page."
+}

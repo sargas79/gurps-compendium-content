@@ -8,12 +8,21 @@
  * Usage: node tools/merge.mjs
  */
 
+import { existsSync, readdirSync } from "node:fs";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { books, buildRoot, packsOf, systemManifest } from "./lib/books.mjs";
 import { mergeBook, NO_PROSE } from "./lib/merge-book.mjs";
 import { journalPack } from "./lib/journals.mjs";
+
+/** Whether a book has any text or rules of its own yet. */
+function hasContent(bk) {
+  return ["prose", "journals"].some((sub) => {
+    const dir = join(bk.dir, sub);
+    return existsSync(dir) && readdirSync(dir).length > 0;
+  });
+}
 
 async function main() {
   const manifest = systemManifest();
@@ -37,6 +46,13 @@ async function main() {
 
   for (const bk of all) {
     const names = packsOf(bk);
+    // A book that has been triaged but not yet extracted -- a book.json and
+    // nothing else -- is a book not started, and ships nothing. Text or rules
+    // with no statistics to sit on is still a fault.
+    if (names.length === 0 && bk.statistics !== "system" && !hasContent(bk)) {
+      console.log(`books/${bk.slug}: not extracted yet, so nothing of it is built.`);
+      continue;
+    }
     if (names.length === 0) {
       problems.push(
         `books/${bk.slug}: no statistics. ` +

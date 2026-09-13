@@ -641,6 +641,23 @@ switches. Open those system issues from this one.
 **C16. Martial Arts statistics**, **C17. Martial Arts book text**, **C18. Martial Arts
 rules journals** — as for Magic. C16 blocked by C15 and by any system issues it raised.
 
+#### Milestone: Monster Hunters 1
+
+Handed over on 2026-09-13 and taken ahead of Magic and Martial Arts. The four-issue
+pattern did not fit this book: its GCA file has no templates, and the system needed
+fourteen features before the book does anything at the table. So it has twelve
+issues here and fourteen in the system. The triage is `books/monster-hunters-1/TRIAGE.md`.
+
+- **Here:** #22 triage, #23 `transcribe.mjs` for this book, #24 statistics, #25
+  hand-kept records, #26 character templates and lenses, #27 racial templates, #28-#31
+  book text (advantages, perks and powers; disadvantages and skills; gear; templates),
+  #32 rules journals, #33 release v0.2.0, blocked by #10.
+- **In GWorldVTT:** #138 parser cleanup (merged in #153), #139 Talent skill lists,
+  #140 powers beyond psionics, #141 attacks on traits, #142 Vulnerability and Weakness,
+  #143 holy attacks, #144-#147 Ritual Path Magic, #148-#150 gear improvements and
+  special ammunition, #151 bonus and destiny points. The book's rules go in a "Monster
+  Hunters" group, off by default. A ritual is a `ritual` item type.
+
 #### Later books
 
 Do not create issues for the other 34 supplements now. When the owner hands a book over,
