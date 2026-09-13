@@ -38,6 +38,13 @@ const OFFSET = { characters: 1, campaigns: -335 };
 /** A running head, a folio, or a sidebar's shout. */
 const FURNITURE = /^([A-Z][A-Z '&-]{3,}|\d{1,3})$/;
 
+/** What reading decided about each rule, by rule id. */
+function readingDecisions() {
+  const path = join(book("basic-set").dir, "review.json");
+  if (!existsSync(path)) return new Map();
+  return new Map(Object.entries(JSON.parse(readFileSync(path, "utf8")).journals ?? {}));
+}
+
 function flag(name, fallback = null) {
   const at = process.argv.indexOf(name);
   return at !== -1 && process.argv[at + 1] ? process.argv[at + 1] : fallback;
@@ -219,6 +226,15 @@ function doubts(raw, joined) {
     found.push("a sentence breaks across lines, so another column may be spliced in");
   }
   if (text.length < 120) found.push("very short");
+  const end = text.trim();
+  // A rule that ends by introducing what follows -- "as shown on this table:",
+  // "but with the additions below." -- has lost what it introduced.
+  if (/:$/.test(end) || /(below|following)\.?$/i.test(end)) {
+    found.push("ends by introducing something that did not come across");
+  } else if (!/[.!?"')\]]$/.test(end)) {
+    found.push("stops mid-sentence, so the capture was cut short");
+  }
+  if (/�/.test(text)) found.push("a character did not survive extraction");
   if (/\(p\.\s*5\d\d\)/.test(text) && joined.length < 4) {
     found.push("mostly a cross-reference");
   }
@@ -232,6 +248,9 @@ function toMarkdown(found) {
 
 async function main() {
   const write = process.argv.includes("--write");
+  // Only after a person has read every clean page: promotes them to reviewed.
+  const reviewed = process.argv.includes("--reviewed");
+  const decisions = readingDecisions();
   const characters = flag("--characters");
   const campaigns = flag("--campaigns");
 
@@ -252,7 +271,11 @@ async function main() {
 
   for (const rule of rules) {
     const capture_ = capture(rule, pages);
-    if (capture_) found.push({ rule, ...capture_ });
+    if (capture_) {
+      const read = decisions.get(rule.key);
+      if (read) capture_.doubts.push(`read and found wanting: ${read}`);
+      found.push({ rule, ...capture_ });
+    }
     else missing.push(rule);
   }
 
@@ -287,6 +310,7 @@ async function main() {
       reference: `Basic Set: ${entry.source === "campaigns" ? "Campaigns" : "Characters"} p. ${entry.page}`,
       rule: entry.rule.key,
       file,
+      status: entry.doubts.length ? "needs-review" : reviewed ? "reviewed" : "transcribed",
       ...(entry.doubts.length ? { notes: entry.doubts.join("; ") } : {}),
     });
   }

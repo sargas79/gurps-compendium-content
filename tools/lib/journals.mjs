@@ -129,7 +129,7 @@ export async function journalPack(bk) {
           ...(page.pages ? { pages: page.pages } : {}),
           // Carried through so a page whose extraction is doubtful says so
           // wherever it is read, not only in the file it was written from.
-          status: page.notes ? 'needs-review' : 'transcribed',
+          status: page.status ?? (page.notes ? "needs-review" : "transcribed"),
           ...(page.notes ? { notes: page.notes } : {}),
         },
       },

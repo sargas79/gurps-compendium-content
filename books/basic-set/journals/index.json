@@ -7,7 +7,9 @@
       "pages": "B430",
       "reference": "Basic Set: Campaigns p. 430",
       "rule": "collisions",
-      "file": "collisions.md"
+      "file": "collisions.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: only the introduction; the rules themselves are missing"
     },
     {
       "id": "disease",
@@ -16,7 +18,8 @@
       "pages": "B442",
       "reference": "Basic Set: Campaigns p. 442",
       "rule": "disease",
-      "file": "disease.md"
+      "file": "disease.md",
+      "status": "reviewed"
     },
     {
       "id": "electricity",
@@ -25,7 +28,8 @@
       "pages": "B432",
       "reference": "Basic Set: Campaigns p. 432",
       "rule": "electricity",
-      "file": "electricity.md"
+      "file": "electricity.md",
+      "status": "reviewed"
     },
     {
       "id": "fire",
@@ -34,7 +38,8 @@
       "pages": "B433",
       "reference": "Basic Set: Campaigns p. 433",
       "rule": "fire",
-      "file": "fire.md"
+      "file": "fire.md",
+      "status": "reviewed"
     },
     {
       "id": "hiking",
@@ -44,7 +49,8 @@
       "reference": "Basic Set: Campaigns p. 351",
       "rule": "hiking",
       "file": "hiking.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
     },
     {
       "id": "jobs",
@@ -53,7 +59,9 @@
       "pages": "B516",
       "reference": "Basic Set: Campaigns p. 516",
       "rule": "jobs",
-      "file": "jobs.md"
+      "file": "jobs.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: only the introduction; the sections it announces are missing"
     },
     {
       "id": "poison",
@@ -63,6 +71,7 @@
       "reference": "Basic Set: Campaigns p. 437",
       "rule": "poison",
       "file": "poison.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -72,7 +81,9 @@
       "pages": "B435",
       "reference": "Basic Set: Campaigns p. 435",
       "rule": "radiation",
-      "file": "radiation.md"
+      "file": "radiation.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: starts partway through, at a list of sources"
     },
     {
       "id": "socialBackground",
@@ -82,6 +93,7 @@
       "reference": "Basic Set: Characters p. 23",
       "rule": "socialBackground",
       "file": "socialBackground.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -91,7 +103,9 @@
       "pages": "B462",
       "reference": "Basic Set: Campaigns p. 462",
       "rule": "vehicles",
-      "file": "vehicles.md"
+      "file": "vehicles.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: ends in the key to a table that did not come across"
     },
     {
       "id": "bulletproofNudity",
@@ -100,7 +114,8 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "bulletproofNudity",
-      "file": "bulletproofNudity.md"
+      "file": "bulletproofNudity.md",
+      "status": "reviewed"
     },
     {
       "id": "cannonFodder",
@@ -109,7 +124,9 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cannonFodder",
-      "file": "cannonFodder.md"
+      "file": "cannonFodder.md",
+      "status": "needs-review",
+      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
     },
     {
       "id": "cinematicExplosions",
@@ -118,7 +135,8 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cinematicExplosions",
-      "file": "cinematicExplosions.md"
+      "file": "cinematicExplosions.md",
+      "status": "reviewed"
     },
     {
       "id": "cinematicKnockback",
@@ -127,7 +145,8 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cinematicKnockback",
-      "file": "cinematicKnockback.md"
+      "file": "cinematicKnockback.md",
+      "status": "reviewed"
     },
     {
       "id": "fleshWounds",
@@ -136,7 +155,9 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "fleshWounds",
-      "file": "fleshWounds.md"
+      "file": "fleshWounds.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: ends on a sentence from another cinematic rule"
     },
     {
       "id": "infiniteAmmunition",
@@ -145,7 +166,8 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "infiniteAmmunition",
-      "file": "infiniteAmmunition.md"
+      "file": "infiniteAmmunition.md",
+      "status": "reviewed"
     },
     {
       "id": "meleeEtiquette",
@@ -154,7 +176,9 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "meleeEtiquette",
-      "file": "meleeEtiquette.md"
+      "file": "meleeEtiquette.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: the ending is spliced with Cannon Fodder"
     },
     {
       "id": "tvActionViolence",
@@ -163,7 +187,8 @@
       "pages": "B417",
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "tvActionViolence",
-      "file": "tvActionViolence.md"
+      "file": "tvActionViolence.md",
+      "status": "reviewed"
     },
     {
       "id": "closeCombat",
@@ -172,7 +197,9 @@
       "pages": "B391",
       "reference": "Basic Set: Campaigns p. 391",
       "rule": "closeCombat",
-      "file": "closeCombat.md"
+      "file": "closeCombat.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: only the introduction; the additions it announces are missing"
     },
     {
       "id": "deceptiveAttack",
@@ -182,7 +209,8 @@
       "reference": "Basic Set: Campaigns p. 369",
       "rule": "deceptiveAttack",
       "file": "deceptiveAttack.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in; mostly a cross-reference"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short; mostly a cross-reference"
     },
     {
       "id": "dirtyTricks",
@@ -191,7 +219,8 @@
       "pages": "B405",
       "reference": "Basic Set: Campaigns p. 405",
       "rule": "dirtyTricks",
-      "file": "dirtyTricks.md"
+      "file": "dirtyTricks.md",
+      "status": "reviewed"
     },
     {
       "id": "evading",
@@ -200,7 +229,8 @@
       "pages": "B368",
       "reference": "Basic Set: Campaigns p. 368",
       "rule": "evading",
-      "file": "evading.md"
+      "file": "evading.md",
+      "status": "reviewed"
     },
     {
       "id": "feint",
@@ -209,7 +239,9 @@
       "pages": "B365",
       "reference": "Basic Set: Campaigns p. 365",
       "rule": "feint",
-      "file": "feint.md"
+      "file": "feint.md",
+      "status": "needs-review",
+      "notes": "a character did not survive extraction"
     },
     {
       "id": "grappling",
@@ -219,6 +251,7 @@
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "grappling",
       "file": "grappling.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -228,7 +261,8 @@
       "pages": "B407",
       "reference": "Basic Set: Campaigns p. 407",
       "rule": "malfunctions",
-      "file": "malfunctions.md"
+      "file": "malfunctions.md",
+      "status": "reviewed"
     },
     {
       "id": "mountedCombat",
@@ -238,6 +272,7 @@
       "reference": "Basic Set: Campaigns p. 396",
       "rule": "mountedCombat",
       "file": "mountedCombat.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -247,7 +282,8 @@
       "pages": "B390",
       "reference": "Basic Set: Campaigns p. 390",
       "rule": "opportunityFire",
-      "file": "opportunityFire.md"
+      "file": "opportunityFire.md",
+      "status": "reviewed"
     },
     {
       "id": "overpenetration",
@@ -257,6 +293,7 @@
       "reference": "Basic Set: Campaigns p. 408",
       "rule": "overpenetration",
       "file": "overpenetration.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -266,7 +303,9 @@
       "pages": "B373",
       "reference": "Basic Set: Campaigns p. 373",
       "rule": "rapidFire",
-      "file": "rapidFire.md"
+      "file": "rapidFire.md",
+      "status": "needs-review",
+      "notes": "ends by introducing something that did not come across; read and found wanting: ends at a table that did not come across"
     },
     {
       "id": "rapidStrike",
@@ -275,7 +314,9 @@
       "pages": "B370",
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "rapidStrike",
-      "file": "rapidStrike.md"
+      "file": "rapidStrike.md",
+      "status": "needs-review",
+      "notes": "a character did not survive extraction; read and found wanting: a character did not survive extraction"
     },
     {
       "id": "retreat",
@@ -285,6 +326,7 @@
       "reference": "Basic Set: Campaigns p. 377",
       "rule": "retreat",
       "file": "retreat.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -295,7 +337,8 @@
       "reference": "Basic Set: Campaigns p. 414",
       "rule": "scatter",
       "file": "scatter.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
     },
     {
       "id": "slams",
@@ -305,7 +348,8 @@
       "reference": "Basic Set: Campaigns p. 371",
       "rule": "slams",
       "file": "slams.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
     },
     {
       "id": "trampling",
@@ -315,6 +359,7 @@
       "reference": "Basic Set: Campaigns p. 404",
       "rule": "trampling",
       "file": "trampling.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -325,6 +370,7 @@
       "reference": "Basic Set: Characters p. 276",
       "rule": "ammunitionTypes",
       "file": "ammunitionTypes.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -334,7 +380,9 @@
       "pages": "B484",
       "reference": "Basic Set: Campaigns p. 484",
       "rule": "damageToShields",
-      "file": "damageToShields.md"
+      "file": "damageToShields.md",
+      "status": "needs-review",
+      "notes": "stops mid-sentence, so the capture was cut short; a character did not survive extraction; read and found wanting: runs into Repairs and is cut off"
     },
     {
       "id": "equipmentModifiers",
@@ -343,7 +391,9 @@
       "pages": "B345",
       "reference": "Basic Set: Campaigns p. 345",
       "rule": "equipmentModifiers",
-      "file": "equipmentModifiers.md"
+      "file": "equipmentModifiers.md",
+      "status": "needs-review",
+      "notes": "ends by introducing something that did not come across; a character did not survive extraction; read and found wanting: ends at a table that did not come across"
     },
     {
       "id": "legalityClass",
@@ -353,6 +403,7 @@
       "reference": "Basic Set: Characters p. 267",
       "rule": "legalityClass",
       "file": "legalityClass.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -363,6 +414,7 @@
       "reference": "Basic Set: Campaigns p. 373",
       "rule": "reloading",
       "file": "reloading.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -372,7 +424,9 @@
       "pages": "B484",
       "reference": "Basic Set: Campaigns p. 484",
       "rule": "repairs",
-      "file": "repairs.md"
+      "file": "repairs.md",
+      "status": "needs-review",
+      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
     },
     {
       "id": "weaponQuality",
@@ -382,7 +436,8 @@
       "reference": "Basic Set: Characters p. 274",
       "rule": "weaponQuality",
       "file": "weaponQuality.md",
-      "notes": "very short"
+      "status": "needs-review",
+      "notes": "very short; stops mid-sentence, so the capture was cut short"
     },
     {
       "id": "bleeding",
@@ -392,6 +447,7 @@
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "bleeding",
       "file": "bleeding.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -402,7 +458,8 @@
       "reference": "Basic Set: Campaigns p. 414",
       "rule": "explosions",
       "file": "explosions.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; a character did not survive extraction"
     },
     {
       "id": "hitLocations",
@@ -411,7 +468,9 @@
       "pages": "B398",
       "reference": "Basic Set: Campaigns p. 398",
       "rule": "hitLocations",
-      "file": "hitLocations.md"
+      "file": "hitLocations.md",
+      "status": "needs-review",
+      "notes": "a character did not survive extraction; read and found wanting: a character did not survive extraction"
     },
     {
       "id": "knockback",
@@ -420,7 +479,9 @@
       "pages": "B378",
       "reference": "Basic Set: Campaigns p. 378",
       "rule": "knockback",
-      "file": "knockback.md"
+      "file": "knockback.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: runs into Damage Resistance"
     },
     {
       "id": "knockdown",
@@ -429,7 +490,9 @@
       "pages": "B420",
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "knockdown",
-      "file": "knockdown.md"
+      "file": "knockdown.md",
+      "status": "needs-review",
+      "notes": "read and found wanting: runs into Injury Tolerance"
     },
     {
       "id": "criticalSpellFailure",
@@ -439,7 +502,8 @@
       "reference": "Basic Set: Characters p. 236",
       "rule": "criticalSpellFailure",
       "file": "criticalSpellFailure.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short"
     },
     {
       "id": "magic",
@@ -449,6 +513,7 @@
       "reference": "Basic Set: Characters p. 234",
       "rule": "magic",
       "file": "magic.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -459,7 +524,8 @@
       "reference": "Basic Set: Campaigns p. 480",
       "rule": "magicItems",
       "file": "magicItems.md",
-      "notes": "a sentence breaks across lines, so another column may be spliced in"
+      "status": "needs-review",
+      "notes": "a sentence breaks across lines, so another column may be spliced in; stops mid-sentence, so the capture was cut short"
     },
     {
       "id": "magicRituals",
@@ -469,6 +535,7 @@
       "reference": "Basic Set: Characters p. 237",
       "rule": "magicRituals",
       "file": "magicRituals.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -479,6 +546,7 @@
       "reference": "Basic Set: Characters p. 235",
       "rule": "manaLevels",
       "file": "manaLevels.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -488,7 +556,9 @@
       "pages": "B356",
       "reference": "Basic Set: Campaigns p. 356",
       "rule": "extraEffort",
-      "file": "extraEffort.md"
+      "file": "extraEffort.md",
+      "status": "needs-review",
+      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: cut off mid-sentence"
     },
     {
       "id": "frightChecks",
@@ -498,6 +568,7 @@
       "reference": "Basic Set: Campaigns p. 360",
       "rule": "frightChecks",
       "file": "frightChecks.md",
+      "status": "needs-review",
       "notes": "a sentence breaks across lines, so another column may be spliced in"
     },
     {
@@ -507,7 +578,8 @@
       "pages": "B349",
       "reference": "Basic Set: Campaigns p. 349",
       "rule": "regularContests",
-      "file": "regularContests.md"
+      "file": "regularContests.md",
+      "status": "reviewed"
     }
   ]
 }
