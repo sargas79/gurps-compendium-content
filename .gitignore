@@ -1,0 +1,22 @@
+node_modules/
+
+# Built module: generated from books/ and the pinned system on every build.
+dist/
+
+# Merged pack source, an intermediate between books/ and dist/.
+build/
+
+# Release artifact, built on demand.
+*.zip
+
+# Local Foundry data path, and the URLs a release is published to.
+foundry-config.json
+release-config.json
+
+*.log
+.DS_Store
+Thumbs.db
+
+# Extracted book text is working material, never committed: the repository
+# keeps the entries that were written from it, not the raw dump.
+extracted/
