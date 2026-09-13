@@ -19,7 +19,7 @@ content it carries is six entries, enough to show a description reaching a sheet
   are written yet.
 - `npm run extract` runs the system's own GCA parsers against another book, and
   refuses to guess when the pinned system's parsers read the Basic Set only.
-- The system is a submodule pinned at **gworld v0.18.0**.
+- The system is a submodule pinned at **gworld v1.0.0**, the release that completes the Basic Set.
 
 Text: Acute Vision, Ambidexterity, Combat Reflexes, Acrobatics, Climbing,
 Stealth.
