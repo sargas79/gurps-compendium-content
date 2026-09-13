@@ -46,8 +46,8 @@ import { book, packsOf, projectRoot, readProse, readStatistics, statisticsDir } 
  * Each chapter writes it differently, and the text begins after however many of
  * them there are:
  *
- *     Bad Temper          Camouflage                     Claws
- *     -10 points*         IQ/Easy                        Variable
+ *     Bad Temper          Camouflage                     Deathtouch
+ *     -10 points*         IQ/Easy                        Melee
  *                         Defaults: IQ-4 or Survival-2.
  *
  * A perk has none at all, being always worth one point; that case is handled
@@ -61,9 +61,20 @@ const COST = new RegExp(
     "^(ST|DX|IQ|HT|Will|Per)/(Easy|Average|Hard|Very Hard)\\b", // DX/Hard
     "^defaults?:", //                                   Defaults: IQ-4 or Survival-2.
     "^[-+]\\d+%", //                                    +50%, -10%
+    // A spell's class stands where another chapter puts a cost: "Regular",
+    // "Information; Area", "Special; Resisted by HT".
+    "^(regular|area|missile|melee|blocking|information|special|enchantment)\\b[^.]{0,60}$",
   ].join("|"),
   "i",
 );
+
+/**
+ * The stat block a spell prints after its description.
+ *
+ * "Cost: 1 to 3. Prerequisite: Wither Limb." is the spell's statistics, which
+ * the system already holds, so the text stops here rather than repeating them.
+ */
+const STATS = /^(duration|cost|base cost|time to cast|casting time|prerequisites?|item|energy cost)\s*:/i;
 
 /** A running head or a page number, which ends a page's text. */
 const FURNITURE = /^([A-Z][A-Z '&-]{3,}|\d{1,3})$/;
@@ -144,6 +155,26 @@ function rejoin(paragraphs) {
   return out;
 }
 
+/** A name may carry parentheses and other characters a pattern would read. */
+function escapeRegExp(text) {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Drops the price and weight an inline entry ends with.
+ *
+ * "$50, 4 lbs." and "Per set: $50, 4 lbs." are the item's cost and weight, both
+ * of which the system carries as numbers. Repeating them in the text would put
+ * a second copy on the sheet, and one that never changes when the other does.
+ */
+function stripPrice(text) {
+  return text
+    // "$50, 2 lbs.", "$40, 12 hrs.", "Per set: $50, 4 lbs.", "$200."
+    .replace(/\s*(Per\s+[\w\s]+:\s*)?\$[\d,]+(\.\d+)?(\s*,\s*[^.;]{1,24})?\.?\s*$/i, "")
+    .replace(/\s*,?\s*[\d./]+\s*lbs?\.?\s*$/i, "")
+    .trim();
+}
+
 /** The data file counts in figures where the book spells it: "4 Legs" is "Four Legs". */
 const NUMBERS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
 function spellNumber(label) {
@@ -212,7 +243,12 @@ function capture(entry, pages, offset, names) {
   if (cited === null) return null;
   const name = normalise(entry.name);
 
-  for (const delta of [0, 1, -1, 2, 3, -2]) {
+  // Outward from the cited page. Most entries are on it or beside it, but a
+  // spell cites the page its college begins on, and a college runs for several
+  // pages, so the sweep has to reach further before giving up.
+  const deltas = [0, 1, -1, 2, 3, -2, ...Array.from({ length: 12 }, (_, n) => n + 4)];
+
+  for (const delta of deltas) {
     const index = cited + offset - 1 + delta;
     if (index < 0 || index >= pages.length) continue;
     const lines = usefulLines(pages[index]);
@@ -237,6 +273,7 @@ function capture(entry, pages, offset, names) {
         // book lists; the cost line under it is the usual confirmation, but a
         // perk has none, so a short line bearing a known name is enough.
         if (names.has(bare(line)) && line.length < 60) break;
+        if (STATS.test(line)) break;
         body.push(line);
       }
       // An entry that runs to the foot of the page continues at the top of the
@@ -245,11 +282,33 @@ function capture(entry, pages, offset, names) {
         for (const line of usefulLines(pages[index + 1])) {
           if (FURNITURE.test(line)) continue;
           if (names.has(bare(line))) break;
-          if (COST.test(line)) break;
+          if (COST.test(line) || STATS.test(line)) break;
           body.push(line);
         }
       }
       if (body.length) return { kind: "heading", paragraphs: rejoin(body), page: cited + delta };
+    }
+
+    // An inline entry. The equipment chapter is lists, not headings: a piece of
+    // gear is one line carrying its name, its tech level, what it does, and what
+    // it costs -- "Horseshoes (TL3). Shod horses get +2 HT on any rolls for
+    // stamina on long rides. Per set: $50, 4 lbs." Only the middle is text; the
+    // price and the weight are statistics the system already holds.
+    // The parenthetical is usually a tech level but not always: "First Aid Kit
+    // (var.)" varies by TL, and a name read without it repeats itself in its own
+    // description.
+    const inline = new RegExp(`^${escapeRegExp(name)}\\s*(\\([^)]*\\))?\\s*[.:]\\s*(.+)$`, "i");
+    for (const line of lines) {
+      const match = inline.exec(line);
+      if (!match) continue;
+      const text = stripPrice(match[2]);
+      if (text.length < 15) continue;
+      // A weapon table row reads as an inline entry and is not one: "Pistol
+      // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
+      // figure of which the system already holds. Prose is sentences.
+      if (/\b(thr|sw)\s*[+-]?\d*\s+(imp|cut|cr|pi\+*|pi-|burn|tox|fat|cor)\b/i.test(text)) continue;
+      if ((text.match(/\b[a-z]{3,}\b/gi) ?? []).length < 5) continue;
+      return { kind: "inline", paragraphs: [text], page: cited + delta };
     }
 
     // A variant. The book gives the family one heading and each variant a
@@ -307,6 +366,9 @@ function doubts(paragraphs, kind) {
   const found = [];
   for (const [pattern, why] of SUSPECT) if (pattern.test(text)) found.push(why);
   if (text.length < 40) found.push("very short");
+  // A price that survived is a statistic the system also holds, so the two would
+  // drift apart the first time one changed.
+  if (/\$\d/.test(text)) found.push("a price is still in the text");
   if (text.length > 6000) found.push("very long, may have run past the entry");
   if (paragraphs.length > 18) found.push("many paragraphs, may have run past the entry");
   // A double quote after a digit is inches -- 12" of talon -- not a quotation.
@@ -345,7 +407,7 @@ async function main() {
   const existing = readProse(bk, packName).records;
 
   const records = [];
-  const tally = { heading: 0, "sub-entry": 0, variant: 0, absent: 0, kept: 0 };
+  const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, absent: 0, kept: 0 };
 
   for (const { entry } of readStatistics(bk, packName)) {
     const already = existing.get(entry._id);

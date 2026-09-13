@@ -35,57 +35,57 @@
     "_id": "daa502faf9f75e83",
     "name": "Body of Air",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Air: Your body is made of gas. ST 0 [-100]; +10 HP [20]; Doesn't Breathe [20]; Flight (Lighter Than Air, -10%) [36]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Legs (Aerial) [0]; No Manipulators [-50]; Vulnerability (Vacuum and wind-based attacks �2) [-20]; and Taboo Trait (Fixed ST) [0]. 36 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of gas. ST 0 [-100]; +10 HP [20]; Doesn't Breathe [20]; Flight (Lighter Than Air, -10%) [36]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Legs (Aerial) [0]; No Manipulators [-50]; Vulnerability (Vacuum and wind-based attacks �2) [-20]; and Taboo Trait (Fixed ST) [0]. 36 points.</p>"
   },
   {
     "_id": "561d8591021c67bb",
     "name": "Body of Earth",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Earth: Your body is made of sand or earth. Doesn't Breathe [20]; DR 2 [10]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Invertebrate [-20]. 175 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of sand or earth. Doesn't Breathe [20]; DR 2 [10]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Invertebrate [-20]. 175 points.</p>"
   },
   {
     "_id": "d23afc3837dca7f7",
     "name": "Body of Fire",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Fire: Your body is a living flame! If your flames are very hot, increase Burning Attack and DR. ST 0 [-100]; +10 HP [20]; Burning Attack 1d (Always On, -40%; Aura, +80%; Melee Attack, Reach C, -30%) [6]; Doesn't Breathe (Oxygen Combustion, -50%) [10]; DR 10 (Limited: Heat/Fire, -40%) [30]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Manipulators [-50]; Weakness</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is a living flame! If your flames are very hot, increase Burning Attack and DR. ST 0 [-100]; +10 HP [20]; Burning Attack 1d (Always On, -40%; Aura, +80%; Melee Attack, Reach C, -30%) [6]; Doesn't Breathe (Oxygen Combustion, -50%) [10]; DR 10 (Limited: Heat/Fire, -40%) [30]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Diffuse) [100]; No Manipulators [-50]; Weakness</p>"
   },
   {
     "_id": "ea41b779ec6cf11d",
     "name": "Body of Ice",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Ice: Your body is made of ice. Doesn't Breathe [20]; DR 3 [15]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Slippery 3 [6]; Terrain Adaptation (Ice) [5]; Vacuum Support [5]; Fragile (Brittle) [-15]; Vulnerability (Heat/fire attacks �2) [-30]; and Weakness (Intense normal heat; 1d/minute; Variable, -40%) [-12]. 99 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of ice. Doesn't Breathe [20]; DR 3 [15]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Slippery 3 [6]; Terrain Adaptation (Ice) [5]; Vacuum Support [5]; Fragile (Brittle) [-15]; Vulnerability (Heat/fire attacks �2) [-30]; and Weakness (Intense normal heat; 1d/minute; Variable, -40%) [-12]. 99 points.</p>"
   },
   {
     "_id": "2affb01aa1a45347",
     "name": "Body of Metal",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Metal: Your body is made of metal. Doesn't Breathe [20]; DR 9 [45]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; and Vacuum Support [5]. 175 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of metal. Doesn't Breathe [20]; DR 9 [45]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; and Vacuum Support [5]. 175 points.</p>"
   },
   {
     "_id": "b06d244099810c6d",
     "name": "Body of Stone",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Stone: Your body is made of rock. Doesn't Breathe [20]; DR 5 [25]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Fragile (Brittle) [-15]. 140 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of rock. Doesn't Breathe [20]; DR 5 [25]; Immunity to Metabolic Hazards [30]; Injury Tolerance (Homogenous, No Blood) [45]; Pressure Support 3 [15]; Sealed [15]; Vacuum Support [5]; and Fragile (Brittle) [-15]. 140 points.</p>"
   },
   {
     "_id": "2927aae234131197",
     "name": "Body of Water",
     "pages": "B262",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Body of Water: Your body is made of liquid. Amphibious [10]; Chameleon 1 [5]; Constriction Attack [15]; Doesn't</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is made of liquid. Amphibious [10]; Chameleon 1 [5]; Constriction Attack [15]; Doesn't</p>"
   },
   {
     "_id": "2119170f636ea592",
@@ -99,81 +99,81 @@
     "_id": "ac51cf5688ff19b7",
     "name": "AI",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>AI: A computer mind. Absolute Timing [2]; Digital Mind [5]; Doesn't Sleep [20]; Intuitive Mathematician [5]; Photographic Memory [10]; and Reprogrammable [-10]. 32 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>A computer mind. Absolute Timing [2]; Digital Mind [5]; Doesn't Sleep [20]; Intuitive Mathematician [5]; Photographic Memory [10]; and Reprogrammable [-10]. 32 points.</p>"
   },
   {
     "_id": "8593dbad7c2a1f59",
     "name": "Automaton",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Automaton: A mind lacking selfawareness and creativity. This is typical of many hive-creatures, magical constructs, undead, and simple AIs. You can combine this with the AI meta-trait. Hidebound [-5]; Incurious (6) [-10]; Low Empathy [-20]; No Sense of Humor [-10]; and Slave Mentality [-40]. -85 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>A mind lacking selfawareness and creativity. This is typical of many hive-creatures, magical constructs, undead, and simple AIs. You can combine this with the AI meta-trait. Hidebound [-5]; Incurious (6) [-10]; Low Empathy [-20]; No Sense of Humor [-10]; and Slave Mentality [-40]. -85 points.</p>"
   },
   {
     "_id": "21c74a668fc41278",
     "name": "Domestic Animal",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Domestic Animal: A farm animal, pet, mount, or a trained wild animal. Cannot Speak [-15]; Hidebound [-5]; Social Stigma (Valuable Property) [-10]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>A farm animal, pet, mount, or a trained wild animal. Cannot Speak [-15]; Hidebound [-5]; Social Stigma (Valuable Property) [-10]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
   },
   {
     "_id": "46a683f1196667f8",
     "name": "Wild Animal",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Wild Animal: An ordinary animal found in nature. Bestial [-10]; Cannot Speak [-15]; Hidebound [-5]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>An ordinary animal found in nature. Bestial [-10]; Cannot Speak [-15]; Hidebound [-5]; and Taboo Trait (Fixed IQ) [0]. -30 points.</p>"
   },
   {
     "_id": "b647fbb1347a4584",
     "name": "Ground Vehicle",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Ground Vehicle: Your body is like a car, tank, etc. Horizontal [-10]; No Legs (Tracked or Wheeled) [-20]; No</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is like a car, tank, etc. Horizontal [-10]; No Legs (Tracked or Wheeled) [-20]; No</p>"
   },
   {
     "_id": "354a29f4d82ed5fa",
     "name": "Ichthyoid",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Ichthyoid: You have a fish-like body (a \"merman\" would just delete No Manipulators). No Legs (Aquatic) [0] and No Manipulators [-50]. -50 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You have a fish-like body (a \"merman\" would just delete No Manipulators). No Legs (Aquatic) [0] and No Manipulators [-50]. -50 points.</p>"
   },
   {
     "_id": "2da60dc72d2e4596",
     "name": "Quadruped",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Quadruped: You are a four-legged creature with no arms (a \"centauroid\" would simply take Extra Legs - plus Hooves, if equine). Extra Legs (Four Legs) [5]; Horizontal [-10]; and No Fine Manipulators [-30]. -35 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You are a four-legged creature with no arms (a \"centauroid\" would simply take Extra Legs - plus Hooves, if equine). Extra Legs (Four Legs) [5]; Horizontal [-10]; and No Fine Manipulators [-30]. -35 points.</p>"
   },
   {
     "_id": "5ffdbc71e72e6a09",
     "name": "Vermiform",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
-    "description": ""
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Your body is similar to that of a snake or a worm (a snakeman with a humanoid upper torso would drop No Manipulators). Double-Jointed [15]; No Legs (Slithers) [0]; and No Manipulators [-50]. -35 points.</p>"
   },
   {
     "_id": "4464bd34ab311e21",
     "name": "Spirit",
     "pages": "B263",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a price is still in the text",
     "description": "<p>You are a noncorporeal entity: ghost, being of pure thought, etc. You are invisible and intangible (except to others with this meta-trait!). You can temporarily become visible, or even solid, but this is draining. However, your senses can perceive the material world at all times, and your magical or psionic abilities, if any, can always affect the physical world.</p><p>Spirit includes Doesn't Breathe [20], Doesn't Eat or Drink [10], Doesn't Sleep [20], Immunity to Metabolic Hazards [30], Insubstantiality (Affect Substantial, +100%; Usually On, -40%) [128], Invisibility (Substantial Only, -10%; Usually On, +5%) [38], and Unaging [15].</p><p>Many spirit abilities from folklore are not part of this meta-trait; e.g., Injury Tolerance (Homogenous or Diffuse), Magery, and almost any ESP, PK, Telepathy, or Teleportation psi ability (see Chapter 6). Common spirit disadvantages include Compulsive Behavior, Dependency, Divine Curse, Dread, Maintenance, Obsession, and Weakness.</p><p>Astral Entity: An astral entity is a spirit that cannot materialize, become visible, or use its supernatural powers in the physical world. Doesn't Breathe [20]; Doesn't Eat or Drink [10]; Doesn't Sleep [20]; Immunity to Metabolic Hazards [30]; Insubstantiality (Always On, -50%) [40]; Invisibility (Substantial Only, -10%) [36]; and Unaging [15]. 171 points.</p><p>Now it's time to decide what possessions you have! You can skip this step if you're Dead Broke or plan to buy equipment only as needed . . . but otherwise, you should choose your gear and figure out how much it costs. If you are a warrior, you need to know how powerful your weapons are and how well your armor protects you. And if you plan to fight or travel, you need to determine the weight of your gear, and specify how you are carrying it.</p><p>Starting Wealth The amount of money you have available to spend on equipment at the start of your career is your \"starting wealth\" - see Starting Wealth (p. 26). To calculate this, start with the basic amount appropriate to your campaign's tech level, found under Tech Level and Starting Wealth (p. 27), and multiply it for your \"wealth level\" (see Wealth, p. 25).</p><p>Prices All prices in GURPS appear in \"$\": a convenient abbreviation for any baseline unit of currency suitable to the setting. One $ may be one dollar, one credit, one copper piece, or whatever else is appropriate - see Tech Level and Starting Wealth. Prices in this chapter assume a typical sale made by an ordinary merchant, in a locale where the item is usually found, at a time when there is neither a shortage nor a surplus.</p><p>Money The currency in use depends on the game world; see Economics (p. 514). Coin is almost universal. Paper money is conceivable at TL3, common by TL5, and ubiquitous at TL6. Electronic credit and debit cards supplement or possibly replace other currency at TL8. Two specific examples:</p><p>Medieval Coinage: The default assumption is that $1 is a copper farthing, $4 is a silver coin, and $1,000 in silver weighs 1 pound. Gold coins of the same weight are worth about 20 times as much. Modern Money: The default assumption is that $1 is a bank note (or alloy coin), its value backed by a government or private bank.</p><p>These assumptions may vary from world to world.</p>"
   },
   {
     "_id": "0a6cf480496834f8",
     "name": "Astral Entity",
     "pages": "B263",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Astral Entity: An astral entity is a spirit that cannot materialize, become visible, or use its supernatural powers in the physical world. Doesn't Breathe [20]; Doesn't Eat or Drink [10]; Doesn't Sleep [20]; Immunity to Metabolic Hazards [30]; Insubstantiality (Always On, -50%) [40]; Invisibility (Substantial Only, -10%) [36]; and Unaging [15]. 171 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>An astral entity is a spirit that cannot materialize, become visible, or use its supernatural powers in the physical world. Doesn't Breathe [20]; Doesn't Eat or Drink [10]; Doesn't Sleep [20]; Immunity to Metabolic Hazards [30]; Insubstantiality (Always On, -50%) [40]; Invisibility (Substantial Only, -10%) [36]; and Unaging [15]. 171 points.</p>"
   },
   {
     "_id": "92c8d28cd3c3096e",

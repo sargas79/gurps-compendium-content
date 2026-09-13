@@ -459,17 +459,17 @@
     "_id": "849969c8d678f0d3",
     "name": "Aerobatics",
     "pages": "B174",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Aerobatics: The ability to execute tight turns, loops, power dives, etc. in flight. You must be able to fly to learn this skill - although how you fly (magic, wings, jet pack, etc.) is irrelevant. Natural fliers might find flight to be as effortless as humans find walking, but they must still learn Aerobatics in order to engage in complex acrobatics. Add +2 to skill if you have 3D Spatial Sense (p. 34).</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The ability to execute tight turns, loops, power dives, etc. in flight. You must be able to fly to learn this skill - although how you fly (magic, wings, jet pack, etc.) is irrelevant. Natural fliers might find flight to be as effortless as humans find walking, but they must still learn Aerobatics in order to engage in complex acrobatics. Add +2 to skill if you have 3D Spatial Sense (p. 34).</p>"
   },
   {
     "_id": "4d4e4c405aba9498",
     "name": "Aquabatics",
     "pages": "B174",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Aquabatics: The ability to engage in underwater acrobatics. Prerequisites: Swimming, or the Amphibious advantage (p. 40) or the Aquatic disadvantage (p. 145).</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The ability to engage in underwater acrobatics. Prerequisites: Swimming, or the Amphibious advantage (p. 40) or the Aquatic disadvantage (p. 145).</p>"
   },
   {
     "_id": "a622226301eb9120",
@@ -1397,7 +1397,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Broadsword (DX/Average): Any balanced, 2- to 4-foot blade wielded in one hand - broadsword, cavalry saber, scimitar, etc. This skill also covers any stick or club of similar size and balance to these blades, as well as bastard swords, katanas, and longswords used one-handed. Defaults: Force Sword-4, Rapier-4, Saber-4, Shortsword-2, or Two-Handed Sword-4.</p>"
+    "description": "<p>Any balanced, 2- to 4-foot blade wielded in one hand - broadsword, cavalry saber, scimitar, etc. This skill also covers any stick or club of similar size and balance to these blades, as well as bastard swords, katanas, and longswords used one-handed. Defaults: Force Sword-4, Rapier-4, Saber-4, Shortsword-2, or Two-Handed Sword-4.</p>"
   },
   {
     "_id": "8c872ba6abf47d61",
@@ -1453,7 +1453,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Flail (DX/Hard): Any one-handed flail, such as a morningstar or nunchaku. Default: Axe/Mace-4.</p>"
+    "description": "<p>Any one-handed flail, such as a morningstar or nunchaku. Default: Axe/Mace-4.</p>"
   },
   {
     "_id": "4a2d446a05ca507a",
@@ -1461,7 +1461,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Force Sword (DX/Average): Any sword with a \"blade\" made of energy instead of matter. This generally refers to an ultra-tech weapon that projects energy from a powered hilt, but extends to similar effects produced using magic or psionics. Default: any sword skill at -3.</p>"
+    "description": "<p>Any sword with a \"blade\" made of energy instead of matter. This generally refers to an ultra-tech weapon that projects energy from a powered hilt, but extends to similar effects produced using magic or psionics. Default: any sword skill at -3.</p>"
   },
   {
     "_id": "b7ef9bd97d4a7d61",
@@ -1469,7 +1469,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Force Whip (DX/Average): Any whip made of pure energy instead of matter. These are usually ultra-tech devices that project energy from a powered hilt, but magical or psi-tech versions are possible. Most force whips can lash the target but not ensnare him.</p>"
+    "description": "<p>Any whip made of pure energy instead of matter. These are usually ultra-tech devices that project energy from a powered hilt, but magical or psi-tech versions are possible. Most force whips can lash the target but not ensnare him.</p>"
   },
   {
     "_id": "c54a809d5927d7c5",
@@ -1485,7 +1485,7 @@
     "pages": "B208",
     "status": "needs-review",
     "notes": "a hyphenated word may have closed up",
-    "description": "<p>Jitte/Sai (DX/Average): Any tined, one-handed sword designed to catch rigid weapons. Jitte/Sai weapons are built for disarming, and give +2 in the Quick Contest to disarm an opponent (see Knocking a Weapon Away, p. 401). Furthermore, if you attempt to disarm on the turn immediately after you parry your opponent's weapon, you need not roll to hit his weapon first. Just state that you are attempting to disarm and move directly to the Quick Contest! This still counts as an attack. Defaults: Force Sword-4, MainGauche-4, or Shortsword-3.</p>"
+    "description": "<p>Any tined, one-handed sword designed to catch rigid weapons. Jitte/Sai weapons are built for disarming, and give +2 in the Quick Contest to disarm an opponent (see Knocking a Weapon Away, p. 401). Furthermore, if you attempt to disarm on the turn immediately after you parry your opponent's weapon, you need not roll to hit his weapon first. Just state that you are attempting to disarm and move directly to the Quick Contest! This still counts as an attack. Defaults: Force Sword-4, MainGauche-4, or Shortsword-3.</p>"
   },
   {
     "_id": "9736c2a7a2ec8ab7",
@@ -1493,7 +1493,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Knife (DX/Easy): Any rigid, hilted blade less than one foot long, from a pocketknife to a bowie knife. A knife</p>"
+    "description": "<p>Any rigid, hilted blade less than one foot long, from a pocketknife to a bowie knife. A knife</p>"
   },
   {
     "_id": "003064d593392318",
@@ -1501,7 +1501,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Kusari (DX/Hard): A weighted chain wielded in two hands. Default: Two-Handed Flail-4.</p>"
+    "description": "<p>A weighted chain wielded in two hands. Default: Two-Handed Flail-4.</p>"
   },
   {
     "_id": "9663a789ba8d740d",
@@ -1517,7 +1517,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Main-Gauche (DX/Average): Any weapon normally wielded with Knife or Jitte/Sai skill (see below), used in the \"off\" hand. With this skill, you may ignore the penalty for using the \"off\" hand on defense (attacks are still at -4) and the -1 for parrying with a knife. To wield a knife as a primary weapon, use Knife skill. Defaults: Jitte/Sai-4 or Knife-4.</p>"
+    "description": "<p>Any weapon normally wielded with Knife or Jitte/Sai skill (see below), used in the \"off\" hand. With this skill, you may ignore the penalty for using the \"off\" hand on defense (attacks are still at -4) and the -1 for parrying with a knife. To wield a knife as a primary weapon, use Knife skill. Defaults: Jitte/Sai-4 or Knife-4.</p>"
   },
   {
     "_id": "467643a5012ae108",
@@ -1525,7 +1525,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Monowire Whip (DX/Hard): A whip made of a weighted length of monomolecular wire attached to a handle.</p>"
+    "description": "<p>A whip made of a weighted length of monomolecular wire attached to a handle.</p>"
   },
   {
     "_id": "782c8dada4867ba1",
@@ -1541,7 +1541,7 @@
     "pages": "B208",
     "status": "needs-review",
     "notes": "a hyphenated word may have closed up",
-    "description": "<p>Polearm (DX/Average): Any very long (at least 2 yards), unbalanced pole weapon with a heavy striking head, including the glaive, halberd, poleaxe, and countless others. Polearms become unready after an attack, but not after a parry. Defaults: Spear-4, Staff-4, or TwoHanded Axe/Mace-4.</p>"
+    "description": "<p>Any very long (at least 2 yards), unbalanced pole weapon with a heavy striking head, including the glaive, halberd, poleaxe, and countless others. Polearms become unready after an attack, but not after a parry. Defaults: Spear-4, Staff-4, or TwoHanded Axe/Mace-4.</p>"
   },
   {
     "_id": "006e1b900a978bde",
@@ -1549,7 +1549,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Rapier (DX/Average): Any long (over 1 yard), light thrusting sword. Default: Broadsword-4.</p>"
+    "description": "<p>Any long (over 1 yard), light thrusting sword. Default: Broadsword-4.</p>"
   },
   {
     "_id": "db450910693e36d3",
@@ -1557,7 +1557,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Saber (DX/Average): Any light cutand-thrust sword. Note that cavalry sabers are quite heavy, and use Broadsword instead. Defaults: Broadsword-4 or Shortsword-4.</p>"
+    "description": "<p>Any light cutand-thrust sword. Note that cavalry sabers are quite heavy, and use Broadsword instead. Defaults: Broadsword-4 or Shortsword-4.</p>"
   },
   {
     "_id": "5ffdd79dc4aa659b",
@@ -1589,7 +1589,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Shortsword (DX/Average): Any balanced, one-handed weapon 1-2 feet in length - including the shortsword and any club of comparable size and balance (e.g., a police baton). Defaults: Broadsword-2, Force Sword-4, Jitte/Sai-3, Knife-4, Saber-4, Smallsword-4, or Tonfa-3.</p>"
+    "description": "<p>Any balanced, one-handed weapon 1-2 feet in length - including the shortsword and any club of comparable size and balance (e.g., a police baton). Defaults: Broadsword-2, Force Sword-4, Jitte/Sai-3, Knife-4, Saber-4, Smallsword-4, or Tonfa-3.</p>"
   },
   {
     "_id": "fb8b6ad95f5a81b6",
@@ -1597,7 +1597,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Smallsword (DX/Average): Any short (up to 1 yard), light thrusting sword or one-handed short staff (such as the sticks used in the martial arts arnis, escrima, and kali). Default: Shortsword-4.</p>"
+    "description": "<p>Any short (up to 1 yard), light thrusting sword or one-handed short staff (such as the sticks used in the martial arts arnis, escrima, and kali). Default: Shortsword-4.</p>"
   },
   {
     "_id": "cf0c0702bcbcf754",
@@ -1605,7 +1605,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Spear (DX/Average): Any long, balanced pole weapon with a thrusting point, including spears, javelins, tridents, and fixed bayonets. Defaults: Polearm-4 or Staff-2.</p>"
+    "description": "<p>Any long, balanced pole weapon with a thrusting point, including spears, javelins, tridents, and fixed bayonets. Defaults: Polearm-4 or Staff-2.</p>"
   },
   {
     "_id": "e7b7ec9cf736aa9e",
@@ -1613,7 +1613,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Staff (DX/Average): Any long, balanced pole without a striking head. This skill makes good use of the staff's extensive parrying surface when defending, giving +2 to your Parry score. Defaults: Polearm-4 or Spear-2.</p>"
+    "description": "<p>Any long, balanced pole without a striking head. This skill makes good use of the staff's extensive parrying surface when defending, giving +2 to your Parry score. Defaults: Polearm-4 or Spear-2.</p>"
   },
   {
     "_id": "41153544cb10ba7c",
@@ -1621,7 +1621,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Tonfa (DX/Average): A tonfa is a baton with a protruding handle on one side. It can function as a baton, but you can also grasp it by the handle and</p>"
+    "description": "<p>A tonfa is a baton with a protruding handle on one side. It can function as a baton, but you can also grasp it by the handle and</p>"
   },
   {
     "_id": "af64235ede881e80",
@@ -1637,7 +1637,7 @@
     "pages": "B208",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Two-Handed Flail (DX/Hard): Any two-handed flail. Defaults: Kusari-4 or Two-Handed Axe/Mace-4.</p>"
+    "description": "<p>Any two-handed flail. Defaults: Kusari-4 or Two-Handed Axe/Mace-4.</p>"
   },
   {
     "_id": "98ca00c4c11a5aff",
@@ -1645,7 +1645,7 @@
     "pages": "B209",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Two-Handed Sword (DX/Average): Any balanced, two-handed blade over 4 feet in length: greatswords, zweihanders, etc. This skill also covers quarterstaffs wielded like swords, as well as bastard swords, katanas, and longswords used two-handed. Defaults: Broadsword-4 or Force Sword-4.</p>"
+    "description": "<p>Any balanced, two-handed blade over 4 feet in length: greatswords, zweihanders, etc. This skill also covers quarterstaffs wielded like swords, as well as bastard swords, katanas, and longswords used two-handed. Defaults: Broadsword-4 or Force Sword-4.</p>"
   },
   {
     "_id": "63979cb2dcf2a50d",
@@ -1819,17 +1819,17 @@
     "_id": "deb00137501c885b",
     "name": "Fast-Draw (Arrow)",
     "pages": "B195",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>This skill lets you quickly draw a weapon from its holster, sheath, or hiding place. A successful roll means you ready the weapon instantly. This does not count as a combat maneuver; you can use the weapon to attack on the same turn. On a failure, you ready your weapon normally but may do nothing else on your turn. A critical failure means you drop the weapon!</p><p>You must specialize in one of these weapon types: Force Sword, Knife, Long Arm (rifle, shotgun, submachine gun, etc.), Pistol, Sword (any onehanded blade larger than a knife), or</p><p>Fast-Draw (Arrow): Lets you ready a single arrow, bolt, or dart instantly. This reduces the time required to reload a bow, crossbow, or blowgun by one second.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Lets you ready a single arrow, bolt, or dart instantly. This reduces the time required to reload a bow, crossbow, or blowgun by one second.</p>"
   },
   {
     "_id": "8247f83b887783be",
     "name": "Fast-Draw/TL (Ammo)",
     "pages": "B195",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Fast-Draw/TL (Ammo): Reduces the time required to reload any kind of gun or beam weapon. The exact benefits depend on your weapon, but a successful roll always shaves at least one second off the reload time. This skill varies greatly with TL! At TL4, it covers powder-and-shot drills; at TL6+, it includes speed-loading techniques for detachable magazines; and at higher tech levels, it involves quickly replacing energy cells and attaching power cables.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Reduces the time required to reload any kind of gun or beam weapon. The exact benefits depend on your weapon, but a successful roll always shaves at least one second off the reload time. This skill varies greatly with TL! At TL4, it covers powder-and-shot drills; at TL6+, it includes speed-loading techniques for detachable magazines; and at higher tech levels, it involves quickly replacing energy cells and attaching power cables.</p>"
   },
   {
     "_id": "53fd6c9f6b253b9d",
@@ -2187,9 +2187,9 @@
     "_id": "2609a9e1b6bcf14a",
     "name": "Computer Hacking/TL",
     "pages": "B184",
-    "status": "transcribed",
-    "notes": "",
-    "description": "<p>Prerequisite:</p><p>Computer Programming.</p><p>This is the skill of gaining illegal access to a computer system - usually using another computer over a communications network. A successful Computer Hacking roll allows you to gain surreptitious access to a system, or to find (or change) information on a system you have already broken into. On a critical failure, you fail to gain access and leave some sort of incriminating evidence of your attempt.</p><p>This skill is cinematic, and simulates the way computer intrusion works in many movies and novels. It does not exist in realistic settings! Realistic \"hackers\" should learn a combination of Computer Operation (to exploit OS loopholes and run intrusion software), Computer Programming (to write intrusion software), Cryptography, Electronics Operation (Communications or Surveillance), Electronics Repair (Computers), Fast-Talk (to convince legitimate users to reveal passwords), Research (to find documented security holes), and Scrounging (to \"Dumpster dive\" for manuals, passwords on discarded sticky notes, etc.).</p><p><em>Modifiers:</em> Equipment modifiers (p. 345). -1 to -10 if you have been away from the field for a long time and have not had a chance to become familiar with the changes. Security measures give a penalty, from -1 for the cheapest commercial security software to -15 for the latest technology. Some measures resist your intrusion attempt; treat this as a Quick Contest of Hacking vs. the effective skill of the defenses.</p>"
+    "status": "needs-review",
+    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "description": ""
   },
   {
     "_id": "b4e22cf13b98bfc1",
@@ -2307,8 +2307,8 @@
     "_id": "14eec92b2b1652f9",
     "name": "Panhandling",
     "pages": "B212",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a price is still in the text",
     "description": "<p>This is the art of effective begging: who to approach, how to approach them, and how to avoid legal entanglements. Roll once per hour of begging.</p><p>On a success, you net $2.00 times your margin of success. On a critical success, you get some sort of unexpected bonus - perhaps someone buys you dinner or gives you a useful or saleable item (e.g., a raincoat or a new pair of shoes). On a failure, you receive nothing. On a critical failure, you are assaulted or have a run-in with the law.</p><p><em>Modifiers:</em> Any bonus for Charisma (p. 41); +3 for Pitiable (p. 22); -1 to -4 for Shyness (p. 154). You may, if you wish, apply the opposite of your usual appearance modifier - that is, a penalty for being attractive or a bonus for being unattractive - unless you are Horrific or Monstrous (p. 21). The GM may assign a bonus if there is a lot of foot traffic in the area, or a penalty if there is no one around.</p>"
   },
   {
@@ -2677,7 +2677,7 @@
     "pages": "B207",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>This is the ability to calm the emotions, control the mind, and relax the body. To use this skill, you must concentrate for (20 - skill) seconds, minimum one second, and then roll vs. skill. On a success, you enter a trancelike state, which you can maintain for hours.</p><p>A meditative trance is required for certain rituals and is a common preparation for prayer. In addition, the GM may permit you to meditate on a particular moral dilemma. On a successful Meditation roll, the GM will \"enlighten\" you, providing a hint as to which course of action \"feels\" right.</p><p>Melee Weapon</p>"
+    "description": "<p>This is the ability to calm the emotions, control the mind, and relax the body. To use this skill, you must concentrate for (20 - skill) seconds, minimum one second, and then roll vs. skill. On a success, you enter a trancelike state, which you can maintain for hours.</p><p>A meditative trance is required for certain rituals and is a common preparation for prayer. In addition, the GM may permit you to meditate on a particular moral dilemma. On a successful Meditation roll, the GM will \"enlighten\" you, providing a hint as to which course of action \"feels\" right.</p>"
   },
   {
     "_id": "28142adcbd9742d9",
@@ -3139,9 +3139,9 @@
     "_id": "6c34541a0006ea48",
     "name": "Surgery/TL",
     "pages": "B223",
-    "status": "transcribed",
-    "notes": "",
-    "description": "<p>Prerequisites: First Aid or Physician.</p><p>This is skill at using invasive medical techniques to treat sickness or injury. Roll once per operation. On a success, the operation proceeded without complications. On a failure, the patient took damage - 2d for a simple amputation, 3d for other procedures. Surgery rolls can also facilitate recovery from wounds; see Surgery (p. 424).</p><p>This skill represents general surgical expertise, which is relatively rare in real life. Most surgeons have an optional specialty (p. 169) in a certain part of the body (brain, heart, etc.) or a specific type of surgery (cosmetic surgery, microsurgery, transplant surgery, etc.).</p><p><em>Modifiers:</em> Equipment modifiers (p. 345); physiology modifiers (p. 181); -3 if the area or equipment cannot be properly cleaned and sterilized; -3 for head or chest surgery; -5 for undiagnosed problems. If you lack Physician skill, you are at -5 to do anything but \"field-expedient\" surgery (e.g., stitch wounds or extract arrowheads, bullets, and shrapnel).</p>"
+    "status": "needs-review",
+    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
+    "description": ""
   },
   {
     "_id": "5950c7af74a56c65",
@@ -3332,8 +3332,8 @@
     "name": "NBC Suit/TL",
     "pages": "B192",
     "status": "needs-review",
-    "notes": "a hyphenated word may have closed up; taken from the family's shared text; check the variant's own line",
-    "description": "<p>NBC Suit/TL: All forms of hazardous materials (\"HazMat\") gear - including sealed, unpowered body armor that can be buttoned down against nuclear-biological-chemical (NBC) threats. Without this skill, you run the risk of misusing the equipment and being exposed to contamination. To improvise NBC gear, make an IQbased skill roll at -5 to -15 to skill.</p>"
+    "notes": "a hyphenated word may have closed up",
+    "description": "<p>All forms of hazardous materials (\"HazMat\") gear - including sealed, unpowered body armor that can be buttoned down against nuclear-biological-chemical (NBC) threats. Without this skill, you run the risk of misusing the equipment and being exposed to contamination. To improvise NBC gear, make an IQbased skill roll at -5 to -15 to skill.</p>"
   },
   {
     "_id": "cb5ff2f0dd2f6037",
@@ -4451,17 +4451,17 @@
     "_id": "3ca56f9cb1cdffe6",
     "name": "Battlesuit/TL",
     "pages": "B192",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Battlesuit/TL: All kinds of powered battle armor and exoskeletons. Battle armor and exoskeletons are similar but not identical. If you only have experience with one, you are at -2 to operate the other until you gain familiarity (see Familiarity, p. 169).</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>All kinds of powered battle armor and exoskeletons. Battle armor and exoskeletons are similar but not identical. If you only have experience with one, you are at -2 to operate the other until you gain familiarity (see Familiarity, p. 169).</p>"
   },
   {
     "_id": "6976c4f30ccca446",
     "name": "Diving Suit/TL",
     "pages": "B192",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Diving Suit/TL: All types of hard diving suits (as opposed to the wetsuits and drysuits used with Scuba skill). This includes \"open dress\" gear at TL5 and \"hard hat\" gear at TL6, both of which use a sealed helmet and supplied air, but not always a full, sealed suit. At TL7+, this skill covers true underwater \"hardsuits.\" The GM may require Swimming rolls to maneuver while wearing such a suit. Default: Scuba-2.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>All types of hard diving suits (as opposed to the wetsuits and drysuits used with Scuba skill). This includes \"open dress\" gear at TL5 and \"hard hat\" gear at TL6, both of which use a sealed helmet and supplied air, but not always a full, sealed suit. At TL7+, this skill covers true underwater \"hardsuits.\" The GM may require Swimming rolls to maneuver while wearing such a suit. Default: Scuba-2.</p>"
   },
   {
     "_id": "495d4cf78fe60c55",
@@ -4579,17 +4579,17 @@
     "_id": "7ae81d23cb5ba082",
     "name": "Vacc Suit/TL",
     "pages": "B192",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Vacc Suit/TL: Any kind of spacesuit. In addition to true vacuum suits, this includes suits intended for use in highpressure, corrosive, and poisonous atmospheres.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Any kind of spacesuit. In addition to true vacuum suits, this includes suits intended for use in highpressure, corrosive, and poisonous atmospheres.</p>"
   },
   {
     "_id": "581bb71c3ef686d7",
     "name": "Airshipman/TL",
     "pages": "B185",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Airshipman/TL: The skill of handling ballast, gas valves, mooring lines, etc. on a blimp, zeppelin, or other large airship.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The skill of handling ballast, gas valves, mooring lines, etc. on a blimp, zeppelin, or other large airship.</p>"
   },
   {
     "_id": "b8088e9cb481f4d0",
@@ -4827,9 +4827,9 @@
     "_id": "083380d2c6abe7a7",
     "name": "Seamanship/TL",
     "pages": "B185",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Seamanship/TL: The skill of operating anchors, hatches, mooring lines, pumps, sails, windlasses, etc. aboard a large surface ship (but not a submarine).</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The skill of operating anchors, hatches, mooring lines, pumps, sails, windlasses, etc. aboard a large surface ship (but not a submarine).</p>"
   },
   {
     "_id": "e6736a8f302d4b33",
@@ -4875,9 +4875,9 @@
     "_id": "38d575c853280b2c",
     "name": "Spacer/TL",
     "pages": "B185",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Spacer/TL: The skill of working with airlocks, docking clamps, hull patches, pressure doors, etc. on a large spacecraft or space base.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The skill of working with airlocks, docking clamps, hull patches, pressure doors, etc. on a large spacecraft or space base.</p>"
   },
   {
     "_id": "5e5e54f00b0d071f",
@@ -4907,9 +4907,9 @@
     "_id": "e6fe0e6c0854aa22",
     "name": "Submariner/TL",
     "pages": "B185",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Submariner/TL: The skill of handling pressure doors, pumps, valves, etc. aboard a submarine or in an undersea base.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>The skill of handling pressure doors, pumps, valves, etc. aboard a submarine or in an undersea base.</p>"
   },
   {
     "_id": "d662ca7359fbf41d",
@@ -4917,7 +4917,7 @@
     "pages": "B175",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Detective! (IQ). Replaces Criminology, Detect Lies, Electronics Operation (Security and Surveillance), Forensics, Interrogation, Law, Observation, Research, Savoir-Faire (Police), Search, Shadowing, Streetwise, etc.</p>"
+    "description": "<p>Replaces Criminology, Detect Lies, Electronics Operation (Security and Surveillance), Forensics, Interrogation, Law, Observation, Research, Savoir-Faire (Police), Search, Shadowing, Streetwise, etc.</p>"
   },
   {
     "_id": "5f74fd4da103a3dd",
@@ -4925,7 +4925,7 @@
     "pages": "B175",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Gun! (DX). Replaces all specialties of Beam Weapons, Gunner, Guns, and Liquid Projector, as well as all related Fast-Draw skills. Make an IQbased roll for Armoury pertaining to these weapons.</p>"
+    "description": "<p>Replaces all specialties of Beam Weapons, Gunner, Guns, and Liquid Projector, as well as all related Fast-Draw skills. Make an IQbased roll for Armoury pertaining to these weapons.</p>"
   },
   {
     "_id": "5e22943cd5c44436",
@@ -4933,7 +4933,7 @@
     "pages": "B175",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Science! (IQ). Replaces Astronomy, Bioengineering, Biology, Chemistry, Engineer, Geology, Mathematics, Metallurgy, Meteorology, Naturalist, Paleontology, Physics, Psychology, etc.</p>"
+    "description": "<p>Replaces Astronomy, Bioengineering, Biology, Chemistry, Engineer, Geology, Mathematics, Metallurgy, Meteorology, Naturalist, Paleontology, Physics, Psychology, etc.</p>"
   },
   {
     "_id": "f0c2ca9c36075cf3",
@@ -4941,7 +4941,7 @@
     "pages": "B175",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Sword! (DX). Replaces Broadsword, Force Sword, Jitte/Sai, Knife, Main-Gauche, Rapier, Saber, Shortsword, Smallsword, and Two-Handed Sword, as well as related Fast-Draw skills. Use in place of such skills as Acrobatics and Jumping for physical stunts while fighting.</p>"
+    "description": "<p>Replaces Broadsword, Force Sword, Jitte/Sai, Knife, Main-Gauche, Rapier, Saber, Shortsword, Smallsword, and Two-Handed Sword, as well as related Fast-Draw skills. Use in place of such skills as Acrobatics and Jumping for physical stunts while fighting.</p>"
   },
   {
     "_id": "c853c815b40cf7d4",

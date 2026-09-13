@@ -123,9 +123,9 @@
     "_id": "1a7562b98de130e4",
     "name": "Cannot Kick",
     "pages": "B55",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Cannot Kick: You cannot use your legs to kick for damage. -50%.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You cannot use your legs to kick for damage. -50%.</p>"
   },
   {
     "_id": "b96bb9cf5695a0e8",
@@ -291,17 +291,17 @@
     "_id": "5e3fdd7735ff3825",
     "name": "No Fine Manipulators",
     "pages": "B145",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>No Fine Manipulators: You have no body part more agile than paws or hooves. You cannot use your limbs to make repairs, pick locks, tie knots, wield weapons, etc., or even to grasp firmly. You may only select this trait if you have nothing approaching the human hand in terms of overall versatility. If you have a beak, tongue, prehensile tail, etc. that is as good as a hand, you do not have No Fine Manipulators! -30 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You have no body part more agile than paws or hooves. You cannot use your limbs to make repairs, pick locks, tie knots, wield weapons, etc., or even to grasp firmly. You may only select this trait if you have nothing approaching the human hand in terms of overall versatility. If you have a beak, tongue, prehensile tail, etc. that is as good as a hand, you do not have No Fine Manipulators! -30 points.</p>"
   },
   {
     "_id": "c9f4803da544fb8a",
     "name": "No Manipulators",
     "pages": "B145",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>No Manipulators: You have no limbs. The only way for you to manipulate objects is to push them around with your body or head. You can still move, and are capable of rolling, wriggling, bouncing, etc. at</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You have no limbs. The only way for you to manipulate objects is to push them around with your body or head. You can still move, and are capable of rolling, wriggling, bouncing, etc. at</p>"
   },
   {
     "_id": "4bff8762fbc798ea",
@@ -557,7 +557,7 @@
     "pages": "B132",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>You suffer from a supernatural aversion that compels you to keep a certain, minimum distance from a particular item or substance. If outside forces bring you and the item you dread closer together than that, you must move away as fast as you can, by the most direct route possible. You may do nothing else until you are beyond the range of your Dread. If you cannot put at least that much distance between yourself and the object of your Dread, your Dread will render you helpless!</p><p>You can instantly sense the presence of the dreaded substance as soon as you enter the forbidden radius. You do not know exactly where it is, but you know what direction it lies in and are compelled to go exactly the other way.</p><p>Base value of Dread is -10 points, which prohibits you from coming within one yard of the dreaded substance. A larger radius gives an additional -1 point per yard, to a maximum of -20 points at 11 yards. Find the final disadvantage value by multiplying the point value for your range to reflect the rarity of the substance, as described for Weakness (p. 161).</p><p>Special Enhancements Cannot Be Trapped: You cannot enter the forbidden zone of your own volition, but if carried there by an outside force, you no longer feel your Dread. You can act normally in the forbidden zone until you leave the substance's presence, at which time the prohibition reactivates. -50%.</p>"
+    "description": "<p>You suffer from a supernatural aversion that compels you to keep a certain, minimum distance from a particular item or substance. If outside forces bring you and the item you dread closer together than that, you must move away as fast as you can, by the most direct route possible. You may do nothing else until you are beyond the range of your Dread. If you cannot put at least that much distance between yourself and the object of your Dread, your Dread will render you helpless!</p><p>You can instantly sense the presence of the dreaded substance as soon as you enter the forbidden radius. You do not know exactly where it is, but you know what direction it lies in and are compelled to go exactly the other way.</p><p>Base value of Dread is -10 points, which prohibits you from coming within one yard of the dreaded substance. A larger radius gives an additional -1 point per yard, to a maximum of -20 points at 11 yards. Find the final disadvantage value by multiplying the point value for your range to reflect the rarity of the substance, as described for Weakness (p. 161).</p>"
   },
   {
     "_id": "5f10051fcdf9c6ec",
@@ -755,17 +755,17 @@
     "_id": "ee200b4197134eb6",
     "name": "Cannot Speak",
     "pages": "B125",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Cannot Speak: You can make vocal sounds (bark, growl, trill, etc., as appropriate), but your speech organs are incapable of the subtle modulations required for language. You may still have the Mimicry or Voice advantage, or the Disturbing Voice disadvantage (but not Stuttering). Most animals have this trait. -15 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You can make vocal sounds (bark, growl, trill, etc., as appropriate), but your speech organs are incapable of the subtle modulations required for language. You may still have the Mimicry or Voice advantage, or the Disturbing Voice disadvantage (but not Stuttering). Most animals have this trait. -15 points.</p>"
   },
   {
     "_id": "c68d6cb5b66c8171",
     "name": "Mute",
     "pages": "B125",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Mute: You cannot vocalize at all. All communications with others must be nonverbal: writing, sign language, Morse code, telepathy, etc. Time spent communicating this way counts at full value for study of the related skills (see Chapter 9). No roll is required (or allowed!) when you try to communicate with PCs who don't know your sign language - roleplay this on your own! You cannot have any other voicerelated traits. -25 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You cannot vocalize at all. All communications with others must be nonverbal: writing, sign language, Morse code, telepathy, etc. Time spent communicating this way counts at full value for study of the related skills (see Chapter 9). No roll is required (or allowed!) when you try to communicate with PCs who don't know your sign language - roleplay this on your own! You cannot have any other voicerelated traits. -25 points.</p>"
   },
   {
     "_id": "ea468baa4288051c",
@@ -939,9 +939,9 @@
     "_id": "25b7e2fcb5281ba6",
     "name": "Klutz",
     "pages": "B141",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Klutz: Make a DX roll to get through the day without doing a pratfall, dropping books, or knocking over shelves filled with fragile items. This is rarely life-threatening, but it is inconvenient and often expensive. The GM should be creative in inventing minor torments. You should especially avoid laboratories, explosives, china shops, etc. -5 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Make a DX roll to get through the day without doing a pratfall, dropping books, or knocking over shelves filled with fragile items. This is rarely life-threatening, but it is inconvenient and often expensive. The GM should be creative in inventing minor torments. You should especially avoid laboratories, explosives, china shops, etc. -5 points.</p>"
   },
   {
     "_id": "5afab89327c5b60c",
@@ -1171,17 +1171,17 @@
     "_id": "ef833c20558f93ec",
     "name": "Unfit",
     "pages": "B160",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Unfit: You get -1 to all HT rolls to remain conscious, avoid death, resist disease or poison, etc. This does not reduce your HT attribute or HT-based skills! As well, you lose FP at twice the normal rate. -5 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You get -1 to all HT rolls to remain conscious, avoid death, resist disease or poison, etc. This does not reduce your HT attribute or HT-based skills! As well, you lose FP at twice the normal rate. -5 points.</p>"
   },
   {
     "_id": "a3bc8a7c2fba546a",
     "name": "Very Unfit",
     "pages": "B160",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Very Unfit: As above, but the penalty to HT rolls is -2. In addition, you recover FP at only half the normal rate. You may not purchase any level of Resistant (p. 80). -15 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>As above, but the penalty to HT rolls is -2. In addition, you recover FP at only half the normal rate. You may not purchase any level of Resistant (p. 80). -15 points.</p>"
   },
   {
     "_id": "3375495af8ae1e0d",
@@ -1283,17 +1283,17 @@
     "_id": "187a994269750098",
     "name": "Chummy",
     "pages": "B126",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Chummy: You react to others at +2 most of the time. When alone, you are unhappy and distracted, and suffer a -1 penalty to IQ-based skills. -5 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You react to others at +2 most of the time. When alone, you are unhappy and distracted, and suffer a -1 penalty to IQ-based skills. -5 points.</p>"
   },
   {
     "_id": "8fe4667f04e4291b",
     "name": "Gregarious",
     "pages": "B126",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Gregarious: You usually react to others at +4. You are miserable when alone, and use IQ-based skills at -2 - or at -1 if in a group of four or less. -10 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You usually react to others at +4. You are miserable when alone, and use IQ-based skills at -2 - or at -1 if in a group of four or less. -10 points.</p>"
   },
   {
     "_id": "be5f1bbafd857e65",
@@ -1309,47 +1309,47 @@
     "pages": "B127",
     "status": "transcribed",
     "notes": "",
-    "description": "<p>Code of Honor is not the same as Duty (p. 133) or Sense of Duty (p. 153). A samurai or British grenadier marches into battle against fearful odds out of duty, not for his personal honor (though of course he would lose honor by fleeing). The risks you take for your honor are solely on your own account.</p>"
+    "description": "<p>Always avenge an insult, regardless of the danger; your buddy's foe is your own; never attack a fellow crewman or buddy except in a fair, open duel.</p>"
   },
   {
     "_id": "bb46edee2f8f2188",
     "name": "Code of Honor (Pirate's)",
     "pages": "B127",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>-5 to -15 points</p><p>You take pride in a set of principles that you follow at all times. The specifics can vary, but they always involve \"honorable\" behavior. You will do nearly anything - perhaps even risk death - to avoid the label \"dishonorable\" (whatever that means).</p><p>Code of Honor (Pirate's): Always avenge an insult, regardless of the danger; your buddy's foe is your own; never attack a fellow crewman or buddy except in a fair, open duel.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Always avenge an insult, regardless of the danger; your buddy's foe is your own; never attack a fellow crewman or buddy except in a fair, open duel.</p>"
   },
   {
     "_id": "a816033b7ce2615c",
     "name": "Code of Honor (Professional)",
     "pages": "B127",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>-5 to -15 points</p><p>You take pride in a set of principles that you follow at all times. The specifics can vary, but they always involve \"honorable\" behavior. You will do nearly anything - perhaps even risk death - to avoid the label \"dishonorable\" (whatever that means).</p><p>Code of Honor (Professional): Adhere to the ethics of your profession; always do your job to the best of your ability; support your guild, union, or professional association. This is most suitable for lawyers and physicians (Hippocratic Oath), but dedicated tradesmen, merchants, and so forth may have a similar Code. -5 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Adhere to the ethics of your profession; always do your job to the best of your ability; support your guild, union, or professional association. This is most suitable for lawyers and physicians (Hippocratic Oath), but dedicated tradesmen, merchants, and so forth may have a similar Code. -5 points.</p>"
   },
   {
     "_id": "e57cbca33ac7731e",
     "name": "Code of Honor (Gentleman's)",
     "pages": "B127",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>-5 to -15 points</p><p>You take pride in a set of principles that you follow at all times. The specifics can vary, but they always involve \"honorable\" behavior. You will do nearly anything - perhaps even risk death - to avoid the label \"dishonorable\" (whatever that means).</p><p>Code of Honor (Gentleman's): Never break your word. Never ignore an insult to yourself, a lady, or your flag; insults may only be wiped out by an apology or a duel (not necessarily to the death!). Never take advantage of an opponent in any way; weapons and circumstances must be equal (except in open war). This only applies between gentlemen. A discourtesy from anyone of Status 0 or less calls for a whipping, not a duel! -10 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Never break your word. Never ignore an insult to yourself, a lady, or your flag; insults may only be wiped out by an apology or a duel (not necessarily to the death!). Never take advantage of an opponent in any way; weapons and circumstances must be equal (except in open war). This only applies between gentlemen. A discourtesy from anyone of Status 0 or less calls for a whipping, not a duel! -10 points.</p>"
   },
   {
     "_id": "c7b37f470c7b5f81",
     "name": "Code of Honor (Soldier's)",
     "pages": "B127",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>-5 to -15 points</p><p>You take pride in a set of principles that you follow at all times. The specifics can vary, but they always involve \"honorable\" behavior. You will do nearly anything - perhaps even risk death - to avoid the label \"dishonorable\" (whatever that means).</p><p>Code of Honor (Soldier's): An officer should be tough but fair, lead from the front, and look out for his men; an enlisted man should look out for his buddies and take care of his kit. Every soldier should be willing to fight and die for the honor of his unit, service, and country; follow orders; obey the \"rules of war\"; treat an honorable enemy with respect (a dishonorable enemy deserves a bullet); and wear the uniform with pride. -10 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>An officer should be tough but fair, lead from the front, and look out for his men; an enlisted man should look out for his buddies and take care of his kit. Every soldier should be willing to fight and die for the honor of his unit, service, and country; follow orders; obey the \"rules of war\"; treat an honorable enemy with respect (a dishonorable enemy deserves a bullet); and wear the uniform with pride. -10 points.</p>"
   },
   {
     "_id": "3e3e6f62cdcf0ecb",
     "name": "Code of Honor (Chivalry)",
     "pages": "B127",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>-5 to -15 points</p><p>You take pride in a set of principles that you follow at all times. The specifics can vary, but they always involve \"honorable\" behavior. You will do nearly anything - perhaps even risk death - to avoid the label \"dishonorable\" (whatever that means).</p><p>Code of Honor (Chivalry): As Code of Honor (Gentleman's), except that flags haven't been invented. Respond to any insult to your liege-lord or to your faith. Protect any lady, and anyone weaker than yourself. Accept any challenge to arms from anyone of greater or equal rank. Even in open war, sides and weapons must be equal if the foe is also noble and chivalrous. -15 points.</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>As Code of Honor (Gentleman's), except that flags haven't been invented. Respond to any insult to your liege-lord or to your faith. Protect any lady, and anyone weaker than yourself. Accept any challenge to arms from anyone of greater or equal rank. Even in open war, sides and weapons must be equal if the foe is also noble and chivalrous. -15 points.</p>"
   },
   {
     "_id": "444fcd0b5265ad89",
@@ -1363,49 +1363,49 @@
     "_id": "04ba15eaf68aed41",
     "name": "Compulsive Carousing",
     "pages": "B128",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Carousing: You cannot resist the urge to party! Once per day, you must seek out a social gathering and lounge around - feasting, drinking, singing, and joking - for at least an hour. If you are not invited, you</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You cannot resist the urge to party! Once per day, you must seek out a social gathering and lounge around - feasting, drinking, singing, and joking - for at least an hour. If you are not invited, you</p>"
   },
   {
     "_id": "462e4408d5b8cf03",
     "name": "Compulsive Gambling",
     "pages": "B128",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Gambling: You cannot pass up an opportunity to gamble. Bets, wagers, games of chance, and even lotteries hold an uncanny fascination for you. If there is no game of chance or bet going, you will start one. You try any gambling game proposed to you, whether you know it or not. You do not have to have the Gambling skill, but if you don't, you will need a steady source of wealth! If you are prevented from gambling - for instance, by traveling with nongamblers - you will quickly earn a reaction penalty (-1 per -5 points in this disadvantage, after the self-control multiplier) by constantly talking about gambling and attempting to draw others into games or wagers. -5 points.*</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You cannot pass up an opportunity to gamble. Bets, wagers, games of chance, and even lotteries hold an uncanny fascination for you. If there is no game of chance or bet going, you will start one. You try any gambling game proposed to you, whether you know it or not. You do not have to have the Gambling skill, but if you don't, you will need a steady source of wealth! If you are prevented from gambling - for instance, by traveling with nongamblers - you will quickly earn a reaction penalty (-1 per -5 points in this disadvantage, after the self-control multiplier) by constantly talking about gambling and attempting to draw others into games or wagers. -5 points.*</p>"
   },
   {
     "_id": "16656308a9c46cf2",
     "name": "Compulsive Generosity",
     "pages": "B128",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Generosity: You are too open-handed. If a beggar asks for cash, you give - and where others give copper, you give silver. You always listen to larger requests for financial aid, if they are even remotely plausible, and you must make a self-control roll whenever you hear a good hard-luck story (if you are broke when asked, you apologize profusely). You aren't a complete sucker - you just feel guilty about being better off than others. In a society with a lot of beggars around, increase your cost of living:</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You are too open-handed. If a beggar asks for cash, you give - and where others give copper, you give silver. You always listen to larger requests for financial aid, if they are even remotely plausible, and you must make a self-control roll whenever you hear a good hard-luck story (if you are broke when asked, you apologize profusely). You aren't a complete sucker - you just feel guilty about being better off than others. In a society with a lot of beggars around, increase your cost of living:</p>"
   },
   {
     "_id": "1794200db77adae5",
     "name": "Compulsive Lying",
     "pages": "B128",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Lying: You lie constantly, for no reason other than the joy of telling the tale. You delight in inventing stories about your deeds, lineage, wealth - whatever might impress your</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You lie constantly, for no reason other than the joy of telling the tale. You delight in inventing stories about your deeds, lineage, wealth - whatever might impress your</p>"
   },
   {
     "_id": "9e5a16d21f6448d4",
     "name": "Compulsive Spending",
     "pages": "B129",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Spending: Cash just runs through your fingers! You enjoy being seen as a big spender, are too fond of luxury, or find the experience of buying to be fun - perhaps all three. Make a self-control roll whenever someone offers you a purchase that matches any of your quirks or interests, and the cash in your pocket is more than twice the asking price. If you fail, you buy. This raises your cost of living, and gives you a penalty to Merchant skill when you bargain or haggle:</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>Cash just runs through your fingers! You enjoy being seen as a big spender, are too fond of luxury, or find the experience of buying to be fun - perhaps all three. Make a self-control roll whenever someone offers you a purchase that matches any of your quirks or interests, and the cash in your pocket is more than twice the asking price. If you fail, you buy. This raises your cost of living, and gives you a penalty to Merchant skill when you bargain or haggle:</p>"
   },
   {
     "_id": "066c6683e4a9af0f",
     "name": "Compulsive Vowing",
     "pages": "B129",
-    "status": "needs-review",
-    "notes": "taken from the family's shared text; check the variant's own line",
-    "description": "<p>Compulsive Vowing: You never simply decide to do something; you must make it an oath. Although these vows are often trivial in nature, you approach them all with the same solemnity and dedication. You may tack extraneous vows onto legitimate ones. -5 points.*</p>"
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>You never simply decide to do something; you must make it an oath. Although these vows are often trivial in nature, you approach them all with the same solemnity and dedication. You may tack extraneous vows onto legitimate ones. -5 points.*</p>"
   },
   {
     "_id": "d8574ed83bbc1196",
@@ -1891,8 +1891,8 @@
     "_id": "64d3974ee15da74a",
     "name": "Slave Mentality",
     "pages": "B154",
-    "status": "transcribed",
-    "notes": "",
+    "status": "needs-review",
+    "notes": "a price is still in the text",
     "description": "<p>You have no initiative, and become confused and ineffectual without a \"master\" to give you orders. You must make an IQ roll at -8 before you can take any action that isn't either obeying a direct order or part of an established routine. As well, you automatically fail any Will roll to assert yourself or resist social influence except in circumstances where the GM rules Maturity 18 years 9 years 4 years 2 years 1 year Aging [Frequency of Aging Rolls]</p><p>50 years [1 year]</p><p>70 years [6 months]</p><p>25 years [6 months] 35 years [3 months]</p><p>12 years [3 months] 17 years [45 days]</p><p>6 years [45 days]</p><p>8 years [22 days]</p><p>3 years [22 days]</p><p>4 years [11 days]</p><p>90 years [3 months] 45 years [45 days] 22 years [22 days] 11 years [11 days] 5 years [5 days]</p><p>that success might be possible, in which case you roll at -6.</p><p>This doesn't necessarily imply low IQ or Will. You might be intelligent enough to obey the command, \"Program the computer to detect quarks,\" but if you were starving and found $10, you would have to roll vs. IQ-8 to decide to pick up the money and go buy food without being told to do so. Similarly, you might be strongwilled enough to make all your Fright Checks in the presence of terrifying monsters, yet roll at Will-6 to resist the unsubtle manipulations of an obvious con man.</p><p>This disadvantage is rarely appropriate for PCs, and the GM may choose to forbid it entirely.</p>"
   },
   {
@@ -1930,10 +1930,10 @@
   {
     "_id": "654a72c73047fa81",
     "name": "Trademark",
-    "pages": "B159",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
-    "description": ""
+    "pages": "B164",
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>A quirk-level Trademark (p. 159) takes almost no time to leave, cannot be used to trace your identity, and can be overlooked when inconvenient.</p><p>Example of Character Creation (cont'd)</p><p>Now it's time to define Dai's quirks - five minor character traits that help to define his personality. We choose the following:</p><p>1. \"Dislikes deep water.\" Thieves' Guild enforcers threw the young Dai off a pier, and he nearly drowned. To this day, he is leery of deep water.</p><p>2. \"Loves high places.\" Given Dai's gifts, he can get to some very high places indeed. When he cases a joint, he always wants a view from the top.</p><p>3. \"No drugs or alcohol.\" Dai is no Puritan, but growing up on the streets he saw too many people destroy themselves that way.</p><p>4. \"Sensitive about his height.\" Dai is self-assured, but he cannot deny one physical shortcoming: he isn't very tall. This is a topic best avoided in conversation . . .</p><p>5. \"Showoff.\" Dai isn't quietly overconfident. He has more than his fair share of natural talents, and is all too happy to demonstrate them.</p><p>Dai's quirks are worth -1 point apiece, or -5 points total. As a result, his point total becomes 203 points.</p>"
   },
   {
     "_id": "de4122cb489f0df4",
@@ -1962,10 +1962,10 @@
   {
     "_id": "4ecbcc5ef909355d",
     "name": "Vow",
-    "pages": "B160",
-    "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
-    "description": ""
+    "pages": "B165",
+    "status": "transcribed",
+    "notes": "",
+    "description": "<p>A trivial Vow (p. 160) - e.g., never drink alcohol, treat all ladies with courtesy, or pay 10% of your income to your church - is a quirk.</p><p>Physical quirks are physical disadvantages that are only mildly or rarely limiting. They do not require roleplaying, but they give specific, minor penalties in play.</p><p>Unlike mental quirks, you cannot normally change physical quirks - that would make no more sense than exchanging One Eye for One Hand, under most circumstances. Also, you must define physical quirks when you create your character; you cannot use them to fill open \"quirk slots\" once the campaign begins.</p>"
   },
   {
     "_id": "9613b3fbe339a3d9",
@@ -2012,16 +2012,16 @@
     "name": "Debt",
     "pages": "B26",
     "status": "needs-review",
-    "notes": "many paragraphs, may have run past the entry",
+    "notes": "a price is still in the text; many paragraphs, may have run past the entry",
     "description": "<p>You owe money. This could represent a loan, back taxes, child support, or alimony . . . or \"hush money\" paid to blackmailers . . . or \"protection money\" extorted by gangsters. You must make a monthly payment equal to 1% of your starting wealth (adjusted for wealth level) per level of this trait, to a maximum of 20%. Debt can accompany any wealth level above Dead Broke; plenty of multimillionaires owe significant amounts of money!</p><p>Your monthly payment is deducted from your monthly earnings at your job. If your job cannot cover your Debt, you have to pay out of your cash reserves, take a second job, or steal.</p><p>If you cannot pay - or choose not to pay - there will be trouble. For bank loans, this means repossession of your worldly goods. For alimony, child support, fines, or taxes, this means a court date. And if you owe money to the mob, you might end up being strongarmed into criminal activities . . . or staring down the barrel of a shotgun. The GM should be creative!</p><p>It is assumed that you cannot easily rid yourself of this obligation. It takes more than money to buy off Debt - you must pay off the points and work out a logical in-game explanation with the GM.</p><p>It is possible to be so well-known that your reputation becomes an advantage or a disadvantage. This affects reaction rolls made by NPCs (see p. 494). A reputation has four elements: Details, Reaction Modifier, People Affected, and Frequency of Recognition.</p><p>Details The details of your reputation are entirely up to you; you can be known for bravery, ferocity, eating green snakes, or whatever you want. However, you must give specifics. Reputation is, by definition, something noteworthy; there is no such thing as a \"generic\" reputation.</p><p>Reaction Modifier Specify the reaction-roll modifier that you get from people who recognize you. This determines the base cost of your reputation. For every +1 bonus to reaction rolls (up to +4), the cost is 5 points. For every -1 penalty (up to -4), the cost is -5 points.</p><p>People Affected The size of the group of people who might have heard of you modifies the base cost:</p><p>Almost everyone in your game world (but not those from other universes - at least, not until they have met you!): �1.</p><p>Almost everyone in your game world except one large class (everyone but the French, everyone but Elves, everyone but offworld visitors): �2/3 (round down).</p><p>Large class of people (all people of a particular faith, all mercenaries, all tradesmen, etc.): �1/2 (round down).</p><p>Small class of people (all priests of Wazoo, all literate people in 12th-century England, all mages in modern Alabama): �1/3 (round down).</p><p>If the class of people affected is so small that, in the GM's opinion, you would not meet even one in the average adventure, your reputation isn't worth points. This depends on the setting; for instance, mercenary soldiers are rare in some game worlds, common in others.</p><p>Frequency of Recognition Either your name or your face is enough to trigger a \"reputation roll\" to see if the people you meet have heard of you. Roll once for each person or small group you meet. For a large group, the GM may roll more than once if he likes. The frequency with which you are recognized modifies the cost of your reputation:</p><p>Tech Level and Starting Wealth Tech level (p. 22) determines starting wealth, as technologically advanced societies tend to be richer. Below is a comparison of TLs and suggested starting wealth.</p><p>TL0 TL1 TL2 TL3 TL4 TL5 TL6 TL7 TL8 TL9 TL10 TL11 TL12+ Stone Age (Prehistory and later). $250. Bronze Age (3500 B.C.+). $500. Iron Age (1200 B.C.+). $750. Medieval (600 A.D.+). $1,000. Age of Sail (1450+). $2,000. Industrial Revolution (1730+). $5,000. Mechanized Age (1880+). $10,000. Nuclear Age (1940+). $15,000. Digital Age (1980+). $20,000. Microtech Age (2025+?). $30,000. Robotic Age (2070+?). $50,000. Age of Exotic Matter. $75,000. Whatever the GM likes! $100,000.</p><p>GURPS gives wealth and prices in \"$\" for convenience. The $ can stand for \"dollars,\" \"credits,\" \"pennies,\" or even units of barter. In a contemporary setting, $1 is a modern U.S. dollar. In other periods, $1 equates roughly with the amount of local currency needed to buy a loaf of bread or equivalent staple - not with historical U.S. dollars.</p><p>For example, in a high medieval society, each $ might be a copper farthing. In WWII-era America, each $ would convert to $0.10 in deflated 1940s-era dollars. And in a cyberpunk world with hyperinflation, each $ might equal $1,000 in grossly devalued 2030-era dollars! The GURPS $ is a constant, however. Variations in starting wealth by TL reflect increased prosperity due to civilization's progress - not inflation.</p><p>Worldbooks might give starting wealth, wages, and prices in local currency - historical U.S. dollars, British pounds, pieces of eight, etc. In such cases, they will always give a conversion factor to constant $.</p><p>Tech Level and Equipment You enter play with \"starting wealth\" appropriate to the campaign TL. If you are from a higher TL, you may start with access to the equipment of your personal TL. However, the price of an item of equipment is doubled for every TL by which its TL exceeds that of the campaign!</p><p>For instance, a TL8 character in a TL3 game world starts with the same $1,000 as everyone else at TL3. If he wants a TL8 assault rifle that normally costs $1,500, it costs him 32 times as much (five TLs of difference results in five doublings, or a factor of 32) - or $48,000 - since the rifle is far more valuable in a lowtech setting. He'd need to start with some Wealth!</p><p>There is no guarantee that high-TL adventurers will continue to have access to high-tech gear in play. If you want a piece of gear, then you should buy it when you start out. If your TL8 adventurer is dropped into a TL3 world with 100 rounds of ammunition for his assault rifle, then he had better use it wisely. Once it's gone, it's gone . . .</p>"
   },
   {
     "_id": "40f90877718b80bf",
     "name": "Reputation (Disadvantage)",
-    "pages": "B27",
+    "pages": "B36",
     "status": "needs-review",
-    "notes": "no entry of this name in the book at the cited page; may be the data file's own name for a purchase the book describes elsewhere",
-    "description": ""
+    "notes": "taken from the family's shared text; check the variant's own line",
+    "description": "<p>Disadvantage: The victim temporarily gains one or more specific physical or mental disadvantages (but not self-imposed mental disadvantages - see p. 121). This is worth +1% per point the temporary disadvantages are worth; e.g., Paranoia [-10] is worth +10%. If a disadvantage comes in levels, specify the level. The disadvantages last for one minute per point by which the victim fails his HT roll.</p>"
   },
   {
     "_id": "d6f69e6d1504b24d",
