@@ -81,6 +81,13 @@ export function book(slug) {
     reference: raw.reference ?? raw.title ?? slug,
     statistics: raw.statistics === "system" ? "system" : "book",
     types: raw.types ?? {},
+    // The GCA category a power's abilities are filed under, as a pattern whose
+    // first group names the power: "^_MH (?:Psionics - )?(.+)" reads
+    // "_MH Psionics - ESP" as ESP. Null for a book with no powers.
+    powerCategory: raw.powerCategory ?? null,
+    // The pages of the [MODIFIERS] section holding the book's own enhancements
+    // and limitations, for parse-gdf-modifiers.mjs. Null for a book with none.
+    modifiers: raw.modifiers ?? null,
     // How the book's PDF is read, for tools/transcribe.mjs: book page +
     // pdfOffset = PDF page, the letters a page is recorded with, and a pattern
     // for the part of a data-file name the book does not print.

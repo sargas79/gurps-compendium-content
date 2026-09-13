@@ -1,0 +1,2322 @@
+[
+  {
+    "_id": "73d2265666710858",
+    "name": "Dual Shooting (Gun!)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "40a88f7597dcb61e",
+    "name": "Dual Shooting (Pistol)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "acd913705a817ebe",
+    "name": "Dual Shooting (SMG)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "22e29311f68b0a01",
+    "name": "Prophetic Dreams",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "804261a3391dc927",
+    "name": "Born War-Leader",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [
+        "Intelligence Analysis",
+        "Leadership",
+        "Savoir-Faire (Military)",
+        "Strategy",
+        "Tactics"
+      ],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "3e1f146151129255",
+    "name": "Close to Heaven",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [
+        "Exorcism",
+        "Meditation",
+        "Religious Ritual",
+        "Theology"
+      ],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "9c9c8530cc31dd97",
+    "name": "Craftiness",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [
+        "Acting",
+        "Camouflage",
+        "Disguise",
+        "Holdout",
+        "Shadowing",
+        "Stealth"
+      ],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "3121772f802d5c75",
+    "name": "Parapsychologist",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [
+        "Electronics Operation (Medical)",
+        "Electronics Operation (Psychotronics)",
+        "Electronics Operation (Scientific)",
+        "Expert Skill (Psionics)",
+        "Hypnotism",
+        "Occultism",
+        "Physics (Paraphysics)",
+        "Psychology"
+      ],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "643cd805a946af02",
+    "name": "Patron (Light Influence)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 10,
+      "costTable": [],
+      "levelNames": [
+        "Modest Budget",
+        "Large Budget",
+        "Loaded Budget"
+      ],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 24"
+    }
+  },
+  {
+    "_id": "8d223148d0851e99",
+    "name": "Patron (Heavy Influence)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        20,
+        30,
+        40
+      ],
+      "levelNames": [
+        "Modest Budget",
+        "Large Budget",
+        "Loaded Budget"
+      ],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 24"
+    }
+  },
+  {
+    "_id": "a6768762bb881258",
+    "name": "Blessed (Ghost Weapon)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 15,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 23"
+    }
+  },
+  {
+    "_id": "d1146a8c726d6870",
+    "name": "Higher Purpose (Acquire Knowledge)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 24"
+    }
+  },
+  {
+    "_id": "1e8f7fcd4a540111",
+    "name": "Higher Purpose (Defend the faith)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 24"
+    }
+  },
+  {
+    "_id": "179b12aa2588c80a",
+    "name": "Ritual Adept",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 40,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "3c42d6cf4db0d396",
+    "name": "Bioenhancement Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "50d7b21f9a06797a",
+    "name": "BIO: Adrenal-Muscular Trigger",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 2,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "40265b0f20c4dbee",
+    "name": "BIO: Breath-Holding",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 2,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "71b196d1e6cb945a",
+    "name": "BIO: Cellular Restoration",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        18,
+        32,
+        54
+      ],
+      "levelNames": [],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "70031537c2ae6c6e",
+    "name": "BIO: Cerebral-Motor Multitasking",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        28,
+        55
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "39202a6e55d2c6c9",
+    "name": "BIO: Circadian Rhythm Control",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        8,
+        18
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "e1fbbc38755432b2",
+    "name": "BIO: Discriminatory Hearing",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 14,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "9065420effae040c",
+    "name": "BIO: Discriminatory Smell 1",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 14,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "4ee171a3a8bde1f0",
+    "name": "BIO: Discriminatory Smell 2",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 21,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "3474cf8f992e1f3d",
+    "name": "BIO: Eagle Eyes",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 4,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 41"
+    }
+  },
+  {
+    "_id": "75c6bbe699725517",
+    "name": "BIO: Enhanced Ground Move",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        18,
+        27
+      ],
+      "levelNames": [
+        "x2",
+        "x3"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "ae778eebc3294005",
+    "name": "BIO: Enhanced Speed",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 18,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "6d09967d931c4c44",
+    "name": "BIO: Epidermal Resillience",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 3,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "397b99386e684602",
+    "name": "BIO: Equilibrium Enhancement",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 23,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "ce2f36bdbb1f4769",
+    "name": "BIO: Injury Tolerance (Unliving)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 28,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "63148951dc3e9de8",
+    "name": "BIO: Neural Computational Matrix",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        8,
+        15
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "7e6f1378c22264b1",
+    "name": "BIO: Ocular Adaptability 1",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 9,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "7160153fb48b1e56",
+    "name": "BIO: Ocular Adaptability 2",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 23,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "d13101e1d6c1b100",
+    "name": "BIO: Super Jump",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 9,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "51568bbf537653c0",
+    "name": "Mysticism Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "e7dead34f381569e",
+    "name": "MYS: Armor of Faith",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "cdd18754f5e09e34",
+    "name": "MYS: Blessed",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 9,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "ba1828e0a12deaeb",
+    "name": "MYS: Extra Life",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 23,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "9ad7092eafa1c988",
+    "name": "MYS: Eyes of the Dead",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 20,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "6c5723d4ffa14c8a",
+    "name": "MYS: Ghost Weapon",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 14,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "976d984e869a06df",
+    "name": "MYS: Heroic Feats (ST)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 9,
+      "costTable": [],
+      "levelNames": [
+        "+1d",
+        "+2d"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "8a97aa911318765e",
+    "name": "MYS: Heroic Feats (DX)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 9,
+      "costTable": [],
+      "levelNames": [
+        "+1d",
+        "+2d"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "ace79015fb98f579",
+    "name": "MYS: Heroic Feats (HT)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 9,
+      "costTable": [],
+      "levelNames": [
+        "+1d",
+        "+2d"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "ff86f6b74952c95d",
+    "name": "MYS: Lay on Hands",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        33,
+        48
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "f0e67a1682e0c0e8",
+    "name": "MYS: Mind Shield",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 4,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "0162151e5550b64c",
+    "name": "MYS: Mystic Coincidence",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 12,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 43"
+    }
+  },
+  {
+    "_id": "e062a421b2a1b607",
+    "name": "MYS: Prayer",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 24,
+      "costTable": [],
+      "levelNames": [
+        "6 or less",
+        "9 or less"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "c20146cc58d17f41",
+    "name": "MYS: Resistant to Evil Supernatural Powers",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        5,
+        7
+      ],
+      "levelNames": [
+        "+3",
+        "+8"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "c9c46d4efae5c7f9",
+    "name": "MYS: Shock and Awe",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        18,
+        42
+      ],
+      "levelNames": [
+        "-0",
+        "-4"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "983c8b4c6760b13e",
+    "name": "MYS: Smite",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        20,
+        30
+      ],
+      "levelNames": [
+        "1d",
+        "2d"
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "fc8da76497e8e76d",
+    "name": "MYS: Spirit Channeling",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 14,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "4591c12daeecadab",
+    "name": "MYS: Spirit Communication",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        14,
+        24
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "4130b293d743dc82",
+    "name": "MYS: Spirit Empathy",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 9,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "c3d2b95bc077ae88",
+    "name": "MYS: Supernatural Sense",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        8,
+        18
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "6e67faa3d36892f1",
+    "name": "MYS: Turn Evil",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 24,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
+  },
+  {
+    "_id": "8f597890bc88a145",
+    "name": "MYS: Visualization",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 9,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "79c6ee2e5d953e92",
+    "name": "ESP Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "db85e4d0d4c0fefb",
+    "name": "ESP: Aura Reading",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 21,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "814f1d502e22081a",
+    "name": "ESP: Precognition",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 23,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "f62b7b6aec9ba188",
+    "name": "ESP: Psi Sense",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        13,
+        23
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "15abe68cadd3991e",
+    "name": "ESP: Psychometry",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 18,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "5017d52e85d50b19",
+    "name": "ESP: Remote Senses",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        35,
+        50
+      ],
+      "levelNames": [
+        "10 yds.",
+        "100 yds."
+      ],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "3d90f0a389b4d8f3",
+    "name": "ESP: Seekersense",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 29,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "7f6587a1d98b1a48",
+    "name": "ESP: Spirit Channeling",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 14,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "24a5d216b597c26e",
+    "name": "ESP: Spirit Communication",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        14,
+        24
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "a4b7dddb29b19439",
+    "name": "Psychokinesis Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "02da701c8ee25119",
+    "name": "PK: Cryokinesis",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 20,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "",
+          "skill": "Will",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d-1",
+          "damageType": "fat",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "",
+          "loaded": 0,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": null,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": false,
+          "mount": "",
+          "bulk": 0,
+          "recoil": 0,
+          "malfunction": null,
+          "perLevel": true,
+          "malediction": 2
+        }
+      ],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "2ba508e775458b9f",
+    "name": "PK: Psychic Healing",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        27,
+        39,
+        57
+      ],
+      "levelNames": [],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "062892abaa4906c7",
+    "name": "PK: PK Shield",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 6,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "d5610677522c3c42",
+    "name": "PK: Pyrokinesis",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 13,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "",
+          "skill": "Will",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "",
+          "loaded": 0,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": null,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": false,
+          "mount": "",
+          "bulk": 0,
+          "recoil": 0,
+          "malfunction": null,
+          "perLevel": true,
+          "malediction": 2
+        }
+      ],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 46"
+    }
+  },
+  {
+    "_id": "9c37d32a7bd91676",
+    "name": "PK: Temperature Control",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "718f8e45ceb03e5e",
+    "name": "Telepathy Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "1778d59daebba213",
+    "name": "TEL: Mental Blow",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 32,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "",
+          "skill": "Will",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": true,
+          "afflictionAttribute": "Will",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "",
+          "loaded": 0,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": null,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": false,
+          "mount": "",
+          "bulk": 0,
+          "recoil": 0,
+          "malfunction": null,
+          "perLevel": false,
+          "malediction": 2
+        }
+      ],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "aefd05ffa29775cb",
+    "name": "TEL: Mind Control",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        25,
+        45
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "4220f0b917e57412",
+    "name": "TEL: Mind Probe",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 18,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "a26ccce1d59a99ff",
+    "name": "TEL: Mind Reading",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 27,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "58e44d5ed40f6c9e",
+    "name": "TEL: Mind Shield",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 4,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "c82d4eb7b0cc230f",
+    "name": "TEL: Mindwipe",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 31,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "787d099df294f11b",
+    "name": "TEL: Telecontrol",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        45,
+        60
+      ],
+      "levelNames": [],
+      "maxLevels": 2,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 47"
+    }
+  },
+  {
+    "_id": "edf4d36c470d54a4",
+    "name": "TEL: Telescan",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 25,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "acd81a39e9de83d1",
+    "name": "TEL: Telesend",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 27,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "aef3a296795899c9",
+    "name": "Teleportation Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 4,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Teleportation",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "97f97f6a6f41f864",
+    "name": "TPN: Autoteleport",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        20,
+        40,
+        65
+      ],
+      "levelNames": [
+        "20 yds.",
+        "10 mi.",
+        "No limit"
+      ],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Teleportation",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "d4e21cb3d400a56c",
+    "name": "TPN: Combat Teleport",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 25,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Teleportation",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "c6dd95c1a3df27d9",
+    "name": "TPN: Exoteleport",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        40,
+        60,
+        85
+      ],
+      "levelNames": [
+        "20 yds.",
+        "10 mi.",
+        "No limit"
+      ],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Teleportation",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "b3fac7bdfc12d949",
+    "name": "Brave",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "bd00e70de8092acb",
+    "name": "Equipment Bond",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "2c73280918817b29",
+    "name": "Improvised Weapons",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "1765f1898cc0b980",
+    "name": "Off-Hand Weapon Training",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "0c7ca435aff892b0",
+    "name": "Quick Reload (Magazine)",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "55cdb463142e1ce3",
+    "name": "Quick Reload (Revolver)",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "d710d01ce9c6579c",
+    "name": "Quick Reload (Gun!)",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "21db43ed0c7087ae",
+    "name": "Ritual Mastery",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "6f60c63b25c81c61",
+    "name": "Trademark Move",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  },
+  {
+    "_id": "15eca61723de50da",
+    "name": "Weapon Bond",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 25"
+    }
+  }
+]

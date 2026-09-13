@@ -18,7 +18,7 @@
  * book's triage is done.
  */
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, rmSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
@@ -31,6 +31,8 @@ const GDF_ROOT = process.env.GURPS_GDF_DIR ?? "E:/data files";
 const PARSERS = [
   { script: "parse-gdf.mjs", what: "traits, skills and techniques" },
   { script: "parse-gdf-spells.mjs", what: "spells" },
+  // Only for a book whose book.json says which pages hold its modifiers.
+  { script: "parse-gdf-modifiers.mjs", what: "enhancements and limitations", needs: "modifiers" },
 ];
 
 function acceptsBookOptions(path) {
@@ -79,7 +81,7 @@ async function main() {
   }
 
   const usable = PARSERS.filter((parser) =>
-    acceptsBookOptions(join(systemRoot, "tools", parser.script)),
+    (!parser.needs || bk[parser.needs]) && acceptsBookOptions(join(systemRoot, "tools", parser.script)),
   );
 
   if (usable.length === 0) {
@@ -106,7 +108,10 @@ async function main() {
       "--prefix", bk.prefix,
       "--book", bk.reference,
       "--out", out,
-      "--overlap", join(bk.dir, "overlap.txt"),
+      ...(parser.script === "parse-gdf-modifiers.mjs"
+        ? ["--pack", "modifiers", "--file", `${slug}-modifiers.json`, "--from", String(bk.modifiers.from), "--to", String(bk.modifiers.to)]
+        : ["--overlap", join(bk.dir, "overlap.txt")]),
+      ...(parser.script === "parse-gdf.mjs" && bk.powerCategory ? ["--power-category", bk.powerCategory] : []),
       ...(write ? ["--write"] : []),
     ];
     console.log(`  ${parser.script} (${parser.what})`);
@@ -117,8 +122,21 @@ async function main() {
     }
   }
 
-  if (usable.length < PARSERS.length) {
-    const missing = PARSERS.filter((p) => !usable.includes(p)).map((p) => p.script);
+  // A parser that found nothing still writes its file, under the Basic Set's
+  // name when it has no stem of its own: an empty spells pack is not a pack.
+  if (write) {
+    for (const entry of readdirSync(out, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+      const dir = join(out, entry.name);
+      for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
+        const docs = JSON.parse(readFileSync(join(dir, file), "utf8"));
+        if (Array.isArray(docs) && docs.length === 0) rmSync(join(dir, file));
+      }
+      if (readdirSync(dir).filter((f) => f.endsWith(".json")).length === 0) rmSync(dir, { recursive: true, force: true });
+    }
+  }
+
+  if (usable.length < PARSERS.filter((p) => !p.needs || bk[p.needs]).length) {
+    const missing = PARSERS.filter((p) => (!p.needs || bk[p.needs]) && !usable.includes(p)).map((p) => p.script);
     console.log(
       `\nSkipped ${missing.join(", ")}: the pinned system's copy reads the Basic Set only.`,
     );

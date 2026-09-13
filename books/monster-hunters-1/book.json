@@ -2,13 +2,18 @@
   "slug": "monster-hunters-1",
   "title": "GURPS Monster Hunters 1: Champions",
   "label": "GURPS Monster Hunters 1",
-  "prefix": "MH1:",
+  "prefix": "MH1",
   "reference": "Monster Hunters 1: Champions",
   "gdf": "GURPS_Monster_Hunters_1_Champions.gdf",
+  "powerCategory": "^_MH (?:Psionics - )?(.+)",
+  "modifiers": {
+    "from": 41,
+    "to": 48
+  },
   "transcription": {
     "pdfOffset": 0,
     "pageLabel": "MH1:",
     "namePrefix": "^(?:BIO|MYS|ESP|PK|TEL|TPN):\\s+"
   },
-  "notes": "GCA cites this book as MH1:23. The system parser pinned at v1.0.0 only reads that with the colon in the prefix; from the release carrying sargas79/GWorldVTT#138 the prefix can be plain MH1. The data file has no templates, and PDF page = book page. The data file files each power's abilities under a prefix (BIO:, MYS:, ESP:, PK:, TEL:, TPN:) the book does not print."
+  "notes": "GCA cites this book as MH1:23; the system parsers from v1.1.0 (sargas79/GWorldVTT#138) read that with the plain prefix MH1. The data file has no templates, and PDF page = book page. The data file files each power's abilities under a prefix (BIO:, MYS:, ESP:, PK:, TEL:, TPN:) the book does not print, and under a category (_MH Mysticism, _MH Psionics - ESP) that powerCategory reads the power from. The six power modifiers are pp. 41-48 of the [MODIFIERS] section."
 }
