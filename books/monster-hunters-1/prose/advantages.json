@@ -1,0 +1,226 @@
+[
+  {
+    "_id": "fc33772d24e8cd05",
+    "name": "Blessed (Heroic Feats, ST)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crusaders may buy up to two \"levels\" of Blessed (Heroic Feats) for each attribute (ST, DX, or HT); Blessed 6, the maximum, adds 2d to all three attributes!</p>"
+  },
+  {
+    "_id": "8b31e096f2dc45c7",
+    "name": "Blessed (Heroic Feats, DX)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crusaders may buy up to two \"levels\" of Blessed (Heroic Feats) for each attribute (ST, DX, or HT); Blessed 6, the maximum, adds 2d to all three attributes!</p>"
+  },
+  {
+    "_id": "04a8548a8644be72",
+    "name": "Blessed (Heroic Feats, HT)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crusaders may buy up to two \"levels\" of Blessed (Heroic Feats) for each attribute (ST, DX, or HT); Blessed 6, the maximum, adds 2d to all three attributes!</p>"
+  },
+  {
+    "_id": "a256821a32041300",
+    "name": "Higher Purpose (Hunt a Specific Type of Monster)",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Higher Purpose (Hunt Monsters) is not allowed, as it's far too general, but one for a specific type of foe is fine; e.g., Higher Purpose (Hunt Lycanthropes). Such a trait adds +1 to any roll to research, track, or slay that particular type of creature.</p>"
+  },
+  {
+    "_id": "73d2265666710858",
+    "name": "Dual Shooting (Gun!)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You do not suffer the usual -4 penalty for shooting two guns at once. This does not remove the additional -4 for shooting with your off hand; take Ambidexterity or Off-Hand Weapon Training for that. You must specialize by Pistol or SMG; commandos may specialize in Gun! (Though based on a technique, treat this as an advantage for simplicity.)</p>"
+  },
+  {
+    "_id": "40a88f7597dcb61e",
+    "name": "Dual Shooting (Pistol)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You do not suffer the usual -4 penalty for shooting two guns at once. This does not remove the additional -4 for shooting with your off hand; take Ambidexterity or Off-Hand Weapon Training for that. You must specialize by Pistol or SMG; commandos may specialize in Gun! (Though based on a technique, treat this as an advantage for simplicity.)</p>"
+  },
+  {
+    "_id": "acd913705a817ebe",
+    "name": "Dual Shooting (SMG)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You do not suffer the usual -4 penalty for shooting two guns at once. This does not remove the additional -4 for shooting with your off hand; take Ambidexterity or Off-Hand Weapon Training for that. You must specialize by Pistol or SMG; commandos may specialize in Gun! (Though based on a technique, treat this as an advantage for simplicity.)</p>"
+  },
+  {
+    "_id": "22e29311f68b0a01",
+    "name": "Prophetic Dreams",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If something important is coming up in your future, the GM will roll against your IQ while you sleep; if successful, you have a hazy or metaphorical vision. This ability is so common among monster hunters that any champion may take it.</p>"
+  },
+  {
+    "_id": "804261a3391dc927",
+    "name": "Born War-Leader",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Talents never add to wildcard skills.</p><p>Intelligence Analysis, Leadership, Savoir-Faire (Military), Strategy, and Tactics. Reaction bonus: soldiers or professional warriors.</p>"
+  },
+  {
+    "_id": "3e1f146151129255",
+    "name": "Close to Heaven",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Talents never add to wildcard skills.</p><p>Exorcism, Meditation, Religious Ritual, and Theology. Reaction bonus: members of the clergy.</p>"
+  },
+  {
+    "_id": "9c9c8530cc31dd97",
+    "name": "Craftiness",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Talents never add to wildcard skills.</p><p>Acting, Camouflage, Disguise, Holdout, Shadowing, and Stealth. Reaction bonus: none!</p>"
+  },
+  {
+    "_id": "3121772f802d5c75",
+    "name": "Parapsychologist",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Talents never add to wildcard skills.</p><p>Electronics Operation (Medical, Psychotronics, or Scientific), Expert Skill (Psionics), Hypnotism, Occultism, Physics (Paraphysics), and Psychology. Reaction bonus: psis and true believers.</p>"
+  },
+  {
+    "_id": "643cd805a946af02",
+    "name": "Patron (Light Influence)",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This invariably represents some sort of shadow agency, whether an enlightened corporation or a \"black ops\" branch of the government, which backs the champions' fight against the forces of darkness. A Patron will supply its agents with equipment for sanctioned missions, freeing them from having to rely on their own Wealth. (Because of this, a champion with a Patron cannot take reduced Wealth as a disadvantage.) For simplicity, ignore the rules in the Basic Set; here, the cost of a Patron depends solely on its Budget and Influence.</p><p>Budget determines the amount and quality of the equipment agents will be issued for each mission; see p. 53 for details. Influence is a measure of how well-connected an organization is - an agency with Heavy Influence will have an easier time smoothing over legal issues, getting its team access to off-limit areas, and contacting experts on obscure subjects than one with Light Influence will. Choose your Patron from among the following six options; e.g., Patron (MagniCorp; Large Budget; Light Influence) [20]:</p><p><strong>Modest Budget:</strong> Cost is 10 points for a Patron with Light Influence, or 20 points for one with Heavy Influence.</p><p><strong>Large Budget:</strong> Cost is 20 points for Light Influence, 30 points for Heavy.</p><p><strong>Loaded Budget:</strong> Cost is 30 points for Light Influence, 40 points for Heavy.</p>"
+  },
+  {
+    "_id": "8d223148d0851e99",
+    "name": "Patron (Heavy Influence)",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This invariably represents some sort of shadow agency, whether an enlightened corporation or a \"black ops\" branch of the government, which backs the champions' fight against the forces of darkness. A Patron will supply its agents with equipment for sanctioned missions, freeing them from having to rely on their own Wealth. (Because of this, a champion with a Patron cannot take reduced Wealth as a disadvantage.) For simplicity, ignore the rules in the Basic Set; here, the cost of a Patron depends solely on its Budget and Influence.</p><p>Budget determines the amount and quality of the equipment agents will be issued for each mission; see p. 53 for details. Influence is a measure of how well-connected an organization is - an agency with Heavy Influence will have an easier time smoothing over legal issues, getting its team access to off-limit areas, and contacting experts on obscure subjects than one with Light Influence will. Choose your Patron from among the following six options; e.g., Patron (MagniCorp; Large Budget; Light Influence) [20]:</p><p><strong>Modest Budget:</strong> Cost is 10 points for a Patron with Light Influence, or 20 points for one with Heavy Influence.</p><p><strong>Large Budget:</strong> Cost is 20 points for Light Influence, 30 points for Heavy.</p><p><strong>Loaded Budget:</strong> Cost is 30 points for Light Influence, 40 points for Heavy.</p>"
+  },
+  {
+    "_id": "a6768762bb881258",
+    "name": "Blessed (Ghost Weapon)",
+    "pages": "MH1:23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any weapon you wield has the ability to harm evil spirits! In effect, it gains the Affects Insubstantial modifier, but only against undead or spirit beings (e.g., demons or ghosts). This even extends to vehicles that you drive - affecting both built-in weapons and intentional collisions!</p>"
+  },
+  {
+    "_id": "d1146a8c726d6870",
+    "name": "Higher Purpose (Acquire Knowledge)",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You get +1 on all rolls to study new creatures (or learn something new about one), to negotiate with cryptic keepers of forbidden lore, and to discover, acquire, or protect any book (or CD, etc.) with unique information about The Enemy on it.</p>"
+  },
+  {
+    "_id": "1e8f7fcd4a540111",
+    "name": "Higher Purpose (Defend the faith)",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You get +1 to all rolls to protect sacred ground (that is, a building or area consecrated to your faith), defend a member of your congregation, or recover a holy artifact that rightly belongs to your religious group.</p>"
+  },
+  {
+    "_id": "179b12aa2588c80a",
+    "name": "Ritual Adept",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prerequisite: Magery.</p><p>This new advantage represents inherent magical power, and is only available to dedicated spellcasters (e.g., witches). While the spells cast by an average person (even a mage) are slow and bound by several restrictions, yours are not. See Ritual Path Magic (pp. 32-39) for details.</p>"
+  },
+  {
+    "_id": "b3fac7bdfc12d949",
+    "name": "Brave",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Fright Check usually fails on any roll of 14+, regardless of modified Will. You only fail on a 15+. (Your modified Will must total 14+ for this to be useful, of course!) You may only take this perk once.</p>"
+  },
+  {
+    "_id": "bd00e70de8092acb",
+    "name": "Equipment Bond",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You own a piece of gear or tool kit (bought separately with cash or as Signature Gear) that's uniquely suited to you. You are at +1 to effective skill when you use it, cumulative with any modifiers for its quality. You must specialize in a specific item, which cannot be a weapon; if you lose it, you also lose this perk (and the point spent on it).</p>"
+  },
+  {
+    "_id": "2c73280918817b29",
+    "name": "Improvised Weapons",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced using everyday items with a specific weapon skill, and never suffer a penalty when doing so. Specialize by any Melee Weapon or ranged weapon skill. (See pp. 60 and 62-63 for some example weapons, and GURPS Martial Arts, p. 224, for a longer list.)</p>"
+  },
+  {
+    "_id": "1765f1898cc0b980",
+    "name": "Off-Hand Weapon Training",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can ignore the -4 for using your \"off\" hand with one particular skill. Specialize by any one-handed Melee Weapon, ranged weapon, or Fast-Draw skill. (This replaces the Off-Hand Weapon Training technique on p. B232.)</p>"
+  },
+  {
+    "_id": "0c7ca435aff892b0",
+    "name": "Quick Reload (Magazine)",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can reload your gun in record time! You must specialize in Magazine (for modern automatics) or Revolver (which requires a speedloader). Reloading takes you only one Ready maneuver; a successful Fast-Draw (Ammo) roll makes this a free action! (Commandos specialize in Gun!, which covers everything; for all other loading methods, reloading takes two Ready maneuvers, or one with a successful Gun! roll.)</p>"
+  },
+  {
+    "_id": "55cdb463142e1ce3",
+    "name": "Quick Reload (Revolver)",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can reload your gun in record time! You must specialize in Magazine (for modern automatics) or Revolver (which requires a speedloader). Reloading takes you only one Ready maneuver; a successful Fast-Draw (Ammo) roll makes this a free action! (Commandos specialize in Gun!, which covers everything; for all other loading methods, reloading takes two Ready maneuvers, or one with a successful Gun! roll.)</p>"
+  },
+  {
+    "_id": "d710d01ce9c6579c",
+    "name": "Quick Reload (Gun!)",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can reload your gun in record time! You must specialize in Magazine (for modern automatics) or Revolver (which requires a speedloader). Reloading takes you only one Ready maneuver; a successful Fast-Draw (Ammo) roll makes this a free action! (Commandos specialize in Gun!, which covers everything; for all other loading methods, reloading takes two Ready maneuvers, or one with a successful Gun! roll.)</p>"
+  },
+  {
+    "_id": "21db43ed0c7087ae",
+    "name": "Ritual Mastery",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have +2 to all Path skill rolls when casting a specific ritual (Defining Rituals, p. 39). You must specialize by ritual.</p>"
+  },
+  {
+    "_id": "6f60c63b25c81c61",
+    "name": "Trademark Move",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've got one particular attack down, giving you +1 on all skill rolls made to use it. Write this down as a full turn of action(s), specifying maneuver, combat options, skills used, hit locations, effective skill and damage, etc.; e.g., \"All-Out Attack (Strong) with Broadsword as a Rapid Strike, swinging at the neck (skill 15, 2d+3 cut) then stabbing the vitals as a Deceptive Attack for -2 to defenses (skill 13, 1d+4 imp).\" It cannot be anything boring like, \"Rifle shot to the head.\"</p>"
+  },
+  {
+    "_id": "15eca61723de50da",
+    "name": "Weapon Bond",
+    "pages": "MH1:25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for Equipment Bond (above), but for a specific weapon.</p>"
+  }
+]
