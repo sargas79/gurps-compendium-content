@@ -40,7 +40,7 @@ of the book was extracted for keeps. Tracking: milestone **Martial Arts**, issue
 | `[SKILLS]`, Art and Sport skills | none | skip | the Art and Sport versions of combat skills (p. 55) are the Basic Set's, already in the system's pack |
 | directives: `#Clone` of 143 weapons, `#Delete` of six Basic Set techniques | none | skip | the clones are the book's alternative names for weapons (Bo for a quarterstaff); the deletions make way for the any-weapon forms of Sweep and Whirlwind Attack (sargas79/GWorldVTT#194) |
 | `[TEMPLATES]`, Styles | `template`, character | `martial-arts-templates` | 117; **by hand**, since the parsers do not read this section |
-| `[TEMPLATES]`, character templates | `template`, character and lens | `martial-arts-templates` | 11 templates and 15 lenses (Cinematic, Tough Guy); **by hand** |
+| `[TEMPLATES]`, character templates | `template`, character and lens | `martial-arts-templates` | 11 templates and 16 lenses: a Cinematic lens for each, the Tough Guy lens four templates share, and four realistic Warrior lenses the file lacks; **by hand** from the book |
 | `[EQUIPMENT]` | `equipment` | `martial-arts-equipment` | 83 weapons, 82 with attack modes |
 | `[MODIFIERS]`, Extra Attack | `modifier` | `martial-arts-modifiers` | Multi-Strike (p. 44); Single Skill is a placeholder and is written by hand |
 | `[MODIFIERS]`, equipment | none | skip | weapon quality (balance), combination weapons, hilt punch and similar: improvements are calculated fields on the item, never modifier items; candidates below |
