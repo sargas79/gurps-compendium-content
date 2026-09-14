@@ -1,0 +1,7 @@
+You must know a spell in order to cast it, unless you possess a magic item that lets you cast it (see Chapter 2). Tell the GM what spell you are casting, then take Concentrate maneuvers for the requisite number of turns (see Time Required, below). At the end of the last second of concentration, make a success roll for the spell.
+
+Casting a spell works like any other use of a skill: roll 3d and compare the total to your effective skill (your base skill with the spell adjusted by any applicable modifiers). Modifiers depend on the class of spell (see Spell Classes, p. 11). If your roll is less than or equal to your effective skill, the spell works. If it is greater than your effective skill, the spell fails.
+
+On a success, mark off the spell’s energy cost against your FP or HP (see Energy Cost, p. 8). Its effects take place immediately. On a critical success, the spell works especially well. Details are up to the GM, who should be both generous and creative. Whatever else occurs, there is never an energy cost if you get a critical success when you cast a spell.
+
+On a failure, the spell does not work. If success would have cost energy, you lose one energy point; otherwise, you lose nothing. (Exception: You must pay the full energy cost for an Information spell even on a failure; see Information Spells, p. 13.) On a critical failure, you must spend the full energy cost and the spell fails badly! The GM may use the Critical Spell Failure Table or improvise some other “backfire” he finds amusing.

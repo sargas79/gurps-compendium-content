@@ -1,0 +1,1 @@
+Sometimes, you may want to end a spell before its full duration is up. If you specify a shorter duration when you cast the spell, the spell lasts exactly the time desired. If you suddenly decide to “cancel” a spell before its time is up, though, you must pay one energy point (from FP or HP) to do so, regardless of the spell or your skill level.

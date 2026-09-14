@@ -1,0 +1,306 @@
+{
+  "pages": [
+    {
+      "id": "principles-of-magic",
+      "title": "Principles of Magic",
+      "chapter": "Principles of Magic",
+      "pages": "M5",
+      "reference": "Magic p. 5",
+      "rule": "magic",
+      "file": "principles-of-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "glossary-of-magical-terms",
+      "title": "Glossary of Magical Terms",
+      "chapter": "Principles of Magic",
+      "pages": "M5",
+      "reference": "Magic p. 5",
+      "file": "glossary-of-magical-terms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "learning-magic",
+      "title": "Learning Magic",
+      "chapter": "Principles of Magic",
+      "pages": "M6",
+      "reference": "Magic p. 6",
+      "rule": "magic",
+      "file": "learning-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "finding-a-teacher",
+      "title": "Finding a Teacher",
+      "chapter": "Principles of Magic",
+      "pages": "M6",
+      "reference": "Magic p. 6",
+      "file": "finding-a-teacher.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "prerequisites",
+      "title": "Prerequisites",
+      "chapter": "Principles of Magic",
+      "pages": "M6",
+      "reference": "Magic p. 6",
+      "rule": "magic",
+      "file": "prerequisites.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mana",
+      "title": "Mana",
+      "chapter": "Principles of Magic",
+      "pages": "M6",
+      "reference": "Magic p. 6",
+      "rule": "manaLevels",
+      "file": "mana.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "casting-spells",
+      "title": "Casting Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M7",
+      "reference": "Magic p. 7",
+      "rule": "magic",
+      "file": "casting-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "critical-spell-failure-table",
+      "title": "Critical Spell Failure Table",
+      "chapter": "Principles of Magic",
+      "pages": "M7",
+      "reference": "Magic p. 7",
+      "rule": "criticalSpellFailure",
+      "file": "critical-spell-failure-table.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "distraction-and-injury",
+      "title": "Distraction and Injury",
+      "chapter": "Principles of Magic",
+      "pages": "M7",
+      "reference": "Magic p. 7",
+      "rule": "spellDistraction",
+      "file": "distraction-and-injury.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "caster-and-subject",
+      "title": "Caster and Subject",
+      "chapter": "Principles of Magic",
+      "pages": "M7",
+      "reference": "Magic p. 7",
+      "rule": "magic",
+      "file": "caster-and-subject.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "time-required",
+      "title": "Time Required",
+      "chapter": "Principles of Magic",
+      "pages": "M7-8",
+      "reference": "Magic pp. 7-8",
+      "rule": "magic",
+      "file": "time-required.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "energy-cost",
+      "title": "Energy Cost",
+      "chapter": "Principles of Magic",
+      "pages": "M8",
+      "reference": "Magic p. 8",
+      "rule": "magic",
+      "file": "energy-cost.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magic-rituals",
+      "title": "Magic Rituals",
+      "chapter": "Principles of Magic",
+      "pages": "M8-9",
+      "reference": "Magic pp. 8-9",
+      "rule": "magicRituals",
+      "file": "magic-rituals.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-rule-magic-ingredients",
+      "title": "Optional Rule: Magic Ingredients",
+      "chapter": "Principles of Magic",
+      "pages": "M8",
+      "reference": "Magic p. 8",
+      "file": "optional-rule-magic-ingredients.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "limits-on-effect",
+      "title": "Limits on Effect",
+      "chapter": "Principles of Magic",
+      "pages": "M9",
+      "reference": "Magic p. 9",
+      "rule": "magic",
+      "file": "limits-on-effect.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-rule-alternate-magic-rituals",
+      "title": "Optional Rule: Alternate Magic Rituals",
+      "chapter": "Principles of Magic",
+      "pages": "M9",
+      "reference": "Magic p. 9",
+      "file": "optional-rule-alternate-magic-rituals.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "secret-spells",
+      "title": "Secret Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M9",
+      "reference": "Magic p. 9",
+      "file": "secret-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "duration-of-spells-and-maintaining-spells",
+      "title": "Duration of Spells and Maintaining Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M9-10",
+      "reference": "Magic pp. 9-10",
+      "rule": "maintainingSpells",
+      "file": "duration-of-spells-and-maintaining-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "casting-spells-while-maintaining-other-spells",
+      "title": "Casting Spells While Maintaining Other Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M10",
+      "reference": "Magic p. 10",
+      "rule": "maintainingSpells",
+      "file": "casting-spells-while-maintaining-other-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "canceling-spells",
+      "title": "Canceling Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M10",
+      "reference": "Magic p. 10",
+      "rule": "maintainingSpells",
+      "file": "canceling-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "different-kinds-of-magic",
+      "title": "Different Kinds of Magic",
+      "chapter": "Principles of Magic",
+      "pages": "M11",
+      "reference": "Magic p. 11",
+      "rule": "magic",
+      "file": "different-kinds-of-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "colleges-of-magic",
+      "title": "Colleges of Magic",
+      "chapter": "Principles of Magic",
+      "pages": "M11",
+      "reference": "Magic p. 11",
+      "rule": "magic",
+      "file": "colleges-of-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "spell-classes",
+      "title": "Spell Classes",
+      "chapter": "Principles of Magic",
+      "pages": "M11-14",
+      "reference": "Magic pp. 11-14",
+      "rule": "magic",
+      "file": "spell-classes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ceremonial-magic",
+      "title": "Ceremonial Magic",
+      "chapter": "Principles of Magic",
+      "pages": "M12",
+      "reference": "Magic p. 12",
+      "rule": "magic",
+      "file": "ceremonial-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "area-spells-on-a-battle-map",
+      "title": "Area Spells on a Battle Map",
+      "chapter": "Principles of Magic",
+      "pages": "M12",
+      "reference": "Magic p. 12",
+      "rule": "magic",
+      "file": "area-spells-on-a-battle-map.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magic-staffs",
+      "title": "Magic Staffs",
+      "chapter": "Principles of Magic",
+      "pages": "M13",
+      "reference": "Magic p. 13",
+      "rule": "magic",
+      "file": "magic-staffs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "long-distance-modifiers",
+      "title": "Long-Distance Modifiers",
+      "chapter": "Principles of Magic",
+      "pages": "M13",
+      "reference": "Magic p. 13",
+      "rule": "magic",
+      "file": "long-distance-modifiers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dissipating-held-melee-and-missile-spells",
+      "title": "Dissipating Held Melee and Missile Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M14",
+      "reference": "Magic p. 14",
+      "rule": "magic",
+      "file": "dissipating-held-melee-and-missile-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "inventing-new-spells",
+      "title": "Inventing New Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M14",
+      "reference": "Magic p. 14",
+      "file": "inventing-new-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "player-created-spells",
+      "title": "Player-Created Spells",
+      "chapter": "Principles of Magic",
+      "pages": "M15",
+      "reference": "Magic p. 15",
+      "file": "player-created-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "designing-wizard-characters",
+      "title": "Designing Wizard Characters",
+      "chapter": "Principles of Magic",
+      "pages": "M15",
+      "reference": "Magic p. 15",
+      "file": "designing-wizard-characters.md",
+      "status": "reviewed"
+    }
+  ]
+}
