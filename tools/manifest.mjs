@@ -128,6 +128,7 @@ async function main() {
     process.exit(1);
   }
   await cp(join(import.meta.dirname, "..", "lang"), join(distRoot, "lang"), { recursive: true });
+  await cp(join(import.meta.dirname, "..", "templates"), join(distRoot, "templates"), { recursive: true });
 
   await mkdir(distRoot, { recursive: true });
   await writeFile(join(distRoot, "module.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");

@@ -19,6 +19,16 @@
       "status": "reviewed"
     },
     {
+      "id": "talent",
+      "title": "Talent",
+      "chapter": "2. Champions' Cheat Sheet",
+      "pages": "MH1:24",
+      "reference": "Monster Hunters 1: Champions p. 24",
+      "rule": "gurps-compendium-content.talentsSkipWildcards",
+      "file": "talent.md",
+      "status": "transcribed"
+    },
+    {
       "id": "disadvantage-limit",
       "title": "Disadvantage Limit",
       "chapter": "2. Champions' Cheat Sheet",
@@ -33,7 +43,7 @@
       "chapter": "2. Champions' Cheat Sheet",
       "pages": "MH1:28",
       "reference": "Monster Hunters 1: Champions p. 28",
-      "rule": "bonusPointSpending",
+      "rule": "gurps-compendium-content.bonusPointSpending",
       "file": "wildcard-skills.md",
       "status": "reviewed"
     },
@@ -43,7 +53,7 @@
       "chapter": "2. Champions' Cheat Sheet",
       "pages": "MH1:31",
       "reference": "Monster Hunters 1: Champions p. 31",
-      "rule": "bonusPointSpending",
+      "rule": "gurps-compendium-content.bonusPointSpending",
       "file": "other-uses-for-points.md",
       "status": "reviewed"
     },
@@ -53,7 +63,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:32",
       "reference": "Monster Hunters 1: Champions p. 32",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "words-of-magic.md",
       "status": "reviewed"
     },
@@ -63,7 +73,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:32-33",
       "reference": "Monster Hunters 1: Champions pp. 32-33",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "learning-magic.md",
       "status": "reviewed"
     },
@@ -73,7 +83,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:33",
       "reference": "Monster Hunters 1: Champions p. 33",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "performing-magic.md",
       "status": "reviewed"
     },
@@ -83,7 +93,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:33-35",
       "reference": "Monster Hunters 1: Champions pp. 33-35",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "ritual-definition-and-cost.md",
       "status": "reviewed"
     },
@@ -93,7 +103,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:34",
       "reference": "Monster Hunters 1: Champions p. 34",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "divinations.md",
       "status": "reviewed"
     },
@@ -103,7 +113,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:35",
       "reference": "Monster Hunters 1: Champions p. 35",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "ritual-effect-table.md",
       "status": "reviewed"
     },
@@ -113,7 +123,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:35",
       "reference": "Monster Hunters 1: Champions p. 35",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "which-skill.md",
       "status": "reviewed"
     },
@@ -123,7 +133,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:35-36",
       "reference": "Monster Hunters 1: Champions pp. 35-36",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "energy-accumulation.md",
       "status": "reviewed"
     },
@@ -133,7 +143,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:35",
       "reference": "Monster Hunters 1: Champions p. 35",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "warding.md",
       "status": "reviewed"
     },
@@ -143,7 +153,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:36",
       "reference": "Monster Hunters 1: Champions p. 36",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "non-adepts-and-magic.md",
       "status": "reviewed"
     },
@@ -153,7 +163,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:36-37",
       "reference": "Monster Hunters 1: Champions pp. 36-37",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "casting-the-spell.md",
       "status": "reviewed"
     },
@@ -163,7 +173,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:37",
       "reference": "Monster Hunters 1: Champions p. 37",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "blocking-spells.md",
       "status": "reviewed"
     },
@@ -173,7 +183,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:37",
       "reference": "Monster Hunters 1: Champions p. 37",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "post-casting.md",
       "status": "reviewed"
     },
@@ -183,7 +193,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:37",
       "reference": "Monster Hunters 1: Champions p. 37",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "stacking-spells.md",
       "status": "reviewed"
     },
@@ -193,7 +203,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:38",
       "reference": "Monster Hunters 1: Champions p. 38",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "conditional-rituals.md",
       "status": "reviewed"
     },
@@ -203,7 +213,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:38-39",
       "reference": "Monster Hunters 1: Champions pp. 38-39",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "charms.md",
       "status": "reviewed"
     },
@@ -213,7 +223,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:39",
       "reference": "Monster Hunters 1: Champions p. 39",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "defining-rituals.md",
       "status": "reviewed"
     },
@@ -223,7 +233,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:39",
       "reference": "Monster Hunters 1: Champions p. 39",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "grimoires.md",
       "status": "reviewed"
     },
@@ -233,7 +243,7 @@
       "chapter": "3. Ritual Path Magic",
       "pages": "MH1:39",
       "reference": "Monster Hunters 1: Champions p. 39",
-      "rule": "ritualPathMagic",
+      "rule": "gurps-compendium-content.ritualPathMagic",
       "file": "working-together.md",
       "status": "reviewed"
     },
@@ -279,7 +289,7 @@
       "chapter": "5. Inhuman Races",
       "pages": "MH1:51",
       "reference": "Monster Hunters 1: Champions p. 51",
-      "rule": "holyAttacks",
+      "rule": "gurps-compendium-content.holyAttacks",
       "file": "holy-attacks.md",
       "status": "reviewed"
     },
@@ -289,7 +299,7 @@
       "chapter": "6. Gear",
       "pages": "MH1:53",
       "reference": "Monster Hunters 1: Champions p. 53",
-      "rule": "monsterHuntersGear",
+      "rule": "gurps-compendium-content.monsterHuntersGear",
       "file": "budgeting.md",
       "status": "reviewed"
     },
@@ -299,7 +309,7 @@
       "chapter": "6. Gear",
       "pages": "MH1:54",
       "reference": "Monster Hunters 1: Champions p. 54",
-      "rule": "monsterHuntersGear",
+      "rule": "gurps-compendium-content.monsterHuntersGear",
       "file": "gadget-improvements.md",
       "status": "reviewed"
     },
@@ -318,7 +328,7 @@
       "chapter": "6. Gear",
       "pages": "MH1:60",
       "reference": "Monster Hunters 1: Champions p. 60",
-      "rule": "monsterHuntersGear",
+      "rule": "gurps-compendium-content.monsterHuntersGear",
       "file": "improvised-weapons.md",
       "status": "reviewed"
     },
@@ -337,7 +347,7 @@
       "chapter": "6. Gear",
       "pages": "MH1:63",
       "reference": "Monster Hunters 1: Champions p. 63",
-      "rule": "monsterHuntersGear",
+      "rule": "gurps-compendium-content.monsterHuntersGear",
       "file": "special-ammo.md",
       "status": "reviewed"
     },

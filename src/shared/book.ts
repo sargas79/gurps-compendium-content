@@ -15,6 +15,8 @@ export interface BookRules {
   label: string;
   /** Registers the book's switches in its group. Called during `gworld.registerRules`. */
   registerRules?: (registry: RuleRegistry, group: string) => void;
+  /** Registers what must exist before the world's data is read: data extensions, hooks. Called on `init`. */
+  init?: (api: GWorldApi) => void;
   /** Registers the book's maneuvers, options, sheet sections and cards. Called on `gworld.ready`. */
   ready?: (api: GWorldApi) => void;
 }
@@ -28,6 +30,17 @@ export function registerBookRules(books: readonly BookRules[], registry: RuleReg
       book.registerRules?.(registry, book.slug);
     } catch (error) {
       console.error(`${MODULE_ID} | ${book.label}: registering its rules failed`, error);
+    }
+  }
+}
+
+/** Lets each book register what must exist before the world's data is read. */
+export function initBooks(books: readonly BookRules[], api: GWorldApi): void {
+  for (const book of books) {
+    try {
+      book.init?.(api);
+    } catch (error) {
+      console.error(`${MODULE_ID} | ${book.label}: its init work failed`, error);
     }
   }
 }
