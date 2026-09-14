@@ -28,7 +28,7 @@ Failure costs 1 FP. On a critical failure, you suffer heat stroke: lose 1d FP. A
 
 In addition, at temperatures up to 30° over your comfort zone (91-120° for humans), you lose an extra 1 FP whenever you lose FP to exertion or dehydration. At temperatures up to 60° over your comfort zone (121-150° for humans), this becomes an extra 2 FP.
 
-Intense Heat: Human skin starts to burn at 160°; see Flame (p. 433) for damage. Even if no damage penetrates your DR, you will rapidly over-heat if the ambient temperature is more than 6 × your comfort zone’s width over your comfort zone (e.g., in a fire). After 3 × DR seconds, make a HT roll every second. On a failure, you lose 1 FP. Your DR provides its usual protection against burning damage, but it has no effect on this FP loss.
+Intense Heat: Human skin starts to burn at 160°; see Flame (p. 433) for damage. Even if no damage penetrates your DR, you will rapidly overheat if the ambient temperature is more than 6 × your comfort zone’s width over your comfort zone (e.g., in a fire). After 3 × DR seconds, make a HT roll every second. On a failure, you lose 1 FP. Your DR provides its usual protection against burning damage, but it has no effect on this FP loss.
 
 Sunburn: After a day of full sun on unprotected skin, an albino will be near death and a light-skinned Caucasian will be very uncomfortable (1d-3 damage). Darker-skinned individuals may itch, but aren’t in much danger. Details are up to the GM.
 

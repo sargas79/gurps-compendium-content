@@ -1,4 +1,4 @@
-“Thrown weapons” are weapons you must physically hurl at the target: rocks, hand grenades, ninja stars (shuriken), etc. You can also throw certain melee weapons, such as hatch-ets, knives, and spears. See the Muscle-Powered Ranged Weapon Table (p. 275) for statistics and skills required. See Chapter 13 for the effects of grenades and incendiaries.
+“Thrown weapons” are weapons you must physically hurl at the target: rocks, hand grenades, ninja stars (shuriken), etc. You can also throw certain melee weapons, such as hatchets, knives, and spears. See the Muscle-Powered Ranged Weapon Table (p. 275) for statistics and skills required. See Chapter 13 for the effects of grenades and incendiaries.
 
 Treat a thrown weapon just like any other ranged attack, with a few special rules:
 

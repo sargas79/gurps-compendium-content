@@ -381,8 +381,18 @@ function render(blocks, baseLevel) {
     }
     out.push(text);
   }
-  return out.join("\n\n") + "\n";
+  return MENDS.reduce((text, [from, to]) => text.replace(from, to), out.join("\n\n") + "\n");
 }
+
+/**
+ * Words broken across a line that the lexicon cannot mend, because the book
+ * never prints them whole anywhere else.
+ */
+const MENDS = [
+  [/hatch-ets/g, "hatchets"],
+  [/over-takes/g, "overtakes"],
+  [/over-heat/g, "overheat"],
+];
 
 /** Characters Markdown would read as formatting: "-10 points*", "a_b". */
 function escape(text) {

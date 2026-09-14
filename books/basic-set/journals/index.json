@@ -8,7 +8,7 @@
       "reference": "Basic Set: Campaigns p. 444",
       "rule": "aging",
       "file": "aging.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "vehicleManeuvers",
@@ -18,7 +18,7 @@
       "reference": "Basic Set: Campaigns pp. 467-470",
       "rule": "vehicleManeuvers",
       "file": "vehicleManeuvers.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "collisions",
@@ -28,7 +28,7 @@
       "reference": "Basic Set: Campaigns pp. 430-432",
       "rule": "collisions",
       "file": "collisions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "disease",
@@ -38,7 +38,7 @@
       "reference": "Basic Set: Campaigns pp. 442-444",
       "rule": "disease",
       "file": "disease.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "intoxication",
@@ -48,7 +48,7 @@
       "reference": "Basic Set: Campaigns pp. 439-440",
       "rule": "intoxication",
       "file": "intoxication.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "electricity",
@@ -58,7 +58,7 @@
       "reference": "Basic Set: Campaigns pp. 432-433",
       "rule": "electricity",
       "file": "electricity.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "exposure",
@@ -68,7 +68,7 @@
       "reference": "Basic Set: Campaigns pp. 430-434",
       "rule": "exposure",
       "file": "exposure.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "battleFatigue",
@@ -78,7 +78,7 @@
       "reference": "Basic Set: Campaigns p. 426",
       "rule": "battleFatigue",
       "file": "battleFatigue.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "fire",
@@ -88,7 +88,7 @@
       "reference": "Basic Set: Campaigns pp. 433-434",
       "rule": "fire",
       "file": "fire.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "hiking",
@@ -98,7 +98,7 @@
       "reference": "Basic Set: Campaigns p. 351",
       "rule": "hiking",
       "file": "hiking.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "study",
@@ -108,7 +108,7 @@
       "reference": "Basic Set: Characters pp. 292-294",
       "rule": "study",
       "file": "study.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "jobs",
@@ -118,7 +118,7 @@
       "reference": "Basic Set: Campaigns pp. 516-517",
       "rule": "jobs",
       "file": "jobs.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "sleep",
@@ -128,7 +128,7 @@
       "reference": "Basic Set: Campaigns pp. 426-427",
       "rule": "sleep",
       "file": "sleep.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "physicalActivities",
@@ -138,7 +138,7 @@
       "reference": "Basic Set: Campaigns pp. 349-357",
       "rule": "physicalActivities",
       "file": "physicalActivities.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "poison",
@@ -148,7 +148,7 @@
       "reference": "Basic Set: Campaigns pp. 437-441",
       "rule": "poison",
       "file": "poison.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "radiation",
@@ -158,7 +158,7 @@
       "reference": "Basic Set: Campaigns pp. 435-436",
       "rule": "radiation",
       "file": "radiation.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "socialBackground",
@@ -168,7 +168,7 @@
       "reference": "Basic Set: Characters pp. 22-25",
       "rule": "socialBackground",
       "file": "socialBackground.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "vehicles",
@@ -178,7 +178,7 @@
       "reference": "Basic Set: Campaigns pp. 462-470",
       "rule": "vehicles",
       "file": "vehicles.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "bulletproofNudity",
@@ -188,7 +188,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "bulletproofNudity",
       "file": "bulletproofNudity.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "cannonFodder",
@@ -198,7 +198,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cannonFodder",
       "file": "cannonFodder.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "cinematicExplosions",
@@ -208,7 +208,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cinematicExplosions",
       "file": "cinematicExplosions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "cinematicKnockback",
@@ -218,7 +218,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "cinematicKnockback",
       "file": "cinematicKnockback.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "fleshWounds",
@@ -228,7 +228,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "fleshWounds",
       "file": "fleshWounds.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "infiniteAmmunition",
@@ -238,7 +238,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "infiniteAmmunition",
       "file": "infiniteAmmunition.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "meleeEtiquette",
@@ -248,7 +248,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "meleeEtiquette",
       "file": "meleeEtiquette.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "tvActionViolence",
@@ -258,7 +258,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "tvActionViolence",
       "file": "tvActionViolence.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "activeDefenseOptions",
@@ -268,7 +268,7 @@
       "reference": "Basic Set: Campaigns p. 377",
       "rule": null,
       "file": "activeDefenseOptions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "activeDefenseRolls",
@@ -278,7 +278,7 @@
       "reference": "Basic Set: Campaigns p. 374",
       "rule": null,
       "file": "activeDefenseRolls.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "aim",
@@ -288,7 +288,7 @@
       "reference": "Basic Set: Campaigns p. 364",
       "rule": null,
       "file": "aim.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "allOutAttack",
@@ -298,7 +298,7 @@
       "reference": "Basic Set: Campaigns p. 365",
       "rule": null,
       "file": "allOutAttack.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "allOutDefense",
@@ -308,7 +308,7 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "allOutDefense.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "attack",
@@ -318,7 +318,7 @@
       "reference": "Basic Set: Campaigns p. 365",
       "rule": null,
       "file": "attack.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "attackRoll",
@@ -328,7 +328,7 @@
       "reference": "Basic Set: Campaigns p. 369",
       "rule": null,
       "file": "attackRoll.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "attacking",
@@ -338,7 +338,7 @@
       "reference": "Basic Set: Campaigns p. 369",
       "rule": null,
       "file": "attacking.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "blocking",
@@ -348,7 +348,7 @@
       "reference": "Basic Set: Campaigns p. 375",
       "rule": null,
       "file": "blocking.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "changePosture",
@@ -358,7 +358,7 @@
       "reference": "Basic Set: Campaigns p. 364",
       "rule": null,
       "file": "changePosture.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "closeCombat",
@@ -368,7 +368,7 @@
       "reference": "Basic Set: Campaigns pp. 391-392",
       "rule": "closeCombat",
       "file": "closeCombat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "combatTurnSequence",
@@ -378,7 +378,7 @@
       "reference": "Basic Set: Campaigns pp. 362-363",
       "rule": null,
       "file": "combatTurnSequence.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "concentrate",
@@ -388,7 +388,7 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "concentrate.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "criticalHits",
@@ -398,7 +398,7 @@
       "reference": "Basic Set: Campaigns p. 381",
       "rule": null,
       "file": "criticalHits.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "criticalHitsAndMisses",
@@ -408,7 +408,7 @@
       "reference": "Basic Set: Campaigns p. 381",
       "rule": null,
       "file": "criticalHitsAndMisses.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "criticalMisses",
@@ -418,7 +418,7 @@
       "reference": "Basic Set: Campaigns p. 382",
       "rule": null,
       "file": "criticalMisses.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "crouching",
@@ -428,7 +428,7 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": null,
       "file": "crouching.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "damageAndInjury",
@@ -438,7 +438,7 @@
       "reference": "Basic Set: Campaigns pp. 377-378",
       "rule": null,
       "file": "damageAndInjury.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "damageResistanceAndPenetration",
@@ -448,7 +448,7 @@
       "reference": "Basic Set: Campaigns pp. 378-379",
       "rule": null,
       "file": "damageResistanceAndPenetration.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "damageRoll",
@@ -458,7 +458,7 @@
       "reference": "Basic Set: Campaigns p. 378",
       "rule": null,
       "file": "damageRoll.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "deceptiveAttack",
@@ -468,7 +468,7 @@
       "reference": "Basic Set: Campaigns pp. 369-370",
       "rule": "deceptiveAttack",
       "file": "deceptiveAttack.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "defending",
@@ -478,7 +478,7 @@
       "reference": "Basic Set: Campaigns p. 374",
       "rule": null,
       "file": "defending.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "dirtyTricks",
@@ -488,7 +488,7 @@
       "reference": "Basic Set: Campaigns p. 405",
       "rule": "dirtyTricks",
       "file": "dirtyTricks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "doNothing",
@@ -498,7 +498,7 @@
       "reference": "Basic Set: Campaigns p. 364",
       "rule": null,
       "file": "doNothing.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "dodging",
@@ -508,7 +508,7 @@
       "reference": "Basic Set: Campaigns pp. 374-375",
       "rule": null,
       "file": "dodging.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "dualWeaponAttack",
@@ -518,7 +518,7 @@
       "reference": "Basic Set: Campaigns p. 417",
       "rule": "dualWeaponAttack",
       "file": "dualWeaponAttack.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "effectsOfInjury",
@@ -528,7 +528,7 @@
       "reference": "Basic Set: Campaigns pp. 380-381",
       "rule": null,
       "file": "effectsOfInjury.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "evading",
@@ -538,7 +538,7 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": "evading",
       "file": "evading.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "evaluate",
@@ -548,7 +548,7 @@
       "reference": "Basic Set: Campaigns pp. 364-365",
       "rule": null,
       "file": "evaluate.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "feint",
@@ -558,7 +558,7 @@
       "reference": "Basic Set: Campaigns p. 365",
       "rule": "feint",
       "file": "feint.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "grappling",
@@ -568,7 +568,7 @@
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "grappling",
       "file": "grappling.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "highSpeed",
@@ -578,7 +578,7 @@
       "reference": "Basic Set: Campaigns pp. 394-396",
       "rule": "highSpeed",
       "file": "highSpeed.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "malfunctions",
@@ -588,7 +588,7 @@
       "reference": "Basic Set: Campaigns p. 407",
       "rule": "malfunctions",
       "file": "malfunctions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "maneuvers",
@@ -598,7 +598,7 @@
       "reference": "Basic Set: Campaigns p. 363",
       "rule": null,
       "file": "maneuvers.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "meleeAttackOptions",
@@ -608,7 +608,7 @@
       "reference": "Basic Set: Campaigns pp. 369-370",
       "rule": null,
       "file": "meleeAttackOptions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "meleeAttacks",
@@ -618,7 +618,7 @@
       "reference": "Basic Set: Campaigns p. 369",
       "rule": null,
       "file": "meleeAttacks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "missileWeaponAttacks",
@@ -628,7 +628,7 @@
       "reference": "Basic Set: Campaigns pp. 373-374",
       "rule": null,
       "file": "missileWeaponAttacks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "mountedCombat",
@@ -638,7 +638,7 @@
       "reference": "Basic Set: Campaigns pp. 396-398",
       "rule": "mountedCombat",
       "file": "mountedCombat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "move",
@@ -648,7 +648,7 @@
       "reference": "Basic Set: Campaigns p. 364",
       "rule": null,
       "file": "move.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "moveAndAttack",
@@ -658,7 +658,7 @@
       "reference": "Basic Set: Campaigns pp. 365-366",
       "rule": null,
       "file": "moveAndAttack.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "movement",
@@ -668,7 +668,7 @@
       "reference": "Basic Set: Campaigns p. 367",
       "rule": null,
       "file": "movement.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "movementAndCombat",
@@ -678,7 +678,7 @@
       "reference": "Basic Set: Campaigns p. 367",
       "rule": null,
       "file": "movementAndCombat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "movingThroughOtherCharacters",
@@ -688,7 +688,7 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": null,
       "file": "movingThroughOtherCharacters.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "opportunityFire",
@@ -698,7 +698,7 @@
       "reference": "Basic Set: Campaigns p. 390",
       "rule": "opportunityFire",
       "file": "opportunityFire.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "otherActionsInCombat",
@@ -708,7 +708,7 @@
       "reference": "Basic Set: Campaigns p. 382",
       "rule": null,
       "file": "otherActionsInCombat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "overpenetration",
@@ -718,7 +718,7 @@
       "reference": "Basic Set: Campaigns p. 408",
       "rule": "overpenetration",
       "file": "overpenetration.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "parrying",
@@ -728,7 +728,7 @@
       "reference": "Basic Set: Campaigns pp. 376-377",
       "rule": null,
       "file": "parrying.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "rangedAttacks",
@@ -738,7 +738,7 @@
       "reference": "Basic Set: Campaigns p. 372",
       "rule": null,
       "file": "rangedAttacks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "rapidFire",
@@ -748,7 +748,7 @@
       "reference": "Basic Set: Campaigns pp. 373-374",
       "rule": "rapidFire",
       "file": "rapidFire.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "rapidStrike",
@@ -758,7 +758,7 @@
       "reference": "Basic Set: Campaigns p. 370",
       "rule": "rapidStrike",
       "file": "rapidStrike.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "ready",
@@ -768,7 +768,7 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "ready.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "readyingWeaponsAndOtherGear",
@@ -778,7 +778,7 @@
       "reference": "Basic Set: Campaigns pp. 382-383",
       "rule": null,
       "file": "readyingWeaponsAndOtherGear.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "retreat",
@@ -788,7 +788,7 @@
       "reference": "Basic Set: Campaigns p. 377",
       "rule": "retreat",
       "file": "retreat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "scatter",
@@ -798,7 +798,7 @@
       "reference": "Basic Set: Campaigns p. 414",
       "rule": "scatter",
       "file": "scatter.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "slams",
@@ -808,7 +808,7 @@
       "reference": "Basic Set: Campaigns pp. 371-372",
       "rule": "slams",
       "file": "slams.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "spacing",
@@ -818,7 +818,7 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": null,
       "file": "spacing.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "specialDamage",
@@ -828,7 +828,7 @@
       "reference": "Basic Set: Campaigns p. 381",
       "rule": null,
       "file": "specialDamage.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "step",
@@ -838,7 +838,7 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": null,
       "file": "step.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "swarms",
@@ -848,7 +848,7 @@
       "reference": "Basic Set: Campaigns p. 461",
       "rule": "swarms",
       "file": "swarms.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "thrownWeaponAttacks",
@@ -858,7 +858,7 @@
       "reference": "Basic Set: Campaigns p. 373",
       "rule": null,
       "file": "thrownWeaponAttacks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "trampling",
@@ -868,7 +868,7 @@
       "reference": "Basic Set: Campaigns p. 404",
       "rule": "trampling",
       "file": "trampling.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "typicalLongActions",
@@ -878,7 +878,7 @@
       "reference": "Basic Set: Campaigns p. 383",
       "rule": null,
       "file": "typicalLongActions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "unarmedCombat",
@@ -888,7 +888,7 @@
       "reference": "Basic Set: Campaigns pp. 370-372",
       "rule": null,
       "file": "unarmedCombat.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "wait",
@@ -898,7 +898,7 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "wait.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "woundingModifiersAndInjury",
@@ -908,7 +908,7 @@
       "reference": "Basic Set: Campaigns p. 379",
       "rule": null,
       "file": "woundingModifiersAndInjury.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "ammunitionTypes",
@@ -918,7 +918,7 @@
       "reference": "Basic Set: Characters pp. 279-280",
       "rule": "ammunitionTypes",
       "file": "ammunitionTypes.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "frontArmor",
@@ -928,7 +928,7 @@
       "reference": "Basic Set: Characters p. 282",
       "rule": "frontArmor",
       "file": "frontArmor.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "layeredArmor",
@@ -938,7 +938,7 @@
       "reference": "Basic Set: Characters p. 286",
       "rule": "layeredArmor",
       "file": "layeredArmor.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "damageToShields",
@@ -948,7 +948,7 @@
       "reference": "Basic Set: Campaigns p. 484",
       "rule": "damageToShields",
       "file": "damageToShields.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "equipmentModifiers",
@@ -958,7 +958,7 @@
       "reference": "Basic Set: Campaigns p. 345",
       "rule": "equipmentModifiers",
       "file": "equipmentModifiers.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "bluntTrauma",
@@ -968,7 +968,7 @@
       "reference": "Basic Set: Campaigns p. 379",
       "rule": "bluntTrauma",
       "file": "bluntTrauma.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "legalityClass",
@@ -978,7 +978,7 @@
       "reference": "Basic Set: Characters p. 267",
       "rule": "legalityClass",
       "file": "legalityClass.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "reloading",
@@ -988,7 +988,7 @@
       "reference": "Basic Set: Campaigns p. 373",
       "rule": "reloading",
       "file": "reloading.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "repairs",
@@ -998,7 +998,7 @@
       "reference": "Basic Set: Campaigns pp. 484-485",
       "rule": "repairs",
       "file": "repairs.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "minimumSt",
@@ -1008,7 +1008,7 @@
       "reference": "Basic Set: Characters p. 270",
       "rule": "minimumSt",
       "file": "minimumSt.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "weaponBreakage",
@@ -1018,7 +1018,7 @@
       "reference": "Basic Set: Campaigns pp. 376-485",
       "rule": "weaponBreakage",
       "file": "weaponBreakage.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "weaponQuality",
@@ -1028,7 +1028,7 @@
       "reference": "Basic Set: Characters pp. 274-277",
       "rule": "weaponQuality",
       "file": "weaponQuality.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "afflictions",
@@ -1038,7 +1038,7 @@
       "reference": "Basic Set: Characters pp. 35-36",
       "rule": "afflictions",
       "file": "afflictions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "bleeding",
@@ -1048,7 +1048,7 @@
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "bleeding",
       "file": "bleeding.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "criticalTables",
@@ -1058,7 +1058,7 @@
       "reference": "Basic Set: Campaigns pp. 556-557",
       "rule": "criticalTables",
       "file": "criticalTables.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "explosions",
@@ -1068,7 +1068,7 @@
       "reference": "Basic Set: Campaigns pp. 414-415",
       "rule": "explosions",
       "file": "explosions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "hitLocations",
@@ -1078,7 +1078,7 @@
       "reference": "Basic Set: Campaigns pp. 398-401",
       "rule": "hitLocations",
       "file": "hitLocations.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "knockback",
@@ -1088,7 +1088,7 @@
       "reference": "Basic Set: Campaigns p. 378",
       "rule": "knockback",
       "file": "knockback.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "knockdown",
@@ -1098,7 +1098,7 @@
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "knockdown",
       "file": "knockdown.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "criticalSpellFailure",
@@ -1108,7 +1108,7 @@
       "reference": "Basic Set: Characters p. 236",
       "rule": "criticalSpellFailure",
       "file": "criticalSpellFailure.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "spellDistraction",
@@ -1118,7 +1118,7 @@
       "reference": "Basic Set: Characters p. 236",
       "rule": "spellDistraction",
       "file": "spellDistraction.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "magic",
@@ -1128,7 +1128,7 @@
       "reference": "Basic Set: Characters pp. 234-241",
       "rule": "magic",
       "file": "magic.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "magicItems",
@@ -1138,7 +1138,7 @@
       "reference": "Basic Set: Campaigns pp. 480-483",
       "rule": "magicItems",
       "file": "magicItems.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "magicRituals",
@@ -1148,7 +1148,7 @@
       "reference": "Basic Set: Characters p. 237",
       "rule": "magicRituals",
       "file": "magicRituals.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "maintainingSpells",
@@ -1158,7 +1158,7 @@
       "reference": "Basic Set: Characters pp. 237-238",
       "rule": "maintainingSpells",
       "file": "maintainingSpells.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "manaLevels",
@@ -1168,7 +1168,7 @@
       "reference": "Basic Set: Characters p. 235",
       "rule": "manaLevels",
       "file": "manaLevels.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "ruleOf16",
@@ -1178,7 +1178,7 @@
       "reference": "Basic Set: Campaigns p. 349",
       "rule": "ruleOf16",
       "file": "ruleOf16.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "climbing",
@@ -1188,7 +1188,7 @@
       "reference": "Basic Set: Campaigns p. 349",
       "rule": null,
       "file": "climbing.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "contests",
@@ -1198,7 +1198,7 @@
       "reference": "Basic Set: Campaigns p. 348",
       "rule": null,
       "file": "contests.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "degreeOfSuccessOrFailure",
@@ -1208,7 +1208,7 @@
       "reference": "Basic Set: Campaigns pp. 347-348",
       "rule": null,
       "file": "degreeOfSuccessOrFailure.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "digging",
@@ -1218,7 +1218,7 @@
       "reference": "Basic Set: Campaigns pp. 350-351",
       "rule": null,
       "file": "digging.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "extraEffort",
@@ -1228,7 +1228,7 @@
       "reference": "Basic Set: Campaigns pp. 356-357",
       "rule": "extraEffort",
       "file": "extraEffort.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "frightChecks",
@@ -1238,7 +1238,7 @@
       "reference": "Basic Set: Campaigns pp. 360-361",
       "rule": "frightChecks",
       "file": "frightChecks.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "hearing",
@@ -1248,7 +1248,7 @@
       "reference": "Basic Set: Campaigns p. 358",
       "rule": null,
       "file": "hearing.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "holdingYourBreath",
@@ -1258,7 +1258,7 @@
       "reference": "Basic Set: Campaigns pp. 351-352",
       "rule": null,
       "file": "holdingYourBreath.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "influenceRolls",
@@ -1268,7 +1268,7 @@
       "reference": "Basic Set: Campaigns p. 359",
       "rule": null,
       "file": "influenceRolls.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "jumping",
@@ -1278,7 +1278,7 @@
       "reference": "Basic Set: Campaigns p. 352",
       "rule": null,
       "file": "jumping.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "liftingAndMovingThings",
@@ -1288,7 +1288,7 @@
       "reference": "Basic Set: Campaigns p. 353",
       "rule": null,
       "file": "liftingAndMovingThings.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "modifiers",
@@ -1298,7 +1298,7 @@
       "reference": "Basic Set: Campaigns pp. 344-345",
       "rule": null,
       "file": "modifiers.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "quickContests",
@@ -1308,7 +1308,7 @@
       "reference": "Basic Set: Campaigns p. 348",
       "rule": null,
       "file": "quickContests.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "reactions",
@@ -1318,7 +1318,7 @@
       "reference": "Basic Set: Campaigns pp. 494-495",
       "rule": "reactions",
       "file": "reactions.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "regularContests",
@@ -1328,7 +1328,7 @@
       "reference": "Basic Set: Campaigns p. 349",
       "rule": "regularContests",
       "file": "regularContests.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "repeatedAttempts",
@@ -1338,7 +1338,7 @@
       "reference": "Basic Set: Campaigns p. 348",
       "rule": null,
       "file": "repeatedAttempts.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "running",
@@ -1348,7 +1348,7 @@
       "reference": "Basic Set: Campaigns p. 354",
       "rule": null,
       "file": "running.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "senseRolls",
@@ -1358,7 +1358,7 @@
       "reference": "Basic Set: Campaigns p. 358",
       "rule": null,
       "file": "senseRolls.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "successRolls",
@@ -1368,7 +1368,7 @@
       "reference": "Basic Set: Campaigns p. 344",
       "rule": null,
       "file": "successRolls.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "swimming",
@@ -1378,7 +1378,7 @@
       "reference": "Basic Set: Campaigns pp. 354-355",
       "rule": null,
       "file": "swimming.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "taskDifficulty",
@@ -1388,7 +1388,7 @@
       "reference": "Basic Set: Campaigns pp. 345-346",
       "rule": null,
       "file": "taskDifficulty.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "tasteSmell",
@@ -1398,7 +1398,7 @@
       "reference": "Basic Set: Campaigns p. 358",
       "rule": null,
       "file": "tasteSmell.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "throwing",
@@ -1408,7 +1408,7 @@
       "reference": "Basic Set: Campaigns pp. 355-356",
       "rule": null,
       "file": "throwing.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "vision",
@@ -1418,7 +1418,7 @@
       "reference": "Basic Set: Campaigns p. 358",
       "rule": null,
       "file": "vision.md",
-      "status": "transcribed"
+      "status": "reviewed"
     },
     {
       "id": "willRolls",
@@ -1428,7 +1428,7 @@
       "reference": "Basic Set: Campaigns p. 360",
       "rule": null,
       "file": "willRolls.md",
-      "status": "transcribed"
+      "status": "reviewed"
     }
   ]
 }
