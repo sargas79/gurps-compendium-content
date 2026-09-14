@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.2.0 — Monster Hunters 1
+
+GURPS Monster Hunters 1: Champions, alongside the Basic Set. The book has its
+own folder in the compendium sidebar and its own switch on the system's
+Compendium sources page. Built from every book in the repository against
+**gworld v1.2.0**, the first system release with all of the book's rules.
+
+- **Statistics from the book's GCA file**, plus hand-kept records for what the
+  file rejects or leaves out. Coverage is 395/395 entries with text, all
+  reviewed:
+  - advantages, perks and power abilities: 99
+  - disadvantages: 4
+  - skills (wildcard, Path, Hidden Lore, Religious Ritual, Theology): 31
+  - power modifiers: 6
+  - gear, armor and weapons: 229
+  - templates: 26 (10 character templates, 10 motivational lenses, 6 racial templates)
+- **The rules journal**: 36 pages in six folders, one per chapter. 26 of them
+  carry the switch id of the system rule they explain: Ritual Path Magic, holy
+  attacks, the book's gear rules, and spending bonus points.
+- The system rules these records work with (the "Monster Hunters" group, off by
+  default) arrived in gworld v1.1.0 and v1.2.0.
+
 ## v0.1.0 — the Basic Set
 
 The Basic Set is done: every entry the book describes has its text, and the
