@@ -1,0 +1,2683 @@
+[
+  {
+    "_id": "bb1e306b33902ff7",
+    "name": "Small Air Elemental",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 40,
+      "attributes": {
+        "ST": -4,
+        "DX": -1,
+        "IQ": -2,
+        "HT": -3
+      },
+      "secondary": {
+        "hp": 2,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": -1,
+      "attributeCost": -126,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Flight (Lighter Than Air, -10%)",
+          "itemType": "trait",
+          "points": 36,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Diffuse)",
+          "itemType": "trait",
+          "points": 100,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Fine Manipulators",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5e3fdd7735ff3825",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Legs (Aerial)",
+          "itemType": "trait",
+          "points": 0,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Vacuum and wind-based attacks x2)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Summoned at 4 energy; each further point buys +1 ST, +5 HP, or +2 DR."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 28"
+    }
+  },
+  {
+    "_id": "a55de6b0c5d61993",
+    "name": "Small Earth Elemental",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 40,
+      "attributes": {
+        "ST": 1,
+        "DX": -2,
+        "IQ": -4
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": -1,
+      "attributeCost": -110,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 2,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Homogenous)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Pressure Support",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 3,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0d84db3a7971b0da",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vacuum Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Summoned at 4 energy; each further point buys +1 ST, +5 HP, or +2 DR."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 55"
+    }
+  },
+  {
+    "_id": "4f5c64ff49502a6d",
+    "name": "Small Fire Elemental",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 40,
+      "attributes": {
+        "ST": -2,
+        "DX": -1,
+        "IQ": -2,
+        "HT": -3
+      },
+      "secondary": {
+        "hp": 2,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": -1,
+      "attributeCost": -106,
+      "entries": [
+        {
+          "name": "Burning Attack 2d (Always On, -40%; Aura, +80%; Melee Attack, Range C, -30%)",
+          "itemType": "trait",
+          "points": 11,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Charisma",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.adcb3389731c7237",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe (Oxygen Combustion, -50%)",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance (Limited: Heat/Fire, -40%)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Diffuse)",
+          "itemType": "trait",
+          "points": 100,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Fine Manipulators",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5e3fdd7735ff3825",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Weakness (Water, 1d/min.)",
+          "itemType": "trait",
+          "points": -40,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Summoned at 4 energy; each further point buys +1 ST, +5 HP, or +2 DR."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 76"
+    }
+  },
+  {
+    "_id": "4edff997699b57f9",
+    "name": "Small Water Elemental",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 40,
+      "attributes": {
+        "ST": -3,
+        "DX": -2,
+        "IQ": -3,
+        "HT": -2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": -1,
+      "attributeCost": -150,
+      "entries": [
+        {
+          "name": "Amphibious",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c52c8999ac621fd0",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Chameleon",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.895d4cd89bb9af13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Diffuse)",
+          "itemType": "trait",
+          "points": 100,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Pressure Support",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 3,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0d84db3a7971b0da",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Slippery",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 5,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.25a564fc05875038",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Invertebrate",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.88efc53c4a63342c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Dehydration)",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Summoned at 4 energy; each further point buys +1 ST, +5 HP, or +2 DR.",
+        "The book prices Invertebrate at -10 here."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 191"
+    }
+  },
+  {
+    "_id": "601cf71e84b44b29",
+    "name": "Clay Golem",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 0,
+      "attributes": {
+        "ST": 5,
+        "DX": 1,
+        "IQ": -2,
+        "HT": 4
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 70,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Homogenous, No Blood)",
+          "itemType": "trait",
+          "points": 45,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Single-Minded",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.af775997a754fe92",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vacuum Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Automaton",
+          "itemType": "trait",
+          "points": -85,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Cannot Learn",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.11f8db990baa935e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Disturbing Voice",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Sense of Smell/Taste",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.d07852e4e3d10eab",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Reprogrammable",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Valuable Property)",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.265306d2a427c3dc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Total)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unnatural",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Wealth (Dead Broke)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.603d2fa16a7aa0b5",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [
+        {
+          "id": "g1",
+          "label": "Skills appropriate to the golem's intended function",
+          "kind": "points",
+          "required": 10
+        }
+      ],
+      "features": [
+        "Neither has nor spends Fatigue Points."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 59"
+    }
+  },
+  {
+    "_id": "31213a2ca14cf567",
+    "name": "Skull-Spirit",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 234,
+      "attributes": {
+        "ST": -10,
+        "DX": 4
+      },
+      "secondary": {
+        "hp": 20,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": -5,
+      "attributeCost": 20,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Diffuse)",
+          "itemType": "trait",
+          "points": 100,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Toxic Attack 2 pts (Cannot parry, -5%; Irresistible Attack, +300%; Melee Attack, Reach C, -30%)",
+          "itemType": "trait",
+          "points": 11,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Innate Attack (Gaze)",
+          "itemType": "skill",
+          "points": 8,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.5691ea930d9c581a",
+          "group": "",
+          "note": "(E) DX+3"
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Fixed ST.",
+        "The book prints 224 points; its parts add to 234."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 150"
+    }
+  },
+  {
+    "_id": "c897e08622d9056d",
+    "name": "Mummy",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": -107,
+      "attributes": {
+        "ST": 1
+      },
+      "secondary": {
+        "hp": 4,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 18,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Immunity (All mind control)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Indomitable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8d209804d3b8353a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (No Blood, No Brains, No Vitals, Unliving)",
+          "itemType": "trait",
+          "points": 35,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Single-Minded",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.af775997a754fe92",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Temperature Tolerance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous; Universal, +25%)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Automaton",
+          "itemType": "trait",
+          "points": -85,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Cannot Learn",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.11f8db990baa935e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Dependency (Mana; common, constantly)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Disturbing Voice",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Combustible)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5d1cfb637579818a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Unnatural)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.8e0024ea22ba906a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Reprogrammable",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Dead)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fedc692ae8de5afb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Total)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Wealth (Dead Broke)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.603d2fa16a7aa0b5",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Control Zombie, Pentagram, and Turn Zombie.",
+        "No mental skills.",
+        "Sterile."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 152"
+    }
+  },
+  {
+    "_id": "b5d24fe80c736077",
+    "name": "Skeleton",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": -162,
+      "attributes": {
+        "ST": -1,
+        "DX": 2,
+        "IQ": -2
+      },
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 1,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 10,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 2,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Immunity (All mind control)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Indomitable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8d209804d3b8353a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (No Blood, No Brain, No Eyes, No Vitals, Unliving)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Single-Minded",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.af775997a754fe92",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Temperature Tolerance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vacuum Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous; Universal, +25%)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Automaton",
+          "itemType": "trait",
+          "points": -85,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Cannot Learn",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.11f8db990baa935e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Dependency (Mana; common, constantly)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Brittle)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.2bcf4edd902f614c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Unnatural)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.8e0024ea22ba906a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Mute",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c68d6cb5b66c8171",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Sense of Smell/Taste",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.d07852e4e3d10eab",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Reprogrammable",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Skinny",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9c6310b404d4feec",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Dead)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fedc692ae8de5afb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Total)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Crushing Attacks x2)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Wealth (Dead Broke)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.603d2fa16a7aa0b5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Cannot Float",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Sexless",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Control Zombie, Pentagram, and Turn Zombie.",
+        "No mental skills.",
+        "Skull has only 2 total DR."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 152"
+    }
+  },
+  {
+    "_id": "26f57bfe4021c19b",
+    "name": "Zombie",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": -168,
+      "attributes": {
+        "ST": 1,
+        "IQ": -2
+      },
+      "secondary": {
+        "hp": 4,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": -22,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Immunity (All mind control)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Indomitable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8d209804d3b8353a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (No Blood, Unliving)",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Single-Minded",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.af775997a754fe92",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Temperature Tolerance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous; Universal, +25%)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Automaton",
+          "itemType": "trait",
+          "points": -85,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Bad Smell",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.80886882fed4ce51",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Cannot Learn",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.11f8db990baa935e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Dependency (Mana; common, constantly)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Disturbing Voice",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Unnatural)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.8e0024ea22ba906a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Sense of Smell/Taste",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.d07852e4e3d10eab",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Reprogrammable",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Dead)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fedc692ae8de5afb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Total)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Wealth (Dead Broke)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.603d2fa16a7aa0b5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Sexless",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Control Zombie, Pentagram, and Turn Zombie.",
+        "No mental skills.",
+        "Will become a Skeleton."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 152"
+    }
+  },
+  {
+    "_id": "40ddc6645ec45552",
+    "name": "Demon",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 200,
+      "attributes": {
+        "ST": 7,
+        "DX": 2,
+        "HT": 4
+      },
+      "secondary": {
+        "hp": 8,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 166,
+      "entries": [
+        {
+          "name": "Claws (Sharp Claws)",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.31e6eaf2c3a1a206",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 5,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Flight (Winged, -25%; +5 yards per second)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Immunity to Mind-Affecting Magic",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Magery 0",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5460dd41ccf80939",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Night Vision",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 5,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.10309529f2b178ce",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Striking ST",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 2,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.179c1ca124004fb4",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Teeth (Sharp Teeth)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1264f5f04f6eebbb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.58cf7865c24a6c57",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Bloodlust",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.12eb5e9db6f56966",
+          "group": "",
+          "note": "self-control 12"
+        },
+        {
+          "name": "Bully",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.180701fe29799d7b",
+          "group": "",
+          "note": "self-control 12"
+        },
+        {
+          "name": "Callous",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.67d0ef6eecde8cda",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Cannot Harm Innocents (Prevents direct harm of truly good or holy folks only, -50%)",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Unnatural)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.8e0024ea22ba906a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Sadism",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.52206037907a17a2",
+          "group": "",
+          "note": "self-control 12"
+        },
+        {
+          "name": "Selfish",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.8da8f29e45ad9abe",
+          "group": "",
+          "note": "self-control 12"
+        },
+        {
+          "name": "Social Stigma (Monster)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.577b93e1d12ca956",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Acting",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.16fecbe4f6a6d9d8",
+          "group": "",
+          "note": "(A) IQ-1"
+        },
+        {
+          "name": "Brawling",
+          "itemType": "skill",
+          "points": 4,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.edd7f10bf0ba186f",
+          "group": "",
+          "note": "(E) DX+2"
+        },
+        {
+          "name": "Broadsword",
+          "itemType": "skill",
+          "points": 2,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.9331f70d3c5e90ca",
+          "group": "",
+          "note": "(A) DX"
+        },
+        {
+          "name": "Fast-Talk",
+          "itemType": "skill",
+          "points": 4,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.ec22bedaf6a0acd5",
+          "group": "",
+          "note": "(E) IQ+2"
+        },
+        {
+          "name": "Hidden Lore (Demon Lore)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.dac8e3cba3a4e646",
+          "group": "",
+          "note": "(A) IQ-1"
+        },
+        {
+          "name": "Intimidation",
+          "itemType": "skill",
+          "points": 4,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.2291e06b5c417684",
+          "group": "",
+          "note": "(E) IQ+2"
+        },
+        {
+          "name": "Stealth",
+          "itemType": "skill",
+          "points": 2,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-skills.Item.a4795ae613e011f7",
+          "group": "",
+          "note": "(A) DX"
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by True Faith and Pentagram."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 155"
+    }
+  },
+  {
+    "_id": "3e14eb1284358d41",
+    "name": "Lich",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 105,
+      "attributes": {
+        "ST": -1,
+        "DX": 2,
+        "HT": 2
+      },
+      "secondary": {
+        "hp": 3,
+        "will": 0,
+        "per": 0,
+        "fp": 3,
+        "basicSpeed": 1,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 85,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Eat or Drink",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Sleep",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 2,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "High Pain Threshold",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (No Blood, No Brain, No Eyes, No Vitals, Unliving)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Temperature Tolerance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vacuum Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Monstrous; Universal, +25%)",
+          "itemType": "trait",
+          "points": -25,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Dependency (Mana; common, constantly)",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Brittle)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.2bcf4edd902f614c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fragile (Unnatural, Mitigated by potion, monthly, -70%)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.46b71dcde0fc6faf",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Sense of Smell/Taste",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.d07852e4e3d10eab",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Skinny",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9c6310b404d4feec",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Dead)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fedc692ae8de5afb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vulnerability (Crushing Attacks x2)",
+          "itemType": "trait",
+          "points": -30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.0958d55898b64ad1",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Cannot Float",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Sexless",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Racial skill bonus: +1 to Thanatology",
+          "itemType": "trait",
+          "points": 2,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Pentagram.",
+        "Can be turned using True Faith.",
+        "Skull has only 2 total DR."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 160"
+    }
+  },
+  {
+    "_id": "71768d6dca2d8bfe",
+    "name": "Wraith",
+    "type": "template",
+    "system": {
+      "kind": "racial",
+      "statedCost": 233,
+      "attributes": {
+        "ST": 5,
+        "HT": 5
+      },
+      "secondary": {
+        "hp": 5,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 110,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 4,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (No Blood, No Brains, No Vitals, Unliving)",
+          "itemType": "trait",
+          "points": 35,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Magery",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aea715037b17522d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Night Vision",
+          "itemType": "trait",
+          "points": 9,
+          "levels": 9,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.10309529f2b178ce",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Supernatural Durability (Spells, Magic Weapons)",
+          "itemType": "trait",
+          "points": 150,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.64cf7d14623b7f47",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Temperature Tolerance",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unaging",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.f5f1982c535d8e56",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unfazeable",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.98034c7881c4c79d",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Appearance (Horrific)",
+          "itemType": "trait",
+          "points": -24,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.58cf7865c24a6c57",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Bloodlust",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.12eb5e9db6f56966",
+          "group": "",
+          "note": "self-control 12"
+        },
+        {
+          "name": "Callous",
+          "itemType": "trait",
+          "points": -5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.67d0ef6eecde8cda",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Dependency (Wraith item; rare, constantly)",
+          "itemType": "trait",
+          "points": -150,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Disturbing Voice",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Social Stigma (Dead)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fedc692ae8de5afb",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Supernatural Features (No Body Heat, Pallor)",
+          "itemType": "trait",
+          "points": -15,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Unhealing (Can heal with Steal HT)",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Loves battle",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Quirk: Sexless",
+          "itemType": "trait",
+          "points": -1,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Deathtouch",
+          "itemType": "spell",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-spells.Item.47dbea7065dbb260",
+          "group": "",
+          "note": "racially innate, at 15"
+        },
+        {
+          "name": "Steal Health",
+          "itemType": "spell",
+          "points": 20,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": "racially innate, at 15"
+        },
+        {
+          "name": "Ethereal Body",
+          "itemType": "spell",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.magic-spells.Item.c1ef34fe5ec12d2f",
+          "group": "",
+          "note": "racially innate, at 15"
+        }
+      ],
+      "choices": [],
+      "features": [
+        "The book prints Injury Tolerance at [10]; its four features cost 35, which the stated 233 points needs."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 160"
+    }
+  },
+  {
+    "_id": "d8b1c03b1c581ebe",
+    "name": "Body of Wood",
+    "type": "template",
+    "system": {
+      "kind": "metaTrait",
+      "statedCost": 76,
+      "attributes": {},
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": -1,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": -20,
+      "entries": [
+        {
+          "name": "Lifting ST",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8afbe24586000a40",
+          "group": "",
+          "note": "+5"
+        },
+        {
+          "name": "Claws (Blunt Claws)",
+          "itemType": "trait",
+          "points": 3,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.fcbf07cebf1eb752",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance (Semi-Ablative, -20%)",
+          "itemType": "trait",
+          "points": 8,
+          "levels": 2,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Homogenous)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Numb",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Plant spells."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 165"
+    }
+  },
+  {
+    "_id": "9d24e2dba7845956",
+    "name": "Body of Slime",
+    "type": "template",
+    "system": {
+      "kind": "metaTrait",
+      "statedCost": 60,
+      "attributes": {},
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 0,
+      "entries": [
+        {
+          "name": "Amphibious",
+          "itemType": "trait",
+          "points": 10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c52c8999ac621fd0",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Homogenous)",
+          "itemType": "trait",
+          "points": 40,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Bad Smell",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.80886882fed4ce51",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Disturbing Voice",
+          "itemType": "trait",
+          "points": -10,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Invertebrate",
+          "itemType": "trait",
+          "points": -20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.88efc53c4a63342c",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "Affected by Plant spells."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 165"
+    }
+  },
+  {
+    "_id": "f2da14be4a910748",
+    "name": "Body of Plastic",
+    "type": "template",
+    "system": {
+      "kind": "metaTrait",
+      "statedCost": 125,
+      "attributes": {},
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 0,
+      "entries": [
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Homogenous, No Blood)",
+          "itemType": "trait",
+          "points": 45,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Pressure Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0d84db3a7971b0da",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Sealed",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Vacuum Support",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 183"
+    }
+  },
+  {
+    "_id": "32b5c544e73f14a0",
+    "name": "Body of Lightning",
+    "type": "template",
+    "system": {
+      "kind": "metaTrait",
+      "statedCost": 56,
+      "attributes": {
+        "ST": -10
+      },
+      "secondary": {
+        "hp": 10,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": -80,
+      "entries": [
+        {
+          "name": "Burning Attack 1d (Always On, -40%; Aura, +80%; Melee Attack, Reach C, -30%)",
+          "itemType": "trait",
+          "points": 6,
+          "levels": 0,
+          "uuid": "",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Doesn't Breathe",
+          "itemType": "trait",
+          "points": 20,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Damage Resistance (Limited: Electricity, -40%)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 10,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Resistant (Metabolic Hazards)",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7fed2d3aafabbd4c",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Injury Tolerance (Diffuse)",
+          "itemType": "trait",
+          "points": 100,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "No Manipulators",
+          "itemType": "trait",
+          "points": -50,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c9f4803da544fb8a",
+          "group": "",
+          "note": ""
+        }
+      ],
+      "choices": [],
+      "features": [
+        "ST 0.",
+        "Affected by Energy spells (p. 178).",
+        "Taboo trait: Fixed ST."
+      ],
+      "tabooTraits": [],
+      "description": "",
+      "reference": "Magic p. 198"
+    }
+  }
+]

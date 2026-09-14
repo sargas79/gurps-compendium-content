@@ -108,7 +108,25 @@ each priced by its capacity.
 | Body of Lightning | 198 | meta-trait |
 
 The file names the racial templates "(Magic)"; the book does not, so the
-records drop it. Each must pass the system's stated-cost check.
+records drop it. Each passes the system's stated-cost check. Getting there
+took two corrections to the book, each noted in the template's features:
+
+- **Skull-Spirit.** The book prints 224 points, but its parts add to 234, the
+  figure the data file also uses.
+- **Wraith.** The book prices Injury Tolerance (No Blood, No Brains, No
+  Vitals, Unliving) at [10]. Those features cost 35, and the stated 233
+  points needs 35.
+
+The book's own prices stand elsewhere, including Invertebrate at -10 on the
+water elemental.
+
+Some entries link to no compendium document, and apply as named items:
+- quirks
+- Lich's racial +1 to Thanatology
+- traits whose modifiers or levels are not a step of a document's cost table
+- traits the Basic Set does not have (Automaton, Unnatural, Immunity to
+  Mind-Affecting Magic)
+- the Wraith's innate Steal Health, which no spell in the data file is called
 
 ## Rules the book adds that the system does not implement
 
