@@ -123,9 +123,9 @@
     "_id": "77e69404d404b9e3",
     "name": "Fur Loincloth",
     "pages": "B283",
-    "status": "needs-review",
-    "notes": "reads as a list of names from a table, not a description",
-    "description": "<p>Fur Loincloth Fur Tunic Bronze Breastplate Bronze Corselet Cloth Armor Leather Armor Leather Jacket Light Scale Armor Lorica Segmentata Mail Hauberk Mail Shirt Scale Armor Double Mail Hauberk Heavy Steel Corselet Steel Breastplate Steel Corselet Steel Laminate Plate Buff Coat (Leather)</p>"
+    "status": "no-entry",
+    "notes": "a row of the armor table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "71fc3bd8e580bca9",
@@ -267,9 +267,9 @@
     "_id": "ace87164ecea4b95",
     "name": "Bronze Armbands",
     "pages": "B283",
-    "status": "needs-review",
-    "notes": "reads as a list of names from a table, not a description; stops mid-sentence, so the capture was cut short",
-    "description": "<p>Bronze Armbands Bronze Greaves Cloth Sleeves Heavy Leather Leggings Heavy Leather Sleeves Leather Leggings Leather Pants Studded Leather Skirt Mail Leggings Mail Sleeves Scale Leggings Scale Sleeves Heavy Plate Arms Heavy Plate Legs Plate Arms Plate Legs</p>"
+    "status": "no-entry",
+    "notes": "a row of the armor table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "1f6da98fad53c551",
@@ -483,9 +483,9 @@
     "_id": "97547a9d1fa969c3",
     "name": "Cloth Gloves",
     "pages": "B284",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>Cloth Gloves Leather Gloves Gauntlets Heavy Gauntlets</p>"
+    "status": "no-entry",
+    "notes": "a row of the armor table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "7bd3e38e856d8db4",
@@ -547,9 +547,9 @@
     "_id": "d2141e9714a873fd",
     "name": "Flak Jacket",
     "pages": "B284",
-    "status": "needs-review",
-    "notes": "reads as a list of names from a table, not a description; stops mid-sentence, so the capture was cut short",
-    "description": "<p>Flak Jacket Frag Vest + Plate Inserts Ballistic Vest Tactical Vest + Trauma Plates Ballistic Suit Tactical Suit</p>"
+    "status": "no-entry",
+    "notes": "a row of the armor table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "a073b54440ac5007",
@@ -907,9 +907,9 @@
     "_id": "019f7654c5809dbc",
     "name": "NBC Suit",
     "pages": "B285",
-    "status": "needs-review",
-    "notes": "reads as a list of names from a table, not a description; stops mid-sentence, so the capture was cut short",
-    "description": "<p>NBC Suit Space Suit + Space Helmet Battlesuit + Helmet Combat Hardsuit + Helmet Space Armor + Helmet Vacc Suit + Vacc Helmet</p>"
+    "status": "no-entry",
+    "notes": "a row of the armor table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "6fb1644c6ebd425e",
@@ -1189,183 +1189,183 @@
     "pages": "B266",
     "status": "reviewed",
     "notes": "",
-    "description": "<p>Includes one to four sets of ordinary clothes, plus nightclothes, one set each of formal wear and winter clothes, and usually at least one outfit (lab coat, uniform, gym clothes, etc.) appropriate to your job or hobbies. 100% of cost of living; 20+ lbs.</p>"
+    "description": "<p>Includes one to four sets of ordinary clothes, plus nightclothes, one set each of formal wear and winter clothes, and usually at least one outfit (lab coat, uniform, gym clothes, etc.) appropriate to your job or hobbies. 100% of cost of living.</p>"
   },
   {
     "_id": "c6754677c9da4bbd",
     "name": "Ordinary Clothes",
     "pages": "B266",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>One complete outfit, ranging in quality from castoff rags to designer fashions, depending on Status. At minimum: undergarments, plus a tunic, blouse, or shirt with hose, skirt, or trousers - or a long tunic, robe, or dress - and suitable footwear. 20% of cost of living;</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>One complete outfit, ranging in quality from castoff rags to designer fashions, depending on Status. At minimum: undergarments, plus a tunic, blouse, or shirt with hose, skirt, or trousers - or a long tunic, robe, or dress - and suitable footwear. 20% of cost of living.</p>"
   },
   {
     "_id": "9b67cc979998ce5c",
     "name": "Winter Clothes",
     "pages": "B266",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>As above, but heavier. Includes a hat or hood, boots, and (at TL6 or less) furs. 30% of cost of living;</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As above, but heavier. Includes a hat or hood, boots, and (at TL6 or less) furs. 30% of cost of living.</p>"
   },
   {
     "_id": "942fb532298da020",
     "name": "Formal Wear",
     "pages": "B266",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>Your \"best outfit,\" which will usually include at least some accessories (hat, gloves, etc.) or jewelry. 40% of cost of living;</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your \"best outfit,\" which will usually include at least some accessories (hat, gloves, etc.) or jewelry. 40% of cost of living.</p>"
   },
   {
     "_id": "e3090c9826385f4d",
     "name": "Cosmetics",
     "pages": "B266",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>Natural or synthetic beauty aids. For one month's supply: 10% of cost of living;</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Natural or synthetic beauty aids. For one month's supply: 10% of cost of living.</p>"
   },
   {
     "_id": "512d540dbf296c21",
     "name": "Heavy Warhorse",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p>"
   },
   {
     "_id": "7a47c01bd4e48020",
     "name": "Cavalry Horse",
     "pages": "B459",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p><p>A light warhorse.</p>"
   },
   {
     "_id": "34279ac91cbb28ab",
     "name": "Camel",
     "pages": "B459",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A dry-plains native, the camel can go for four days without drinking. Its stubborn temper gives -4 to Animal Handling rolls.</p>"
   },
   {
     "_id": "6482ec0d18254554",
     "name": "Donkey",
     "pages": "B459",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p><p>Sturdy, but too small for an adult to ride.</p>"
   },
   {
     "_id": "af8b0771f2781f61",
     "name": "Draft Horse",
     "pages": "B459",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "the book describes this animal only under Donkeys, Horses, and Mules",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p>"
   },
   {
     "_id": "267faafedc86e80c",
     "name": "Large Mule",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "the book describes this animal only under Donkeys, Horses, and Mules",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p>"
   },
   {
     "_id": "d6cf70715dfc068d",
     "name": "Pony",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "the book describes this animal only under Donkeys, Horses, and Mules",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p>"
   },
   {
     "_id": "7ba7119302fe5d80",
     "name": "Racehorse",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p><p>Some are faster!</p>"
   },
   {
     "_id": "84bdfed2982cacf2",
     "name": "Saddle Horse",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p><p>An ordinary riding horse.</p>"
   },
   {
     "_id": "3c0d4c68afe58813",
     "name": "Small Mule",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "the book describes this animal only under Donkeys, Horses, and Mules",
+    "description": "<p>These animals were domesticated in Europe and Asia before recorded history. They were introduced to the Americas in the late 15th and 16th centuries.</p>"
   },
   {
     "_id": "133248936d6e0ee8",
     "name": "Elephant",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Often domesticated. Intelligent, loyal, and hardworking.</p>"
   },
   {
     "_id": "b35bb21ec28e2515",
     "name": "Oxen",
     "pages": "B460",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Oxen are steers trained to work in the fields. They are hardier and easier to keep than horses.</p>"
   },
   {
     "_id": "4e4126386140ba1f",
     "name": "Large Guard Dog",
     "pages": "B457",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Domesticated dogs are used for hunting or as pets (or, if large enough, as draft animals). There are many breeds; statistics can vary greatly.</p>"
   },
   {
     "_id": "068902888d0c894d",
     "name": "Large Falcon",
     "pages": "B457",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These birds of prey are commonly used for sport hunting. A trained falcon - or one disturbed by a stranger - might attack a human. A diving falcon can reach Move 70!</p>"
   },
   {
     "_id": "784dbf48ad12ac3a",
     "name": "House Cat",
     "pages": "B456",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cats are only domesticated in the sense that they tend to hang around human settlements. It is a very rare trainer who can teach a cat a trick it doesn't feel like learning . . .</p><p>A domestic feline, kept as a pet, familiar, or mouser.</p>"
   },
   {
     "_id": "e0b69a418f6b2bb9",
     "name": "Backpack, Frame",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Backpack, Frame (TL1). Holds 100 lbs. of gear. $100, 10 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 100 lbs. of gear.</p>"
   },
   {
     "_id": "52b5abc4d4b46f88",
     "name": "Backpack, Small",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Backpack, Small (TL1). Holds 40 lbs. of gear. $60, 3 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 40 lbs. of gear.</p>"
   },
   {
     "_id": "1357d1f72a9c8de6",
     "name": "Blanket",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Blanket (TL1). A warm sleeping blanket. $20, 4 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A warm sleeping blanket.</p>"
   },
   {
     "_id": "fcc3ab4daa2ccd51",
@@ -1387,25 +1387,25 @@
     "_id": "1a26ee74fb925768",
     "name": "Cable, Steel, 1.5'' (per 10 yards)",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supports 3,700 lbs.</p>"
   },
   {
     "_id": "f5ff833a6b1be11e",
     "name": "Camp Stove, Small",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>Uses 0.25 gallons kerosene per 4 hrs.</p>"
   },
   {
     "_id": "5615b3661b621893",
     "name": "Tallow Candle",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Smoky! Lasts 12 hrs.</p>"
   },
   {
     "_id": "e73ffb89c4d8ffc2",
@@ -1419,81 +1419,81 @@
     "_id": "d865e30a5a389a36",
     "name": "Cigarette Lighter",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lights fire.</p>"
   },
   {
     "_id": "a9afc334964f981c",
     "name": "Climbing Gear",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Climbing Gear (TL2). Hammer, spikes, carabiners. $20, 4 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Hammer, spikes, carabiners.</p>"
   },
   {
     "_id": "360f13a12535ca16",
     "name": "Compass",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Compass (TL6). +1 to Navigation skill. $50.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+1 to Navigation skill.</p>"
   },
   {
     "_id": "53086ff40c4fa07a",
     "name": "Cord, 3/16'' (per 10 yards)",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supports 90 lbs.</p>"
   },
   {
     "_id": "3b235e743570e2e5",
     "name": "Fishhooks & Line",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic gear for Fishing skill; needs a pole.</p>"
   },
   {
     "_id": "31d21bc0a9fb28a6",
     "name": "Flashlight, Heavy",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Flashlight, Heavy (TL6). 30' beam. $20, 1 lb., 5 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>30' beam.</p>"
   },
   {
     "_id": "95f787ee488fb56c",
     "name": "Flashlight, Mini",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Flashlight, Mini (TL7). 15' beam. $10, 0.25 lb., 1 hr.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>15' beam.</p>"
   },
   {
     "_id": "9df5c254558c5e75",
     "name": "Gasoline (per gallon)",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Gasoline (TL6). Per gallon: $1.50, 6 lbs.</p>"
+    "status": "no-entry",
+    "notes": "the book lists only its cost and weight",
+    "description": ""
   },
   {
     "_id": "a011bd76d0ae279f",
     "name": "GPS Receiver",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Satelliteupdated; grants Absolute Direction (Requires Signal). $200, 3 lbs., 24 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Satellite-updated; grants Absolute Direction (Requires Signal).</p>"
   },
   {
     "_id": "a7358308e618eabe",
     "name": "Grapnel",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a character did not survive extraction; a price is still in the text",
-    "description": "<p>Grapnel (TL5). Throw to ST�2 yards. Supports 300 lbs. $20, 2 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Throw to ST×2 yards. Supports 300 lbs.</p>"
   },
   {
     "_id": "5f28174c6f1b4903",
@@ -1507,49 +1507,49 @@
     "_id": "a33c219654a8bace",
     "name": "Iron Spike, Piton",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For climbing, spiking doors, etc.</p>"
   },
   {
     "_id": "84a5753838fc554f",
     "name": "Kerosene (per gallon)",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Kerosene (TL6). Per gallon: $1.50, 6 lbs.</p>"
+    "status": "no-entry",
+    "notes": "the book lists only its cost and weight",
+    "description": ""
   },
   {
     "_id": "b2bc0c627c10613e",
     "name": "Lantern",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>Burns for 24 hours on 1 pint of oil.</p>"
   },
   {
     "_id": "a9f81c8279a64c65",
     "name": "Life Jacket",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Life Jacket (TL6). Floats up to 350 lbs. $100, 6 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Floats up to 350 lbs.</p>"
   },
   {
     "_id": "b0d75d5d3440d4e3",
     "name": "Matches",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Matches (TL6). Start fires. Box of 50, waterproof. $1.50.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Start fires. Box of 50, waterproof.</p>"
   },
   {
     "_id": "794a4cb643143ed9",
     "name": "Oil (per pint)",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Oil (TL2). For lantern. Per pint: $2, 1 lb.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For lantern.</p>"
   },
   {
     "_id": "d624ecd78a79e6ac",
@@ -1563,105 +1563,105 @@
     "_id": "2b321a6867ec9b71",
     "name": "Personal Basics",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short; a price is still in the text",
-    "description": "<p>Minimum gear for camping: -2 to any Survival roll without it. Includes utensils, tinderbox or flint and steel, towel, etc., as TL permits. $5;</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Minimum gear for camping: -2 to any Survival roll without it. Includes utensils, tinderbox or flint and steel, towel, etc., as TL permits.</p>"
   },
   {
     "_id": "3921694592e01fd8",
     "name": "Pole, 6'",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For pitching tents, fishing, or prodding items.</p>"
   },
   {
     "_id": "37befa441f192d8d",
     "name": "Pole, 10'",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For things you wouldn't touch with a 6' pole.</p>"
   },
   {
     "_id": "4ed8da2ad8511c73",
     "name": "Pouch",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 3 lbs.</p>"
   },
   {
     "_id": "0c8160fb7ed97be8",
     "name": "Purse",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 3 lbs.</p>"
   },
   {
     "_id": "639e30145f3d7444",
     "name": "Rope, 3/8'' (per 10 yards)",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supports 300 lbs.</p>"
   },
   {
     "_id": "e7a757dc70184310",
     "name": "Rope, 3/4'' (per 10 yards)",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supports 1,100 lbs.</p>"
   },
   {
     "_id": "a9b29e1ca25fa105",
     "name": "Scuba Gear",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Scuba skill: 2-hour underwater air tank, with regulator, facemask, etc.</p>"
   },
   {
     "_id": "2df23f1fe19684e2",
     "name": "Sleeping Bag",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For normal conditions.</p>"
   },
   {
     "_id": "c298a3dba7ff53de",
     "name": "Sleeping Bag, Insulated",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+3 HT to resist freezing.</p>"
   },
   {
     "_id": "eadecde4c91bbae3",
     "name": "Sleeping Fur",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Warm unless wet.</p>"
   },
   {
     "_id": "d52465f85bbd81af",
     "name": "Suitcase, Hard",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 100 lbs. DR 4, with key lock.</p>"
   },
   {
     "_id": "2c88e068b2747061",
     "name": "Tent, 1-Man",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Tent, 1-Man (TL0). Includes ropes; no poles needed. $50, 5 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Includes ropes; no poles needed.</p>"
   },
   {
     "_id": "0e7216ac28e9fc44",
@@ -1675,17 +1675,17 @@
     "_id": "10960dda39b35be4",
     "name": "Tent, 4-Man",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Tent, 4-Man (TL0). Includes ropes; requires 2 poles. $150, 30 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Includes ropes; requires 2 poles.</p>"
   },
   {
     "_id": "bbd209c2cf6031e5",
     "name": "Tent, 20-Man",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Tent, 20-Man (TL1). Includes ropes; requires 16 poles. $300, 100 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Includes ropes; requires 16 poles.</p>"
   },
   {
     "_id": "0084173f0ac9e598",
@@ -1699,33 +1699,33 @@
     "_id": "f987f8feebbbb64e",
     "name": "Torch",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Burns for 1 hr. $3, 1 lb. Traveler's Rations (TL0). One meal of dried meat, cheese, etc. $2, 0.5 lb. Water Purification Tablets (TL6). Bottle of 50. Purify 1 quart each. $5. Wineskin (TL0). Holds 1 gallon of liquid (8 lbs. if water). $10, 0.25 lb. Wristwatch (TL6).</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Burns for 1 hr.</p>"
   },
   {
     "_id": "a2ee618a8b069fad",
     "name": "Traveler's Rations",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>One meal of dried meat, cheese, etc.</p>"
   },
   {
     "_id": "bea4f0b6c2b21581",
     "name": "Water Purification Tablets",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bottle of 50. Purify 1 quart each.</p>"
   },
   {
     "_id": "1ac714e4b2310d9b",
     "name": "Wineskin",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 1 gallon of liquid (8 lbs. if water).</p>"
   },
   {
     "_id": "e6e808bb7b9d2f84",
@@ -1740,88 +1740,88 @@
     "name": "Wristwatch",
     "pages": "B288",
     "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "notes": "the book lists only its cost",
     "description": ""
   },
   {
     "_id": "ae10003378ee95dc",
     "name": "Batteries",
     "pages": "B288",
-    "status": "needs-review",
-    "notes": "a character did not survive extraction; starts mid-sentence; a price is still in the text",
-    "description": "<p>$1, neg. Cell Phone (TL8). Only works in some areas; $20/month fee. $250, 0.25 lb., 10 hrs. Computer, Laptop (TL8). Modem plugs into phone. $1,500, 3 lbs., 2 hrs. Computer, Wearable (TL8). Display glasses and wireless modem. $1,000, 2 lbs., 8 hrs. Drum (TL0). Audible for several miles. $40, 2 lbs. Mini-Recorder (TL7). Palm-sized, with 3-hour tape (extra tapes are $5). $200, 0.5 lb. Mini-Recorder, Digital (TL8). As above, but without the tape! $30, 0.5 lb. Radio, Backpack (TL7). VHF radio. 20-mile range. $6,000, 15 lbs., 12 hrs. Radio, Hand (TL7). Classic \"walkietalkie.\" 2-mile range. $100, 1 lb., 12 hrs. Radio, Headset (TL8). With throat mike. 1-mile range. Multiply cost by 10 for secure, encrypted version. $500, 0.5 lb., 12 hrs. Satellite Phone (TL8). Global range, satellite relay. $3,000, 3 lbs., 1 hr. Scribe's Kit (TL3). Quills, inkbottles, penknife, paper. $50, 2 lbs. Transistor Radio (TL7). Receiveonly; picks up radio stations. $15, 0.5 lb., 8 hrs. TV Set, Mini (TL7). 5\" � 5\" flatscreen. $150, 3 lbs., 4 hrs.</p>"
+    "status": "no-entry",
+    "notes": "the book lists only its cost",
+    "description": ""
   },
   {
     "_id": "d3fd4bcb527a7abb",
     "name": "Cell Phone",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only works in some areas.</p>"
   },
   {
     "_id": "9918a35d6b12f11a",
     "name": "Computer, Laptop",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Modem plugs into phone.</p>"
   },
   {
     "_id": "c9aa2ce6b6d5e1bb",
     "name": "Computer, Wearable",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Display glasses and wireless modem.</p>"
   },
   {
     "_id": "ff879897d24a1b33",
     "name": "Drum",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Audible for several miles.</p>"
   },
   {
     "_id": "2cb7a20391de7cd9",
     "name": "Mini-Recorder",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Palm-sized, with 3-hour tape.</p>"
   },
   {
     "_id": "e8bafb9dcc26ad6f",
     "name": "Mini-Recorder, Digital",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As above, but without the tape!</p>"
   },
   {
     "_id": "2f06e889beccb704",
     "name": "Radio, Backpack",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>VHF radio. 20-mile range.</p>"
   },
   {
     "_id": "8afa8fdde133dcd1",
     "name": "Radio, Hand",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Classic \"walkie-talkie.\" 2-mile range.</p>"
   },
   {
     "_id": "794298aac8ac0185",
     "name": "Radio, Headset",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With throat mike. 1-mile range. Multiply cost by 10 for secure, encrypted version.</p>"
   },
   {
     "_id": "d186547bbe65109d",
@@ -1835,57 +1835,57 @@
     "_id": "78f773ca6dbc1aa2",
     "name": "Satellite Phone",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Global range, satellite relay.</p>"
   },
   {
     "_id": "66e1f733484b386e",
     "name": "Scribe's Kit",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Quills, inkbottles, penknife, paper.</p>"
   },
   {
     "_id": "2cae493c4a31e237",
     "name": "Transistor Radio",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Receive-only; picks up radio stations.</p>"
   },
   {
     "_id": "eca5f1cfc702ddb3",
     "name": "TV Set, Mini",
     "pages": "B288",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>5\" × 5\" flatscreen.</p>"
   },
   {
     "_id": "e8345316f17564d4",
     "name": "Typewriter, Manual",
     "pages": "B289",
     "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "notes": "the book lists only its cost and weight",
     "description": ""
   },
   {
     "_id": "e24dea747fd16885",
     "name": "Wax Tablet",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Wax Tablet (TL1). For writing; erasable. $10, 2 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For writing; erasable.</p>"
   },
   {
     "_id": "2d13a3c701ec399d",
     "name": "Bit & Bridle",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+2 to control horse, or +3 if using both hands. Bonuses to control a mount only offset penalties to Riding skill; they never give a net bonus.</p>"
   },
   {
     "_id": "2f1e9fe091578b28",
@@ -1899,104 +1899,104 @@
     "_id": "5fa646a1fa22b96c",
     "name": "Saddle & Tack",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Riding skill.</p>"
   },
   {
     "_id": "68a549800a9013a7",
     "name": "Saddlebags",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Saddlebags (TL1). Hold 40 lbs. $100, 3 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Hold 40 lbs.</p>"
   },
   {
     "_id": "f3b35210d64b1f62",
     "name": "Spurs",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Spurs (TL2). +1 to control a mount. $25.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+1 to control a mount. Bonuses to control a mount only offset penalties to Riding skill; they never give a net bonus.</p>"
   },
   {
     "_id": "44aed1803aaf9a93",
     "name": "Stirrups",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short",
-    "description": "<p>Make it easy to mount a horse and give +1 to control mount. Required to use Lance skill. With ordinary saddle:</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Make it easy to mount a horse and give +1 to control mount. Required to use Lance skill. Bonuses to control a mount only offset penalties to Riding skill; they never give a net bonus.</p>"
   },
   {
     "_id": "2330a39054870a79",
     "name": "War Saddle",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short; starts mid-sentence",
-    "description": "<p>+1 to Riding skill to stay seated, 50% chance user will stay seated even if unconscious. With stirrups:</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+1 to Riding skill to stay seated, 50% chance user will stay seated even if unconscious.</p>"
   },
   {
     "_id": "07b289d3f3868103",
     "name": "Bug, Audio",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "starts mid-sentence",
-    "description": "<p>-7 to spot, 1/4mile range, transmits for 1 week.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>-7 to spot, 1/4-mile range, transmits for 1 week.</p>"
   },
   {
     "_id": "cc791e217b46aa14",
     "name": "Bug Stomper",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Jams bugs in a 10-yard radius. $1,200, 2 lbs., 8 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Jams bugs in a 10-yard radius.</p>"
   },
   {
     "_id": "6d2f02e144fc3278",
     "name": "Disguise Kit",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Disguise Kit (TL5). +1 to Disguise skill. $200, 10 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+1 to Disguise skill.</p>"
   },
   {
     "_id": "a4465399b313479c",
     "name": "Electronic Lockpicks",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+2 to pick electronic locks.</p>"
   },
   {
     "_id": "6ad63e53c1939036",
     "name": "Handcuffs",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Handcuffs (TL5). Give -5 to Escape. $40, 0.5 lb.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give -5 to Escape.</p>"
   },
   {
     "_id": "69d16f48bf8d16d5",
     "name": "Homing Beacon",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Homing Beacon (TL7). Scanner tracks at 1-mile range. $40, 12 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Scanner tracks at 1-mile range.</p>"
   },
   {
     "_id": "8590595e8a255acd",
     "name": "Laser Microphone",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Laser Microphone (TL8). Eavesdrop through glass. 300-yd. range. $500, 2 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Eavesdrop through glass. 300-yd. range.</p>"
   },
   {
     "_id": "755dd1af17d3fa74",
     "name": "Lockpicks",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>Basic equipment for Lockpicking skill.</p>"
   },
   {
@@ -2011,25 +2011,25 @@
     "_id": "be4592ab5547ced0",
     "name": "Shotgun Mike",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Shotgun Mike (TL6). Gives (TL-5) levels of Parabolic Hearing. $250, 2 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives (TL-5) levels of Parabolic Hearing.</p>"
   },
   {
     "_id": "f55d6dbe759c5987",
     "name": "Antibiotic",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Antibiotic (TL6). Prevents or cures (in 1d days) infections. $20.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prevents or cures (in 1d days) infections.</p>"
   },
   {
     "_id": "9c10dffd7440e0ff",
     "name": "Antitoxin Kit",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short; a price is still in the text",
-    "description": "<p>Antidote for specific poison. 10 uses. $25</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Antidote for specific poison. 10 uses.</p>"
   },
   {
     "_id": "a7efbaf946d4d2c5",
@@ -2067,25 +2067,25 @@
     "_id": "51cf77602dfd528d",
     "name": "Binoculars",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Binoculars (TL6). Gives (TL - 4) levels of Telescopic Vision. $400, 2 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives (TL - 4) levels of Telescopic Vision.</p>"
   },
   {
     "_id": "f4f636a299732486",
     "name": "Camcorder",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a character did not survive extraction; a price is still in the text",
-    "description": "<p>Has 10� zoom. Gives Night Vision 5. $1,000, 1 lb., 7 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Has 10× zoom. Gives Night Vision 5.</p>"
   },
   {
     "_id": "38b8be0efca28901",
     "name": "Camera, 35mm",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Basic equipment for Photography skill. Extra film is 32 shots ($10, neg.). Better cameras cost much more!</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Photography skill. Extra film is 32 shots. Better cameras cost much more!</p>"
   },
   {
     "_id": "fe39644e1c0c5bc0",
@@ -2099,49 +2099,49 @@
     "_id": "5ac6bda3b309bd21",
     "name": "Metal Detector Wand",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Metal Detector Wand (TL7). +3 to find metal items. $50, 1 lb., 8 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+3 to find metal items.</p>"
   },
   {
     "_id": "0a7cfd88b0f26137",
     "name": "Mini-Camera, Digital",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Mini-Camera, Digital (TL8). Stores pictures on optical disk. $500.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stores pictures on optical disk.</p>"
   },
   {
     "_id": "4e621fed3c37fd66",
     "name": "Night Vision Goggles",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Give Night Vision 9. $600, 2 lbs., 8 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give Night Vision 9.</p>"
   },
   {
     "_id": "3bd82c297419aba3",
     "name": "Spy Camera",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Spy Camera (TL6). Holds 36 exposures, uses microfilm. $500.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 36 exposures, uses microfilm.</p>"
   },
   {
     "_id": "ea77b95cbb646398",
     "name": "Telescope",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Telescope (TL4). Gives (TL-3) levels of Telescopic Vision. $500, 6 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives (TL-3) levels of Telescopic Vision.</p>"
   },
   {
     "_id": "f405287613c53fe3",
     "name": "Balance & Weights",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For weighing goods.</p>"
   },
   {
     "_id": "f67c0773216483f8",
@@ -2155,9 +2155,9 @@
     "_id": "bde7fbfad9f4e83c",
     "name": "Cutting Torch",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>1d+3(2) burn per second. Each gas bottle gives 30 seconds of cutting. $500, 30 lbs. Extra gas bottles are $50, 15 lbs. per bottle.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>1d+3(2) burn per second. Each gas bottle gives 30 seconds of cutting.</p>"
   },
   {
     "_id": "0f52480bd705e21b",
@@ -2171,81 +2171,81 @@
     "_id": "b1a6f2d0d2bfcf6b",
     "name": "Knitting Needles",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short; a price is still in the text",
-    "description": "<p>Per pair. $5. Pickaxe (TL2). Improves digging speed. $15, 8 lbs. Plow, Iron (TL2). Works rough soils. $220, 120 lbs. Plow, Wooden (TL1). Pulled by oxen. $55, 60 lbs. Portable Tool Kit (var.). Basic equipment for one of the following skills:</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Per pair.</p>"
   },
   {
     "_id": "71bade98492af2e1",
     "name": "Pickaxe",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Improves digging speed.</p>"
   },
   {
     "_id": "fd4ca2c5afb093c4",
     "name": "Plow, Iron",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Works rough soils.</p>"
   },
   {
     "_id": "c4626a8427710f6d",
     "name": "Plow, Wooden",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pulled by oxen.</p>"
   },
   {
     "_id": "b6b7c825fa916903",
     "name": "Portable Carpentry Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Carpentry skill.</p>"
   },
   {
     "_id": "9c32f3e6d54db51a",
     "name": "Portable Armoury Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Armoury skill.</p>"
   },
   {
     "_id": "c4dd685b49dce8c9",
     "name": "Portable Explosives Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Explosives skill.</p>"
   },
   {
     "_id": "4a7a2f6b556d8b2a",
     "name": "Portable Machinist Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Machinist skill.</p>"
   },
   {
     "_id": "10818baba46aa5a4",
     "name": "Portable Mechanic Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Mechanic skill.</p>"
   },
   {
     "_id": "6f65086a93fc2e69",
     "name": "Portable Electrician Tool Kit",
     "pages": "B289",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Electrician skill.</p>"
   },
   {
     "_id": "94778b8cbd6cacc3",
@@ -2267,16 +2267,16 @@
     "_id": "ed387a4dab107878",
     "name": "Shovel",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Shovel (TL1). Speeds up digging. $12, 6 lbs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Speeds up digging.</p>"
   },
   {
     "_id": "4759763ecd8c60a6",
     "name": "Spinning Wheel",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>Produces yarn six times as fast.</p>"
   },
   {
@@ -2299,8 +2299,8 @@
     "_id": "9f29ac45aa34ac13",
     "name": "Whetstone",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>For sharpening tools and weapons.</p>"
   },
   {
@@ -2315,17 +2315,17 @@
     "_id": "fccf72d23b49d637",
     "name": "Hip Quiver",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Hip Quiver (TL0). Holds 20 arrows or bolts. $15, 1 lb.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 20 arrows or bolts.</p>"
   },
   {
     "_id": "e5569e3990959bab",
     "name": "Holster, Belt",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Holster, Belt (TL5). Fits most pistols. $25, 0.5 lb.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fits most pistols.</p>"
   },
   {
     "_id": "74c725f04dab930f",
@@ -2347,25 +2347,25 @@
     "_id": "d086026f4fb5ea77",
     "name": "Lanyard, Woven Steel",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Lanyard, Woven Steel (TL6). As leather lanyard, but DR 6, HP 4. $15.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As leather lanyard, but DR 6, HP 4.</p>"
   },
   {
     "_id": "fa29dc56e62dc3c8",
     "name": "Laser Sight",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Laser Sight (TL8). +1 to skill; see Laser Sights (p. 412). $100, 6 hrs.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>+1 to skill; see Laser Sights (p. 412).</p>"
   },
   {
     "_id": "c4fd7aa995b6062a",
     "name": "Shoulder Quiver",
     "pages": "B289",
-    "status": "needs-review",
-    "notes": "a price is still in the text",
-    "description": "<p>Shoulder Quiver (TL0). Holds 12 arrows or bolts. $10, 0.5 lb.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds 12 arrows or bolts.</p>"
   },
   {
     "_id": "713d2c103c8f934e",
@@ -3403,9 +3403,9 @@
     "_id": "c23d8af09ccaa9d0",
     "name": "Wooden Stake",
     "pages": "B276",
-    "status": "needs-review",
-    "notes": "very short; stops mid-sentence, so the capture was cut short; a character did not survive extraction",
-    "description": "<p>Wooden Stake thr(0.5) imp 0 �0.5/�1 0.5</p>"
+    "status": "no-entry",
+    "notes": "a row of the weapon table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "43c591f73d1fa88c",
@@ -3443,9 +3443,9 @@
     "_id": "5ec69d0c8b382b46",
     "name": "Regular Bow",
     "pages": "B275",
-    "status": "needs-review",
-    "notes": "very short; stops mid-sentence, so the capture was cut short; a character did not survive extraction",
-    "description": "<p>Regular Bow thr+1 imp 2 �15/�20 2/0.1</p>"
+    "status": "no-entry",
+    "notes": "a row of the weapon table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "f7eb4632580ed9a2",
@@ -3459,9 +3459,9 @@
     "_id": "76eaddaadec8f956",
     "name": "Composite Bow",
     "pages": "B275",
-    "status": "needs-review",
-    "notes": "very short; stops mid-sentence, so the capture was cut short; a character did not survive extraction",
-    "description": "<p>Composite Bow thr+3 imp 3 �20/�25 4/0.1</p>"
+    "status": "no-entry",
+    "notes": "a row of the weapon table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "f9323b2414b0304c",
@@ -3475,9 +3475,9 @@
     "_id": "6d4b1742ad39f17f",
     "name": "Pistol Crossbow",
     "pages": "B276",
-    "status": "needs-review",
-    "notes": "stops mid-sentence, so the capture was cut short; a character did not survive extraction",
-    "description": "<p>Pistol Crossbow thr+2 imp 1 �15/�20 4/0.06 1</p>"
+    "status": "no-entry",
+    "notes": "a row of the weapon table; the book prints no description",
+    "description": ""
   },
   {
     "_id": "5f22502cb4ff111b",
