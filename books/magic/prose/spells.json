@@ -936,6 +936,222 @@
     "description": "<p>Change a person into an inanimate object of similar weight. The object may be anything that the caster is familiar with. A living thing with IQ 0, such as a plant, qualifies as an inanimate object for this purpose. The subject is conscious throughout the duration of the spell, but cannot take any action, including spells or psionic powers. He can dimly hear what goes on around him and feel whatever his transformed self is in contact with, but cannot see or smell anything. If the object is destroyed, the subject dies; if it is damaged, the subject will suffer a proportionate loss of HP upon being returned to his natural form.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 5,000.</p>"
   },
   {
+    "_id": "bce8e456e2636232",
+    "name": "Sense Life",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster if there is any life in the subject area, and gives a general impression (on a good roll) of what kind. The caster can also specify he is looking for a specific sort of life: plants, elves, redheaded girls, or a named person who the caster knows.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 80.</p>"
+  },
+  {
+    "_id": "dbbfd8caa1320eba",
+    "name": "Hide Emotion",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell gives its subject the outward appearance of deep calm. It resists Aura and Sense Emotion (and Sense Foes, at the GM's option) as well as any attempt to gauge the subject's emotional state by other means (Empathy, psionics, Body Language, etc). This spell is a great favorite of diplomats, courtiers, and poker players. It can grant up to a +4 bonus (GM's judgment) to any skill where masked emotions are valuable.</p><p><em>Item</em></p><p>Cap, crown, or other headgear. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "5cbf22c2b4b15e91",
+    "name": "Persuasion",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used when a reaction roll is required, this spell makes the subject (one sapient creature - racial IQ 6 or better) more likely to react favorably.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. The item must include a purple jewel (garnet or amethyst) worth at least $200. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "2ad07ae2ef9c3557",
+    "name": "Vexation",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used when a reaction roll is required, this spell makes the subject (one sapient creature of racial IQ 6 or better) more likely to react unfavorably. Frequently used by spies to sabotage diplomatic missions.</p><p><em>Item</em></p><p>Cap, crown, or other headgear. Usable only by mages. Energy cost to create: 1,000; the item must include a purple jewel (garnet or amethyst) worth at least $200.</p>"
+  },
+  {
+    "_id": "17ad64769cbd7f5c",
+    "name": "Dream Viewing",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>View a subject's dreams; they appear on any smooth surface of your choice (such as a basin of water, mirror, gem facet, etc). Use the long-distance and Mind-Reading modifiers (p. 14 and p. 46, respectively). If the caster and subject don't know each other, there is a further -2 penalty.</p><p><em>Item</em></p><p>Mirror. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "2e7bf5ade6c25b9b",
+    "name": "Dream Sending",
+    "pages": "M45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster uses this spell to send a dream vision to the subject, who must be asleep at the time of the casting. The message is seen in dream-symbols by the subject, who must roll vs. IQ-5 or a skill such as Fortune-Telling (Dream Interpretation) (p. B196) to interpret it correctly. The margin of success of the roll indicates how well the message is understood. Use of the Dreaming skill by the subject could distort or obliterate the message (GM's discretion).</p><p>The caster tells the GM the exact meaning (it is a good idea to limit the length of the message to as many words as the caster has skill with the spell). The GM, in turn, tells the subject what he understood (roll in secret, as a critical failure will lead to complete misunderstanding!). Use the long-distance and Mind-Reading modifiers (p. 14 and p. 46). If the caster and subject don't know each other, there is a further -2 penalty. This is also a Mind Control spell.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "32fd767eeaa63ec5",
+    "name": "Dream Projection",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Using this spell, the caster projects his presence into the subject's dreams to converse with him. Roll a Quick Contest of the spell's skill vs. the subject's Will every minute; once the subject wins, the spell is broken and no further contact is possible that night.</p><p>Use the long-distance and Mind-Reading modifiers (p. 14 and p. 46). If the caster and subject don't know each other, there is a further -2 penalty. The subject may use his Dreaming skill (see p. B188) to help the process; roll every minute to skip the contest. This is also a Mind Control spell.</p><p><em>Item</em></p><p>Headgear. Usable only by mages. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "5ba67d561ff771cd",
+    "name": "Lend Language",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject gains a language (sapient creatures only) at the caster's comprehension level or Accented - whichever is less. The caster must know the language in question.</p>"
+  },
+  {
+    "_id": "4acfe6112a3aacea",
+    "name": "Borrow Language",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Caster gains a language at the subject's comprehension level or Accented - whichever is less. The subject must know the language in question.</p>"
+  },
+  {
+    "_id": "781185955f917ed8",
+    "name": "Gift of Tongues",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give speech and understanding of any language (sapient creatures only). Cannot provide speech or hearing to one who lacks these abilities.</p><p><em>Item</em></p><p>Headgear or jewelry. Only affects the wearer, and only for certain languages. Energy cost to create: 300 per language included (must be known to creator).</p>"
+  },
+  {
+    "_id": "d96969280d9a3a1c",
+    "name": "Gift of Letters",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give literacy in any language (sapient creatures only).</p><p><em>Item</em></p><p>Headgear or jewelry. Only affects the wearer, and only for certain languages. Energy cost to create: 300 per language included (must be known to creator).</p>"
+  },
+  {
+    "_id": "b0587f1106a23667",
+    "name": "Mind-Search",
+    "pages": "M46",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Search a subject's mind to find deep thoughts and knowledge of things the subject is not thinking about at the moment. In effect, the caster may ask one simple question (answered by no more than 10 words) per minute, and get the most truthful answer the subject can give. The subject is not aware of the intrusion, except in case of a critical failure.</p><p>Language is no barrier for this spell, and the subject may even be asleep. Subjects of different races may be harder to mind-search, at the GM's discretion.</p><p><em>Modifiers:</em> Same as Mind-Reading, above. If the subject has magically been caused to forget something, this spell cannot recover it.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "b66463149c5c395c",
+    "name": "Mind-Sending",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Send your thoughts to a subject in a one-way communication. Transmission proceeds at only talking speed, though the caster may also send simple pictures (the time required is equal to the time it would take the subject to copy the picture on paper or parchment).</p><p>When figuring the distance penalty, use the long-distance modifiers (p. 14). If caster and subject don't know each other, there is an additional -4 penalty.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "5de8c1ceff492ffb",
+    "name": "Telepathy",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Full two-way communication, like Mind-Reading and Mind-Sending combined. The subject must be willing. Both caster and subject know the whole of each others' thoughts and what the other is experiencing; they communicate at the speed of thought. Other people can \"enter the link\" - a new casting of the spell (by anyone involved) is required for each new person to enter. To eavesdrop on an existing telepathic link without being noticed, there is a -4 skill penalty.</p><p>If caster and subject know each other and the subject expects the \"call,\" there is no distance penalty. Otherwise, assess penalties as for Mind-Sending. The spell cannot work across time, dimensions, interplanetary space, etc.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "5e32aa7473295b4e",
+    "name": "Retrogression",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes a subject to re-experience an event from his past life (or lives!) This can be a torment or as a boon.</p><p>Different kinds of memories have different effects. A terrifying memory requires a Fright Check at -3 or more; the memory of one's violent death, for example (in a campaign where Resurrection is possible), requires a Fright Check at -5. The memory of a wound or illness requires a HT-3 roll; failure inflicts one point of damage. A memory of slavery or degradation reduces Will by 1 for 3d hours unless a Will-3 roll is made. A memory of personal triumph and power increases Will by 1 for 3d hours if an IQ roll is made. The GM judges the effects of any other type of memory.</p><p>The caster only specifies the type of event to be relived; he cannot use this spell to \"rummage\" through the memories of the subject.</p><p>Unless stunned, the subject must roll his Body Sense to act on the turn following a Retrogression.</p><p><em>Item</em></p><p>(a) Headgear. Every time it is put on, the wearer relives his worst or best memory (creator's decision, but GM's judgment as to which memory that turns out to be). Energy cost to create: 350. (b) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "36658d37ff472a40",
+    "name": "Lend Skill",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject gains a skill at (controlling attribute)+4 or increases his existing skill by 4 levels - whichever is more. Subject's skill cannot become higher than caster's skill. Caster must know the skill in question (either normally or by Borrow Skill, below). Does not work on languages or spells.</p>"
+  },
+  {
+    "_id": "1fa4759ce9030ea9",
+    "name": "Borrow Skill",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster gains a skill at (controlling attribute)+4 or increases his existing skill by 4 levels - whichever is more. Caster's skill cannot become higher than subject's skill. Subject must be willing, and know the skill in question. Will not work on languages or spells.</p>"
+  },
+  {
+    "_id": "01bb3a05e78a1fd0",
+    "name": "Compel Truth",
+    "pages": "M47",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes unable to lie, though he may keep silent or tell partial truths (this must be roleplayed). The spell does not force him to volunteer information; he merely cannot say anything he believes to be untrue.</p><p><em>Item</em></p><p>Torc or heavy necklace; the wearer cannot lie. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "da5b6efc00f19adb",
+    "name": "Insignificance",
+    "pages": "M48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes all beings with whom the subject has social contact to ignore or disregard him. Only beings who have a reason to notice that particular person or someone in his particular situation can resist the spell with Per - the subject himself does not get to resist. Viewers get a bonus to their resistance roll equal to the subject's total Appearance modifier, whether positive or negative. Thus, viewers of an Attractive subject resist with Per+1, but viewers of an Unattractive subject also resist with Per+1.</p><p>The spell's effects are limited in magnitude; the subject could slip unnoticed through a crowd, but would be stopped by guards if trying to go where he should not. He can get someone's attention by grabbing him, but is then likely to get a negative reaction. If he steals something or commits some other objectionable act (removing his clothing, perhaps), all witnesses get a new resistance roll. If he attacks someone, that person is automatically released from the spell - furthermore, the victim's cries for help won't be ignored!</p><p>Insignificance and Presence resist each other.</p><p><em>Item</em></p><p>(a) Cloak, jewelry, or headgear. Always on; the wearer is ignored! Energy cost to create: 700. (b) Wand or staff; usable only by mages. Energy cost to create: 450.</p>"
+  },
+  {
+    "_id": "e554bc290dc83581",
+    "name": "Presence",
+    "pages": "M48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes all beings with whom the subject has social contact to pay attention. Each being who attempts to ignore the subject gets to resist the spell with Will - but the subject himself does not get to resist! The spell does not guarantee a good reaction from those it affects - it doubles the positive or negative modifier! If he has no positive or negative modifiers, it gives him a +1 modifier. Most people will assume, if a person stands out for no reason that they can put their fingers on, that there must be something worth seeing.</p><p>Someone affected by this spell can easily be followed in a crowd or along city streets. The searcher can simply ask bystanders, \"Did you see so-and-so come by here?\" and quickly resume the pursuit.</p><p>Presence and Insignificance resist each other.</p><p><em>Item</em></p><p>(a) Cloak, jewelry, or headgear. Always on; the wearer attracts attention. Energy cost to create: 700. (b) Wand or staff; usable only by mages. Energy cost to create: 450.</p>"
+  },
+  {
+    "_id": "1f94d9a9603d720c",
+    "name": "Communication",
+    "pages": "M48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell allows the caster to set up two-way communication with the subject. Each participant sees an image of the other, allowing \"real-time\" conversation. Use the long-distance modifiers (p. 14) unless the caster knows the subject and the subject was expecting the \"call,\" in which case no distance modifiers apply! Apply an additional -4 to skill if the caster does not know the subject.</p><p>The communication is audio-visual only. However, if the caster also knows Far-Tasting and Odor, he may add smell to the communication for an extra point of energy (both for casting and maintenance).</p><p>Others can join the \"conference\" at any time - a new casting of the spell (by anyone involved) is required for each new person to enter.</p><p>This communication is, obviously, not secure.</p><p><em>Item</em></p><p>Headgear, bowl, mirror, or crystal ball. Usable only by mages. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "9ab30ac5ff45191d",
+    "name": "Soul Rider",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster can see through the subject's eyes, hear through his ears, etc., whenever he concentrates. (The caster also remains aware of his own body and may act normally). The caster exerts no control whatsoever over the subject, and does not know the subject's thoughts. The subject must be sapient (IQ 6 or better). Skill is at -2 if the subject is of a different race; if the subject is totally alien, -4 or more!</p><p><em>Item</em></p><p>A pair of identical pieces of jewelry - one gold, one silver. The gold one must be worn by the caster, the silver one by the subject. The spell can then be cast at any time, regardless of distance. Usable only by mages. If a Powerstone is included in the item, it is in the gold one. If either item is broken, the other loses its enchantment. Cost to create: 1,000 energy (for the pair), and a $100 opal for each piece.</p>"
+  },
+  {
+    "_id": "c530cc710f3cca4b",
+    "name": "Control Person",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Use all the victim's senses and control all the victim's physical actions (the caster has no access to the subject's memories, skills, spells, etc.). The subject retains his memory and wits and is aware of what is happening - though not of the caster's identity. The caster can only \"animate\" one body at a time, and must concentrate to control the subject's body. When he concentrates, his own body falls limp; when he stops concentrating, the subject regains control of his own body. The caster can move between the bodies freely while the spell lasts.</p><p><em>Item</em></p><p>Crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "85b71a05da813579",
+    "name": "Possession",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Control Person - except the victim is unconscious throughout the \"possession,\" and the caster has full access to the subject's memories, skills, and spells. While in the subject's body, the caster has his own skills and spells, and may use all the subject's skills, spells, and memories as though they were his own (the subject's physical skills are at -1). The caster's own body lies unconscious during the spell, and must be safeguarded.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "824a45ca04be59fe",
+    "name": "Dispel Possession",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ends any Soul Rider, Control, or Possession spell (or their animal equivalents) affecting the subject.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The item must touch the possessed subject. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "e37a6147a68de76b",
+    "name": "Permanent Possession",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Possession - but the caster remains in the body of the subject until he chooses to leave, or is expelled by Dispel Possession or Remove Curse. The caster's own body is in Suspended Animation (p. 94) while the spell continues. If the caster's body dies, the spell is broken. Whenever the subject body takes damage, the caster must roll vs. his own body's HT, or take the same damage. If the subject body dies, the caster must roll vs. HT or die himself!</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. Usable only by mages. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "30f5788781b4595d",
+    "name": "Exchange Bodies",
+    "pages": "M49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster permanently exchanges bodies with the subject. The subject may be any living creature. The only way this spell can be reversed, once it has been cast, is to cast it again; Dispel Possession or other anti-magic will not work. The attributes of ST, DX, and HT, as well as all physical advantages and disadvantages, go with the body; IQ, memory, personality, and all skills and spells go with the mind.</p><p><em>Note:</em> Exchange Bodies may result in the caster increasing his point value. The GM may wish to charge the old wizard for the difference in character point value. See Mind Transfer (p. B296) for more on this. To help keep body-hopping wizards under control, the GM may wish to require some rare spell materials for this spell (p. 8).</p>"
+  },
+  {
     "_id": "f7c56fc7cf81130d",
     "name": "Summon Earth Elemental",
     "pages": "M27",
