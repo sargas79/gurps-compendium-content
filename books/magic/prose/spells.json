@@ -3432,6 +3432,310 @@
     "description": "<p>Similar to Shatter, but leaves only dust (cannot be repaired!). If damage rolled doesn't destroy the subject, it is unaffected. This spell affects inanimate objects only and cannot affect parts of objects.</p><p><em>Item</em></p><p>As for Shatter. Energy cost to create: 1,500.</p>"
   },
   {
+    "_id": "ec5f18ee21d3ce29",
+    "name": "Scryguard",
+    "pages": "M121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any information spell cast on the subject must win a Quick Contest of Spells with the Scryguard to \"see\" him. Identify Spell still detects that the Scryguard is present.</p><p><em>Item</em></p><p>This spell may be cast permanently on any item to make it resist any attempt to sense it with magic. Energy cost to cast: 500, multiplied by 1+SM for items larger than SM 0.</p>"
+  },
+  {
+    "_id": "4b6af1760d8dbe9b",
+    "name": "Suspend Spell",
+    "pages": "M121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily nullify any one ongoing spell. The caster must know the spell he suspends. Suspend Spell does not affect magic items, but can affect spells cast through one. Spells that can only be removed by Remove Curse cannot be suspended; use Suspend Curse for those.</p><p>Suspend Spell is cast at the lower of the user's Suspend Spell skill and his skill with the spell being suspended. When the suspension expires, the suspended spell \"picks up where it left off\" and resumes operation. If the subject spell is maintained, its caster will automatically know it is being suspended. Otherwise, roll against Perception + Magery - 3 - distance is not a factor.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "31b7f903e0ea960b",
+    "name": "Ward",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast immediately after a spell is thrown at its subject, this spell can prevent the opposed spell from working. It works against only a single magical attack. If an attacking spell affects several people, each Ward can only save one subject. It does not protect against missile spells.</p><p>The caster may only Ward against a spell that he knows at skill 12 or higher; a caster who knows (for instance) Sleep may also ward a single subject against Mass Sleep. The caster rolls at the lower of his Ward skill or his skill in the spell being warded. The caster must announce he is using Ward before the opposed spell's subject tries a resistance roll. If it turns out the spell being cast is not one the defending mage can ward against, the ward is wasted.</p>"
+  },
+  {
+    "_id": "2fa6bdfcd9dd5c9c",
+    "name": "Conceal Magic",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cast on a single person or item, this spell interferes with any informational spell cast on the subject. Twice the energy put into the spell (up to 5 points) is subtracted from any skill roll made to learn about the item, find it, etc.</p><p><em>Example:</em> 4 points of energy are put into a Conceal Magic spell on a ring. Until the spell expires, any Detect Magic spell will be at -8 to work on that ring; Identify Magic will be at -8 to find any spells on the ring; Mage Sight will not see the ring unless the mage made his roll by at least 8 (though he may still see other things) - and so on.</p><p>Note that this spell has similar effects in some ways to Scryguard (p. 121), but they're not the same!</p><p><em>Item</em></p><p>This spell may be cast permanently on any item to make it harder to sense or identify with magic. Energy cost to cast: 100 times the cost above - e.g., 200 to give a -4 on all attempts to detect or identify.</p>"
+  },
+  {
+    "_id": "8a032fb58d94d7eb",
+    "name": "Reflect",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is an improved version of Ward, and works like it. The difference is that it will reflect the opposed spell instead of negating it. Thus, if the Reflect succeeds, the opposed spell now attacks its original caster as if it had been cast on him to begin with. If the attacking spell is an area spell, a successful Reflect protects its subject and affects the caster as though he were in the area being attacked, but otherwise the area is still attacked normally.</p>"
+  },
+  {
+    "_id": "bf7d54a2d81364fe",
+    "name": "Scrywall",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Scryguard, but to protect a whole area and everything in it.</p><p><em>Item</em></p><p>(a) Any container. It, and everything inside, is protected by the Scrywall spell. Energy cost to cast: 200 per cubic foot (minimum cost 500). (b) Any rug or area of floor; protects people and things standing atop it. Energy cost to cast: 300 per yard radius.</p>"
+  },
+  {
+    "_id": "6ea4f99123a20963",
+    "name": "Great Ward",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Ward, but - if it works - protects any number of those who would have been affected by the attacking spell.</p>"
+  },
+  {
+    "_id": "043df0c6e620be74",
+    "name": "False Aura",
+    "pages": "M122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Replaces the magical emanations of a being, area, or object with false ones; the term \"aura\" is only literal for living things. For instance, a human could be made to have the aura of a Zombie, a sword could appear to be enchanted with Dancing Weapon, an area could appear to be under linked Create Fire and Glue spells, etc. Roll a Quick Contest between the False Aura and any spell (Information or Regular) that can see or detect the emanations (such as Aura, Mage Sight, or Analyze Magic). If the False Aura wins, the other spell is fooled. False Aura also works against equivalent senses some creatures may possess.</p><p>Unwilling subjects resist with IQ. The chosen False Aura must be familiar to the caster - a mage could not put a False Aura of Golem on a statue unless he knew the Golem spell, for instance.</p><p><em>Item</em></p><p>(a) Any. Only affects the holder. Energy cost to create: 300. (b) Any object or area may be given a permanent False Aura for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "1ab4dea7de02babb",
+    "name": "Magic Resistance",
+    "pages": "M123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For each point of energy put into the spell (up to 5), the subject's magic resistance goes up by 2 if he is willing, or by 1 if he tried to resist. This MR works like normal Magic Resistance (p. B67) when spells are cast on the subject. The subject can still cast spells, but at a penalty equal to the MR. Spells already affecting the subject (or already cast by him) continue unchanged. He can use potions and magical items normally.</p><p><em>Item</em></p><p>(a) Wand, staff, weapon, or jewelry; only affects the wearer. Usable by anyone, but energy cost is doubled for nonmages. Energy cost to create: 300 per maximum point of magic resistance it can offer. (b) Any item. The item's own magic resistance is increased by 1 through 10; the user's magic resistance is unaffected. Energy cost to create: 200 per point of added magic resistance. Does not affect spellcasting ability of its user.</p>"
+  },
+  {
+    "_id": "326154e9e2319037",
+    "name": "Scryfool",
+    "pages": "M123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Redirect Information spells targeted at a first subject onto a second subject, the \"decoy.\" Both subjects must be present at casting time; add the range penalties, if any. Unwilling subjects resist with Will.</p><p>From then on, any Information spell attempting to scry the first subject must win a Quick Contest of Spells with the Scryfool to scry the correct subject. Otherwise, it scries the decoy instead.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. This item can only be used to divert Information spells from the wearer. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "0b44c68d79f2b8d0",
+    "name": "Penetrating Spell",
+    "pages": "M123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another damage-dealing spell, granting it an armor divisor (p. B378). The spells are cast one after the other, with no delays between castings. Penetrating Spell is cast first, and counts as a spell \"on\" for determining the effective skill for the second spell.</p><p>A spell fortified with Penetrating Spell does not do extra damage to unarmored foes. Hardened DR defends against the armor divisor conferred by this spell as normal.</p><table><tr><th>Armor Divisor</th><th>Cost</th></tr><tr><td>2</td><td>2</td></tr><tr><td>3</td><td>4</td></tr><tr><td>5</td><td>6</td></tr><tr><td>10</td><td>8</td></tr><tr><td>Ignores DR</td><td>10</td></tr></table>"
+  },
+  {
+    "_id": "6f3cfc1d34cc9067",
+    "name": "Catch Spell",
+    "pages": "M123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast immediately after a Missile spell is thrown (not when it is cast), this spell allows its caster to catch the missile as it comes within reach of him. Once caught, the spell can be held by the caster just as if he himself had cast it, to be thrown later (back at its original caster, perhaps . . . ). The caster need not know the spell he is catching.</p><p>If the Catch Spell roll succeeds, its caster physically catches the missile when it comes close enough to grab. If the Catch Spell roll fails, its caster gets hit dead-on by the spell (on a critical failure, he takes maximum damage from the spell!).</p><p><em>Item</em></p><p>Glove. Usable only by mages. Such a glove can catch only one specific Missile spell. Treat variations (such as Fireball/Explosive Fireball) as a single spell for this purpose. Energy cost to create: 300. A glove that could catch any Missile spell would require 1,200 energy.</p>"
+  },
+  {
+    "_id": "ff7ffd0fec089e1e",
+    "name": "Suspend Magic",
+    "pages": "M123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily nullify all other spells within the area. It has no effect on enchanted items. Certain powerful spells are also unaffected - specifically, those which can only be removed by Remove Curse. Each spell resists separately.</p><p>Suspend Magic is not selective; the caster can choose the shape of the area within the boundaries he pays energy for (as with all Area spells), but may not exclude objects within the affected area. The caster need not know the spell(s) being suspended. To suspend a specific spell without affecting others, use Suspend Spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "7ddd8132b101b76b",
+    "name": "Displace Spell",
+    "pages": "M124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the location of an Area spell, permanently. Certain powerful spells are unaffected - specifically, those which can only be removed by Remove Curse. Each Area spell must be displaced separately, except linked spells, which move together. The caster need not know the spell being displaced.</p><p>Once the casting is complete, the area moves with Move equal to the caster's Magery. Each turn, the displaced spell gets a new resistance roll; once it successfully resists, it stops moving and the Displace Spell is broken - though it may be cast anew. The subject spell always rolls to resist, even if its caster doesn't wish it to (the caster's own spells resist at -5).</p><p>While being Displaced, the subject spell remains active (thus, the caster could trigger a Link by moving it over its intended target). If the subject spell is being maintained, its caster will automatically know it is being displaced. Otherwise, roll against Perception + Magery - 3 - distance is not a factor.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "c31e71517a8a7de0",
+    "name": "Spell Shield",
+    "pages": "M124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Resist any spell cast through it at the Spell Shield's Endurance (p. 10). It also acts as a Scrywall (above). Exception: It does not affect missile spells at all, including Thrown spells. Note that if the attacking spell wins the contest, it gets through, but the Spell Shield is not destroyed - instead, its Endurance is reduced by 1. When a Spell Shield's Endurance is reduced to 0, the spell dissipates and cannot be maintained.</p><p><em>Item</em></p><p>(a) Any container. It, and everything inside, is protected by the Spell Shield. Energy cost to cast: 250 per cubic foot (minimum cost 500). (b) Any rug or area of floor; protects people and things standing atop it. Energy cost to create: 400 per yard radius.</p>"
+  },
+  {
+    "_id": "4935a77ac395538c",
+    "name": "Spell Wall",
+    "pages": "M124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a wall of anti-magic. The wall resists any spell cast through it from one side, specified by the caster upon casting Spell Wall. It also acts as a Scrywall. Exception: It does not affect Missile spells at all, including Thrown spells.</p><p>If the Spell Wall fails to resist a spell cast through it, the spell breaks through, but the wall still stands, its Endurance (p. 10) weakened by 1. Upon reaching Endurance 0, the wall dissipates. Spells passing through the wall from the \"safe\" direction (usually the side that the caster stands on!) are not resisted or affected in any way.</p><p>The wall is cast in one-yard increments, either all at once or piece by piece. When adding new segments to a weakened Spell Wall, the new segments assume the Endurance of the \"weakest link.\" The only way to \"repair\" a weakened Wall is to cast it anew.</p><p>The Spell Wall is four yards high, so it is possible to cast across it from a high enough elevation. Higher walls can be created by spending proportionately more energy (double energy for double height, and so on).</p><p><em>Item</em></p><p>A Spell Wall may be made permanent for 100 times casting cost. Mages often cover windows or skylights in this fashion. \"Permanent\" Spell Walls do not weaken when penetrated.</p>"
+  },
+  {
+    "_id": "584ca1d0ee271e78",
+    "name": "Pentagram",
+    "pages": "M124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces a magical barrier, which blocks hostile spells and magical creatures from passing in either direction. The barrier is a star-shaped figure drawn on the floor or ground. Magical creatures (demons, golems, creations, zombies, elementals, and the like) cannot cross the border of a pentagram; neither may they cast spells, or move any physical object, across the border. Nonmagical creatures - including mages - can freely cross a pentagram, though they cannot cast spells across its border. Spells of transport (e.g., Flight, Teleport) cannot be used to enter a pentagram for hostile purposes.</p><p>Certain very hostile creatures may be summoned within a pentagram; the caster stands outside and summons the creature to a spot inside the pentagram. The caster will open the pentagram only when he is sure he can control the summoned creature.</p><p>If part of the pentagram is cut or erased, its power will be lost until the caster can rejoin the pentagram - all this requires is a piece of chalk and time (usually just a second) to draw the line. No magic spell can injure the pentagram, but physical attacks - like walking up and scuffing out a line with your shoe - can succeed if they are made by nonmagical beings. A demon or creation could not do it; an ordinary person could. Likewise, an ordinary person could throw a rock into a pentagram, but a demon or golem could not.</p><p>A magical creature may try to force its way through a pentagram. Roll a contest between the creature's (ST+Will)/2 and the skill with which the pentagram was cast. If the creature wins, it destroys the pentagram! No one creature can thus \"test\" a pentagram more than once per day.</p><p><em>Item</em></p><p>Mages' Guilds may have permanent pentagrams, inlaid with tile or jewels to avoid accidental scuffing, and cast at a very high level of skill. Such a design can be ritually \"cut,\" when necessary, by a chalk-mark. But there is no intrinsic difference between these and a regular pentagram - any pentagram is \"permanent\" until erased or broken. (If a hostile creature breaks through a Pentagram spell, it destroys the enchantment but does not affect the physical design, which can be re-enchanted later . . . if its owner survives.)</p>"
+  },
+  {
+    "_id": "989cfce66e8d9feb",
+    "name": "Suspend Curse",
+    "pages": "M125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily nullifies any one of the following spells, among others: Alter (any type), Curse, Enlarge Other, Ensorcelment (any type), Flesh to Ice, Geas (either type), Healing Slumber, Hex, Malefice, Mystic Mark, Oath, Partial Petrification, Plant Form (any type), Possession (any type), Shapeshift (any type), Shrink Other, Stone to Flesh, Stop Healing, Strike Barren, Suspend Magery, Suspend Time. It will also suspend any physical or mental impairment caused by an hostile Wish of any kind. If for any reason the skill level of the subject spell is unknown, the GM's assessment is final.</p>"
+  },
+  {
+    "_id": "acb4a83e3f901521",
+    "name": "Suspend Mana",
+    "pages": "M125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject area is (temporarily) a no-mana zone, dead to the flow of magic. A critical failure costs the caster a level of Magery for 2d days. At the end of that time, the caster should roll vs. IQ+Magery; any roll except a critical failure means that the lost Magery is regained - a critical failure means the loss is permanent!</p>"
+  },
+  {
+    "_id": "9291c9c7fd54c09f",
+    "name": "Lend Spell",
+    "pages": "M126",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Lend\" an already-cast maintainable spell to someone else. The recipient acquires full control over and responsibility for the loaned spell, just as if he had cast it himself; he can maintain it or manipulate it at will, within the limits of the spell itself.</p><p>The recipient must meet all of the advantage and attribute qualifications of the loaned spell, but need not know its spell prerequisites. Thus, a spell requiring Magery 2 could only be loaned to a character with Magery 2, but a spell requiring no Magery and no special advantages or attributes could be loaned to anybody. If the recipient has Magic Resistance, Lend Spell must overcome it.</p><p>Lend Spell is cast at the lower of the caster's skill with Lend Spell and the subject spell. The caster must touch the recipient.</p><p><em>Modifiers:</em> If the recipient does not know all the prerequisites of the spell to be loaned, the caster gets a -2 to skill. If the recipient knows all the prerequisites, the spell is cast at par. If the recipient actually knows the spell, the caster gets a +2.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. The mage loans the subject spell by activating the item and physically passing the item to the recipient; the item must be held at all times for the magic to work - it may not be thrown. The recipient \"owns\" the spell for as long as he holds the item, and may pass it along to yet another recipient, whether or not either is a mage. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "a7cb4fb47c8d1d2f",
+    "name": "Remove Curse",
+    "pages": "M126",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nullifies any one of the following spells: Alter (any type), Curse, Enlarge Other, Ensorcelment (any type), Flesh to Ice, Geas (either type), Healing Slumber, Hex, Malefice, Mystic Mark, Oath, Partial Petrification, Plant Form (any type), Possession (any type), Shapeshift (any type), Shrink Other, Stone to Flesh, Stop Healing, Strike Barren, Suspend Magery, Suspend Time. It also negates any physical or mental impairment caused by a hostile Wish of any kind. If for any reason the skill level of the subject spell is unknown, the GM's assessment is final.</p>"
+  },
+  {
+    "_id": "cb9a0a93c8512aff",
+    "name": "Charge Powerstone",
+    "pages": "M126",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Recharges a Powerstone at a higher rate than the stone recharges itself. Every 3 energy spent by the caster restores 1 point of energy to the stone, but every point restored is counted as an \"advance\" against future \"natural\" recharging. Thus, if a 10-point Powerstone is recharged with this spell in a normal-mana area, it will not begin to recharge for 10 days after it is used. If it is used, and then recharged again using this spell, it will be 20 days until the stone begins to recharge normally, and so on. The presence of multiple Powerstones does not inhibit the casting of this spell.</p><p>On any ordinary failure with this spell, the Powerstone gains a new quirk (p. 69). On a critical failure, the Powerstone cracks and is destroyed.</p><p>This spell can safely recharge Powerstones with quirks that limit recharging only if the conditions imposed by the quirk have been met. Attempts to ignore those conditions may cause the Powerstone to shatter.</p><p>This spell does not work on Manastones.</p>"
+  },
+  {
+    "_id": "4b048b9e49122d16",
+    "name": "Spellguard",
+    "pages": "M127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another spell to protect it from tampering attempts. Twice the energy put into the spell (up to 3 points) is subtracted from the skill of any casting of the following Meta-spells against the subject spell: Counterspell, Displace Spell, False Aura, Remove Aura, Remove Curse, Steal Spell, Suspend Curse, and Suspend Spell. Twice the energy put into the Spellguard is added to the effective skill of the subject spell's caster when resisting Dispel Magic or Suspend Magic. When the spell it protects lapses or is dispelled, the Spellguard also lapses.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 500. (b) May be cast permanently on an enchanted item or area to make it harder to tamper with; it then hampers Suspend Enchantment and Remove Enchantment as well. Energy cost to cast: 100 times normal cost.</p>"
+  },
+  {
+    "_id": "ec43d6d601a990db",
+    "name": "Remove Aura",
+    "pages": "M127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like False Aura, but removes the magical emanations of the subject entirely. When cast on an inanimate object, this spell turns it into a blank slate for spells such as Ancient History, History, See Secrets, or Seeker (in the latter case, the Remove Aura breaks the \"association,\" so the Seeker is cast at -5). To resolve this, any future casting of the aforementioned spells is resisted by the Remove Aura - whenever the other spell fails, the information it tried to access was successfully removed. Whatever happens to the object after its aura is removed can still be freely accessed by those spells, of course.</p><p>When cast on a living or magical subject, the Remove Aura only lasts one day and cannot be maintained. It interferes with such spells as Aura, Detect Magic, Seek Magic, or Mage Sight. Unwilling subject beings resist with Will.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 250. (b) Jewelry or clothing. Always on; only affects the wearer. Energy cost to create: 750.</p>"
+  },
+  {
+    "_id": "3fb1536dca286e40",
+    "name": "Drain Mana",
+    "pages": "M127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Remove all mana from an area, leaving it permanently \"dead\" to magic. Spells do not work there, and magic cannot sense anyone or anything in a no-mana zone; magical spells end, and magical items do not function until they are removed from the area.</p><p>This spell is used to create areas in which mages, magical creatures, and magical objects can safely be confined or hidden. A no-mana zone stays stable with respect to the earth, but not to objects. Thus, if you make the inside of a box mana-dead, when you move the box, the dead space will stay where it was, rather than moving with the box.</p><p>A critical failure with this spell costs the caster one level of Magery!</p>"
+  },
+  {
+    "_id": "5cc4b79731e7bfec",
+    "name": "Restore Mana",
+    "pages": "M127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The reverse of Drain Mana; restores mana to a dead zone. The area gains a mana equal to the \"average\" mana level of the surrounding area, regardless of what it might have been before. Cost, time, and prerequisites are the same as for Drain Mana, but there is no risk of losing Magery.</p>"
+  },
+  {
+    "_id": "db9e151def2a2541",
+    "name": "Steal Spell",
+    "pages": "M127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Steal control of an already-cast maintainable spell from its original caster. Note that it is cast at the other spell's caster and is therefore subject to range modifiers. The caster must know precisely what he is stealing - Identify Spell is very useful for this purpose. Spells operating under Maintain Spell can also be stolen; the \"caster,\" for range purposes, is then the maintained spell's area or subject.</p><p>You cannot steal a spell if you do not have the required Magery, advantage, attribute level, or lack of disadvantage (see conditions under Lend Spell, above). A held Missile cannot be stolen.</p><p><em>Modifiers:</em> -3 if the caster does not know the spell he is stealing; a further -2 if the caster doesn't know its prerequisites either.</p>"
+  },
+  {
+    "_id": "37c4184d3f055d5d",
+    "name": "Telecast",
+    "pages": "M128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create and teleport a Wizard Eye to a distant location. The caster may then cast spells through the Wizard Eye as if he was present. Missiles may not be telecast, but Jet spells may. Spells requiring touch may also be telecast, but the Wizard Eye must score a hit and the defender must fail his defense.</p><p>Use the cost and casting penalties from the Teleport spell (p. 147). Spells cast from the Telecast's \"other end\" measure range from that spot. The Telecast counts as a spell \"on\" and requires concentration. GMs who wish to further limit this powerful spell may apply the penalties for no speech, foot, or hand motions (p. 9).</p><p>If the Telecast roll is failed by 1, the Wizard Eye reaches its intended destination but the caster is mentally stunned. If the roll is failed by more than 1, the Wizard Eye winds up somewhere else (GM's choice!) and the caster is still mentally stunned. In all cases, a Body Sense roll at a -2 penalty is required before the caster can get his bearings and start casting another spell; on a critical failure, he is mentally stunned.</p><p>There are persistent rumors of variants of this spell which Timeport or Plane Shift the Wizard Eye instead.</p><p><em>Item</em></p><p>An eyeball carved of ivory and inset with jewels. Usable only by mages. At its holder's command, it teleports itself away; when the spell lapses, it reappears in the holder's hand (unless it has been physically destroyed). Cost to create: 1,900 energy, $1,000 for skilled ivory carving, $600 for jewels.</p>"
+  },
+  {
+    "_id": "eda874162cf35f0c",
+    "name": "Hang Spell",
+    "pages": "M128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another spell to delay its activation until the caster wills it. Blocking spells may not be hung.</p><p>Hang Spell is cast immediately before its subject spell, with no delays between castings. The caster rolls for the Hang Spell when it is cast; the roll for the subject spell is not made until it is activated. Range penalties, spells \"on,\" magic resistance, mana level changes and the like are applied at the subject spell's activation time.</p><p>The caster must pay full energy and time costs for the Hang Spell and its subject must be paid at the time of casting. If the caster hangs a spell tailored to a human-sized subject and then activates it on a larger subject, there is either no effect or a reduced effect, as the GM sees fit.</p><p>A hung spell counts as one spell \"on\" (p. 10) for casting purposes; it does not, however, count against itself when it is activated. Thus, if a mage has four hung spells, he casts other spells at -4, but casts any one of the hung spells at -3. A hung spell takes a Concentrate action to activate.</p><p>Hung spells are susceptible to Dispel Magic and Counterspell (which destroys them), as well as to Suspend Magic and Suspend Spell (which prevents them from activating for the duration). They cannot be stolen or lent because they have not yet been cast.</p>"
+  },
+  {
+    "_id": "a51a37a4a396d54c",
+    "name": "Maintain Spell",
+    "pages": "M128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on one of the caster's ongoing spells, providing it a pool of energy to maintain itself. Once Maintain Spell has been cast, the subject spell draws its maintenance energy from Maintain Spell. It no longer belongs to its original caster; it no longer counts as a spell \"on,\" may not be cancelled, etc. Maintain Spell may be cast any time the subject spell is active. Some maintained spells may be \"programmed\" as per Independence (p. 96) or perhaps even Initiative (p. 97) (GM's discretion).</p><p>Control of a spell operating under Maintain Spell can be stolen using Steal Spell.</p><p>If the caster can maintain the spell indefinitely for no energy cost (due to high skill), the cost is 1 energy for every five full duration periods. Thus, a mage with Earthquake at skill 20 could set the spell to last 30 minutes for 6 energy. High skill with this spell likewise reduces cost normally!</p>"
+  },
+  {
+    "_id": "8fd8344519deca89",
+    "name": "Throw Spell",
+    "pages": "M128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another spell, transforming it into a Missile spell. The spells are cast one after the other, with no delays between castings. The Throw Spell is cast first and counts as a spell \"on\" when determining the skill level of the subject spell (p. 10).</p><p>The caster must pay full energy and time costs for Throw Spell and its subject at the time of casting; if the caster throws a spell powered for a human-sized subject at a larger subject, there is either no effect or a reduced effect, as the GM sees fit.</p><p>The caster rolls for the Throw Spell when it is cast; the roll for the subject spell is not made until it is thrown. Thrown spells have 1/2D n/a, Max 80, Acc 1; roll against DX-4 or Innate Attack skill to hit.</p><p>All thrown spells take effect at the moment they hit something. Thrown Area spells center on their point of impact. Jet spells take effect at the point of impact, in the direction they were going (treat them as Wild Swings, p. B388). Most other spells simply allow the caster to use spells at longer ranges than normally possible - a thrown Sense Emotion, for instance, or Minor Healing. This spell allows spells that normally require touch to be applied at a distance (Deathtouch, for instance). Missile spells and Blocking spells may not be thrown.</p><p>Thrown spells may be blocked or dodged, but not parried. However, they can be caught using Catch Spell - by anyone, including enemies!</p><p><em>Item</em></p><p>Any missile weapon may be enchanted to throw one specific spell, which flies just as if the weapon had fired its ordinary ammunition. Energy cost to create: 2,500 times the casting cost of the subject spell. There are rumors of enchanted missile weapons that can throw any spell known to their wielder, but nothing more specific is known about them.</p>"
+  },
+  {
+    "_id": "a3547ec368e818b6",
+    "name": "Bless",
+    "pages": "M129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A general spell of aid and protection. It must be cast on another; you cannot bless yourself. In some game worlds, only holy men or \"good\" wizards can cast this spell; this decision is the GM's to make.</p><p>The effect of a blessing is as follows: All the subject's die rolls are modified favorably by one point (or more, for a more powerful blessing). The modification will not affect critical successes and failures. This lasts indefinitely . . . until the subject fails some die roll (or a foe makes a good die roll) and the subject is in some serious danger. Then the blessing miraculously averts or reduces the danger - and ends. It is up to the GM to decide when the blessing has its final effect, and what form the protection takes. If an arrow is aimed at your heart, a 1-point blessing might move it to your arm, while a 2-point one would send it through your hat, and a 3-point one would let it slay a foe behind you.</p><p><em>Item</em></p><p>Any. The blessing is cast on the item rather than a person, and affects the wearer of the item. When the blessing finally averts some great danger, the item loses its enchantment. Energy cost to cast: 10 times the cost to cast on a person.</p>"
+  },
+  {
+    "_id": "3c0a94fbf019e3b4",
+    "name": "Curse",
+    "pages": "M129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Exactly the opposite of Bless. All the subject's die rolls are modified unfavorably, lasting until he scores some notable success despite the bad rolls - GM's decision as to exactly what this is. Then the success turns somehow to ashes, and the curse is ended.</p><p><em>Item</em></p><p>Any. The curse is cast on the item rather than a person, and affects the wearer of the item. GMs should make rolls in secret, and otherwise do whatever they can, to keep players from realizing they have encountered a cursed item! When the Curse delivers its final \"zap,\" the enchantment vanishes. Energy cost to cast: 10 times the cost to cast on a person.</p>"
+  },
+  {
+    "_id": "b8ecbb4f720eb002",
+    "name": "Suspend Magery",
+    "pages": "M130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily nullifies the subject's Magery. The caster must touch the subject throughout the casting. The subject retains his knowledge of spells, but cannot cast them - unless he is in a high-mana area, of course, in which case he simply loses the bonus. Even in a high-mana area, the subject cannot cast spells that require Magery of any level. Suspend Magery can only be removed by Remove Curse.</p><p>A critical failure with this spell costs the caster a level of Magery for 2d days. At the end of that time, the caster should roll vs. IQ+Magery; any roll except a critical failure means that the lost Magery is regained - a critical failure means the loss is permanent!</p><p><em>Item</em></p><p>Clothing or jewelry (shackles are a favorite). Always on; only affects the wearer. Energy cost to create: 2,200.</p>"
+  },
+  {
+    "_id": "b22db7ed4e090fb1",
+    "name": "Drain Magery",
+    "pages": "M130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Permanently drains one level of the subject's Magery advantage. The caster must touch the subject throughout the casting.</p><p>The subject retains his knowledge of spells (albeit at a lower skill level), but cannot cast those that require a higher degree of Magery than his new one.</p><p>A critical failure with this spell costs the caster a degree of Magery and a point of IQ!</p><p><em>Item</em></p><p>There are persistent rumors of malevolent items that drain Magery from their victims, but nothing specific is known.</p>"
+  },
+  {
+    "_id": "0c1feda373f63a02",
+    "name": "Delay",
+    "pages": "M130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another spell to delay its activation until a certain thing happens in the linked spell's presence - that is, in the presence of the item or area on which the linked spell was cast. This triggering event may be as simple or complex as the caster desires; if complex, it should be put in writing. The triggering event must be something that could reasonably be determined by a normal person at the Delay site; the GM's decision is final. If the Delay is to be triggered by a more esoteric event, an appropriate spell such as Mage Sight may be cast on the Delay. The Delay may also be triggered by the activation of another spell, such as Watchdog or another linked spell. A Delay can activate only one other spell.</p><p>The spells are cast one after the other, with no delays between spells. The Delay must be cast first, and counts as a spell \"on\" when determining the skill level of the linked spell - see p. 10. Full cost for the linked spell and for the Delay must be paid at the time of casting. If the caster specifies a spell to affect a human-sized subject, and a larger victim (requiring more energy - see p. 11) actually triggers the Delay, there is either no effect or reduced effect, depending on the spell. The GM's ruling on this is final.</p><p>Delay may be cast two ways: to activate the linked spell on a specific subject, or as a trap, to activate the linked spell against any subject that meets the triggering conditions. In the latter case, the Delay and the linked spell are both cast on a \"trap item,\" and range is figured from the trap item at the moment the spell is triggered. Magic Resistance penalties also apply to the linked spell at the time of triggering.</p><p>The caster rolls for Delay when it is first cast; the roll for the linked spell is not made until the triggering event occurs. If the intended subject of a linked spell is not present at the time of casting, there is an additional -5 penalty for the linked spell (but not for the Link) for not being able to touch or see the subject - see p. 11. So, for instance, the dreaded \"deathtouch doorknob,\" set to \"attack\" the first person to touch it, would activate at a -5 penalty.</p><p>When a Delay is triggered, the linked spell begins to activate, taking effect the next turn. Thus, a Delay cannot be used as a Blocking spell. It can be used as a trap; the victim may be taken by surprise. An unsuspecting victim must make an IQ roll to respond before the linked spell is fully activated - Combat Reflexes gives +6 to this roll.</p><p>Both the Delay and the linked spell count as \"on\" for spellcasting purposes; if an Information spell has been added, it is also on. The linked spell does not need to be maintained, though the Delay or its Information spell may need to be. Once the Delay is triggered, it vanishes, and no longer counts as on. The linked spell continues to count as on as long as it is active. It may be maintained normally.</p><p>A Delay may also be set to \"turn off\" an ongoing spell when a triggering event occurs. In that case, the linked spell lasts only while the caster maintains it, but the Delay itself requires no maintenance.</p><p>Blocking and Missile spells cannot be Delayed - all other spells can. An \"instantaneous\" spell like Thunderclap will happen once, when activated; then the spell will be gone. A continuing spell like Voices will start when activated, and then operate until it expires.</p>"
+  },
+  {
+    "_id": "752481bb944bb60d",
+    "name": "Link",
+    "pages": "M131",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Postpones the activation of one or more linked spells cast in its area of effect, until a certain thing happens in the Link's presence. This triggering event may be as simple or complex as the caster desires, and is governed like Delay (above). The Link may also be triggered by the activation of a spell placed on the area after the Link, such as Watchdog, Delay or another Link.</p><p>The caster pays the energy costs and makes the skill rolls for the Link spell and all linked spells at the time of casting. Linked spells may not benefit from cost reductions for high skill. If the intended subject of a linked spell is not present at the time of casting, there is an additional -5 penalty for the linked spell (but not for the Link) for not being able to touch or see the subject - see p. 11.</p><p>The size of the area of the Link spell is determined at the time of casting. Any linked spells may go off anywhere within the Linked area; for instance, if a one-yard-radius Create Fire and one-yard-radius Glue spell were linked to a 20-yard-radius Link to catch intruders, the first intruder to enter the Link's area would find himself in a zone of flaming glue, but subsequent intruders would be safe (from that Link, anyway). The size of the linked spells must be set at the time of casting. If the subject is larger than the estimated target, the spell either has no effect, or a weaker effect, depending on the spell. The GM's ruling on this is final.</p><p>Only subjects within the Linked area are affected, unless the spell results in an effect that would not be bound to that area - summoning a demon, for example! The triggering event may occur outside of the area, however.</p><p>The time to cast the linked spells is spent when initially set up. There is no delay when the Link is triggered - all linked spells are activated instantly.</p><p>The linked spells do not count as a spell \"on\" for any purpose. Every three Link spells on count as one spell on, rounding down. A mage cannot detect a Link simply by looking at it. The Mage Sight spell or the Detect Magic spell will reveal the Link, however.</p><p>If the mage knows the Conceal Magic spell, the Link may be made harder to detect by magical means. Simply adding the Conceal Magic costs to the base cost of the Link spell accomplishes this effect. The mage must know Conceal Magic to use this option.</p><p>If the subject of a linked spell is not present at the casting, and has Magic Resistance, refer to the original die roll to determine the results. If the original die roll of the linked spell is not recorded, reroll the spell for this purpose only.</p><p>Blocking and missile spells cannot be Linked - other spells can. An \"instantaneous\" spell like Thunderclap will happen once, when activated; then the spell will be gone. A continuing spell like Voices will start when activated, and then operate until it expires.</p><p>A single Link can be made to activate a spell when the area is entered, and deactivate the spell when the area is left. This may continue until the linked spell expires. As an example, a mage may cast Link on Continual Light. If he then rolls seven days for the duration of the Continual Light spell (168 hours), he can have the Link set up to turn the Light on when he enters the room, and turn it off when he leaves. When 168 hours of light have been used, both spells expire. For instantaneous spells, the Link vanishes after activating the other spells.</p><p>No maintenance of a Link is required, either for the Link itself, the linked spells, or any information spells cast on the Link to tell it when to trigger.</p><p>Link may also be set in reverse, to stop one or more spells when a triggering event occurs. In that case, the linked spell will last only while the caster maintains it, but the Link itself requires no maintenance.</p><p>Link can also be used for Limiting Enchantments (see pp. 68-69).</p><p><em>Item</em></p><p>This spell may be cast permanently on any enchanted item, to determine the circumstances under which it works. The Limit spell would be used to determine the class of users that could use the item, but Link might be used, for instance, to make it work only at night. Energy cost to cast: 200. Any Information spells required to tell it when to trigger (e.g., Detect Magic) must be cast as separate enchantments on the item. For instance, a sword might be Linked with a Light spell and a Sense Life spell, so that it would glow in the presence of orcs.</p><p>A reversed Link may be cast permanently on any enchanted item, to deactivate it under set circumstances. This is often used to keep magic items from falling into the wrong hands. Energy cost to cast: 200.</p>"
+  },
+  {
+    "_id": "b915ce9ee7005dd0",
+    "name": "Reflex",
+    "pages": "M132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is cast on another spell. It converts that spell to function as a Blocking spell for one time only, then disappear. Unlike Delay or Link, a Reflexed spell is triggered by the will of the caster, not by an external event. This means that while Reverse Missiles may be Reflexed to activate if the caster sees someone shoot at him, it will not be triggered by a shot in the back. It is treated as an active defense, similar to Parry or Block for all practical purposes (except retreating does not add 3 to the roll). Casting a Reflexed spell will interrupt any spell the caster is concentrating on, and is handled like any other Blocking spell - see pp. 12-13.</p><p>When Reflex is cast, the linked spell must be cast immediately after Reflex, by the same caster. Each casting of Reflex will only work on one spell - it is not possible to have multiple spells operate as one Blocking spell. The skill roll for Reflex is rolled at the time of casting, but the roll for the linked spell is not made until it is cast as a Blocking spell. The energy cost for Reflex is paid at the time of casting Reflex, but the energy for the Reflexed spell is not paid until it is cast, whether as an active defense or otherwise. The time to cast a Reflexed spell is spent immediately after the Reflex is cast, but the success roll and energy cost are handled later.</p><p>A Reflexed spell counts as one spell \"on\" for spellcasting purposes - see p. 10. A Reflexed spell does not count as \"on\" when making the roll to cast itself. Thus, if a mage has four Reflexed spells on, any other spell he casts is at -4, but when he casts one of the Reflexed spells, it is only at -3 for the other three Reflexed spells on.</p><p>A Reflexed spell may be cast only once. It then disappears, and no longer counts as a spell on. The effects are immediate, and the duration is instantaneous, not the duration listed for the original spell. This means that it is extravagant or even useless to cast certain spells as Reflexed! A Force Dome, for example, would stop one physical attack, then disappear - a fatiguing, but effective, defense! A Created Animal will appear, then disappear before it can make any action. (It might stop a missile during its brief existence, however. The GM may rule such an animal must be nearly equal in size to the target it is shielding.) Exceptions to this instantaneous-result rule are spells with permanent results, such as Major Healing - their effects are indeed permanent.</p><p>Any person may carry any number of Reflexes. However, only one spell may be cast in any one turn. Remember also, that if a Reflexed spell is used as an active defense, no other active defense may be used against that attack, unless All-Out Defense is chosen. See p. B366.</p><p>A Reflexed spell may be cast as a regular action - it does not have to be cast as a defense. It takes one second to cast, regardless of the time it would normally require to cast.</p><p>All normal modifiers for distance and Magic Resistance are used when casting the Reflexed spell, if the subject of the Reflexed spell is distant from the person or object the Reflex itself is cast on.</p><p>Note that a mage may cast a Reflex on another person. The caster (not the subject) may activate it at any time, using long-distance modifiers. If the linked spell is cast on a subject other than the subject of the Reflex itself, the regular modifier for the distance to that subject is added to the long-distance modifier for the caster.</p><p><em>Example:</em> Felix gives Beast-Soother as a Reflexed spell to Rudolph. Felix then activates a Wizard Eye to keep tabs on Rudolph as he goes hunting. Rudolph meets a short-tempered wild boar, which Felix observes through the Wizard Eye. Rudolph cannot activate the spell. Fortunately, he does not have to! Felix activates Beast-Soother as Rudolph tries an Animal Handling roll to calm the boar. Rudolph has gone about two miles into the woods, so Felix is at -3 for long distance. The boar is 3 yards away from Rudolph, so Felix is at another -3 for the range to the subject of the Reflexed spell. He is also at -1 for having Wizard Eye on. Thus, Felix casts Beast-Soother at -7, and pays the energy for the spell at that time. Fortunately he has it at level 21, so he casts it for the maximum effect. The boar is indeed calmed, and Rudolph goes on his way while Felix rests. The Reflexed Beast-Soother spell no longer exists. If Rudolph meets another animal, he's on his own, though Felix may still be observing any action with his Wizard Eye.</p><p>Blocking spells and Missile spells cannot be Reflexed; other spells can be.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
