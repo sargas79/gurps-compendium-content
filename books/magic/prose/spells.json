@@ -6088,6 +6088,206 @@
     "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
   },
   {
+    "_id": "6fb79f63f9333d76",
+    "name": "Frost",
+    "pages": "M193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a covering of frost on all surfaces in the area of effect. The frost is real, and lasts indefinitely if the temperature is below freezing. In warmer conditions, the frost quickly melts to a dew. When cast upon a real or magical fire, the frost produces a cloud of steam and causes the flames to hiss for a few seconds. Only a tiny fire - a match or candle - would actually be extinguished by a Frost spell.</p><p>A Frost spell cast upon a fire elemental or other flaming creature does one point of damage to the creature, but is more likely to anger it than drive it away.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 200 energy, $350 blue gem.</p>"
+  },
+  {
+    "_id": "f410c4dc5f262818",
+    "name": "Waves",
+    "pages": "M194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the surface calmness of any large body of water. Each application of the spell can increase or decrease the wave height by one point on the Beaufort scale (above); to achieve multiple-point changes, multiply the spell's cost accordingly. The wind is unaffected. Note that the Beaufort scale is specific to ocean waves; waves produced on lake shores are generally much lower relative to wind speed (GM's judgment).</p><p>The spell may be cast on an area, affecting the waves moving across it. It can also be cast on an object, such as a ship, which it must then encompass in its entirety (typically, 10 to 30 yards in radius). The area of effect then moves with the object.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "2b01e9dd37ea8ba2",
+    "name": "Clouds",
+    "pages": "M194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates or dispels normal outdoor cloud cover, as the caster chooses.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "3bfcd12b96443892",
+    "name": "Current",
+    "pages": "M194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Affects the currents of any large body of water. Each application of the spell can shift the current direction by 22.5 degrees or speed by 1 mph (or knot). To achieve combined direction/speed changes, or more extreme changes in one or the other, increase cost proportionately.</p><p>The spell may be cast on an area, affecting the current moving under it for 40 yards in depth. It can also be cast on an object, such as a ship, which it must then encompass in its entirety. The area of effect then moves with the object.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "b261e3823e2d8170",
+    "name": "Tide",
+    "pages": "M194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each application of this spell can raise or lower the water level by one foot; for larger changes, increase the spell's cost proportionately.</p><p>The \"hill of water\" thus created spreads naturally from the area affected, dropping by one foot for each yard beyond the actual area of the spell.</p><p>The spell may be cast on an area, affecting the tide in it. It can also be cast on an object, such as a ship, which it must then encompass in its entirety. The area of effect then moves with the object.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 225.</p>"
+  },
+  {
+    "_id": "23ee575466a9a03e",
+    "name": "Wind",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Modifies the current outdoor wind conditions. Each application of the spell can shift the wind direction by 22.5 degrees (from W to WSW, for example), or change wind speed by one level on the Beaufort Scale (see box). To achieve combined direction/speed changes, or more extreme changes in one or the other, increase cost proportionately.</p><p>The spell may be cast on an area, affecting the wind moving over it from the ground to an altitude of about 300 feet. It can also be cast on an object, such as a sailing ship, which it must then encompass in its entirety. The area of effect then moves with the object.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "ee8932660e40f7f5",
+    "name": "Rain",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates (or prevents) 1 inch of rain in a normal outdoor setting.</p><p>This is also an Air spell and a Water spell.</p><p><em>Item</em></p><p>Staff or wand. Usable only by a mage. The item must be kept in water when not in use; it loses its powers if it stays dry for more than an hour. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "598927041d139511",
+    "name": "Snow",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates (or prevents) 1 inch of snow, in a normal outdoor setting. To work properly, this spell must be cast when the temperature is 32°F or lower. When cast under warmer conditions, this spell simply summons a thin drizzle, dampening the ground but not leaving any significant puddles.</p><p>This is also an Air spell and a Water spell.</p><p><em>Item</em></p><p>Staff. It must be kept cool when not in use; it loses its powers if it is exposed to temperatures over 90° for more than two hours. Usable only by a mage. Energy cost to create: 450.</p>"
+  },
+  {
+    "_id": "60c21424cff04e02",
+    "name": "Hail",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes hail fall. The temperature must be above freezing. The main effect is to provide intense distraction to whoever is being pelted with hail; wizards must make a Will roll each second to keep their concentration. For 5 times the cost, the GM may allow really big hailstones, doing 1d-2 crushing damage per second.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "cc0733051eedb6df",
+    "name": "Warm",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Raises the ambient air temperature of an area. This could be used to dissipate Fog, for example. The spell cannot raise the temperature above 100˚F.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "2c17232695704740",
+    "name": "Cool",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lowers the ambient air temperature of an area. This may cause fog to appear if the conditions are right. The spell cannot lower the temperature below about -40˚F.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "fba628296e106e0b",
+    "name": "Storm",
+    "pages": "M195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates (or dispels) a storm. Depending on ambient temperature and humidity, it may be a simple windstorm or include rain, snow or hail - the odd lightning bolt, too. This is particularly effective at sea. The spell is unpredictable in its effects (which is to say the GM decides what the storm does . . . ).</p><p>The spell can also be used to dispel a storm; the effectiveness of the spell depends on the relative sizes of the affected area versus the natural storm's full area.</p><p>This is also an Air spell and a Water spell.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "f760bf08072f144f",
+    "name": "Resist Lightning",
+    "pages": "M196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject and anything he carries become immune to the effects of lightning and electricity. In low-tech settings, this is most often used to guard against hostile magic; in higher-tech worlds, it becomes a valuable professional tool.</p><p>This is also a Protection and Warning spell and an Air spell.</p><p><em>Item</em></p><p>(a) Any. Only affects the wearer. Cost to create: 1,000 energy and $1,000 in platinum. (b) Wand, staff, or jewelry. Cost to create: 1,500 energy and $1,000 in platinum.</p>"
+  },
+  {
+    "_id": "3cd9486fa6cb1dea",
+    "name": "Explosive Lightning",
+    "pages": "M196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a lightning bolt that affects both its target and things nearby. This has 1/2D 50, Max 100, Acc 3. It can be thrown at a wall, floor, etc. (at +4 to hit) to catch foes in the blast. The target and anyone closer to the target than one yard takes full damage.</p><p>Those further away divide damage by three times their distance in yards from the explosion (round down). The effects of lightning damage listed under Lightning apply.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff or wand - the bolt is fired from end of item. Usable only by a mage. Energy cost to create: 1,200; must include platinum decorations worth $500.</p>"
+  },
+  {
+    "_id": "5894b605d9f9a6e9",
+    "name": "Lightning Whip",
+    "pages": "M196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a whip of lightning in the caster's hand. It is wielded like a normal whip (p. B404), except that it always takes only one second to ready, and it cannot be used to parry or entangle. The whip inflicts 1d burning damage every time it strikes. The effects of lightning damage listed under Lightning apply.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Glove, whip, or jewelry. Usable only by mages. Energy cost to create: 350.</p>"
+  },
+  {
+    "_id": "8f10f9cc3c3c4d97",
+    "name": "Shocking Touch",
+    "pages": "M196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Charges the caster's hands or staff with lightning. The caster must strike the subject to trigger this spell; hit location is irrelevant. The subject takes 1d+1 burning damage per point of energy in the spell. Armor does not protect.</p><p>Shocking Touch has unusual side effects on electronics and conductive materials, as per Lightning (above).</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or glove. The item must touch the subject. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "3bfccd883069bd04",
+    "name": "Spark Cloud",
+    "pages": "M196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a ground-level cloud of electrical sparks. It does not block vision, but it inflicts burning damage to anyone standing in it. Armor protects in the usual fashion (metallic armor provides the same minimal protection that it does against Lightning).</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 150 energy, $500 in platinum, and a $500 opal.</p>"
+  },
+  {
+    "_id": "7ef7ac40c3d94cc1",
+    "name": "Spark Storm",
+    "pages": "M197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a normal Windstorm, with a dangerous addition: every turn Lightning strikes one random victim in the area of effect. To resolve the bolt's attack, roll against the caster's Spark Storm skill, without any range adjustments. The victim gets an active defense, as usual.</p><p>At the GM's option, the lightning strikes may not be completely random: tall targets may be at more risk than short ones, and metal armor may tend to attract the lightning. Mages who use this spell know what the true rules are in their world.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 300 energy, $500 in platinum ,and a $500 opal.</p>"
+  },
+  {
+    "_id": "e98da30858ba1486",
+    "name": "Wall of Lightning",
+    "pages": "M197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a shimmering, crackling curtain of lightning around an area. The wall is four yards high, but may be made higher by scaling the cost as the height (double for 8 yards high, triple for 12 yards high and so on).</p><p>Every turn, anyone crossing or touching the wall suffers burning damage. It impedes vision and hearing through it: -1 to these Sense rolls.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Cost to create: 500 energy and a $500 opal. (b) A Wall of</p><p>Lightning may be made permanent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "27ae46abc304421b",
+    "name": "Ball of Lightning",
+    "pages": "M197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a ball of lightning in the caster's hand. Unlike a regular Missile spell, however, a Ball of Lightning floats away in the direction the caster wills it to; it cannot be hurled in the usual fashion. The ball is utterly silent and moves in a straight line at a maximum speed equal to the caster's skill divided by 5 (round down), regardless of wind and nonmetallic obstacles - the ball floats right through windows, curtains, walls, etc. It maintains its heading and speed unless the caster concentrates to change it. The ball explodes on the mental command of the caster or upon contact with a living being or metallic object. If the spell is allowed to expire, the Ball winks out of existence without exploding.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 600 energy and a $500 opal.</p>"
+  },
+  {
+    "_id": "7dca19c0e7580e4d",
+    "name": "Lightning Stare",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster shoots lightning from his eyes, using DX-4 or Innate Attack skill to hit. The caster must be facing the target to use this spell. The typical ritual for this spell uses facial motions rather than hand gestures; thus, Lightning Stare can be cast \"no hands\" at any level of skill.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Cost to create: 1,000 energy, $500 worth of platinum, and a $500 opal.</p>"
+  },
+  {
+    "_id": "73149c6759d1707b",
+    "name": "Body of Lightning",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject becomes an animated shape of lightning, temporarily granting him the Body of Lightning meta-trait (see box). Clothes (up to 6 pounds) also become lightning, but lose any magic powers they might have had.</p><p>Stop Power acts as Glue and Steal Power acts as Steal Strength on the subject.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Only affects the wearer. A severe drawback is that, as soon as it is activated, the item falls through the user's hand - thus a spell cast with this item lasts only a minute. Energy cost to create: 3,000. (b) Staff, wand, or jewelry. Only affects the wearer. Unlike the previous item, this item turns to lightning along with the wearer. While in lightning form, it loses any other magical powers it might ordinarily have. Energy cost to create: 6,000.</p>"
+  },
+  {
+    "_id": "a743af4ef01511f9",
+    "name": "Lightning Armor",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is sheathed in crackling lightning, without feeling any discomfort (the subject and anything he carries are under a Resist Lightning spell). The subject's melee attacks do an extra point of burning damage.</p><p>Any metallic weapon that hits the subject triggers a 1d-1 backlash of burning damage along the weapon. This attack automatically hits the hand that is holding the weapon, regardless of the weapon's length, as long as its entire length is conducting. Should the subject grapple or be grappled, the foe takes 3d-3 burning damage, but the spell will be broken.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>(a) Staff or jewelry. Usable only by mages. Cost to create: 1,000 energy and $300 worth of platinum and opals. (b) Cape or armor; only affects the wearer. When activated, the cape seems like a piece of sheet lightning; it will protect against attacks from the back and sides, but not from the front, unless it is wielded as a light cloak (see Cloak, p. B184). Energy cost to create: 700 for the cape, 1,000 for armor.</p>"
+  },
+  {
+    "_id": "af3501c2258cd712",
+    "name": "Lightning Weapon",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject melee weapon becomes charged with lightning, visibly spitting and sparking, without harming its wielder. The weapon must be at least partly metallic; weapons made entirely of wood and/or stone won't hold the spell. The weapon does an additional 2 points of injury after armor penetration and wounding modifiers have been figured. Against metallic armor, the weapon inflicts at least 1 point of damage on any hit.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>A weapon that becomes electrified whenever used, at no energy cost to the user. Energy cost to create: 750; at least $300 must be spent in platinum and opal decorations.</p>"
+  },
+  {
+    "_id": "0b6beab374d7642a",
+    "name": "Lightning Missiles",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Lightning Weapon, but cast on a missile weapon. The weapon itself becomes surrounded with an electric halo. Any missile it fires becomes charged with lightning, doing 2 additional points of injury as per Lightning Weapon. The missile's wooden parts turn to ash after it hits a target or after 10 seconds, whichever comes first.</p><p>This is also an Air spell.</p><p><em>Item</em></p><p>A missile weapon that fires lightning missiles whenever used, at no energy cost to the user. Energy cost to create: 1,000; at least $400 must be spent in platinum and opal decorations.</p>"
+  },
+  {
     "_id": "b5766a84a3b690e8",
     "name": "Talisman",
     "pages": "M58",
