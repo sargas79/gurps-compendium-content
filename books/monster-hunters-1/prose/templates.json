@@ -1,0 +1,162 @@
+[
+  {
+    "_id": "60ad540902cb5381",
+    "name": "Commando",
+    "pages": "MH1:9",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a one-person combat squad! In your hands, a gun - any gun - is more precise than a surgeon's scalpel. If it can be put down with bullets, you can do it. If not, you can hold your own with other forms of combat, too - and enough firepower can often weaken a foe enough for one of your teammates to land a true killing blow. Your situational awareness helps you predict your enemies' tactics and find the best cover before the fight starts. And if things go really wrong, you're a good man to have when slogging a retreat through the sewers or patching each other up.</p>"
+  },
+  {
+    "_id": "62d9f9172e0247da",
+    "name": "Crusader",
+    "pages": "MH1:10",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are deeply connected to a higher being, and you may draw upon its power to smite the forces of evil. When it comes to spiritual warfare, you have no equal - your Mysticism (pp. 42-45) abilities protect you and keep you in tune with the world beyond the veil, your training and knowledge make you adept at identifying uncommon threats, and you can cleave a demon in two with the best of 'em! As these skills translate well to hunting other threats, you're a useful part of any team.</p>"
+  },
+  {
+    "_id": "1bbd3a64e40b0723",
+    "name": "Experiment",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're human . . . just not, technically, 100% human. They reengineered every part of you - or, alternatively, grew you from scratch - using the latest biotechnology. Now you're faster, stronger, and smarter than a normal human could ever hope to be, all thanks to Bioenhancement (pp. 40-42). Whether your creators were Good Guys that you still work for, or Bad Guys that you managed to escape, you now use your advanced body and mind to protect humanity.</p>"
+  },
+  {
+    "_id": "0a1f9ad1c60d14e0",
+    "name": "Inhuman",
+    "pages": "MH1:24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are one of the monsters that stalks humanity from the shadows . . . fortunately, the resemblance is only physical. Either you were always a \"little weird\" in preferring humans over your own kind, or you had an experience or revelation that made you renounce your evil ways and swear allegiance to the Good Guys. Your attitude and tactics will depend greatly on what kind of creature you are, but details aside, you're ready to take your fight to The Enemy, even your kin.</p>"
+  },
+  {
+    "_id": "46568d4d012e796a",
+    "name": "Psi",
+    "pages": "MH1:13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some people say brains aren't everything, but theirs can't do the nifty stuff that yours can! You are a master of mind over matter, with abilities potentially ranging from information gathering to instantaneous movement. While the techie (pp. 18-19) shares some of your skills and the experiment (p. 11) shares your attitude, neither has a mind as versatile as yours. Oh sure, you may not be as physically buff as some of your teammates, but there's more to life than swinging a battleaxe. All you need is your brain (and a few good guns - you know, just in case!) to investigate, hunt, and wipe out any threat.</p>"
+  },
+  {
+    "_id": "4a35078e0e49aa90",
+    "name": "Sage",
+    "pages": "MH1:15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are the guardian of the greatest weapon in this war . . . knowledge of The Enemy. You have spent your entire life studying, learning, and understanding what you're truly up against. Some tend to classify you as a bookworm, useless in a fight, but they don't realize that most of what you know can only be learned in the field - you can swing a sword with the best of them. Your magic is more versatile, however. While you're no witch (pp. 20-21), you can work rituals in the field - though you're better when you have time to prepare beforehand.</p>"
+  },
+  {
+    "_id": "f24ad76adaead5c3",
+    "name": "Sleuth",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are a master of obtaining information, whether by investigation, reconnaissance, or social manipulation. Where others see randomness, you see patterns, piecing together the true story behind any situation. As the \"face man\" of the team, you're skilled not only at talking to witnesses without revealing the truth, but at figuring out what they really saw, even if they don't realize it. When necessary, you are unequaled at stealth and concealment. In a hostile situation, you use the latter to your advantage - while the rest of the team is charging at the monsters, you slip around for a few well-placed shots or stabs from behind.</p>"
+  },
+  {
+    "_id": "ca2e249d1891c79c",
+    "name": "Techie",
+    "pages": "MH1:18",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dealing with the supernatural doesn't mean science can't save the day! You have spent most of your life applying technological solutions to esoteric problems. With some time and access to a decent hardware store, you can whip up something that'll even scare the monsters. You don't understand why some people call a priest to drive a ghost away when you can achieve the same effect with a UV fluorescent bulb, 15 yards of Cat-6 cable, and a guitar tuner that's had some slight modifications . . . and yes, the headaches are a normal side effect . . .</p>"
+  },
+  {
+    "_id": "9bffce876c5e476c",
+    "name": "Warrior",
+    "pages": "MH1:19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are the toughest member of the team - a front-line melee fighter who wades into the action with a sword in one hand and an axe in the other. While this consistently puts you in the most risky position, you wouldn't have it any other way. Few monsters can stand against you in a straight-up fight, and weaker ones can often by dropped by a single one of your powerful swings. You've studied their weaknesses, and tactics to use against them - your knowledge isn't deep, but it is broad. Still, you're used to letting the others track 'em down, then stepping to the front to lead the assault.</p>"
+  },
+  {
+    "_id": "569961a3920c892f",
+    "name": "Witch",
+    "pages": "MH1:20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Arcane forces bend to your will! In the time it takes most casters to work a simple cantrip, you can create powerful and potent magical effects. Your magic is fast enough for fieldwork - you can even rely on it for combat, as long as you have friends protecting you while you concentrate. You've trained in basic combat skills as well, but it's not what you're good at - if you run across a situation that can't be resolved directly by magic, your first instinct is to find an indirect way to do so. (And more often than not, you can!)</p>"
+  },
+  {
+    "_id": "cb527838ed4a2054",
+    "name": "Accidental Hero",
+    "pages": "MH1:6",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You stumbled onto this fight accidentally, and only survived due to fast reflexes, quick learning, and a dash of luck. Since then, you've gotten some experience, knowledge, and training under your belt, and can now hunt with the best of 'em.</p>"
+  },
+  {
+    "_id": "6ae44e3534c244b8",
+    "name": "Avenger/Atoner",
+    "pages": "MH1:6",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monsters killed your loved ones. It may have happened while you weren't there, or you were present but unable to stop them. Either way, you've dedicated your life to hunting them down. While you'll seek out any type of monster, you live to slay the kind who took everything from you.</p><p>A variant, intended for inhumans, is the atoner. Here, you were one of the monsters preying on humanity, before you renounced the ways of evil. Now you hunt those you formerly stood beside!</p>"
+  },
+  {
+    "_id": "f012f555fac9f6a1",
+    "name": "Chosen One",
+    "pages": "MH1:7",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fate has marked you as one of humanity's saviors - a key player in the ongoing battle against the monsters. While it's good to have The Powers That Be watching your back, it also makes it harder to slack off - whether due to dedication or a metaphysical bullseye on your back.</p>"
+  },
+  {
+    "_id": "64e27eb678e21fbd",
+    "name": "Clergy",
+    "pages": "MH1:7",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have the support of a religious organization behind you. This lens represents the mundane benefits of clerical support, not holy powers! (But it does mesh well with the crusader template on pp. 10-11.) Take Duty if you work directly for the clergy as a monster hunter, or a different disadvantage if they sponsor your activities unofficially.</p>"
+  },
+  {
+    "_id": "fa1aa5238bbb5068",
+    "name": "Criminal",
+    "pages": "MH1:8",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your extralegal activities require you to spend your time in back alleys and the shadows . . . which is exactly where certain other things like to hide! Your mix of contacts and street smarts helps you fight these monsters - whether you do so for personal reasons, self-defense, or because it pays well.</p>"
+  },
+  {
+    "_id": "b9a05fcc0e5faff4",
+    "name": "Hired Gun",
+    "pages": "MH1:8",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Getting rid of monsters is your business - literally! You might have an ad in the Yellow Pages or only operate via word of mouth; either way, the small percentage of people who don't think you're a crackpot come to you for help. If money is your only motivation, take Greed, but many so-called mercenaries are really in the business to help the helpless, and will negotiate the fee later (if at all).</p>"
+  },
+  {
+    "_id": "9edb591c4b00b438",
+    "name": "Law Enforcement",
+    "pages": "MH1:8",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can only work so many cases before noticing that not everything lurking in the shadows is human. Once you're 100% sure that you're facing an inhuman foe, you do your best to put it down without attracting attention. An active cop must take Legal Enforcement Powers and Duty, but this lens also fits retired cops, private investigators, and unofficially sanctioned vigilantes.</p>"
+  },
+  {
+    "_id": "9166bf0d83c2391b",
+    "name": "Operative",
+    "pages": "MH1:8",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You work for an organization dedicated to The Mission, typically a private corporation or a secret (\"black ops\") government agency. Your patron supplies you with gear, assigns your missions, and sometimes does research - the rest is up to you!</p>"
+  },
+  {
+    "_id": "354cc7d74115eda4",
+    "name": "Philanthropist",
+    "pages": "MH1:8",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You fund and plan your own ops because it's the right thing to do. Your life isn't tied to this \"shadow world,\" but you couldn't imagine not doing something. With a high enough Wealth, an altruistic PC may be able to fund an entire team of less-affluent hunters. (Nothing says how you keep the money coming, mind you. This lens can fit a criminal or schemer who does all of his dirty work \"off camera.\") Philanthropists with more modest funds must compensate by being good planners and tacticians as well.</p>"
+  },
+  {
+    "_id": "c2b35121dca3302f",
+    "name": "Soldier",
+    "pages": "MH1:9",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like the operative above, you secretly eliminate monsters on behalf of an organization, but yours is distinctly military in flavor. This can range from working for a hidden division of your country's armed forces to being part of a private paramilitary corps. The group will typically act as a Patron, but if you're truly on your own once you've been sent into the field, choose from the other advantages.</p>"
+  }
+]
