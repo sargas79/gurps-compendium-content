@@ -475,6 +475,43 @@
         "Done": "Monster Hunters 1: moved the book's data from the system into this module ({changed} changes).",
         "Failed": "Monster Hunters 1: {failed} documents could not be moved into this module. The steps that failed run again the next time the world loads; see the console for which."
       }
+    },
+    "Magic": {
+      "Rules": {
+        "powerstones": {
+          "Name": "Powerstones",
+          "Hint": "A stone's capacity prices it, it recharges by the mana where it is, and a carried stone can pay for a spell in place of fatigue: a One-College stone for its college, a dedicated or exclusive one for its item's spells."
+        }
+      },
+      "Powerstone": {
+        "Title": "Powerstones",
+        "IsStone": "Powerstone",
+        "IsStoneHint": "An object holding mana a wizard can spend in place of his own energy",
+        "KindLabel": "Kind",
+        "Kind": {
+          "normal": "Powerstone",
+          "oneCollege": "One-College",
+          "dedicated": "Dedicated",
+          "exclusive": "Exclusive",
+          "manastone": "Manastone"
+        },
+        "Capacity": "Capacity",
+        "Charge": "Charge",
+        "College": "College",
+        "SetInto": "Set into",
+        "SetIntoHint": "The magic item whose spells this stone pays for, by name",
+        "Priced": "Priced by capacity",
+        "PricedHint": "An ordinary stone's price follows its capacity, by the table in Magic",
+        "PricedLabel": "Powerstone capacity",
+        "PriceLine": "Priced by capacity:",
+        "Recharge": "Recharge",
+        "RechargeHint": "Adds what the mana here gives back for the world time passed since the last recharge. Of the stones a character carries, only the largest recharge.",
+        "RechargeAll": "Recharge Powerstones",
+        "Recharged": "{name}'s Powerstones regained {points} energy",
+        "RechargedAll": "Powerstones regained {points} energy (characters with stones: {characters})",
+        "Fill": "Fill to capacity",
+        "NotCarried": "Only a character's stones recharge"
+      }
     }
   },
   "TYPES": {

@@ -1,0 +1,48 @@
+{{!-- A Powerstone (Magic pp. 20, 69-70): an object holding mana a wizard can
+     spend in place of his own energy. Its capacity reprices it. --}}
+<div class="isub" data-gcc-powerstone>
+  <label class="icheck" data-tooltip="{{localize 'GCC.Magic.Powerstone.IsStoneHint'}}">
+    <input type="checkbox" data-gcc-stone="isStone" {{#if data.isStone}}checked{{/if}} {{#unless editable}}disabled{{/unless}} />
+    {{localize "GCC.Magic.Powerstone.IsStone"}}</label>
+  {{#if data.isStone}}
+    <div class="ifields">
+      <label>{{localize "GCC.Magic.Powerstone.KindLabel"}}
+        <select data-gcc-stone="kind" {{#unless editable}}disabled{{/unless}}>
+          {{#each kinds as |k|}}<option value="{{k.value}}" {{#if k.selected}}selected{{/if}}>{{k.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label>{{localize "GCC.Magic.Powerstone.Capacity"}}
+        <input type="number" data-gcc-stone="capacity" value="{{data.capacity}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label>{{localize "GCC.Magic.Powerstone.Charge"}}
+        <input type="number" data-gcc-stone="charge" value="{{data.charge}}" min="0" max="{{data.capacity}}" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      {{#if oneCollege}}
+        <label>{{localize "GCC.Magic.Powerstone.College"}}
+          <input type="text" data-gcc-stone="college" value="{{data.college}}" placeholder="Fire" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+      {{#if setInto}}
+        <label data-tooltip="{{localize 'GCC.Magic.Powerstone.SetIntoHint'}}">{{localize "GCC.Magic.Powerstone.SetInto"}}
+          <input type="text" data-gcc-stone="setInto" value="{{data.setInto}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+      {{#if (eq data.kind "normal")}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.Magic.Powerstone.PricedHint'}}">
+          <input type="checkbox" data-gcc-stone="pricedByCapacity" {{#if data.pricedByCapacity}}checked{{/if}} {{#unless editable}}disabled{{/unless}} />
+          {{localize "GCC.Magic.Powerstone.Priced"}}</label>
+      {{/if}}
+    </div>
+    {{#if price}}<p class="ihint">{{localize "GCC.Magic.Powerstone.PriceLine"}} ${{price}}</p>{{/if}}
+    {{#if editable}}
+      <div class="irow">
+        {{#if rechargeable}}{{#if onActor}}
+          <button type="button" class="ibtn" data-gcc-stone-recharge data-tooltip="{{localize 'GCC.Magic.Powerstone.RechargeHint'}}">{{localize "GCC.Magic.Powerstone.Recharge"}}</button>
+        {{/if}}{{/if}}
+        {{#if isGM}}
+          <button type="button" class="ibtn" data-gcc-stone-fill>{{localize "GCC.Magic.Powerstone.Fill"}}</button>
+        {{/if}}
+      </div>
+    {{/if}}
+  {{/if}}
+</div>
