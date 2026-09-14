@@ -470,6 +470,10 @@
         "ReloadCost": "${cost} a reload",
         "Refused": "That load isn't allowed: {problem}",
         "Mode": "Mode {index}"
+      },
+      "Migration": {
+        "Done": "Monster Hunters 1: moved the book's data from the system into this module ({changed} changes).",
+        "Failed": "Monster Hunters 1: {failed} documents could not be moved into this module. The steps that failed run again the next time the world loads; see the console for which."
       }
     }
   },

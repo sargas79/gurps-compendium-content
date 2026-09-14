@@ -45,6 +45,14 @@ const API_RANGE = (() => {
   return range;
 })();
 
+/** The system data the script migrates, read from where the script declares it. */
+const MIGRATES = (() => {
+  const source = readFileSync(join(import.meta.dirname, "..", "src", "books", "monster-hunters-1", "migration.ts"), "utf8");
+  const list = /export const MIGRATES = \[([^\]]*)\]/.exec(source)?.[1];
+  if (!list) throw new Error("src/books/monster-hunters-1/migration.ts declares no MIGRATES");
+  return [...list.matchAll(/"([^"]+)"/g)].map((m) => m[1]);
+})();
+
 /** The module's script, as `vite build` writes it. */
 const SCRIPT = `scripts/${MODULE_ID}.mjs`;
 
@@ -121,7 +129,8 @@ async function main() {
     // the world: Ritual Path Magic's rituals.
     documentTypes: { Item: { ritual: {} } },
     languages: [{ lang: "en", name: "English", path: "lang/en.json" }],
-    flags: { [SYSTEM_ID]: { apiVersion: API_RANGE } },
+    // The system's deprecated data this module takes over, so the GM isn't warned about it.
+    flags: { [SYSTEM_ID]: { apiVersion: API_RANGE, migrates: MIGRATES } },
     packs,
     packFolders,
   };
