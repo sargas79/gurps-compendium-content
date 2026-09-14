@@ -1,0 +1,3 @@
+*See p. B80.*
+
+Regeneration offers an alternative to Flesh Wounds (p. B417) for the GM who wants cinematic PCs back in the game soon after being knocked out or left for dead, but who prefers up-front point costs. The GM chooses the permitted levels. Accessibility limitations are prudent on speedier versions. “Not in combat” (-20%) limits healing to between fights. “Only when unconscious” (-30%) means the hero heals after he passes out, until he awakens at 1 HP. Limited, Crushing (-40%) or Unarmed (-40%) allow quick comebacks from beatings – but be aware that they also create the need to record what caused each wound.

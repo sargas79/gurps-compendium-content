@@ -1,0 +1,5 @@
+Martial artists will find physical disadvantages unusually crippling – especially such things as Bad Back, Blindness, Lame, Neurological Disorder, One Arm, One Eye, One Hand, Quadriplegic, and Wounded. These problems do suit veterans who’ve suffered injuries, but they’re best avoided when creating warriors as new PCs. Other traits that can make life difficult for fighters are Cannot Learn, Combat Paralysis, Hemophilia, Low Pain Threshold, Pacifism (Total Nonviolence), and Post-Combat Shakes.
+
+The availability of cinematic abilities can alter what’s truly “crippling,” however. For instance, Blind Fighting (p. B180) can mitigate Blindness, while those with Flight thanks to the Chi Projection power (p. 46) won’t be tied down by Lame. Only Cannot Learn and Quadriplegic make it genuinely impossible to be a martial artist.
+
+Below are new forms of existing disadvantages that won’t cripple martial artists but that can influence combat in interesting ways. They’re ideal for Martial Arts campaigns.

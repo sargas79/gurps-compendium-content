@@ -1,0 +1,5 @@
+*See p. B192.*
+
+In a realistic setting, the chi-based attacks of martial-arts myth are so much mumbo-jumbo. They’re normal strikes and grapples, and the injury they inflict is treatable with mundane medical skills. A Psychology roll might be needed to convince the patient that he’s suffering from a bruised kidney and not the dreaded dim mak, of course!
+
+In a cinematic setting where such abilities as chi powers (see Chi Projection, p. 46) and the Pressure Points and Pressure Secrets skills (p. B215) exist, though, only Esoteric Medicine can recognize these things and treat their effects. Mundane medicine can heal lost HP, but it can’t halt further injury from an ongoing effect or alleviate its symptoms. At the GM’s option, Esoteric Medicine might rival mundane medicine when it comes to treating ordinary illness and injury, too. If so, it can do everything that Physician can do, and any skill with a Physician default (e.g., Diagnosis, First Aid, Pharmacy, Physiology, Poisons, and Surgery) defaults to Esoteric Medicine at the same penalty.

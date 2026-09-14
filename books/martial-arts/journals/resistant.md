@@ -1,0 +1,5 @@
+*See p. B80.*
+
+Martial artists in cinematic games can be Resistant to Hypnotic Hands (p. 61), Invisibility Art (p. B202), Kiai (p. B203), Pressure Points (p. B215), or “Hand of Death” attacks (see Innate Attack, pp. 45-47). Neck-toughening exercises (an “iron neck”) allow Resistant to Neck Injury, which gives a bonus in Quick Contests to avoid injury from chokes (p. B370) and Neck Snap (p. B404). Arm exercises might give a similar bonus to resist injury from Arm Lock (p. B403) and Wrench Limb (p. B404). Individually, the above items are “Rare.” Resistant (+3) to any one of them costs 1 point and makes an excellent Style Perk.
+
+The blanket category “Chi Abilities” is comparable in importance to “Psionics” and therefore “Very Common.” Anyone might enjoy Resistant to Chi Abilities (+3) [10]; this represents unusually strong chi. Individuals with Trained by a Master can go as high as Resistant to Chi Abilities (+8) [15]. Immunity to Chi Abilities [30] only suits unnatural beings. These traits protect against all noxious effects caused by cinematic skills or chi powers (see Chi Powers for Martial Artists, p. 46).

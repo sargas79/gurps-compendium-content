@@ -1449,6 +1449,736 @@
       "reference": "Martial Arts p. 95",
       "file": "designing-techniques-for-nonhumans.md",
       "status": "reviewed"
+    },
+    {
+      "id": "characters",
+      "title": "Characters",
+      "chapter": "Characters",
+      "pages": "MA28",
+      "reference": "Martial Arts p. 28",
+      "file": "characters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "power-level",
+      "title": "Power Level",
+      "chapter": "Characters",
+      "pages": "MA29",
+      "reference": "Martial Arts p. 29",
+      "file": "power-level.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "realism-level",
+      "title": "Realism Level",
+      "chapter": "Characters",
+      "pages": "MA29",
+      "reference": "Martial Arts p. 29",
+      "file": "realism-level.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "realistic-martial-artists",
+      "title": "Realistic Martial Artists",
+      "chapter": "Characters",
+      "pages": "MA29",
+      "reference": "Martial Arts p. 29",
+      "file": "realistic-martial-artists.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-martial-artists",
+      "title": "Cinematic Martial Artists",
+      "chapter": "Characters",
+      "pages": "MA30",
+      "reference": "Martial Arts p. 30",
+      "file": "cinematic-martial-artists.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "beginning-students-as-pcs",
+      "title": "Beginning Students as PCs",
+      "chapter": "Characters",
+      "pages": "MA30",
+      "reference": "Martial Arts p. 30",
+      "file": "beginning-students-as-pcs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "character-templates",
+      "title": "Character Templates",
+      "chapter": "Characters",
+      "pages": "MA31",
+      "reference": "Martial Arts p. 31",
+      "file": "character-templates.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "advantages-disadvantages-and-skills",
+      "title": "Advantages, Disadvantages, and Skills",
+      "chapter": "Characters",
+      "pages": "MA42",
+      "reference": "Martial Arts p. 42",
+      "file": "advantages-disadvantages-and-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "advantages",
+      "title": "Advantages",
+      "chapter": "Characters",
+      "pages": "MA42",
+      "reference": "Martial Arts p. 42",
+      "file": "advantages.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "altered-time-rate",
+      "title": "Altered Time Rate",
+      "chapter": "Characters",
+      "pages": "MA42",
+      "reference": "Martial Arts p. 42",
+      "file": "altered-time-rate.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "claws",
+      "title": "Claws",
+      "chapter": "Characters",
+      "pages": "MA42",
+      "reference": "Martial Arts p. 42",
+      "file": "claws.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "damage-resistance",
+      "title": "Damage Resistance",
+      "chapter": "Characters",
+      "pages": "MA43",
+      "reference": "Martial Arts p. 43",
+      "file": "damage-resistance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enhanced-defenses",
+      "title": "Enhanced Defenses",
+      "chapter": "Characters",
+      "pages": "MA43-44",
+      "reference": "Martial Arts pp. 43-44",
+      "file": "enhanced-defenses.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "desirable-advantages",
+      "title": "Desirable Advantages",
+      "chapter": "Characters",
+      "pages": "MA43",
+      "reference": "Martial Arts p. 43",
+      "file": "desirable-advantages.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enhanced-time-sense",
+      "title": "Enhanced Time Sense",
+      "chapter": "Characters",
+      "pages": "MA44",
+      "reference": "Martial Arts p. 44",
+      "file": "enhanced-time-sense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "extra-attack",
+      "title": "Extra Attack",
+      "chapter": "Characters",
+      "pages": "MA44",
+      "reference": "Martial Arts p. 44",
+      "rule": "rapidStrike",
+      "file": "extra-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fearlessness",
+      "title": "Fearlessness",
+      "chapter": "Characters",
+      "pages": "MA44",
+      "reference": "Martial Arts p. 44",
+      "file": "fearlessness.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "flexibility",
+      "title": "Flexibility",
+      "chapter": "Characters",
+      "pages": "MA44",
+      "reference": "Martial Arts p. 44",
+      "file": "flexibility.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gizmos",
+      "title": "Gizmos",
+      "chapter": "Characters",
+      "pages": "MA45",
+      "reference": "Martial Arts p. 45",
+      "file": "gizmos.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gunslinger",
+      "title": "Gunslinger",
+      "chapter": "Characters",
+      "pages": "MA45",
+      "reference": "Martial Arts p. 45",
+      "file": "gunslinger.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "injury-tolerance",
+      "title": "Injury Tolerance",
+      "chapter": "Characters",
+      "pages": "MA45",
+      "reference": "Martial Arts p. 45",
+      "file": "injury-tolerance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "innate-attack",
+      "title": "Innate Attack",
+      "chapter": "Characters",
+      "pages": "MA45-47",
+      "reference": "Martial Arts pp. 45-47",
+      "file": "innate-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "chi-powers-for-martial-artists",
+      "title": "Chi Powers for Martial Artists",
+      "chapter": "Characters",
+      "pages": "MA46",
+      "reference": "Martial Arts p. 46",
+      "file": "chi-powers-for-martial-artists.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "regeneration",
+      "title": "Regeneration",
+      "chapter": "Characters",
+      "pages": "MA47",
+      "reference": "Martial Arts p. 47",
+      "file": "regeneration.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "resistant",
+      "title": "Resistant",
+      "chapter": "Characters",
+      "pages": "MA47",
+      "reference": "Martial Arts p. 47",
+      "file": "resistant.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "striker",
+      "title": "Striker",
+      "chapter": "Characters",
+      "pages": "MA47",
+      "reference": "Martial Arts p. 47",
+      "file": "striker.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "talent",
+      "title": "Talent",
+      "chapter": "Characters",
+      "pages": "MA47-48",
+      "reference": "Martial Arts pp. 47-48",
+      "file": "talent.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "trained-by-a-master",
+      "title": "Trained by a Master",
+      "chapter": "Characters",
+      "pages": "MA48",
+      "reference": "Martial Arts p. 48",
+      "file": "trained-by-a-master.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weapon-master",
+      "title": "Weapon Master",
+      "chapter": "Characters",
+      "pages": "MA48-49",
+      "reference": "Martial Arts pp. 48-49",
+      "file": "weapon-master.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wild-talent",
+      "title": "Wild Talent",
+      "chapter": "Characters",
+      "pages": "MA49",
+      "reference": "Martial Arts p. 49",
+      "file": "wild-talent.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "perks",
+      "title": "Perks",
+      "chapter": "Characters",
+      "pages": "MA49",
+      "reference": "Martial Arts p. 49",
+      "file": "perks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-perks",
+      "title": "Style Perks",
+      "chapter": "Characters",
+      "pages": "MA49",
+      "reference": "Martial Arts p. 49",
+      "file": "style-perks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "extra-hit-points",
+      "title": "Extra Hit Points",
+      "chapter": "Characters",
+      "pages": "MA49",
+      "reference": "Martial Arts p. 49",
+      "file": "extra-hit-points.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disadvantages",
+      "title": "Disadvantages",
+      "chapter": "Characters",
+      "pages": "MA53",
+      "reference": "Martial Arts p. 53",
+      "file": "disadvantages.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "code-of-honor",
+      "title": "Code of Honor",
+      "chapter": "Characters",
+      "pages": "MA53",
+      "reference": "Martial Arts p. 53",
+      "file": "code-of-honor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "delusions",
+      "title": "Delusions",
+      "chapter": "Characters",
+      "pages": "MA53-54",
+      "reference": "Martial Arts pp. 53-54",
+      "file": "delusions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "common-disadvantages",
+      "title": "Common Disadvantages",
+      "chapter": "Characters",
+      "pages": "MA53",
+      "reference": "Martial Arts p. 53",
+      "file": "common-disadvantages.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "reputation",
+      "title": "Reputation",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "reputation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "skills",
+      "title": "Skills",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "acrobatics",
+      "title": "Acrobatics",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "acrobatics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "autohypnosis",
+      "title": "Autohypnosis",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "autohypnosis.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "blind-fighting",
+      "title": "Blind Fighting",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "blind-fighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "body-control",
+      "title": "Body Control",
+      "chapter": "Characters",
+      "pages": "MA54",
+      "reference": "Martial Arts p. 54",
+      "file": "body-control.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "boxing",
+      "title": "Boxing",
+      "chapter": "Characters",
+      "pages": "MA55",
+      "reference": "Martial Arts p. 55",
+      "file": "boxing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "brawling",
+      "title": "Brawling",
+      "chapter": "Characters",
+      "pages": "MA55",
+      "reference": "Martial Arts p. 55",
+      "file": "brawling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "breaking-blow",
+      "title": "Breaking Blow",
+      "chapter": "Characters",
+      "pages": "MA55",
+      "reference": "Martial Arts p. 55",
+      "file": "breaking-blow.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combat-art-or-sport",
+      "title": "Combat Art or Sport",
+      "chapter": "Characters",
+      "pages": "MA55-56",
+      "reference": "Martial Arts pp. 55-56",
+      "file": "combat-art-or-sport.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combat-skills",
+      "title": "Combat Skills",
+      "chapter": "Characters",
+      "pages": "MA55",
+      "reference": "Martial Arts p. 55",
+      "file": "combat-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "connoisseur",
+      "title": "Connoisseur",
+      "chapter": "Characters",
+      "pages": "MA56",
+      "reference": "Martial Arts p. 56",
+      "file": "connoisseur.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "esoteric-medicine",
+      "title": "Esoteric Medicine",
+      "chapter": "Characters",
+      "pages": "MA56",
+      "reference": "Martial Arts p. 56",
+      "file": "esoteric-medicine.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "expert-skill",
+      "title": "Expert Skill",
+      "chapter": "Characters",
+      "pages": "MA56",
+      "reference": "Martial Arts p. 56",
+      "file": "expert-skill.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fast-draw",
+      "title": "Fast-Draw",
+      "chapter": "Characters",
+      "pages": "MA56-57",
+      "reference": "Martial Arts pp. 56-57",
+      "file": "fast-draw.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "flying-leap",
+      "title": "Flying Leap",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "flying-leap.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "games",
+      "title": "Games",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "games.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "group-performance",
+      "title": "Group Performance",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "group-performance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hidden-lore",
+      "title": "Hidden Lore",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "hidden-lore.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hobby-skill",
+      "title": "Hobby Skill",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "hobby-skill.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "judo",
+      "title": "Judo",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "judo.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "jumping",
+      "title": "Jumping",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "jumping.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "karate",
+      "title": "Karate",
+      "chapter": "Characters",
+      "pages": "MA57",
+      "reference": "Martial Arts p. 57",
+      "file": "karate.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "kiai",
+      "title": "Kiai",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "kiai.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "knot-tying",
+      "title": "Knot-Tying",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "knot-tying.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "light-walk",
+      "title": "Light Walk",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "light-walk.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "main-gauche",
+      "title": "Main-Gauche",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "main-gauche.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mental-strength",
+      "title": "Mental Strength",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "mental-strength.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "parry-missile-weapons",
+      "title": "Parry Missile Weapons",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "parry-missile-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "power-blow",
+      "title": "Power Blow",
+      "chapter": "Characters",
+      "pages": "MA58",
+      "reference": "Martial Arts p. 58",
+      "file": "power-blow.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pressure-points",
+      "title": "Pressure Points",
+      "chapter": "Characters",
+      "pages": "MA58-59",
+      "reference": "Martial Arts pp. 58-59",
+      "file": "pressure-points.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pressure-secrets",
+      "title": "Pressure Secrets",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "pressure-secrets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "push",
+      "title": "Push",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "push.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "savoir-faire",
+      "title": "Savoir-Faire",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "savoir-faire.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sports",
+      "title": "Sports",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "sports.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "stage-combat",
+      "title": "Stage Combat",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "stage-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sumo-wrestling",
+      "title": "Sumo Wrestling",
+      "chapter": "Characters",
+      "pages": "MA59",
+      "reference": "Martial Arts p. 59",
+      "file": "sumo-wrestling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tactics",
+      "title": "Tactics",
+      "chapter": "Characters",
+      "pages": "MA60",
+      "reference": "Martial Arts p. 60",
+      "file": "tactics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "throwing-art",
+      "title": "Throwing Art",
+      "chapter": "Characters",
+      "pages": "MA60-61",
+      "reference": "Martial Arts pp. 60-61",
+      "file": "throwing-art.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wildcard-skills-for-styles",
+      "title": "Wildcard Skills for Styles",
+      "chapter": "Characters",
+      "pages": "MA60",
+      "reference": "Martial Arts p. 60",
+      "file": "wildcard-skills-for-styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tonfa",
+      "title": "Tonfa",
+      "chapter": "Characters",
+      "pages": "MA61",
+      "reference": "Martial Arts p. 61",
+      "file": "tonfa.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wrestling",
+      "title": "Wrestling",
+      "chapter": "Characters",
+      "pages": "MA61",
+      "reference": "Martial Arts p. 61",
+      "file": "wrestling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "zen-archery",
+      "title": "Zen Archery",
+      "chapter": "Characters",
+      "pages": "MA61",
+      "reference": "Martial Arts p. 61",
+      "file": "zen-archery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "new-skills",
+      "title": "New Skills",
+      "chapter": "Characters",
+      "pages": "MA61",
+      "reference": "Martial Arts p. 61",
+      "file": "new-skills.md",
+      "status": "reviewed"
     }
   ]
 }

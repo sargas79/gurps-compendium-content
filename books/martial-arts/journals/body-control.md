@@ -1,0 +1,5 @@
+*See p. B181.*
+
+Body Control can replace HT when resisting Pressure Points (p. B215), Hand of Death (see Innate Attack, pp. 45-47), or chi powers (see Chi Projection, p. 46). Because it’s also effective against the Affliction advantage and poisons, as stated in the Basic Set, and can resist chi-based afflictions, the GM might find it simpler to let it replace HT for all rolls to resist the afflictions on pp. B428-429, regardless of origin. Use the rules for flushing poisons to end enduring effects. The skill for identifying chi-based ailments is Esoteric Medicine (p. B192).
+
+In fiction, Body Control is often used to manage injury. It can replace First Aid and Physician when you treat yourself (only) under the rules on pp. B423-425. Effective TL is that of Esoteric Medicine in the campaign – TL3, unless specified otherwise. Body Control serves as First Aid for bandaging and treating shock. If your level is HT+2 or better, you’re considered to be in a physician’s care when figuring long-term recovery. If you also receive external medical care, you must choose between it and this skill’s benefits; the two don’t “stack.”
