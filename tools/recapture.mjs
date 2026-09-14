@@ -39,7 +39,7 @@ const STAT_LINE =
   /^(?:Variable|Varies|[-+]?\d+%.*|[-+]?\d.*\bpoints?\b.*|.*\bpoints?\s*(?:\/|per)\s*.+|(?:IQ|DX|HT|ST|Will|Per)\/(?:Easy|Average|Hard|Very Hard)(?:\s+or\s+.+)?|Easy|Average|Hard|Very Hard|(?:Regular|Area|Missile|Melee|Blocking|Information|Enchantment|Special)(?:[;,].*)?)$/i;
 
 /** The same, left on the end of a heading that names an entry: "Morph Variable". */
-const TRAILING_STAT = /\s+(?:Variable|-?\d+(?:\s*(?:,|or|to)\s*-?\d+)*\s+points?(?:\/level)?)$/i;
+const TRAILING_STAT = /\s+(?:Variable|-?\d+(?:\s*(?:,|or|to)\s*-?\d+)*\s+points?(?:\/level)?|(?:\([a-z]{2,4}\)\s*)?[-+]\d+%.*)$/i;
 
 /** A perk's name and icon digits, set as a line of text: "Autotrance 2", "Shtick 2/3". */
 const PERK_HEADING = /^[A-Z][A-Za-z'’ -]{2,40}?(?:\s+[\d/]+){1,2}$/;
@@ -150,9 +150,19 @@ function headingName(text) {
 const norm = (s) => String(s).toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, " ").trim();
 
 function candidatesFor(name) {
+  const noTl = (s) => s.replace(/\/TL\b/, "");
+  // An option of a modifier, as the data file writes it: "Melee Attack: Reach
+  // C", "Gadget/Breakable: DR 3-5". The book describes it under the modifier.
+  const option = /^([^:(/]+?)(?:\/([^:]+))?:\s*(.+)$/.exec(name);
+  if (option) {
+    const families = [option[1].trim(), option[2] ? option[2].trim() : null].filter(Boolean);
+    const variant = option[3].replace(/\s*\(.*\)\s*$/, "").trim();
+    return { exact: [name, variant], family: families, variant };
+  }
   const family = name.replace(/\s*\(.*\)\s*$/, "");
   const variant = /\(([^)]*)\)\s*$/.exec(name)?.[1] ?? null;
-  const noTl = (s) => s.replace(/\/TL\b/, "");
+  // "Based On DX (Target Roll)" is the data file's; the book has one modifier.
+  if (/^Based On /i.test(name)) return { exact: ["Based on (Different Attribute)"], family: [], variant: null };
   return { exact: [name, noTl(name)], family: family !== name ? [family, noTl(family)] : [], variant };
 }
 
