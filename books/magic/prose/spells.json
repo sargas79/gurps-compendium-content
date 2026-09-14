@@ -1,0 +1,218 @@
+[
+  {
+    "_id": "b1eb8e733cfa2a8a",
+    "name": "Seek Air",
+    "pages": "M23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the direction and approximate distance of the nearest significant amount of air. Use the long-distance modifiers (p. 14). In settings where air is understood as a combination of gases, the caster may also seek out a specific gas or combination of gases, rather than ordinary air. Any known source of air may be excluded if the caster specifically mentions it before beginning.</p><p><em>Item</em></p><p>A forked stick (usually of bird bone). Cost to create: 60 energy and a $200 onyx.</p>"
+  },
+  {
+    "_id": "6cd29d54d005d99c",
+    "name": "Destroy Air",
+    "pages": "M24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Destroy all air within a designated area of effect. This can create a vacuum within a very strong vessel, but in open air it just causes a momentary thunderclap as surrounding air rushes in. This effect does 1d-2 damage to anyone in the area of effect who fails a HT roll. Any beings with the Body of Air meta-trait (p. B262) take 2d damage. In certain situations (e.g., in an airtight room) this spell can be much deadlier, leaving no air to breathe.</p>"
+  },
+  {
+    "_id": "bab0dd6a73c547ab",
+    "name": "Odor",
+    "pages": "M24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces any odor the caster is familiar with. The odor lingers for about an hour, gradually diminishing (outdoors it spreads out and quickly dissipates). The spell produces no other physical effects - for instance, the odor of a poison is not poisonous.</p><p><em>Item</em></p><p>Jewelry that constantly surrounds the wearer with one scent (set at time of casting). Energy cost to create: 40.</p>"
+  },
+  {
+    "_id": "509987488f61c178",
+    "name": "Air Jet",
+    "pages": "M24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of air from one finger. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. The jet does 2d knockback damage for every point of energy put into the spell, and has a range in yards equal to the number of dice in the attack. The jet does injury damage to vaporous beings or swarms. It is also good for sweeping the floor.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; if the item is a staff or wand, the air jet comes from its tip. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "276002842e90d101",
+    "name": "Air Vision",
+    "pages": "M24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See clearly through smoke, fog, dust, sand, etc., eliminating any Vision penalties caused by the condition of the air around him.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "15f103158fd54b07",
+    "name": "Body of Air",
+    "pages": "M24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's body becomes vaporous, temporarily granting the subject the Body of Air meta-trait (p. B262). Clothes (up to 6 pounds) also become vaporous, but lose any magic powers they might have had while in this form.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry; only affects the wearer. Unfortunately, as soon as it is activated, the item falls through the user's hand - thus, a spell cast with this item lasts only a minute. Energy cost to create: 800. (b) Staff, wand, or jewelry. Unlike the previous item, this item becomes vaporous along with the subject, allowing the subject to maintain the spell longer than 1 minute. It loses any other magic powers it might have while in vaporous form. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "4068f0d07b56df74",
+    "name": "Devitalize Air",
+    "pages": "M25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes the life-sustaining essence from the air within its area of effect, rendering it unbreathable. Until the \"dead\" air dissipates, any being who needs to breathe begins to suffocate (see Suffocation, p. B436), and flames within the spell's area of effect flicker and die. Victims may not notice the spell's effect until they begin losing FP; roll vs. Per to notice the changed quality of the air. Sleeping victims must roll vs. HT to wake up once they begin suffocating.</p><p>The spell lasts until living air diffuses back into the affected area. This takes 1 minute per yard of radius in an unventilated area, or as little as 10 seconds on a windy day outdoors. In an airtight room, the air stays devitalized indefinitely! Purify Air reverses this spell's effects.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 300 energy and a $200 onyx.</p>"
+  },
+  {
+    "_id": "d76f3d668e88be2b",
+    "name": "Wall of Wind",
+    "pages": "M25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Surrounds an area with a wall of roiling air that impedes movement.</p><p>The wall is one yard thick and four yards high, but may be made higher by multiplying the cost as you multiply the height (double for 8 yards high, triple for 12 yards high, and so on). Low-tech missiles are buffeted off course as they cross it, and suffer a -10 penalty to hit for every yard of wall they pass through. High-tech bullets suffer a -2 penalty to hit for every yard of the wall of wind they pass through. Beings standing within the wall's thickness are at -3 DX and suffer 2d of knockback in a random direction every second.</p><p>The wall also churns up loose ground material, such as dust, small leaves, insects, and twigs. Each second, beings crossing the wall or standing in it must either shut their eyes or roll vs. HT to avoid being blinded, as per a one-point Sand Jet (p. 52) (unless the GM rules that the area is very clean, with no debris to circulate).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 400 energy and a $500 onyx.</p>"
+  },
+  {
+    "_id": "af027cba3a98d8d7",
+    "name": "Windstorm",
+    "pages": "M25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a circular windstorm with an \"eye\" of calm inside (a good place for the caster to stand). The radius of the eye can be up to half that of the storm - or smaller, if the caster wishes. By concentrating, the caster can move the storm any distance up to its own diameter per second; the eye moves with it. The caster may move up to half his normal Move inside the eye while concentrating on this spell.</p><p>Anyone within a full-strength Windstorm must roll vs. ST once per second to avoid being knocked over by the wind. All DX-based skills are at -5, and ranged attacks are at a -10 penalty for every yard of the windstorm they pass through.</p><p>For double energy cost, the caster may create a more powerful windstorm, like a tornado. ST rolls to remain standing in such a gale are at -5, ranged attacks through it are impossible, and visibility inside it is a yard at best. This powerful windstorm physically lifts and hurls objects up to 30 pounds per yard of radius.</p>"
+  },
+  {
+    "_id": "9566bc12ac1e1d34",
+    "name": "Concussion",
+    "pages": "M26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster creates a ball of highly pressurized air in his hand. When the air strikes a target, it explodes. The blast is extremely loud; anyone within 10 yards must roll against HT-3 or be stunned. Stunned people may roll against HT-3 every second to recover. Protected Hearing gives a +5 bonus to this roll. Concussion has 1/2D 20, Max 40, Acc 1; roll vs. Innate Attack skill to hit.</p><p>This is also a Sound spell.</p><p><em>Item</em></p><p>Staff or wand - the missile is thrown from the end of the item. Usable only by mages. Cost to create: 1,000 energy and a $400 onyx.</p>"
+  },
+  {
+    "_id": "871d450a04b1a7fd",
+    "name": "Breathe Air",
+    "pages": "M26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Breathe air as though it were water; the spell also prevents water creatures from dehydrating in air. This spell is primarily useful for keeping fish, mermen, etc., alive out of water. The subject can also still breathe water normally.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or clothing; only affects the wearer. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "f42ca86218b7755f",
+    "name": "Essential Air",
+    "pages": "M26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates the magical essence of Air. Essential Air is \"purer\" and can be used (breathed or consumed) three times as long before becoming foul. Fire burns hotter (but not faster) in Essential Air, adding an extra point of damage to each die (this will even increase the heat of Essential Flame!). If the air is created in an open area, it disperses within 5 seconds.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 800 energy and a $400 onyx.</p>"
+  },
+  {
+    "_id": "fd6b0d74adab2805",
+    "name": "Air Vortex",
+    "pages": "M26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Whisks all persons within the original area of effect to somewhere else inside a giant swirling Air Vortex. The Vortex has a Move of 10. The caster may exclude anyone in the area that he specifies during casting. Those within in the area resist with the higher of their HT and DX scores.</p><p>Those whisked away by the Vortex are rendered temporarily vaporous, as per the Body of Air spell (p. 24). The Vortex may not penetrate solid objects.</p><p>This is also a Movement spell.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Cost to create: 1200 energy and an $800 onyx.</p>"
+  },
+  {
+    "_id": "687352dc08134b63",
+    "name": "Sandstorm",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a Windstorm (p. 25) with the addition of flying sand! The sand is created by the spell - it is not necessary for the area to be sandy. The Sandstorm obscures vision (-2 per intervening yard of Sandstorm, excluding the \"eye\" of the storm).</p><p>Each second, every being within the area must shut its eyes or roll vs. HT to avoid being blinded, as per a one-point Sand Jet (p. 52).</p><p>This is also an Earth spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "87f5e110b4737ed9",
+    "name": "Body of Wind",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's body becomes a whirlwind, with a radius of 2 to 4 yards (caster's choice). In this form, he has a variant form of the Body of Air meta-trait (p. B262); he lacks the listed Vulnerability to vacuum and wind-based attacks, he has No Fine Manipulators rather than the usual No Manipulators, and he has effective ST equal to twice his normal ST. Clothes (up to 6 pounds), also become wind, but lose any magic powers they might have had while in wind-form.</p><p>Anyone within the radius of the subject must make a ST roll each second to remain standing. All DX-based skills are at -5, and missile attacks that pass through the whirlwind only hit on a critical success. There is no safe \"eye.\"</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry; only affects the wearer. As soon as it is activated, the item falls through the user's hand; thus, a spell cast with this item lasts only a minute. Cost to create: 1,700 energy and a $1,000 onyx. (b) Staff, wand, or jewelry; only affects the wearer. Unlike the previous item, this item turns to wind along with the wearer, allowing him to maintain the spell longer than a minute. While vaporous, it loses any magical powers it might have while solid. Cost to create: 3,500 energy and a $2,500 onyx.</p>"
+  },
+  {
+    "_id": "939adb4cd8e7b617",
+    "name": "Summon Air Elemental",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a different spell for each of the four elements. It allows the caster to call a nearby elemental - if one exists. In general, the GM should assume that an elemental is available if the location is appropriate, unless the scenario or situation requires that elementals are opportunely absent. The caster determines the elemental's power level by the amount of energy he spends on the spell, but the GM determines the elemental's precise capabilities.</p><p>The summoned elemental is not under the caster's control, but must remain for one hour unless it is dismissed or destroys the caster. Note that a dismissal does not guarantee the elemental will leave. If it is hostile, or simply curious, it may choose to stay!</p><p>The caster may question the summoned elemental, request a service, etc. The elemental immediately makes a reaction roll to see how it feels about the wizard. On a good reaction, the elemental cooperates for an hour - no longer - and then vanishes. An elemental's opinion may be swayed with appropriate enticements, assuming a wizard can figure out what an elemental might desire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. Cost to create: 800 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "2804580e7b45b74b",
+    "name": "Control Air Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control all actions of a single elemental while the spell continues. For direct control, the elemental must remain within the caster's view. If the elemental is simply told to leave, it does so. If the elemental is sent to do a task, rather than controlled directly, its IQ must be sufficient (GM's decision) to comprehend its instructions!</p><p>This spell can also be used as an information spell, to judge the four attributes of that type of elemental (within 15 feet). A successful roll is required, but there is no energy cost.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. This item does not let the user cast the spell, but gives a noncumulative +2 bonus to any attempt to use the spell. Cost to create: 1,000 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "a8d13487cf1932df",
+    "name": "Create Air Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
+  },
+  {
+    "_id": "f7c56fc7cf81130d",
+    "name": "Summon Earth Elemental",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a different spell for each of the four elements. It allows the caster to call a nearby elemental - if one exists. In general, the GM should assume that an elemental is available if the location is appropriate, unless the scenario or situation requires that elementals are opportunely absent. The caster determines the elemental's power level by the amount of energy he spends on the spell, but the GM determines the elemental's precise capabilities.</p><p>The summoned elemental is not under the caster's control, but must remain for one hour unless it is dismissed or destroys the caster. Note that a dismissal does not guarantee the elemental will leave. If it is hostile, or simply curious, it may choose to stay!</p><p>The caster may question the summoned elemental, request a service, etc. The elemental immediately makes a reaction roll to see how it feels about the wizard. On a good reaction, the elemental cooperates for an hour - no longer - and then vanishes. An elemental's opinion may be swayed with appropriate enticements, assuming a wizard can figure out what an elemental might desire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. Cost to create: 800 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "1cc45b6b3792a232",
+    "name": "Control Earth Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control all actions of a single elemental while the spell continues. For direct control, the elemental must remain within the caster's view. If the elemental is simply told to leave, it does so. If the elemental is sent to do a task, rather than controlled directly, its IQ must be sufficient (GM's decision) to comprehend its instructions!</p><p>This spell can also be used as an information spell, to judge the four attributes of that type of elemental (within 15 feet). A successful roll is required, but there is no energy cost.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. This item does not let the user cast the spell, but gives a noncumulative +2 bonus to any attempt to use the spell. Cost to create: 1,000 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "e66da0fb2a8a7dfb",
+    "name": "Create Earth Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
+  },
+  {
+    "_id": "ef5259b085b6b8d6",
+    "name": "Summon Fire Elemental",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a different spell for each of the four elements. It allows the caster to call a nearby elemental - if one exists. In general, the GM should assume that an elemental is available if the location is appropriate, unless the scenario or situation requires that elementals are opportunely absent. The caster determines the elemental's power level by the amount of energy he spends on the spell, but the GM determines the elemental's precise capabilities.</p><p>The summoned elemental is not under the caster's control, but must remain for one hour unless it is dismissed or destroys the caster. Note that a dismissal does not guarantee the elemental will leave. If it is hostile, or simply curious, it may choose to stay!</p><p>The caster may question the summoned elemental, request a service, etc. The elemental immediately makes a reaction roll to see how it feels about the wizard. On a good reaction, the elemental cooperates for an hour - no longer - and then vanishes. An elemental's opinion may be swayed with appropriate enticements, assuming a wizard can figure out what an elemental might desire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. Cost to create: 800 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "f82eab2784951548",
+    "name": "Control Fire Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control all actions of a single elemental while the spell continues. For direct control, the elemental must remain within the caster's view. If the elemental is simply told to leave, it does so. If the elemental is sent to do a task, rather than controlled directly, its IQ must be sufficient (GM's decision) to comprehend its instructions!</p><p>This spell can also be used as an information spell, to judge the four attributes of that type of elemental (within 15 feet). A successful roll is required, but there is no energy cost.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. This item does not let the user cast the spell, but gives a noncumulative +2 bonus to any attempt to use the spell. Cost to create: 1,000 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "d4d4660388faf5ba",
+    "name": "Create Fire Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
+  },
+  {
+    "_id": "77c49957ae8b3862",
+    "name": "Summon Water Elemental",
+    "pages": "M27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a different spell for each of the four elements. It allows the caster to call a nearby elemental - if one exists. In general, the GM should assume that an elemental is available if the location is appropriate, unless the scenario or situation requires that elementals are opportunely absent. The caster determines the elemental's power level by the amount of energy he spends on the spell, but the GM determines the elemental's precise capabilities.</p><p>The summoned elemental is not under the caster's control, but must remain for one hour unless it is dismissed or destroys the caster. Note that a dismissal does not guarantee the elemental will leave. If it is hostile, or simply curious, it may choose to stay!</p><p>The caster may question the summoned elemental, request a service, etc. The elemental immediately makes a reaction roll to see how it feels about the wizard. On a good reaction, the elemental cooperates for an hour - no longer - and then vanishes. An elemental's opinion may be swayed with appropriate enticements, assuming a wizard can figure out what an elemental might desire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. Cost to create: 800 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "db879b021039fe1c",
+    "name": "Control Water Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control all actions of a single elemental while the spell continues. For direct control, the elemental must remain within the caster's view. If the elemental is simply told to leave, it does so. If the elemental is sent to do a task, rather than controlled directly, its IQ must be sufficient (GM's decision) to comprehend its instructions!</p><p>This spell can also be used as an information spell, to judge the four attributes of that type of elemental (within 15 feet). A successful roll is required, but there is no energy cost.</p><p><em>Item</em></p><p>Staff, wand, or jewelry decorated with appropriate elemental images - a different enchantment is required for each of the four types. This item does not let the user cast the spell, but gives a noncumulative +2 bonus to any attempt to use the spell. Cost to create: 1,000 energy, $1,300 gold and platinum.</p>"
+  },
+  {
+    "_id": "5ba7a7edaf268adf",
+    "name": "Create Water Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
+  }
+]

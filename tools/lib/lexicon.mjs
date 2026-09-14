@@ -10,6 +10,7 @@
  * the way the book spells the word elsewhere.
  */
 
+import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
@@ -18,10 +19,22 @@ import { openBook, textLines } from "./pdf-layout.mjs";
 
 const CACHE = join(projectRoot, "extracted", "lexicon.json");
 
+/**
+ * Where a set of books' lexicon is kept. The Basic Set's two volumes keep the
+ * file they always had; any other set gets one named for its paths, so reading
+ * Magic does not throw away the Basic Set's.
+ */
+function cacheFor(paths) {
+  if (existsSync(CACHE) && JSON.stringify(JSON.parse(readFileSync(CACHE, "utf8")).paths) === JSON.stringify(paths)) return CACHE;
+  const key = createHash("sha1").update(JSON.stringify(paths)).digest("hex").slice(0, 12);
+  return join(projectRoot, "extracted", `lexicon-${key}.json`);
+}
+
 /** Every word and hyphenated compound printed away from a line break, counted. */
 export async function lexiconOf(paths) {
-  if (existsSync(CACHE)) {
-    const cached = JSON.parse(readFileSync(CACHE, "utf8"));
+  const cache = cacheFor(paths);
+  if (existsSync(cache)) {
+    const cached = JSON.parse(readFileSync(cache, "utf8"));
     if (JSON.stringify(cached.paths) === JSON.stringify(paths)) return toMaps(cached);
   }
   const words = {};
@@ -47,8 +60,8 @@ export async function lexiconOf(paths) {
       }
     }
   }
-  mkdirSync(dirname(CACHE), { recursive: true });
-  writeFileSync(CACHE, JSON.stringify({ paths, words, compounds }), "utf8");
+  mkdirSync(dirname(cache), { recursive: true });
+  writeFileSync(cache, JSON.stringify({ paths, words, compounds }), "utf8");
   return toMaps({ words, compounds });
 }
 
