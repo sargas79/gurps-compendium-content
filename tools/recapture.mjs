@@ -26,7 +26,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-import { book, buildRoot, projectRoot, readProse } from "./lib/books.mjs";
+import { book, buildRoot, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
 import { joinText, structureOf, useLexicon } from "./lib/book-structure.mjs";
 import { lexiconOf } from "./lib/lexicon.mjs";
 import { openBook, readPage } from "./lib/pdf-layout.mjs";
@@ -217,12 +217,16 @@ function section(blocks, at, spells = false) {
       continue;
     }
     if (b.kind !== "p") continue;
+    // A table printed under a statistics line -- Penetrating Weapon's costs by
+    // armor divisor -- is the spell's, though the line itself is left out.
     if (spells && SPELL_STATS.test(b.text.trim())) {
       statOpen = !/[.!?]$/.test(b.text.trim());
+      for (const rows of b.tables ?? []) out.push({ kind: "table", rows });
       continue;
     }
     if (spells && statOpen && !leading && /^[a-z(]/.test(b.text.trim())) {
       statOpen = !/[.!?]$/.test(b.text.trim());
+      for (const rows of b.tables ?? []) out.push({ kind: "table", rows });
       continue;
     }
     // A spell's class, set as a line of text under its name: "Regular; Resisted by HT".
@@ -440,6 +444,15 @@ async function main() {
   useLexicon(await lexiconOf(Object.values(paths)));
   const structure = library(paths, volumesOf(bk));
   const { records } = readProse(bk, pack);
+  // An entry with no text yet is captured too, as status "none", for a book
+  // whose statistics are its own: its page comes from the entry's reference.
+  if (bk.statistics === "book") {
+    for (const { entry } of readStatistics(bk, pack)) {
+      if (records.has(entry._id)) continue;
+      const page = /\d+/.exec(entry.system?.reference ?? "")?.[0];
+      records.set(entry._id, { _id: entry._id, name: entry.name, pages: page ? `${bk.prefix}${page}` : "", status: "none", notes: "", description: "" });
+    }
+  }
 
   const results = [];
   const only = option("--only");
