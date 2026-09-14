@@ -1,0 +1,3 @@
+An item may carry any number of spells; each one requires a separate enchantment. The presence of a spell on an item does not affect further enchantments. Exception: The Bane spell (p. 62) limits an item’s use, but makes it easier to enchant it further.
+
+Placing multiple spells on a single item has advantages and disadvantages. A multiply enchanted item is easy to carry and use; dedicated Powerstones (p. 69) can be used by all the spells in the item. On the other hand, that single item is vulnerable. If it breaks, all the enchantments are lost . . . and a critical failure while adding a new enchantment destroys the item and all previous enchantments.
