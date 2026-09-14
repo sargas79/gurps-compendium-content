@@ -1,0 +1,1 @@
+Below is a selection of historical and modern martial arts. It’s only a small sampling, highlighting widely known or interesting styles. There are hundreds if not thousands of styles – and many have numerous sub-schools or regional or ethnic variants, or looked quite different at various points during their history.

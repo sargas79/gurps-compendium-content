@@ -2179,6 +2179,330 @@
       "reference": "Martial Arts p. 61",
       "file": "new-skills.md",
       "status": "reviewed"
+    },
+    {
+      "id": "styles",
+      "title": "Styles",
+      "chapter": "Styles",
+      "pages": "MA140-141",
+      "reference": "Martial Arts pp. 140-141",
+      "file": "styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "components-of-a-style",
+      "title": "Components of a Style",
+      "chapter": "Styles",
+      "pages": "MA141",
+      "reference": "Martial Arts p. 141",
+      "file": "components-of-a-style.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-skills",
+      "title": "Skills",
+      "chapter": "Styles",
+      "pages": "MA141",
+      "reference": "Martial Arts p. 141",
+      "file": "style-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-cinematic-skills",
+      "title": "Cinematic Skills",
+      "chapter": "Styles",
+      "pages": "MA141",
+      "reference": "Martial Arts p. 141",
+      "file": "style-cinematic-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-techniques",
+      "title": "Techniques",
+      "chapter": "Styles",
+      "pages": "MA141-142",
+      "reference": "Martial Arts pp. 141-142",
+      "file": "style-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-abilities-and-prerequisites",
+      "title": "Cinematic Abilities and Prerequisites",
+      "chapter": "Styles",
+      "pages": "MA141",
+      "reference": "Martial Arts p. 141",
+      "file": "cinematic-abilities-and-prerequisites.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-component-perks",
+      "title": "Perks",
+      "chapter": "Styles",
+      "pages": "MA142",
+      "reference": "Martial Arts p. 142",
+      "file": "style-component-perks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-traits",
+      "title": "Optional Traits",
+      "chapter": "Styles",
+      "pages": "MA142-143",
+      "reference": "Martial Arts pp. 142-143",
+      "file": "optional-traits.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-vs-style",
+      "title": "Style vs. Style",
+      "chapter": "Styles",
+      "pages": "MA143",
+      "reference": "Martial Arts p. 143",
+      "file": "style-vs-style.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "choosing-a-style",
+      "title": "Choosing a Style",
+      "chapter": "Styles",
+      "pages": "MA144-145",
+      "reference": "Martial Arts pp. 144-145",
+      "file": "choosing-a-style.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ultimate-styles",
+      "title": "Ultimate Styles",
+      "chapter": "Styles",
+      "pages": "MA144",
+      "reference": "Martial Arts p. 144",
+      "file": "ultimate-styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "styles-for-self-defense",
+      "title": "Self-Defense",
+      "chapter": "Styles",
+      "pages": "MA145",
+      "reference": "Martial Arts p. 145",
+      "file": "styles-for-self-defense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "styles-for-cops",
+      "title": "Styles for Cops",
+      "chapter": "Styles",
+      "pages": "MA145",
+      "reference": "Martial Arts p. 145",
+      "file": "styles-for-cops.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "styles-for-soldiers",
+      "title": "Styles for Soldiers",
+      "chapter": "Styles",
+      "pages": "MA145",
+      "reference": "Martial Arts p. 145",
+      "file": "styles-for-soldiers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "streetfighting",
+      "title": "Streetfighting",
+      "chapter": "Styles",
+      "pages": "MA145-146",
+      "reference": "Martial Arts pp. 145-146",
+      "file": "streetfighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "buying-a-style",
+      "title": "Buying a Style",
+      "chapter": "Styles",
+      "pages": "MA146",
+      "reference": "Martial Arts p. 146",
+      "file": "buying-a-style.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "styles-bought-during-character-creation",
+      "title": "Styles Bought During Character Creation",
+      "chapter": "Styles",
+      "pages": "MA146",
+      "reference": "Martial Arts p. 146",
+      "file": "styles-bought-during-character-creation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "learning-new-styles-during-play",
+      "title": "Learning New Styles During Play",
+      "chapter": "Styles",
+      "pages": "MA146-147",
+      "reference": "Martial Arts pp. 146-147",
+      "file": "learning-new-styles-during-play.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "creating-new-styles",
+      "title": "Creating New Styles",
+      "chapter": "Styles",
+      "pages": "MA146",
+      "reference": "Martial Arts p. 146",
+      "file": "creating-new-styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combining-styles",
+      "title": "Combining Styles",
+      "chapter": "Styles",
+      "pages": "MA147-148",
+      "reference": "Martial Arts pp. 147-148",
+      "file": "combining-styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-training-sequence",
+      "title": "The Training Sequence",
+      "chapter": "Styles",
+      "pages": "MA147",
+      "reference": "Martial Arts p. 147",
+      "file": "the-training-sequence.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "historical-and-modern-styles",
+      "title": "Historical and Modern Styles",
+      "chapter": "Styles",
+      "pages": "MA148",
+      "reference": "Martial Arts p. 148",
+      "file": "historical-and-modern-styles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-origin",
+      "title": "Style Origin",
+      "chapter": "Styles",
+      "pages": "MA148-149",
+      "reference": "Martial Arts pp. 148-149",
+      "file": "style-origin.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "do-vs-jutsu",
+      "title": "Do vs. Jutsu",
+      "chapter": "Styles",
+      "pages": "MA148",
+      "reference": "Martial Arts p. 148",
+      "file": "do-vs-jutsu.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "style-variations",
+      "title": "Style Variations",
+      "chapter": "Styles",
+      "pages": "MA149",
+      "reference": "Martial Arts p. 149",
+      "file": "style-variations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "kung-fu",
+      "title": "“Kung Fu”",
+      "chapter": "Styles",
+      "pages": "MA155",
+      "reference": "Martial Arts p. 155",
+      "file": "kung-fu.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "external-vs-internal-hard-vs-soft",
+      "title": "External vs. Internal, Hard vs. Soft",
+      "chapter": "Styles",
+      "pages": "MA162",
+      "reference": "Martial Arts p. 162",
+      "file": "external-vs-internal-hard-vs-soft.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "martial-arts-uniforms",
+      "title": "Martial-Arts Uniforms",
+      "chapter": "Styles",
+      "pages": "MA165",
+      "reference": "Martial Arts p. 165",
+      "file": "martial-arts-uniforms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "belts-and-grading",
+      "title": "Belts and Grading",
+      "chapter": "Styles",
+      "pages": "MA172",
+      "reference": "Martial Arts p. 172",
+      "file": "belts-and-grading.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "berserk-and-the-martial-arts",
+      "title": "Berserk and the Martial Arts",
+      "chapter": "Styles",
+      "pages": "MA179",
+      "reference": "Martial Arts p. 179",
+      "file": "berserk-and-the-martial-arts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-purpose-of-military-hand-to-hand",
+      "title": "The Purpose of Military Hand-to-Hand",
+      "chapter": "Styles",
+      "pages": "MA184",
+      "reference": "Martial Arts p. 184",
+      "file": "the-purpose-of-military-hand-to-hand.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disarming-and-weapon-retention",
+      "title": "Disarming and Weapon Retention",
+      "chapter": "Styles",
+      "pages": "MA184",
+      "reference": "Martial Arts p. 184",
+      "file": "disarming-and-weapon-retention.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "knife-rifle-butt-and-entrenching-tool",
+      "title": "Knife, Rifle Butt, and Entrenching Tool",
+      "chapter": "Styles",
+      "pages": "MA184",
+      "reference": "Martial Arts p. 184",
+      "file": "knife-rifle-butt-and-entrenching-tool.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-mk-i-boot",
+      "title": "The Mk. I Boot",
+      "chapter": "Styles",
+      "pages": "MA184",
+      "reference": "Martial Arts p. 184",
+      "file": "the-mk-i-boot.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mixed-martial-arts",
+      "title": "Mixed Martial Arts",
+      "chapter": "Styles",
+      "pages": "MA189",
+      "reference": "Martial Arts p. 189",
+      "file": "mixed-martial-arts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fictional-styles",
+      "title": "Fictional Styles",
+      "chapter": "Styles",
+      "pages": "MA207",
+      "reference": "Martial Arts p. 207",
+      "file": "fictional-styles.md",
+      "status": "reviewed"
     }
   ]
 }

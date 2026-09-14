@@ -1,0 +1,5 @@
+Police fall somewhere between civilians seeking self-defense lessons and soldiers seeking weapons training. Soldiers learn to kill. Civilians train to ward off attackers with minimal harm – and minimal legal consequences! Police generally have restrictions on the amount of force they can use but enjoy greater latitude than civilians.
+
+Police styles favor techniques that can physically control or incapacitate an opponent without inflicting injury. Even societies that presume “guilty until proven innocent” tend to prize capture over killing. These goals differ from those of military styles, which seek to disable the opponent without regard to his safety.
+
+Tokugawa-era Japanese police trained in Taihojutsu (p. 201); modern Japanese officers train in Aikido (p. 149), Judo (p. 166), and/or Kendo (p. 175). In the U.S., the style depends on the department. Examples include Aikido (p. 149), Boxing (pp. 152-153), Brazilian Jiu-jitsu (pp. 167-168), Hapkido (p. 161), and Karate (pp. 169-172) . . . and it’s common for American lawmen to be dedicated students of other styles on their own time.

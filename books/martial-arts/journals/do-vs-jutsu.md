@@ -1,0 +1,9 @@
+Traditional Japanese martial arts have names ending in either -do, meaning “way,” or -jutsu, meaning “art.” In theory, a style with a -do name is artistic, and emphasizes self-development or physical exercise under controlled conditions. A -jutsu ending denotes a style that focuses on techniques with practical applications in lethal combat, practiced under rigorous circumstances. Thus, “Aikijutsu” is a variety of combat grappling while “Aikido” is a form of spiritual enlightenment through martial training. Most modern schools follow this naming practice.
+
+The distinction isn’t rigid, though. Some schools that offer -do forms teach skills intended for combat, while certain schools of -jutsu forms instruct students in sportive or artistic styles. For example, Yoshinkan Aikido teaches the Tokyo Metropolitan Riot Police course – a one-year black-belt program of harsh training and grueling practice under realistic conditions – alongside its regular curriculum. On the other hand, modern Naginatajutsu schools restrict targets, and use wooden naginata for kata, bamboo-tipped naginata for competition, and kendo armor . . . all despite the -jutsu suffix.
+
+Confusing matters further is the fact that some non-Japanese schools have adopted these suffixes, teaching Muay Thai Do or even T’ai Chi Jutsu.
+
+Not all instances of “do” refer to the Japanese word, either. The Korean art of Tae Kwon Do is a sport but isn’t a “do” form, and Bruce Lee’s Jeet Kune Do most definitely isn’t an art or sport form!
+
+Martial Arts takes the stance that, in general, -do forms teach Combat Art or Sport skills while -jutsu forms offer combat skills. If there’s any doubt, Martial Arts assumes the combat form simply because GURPS is an adventure game and Art/Sport skills aren’t very useful in the deadly situations that adventurers get into!
