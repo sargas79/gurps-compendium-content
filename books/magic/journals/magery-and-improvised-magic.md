@@ -1,0 +1,1 @@
+Any system described in this section may or may not require Magery, depending on the world in which they exist. They may, as with spell magic, require Magery to use in a region with normal or lower mana. They may require Magery to use at all.

@@ -1,0 +1,5 @@
+Improvisation is the heart of roleplaying. Players improvise to react to unexpected situations that the GM throws to them, and the GM improvises to accommodate the . . . innovative . . . solutions the players devise. This sort of freewheeling improvisation can be the basis of a game’s magic system as well.
+
+Not every setting features wizards who spend long hours to learn and master individual spells with clearly defined effects. The systems presented in this section offer the opportunity for wizards to cast spells without years of study and memorization; in some cases, they allow wizards to invent new spells at their whim. These systems may exist alongside the regular spell system, or replace it, as appropriate for a given setting.
+
+A word of warning: improvisational systems are only appropriate for groups where the GM enjoys thinking on his feet, and the players are happy to accept GM judgments on the fly. Some GMs don’t enjoy being put on the spot, and some players prefer to know exactly what their characters are capable of doing. If that describes you, skip these systems.

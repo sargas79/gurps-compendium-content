@@ -1,0 +1,1 @@
+The regular spell system offers another alternative for priestly magic. Individuals who are good and pure of heart may buy certain spells without prerequisites. The relevant spells are ones that permit the caster to perform supernatural acts traditionally associated with the clergy. These spells include Bless, Dispel Possession, Final Rest, Monk’s Banquet, Turn Zombie, and Vigil.

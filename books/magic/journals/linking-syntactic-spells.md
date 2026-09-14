@@ -1,0 +1,3 @@
+Syntactic spells may be linked, as with any of the linking Meta-Spells (pp. 130-132). If syntactic spells and memorized spells are two means of manipulating the same forces, any of the three linking spells may be attached to a syntactic spell. If syntactic magic stands alone in your game world, then linking spells must be syntactic as well. Such links require the Magic Word and one or more Words related to the triggering event. The more Words are used for the trigger, the more accurate – but the harder to cast – it is.
+
+Keep in mind that if the linking spell works, but the syntactic spell to which it is attached fails partially, something strange will happen when the triggering event occurs.

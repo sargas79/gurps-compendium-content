@@ -1,0 +1,1 @@
+Perhaps the simplest way to expand the range of magical possibilities is to adjust the parameters of the standard system, changing how spells are used or acquired. By changing the way people learn spells, or the circumstances under which they can use them, a GM can achieve a different flavor of magic while retaining the utility of the standard spell list.

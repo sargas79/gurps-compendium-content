@@ -1,0 +1,3 @@
+Symbol magic is one of the most ancient forms of magic; many cultures have a magical tradition that relies upon a set of signs representing mystically potent words, sounds, or concepts. The Vikings had their Futhark runes; Celtic druids had Ogham; the Hebrew Qabala places great importance on the association of the twenty-two letters of the Hebrew alphabet with mystic concepts. Chinese, Sanskrit, hieroglyphics . . . all have been used as symbolic languages of magic.
+
+A properly trained person can use these systems to work magic. This most commonly takes the form of scrolls and items enchanted with powerful glyphs, but the power of magical symbols can be used to create magical effects directly. A symbol-caster is free to learn other forms of magic, if they are available.
