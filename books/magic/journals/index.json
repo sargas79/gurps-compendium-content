@@ -432,6 +432,402 @@
       "reference": "Magic p. 22",
       "file": "spell-descriptions.md",
       "status": "reviewed"
+    },
+    {
+      "id": "air-spells",
+      "title": "Air Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M23",
+      "reference": "Magic p. 23",
+      "file": "air-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "elemental-spirit-spells",
+      "title": "Elemental Spirit Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M27",
+      "reference": "Magic p. 27",
+      "file": "elemental-spirit-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "animal-spells",
+      "title": "Animal Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M29",
+      "reference": "Magic p. 29",
+      "file": "animal-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hybrids",
+      "title": "Hybrids",
+      "chapter": "Spell Colleges",
+      "pages": "M29",
+      "reference": "Magic p. 29",
+      "file": "hybrids.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "body-control-spells",
+      "title": "Body Control Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M35",
+      "reference": "Magic p. 35",
+      "file": "body-control-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "communication-and-empathy-spells",
+      "title": "Communication and Empathy Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M44",
+      "reference": "Magic p. 44",
+      "file": "communication-and-empathy-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "earth-spells",
+      "title": "Earth Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M50",
+      "reference": "Magic p. 50",
+      "file": "earth-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enchantment-spells",
+      "title": "Enchantment Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M56",
+      "reference": "Magic p. 56",
+      "file": "enchantment-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weapon-enchantments",
+      "title": "Weapon Enchantments",
+      "chapter": "Spell Colleges",
+      "pages": "M62",
+      "reference": "Magic p. 62",
+      "file": "weapon-enchantments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "armor-enchantments",
+      "title": "Armor Enchantments",
+      "chapter": "Spell Colleges",
+      "pages": "M66",
+      "reference": "Magic p. 66",
+      "file": "armor-enchantments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "piece-by-piece",
+      "title": "Piece-By-Piece",
+      "chapter": "Spell Colleges",
+      "pages": "M66",
+      "reference": "Magic p. 66",
+      "file": "piece-by-piece.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "limiting-enchantments",
+      "title": "Limiting Enchantments",
+      "chapter": "Spell Colleges",
+      "pages": "M68",
+      "reference": "Magic p. 68",
+      "file": "limiting-enchantments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wizardly-tools",
+      "title": "Wizardly Tools",
+      "chapter": "Spell Colleges",
+      "pages": "M69",
+      "reference": "Magic p. 69",
+      "file": "wizardly-tools.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "devotional-enchantment",
+      "title": "Devotional Enchantment",
+      "chapter": "Spell Colleges",
+      "pages": "M71",
+      "reference": "Magic p. 71",
+      "file": "devotional-enchantment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fire-spells",
+      "title": "Fire Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M72",
+      "reference": "Magic p. 72",
+      "file": "fire-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "food-spells",
+      "title": "Food Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M77",
+      "reference": "Magic p. 77",
+      "file": "food-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gate-spells",
+      "title": "Gate Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M80",
+      "reference": "Magic p. 80",
+      "file": "gate-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "healing-spells",
+      "title": "Healing Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M88",
+      "reference": "Magic p. 88",
+      "file": "healing-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "illusion-and-creation-spells",
+      "title": "Illusion and Creation Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M95",
+      "reference": "Magic p. 95",
+      "file": "illusion-and-creation-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "scary-illusions",
+      "title": "Scary Illusions",
+      "chapter": "Spell Colleges",
+      "pages": "M95",
+      "reference": "Magic p. 95",
+      "file": "scary-illusions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "knowledge-spells",
+      "title": "Knowledge Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M100",
+      "reference": "Magic p. 100",
+      "file": "knowledge-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "divination",
+      "title": "Divination",
+      "chapter": "Spell Colleges",
+      "pages": "M108",
+      "reference": "Magic p. 108",
+      "file": "divination.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "standard-divinations",
+      "title": "Standard Divinations",
+      "chapter": "Spell Colleges",
+      "pages": "M108-109",
+      "reference": "Magic pp. 108-109",
+      "file": "standard-divinations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "light-and-darkness-spells",
+      "title": "Light and Darkness Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M110",
+      "reference": "Magic p. 110",
+      "file": "light-and-darkness-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "making-and-breaking-spells",
+      "title": "Making and Breaking Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M115",
+      "reference": "Magic p. 115",
+      "file": "making-and-breaking-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "meta-spells",
+      "title": "Meta-Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M121",
+      "reference": "Magic p. 121",
+      "file": "meta-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "linking-spells",
+      "title": "Linking Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M130",
+      "reference": "Magic p. 130",
+      "file": "linking-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mind-control-spells",
+      "title": "Mind Control Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M133",
+      "reference": "Magic p. 133",
+      "file": "mind-control-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "movement-spells",
+      "title": "Movement Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M142",
+      "reference": "Magic p. 142",
+      "file": "movement-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "necromantic-spells",
+      "title": "Necromantic Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M149",
+      "reference": "Magic p. 149",
+      "file": "necromantic-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "demonic-contracts",
+      "title": "Demonic Contracts",
+      "chapter": "Spell Colleges",
+      "pages": "M156",
+      "reference": "Magic p. 156",
+      "file": "demonic-contracts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "black-magic",
+      "title": "Black Magic",
+      "chapter": "Spell Colleges",
+      "pages": "M156",
+      "reference": "Magic p. 156",
+      "file": "black-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "black-critical-table",
+      "title": "Black Critical Table",
+      "chapter": "Spell Colleges",
+      "pages": "M157",
+      "reference": "Magic p. 157",
+      "file": "black-critical-table.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "plant-spells",
+      "title": "Plant Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M161",
+      "reference": "Magic p. 161",
+      "file": "plant-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "protection-and-warning-spells",
+      "title": "Protection and Warning Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M166",
+      "reference": "Magic p. 166",
+      "file": "protection-and-warning-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sound-spells",
+      "title": "Sound Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M171",
+      "reference": "Magic p. 171",
+      "file": "sound-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technological-spells",
+      "title": "Technological Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M175",
+      "reference": "Magic p. 175",
+      "file": "technological-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "machine-spells",
+      "title": "Machine Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M175",
+      "reference": "Magic p. 175",
+      "file": "machine-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "energy-spells",
+      "title": "Energy Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M178",
+      "reference": "Magic p. 178",
+      "file": "energy-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "radiation-spells",
+      "title": "Radiation Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M181",
+      "reference": "Magic p. 181",
+      "file": "radiation-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "metal-and-plastic-spells",
+      "title": "Metal and Plastic Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M182",
+      "reference": "Magic p. 182",
+      "file": "metal-and-plastic-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "water-spells",
+      "title": "Water Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M184",
+      "reference": "Magic p. 184",
+      "file": "water-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weather-spells",
+      "title": "Weather Spells",
+      "chapter": "Spell Colleges",
+      "pages": "M193",
+      "reference": "Magic p. 193",
+      "file": "weather-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-beaufort-scale",
+      "title": "The Beaufort Scale",
+      "chapter": "Spell Colleges",
+      "pages": "M194",
+      "reference": "Magic p. 194",
+      "file": "the-beaufort-scale.md",
+      "status": "reviewed"
     }
   ]
 }

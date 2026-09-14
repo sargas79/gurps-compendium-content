@@ -1,0 +1,9 @@
+Some would-be mages become frustrated at the time it takes to master advanced spells, or at the limits imposed on them by their own Magery (or lack thereof). For those wizards who cannot come to terms with their limitations, there is another, darker option. The aid of demons is ready for the asking.
+
+Casting a spell with demonic aid begins by summoning a demon. In most settings, it takes a relatively advanced mage to summon a demon; in some worlds, however, Summon Demon may not require Magery, or even prerequisites! If demons want to be summoned, they may have easy ways of contacting them.
+
+Once summoned, the caster must negotiate a contract with his chosen demonic patron, and sign it with his own blood (wise wizards usually prepare a contract ahead of time, or take one from a book; the contracts that demons draft are murder).
+
+After the contract is signed, the contracting wizard may draw on demonic assistance to cast spells at any time without summoning the demon again. Spells cast with demonic aid receive energy and support from dark, extradimensional forces; the caster may reduce the cost of a spell by any amount up to triple his skill in Occultism or Thaumatology (whichever is higher), before applying cost reduction for high skill.
+
+However, demonically assisted magic has its limitations. It can never be used to benefit others directly unless to do so would somehow further the demon’s dark ends (GM’s discretion). It can be used in service of the caster’s comfort, however. Any attempts to bend demonic energies to positive ends may cause the demon to suspend the contract, preventing the caster from using demonic energies until it is suitably appeased. Any failure on a demonically assisted spell is treated as a critical failure; any critical failure is treated as if the caster had rolled an 18 on the Black Critical table (see p. 157).

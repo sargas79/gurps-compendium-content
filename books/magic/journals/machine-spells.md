@@ -1,0 +1,5 @@
+For the purpose of these rules, a machine is a tool that in some way uses, stores, or transforms power in order to do its job. Thus, a hand drill doesn’t qualify, but an electric drill does. A spring-powered pocketwatch is a machine, while a sundial is not. The GM has final say regarding any gray area.
+
+In some cases, it may be important to assign an attribute to a machine for purposes of determining spell resistance. For most purposes, the machine’s HT is appropriate for this purpose; most machines have HT 10, unless specified otherwise.
+
+Machine spells are intended for use on machines without sapience or free will; as a rule, they should not affect any being that would ordinarily be built as a character. They should affect most machines with IQ 5 or less, and some machines with the Automaton meta-trait. AIs and other sapient machines should be controlled with Communication and Empathy or Mind Control spells (though the GM may wish to assess a -4 penalty for controlling an “alien” mind). At the GM’s discretion, the more physical Machine spells, like Glitch or Malfunction, may work on sapient machines.

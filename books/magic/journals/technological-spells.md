@@ -1,0 +1,5 @@
+Traditionally, most magical settings are TL4 or below – pre-industrial. Introducing magic to a postindustrial setting, however, can create fascinating new developments for players and GMs to explore. In a setting where high technology and magic coexist, spells that manipulate and support the tools and features of the mechanized world must logically arise.
+
+Unlike other spells, many Tech spells are technological skills (p. B168) and must be learned at a particular TL. When a mage is expert with magic designed to interact with TL10 technology, he is at a penalty when trying to power a TL11 blaster or trying to drain the energy from a TL7 flashlight battery.
+
+These penalties also affect prerequisites. To use a Tech spell as a prerequisite, you must have it at the level associated with spending one character point on the spell. Thus, a mage trying to learn Reveal Function/TL9 must either know Seek Machine/TL9 at IQ-2, Seek Machine/TL10 at IQ-1 (to compensate for the -1 penalty), or Seek Machine/TL8 at IQ+3 (to compensate for the -5 penalty).

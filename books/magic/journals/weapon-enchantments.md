@@ -1,0 +1,1 @@
+Unless specified otherwise, the subject of any of these spells must be a weapon, and the last person to pick the item up is its “owner.” All these spells are permanent and require no energy expenditure on the user’s part.

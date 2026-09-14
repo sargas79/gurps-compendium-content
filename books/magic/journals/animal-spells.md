@@ -1,0 +1,7 @@
+These spells relate to animal control and communication. None of these spells give their subjects any special powers; animals controlled cannot do anything they are normally unable to do, but they will follow the caster’s mental commands to the best of their abilities. Likewise, the ability to talk to an animal only lets you learn what the animal knows and understands.
+
+Some spells apply to a single type of creature. The default assumption for these rules is that the animal kingdom is divided into five categories: Vermin (including worms, insects, and other creepy-crawly things), Fish (including most mollusks), Reptiles (including most amphibians), Birds, and Mammals. These categories are loosely based on the “life form” categories that cognitive anthropologists find in most human cultures. However, this pseudo-scientific taxonomy may not reflect the reality of every game setting. In some worlds, the animal categories may be Creatures of the Land, Creatures of the Air, and Creatures of the Sea. In others, every modern biological class may be represented, from Arachnida to Scyphozoa.
+
+The spells of this college only work on nonsapient animals, which typically means species with a racial IQ of 5 or less. There are a few animals, such as the apes, with racial IQ of 6; whether Animal spells or Mind and Body spells are more appropriate to use on them is up to the GM.
+
+All magical items of this college must depict the appropriate type of animal, or contain an inset piece of tooth or bone from that creature.

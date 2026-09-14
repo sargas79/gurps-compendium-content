@@ -1,0 +1,1 @@
+These spells have to do with the structure of magic itself. They are spells about spells, or spells that affect other spells. Only mages can learn meta-spells; even the most basic meta-spell requires Magery 1.
