@@ -4720,6 +4720,254 @@
     "description": "<p>Enchants a ring or an amulet that will turn the wearer into a wraith, an undead guardian sustained by magic. It attempts to affect the wearer every time it is put on. The spell is Resisted normally by HT. If the subject ever fails to resist (or chooses not to), he \"dies\" and rises as a wraith 24 hours later.</p><p>The GM determines the exact abilities of the wraith, but mental traits are preserved as per the Lich spell. The wraith always has a Dependency (p. B130) on the Wraith item (a rare item, required constantly, for -150 points), and shrivels and dies if it is removed or destroyed. This item isn't Hexed; the victim can remove it and die if he wishes. Only Remove Enchantment can reverse the Wraith spell without harm.</p><p>Each Wraith item can sustain one wraith at a time. Once a given item has produced a wraith, it has no effect on other wearers until its wraith has been destroyed. The Wraith spell has no effect on the undead.</p><p>At double energy cost, the enchanter can create an item that makes the wraith his undead servant. The wraith automatically gains Reprogrammable (p. B150) with the enchanter as his master in addition to his Dependency, and cannot remove the Wraith item himself.</p><p>At half cost, the enchanter can create an item that turns the wearer into an undead tomb guardian. This works exactly as a regular Wraith item, except that the undead gains Compulsive Behavior (Remain in tomb and guard it; kill abductors and return if forcibly removed from tomb) [-15].</p><p>This is also an Enchantment spell.</p><p><em>Item</em></p><p>A ring or funerary amulet, which need not be ornate.</p>"
   },
   {
+    "_id": "0412bcbbb4a2fbc6",
+    "name": "Seek Plant",
+    "pages": "M161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Obtains the direction and approximate distance of the nearest growth of plants, or of one specific plant type. Use the long-distance modifiers (p. 14). Any known plants may be excluded if the caster mentions them before casting.</p><p><em>Item</em></p><p>A carved wooden wand, staff, or figurine. Energy cost to create: 50.</p>"
+  },
+  {
+    "_id": "a2af21eb45528d9f",
+    "name": "Identify Plant",
+    "pages": "M161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Determines the type and species of any one plant. It also gives basic information about it (edible, poisonous, etc). A successful casting of this spell gives +3 to Naturalist or Physician skill for determining medicinal or other special properties of the plant.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "656c3ed63244a1c6",
+    "name": "Heal Plant",
+    "pages": "M161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heals plants within the area of disease, parasites, and damage. The plants must still be alive for the spell to work.</p><p><em>Item</em></p><p>Staff. The item must touch the plant. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "848346e4e16c91fb",
+    "name": "Shape Plant",
+    "pages": "M161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shape and mold plants and plant material with hands. Gives +2 to Carpentry and Artist (Woodworking), or allows the caster to work without any tools at -1 to skill. Useful for building houses and furniture, repairing shields and equipment, and removing wooden obstacles. It can be used on a foe's weapon in combat, doing 2d damage to wooden weapons; see Striking at Weapons (p. B400) for details on damaging weapons.</p><p><em>Item</em></p><p>Gloves of plant material. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "764e4677b1e57760",
+    "name": "Bless Plants",
+    "pages": "M161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the plants within the area of effect to grow faster and stronger for the rest of their growing season. The crop yield within the area of effect is doubled.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "dc21c4fb2b8b655e",
+    "name": "Hide Path",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enables the caster and up to five other man-sized creatures, or one caster on horseback, to pass through grass, undergrowth, or jungle without leaving any sign. Any tracking attempt made on this hidden path is at -8!</p><p><em>Item</em></p><p>Cloak of plant material. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "04ff0ac310b4a804",
+    "name": "Plant Growth",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the equivalent of one month's growth in one minute. Trees change only slightly, while weeds grow tremendously. Useful for gardening (after removing all the weeds!), and starting seeds.</p><p><em>Item</em></p><p>Staff or wand. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "23eb96f580cdc20a",
+    "name": "Plant Vision",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through vegetation to find overgrown buildings, lurking enemies, etc. Natural plant growth is transparent to the spell's subject. Magical plant growth, dead wood, and wooden constructions are not.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "13c3c2b2d35d59f9",
+    "name": "Pollen Cloud",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A cloud of pollen fills the area; anyone within it begins sneezing, weeping, and coughing. All victims suffer a -2 DX penalty for as long as they are in the cloud and for 3d turns thereafter.</p><p>The rate of dissipation depends on the area and the presence of wind; indoors, it usually lasts until the spell expires, but outdoors on a windy day it may last only 10 seconds or so.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "4f184f456011931f",
+    "name": "Blight",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the plants within the affected area to grow more slowly and more weakly for the rest of their growing season. The crop yield within the area is halved. Immediate effects include loss of leaves, fruit, and blossoms; the affected plants recover (partially) in the following days.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "226588f43bc4eab1",
+    "name": "Blossom",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes plants within the area of effect to bloom and bear fruit within the one-hour duration of the spell. To be affected, the entire plant must be within the area of effect. The plant remains in this condition for 24 hours, at the end of which it enters its fall phase - leaves of deciduous trees will turn color, blossoms and fruit drop off, etc. The spell may be limited to a single plant, or a single type of plant, at the time of casting.</p>"
+  },
+  {
+    "_id": "156884b71ba73954",
+    "name": "Conceal",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the local vegetation to grow quickly over any objects in the area, concealing them from casual inspection. Anyone looking into the area must make a Quick Contest (their Vision vs. the caster's skill), to notice objects hidden by the concealing growth. Large objects may be camouflaged into \"hills\" by growing a carpet of grass or moss over them.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "1498a238b1871296",
+    "name": "Forest Warning",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Nightingale (p. 167), but only works on areas with plants.</p><p><em>Item</em></p><p>Can be cast permanently on an area of plant growth. Energy cost to create: 100 per yard radius.</p>"
+  },
+  {
+    "_id": "e45d2c85ffe6e93f",
+    "name": "Tangle Growth",
+    "pages": "M162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes grass or other ground plants within the area to grow and become obstacles (movement cut to 1/2 Move, -2 to dodge), or bushes and low trees to grow into barriers that must be removed to pass. Treat such a barrier as a 3\" wooden slab (p. B558) per yard of width. Anyone in the area when the spell is cast may move normally on the next turn; only if they fail to leave will they be caught.</p><p><em>Item</em></p><p>An area may be made permanently \"tangled\" at a cost of 20 per yard radius for grass, or 30 per yard radius of trees and bushes.</p>"
+  },
+  {
+    "_id": "0d1aef858caa09ba",
+    "name": "Create Plant",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Brings forth vegetation where nothing grew before. Whether this vegetation survives depends on the area.</p><p><em>Item</em></p><p>Staff. Usable only by a mage. The item must touch the area where the plants are to be created. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "4574fefaedc46ef1",
+    "name": "False Tracks",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject leaves tracks that appear to be those of some animal or other being. Unwilling subjects resist with Will. A Quick Contest between a tracker's Tracking skill and the caster's Naturalist skill (or his skill with this spell, whichever is lower) determines whether or not the tracker is fooled.</p><p><em>Item</em></p><p>Footwear. The item must bear a picture of the animal or being whose tracks it leaves. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "f7c3865ec1e8947a",
+    "name": "Plant Sense",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject sees and hears minute details known by the plants around him - such as disturbances caused by passing or hiding creatures. This gives a +4 bonus to Tracking, a +2 bonus to all Sense rolls, and the ability to detect the presence of invisible or magically hidden creatures with a normal Sense roll. Works only in areas with thick plant growth (jungles, forests, etc.); may work at half effect (with no chance to sense invisible or magically hidden creatures) in sparser terrain.</p><p><em>Item</em></p><p>Staff or figurine. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "520f41aff08fd53d",
+    "name": "Rejuvenate Plant",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes a dead, dying, or old plant to undergo a sudden burst of life. Tables (or longbows!) sprout leaves, an aging fruit tree bears fruit once more, etc. Whether the plant can sustain this new vitality depends on its immediate surroundings. A rejuvenated chair would die slowly unless its legs could grow roots into nourishing soil, for example.</p><p><em>Item</em></p><p>Staff. Usable only by mages; the item must touch the subject. Energy cost to create: 700.</p>"
+  },
+  {
+    "_id": "5735472e642d9507",
+    "name": "Wither Plant",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes plants within the area to wither and die. The caster can choose to affect only one type of plant, or everything but one type of plant, if he wishes. Any large plants or animated vegetable foes should be assigned a HT score with which to resist this spell - see Animate Plant.</p><p><em>Item</em></p><p>Staff or wand of dead wood. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "f583a4e8efbc847d",
+    "name": "Walk Through Plants",
+    "pages": "M163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enables the subject to pass through grass, undergrowth, heavy forest or jungle without any hindrance from the vegetation. He can travel as if the land were open (normal movement rates); plants move aside to let him pass and then resume their previous position behind him.</p><p>The spell makes tracking difficult, giving a penalty from -1 to -8, depending on the thickness of the local vegetation. If used against Tangle Growth, a Quick Contest of spells must take place every second.</p><p><em>Item</em></p><p>Cloak of plant material. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "7ede1ad49e4d7017",
+    "name": "Walk Through Wood",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enables the subject to pass through solid wood (dead or alive) as if it were air. It does not open a passage so that others can follow, nor does it reveal what is on the other side . . . The subject should hold his breath, as the spell does not supply any air!</p><p>Should the spell end before the subject regains the open air, he is buried in wood. He is not automatically harmed, but suffocates (p. B436) if he cannot escape.</p><p><em>Item</em></p><p>Cloak of plant material. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "db1d00447bc565a1",
+    "name": "Plant Control",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control the actions of one large vegetable (any size) or a group of small ones, up to about 100 pounds total - useful only if the plant can move spontaneously to start with. Concentration is required. This spell will not work on a sapient vegetable (IQ 6 or higher). Note that this spell makes possible the use of Rider, Rider Within, Beast Possession, and similar spells on vegetable creatures. Plant Control is Resisted by Animate Plant.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 600 (will control any type of vegetable).</p>"
+  },
+  {
+    "_id": "27c4065a8fd65606",
+    "name": "Essential Wood",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transforms any intact wood into the magical essence of wood. Essential Wood is three times as strong as regular wood, with three times the HP and DR listed on p. B558, and three times the ability to support weight. It is difficult to ignite with regular flames (Highly Resistant, according to the chart on p. B433), but once lit burns three times as long. It also burns hotter, adding an extra point of damage to each die (this will even increase the heat of Essential Flame!).</p><p>Manufactured objects made of wood can be turned into objects made of Essential Wood; living plants, however, may not be transformed.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Cost to create: 800 energy.</p>"
+  },
+  {
+    "_id": "2265f7c95592abce",
+    "name": "Animate Plant",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Animation (p. 150), except only one living plant may be animated. An animated plant gains a HT score equal to twice the energy put into the spell. Note that woody plants often have a high DR and make frightening foes.</p><p>A sapient (IQ 6 or higher) plant may not be animated.</p>"
+  },
+  {
+    "_id": "f6d42820f62362b1",
+    "name": "Plant Form",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Assume the form of any natural plant or tree between 1/2 and five times your own size. Clothing vanishes, to reappear when you regain your form; large possessions fall to the ground, while small ones (up to bracelet or wand size) may remain imbedded in your plant form.</p><p>The caster cannot move about, attack, etc., unless a plant with those abilities exists in the game world and he takes that form, or unless Animate Plant is cast on his plant form. A wizard in plant shape may cast no spells unless he knows them so well that he can cast them without speech or gesture! He may hear normally but may not see except to sense light and darkness. He may not speak.</p><p>Injuries taken in plant form carry over proportionately. This means, for instance, that an arrow wound to a tree is a pinprick to a man; some GM flexibility is required here! Time spent in plant form automatically counts as \"rest\" unless the plant is under attack. However, he must roll against IQ every hour that he stays in plant form. A failed roll temporarily reduces his IQ by 1. If IQ drops to 5, he is trapped in plant form, with a plant's IQ, until someone else frees him with Remove Curse.</p><p><em>Item</em></p><p>Staff or wand. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "0f31b9b6e84b2478",
+    "name": "Plant Speech",
+    "pages": "M164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Converse\" with plants in a very rudimentary fashion (semi-telepathically; the mage must speak aloud). The older the plant, the more detailed the information that can be gained. For instance, grass could only tell that it had been stepped on recently (about a day), while an ancient oak could recall details of mounts, dress, aroma . . . Sapient vegetables can hold much better conversations.</p><p><em>Item</em></p><p>Staff. Energy cost to create: 750 for an item that will talk to one particular species, 2,000 for one that will talk to any plant.</p>"
+  },
+  {
+    "_id": "68629d2ef3163deb",
+    "name": "Rain of Nuts",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes a rain of nuts to fall within the area, issuing from the nearby trees as if they were suddenly filled with crazed squirrels. The noisy torrent plinks on helmets, stings bare skin, and interferes with missile fire. Any characters in the area take a -1 penalty to any tasks requiring concentration or skill, including combat and spellcasting. There's an additional visibility penalty of -1 per 8 yards distance, applied to missile attacks and Vision rolls. The caster may elect to exclude any in the area from the effects of the spell, focusing the \"ire\" of the wood on enemies.</p><p>This spell may only be cast outdoors, in a forest. It won't work in the dead of winter, or in very sparse woods. Depending on the species of trees, the nuts may turn out to be edible.</p><p>Human mages rarely use this spell (most feel it is beneath their dignity), but sylvan species and nature spirits use it to drive intruders from their woods.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "9a158be6e0ed4cfb",
+    "name": "Arboreal Immurement",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Entombment, except that a tree, instead of the earth, confines the subject. The subject is instantly swallowed by the nearest tree large enough to contain him. He remains in suspended animation (as with the spell; see p. 94) in a tiny cylindrical chamber inside the tree, until rescued by chopping through the tree or the cancellation of the spell.</p><p>A mage who casts Arboreal Immurement on himself may elect to stay awake, but this is unwise unless he can create air!</p><p><em>Modifiers:</em> Apply the long-distance modifier (p. 14) for the distance from the subject to the nearest tree large enough to hold him.</p><p><em>Item</em></p><p>Wand or staff. The item must be wooden, and works only with trees of that wood. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "9ff6b837c0bdf4d2",
+    "name": "Plant Form Other",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Plant Form, but usable on others. Only the caster or a Remove Curse spell can end the spell. IQ loss will soon transform the subject into a true vegetable!</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "d15e00beb7547e49",
+    "name": "Body of Wood",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject becomes an animated wooden statue, temporarily granting him the Body of Wood meta-trait (see box). Clothes (up to 6 pounds) also become wood, but lose any magic powers they might have had. He may still speak, cast spells, etc.</p><p>A subject under the effects of Body of Wood may also merge into wooden objects as if he had the Permeation (Wood) advantage (p. B75).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 1,300.</p>"
+  },
+  {
+    "_id": "5c21025df3b8a618",
+    "name": "Body of Slime",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The aquatic equivalent of Body of Wood. The subject becomes an animated mass of green slime - algae, pond scum, and other muck you might find in a swamp - temporarily granting him the Body of Slime meta-trait (see box). Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 1,300.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
