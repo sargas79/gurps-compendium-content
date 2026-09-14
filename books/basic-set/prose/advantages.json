@@ -115,9 +115,9 @@
     "_id": "c595de80a1f6fc96",
     "name": "360° Vision",
     "pages": "B34",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have a 360° field of vision. You have no penalty to defend against attacks from the sides or rear. You can attack foes to your sides or rear without making a Wild Swing, but you are at -2 to hit due to the clumsy angle of attack (note that some Karate techniques do not suffer this penalty). Finally, you are at +5 to detect Shadowing attempts, and are never surprised by a danger that comes from behind, unless it also is concealed from sight.</p><p>Extra eyes are merely a special effect of this trait - you can have any number of eyes, but the point cost remains the same.</p><p><em>Special Limitations</em></p><p><em>Easy to Hit:</em> Your eyes are on stalks, unusually large, or otherwise more vulnerable to attack. Others can target your eyes from within their arc of vision at only -6 to hit. -20%.</p>"
   },
   {
     "_id": "2bd2ee401e29fb32",
@@ -427,41 +427,41 @@
     "_id": "898cdc19d8e55c11",
     "name": "Extra Legs (3 Legs)",
     "pages": "B55",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you can walk on a limb but cannot use it to manipulate objects, it is a leg in GURPS (for legs that double as arms, see Extra Arms, p. 53). A normal leg can kick for thrust/crushing damage at your usual reach (1 yard for a human). The human norm is two legs, which costs 0 points. It costs points to have more than two legs:</p><p>Three or four legs: If you lose a leg, you can continue to move at half Move (round down). Loss of a second leg causes you to fall. 5 points.</p><p>Five or six legs: Each leg lost reduces Move by 20% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 10 points.</p><p>Seven or more legs: Each leg lost reduces Move by 10% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 15 points.</p><p>You can apply the following modifiers to all your legs:</p><p><em>Special Enhancements</em></p><p><em>Long:</em> Your legs are longer in proportion to your body than human legs relative to the human body. This increases your effective SM for the purpose of calculating reach when kicking (see Size Modifier and Reach, p. 402) and when clambering over obstacles. +100% per +1 to SM.</p><p><em>Special Limitations</em></p><p><em>Cannot Kick:</em> You cannot use your legs to kick for damage. -50%.</p><p><em>Modifying Beings With Two Legs</em></p><p>The modifiers above can be applied to creatures with only two legs. Point cost is equal to 1/10 the percentile modifier. For instance, a human with Cannot Kick (-50%) would have a -5-point disadvantage.</p>"
   },
   {
     "_id": "6866453a2e7c510f",
     "name": "Extra Legs (4 Legs)",
     "pages": "B55",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you can walk on a limb but cannot use it to manipulate objects, it is a leg in GURPS (for legs that double as arms, see Extra Arms, p. 53). A normal leg can kick for thrust/crushing damage at your usual reach (1 yard for a human). The human norm is two legs, which costs 0 points. It costs points to have more than two legs:</p><p>Three or four legs: If you lose a leg, you can continue to move at half Move (round down). Loss of a second leg causes you to fall. 5 points.</p><p>Five or six legs: Each leg lost reduces Move by 20% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 10 points.</p><p>Seven or more legs: Each leg lost reduces Move by 10% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 15 points.</p><p>You can apply the following modifiers to all your legs:</p><p><em>Special Enhancements</em></p><p><em>Long:</em> Your legs are longer in proportion to your body than human legs relative to the human body. This increases your effective SM for the purpose of calculating reach when kicking (see Size Modifier and Reach, p. 402) and when clambering over obstacles. +100% per +1 to SM.</p><p><em>Special Limitations</em></p><p><em>Cannot Kick:</em> You cannot use your legs to kick for damage. -50%.</p><p><em>Modifying Beings With Two Legs</em></p><p>The modifiers above can be applied to creatures with only two legs. Point cost is equal to 1/10 the percentile modifier. For instance, a human with Cannot Kick (-50%) would have a -5-point disadvantage.</p>"
   },
   {
     "_id": "21697a770e8b2956",
     "name": "Extra Legs (5 Legs)",
     "pages": "B55",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you can walk on a limb but cannot use it to manipulate objects, it is a leg in GURPS (for legs that double as arms, see Extra Arms, p. 53). A normal leg can kick for thrust/crushing damage at your usual reach (1 yard for a human). The human norm is two legs, which costs 0 points. It costs points to have more than two legs:</p><p>Three or four legs: If you lose a leg, you can continue to move at half Move (round down). Loss of a second leg causes you to fall. 5 points.</p><p>Five or six legs: Each leg lost reduces Move by 20% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 10 points.</p><p>Seven or more legs: Each leg lost reduces Move by 10% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 15 points.</p><p>You can apply the following modifiers to all your legs:</p><p><em>Special Enhancements</em></p><p><em>Long:</em> Your legs are longer in proportion to your body than human legs relative to the human body. This increases your effective SM for the purpose of calculating reach when kicking (see Size Modifier and Reach, p. 402) and when clambering over obstacles. +100% per +1 to SM.</p><p><em>Special Limitations</em></p><p><em>Cannot Kick:</em> You cannot use your legs to kick for damage. -50%.</p><p><em>Modifying Beings With Two Legs</em></p><p>The modifiers above can be applied to creatures with only two legs. Point cost is equal to 1/10 the percentile modifier. For instance, a human with Cannot Kick (-50%) would have a -5-point disadvantage.</p>"
   },
   {
     "_id": "c4be9482f4b16afc",
     "name": "Extra Legs (6 Legs)",
     "pages": "B55",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you can walk on a limb but cannot use it to manipulate objects, it is a leg in GURPS (for legs that double as arms, see Extra Arms, p. 53). A normal leg can kick for thrust/crushing damage at your usual reach (1 yard for a human). The human norm is two legs, which costs 0 points. It costs points to have more than two legs:</p><p>Three or four legs: If you lose a leg, you can continue to move at half Move (round down). Loss of a second leg causes you to fall. 5 points.</p><p>Five or six legs: Each leg lost reduces Move by 20% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 10 points.</p><p>Seven or more legs: Each leg lost reduces Move by 10% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 15 points.</p><p>You can apply the following modifiers to all your legs:</p><p><em>Special Enhancements</em></p><p><em>Long:</em> Your legs are longer in proportion to your body than human legs relative to the human body. This increases your effective SM for the purpose of calculating reach when kicking (see Size Modifier and Reach, p. 402) and when clambering over obstacles. +100% per +1 to SM.</p><p><em>Special Limitations</em></p><p><em>Cannot Kick:</em> You cannot use your legs to kick for damage. -50%.</p><p><em>Modifying Beings With Two Legs</em></p><p>The modifiers above can be applied to creatures with only two legs. Point cost is equal to 1/10 the percentile modifier. For instance, a human with Cannot Kick (-50%) would have a -5-point disadvantage.</p>"
   },
   {
     "_id": "da151f4ca89f4471",
     "name": "Extra Legs (7+ Legs)",
     "pages": "B55",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If you can walk on a limb but cannot use it to manipulate objects, it is a leg in GURPS (for legs that double as arms, see Extra Arms, p. 53). A normal leg can kick for thrust/crushing damage at your usual reach (1 yard for a human). The human norm is two legs, which costs 0 points. It costs points to have more than two legs:</p><p>Three or four legs: If you lose a leg, you can continue to move at half Move (round down). Loss of a second leg causes you to fall. 5 points.</p><p>Five or six legs: Each leg lost reduces Move by 20% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 10 points.</p><p>Seven or more legs: Each leg lost reduces Move by 10% until only three legs are left. At that point, your Move is 40% normal. Loss of another leg causes you to fall. 15 points.</p><p>You can apply the following modifiers to all your legs:</p><p><em>Special Enhancements</em></p><p><em>Long:</em> Your legs are longer in proportion to your body than human legs relative to the human body. This increases your effective SM for the purpose of calculating reach when kicking (see Size Modifier and Reach, p. 402) and when clambering over obstacles. +100% per +1 to SM.</p><p><em>Special Limitations</em></p><p><em>Cannot Kick:</em> You cannot use your legs to kick for damage. -50%.</p><p><em>Modifying Beings With Two Legs</em></p><p>The modifiers above can be applied to creatures with only two legs. Point cost is equal to 1/10 the percentile modifier. For instance, a human with Cannot Kick (-50%) would have a -5-point disadvantage.</p>"
   },
   {
     "_id": "d270e14037086266",
@@ -811,9 +811,9 @@
     "_id": "08c9cc8b9e1d43d9",
     "name": "Alternate Form",
     "pages": "B83",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like the werewolf of folklore, you can assume a specific form other than your own. This can be anything built with points: humanoid, animal, robot, etc. Create your alternate form as a racial template (p. 260); however, you can switch it \"on\" and \"off.\" This template need not be a \"stock\" template. For instance, if you wish to retain human intelligence in beast form, you could shift into a template that lacks the beast's low IQ (although this increases the template cost and hence the cost of Alternate Form). The GM is the final judge of what templates are allowed as Alternate Forms.</p><p>While it is turned on, your Alternate Form's racial template replaces your native racial template. Apply its racial traits - attribute modifiers, racial advantages and disadvantages, etc. - instead of those of your native race. Personal traits (including all attribute levels, advantages, disadvantages, and skills bought over and above racial norms) remain intact, although your skill levels are affected by changes to the controlling attribute scores.</p><p>If the Alternate Form's racial template has traits that conflict with your personal traits, the traits of your Alternate Form take precedence. For instance, if you become a dolphin with No Manipulators, you will temporarily lose personal advantages that affect your hands, such as High Manual Dexterity, while you are in dolphin form - and some skills (for instance, Lockpicking) will be relatively useless, although you do remember them.</p><p>If you have a single Alternate Form, it costs 15 points for a racial template worth no more than your native racial template. A more powerful form costs 15 points plus 90% of the difference in cost between your native template and that of your Alternate Form.</p><p>If you have multiple forms, pay full cost for the most expensive form. The less powerful Alternate Forms cost a flat 15 points apiece. Minimum cost per form is still 15 points.</p><p><em>Example:</em> Consider four racial templates: a -100-point \"cuddly critter,\" a 0-point human, an 80-point \"ravenous beast,\" and a 100-point troll. A human who can turn into a cuddly critter pays 15 points, as the cuddly critter template is worth less than his native template. A cuddly critter who can turn into a human pays 15 + (0.9 × 100) = 105 points, since the human racial template is worth 100 points more than his own. A human who can become a troll also pays 15 + (0.9 × 100) = 105 points. A human who can assume any of the other three templates would pay full cost for his most expensive form, the troll: 105 points. The ravenous beast and cuddly critter forms would cost the minimum 15 points apiece. Total cost would be 135 points.</p><p><em>Were-Creatures:</em> To create the classic \"were-creature,\" start by purchasing any trait that applies in both forms - Infectious Attack, Vulnerability (Silver), etc. - as a personal trait. Next, buy an animal template as an Alternate Form. Since most beast templates are worth 0 or fewer points, this will usually cost 15 points, but powerful creatures (e.g., bears and tigers) may cost more. If the beast form is savage, the template should include such traits as Berserk, Bestial, and Bloodlust. Finally, apply limitations such as Emergencies Only (p. 112), Unconscious Only (p. 115), and Uncontrollable (p. 116) to Alternate Form, as applicable. If you can only change during the full moon, add a -40% Trigger limitation (p. 115) as well.</p><p><em>Shapeshifting Races:</em> When creating an entire race that has Alternate Form, work out the details of Alternate Form last. Total the cost of all the race's traits other than Alternate Form, subtract this total from the cost of the template the race transforms into, and use the difference to calculate the cost of Alternate Form for the race. Add the cost of Alternate Form to that of the race's other abilities to determine final racial cost.</p><p><em>Example:</em> Forest Dwarves can turn into sapient bears. Excluding Alternate Form, the racial traits of Forest Dwarves total 25 points. The bear template is worth 125 points. The difference is 125 - 25 = 100 points. Thus, the cost of Alternate Form is 15 + (0.9 × 100) = 105 points. This makes the Forest Dwarf template worth 25 + 105 = 130 points.</p><p><em>Special Limitations</em></p><p><em>Cosmetic:</em> You can assume a second, distinct appearance with no change in abilities or racial template. -50%.</p>"
   },
   {
     "_id": "0cdb15b2448f4053",
@@ -939,9 +939,9 @@
     "_id": "ed00bcb21f764648",
     "name": "Teeth (Blunt Teeth)",
     "pages": "B91",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Anyone with a mouth has blunt teeth that can bite for thrust-1 crushing damage. This costs 0 points, and is typical of most herbivores. You have a more damaging bite:</p><p><em>Sharp Teeth:</em> Like those of most carnivores. Inflict thrust-1 cutting damage. 1 point.</p><p><em>Sharp Beak:</em> Like that of a bird of prey. Inflicts thrust-1 large piercing damage. 1 point.</p><p><em>Fangs:</em> Like those of a Smilodon. Inflict thrust-1 impaling damage. 2 points.</p>"
   },
   {
     "_id": "1264f5f04f6eebbb",
@@ -1395,17 +1395,17 @@
     "_id": "2c8ff9b724ddfd30",
     "name": "Jumper (Time)",
     "pages": "B64",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can travel through time or to parallel worlds (sometimes known as \"timelines\") merely by willing the \"jump.\" Decide whether you are a time-jumper or a world-jumper. To do both, you must buy Jumper (Time) and Jumper (World) separately, at full cost.</p><p>To initiate a jump, you must visualize your destination, concentrate for 10 seconds, and make an IQ roll. You may hurry the jump, but your roll will be at -1 per second of concentration omitted (-10 to jump with no preparation at all). Regardless of IQ, a roll of 14 or more always fails. On a success, you appear at your target destination. On a failure, you go nowhere. On a critical failure, you arrive at the wrong destination, which can be any time or world the GM wishes!</p><p>You appear at your destination at exactly the same place you left your previous time or world - or as close as possible. When jumping through time, this means the same place at a different time. When jumping between worlds, this means the same place at the same time, but on a parallel world.</p><p>If there is no corresponding \"safe\" location within 100 yards of your destination - for instance, if you jump while on an airplane to a destination with no plane at your location, or from a half-mile deep mine to a destination with no corresponding mine - the jump will fail and you will know why it failed. This does not prevent you from jumping into other types of danger, such as radiation, gunfire, or wild animals. If you have Danger Sense, the GM should roll before you make a hazardous jump; on a success, you get a warning.</p><p>This ability always costs at least 1 FP to use, whether it succeeds or fails. Particularly \"distant\" times or worlds might cost more, perhaps up to 10 FP, at the GM's discretion. If you are a machine, this ability does not cost you FP - but if you have passengers, each of them must pay the FP cost.</p><p>For an example of how Jumper might work in a particular game world, see World-Jumpers (p. 544).</p><p><em>Carrying Things</em></p><p>You can carry up to Basic Lift when you travel, plus any Payload (see p. 74). Take the Extra Carrying Capacity enhancement (below) if you wish to carry more weight, or bring along other people.</p><p>However, if multiple Jumpers of the same kind are in physical contact, when one jumps, the others can \"hitch a ride\" if they wish - even if the Jumper who initiates the jump does not want company. Only the person initiating the jump makes a die roll; wherever he ends up, the others do, too.</p><p>If you are a world-jumper, \"hitch-ing a ride\" is the only way to visit a new parallel world (save for a critical failure!). However, once you reach a world, you can memorize its \"feel\" by concentrating and spending character points to \"learn\" that world as an IQ/Easy skill. This takes one hour per point you wish to spend. Use this skill in place of IQ when you travel to that world in the future. You never have to memorize a world, but if you do not, you roll at IQ-3 to attempt to return.</p><p>Time-jumpers have no similar restriction.</p><p>You can improve this ability with practice, spending points to add enhancements or remove limitations. GMs who do not want the PCs jumping multiple times per adventure are free to impose mandatory limitations (e.g., Limited Use) that cannot be bought off.</p><p><em>Special Enhancements</em></p><p><em>Extra Carrying Capacity:</em> You can carry more than your Basic Lift. If your carrying capacity is high enough, you may transport one person with you. Light encumbrance is +10%; Medium, +20%; Heavy, +30%; Extra-Heavy, +50%.</p><p><em>New Worlds:</em> This is only available for world-jumpers. You can deliberately aim for worlds you haven't visited. The IQ roll is always at -3 or worse (GM's decision). Of course, it is always possible that the desired destination does not exist, in which case the attempt automatically fails - although the GM will not tell you why. All FP costs are doubled when using this enhancement. +50%.</p><p><em>Omni-Jump:</em> This is only available if you are both a world-jumper and a time-jumper! You must apply it to both Jumper advantages. This lets you move between times and timelines on a single IQ roll - for instance, from the present day in our timeline to 1066 A.D. in a parallel timeline where the Norman invasion of England failed. +10%.</p><p><em>Tracking:</em> You can travel to the \"home\" time or world of any manmade artifact you can hold or touch. Time-jumpers will arrive shortly after the item was created; world-jumpers will arrive at the current date on the item's home timeline. Any such attempt is at IQ-2, and each Jumper only gets one try per artifact. +20%.</p><p><em>Tunnel:</em> You always create a portal (of about your size) when you jump. Others may pass through it, even if they can't jump. The portal lingers for 3d seconds, which can be good or bad - it means enemies can follow you! +40%.</p><p><em>Warp Jump:</em> This enhancement is only available if you have the Warp advantage (p. 97). You must apply it to both Jumper and Warp. When you jump, you can simultaneously use Warp to appear anywhere at your destination. Two die rolls are necessary - one per ability - and it is possible for one to succeed while the other fails, or for both to fail. +10%.</p><p><em>Special Limitations</em></p><p><em>Cannot Escort:</em> This is only available for world-jumpers. Other Jumpers cannot \"hitch a ride,\" even if you want to bring them along. -10%.</p><p><em>Cannot Follow:</em> This is only available for world-jumpers. You cannot \"hitch a ride\" with another Jumper. -20%.</p><p><em>Drift:</em> You do not arrive in exactly the location you left from. You won't arrive in thin air or underground, but you may show up anywhere within 10 miles of your planned destination. The better your IQ roll when you jump, the closer you will be to where you wanted to arrive, but it's the GM's call as to exactly where you appear. -15%.</p><p><em>Limited Jump:</em> You can only travel a certain distance through time, or a certain number of \"removes\" between parallel worlds, per jump. To go further, you must make multiple hops. The GM must set the value of this limitation for his campaign; it will be more of a handicap in some settings than in others. A suggested value is -10%.</p><p><em>Maximum Range:</em> You can only jump a certain total distance through time, or a certain number of \"removes\" between parallel worlds, no matter how many hops you make. Like Limited Jump, the GM must set the value of this limitation.</p><p><em>Naked:</em> You can carry nothing when you jump! You always arrive naked. -30%.</p><p><em>Stunning:</em> You are always mentally stunned after a jump. -10%.</p>"
   },
   {
     "_id": "6f12bc1e039fa3d9",
     "name": "Jumper (World)",
     "pages": "B64",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can travel through time or to parallel worlds (sometimes known as \"timelines\") merely by willing the \"jump.\" Decide whether you are a time-jumper or a world-jumper. To do both, you must buy Jumper (Time) and Jumper (World) separately, at full cost.</p><p>To initiate a jump, you must visualize your destination, concentrate for 10 seconds, and make an IQ roll. You may hurry the jump, but your roll will be at -1 per second of concentration omitted (-10 to jump with no preparation at all). Regardless of IQ, a roll of 14 or more always fails. On a success, you appear at your target destination. On a failure, you go nowhere. On a critical failure, you arrive at the wrong destination, which can be any time or world the GM wishes!</p><p>You appear at your destination at exactly the same place you left your previous time or world - or as close as possible. When jumping through time, this means the same place at a different time. When jumping between worlds, this means the same place at the same time, but on a parallel world.</p><p>If there is no corresponding \"safe\" location within 100 yards of your destination - for instance, if you jump while on an airplane to a destination with no plane at your location, or from a half-mile deep mine to a destination with no corresponding mine - the jump will fail and you will know why it failed. This does not prevent you from jumping into other types of danger, such as radiation, gunfire, or wild animals. If you have Danger Sense, the GM should roll before you make a hazardous jump; on a success, you get a warning.</p><p>This ability always costs at least 1 FP to use, whether it succeeds or fails. Particularly \"distant\" times or worlds might cost more, perhaps up to 10 FP, at the GM's discretion. If you are a machine, this ability does not cost you FP - but if you have passengers, each of them must pay the FP cost.</p><p>For an example of how Jumper might work in a particular game world, see World-Jumpers (p. 544).</p><p><em>Carrying Things</em></p><p>You can carry up to Basic Lift when you travel, plus any Payload (see p. 74). Take the Extra Carrying Capacity enhancement (below) if you wish to carry more weight, or bring along other people.</p><p>However, if multiple Jumpers of the same kind are in physical contact, when one jumps, the others can \"hitch a ride\" if they wish - even if the Jumper who initiates the jump does not want company. Only the person initiating the jump makes a die roll; wherever he ends up, the others do, too.</p><p>If you are a world-jumper, \"hitch-ing a ride\" is the only way to visit a new parallel world (save for a critical failure!). However, once you reach a world, you can memorize its \"feel\" by concentrating and spending character points to \"learn\" that world as an IQ/Easy skill. This takes one hour per point you wish to spend. Use this skill in place of IQ when you travel to that world in the future. You never have to memorize a world, but if you do not, you roll at IQ-3 to attempt to return.</p><p>Time-jumpers have no similar restriction.</p><p>You can improve this ability with practice, spending points to add enhancements or remove limitations. GMs who do not want the PCs jumping multiple times per adventure are free to impose mandatory limitations (e.g., Limited Use) that cannot be bought off.</p><p><em>Special Enhancements</em></p><p><em>Extra Carrying Capacity:</em> You can carry more than your Basic Lift. If your carrying capacity is high enough, you may transport one person with you. Light encumbrance is +10%; Medium, +20%; Heavy, +30%; Extra-Heavy, +50%.</p><p><em>New Worlds:</em> This is only available for world-jumpers. You can deliberately aim for worlds you haven't visited. The IQ roll is always at -3 or worse (GM's decision). Of course, it is always possible that the desired destination does not exist, in which case the attempt automatically fails - although the GM will not tell you why. All FP costs are doubled when using this enhancement. +50%.</p><p><em>Omni-Jump:</em> This is only available if you are both a world-jumper and a time-jumper! You must apply it to both Jumper advantages. This lets you move between times and timelines on a single IQ roll - for instance, from the present day in our timeline to 1066 A.D. in a parallel timeline where the Norman invasion of England failed. +10%.</p><p><em>Tracking:</em> You can travel to the \"home\" time or world of any manmade artifact you can hold or touch. Time-jumpers will arrive shortly after the item was created; world-jumpers will arrive at the current date on the item's home timeline. Any such attempt is at IQ-2, and each Jumper only gets one try per artifact. +20%.</p><p><em>Tunnel:</em> You always create a portal (of about your size) when you jump. Others may pass through it, even if they can't jump. The portal lingers for 3d seconds, which can be good or bad - it means enemies can follow you! +40%.</p><p><em>Warp Jump:</em> This enhancement is only available if you have the Warp advantage (p. 97). You must apply it to both Jumper and Warp. When you jump, you can simultaneously use Warp to appear anywhere at your destination. Two die rolls are necessary - one per ability - and it is possible for one to succeed while the other fails, or for both to fail. +10%.</p><p><em>Special Limitations</em></p><p><em>Cannot Escort:</em> This is only available for world-jumpers. Other Jumpers cannot \"hitch a ride,\" even if you want to bring them along. -10%.</p><p><em>Cannot Follow:</em> This is only available for world-jumpers. You cannot \"hitch a ride\" with another Jumper. -20%.</p><p><em>Drift:</em> You do not arrive in exactly the location you left from. You won't arrive in thin air or underground, but you may show up anywhere within 10 miles of your planned destination. The better your IQ roll when you jump, the closer you will be to where you wanted to arrive, but it's the GM's call as to exactly where you appear. -15%.</p><p><em>Limited Jump:</em> You can only travel a certain distance through time, or a certain number of \"removes\" between parallel worlds, per jump. To go further, you must make multiple hops. The GM must set the value of this limitation for his campaign; it will be more of a handicap in some settings than in others. A suggested value is -10%.</p><p><em>Maximum Range:</em> You can only jump a certain total distance through time, or a certain number of \"removes\" between parallel worlds, no matter how many hops you make. Like Limited Jump, the GM must set the value of this limitation.</p><p><em>Naked:</em> You can carry nothing when you jump! You always arrive naked. -30%.</p><p><em>Stunning:</em> You are always mentally stunned after a jump. -10%.</p>"
   },
   {
     "_id": "5460dd41ccf80939",
@@ -1803,9 +1803,9 @@
     "_id": "99b0b805e358175b",
     "name": "Improved G-Tolerance",
     "pages": "B60",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can function under a wide range of gravities. For a normal human, the penalties for non-native gravity accrue in increments of 0.2G; see Different Gravity (p. 350). A larger increment costs points: 5 points for 0.3G, 10 points for 0.5G, 15 points for 1G, 20 points for 5G, and 25 points for 10G. Normal humans are limited to 10 points in this trait.</p>"
   },
   {
     "_id": "05dce78930ab2b7e",
@@ -2027,17 +2027,17 @@
     "_id": "8865a04a7f46b179",
     "name": "Enhanced Parry (Bare Hands)",
     "pages": "B51",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have +1 to your Parry score. You may take this advantage for bare hands (5 points), for any one Melee Weapon skill (5 points), or for all parries (10 points). 5 or 10 points.</p><p>This talent is definitely cinematic! The GM might require Trained By A Master (p. 93) or Weapon Master (p. 99) as a prerequisite. He may choose to allow warriors to buy this trait with earned points. He might even permit multiple levels of each Enhanced Defense, in which case the point cost is per +1 bonus. Note that bonuses larger than +3 are almost certainly unbalanced, even in \"over-the-top\" games!</p>"
   },
   {
     "_id": "7aca934e21592085",
     "name": "Enhanced Parry (All Parries)",
     "pages": "B51",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have +1 to your Parry score. You may take this advantage for bare hands (5 points), for any one Melee Weapon skill (5 points), or for all parries (10 points). 5 or 10 points.</p><p>This talent is definitely cinematic! The GM might require Trained By A Master (p. 93) or Weapon Master (p. 99) as a prerequisite. He may choose to allow warriors to buy this trait with earned points. He might even permit multiple levels of each Enhanced Defense, in which case the point cost is per +1 bonus. Note that bonuses larger than +3 are almost certainly unbalanced, even in \"over-the-top\" games!</p>"
   },
   {
     "_id": "a52158e7215adf74",
@@ -2059,9 +2059,9 @@
     "_id": "e90d8b8e6d6c77b9",
     "name": "G-Experience",
     "pages": "B57",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have experience working in one or more gravitational fields other than your native one, and your reflexes adapt quickly to the way objects move and fall in those fields. You suffer only half the usual DX penalty for different gravity (see Different Gravity, p. 350). In situations where low gravity would make a task easier, you roll at full DX, plus the bonus for low gravity, plus an extra +1. For instance, if a normal person would get +2 to catch a ball in low gravity, you would get +3.</p><p>This trait costs 1 point per gravity field with which you have experience. For instance, an Earth native who works on the moon might have G-Experience (0.16G). To enjoy the benefits of G-Experience in all gravity fields, buy G-Experience (All) for 10 points.</p>"
   },
   {
     "_id": "ae504d126d0e0536",
@@ -2227,9 +2227,9 @@
     "_id": "e79f6a305d8b3622",
     "name": "Musical Ability",
     "pages": "B90",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Group Performance (Conducting), Musical Composition, Musical Influence, Musical Instrument, and Singing. Reaction bonus: anyone listening to or critiquing your work. 5 points/level.</p>"
   },
   {
     "_id": "03a60fcfd7a26614",
@@ -2283,9 +2283,9 @@
     "_id": "b92bd1d66a4abbee",
     "name": "Weapon Master (Targets)",
     "pages": "B99",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have a high degree of training or unnerving talent with a particular class of muscle-powered weapons (swords, bows, etc. - not guns). Available classes are:</p><p>All muscle-powered weapons. 45 points.</p><p>A large class of weapons. Examples: all bladed weapons, all one-handed weapons. 40 points.</p><p>A medium class of weapons. Examples: all swords, all ninja weapons. 35 points.</p><p>A small class of weapons. Examples: fencing weapons (main-gauche, rapier, saber, and smallsword), knightly weapons (broadsword, mace, shield, and lance). 30 points.</p><p>Two weapons normally used together. Examples: broadsword and shield, rapier and main-gauche. 25 points.</p><p>One specific weapon. 20 points.</p><p>In all cases, if a weapon can be thrown, the benefits of this advantage also apply when throwing that weapon.</p><p>When using a suitable weapon, add +1 per die to basic thrust or swing damage if you know the relevant weapon skill at DX+1. Add +2 per die if you know that skill at DX+2 or better. You also have half the usual penalty to make a Rapid Strike (see Melee Attack Options, p. 369), or to parry more than once per turn (see Parrying, p. 376). None of these benefits apply to default use.</p><p>You are familiar with - if not proficient in - every weapon within your class. This gives you an improved default: DX/Easy weapon skills default to DX-1, DX/Average ones to DX-2, and DX/Hard ones to DX-3. Note that these skills are no easier to learn, and may not be \"bought up\" from the improved defaults in order to save points.</p><p>Finally, you may learn any cinematic skill that names this advantage as a prerequisite (see Chapter 4) - e.g., Blind Fighting and Power Blow - if you could reasonably use that skill with your weapons of choice. The GM is the final arbiter in all cases.</p><p>This trait is best suited to a \"cinematic\" swashbuckling game. The GM may wish to forbid it in a realistic campaign.</p>"
   },
   {
     "_id": "ca87dc12df157d9b",
@@ -2459,9 +2459,9 @@
     "_id": "9e36de5b08702b10",
     "name": "Legal Immunity",
     "pages": "B65",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are exempt from some or all of the laws of your society.</p><p>Should you break the law, ordinary law enforcers do not have the power to charge you. Only one particular authority - your own church or social class, a special court, perhaps even your ruler - can judge or punish you.</p><p>The point cost depends on how sweeping the immunity is (GM's judgment):</p><ul><li>You are not subject to ordinary laws, but the rules that govern your behavior are just as strict.</li></ul><p><em>Examples:</em> a medieval abbot or a modern UN observer. 5 points.</p><ul><li>As above, but the laws that apply to you are less strict than those that apply to most people. Example: a medieval bard (see below). 10 points.</li><li>You can do nearly anything you please provided you don't injure the nation, church, or other power that granted you Legal Immunity in the first place. Examples: a medieval duke or an international diplomat (see below). 15 points.</li></ul><p>For an extra 5 points, you may add \"diplomatic pouch\" privileges: you can send and receive mail or objects that the ordinary authorities cannot legally stop or examine.</p><p>Two classes of Legal Immunity are of special interest to adventurers:</p><p><em>Bardic Immunity:</em> You have the right to sing what you please without fear of serious consequences. You may even sing a grossly insulting song to the king - you might get banished for it, but you can't be whipped, imprisoned, or killed. Anyone who violates your immunity risks damage to his name and reputation. Other bards will compose and distribute vicious satires about him, giving him a bad Reputation. They might even expose a Secret, if he has one! This advantage applies to the content of your performances and nothing else. It is only available to true bards, in fantasy/medieval settings. To qualify for this advantage, you must spend at least 1 point apiece on the Performance, Poetry, and Singing skills. 10 points.</p><p><em>Diplomatic Immunity:</em> You are an international diplomat. You may ignore the laws of all countries except your own. While abroad, you cannot be prosecuted for any crime, no matter how grave; the local police may arrest you, but they cannot press charges. The only recourse for a foreign government is to declare you persona non grata. This means you must leave the country at once, ending your current assignment - and possibly your career. Foreign powers may request your extradition for normal prosecution, but your government is unlikely to comply. This trait always comes with a Duty (p. 133) to a government agency, and often has some level of Administrative Rank (p. 30) as a prerequisite. 20 points.</p>"
   },
   {
     "_id": "a3b140e44e88087b",
