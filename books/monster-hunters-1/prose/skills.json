@@ -120,11 +120,59 @@
     "description": "<p>Where shamans view spirits as equals, Voodoo practitioners see them as tools of the divine; the believer worships the Creator by honoring these loa. Disciplines of Faith fits a mysterious bokor (\"sorcerer\"), while a community-oriented houngan (\"priest\") needs Sense of Duty.</p><p><strong>Free-Willed Spirits (fae, in-betweeners, etc.):</strong> Hidden Lore (Free Spirits) (A) IQ [2]; Theology (Shamanic or Voodoo) (H) IQ-1 [2].</p><p><strong>Zombies (and skeletons, etc.):</strong> Hidden Lore (Restless Undead) (A) IQ [2]; Theology (Voodoo) (H) IQ-1 [2].</p>"
   },
   {
+    "_id": "b33e1e4bdef97d90",
+    "name": "Blade!",
+    "pages": "MH1:29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>From swords to spears to axes, you're a master of any edged weapon. Use this skill to wield any melee weapon that does cutting, impaling, or piercing damage - including Axe/Mace, Broadsword, Knife, Polearm, Rapier, Saber, Shortsword, Smallsword, Spear, Two-Handed Axe/Mace, and Two-Handed Sword. It doesn't allow for crushing attacks, however; e.g., it replaces Axe/Mace for hatchets, but not maces. It doesn't replace Thrown Weapon or any ranged skills - this is for melee combat.</p><p>You can roll against this skill for any physical action in which your weapon is being used as a tool. For example, you may use it as Forced Entry to cut through a lock (or door!), as Climbing when using knives as improvised pitons, and as Acrobatics when dodging (p. B375) during a sword fight or using your longsword as a vaulting lever. It also replaces any roll required to grab, ready, or retain a bladed weapon, including all specialties of Fast-Draw, Dropping, or Throwing rolls to toss a bladed weapon to a friend, and DX rolls to catch one.</p><p>Make an IQ-based roll for Holdout to conceal a blade or a Per-based roll for Observation or Search to find one (even an improvised one). A Will-based roll replaces Intimidation when you have such a weapon in hand. An IQ-based roll also replaces all rolls against skills like Armoury, Connoisseur, Current Affairs, Merchant, or Streetwise when it comes to buying, pricing, recognizing, repairing, or selling bladed weapons.</p>"
+  },
+  {
     "_id": "9285e1cdca0bab6d",
     "name": "Blunt!",
     "pages": "MH1:20",
     "status": "reviewed",
     "notes": "",
     "description": "<p>If desired, you can shift your weapon choices from edged to impact attacks - just turn Blade! into Blunt! (which is similar, but covers sticks, maces, flails, kusaris, whips, and so on).</p>"
+  },
+  {
+    "_id": "728a09ff51229a21",
+    "name": "Inventor!",
+    "pages": "MH1:29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can create anything - at least, in theory. This skill replaces all specialties of Bioengineering and Engineer, and acts as a Mathematics prerequisite for any other skill. More important, it can replace any skill roll required for inventing (p. B473) or gadgeteering (p. B475)! This includes Concept, Prototype, analysis, and modification rolls - everything except the roll for a gadgeteer to find parts (which is usually covered by Scrounging, but sometimes requires a more specialized skill).</p><p>You're equally comfortable reverse-engineering a psychotronic death ray or trying to modify the outcome an enchanted orrery will have on a ritual - as long as there's some technological tie-in, it all makes sense to you.</p>"
+  },
+  {
+    "_id": "cb34832fc4fc6dd8",
+    "name": "Lore!",
+    "pages": "MH1:30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have studied The Enemy every moment of your waking life, until you can recite obscure facts about even the most minor opponents in your sleep. You can use this skill for any roll to identify or discover information about a monster or a rogue. It can stand in for Biology, Diagnosis, Expert Skill (Psionics), Physics (Paraphysics), Psychology, Thaumatology, Theology, and Veterinary for this purpose; e.g., you can use Lore! as Veterinary to identify a lycanthrope, but not to treat a horse's cough. It includes all monster-related specialties of Hidden Lore. If the GM introduces a completely new threat to the game, you will not know anything about it, but you may use Lore! to make educated guesses about its behavior, physiology, etc., based on what details you can observe.</p><p>Lore! replaces Occultism and Research for all purposes. You may use it in place of Criminology, Intelligence Analysis, Observation (with a Per-based roll), Psychology, and Tactics when attempting to outwit a supernatural foe, divine its motivation, or predict its actions. Your natural instinct regarding The Enemy allows you to roll against Lore! instead of IQ (if better) when using Empathy to recognize monsters disguised as humans. It replaces Area Knowledge, Current Affairs, and History for researching local monsters. When combing through a former lair or a scene where monsters attacked, you may use this skill as Forensics and (Per-based) Search. And when all else fails, if you use Intuition to guess where the monsters are or what they're doing, you may roll against the better of Lore! or IQ.</p><p>While Lore! does replace Thaumatology for questions about magic, it does not enable casting in any way. Points in Lore! do count as Hidden Lore (Angels or Demons) for the purpose of learning Adamic or Demontongue (p. 24); with 12+ points in Lore!, you may learn both at Native. You may also use Lore! in place of Exorcism - at the usual -4 penalty if you lack holy advantages.</p>"
+  },
+  {
+    "_id": "9cb0f04047adc482",
+    "name": "Medic!",
+    "pages": "MH1:30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have the hands of a healer. You may use this skill to do anything found in the job description of a doctor, nurse, or pharmacist - including low-tech versions. For modern medical care, it replaces Diagnosis, Esoteric Medicine, Expert Skill (Epidemiology), Hazardous Materials (Biological), First Aid, Hypnotism, Physician, Psychology, and Surgery. Your knowledge about the human body acts as Bioengineering, Biology (Biochemistry), and Physiology - and you even know enough about nonhuman bodies to use Veterinary.</p><p>When attempting to diagnose, treat, or create any sort of ingestible drug or toxin - prescription or otherwise! - you can use it as Chemistry, Herb Lore, Naturalist, Pharmacy, and Poisons. Remember that you don't suffer from penalties for low-TL methods - you can apply Medic! to synthesize a cure in a modern lab or to grind one out with a mortar and pestle using raw plants. When you are working with high-tech, this skill replaces Computer Operation (for medical systems) and Electronics Operation (Medical or Scientific), and acts as Forensics for autopsy purposes.</p><p>You keep up on the latest innovations and knowledge in the field, allowing access to Current Affairs (Science &amp; Technology), Research, and the modest amount of Law (Criminal) that applies to medical cases. Treat this as Administration and Diplomacy when dealing with medical records personnel or similar folks. You can even use Medic! for an Influence roll to request aid from any medical professional!</p>"
+  },
+  {
+    "_id": "282076ee3e0b20dc",
+    "name": "Talker!",
+    "pages": "MH1:30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You always know what to say and how to say it! You can use this skill to elicit a desired, reasonable reaction from anyone - whether fear, anger, or the willingness to help you out. Specifically, it replaces all Influence skills (p. B359) - Diplomacy, Fast-Talk, Intimidation (with a Will-based roll), Savoir-Faire, Sex Appeal (with a HT-based roll), and Streetwise - but also similar skills like Administration, Carousing (with a HT-based roll), Fortune-Telling, and Politics, when used in a social manner. This is not a limited list; if an NPC judge will only respond to Law skill, then Talker! can replace Law . . . to get a good reaction, not to defend yourself in court!</p><p>You may use this skill as Interrogation for casual conversations (not torture!) and as Merchant for haggling (but not estimating value). It completely replaces Acting, Leadership, Propaganda, Public Speaking, and Teaching, all of which rely upon communicating particular concepts (whether true or not) to others.</p>"
+  },
+  {
+    "_id": "a5acf3081d6e8b33",
+    "name": "Ten-Hut!",
+    "pages": "MH1:31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You were part of an elite group of soldiers, and your training is as sharp as ever; essentially, this skill is Soldier, but cranked to 11. This can replace any skill to use or repair military gear appropriate to the setting, as well as any skill to repair (but not use) military weapons. In a modern game, this includes Armoury (Body Armor, Heavy Weapons, and Small Arms), Electronics Operation and Repair (Comm, EW, and Sensors), Engineer (Combat), Explosives, First Aid, Mechanic (for military vehicles), Parachuting (make a DX-based roll), or Scuba.</p><p>When in the field, you may use this skill instead of Camouflage or Gesture to stay unobserved; make a DX-based roll for Stealth or a HT-based roll for Hiking or Running. It replaces Forward Observer for calling in support strikes. When on a base, you never get lost and understand how buildings are laid out - treat this as Area Knowledge (but only for questions like, \"Where's the mess hall?\") and Architecture - and you can roll (as Acting) to fit in and convince others that you belong there.</p><p>You understand military psychology - this skill may stand in for Interrogation, Leadership, Propaganda, or Savoir-Faire (Military), depending on who you're dealing with. You may roll in place of Intelligence Analysis, Strategy, or Tactics to discover or plan any combat involving multiple fighters on each side. This skill also replaces all social skills when dealing with a member of the military, as a member of the military (whether you are one or are just posing as one), discussing military business.</p>"
   }
 ]
