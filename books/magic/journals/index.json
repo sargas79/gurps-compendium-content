@@ -301,6 +301,137 @@
       "reference": "Magic p. 15",
       "file": "designing-wizard-characters.md",
       "status": "reviewed"
+    },
+    {
+      "id": "magic-items",
+      "title": "Magic Items",
+      "chapter": "Magic Items",
+      "pages": "M16",
+      "reference": "Magic p. 16",
+      "rule": "magicItems",
+      "file": "magic-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enchanting",
+      "title": "Enchanting",
+      "chapter": "Magic Items",
+      "pages": "M16-18",
+      "reference": "Magic pp. 16-18",
+      "rule": "magicItems",
+      "file": "enchanting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "controlling-pc-enchantment",
+      "title": "Controlling PC Enchantment",
+      "chapter": "Magic Items",
+      "pages": "M17",
+      "reference": "Magic p. 17",
+      "file": "controlling-pc-enchantment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiply-enchanted-items",
+      "title": "Multiply Enchanted Items",
+      "chapter": "Magic Items",
+      "pages": "M18",
+      "reference": "Magic p. 18",
+      "rule": "magicItems",
+      "file": "multiply-enchanted-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enchantments-without-items",
+      "title": "Enchantments Without Items",
+      "chapter": "Magic Items",
+      "pages": "M18",
+      "reference": "Magic p. 18",
+      "rule": "magicItems",
+      "file": "enchantments-without-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "enchantments-without-spells",
+      "title": "Enchantments Without Spells",
+      "chapter": "Magic Items",
+      "pages": "M18",
+      "reference": "Magic p. 18",
+      "file": "enchantments-without-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "interruptions",
+      "title": "Interruptions",
+      "chapter": "Magic Items",
+      "pages": "M18",
+      "reference": "Magic p. 18",
+      "file": "interruptions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-magic-items",
+      "title": "Using Magic Items",
+      "chapter": "Magic Items",
+      "pages": "M19",
+      "reference": "Magic p. 19",
+      "rule": "magicItems",
+      "file": "using-magic-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "controlling-magic-items",
+      "title": "Controlling Magic Items",
+      "chapter": "Magic Items",
+      "pages": "M19",
+      "reference": "Magic p. 19",
+      "file": "controlling-magic-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "buying-magic-items",
+      "title": "Buying Magic Items",
+      "chapter": "Magic Items",
+      "pages": "M20-21",
+      "reference": "Magic pp. 20-21",
+      "file": "buying-magic-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "powerstone-costs",
+      "title": "Powerstone Costs",
+      "chapter": "Magic Items",
+      "pages": "M20",
+      "reference": "Magic p. 20",
+      "file": "powerstone-costs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "selling-magic-items",
+      "title": "Selling Magic Items",
+      "chapter": "Magic Items",
+      "pages": "M21",
+      "reference": "Magic p. 21",
+      "file": "selling-magic-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "economics-and-enchantment",
+      "title": "Economics and Enchantment",
+      "chapter": "Magic Items",
+      "pages": "M21-22",
+      "reference": "Magic pp. 21-22",
+      "file": "economics-and-enchantment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "spell-descriptions",
+      "title": "Spell Descriptions",
+      "chapter": "Magic Items",
+      "pages": "M22",
+      "reference": "Magic p. 22",
+      "file": "spell-descriptions.md",
+      "status": "reviewed"
     }
   ]
 }
