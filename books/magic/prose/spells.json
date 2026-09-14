@@ -5720,6 +5720,350 @@
     "description": "<p>The subject becomes an animated statue of plastic, temporarily granting him the Body of Plastic meta-trait (see box). Clothes (up to 6 pounds) also become plastic, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 2,500.</p>"
   },
   {
+    "_id": "db4a0ceb5dc2fb1f",
+    "name": "Seek Coastline",
+    "pages": "M184",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells a caster at sea the direction and approximate distance of the nearest coastline. Use long-distance modifiers (p. 14). Any known coastline, such as that of a nearby island, may be excluded if the caster specifically mentions it during casting.</p>"
+  },
+  {
+    "_id": "0736e2e14a53249b",
+    "name": "Umbrella",
+    "pages": "M185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Walk in any slight precipitation without getting wet. An invisible \"shield\" is seen to deflect incoming raindrops. Umbrella does not work against intense (or magical) hail, rains of stones or frogs, etc.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>Jewelry. Always on. Only affects the wearer. Cost to create: 100 energy.</p>"
+  },
+  {
+    "_id": "2e3b1afbdec55c54",
+    "name": "Body of Water",
+    "pages": "M185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily grants the subject the Body of Water meta-trait (p. B262). Clothes (up to 6 pounds) become liquid along with him, while other possessions drop to the ground.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Only affects the wearer. A severe drawback is that, as soon as it is activated, the item falls through the user's hand - thus a spell cast with this item lasts only a minute. Energy cost to create: 1,200. (b) Staff, wand, or jewelry. Only affects the wearer. Unlike the previous item, this item turns aqueous along with the wearer, allowing him to maintain the spell for longer than a minute. While aqueous, the item loses any magical powers it might ordinarily have. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "dae954a30f02ac00",
+    "name": "Foul Water",
+    "pages": "M185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Renders water undrinkable. Foul water is readily recognizable by its uninviting color and smell, whereas fouled beer or wine may be more difficult to detect. Anyone foolish enough to drink it must make a HT roll. On a successful roll, he merely feels sick and loses 2 HP. On a failed roll, he is seized by painful stomach cramps, losing 1d+1 HP; he is at -3 for all skills until the lost HP are restored.</p><p>Foul water also fails to satisfy thirst, and cannot support fish or other water-dwellers (a fish of any sort slowly suffocates in fouled water; a sea-mammal becomes ill from ingesting it). In a body of water, the foul water is eventually diluted to harmlessness; if cast in a mountain stream, for instance, this spell effectively lasts only a second or two.</p><p><em>Item</em></p><p>Staff or wand. The item must touch the subject water. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "0289ad426eb01808",
+    "name": "Freeze",
+    "pages": "M185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns water into solid ice. The ice retains the shape of its container; in open water, the affected volume freezes as a sphere or cube, at the caster's option. A Shape Water spell may be cast to form the water before it is frozen, or to alter the shape of the ice after it is frozen.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 200 energy, $100 blue gem.</p>"
+  },
+  {
+    "_id": "3f42afa2aa7ac2df",
+    "name": "Ice Slick",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Covers the floor or ground with a quarter-inch sheet of clear ice. Footing on this ice slick is very precarious. All close combat and melee attacks, and all active defenses, are at -3 on an ice slick. Other physical skills, including missile and thrown weapon attacks, are at -2. Even walking across an ice slick is usually difficult - in general, anyone attempting to walk or run across an ice slick must roll against DX-2 for every yard of distance he covers. If he fails this roll, he falls to the ice. He may, with another DX-2 roll, attempt to stand on his next turn. Spiked footwear negates all penalties on ice.</p><p>Ice slicks are very difficult to see. Anyone not actively watching the ground for ice must make a roll against IQ-3 to notice an ice slick before stepping onto it.</p><p>An ice slick will extinguish an area of normal fire that it overlaps, and vice versa.</p><p><em>Item</em></p><p>(a) Rug or mat. Cost per 10 square feet: 100 energy, $250 spell materials. (b) Wand, staff, or jewelry. Cost to create: 250 energy, $500 blue gem.</p>"
+  },
+  {
+    "_id": "0bb1ebfa876f1185",
+    "name": "Ice Sphere",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Throw a ball of ice from your hand. When it strikes, it does crushing damage and vanishes in a gout of water. A 1-die Ice Sphere can also extinguish fire in a 1-yard radius, if accurately aimed. It has 1/2D 40, Max 80, Acc 2.</p><p><em>Item</em></p><p>Staff or wand - the ball is fired from the end of the item. Usable only by a mage. Energy cost to create: 400; the staff or wand must be tipped by a $500 sapphire.</p>"
+  },
+  {
+    "_id": "05dde73bdf8ae6f2",
+    "name": "Icy Missiles",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Icy Weapon, but cast on a missile weapon. The weapon itself becomes cold to the touch, but won't harm the wielder. Any missile it fires becomes freezing cold, doing +2 damage to most foes; it shatters after it hits a target or after 10 seconds, whichever comes first.</p><p><em>Item</em></p><p>A missile weapon that fires icy missiles whenever used, at no energy cost to the user. Energy cost to create: 1,000; a $500 sapphire must be set in the weapon.</p>"
+  },
+  {
+    "_id": "80eb1481dddfcab0",
+    "name": "Melt Ice",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns solid ice into water.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 300 energy, $100 spell materials.</p>"
+  },
+  {
+    "_id": "48fd87a4f0b30bbb",
+    "name": "Resist Water",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (person, creature, or object) and anything he carries become immune to the effects of dampness, remaining dry even if completely submerged. The spell protects against the dampening effect of steam or ice, but not against the scalding or freezing itself! This also protects against water-like substances; a spilled drink does not stain, for instance. Its protection against acid is limited - the subject is granted 2 points of DR against acid spills or immersion.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Always on. Only affects the wearer. Cost to create: 200 energy and a $200 emerald. (b) Staff, wand, or jewelry. Cost to create: 400 energy and a $200 emerald.</p>"
+  },
+  {
+    "_id": "af45d0482a974f0d",
+    "name": "Snow Shoes",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cross ice or snow as though it were regular ground. Snow Shoes eliminates any movement, DX, or skill penalties normally assessed for ice or snow. The subject is still subject to penalties caused by an unstable surface, such as a rocking ice floe or an avalanche.</p><p><em>Item</em></p><p>Shoes, boots, or sandals. Only affects the wearer. Energy cost to create: 350.</p>"
+  },
+  {
+    "_id": "256e7ed6b89b6fdb",
+    "name": "Walk on Water",
+    "pages": "M186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Walk on water as with the Walk on Liquid advantage (p. B97).</p><p><em>Item</em></p><p>Staff, wand, jewelry, or clothing. Only affects the wearer. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "3821e679e3cadff5",
+    "name": "Water Jet",
+    "pages": "M187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of water from one finger. Each turn, the caster rolls vs. DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. It does knockback to all targets, and damage to creatures of flame; it can kill or knock down flying swarm creatures. It can extinguish a 1-yard-radius area of normal fire. Anyone hit in the face by a Water Jet is at a -3 penalty to combat skills next turn for each point of energy put into the jet.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. If the item is a wand or staff, it must have a blue tip (or a bluejeweled tip); the jet comes from the tip. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "9d981c0a7004ba1d",
+    "name": "Water Vision",
+    "pages": "M187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through water, snow, and ice - to find sunken treasure, lurking monsters, etc.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "0f9bb619d399067e",
+    "name": "Whirlpool",
+    "pages": "M187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a circular whirlpool in a body of water (lakes, rivers, seas, but also ponds and pools). By concentrating, the caster can move the Whirlpool any distance up to its own diameter per second. The caster may move at half speed while concentrating.</p><p>The whirlpool has a \"funnel\" in its center, the radius of which (at the surface) may be up to half that of the whirlpool. The depth of the funnel may be up to twice the radius of the whirlpool. The funnel gets progressively narrower as one nears its bottom.</p><p>The outermost yard of the whirlpool moves at Move 1, the next inner ring at Move 2 and so on. Anyone caught in the whirlpool will be dragged towards its bottom; a Swimming roll, at a penalty equal to the current ring's speed, must be made every revolution to avoid being dragged into the next inner ring (in addition to the usual consequences for failure - p. B354). A success by 3 or more means the swimmer managed to move outward one ring (if he so wills).</p><p>The whirlpool has little effect on beings and objects weighing more than 90 pounds times its radius in yards. While in the whirlpool, all DX-based skills (except aquatic ones such as Swimming or Scuba) are at -5, above and beyond any penalty for being in water in the first place.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 200 energy and a $500 emerald.</p>"
+  },
+  {
+    "_id": "3381d47f31fe7978",
+    "name": "Coolness",
+    "pages": "M187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject remains comfortably cool in warm weather, avoiding the risk of dehydration or heat stroke - but not sunburn! Effectively, the subject gains Temperature Tolerance 3 (p. B93) toward heat for the duration of the spell. The spell offers no protection against actual flame or fire-based attack spells.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>Clothing, staff, or jewelry; only affects the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "44c993b98e3a1db1",
+    "name": "Create Ice",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a quantity of ice or snow. It may appear as: a solid block of any shape; within a container (which must be large enough); hanging in mid-air (it falls immediately); as a mass of ice shavings (great for cooling drinks); or as a cloud of snow (which settles to the ground). It takes 60 gallons of ice shavings or snow to put out a one-yard radius area of fire within one second. A gallon of snow, depending on its fluffiness (p. 195), will cover a one-yard-radius area to a depth of two to 18 inches.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 200 energy and a $100 sapphire.</p>"
+  },
+  {
+    "_id": "5d748fb53cfeb8ab",
+    "name": "Dehydrate",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes the water from a subject's tissues, causing damage or death. Affects the whole victim if cast from a distance; if the caster touches the subject, damage is limited to the part touched. Armor does not protect!</p><p><em>Item</em></p><p>Wand or staff. Usable only by mages; the item must touch the subject. Cost to create: 700 energy and $1,000 in spell materials.</p>"
+  },
+  {
+    "_id": "fd473e2b232fef4e",
+    "name": "Ice Dagger",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create and hurl a razor-sharp icicle. When it strikes, it does impaling damage and melts instantly. It has 1/2D 30, Max 60, Acc 3.</p><p><em>Item</em></p><p>Jewelry; the item must have a dagger shape or design. Usable only by a mage. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "1f161f0285b11cae",
+    "name": "Icy Touch",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Covers the subject with a coating of ice. The caster must touch the subject to trigger this spell; hit location is irrelevant. The subject is immobilized and may take no action until he breaks through the ice with a successful ST roll at a -1 penalty for every 1/4\" of ice. The ice can be chipped off from the outside at a rate of 1/4\" of ice for every point of basic damage; it has DR 1 per 1/2\" of ice. If rescuers are not careful, however, they may smash through the ice to injure the subject (see Overpenetration, p. B408).</p><p>While encased in ice, the subject is vulnerable to thermal shock (p. B430); he must roll vs. HT immediately. On a success, he loses 1 FP; on a failure, he loses FP equal to the margin of failure. The HT roll must be repeated every minute that the subject remains encased in ice. If the situation becomes dire enough that the subject must start making death checks, a critical success means that the subject has fallen into suspended animation, as per the spell.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. The item's tip must be white. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "0c06712e55e2f4ef",
+    "name": "Walk Through Water",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pass through water or ice as if it were air; the subject can walk through glaciers, along the bottoms of lakes, etc. Like the Swim spell, this negates combat penalties for fighting in water. In liquid water, the subject requires a surface to walk on. The spell may cost more if resistance to high pressures is necessary. The spell neither opens a passage so that others can follow, nor reveals what is on the other side . . . If the caster (or the subject) knows a spell to let him breathe, the subject will have no difficulty breathing during his journey, at no energy cost. Otherwise, he must hold his breath!</p><p>Should the spell end before the subject regains the open air, he finds himself submerged. He is not automatically harmed, but drowns (or suffocates, if in ice) if he cannot escape.</p><p><em>Item</em></p><p>Clothing or jewelry; only affects the wearer. Energy cost to create: 1,100.</p>"
+  },
+  {
+    "_id": "20bc8c6711640519",
+    "name": "Dry Spring",
+    "pages": "M188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dries and blocks the waterflow within a spring, reducing its output.</p><p><em>Item</em></p><p>Staff. Cost to create: 450 energy and a $500 emerald.</p>"
+  },
+  {
+    "_id": "08920c16dcc9b034",
+    "name": "Essential Water",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Create Water, but the water created is the magical essence of water. It extinguishes any type of fire in the same proportion that ordinary water extinguishes ordinary fire. It is also three times as thirst-quenching as ordinary water - in other words, a mere quart of Essential Water will keep someone hydrated for a full day of exertion in hot climates (p. B426).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by a mage. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "9da054dc2d972d94",
+    "name": "Frostbite",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lowers the temperatures in the body tissues of the subject, causing damage or death. Affects the whole victim if cast from a distance; if cast by touch, damage is limited to the part touched. Armor does not protect.</p><p><em>Item</em></p><p>Wand or staff. Usable only by mages; the item must touch the subject. Cost to create: 700 energy, $500 spell materials, and a $500 blue gem.</p>"
+  },
+  {
+    "_id": "1c122e7d5e46c7e3",
+    "name": "Snow Jet",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of snow from one finger. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. It does knockback on all targets and damage to creatures of flame; it can kill or knock down flying swarm creatures. It can extinguish normal fire within an area one yard in radius. If the spell strikes the target's face, it temporarily blinds him unless he makes a HT roll.</p><p>If the HT roll is failed, each energy point in the spell blinds the target for one second. After the target can see again, blurry vision will put him at a -3 penalty to combat skills for a further 1d seconds. On a critically failed HT roll, the target is blinded for 1d seconds per point of energy in the spell. On a successful HT roll, the victim covers his eyes and is therefore unable to see for one second. On a critical success, the victim is unaffected.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The jet issues from the item's tip. Energy cost to create: 600; the staff or wand must be tipped by a $500 sapphire.</p>"
+  },
+  {
+    "_id": "2b4b6c188c729fa6",
+    "name": "Body of Ice",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily grants the subject the Body of Ice meta-trait (p. B262). Clothes (up to 6 pounds) also become ice, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand. or jewelry. Only affects the wearer. Energy cost to create: 1,300.</p>"
+  },
+  {
+    "_id": "9a1ceec047fd4eb4",
+    "name": "Boil Water",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns water into steam. Water expands considerably in going from liquid to gas; a mere pint of water makes a lot of steam. The scalding effect of steam is such that a steam hex should be treated exactly as a fire hex, except that it cannot ignite anything.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 200 energy and a $100 carnelian.</p>"
+  },
+  {
+    "_id": "fc3dbba049d1980d",
+    "name": "Condense Steam",
+    "pages": "M189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns steam into room-temperature water.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 300 energy and a $100 emerald.</p>"
+  },
+  {
+    "_id": "fff54886ba5338ba",
+    "name": "Create Acid",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a strong acidic solution out of nothing. It may appear in any of several forms. It may appear within a container (which should be of glass or of some special stone or metal if the acid is not to attack it), as a globe in mid-air (which falls immediately), or as a dense mist of droplets (which inflicts splashing damage).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "90707a29f1c489af",
+    "name": "Create Spring",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Increases a spring's output, or creates one where none exists.</p><p><em>Item</em></p><p>Staff. Cost to create: 675 energy and a $500 emerald.</p>"
+  },
+  {
+    "_id": "a9364df786b4e4e5",
+    "name": "Flesh to Ice",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Petrifies\" a living subject (and all his gear!) into ice. Stone to Flesh can reverse the effects of this spell, but the caster is at a -4 penalty unless he also knows Flesh to Ice. Remove Curse can also break the spell.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "a9360739c2554308",
+    "name": "Create Steam",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces a cloud of steam. Until it dissipates, anyone standing within the area of effect is at risk of scalding (treat as if surrounded by fire, pp. B443-444, except that steam cannot set anything aflame). The steam tends to rise; the rate of dissipation depends on the area, ambient temperature and the presence of wind - indoors, it usually lasts until the spell expires, but outdoors on a windy or cold day it may last only 10 seconds or so.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 400 energy and a $100 carnelian.</p>"
+  },
+  {
+    "_id": "ff19314f90ad2324",
+    "name": "Resist Acid",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (person, creature or object) and anything he carries become immune to the effects of acid.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry; only affects the wearer. Energy cost to create: 800. (b) Staff, wand, or jewelry. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "fa05582a07cc5ba5",
+    "name": "Geyser",
+    "pages": "M190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes a geyser of scalding-hot water to gush forth from the ground. It creates a hole equal to its radius, as set by the caster. All those within the geyser suffer 3d damage. They are automatically pushed out of the area of effect, and must make a DX-5 roll to stay afoot!</p><p>Two seconds after the geyser starts, the water begins to fall back as spray. Under normal conditions, it affects an area double the radius of the original geyser. All those within this new spray area suffer 1d damage per second.</p><p><em>Example:</em> A geyser of 2 yards radius is created. All those in that area suffer 3d damage. Two seconds later, all those within 4 yards, but not within 2 yards, suffer 1d of damage.</p><p>If the caster is in the geyser area, he takes normal damage, but if he is in the spray area, he is unharmed.</p><p>The geyser must always spring from the earth; it would not work on a rooftop. If cast under unusual circumstances, it can produce interesting effects, such as a continuing stream of scalding water flowing downhill at foes, but these must be controlled by the GM.</p>"
+  },
+  {
+    "_id": "2f638eb9e4d1b607",
+    "name": "Rain of Acid",
+    "pages": "M191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Droplets of acid rain from the sky onto the area, causing 1d-1 acid damage per second to all within it. Characters and creatures under the rain of acid take damage on their own turns; if less than an entire second is spent in the affected area, damage is halved (round down).</p><p>The spell can only be cast out of doors. Armor protects in the usual fashion. A shield with a DB of 2 or better can be held overhead to block the droplets, but it may take damage (p. B484). This requires two hands and a Ready action, and succeeds automatically in protecting the character once the shield is readied upwards, but this unreadies the shield from its normal protective functions!</p><p>In addition, acid rain eats objects away at the rate of 1 HP every 10 seconds; the object's DR protects it completely for 3 seconds per DR. This includes buildings.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "77b6ffa0f6439c90",
+    "name": "Steam Jet",
+    "pages": "M191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of scalding steam from one finger. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. It does knockback on all targets in addition to its regular damage; it does double damage to creatures of flame or ice. It can extinguish normal fire within an area 1 yard in radius. If the spell strikes the target's face, it temporarily blinds him unless he makes a HT roll.</p><p>If the HT roll is failed, each energy point in the spell blinds the target for one second. After the target can see again, blurry vision will put him at a -3 penalty to combat skills for a further 1d seconds. On a critically failed HT roll, the target is blinded for 1d seconds per point of energy in the spell. On a successful HT roll, the victim covers his eyes for one second and is therefore unable to see for one turn. On a critical success, the victim is unaffected.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The jet issues from the item's tip. Energy cost to create: 700; the staff or wand must be tipped by a $300 carnelian.</p>"
+  },
+  {
+    "_id": "be78715dba6ec662",
+    "name": "Spit Acid",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Acid Jet, except that the acid issues from the caster's mouth, Spit Acid cannot be maintained, and each energy point buys 1d damage instead of 1d-1. Caster rolls to hit against DX-2 or Innate Attack skill (p. B201). This counts as an attack; it may be dodged or blocked, but not parried. The caster must be facing his target. No hand gestures are required to cast this spell; certain lip and tongue motions are made instead. Thus, Spit Acid can be cast \"no hands\" at any level of skill.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "a67cf008844716db",
+    "name": "Acid Ball",
+    "pages": "M191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Throw a ball of acid from one hand. When it strikes something, it bursts, inflicting acid damage. It has 1/2D 20, Max 40, Acc 1; use the Innate Attack skill.</p><p><em>Item</em></p><p>Staff or wand - the missile is fired from the tip of the item. Usable only by mages. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "66495a10d2b24389",
+    "name": "Acid Jet",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a jet of acid from one hand. Each turn, the caster rolls against DX-4 or Innate Attack skill to hit. The jet may be dodged, but not parried or blocked. The jet does knockback as per Snow Jet; if the jet strikes the face, the acid may blind the victim as detailed on p. B428.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The jet issues from the item's tip. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "89cea80fba9dbce8",
+    "name": "Rain of Ice Daggers",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ice Daggers rain from the sky onto the area, causing 1d-2 impaling damage per second to all within it. Characters and creatures under the Rain of Ice Daggers take damage on their own turns; if less than an entire second is spent in the affected area, damage is halved (round down).</p><p>The spell can only be cast out of doors. Armor protects in the usual fashion. A shield with a DB of 2 or better can be held overhead to block the ice, but it may take damage (p. B484). This requires two hands and a Ready action, and succeeds automatically in protecting the character once the shield is readied upwards, but this unreadies the shield from its normal protective functions!</p><p>Inanimate objects such as buildings protect with their DR.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Cost to create: 800 energy and a $1,000 sapphire.</p>"
+  },
+  {
+    "_id": "60ac29b3a2c3b3fa",
+    "name": "Icy Breath",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster expels a deadly hail of ice and cold air from his mouth. The caster rolls to hit against DX-4 or Innate Attack skill. This counts as an attack; it can be dodged or blocked, but not parried. The caster must be facing his target. No hand gestures are required to cast this spell; certain lip and tongue motions are made instead. Thus, Icy Breath can be cast \"no hands\" at any level of skill.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Cost to create: 400 energy and a $500 sapphire.</p>"
+  },
+  {
+    "_id": "c74f0b56a1542565",
+    "name": "Breathe Steam",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Steam Jet, except that the steam issues from the caster's mouth, Breathe Steam cannot be maintained, and each energy point buys 1d damage instead of 1d-1. Caster rolls to hit against DX-2 or Innate Attack skill. This counts as an attack; it may be dodged or blocked, but not parried. The caster must be facing his target. No hand gestures are required to cast this spell; certain lip and tongue motions are made instead. Thus, Breathe Steam can be cast \"no hands\" at any level of skill.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Cost to create: 1,000 energy and a $500 carnelian.</p>"
+  },
+  {
+    "_id": "187e6ecce81f2d51",
+    "name": "Essential Acid",
+    "pages": "M192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns regular acid into the magical essence of acid. No substance is immune to its bite, and it inflicts three times as much damage before being neutralized. Essential Water or Flame, in like quantity, will nullify Essential Acid. If frozen with the Freeze spell, it is harmless until thawed.</p><p>At the GM's option, this spell may produce alkahest (p. 220).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,100.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
