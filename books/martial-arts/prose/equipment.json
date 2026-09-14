@@ -26,7 +26,7 @@
   {
     "_id": "abac08e104fb4314",
     "name": "Weighted Scarf",
-    "pages": "MA227",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. A scarf with a weight in one or both ends. Famously used as a Garrote (p. B272) by the Thuggee cult, but also a serviceable light flail.</p>"
@@ -34,7 +34,7 @@
   {
     "_id": "320bdb60451f363a",
     "name": "Backsword",
-    "pages": "MA226",
+    "pages": "MA212",
     "status": "reviewed",
     "notes": "",
     "description": "<p>England. A single-edged Thrusting Broadsword (p. B271) with a basket hilt.</p>"
@@ -42,7 +42,7 @@
   {
     "_id": "106ed726f33b89b9",
     "name": "Balisong",
-    "pages": "MA228",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Philippines. A tangless folding knife with a pair of hollow handles that pivot forward to sheathe the blade or back to serve as a grip. A modern balisong has metal bearings that let the user flick it open and shut theatrically; see Fast-Draw (pp. 56-57). Sometimes called a \"butterfly knife.\"</p>"
@@ -50,7 +50,7 @@
   {
     "_id": "9f05b25269c6d637",
     "name": "Bill",
-    "pages": "MA229",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>England. A bladed polearm with a hook on the back that lets the wielder use the Hook technique (p. 74), typically to unseat a horseman. Initially a battlefield weapon, it was sometimes given a shorter haft for individual combat, resulting in the Dueling Bill (pp. 229, 230).</p>"
@@ -58,7 +58,7 @@
   {
     "_id": "379f0d1f4c024fb2",
     "name": "Bokken",
-    "pages": "MA227",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A wooden sword. Usually has a handguard: rubber-and-plastic today, but wood or leather - or absent - on older versions. Also called a \"bokuto.\"</p>"
@@ -66,7 +66,7 @@
   {
     "_id": "6ddeb90e29df1223",
     "name": "Bola Perdida",
-    "pages": "MA227",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Argentina. A rock (or other weight) fastened to a thong. The name is from Argentina but the weapon is universal. Used for throwing - like a one-shot sling that tosses both sling and stone - and as a flail. Sometimes called a \"bola loca.\"</p>"
@@ -74,7 +74,7 @@
   {
     "_id": "9b4897b97feeae8a",
     "name": "Chain Whip (1-Yard)",
-    "pages": "MA228",
+    "pages": "MA214",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A whip made of chain or short metal bars (usually seven or nine of them) joined by chain. Used to lash foes and to entangle like a Kusari (p. B272).</p>"
@@ -82,7 +82,7 @@
   {
     "_id": "11fa94166e9f70e8",
     "name": "Chain Whip (2-Yard)",
-    "pages": "MA228",
+    "pages": "MA214",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A whip made of chain or short metal bars (usually seven or nine of them) joined by chain. Used to lash foes and to entangle like a Kusari (p. B272).</p>"
@@ -90,7 +90,7 @@
   {
     "_id": "861976ca107debb6",
     "name": "Chain Whip (3-Yard)",
-    "pages": "MA228",
+    "pages": "MA214",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A whip made of chain or short metal bars (usually seven or nine of them) joined by chain. Used to lash foes and to entangle like a Kusari (p. B272).</p>"
@@ -98,7 +98,7 @@
   {
     "_id": "cf8b004e98ecc657",
     "name": "Chain Whip (4-Yard)",
-    "pages": "MA228",
+    "pages": "MA214",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A whip made of chain or short metal bars (usually seven or nine of them) joined by chain. Used to lash foes and to entangle like a Kusari (p. B272).</p>"
@@ -106,7 +106,7 @@
   {
     "_id": "e2bff5eb3121fe42",
     "name": "Dao",
-    "pages": "MA227",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A heavy-bladed sword with an extra-long handle, used one-handed for chopping and stabbing.</p>"
@@ -114,7 +114,7 @@
   {
     "_id": "ff54b1df76c6dbd8",
     "name": "Deer Antlers",
-    "pages": "MA228",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. Two interlocked, crescent-shaped blades with a handle in the center of one of the blades, creating a four-pointed cutting weapon capable of trapping weapons between its points. Usually used in pairs.</p>"
@@ -122,7 +122,7 @@
   {
     "_id": "ed305c2277b85243",
     "name": "Dress Smallsword",
-    "pages": "MA229",
+    "pages": "MA224",
     "status": "reviewed",
     "notes": "",
     "description": "<p>France. This one-handed thrusting sword is speedy on attack and defense, but its light weight and short reach are serious liabilities. The Dress Smallsword (p. 229) is even lighter and shorter, but can pass as a fashion accessory.</p>"
@@ -130,7 +130,7 @@
   {
     "_id": "9f41e3a0ee0a7b12",
     "name": "Dueling Bill",
-    "pages": "MA229",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>England. A bladed polearm with a hook on the back that lets the wielder use the Hook technique (p. 74), typically to unseat a horseman. Initially a battlefield weapon, it was sometimes given a shorter haft for individual combat, resulting in the Dueling Bill (pp. 229, 230).</p>"
@@ -138,7 +138,7 @@
   {
     "_id": "0cb7022afa5f15ba",
     "name": "Dueling Glaive",
-    "pages": "MA229",
+    "pages": "MA216",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A polearm consisting of a pointed cleaver on a long haft, which evolved from the Heavy Spear (p. 229) in ancient times. A shorter version - the Dueling Glaive (p. 229) - was used for individual combat in the Middle Ages.</p>"
@@ -146,7 +146,7 @@
   {
     "_id": "8160a70903adc040",
     "name": "Dueling Halberd",
-    "pages": "MA229",
+    "pages": "MA216",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A heavy polearm with an axe-like head that sports both a back-spike (enables the Hook technique, p. 74) and an axial spike (used like a spear). The battlefield version may be shortened to a Dueling Halberd (pp. 229-230) for individual combat.</p>"
@@ -154,7 +154,7 @@
   {
     "_id": "4c8ae56f6d98939d",
     "name": "Dueling Pollaxe",
-    "pages": "MA229",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. The Basic Set calls this a \"poleaxe\" and not a \"pollaxe.\" The error is forgivable for the weapon given there: a large axe head on a long pole - a battlefield polearm. The Dueling Pollaxe (pp. 229-230) is nearly identical but shortened for personal combat. However, \"pollaxe\" often refers to a far more elaborate dueling polearm with an axe or hammer head, a beaked peen, a top spike, a spiked butt, and a metal-reinforced shaft. Use the Dueling Halberd (pp. 229-230) statistics; the only effect of a hammer head is to exchange the swing+4 cutting attack for a swing+4 crushing attack. Purpose-built for Pollaxe Fighting (p. 191) between armored knights, this polearm is optimized for the Defensive Grip (pp. 109-111). Even in games that don't use the Defensive Grip option, the GM should allow it with this weapon.</p>"
@@ -162,7 +162,7 @@
   {
     "_id": "64de7c5d5e52799e",
     "name": "Dusack",
-    "pages": "MA229",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Germany. A sturdy wooden Shortsword (p. B273), wielded like the real thing. Also called a \"rudis\" (ancient Rome) or a \"waster\" (England).</p>"
@@ -170,7 +170,7 @@
   {
     "_id": "dee92d770e1481a8",
     "name": "Edged Rapier",
-    "pages": "MA227",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A long, one-handed sword with a stiff, narrow blade built for stabbing (but not for parrying - rapierists often carried a secondary weapon or a cloak for defense). Despite modern misconceptions, the rapier isn't flimsy or fragile; it's simply longer and thinner than a military cut-and-thrust sword of similar weight, as befits a civilian weapon designed to combat lightly armored foes. There are many variations. The Light Rapier (p. 229) is a later-era weapon well on its way to becoming a Smallsword (p. B273). In the other direction, there were longer rapiers calculated to give a tactical edge in a duel. Historically, the rapier \"arms race\" led to lengths so extreme that London had a law restricting length, enforced by snapping off the excess! Such blades aren't practical for adventurers. Early rapiers generally had sharp edges and enough weight for cutting, and later blades sometimes emulated this. These are the Edged Rapier (p. 229) and Light Edged Rapier (p. 229), respectively.</p>"
@@ -178,7 +178,7 @@
   {
     "_id": "ae92c2d8b23f8f91",
     "name": "Eku",
-    "pages": "MA229",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Okinawa. A large oar, used as a makeshift polearm.</p>"
@@ -186,7 +186,7 @@
   {
     "_id": "e56fd2e3f3a6fdf5",
     "name": "Estoc",
-    "pages": "MA227",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. An edgeless thrusting sword with a triangular or diamond cross section, designed to pierce chinks in plate armor. Generally held in a Defensive Grip (pp. 109-111) and used for Committed or All-Out Attacks on a prone victim. The specialized design removes -2 of the penalty for targeting chinks in armor (p. B400). Also called a \"tuck.\"</p>"
@@ -194,7 +194,7 @@
   {
     "_id": "929af653ead6b58e",
     "name": "Falchion",
-    "pages": "MA229",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A medieval European term applied loosely to almost any single-edged sword, but most often to one that's flared, heavy, and/or curved forward at the tip, which favors cutting over thrusting. Most ironworking cultures developed such a blade; hunters and soldiers worldwide valued it as a tool (for butchering game, cutting brush, opening coconuts, etc.) and a weapon. Typically shortsword-sized, but the Large Falchion (p. 227) is broadsword-sized.</p>"
@@ -202,7 +202,7 @@
   {
     "_id": "8eb53d83701601ff",
     "name": "Gada",
-    "pages": "MA230",
+    "pages": "MA216",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. This giant mace symbolizes strength. Wielded two-handed, it can be swung or gripped near the head to \"punch.\" The listed gada is small; the GM may scale up damage bonus, cost, weight, and ST together; e.g., ×1.2 gives sw+6, $120, 18 lbs., ST 19. Reach doesn't change - the head just gets bigger.</p>"
@@ -210,7 +210,7 @@
   {
     "_id": "85a0490d2102b16f",
     "name": "Heavy Horse-Cutter",
-    "pages": "MA229",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A polearm with a heavy chopping blade similar to that of a Dao (p. 227), intended for use by footmen against horsemen. The Heavy Horse-Cutter (p. 229) is half again the length and mass of the Light Horse-Cutter (pp. 229-230).</p>"
@@ -218,7 +218,7 @@
   {
     "_id": "48bf6483d4930d21",
     "name": "Heavy Spear",
-    "pages": "MA229",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A pole with a pointed stabbing head, prized for its versatility: long, useful in one hand or two, often throwable, and uniformly deadly. Many variants sacrifice some flexibility for special-purpose effectiveness. The Short Spear (p. 229) - short, one-handed, and unthrowable - is a poor man's stabbing sword. The Long Spear (p. B273) is exclusively a melee weapon, employed with or without a shield for formation fighting. The Heavy Spear (p. 229) is similar, but has an extra-wide head for disemboweling; it's so massive that it requires two hands.</p>"
@@ -226,7 +226,7 @@
   {
     "_id": "a6077b436d491255",
     "name": "Hook Sword",
-    "pages": "MA226",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A blunt weapon shaped like an inverted \"J,\" with an edged handguard for punching. The crook enables the Hook technique (p. 74) - and the inside is edged, ostensibly for crippling horses! Usually used in pairs.</p>"
@@ -234,7 +234,7 @@
   {
     "_id": "6d7f0d236508e596",
     "name": "Jian",
-    "pages": "MA227",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A straight, one-handed sword with a long, narrow blade that's light enough for fencing but strong enough for cutting. A tassel often decorates the handle.</p>"
@@ -242,7 +242,7 @@
   {
     "_id": "fc631ac32f9f4f54",
     "name": "Jo",
-    "pages": "MA227",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A four- to five-foot stick normally used with two-handed staff techniques.</p>"
@@ -250,7 +250,7 @@
   {
     "_id": "caed363b179738a8",
     "name": "Jutte",
-    "pages": "MA227",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A blunt baton with a single prong for catching parried blades for disarming. Confusingly, some sources swap the name of this weapon and that of the jitte (above), or use the same term for both.</p>"
@@ -258,7 +258,7 @@
   {
     "_id": "ad8755c92bd5de41",
     "name": "Katar",
-    "pages": "MA228",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. A blade with a perpendicular handle equipped with hand or arm guards, awkward for slashing but ideal for thrusting. Grip mechanics permit the use of armed or unarmed combat skills to parry, as with the Tonfa (p. 226). Typically knife-sized, but the Large Katar (p. 229) is shortsword-sized.</p>"
@@ -266,7 +266,7 @@
   {
     "_id": "4188de11c8c583b1",
     "name": "Knife-Wheel",
-    "pages": "MA228",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A Slashing Wheel (p. 223) with knife blades protruding from either side. Traditionally used in pairs.</p>"
@@ -274,7 +274,7 @@
   {
     "_id": "d09f1af3ed08264f",
     "name": "Knobbed Club",
-    "pages": "MA226",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A club with an enlarged striking head, such as the knobkerrie.</p>"
@@ -282,7 +282,7 @@
   {
     "_id": "3885966681db1bbe",
     "name": "Kukri",
-    "pages": "MA228",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Nepal. A heavy chopping blade, curved to a 45° angle in the middle. The listed kukri is knife-sized; treat a larger one as a Small Falchion (p. 229) or even a Falchion (p. 229). Modern kukris are often made from truck springs - even fine and very fine examples!</p>"
@@ -290,7 +290,7 @@
   {
     "_id": "ef37ac19e0c94ec7",
     "name": "Kusarigama",
-    "pages": "MA228",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A kama (Sickle, p. 226) with a two-yard Kusari (p. B272) attached to the handle's butt. Requires a hand on the handle and a hand on the chain, and counts as a weapon in either hand. The wielder snares the enemy with the kusari using Entangle (p. 71) and then finishes him with the kama. Treat these as normal kusari and kama attacks, but use the first line of kusarigama statistics for the two-yard kusari. Cinematic warriors sometimes swing the kama by the chain, like an edged flail - the second line represents this - but the GM may forbid this in a realistic game. Some versions affix a four-yard kusari to the butt (see Combination Weapons, p. 214) or a two-yard kusari atop the handle, opposite the blade (permits one-handed use but counts as only one weapon, either a kusari or a kama - choose each turn).</p>"
@@ -298,7 +298,7 @@
   {
     "_id": "6316ee8881371817",
     "name": "Kusarijutte",
-    "pages": "MA228",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A Jutte (pp. 227-228) with a two-yard Kusari (p. B272) attached to the handle. One hand goes on the handle, the other on the chain. Use the standard jutte and kusari rules, except that the short kusari uses the statistics listed for the kusarijutte. Some versions hide the kusari inside the jutte and release it out the tip of the weapon - see Combination Weapons (p. 214) and Disguised Weapons (p. 218).</p>"
@@ -306,7 +306,7 @@
   {
     "_id": "47015dec3f8be83d",
     "name": "Lajatang",
-    "pages": "MA229",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Indonesia. A polearm with crescent-shaped blades on both ends.</p>"
@@ -314,7 +314,7 @@
   {
     "_id": "34a2a9e2fc036e9f",
     "name": "Large Falchion",
-    "pages": "MA227",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A medieval European term applied loosely to almost any single-edged sword, but most often to one that's flared, heavy, and/or curved forward at the tip, which favors cutting over thrusting. Most ironworking cultures developed such a blade; hunters and soldiers worldwide valued it as a tool (for butchering game, cutting brush, opening coconuts, etc.) and a weapon. Typically shortsword-sized, but the Large Falchion (p. 227) is broadsword-sized.</p>"
@@ -322,7 +322,7 @@
   {
     "_id": "edc713f62697e527",
     "name": "Large Katar",
-    "pages": "MA229",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. A blade with a perpendicular handle equipped with hand or arm guards, awkward for slashing but ideal for thrusting. Grip mechanics permit the use of armed or unarmed combat skills to parry, as with the Tonfa (p. 226). Typically knife-sized, but the Large Katar (p. 229) is shortsword-sized.</p>"
@@ -330,7 +330,7 @@
   {
     "_id": "23280a8984a0e972",
     "name": "Late Katana",
-    "pages": "MA227",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A slightly curved, single-edged sword designed for one- or two-handed use. The Basic Set describes an early Tokugawa-era weapon in transition from the two-handed nodachi (p. 221) to a blade short enough to wear thrust through a sash. Use the Late Katana (pp. 227, 230) statistics for later-era katanas, including modern ones.</p>"
@@ -338,7 +338,7 @@
   {
     "_id": "54970f0c060502ab",
     "name": "Life-Preserver",
-    "pages": "MA227",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>England. Slang term for a small truncheon, often one with an attached cord. Use the listed statistics when swinging it by the cord (the \"traditional\" target is the legs); otherwise, treat as a cheap-quality Blackjack (p. B271).</p>"
@@ -346,7 +346,7 @@
   {
     "_id": "4de19e93f2cddc94",
     "name": "Light Edged Rapier",
-    "pages": "MA229",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A long, one-handed sword with a stiff, narrow blade built for stabbing (but not for parrying - rapierists often carried a secondary weapon or a cloak for defense). Despite modern misconceptions, the rapier isn't flimsy or fragile; it's simply longer and thinner than a military cut-and-thrust sword of similar weight, as befits a civilian weapon designed to combat lightly armored foes. There are many variations. The Light Rapier (p. 229) is a later-era weapon well on its way to becoming a Smallsword (p. B273). In the other direction, there were longer rapiers calculated to give a tactical edge in a duel. Historically, the rapier \"arms race\" led to lengths so extreme that London had a law restricting length, enforced by snapping off the excess! Such blades aren't practical for adventurers. Early rapiers generally had sharp edges and enough weight for cutting, and later blades sometimes emulated this. These are the Edged Rapier (p. 229) and Light Edged Rapier (p. 229), respectively.</p>"
@@ -354,7 +354,7 @@
   {
     "_id": "ef0fcdd760fcb248",
     "name": "Light Horse-Cutter",
-    "pages": "MA229",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A polearm with a heavy chopping blade similar to that of a Dao (p. 227), intended for use by footmen against horsemen. The Heavy Horse-Cutter (p. 229) is half again the length and mass of the Light Horse-Cutter (pp. 229-230).</p>"
@@ -362,7 +362,7 @@
   {
     "_id": "c1483e4b0118b823",
     "name": "Light Rapier",
-    "pages": "MA229",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A long, one-handed sword with a stiff, narrow blade built for stabbing (but not for parrying - rapierists often carried a secondary weapon or a cloak for defense). Despite modern misconceptions, the rapier isn't flimsy or fragile; it's simply longer and thinner than a military cut-and-thrust sword of similar weight, as befits a civilian weapon designed to combat lightly armored foes. There are many variations. The Light Rapier (p. 229) is a later-era weapon well on its way to becoming a Smallsword (p. B273). In the other direction, there were longer rapiers calculated to give a tactical edge in a duel. Historically, the rapier \"arms race\" led to lengths so extreme that London had a law restricting length, enforced by snapping off the excess! Such blades aren't practical for adventurers. Early rapiers generally had sharp edges and enough weight for cutting, and later blades sometimes emulated this. These are the Edged Rapier (p. 229) and Light Edged Rapier (p. 229), respectively.</p>"
@@ -370,7 +370,7 @@
   {
     "_id": "f66df125fd1d54c5",
     "name": "Long Knife",
-    "pages": "MA228",
+    "pages": "MA217",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. Any one-handed blade smaller than a sword, built for effective cutting and stabbing. Lightest is the Small Knife (pp. B272, B276), which may be balanced well enough to throw. The next size up is the Large Knife (pp. B272, B276), which is often purpose-built for combat but rarely throwable. Largest - at a total length between 15\" and 23\" - is the Long Knife (pp. 228-229), which is only marginally less substantial than a Shortsword (p. B273) and never throwable. For throwable knives, see Throwing Knife (p. 231).</p>"
@@ -378,7 +378,7 @@
   {
     "_id": "50d7bc1de6a261b6",
     "name": "Long Staff",
-    "pages": "MA230",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A balanced 5' to 7' wooden pole, wielded two-handed (often in a central grip). It enjoys worldwide praise for its defensive utility and ability to deal combat-winning blows. The GM should allow it to benefit from Parrying with Two-Handed Weapons (p. 123), even if he doesn't otherwise use that rule. Soldiers regularly learned staff fighting to ensure that they could defend themselves if their polearm lost its head. A broken polearm uses the statistics for a Long Staff (p. 230) - as does the traditional 8' to 9' medieval European quarterstaff. Drag limits the striking power of a long staff, and it requires a Defensive Grip (pp. 109-111) to be useful at close range.</p>"
@@ -386,7 +386,7 @@
   {
     "_id": "4caa035d5ee1732d",
     "name": "Longsword",
-    "pages": "MA227",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Germany. A light Thrusting Bastard Sword (pp. B271, B274) designed for two-handed thrusting, often from a Defensive Grip (pp. 109-111). To facilitate this tactic, only the tip-most 6\" of the blade was normally sharpened.</p>"
@@ -394,7 +394,7 @@
   {
     "_id": "8ee00094154dd3df",
     "name": "Main-Gauche",
-    "pages": "MA228",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>France, Italy. A stiff knife with a large basket hilt and broad crosspiece, designed primarily as a parrying weapon. Used alongside a rapier. Not throwable.</p>"
@@ -402,7 +402,7 @@
   {
     "_id": "d4354c181069e110",
     "name": "Mensurschläger",
-    "pages": "MA226",
+    "pages": "MA220",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Germany. A narrow, blunt-tipped, basket-hilted sword for Schläger (p. 160).</p>"
@@ -410,7 +410,7 @@
   {
     "_id": "35bf8fd4397a7730",
     "name": "Monk's Spade",
-    "pages": "MA229",
+    "pages": "MA220",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A polearm with a sharp, spade-like head on one end and a crescent-shaped blade on the other.</p>"
@@ -418,7 +418,7 @@
   {
     "_id": "9222639208c4e008",
     "name": "Rondel Dagger",
-    "pages": "MA228",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. A heavy dagger with broad discs as its pommel and handguard. The pommel design lets the user drive a blow home with the other hand, erasing -2 of the penalty for targeting chinks in armor (p. B400). If the wielder is wearing gauntlets (any gloves with DR 4+), the discs lock the weapon in place point-down: the wielder must use a Reversed Grip (pp. 111-112) but gets +2 to resist disarming.</p>"
@@ -426,7 +426,7 @@
   {
     "_id": "2911f9fa7d039259",
     "name": "Rope Dart",
-    "pages": "MA228",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A small metal throwing spike on the end of a rope. This lets the user retrieve the projectile after hurling it. The dart is smooth and bullet-shaped - not barbed - and can't snag and reel in the target. Light, ranged, and retrievable, the rope dart is a useful backup weapon for cavalry.</p>"
@@ -434,7 +434,7 @@
   {
     "_id": "4ee238963d3e691f",
     "name": "Round Mace",
-    "pages": "MA226",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. Any unbalanced, one-handed war club with a massive stone, wooden, or metal crushing head. The smooth-headed Round Mace (pp. 226, 231) is ancient, but modern martial artists still use \"melon head hammers\" and similar weapons (sometimes even in pairs, in Chinese styles). The standard Mace (pp. B271, B276), with flanges or spikes for bashing through plate armor, is a classic weapon of medieval Europe. Lighter versions - the Small Round Mace (pp. 226, 231) and Small Mace (pp. B271, B276) - are often backup weapons. A thrown mace is a deadly projectile; the attacker lobs it rather than hurling it in a straight line.</p>"
@@ -442,7 +442,7 @@
   {
     "_id": "3ca689a386b998e8",
     "name": "Sai",
-    "pages": "MA227",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Okinawa. A three-tined metal truncheon with a long central spike and a pair of short side prongs. Most often both side prongs point forward, but sometimes one is reversed (no game effect). Historical weapons had sharp points, but improvised and modern ones might be blunt. Similar weapons exist throughout Asia; several predate the sai.</p>"
@@ -450,7 +450,7 @@
   {
     "_id": "bd1735b0cd16e8f1",
     "name": "Short Baton",
-    "pages": "MA228",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A short, balanced club, usually wooden or metal. The police version, often in hard plastic, is also called a \"nightstick.\" Some batons are only knife-sized; use the Short Baton (pp. 228, 229) statistics for these.</p>"
@@ -458,7 +458,7 @@
   {
     "_id": "612a2b65c27374e6",
     "name": "Short Spear",
-    "pages": "MA229",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A pole with a pointed stabbing head, prized for its versatility: long, useful in one hand or two, often throwable, and uniformly deadly. Many variants sacrifice some flexibility for special-purpose effectiveness. The Short Spear (p. 229) - short, one-handed, and unthrowable - is a poor man's stabbing sword. The Long Spear (p. B273) is exclusively a melee weapon, employed with or without a shield for formation fighting. The Heavy Spear (p. 229) is similar, but has an extra-wide head for disemboweling; it's so massive that it requires two hands.</p>"
@@ -466,7 +466,7 @@
   {
     "_id": "71804ca490054422",
     "name": "Sickle",
-    "pages": "MA226",
+    "pages": "MA223",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A weaponized farmer's tool. The blade on a weapon-quality sickle is usually straight, not crescent-shaped. This allows hooking and swung impaling attacks.</p>"
@@ -474,7 +474,7 @@
   {
     "_id": "ed3d2f6513c50031",
     "name": "Slashing Wheel",
-    "pages": "MA228",
+    "pages": "MA223",
     "status": "reviewed",
     "notes": "",
     "description": "<p>China. A semicircular blade, sometimes toothed, gripped by a crossbar and used to cut opponents. Often used in pairs.</p>"
@@ -482,7 +482,7 @@
   {
     "_id": "95187a7c9cef13a8",
     "name": "Small Axe",
-    "pages": "MA226",
+    "pages": "MA212",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A wedge-shaped blade on a wooden handle, for use in one hand and not balanced for throwing. It comes in many shapes and sizes, such as the Small Axe (p. 226), which is only slightly larger than a Hatchet (p. B271).</p>"
@@ -490,7 +490,7 @@
   {
     "_id": "50af51d6d5029785",
     "name": "Small Falchion",
-    "pages": "MA229",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A medieval European term applied loosely to almost any single-edged sword, but most often to one that's flared, heavy, and/or curved forward at the tip, which favors cutting over thrusting. Most ironworking cultures developed such a blade; hunters and soldiers worldwide valued it as a tool (for butchering game, cutting brush, opening coconuts, etc.) and a weapon. Typically shortsword-sized, but the Large Falchion (p. 227) is broadsword-sized.</p>"
@@ -498,7 +498,7 @@
   {
     "_id": "4ab32fa52c8743ae",
     "name": "Small Round Mace",
-    "pages": "MA226",
+    "pages": "MA219",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. Any unbalanced, one-handed war club with a massive stone, wooden, or metal crushing head. The smooth-headed Round Mace (pp. 226, 231) is ancient, but modern martial artists still use \"melon head hammers\" and similar weapons (sometimes even in pairs, in Chinese styles). The standard Mace (pp. B271, B276), with flanges or spikes for bashing through plate armor, is a classic weapon of medieval Europe. Lighter versions - the Small Round Mace (pp. 226, 231) and Small Mace (pp. B271, B276) - are often backup weapons. A thrown mace is a deadly projectile; the attacker lobs it rather than hurling it in a straight line.</p>"
@@ -506,7 +506,7 @@
   {
     "_id": "6a47975749d9e56b",
     "name": "Small Throwing Axe",
-    "pages": "MA226",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Europe. An Axe (p. B271) balanced for throwing. It comes in many varieties. The Small Throwing Axe (pp. 226, 231) is halfway between a full-sized axe and a Hatchet (pp. B271, B276) in size. Cruciform throwing axes (and hatchets) that lack proper handles give -2 to skill as melee weapons but cost $10 less.</p>"
@@ -514,7 +514,7 @@
   {
     "_id": "71c032d768ac6adc",
     "name": "Sodegarami",
-    "pages": "MA230",
+    "pages": "MA224",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. A metal-reinforced staff with barbs along its length and a barbed head that's either forked or T-shaped. The design is intended to snag clothing, and the standard attack with this weapon is the Hook technique (p. 74). The similar sasumata ends in a wide, blunt fork intended to enclose the opponent's torso. Use the same statistics but remove the thrust+2 crushing attack. However, the wielder can shove (p. B372) a standing foe using the Staff skill, or pin (p. B370) him if he's prone or against a wall - both at reach 1, 2. Modern sasumata lack barbs; hooking inflicts no damage.</p>"
@@ -522,7 +522,7 @@
   {
     "_id": "082cc1572c012854",
     "name": "Stiletto",
-    "pages": "MA228",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Italy. A thin, stiff dagger that can slip between the links of mail and into the joints of plate armor. The narrow blade removes -2 of the penalty for targeting chinks in armor (p. B400).</p>"
@@ -530,7 +530,7 @@
   {
     "_id": "a217760197d50203",
     "name": "Straight Razor",
-    "pages": "MA228",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. A man's folding razor, used to slash. It can't stab or parry. See Capoeira (pp. 153-154) for rules for kicking with a razor held in the toes; this gives reach 1 and +1 damage. Fine- and/or presentation-quality blades are common.</p>"
@@ -538,7 +538,7 @@
   {
     "_id": "46c5fe43d6afd6b4",
     "name": "Tetsubo",
-    "pages": "MA230",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Japan. The name means \"iron staff,\" but it's actually a two-handed wooden club with an iron-studded cap. Usually used in a Defensive Grip (pp. 109-111).</p>"
@@ -546,7 +546,7 @@
   {
     "_id": "4737a0669c95a773",
     "name": "Tonfa",
-    "pages": "MA226",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Okinawa. A side-handled Baton (p. B273), often used in pairs. Held in a Reversed Grip (pp. 111-112) to aid Karate parries and enhance punches, or quickly spun to strike as a club.</p>"
@@ -554,7 +554,7 @@
   {
     "_id": "bd4b63829e801501",
     "name": "Urumi",
-    "pages": "MA230",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. A one-handed sword with a long, flexible blade, used to whip the target. Cutting damage assumes that one or both edges are sharp. Blunt urumi exist; these can only make crushing attacks. Sharpness doesn't affect cost or weight.</p>"
@@ -570,7 +570,7 @@
   {
     "_id": "8afa2664bde4e1c6",
     "name": "Repeating Crossbow",
-    "pages": "MA231",
+    "pages": "MA222",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Asia. A Crossbow (p. B276) that's first loaded (from a gravity-fed \"magazine\") and cocked, and then fired, by pushing and pulling a lever. It has no separate trigger and can't be carried cocked. The shooter must take a Ready maneuver immediately before each shot, but can shoot every other second.</p>"
@@ -578,7 +578,7 @@
   {
     "_id": "3b96c8155c7487d9",
     "name": "Composite Crossbow",
-    "pages": "MA231",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Asia, Europe. A bow attached to a grooved stock and fitted with a trigger, used to shoot short, thick arrows called \"bolts.\" Endless varieties exist! For instance, the Composite Crossbow (p. 231) uses a Composite Bow (p. B275), while the Pistol Crossbow (p. B276) is small enough to wield one-handed. The Chinese were fascinated with concealed crossbows. Full-sized models were worn on the back and triggered by bowing, while pistol-sized ones were hidden in stirrups and sleeves; see Hidden Weapons (p. 218). Related weapons include the Prodd (p. B276) and Repeating Crossbow (p. 231).</p>"
@@ -586,7 +586,7 @@
   {
     "_id": "b26a4c6e7e2ab66f",
     "name": "Plumbata",
-    "pages": "MA231",
+    "pages": "MA221",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Ancient Rome. A short javelin or \"war dart\" with a fletched wooden shaft. Part of the slender metal head is made of lead (plumbum, whence the weapon's name) that deforms on impact, fouling shields and making it a one-use weapon.</p>"
@@ -594,7 +594,7 @@
   {
     "_id": "b8ce386c3b63a686",
     "name": "Discus",
-    "pages": "MA231",
+    "pages": "MA215",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Ancient Greece. A wooden or metal throwing disc. Eclipsed as a weapon of war by bows and spears, but still thrown today by athletes (modern models may be weighted plastic).</p>"
@@ -602,7 +602,7 @@
   {
     "_id": "0674e703f3d18789",
     "name": "Chakram",
-    "pages": "MA231",
+    "pages": "MA214",
     "status": "reviewed",
     "notes": "",
     "description": "<p>India. A metal ring, edged on the outside, that's spun around the finger on the inside rim and thrown.</p>"
@@ -610,7 +610,7 @@
   {
     "_id": "039bd083829e75c5",
     "name": "Small Throwing Knife",
-    "pages": "MA231",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. True throwing knives rarely have a handguard, often lack a substantial handle, and are balanced for hurling, not fighting. This gives -2 to skill in melee combat. Like all knives, they come in many sizes; the Large Throwing Knife and Small Throwing Knife are typical.</p>"
@@ -618,7 +618,7 @@
   {
     "_id": "824a718a5ac6cd24",
     "name": "Boomerang",
-    "pages": "MA231",
+    "pages": "MA213",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Australia. An angled, more aerodynamic Throwing Stick (p. 225) designed for hunting. Doesn't return; returning versions are unsuitable as weapons and in any event wouldn't return if they hit. The GM may make an exception for martial artists with Throwing Art! Treat as a Baton (p. B273) if used as a club.</p>"
@@ -626,7 +626,7 @@
   {
     "_id": "e50af07ff87e0037",
     "name": "Throwing Stick",
-    "pages": "MA231",
+    "pages": "MA225",
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. Any heavy stick balanced enough to throw.</p>"
