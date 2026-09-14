@@ -55,15 +55,27 @@ export function systemManifest() {
   return readJson(path);
 }
 
-/** Every book in the repository, in a stable order. */
+/**
+ * Every book in the repository, in a stable order -- or, when `GCC_BOOKS`
+ * names some ("basic-set,monster-hunters-1"), only those.
+ *
+ * The filter is for releases. v0.1.0 is the Basic Set alone although the
+ * repository already held Monster Hunters 1 when it was cut, and building it
+ * with `GCC_BOOKS=basic-set` makes that release again from its tag.
+ */
 export function books() {
   if (!existsSync(booksRoot)) return [];
-  return readdirSync(booksRoot, { withFileTypes: true })
+  const all = readdirSync(booksRoot, { withFileTypes: true })
     .filter((entry) => entry.isDirectory())
     .map((entry) => entry.name)
     .filter((slug) => existsSync(join(booksRoot, slug, "book.json")))
-    .sort()
-    .map((slug) => book(slug));
+    .sort();
+  const wanted = (process.env.GCC_BOOKS ?? "").split(",").map((slug) => slug.trim()).filter(Boolean);
+  const unknown = wanted.filter((slug) => !all.includes(slug));
+  if (unknown.length) {
+    throw new Error(`GCC_BOOKS names ${unknown.join(", ")}, which is not a book here. Books: ${all.join(", ")}.`);
+  }
+  return all.filter((slug) => !wanted.length || wanted.includes(slug)).map((slug) => book(slug));
 }
 
 /** One book, with the defaults its `book.json` may leave out. */
