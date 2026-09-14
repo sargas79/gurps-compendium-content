@@ -131,17 +131,17 @@
     "_id": "b96bb9cf5695a0e8",
     "name": "No Physical Attack (1 Arm)",
     "pages": "B53",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The limb can manipulate but cannot punch or wield melee weapons, and gives no bonus in close combat. It can still wield a firearm or similar ranged weapon. -50%.</p>"
   },
   {
     "_id": "48fe6d00a97beac8",
     "name": "No Physical Attack (2 Arms)",
     "pages": "B53",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The limb can manipulate but cannot punch or wield melee weapons, and gives no bonus in close combat. It can still wield a firearm or similar ranged weapon. -50%.</p>"
   },
   {
     "_id": "4d6856b0a8449762",
@@ -179,33 +179,33 @@
     "_id": "f7ea4e6bb7540401",
     "name": "Weapon Mount (1 Arm)",
     "pages": "B53",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Instead of an arm, you have a \"hardpoint\" where you can mount a weapon. This may be biological, mechanical, or a hybrid of the two, depending on whether you are a living being, a machine, or a cyborg. You cannot use this mount for any purpose other than bearing a weapon. This limitation is incompatible with Feet Manipulator, No Physical Attack, Short, and Weak. -80%.</p>"
   },
   {
     "_id": "1a6eed6054b39063",
     "name": "Weapon Mount (2 Arms)",
     "pages": "B53",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Instead of an arm, you have a \"hardpoint\" where you can mount a weapon. This may be biological, mechanical, or a hybrid of the two, depending on whether you are a living being, a machine, or a cyborg. You cannot use this mount for any purpose other than bearing a weapon. This limitation is incompatible with Feet Manipulator, No Physical Attack, Short, and Weak. -80%.</p>"
   },
   {
     "_id": "b365935c21cd3fa6",
     "name": "Shadow Form (Disadvantage)",
     "pages": "B83",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can become a two-dimensional shadow. This lets you slip along walls and floors - and through the thinnest cracks (anything wide enough to fit your shoulders through) - at your usual ground Move. You can also defy gravity, creeping up walls and across ceilings at half Move.</p><p>Physical attacks do half damage to you in this form. Energy attacks do normal damage, except for light-based attacks, which do 50% extra damage. Magic, psi, and other purely mental abilities affect you normally.</p><p>You are subject to a few major restrictions while in this form. You cannot walk through three-dimensional space; you must slide along an object. Furthermore, you cannot perform any purely physical attacks or actions, and you cannot carry ordinary items or affect them in any way. You can use magic, psi, and similar abilities, however.</p><p>If you cannot switch out of Shadow Form, Shadow Form is a disadvantage worth -20 points. This will make it difficult to interact with others! You may still add enhancements, but they will work like limitations, reducing the value of the disadvantage. For instance, a +50% enhancement would reduce the value of the disadvantage by 50%, to -10 points.</p><p><em>Special Enhancements</em></p><p><em>Can Carry Objects:</em> You may carry objects. They take Shadow Form when picked up and return to normal when put down. You still may not affect non-shadow objects. No encumbrance is +10%; Light, +20%; Medium, +50%; Heavy, +100%.</p>"
   },
   {
     "_id": "9f18c3b6849d10b4",
     "name": "Cold-Blooded",
     "pages": "B127",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body temperature fluctuates with the temperature of the environment. You are less susceptible to damage from high or low body temperature (+2 HT to resist the effects of temperature), and require only 1/3 the food needed by a warm-blooded being of equal mass, but you tend to \"stiffen up\" in cold weather.</p><p>After 30 minutes in cold conditions (or one hour if you have any level of Temperature Tolerance), you get -1 to Basic Speed and DX per 10° below your \"threshold temperature\" (see below). At temperatures below 32°, you must roll vs. HT or take 1 HP of damage. Warm clothing gives +2 to this roll.</p><p>You regain lost Basic Speed and DX at the rate of one point of each per hour once you return to a warm climate. Double this rate in an exceptionally warm environment.</p><p>Point value depends on your \"threshold temperature\":</p><p>You \"stiffen up\" below 50°: -5 points.</p><p>You \"stiffen up\" below 65°: -10 points.</p>"
   },
   {
     "_id": "2bd40a393f1f8e8f",
@@ -323,25 +323,25 @@
     "_id": "df78b2a46728d731",
     "name": "No Legs (Bounces)",
     "pages": "B145",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This disadvantage assumes that your race lacks legs. If your race has legs, but you are missing yours, see Lame (p. 141).</p><p>You are a member of a legless race. There are several different forms of this trait, but in all cases, you cannot kick, cannot be struck in the legs in combat, and need not wear leg armor. The point costs below assume that the benefit of having no legs for foes to target in combat balances the drawback of being unable to kick.</p><p><em>Aerial:</em> You cannot move on land, but you can hover, glide, or fly. You must purchase the Flight advantage (p. 56). Calculate Basic Speed as usual and use twice this value to determine your basic air Move, as described for Flight. Your ground Move is 0. 0 points.</p><p><em>Aquatic:</em> You cannot move on land, but you are adapted to movement on or in water, like a ship or a fish. Calculate Basic Move and use this as your basic water Move. Your ground Move is 0. You suffer no skill penalties for working in or under water. 0 points. If your mobility depends on fins, masts, paddles, or sails that you can't armor, or you can't dive: -5 points. If both: -10 points.</p><p><em>Bounces, Rolls, or Slithers:</em> You move on land without using legs, like a snake or a wheel-form robot. Work out Basic Move and use it as your ground Move, just as a legged character would. 0 points.</p><p><em>Semi-Aquatic:</em> You \"walk\" on flippers, like a seal. Use Basic Move as your basic water Move and 1/5 this as your ground Move - that is, reverse the normal relationship between ground and water Move. You suffer standard skill penalties in the water. 0 points.</p><p><em>Sessile:</em> Your base is anchored where you sit, like a tree or a building. You can't move under your own power in any environment, and lack the option of using a moving platform (although you can be moved, with considerable effort). Your Basic Move is automatically 0, and you get no extra points for this. You can still have manipulators. If so, you wield weapons at no DX penalty, because unlike those with the Lame disadvantage, you have a very stable base! -50 points.</p><p><em>Tracked or Wheeled:</em> You have tracks or wheels instead of legs. Specify how many - one to four, or any higher even number. If using hit locations, treat each track or wheel as if it were a leg. You can neither jump nor negotiate obstacles that require arms and legs working together (e.g., a ladder or rope). You always leave a visible trail (giving others a Tracking bonus: +1 for Wheeled, +2 for Tracked). Tracks are also noisy (+2 to all Hearing rolls to detect you), but let you handle rough terrain more easily. Tracked and Wheeled do not reduce Move; in fact, you may buy up to three levels of Enhanced Move (Ground). This disadvantage usually accompanies the Machine meta-trait (p. 263). -20 points.</p>"
   },
   {
     "_id": "51b659add5ed3cbe",
     "name": "No Legs (Rolls)",
     "pages": "B145",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This disadvantage assumes that your race lacks legs. If your race has legs, but you are missing yours, see Lame (p. 141).</p><p>You are a member of a legless race. There are several different forms of this trait, but in all cases, you cannot kick, cannot be struck in the legs in combat, and need not wear leg armor. The point costs below assume that the benefit of having no legs for foes to target in combat balances the drawback of being unable to kick.</p><p><em>Aerial:</em> You cannot move on land, but you can hover, glide, or fly. You must purchase the Flight advantage (p. 56). Calculate Basic Speed as usual and use twice this value to determine your basic air Move, as described for Flight. Your ground Move is 0. 0 points.</p><p><em>Aquatic:</em> You cannot move on land, but you are adapted to movement on or in water, like a ship or a fish. Calculate Basic Move and use this as your basic water Move. Your ground Move is 0. You suffer no skill penalties for working in or under water. 0 points. If your mobility depends on fins, masts, paddles, or sails that you can't armor, or you can't dive: -5 points. If both: -10 points.</p><p><em>Bounces, Rolls, or Slithers:</em> You move on land without using legs, like a snake or a wheel-form robot. Work out Basic Move and use it as your ground Move, just as a legged character would. 0 points.</p><p><em>Semi-Aquatic:</em> You \"walk\" on flippers, like a seal. Use Basic Move as your basic water Move and 1/5 this as your ground Move - that is, reverse the normal relationship between ground and water Move. You suffer standard skill penalties in the water. 0 points.</p><p><em>Sessile:</em> Your base is anchored where you sit, like a tree or a building. You can't move under your own power in any environment, and lack the option of using a moving platform (although you can be moved, with considerable effort). Your Basic Move is automatically 0, and you get no extra points for this. You can still have manipulators. If so, you wield weapons at no DX penalty, because unlike those with the Lame disadvantage, you have a very stable base! -50 points.</p><p><em>Tracked or Wheeled:</em> You have tracks or wheels instead of legs. Specify how many - one to four, or any higher even number. If using hit locations, treat each track or wheel as if it were a leg. You can neither jump nor negotiate obstacles that require arms and legs working together (e.g., a ladder or rope). You always leave a visible trail (giving others a Tracking bonus: +1 for Wheeled, +2 for Tracked). Tracks are also noisy (+2 to all Hearing rolls to detect you), but let you handle rough terrain more easily. Tracked and Wheeled do not reduce Move; in fact, you may buy up to three levels of Enhanced Move (Ground). This disadvantage usually accompanies the Machine meta-trait (p. 263). -20 points.</p>"
   },
   {
     "_id": "c2d5090268ee3bea",
     "name": "No Legs (Slithers)",
     "pages": "B145",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This disadvantage assumes that your race lacks legs. If your race has legs, but you are missing yours, see Lame (p. 141).</p><p>You are a member of a legless race. There are several different forms of this trait, but in all cases, you cannot kick, cannot be struck in the legs in combat, and need not wear leg armor. The point costs below assume that the benefit of having no legs for foes to target in combat balances the drawback of being unable to kick.</p><p><em>Aerial:</em> You cannot move on land, but you can hover, glide, or fly. You must purchase the Flight advantage (p. 56). Calculate Basic Speed as usual and use twice this value to determine your basic air Move, as described for Flight. Your ground Move is 0. 0 points.</p><p><em>Aquatic:</em> You cannot move on land, but you are adapted to movement on or in water, like a ship or a fish. Calculate Basic Move and use this as your basic water Move. Your ground Move is 0. You suffer no skill penalties for working in or under water. 0 points. If your mobility depends on fins, masts, paddles, or sails that you can't armor, or you can't dive: -5 points. If both: -10 points.</p><p><em>Bounces, Rolls, or Slithers:</em> You move on land without using legs, like a snake or a wheel-form robot. Work out Basic Move and use it as your ground Move, just as a legged character would. 0 points.</p><p><em>Semi-Aquatic:</em> You \"walk\" on flippers, like a seal. Use Basic Move as your basic water Move and 1/5 this as your ground Move - that is, reverse the normal relationship between ground and water Move. You suffer standard skill penalties in the water. 0 points.</p><p><em>Sessile:</em> Your base is anchored where you sit, like a tree or a building. You can't move under your own power in any environment, and lack the option of using a moving platform (although you can be moved, with considerable effort). Your Basic Move is automatically 0, and you get no extra points for this. You can still have manipulators. If so, you wield weapons at no DX penalty, because unlike those with the Lame disadvantage, you have a very stable base! -50 points.</p><p><em>Tracked or Wheeled:</em> You have tracks or wheels instead of legs. Specify how many - one to four, or any higher even number. If using hit locations, treat each track or wheel as if it were a leg. You can neither jump nor negotiate obstacles that require arms and legs working together (e.g., a ladder or rope). You always leave a visible trail (giving others a Tracking bonus: +1 for Wheeled, +2 for Tracked). Tracks are also noisy (+2 to all Hearing rolls to detect you), but let you handle rough terrain more easily. Tracked and Wheeled do not reduce Move; in fact, you may buy up to three levels of Enhanced Move (Ground). This disadvantage usually accompanies the Machine meta-trait (p. 263). -20 points.</p>"
   },
   {
     "_id": "c6b7a50a206d902c",
@@ -363,17 +363,17 @@
     "_id": "4cbae38e3dbcecfc",
     "name": "No Legs (Tracked)",
     "pages": "B145",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This disadvantage assumes that your race lacks legs. If your race has legs, but you are missing yours, see Lame (p. 141).</p><p>You are a member of a legless race. There are several different forms of this trait, but in all cases, you cannot kick, cannot be struck in the legs in combat, and need not wear leg armor. The point costs below assume that the benefit of having no legs for foes to target in combat balances the drawback of being unable to kick.</p><p><em>Aerial:</em> You cannot move on land, but you can hover, glide, or fly. You must purchase the Flight advantage (p. 56). Calculate Basic Speed as usual and use twice this value to determine your basic air Move, as described for Flight. Your ground Move is 0. 0 points.</p><p><em>Aquatic:</em> You cannot move on land, but you are adapted to movement on or in water, like a ship or a fish. Calculate Basic Move and use this as your basic water Move. Your ground Move is 0. You suffer no skill penalties for working in or under water. 0 points. If your mobility depends on fins, masts, paddles, or sails that you can't armor, or you can't dive: -5 points. If both: -10 points.</p><p><em>Bounces, Rolls, or Slithers:</em> You move on land without using legs, like a snake or a wheel-form robot. Work out Basic Move and use it as your ground Move, just as a legged character would. 0 points.</p><p><em>Semi-Aquatic:</em> You \"walk\" on flippers, like a seal. Use Basic Move as your basic water Move and 1/5 this as your ground Move - that is, reverse the normal relationship between ground and water Move. You suffer standard skill penalties in the water. 0 points.</p><p><em>Sessile:</em> Your base is anchored where you sit, like a tree or a building. You can't move under your own power in any environment, and lack the option of using a moving platform (although you can be moved, with considerable effort). Your Basic Move is automatically 0, and you get no extra points for this. You can still have manipulators. If so, you wield weapons at no DX penalty, because unlike those with the Lame disadvantage, you have a very stable base! -50 points.</p><p><em>Tracked or Wheeled:</em> You have tracks or wheels instead of legs. Specify how many - one to four, or any higher even number. If using hit locations, treat each track or wheel as if it were a leg. You can neither jump nor negotiate obstacles that require arms and legs working together (e.g., a ladder or rope). You always leave a visible trail (giving others a Tracking bonus: +1 for Wheeled, +2 for Tracked). Tracks are also noisy (+2 to all Hearing rolls to detect you), but let you handle rough terrain more easily. Tracked and Wheeled do not reduce Move; in fact, you may buy up to three levels of Enhanced Move (Ground). This disadvantage usually accompanies the Machine meta-trait (p. 263). -20 points.</p>"
   },
   {
     "_id": "5015a6151df8c8b1",
     "name": "No Legs (Wheeled)",
     "pages": "B145",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This disadvantage assumes that your race lacks legs. If your race has legs, but you are missing yours, see Lame (p. 141).</p><p>You are a member of a legless race. There are several different forms of this trait, but in all cases, you cannot kick, cannot be struck in the legs in combat, and need not wear leg armor. The point costs below assume that the benefit of having no legs for foes to target in combat balances the drawback of being unable to kick.</p><p><em>Aerial:</em> You cannot move on land, but you can hover, glide, or fly. You must purchase the Flight advantage (p. 56). Calculate Basic Speed as usual and use twice this value to determine your basic air Move, as described for Flight. Your ground Move is 0. 0 points.</p><p><em>Aquatic:</em> You cannot move on land, but you are adapted to movement on or in water, like a ship or a fish. Calculate Basic Move and use this as your basic water Move. Your ground Move is 0. You suffer no skill penalties for working in or under water. 0 points. If your mobility depends on fins, masts, paddles, or sails that you can't armor, or you can't dive: -5 points. If both: -10 points.</p><p><em>Bounces, Rolls, or Slithers:</em> You move on land without using legs, like a snake or a wheel-form robot. Work out Basic Move and use it as your ground Move, just as a legged character would. 0 points.</p><p><em>Semi-Aquatic:</em> You \"walk\" on flippers, like a seal. Use Basic Move as your basic water Move and 1/5 this as your ground Move - that is, reverse the normal relationship between ground and water Move. You suffer standard skill penalties in the water. 0 points.</p><p><em>Sessile:</em> Your base is anchored where you sit, like a tree or a building. You can't move under your own power in any environment, and lack the option of using a moving platform (although you can be moved, with considerable effort). Your Basic Move is automatically 0, and you get no extra points for this. You can still have manipulators. If so, you wield weapons at no DX penalty, because unlike those with the Lame disadvantage, you have a very stable base! -50 points.</p><p><em>Tracked or Wheeled:</em> You have tracks or wheels instead of legs. Specify how many - one to four, or any higher even number. If using hit locations, treat each track or wheel as if it were a leg. You can neither jump nor negotiate obstacles that require arms and legs working together (e.g., a ladder or rope). You always leave a visible trail (giving others a Tracking bonus: +1 for Wheeled, +2 for Tracked). Tracks are also noisy (+2 to all Hearing rolls to detect you), but let you handle rough terrain more easily. Tracked and Wheeled do not reduce Move; in fact, you may buy up to three levels of Enhanced Move (Ground). This disadvantage usually accompanies the Machine meta-trait (p. 263). -20 points.</p>"
   },
   {
     "_id": "ef642bcaa639ff8a",
@@ -427,9 +427,9 @@
     "_id": "36452691e467413e",
     "name": "Unhealing",
     "pages": "B160",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You cannot heal naturally. You get no daily HT roll to recover lost HP, and you cannot recuperate from crippling injuries on your own. The First Aid skill can stop your bleeding, but neither it nor the Physician skill can restore missing HP. Technologies that accelerate natural healing (including herbs, drugs, etc.) are useless. This trait comes in two levels:</p><p><em>Partial:</em> You can heal naturally if a rare condition is met (e.g., when you are immersed in blood or bathed in lava). You can also heal yourself by stealing HP from others using Vampiric Bite (p. 96), magic, or psionics. -20 points.</p><p><em>Total:</em> You can never heal naturally, and you cannot steal HP from others. -30 points.</p><p>Depending on your nature, you might be able to regain lost HP and the use of crippled limbs unnaturally through surgery, repairs (if you're a machine), or exotic means (healing spells, alchemy, psionics, etc.).</p>"
   },
   {
     "_id": "b5d6ced7e4e31f0d",
@@ -515,9 +515,9 @@
     "_id": "7f96f437a53fa08d",
     "name": "Revulsion",
     "pages": "B151",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have an incapacitating supernatural reaction to an ordinarily innocuous substance. If you touch or breathe the substance, you must immediately make a HT roll. On a failure, you are at -5 to all skills and attributes for the next 10 minutes. If you ingest the substance, you are at -5 to attributes and -10 to all skills and Sense rolls for 10 minutes. Point value depends on the rarity of the substance:</p><p>Occasional (leather, soap): -5 points.</p><p>Common (smoke, wood): -10 points.</p><p>Very Common (grass, metal): -15 points.</p><p>This reaction is physical in nature. For mental aversions, see Dread (p. 132).</p>"
   },
   {
     "_id": "1247be0450629e7f",
@@ -539,9 +539,9 @@
     "_id": "2c6989891dbfb50e",
     "name": "Destiny (Disadvantage)",
     "pages": "B131",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A disadvantageous Destiny functions identically to an advantageous one (see p. 48), save that it always leads to something bad - but perhaps not immediately, and not without a chance to gain honor by dealing with it well. A fated, tragic death can be an end worthy of a hero! This kind of Destiny comes in three levels:</p><p><em>Minor Disadvantage:</em> You are fated to play a small part in a larger story, and you will not come off so well. You are guaranteed at least one tragic experience or embarrassing failure - although these things are unlikely to result in your death except under the most desperate and heroic of circumstances. -5 points.</p><p><em>Major Disadvantage:</em> You are fated to play a key role in a sorry turn of events. For instance, you might be late with a message that could save the day . . . or execute the only competent general in a threatened province, causing its loss to barbarian invaders. Still, you will survive. -10 points.</p><p><em>Great Disadvantage:</em> Death stalks you. Something out there has your name on it. It knows where you are and it's getting closer all the time. You will either die or be ruined, and your fall will have terrible repercussions for others. This kind of Destiny is not suitable for every campaign! The GM does not have to allow it - and if he does, he should plan on letting the campaign take a radical turn, or end, when the Destiny is fulfilled. -15 points.</p><p>You must buy off a disadvantageous Destiny as soon as it is fulfilled. This is automatic if the outcome strips you of Allies, Status, Wealth, etc. worth the same number of points. If you lack the points to buy off your Destiny, you gain Unluckiness (p. 160), regardless of the point value of the Destiny. It is up to the GM whether you can buy off the Unluckiness! Alternatively, the GM might assign you a new bad Destiny, Divine Curse (below), or other supernatural disadvantage.</p>"
   },
   {
     "_id": "23dc58ea0e30e462",
@@ -683,33 +683,33 @@
     "_id": "df5bd983da12c206",
     "name": "Addiction (Tobacco)",
     "pages": "B122",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are addicted to a drug, which you must use daily or suffer withdrawal. The value of this disadvantage depends on the cost, effects, and legality of the drug:</p><p><em>Cost (per day)</em></p><p>Cheap (up to 0.1% of average starting wealth): -5 points.</p><p>Expensive (up to 0.5% of average starting wealth): -10 points.</p><p>Very expensive (more than 0.5% of average starting wealth): -20 points.</p><p><em>Effects</em></p><p>Incapacitating or hallucinogenic: -10 points.</p><p>Highly addictive (-5 on withdrawal roll): -5 points.</p><p>Totally addictive (-10 on withdrawal roll): -10 points.</p><p><em>Legality</em></p><p><em>Illegal:</em> +0 points.</p><p><em>Legal:</em> +5 points.</p><p><em>Examples:</em> Tobacco is cheap, highly addictive, and legal; a chain-smoker has a -5-point Addiction. Heroin is very expensive, incapacitating, totally addictive, and illegal; a heroin addict has a -40-point Addiction.</p><p><em>Non-Chemical Addictions:</em> You can take Addiction to an activity instead of a drug - for instance, telepathic contact or spending time in virtual reality. If this costs money, price the Addiction based on its daily cost. If it is free (e.g., telepathic contact), treat it as \"Cheap\" if it you can do it almost anywhere (telepathic contact with anyone) or as \"Expensive\" if restrictive conditions apply (telepathic contact with one specific person). Such Addictions almost always cause psychological dependency (see Withdrawal, below).</p><p><em>Effects of Drugs</em></p><p>A stimulating drug leaves you feeling energized . . . until it wears off. Then you are depressed and irritable. An incapacitating drug renders you unconscious (or just blissfully, uselessly drowsy) for about two hours. A hallucinogenic drug renders you useless for work or combat, though you might be active and talkative. Some drugs (e.g., tobacco) have none of these effects, while others have unique effects. Side effects are also possible. For detailed rules, see Addictive Drugs (p. 440).</p><p><em>Withdrawal</em></p><p>Sometimes, voluntarily or otherwise, you must try to give up your Addiction. Addiction to a drug that causes psychological dependency is a mental disadvantage; withdrawal from such a drug requires a series of Will rolls, and may result in mental problems. Addiction to a drug that induces physiological dependency is a physical disadvantage; withdrawal is a function of your HT, and may cause physical injury. For details, see Drug Withdrawal (p. 440). Should you successfully withdraw from an Addiction, you must immediately buy off this disadvantage.</p><p><em>Minor Addictions</em></p><p>For an Addiction worth only -5 points, the GM may rule that the expense, stigma, and detrimental long-term effects of use are the whole of the disadvantage, and waive the usual withdrawal rules. This is appropriate for such drugs as tobacco and caffeine. If forced to go without, you must make a Will or HT roll as usual, but the only effects on a failure are general anxiety, irritability, or restlessness. This manifests as a temporary -1 to DX, IQ, self-control rolls, or reaction rolls (GM's choice) - not as insanity or injury. Successive failures prolong the duration of the effects; they do not increase the size of the penalty. If you can make 14 successful rolls in succession, you must buy off your Addiction.</p><p>It is also possible to create a 0-point Addiction using these rules. Such Addictions are always Minor Addictions, and you may take them as -1-point quirks (see Quirks, p. 162).</p>"
   },
   {
     "_id": "a381821316088a60",
     "name": "Addiction (Heroin)",
     "pages": "B122",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are addicted to a drug, which you must use daily or suffer withdrawal. The value of this disadvantage depends on the cost, effects, and legality of the drug:</p><p><em>Cost (per day)</em></p><p>Cheap (up to 0.1% of average starting wealth): -5 points.</p><p>Expensive (up to 0.5% of average starting wealth): -10 points.</p><p>Very expensive (more than 0.5% of average starting wealth): -20 points.</p><p><em>Effects</em></p><p>Incapacitating or hallucinogenic: -10 points.</p><p>Highly addictive (-5 on withdrawal roll): -5 points.</p><p>Totally addictive (-10 on withdrawal roll): -10 points.</p><p><em>Legality</em></p><p><em>Illegal:</em> +0 points.</p><p><em>Legal:</em> +5 points.</p><p><em>Examples:</em> Tobacco is cheap, highly addictive, and legal; a chain-smoker has a -5-point Addiction. Heroin is very expensive, incapacitating, totally addictive, and illegal; a heroin addict has a -40-point Addiction.</p><p><em>Non-Chemical Addictions:</em> You can take Addiction to an activity instead of a drug - for instance, telepathic contact or spending time in virtual reality. If this costs money, price the Addiction based on its daily cost. If it is free (e.g., telepathic contact), treat it as \"Cheap\" if it you can do it almost anywhere (telepathic contact with anyone) or as \"Expensive\" if restrictive conditions apply (telepathic contact with one specific person). Such Addictions almost always cause psychological dependency (see Withdrawal, below).</p><p><em>Effects of Drugs</em></p><p>A stimulating drug leaves you feeling energized . . . until it wears off. Then you are depressed and irritable. An incapacitating drug renders you unconscious (or just blissfully, uselessly drowsy) for about two hours. A hallucinogenic drug renders you useless for work or combat, though you might be active and talkative. Some drugs (e.g., tobacco) have none of these effects, while others have unique effects. Side effects are also possible. For detailed rules, see Addictive Drugs (p. 440).</p><p><em>Withdrawal</em></p><p>Sometimes, voluntarily or otherwise, you must try to give up your Addiction. Addiction to a drug that causes psychological dependency is a mental disadvantage; withdrawal from such a drug requires a series of Will rolls, and may result in mental problems. Addiction to a drug that induces physiological dependency is a physical disadvantage; withdrawal is a function of your HT, and may cause physical injury. For details, see Drug Withdrawal (p. 440). Should you successfully withdraw from an Addiction, you must immediately buy off this disadvantage.</p><p><em>Minor Addictions</em></p><p>For an Addiction worth only -5 points, the GM may rule that the expense, stigma, and detrimental long-term effects of use are the whole of the disadvantage, and waive the usual withdrawal rules. This is appropriate for such drugs as tobacco and caffeine. If forced to go without, you must make a Will or HT roll as usual, but the only effects on a failure are general anxiety, irritability, or restlessness. This manifests as a temporary -1 to DX, IQ, self-control rolls, or reaction rolls (GM's choice) - not as insanity or injury. Successive failures prolong the duration of the effects; they do not increase the size of the penalty. If you can make 14 successful rolls in succession, you must buy off your Addiction.</p><p>It is also possible to create a 0-point Addiction using these rules. Such Addictions are always Minor Addictions, and you may take them as -1-point quirks (see Quirks, p. 162).</p>"
   },
   {
     "_id": "a8f990e3f35697fd",
     "name": "Alcoholism",
     "pages": "B122",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are an alcohol addict. Alcoholism uses the Addiction rules (above). It is cheap, incapacitating, and usually legal, so it would normally be a -10-point Addiction. But it is also insidious; therefore, it is worth -15 points - or -20 points if it is illegal.</p><p>Most of the time, you may confine your drinking to the evenings, and therefore function normally (for game purposes). However, any time you are in the presence of alcohol, you must roll vs. Will to avoid partaking. A failed roll means you go on a \"binge\" lasting 2d hours, followed by a hangover; see Drinking and Intoxication (p. 439). Alcoholics on a binge are characterized by sudden mood swings - from extreme friendliness to extreme hostility - and may attack friends, talk too freely, or make other mistakes.</p><p>The other drawback of Alcoholism is that it is hard to get rid of. Should you manage to \"withdraw,\" you no longer need to drink daily . . . but you must still make a Will+4 roll whenever you are in the presence of alcohol. A failed roll does not reinstate the addiction, but does set off a binge. (Three binges in a week will reinstate the addiction.) Thus, there is no normal way to \"buy off\" this disadvantage.</p><p>Continued Alcoholism will steal your abilities. You must roll yearly against HT+2 until you withdraw. Failure means you lose a level from one of your four basic attributes - roll randomly to determine which.</p>"
   },
   {
     "_id": "c9acc122d05066ec",
     "name": "Bad Back",
     "pages": "B123",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For whatever reason, your spinal column is in bad shape. During strenuous physical activity, you may \"throw your back\" and suffer crippling pain or further injury. Whenever you make a ST roll, and whenever you roll 17 or 18 on an attack or defense roll in melee combat, or on a roll for an \"athletic\" skill such as Acrobatics, make a HT roll as well.</p><p><em>Modifiers:</em> Any modifiers to the success roll for the activity that triggered the HT roll. For a long task that allows the luxury of planning, you can try to minimize the strain on your back; a successful IQ-2 or Physiology+4 roll gives +2 on the HT roll.</p><p>On a failure, you throw your back. Consequences depend on the severity of your case:</p><p><em>Mild:</em> You are at -3 DX until you rest or someone helps you; a First Aid-2 roll will reset your back. You are also at -3 IQ, but during the next second only (for your next turn, in combat). On a critical failure, you are at -5 DX and must make a Will roll to perform any physical action. -15 points.</p><p><em>Severe:</em> The HT roll is at -2. On a failure, DX and IQ are both at -4 until you receive rest or help; you are in constant agony. On a critical failure, you take 1d-3 damage and are at -6 DX and -4 IQ. -25 points.</p><p>High Pain Threshold (p. 59) halves all DX and IQ penalties (drop fractions), but does not eliminate them completely.</p>"
   },
   {
     "_id": "6d983efe685d7262",
@@ -835,17 +835,17 @@
     "_id": "ec09023cc0987672",
     "name": "G-Intolerance",
     "pages": "B137",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You function well under a narrow range of gravities. For a normal human, the penalties for non-native gravity accrue in increments of 0.2G; see Different Gravity (p. 350). An increment of 0.1G is worth -10 points. An increment of 0.05G is worth -20 points.</p><p>This disadvantage is only allowed in campaigns that feature regular space travel.</p>"
   },
   {
     "_id": "5799cc9695e84e69",
     "name": "Ham-Fisted",
     "pages": "B138",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have unusually poor motor skills. You suffer a penalty to any DX-based roll to do fine work using the skills listed under High Manual Dexterity (p. 59), and to Fast-Draw skill. For -5 points, the penalty is -3; for -10 points, it is -6. This does not affect IQ-based tasks or large-scale DX-based tasks, nor does it modify combat-related die rolls other than Fast-Draw.</p><p>You are also a messy eater, can't tie a necktie properly, and so on. At the GM's option, you get -1 per level of this trait on any Influence or reaction roll where being tidy or well-groomed would matter.</p><p>This disadvantage is mutually exclusive with High Manual Dexterity.</p>"
   },
   {
     "_id": "5cbae3ae290140e5",
@@ -923,9 +923,9 @@
     "_id": "bd6c75dd6ecbf869",
     "name": "Insomniac",
     "pages": "B140",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You go through periods where falling asleep is very difficult. During such an episode, you must make a HT-1 roll once per night. On a success, you fall asleep easily, ending that episode of insomnia. On a failure, you lose two hours of sleep that night (and suffer all the usual effects; see Missed Sleep, p. 426) and the episode continues for another night. On a critical failure, you get no sleep that night. Point value depends on severity:</p><p><em>Mild:</em> The GM secretly rolls 3d for the number of days between episodes. -10 points.</p><p><em>Severe:</em> The GM rolls 2d-1 for the number of days between episodes. -15 points.</p><p>Regardless of severity, whenever you suffer prolonged stress, the GM can require a HT roll. Failure means an episode starts immediately.</p>"
   },
   {
     "_id": "b30cc916aa1689d2",
@@ -1003,9 +1003,9 @@
     "_id": "be974ae47c5ee04d",
     "name": "Missing Digit",
     "pages": "B144",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are missing a finger or thumb.</p><p><em>Missing Finger:</em> Gives -1 DX with that hand (only). -2 points.</p><p><em>Missing Thumb:</em> Gives -5 DX with that hand (only). -5 points.</p>"
   },
   {
     "_id": "cc4750bfb50ce9c2",
@@ -1107,9 +1107,9 @@
     "_id": "66f2de8c7be0c43c",
     "name": "Restricted Vision",
     "pages": "B151",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have an unusually narrow field of vision. A normal character can see a 120° arc in front of him without turning his head, and has 30° of peripheral vision to either side, giving him a 180° \"arc of vision\" for observation and ranged attacks. On a battle map, this means he has three \"front\" hexes, two \"side\" hexes (\"left\" and \"right\"), and a single \"back\" hex. Your vision is considerably more restricted. This comes in two levels:</p><p><em>No Peripheral Vision:</em> Your arc of vision is a 120° wedge to the front. On a map, your \"left\" and \"right\" hexes become \"back\" hexes - that is, you have three \"back\" hexes, and get no defense against attacks originating from these hexes! -15 points.</p><p><em>Tunnel Vision:</em> Your arc of vision is a 60° wedge to the front. On a map, your only \"front\" hex is the one directly ahead of you. The hexes to either side of this are \"side\" hexes: you are at -2 to defend against attacks from these hexes, and can only attack into those hexes with a Wild Swing. Everything else is a \"back\" hex, as above. -30 points.</p>"
   },
   {
     "_id": "382371c00bda0261",
@@ -1155,9 +1155,9 @@
     "_id": "b39956ff8490c122",
     "name": "Terminally Ill",
     "pages": "B158",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are going to die . . . soon. This could be due to a nasty disease, a potent curse, an irremovable explosive device embedded in the base of your skull, or something else that will result in certain death. Point cost depends on how much time you have left:</p><table><tr><th>Time Until Death</th><th>Cost</th></tr><tr><td>Up to one month</td><td>-100 points</td></tr><tr><td>Up to one year</td><td>-75 points</td></tr><tr><td>Up to two years</td><td>-50 points</td></tr></table><p>More than two years is worth nothing. Anyone might be hit by a truck in that time!</p><p>If you acquire a \"miracle cure,\" upload yourself into a new body, or otherwise extend your life past your termination date during the course of the campaign, you must buy off this disadvantage. If you cannot afford to do so, the GM is free to make up the difference with new disadvantages related to your illness or its cure (e.g., Chronic Pain, Dependency, Maintenance, or Susceptible).</p><p>If the GM is running a one-shot adventure or short campaign, he should disallow this disadvantage as meaningless.</p>"
   },
   {
     "_id": "b4227a0f3f458f14",
@@ -1203,17 +1203,17 @@
     "_id": "00ea3eccf9a5cee0",
     "name": "Amnesia (Partial)",
     "pages": "B123",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've lost your memory. You can't remember any of your past life, including your name. This disadvantage comes in two levels:</p><p><em>Partial Amnesia:</em> You, the player, can see your character sheet, but the GM may reserve up to -30 points of your disadvantage allotment for \"secret\" disadvantages of his choosing. You know that you can use certain skills, but have no idea where you learned them. You are likely to have enemies - and possibly friends - that you can't remember. If you turn yourself in to the police, they can perform their standard ID checks . . . but you might turn out to be a wanted criminal. Even if you aren't, finding out your name won't restore your memory! -10 points.</p><p><em>Total Amnesia:</em> The only traits you can specify during character creation are those you could see in a mirror. The GM assigns everything else - and holds onto your full character sheet until your memory returns! You have no idea of your full abilities. Since the GM knows your quirks and mental traits, and you don't, he will sometimes overrule your statements about what you're doing. He will also make all skill rolls for you, because you have no idea what you can do until you try it! Your IQ-based skill rolls are at -2 unless the GM feels that memory would have no effect at all on the task at hand. -25 points.</p><p>You can only buy off Amnesia if there is some reason why you might recover your memory; e.g., meeting an old friend, reliving some fateful event, or the ever-popular blow to the head. In most cases, the cure will be related to the cause of the memory loss. Particularly twisted GMs might enjoy making the cause in question some form of brainwashing. In this case, one of the hidden disadvantages will probably be an Enemy with sufficient resources to have arranged the brainwashing in the first place.</p>"
   },
   {
     "_id": "ddba3b2da3b9df4a",
     "name": "Amnesia (Total)",
     "pages": "B123",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've lost your memory. You can't remember any of your past life, including your name. This disadvantage comes in two levels:</p><p><em>Partial Amnesia:</em> You, the player, can see your character sheet, but the GM may reserve up to -30 points of your disadvantage allotment for \"secret\" disadvantages of his choosing. You know that you can use certain skills, but have no idea where you learned them. You are likely to have enemies - and possibly friends - that you can't remember. If you turn yourself in to the police, they can perform their standard ID checks . . . but you might turn out to be a wanted criminal. Even if you aren't, finding out your name won't restore your memory! -10 points.</p><p><em>Total Amnesia:</em> The only traits you can specify during character creation are those you could see in a mirror. The GM assigns everything else - and holds onto your full character sheet until your memory returns! You have no idea of your full abilities. Since the GM knows your quirks and mental traits, and you don't, he will sometimes overrule your statements about what you're doing. He will also make all skill rolls for you, because you have no idea what you can do until you try it! Your IQ-based skill rolls are at -2 unless the GM feels that memory would have no effect at all on the task at hand. -25 points.</p><p>You can only buy off Amnesia if there is some reason why you might recover your memory; e.g., meeting an old friend, reliving some fateful event, or the ever-popular blow to the head. In most cases, the cure will be related to the cause of the memory loss. Particularly twisted GMs might enjoy making the cause in question some form of brainwashing. In this case, one of the hidden disadvantages will probably be an Enemy with sufficient resources to have arranged the brainwashing in the first place.</p>"
   },
   {
     "_id": "27df0f0f7769f4ff",
@@ -1355,9 +1355,9 @@
     "_id": "444fcd0b5265ad89",
     "name": "Compulsive Behavior",
     "pages": "B128",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You have a habit - often a vice - that wastes a good deal of your time or money. You must indulge at least once per day, if at all possible, and do so any time you have the opportunity unless you can make a self-control roll. You seek to avoid any situation where you know you will be unable to indulge for more than a day. You must make a self-control roll to enter into such a situation; if you succeed (or are forced into the situation), you suffer from Bad Temper (p. 124) the whole time, with the same self-control roll as your Compulsive Behavior. It's bad roleplaying to try to avoid your compulsion regularly!</p><p>The point value of this disadvantage depends on how much your habit costs and how much trouble it is likely to get you into. The GM is the final judge. Examples include:</p><p><em>Compulsive Carousing:</em> You cannot resist the urge to party! Once per day, you must seek out a social gathering and lounge around - feasting, drinking, singing, and joking - for at least an hour. If you are not invited, you crash the party; if there is no party, you attempt to liven things up. Money is no object! If you have it, you will spend it. You try almost any mind-altering substance without a second thought, never refuse a social drink, and aren't particularly picky about your romantic partners. You get +1 to reactions from like-minded extroverts, but -1 or worse from sober-minded citizens - and -4 in puritanical settings. -5 points* (-10 points* in puritanical settings).</p><p><em>Compulsive Gambling:</em> You cannot pass up an opportunity to gamble. Bets, wagers, games of chance, and even lotteries hold an uncanny fascination for you. If there is no game of chance or bet going, you will start one. You try any gambling game proposed to you, whether you know it or not. You do not have to have the Gambling skill, but if you don't, you will need a steady source of wealth! If you are prevented from gambling - for instance, by traveling with nongamblers - you will quickly earn a reaction penalty (-1 per -5 points in this disadvantage, after the self-control multiplier) by constantly talking about gambling and attempting to draw others into games or wagers. -5 points.*</p><p><em>Compulsive Generosity:</em> You are too open-handed. If a beggar asks for cash, you give - and where others give copper, you give silver. You always listen to larger requests for financial aid, if they are even remotely plausible, and you must make a self-control roll whenever you hear a good hard-luck story (if you are broke when asked, you apologize profusely). You aren't a complete sucker - you just feel guilty about being better off than others. In a society with a lot of beggars around, increase your cost of living:</p><table><tr><th>Self-Control Number</th><th>6</th><th>9</th><th>12</th><th>15</th></tr><tr><td>Cost of Living Increase</td><td>20%</td><td>15%</td><td>10%</td><td>5%</td></tr></table><p>This may earn you a +1 reaction bonus from pious folk; if you are poor yourself, the reaction bonus may be even higher. This trait is incompatible with Miserliness. -5 points.*</p><p><em>Compulsive Lying:</em> You lie constantly, for no reason other than the joy of telling the tale. You delight in inventing stories about your deeds, lineage, wealth - whatever might impress your audience. Even when exposed as a liar, you cling to your stories tenaciously, calling your accuser a liar and a scoundrel. Make a self-control roll to tell the pure, unvarnished truth. If you fail, you lie - no matter how dire the consequences. When you roll to tell the truth to your fellow party members, roll out of sight of the other players. Thus, they can never be sure they are getting accurate information. -15 points.*</p><p><em>Compulsive Spending:</em> Cash just runs through your fingers! You enjoy being seen as a big spender, are too fond of luxury, or find the experience of buying to be fun - perhaps all three. Make a self-control roll whenever someone offers you a purchase that matches any of your quirks or interests, and the cash in your pocket is more than twice the asking price. If you fail, you buy. This raises your cost of living, and gives you a penalty to Merchant skill when you bargain or haggle:</p><table><tr><th>Self-Control Number</th><th>6</th><th>9</th><th>12</th><th>15</th></tr><tr><td>Cost of Living Increase</td><td>80%</td><td>40%</td><td>20%</td><td>10%</td></tr><tr><td>Merchant Skill Penalty</td><td>-4</td><td>-3</td><td>-2</td><td>-1</td></tr></table><p>Compulsive Spending is not limited to the wealthy! A poor farmer can be a spendthrift. This trait is incompatible with Miserliness (it's the opposite!), but you can combine it with Greed. -5 points.*</p><p><em>Compulsive Vowing:</em> You never simply decide to do something; you must make it an oath. Although these vows are often trivial in nature, you approach them all with the same solemnity and dedication. You may tack extraneous vows onto legitimate ones. -5 points.*</p>"
   },
   {
     "_id": "04ba15eaf68aed41",
@@ -1739,9 +1739,9 @@
     "_id": "8f77b9db43ad30ac",
     "name": "Obsession",
     "pages": "B146",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your entire life revolves around a single goal. Unlike Compulsive Behavior (p. 128), this is not a daily habit, but an overpowering fixation that motivates all of your actions. And unlike Fanaticism (p. 136), this does not necessarily imply a set of philosophical beliefs.</p><p>You must rationalize all of your actions as an attempt to reach your goal. Make a self-control roll whenever it would be wise to deviate from your goal. If you fail, you continue to pursue your Obsession, regardless of the consequences.</p><p>Point cost depends on the time needed to realize your goal. A short-term goal (e.g., assassinating someone) is worth -5 points, while a long-term goal (e.g., becoming President) is worth -10 points. In both cases, modify the base cost to reflect your self-control number. If your Obsession causes others to react badly, take Odious Personal Habit (p. 22) or Delusion (p. 130) as well.</p><p>Should you ever reach your goal, you must either substitute a new goal or buy off your Obsession.</p>"
   },
   {
     "_id": "9cfcfefb1661c167",
@@ -1867,9 +1867,9 @@
     "_id": "73ead9ed1f8eed8e",
     "name": "Sense of Duty",
     "pages": "B153",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You feel a strong sense of commitment toward a particular class of people. You will never betray them, abandon them when they're in trouble, or let them suffer or go hungry if you can help. This is different from a Duty (p. 133), which is imposed upon you. A Sense of Duty always comes from within.</p><p>If you are known to have a Sense of Duty, the GM will adjust the reactions of others by +2 when rolling to see whether they trust you in a dangerous situation. However, if you go against your Sense of Duty by acting against the interests of those you are supposed to be looking out for, the GM will penalize you for bad roleplaying.</p><p>The GM will assign a point value to your Sense of Duty based on the size of the group you feel compelled to aid:</p><p>Individual (the President, your wingman, etc.): -2 points.</p><p>Small Group (e.g., your close friends, adventuring companions, or squad): -5 points.</p><p>Large Group (e.g., a nation or religion, or everyone you know personally): -10 points.</p><p>Entire Race (all humanity, all elves, etc.): -15 points.</p><p><em>Every Living Being:</em> -20 points.</p><p>You cannot claim points for a Sense of Duty toward Allies, Dependents, or Patrons. The point costs of these traits already take such a bond into account.</p><p>You can take a Sense of Duty toward adventuring companions. If you do, you must share equipment with and render aid to the other members of your adventuring party, and go along with majority decisions. The GM might make this mandatory in games where the party needs to get along. This gives everyone a \"free\" 5 points to spend . . . but if you start backstabbing, running off on your own, etc., the GM is free to overrule your actions and point to these bonus points as the reason why.</p>"
   },
   {
     "_id": "85cd9dcbb72cb67d",
@@ -1883,9 +1883,9 @@
     "_id": "d555f7485774bc3c",
     "name": "Shyness",
     "pages": "B154",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are uncomfortable around strangers. Roleplay it! This disadvantage comes in three levels; you can buy it off one level at a time.</p><p><em>Mild:</em> You are uneasy with strangers, especially assertive or attractive ones. You have -1 on skills that require you to deal with people, including Acting, Carousing, Diplomacy, Fast-Talk, Intimidation, Leadership, Merchant, Panhandling, Performance, Politics, Public Speaking, Savoir-Faire, Sex Appeal, Streetwise, and Teaching. -5 points.</p><p><em>Severe:</em> You are very uncomfortable around strangers, and tend to be quiet even among friends. -2 the skills listed above. -10 points.</p><p><em>Crippling:</em> You avoid strangers whenever possible. You may not learn the skills listed above at all, and are at -4 on default rolls on such skills. -20 points.</p>"
   },
   {
     "_id": "64d3974ee15da74a",
@@ -2075,9 +2075,9 @@
     "_id": "0efde31ce5bc273f",
     "name": "Secret",
     "pages": "B152",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Secret is an aspect of your life or your past that you must keep hidden. Revelation would result in lasting negative consequences. The point value depends on the severity of those consequences:</p><p><em>Serious Embarrassment:</em> If this information gets around, you can forget about ever getting a promotion, getting elected, or marrying well. Alternatively, revelation of your Secret might simply attract unwelcome public attention. -5 points.</p><p><em>Utter Rejection:</em> If your Secret is revealed, it will change your whole life. Perhaps you will lose your job and be rejected by friends and loved ones. Perhaps admirers, cultists, long-lost relatives, or the press will harass you. -10 points.</p><p><em>Imprisonment or Exile:</em> If the authorities uncover your Secret, you'll have to flee, or be imprisoned for a long time (GM's discretion). -20 points.</p><p><em>Possible Death:</em> Your Secret is so terrible that you might be executed by the authorities, lynched by a mob, or assassinated (by the Mafia, CIA, etc.) were it revealed. You would be a hunted man. -30 points.</p><p><em>Frequency of Appearance</em></p><p>In general, a Secret appears in a particular game session if the GM rolls a 6 or less on 3d before the adventure begins. However, as for all other disadvantages of this type, the GM need not feel constrained by the appearance roll. If he thinks that the Secret should come into play, it does!</p><p>When a Secret appears in play, it is not automatically made public. The GM will give you a chance to prevent your Secret from being revealed. This might require you to cave in to blackmail or extortion, steal incriminating documents, or even silence the person who knows the Secret. Regardless of the solution, however, it's only temporary - the Secret will appear again and again until either you buy it off with earned character points or it is finally revealed.</p><p><em>Effects of Revelation</em></p><p>If a Secret is made public, there is an immediate negative effect ranging from serious embarrassment to possible death, depending on the severity of the Secret (see above). There is also a lasting effect: you suddenly acquire new, permanent disadvantages - or lose advantages - worth points equal to twice what the Secret was worth! These new disadvantages replace the Secret on your character sheet, and reduce your point value accordingly.</p><p>The GM chooses the new disadvantages and lost advantages, which should always be appropriate to the Secret. Most Secrets turn into Enemies (p. 135), negative Reputations (p. 26), and Social Stigmas (p. 155), or reduce or remove advantages described under Wealth and Influence (pp. 25-30). Some could even turn into mental or physical disadvantages.</p><p><em>Example:</em> A city guardsman has a -20-point Secret: at night, he is a thief. When he is finally caught and brought to justice, his Secret is revealed and immediately replaced with -40 points in disadvantages and lost advantages! The GM rules that he is stripped of his 5-point Legal Enforcement Powers (-5 points), gains Social Stigma (Criminal Record) (-5 points), and is punished by having his right hand chopped off (One Hand, -15 points) and being forced to pay reparations that reduce his Wealth from Average to Poor (-15 points).</p>"
   },
   {
     "_id": "58d849060e564f6b",
@@ -2091,9 +2091,9 @@
     "_id": "fedc692ae8de5afb",
     "name": "Social Stigma",
     "pages": "B155",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You belong to a race, class, sex, or other group that your society deems inferior. To be worth points, this must be obvious from your physical appearance (a visible brand, tattoo, or magical mark counts), dress, manner, or speech; or easily learned by anyone who cares to check up on you (only valid in societies with free and easy access to information); or the result of public denouncement (e.g., by a powerful leader or media figure) that ensures that everyone you meet knows that you, personally, belong to the disdained group.</p><p>A Social Stigma gives you a reaction penalty (-1 per -5 points of Social Stigma), restricts your social mobility, or both. Examples include:</p><p><em>Criminal Record:</em> You have been convicted of a crime that your society considers serious. You may be prohibited from legally acquiring certain items (e.g., weapons), taking certain kinds of employment, receiving security clearances, or even traveling outside your country. Many noncriminals who learn of your past react at -1; police, judges, vigilantes, and other law-and-order types usually react at -2. If you are also wanted, take an appropriate Enemy. -5 points.</p><p><em>Disowned:</em> Your family has publicly snubbed you. This is only worth points in settings where family ties play a significant social role, and never applies to those who voluntarily part ways with their family. This Social Stigma comes in two levels:</p><ul><li>You would normally be an heir in your culture, but someone else has been named in your stead. This is embarrassing, but you may still count yourself as part of the family. This gives -1 on reaction rolls. -5 points.</li><li>The head of your family - or your entire clan - has wholly and publicly disowned you. This gives -2 on reaction rolls. -10 points.</li></ul><p><em>Excommunicated:</em> Your church has cast you out. Followers of your faith react to you at -3. This is only a disadvantage if you are excommunicated by a powerful and widespread religion (most likely state-backed) that plays a significant role in day-to-day life. -5 points.</p><p>If your religion has true supernatural power, and you are surrounded by an aura that conveys your shame to co-religionists, angels, and anyone else who would care, no matter how well you disguise yourself, your Social Stigma is worth twice as much. -10 points.</p><p><em>Ignorant:</em> You have not learned a skill required of all responsible adults in your society (that is, you have no points in the skill). Others look down upon you as a slacker or a fool. This gives -1 on reactions for each \"expected\" skill you lack, up to a maximum of four skills. This is only worth points in highly structured societies, or in primitive ones where individuals depend on one another for survival. -5 points/skill.</p><p><em>Minor:</em> You are underage by your culture's standards. You suffer -2 on reaction rolls whenever you try to deal with others as an adult; they might like you, but they do not fully respect you. You might also be barred from nightclubs, vehicle operation, war parties, guild membership, etc., depending on the culture and setting. You must buy off this trait when you reach \"legal age\" (usually 18) for your time and place. -5 points.</p><p><em>Minority Group:</em> You are a member of a minority that the dominant culture around you regards as \"barbarians\" or \"inferior.\" You get -2 on all reaction rolls made by anyone except your own kind. In an area, profession, or situation where your minority is especially rare, you get +2 on reaction rolls made by your own kind. -10 points.</p><p><em>Monster:</em> You are a large carnivore, magical abomination, or other being that is hated or feared regardless of actual appearance or disposition. This gives you -3 on all reaction rolls, and you are liable to be hunted on sight. However, you get +3 to Intimidation rolls in situations where you have the upper hand (GM's opinion). Examples: a bear or a vampire. -15 points.</p><p><em>Second-Class Citizen:</em> You belong to a group that receives fewer rights and privileges than \"full citizens.\" This gives -1 on all reaction rolls except from others of your own kind. Examples: a woman in 19th-century America, or members of some religions. -5 points.</p><p><em>Subjugated:</em> You are a member of a slave nation or race. Within the overlords' culture, you have no rights, and suffer the negative effects of Second-Class Citizen and Valuable Property. If you manage to escape to freedom, you acquire the entire overlord nation or race as an Enemy. -20 points.</p><p><em>Uneducated:</em> You are from a class, race, or subculture that lacks a cultural repository of wisdom, eschews formal schooling, and takes a dim view of activities that do not relate directly to survival or procreation. You receive -1 to reactions from more sophisticated folk in any situation where your lack of schooling would be apparent, and you may not start with any \"book-learned\" skills (GM's discretion; most IQ/Hard skills qualify). You may buy off this trait once you have lived in \"civilized\" parts for long enough (GM's decision). -5 points.</p><p><em>Valuable Property:</em> Your society regards you as somebody's property rather than as a \"legal person.\" This takes the form of limited freedom or lack of intellectual respect more than as a reaction modifier. Examples: a woman in 18th-century America or 16th-century Japan. -10 points.</p><p>Social Stigmas must bind those who take them. For example, a medieval Japanese lady must pay for her 10-point bonus by giving up her freedom of movement in many cases, and must defer to older male relatives when they are present. A black slave in 19th-century America is allowed to learn very little and own almost no property, and has little freedom of any kind unless he manages to escape. (If he does escape, he has traded his Social Stigma for a powerful Enemy!)</p><p>It is possible to have multiple Social Stigmas, provided they do not significantly overlap (GM's decision). For instance, a teenager who drops out of school and joins a street gang could believably end up with Minor, Uneducated, and Criminal Record.</p>"
   },
   {
     "_id": "58da5d3fa64a5db4",
@@ -2115,9 +2115,9 @@
     "_id": "3bafa57facc3d022",
     "name": "Social Stigma (Publically disowned)",
     "pages": "B155",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You belong to a race, class, sex, or other group that your society deems inferior. To be worth points, this must be obvious from your physical appearance (a visible brand, tattoo, or magical mark counts), dress, manner, or speech; or easily learned by anyone who cares to check up on you (only valid in societies with free and easy access to information); or the result of public denouncement (e.g., by a powerful leader or media figure) that ensures that everyone you meet knows that you, personally, belong to the disdained group.</p><p>A Social Stigma gives you a reaction penalty (-1 per -5 points of Social Stigma), restricts your social mobility, or both. Examples include:</p><p><em>Disowned:</em> Your family has publicly snubbed you. This is only worth points in settings where family ties play a significant social role, and never applies to those who voluntarily part ways with their family. This Social Stigma comes in two levels:</p><ul><li>You would normally be an heir in your culture, but someone else has been named in your stead. This is embarrassing, but you may still count yourself as part of the family. This gives -1 on reaction rolls. -5 points.</li><li>The head of your family - or your entire clan - has wholly and publicly disowned you. This gives -2 on reaction rolls. -10 points.</li></ul>"
   },
   {
     "_id": "1f180f0311937c38",
@@ -2227,9 +2227,9 @@
     "_id": "81b049c02b36e82c",
     "name": "Code of Honor (Quirk)",
     "pages": "B164",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You may take a minor Code of Honor (p. 127) as a quirk. For instance, you might insist on exhibiting \"gentlemanly\" behavior toward all females, or spurning \"chauvinistic\" behavior from all males.</p>"
   },
   {
     "_id": "a7a29be629101cb4",
@@ -2355,9 +2355,9 @@
     "_id": "b41e5b06b2a24d2f",
     "name": "Trademark (Quirk)",
     "pages": "B164",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A quirk-level Trademark (p. 159) takes almost no time to leave, cannot be used to trace your identity, and can be overlooked when inconvenient.</p>"
   },
   {
     "_id": "278d11173d593abf",
@@ -2371,9 +2371,9 @@
     "_id": "2dd5569136c663d2",
     "name": "Vow (Quirk)",
     "pages": "B165",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A trivial Vow (p. 160) - e.g., never drink alcohol, treat all ladies with courtesy, or pay 10% of your income to your church - is a quirk.</p>"
   },
   {
     "_id": "94ca4ee84328687a",
