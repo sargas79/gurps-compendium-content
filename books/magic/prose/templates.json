@@ -1,0 +1,130 @@
+[
+  {
+    "_id": "bb1e306b33902ff7",
+    "name": "Small Air Elemental",
+    "pages": "M28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This basic air elemental is summoned by casting Summon Air Elemental at the minimum energy cost of 4. More energy put into the spell summons a more powerful elemental. Usually, this simply means a larger elemental; 1 point of energy is equal to 1 additional point of ST, 5 HP, or 2 points of DR. However, the GM may choose to build a more exotic elemental, adding unusual traits to the following template, or working one up from scratch.</p>"
+  },
+  {
+    "_id": "a55de6b0c5d61993",
+    "name": "Small Earth Elemental",
+    "pages": "M55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the basic earth elemental summoned by casting Summon Earth Elemental at the minimum energy cost of 4. More energy put into the spell summons a more powerful elemental. Usually, this simply means a larger elemental; 1 point of energy is equal to 1 additional point of ST, 5 HP, or 2 points of DR. However, the GM may choose to build a more exotic elemental, adding unusual traits to the following template, or working one up from scratch.</p>"
+  },
+  {
+    "_id": "4f5c64ff49502a6d",
+    "name": "Small Fire Elemental",
+    "pages": "M76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the basic fire elemental summoned by casting Summon Fire Elemental at the minimum energy cost of 4. More energy put into the spell summons a more powerful elemental. Usually, this simply means a larger elemental; 1 point of energy is equal to 1 additional point of ST, 5 HP, or 2 points of DR. However, the GM may choose to build a more exotic elemental, adding unusual traits to the following template, or working one up from scratch.</p>"
+  },
+  {
+    "_id": "4edff997699b57f9",
+    "name": "Small Water Elemental",
+    "pages": "M191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the basic water elemental summoned by casting Summon Water Elemental at the minimum energy cost of 4. More energy put into the spell summons a more powerful elemental. Usually, this simply means a larger elemental; one point of energy is equal to 1 additional point of ST, 5 HP, or 2 points of DR. However, the GM may choose to build a more exotic elemental, adding unusual traits to the following template, or working one up from scratch.</p>"
+  },
+  {
+    "_id": "601cf71e84b44b29",
+    "name": "Clay Golem",
+    "pages": "M59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Clay is the default material for golems; it is easily molded, both physically and supernaturally. Golem enchanters often go on to work with more difficult materials - stone, plastic, flesh - but if a golem is needed in a hurry, most enchanters return to clay.</p>"
+  },
+  {
+    "_id": "31213a2ca14cf567",
+    "name": "Skull-Spirit",
+    "pages": "M150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A skull-spirit is a ghostly, vaporous form, created from the life force that lingers around a sapient being's skull. Skull-spirits obey the being who evoked them without question. They cannot be reasoned with, but can sometimes be confused.</p><p>The Skull-Spirit spell (p. 151) summons one as a ghostly assassin to do the caster's bidding, from the skull of a sapient creature, which is destroyed in the casting.</p>"
+  },
+  {
+    "_id": "c897e08622d9056d",
+    "name": "Mummy",
+    "pages": "M152",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The following templates demonstrate three possible types of undead created with the Zombie spell (p. 151). A normal dead body produces a zombie; a corpse rotted away to bones produces a skeleton (indeed, zombies rot away to skeletons over time); and a desiccated cadaver, or a properly embalmed body, becomes a mummy.</p><p>The animated corpse becomes an undead servant of the caster. Its attributes are based on those of the original body, as are its physical advantages and DX-based skills. It does not have the \"soul,\" mental traits, IQ-based skills, or memories of the living person. The GM will determine its exact abilities, as appropriate to the campaign.</p>"
+  },
+  {
+    "_id": "b5d24fe80c736077",
+    "name": "Skeleton",
+    "pages": "M152",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The following templates demonstrate three possible types of undead created with the Zombie spell (p. 151). A normal dead body produces a zombie; a corpse rotted away to bones produces a skeleton (indeed, zombies rot away to skeletons over time); and a desiccated cadaver, or a properly embalmed body, becomes a mummy.</p><p>The animated corpse becomes an undead servant of the caster. Its attributes are based on those of the original body, as are its physical advantages and DX-based skills. It does not have the \"soul,\" mental traits, IQ-based skills, or memories of the living person. The GM will determine its exact abilities, as appropriate to the campaign.</p>"
+  },
+  {
+    "_id": "26f57bfe4021c19b",
+    "name": "Zombie",
+    "pages": "M152",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The following templates demonstrate three possible types of undead created with the Zombie spell (p. 151). A normal dead body produces a zombie; a corpse rotted away to bones produces a skeleton (indeed, zombies rot away to skeletons over time); and a desiccated cadaver, or a properly embalmed body, becomes a mummy.</p><p>The animated corpse becomes an undead servant of the caster. Its attributes are based on those of the original body, as are its physical advantages and DX-based skills. It does not have the \"soul,\" mental traits, IQ-based skills, or memories of the living person. The GM will determine its exact abilities, as appropriate to the campaign.</p>"
+  },
+  {
+    "_id": "40ddc6645ec45552",
+    "name": "Demon",
+    "pages": "M155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This type of demon most commonly appears on the mortal plane, a hulking brute with bat-like wings and razor-sharp claws and teeth. Demons are not especially smart, but they are strong, tough, and vicious. Their malicious sense of humor is legendary, and they leave a swath of destruction behind them no matter what task they are set to.</p><p>Demons vary widely; these stats are merely a convenient average.</p>"
+  },
+  {
+    "_id": "3e14eb1284358d41",
+    "name": "Lich",
+    "pages": "M160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A lich is a wizard preserved into undeath with powerful magic and alchemy (Lich spell, p. 159). He retains his personality, knowledge, IQ, skills, and spells, and all his mental advantages and disadvantages (including Magery), but gains the physical and supernatural traits of a lich, as determined by the GM. The more powerful that package, the higher the Lich spell's energy cost.</p><p>To complete the transformation, the would-be lich must drink an alchemical elixir of Lichdom (p. 217). If he succeeds at a roll vs. HT, he dies, rising as a lich in 2d days. If he fails, he just dies.</p>"
+  },
+  {
+    "_id": "71768d6dca2d8bfe",
+    "name": "Wraith",
+    "pages": "M160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wraith is an undead guardian sustained by magic (Wraith spell, p. 160). The spell enchants a ring or an amulet; if the wearer ever fails to resist (or chooses not to), he \"dies\" and rises as a wraith 24 hours later.</p><p>The GM determines the exact abilities of the wraith, but mental traits are preserved as per the Lich spell. The wraith always depends on the Wraith item, and shrivels and dies if it is removed or destroyed. This item isn't Hexed; the victim can remove it and die if he wishes. Only Remove Enchantment can reverse the Wraith spell without harm.</p>"
+  },
+  {
+    "_id": "d8b1c03b1c581ebe",
+    "name": "Body of Wood",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of wood.</p><p>The Body of Wood spell (p. 165) grants this meta-trait for its duration. Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had. The subject becomes an animated wooden statue. He may still speak, cast spells, etc., and may also merge into wooden objects as if he had the Permeation (Wood) advantage (p. B75).</p>"
+  },
+  {
+    "_id": "9d24e2dba7845956",
+    "name": "Body of Slime",
+    "pages": "M165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of an organic slime like algae or slime mold.</p><p>The Body of Slime spell (p. 165) grants this meta-trait for its duration. Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had. The subject becomes an animated mass of green slime - algae, pond scum, and other muck you might find in a swamp.</p>"
+  },
+  {
+    "_id": "f2da14be4a910748",
+    "name": "Body of Plastic",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of ordinary plastic, like the material used to make plastic buckets or milk jugs.</p><p>The Body of Plastic spell (p. 183) grants this meta-trait for its duration. Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had. The subject becomes an animated statue of plastic.</p>"
+  },
+  {
+    "_id": "32b5c544e73f14a0",
+    "name": "Body of Lightning",
+    "pages": "M198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your body is made of lightning.</p><p>The Body of Lightning spell (p. 198) grants this meta-trait for its duration. Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had. The subject becomes an animated shape of lightning. Stop Power acts as Glue and Steal Power acts as Steal Strength on the subject.</p>"
+  }
+]
