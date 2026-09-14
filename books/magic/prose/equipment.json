@@ -1,0 +1,546 @@
+[
+  {
+    "_id": "2c65c9552d879a5c",
+    "name": "Beast-Speech",
+    "pages": "M213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Melampus, Vociferous Beast.</p><p>The subject can speak to animals, as per the Beast Speech spell.</p><p><em>Duration:</em> 2d minutes.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $300; 3 weeks.</p>"
+  },
+  {
+    "_id": "d7a077fd768ea677",
+    "name": "Bird Control",
+    "pages": "M213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Ibycus.</p><p>The subject may control birds, as per the appropriate Animal Control spell (p. 30), with no energy cost or skill roll required.</p><p><em>Duration:</em> 3d×5 minutes.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $200; 2 weeks.</p>"
+  },
+  {
+    "_id": "2d9326662a07c35f",
+    "name": "Dragonslaying",
+    "pages": "M213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Balsam of St. George, Cadmus, Fafnir.</p><p>The smoke from this elixir does 5d damage to any reptile. It can also affect dragons - but only if it is ignited by a dragon's breath.</p><p><em>Duration:</em> See Pastille above.</p><p><em>Form:</em> Pastille.</p><p><em>Recipe:</em> $100, plus one drop of blood from a dragon's heart, which costs at least $500 if it is available at all; 4 weeks.</p>"
+  },
+  {
+    "_id": "4d7054d335954e85",
+    "name": "Horsemanship",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Bronco Buster, Castor.</p><p>Grants the subject a +4 to any Animal Handling roll specific to horses and their relatives (mules and donkeys). In addition, it grants a +4 to any Riding, Teamster or Freight Handling skill roll made concerning horses in a noncombat situation.</p><p><em>Duration:</em> 2d hours.</p><p><em>Form:</em> Ointment.</p><p><em>Recipe:</em> $50; 2 weeks.</p>"
+  },
+  {
+    "_id": "5478eb162de3dbd4",
+    "name": "Battle",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Ares, Battlemead.</p><p>Adds 1d to DX. The subject also becomes Brave, as per Bravery spell (p. 134), for the duration.</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $150; 2 weeks.</p>"
+  },
+  {
+    "_id": "92a9c99ae43ba5cc",
+    "name": "Endurance",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Antaeus.</p><p>The subject feels no fatigue for the duration of the elixir except for fatigue caused by his own spellcasting. When the elixir expires, his FP is reduced to 0 and he falls unconscious.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $300; 6 weeks.</p>"
+  },
+  {
+    "_id": "940e22cb3de782a2",
+    "name": "Fetching and Carrying",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Orion.</p><p>The subject's encumbrance levels are multiplied by 4 - so, if his extra-heavy encumbrance is normally 200, it becomes 800! Encumbrance effects having to do with spells (e.g., Teleport) are not affected. It works on animals, and can be used to let a load-beast carry more.</p><p><em>Duration:</em> 1d+1 hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $200; 1 week.</p>"
+  },
+  {
+    "_id": "9a966b06410ed5f2",
+    "name": "Leadership",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> King's Draught, Theseus.</p><p>Adds 4 to Leadership skill, and 2 to Strategy and Tactics skills.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $400; 7 weeks.</p>"
+  },
+  {
+    "_id": "f7c4a6fb5191ea60",
+    "name": "Invulnerability",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Achilles, Infusion of Impervious Integument, Ironskin.</p><p>Hardens the skin into DR 3 armor. This protection is cumulative with other forms of protection. Does not protect eyes. Note that this elixir is quite illegal in gladiatorial contests, legal duels and so on!</p><p><em>Duration:</em> 1d+1 hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $1,000; 6 weeks.</p>"
+  },
+  {
+    "_id": "b4c45616fd619df0",
+    "name": "Speed",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Atalanta.</p><p>Increases Basic Speed and Move by 1. Up to three doses of this elixir may be taken at once, for increased effect, but roll separately for the time each dose lasts.</p><p><em>Duration:</em> 3d×4 minutes.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $200; 3 weeks.</p>"
+  },
+  {
+    "_id": "8b9400287b559397",
+    "name": "Stealth",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Assassin's Brew, Hermes.</p><p>The subject's Stealth and Climbing skills are each raised by 1d points (roll separately). Illegal in many cities!</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $300; 3 weeks.</p>"
+  },
+  {
+    "_id": "fc2ee8cf5d34ec9a",
+    "name": "Strength",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Heracles, Porthos.</p><p>Adds 1d to ST. This increases encumbrance, weapon damage, etc., appropriately, but does not give extra HP.</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $100; 2 weeks.</p>"
+  },
+  {
+    "_id": "1d000de553b8d73a",
+    "name": "Aging",
+    "pages": "M214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Death's Icy Finger, Tithonus.</p><p>The subject becomes a year older. Appropriate aging rolls must be made immediately. Antidote must be given within 6 hours to be effective!</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $300; 3 weeks.</p>"
+  },
+  {
+    "_id": "2aec0e544ab0199c",
+    "name": "Death",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Reaper's Broth, Thanatos.</p><p>A poison, doing 4d damage; a successful HT roll reduces this to 2d damage. Symptoms include numbness and paralysis. A second dose will not be effective until an hour after the first. Illegal almost everywhere!</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $100; 2 weeks.</p>"
+  },
+  {
+    "_id": "f9a0e98b9eb05234",
+    "name": "Fear",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Phobos.</p><p>The subject is affected as per the Fear spell (p. 139), including a resistance roll against the alchemist's skill.</p><p><em>Duration:</em> As Fear.</p><p><em>Form:</em> Any; subject resists at -4 against all forms but pastille.</p><p><em>Recipe:</em> $50; 1 week.</p>"
+  },
+  {
+    "_id": "9963fbf24bbc1156",
+    "name": "Foolishness",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Stupefaction, Tantalus.</p><p>Each dose taken (up to 4) reduces IQ by 3.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any, but pastille effect only lasts 1d minutes.</p><p><em>Recipe:</em> $150; 2 weeks.</p>"
+  },
+  {
+    "_id": "1bd1ec0f68b1be42",
+    "name": "Frustration",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Murphy, Sisyphus.</p><p>The subject has -2 to all die rolls. Any number of doses can affect a person simultaneously!</p><p><em>Duration:</em> One day.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $100; 3 weeks.</p>"
+  },
+  {
+    "_id": "5fdb68e6e9aefe34",
+    "name": "Hatred",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Antipathy, Nemesis.</p><p>The subject hates all that he normally loves.</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $125; 1 week.</p>"
+  },
+  {
+    "_id": "dc5729f4b8205278",
+    "name": "Jealousy",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Green-Eyed Monster, Juno.</p><p>Makes the subject violently jealous of anyone of equal or superior intelligence, wealth, beauty, and so on - whatever attainments the subject most prizes.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $50; 2 weeks.</p>"
+  },
+  {
+    "_id": "c874c4b68c7cda0a",
+    "name": "Lecherousness",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Priapus.</p><p>The subject suffers the disadvantage of Lecherousness (p. B142).</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $200; 10 days.</p>"
+  },
+  {
+    "_id": "c8d07293107fe307",
+    "name": "Madness",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Eris.</p><p>The subject suffers the effects of the Madness spell (p. 136). The maker may attempt to specify the precise form of madness the elixir will cause, but must make his Alchemy roll by 2 or better to produce the results he wants; on a success by less than 2, the madness is determined randomly.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $100; 1 week.</p>"
+  },
+  {
+    "_id": "bf6feddbd5c4c7a5",
+    "name": "Odium",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Bellerophon.</p><p>The subject is perceived as untrustworthy and unattractive; everyone reacts to him at -4.</p><p><em>Duration:</em> 1d+2 hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $300; 4 weeks.</p>"
+  },
+  {
+    "_id": "50b6c920b2b92813",
+    "name": "Self-Love",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Narcissus.</p><p>The subject cares nothing for the opinions or well-being of any but himself. He is very happy and self-satisfied during this time. The chief legitimate use of this elixir is to treat depression.</p><p><em>Duration:</em> 1d+1 hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $20; 4 weeks.</p>"
+  },
+  {
+    "_id": "f72c1c1877da346d",
+    "name": "Unluckiness",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Hecate.</p><p>The subject has the Unluckiness disadvantage (p. B160), which comes to pass once within 24 hours and then expires.</p><p><em>Duration:</em> 1 day (see above).</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $400; 6 weeks.</p>"
+  },
+  {
+    "_id": "60e8acde6820c48f",
+    "name": "Weakness",
+    "pages": "M215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Enervation, Philoctetes.</p><p>Each dose taken (up to 4) reduces ST by 3.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any, but pastille effect only lasts 1d minutes.</p><p><em>Recipe:</em> $50; 2 weeks.</p>"
+  },
+  {
+    "_id": "f9844cc2be3e9dc2",
+    "name": "Attractiveness",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Aphrodite.</p><p>Grants one level of Appearance (p. B21). The subject's looks will improve one level - from Average to Attractive, from Beautiful to Very Beautiful, or from Hideous to Ugly, for example. Subjects who are already Transcendent gain Terror (p. B93) - sometimes too much is too much.</p><p><em>Duration:</em> 2d+1 hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $100; 3 weeks.</p>"
+  },
+  {
+    "_id": "2974a4c51dc5808c",
+    "name": "Fire Resistance",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Agni, Salamander Unguent.</p><p>The subject is fireproof, as per the lowest level of the Resist Fire spell (p. 74).</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $300; 1 week.</p>"
+  },
+  {
+    "_id": "8377160cb26a6ac3",
+    "name": "Flight",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Daedalus.</p><p>Gives the power of flight, as per Flight spell (p. 145).</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $500; 10 weeks.</p>"
+  },
+  {
+    "_id": "78ba46f3cd8798b2",
+    "name": "Gambling",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Baby's New Shoes, Kouon.</p><p>Gives subject a +3 on all Gambling rolls. Use of this elixir is considered cheating, and it is only available on the black market. Penalties if caught using it vary from a fine to a knife in the back, depending on the clientele of the game! This potion only affects games of chance - it will not confer a +3 to win a horse race or wrestling match just because there is a bet placed on it!</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Potion or powder.</p><p><em>Recipe:</em> $200; 4 weeks.</p>"
+  },
+  {
+    "_id": "4f5201f18c640679",
+    "name": "Invisibility",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Odysseus.</p><p>Turns the subject invisible. This elixir wears off without warning. It is illegal in many places!</p><p><em>Duration:</em> 1d×10 minutes.</p><p><em>Form:</em> Potion or ointment.</p><p><em>Recipe:</em> $1,000; 16 weeks.</p>"
+  },
+  {
+    "_id": "9b037535cde84b6f",
+    "name": "Luck",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Tyche.</p><p>The subject has the Luck advantage (p. B66).</p><p><em>Duration:</em> 2d game-hours.</p><p><em>Form:</em> Any form.</p><p><em>Recipe:</em> $200; 6 weeks.</p>"
+  },
+  {
+    "_id": "58d46119c107ece8",
+    "name": "Magic Resistance",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Moly.</p><p>Grants five levels of Magic Resistance (p. B67) to the subject. If taken by a wizard, all of his spell rolls are at -5!</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $500; 5 weeks.</p>"
+  },
+  {
+    "_id": "3e0188b677d3cfed",
+    "name": "Pain Resistance",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Hector.</p><p>Grants the High Pain Threshold advantage (p. B59).</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $200; 2 weeks.</p>"
+  },
+  {
+    "_id": "830e1bc52a2f0898",
+    "name": "Transformation",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Circe.</p><p>The subject turns into an animal, as per the Shapeshifting spell (p. 32). It is possible to become trapped in beast-form; if this happens, either an alchemical antidote or a Remove Curse spell will restore his natural shape. If the subject takes the elixir knowingly, he may transform into any creature between twice his body weight and 1/10 his body weight. If the subject takes it unknowingly, he is transformed into the creature most appropriate to his personality, at the GM's discretion.</p><p><em>Duration:</em> 2d hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $800; 12 weeks.</p>"
+  },
+  {
+    "_id": "0554d8198872f6be",
+    "name": "True Sight",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Delphi, Faerie Ointment.</p><p>Gives subject the power to see auras, as per the Aura spell (p. 101).</p><p><em>Duration:</em> 1d minutes.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $200; 4 weeks.</p>"
+  },
+  {
+    "_id": "308efd03aa7c809f",
+    "name": "Water Breathing",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Poseidon.</p><p>Grants the ability to breathe water.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $50; 5 weeks.</p>"
+  },
+  {
+    "_id": "ee64352e7a94a659",
+    "name": "Water-Walking",
+    "pages": "M216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Ephialtes.</p><p>Gives subject the ability to walk on water as though it were dry land. If the subject falls, he will not get wet. Subject may not dive or swim while under this potion's influence, any more than he could dive into the earth!</p><p><em>Duration:</em> 3d×4 minutes.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $150; 3 weeks.</p>"
+  },
+  {
+    "_id": "5b6dd2ba59e0c801",
+    "name": "Alchemical Antidode",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Janus.</p><p>Counteracts the effect of any other alchemical products. A dose of antidote instantly undoes the effect of any or all other elixirs, except healing elixirs. It also gives \"immunity\" to further doses of elixir of any type, but only for 1d minutes after the antidote is taken!</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $250; 2 weeks.</p>"
+  },
+  {
+    "_id": "2b96c00a110ad055",
+    "name": "Awakening",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Aurora, Vigilance.</p><p>Acts on the subject as the Awaken spell (p. 90).</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $150; 3 weeks.</p>"
+  },
+  {
+    "_id": "bfbc4c3f34416013",
+    "name": "Eternal Rest",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> None.</p><p>This pale green formula smells faintly of pine and cherry blossoms. It is much favored by royal embalmers, who must take steps to assure the ruler rests in peace. If introduced into a dead body (the most common method is to pour a potion into the corpse's mouth, but some rub the body with an ointment or inject the elixir into the central cavity), this elixir prevents the body from rising as an undead creature, as per the Final Rest spell (p. 89). Further, the body's blood and flesh becomes poisonous to ghouls or any carrion-eating creature. The smell of the fluid is very obvious to such beings, who avoid treated bodies. It does not prevent the deceased's spirit from being summoned, nor does it prevent Resurrection.</p><p>This elixir is a contact poison to corporeal undead, doing 2d points of injury and reducing the undead's DX by 4 for four days.</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Potion or ointment.</p><p><em>Recipe:</em> $2,000; 4 weeks.</p>"
+  },
+  {
+    "_id": "f6ec7195b502e811",
+    "name": "Fertility",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Ceres.</p><p>The subject becomes fertile and/or potent. Except for Sexless characters, offspring will result from any natural union made during the elixir's duration. Unusual combinations (e.g., elf and dwarf) will not necessarily result in offspring, even with the potion, but the possibility is there . . .</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $1,500; 20 weeks.</p>"
+  },
+  {
+    "_id": "0ce3c4a47f01b974",
+    "name": "Healing",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Chiron.</p><p>Heals 1d hits of injury - or, if HP is normal, restores 1d lost FP. Repeated doses have full effect.</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $50; 1 week.</p>"
+  },
+  {
+    "_id": "5df7431a2e31e925",
+    "name": "Health",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Aesculapius.</p><p>Cures the subject of any and all diseases, and heals 2 hits. Only one dose per day will be effective.</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $200; 4 weeks.</p>"
+  },
+  {
+    "_id": "537123822bdaedc1",
+    "name": "Hybridization",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> None.</p><p>Enables two living creatures of different species to produce offspring that are exotic or monstrous hybrids. Two doses must be made at the same time; one is given to each parent. If the parents are of different sizes, the offspring's size will be based on the mother's. Intelligent beings may roll vs. Will to resist the impulse to unnatural mating that results.</p><p><em>Duration:</em> 1 mating.</p><p><em>Form:</em> Powder or potion.</p><p><em>Recipe:</em> $500; 10 weeks.</p>"
+  },
+  {
+    "_id": "47434289cbe0c0a8",
+    "name": "Lichdom",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transforms a subject under the influence of the Lich spell into a lich. Details are available on pp. 159-160.</p><p>The elixir of Lichdom is prepared like any other alchemical elixir (see p. 210); it requires $13,500 in materials and 50 weeks of brewing. Anyone not currently under the effects of a Lich spell who imbibes an elixir of Lichdom is affected as if he had drunk an elixir of Death (p. 215). However, an elixir of Lichdom cannot be counteracted, even with an alchemical Antidote. The elixir of Lichdom is forbidden everywhere, and formularies for it are almost impossible to find; most liches are compelled to reinvent it from scratch.</p><p>When a wizard under the Lich spell drinks a potion of Lichdom, he must roll vs. HT. If he succeeds, he dies, rising as a lich in 2d days. If he fails, he just dies. Luck, as well as the Bless and Wish spells, can influence this HT roll.</p>"
+  },
+  {
+    "_id": "41cc77098952631d",
+    "name": "Long Slumber",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Epimenides, Van Winkle.</p><p>The subject falls into a deep sleep . . . lasting indefinitely. Roll vs. HT yearly; on a critical success, subject wakens. Otherwise, an alchemical antidote can only revive him. He requires no food, and is unaffected by age or disease, though physical attacks do normal damage. Wounds neither heal nor worsen, though bleeding must be stanched or he will bleed to death. In essence, this is \"suspended animation.\"</p><p><em>Duration:</em> Indefinite.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $4,500; 25 weeks.</p>"
+  },
+  {
+    "_id": "ff8aeac87edb88e1",
+    "name": "Reanimation",
+    "pages": "M217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Forensic Ointment, Pluto.</p><p>When this elixir is brushed onto the lips of a corpse, it will answer the next question put to it, to the limit of the knowledge it had in life. The brain must be intact; if the person has been dead for more than 2 days, roll vs. (16 - days since death). A frozen or otherwise preserved corpse might be responsive longer.</p><p>Should this ointment touch a living person, he immediately suffers the effect of the Death Vision spell (p. 149), and the ointment is lost.</p><p><em>Duration:</em> One question.</p><p><em>Form:</em> Ointment only.</p><p><em>Recipe:</em> $2,000; 12 weeks.</p>"
+  },
+  {
+    "_id": "7f1e3f1470a6b181",
+    "name": "Regeneration",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Hydra, Regrowth.</p><p>The subject must rub the elixir into his own skin at the site of an injury. Will restore a single arm or leg (completely) or a single hand, foot, finger, etc., or a single eye or ear.</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Ointment only.</p><p><em>Recipe:</em> $300; 20 weeks.</p>"
+  },
+  {
+    "_id": "04b914f9cf6cb5bd",
+    "name": "Resurrection",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Persephone.</p><p>If administered to a subject killed within the preceding hour, restores the corpse to life and heals 2d HP; further healing proceeds normally. When the subject reaches positive hit points, he will be able to function normally. The subject returns to life with 0 FP. Cannot restore life to a decapitated corpse or one that has taken enough damage to destroy it.</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $12,000; 50 weeks.</p>"
+  },
+  {
+    "_id": "5fc46da7a2668443",
+    "name": "Sleep",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Morpheus.</p><p>The subject must roll vs. HT-4 or fall instantly asleep. He sleeps for 16-HT hours, and may not be awakened by nonmagical means during that time. After that, he sleeps eight more hours, but this sleep is natural and he may be awakened normally.</p><p><em>Duration:</em> As above.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $50; 1 week.</p>"
+  },
+  {
+    "_id": "6e564f5ee9b35c2c",
+    "name": "Tranquility",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Athena.</p><p>Nullifies any extreme emotion the subject is feeling and allows rational thought. Specifically, this elixir grants a +3 to resist any spell or skill that works on the emotions, enabling the subject to reason something through rather than be swayed by passions or sentiment. In addition, it will calm any hysterical or enraged person, and grant a +3 to the IQ roll to overcome the Berserk or Bad Temper disadvantages. It has no effect on other disadvantages, however.</p><p><em>Duration:</em> 2d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $100; 2 weeks.</p>"
+  },
+  {
+    "_id": "83091f92b3206215",
+    "name": "Universal Antidote",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> None.</p><p>This elixir counteracts the effects of any non-alchemical poison. If taken in advance, it grants +8 to HT to resist any poison; reduce this bonus by 1 per hour. If taken after swallowing a suspected poison, it grants an immediate HT roll at +8 to throw off the effects, but does not undo any harm that has already been suffered.</p><p><em>Duration:</em> 8 hours (see above).</p><p><em>Form:</em> Potion or powder.</p><p><em>Recipe:</em> $350; 2 weeks.</p>"
+  },
+  {
+    "_id": "c96eabdfef016124",
+    "name": "Youth",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Hebe.</p><p>The subject becomes a year younger.</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $6,000; 50 weeks.</p>"
+  },
+  {
+    "_id": "d3212d6ab44fe2fb",
+    "name": "Charisma",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Orpheus.</p><p>The subject becomes charismatic. Roll 1 extra die on any reaction roll.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $100; 3 weeks.</p>"
+  },
+  {
+    "_id": "73e2d223ff9c5ad9",
+    "name": "Foresight",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Prometheus.</p><p>The subject sees a vision about the next important crisis or turning point in his life. This is entirely up to the GM; however, if there is danger ahead or an important choice about to be made, it is reasonable for the vision to help with it.</p><p><em>Duration:</em> Instant.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $200; 10 weeks.</p>"
+  },
+  {
+    "_id": "4fb32e5ae2e1a4d6",
+    "name": "Hardheartedness",
+    "pages": "M218",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Artemis.</p><p>Protects against and cancels the effect of the Love elixir. This elixir will also give the subject a +5 to resist any Sex Appeal attempt, and will nullify any infatuation the subject has. Duration is 2d hours for protection purposes; the effects of a Love elixir taken within that time or earlier are canceled permanently. A natural infatuation is nullified for 2d hours, and remains nullified until the subject next sees the object of his infatuation.</p><p><em>Duration:</em> As above.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $100; 3 weeks.</p>"
+  },
+  {
+    "_id": "9e41216c19377a63",
+    "name": "Memory",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Epimetheus.</p><p>The subject gains Eidetic Memory (p. B51).</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $400; 6 weeks.</p>"
+  },
+  {
+    "_id": "cf87d692416e4381",
+    "name": "Wisdom",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Apollo.</p><p>Adds 1 to IQ. The increased IQ benefits skill use, but not spellcasting.</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Potion or powder.</p><p><em>Recipe:</em> $600; 5 weeks.</p>"
+  },
+  {
+    "_id": "9fd50d144ec6dd55",
+    "name": "Drunkenness",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Bacchus, Pan, Private Reserve.</p><p>Subject becomes drunk, as per the Drunkenness spell (p. 136); -3 each to DX and IQ. He is a happy, charismatic drunk (others react at +1) and recovers without a hangover.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Powder only; must be taken in wine.</p><p><em>Recipe:</em> $100; 3 days.</p>"
+  },
+  {
+    "_id": "aafea26a03ad7ef5",
+    "name": "Friendship",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Philemon.</p><p>The subject has +3 reaction to all others.</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any, but pastille effect lasts only 3d minutes.</p><p><em>Recipe:</em> $300; 2 weeks.</p>"
+  },
+  {
+    "_id": "1fa603927f32bdac",
+    "name": "Forgetfulness",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Pirithous.</p><p>Produces amnesia in the subject. The subject's IQ is treated as normal for intelligence purposes, but the subject cannot remember his name or what he was doing at the time he took the elixir. Any quest or geas will be forgotten. The subject will not remember his skills, though if he is persuaded he can accomplish a task, he will perform at -2. Spellcasting is impossible while under the influence of this potion.</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Potion only.</p><p><em>Recipe:</em> $100; 3 weeks.</p>"
+  },
+  {
+    "_id": "2d5dc037a643cf8f",
+    "name": "Gullibility",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Fool's Broth, Polyphemus.</p><p>The subject acquires the Gullibility disadvantage (p. B137).</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any but pastille.</p><p><em>Recipe:</em> $150; 2 weeks.</p>"
+  },
+  {
+    "_id": "9b6e1626efb83677",
+    "name": "Love",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Names:</em> Eros, Love Potion.</p><p>The subject falls in love with the next person of the appropriate sex he sees. This effect is permanent unless counteracted by a dose of alchemical antidote, another dose of love elixir (which will cause the subject to love someone else), or the Remove Curse spell.</p><p><em>Duration:</em> Permanent.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $600; 3 weeks.</p>"
+  },
+  {
+    "_id": "32e8510e9859102e",
+    "name": "Truth",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Phoebus.</p><p>The subject cannot tell a lie, exactly as per the Compel Truth spell (p. 47).</p><p><em>Duration:</em> 1 hour.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $200; 4 weeks.</p>"
+  },
+  {
+    "_id": "8e651f480a709c8f",
+    "name": "Craftsmanship",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Vulcan.</p><p>Gives the subject 1d+1 levels of the Artificer and Gifted Artist talents (p. B90).</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any.</p><p><em>Recipe:</em> $400; 4 weeks.</p>"
+  },
+  {
+    "_id": "ac58b8b5281544a8",
+    "name": "Hearing",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Syrinx.</p><p>Gives +6 to Hearing rolls.</p><p><em>Duration:</em> 3d×5 minutes.</p><p><em>Form:</em> Ointment only; must be applied directly to the ears.</p><p><em>Recipe:</em> $125; 1 week.</p>"
+  },
+  {
+    "_id": "40245712b2ce6875",
+    "name": "Keen Sight",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Argus.</p><p>Gives +6 to Vision rolls. If two doses are given, the subject's vision becomes no keener but he can also see invisible objects as per the See Invisible spell (p. 113).</p><p><em>Duration:</em> 3d×5 minutes.</p><p><em>Form:</em> Ointment only; must be applied directly to the eyes.</p><p><em>Recipe:</em> $250; 10 days.</p>"
+  },
+  {
+    "_id": "ce82aebb1debf540",
+    "name": "Music",
+    "pages": "M219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p><em>Alternative Name:</em> Marsyas.</p><p>The subject gains 4 levels of Musical Ability (p. B91). Most bards consider this to be a cheat!</p><p><em>Duration:</em> 1d hours.</p><p><em>Form:</em> Any, but pastille effect lasts only 2d minutes.</p><p><em>Recipe:</em> $150; 4 days.</p>"
+  }
+]
