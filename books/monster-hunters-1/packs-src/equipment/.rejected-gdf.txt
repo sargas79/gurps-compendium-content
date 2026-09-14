@@ -39,4 +39,3 @@ duplicate name	Handheld Sprayer
 duplicate name	Backpack Squirt Gun
 duplicate name	Squirt Carbine
 duplicate name	Flare Gun
-not modelled	MYS: Smite: priced for 2 levels, capped there rather than at 3

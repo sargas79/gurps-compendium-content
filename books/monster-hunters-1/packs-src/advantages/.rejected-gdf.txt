@@ -1,1 +1,8 @@
 name is a GCA placeholder	Higher Purpose (Hunt [monsters])
+kept by hand	Bioenhancement Talent
+kept by hand	Mysticism Talent
+kept by hand	MYS: Smite
+kept by hand	ESP Talent
+kept by hand	Psychokinesis Talent
+kept by hand	Telepathy Talent
+kept by hand	Teleportation Talent

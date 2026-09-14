@@ -108,5 +108,167 @@
       "description": "",
       "reference": "Monster Hunters 1: Champions p. 46-47"
     }
+  },
+  {
+    "_id": "3c42d6cf4db0d396",
+    "name": "Bioenhancement Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Bioenhancement",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 42"
+    }
+  },
+  {
+    "_id": "51568bbf537653c0",
+    "name": "Mysticism Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 45"
+    }
+  },
+  {
+    "_id": "79c6ee2e5d953e92",
+    "name": "ESP Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "ESP",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "a4b7dddb29b19439",
+    "name": "Psychokinesis Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Psychokinesis",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "718f8e45ceb03e5e",
+    "name": "Telepathy Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Telepathy",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "aef3a296795899c9",
+    "name": "Teleportation Talent",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 6,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Teleportation",
+      "powerTalent": true,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 48"
+    }
+  },
+  {
+    "_id": "983c8b4c6760b13e",
+    "name": "MYS: Smite",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 0,
+      "levels": 1,
+      "pointsPerLevel": 0,
+      "costTable": [
+        20,
+        30,
+        40
+      ],
+      "levelNames": [
+        "2d",
+        "3d",
+        "4d"
+      ],
+      "maxLevels": 3,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "Mysticism",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Monster Hunters 1: Champions p. 44"
+    }
   }
 ]
