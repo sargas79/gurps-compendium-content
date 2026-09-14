@@ -5352,6 +5352,374 @@
     "description": "<p>Creates a Wizard Ear that cannot be seen without the See Invisible spell. Anyone who guesses where it is may still attack, but the cumulative modifiers from invisibility and its small size make it nigh impossible to hit.</p>"
   },
   {
+    "_id": "a75320c4d5a840a1",
+    "name": "Seek Machine",
+    "pages": "M175",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies the direction and approximate distance of the nearest machinery of any sort. The caster can also specify that he is looking for a specific sort of device; lasers, computers, light sources, etc. Any known examples of technology may be excluded if the mage specifies them before casting. Use long-distance modifiers (p. 14).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "294ab7bab67401e7",
+    "name": "Reveal Function",
+    "pages": "M176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reveals the functions of the subject machine. If the subject has more than one function, the spell reveals them in order of complexity (simplest first), and tells the caster \"there are more functions.\" Later castings will reveal the remaining functions, one per casting.</p><p>The spell can also be used to reveal how to activate known functions (i.e., which button to press); the caster gets one try, at -5! If successful, the caster can then use the machine with the appropriate skill (or IQ-6) at a penalty of only -1 for unfamiliarity.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "2809865632f63eb5",
+    "name": "Machine Control",
+    "pages": "M176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Control the actions of one machine (anything under IQ 6, of any size) or a swarm of small ones, up to about 1,000 machines or 100 pounds total. The caster must be aware of the machine's functions to control it. The spell does not supply the skill to use the machine - the caster must use his own skill at Gunner, Computer Operation, Driving, and so on. Concentration is required.</p><p>The spell acts through the machine's triggers and controls, mechanical or electrical. A mage could use the spell to make a camera snap a picture, a robot strangle its evil creator, or a gun discharge all of its ammunition. He could not aim the object, or move it, unless it was self-aiming or self-propelled (at least without adding an Apportation spell).</p><p>If something else has control (an AI in a vehicle or a human operator at the driver's seat, for instance), then he/it may dispute control of the machine every second with a Quick Contest of the caster's effective skill vs. the operator's skill (or Will+TL for cybernetic control).</p><p>A mage who knows this spell may use the Rider or Rider Within spells on machines; note, however, that a machine's sensory apparatus may not be readily intelligible to a human being!</p><p><em>Item</em></p><p>Staff, wand, headgear, or jewelry. Energy cost to create: 1,000 for an item that controls a specific type of machine, 2,000 for one that will control any machine.</p>"
+  },
+  {
+    "_id": "08c50f2add172e21",
+    "name": "Machine Summoning",
+    "pages": "M176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Call one machine of a named type (anything under IQ 6). Range does not matter for this spell. If the spell is successfully cast, the caster knows the location of the closest machine of the type and how long it will take for that machine to come to him. It moves towards the caster as fast as it can, until the spell ends or the machine reaches the immediate vicinity of the caster.</p><p>Of course, the machine may not be very good at finding its way, or it may run out of fuel or power, etc. For example, a TL7 refrigerator would be unable to move at all. A TL7 car would proceed in a straight line at top speed, unaware of (and thus unable to avoid) obstacles such as pedestrians, ditches, lampposts . . .</p><p>Once the machine reaches the caster, it stays nearby, without attacking, until the spell ends. The spell is broken if the caster or one of his companions attacks the machine.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 500 for an item that summons one particular machine type, 1,000 for an item that can summon any machine.</p>"
+  },
+  {
+    "_id": "31f4c057f759e617",
+    "name": "Machine Speech",
+    "pages": "M176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Communicate with any machine (of any IQ) in the machine's own \"language.\" Unless the language is sound-borne, the subject has to maintain physical contact with the machine's interface port or antenna. The amount of information exchanged depends on the machine's intelligence; no machine below IQ 3 will be likely to know much of interest. Each minute of the spell allows one question and answer.</p><p>This is also a Communication and Empathy spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,200 for an item that talks to one particular machine type, 5,000 for an item that can talk to any machine.</p>"
+  },
+  {
+    "_id": "cae37ac2e1c02435",
+    "name": "Glitch",
+    "pages": "M176",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The machine equivalent of Spasm (p. 35). This spell causes something to go wrong for a moment with the subject machine. It may drop whatever it was holding, eject a part, miss a cog in its drive train, or garble a data packet. Ingenious casters will find all sorts of uses. The game effects can be anything from a trivial annoyance (if cast on a flashlight, for instance), to potentially deadly (if cast on an automedic in the middle of laser surgery).</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "25ac3149b79a48b0",
+    "name": "Malfunction",
+    "pages": "M177",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The mechanical equivalent of Total Paralysis. The subject machine simply ceases to function for the duration of the spell (an airplane falls, a sensor is \"blind,\" and so on). The caster must touch the subject.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "224cabf8e77eea66",
+    "name": "Schematic",
+    "pages": "M177",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates detailed technical \"blueprints\" of the machine subject in the caster's mind. The caster can browse through the mental schematic at his leisure or the same rate that he could examine actual hardcopy plans for the machine. However, this spell grants no appropriate skills; to interpret, for instance, a schematic of a starship's fusion power plant, the caster would need some skill in Engineering (Fusion). To make any use of a schematic of a weapon, either Armoury or some sort of weapons Engineering would be required. The duration is the length of time that the image stays with any useful clarity in the caster's mind. The caster must touch the subject during the casting.</p><p>The schematic can either represent the current state of the object (showing any internal damage, alterations, and wear), or the ideal state of the object, at the caster's discretion. Both can be useful. The latter use even gives plans for an object based only on a tiny fraction of it (at least 5% of the machine's total mass needs to be present). This could be used to form a complete picture from a fragmented Precursor device, for instance . . . In either case, the cost to cast the spell is based on the mass of the intact machine.</p><p>The schematic image, even when maintained by the mage, does not count as a spell \"on\" for penalty purposes.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Blueprint or headgear. Usable only by mages; the item must touch the subject. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "77b8807c44a61f38",
+    "name": "Rebuild",
+    "pages": "M177",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is an improved version of Repair. It totally rebuilds any object, from even a fragment. The caster must first successfully cast Schematic on the subject, and, while the schematic is still in mind, begin casting Rebuild. Schematic is unnecessary for simpler objects. With enough power, you could rebuild a starship from a scrap of bulkhead!</p><p>The object re-forms at a rate of 500 pounds of missing mass per second, beginning after the casting is completed. Thus, it would take a 30-ton tank two minutes to completely rebuild itself. Exotic materials may inflict a skill penalty or slow the rebuilding process.</p><p>On objects simpler than machines, ignore the TL modifiers. Magic items cannot be rebuilt.</p><p>This is also a Making and Breaking spell.</p>"
+  },
+  {
+    "_id": "e1c1e90c6dd895fd",
+    "name": "Animate Machine",
+    "pages": "M177",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Summons a spirit to animate a machine the mage is touching. Characters with the Machine meta-trait (p. B263) can be affected by this spell, though intelligent machines do get a chance to resist.</p><p>The summoned spirit controls the animated machine just as if it were being operated in the normal fashion. It also controls all the mechanical or electronic accessories (including weapons) built into the machine.</p><p>The spirit has DX 10 and IQ 9 with the Automaton and Spirit meta-traits (p. B263). It obeys the orders of the caster or anyone the latter designates - but the spirit takes all orders literally! \"Drop me off\" is a particularly unfortunate command to give to an animated helicopter. In such cases, roll against the spirit's IQ to see if it uses the colloquial or literal meaning of the phrase.</p><p>On a critical failure during casting, a demon enters the machine. It then attempts to kill its summoner and anyone else it can reach. The caster cannot dispel the demon animating the machine - it uses its own 15 FP to keep the spell going! In other respects, the demon is similar to the spirits ordinarily summoned.</p>"
+  },
+  {
+    "_id": "e386e463b833889f",
+    "name": "Machine Possession",
+    "pages": "M178",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Animate Machine, except that it is the caster's own spirit which animates the machine. The machine must have IQ 5 or less.</p><p>The caster animates the subject just as if he was at its controls. He has full access to the machine's memories and abilities; he may use all its skills and abilities as though they were his own. He may use his own mental abilities, but not his physical ones (so spells cannot be cast unless they are known so well that they require no speech or gesture).</p><p>The spell allows the caster to keep his own sensory apparatus in addition to the machine's; otherwise, he would be severely handicapped, since machines of TL6 or less are basically blind and deaf.</p><p>The caster's own body lies unconscious during the spell and should be safeguarded.</p><p><em>Item</em></p><p>An pair of identical pieces of jewelry, one of silver, one of gold. The caster wears the gold one, the machine bears the silver one. The spell may then be cast at any time, regardless of distance. If a Powerstone is included, it is in the gold one. If either item is broken, the other loses its enchantment. Energy cost to create: 1,500 (for the pair). Each of the pair must include a synthetic gemstone worth $200.</p>"
+  },
+  {
+    "_id": "a7523a33c3da3567",
+    "name": "Permanent Machine Possession",
+    "pages": "M178",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Machine Possession - but the caster remains in the subject machine until he chooses to leave or is exorcised by an appropriate spell (Dispel Possession, Remove Curse, Counterspell, etc). The caster's body remains in suspended animation (p. 94) while the spell lasts. If the caster's body dies, the spell is broken. Whenever the subject machine takes damage, the caster must roll on his own body's HT or take the same damage. If the subject machine \"dies,\" the caster must roll vs. HT or die also!</p><p>In addition, the caster must roll against his Will every day; a failed roll means that he loses one point of IQ. The caster does not need to roll any more once he reaches the machine's normal IQ or Will range. The lost attribute is regained when the spell is ended. Should the caster's IQ drop to 5, only Remove Curse or Dispel Possession will end the spell.</p>"
+  },
+  {
+    "_id": "5416cc9997355e20",
+    "name": "Awaken Computer",
+    "pages": "M178",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Awaken Craft Spirit, this spell awakens a computer's spirit, granting it awareness and sapience. If the computer is already inhabited by a sapient program, that program may resist this spell; if it fails to resist, it is rendered unconscious for the duration of the spell.</p><p>The spirit awakened by the spell has IQ equal to the computer's Complexity + 5. It has complete access to all its host computer's databases and peripherals, though it cannot read encrypted information in its host's databases. It can access networked computers like any other being using its host computer; it has Computer Operation and Computer Programming at its IQ. It obeys the caster's orders faithfully, but otherwise has free will (also, true to its nature, a computer spirit can be infuriatingly literal-minded).</p><p>Computer spirits often have quirky personalities all their own. They remember what happens each time they are awakened; the time in between awakenings is one of slumber, not nonexistence.</p><p>If a critical failure is rolled the first time a given computer is awakened, its spirit is malicious and evil, and seeks to do harm to the caster and anyone else it can hurt. It has Computer Hacking at a level equal to its host's Complexity; if nothing else, it erases important data just because it can.</p><p><em>Item</em></p><p>A computer may be permanently awakened for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "0bd405188a56f929",
+    "name": "Seek Power",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies the direction and approximate distance of the nearest significant source of power. Use the long-distance modifiers (p. 14). Any particular types or known sources of power may be excluded if the caster specifically mentions them before beginning.</p><p>Power sources that are not currently being drawn from (a battery not connected to a circuit, for example) are harder to locate than power sources in use; double the long-distance penalty.</p><p><em>Item</em></p><p>A wand that will point in the direction sought after and glow in proportion to the importance of the source detected. Energy cost to create: 60.</p>"
+  },
+  {
+    "_id": "43f08eef4af0d3a4",
+    "name": "Seek Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies the direction and approximate distance of the nearest significant source of fuel. Use the long-distance modifiers (p. 14). Any particular types or known sources of fuel may be excluded if the caster specifically mentions them before beginning.</p><p><em>Item</em></p><p>A thin graduated metal stick, which will point in the direction sought after and give an indication of the amount detected. Energy cost to create: 60.</p>"
+  },
+  {
+    "_id": "97104a1fc211dea8",
+    "name": "Test Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies if a substance can be used normally as fuel for a specific purpose. The spell reveals nothing about the substance's chemistry or stored energy, but it detects impurities, decay, and foreign objects that might interfere with normal use. It does not check fuel for magic.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "01ea06bbd6cb47ed",
+    "name": "Preserve Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prevents fuel from spoiling, decaying, or otherwise becoming unusable. Wood does not rot, gasoline does not evaporate - even the radioactive decay of nuclear fuels is suppressed!</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Energy cost to create: 400. (b) Chest or container; always on; the contents of the chest are preserved indefinitely. Energy cost to create: 40 for every pound of fuel to be held (round up).</p>"
+  },
+  {
+    "_id": "e3a83dcdbfe7b5fb",
+    "name": "Purify Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes foreign objects and impurities from a fuel, rendering it fit to use. If the fuel has been completely corrupted by the impurities, the spell will remove them . . . leaving nothing!</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The item must touch the subject fuel. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "f8014ccc28f5fe14",
+    "name": "Create Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns any natural substance into the primary solid or liquid fuel for the spell's TL. At TL5, this will turn rocks into coal; at TL7, it would turn rocks into uranium.</p><p>Other Energy spells such as Steal Power or Draw Power cannot tap magically created fuel or a machine using created fuel for energy.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry; usable only by a mage. The item must touch the material to be turned into fuel. Energy cost to create: 400. (b) A pot or container that will change the contents into solid fuel. Energy cost to create: 100 per pound of the daily capacity of the container.</p>"
+  },
+  {
+    "_id": "e76588513e654159",
+    "name": "Essential Fuel",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns any regular fuel into the magical essence of fuel. Essential Fuel burns 10 times as long as regular fuel, with one-third the usual pollution (smoke, radiation, etc.). Vehicles running on Essential Fuel have 10 times the Range; in a secret-magic setting, this spell may give rise to urban legends about 200-mpg carburetors.</p><p>The increased potency of Essential Fuel only applies when the Fuel is used in a machine; hay treated with Essential Fuel does nothing if fed to a mule.</p><p>Other Energy spells such as Steal Power or Draw Power cannot tap Essential Fuel or a machine using Essential Fuel for energy.</p>"
+  },
+  {
+    "_id": "391cfd5920864644",
+    "name": "Stop Power",
+    "pages": "M179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stops the flow of power in the area, causing all powered devices to cease to function. This may or may not cause permanent damage to the devices, depending on their design. Barring this, any affected device works normally when it leaves the area.</p><p><em>Item</em></p><p>Wand or staff, usable only by a mage. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "6167255132e6cac0",
+    "name": "Lend Power",
+    "pages": "M180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster expends energy to magically power a device. In theory, a large enough circle of mages could use this spell to power a starship and its weapons.</p><p>The spell cannot be used to directly charge batteries or other storage devices. It could, however, power a machine designed to recharge them . . .</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000. (b) Any device can be enchanted so that any mage willing to lend it power (possibly in addition to its normal power source) can do so. The mage need not know the spell; the enchantment supplies the magic. The enchanted device will also accept a Powerstone or Maintain Spell. Energy cost to create: 1 per 100 pounds of device mass (round up); the minimum cost is 250.</p>"
+  },
+  {
+    "_id": "e94fd809026eeb5d",
+    "name": "Propel",
+    "pages": "M180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses magical energy to operate any device that converts power or fuel into motion, from a lawn mower to a stardrive. In almost all cases, these devices are vehicles of some sort; see Vehicles, p. B462, for more details.</p><p><em>Example:</em> A mage with Propel/TL7-15 wishes to move his sports car (p. B464) at its top speed of Move 75 (150 mph). The car weighs 1.8 tons. To move the car at Move 75 for the duration of the spell requires (1.8×75)/15 = 9 energy.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000. (b) Any engine can be enchanted so that any mage willing to propel it can do so. The mage need not know the spell; the enchantment supplies the magic. The enchanted device will also accept a Powerstone or Maintain Spell. Energy cost to create: 20 per ton of vehicle Lwt. (round up); minimum cost is 200.</p>"
+  },
+  {
+    "_id": "1f09d00065702977",
+    "name": "Conduct Power",
+    "pages": "M180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns the caster into a power conduit, a link between an active power source and a device in need of it. The spell has two \"subjects\": the source and the sink. The range penalty is based on the total distance from source to caster plus caster to sink. If either the source or the sink is not visible to the caster, the roll is at -5; if neither is visible, the roll is at -10!</p><p>A device may draw power through one mage or circle of mages at a time; if several mages are competing to supply a device, roll a Quick Contest of Skill between casters, adjusting for range.</p><p>The maximum power a mage may safely serve as a conduit for is (HT) × (Magery squared)/4, in megawatts. Thus, a wizard with HT 10 and Magery 2 could handle a steady stream of 10×(2×2)/4, or 10 megawatts, safely. If a mage's safe level is exceeded, every second he must take 1 fatigue per excess MW (or fraction thereof) and roll vs. HT. On a failed roll, he loses HP equal to the fatigue loss for that turn. On a critical failure, he suffers a heart attack (see Mortal Conditions, p. B429) and collapses.</p><p>A source for this spell need not be a source of electricity or some other energetic essence; particularly in its low-TL versions, Conduct Power may tap into mechanical energy from natural sources. However, a power source must be in a form that could be directly used by a machine; thus, a water wheel would be a viable source, but a waterfall would not be.</p><p><em>Example:</em> The spell could be cast on the fusion plant in a starship (the source) and a blaster pistol in the mage's hand (the sink). While the spell is maintained, the fusion plant powers the pistol. If the blaster is in the mage's hand and the plant is 3 yards beneath the catwalk he is standing on, the total distance is 3 yards, for a -3 range penalty. If the catwalk obscures the mage's view of the power plant, he is at a further -5 (note that the caster need not be looking at the power plant while firing the gun - just while casting the spell!).</p>"
+  },
+  {
+    "_id": "a49e715be8287fce",
+    "name": "Steal Power",
+    "pages": "M180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster steals power from a stored power source (such as a battery) to restore his FP.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by a mage. The mage and the item must both touch the source. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "0b85dd78ebfcec5d",
+    "name": "Draw Power",
+    "pages": "M180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identical to Conduct Power, except that the subject is a spell; a wizard with HT 10 and Magery 2 could use a 10 MW fusion plant to provide him with a steady stream of 28 energy per second to power his magic! The Draw Power must be cast first and counts as a spell \"on\" when casting the subject spell.</p>"
+  },
+  {
+    "_id": "401f7cf21494a266",
+    "name": "Magnetic Vision",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reveals magnetic fields to the subject. They are brightest where densest and seem to flow from one magnetic pole to the other. If the subject has Physics/TL6 or higher at a skill of 12 or more, he can use it to estimate the strength of the magnetic field. If no magnetic object stronger than a kitchen magnet is within 1 yard of him, the subject can determine magnetic north. Combined with 1,000× Microscopic Vision (p. B68), the subject can directly read magnetic data storage media (each format is a distinct language, which must be known at Native level to read in real time).</p><p><em>Item</em></p><p>Jewelry or spectacles. The item must include a small magnet. Only affects the wearer. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "ddb55922c29dcb94",
+    "name": "Radio Hearing",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can \"tune\" his hearing to the radio and microwave portions of the electromagnetic spectrum, as if he had Telecommunication (Radio) (Receive Only, -50%) (p. B91).</p><p><em>Item</em></p><p>Jewelry (earrings are particularly appropriate). Only affects the wearer. Energy cost to create: 150. Some enchanters create items (conchs, or small radios or earplugs, typically) that turn the radio signal into an audible one; the user tunes it by concentrating.</p>"
+  },
+  {
+    "_id": "a58f7e5620a76735",
+    "name": "Spectrum Vision",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can perceive any portion of the electromagnetic spectrum, as if he had Hyperspectral Vision with the Extended Low-Band and Extended High-Band enhancements (p. B60). The GM may require rolls against various scientific skills to allow the subject to understand what he sees.</p><p><em>Item</em></p><p>Jewelry or spectacles. The item must include a small prism. Only affects the wearer. Energy cost to create: 750.</p>"
+  },
+  {
+    "_id": "833b825235b466be",
+    "name": "See Radiation",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes all radioactive items visible in the subject's field of vision. Each such item glows in proportion to its activity. Items hidden under clothes, behind walls, etc, give off a glow depending on the amount of radiation getting through the shielding. Spells such as Radiation Jet also become visible.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "391e6aeb95c278cf",
+    "name": "Seek Radiation",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies the direction and approximate distance of the nearest significant source of radiation of any sort. The caster can also specify that he is looking for a specific sort of radiation (gamma, neutron, etc.). Any known radioactive sources may be excluded if the mage specifies them before casting. Use the long-distance modifiers (p. 14).</p><p><em>Item</em></p><p>A wand or stick that will point in the direction sought and click or ping in proportion to the strength of the source found. Energy cost to create: 60.</p>"
+  },
+  {
+    "_id": "0b7b03eb9444d6e5",
+    "name": "Irradiate",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes an area radioactive.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "3afed12a7a68a450",
+    "name": "Extinguish Radiation",
+    "pages": "M181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes harmful radioactivity from the subject.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "694132e89cefda1c",
+    "name": "Resist Radiation",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (person, creature or object) and anything he carries becomes resistant to radiation. This is expressed in terms of Protection Factor (see p. B436).</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>(a) Any; only affects the wearer. Energy cost to create: 1,000. (b) Wand, staff, or jewelry. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "ce699e44f9424ad5",
+    "name": "Cure Radiation",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heals the subject of radiation damage; this spell reduces the inherent radiation dose in the subject's body, including the 10% \"permanent\" retained dose (the permanent dose, however, is the last to be healed). It does not restore already-lost HP or other injury, which must be healed by other means.</p><p>This is also a Healing spell.</p><p><em>Item</em></p><p>Wand or staff. The item must touch the subject. Usable only by a mage or a nonmage with Physician 20 or higher. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "7aa7b3be19346adc",
+    "name": "Radiation Jet",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot an invisible beam of radiation from one finger. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked (though only shields which are impervious to radiation will be any use), but not parried. The jet inflicts 10 rads per point of energy in the spell to a human-sized target.</p><p>The spell can also fog photographic films, scramble electronics, and so on.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The jet issues from the item's tip. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "1fe96c65447ba332",
+    "name": "Breathe Radiation",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Radiation Jet, except that the radiation issues from the caster's mouth and it cannot be maintained. Caster rolls to hit against DX-4 or Innate Attack skill. This counts as an action; the caster must be facing his target. No hand gestures are required to cast this spell; certain lip and tongue motions are made instead. Thus Breathe Radiation can be cast \"no hands\" at any level of skill.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "c11b9aaab4d9ddfa",
+    "name": "Seek Plastic",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies the direction and approximate distance of the nearest significant quantity of plastic. Use the long-distance modifiers (p. 14). Any particular types or known quantities of plastic may be excluded if the caster specifically mentions them before beginning.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 60.</p>"
+  },
+  {
+    "_id": "5e539af7db4508b2",
+    "name": "Identify Metal",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies a metal's type. The caster must touch the metal to be identified.</p>"
+  },
+  {
+    "_id": "1d6c3545dc234e82",
+    "name": "Identify Plastic",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies a plastic's type. The caster must touch the plastic to be identified. Useful for sorting recyclables.</p>"
+  },
+  {
+    "_id": "a4cee4edaccbfc6c",
+    "name": "Shape Metal",
+    "pages": "M182",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Move solid and liquid metal about and shape it into any form. If the form is stable, it remains permanently after shaping. An unstable form lasts only while the spell continues - though no special concentration is required - and then breaks and collapses. A successful Architecture roll may be required to create a stable arch, overhang or other structure. Solid metal moved with this spell travels at Move 1/2; liquid metal flows at that speed uphill, but goes much faster horizontally (Move 4) or downhill (up to Move 10).</p>"
+  },
+  {
+    "_id": "8b29a47cddd8a31c",
+    "name": "Shape Plastic",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Shape Metal, but affects \"plastic.\" Material moved with this spell travels at Move 1/2 or faster if ductile or liquid.</p>"
+  },
+  {
+    "_id": "51df15ee5321949e",
+    "name": "Metal Vision",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through metal to gaze upon whatever lies beyond - past the door, inside the chest, etc. Certain metals (lead) resist or block this spell outright.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Only affects the wearer. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "2d7dbaba2bdcc98a",
+    "name": "Plastic Vision",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through plastic.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Only affects the wearer. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "052278d3177a20fa",
+    "name": "Body of Metal",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes an animated statue of metal, temporarily granting him the Body of Metal meta-trait (p. B262). Clothes (up to 6 pounds) also become metallic, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "8077d85e4538051b",
+    "name": "Body of Plastic",
+    "pages": "M183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes an animated statue of plastic, temporarily granting him the Body of Plastic meta-trait (see box). Clothes (up to 6 pounds) also become plastic, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 2,500.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
