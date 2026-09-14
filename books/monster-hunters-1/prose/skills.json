@@ -1,0 +1,130 @@
+[
+  {
+    "_id": "6660690b8515bfed",
+    "name": "Hidden Lore (Cryptozoology)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Cryptids (chupacabras, yeti, etc.):</strong> Animal Handling (specific mundane animal) (A) IQ [2]; Biology (VH) IQ-2 [2]; Hidden Lore (Cryptozoology) (A) IQ [2]; Veterinary (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "49274b1a641e14c8",
+    "name": "Hidden Lore (Demons)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Demons:</strong> Hidden Lore (Demons) (A) IQ [2]; Theology (Abrahamic) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "40d096ad3969a45b",
+    "name": "Hidden Lore (Free Spirits)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Free-Willed Spirits (fae, in-betweeners, etc.):</strong> Hidden Lore (Free Spirits) (A) IQ [2]; Theology (Shamanic or Voodoo) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "cb7ece65d386aa51",
+    "name": "Hidden Lore (Restless Undead)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Ghosts:</strong> Electronics Operation (Psychotronics) (A) IQ [2]; Hidden Lore (Restless Undead) (A) IQ [2]; Physics (Paraphysics) (H) IQ-1 [2]; Theology (Shamanic) (H) IQ-1 [2].</p><p><strong>Zombies (and skeletons, etc.):</strong> Hidden Lore (Restless Undead) (A) IQ [2]; Theology (Voodoo) (H) IQ-1 [2].</p><p>The Mummies, Restless Undead, and Vampires specialties of Hidden Lore default to each other at -3.</p>"
+  },
+  {
+    "_id": "6d218a51bc3b0cc5",
+    "name": "Hidden Lore (Lycanthropes)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Lycanthropes:</strong> Hidden Lore (Lycanthropes) (A) IQ [2]; Veterinary (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "d71d4ac4fd2c7b26",
+    "name": "Hidden Lore (Mummies)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Mummies:</strong> Archaeology (H) IQ-1 [2]; Hidden Lore (Mummies) (A) IQ [2].</p><p>The Mummies, Restless Undead, and Vampires specialties of Hidden Lore default to each other at -3.</p>"
+  },
+  {
+    "_id": "fe53914f7d30a952",
+    "name": "Hidden Lore (Angels)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Outcast Angels:</strong> Hidden Lore (Angels) (A) IQ [2]; Theology (Abrahamic) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "478d21173bc02f1e",
+    "name": "Hidden Lore (Sacred Places)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Rogue Witches:</strong> Hidden Lore (Sacred Places) (A) IQ [2]; Psychology (H) IQ-1 [2]; Thaumatology (VH) IQ-2 [2].</p>"
+  },
+  {
+    "_id": "ebbe115a3c9f3d51",
+    "name": "Hidden Lore (Vampires)",
+    "pages": "MH1:16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Monster hunting without knowledge is nothing but a waste of time . . . and lives. For every enemy, one or more skills exist to provide insight into how to defeat it. When creating a champion, ask the GM what type of foes will appear in the game (and which will be the most common) before deciding which of the following skills to take. These are not necessarily the skills required to defeat monsters - just the ones required to answer questions about them (including how to defeat them).</p><p>A minimum of 2 points must be spent on each skill. Spending 4 points instead adds +1 to the skill level shown here, while spending 8 points adds +2. Most of these skills are redundant if you know Lore! (p. 30).</p><p><strong>Vampires:</strong> Hidden Lore (Vampires) (A) IQ [2].</p><p>The Mummies, Restless Undead, and Vampires specialties of Hidden Lore default to each other at -3.</p>"
+  },
+  {
+    "_id": "0615c019021cb266",
+    "name": "Religious Ritual (Abrahamic)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While Christianity, Judaism, and Islam are certainly diverse, they share enough lore and tradition to be discussed and studied as one. As these faiths emphasize brotherhood and charity, take either Sense of Duty (if you put your flock before all others) or Vow (if you protect humanity as a whole).</p>"
+  },
+  {
+    "_id": "50f11b1f18d492b8",
+    "name": "Religious Ritual (Shamanic)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This includes many Native American and Eastern faiths - any of which treat the spirit world as a group of contacts to be negotiated with. Choose Disciplines of Faith or Vow, based on whether you prefer the company of spirits or people; you have no true \"coreligionists.\"</p>"
+  },
+  {
+    "_id": "0306f0325eceee62",
+    "name": "Religious Ritual (Voodoo)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Where shamans view spirits as equals, Voodoo practitioners see them as tools of the divine; the believer worships the Creator by honoring these loa. Disciplines of Faith fits a mysterious bokor (\"sorcerer\"), while a community-oriented houngan (\"priest\") needs Sense of Duty.</p>"
+  },
+  {
+    "_id": "3bfa64501133f813",
+    "name": "Theology (Abrahamic)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While Christianity, Judaism, and Islam are certainly diverse, they share enough lore and tradition to be discussed and studied as one. As these faiths emphasize brotherhood and charity, take either Sense of Duty (if you put your flock before all others) or Vow (if you protect humanity as a whole).</p><p><strong>Demons:</strong> Hidden Lore (Demons) (A) IQ [2]; Theology (Abrahamic) (H) IQ-1 [2].</p><p><strong>Outcast Angels:</strong> Hidden Lore (Angels) (A) IQ [2]; Theology (Abrahamic) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "9144edb992dd3836",
+    "name": "Theology (Shamanic)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This includes many Native American and Eastern faiths - any of which treat the spirit world as a group of contacts to be negotiated with. Choose Disciplines of Faith or Vow, based on whether you prefer the company of spirits or people; you have no true \"coreligionists.\"</p><p><strong>Free-Willed Spirits (fae, in-betweeners, etc.):</strong> Hidden Lore (Free Spirits) (A) IQ [2]; Theology (Shamanic or Voodoo) (H) IQ-1 [2].</p><p><strong>Ghosts:</strong> Electronics Operation (Psychotronics) (A) IQ [2]; Hidden Lore (Restless Undead) (A) IQ [2]; Physics (Paraphysics) (H) IQ-1 [2]; Theology (Shamanic) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "df18e18d235d95c8",
+    "name": "Theology (Voodoo)",
+    "pages": "MH1:11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Where shamans view spirits as equals, Voodoo practitioners see them as tools of the divine; the believer worships the Creator by honoring these loa. Disciplines of Faith fits a mysterious bokor (\"sorcerer\"), while a community-oriented houngan (\"priest\") needs Sense of Duty.</p><p><strong>Free-Willed Spirits (fae, in-betweeners, etc.):</strong> Hidden Lore (Free Spirits) (A) IQ [2]; Theology (Shamanic or Voodoo) (H) IQ-1 [2].</p><p><strong>Zombies (and skeletons, etc.):</strong> Hidden Lore (Restless Undead) (A) IQ [2]; Theology (Voodoo) (H) IQ-1 [2].</p>"
+  },
+  {
+    "_id": "9285e1cdca0bab6d",
+    "name": "Blunt!",
+    "pages": "MH1:20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If desired, you can shift your weapon choices from edged to impact attacks - just turn Blade! into Blunt! (which is similar, but covers sticks, maces, flails, kusaris, whips, and so on).</p>"
+  }
+]
