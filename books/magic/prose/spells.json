@@ -3736,6 +3736,398 @@
     "description": "<p>This spell is cast on another spell. It converts that spell to function as a Blocking spell for one time only, then disappear. Unlike Delay or Link, a Reflexed spell is triggered by the will of the caster, not by an external event. This means that while Reverse Missiles may be Reflexed to activate if the caster sees someone shoot at him, it will not be triggered by a shot in the back. It is treated as an active defense, similar to Parry or Block for all practical purposes (except retreating does not add 3 to the roll). Casting a Reflexed spell will interrupt any spell the caster is concentrating on, and is handled like any other Blocking spell - see pp. 12-13.</p><p>When Reflex is cast, the linked spell must be cast immediately after Reflex, by the same caster. Each casting of Reflex will only work on one spell - it is not possible to have multiple spells operate as one Blocking spell. The skill roll for Reflex is rolled at the time of casting, but the roll for the linked spell is not made until it is cast as a Blocking spell. The energy cost for Reflex is paid at the time of casting Reflex, but the energy for the Reflexed spell is not paid until it is cast, whether as an active defense or otherwise. The time to cast a Reflexed spell is spent immediately after the Reflex is cast, but the success roll and energy cost are handled later.</p><p>A Reflexed spell counts as one spell \"on\" for spellcasting purposes - see p. 10. A Reflexed spell does not count as \"on\" when making the roll to cast itself. Thus, if a mage has four Reflexed spells on, any other spell he casts is at -4, but when he casts one of the Reflexed spells, it is only at -3 for the other three Reflexed spells on.</p><p>A Reflexed spell may be cast only once. It then disappears, and no longer counts as a spell on. The effects are immediate, and the duration is instantaneous, not the duration listed for the original spell. This means that it is extravagant or even useless to cast certain spells as Reflexed! A Force Dome, for example, would stop one physical attack, then disappear - a fatiguing, but effective, defense! A Created Animal will appear, then disappear before it can make any action. (It might stop a missile during its brief existence, however. The GM may rule such an animal must be nearly equal in size to the target it is shielding.) Exceptions to this instantaneous-result rule are spells with permanent results, such as Major Healing - their effects are indeed permanent.</p><p>Any person may carry any number of Reflexes. However, only one spell may be cast in any one turn. Remember also, that if a Reflexed spell is used as an active defense, no other active defense may be used against that attack, unless All-Out Defense is chosen. See p. B366.</p><p>A Reflexed spell may be cast as a regular action - it does not have to be cast as a defense. It takes one second to cast, regardless of the time it would normally require to cast.</p><p>All normal modifiers for distance and Magic Resistance are used when casting the Reflexed spell, if the subject of the Reflexed spell is distant from the person or object the Reflex itself is cast on.</p><p>Note that a mage may cast a Reflex on another person. The caster (not the subject) may activate it at any time, using long-distance modifiers. If the linked spell is cast on a subject other than the subject of the Reflex itself, the regular modifier for the distance to that subject is added to the long-distance modifier for the caster.</p><p><em>Example:</em> Felix gives Beast-Soother as a Reflexed spell to Rudolph. Felix then activates a Wizard Eye to keep tabs on Rudolph as he goes hunting. Rudolph meets a short-tempered wild boar, which Felix observes through the Wizard Eye. Rudolph cannot activate the spell. Fortunately, he does not have to! Felix activates Beast-Soother as Rudolph tries an Animal Handling roll to calm the boar. Rudolph has gone about two miles into the woods, so Felix is at -3 for long distance. The boar is 3 yards away from Rudolph, so Felix is at another -3 for the range to the subject of the Reflexed spell. He is also at -1 for having Wizard Eye on. Thus, Felix casts Beast-Soother at -7, and pays the energy for the spell at that time. Fortunately he has it at level 21, so he casts it for the maximum effect. The boar is indeed calmed, and Rudolph goes on his way while Felix rests. The Reflexed Beast-Soother spell no longer exists. If Rudolph meets another animal, he's on his own, though Felix may still be observing any action with his Wizard Eye.</p><p>Blocking spells and Missile spells cannot be Reflexed; other spells can be.</p>"
   },
   {
+    "_id": "f09730bcffb5a6f5",
+    "name": "Keen Hearing",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is actually several different spells, as with (Animal) Control or Boost (Attribute). The most common variants are Keen Vision, Keen Hearing, and Keen Taste and Smell, but variants are possible for unusual methods of perception as Detect, Scanning Sense, or Vibration Sense.</p><p>Keen (Sense) gives a +1 bonus per point of energy spent to Sense rolls of the appropriate type.</p><p>Keen Hearing is also a Sound spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 150 per point of improvement.</p>"
+  },
+  {
+    "_id": "8bf69761bc021487",
+    "name": "Keen Vision",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is actually several different spells, as with (Animal) Control or Boost (Attribute). The most common variants are Keen Vision, Keen Hearing, and Keen Taste and Smell, but variants are possible for unusual methods of perception as Detect, Scanning Sense, or Vibration Sense.</p><p>Keen (Sense) gives a +1 bonus per point of energy spent to Sense rolls of the appropriate type.</p><p>Keen Hearing is also a Sound spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 150 per point of improvement.</p>"
+  },
+  {
+    "_id": "71ec7a495bca3e37",
+    "name": "Keen Taste and Smell",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is actually several different spells, as with (Animal) Control or Boost (Attribute). The most common variants are Keen Vision, Keen Hearing, and Keen Taste and Smell, but variants are possible for unusual methods of perception as Detect, Scanning Sense, or Vibration Sense.</p><p>Keen (Sense) gives a +1 bonus per point of energy spent to Sense rolls of the appropriate type.</p><p>Keen Hearing is also a Sound spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 150 per point of improvement.</p>"
+  },
+  {
+    "_id": "b884d27195887e65",
+    "name": "Dull Hearing",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The inverse of Keen (Sense), this spell reduces all the subject's Sense rolls for the appropriate sense.</p><p><em>Item</em></p><p>(a) Clothing or jewelry. The wearer's Sense score is reduced. Energy cost to create: 50 per point of Sense decrease. (b) Staff or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "e1bd33cfc8e80526",
+    "name": "Dull Vision",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The inverse of Keen (Sense), this spell reduces all the subject's Sense rolls for the appropriate sense.</p><p><em>Item</em></p><p>(a) Clothing or jewelry. The wearer's Sense score is reduced. Energy cost to create: 50 per point of Sense decrease. (b) Staff or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "61de0ffb4e60d057",
+    "name": "Dull Taste and Smell",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The inverse of Keen (Sense), this spell reduces all the subject's Sense rolls for the appropriate sense.</p><p><em>Item</em></p><p>(a) Clothing or jewelry. The wearer's Sense score is reduced. Energy cost to create: 50 per point of Sense decrease. (b) Staff or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "c525e9abc94b3ab7",
+    "name": "Alertness",
+    "pages": "M133",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Increases all the subject's Sense rolls.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 300 per point of improvement.</p>"
+  },
+  {
+    "_id": "05a72f8ecd691632",
+    "name": "Dullness",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reduces all of the subject's Sense rolls.</p><p><em>Item</em></p><p>Clothing or jewelry. The wearer's Sense scores are reduced. Energy cost to create: 200 per point of decrease.</p>"
+  },
+  {
+    "_id": "7c8a025d1c44d6be",
+    "name": "Fear",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject(s) feel fright. The caster receives a +3 bonus to reaction rolls in potential combat situations and other situations where threats are effective, but suffers a -3 penalty on loyalty rolls and situations where terrorizing NPCs is counterproductive.</p><p><em>Item</em></p><p>(a) Any item. Always on; the item causes wearer to feel fear. Energy cost to create: 200. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "a8bb57485f544a2b",
+    "name": "Panic",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Those in the affected area flee in mindless fear, away from the caster, for the duration of the spell. A subject who cannot escape can turn and take the All-Out Defense maneuver, if attacked.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "e8728cdfc57c0450",
+    "name": "Terror",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Anyone in the area who fails to resist must make an immediate Fright Check at -3.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "3fcdc506cb88c350",
+    "name": "Bravery",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject(s) fearless. Anyone under this spell must make an IQ roll to avoid being brave, should caution be called for.</p><p><em>Item</em></p><p>(a) Any item. Always on; the item maintains a Bravery spell on its wearer. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "97688434de1d2a65",
+    "name": "Rear Vision",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can see all around himself, as if he had the 360˚ Vision advantage (p. B34).</p><p><em>Item</em></p><p>Weapon, clothing, or jewelry. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "39920ec3c3fd57d6",
+    "name": "Berserker",
+    "pages": "M134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the subject to fight as a berserker (see Berserk disadvantage, p. B124). If known foes are in sight (or even in earshot), they will be attacked first.</p><p><em>Item</em></p><p>(a) Staff or wand; usable only by mages. The item must include a representation of a bear, or a bear's tooth. Energy cost to create: 750. (b) Bearskin cloak which casts the spell on its wearer at no energy cost (normal resistance roll is possible). It serves as a Heavy Cloak with DB 2, DR 2, and 20 HP. If the cloak loses all its HP, the enchantment is destroyed. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "6c645b9c8fd8699f",
+    "name": "Mental Stun",
+    "pages": "M135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is mentally stunned until he can make an IQ roll to recover.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer is mentally stunned until the item is removed. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,100.</p>"
+  },
+  {
+    "_id": "4ea6ea9ef7257cbe",
+    "name": "Disorient",
+    "pages": "M135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>All within the area lose their bearings. They will not immediately feel lost, but as soon as it becomes necessary to remember the path they've taken, or remember their position relative to a landmark, they will draw a blank. Those with Absolute Direction resist at +5.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "7d35f6f2df9fe0cb",
+    "name": "Encrypt",
+    "pages": "M135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on any writing or other visual information medium, this spell makes it unreadable to any but the caster. Anyone can see the writing, but they will be convinced that it is hopelessly arcane, complex, or foreign. Other media dependent on the senses (including any arcane taste- or smell-based \"writing\" that might be used by nonhuman races, as well as Braille in modern settings) may be encrypted if the GM permits it.</p><p><em>Item</em></p><p>(a) Any writing may be permanently encrypted for 100 times the cost to cast the spell. (b) Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "caea9d70bb1e0ada",
+    "name": "Fascinate",
+    "pages": "M135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds the subject (a sapient being) motionless and unaware of the passage of time as long as the caster maintains eye contact and concentration. Darkness breaks eye contact! May be cast as a Blocking spell if the subject is entering Close Combat range. The caster may move slowly (Move 1) while maintaining eye contact if he knows the spell at level 15 or better; each yard he moves away from the subject allows it another resistance roll to break the spell. The spell is also broken by any attack (physical or magical) on the subject.</p><p><em>Item</em></p><p>Mirror, painting, or statuette. Always on. Energy cost to create: 1,000. This item is used as a guardian in some places (the spell is broken when the victim falls unconscious through starvation, dehydration, or exhaustion).</p>"
+  },
+  {
+    "_id": "192cb0dc7ffc45fd",
+    "name": "Wisdom",
+    "pages": "M135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Raises the subject's IQ temporarily. This raises his ability with skills, but not with spells! The subject's IQ cannot become higher than the caster's.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer's IQ is raised while the item is worn! This is a very rare and prized item. Energy cost to create: 2,000 per point of increase (maximum 5). (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "6a55a2397adb04d7",
+    "name": "Weaken Will",
+    "pages": "M136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily reduces the subject's Will.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer has his Will weakened. Energy cost to create: 100 for each point of Weak Will. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 700.</p>"
+  },
+  {
+    "_id": "8e60a615c65ecdd6",
+    "name": "Strengthen Will",
+    "pages": "M136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily increases the subject's Will.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer gains up to 5 points of Will. This is a rare item. Energy cost to create: 1,000 per point of Will (maximum of 5). (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "1b563c5474ae5b0d",
+    "name": "Loyalty",
+    "pages": "M136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject loyal to the caster. The subject follows any direct order the caster gives; in the absence of direct orders, he acts in the caster's best interest as he understands it. The spell is immediately broken if the caster attacks the subject. If the subject is told to do something very hazardous or against his normal code of behavior (GM's decision), he gets an IQ roll to break the spell.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer becomes loyal to the original creator of the item (when that person dies, the item loses its power). Energy cost to create: 500. Double this cost for an item that makes the wearer loyal to some specific third person. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "939c6e6c31a018c0",
+    "name": "Drunkenness",
+    "pages": "M136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the victim temporarily intoxicated: he is loud, cheerful, and badly coordinated. Both IQ and DX are reduced by the amount of energy put into the spell. If the victim is a PC, he should be told he feels drunk, and encouraged to roleplay it! When the spell ends, it does so instantly (no hangover).</p><p><em>Item</em></p><p>(a) Any item. Always on; the item causes the effects of the Drunkenness spell. Energy cost to create: 200 per point of reduction. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "9d43921cd3109630",
+    "name": "Madness",
+    "pages": "M136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is driven temporarily insane; this should be roleplayed. The caster selects the severity of madness he wishes to inflict, and the GM decides which madness at that severity is appropriate to the situation (rolling a die is a perfectly acceptable way to make this decision). On a critical success, the caster may select the madness to be inflicted.</p><p>Unless noted otherwise, each madness is identical to the disadvantage of the same name. Some madnesses are equivalent to disadvantages that require self-control rolls. The subject always fails his self-control rolls against the magical madness.</p><p><em>Mild:</em> Delusion [-5], Flashbacks [-5], Phantom Voices [-5], Phobia [-5].</p><p><em>Moderate:</em> Bestial [-10], Confused, Delusion [-10], Flashbacks [-10], Paranoia [-10], Phantom Voices [-10].</p><p><em>Severe:</em> Berserk, Bestial [-15], Chronic Depression, Delusion [-15], Hallucinations (as the Hallucinating incapacitating condition, p. B429), Phantom Voices [-15].</p><p><em>Extreme:</em> Catatonia (as the Daze incapacitating condition (p. B428), but the subject cannot snap out of it until the spell ends), Flashbacks [-20].</p><p><em>Item</em></p><p>(a) Any item. Always on; the item causes the effects of the Madness spell. When the item is created, the caster can specify whether its effects are gradual or immediate, and (if desired) a specific type of madness. Energy cost to create: 500. (b) Staff or wand. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "3afe989d1370b3a3",
+    "name": "Emotion Control",
+    "pages": "M137",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Instills the subject(s) with any one emotion the caster chooses. There is no \"game system\" effect unless the GM feels it necessary, but subjects should roleplay it! Some sample emotions: love, hate, lust, anger, greed, jealousy, hunger, fear, sadness, joy, peace, unrest, depression, patriotism, boredom.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer is affected by the emotion instilled in the item when it was created. Energy cost to create: 300. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000 for an item that can instill only one emotion, or 2,200 for one that instills any desired emotion.</p>"
+  },
+  {
+    "_id": "1ac9ea92edf61b14",
+    "name": "Mindlessness",
+    "pages": "M137",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reduces the subject's IQ to 1 temporarily, reducing him to babbling idiocy. The subject cannot cast or maintain spells, use skills, talk, or other actions determined by the GM. The subject can walk, laugh, cry, drool, eat with his hands, react to heat and cold, etc. He has a very short attention span and notices only colors, pretty things, movement, and other things that a baby would be curious about. If the subject is a PC, the player should roleplay this state.</p><p><em>Item</em></p><p>Any item. The item casts Mindlessness on its wearer. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "b209ede52098e7a7",
+    "name": "Compel Lie",
+    "pages": "M137",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes unable to tell the truth: he cannot make any statement he believes to be true, and in fact feels compelled to tell lies, although he may (if he realizes that he is under a spell) choose to remain silent.</p><p>Compel Lie and Compel Truth resist each other. Aura may be required to find out which spell has won out!</p><p>This is also a Communication and Empathy spell.</p><p><em>Item</em></p><p>Torc or heavy necklace; the wearer cannot tell the truth. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "230da4de940c66ee",
+    "name": "Lure",
+    "pages": "M137",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each being who steps within this spell's area of effect feels compelled to approach the center of the affected region. The GM should roll the creature's resistance in secret and then tell the unlucky victim that he \"feels curious about the chest\" or some such subtle hint. Once the victim has reached the center, he is immune to the spell until he leaves the affected area (if he returns, he will once again be \"attacked\" by the spell).</p><p>Lure and Avoid are antagonistic spells and thus resist each other.</p><p><em>Item</em></p><p>An area may be made permanently attractive for 100 times normal energy cost.</p>"
+  },
+  {
+    "_id": "ec358df12ef613b9",
+    "name": "Peaceful Sleep",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject gets an undisturbed night's sleep. This spell cures insomnia, allows sleep in noisy, disruptive environments, and protects against nightmares and the Nightmare spell. This period counts double in terms of HP and FP recovery. The caster can awaken the subject with a word. Otherwise, subject cannot be awakened, except by injury or with the Awaken spell.</p><p>This spell works only on a willing subject; otherwise, resistance is automatic.</p><p><em>Item</em></p><p>(a) Wand or staff that gives the power to cast this spell. Energy cost to create: 900. (b) Any item. If the wearer is willing to sleep, the item puts him to sleep as per the spell; he awakens in eight hours, or if the item is removed. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "3dd2ddb5ad3a6c7a",
+    "name": "Sickness",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject feel sick and nauseated (dizzy, vomiting, etc.). He may run if necessary (at half his normal Move) but may do nothing else except maintain existing spells and give very simple answers. When the spell wears off, the sickness vanishes instantly.</p><p>This is also a Body Control spell.</p><p><em>Item</em></p><p>(a) Any item. Always on; the item causes effects of Sickness spell. Energy cost to create: 300. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "4764fff0a2a6f511",
+    "name": "Will Lock",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a circular zone that traps anyone inside at the moment of its creation. The barrier is purely mental, working on the wills of the people trapped. For this reason, the subjects must be aware they are being circled - if they are not, the Will Lock has no effect on them.</p><p>Each being trapped inside has one chance to escape each day; roll a Regular Contest between the being's (ST+Will)/2 and the Will Lock's Endurance (p. 10). Each being that escapes weakens the Will Lock's Endurance by 1. Upon reaching Endurance 0 or on a critical failure on its part, the Will Lock dissipates. A critical success by an escaping being does not break the Will Lock. The spell can also be broken if an outside party scuffs the circles away.</p><p>The beings trapped can freely cast spells or throw missiles across the Will Lock's boundary. An interesting method of escape is to be knocked unconscious and then thrown bodily outside the Will Lock!</p>"
+  },
+  {
+    "_id": "49f8ae5ad4334ca3",
+    "name": "Oath",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Great Geas, but works on a willing subject only. Although the caster casts the spell, the subject must speak the oath.</p><p>The subject may knowingly attempt to break his oath (rolling vs. Will) no more than once per day. The spell resists the attempt; if the subject overcomes the resistance, he manages to break the oath just this once. A critical success by the subject or a critical failure by the spell breaks the spell. The spell may otherwise be broken only by Remove Curse.</p><p>Unknowing attempts, such as when the subject is tricked into breaking his oath, are not Resisted by the spell.</p><p><em>Item</em></p><p>Jewelry. Always on; only affects the wearer. Energy cost to create: 550.</p>"
+  },
+  {
+    "_id": "f194d531189ebc2a",
+    "name": "Permanent Forgetfulness",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Forgetfulness, but permanent. The subject also forgets he ever knew that thing or that he was enchanted. Another mage with this spell can restore forgotten things by recasting the spell and winning a Quick Contest of Spells with the original Permanent Forgetfulness spell.</p><p><em>Item</em></p><p>Any item. Same effect as for Forgetfulness item, but if it is worn for a full day, the thing is forgotten forever unless the spell is removed by Remove Curse or an opposed Permanent Forgetfulness spell. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "4fc61ab3a1e29adc",
+    "name": "Vigil",
+    "pages": "M138",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Skip a night's sleep with no ill effects. Each successive night's casting on the same subject is at a cumulative -3 to skill.</p><p><em>Item</em></p><p>Headgear or jewelry. Usable only by a mage or (at the GM's option) by \"holy\" beings. Energy cost to create: 1,000. Rumors persist of an \"always-on\" version.</p>"
+  },
+  {
+    "_id": "d3419e7a4ddbf56e",
+    "name": "Charm",
+    "pages": "M139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes caster's faithful slave until the spell expires, following any orders, no matter how dangerous. There is no mental link - the caster must give his orders to the subject verbally or in writing. However, the subject will protect the caster without orders. In all other respects the subject will be mentally normal and alert. He will be unable to explain (and unwilling to discuss or even think about) his loyalty to the caster.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer becomes loyal to the original creator of the item (when that person dies, the item loses its power). Energy cost to create: 1,000. Double this cost for an item that makes the wearer loyal to some specific third person. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "fa685435a9990ea5",
+    "name": "Ecstasy",
+    "pages": "M139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject feels an incapacitating rush of pleasure; he can take no action for the duration, not even to move out of harm's way! High/Low Pain Threshold is irrelevant.</p><p>Repeated exposure can be dangerous to the subject. If any character has been the subject of an Ecstasy spell three times within 10 days, he must make a Will+2 roll after the third time, and after each subsequent time until five days pass without exposure to the spell. If any of these rolls are failed, the subject gains an Addiction (see p. B122) to the spell, and will beg the caster (or anyone else who is known to have the spell) for more! Withdrawal from the Ecstasy spell follows the normal rules for a psychological dependency (see Drug Withdrawal, p. B440).</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 800. (b) Headgear. Always on. The wearer may not voluntarily remove the item, and addiction occurs within 15 minutes. Energy cost to create: 1,300.</p>"
+  },
+  {
+    "_id": "3c35bd5c8d04ad81",
+    "name": "Enthrall",
+    "pages": "M139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster tells an enthralling tale. Anyone within earshot who knows the language and pays attention falls under the spell, resisting with Will. An hour of real time passes, but the victims notice only a minute slipping by. Anyone who resists will perceive the caster and his victims as paralyzed, although prolonged examination will reveal they are moving, very slowly. Any subject that is attacked or shaken breaks free of the spell (in the latter case, the victim gets an extra resistance roll for every second that he's disturbed).</p><p>This spell may never be higher than the caster's Public Speaking skill, or Performance if the story is mimed or acted out.</p><p><em>Item</em></p><p>Staff, comedian's mask, or musical instrument. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "e7eea6005d860292",
+    "name": "Permanent Madness",
+    "pages": "M139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for Madness, but permanent.</p>"
+  },
+  {
+    "_id": "d0b9c01c168ca210",
+    "name": "False Memory",
+    "pages": "M139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Insert a single, simple false memory into a subject's mind. This spell is often used to avoid paying bills, and is considered highly illegal in many areas.</p><p>If the implanted memory conflicts with a real memory, the subject's brain will usually fit the new one in anyway, leaving him slightly confused but convinced. In case of extreme direct conflict - \"You remember killing the duke\" (when the subject saw the caster kill the duke!) - the subject should be allowed a bonus on his resistance roll; the example above would be a +5 for a loyal subject, but probably only +1 for somebody who wanted to kill the duke.</p><p><em>Item</em></p><p>Any item. Always on; the item causes the wearer to remember one false memory specified when the item is created. The wearer will forget the memory one hour after the item is removed. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "cba94eebe4f4cf00",
+    "name": "Avoid",
+    "pages": "M140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject area unattractive to all creatures except the caster. Gazes will be averted, and approaching characters will feel an intense unease, an urge to be somewhere else. The spell resists attempts to look at it or to approach it (roll caster's skill vs. searcher's Will). Victims won't be aware of the repulsion if it can act in a subtle way (e.g., you just felt like sitting in front rather than in the middle . . .). This is a subtle spell, and GMs should roll in secret to see if it works. If it does, the victims should not be told \"You can't look in that closet,\" but just \"you see nothing.\" The spell made them think they had checked the closet, or made each searcher think that another one had checked it . . . and so on.</p><p>If a single caster uses both Hide and Avoid, the GM should not check for the results of the Hide spell unless a searcher penetrates the Avoid spell and looks in the caster's direction.</p><p><em>Item</em></p><p>An area can be made permanently \"avoided\" at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "63d5d55276fdb31c",
+    "name": "Nightmare",
+    "pages": "M140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a sleeping subject, this spell causes a nightmare of the caster's choice. Knowledge of the subject's fears and phobias gives a +2 to effective skill. The subject gets an IQ-4 roll to realize the nightmare was caused by hostile magic. If the spell succeeds, the subject gets no rest from the night's sleep, and instead loses 2 FP. Dispel Magic will stop the nightmare while it is occurring, preventing FP loss. This spell is also countered by the Peaceful Sleep spell.</p><p>If the spell is recast the next night, the effects are cumulative. If the subject's FP falls to zero due to this spell, he falls into a coma and will lose 1d HP each day until he dies, unless Dispel Magic is cast.</p><p><em>Item</em></p><p>(a) Wand or staff that gives the power to cast this spell. Energy cost to create: 800. (b) Any item. If the item is worn for more than eight hours a day, it causes a nightmare as per the spell, even if taken off at night! Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "7468fe8a1798fad4",
+    "name": "Hallucination",
+    "pages": "M140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's perceptions are addled. He is completely convinced that one thing that is not present is (or vice versa); he can see it, hear it, feel it, and so on. This is similar to an illusion in some ways, but it exists entirely in the mind of the subject.</p><p>The hallucination must concern the presence or absence of a single \"thing\": one person the subject knows or knew, one crowd of revelers, one pair of shackles on the subject's wrists, one pride of lions . . . If it can be described as a single entity in English (without amazing gymnastics), then it should pass. The GM's judgment is final, as usual.</p><p>The hallucination does not require concentration: the subject supplies, unconsciously, all the \"realism\" necessary. By concentrating, the caster can \"direct\" the hallucination - put words in the mouth of the absent person, have the revelers head off in a certain direction or start singing a particular song, etc.</p><p>Impossible or obviously false hallucinations (a long-dead uncle, for example) are Resisted at a bonus of up to +5.</p><p><em>Item</em></p><p>(a) Any item. Always on; the item causes the effects of Hallucination spell. When the item is created, the caster must specify the nature of the hallucination. Energy cost to create: 1,000. (b) Staff or wand. Usable only by mages. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "24d91e0b3aa240fc",
+    "name": "Lesser Geas",
+    "pages": "M140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give a subject one command, which the subject must obey. This must be a command to do one specific thing. It must be reasonably possible, in the GM's opinion. \"Destroy every tree on this continent\" is not a legal geas (at least in a low-tech world). Until the geas is fulfilled or removed (only Remove Curse will do this), the subject must make it his first priority.</p><p><em>Item</em></p><p>Any item. Always on; the item places a Lesser Geas (specified at the time of its creation) on the wearer. The wearer may not voluntarily remove the item; if it is removed anyway, the geas will persist for a month unless removed by Remove Curse. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "2fa7fe342a8613f3",
+    "name": "Suggestion",
+    "pages": "M140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Instills a suggestion in the subject's mind. It must be one simple idea; language is no barrier unless the subject's language cannot encompass the idea. If the suggestion goes against the subject's personal safety, it is Resisted at +5; if it goes against his beliefs, convictions or knowledge, it is Resisted at +3. The subject will try to accomplish the suggestion or otherwise act as if the idea was his own.</p><p><em>Item</em></p><p>Any. Always on; the item causes wearer to have one idea, specified when the object was created. The suggestion dissipates an hour after the object is removed. Cost to create: 400 energy. (b) Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Cost to create: 500 energy.</p>"
+  },
+  {
+    "_id": "390e99c3e2e4cdc0",
+    "name": "Mass Suggestion",
+    "pages": "M141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Suggestion, but affects an area and all those within it with a single suggestion.</p><p><em>Item</em></p><p>Musical instrument. The user must be skilled in it (use the lower of spell and musical skills). Energy cost to create: 1,500 energy.</p>"
+  },
+  {
+    "_id": "5c391ca037b5cdf0",
+    "name": "Glib Tongue",
+    "pages": "M141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster can mystically make anything he says be what the subject wants to hear. Whatever the caster says, even total gibberish, will find hearty agreement. However, the caster won't have a clue what the target thinks he's saying . . . GMs may give up to +3 on reaction rolls, depending on how cleverly the PC roleplays this.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 650.</p>"
+  },
+  {
+    "_id": "f2aa28f566725e2a",
+    "name": "Enslave",
+    "pages": "M141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like the Charm spell, but permanent. The subject will follow the caster's orders until the spell ends or is removed. At any time the caster concentrates, he can form a mental link with the subject to see through the subject's eyes, hear through his ears, and give orders.</p>"
+  },
+  {
+    "_id": "cde8681fcc02eb5c",
+    "name": "Great Hallucination",
+    "pages": "M141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Hallucination, but the subject's entire environment can be falsified. He might see himself stranded on a cliff side, in a crowded city street, in the middle of a lake, etc. The only limits are the fiendishness of the caster's imagination and the judgment of the GM.</p><p>For any significant changes to occur in the subject's new surroundings, concentration on the part of the caster is required, as per Hallucination. If the caster dramatically changes the subject's perceptions, the subject may be given a new resistance roll, at the GMs option.</p><p><em>Example:</em> the subject is \"placed\" on top of a giant pillar of stone over a lake of molten lava. By concentrating, the caster could cause the pillar to begin sinking or bucking beneath the subject's feet, or cause a flying monster to appear. If the caster suddenly decided that the lava turned into a green meadow, however, the subject would get a new Resistance roll.</p><p>This spell can be used for positive effect; if the subject is required to walk a narrow log across a thousand-foot-deep chasm, he might find it easier if the log spans only a shallow streambed . . .</p><p><em>Item</em></p><p>(a) Any item. Always on; only affects the wearer. When the item is created, the caster must specify the nature of the hallucination. Energy cost to create: 2,500. (b) Staff or wand. Usable only by mages. Energy cost to create: 900.</p>"
+  },
+  {
+    "_id": "8ccd6f7efee7a425",
+    "name": "Great Geas",
+    "pages": "M141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Give a subject one continuing command, such as \"Never touch weapons\" or \"Slay all orcs.\" A Great Geas does not have to be reasonably possible; it can occupy the subject for the rest of his life unless removed. Only Remove Curse will negate a geas. A critical failure on a Great Geas costs the caster an IQ point.</p><p><em>Item</em></p><p>Any item. Always on; the item places a Great Geas (specified at time of its creation) on its wearer. The wearer may not voluntarily remove the item; if it is removed, the geas will persist for a year unless removed by Remove Curse. Energy cost to create: 4,000.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
