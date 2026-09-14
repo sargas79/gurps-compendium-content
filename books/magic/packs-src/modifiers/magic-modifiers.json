@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "938ace5173a33566",
+    "name": "Usable only for Spellcasting",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -10,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Extra Fatigue Points",
+      "description": "",
+      "reference": "Magic p. 15"
+    }
+  }
+]
