@@ -1,0 +1,31 @@
+name is a GCA placeholder	Summon [type] Elemental
+name is a GCA placeholder	Control [type] Elemental
+name is a GCA placeholder	Create [type] Elemental
+name is a GCA placeholder	Talisman (%spellslist%)
+name is a GCA placeholder	Amulet (%spellslist%)
+name is a GCA placeholder	Keen [Sense]
+name is a GCA placeholder	Dull [Sense]
+variant of a standard spell, not a spell	Communicate (Syntactic)
+variant of a standard spell, not a spell	Control (Syntactic)
+variant of a standard spell, not a spell	Create (Syntactic)
+variant of a standard spell, not a spell	Heal (Syntactic)
+variant of a standard spell, not a spell	Move (Syntactic)
+variant of a standard spell, not a spell	Protect (Syntactic)
+variant of a standard spell, not a spell	Sense (Syntactic)
+variant of a standard spell, not a spell	Strengthen (Syntactic)
+variant of a standard spell, not a spell	Transform (Syntactic)
+variant of a standard spell, not a spell	Weaken (Syntactic)
+variant of a standard spell, not a spell	Air (Syntactic)
+variant of a standard spell, not a spell	Animal (Syntactic)
+variant of a standard spell, not a spell	Body (Syntactic)
+variant of a standard spell, not a spell	Earth (Syntactic)
+variant of a standard spell, not a spell	Fire (Syntactic)
+variant of a standard spell, not a spell	Food (Syntactic)
+variant of a standard spell, not a spell	Image (Syntactic)
+variant of a standard spell, not a spell	Light (Syntactic)
+variant of a standard spell, not a spell	Magic (Syntactic)
+variant of a standard spell, not a spell	Mind (Syntactic)
+variant of a standard spell, not a spell	Plant (Syntactic)
+variant of a standard spell, not a spell	Sound (Syntactic)
+variant of a standard spell, not a spell	Spirit (Syntactic)
+variant of a standard spell, not a spell	Water (Syntactic)

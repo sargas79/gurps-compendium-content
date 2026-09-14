@@ -1,0 +1,362 @@
+[
+  {
+    "_id": "e5768d820c49541e",
+    "name": "Food",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "dfd40f0156766eee",
+    "name": "Sound",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "80ff10c9c035c5d4",
+    "name": "Communicate",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "4ad154c9e2d959d9",
+    "name": "Weaken",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "eb74146dbb120d17",
+    "name": "Strengthen",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "80c68bd6df2ba1a1",
+    "name": "Move",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "debc006c3527aff2",
+    "name": "Protect",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "40b6edccf48d7716",
+    "name": "Air",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "bc07eaa10dbffbc4",
+    "name": "Fire",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "9aa3a4a92a3df2ce",
+    "name": "Image",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "6b6da87b32cad865",
+    "name": "Light",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "b8a2eeb302a1d597",
+    "name": "Plant",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "f1fd45a8ce43fa84",
+    "name": "Water",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "ad086b0fa3f1c3c0",
+    "name": "Heal",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "b2d687b389b570bc",
+    "name": "Sense",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "81c7295822a8677e",
+    "name": "Create",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "121f4d2927c67116",
+    "name": "Control",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "f0ece7a55f3b6830",
+    "name": "Transform",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "54313a51ac6474d7",
+    "name": "Animal",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "a8e06319f3d3093a",
+    "name": "Body",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "b8f9d49758ebfe28",
+    "name": "Earth",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "660fa5c40e602970",
+    "name": "Magic",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "734ca81a61af5ac8",
+    "name": "Mind",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  },
+  {
+    "_id": "6c50815a7d2821f4",
+    "name": "Spirit",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 206"
+    }
+  }
+]

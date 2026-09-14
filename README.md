@@ -214,6 +214,25 @@ npm run coverage -- basic-set --status needs-review
 3. Read `books/<slug>/overlap.txt`. Records citing a Basic Set page are the
    system's already and were left out; where the book *revises* one rather than
    reprinting it, add the revision by hand.
+
+   Two lists in `book.json` handle what the data file gets wrong and the
+   system can't take yet. Each rule names the pack, a name pattern and the
+   reason, and extract applies it every time it writes, so a second run keeps
+   it:
+
+   ```json
+   "exclude": [
+     { "pack": "equipment", "pattern": "Powerstone", "reason": "one record per capacity" }
+   ],
+   "patch": [
+     { "pack": "spells", "pattern": "^Flame Jet$", "set": { "system.attack": { "damage": "" } }, "reason": "…" }
+   ]
+   ```
+
+   `exclude` takes records out. `patch` sets fields by path. A record the
+   book needs whole and different goes in `packs-src/<pack>/<slug>-by-hand.json`
+   instead, with an `exclude` for the parser's copy wherever the parser would
+   otherwise write it too.
 4. Write its text under `books/<slug>/prose/`, and its rules under
    `books/<slug>/journals/`. `tools/transcribe.mjs` drafts the text from the
    PDF. Tell it how to read the book in `book.json`:

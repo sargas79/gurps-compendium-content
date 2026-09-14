@@ -1,0 +1,2 @@
+name is a GCA placeholder	Powerstone (Energy [Capacity])
+name is a GCA placeholder	One-College Powerstone (Energy [Capacity])

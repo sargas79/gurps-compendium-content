@@ -1,0 +1,317 @@
+[
+  {
+    "_id": "b5766a84a3b690e8",
+    "name": "Talisman",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "mageryRequired": 2,
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 58",
+      "energy": {
+        "cast": 15,
+        "castMax": 150,
+        "maintain": null,
+        "text": "15 to 150, by protection"
+      },
+      "prerequisiteCount": 11,
+      "prerequisites": "Enchant, and the spell the talisman opposes"
+    }
+  },
+  {
+    "_id": "5661f490757b42e1",
+    "name": "Amulet",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "mageryRequired": 2,
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 58",
+      "energy": {
+        "cast": 50,
+        "castMax": 250,
+        "maintain": null,
+        "text": "50 per point of Magic Resistance (max. 5)"
+      },
+      "prerequisiteCount": 12,
+      "prerequisites": "The Talisman spell for the same spell"
+    }
+  },
+  {
+    "_id": "2d8b3cb7b784b91f",
+    "name": "Doppelgänger",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "energy": {
+        "cast": 1000,
+        "castMax": 1000,
+        "maintain": null,
+        "text": "1,000"
+      },
+      "mageryRequired": 3,
+      "prerequisiteCount": 29,
+      "prerequisites": "Magery 3, Golem, History, Enslave",
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 62"
+    }
+  },
+  {
+    "_id": "92559ac694896f7c",
+    "name": "Great Wish",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Special"
+      },
+      "energy": {
+        "cast": 2000,
+        "castMax": 2000,
+        "maintain": null,
+        "text": "2,000"
+      },
+      "mageryRequired": 3,
+      "prerequisiteCount": 18,
+      "prerequisites": "Magery 3, Wish, DX 1 or DX 2 or DX 3 or DX 4 or DX 5 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 29 or DX 2 or DX 3 or DX 4 or DX 5 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 28 or DX 3 or DX 4 or DX 5 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 27 or DX 4 or DX 5 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 26 or DX 5 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 25 or DX 6 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 24 or DX 7 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 23 or DX 8 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 22 or DX 9 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 21 or DX 10 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 20 or DX 11 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 19 or DX 12 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 18 or DX 13 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 17 or DX 14 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 16 or DX 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 15 or DX 16 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 14 or DX 17 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 13 or DX 18 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 12 or DX 19 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 11 or DX 20 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 10 or DX 21 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 9 or DX 22 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 8 or DX 23 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 7 or DX 24 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 6 or DX 25 or DX 26 or DX 27 or DX 28 or DX 29, IQ 5 or DX 26 or DX 27 or DX 28 or DX 29, IQ 4 or DX 27 or DX 28 or DX 29, IQ 3 or DX 28 or DX 29, IQ 2 or DX 29, IQ 1",
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 62"
+    }
+  },
+  {
+    "_id": "d4c658e70387d999",
+    "name": "Dancing Weapon",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "energy": {
+        "cast": 1000,
+        "castMax": 1000,
+        "maintain": null,
+        "text": "1,000/lb."
+      },
+      "mageryRequired": 2,
+      "prerequisiteCount": 12,
+      "prerequisites": "Enchant, Dancing Object",
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 63"
+    }
+  },
+  {
+    "_id": "cabc351f80b9757d",
+    "name": "Effigy",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "energy": {
+        "cast": 1000,
+        "castMax": 1000,
+        "maintain": null,
+        "text": "1,000"
+      },
+      "mageryRequired": 2,
+      "prerequisiteCount": 13,
+      "prerequisites": "Magery 2, Enchant, Scryguard, Ward",
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 71"
+    }
+  },
+  {
+    "_id": "bc9cbd7aba040517",
+    "name": "Crystal Ball",
+    "type": "spell",
+    "system": {
+      "colleges": [
+        "Enchantment"
+      ],
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "classes": [
+        "enchantment"
+      ],
+      "resistedBy": "",
+      "castingTime": {
+        "seconds": null,
+        "text": ""
+      },
+      "duration": {
+        "seconds": null,
+        "text": "Permanent"
+      },
+      "energy": {
+        "cast": 1000,
+        "castMax": 1000,
+        "maintain": null,
+        "text": "1,000"
+      },
+      "mageryRequired": 1,
+      "prerequisiteCount": 13,
+      "prerequisites": "Divination (Crystal-Gazing)",
+      "attack": {
+        "skill": "",
+        "damage": "",
+        "damageType": "",
+        "accuracy": 0,
+        "halfDamageRange": 0,
+        "maxRange": 0,
+        "explosive": false
+      },
+      "description": "",
+      "reference": "Magic p. 71"
+    }
+  }
+]

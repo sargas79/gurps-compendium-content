@@ -5,5 +5,52 @@
   "prefix": "M",
   "reference": "Magic",
   "gdf": "GURPS Magic 4e.gdf",
-  "notes": "GCA cites this book as M23, and a spell the Basic Set also prints as M23, B243; those 100 are left to the system's pack. PDF page = book page + 2. The parsers do not read the file's templates, so they are kept by hand. Powerstones wait on sargas79/GWorldVTT#190. See TRIAGE.md."
+  "modifiers": {
+    "from": 15,
+    "to": 15
+  },
+  "exclude": [
+    {
+      "pattern": "Powerstone",
+      "reason": "one record per capacity; capacity belongs on the item (sargas79/GWorldVTT#190)",
+      "pack": "equipment"
+    },
+    {
+      "pack": "spells",
+      "pattern": "^(Doppelgänger|Great Wish|Dancing Weapon|Effigy|Crystal Ball)$",
+      "reason": "kept by hand: the data file writes their energy with a thousands separator, which the parser misreads (sargas79/GWorldVTT#191)"
+    }
+  ],
+  "transcription": {
+    "pdfOffset": 2,
+    "pageLabel": "M"
+  },
+  "notes": "GCA cites this book as M23, and a spell the Basic Set also prints as M23, B243; those 100 are left to the system's pack. PDF page = book page + 2. The parsers do not read the file's templates, so they are kept by hand. Powerstones wait on sargas79/GWorldVTT#190. See TRIAGE.md.",
+  "patch": [
+    {
+      "pack": "spells",
+      "pattern": "^(Acid Jet|Air Jet|Ball of Lightning|Breathe Fire|Breathe Radiation|Breathe Steam|Flame Jet|Icy Breath|Light Jet|Lightning Stare|Lightning Whip|Mud Jet|Radiation Jet|Rain of Acid|Rain of Fire|Rain of Ice Daggers|Rain of Stones|Sand Jet|Snow Jet|Sound Jet|Spit Acid|Steam Jet|Water Jet)$",
+      "set": {
+        "system.attack": {
+          "skill": "",
+          "damage": "",
+          "damageType": "",
+          "accuracy": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "explosive": false
+        }
+      },
+      "reason": "jets, breaths and rains do damage without being Missile or Melee spells, which the system cannot carry yet (sargas79/GWorldVTT#192); the damage is in the text"
+    },
+    {
+      "pack": "spells",
+      "pattern": "^(Poltergeist|Spider Silk|Throw Spell|Winged Knife)$",
+      "set": {
+        "system.attack.damage": "",
+        "system.attack.damageType": ""
+      },
+      "reason": "missile spells whose damage the data file writes as a choice or \"Spec.\", which does not parse; the damage is in the text"
+    }
+  ]
 }

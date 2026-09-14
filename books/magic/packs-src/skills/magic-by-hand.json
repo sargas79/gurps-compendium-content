@@ -1,0 +1,362 @@
+[
+  {
+    "_id": "d8f414626dc90b1f",
+    "name": "Communicate (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "d2bbcf69997a0d5b",
+    "name": "Control (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "dd01b0dfb85ef4cb",
+    "name": "Create (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "f2e737cb7ba110c1",
+    "name": "Heal (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "2b89ddefef8745fe",
+    "name": "Move (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "1447669ab14c0bca",
+    "name": "Protect (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "fd60226a5ad7eb09",
+    "name": "Sense (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "696644dcef1281da",
+    "name": "Strengthen (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "9ea7ea29d3981624",
+    "name": "Transform (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "061d4fbab06bbb34",
+    "name": "Weaken (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "847eb5832c7a1226",
+    "name": "Air (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "af0f9879b59c025c",
+    "name": "Animal (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "d9a9882c09756a47",
+    "name": "Body (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "32c8e7e13cf8a455",
+    "name": "Earth (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "7d0588ef26c78ccc",
+    "name": "Fire (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "f38137bb72528384",
+    "name": "Food (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "bfc02319da52513f",
+    "name": "Image (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "577d34dfc8f003cf",
+    "name": "Light (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "4d5d8ebdbf6555ea",
+    "name": "Magic (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "9a2ce5280bfec436",
+    "name": "Mind (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "d39eca757dd23ce6",
+    "name": "Plant (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "eee1ec74a5114b87",
+    "name": "Sound (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "4c01553054373f24",
+    "name": "Spirit (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  },
+  {
+    "_id": "b8bf229e623010cb",
+    "name": "Water (Syntactic)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Magic p. 202"
+    }
+  }
+]

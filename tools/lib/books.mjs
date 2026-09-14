@@ -100,6 +100,22 @@ export function book(slug) {
     // The pages of the [MODIFIERS] section holding the book's own enhancements
     // and limitations, for parse-gdf-modifiers.mjs. Null for a book with none.
     modifiers: raw.modifiers ?? null,
+    // Records the parsers write that the book should not have: the pack, a
+    // name pattern and the reason (tools/extract.mjs). The pack matters -- the
+    // Powerstone spell is not a powerstone.
+    exclude: (raw.exclude ?? []).map((rule) => ({
+      pack: String(rule.pack),
+      pattern: new RegExp(rule.pattern),
+      reason: String(rule.reason ?? ""),
+    })),
+    // Fields to set on the parsers' records, by path, where the system cannot
+    // take what the data file says yet (tools/extract.mjs).
+    patch: (raw.patch ?? []).map((rule) => ({
+      pack: String(rule.pack),
+      pattern: new RegExp(rule.pattern),
+      set: rule.set ?? {},
+      reason: String(rule.reason ?? ""),
+    })),
     // How the book's PDF is read, for tools/transcribe.mjs: book page +
     // pdfOffset = PDF page, the letters a page is recorded with, and a pattern
     // for the part of a data-file name the book does not print.

@@ -1,0 +1,1906 @@
+[
+  {
+    "_id": "1233052b5b5b930a",
+    "name": "Beast-Speech (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "4cb40ed0e1e7b1b8",
+    "name": "Bird Control (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "9cb879f4bb40c5cf",
+    "name": "Dragonslaying (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "907885b8110e2b53",
+    "name": "Horsemanship (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "7d61c6012d19d9db",
+    "name": "Battle (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "d2a517db3bdfe50c",
+    "name": "Endurance (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "f6c438ebc13c74c5",
+    "name": "Fetching and Carrying (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "ce84e406a46ff534",
+    "name": "Leadership (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "02d79b2aa11f8cb8",
+    "name": "Invulnerability (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "97d555427cf557bd",
+    "name": "Speed (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "2139aee53903a064",
+    "name": "Stealth (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "63f02a11e51737b5",
+    "name": "Strength (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "eb00a4ba46af2308",
+    "name": "Aging (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "e2436c99f0857d92",
+    "name": "Death (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "2e2565cf6750ba26",
+    "name": "Fear (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "9d712c809192a1bf",
+    "name": "Foolishness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "766dce9e91d01dfc",
+    "name": "Frustration (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "960d1a93e4b859e0",
+    "name": "Hatred (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "1b30396c436e9cb9",
+    "name": "Jealousy (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "948ad7af3af05d03",
+    "name": "Lecherousness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "04f848160aea550b",
+    "name": "Madness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "b1f2af537be789c4",
+    "name": "Odium (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "01be792c2794312d",
+    "name": "Self-Love (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "825422e32b85c2b2",
+    "name": "Unluckiness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "73dfe0dfdfcf61d4",
+    "name": "Weakness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "94bcc66e649b1506",
+    "name": "Attractiveness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "476893bb171306fc",
+    "name": "Fire Resistance (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "15f45ccc77225fc8",
+    "name": "Flight (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "b5e8afb7529c52aa",
+    "name": "Gambling (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "dbe79fb185be6bcd",
+    "name": "Invisibility (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "97c50ff43e5ac0ec",
+    "name": "Luck (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "3ec9956aa2c12775",
+    "name": "Magic Resistance (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "12fcbcbe2b63e6a6",
+    "name": "Pain Resistance (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "764461397ed4064e",
+    "name": "Transformation (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "73551b9440d0d033",
+    "name": "True Sight (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "8682dfd61c43db6f",
+    "name": "Water Breathing (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "09ab52b4bcb6e856",
+    "name": "Water-Walking (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "b9928e5bc44c1ceb",
+    "name": "Alchemical Antidode (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "dacd67951d75d0c3",
+    "name": "Awakening (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "6fcce6e07f77b853",
+    "name": "Eternal Rest (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "06728125736e0fba",
+    "name": "Fertility (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "2bb7c72cdacbd9b5",
+    "name": "Healing (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "12429ffc9af6795e",
+    "name": "Health (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "2c4cb71bf25d2999",
+    "name": "Hybridization (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "ffbf2a6ce2f62e9d",
+    "name": "Lichdom (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 159"
+    }
+  },
+  {
+    "_id": "8693f6c69f3ff599",
+    "name": "Long Slumber (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "3f695f510149a235",
+    "name": "Reanimation (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "5d09f1866ed02649",
+    "name": "Regeneration (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "3813e71b415ba77d",
+    "name": "Resurrection (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "5c29e15b831f22af",
+    "name": "Sleep (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "d12b6f1c05949046",
+    "name": "Tranquility (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "8c584f7b79670e8f",
+    "name": "Universal Antidote (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "99e38aa26bf6f0eb",
+    "name": "Youth (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "32dadb0f4a4ca463",
+    "name": "Charisma (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "01ebe0f436795ae7",
+    "name": "Foresight (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "b4765be25a5765d8",
+    "name": "Hardheartedness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "99ed4373e1453f3f",
+    "name": "Memory (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "f15534188ca06590",
+    "name": "Wisdom (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "a402ca01440c3f9e",
+    "name": "Drunkenness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "4008002f55748ba7",
+    "name": "Friendship (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "8698f128d9bfe715",
+    "name": "Forgetfulness (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "de266899b0b7fe86",
+    "name": "Gullibility (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "a544243dc00166bb",
+    "name": "Love (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "f0d2ea2c894e9dea",
+    "name": "Truth (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "7fe16a0caadadf47",
+    "name": "Craftsmanship (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "6327a1ec900a15d1",
+    "name": "Hearing (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "dd65576243a52e1b",
+    "name": "Keen Sight (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "8e9bad2bb28bcac1",
+    "name": "Music (Alchemy)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Alchemy",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "54927b9eff80063e",
+    "name": "Beast-Speech (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "089d0c50365da942",
+    "name": "Bird Control (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "229795973fb9c035",
+    "name": "Dragonslaying (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 213"
+    }
+  },
+  {
+    "_id": "69b74469ca83266b",
+    "name": "Horsemanship (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "ae3b95e3f583e64f",
+    "name": "Battle (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "652fc544f6a7e15f",
+    "name": "Endurance (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "f7462384d2afc707",
+    "name": "Fetching and Carrying (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "cad3bd6f4135c532",
+    "name": "Leadership (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "4ada3d5ab6e7dae7",
+    "name": "Invulnerability (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "81bf3315e6db56ad",
+    "name": "Speed (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "4a982d86548e55fb",
+    "name": "Stealth (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "262fdd076a729f40",
+    "name": "Strength (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "a80ba69ba955ebc2",
+    "name": "Aging (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 214"
+    }
+  },
+  {
+    "_id": "b7d28dd03fb19c45",
+    "name": "Death (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "a069f4ee039be57b",
+    "name": "Fear (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "624bcaca109b8498",
+    "name": "Foolishness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "5be92bbf95076a16",
+    "name": "Frustration (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "b6f95c7187312a83",
+    "name": "Hatred (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "cfaf3bb4f45c6af9",
+    "name": "Jealousy (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "2fe0f9aead819933",
+    "name": "Lecherousness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "480f8871bfec08ef",
+    "name": "Madness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "bbb6c0a9d63f52a4",
+    "name": "Odium (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "0474619937ebadc7",
+    "name": "Self-Love (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "9c43a16d7d2d26bc",
+    "name": "Unluckiness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "26c6ba1ddd5254b1",
+    "name": "Weakness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 215"
+    }
+  },
+  {
+    "_id": "87ca38c482f9ff86",
+    "name": "Attractiveness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "c2aa6c4e91848c9f",
+    "name": "Fire Resistance (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "3bf7600c2c752375",
+    "name": "Flight (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "0f612f90c74190d0",
+    "name": "Gambling (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "e7a8105f825a87c4",
+    "name": "Invisibility (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "7aa08ae5457a72c6",
+    "name": "Luck (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "58d138856b5705a7",
+    "name": "Magic Resistance (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "f8bddd8765e24594",
+    "name": "Pain Resistance (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "9b8d0417c13c7d63",
+    "name": "Transformation (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "ab90ed8e5c9e80ef",
+    "name": "True Sight (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "9dcf15d6e1383931",
+    "name": "Water Breathing (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "6cac6392fdf0cff0",
+    "name": "Water-Walking (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 216"
+    }
+  },
+  {
+    "_id": "1d19d2ae2afadd16",
+    "name": "Alchemical Antidode (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "6379172ef761617b",
+    "name": "Awakening (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "cb292b90465da163",
+    "name": "Eternal Rest (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "d781e498a18ea6bc",
+    "name": "Fertility (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "820767840050f8dc",
+    "name": "Healing (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "c77cd1c261ee9dce",
+    "name": "Health (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "0846c5cf10079177",
+    "name": "Hybridization (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "a0f7e971311fb1d6",
+    "name": "Lichdom (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 159"
+    }
+  },
+  {
+    "_id": "57b63262005653c7",
+    "name": "Long Slumber (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "55f17298f1609c22",
+    "name": "Reanimation (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 217"
+    }
+  },
+  {
+    "_id": "7d93c10b1596138f",
+    "name": "Regeneration (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "3b3783803f6f649d",
+    "name": "Resurrection (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "e87bafdee3e1c254",
+    "name": "Sleep (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "6cf2909a1a468f70",
+    "name": "Tranquility (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "9d8891fc1bcdb946",
+    "name": "Universal Antidote (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "39696b09a45f6f2a",
+    "name": "Youth (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "69274012c255682e",
+    "name": "Charisma (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "d98319eca4a1e30d",
+    "name": "Foresight (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "a5e6ff626a8a459d",
+    "name": "Hardheartedness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 218"
+    }
+  },
+  {
+    "_id": "3e03a272a9789760",
+    "name": "Memory (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "50e14a1acdb0f812",
+    "name": "Wisdom (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "b8dcf266ded6006b",
+    "name": "Drunkenness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "d0f7a120100f8a31",
+    "name": "Friendship (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "f435b5960c2e0335",
+    "name": "Forgetfulness (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "4b265253b3e36c74",
+    "name": "Gullibility (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "6387abe0653e0da4",
+    "name": "Love (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "423e60cc8c1ec611",
+    "name": "Truth (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "7fe43997ee1920e0",
+    "name": "Craftsmanship (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "5e7b88b5c73ed717",
+    "name": "Hearing (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "90959428d12e1b73",
+    "name": "Keen Sight (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  },
+  {
+    "_id": "aff0b516c8cbe8d8",
+    "name": "Music (Herb Lore)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Herb Lore",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Magic p. 219"
+    }
+  }
+]

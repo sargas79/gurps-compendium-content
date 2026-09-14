@@ -1,0 +1,2 @@
+name is a GCA placeholder	Charm of %charmlist% (Alchemy)
+name is a GCA placeholder	Charm of %charmlist% (Herb Lore)

@@ -18,13 +18,21 @@
  * also wins: the parser reports its own record as a duplicate and writes nothing
  * for it.
  *
+ * Records a book should not have at all go in book.json's `exclude`, each a
+ * name pattern and the reason, and are taken out of the parsers' files after
+ * they are written. Magic's 323 powerstones, one per capacity, are the case:
+ * capacity belongs on one item (sargas79/GWorldVTT#190). Fields the system
+ * cannot take yet go in `patch`, each a pack, a name pattern, the fields to set
+ * by path, and the reason: Magic's jets and rains do damage without being
+ * Missile or Melee spells, which the system's validator refuses.
+ *
  * Usage: node tools/extract.mjs <book> [--write]
  *
  * Without --write nothing is written and the counts are reported, which is how a
  * book's triage is done.
  */
 
-import { existsSync, readdirSync, readFileSync, rmSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
@@ -34,9 +42,11 @@ import { book, books, statisticsDir, systemRoot } from "./lib/books.mjs";
 /** Where the GCA data files live on this machine, unless the book says otherwise. */
 const GDF_ROOT = process.env.GURPS_GDF_DIR ?? "E:/data files";
 
+// parse-gdf.mjs reads spells too, through parse-gdf-spells.mjs and with the
+// overlap filter. Running the spell parser on its own as well wrote a second,
+// unfiltered copy under the Basic Set's file name.
 const PARSERS = [
-  { script: "parse-gdf.mjs", what: "traits, skills and techniques" },
-  { script: "parse-gdf-spells.mjs", what: "spells" },
+  { script: "parse-gdf.mjs", what: "traits, skills, techniques, gear and spells" },
   // Only for a book whose book.json says which pages hold its modifiers.
   { script: "parse-gdf-modifiers.mjs", what: "enhancements and limitations", needs: "modifiers" },
 ];
@@ -126,6 +136,55 @@ async function main() {
     if (result.status !== 0) {
       console.error(`  ${parser.script} failed.`);
       process.exit(result.status ?? 1);
+    }
+  }
+
+  // What the book says it should not have, out of the parsers' files.
+  if (write && bk.exclude.length) {
+    for (const entry of readdirSync(out, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+      const dir = join(out, entry.name);
+      const rules = bk.exclude.filter((rule) => rule.pack === entry.name);
+      if (!rules.length) continue;
+      for (const file of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.includes("-by-hand"))) {
+        const docs = JSON.parse(readFileSync(join(dir, file), "utf8"));
+        if (!Array.isArray(docs)) continue;
+        const kept = docs.filter((doc) => !rules.some((rule) => rule.pattern.test(String(doc.name ?? ""))));
+        if (kept.length === docs.length) continue;
+        writeFileSync(join(dir, file), JSON.stringify(kept, null, 2) + "\n", "utf8");
+        for (const rule of rules) {
+          const count = docs.filter((doc) => rule.pattern.test(String(doc.name ?? ""))).length;
+          if (count) console.log(`  excluded ${count} from ${entry.name}/${file}: ${rule.reason}`);
+        }
+      }
+    }
+  }
+
+  // What the book says to change in the parsers' records: fields set by path.
+  if (write && bk.patch.length) {
+    for (const entry of readdirSync(out, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+      const dir = join(out, entry.name);
+      const rules = bk.patch.filter((rule) => rule.pack === entry.name);
+      if (!rules.length) continue;
+      for (const file of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.includes("-by-hand"))) {
+        const docs = JSON.parse(readFileSync(join(dir, file), "utf8"));
+        if (!Array.isArray(docs)) continue;
+        let changed = false;
+        for (const rule of rules) {
+          const matched = docs.filter((doc) => rule.pattern.test(String(doc.name ?? "")));
+          for (const doc of matched) {
+            for (const [path, value] of Object.entries(rule.set)) {
+              const keys = path.split(".");
+              const parent = keys.slice(0, -1).reduce((node, key) => (node[key] ??= {}), doc);
+              parent[keys.at(-1)] = structuredClone(value);
+            }
+          }
+          if (matched.length) {
+            changed = true;
+            console.log(`  patched ${matched.length} in ${entry.name}/${file}: ${rule.reason}`);
+          }
+        }
+        if (changed) writeFileSync(join(dir, file), JSON.stringify(docs, null, 2) + "\n", "utf8");
+      }
     }
   }
 
