@@ -9,6 +9,7 @@
  * burn is still fizzing, and not at all otherwise.
  */
 
+import { addExtensionFields } from "../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../shared/module.js";
 import { FIZZ_FLAG, holyContact, isHoly, vulnerableToHoly, weaknessesOf } from "./holy.js";
 
@@ -76,15 +77,10 @@ async function contactTargets(api: GWorldApi, item: any, on: () => boolean): Pro
 }
 
 /** Where holy items are marked: a field of this module's on equipment. */
-export function initHoly(api: GWorldApi): void {
+export function initHoly(): void {
   const f = foundry.data.fields as any;
-  api.data.registerDataExtension({
-    module: MODULE_ID,
-    documentName: "Item",
-    types: ["equipment"],
-    schema: {
-      holy: new f.BooleanField({ required: true, initial: false }),
-    },
+  addExtensionFields("Item", ["equipment"], {
+    holy: new f.BooleanField({ required: true, initial: false }),
   });
 }
 

@@ -1,0 +1,13 @@
+{{!-- A charm (Monster Hunters 1 pp. 38-39): the conditional ritual bound to
+     this object, set off by breaking it. --}}
+<div class="isub">
+  <div class="isub-head">{{localize "GCC.MH1.RitualCast.CharmTitle"}}</div>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    <strong>{{charm.ritual}}</strong>
+    <span class="tag">{{marginLabel}}</span>
+    {{#if charm.condition}}<span class="sub">{{charm.condition}}</span>{{/if}}
+    {{#if owner}}
+      <button type="button" class="ibtn" data-gcc-break-charm data-tooltip="{{localize 'GCC.MH1.RitualCast.BreakHint'}}">{{localize "GCC.MH1.RitualCast.Break"}}</button>
+    {{/if}}
+  </div>
+</div>

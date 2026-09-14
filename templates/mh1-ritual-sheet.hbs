@@ -1,0 +1,223 @@
+{{!-- A ritual of Ritual Path Magic (Monster Hunters 1 pp. 33-35, 39). The
+     sheet supplies the form; this part must not open one. --}}
+<div class="isheet">
+  <header class="ihead blueprint">
+    {{#if editable}}
+      <button type="button" class="iimgbtn" data-action="editRitualImage" aria-label="{{item.name}}">
+        <img class="iimg editable" src="{{item.img}}" alt="" />
+      </button>
+    {{else}}
+      <img class="iimg" src="{{item.img}}" alt="" />
+    {{/if}}
+    <div class="ihead-fields">
+      <input type="text" name="name" value="{{item.name}}" aria-label="{{localize 'GCC.MH1.Ritual.Title'}}" {{#unless editable}}disabled{{/unless}} />
+      <span class="itype">{{localize "TYPES.Item.gurps-compendium-content.ritual"}}</span>
+    </div>
+  </header>
+
+  <div class="isbody">
+    {{!-- Its energy: effects and modifiers, times a factor for its Greater
+         effects. On a character, the Path every roll for it is against (p. 35). --}}
+    <div class="isub">
+      <div class="isub-head">{{localize "GCC.MH1.Ritual.Cost"}}</div>
+      <div class="npcline" style="gap: 14px; align-items: baseline; flex-wrap: wrap">
+        <span data-tooltip="{{localize 'GCC.MH1.Ritual.CostHint'}}" data-gcc-ritual-cost>
+          {{costLine}} = <strong class="lvl">{{cost.total}}</strong> {{localize "GCC.MH1.Ritual.Energy"}}
+        </span>
+        {{#if skill}}
+          <span>
+            <span class="fl">{{localize "GCC.MH1.Ritual.Skill"}}</span>
+            <strong data-gcc-ritual-skill>{{skill.label}}</strong>
+            {{#if skill.penalty}}<span class="tag" data-tooltip="{{localize 'GCC.MH1.Ritual.PathPenaltyHint'}}">{{skill.penalty}}</span>{{/if}}
+            {{#if skill.uncastable}}<span class="tag tag-danger">{{localize "GCC.MH1.Ritual.Uncastable"}}</span>{{/if}}
+          </span>
+        {{/if}}
+        {{#if cost.durationConflict}}
+          <span class="tag tag-danger" data-tooltip="{{localize 'GCC.MH1.Ritual.DurationConflictHint'}}">{{localize "GCC.MH1.Ritual.DurationConflict"}}</span>
+        {{/if}}
+      </div>
+      {{!-- Bonuses for this ritual as defined (pp. 25, 39). --}}
+      <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+        {{#if mastery.held}}
+          {{#if mastery.bonus}}
+            <span class="tag tag-accent" data-tooltip="{{localize 'GCC.MH1.Ritual.MasteryHint'}}">{{localize "GCC.MH1.Ritual.Mastery"}} +{{mastery.bonus}}</span>
+          {{else if mastery.changed}}
+            <span class="tag tag-danger" data-tooltip="{{localize 'GCC.MH1.Ritual.MasteryChangedHint'}}">{{localize "GCC.MH1.Ritual.MasteryChanged"}}</span>
+          {{/if}}
+          {{#if editable}}{{#unless mastery.bonus}}
+            <button type="button" class="ibtn" data-action="recordMastery" data-tooltip="{{localize 'GCC.MH1.Ritual.RecordMasteryHint'}}">{{localize "GCC.MH1.Ritual.RecordMastery"}}</button>
+          {{/unless}}{{/if}}
+        {{/if}}
+        {{#if grimoire}}<span class="tag tag-accent">{{grimoire}}</span>{{/if}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Ritual.BlockingHint'}}">
+          <input type="checkbox" name="system.blocking" {{#if system.blocking}}checked{{/if}} {{#unless editable}}disabled{{/unless}} />
+          {{localize "GCC.MH1.Ritual.Blocking"}}
+        </label>
+      </div>
+    </div>
+
+    <div class="isub">
+      <div class="isub-head">
+        {{localize "GCC.MH1.Ritual.Effects"}}
+        {{#if editable}}<button type="button" class="ibtn" data-action="addEffect">+ {{localize "GCC.MH1.Ritual.AddEntry"}}</button>{{/if}}
+      </div>
+      {{#each effects as |e|}}
+        <div class="irow" data-index="{{e.index}}">
+          <label class="icheck"><input type="checkbox" name="system.effects.{{e.index}}.greater" {{#if e.greater}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} />
+            {{localize "GCC.MH1.Ritual.Greater"}}</label>
+          <select name="system.effects.{{e.index}}.effect" aria-label="{{localize 'GCC.MH1.Ritual.EffectLabel'}}" {{#unless @root.editable}}disabled{{/unless}}>
+            {{selectOptions @root.choices.effects selected=e.effect localize=true}}
+          </select>
+          <select name="system.effects.{{e.index}}.path" aria-label="{{localize 'GCC.MH1.Ritual.Path'}}" {{#unless @root.editable}}disabled{{/unless}}>
+            {{selectOptions @root.choices.paths selected=e.path}}
+          </select>
+          {{#if @root.editable}}
+            <button type="button" class="rollable iconbtn" data-action="deleteEffect" title="{{localize 'GCC.MH1.Ritual.Delete'}}"><i class="fa-solid fa-trash"></i></button>
+          {{/if}}
+        </div>
+      {{else}}
+        <p class="ihint">{{localize "GCC.MH1.Ritual.NoEffects"}}</p>
+      {{/each}}
+    </div>
+
+    {{!-- What makes it this ritual (p. 39): change any of it and Ritual
+         Mastery or a grimoire no longer applies. --}}
+    <div class="isub">
+      <div class="isub-head">{{localize "GCC.MH1.Ritual.Definition"}}</div>
+      <p class="ihint">{{localize "GCC.MH1.Ritual.DefinitionHint"}}</p>
+      <div class="ichecks">
+        {{#each uses as |u|}}
+          <label class="icheck">
+            <input type="checkbox" name="system.definition.{{u.key}}" {{#if u.checked}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} />
+            {{localize u.label}}
+          </label>
+        {{/each}}
+      </div>
+      <div class="ifields">
+        <label>{{localize "GCC.MH1.Ritual.Affliction"}}
+          <input type="text" name="system.definition.affliction" value="{{system.definition.affliction}}" placeholder="—" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.AfflictionPercentHint'}}">{{localize "GCC.MH1.Ritual.AfflictionPercent"}}
+          <input type="number" name="system.definition.afflictionPercent" value="{{system.definition.afflictionPercent}}" step="5" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label class="wide">{{localize "GCC.MH1.Ritual.Traits"}}
+          <input type="text" name="system.definition.traits" value="{{system.definition.traits}}" placeholder="—" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label>{{localize "GCC.MH1.Ritual.BonusScope.label"}}
+          <select name="system.definition.bonusScope" {{#unless editable}}disabled{{/unless}}>
+            {{selectOptions choices.bonusScopes selected=system.definition.bonusScope localize=true}}
+          </select>
+        </label>
+        {{#if system.definition.bonusScope}}
+          <label>{{localize "GCC.MH1.Ritual.BonusRolls"}}
+            <input type="text" name="system.definition.bonusRolls" value="{{system.definition.bonusRolls}}" placeholder="—" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if system.definition.damage}}
+          <label>{{localize "GCC.MH1.Ritual.DamageType"}}
+            <select name="system.definition.damageType" {{#unless editable}}disabled{{/unless}}>
+              {{selectOptions choices.damageTypes selected=system.definition.damageType}}
+            </select>
+          </label>
+          <label>{{localize "GCC.MH1.Ritual.DamageKind.label"}}
+            <select name="system.definition.damageKind" {{#unless editable}}disabled{{/unless}}>
+              {{selectOptions choices.damageKinds selected=system.definition.damageKind localize=true}}
+            </select>
+          </label>
+          <label>{{localize "GCC.MH1.Ritual.Delivery.label"}}
+            <select name="system.definition.damageDelivery" {{#unless editable}}disabled{{/unless}}>
+              {{selectOptions choices.deliveries selected=system.definition.damageDelivery localize=true}}
+            </select>
+          </label>
+        {{/if}}
+      </div>
+    </div>
+
+    {{!-- What "can be varied freely" or changed "on the fly" (p. 39). --}}
+    <div class="isub">
+      <div class="isub-head">{{localize "GCC.MH1.Ritual.Casting"}}</div>
+      <div class="ifields">
+        {{#if system.definition.area}}
+          <label>{{localize "GCC.MH1.Ritual.AreaRadius"}}
+            <input type="number" name="system.casting.areaRadius" value="{{system.casting.areaRadius}}" min="0" {{#unless editable}}disabled{{/unless}} />
+          </label>
+          <label>{{localize "GCC.MH1.Ritual.Excluded"}}
+            <input type="number" name="system.casting.excludedSubjects" value="{{system.casting.excludedSubjects}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.TraitsAddedHint'}}">{{localize "GCC.MH1.Ritual.TraitsAdded"}}
+          <input type="number" name="system.casting.traitsAdded" value="{{system.casting.traitsAdded}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.TraitsRemovedHint'}}">{{localize "GCC.MH1.Ritual.TraitsRemoved"}}
+          <input type="number" name="system.casting.traitsRemoved" value="{{system.casting.traitsRemoved}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        {{#if system.definition.bonusScope}}
+          <label>{{localize "GCC.MH1.Ritual.BonusAmount"}}
+            <input type="number" name="system.casting.bonusAmount" value="{{system.casting.bonusAmount}}" step="1" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if system.definition.damage}}
+          <label>{{localize "GCC.MH1.Ritual.DamageDice"}}
+            <input type="text" name="system.casting.damageDice" value="{{system.casting.damageDice}}" placeholder="3d" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if system.definition.healing}}
+          <label>{{localize "GCC.MH1.Ritual.HealingDice"}}
+            <input type="text" name="system.casting.healingDice" value="{{system.casting.healingDice}}" placeholder="2d" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if system.definition.metaMagic}}
+          <label data-tooltip="{{localize 'GCC.MH1.Ritual.MetaMagicHint'}}">{{localize "GCC.MH1.Ritual.MetaMagic"}}
+            <input type="number" name="system.casting.metaMagic" value="{{system.casting.metaMagic}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if system.definition.speed}}
+          <label>{{localize "GCC.MH1.Ritual.SpeedYards"}}
+            <input type="number" name="system.casting.speedYards" value="{{system.casting.speedYards}}" min="0" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        <label>{{localize "GCC.MH1.Ritual.Column.Duration"}}
+          <select name="system.casting.durationStep" {{#unless editable}}disabled{{/unless}}>
+            {{selectOptions choices.durations selected=durationStep localize=true}}
+          </select>
+        </label>
+        {{#if lastDuration}}
+          <label>{{localize "GCC.MH1.Ritual.ExtraMonths"}}
+            <input type="number" name="system.casting.extraMonths" value="{{system.casting.extraMonths}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.YearsHint'}}">{{localize "GCC.MH1.Ritual.Years"}}
+          <input type="number" name="system.casting.years" value="{{system.casting.years}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label>{{localize "GCC.MH1.Ritual.RangeKind.label"}}
+          <select name="system.casting.rangeKind" {{#unless editable}}disabled{{/unless}}>
+            {{selectOptions choices.rangeKinds selected=system.casting.rangeKind localize=true}}
+          </select>
+        </label>
+        <label>{{localize rangeUnit}}
+          <input type="number" name="system.casting.rangeYards" value="{{system.casting.rangeYards}}" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label>{{localize "GCC.MH1.Ritual.Dimensions"}}
+          <input type="number" name="system.casting.dimensions" value="{{system.casting.dimensions}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.SubjectWeightHint'}}">{{localize "GCC.MH1.Ritual.SubjectWeight"}}
+          <input type="number" name="system.casting.subjectWeight" value="{{system.casting.subjectWeight}}" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label>{{localize "GCC.MH1.Ritual.ExtraEnergy"}}
+          <input type="number" name="system.casting.extraEnergy" value="{{system.casting.extraEnergy}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.MH1.Ritual.TrappingsHint'}}">{{localize "GCC.MH1.Ritual.Trappings"}}
+          <input type="number" name="system.casting.trappingsPercent" value="{{system.casting.trappingsPercent}}" step="5" min="0" max="25" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      </div>
+    </div>
+
+    <div class="isub">
+      <div class="isub-head">{{localize "GCC.MH1.Ritual.Description"}}</div>
+      <textarea name="system.description" rows="4" {{#unless editable}}disabled{{/unless}}>{{system.description}}</textarea>
+      <label>{{localize "GCC.MH1.Ritual.Reference"}}
+        <input type="text" name="system.reference" value="{{system.reference}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,134 @@
+{{!-- A ritual being worked (Monster Hunters 1 pp. 35-39): energy against cost,
+     who is working it, and the next steps. The state is in `casting`, and
+     what to show is worked out into `view`. --}}
+<div class="gworld-ritual">
+  <div class="gc-head">
+    <span class="gc-label">{{casting.name}}</span>
+    <span class="gc-target">{{view.costLabel}}</span>
+  </div>
+
+  <div class="gc-mods">
+    <span><strong>{{view.energyLabel}}</strong></span>
+    <span class="gc-mod">{{view.elapsed}}</span>
+    {{#if view.attemptsLabel}}<span class="gc-mod">{{view.attemptsLabel}}</span>{{/if}}
+    {{#if view.quirksLabel}}<span class="gc-mod">{{view.quirksLabel}}</span>{{/if}}
+    {{#if casting.information}}<span class="gc-mod">{{localize "GCC.MH1.RitualCast.Information"}}</span>{{/if}}
+  </div>
+  <div class="gc-meter" style="align-self: stretch; width: 100%; height: 6px; background: rgba(0,0,0,0.15); border-radius: 3px; overflow: hidden">
+    <div style="width: {{view.percent}}%; height: 100%; background: var(--color-level-success, #4a8)"></div>
+  </div>
+
+  {{!-- Who is working it (p. 39): each with the Path they roll, adept or
+       not, and what Ritual Mastery and a grimoire give them. --}}
+  <div class="gc-casters" style="display: flex; flex-direction: column; gap: 2px">
+    {{#each view.casters as |c|}}
+      <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap">
+        {{#if c.showActing}}
+          <input type="radio" name="gcc-ritual-acting-{{@root.casting.itemId}}" value="{{c.index}}" data-addon-card-input="acting" {{#if c.acting}}checked{{/if}}
+                 aria-label="{{localize 'GCC.MH1.RitualCast.Acting'}}">
+        {{/if}}
+        <strong>{{c.name}}</strong>
+        <span class="gc-mod">{{c.skillName}}-{{c.skill}}</span>
+        {{#if c.adept}}<span class="gc-mod">{{localize "GCC.MH1.RitualPath.Adept"}}</span>{{else}}<span class="gc-mod">{{localize "GCC.MH1.RitualPath.NonAdept"}}</span>{{/if}}
+        {{#if c.masteryLabel}}<span class="gc-mod">{{c.masteryLabel}}</span>{{/if}}
+        {{#if c.openGrimoire}}
+          <label style="display: inline-flex; gap: 4px; align-items: center" data-tooltip="{{localize 'GCC.MH1.RitualCast.UseGrimoireHint'}}">
+            <input type="checkbox" data-addon-card-input="grimoire" data-index="{{c.index}}" {{#if c.useGrimoire}}checked{{/if}}>
+            {{c.grimoireLabel}}
+          </label>
+        {{/if}}
+        {{#if c.usedGrimoire}}<span class="gc-mod">{{c.grimoireLabel}}</span>{{/if}}
+        {{#if c.showFinal}}<span class="gc-mod">{{localize "GCC.MH1.RitualCast.FinalBy"}}</span>{{/if}}
+      </div>
+    {{/each}}
+  </div>
+
+  {{#if casting.log.length}}
+    <ol class="gc-log" style="margin: 4px 0; padding-left: 18px">
+      {{#each casting.log as |entry|}}
+        <li class="gc-log-{{entry.kind}}">{{entry.text}}</li>
+      {{/each}}
+    </ol>
+  {{/if}}
+
+  {{#if view.open}}
+    {{!-- What the GM says about where and how it is worked (p. 36). --}}
+    <div class="gc-settings" style="display: flex; flex-direction: column; gap: 3px">
+      {{#if view.anyNonAdept}}
+        <label style="display: flex; gap: 6px; align-items: center">
+          <input type="checkbox" data-addon-card-input="connected" {{#if casting.connected}}checked{{/if}}>
+          {{localize "GCC.MH1.RitualCast.Connected"}}
+        </label>
+        <label style="display: flex; gap: 6px; align-items: center; justify-content: space-between">
+          <span style="white-space: nowrap">{{localize "GCC.MH1.RitualCast.ConsecrationLabel"}}</span>
+          <select data-addon-card-input="consecration">
+            {{#each view.consecrations as |c|}}<option value="{{c.value}}" {{#if c.selected}}selected{{/if}}>{{c.label}}</option>{{/each}}
+          </select>
+        </label>
+        <label style="display: flex; gap: 6px; align-items: center">
+          <input type="checkbox" data-addon-card-input="adeptTimes" {{#if casting.adeptTimes}}checked{{/if}}>
+          {{localize "GCC.MH1.RitualCast.AdeptTimes"}}
+        </label>
+      {{/if}}
+      <label style="display: flex; gap: 6px; align-items: center; justify-content: space-between">
+        <span style="white-space: nowrap">{{localize "GCC.MH1.RitualCast.SiteLabel"}}</span>
+        <select data-addon-card-input="siteYears">
+          {{#each view.sites as |s|}}<option value="{{s.value}}" {{#if s.selected}}selected{{/if}}>{{s.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{!-- Held back until a condition is met, and perhaps bound to a charm (pp. 38-39). --}}
+      {{#if casting.mayBeConditional}}
+        <label style="display: flex; gap: 6px; align-items: center">
+          <input type="checkbox" data-addon-card-input="conditional" {{#if casting.conditional}}checked{{/if}}>
+          {{localize "GCC.MH1.RitualCast.Conditional"}}
+        </label>
+        {{#if casting.conditional}}
+          <input type="text" data-addon-card-input="condition" value="{{casting.condition}}" placeholder="{{localize 'GCC.MH1.RitualCast.ConditionPlaceholder'}}">
+          <label style="display: flex; gap: 6px; align-items: center; justify-content: space-between">
+            <span style="white-space: nowrap">{{localize "GCC.MH1.RitualCast.CharmLabel"}}</span>
+            <select data-addon-card-input="charm">
+              <option value="" {{#unless casting.charmItemId}}selected{{/unless}}>—</option>
+              {{#each view.charms as |c|}}<option value="{{c.id}}" {{#if c.selected}}selected{{/if}}>{{c.name}}</option>{{/each}}
+            </select>
+          </label>
+          {{#if casting.charmItemId}}
+            <label style="display: flex; gap: 6px; align-items: center; justify-content: space-between">
+              <span style="white-space: nowrap">{{localize "GCC.MH1.RitualCast.WorkspaceLabel"}}</span>
+              <select data-addon-card-input="workspace">
+                {{#each view.workspaces as |w|}}<option value="{{w.value}}" {{#if w.selected}}selected{{/if}}>{{w.label}}</option>{{/each}}
+              </select>
+            </label>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+      {{#if view.anyQuick}}
+        <label style="display: flex; gap: 6px; align-items: center; justify-content: space-between">
+          <span style="white-space: nowrap">{{localize "GCC.MH1.RitualCast.HurriedLabel"}}</span>
+          <input type="number" data-addon-card-input="hurriedTo" value="{{casting.hurriedTo}}" min="1" max="5" step="1" style="width: 48px">
+        </label>
+      {{/if}}
+    </div>
+
+    <div class="gc-actions" style="display: flex; flex-direction: column; gap: 4px">
+      {{#if view.enough}}
+        <button type="button" class="gc-apply-button" data-addon-card-action="cast">{{view.cast.label}}</button>
+        {{#if view.cast.note}}<div class="gc-note">{{view.cast.note}}</div>{{/if}}
+      {{else}}
+        {{#if view.desecrated}}
+          <div class="gc-note">{{localize "GCC.MH1.RitualCast.DesecratedHint"}}</div>
+        {{else}}
+          <button type="button" class="gc-apply-button" data-addon-card-action="gather">{{view.gather.label}}</button>
+          {{#if view.gather.note}}<div class="gc-note">{{view.gather.note}}</div>{{/if}}
+        {{/if}}
+        {{#if view.reserve}}
+          <button type="button" class="gc-apply-button" data-addon-card-action="reserve">{{view.reserve}}</button>
+        {{/if}}
+        <button type="button" class="gc-apply-button" data-addon-card-action="sacrifice">{{view.sacrifice}}</button>
+        <button type="button" class="gc-apply-button" data-addon-card-action="join" data-tooltip="{{localize 'GCC.MH1.RitualCast.JoinHint'}}">
+          {{localize "GCC.MH1.RitualCast.JoinAction"}}
+        </button>
+      {{/if}}
+      <button type="button" class="gc-apply-button" data-addon-card-action="abandon">{{localize "GCC.MH1.RitualCast.AbandonAction"}}</button>
+    </div>
+  {{/if}}
+</div>
