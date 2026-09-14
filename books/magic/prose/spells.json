@@ -1968,6 +1968,190 @@
     "description": "<p>Go without food or water for about a day with no ill effects.</p><p><em>Item</em></p><p>Clothing or jewelry; usable only by mages, or (at GM's option) a \"pure\" or \"holy\" person. Energy cost to create: 1,000.</p>"
   },
   {
+    "_id": "6970439fd8a7cc12",
+    "name": "Timeport",
+    "pages": "M81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is similar to Teleport, except that it moves the caster to another time instead of another place. Subjective \"movement\" is instantaneous.</p><p>The more \"distant\" the target time is, the greater the energy cost and skill penalty (see Time modifiers, box). Unlike Teleport, there is no penalty to timeport to an \"unfamiliar\" time; the GM may, however, decree that any timeport to the future bears an extra penalty (-2, perhaps).</p><p>If this spell takes the caster to the future, it is the most likely of many possible futures. If he returns from that future and acts on the information gained, there is no guarantee that the future he visited will actually occur.</p><p>Similarly, a caster who returns to the past, changes something, and then returns to his starting time might return to an alternate timeline. The amount of variation between the caster's \"home\" timeline and the new one will depend on the GMs view of how \"tamper-resistant\" the timestream is in his game world(s).</p><p>This spell is dangerous - the penalties for a failed roll are the same as for Teleport, substituting time for space. Also as in Teleport, the caster can carry no more than Heavy encumbrance (objects and beings). Roll vs. Body Sense skill upon arrival, modifying the roll for changes in velocity, facing, and orientation.</p><p>If the caster wishes to travel simultaneously in both time and space, use the caster's Teleport or Timeport skill (whichever is lowest), and combine the penalties and costs for distance and time.</p><p><em>Item</em></p><p>Staff, wand, or timepiece. Usable only by mages. Energy cost to create: 4,000. An item that will take its user to one, predetermined time costs 2,000 to create; the item's creator must be very familiar with that time.</p><p><em>Time Modifiers</em></p><table><tr><th>Time</th><th>Cost</th><th>Penalty</th></tr><tr><td>Within 1 minute</td><td>4</td><td>0</td></tr><tr><td>1 to 10 minutes</td><td>6</td><td>-1</td></tr><tr><td>10 minutes to 1 hour</td><td>8</td><td>-2</td></tr><tr><td>1 to 10 hours</td><td>10</td><td>-3</td></tr><tr><td>10 hours to 4 days</td><td>12</td><td>-4</td></tr><tr><td>4 to 40 days</td><td>14</td><td>-5</td></tr><tr><td>40 days to 1 year</td><td>16</td><td>-6</td></tr><tr><td>1 to 10 years</td><td>18</td><td>-7</td></tr><tr><td>10 to 100 years</td><td>20</td><td>-8</td></tr><tr><td>Each further 10×</td><td>+2</td><td>-1</td></tr></table>"
+  },
+  {
+    "_id": "ee8e4fb7eda1f0b5",
+    "name": "Timeport Other",
+    "pages": "M81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Same as Teleport Other (p. 147), except that the subject is Timeported away from (or to) the caster.</p><p>Apply the usual penalty for Regular spells for the distance between caster and subject; the Timeport penalties apply for the time span over which the caster wants to timeport the subject.</p><p>One important difference between Timeport and Timeport Other is that if the caster fails the spell roll or if the spell is successfully Resisted, the subject does not timeport away!</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. Energy cost to create: 4,000.</p>"
+  },
+  {
+    "_id": "8639d1ea63b9e601",
+    "name": "Timeslip",
+    "pages": "M81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Avoid an attack by timeporting out of its way. The caster slips a few seconds ahead into the future, reappearing in his original location - unless that spot is now obstructed or occupied! A location is not clear if someone is standing in it. Any lesser obstruction is ignored by the spell.</p><p>The caster must roll his Body Sense skill to act on the turn he reappears. If his original location remains obstructed or occupied, the caster stays in limbo, reappearing as soon as the spot becomes clear . . . even if it takes years! Critical failures have been known to produce similar disastrous effects.</p><p>If the caster had any spells requiring concentration \"on\" when he cast Timeslip, they automatically lapse (unless they had the caster as their subject). Likewise, any spell whose maintenance comes due during the timeslip also lapses (but see Maintain Spell, p. 128).</p><p><em>Item</em></p><p>Clothing, jewelry, or timepiece. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "9fd5bc88c14d7784",
+    "name": "Timeslip Other",
+    "pages": "M81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Timeslip, but usable on others.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "8b9b6ac9a1ac1d5b",
+    "name": "Rapid Journey",
+    "pages": "M82",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Teleport and Timeport, except that it allows an immediate return journey. It works only on the caster. It does not work with Plane Shift. Anything carried on the caster's person, up to Heavy encumbrance, goes with him on the trip.</p><p>If the skill roll fails, the caster goes nowhere but otherwise suffers the normal penalties for a failed teleport or timeport (possible damage, disorientation, and stunning). Teleport Shield gets to resist twice; once when the caster leaves, and once when he returns.</p><p>Once the caster arrives at his destination, he must expend FP to remain there. As soon as he stops maintaining his presence (this includes failing a distraction roll), he snaps back to his starting place or time.</p><p>The return trip normally cannot fail. However, if the caster succeeded in the spellcasting by a small margin (3 or less), the caster must make an IQ roll (at the distance/time penalty), while maintaining the spell, to return to his starting point. One roll may be attempted per minute. If he then stops maintaining the spell, he remains stranded where or when he went. He may also be stranded if he is knocked out or if he teleports to a no-mana zone.</p><p>This is also a Movement spell.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. Energy cost to create: 5,000.</p>"
+  },
+  {
+    "_id": "2c5c9e86f2404c2c",
+    "name": "Planar Visit",
+    "pages": "M82",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster leaves his body behind and wanders freely as a spirit on another plane of existence. He is totally insubstantial and cannot affect anything or interact with his surroundings in any way (a blessing in disguise, since this also confers total physical immunity to whatever environment he is traversing). He cannot even cast spells, although he can maintain existing ones. He is likewise immune to magic that does not affect minds or spirits (which the caster is, until he returns to his body). The caster is imperceptible to ordinary senses; only magic (Astral Vision, Sense Spirit, Sense Observation and similar spells) will detect his presence.</p><p>There is a different spell for travel to each plane or dimension. Which spells exist, and the precise details of the dimensions they lead to, is up to the GM. The subject's senses are altered to correspond to the average plane dweller's; on a plane of perpetual gloom he would have Dark Vision, on the astral plane he would have his senses augmented as per Astral Vision, and on a dimension where all life forms sense only via sound he would have Scanning Sense (Sonar). Visiting very strange alternate planes can be hazardous to the mental health of an unsuspecting traveler . . .</p><p>The most common plane visited in most worlds is the astral, which coexists with the mundane universe and allows visitors to observe real-world places unseen (at least, unseen except by natives of the astral realm, if there are any). While traveling astrally, the caster moves at twice his full unencumbered Speed and may walk through walls, mountains, creatures . . . He may also walk down into the bowels of the earth or up into the higher atmosphere. Astral Block (p. 159), Pentagram (p. 124) and the \"Utter\" spells (p. 170) stop him, while Repel Spirits (p. 158) will resist his intrusion.</p><p>If the spell ends before his spirit rejoins his body or if his body is harmed while his spirit is away, he must roll vs. HT, using the long-distance modifiers (p. 14), to stay alive! Needless to say, his body is totally defenseless for the duration of the spell, though a casual medical examination will reveal it to be (barely) alive.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages; only affects the wearer. Energy cost to create: 1,000. Although the item stays with the body while the spirit walks about, it may still be used to maintain the spell. (b) Weapon. Usable only by mages. A spiritual analogue of this item accompanies the spirit of its user! Energy cost to create: 2,000 per pound (minimum of 1 pound).</p>"
+  },
+  {
+    "_id": "f78f21e9c96c97ac",
+    "name": "Plane Shift Other",
+    "pages": "M83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Plane Shift, but usable on any being or object. A subject who doesn't expect to be plane-shifted must make his Body Sense skill or be disoriented for one second.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages; sends the subject to a single plane only. Energy cost to create: 100 times the casting cost for the plane.</p>"
+  },
+  {
+    "_id": "df8c2ae5fe71a155",
+    "name": "Phase",
+    "pages": "M83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Avoid an attack by phasing out of this plane of existence for a moment. The caster actually becomes ethereal just long enough for the attack to pass through him. He neither disappears nor loses track of his surroundings; no Body Sense roll is required.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "cdd04f9b41b81a1c",
+    "name": "Phase Other",
+    "pages": "M83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Phase, but usable on others.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "fd6b7ec35067ebb6",
+    "name": "Beacon",
+    "pages": "M83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Softens up\" local space-time, making the area of effect easy to teleport, timeport, or plane-shift to. The energy cost and skill penalties to travel to a beacon are halved (round down). A beacon may also be used to help teleport a subject from its vicinity toward the caster.</p><p>A beacon is not private; any caster magically transporting himself (or someone else) to the area will benefit from the spell (however, permanently enchanted areas may be Limited or Named; see p. 68).</p><p>The caster must, at casting, specify which travel spells his beacon assists. There is no extra cost to create a multi-purpose beacon.</p><p>This is also a Movement spell.</p><p><em>Item</em></p><p>(a) Any area may be permanently enchanted as a teleport beacon for 100 times the normal energy cost. (b) Any object can be enchanted as a portable beacon; any attempt to magically transport into the vicinity of the object receives the bonus. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "3f2ec6176b4230ba",
+    "name": "Trace Teleport",
+    "pages": "M84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast soon after someone or something teleports, timeports or plane-shifts in or out, this spell gives the caster a vision of the destination of the teleported subject. The caster also gets a good idea of the magnitude of the skill penalty involved to cast the spell. On a critical success, the actual destination will be known, but any success gives the caster enough of a sense of the destination to follow, if he does so within a minute of casting Trace Teleport.</p><p>This is also a Movement spell.</p><p><em>Modifiers:</em> The spell operates at a cumulative -1 for each minute that elapses between the teleport and the casting. There is a further -5 penalty if the caster didn't witness the teleport.</p><p><em>Item</em></p><p>Any. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "98b9c5fcccf0ab85",
+    "name": "Divert Teleport",
+    "pages": "M84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on the turn someone or something teleports, timeports, or plane-shifts out, this spell allows the caster to dictate where or when the subject goes.</p><p>The caster must know the spell he is diverting; he uses the lower of his skill with Divert Teleport and the subject spell. If the caster wants to divert a Teleport into a plane shift (for example), he must know both spells and uses the lowest of his three skills.</p><p>The resistance is resolved by comparing the margins of success of both spells - if the mage who is teleporting makes his roll by 5, then the mage attempting to divert him must make his roll by 6 or more to succeed.</p><p>The Divert Teleport takes normal range penalties between the caster of Divert Teleport and the caster of Teleport (or Timeport, etc.), and the standard skill penalty for the destination that the caster wishes to send the teleporter to.</p><p>The cost to cast the spell is equal to the difference in cost between the teleporter's intended destination and his new destination. If a mage attempts to teleport 40 miles (9 energy), and another mage forces him to another location only 10 yards away (3 energy), the diverting mage will have to pay 6 energy. The same cost would apply if the destinations were reversed. The minimum cost to cast is 3, in any case (high skill will reduce this normally), and the caster pays the full energy cost whether or not the spell succeeds.</p><p><em>Example:</em> Suppose Severin knows Teleport at 16 and attempts to teleport 100 yards away to his waiting carriage (skill penalty -2, cost 4). Two yards away stands Elsdon, who knows Divert Teleport at 18 and Teleport at 20, and who would prefer that Severin end up just above a lake which happens to be a mile away (skill penalty -4, cost 7).</p><p>First, Severin makes his attempt, spending 4 energy and rolling a 10. Since he needed a 14 or less, this is success by 4.</p><p>Elsdon, using a base skill of 18 (the lowest of his appropriate spells), takes a -2 for being two yards away from Severin, and a further -4 for his intended diversion - his effective skill is 12. He must roll a 7 (succeeding by 5), to win the contest and divert Severin. Whether he does so or not, the calculated cost is 3 energy, so Elsdon must pay the minimum cost of 3.</p><p>This is also a Movement spell.</p><p><em>Item</em></p><p>Any. Usable only by mages. Energy cost to create: 700.</p>"
+  },
+  {
+    "_id": "73d695339608c500",
+    "name": "Create Door",
+    "pages": "M84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast at the near side of a solid obstruction (wall, hedge, cliff, etc.), this spell creates a short-term, short-range gate leading to the other side. The intervening distance is not actually traversed by the door's users - they are simultaneously teleported from the near side to the far one.</p><p>This spell has the advantage over Teleport of allowing access to places unknown to the caster, as well as allowing him to transport more than Heavy encumbrance.</p><p><em>Modifiers:</em> The spell is at a -1 penalty per yard of obstruction thickness; there is no penalty if the obstruction is half a yard thick or less. The GM should not tell the player what the penalty is; he should simply tell him whether the spell failed or not.</p><p><em>Item</em></p><p>(a) Staff, wand, jewelry, or writing implement (the latter is used to \"draw\" the door on the obstacle). Energy cost to create: 500. (b) Portable door. It is activated (if its Power is above 15 after deducting the penalty for obstruction thickness) after leaning it against the obstruction. Energy cost to create: 500 per 10 square feet of size.</p>"
+  },
+  {
+    "_id": "97da3dd80ddab1bb",
+    "name": "Seek Gate",
+    "pages": "M85",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the direction and approximate distance of the nearest gate. Any known gates may be excluded if the caster specifically mentions them before beginning.</p><p><em>Modifiers:</em> Long-distance modifiers (p. 14), -2 if the gate is currently closed, -5 if seeking a gate's arrival point, -10 if seeking a gate leading to a specific destination. Note that the gate itself may be Scryguarded or under a Conceal Magic spell.</p><p><em>Item</em></p><p>A forked stick. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "64b538ef91df85e5",
+    "name": "Scry Gate",
+    "pages": "M85",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on an open gate, this spell allows images, sounds and smells to come through it from the other side, just as if one were peering through an open window. No corresponding \"window\" opens at the gate's other end.</p><p>If the gate leads into an area protected by Scrywall, the Scrywall gets to resist the Scry Gate. Sense Observation may pick up the Scry Gate. Scryfool cannot fool Scry Gate, however.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Energy cost to create: 200. (b) A gate may also be made to display its destination permanently; this is determined when the gate is created, and adds 100 energy to the creation cost. The gate's creator must know Scry Gate at a level equal to or greater than Create Gate.</p>"
+  },
+  {
+    "_id": "d7bac8bf8da4a0ca",
+    "name": "Control Gate",
+    "pages": "M85",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Forces an open gate to close, a closed gate to open, or tilts and displaces the subject gate as the caster wishes. Closing a permanent gate does not destroy it; closing a temporary one does (to destroy a permanent gate, use Remove Enchantment).</p><p>This spell moves gates at up to 3 yards per second. Control Gate can also be used to \"choose\" a particular destination of a multiple-destination Gate (see Create Gate).</p><p>Once control is relinquished, the Gate reverts to its \"programmed\" state, moving back to its original place at top speed and by the shortest path.</p><p>If several Control Gate spells are active at once on a single Gate, the latter resists them with a single roll, control going to the spell with the largest margin of success.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "a749fa79098b096b",
+    "name": "Create Gate",
+    "pages": "M85",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a temporary magical portal leading to another place, time, or dimension - effectively, a hole in time and space from which those who enter will teleport, timeport, and/or plane-shift to a predetermined destination. The more \"distance\" between the gate and its destination, the greater the energy cost and skill penalty.</p><p>To determine the skill penalty, combine the penalties for the equivalent Teleport, Timeport, or Plane Shift spell(s). To determine the energy cost, combine the energy costs from the same spell(s), and multiply the cost by 10. This cost will permit the caster to create a gate of any size up to a 3' × 6' doorway (or equivalent surface area). Larger gates are no more difficult, but cost proportionately more energy.</p><p>This spell may also be used to enchant a permanent gate, in which case a few more considerations become important. The caster(s) must specify if it will be always open, always closed, or open and closed when certain conditions are fulfilled (opens only on the hour of the full moon, opens only when someone utters a password, etc).</p><p>Several gates may share a single location. Only one of them may be open at any time, so it is common to have them cycle in time, giving the net effect of a single gate leading to a choice of destinations. They must be created separately, but otherwise behave as a single gate. Permanent gates can be \"anchored\" to a physical gateway; they then resist displacement or destruction at a bonus given by the gateway's DR.</p><p>When a gate has a Timeport component, the creator must specify if the gate merely displaces its users in time by a fixed amount (1 year into the past, for example) or if it sends its users to a specific, unchanging point in time (December 25, 1066, say). In the latter case, since subjects that step into the gate at various departure times can't all arrive at the same time, the gate either \"drifts\" slowly in time so as to space the arrivals at least a second apart, or the various subjects arrive in different \"pasts\" (GM's decision).</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages. Energy cost to create: 1,000. (b) A stylus or paintbrush. Usable only by a mage, who must draw an outline of a doorway on a solid surface. Energy cost to create: 900.</p>"
+  },
+  {
+    "_id": "cd3f257f2a85c67e",
+    "name": "Slow Time",
+    "pages": "M86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Time in the area slows down. Any unwilling beings within the area when the spell is cast resist with the highest of their ST and IQ; they must all fail for the spell to take effect. Objects and spells may cross the area's edge without being hampered. Beings crossing into or out of the area must roll vs. IQ or be mentally stunned.</p><p><em>Item</em></p><p>Staff or timepiece. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "f7b02711784bef23",
+    "name": "Accelerate Time",
+    "pages": "M86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The opposite of Slow Time. Time in the affected area speeds up. Otherwise, all of the rules for crossing the area's edge, resistance, and so on, are as per Slow Time.</p><p>Powerstones recharge at outside rates, so Accelerate Time does not speed up Powerstone recharge. Of course, relative rest-time can be increased, permitting mages to regain lost FP more rapidly.</p><p><em>Item</em></p><p>Staff or timepiece. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "dabbe88b0f8e84c5",
+    "name": "Hide Object",
+    "pages": "M86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (which must be nonliving) disappears into an otherdimensional space from which it can be recalled at will. Failure to maintain the spell causes the object to reappear in mid-air next to the caster. If the subject is being held by a living being, the holder can resist the spell with his IQ.</p><p>Seeker won't find objects hidden by this method; Trace loses touch for the duration of the Hide Object, regaining it when the object reappears in this world. Teleport Shield will oppose this spell (the original margin of success of the Hide Object spell would need to be 5 or better for the object to reappear within an area affected by a base casting of Teleport Shield, for example). The object reappears in the caster's grasp or in his immediate vicinity (caster's choice).</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 500. (b) Any object may be enchanted to \"disappear\" and \"reappear\" at its owner's command. Energy cost to enchant: 100 per pound of item weight. This is a popular enchantment on illegal objects . . .</p>"
+  },
+  {
+    "_id": "804ae66b8b6d0bad",
+    "name": "Sanctuary",
+    "pages": "M86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Opens a door-sized portal to a pocket dimension. The portal closes immediately after the caster passes through it (others may pass through it first, of course). The portal leads to a small dimly lit room with blank walls and no visible exits. When the caster wishes to leave, he simply concentrates and a portal appears on one of the walls, leading back to his original point of departure. The space can have a size up to that of a cube equal to the caster's skill, in yards, on a side.</p><p>The real world completely loses touch with the occupants of the pocket dimension; Seeker won't find them, Trace will lose them for the duration (but will pick them up as soon as they step back out) and so on. Of course, the reverse is also true.</p><p>Long-term visits to the pocket dimension will require the creation of air, food, and water (and decent lighting, for comfort's sake), as well as the disposal of wastes. This is slightly complicated by the fact that the pocket dimension is low-mana; all spellcasting is at -5, and the Recover Energy spell doesn't work.</p><p>Should the spell expire or the caster lose consciousness, all the room's contents reappear as if teleported; its occupants each take 1d of damage and are physically stunned if they fail a Body Sense roll. This also happens to anyone who is foolish enough not to exit before the caster!</p><p>If the caster wishes to return to the real world, but not to his point of departure, he may cast an appropriate magical transport spell from the pocket dimension as if he were casting it from the departure point (if he is willing to take the risk of a low-mana casting).</p><p><em>Note:</em> This \"default\" description of the pocket universe created by this spell should by no means be taken as gospel. A less bare-bones version might include opulent (but magical and temporary) furnishings and features, illusionary windows, and so on. In some worlds, this will be determined by the GM's views on alternate dimensions. In others, the details of sanctuary dimensions might be conscious, or unconscious, reflections of the mage's personality.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or door. Usable only by mages. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "6886f323e6507ebd",
+    "name": "Suspend Time",
+    "pages": "M86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Time is suspended in the area; relative to the outside world, the occupants of a time-suspended area will not move, breathe, age, or even think. As far as the affected beings are concerned, no time elapses for the spell's duration. One moment they were having tea in a pleasant spring meadow, and the next moment winter has come outside the circle of grass they are sitting in . . .</p><p>Any unwilling beings within the area when the spell is cast resist with IQ. They must all fail for the spell to take effect.</p><p>From the outside, the area appears to be surrounded by a perfectly reflective surface, which nothing (including magic and magical beings) can cross. Objects thrown at it bounce off. Any spell requiring concentration and lying outside the area immediately lapses if its caster is caught inside. Likewise, any outside spell whose maintenance comes due during the suspended time also lapses (but see Maintain Spell, p. 128).</p><p><em>Item</em></p><p>Staff or timepiece. Usable only by mages. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "d11b394d22784204",
+    "name": "Time Out",
+    "pages": "M87",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The area and all within it are temporarily removed from the time stream; the effect is equivalent to having the area's time accelerated infinitely. Unlike Suspend Time, this spell can only be cast from the inside, centered on the caster (the spell ends as soon as he touches its edge). Should the caster die alone in the area, the spell will never end! The caster and any objects caught in the area would simply seem to vanish from the time stream.</p><p>As far as outside observers are concerned, the area \"ages\" instantaneously (which may or may not be perceptible). One moment five ogres were attacking the party while their wizard cast a spell, and the next moment the ogres were dead, the party magically healed, and everybody was in a different position and drinking rum to celebrate.</p><p>From the inside, the area is bounded by a wall (and covered by a ceiling) of utter blackness. Anyone or anything touching the edge of the area is immediately expelled from the area, back into normal time. This causes an automatic mental stun to anyone other than the caster. Missiles of any sort can be thrown blindly out of the area (see Shooting Blind, p. B389) but not into it. Note that, since all missiles fired out of the area will emerge at the same outside time, an archer could create an impressive burst of arrows by simply firing casually for a few subjective hours . . .</p><p>Spells involving the outside simply fail. Any spell requiring concentration and lying inside the area lapses immediately if its caster is left outside. Likewise, any inside spell whose maintenance comes due during the Time Out lapses unless its caster is also inside.</p><p>The \"flow\" of mana into the Timed Out area is effectively nil. Powerstones won't recharge, enchantment is impossible, etc. Mages still recover lost energy (the physical consequences of manipulating mana go away regardless of the local mana supply), but GMs may decree that spells cost much more, or are impossible, within the time-stopped area (since the power must be drawn entirely from the caster's personal life-force). This is entirely dependent on the GM's view of mana in his setting.</p><p><em>Item</em></p><p>Staff or timepiece. Usable only by mages. Energy cost to create: 2,500.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
