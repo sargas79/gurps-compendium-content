@@ -1,0 +1,9 @@
+{
+  "slug": "magic",
+  "title": "GURPS Magic",
+  "label": "GURPS Magic",
+  "prefix": "M",
+  "reference": "Magic",
+  "gdf": "GURPS Magic 4e.gdf",
+  "notes": "GCA cites this book as M23, and a spell the Basic Set also prints as M23, B243; those 100 are left to the system's pack. PDF page = book page + 2. The parsers do not read the file's templates, so they are kept by hand. Powerstones wait on sargas79/GWorldVTT#190. See TRIAGE.md."
+}
