@@ -26,7 +26,10 @@ describe("the books' rule groups", () => {
       { module: MODULE_ID, id: "magic", label: "GURPS Magic" },
       { module: MODULE_ID, id: "martial-arts", label: "GURPS Martial Arts" },
     ]);
-    expect(r.registerRule).not.toHaveBeenCalled();
+    // Monster Hunters 1's switches, all in its own group and off by default.
+    const keys = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "monster-hunters-1");
+    expect(keys.map((rule: any) => rule.key)).toEqual(["talentsSkipWildcards", "holyAttacks", "ritualPathMagic", "monsterHuntersGear", "bonusPointSpending"]);
+    expect(keys.every((rule: any) => rule.default === false && rule.module === MODULE_ID)).toBe(true);
   });
 
   it("lets a book register its switches in its own group, and keeps going past one that fails", () => {

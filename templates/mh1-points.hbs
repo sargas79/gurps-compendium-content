@@ -1,0 +1,15 @@
+{{!-- Monster Hunters 1's points on the Skills tab (pp. 23, 28, 31). --}}
+<div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+  <span class="fl">{{labels.title}}</span>
+  {{#if destiny}}<span class="tag tag-accent" data-tooltip="{{labels.destinyHint}}">{{destiny}}</span>{{/if}}
+  {{#each wildcard as |pool|}}
+    <span class="tag tag-accent" data-tooltip="{{@root.labels.wildcardHint}}">{{pool}}</span>
+  {{/each}}
+  {{#if gmDestiny}}<span class="tag tag-danger" data-tooltip="{{labels.gmDestinyHint}}">{{gmDestiny}}</span>{{/if}}
+  {{#each fullyTrained as |skill|}}
+    <span class="tag" data-tooltip="{{@root.labels.fullyTrainedHint}}">{{skill}}: {{@root.labels.fullyTrained}}</span>
+  {{/each}}
+  {{#if isGM}}
+    <button type="button" class="ibtn" data-gcc-new-session data-tooltip="{{labels.newSessionHint}}">{{labels.newSession}}</button>
+  {{/if}}
+</div>
