@@ -1,0 +1,3 @@
+Purely unarmed fighting styles exist, but most traditional martial arts evolved for use in battles or duels involving weapons. Many were intended for armored warriors facing similarly clad opponents. These basic realities remain for today’s combat styles, but art and sport forms often replace lethal weapons – or all weapons – with nonlethal ones, and armor is typically either nonexistent or designed specifically as training equipment.
+
+Traditional or modern, lethal or nonlethal, the hardware used by the practitioners of many styles can be as complex as their tactics. Tomorrow’s gear will probably be even more elaborate. See GURPS Ultra-Tech for futuristic equivalents to many items found in this chapter.
