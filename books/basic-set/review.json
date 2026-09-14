@@ -3,24 +3,6 @@
   "templates": {
     "Investigator": "a line of the disadvantage list was lost"
   },
-  "skills": {
-    "Flight": "opens with a stray prerequisite label, \"Flight advantage\"",
-    "Sports": "runs into Streetwise",
-    "Cloak": "runs on into the sidebar on Combat Art and Sport",
-    "Counterfeiting/TL": "runs on as far as Submariner",
-    "Holdout": "runs into the sidebar on Search",
-    "Dreaming": "runs into Driving",
-    "Throwing Art": "runs into the Stick specialty of Thrown Weapon",
-    "Blowpipe": "runs into Boating",
-    "Bolas": "runs into another skill's Physiology note",
-    "Research/TL": "runs into Riding",
-    "Teaching": "runs into Symbol Drawing",
-    "Anthropology": "runs on as far as the Musical Ability talent",
-    "Linguistics": "the ending belongs to Literature",
-    "Lip Reading": "runs into Armoury",
-    "Freight Handling/TL": "the ending belongs to Gambling",
-    "Thrown Weapon (Knife)": "runs into the Stick specialty"
-  },
   "journals": {
     "magicItems": "Enchant's paragraph beside the Fortify table was read as that table's first column, and the Power cost table ran into Accuracy's",
     "ammunitionTypes": "the APDS paragraph carries on past the Ultra-Tech Firearm Table, and its end was not captured"

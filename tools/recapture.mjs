@@ -36,7 +36,7 @@ const RANK = { chapter: 0, h1: 1, h2: 2, h3: 3, h4: 4 };
 
 /** A cost or class line set as a heading under the entry's name. */
 const STAT_LINE =
-  /^(?:Variable|Varies|[-+]?\d.*\bpoints?\b.*|.*\bpoints?\s*(?:\/|per)\s*.+|(?:IQ|DX|HT|ST|Will|Per)\/(?:Easy|Average|Hard|Very Hard)(?:\s+or\s+.+)?|(?:Regular|Area|Missile|Melee|Blocking|Information|Enchantment|Special)(?:[;,].*)?)$/i;
+  /^(?:Variable|Varies|[-+]?\d+%.*|[-+]?\d.*\bpoints?\b.*|.*\bpoints?\s*(?:\/|per)\s*.+|(?:IQ|DX|HT|ST|Will|Per)\/(?:Easy|Average|Hard|Very Hard)(?:\s+or\s+.+)?|Easy|Average|Hard|Very Hard|(?:Regular|Area|Missile|Melee|Blocking|Information|Enchantment|Special)(?:[;,].*)?)$/i;
 
 /** The same, left on the end of a heading that names an entry: "Morph Variable". */
 const TRAILING_STAT = /\s+(?:Variable|-?\d+(?:\s*(?:,|or|to)\s*-?\d+)*\s+points?(?:\/level)?)$/i;
@@ -167,6 +167,7 @@ function section(blocks, at) {
   const rank = heading.kind === "h4" && TRAILING_STAT.test(heading.text.trim()) ? RANK.h3 : RANK[heading.kind];
   const out = [];
   let leading = true;
+  let statOpen = false;
   for (let i = at + 1; i < blocks.length; i++) {
     const b = blocks[i];
     if (b.kind in RANK) {
@@ -191,7 +192,15 @@ function section(blocks, at) {
       out.push({ kind: "p", text: b.text.slice(0, inline.index + 1).trim(), runIn: b.runIn });
       break;
     }
-    if (leading && STAT_PARAGRAPH.test(b.text)) continue;
+    if (leading && STAT_PARAGRAPH.test(b.text)) {
+      statOpen = !/[.!?]$/.test(b.text.trim());
+      continue;
+    }
+    if (leading && statOpen) {
+      statOpen = !/[.!?]$/.test(b.text.trim());
+      continue;
+    }
+    if (leading && /^\*/.test(b.text.trim())) continue;
     // "see Melee Weapon, p. 208": a cross-reference, not a description.
     if (leading && /^see\b/i.test(b.text)) return null;
     leading = false;
