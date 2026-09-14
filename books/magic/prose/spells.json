@@ -1152,6 +1152,150 @@
     "description": "<p>The caster permanently exchanges bodies with the subject. The subject may be any living creature. The only way this spell can be reversed, once it has been cast, is to cast it again; Dispel Possession or other anti-magic will not work. The attributes of ST, DX, and HT, as well as all physical advantages and disadvantages, go with the body; IQ, memory, personality, and all skills and spells go with the mind.</p><p><em>Note:</em> Exchange Bodies may result in the caster increasing his point value. The GM may wish to charge the old wizard for the difference in character point value. See Mind Transfer (p. B296) for more on this. To help keep body-hopping wizards under control, the GM may wish to require some rare spell materials for this spell (p. 8).</p>"
   },
   {
+    "_id": "6a5e360af1f5a530",
+    "name": "Seek Pass",
+    "pages": "M51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the direction and approximate distance of the nearest pass through a mountain range. Use the long-distance modifiers (p. 14).</p>"
+  },
+  {
+    "_id": "ae2065b496858603",
+    "name": "Earth Vision",
+    "pages": "M51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through the earth - to find caves, bodies of ore, buried treasure, entombed victims, etc. Earth and uncut stone (up to 50 yards deep) are transparent to the subject, wherever he looks. Metal is not transparent; neither are cut stone, bricks, etc. Thus, this spell won't let you look through castle walls.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Any. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "f5146f3254c11503",
+    "name": "Predict Earth Movement",
+    "pages": "M51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Accurately predicts any landslides, earthquakes, or volcanic activity likely to occur within a given area over a given period. It gives approximate information regarding the nature, location, and severity of the impending disaster. This spell cannot forecast magically created earthquakes or volcanoes.</p>"
+  },
+  {
+    "_id": "495bedba4d982863",
+    "name": "Sand Jet",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of sand particles from one hand. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. If the spell strikes the face, it causes no injury, but temporarily blinds the target unless he makes a HT roll.</p><p>If he fails the HT roll, he is blinded (see Visibility, p. B394) for one second per energy point put into the spell. After the target can see again, blurry vision gives him a -3 penalty to all combat skills for a further 1d seconds. On a critically failed HT roll, the target is blinded for 1d seconds per point put into the spell. On a successful HT roll, the victim closes his eyes for the duration of the spell, and is thus unable to see for one second. On a critical success, the victim is unaffected.</p><p><em>Item</em></p><p>Jewelry, staff, or wand; usable only by mages. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "31886f727abd8ee1",
+    "name": "Mud Jet",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin jet of mud from one finger. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit. This attack may be dodged or blocked, but not parried. It does knockback on all targets; it can kill or knock down flying swarm creatures. It will extinguish a one-yard-radius area of normal fire.</p><p>If the spell strikes the face, it temporarily blinds the target (see Visibility, p. B394) unless he makes a HT roll. If he fails the HT roll, each energy point in the spell blinds him for one second. After the target can see again, blurry vision gives him a -3 penalty to all combat skills for a further 1d seconds. On a critical failure of the HT roll, the target is blinded for 1d seconds per point in the spell. On a successful HT roll, the victim covers his eyes and is therefore unable to see for one second. On a critical success, the victim is unaffected.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The jet issues from the item's tip. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "2cd232791f78eda0",
+    "name": "Stone Missile",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a ball of stone and fire it from one hand, injuring anything it hits. This spell has 1/2D 40, Max 80, Acc 2.</p><p><em>Item</em></p><p>Staff or wand - the missile is fired from the end of the item. Usable only by mages. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "38258961517556b2",
+    "name": "Walk Through Earth",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pass through earth as if it were air. With this spell, the subject could walk through the stone wall of a dungeon or the earthen wall of a hut. This spell does not open a passage so that others can follow. It also doesn't reveal what is on the other side. If the caster also knows Earth to Air, he will automatically have breathing air during his journey, at no energy cost. Otherwise, he must hold his breath!</p><p>Should the spell end before the subject regains the open air, he is buried in earth or stone, as the case may be. He is not automatically harmed, but will suffocate (see Suffocation, p. B436) if he cannot escape.</p><p><em>Item</em></p><p>Gray cloak or silver jewelry; only affects the wearer. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "a6be8d2ecdf58a64",
+    "name": "Earth to Water",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns earth to mud (or water). Various uses of this spell include bogging down enemies or pursuers, making mud packs to treat insect stings, softening earth to use for clay dummies or decoys, etc.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "bedbf6ae843f127c",
+    "name": "Partial Petrifaction",
+    "pages": "M52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns part of a living subject to stone, usually leaving him immobile but still able to talk or be tortured. The caster must touch the subject. The body parts changed are at the discretion of the caster; the spell can petrify anything from a single finger to the entire body from the neck down, but the head can never be affected. The subject's metabolism is magically altered to survive the experience, but he understandably finds the experience intensely uncomfortable, whatever else is done to him.</p><p>Petrified body parts are immobile, numb, and have DR 10. Victims of this spell suffer a DX penalty on any physical action they attempt: -1 or more, depending on details of the casting and the action.</p><p>Clothes, jewelry, etc., may be \"caught up\" in the spell and included in the petrifaction, but magic items or anything carried in the hand or a backpack remain unchanged.</p><p>Either Stone to Flesh or Remove Curse is required to negate this spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 1,300.</p>"
+  },
+  {
+    "_id": "7b467966de0e5852",
+    "name": "Rain of Stones",
+    "pages": "M53",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stones rain from the sky onto the area, causing 1d-1 crushing damage per second to all within it. Characters and creatures under the rain of stones take damage on their own turns; if less than an entire second is spent in the affected area, damage is halved (round down).</p><p>The spell can only be cast outdoors. Armor protects in the usual fashion. A shield with a DB of 2 or better can be held overhead to block the stones, but it may take damage (p. B484). This requires two hands and a Ready action, and succeeds automatically in protecting the character once the shield is readied upward, but this unreadies the shield from its normal protective functions!</p><p>Inanimate objects, such as buildings, protect with their DR.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "7380c564af68e02d",
+    "name": "Essential Earth",
+    "pages": "M53",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates the magical essence of Earth. Essential Earth is three times as fertile: plants germinate three times faster and grow three times taller or bigger than normal. In addition, if Essential Earth is transformed into stone via the Earth to Stone spell, it will be three times as strong (DR and HP); columns or blocks cut from such stone would support three times as much weight. This Essential Stone is similar to the legendary material adamant, discussed in more detail in GURPS Fantasy.</p><p>If Essential Earth is transformed into metal via Earth to Stone, that Essential Metal will also have triple the strength (HP, DR, and carrying capacity) of normal metal; this is similar to the legendary alloy orichalcum, discussed in more detail in GURPS Fantasy.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "5916f4c2ec67396f",
+    "name": "Body of Stone",
+    "pages": "M54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject becomes an animated stone statue; he temporarily acquires the Body of Stone meta-trait (p. B262). Clothes also become stone, but carried equipment does not.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "974d28b16ca5acf4",
+    "name": "Steelwraith",
+    "pages": "M54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Renders the subject intangible to the touch of metal. Swords pass through him, he cannot hold metal keys or to wear metal armor, he passes through bars and metal floors . . .</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 1,200. (b) A metallic weapon may be enchanted to counter the spell (so that it may be wielded by or against a Steelwraithed being). Energy cost to create: 250 per pound of weight (minimum 1 pound).</p>"
+  },
+  {
+    "_id": "d02c5ac1a7c1f873",
+    "name": "Purify Earth",
+    "pages": "M54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes foreign objects, poisons, and harmful elements from soil, rendering it fit to support growing plants. This spell also remedies any deficiencies in the soil's composition. Small foreign objects (coins, nails) underground are destroyed; medium ones (swords, artillery shells, chests, statuettes) \"float\" to the surface. Large objects (coffins, walls, large statues) will cause the spell to fail, but the caster gets a general idea of the reason.</p><p>This is also a Plant spell.</p><p><em>Item</em></p><p>Staff. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "688b2fdcdfa28112",
+    "name": "Earthquake",
+    "pages": "M54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shakes the affected area. The caster probably won't want the area to include him. Divide the actual distance from caster to edge of affected area by 20 before figuring the skill penalty.</p><p>The spell must be cast over a fairly large area to be useful. Shaking one corner of a building will upset the occupants, but won't wreck the building. Cost depends on strength of the quake:</p><p><em>Tiny:</em> Just a demonstration - a slight swaying. Pay base cost.</p><p><em>Mild:</em> Slight damage to buildings. Multiply base cost by 2. DX roll required, every second, for those in affected area to keep their feet.</p><p><em>Severe:</em> Stone walls crack; towers may fall. Multiply base cost by 4. DX-3 roll required, every second, for those in affected area to keep their feet.</p>"
+  },
+  {
+    "_id": "4dbc31567e74a2c0",
+    "name": "Volcano",
+    "pages": "M54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes vapor and lava to spew from a chosen spot of ground. This is not a quick spell, but it is very serious! The volcano starts out small - a small hole spitting stones and vapors - and increase its diameter by a couple of yards per day. This spell can also reactivate a dormant volcano. When the spell is allowed to lapse, the volcano ceases to grow and will soon die (a formerly dormant volcano may stay active at the GM's discretion).</p>"
+  },
+  {
+    "_id": "7ffb37267270609e",
+    "name": "Alter Terrain",
+    "pages": "M55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Can be used to completely transform vast amounts of terrain. If cast over a large enough area, this spell can turn a city into a lake or sea, or an offshore island into a mountain range.</p><p>The profile of the ground (including sea, lake, or river beds) within the affected area can be raised, lowered, or reshaped as the caster chooses, or changed in texture to anything between soft earth and sand to hard granite. Stone or brick buildings and vegetable matter can all be transformed into \"natural\" stone or earth, but not vice-versa. Submerged areas raised above their natural level become dry land; any area lowered below the local water table may be flooded. The GM should require Architecture, Artist, or Engineer rolls if the caster tries to alter the area into something specific.</p><p>Beings and loose items on the surface at the time the spell is cast are simply raised or lowered, with no personal injury. If they are inside buildings, they are gently expelled rather than entombed. Of course, if they find themselves under water, they may have problems . . .</p><p>If the spell is countered or dispelled, the whole area returns to its former condition; even transformed buildings and trees are restored.</p><p><em>Item</em></p><p>An area may be permanently altered for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "19cf9463154e4f9b",
+    "name": "Move Terrain",
+    "pages": "M55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enables an entire area of terrain, with all buildings, animals, plants, and people on or in it, to be moved over large distances. Once the spell is cast, the area to be transported vanishes (see below), replaced by bare earth or open water. The caster is now \"carrying\" that area in invisible, intangible form (this fact can be determined by Detect Magic or something similar). Beings caught in the affected area have a resistance roll based on the best Will among them, modified by -1 for every additional yard of radius of the subject area (thus, Move Terrain with a 2-yard radius is resisted by Will-1). Successful resistance negates the spell.</p><p>Once the casting is successfully completed, the subject area \"shrinks\" in radius at the rate of 1 yard per second, moving toward the caster at the same rate. Victims quick enough on their feet should be able to jump out of the area as it shrinks (this has good dramatic potential) - make DX and IQ rolls! GMs may decide this warrants a Fright Check.</p><p>Beings caught by the spell are aware of a wild, swirling sky above their heads and a physically impenetrable barrier all around them. The atmosphere inside remains breathable and comfortable (so this spell cannot be used to suffocate someone!). Spells cast out of the area automatically hit the Move Terrain's holder - thus, a trapped mage could walk up to the affected area's edge, lay his hand against the barrier, and cast Deathtouch at the holder! Captive mages could also cast Dispel Magic or Counterspell on the affected area, forcing the spell to end abruptly if they are successful.</p><p>When the caster stops maintaining the spell, the terrain reappears. The caster's location falls anywhere within it or at its edge. The subject area \"expands\" back to normal size at the same rate it shrank. If there is no suitable space available, anything in the way is moved aside as if by Shape Earth.</p><p>The caster may not use this spell again for one full day. The subject area or any part of it cannot be moved again by this spell (from any caster or magic item) for the same period.</p><p>Cast over a large enough area, this spell can place mountains in the middle of plains, open water (as deep as half the radius of effect, transported from lake or ocean) in the midst of a desert - or shift islands miles inland to form hills!</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 3,000.</p>"
+  },
+  {
     "_id": "f7c56fc7cf81130d",
     "name": "Summon Earth Elemental",
     "pages": "M27",
