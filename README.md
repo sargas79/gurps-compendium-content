@@ -252,6 +252,14 @@ That builds, writes the zip, and prints the tag and `gh release create` command.
 Attach both the zip and a loose `dist/module.json` to the release: the manifest
 URL points at the loose one.
 
+To build only some books, name them in `GCC_BOOKS`. v0.1.0 is the Basic Set
+alone, although Monster Hunters 1 was already in the repository when it was
+cut; to make it again from its tag:
+
+```bash
+GCC_BOOKS=basic-set npm run release
+```
+
 See **Installing** above for the two ways a release reaches a Foundry install,
 and for the `release-config.json` that decides whether the manifest URL is one
 of them.
