@@ -4408,6 +4408,318 @@
     "description": "<p>Travel great distances with a few movements. The subject flips into the sky and bounces to his destination using clouds like trampolines. Cloud-Vaulting can only be cast in open air.</p><p>Each casting of this spell carries the subject up to 100 miles, plus 100 miles per skill level above DX in Acrobatics. If there are no clouds at all in the sky (a frequent occurrence over deserts), the subject cannot go farther than 100 miles. Storms will likewise block the subject's path. An Acrobatics roll is required every 100 miles, at a penalty equal to the subject's encumbrance level. On a failure, the subject falls 3d×3 yards (p. B431) and lands at a random location along the intended path - Slow Fall will save the subject from damage, but the Cloud-Vaulting spell is still broken.</p><p>This is a dizzying spell; upon arriving at his destination (or failing his Acrobatics roll), the subject will be physically stunned unless he can roll his Body Sense (p. B181) skill at -1 per 100 miles covered.</p><p>This is also a Weather spell.</p><p><em>Item</em></p><p>(a) Footwear. The item must bear a cloud design. Energy cost to create: 4,000. (b) Jewelry, wand, or staff. Usable only by mages. Energy cost to create: 3,000.</p>"
   },
   {
+    "_id": "913a785437e92f6f",
+    "name": "Animation",
+    "pages": "M150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Summon a spirit (IQ 9) to animate an existing statue, painting, or other item. The object that is animated must depict or represent a human or animal. Its abilities and attributes depend on its body. This is entirely up to the GM - for instance, a painting could talk, but not move around while a statue might leave its base and move freely. Within its limitations, the animated object will follow the caster's verbal orders; it has no judgment and will carry out its orders precisely. Unlike a golem (p. 59), it cannot be instructed to follow another person's orders.</p>"
+  },
+  {
+    "_id": "7e654537c2655317",
+    "name": "Steal Energy",
+    "pages": "M150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take FP from the subject to restore your own lost fatigue. The subject must either be willing or totally helpless (e.g., bound or unconscious). The caster must touch the subject. This works on living, sapient subjects only! The spell stops when the caster's FP is fully restored, when the caster decides to stop, or when the subject's FP reaches 0 and the subject falls unconscious.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The wearer and the item must both touch the victim. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "dda6600a744f5803",
+    "name": "Steal Vitality",
+    "pages": "M150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take HP from the subject to heal your own injuries. The subject must either be willing or totally helpless; the caster must touch the subject. This works on living, sapient subjects only! The spell stops when the caster's HP is fully restored, when the caster decides to stop, or when the subject's HP reaches -1 (which automatically kills the subject).</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. The wearer and item must both touch the victim. Usable only by a mage. Energy cost to create: 1,500. (b) Any item. It lowers wearer's HP by 1 to 5 while it is worn. The wearer regains lost HP when item is removed. Energy cost to create: 200 per lost HP.</p>"
+  },
+  {
+    "_id": "b01c6ab8b254a585",
+    "name": "Materialize",
+    "pages": "M150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is used by ghosts and other spirits who cannot ordinarily become visible to beings in the physical world.</p><p>The spell can also be used by a mage to force a spirit to materialize; in that case, the ghost resists with the better of its ST and IQ.</p>"
+  },
+  {
+    "_id": "d5962d33899089d7",
+    "name": "Solidify",
+    "pages": "M151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is used by insubstantial spirits to become tangible and affect objects and creatures in the substantial world. A tangible spirit is in all respects like a normal physical being.</p><p>The spell can also be used by a mage to force a spirit to solidify; in that case, the ghost resists with the better of its ST and IQ.</p>"
+  },
+  {
+    "_id": "eac9e9bed4e3933f",
+    "name": "Affect Spirits",
+    "pages": "M151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a person or object, this spell allows the subject to interact with incorporeal spirits as if they were solid. A weapon with this spell on it can harm an insubstantial spirit.</p><p><em>Item</em></p><p>This spell cannot be enchanted into an item, but see Ghost Weapon (p. 65).</p>"
+  },
+  {
+    "_id": "7f29fdb1d7487b59",
+    "name": "Skull-Spirit",
+    "pages": "M151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Summons a ghostly assassin to do the caster's bidding (see box, p. 150). Requires the skull of a sapient creature, which is destroyed in the casting.</p><p><em>Item</em></p><p>The skull of a sapient creature. Any user can invoke the skull-spirit by saying a password (chosen by the caster when the skull is enchanted). The skull then crumbles, and the spirit appears as above. Energy cost to create: 40.</p>"
+  },
+  {
+    "_id": "aebf4df11368ec36",
+    "name": "Turn Spirit",
+    "pages": "M151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes a single subject in spirit form to retreat from the caster. The caster must be able to see the subject. The subject moves away from the caster at its current maximum Move until the spell ends or the caster loses sight of it. The subject cannot attack the caster in any way during this time; this includes the use of special powers and spells.</p><p>If the spirit possesses a living entity, Turn Spirit will not force the spirit out of its host. Instead, the spirit will flee using the host's body.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 350.</p>"
+  },
+  {
+    "_id": "80c712ff371cfca3",
+    "name": "Control Zombie",
+    "pages": "M152",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take control of an undead creature raised with the Zombie spell by some other wizard. If the caster wins a Quick Contest of Spells with the original Zombie spell, the undead in question will obey the caster as if he had raised it. The Zombie spell resists at +2 if the original caster is within 100 yards, and at -2 if he is dead.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by a mage. It does not give the ability to cast the spell, but gives +2 skill to one who knows the spell. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "392abc20f3d35c77",
+    "name": "Zombie Summoning",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Calls the nearest zombie to the caster (for the purposes of this spell, a zombie is any undead creature created with the Zombie spell). Range is irrelevant. Upon a successful casting, the caster knows the location of the closest zombie (any known zombies may be excluded if the caster mentions them before casting) and how long it will take to reach him. The zombie moves toward the caster as fast as it can, until it can see him or the spell ends. If it can reach the caster, it stays nearby, without attacking or obeying, until the spell ends. The spell is broken by any attack on the zombie, and if the zombie fails to reach the caster before the spell duration ends, it will simply turn and go about its business, or wander off if it had none.</p><p>Zombies will not answer the summons if it conflicts with their master's orders (so you cannot Summon zombies away from whatever they were guarding, for instance).</p>"
+  },
+  {
+    "_id": "091a8312d74e8734",
+    "name": "Mass Zombie",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Zombie, but reanimates all relatively complete dead bodies in the area of effect. As with Zombie, different sorts of corporeal undead are made from different qualities of bodies; a mix of undead types may result from a single Mass Zombie. A corpse must be lying in its tomb or at its place of death to be affected by this spell; otherwise, it won't be affected. Corpses in graves up to 4 yards deep will claw their way up to the surface to join their new master.</p><p>Undead created by this spell become the loyal servants of the caster. However, they can only be commanded as a group; individual members of the horde cannot be given separate tasks. If this spell is cast ceremonially, the leader of the circle is the master. The zombies regard the other members of the circle as his lieutenants; their orders are obeyed, but the master's orders take precedence. Optionally, the mages involved in the casting may divide the horde equally, each mage becoming master to his own segment.</p><p>In most likely casting locations, this spell will raise (R×R)/2 undead (round down), where R is the radius of the spell. It might yield fewer undead in an upper-class cemetery where the dead have lots of elbowroom in their crypts, or more at a mass grave.</p><p>Undead created with this spell are identical to those created with the Zombie spell. They use the same templates and are affected the same way by magic.</p>"
+  },
+  {
+    "_id": "54e6077a12b7757d",
+    "name": "Slow Healing",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject less likely to heal or be healed. The spell subtracts from any natural recovery roll (p. B424) or healing skill (First Aid, Physician, Surgery, etc.), including Healing spells. Illness, FP recovery and HT-based resistance rolls are not affected. Only Remove Curse can break this spell.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 175. (b) Any weapon. The wounds it inflicts are very difficult to heal; the penalty applies until the wound is completely healed or the curse is removed. When attempting healing, one must specify whether or not the weapon's wounds are included; if they are, the penalty applies. Energy cost to create: 100 per point of penalty. Double cost if subject is a missile weapon (e.g., a bow). Divide cost by 10 if subject is a missile (e.g., an arrow). If the weapon falls in more than one class, use the higher cost.</p>"
+  },
+  {
+    "_id": "8aed2690f2a23134",
+    "name": "Stop Healing",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Slow Healing, except that this spell resists the natural recovery process and healing skills and spells. Every healing attempt on the subject must be made as a Quick Contest between the healer's skill and the Stop Healing spell's Endurance (p. 10). Every failure by the spell to stop a healing attempt weakens its Endurance by one; upon reaching Endurance 0, the spell dissipates. A critical failure by the Stop Healing or a critical success by the Resisted spell, skill, or process also breaks the enchantment. Otherwise, Remove Curse is required to undo the spell.</p><p><em>Item</em></p><p>Staff, jewelry, or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "94190699d5da10b0",
+    "name": "Command Spirit (Banshees)",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Charm (p. 139), but only affects spirits. Each class of spirits (banshees, spectres, manitous, etc.) requires its own spell. No version exists for demons or elementals; use Summon Demon or Control Elemental as appropriate. Unlike the subject of a Charm spell, the spirit may try to pervert the caster's orders, like a demon (see Summon Demon, p. 155).</p>"
+  },
+  {
+    "_id": "e8808b184d8b0ae7",
+    "name": "Command Spirit (Specters)",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Charm (p. 139), but only affects spirits. Each class of spirits (banshees, spectres, manitous, etc.) requires its own spell. No version exists for demons or elementals; use Summon Demon or Control Elemental as appropriate. Unlike the subject of a Charm spell, the spirit may try to pervert the caster's orders, like a demon (see Summon Demon, p. 155).</p>"
+  },
+  {
+    "_id": "1112806fba1b44d3",
+    "name": "Command Spirit (Manitous)",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Charm (p. 139), but only affects spirits. Each class of spirits (banshees, spectres, manitous, etc.) requires its own spell. No version exists for demons or elementals; use Summon Demon or Control Elemental as appropriate. Unlike the subject of a Charm spell, the spirit may try to pervert the caster's orders, like a demon (see Summon Demon, p. 155).</p>"
+  },
+  {
+    "_id": "6516d2cb21d5fcc9",
+    "name": "Command Spirit",
+    "pages": "M153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Charm (p. 139), but only affects spirits. Each class of spirits (banshees, spectres, manitous, etc.) requires its own spell. No version exists for demons or elementals; use Summon Demon or Control Elemental as appropriate. Unlike the subject of a Charm spell, the spirit may try to pervert the caster's orders, like a demon (see Summon Demon, p. 155).</p>"
+  },
+  {
+    "_id": "4d69b7db7f3c002c",
+    "name": "Age",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject older! The subject ages one year for every 10 points of energy put into the spell.</p><p><em>Item</em></p><p>(a) Any item. Always on. If worn (not just touched), it will age the wearer by one year for every day it is worn (so two hours' wearing would age you by a month). Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "283965497974b2ca",
+    "name": "Pestilence",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Infects the subject with a loathsome plague of the caster's selection (though the GM may veto an inappropriate selection). The disease takes its normal course; infection will not normally be apparent for some time.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. The item's creator sets the plague transmitted upon creation. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "2c8f2c3b91d27d97",
+    "name": "Evisceration",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reach with one hand into a subject's body and withdraw a vital organ, leaving an open cavity.</p><p>Extracting the brain instantly kills the body, but the brain itself may survive for a few minutes! Roll vs. HT each second; on a success, the brain remains alive and conscious but loses 1 FP; on a failure, it dies. While it survives, it can cast any spells it knows well enough to cast without ritual. Remember that the brain has no senses of its own and is therefore casting blindly.</p><p>Extracting the heart demands a HT-6 roll each turn from the victim; on a failure he falls unconscious and dies five seconds later.</p><p>Extracting other organs requires a HT roll at a penalty from 0 to -5 to remain conscious. Most extractions kill within a minute; however, some organ losses can be survived - a lung, a kidney, etc. In this case, the victim will still bleed seriously. Restoration is required to replace a lost organ.</p><p>An extracted organ dies within a minute.</p>"
+  },
+  {
+    "_id": "e4cb68daf596f58b",
+    "name": "Animate Shadow",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Summons a spirit that animates the subject's shadow and attacks him. The shadow has IQ 9, HT 10, DX equal to the caster's effective skill, and ST and Move equal to the subject's ST and Move. The shadow wields whatever weapon the subject had in hand at casting time (even if he drops it later on!), inflicting basic damage only (ignore cutting and impaling bonuses) as fatigue. Armor does not protect, but the shadow's attacks may be parried or blocked if the weapon or shield used to defend is one that the subject had when the spell was cast. When the subject's FP reaches zero, he falls unconscious and the spell is broken. An animated shadow may be attacked as per a Body of Shadow subject (see p. 114); if its HP reaches zero, it is \"killed\" and the subject regains his normal shadow.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 450.</p>"
+  },
+  {
+    "_id": "a8b14a2c66740f0b",
+    "name": "Rotting Death",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The victim, who must be touched by the caster, rots from within. Every turn, he must roll against HT; on a failure, he takes 1d-1 damage; 6 points on a critical failure. A successful roll means he takes no damage that turn; a critical success breaks the spell. DR does not protect!</p><p>For the duration of the spell, the subject feels crippling discomfort, equivalent to the effects of a Sickness spell (see p. 138).</p><p>The victim appears to be undergoing a devastatingly rapid gangrene. Hit location should be rolled each time the spell inflicts damage; once crippled, a limb is considered to have rotted off! Once the victim is dead, its body quickly deliquesces, until only a puddle of evil-smelling goo is left.</p><p>Undead are not affected. The caster must concentrate while maintaining this spell, but need not remain in physical contact.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 700.</p>"
+  },
+  {
+    "_id": "fe5157294f0bdf2b",
+    "name": "Soul Jar",
+    "pages": "M154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Traps the subject's soul in some object (which must be present). If the subject is not the caster, then he must be present, and either willing or unconscious.</p><p>If your soul is in a \"jar,\" you are unaffected until either your body dies, or the jar is destroyed. The death of your body does not kill you. Your consciousness shifts to the \"jar,\" where you are able to see, hear, and even cast any spell that you know at skill 20 or above (i.e., castable without speech or gesturing). You may communicate at a distance via telepathy-type spells, if you know any - or by direct mental contact, without a spell, with anyone who handles the jar. Your FP remain the same as when you had a body. You may not spend HP, but you may use any Powerstone currently in contact with your jar.</p><p>If a new body comes near the jar, you may try to take it by a Possession, Permanent Possession, or Exchange Bodies spell if you know such a spell. In that case, the soul of that body goes into the jar. But if your soul is in a jar, anything that destroys the jar will kill you permanently - beyond hope of resurrection - even if your body is unharmed.</p><p>The spell may be cast again to switch the soul to a different \"jar.\"</p>"
+  },
+  {
+    "_id": "2d520e55b3409bf5",
+    "name": "Entrap Spirit",
+    "pages": "M157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enables the caster to seal a container or chamber so that a spirit within cannot get out for the duration of the spell. Getting the spirit into the trap in the first place is a separate question; usually Command Spirit is required, but trickery can be just as effective.</p><p>The container can be any size, from a small bottle up to an entire building, but it must be fully, tightly closed (watertight is good enough), and the mage must touch it while casting the spell. The spirit cannot resist the spell, but the casting cost is directly proportional to its power. The total cost is equal to the spirit's ST + IQ, divided by 5 to cast and by 10 to maintain. It takes a true effort to restrain a powerful spirit! The caster is informed of the energy cost when the spell takes effect and spends the energy then; if he cannot meet the cost, the spirit is unaffected. If the caster spends half the energy cost, the spirit takes one second to break out of the trap; this is a bad deal, but sometimes buying even a second is a worthwhile thing to do. If multiple spirits are trapped in a single container, add half the others' ST and IQ to the full ST and IQ of the most powerful spirit before calculating cost.</p><p>The spirit cannot damage the container or affect anything outside of it, nor can it use shape-shifting powers to help it escape in any way. It can communicate with anyone within a yard or so of the container in the normal fashion.</p>"
+  },
+  {
+    "_id": "bf1b419608609ce5",
+    "name": "Repel Spirits",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels spirits from an area. The spell resists attempts by spirits (as well as other insubstantial beings such as an Ethereal Body or Astral Trip subject) to enter it or stay in it.</p><p>Each spirit may try to enter the area once per hour, rolling a Regular Contest between its Will and the caster's effective skill (each stage of the Contest lasts a second). Once inside, the invader resists with its Will; the spirit is expelled from the area on its first failure.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 100. (b) Any area or container can be made permanently repellent at 100 times casting cost.</p>"
+  },
+  {
+    "_id": "d8117e32aee721bf",
+    "name": "Bind Spirit (Banshees)",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Enslave (p. 141), but for spirits. Like Enslave, it allows mental contact with a turn of concentration. There is a separate Bind Spirit spell for each Command Spirit spell. The spirit may interpret its orders creatively, as per Command Spirit.</p><p><em>Item</em></p><p>A spirit may be bound to an item or place. Bound spirits will serve the owner of the item and will not dissipate. Energy cost to create: 4 times the cost above, halved if the spirit is willing.</p>"
+  },
+  {
+    "_id": "e6db48aacdf6c970",
+    "name": "Bind Spirit (Specters)",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Enslave (p. 141), but for spirits. Like Enslave, it allows mental contact with a turn of concentration. There is a separate Bind Spirit spell for each Command Spirit spell. The spirit may interpret its orders creatively, as per Command Spirit.</p><p><em>Item</em></p><p>A spirit may be bound to an item or place. Bound spirits will serve the owner of the item and will not dissipate. Energy cost to create: 4 times the cost above, halved if the spirit is willing.</p>"
+  },
+  {
+    "_id": "1083cb9b73801964",
+    "name": "Bind Spirit (Manitous)",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Enslave (p. 141), but for spirits. Like Enslave, it allows mental contact with a turn of concentration. There is a separate Bind Spirit spell for each Command Spirit spell. The spirit may interpret its orders creatively, as per Command Spirit.</p><p><em>Item</em></p><p>A spirit may be bound to an item or place. Bound spirits will serve the owner of the item and will not dissipate. Energy cost to create: 4 times the cost above, halved if the spirit is willing.</p>"
+  },
+  {
+    "_id": "9c2d514c2bbc2b81",
+    "name": "Bind Spirit",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Enslave (p. 141), but for spirits. Like Enslave, it allows mental contact with a turn of concentration. There is a separate Bind Spirit spell for each Command Spirit spell. The spirit may interpret its orders creatively, as per Command Spirit.</p><p><em>Item</em></p><p>A spirit may be bound to an item or place. Bound spirits will serve the owner of the item and will not dissipate. Energy cost to create: 4 times the cost above, halved if the spirit is willing.</p>"
+  },
+  {
+    "_id": "13a77a48b8694de8",
+    "name": "Steal Grace",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is actually four separate spells. Steal Might steals the subject's ST, Steal Grace steals DX, Steal Wisdom steals IQ, and Steal Vigor steals HT. Each spell must be studied separately, but all four work identically.</p><p>The spell transfers basic attributes on a level-for-level basis to the caster from the subject (who must be a living, sapient being). The caster cannot lower the subject's attribute below the subject's racial average (10 for a human). Thus, a subject must have an exceptional score for this spell to work. Secondary characteristics are affected by the attribute loss.</p><p>The caster must touch the subject and hold on to him for the entire casting time; neither can do anything while the spell is being cast. The caster increases his own attribute (whichever applies) as if he had spent the character points stolen from the subject.</p><p><em>Example:</em> Rolfe, with an IQ of 14, wishes to steal the wisdom of a victim with IQ 13 (this is legal; it is assumed that any character has knowledge and experiences that would expand the capabilities of another, even if the score is lower). If he drains the subject to IQ 10, he has stolen 3 levels of IQ, raising his IQ to 17.</p>"
+  },
+  {
+    "_id": "c9b58873e88cdb2a",
+    "name": "Steal Vigor",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is actually four separate spells. Steal Might steals the subject's ST, Steal Grace steals DX, Steal Wisdom steals IQ, and Steal Vigor steals HT. Each spell must be studied separately, but all four work identically.</p><p>The spell transfers basic attributes on a level-for-level basis to the caster from the subject (who must be a living, sapient being). The caster cannot lower the subject's attribute below the subject's racial average (10 for a human). Thus, a subject must have an exceptional score for this spell to work. Secondary characteristics are affected by the attribute loss.</p><p>The caster must touch the subject and hold on to him for the entire casting time; neither can do anything while the spell is being cast. The caster increases his own attribute (whichever applies) as if he had spent the character points stolen from the subject.</p><p><em>Example:</em> Rolfe, with an IQ of 14, wishes to steal the wisdom of a victim with IQ 13 (this is legal; it is assumed that any character has knowledge and experiences that would expand the capabilities of another, even if the score is lower). If he drains the subject to IQ 10, he has stolen 3 levels of IQ, raising his IQ to 17.</p>"
+  },
+  {
+    "_id": "a7d4601afa2d4d63",
+    "name": "Steal Might",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is actually four separate spells. Steal Might steals the subject's ST, Steal Grace steals DX, Steal Wisdom steals IQ, and Steal Vigor steals HT. Each spell must be studied separately, but all four work identically.</p><p>The spell transfers basic attributes on a level-for-level basis to the caster from the subject (who must be a living, sapient being). The caster cannot lower the subject's attribute below the subject's racial average (10 for a human). Thus, a subject must have an exceptional score for this spell to work. Secondary characteristics are affected by the attribute loss.</p><p>The caster must touch the subject and hold on to him for the entire casting time; neither can do anything while the spell is being cast. The caster increases his own attribute (whichever applies) as if he had spent the character points stolen from the subject.</p><p><em>Example:</em> Rolfe, with an IQ of 14, wishes to steal the wisdom of a victim with IQ 13 (this is legal; it is assumed that any character has knowledge and experiences that would expand the capabilities of another, even if the score is lower). If he drains the subject to IQ 10, he has stolen 3 levels of IQ, raising his IQ to 17.</p>"
+  },
+  {
+    "_id": "03ef11ec787895e1",
+    "name": "Steal Wisdom",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is actually four separate spells. Steal Might steals the subject's ST, Steal Grace steals DX, Steal Wisdom steals IQ, and Steal Vigor steals HT. Each spell must be studied separately, but all four work identically.</p><p>The spell transfers basic attributes on a level-for-level basis to the caster from the subject (who must be a living, sapient being). The caster cannot lower the subject's attribute below the subject's racial average (10 for a human). Thus, a subject must have an exceptional score for this spell to work. Secondary characteristics are affected by the attribute loss.</p><p>The caster must touch the subject and hold on to him for the entire casting time; neither can do anything while the spell is being cast. The caster increases his own attribute (whichever applies) as if he had spent the character points stolen from the subject.</p><p><em>Example:</em> Rolfe, with an IQ of 14, wishes to steal the wisdom of a victim with IQ 13 (this is legal; it is assumed that any character has knowledge and experiences that would expand the capabilities of another, even if the score is lower). If he drains the subject to IQ 10, he has stolen 3 levels of IQ, raising his IQ to 17.</p>"
+  },
+  {
+    "_id": "5cc0ebe75f55cf21",
+    "name": "Steal Skill",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transfers one skill from the subject to the caster. The caster must touch the subject and hold on to him for the entire casting time; neither character can do anything for that duration. The outcome of the struggle (i.e., the resistance roll) remains unknown until the casting is complete. The caster may abort his casting at any time; the energy is still spent.</p><p>The caster gains the skill as if he had himself spent the character points stolen from the subject. This spell can be used to steal spells.</p><p>If the victim had other skills based on the stolen one, he retains them fully, but the loss of a prerequisite causes a -2 penalty to skill use.</p><p><em>Example:</em> Severin wishes to sell some ill-gotten gains, but lacks much in the way of business sense. To remedy this, he casts Steal Skill on the first bazaar merchant he passes, taking his Merchant skill. The merchant has IQ 10, Business Acumen 2, and Merchant-15, having spent 12 points on Merchant. Severin gains Merchant as if he had spent 12 points on the skill - with Severin's IQ of 14, his Merchant skill is now 17. He does not gain the benefit of the merchant's Business Acumen Talent.</p>"
+  },
+  {
+    "_id": "79329c604745a3a7",
+    "name": "Steal Youth",
+    "pages": "M158",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take another's youth. For every 10 points of energy put into this spell, the caster grows one year younger and the subject (who must be of the same race) grows two years older. The subject must either be willing or totally helpless; the caster must touch the subject. A critical failure of this spell costs the caster 1 point of IQ and ages him by 20 years instantly.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The wearer and the item must both touch the victim. Usable only by mages. This item can only be used once a year, and only to steal one year at a time - so one item keeps one mage young, but no more. Energy cost to create: 8,000.</p>"
+  },
+  {
+    "_id": "b78bfbca799ef8b1",
+    "name": "Steal Beauty",
+    "pages": "M159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transfers the subject's beauty to the caster. The caster gains one or more appearance levels (p. B21) while the subject loses an equal number.</p><p>Beauty can only be stolen from someone of better appearance than the caster, and the caster cannot gain better appearance than the subject's initial appearance level. The subject must be of the same species and sex as the caster. In addition, the subject must either be willing or totally helpless and must be touched for the entire casting time. A critical failure of this spell instantly makes the caster Hideous.</p><p>At the GM's option, this spell may also be used to steal Charisma and the Voice advantage. People with stolen Charisma simply become less scintillating; those with stolen Voices become mute. Critical failure on either of these applications results in muteness for the caster!</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The wearer and the item must both touch the victim. Usable only by mages. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "61514b0bdababef0",
+    "name": "Astral Block",
+    "pages": "M159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>No spirit or insubstantial being may cross an astral block's boundaries for the duration of the spell. In addition, insubstantial creatures within an astral block cannot become substantial, and vice versa. Thus, a sorcerer could not cast Ethereal Body within the area of a spell, while a ghost would be unable to use Solidify. A ghost already in a tangible state could not become insubstantial!</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 600. (b) Any area or container may be permanently enchanted for 100 times casting cost. (c) A container of any size (from a stoppered bottle to a starship) may be enchanted for an energy cost of 500 per cubic yard or fraction thereof. The container must be at least airtight when fully closed. This creates a mobile astral block. Any spirit coaxed into the enclosure (or in it when the spell is cast) will be affected by the spell when it is closed. Opening the container temporarily suspends the spell.</p>"
+  },
+  {
+    "_id": "d2fa1d440150e118",
+    "name": "Lich",
+    "pages": "M159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell lets the caster become a lich, a wizard preserved into undeath with powerful magic and alchemy. He retains his personality, knowledge, IQ, skills, and spells, and all his mental advantages and disadvantages (including Magery), but gains the physical and supernatural traits of a lich, as determined by the GM. The more powerful that package, the higher the energy cost.</p><p>After the GM determines the lich template (and hence, the energy cost), the mage casts this spell as with any other enchantment, but with himself as the subject. At the end of the enchanting, he rolls against skill. Any failure does 6d damage to the caster. A success prepares the wizard's body for the next step.</p><p>To complete the transformation, the would-be lich must drink an alchemical elixir of Lichdom. The elixir of Lichdom is prepared like any other alchemical elixir (see p. 210); it requires $13,500 in materials and 50 weeks of brewing. It defaults to Alchemy-7. Anyone not currently under the effects of a Lich spell who imbibes an elixir of Lichdom is affected as if he had drunk an elixir of Death (p. 215). However, an elixir of Lichdom cannot be counteracted, even with an alchemical Antidote. The elixir of Lichdom is forbidden everywhere, and formularies for it are almost impossible to find; most liches are compelled to reinvent it from scratch.</p><p>When a wizard under the Lich spell drinks a potion of Lichdom, he must roll vs. HT. If he succeeds, he dies, rising as a lich in 2d days. If he fails, he just dies. Luck, as well as the Bless and Wish spells, can influence this HT roll.</p><p>This is also an Enchantment spell.</p>"
+  },
+  {
+    "_id": "5cacdd4273bfe7c2",
+    "name": "Wraith",
+    "pages": "M160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enchants a ring or an amulet that will turn the wearer into a wraith, an undead guardian sustained by magic. It attempts to affect the wearer every time it is put on. The spell is Resisted normally by HT. If the subject ever fails to resist (or chooses not to), he \"dies\" and rises as a wraith 24 hours later.</p><p>The GM determines the exact abilities of the wraith, but mental traits are preserved as per the Lich spell. The wraith always has a Dependency (p. B130) on the Wraith item (a rare item, required constantly, for -150 points), and shrivels and dies if it is removed or destroyed. This item isn't Hexed; the victim can remove it and die if he wishes. Only Remove Enchantment can reverse the Wraith spell without harm.</p><p>Each Wraith item can sustain one wraith at a time. Once a given item has produced a wraith, it has no effect on other wearers until its wraith has been destroyed. The Wraith spell has no effect on the undead.</p><p>At double energy cost, the enchanter can create an item that makes the wraith his undead servant. The wraith automatically gains Reprogrammable (p. B150) with the enchanter as his master in addition to his Dependency, and cannot remove the Wraith item himself.</p><p>At half cost, the enchanter can create an item that turns the wearer into an undead tomb guardian. This works exactly as a regular Wraith item, except that the undead gains Compulsive Behavior (Remain in tomb and guard it; kill abductors and return if forcibly removed from tomb) [-15].</p><p>This is also an Enchantment spell.</p><p><em>Item</em></p><p>A ring or funerary amulet, which need not be ornate.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
