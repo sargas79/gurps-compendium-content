@@ -79,7 +79,7 @@ file.
 | Coat, Long; Coat, Long Leather | not rejected, but the file has no Holdout | **kept by hand** with note [2]'s +4 Holdout (GWorldVTT#148), under their published ids |
 | Handheld Sprayer, Backpack Squirt Gun, Squirt Carbine | damage "spec." | **kept by hand** from the p. 62 table: Liquid Projector skills, special damage, range, shots, ST, Bulk and reservoir price |
 | Flare Gun | damage "1d+1 cr dkb inc" | **kept by hand** as an improvised firearm (p. 62): 1d+1(0.5) cr, 10/330, Shots 1(3), Guns at -4. Double knockback and incendiary effects go in the text (#30) |
-| MYS: Smite | noted, not rejected: priced for two levels, capped at two, where the book offers three | check against p. 44 in #28 |
+| MYS: Smite | priced for two levels, capped at two, with the level names 1d/2d/3d, where the book offers three | **kept by hand** (#51) at 20/30/40 points for 2d/3d/4d (p. 44), once GWorldVTT#184 let a hand-kept trait replace the file's record |
 | Camera, Digital and Camera, Film (Good), (Fine); Lockpicks (Good), (Fine); First Aid Kit (Good); Disguise Kit (Good), (Fine) | quality variants | **deliberately dropped**: quality is a field on the item. The weights p. 54 gives for good and fine cameras go in the text |
 | Basic Gear: Bandages, … | the longer label for Basic Gear | **deliberately dropped**: not an item |
 
@@ -87,9 +87,11 @@ The directives below are also kept by hand: Blessed (Heroic Feats, ST), (DX) and
 (HT) at 10 points a level up to 2 (p. 23), and PK: Telekinesis at 5 points a level
 (pp. 46-47), whose cap of ST + Will has no field.
 
-Found along the way, not fixed here: the file caps the power Talents (ESP,
-Telepathy and so on) at 4 levels, where p. 40 allows six. A trait can't be
-kept by hand under a name the file also writes, so this is for #28 to note.
+Found along the way: the file caps the six power Talents (Bioenhancement,
+Mysticism, ESP, Psychokinesis, Telepathy and Teleportation) at 4 levels, where
+p. 40 allows six. Until GWorldVTT#184, a trait couldn't be kept by hand under a
+name the file also writes. Since #51 all six are kept by hand at 6 levels, under
+their published ids, and the parser reports each of them as "kept by hand".
 
 ### GCA directives the parser ignores
 
