@@ -1,0 +1,4 @@
+name is a GCA placeholder	Skill Adaptation (Clinch/%Unarmed Combat Skill%)
+name is a GCA placeholder	Special Exercises (HP can exceed ST by 100%)
+name is a GCA placeholder	Special Exercises (FP can exceed HT by 100%)
+name is a GCA placeholder	Style Familiarity (%Style%)

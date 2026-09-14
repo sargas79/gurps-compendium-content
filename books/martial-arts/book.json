@@ -13,5 +13,12 @@
     "from": 44,
     "to": 44
   },
-  "notes": "GCA cites this book as MA65, and a record the Basic Set also prints as MA65, B230; those are left to the system's packs. PDF page = book page + 1. The Extra Attack modifier is p. 44 of [MODIFIERS]; the rest of that section is equipment and combat-table bookkeeping. The parsers do not read the file's templates or its Art and Sport skill directives, so styles, character templates and those skills are kept by hand. Techniques for an open skill, techniques off a defense or attribute, and attack modes with the unarmed damage bonus wait on sargas79/GWorldVTT#194-#196. See TRIAGE.md."
+  "notes": "GCA cites this book as MA65, and a record the Basic Set also prints as MA65, B230; those are left to the system's packs, and the few the book adds under a Basic Set citation (Fast-Draw and Thrown Weapon specialties, Hidden Lore (Hidden Styles), Arm Lock (Tonfa), two Codes of Honor, three weapons) are kept by hand in martial-arts-by-hand.json. PDF page = book page + 1. The Extra Attack modifiers are p. 44 of [MODIFIERS]; Single Skill is a placeholder there and kept by hand. The parsers do not read the file's templates, so styles and character templates are kept by hand. Techniques for an open skill and techniques off a defense or attribute are not written by the parser (sargas79/GWorldVTT#194, #195); attack modes with the unarmed damage bonus are left off their weapons (#196); weapons with a mode used at a penalty to hit are excluded (#199). See TRIAGE.md.",
+  "exclude": [
+    {
+      "pack": "equipment",
+      "pattern": "^(Combat Fan|Qian Kun Ri Yue Dao|Three-Part Staff|Trident|Large Hungamunga|Hungamunga|Large Throwing Knife)$",
+      "reason": "a mode used at -2 to hit with its skill, which the data file writes into every skill entry and the system cannot carry yet (sargas79/GWorldVTT#199)"
+    }
+  ]
 }

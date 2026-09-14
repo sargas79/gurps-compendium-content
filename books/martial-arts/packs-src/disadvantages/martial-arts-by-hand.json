@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "bca63266e747d1bf",
+    "name": "Code of Honor (Bushido)",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": -15,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Martial Arts p. 53"
+    }
+  },
+  {
+    "_id": "118322b643a8bc5c",
+    "name": "Code of Honor (Xia)",
+    "type": "trait",
+    "system": {
+      "category": "disadvantage",
+      "points": -10,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Martial Arts p. 53"
+    }
+  }
+]

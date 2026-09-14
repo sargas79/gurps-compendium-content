@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "6b0ab3c103003d2b",
+    "name": "Multi-Strike",
+    "type": "modifier",
+    "system": {
+      "kind": "enhancement",
+      "value": 20,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Extra Attack",
+      "description": "",
+      "reference": "Martial Arts p. 44"
+    }
+  }
+]

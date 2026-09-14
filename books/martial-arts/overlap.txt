@@ -1,0 +1,63 @@
+PERKS	Shtick	B101, MA51
+DISADVANTAGES	Code of Honor (Bushido)	B127, MA53
+DISADVANTAGES	Code of Honor (Xia)	B127, MA53
+SKILLS	Fast-Draw (Balisong)	B194, MA56
+SKILLS	Fast-Draw (Flexible)	B194, MA56
+SKILLS	Fast-Draw (Shuriken)	B194, MA56
+SKILLS	Fast-Draw (Stone)	B194, MA56
+SKILLS	Fast-Draw (Tonfa)	B194, MA56
+SKILLS	Thrown Weapon (Disc)	B226, MA231
+SKILLS	Hidden Lore (Hidden Styles)	B199, MA57
+SKILLS	Hobby Skill (Feats of Strength)	B200, MA57
+SKILLS	Arm Lock (Judo)	MA65, B230
+SKILLS	Arm Lock (Wrestling)	MA65, B230
+SKILLS	Arm Lock (Tonfa)	MA65, B230
+SKILLS	Arm Lock ([Melee Weapon])	MA65, B230
+SKILLS	Arm Lock (%Melee Weapon Skill%)	MA65, B230
+SKILLS	Back Kick (Karate)	MA67, B230
+SKILLS	Choke Hold (Judo)	MA69, B230
+SKILLS	Choke Hold (Wrestling)	MA69, B230
+SKILLS	Choke Hold ([Melee Weapon])	MA69, B230
+SKILLS	Choke Hold (%Melee Weapon Skill%)	MA69, B230
+SKILLS	Disarming ([Melee Combat Skill])	MA70, B230
+SKILLS	Disarming (%Melee Combat Skill%)	MA70, B230
+SKILLS	Elbow Strike (Brawling)	MA71, B230
+SKILLS	Elbow Strike (Karate)	MA71, B230
+SKILLS	Feint ([Melee Combat Skill])	MA73, B231
+SKILLS	Beat ([Melee Combat Skill])	MA73,MA100,B231
+SKILLS	Ruse ([Melee Combat Skill])	MA73,MA101,B231
+SKILLS	Feint (%Melee Combat Skill%)	MA73, B231
+SKILLS	Beat (%Melee Combat Skill%)	MA73,MA100, B231
+SKILLS	Ruse (%Melee Combat Skill%)	MA73,MA101, B231
+SKILLS	Finger Lock (Arm Lock (Judo))	MA73, B231
+SKILLS	Finger Lock (Arm Lock (Wrestling))	MA73, B231
+SKILLS	Ground Fighting ([Melee Combat Skill])	MA73, B231
+SKILLS	Ground Fighting (%Melee Combat Skill%)	MA73, B231
+SKILLS	Horse Archery (Bow)	MA74, B231
+SKILLS	Jump Kick (Karate)	MA75, B231
+SKILLS	Kicking (Brawling)	MA75, B231
+SKILLS	Kicking (Karate)	MA75, B231
+SKILLS	Knee Strike (Brawling)	MA76, B232
+SKILLS	Knee Strike (Karate)	MA76, B232
+SKILLS	Neck Snap (ST)	MA77, B232
+SKILLS	Retain Weapon ([Ranged Weapon])	MA78, B232
+SKILLS	Retain Weapon (%Ranged Weapon Skill%)	MA78, B232
+SKILLS	Retain Weapon ([Melee Weapon])	MA78, B232
+SKILLS	Retain Weapon (%Melee Weapon Skill%)	MA78, B232
+SKILLS	Sweeping Kick (Judo)	MA81, B232
+SKILLS	Sweeping Kick (Karate)	MA81, B232
+SKILLS	Sweeping Kick (Sumo Wrestling)	MA81, B232
+SKILLS	Sweep ([Melee Combat Skill])	MA81, B232
+SKILLS	Sweep (%Melee Combat Skill%)	MA81, B232
+SKILLS	Dual-Weapon Attack (Beam Weapons (Pistol))	MA83, B230
+SKILLS	Dual-Weapon Attack (Guns (Pistol))	MA83, B230
+SKILLS	Dual-Weapon Attack (Bow)	MA83, B230
+SKILLS	Dual-Weapon Attack (%One Handed Combat Skill%)	MA83, B230
+SKILLS	Whirlwind Attack ([Melee Combat Skill])	MA89, B232
+SKILLS	Whirlwind Attack (%Melee Combat Skill%)	MA89, B232
+EQUIPMENT	Okusarigama	B274, MA221
+EQUIPMENT	Rokushaku Kama	B273, B274, MA222
+EQUIPMENT	Bolas	B275, MA227
+EQUIPMENT	Shuriken	B276, MA226
+EQUIPMENT	Ahlspiess	B273, MA212
+EQUIPMENT	Chigoridani	B272, MA214

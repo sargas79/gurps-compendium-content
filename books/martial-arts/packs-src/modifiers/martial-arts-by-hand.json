@@ -1,0 +1,17 @@
+[
+  {
+    "_id": "a647557a4a7de4e0",
+    "name": "Single Skill",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -20,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Extra Attack",
+      "description": "",
+      "reference": "Martial Arts p. 44"
+    }
+  }
+]
