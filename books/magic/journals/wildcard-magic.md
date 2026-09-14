@@ -1,0 +1,3 @@
+Magic can also be treated as a wildcard skill (p. B175) to emulate settings where wizards master the full spectrum of magical endeavor instead of learning one spell at a time. Instead of buying spells, a wizard simply buys levels of Magic! With that single wildcard skill, he can cast any spell he wants, at a penalty equal to the spell’s prerequisite count.
+
+This is a cinematic option. Wizards using Magic! are extremely flexible and powerful. If the scope of Magic! seems too broad, it may be wise to treat each college as a separate wildcard skill. The GM may also want to retain Magery prerequisites for spells that usually require some level of Magery.

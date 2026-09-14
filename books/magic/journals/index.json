@@ -828,6 +828,276 @@
       "reference": "Magic p. 194",
       "file": "the-beaufort-scale.md",
       "status": "reviewed"
+    },
+    {
+      "id": "variations",
+      "title": "Variations",
+      "chapter": "Variations",
+      "pages": "M199",
+      "reference": "Magic p. 199",
+      "file": "variations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alternative-magic-systems",
+      "title": "Alternative Magic Systems",
+      "chapter": "Variations",
+      "pages": "M199",
+      "reference": "Magic p. 199",
+      "file": "alternative-magic-systems.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "clerical-magic",
+      "title": "Clerical Magic",
+      "chapter": "Variations",
+      "pages": "M199-200",
+      "reference": "Magic pp. 199-200",
+      "file": "clerical-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "holy-spells",
+      "title": "“Holy” Spells",
+      "chapter": "Variations",
+      "pages": "M200",
+      "reference": "Magic p. 200",
+      "file": "holy-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ritual-magic",
+      "title": "Ritual Magic",
+      "chapter": "Variations",
+      "pages": "M200",
+      "reference": "Magic p. 200",
+      "file": "ritual-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "other-ritual-idioms",
+      "title": "Other Ritual Idioms",
+      "chapter": "Variations",
+      "pages": "M200",
+      "reference": "Magic p. 200",
+      "file": "other-ritual-idioms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alternate-prerequisites",
+      "title": "Alternate Prerequisites",
+      "chapter": "Variations",
+      "pages": "M200-201",
+      "reference": "Magic pp. 200-201",
+      "file": "alternate-prerequisites.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "renaming-spells",
+      "title": "Renaming Spells",
+      "chapter": "Variations",
+      "pages": "M201",
+      "reference": "Magic p. 201",
+      "file": "renaming-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "improvisational-magic",
+      "title": "Improvisational Magic",
+      "chapter": "Variations",
+      "pages": "M201",
+      "reference": "Magic p. 201",
+      "file": "improvisational-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magery-and-improvised-magic",
+      "title": "Magery and Improvised Magic",
+      "chapter": "Variations",
+      "pages": "M201",
+      "reference": "Magic p. 201",
+      "file": "magery-and-improvised-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wild-talents",
+      "title": "Wild Talents",
+      "chapter": "Variations",
+      "pages": "M201",
+      "reference": "Magic p. 201",
+      "file": "wild-talents.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wildcard-magic",
+      "title": "Wildcard Magic",
+      "chapter": "Variations",
+      "pages": "M202",
+      "reference": "Magic p. 202",
+      "file": "wildcard-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "spell-defaults",
+      "title": "Spell Defaults",
+      "chapter": "Variations",
+      "pages": "M202",
+      "reference": "Magic p. 202",
+      "file": "spell-defaults.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "syntactic-magic",
+      "title": "Syntactic Magic",
+      "chapter": "Variations",
+      "pages": "M202",
+      "reference": "Magic p. 202",
+      "file": "syntactic-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "spell-parameters",
+      "title": "Spell Parameters",
+      "chapter": "Variations",
+      "pages": "M202-203",
+      "reference": "Magic pp. 202-203",
+      "file": "spell-parameters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "word-parameters",
+      "title": "Word Parameters",
+      "chapter": "Variations",
+      "pages": "M203-204",
+      "reference": "Magic pp. 203-204",
+      "file": "word-parameters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "casting-a-syntactic-spell",
+      "title": "Casting the Spell (Syntactic Magic)",
+      "chapter": "Variations",
+      "pages": "M203-204",
+      "reference": "Magic pp. 203-204",
+      "file": "casting-a-syntactic-spell.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "scaling",
+      "title": "Scaling",
+      "chapter": "Variations",
+      "pages": "M203",
+      "reference": "Magic p. 203",
+      "file": "scaling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "transform",
+      "title": "Transform",
+      "chapter": "Variations",
+      "pages": "M204",
+      "reference": "Magic p. 204",
+      "file": "transform.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "linking-syntactic-spells",
+      "title": "Linking Syntactic Spells",
+      "chapter": "Variations",
+      "pages": "M204",
+      "reference": "Magic p. 204",
+      "file": "linking-syntactic-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gming-syntactic-magic",
+      "title": "GMing Syntactic Magic",
+      "chapter": "Variations",
+      "pages": "M204-205",
+      "reference": "Magic pp. 204-205",
+      "file": "gming-syntactic-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "a-syntactic-spell-waterproofing",
+      "title": "A Syntactic Spell: Waterproofing",
+      "chapter": "Variations",
+      "pages": "M205",
+      "reference": "Magic p. 205",
+      "file": "a-syntactic-spell-waterproofing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "symbol-magic",
+      "title": "Symbol Magic",
+      "chapter": "Variations",
+      "pages": "M205",
+      "reference": "Magic p. 205",
+      "file": "symbol-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "symbols",
+      "title": "Symbols",
+      "chapter": "Variations",
+      "pages": "M205-206",
+      "reference": "Magic pp. 205-206",
+      "file": "symbols.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "casting-a-symbol-spell",
+      "title": "Casting the Spell (Symbol Magic)",
+      "chapter": "Variations",
+      "pages": "M206-209",
+      "reference": "Magic pp. 206-209",
+      "file": "casting-a-symbol-spell.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alternatives",
+      "title": "Alternatives",
+      "chapter": "Variations",
+      "pages": "M206",
+      "reference": "Magic p. 206",
+      "file": "alternatives.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "example-of-symbol-casting",
+      "title": "Example of Symbol Casting",
+      "chapter": "Variations",
+      "pages": "M206",
+      "reference": "Magic p. 206",
+      "file": "example-of-symbol-casting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "an-emergency-symbol-casting",
+      "title": "An Emergency Symbol-Casting",
+      "chapter": "Variations",
+      "pages": "M207",
+      "reference": "Magic p. 207",
+      "file": "an-emergency-symbol-casting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-futhark-runes",
+      "title": "The Futhark Runes",
+      "chapter": "Variations",
+      "pages": "M208-209",
+      "reference": "Magic pp. 208-209",
+      "file": "the-futhark-runes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-ogham-alphabet",
+      "title": "The Ogham Alphabet",
+      "chapter": "Variations",
+      "pages": "M209",
+      "reference": "Magic p. 209",
+      "file": "the-ogham-alphabet.md",
+      "status": "reviewed"
     }
   ]
 }
