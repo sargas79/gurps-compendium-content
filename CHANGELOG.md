@@ -1,5 +1,35 @@
 # Changelog
 
+## v0.3.0 — Monster Hunters 1's rules, in the add-on
+
+The GWorld system is the Basic Set and nothing else. Monster Hunters 1's rules
+were built into the system in v1.1.0 and v1.2.0; they now live here, and
+register with the system through its add-on API. Built from the Basic Set and
+Monster Hunters 1 against **gworld v1.4.0**, which this release requires.
+
+- **The book's rules group**, "GURPS Monster Hunters 1" on the Rules page, with
+  its five switches, all off by default:
+  - Talents never add to wildcard skills;
+  - destiny and wildcard bonus points, with a Skills tab section and a new
+    session GM tool;
+  - holy attacks: holy items, holy contact, and the burn a holy weapon or a
+    holy-water round adds;
+  - Ritual Path Magic: rituals as this module's own item type with their own
+    sheet, Paths, the mana reserve, the casting card, conditional rituals,
+    charms, grimoires, working together, blocking and resistance;
+  - the book's gear: improvements by cost factor, the book's weapon grades and
+    options, special ammunition with hand-loading, Holdout, and Signature Gear.
+- **Moving a world over.** A world that used these rules under the system's
+  own group has its data moved into this module the first time the GM loads
+  it with this release enabled: rituals, reserves and rituals in effect,
+  point pools, holy marks, charms, grimoires, gear options and loads, and the
+  switch states. The system's own switches are turned off. It runs once.
+  **Load every such world once with this release before updating the system
+  to 1.5.0**, which stops defining that data.
+- The gear records in the book's equipment pack keep their rule fields in this
+  module's data.
+- Magic and Martial Arts stay out of the release until their rules arrive.
+
 ## v0.2.0 — Monster Hunters 1
 
 GURPS Monster Hunters 1: Champions, alongside the Basic Set. The book has its
