@@ -43,6 +43,8 @@ export function useLexicon(words) {
 function keepsHyphen(stem, rest) {
   const s = stem.toLowerCase();
   const r = (/^[a-z]+/i.exec(rest)?.[0] ?? "").toLowerCase();
+  // A suffix on its own is never a word joined by a hyphen: "lung-" and "ing".
+  if (/^(?:ing|ment|ments|tion|tions|ness|ed|ly)$/.test(r)) return false;
   if (!lexicon) return HYPHENATED_PREFIXES.has(s);
   const joined = lexicon.words.get(s + r) ?? 0;
   const hyphenated = lexicon.compounds.get(`${s}-${r}`) ?? 0;
