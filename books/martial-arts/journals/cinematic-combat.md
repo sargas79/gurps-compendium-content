@@ -1,0 +1,15 @@
+Fiction usually depicts combat dramatically, as either a heroic contest or a violent ballet. Often the bias is subtle, with the storyteller extending the benefit of the doubt to barely possible feats but otherwise hewing to reality. This is typical of the gossip of real-world martial artists when they relate tales of how their style pushes the limits! At the other end of the spectrum are epics that pit the superhuman techniques and unlikely weapons of the heroes against those of the villains, with little regard for physical laws.
+
+Termed “cinematic” because it’s most familiar to us from the movies, this dramatic approach isn’t unique to the silver screen. This is the world of heroes from earliest myth and legend, battling armies, monsters, and gods; swashbucklers from romantic novels, dueling all comers to certain victory; comic-book ninja and commandos, using sheer skill to make up for small numbers; and masked wrestlers on television, taking hard hits from the top rope and still walking away from the bout.
+
+In campaigns in this vein, the GM should consider using most or all of the optional rules in this chapter that aren’t strictly unrealistic but that are possibly optimistic. These fall into two main categories:
+
+- Rules that speed up actions or make extra actions possible (or easier), such as Quick Sheathing (p. 102), Multiple Fast-Draw (p. 103), Quick-Shooting Bows (pp. 119-120), Rapid Fire with Thrown Weapons (p. 120), Rapid Strike with Thrown Weapons (pp. 120-121), Multiple Blocks (p. 123), and Parrying with Two-Handed Weapons (p. 123).
+
+- Rules that make fighters more mobile – especially if they involve acrobatics! These include Acrobatic Stand (p. 98), Feints Using Non-Combat Skills (p. 101), Acrobatic Movement (pp. 105-107), Acrobatic Attack (p. 107), Flying Attack (p. 107), and Retreat Options (pp. 123-124).
+
+None of these options is absolutely cinematic. Used conservatively, they might even be realistic. Nevertheless, a campaign that features a large proportion of these rules will feel cinematic, while one that omits most of them won’t – regardless of the GM’s intent!
+
+Some optional rules offer additional detail that doesn’t suit a fast-and-loose cinematic game, the worst offenders being Postures, Hit Locations, and Techniques (pp. 89-99), Fast-Draw from Odd Positions (pp. 103-104), A Matter of Inches (p. 110), Close Combat and Body Morphology (pp. 114-117), More Actions After a Grapple (pp. 117-119), and Fencing Parries (p. 122). Harsh Realism for Unarmed Fighters (p. 124) and Limiting Dodges (pp. 122-123) are meant for realistic characters, and would ruin the fun of cinematic warriors. Finally, Untrained Fighters (p. 113) doesn’t suit PCs (even untrained ones) in a cinematic campaign – although it’s a good option for “cannon fodder” NPCs!
+
+Below are additional rules that can help build a cinematic feel. Except for Multiple Attacks, which appears here because it refers to several superhuman advantages, most of these are strictly cinematic. Use them in a realistic campaign at your peril!

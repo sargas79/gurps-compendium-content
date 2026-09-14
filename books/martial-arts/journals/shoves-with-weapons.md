@@ -1,0 +1,3 @@
+You can use a shield or any rigid weapon with reach 1+ (not a kusari, whip, etc.) to shove a foe. Resolve this as explained for Shove (p. B372), but roll against weapon skill to hit. “Damage” is thrust crushing, at -1 per die if using a one-handed weapon or shield, plus the weapon’s highest Reach or shield’s Defense Bonus. As usual, double this to find knockback.
+
+With a long weapon, you can simultaneously shove two nearby foes; see Slams with Long Weapons (p. 112) for allowed weapons and targets. Both attacks are at -4 to hit. Roll knockback-only damage as above but apply the basic roll to each target instead of twice that amount to just one of them.

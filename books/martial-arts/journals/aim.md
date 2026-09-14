@@ -1,0 +1,3 @@
+You can take an Aim maneuver to improve your odds with Rapid Fire with Thrown Weapons (p. 120) or Rapid Strike with Thrown Weapons (pp. 120-121). You must declare which opponent you’re aiming at. Your aiming bonuses (for Accuracy, turns of Aim, etc.) only apply to attacks against that one foe, regardless of how many attacks or shots you have. For a Rapid Strike, apply the Accuracy of each weapon separately to its own attack roll.
+
+A warrior with the Heroic Archer advantage generally gets his weapon’s Accuracy bonus without an Aim maneuver – see p. 45 for details. If he chooses to Aim, he gets a further +1 for the first second of Aim, or +2 for two or more seconds of Aim.

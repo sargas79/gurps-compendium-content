@@ -1,0 +1,15 @@
+A toothy mouth lets you bite in close combat. Roll against DX or Brawling to hit. You can either nip and let go or hold on and grapple your victim in addition to injuring him. Either is an attack that takes full hit location penalties – not halved for grappling – and inflicts thrust-1 crushing damage. Brawling improves damage. The Teeth advantage (p. B91) can change damage type.
+
+Allowed hit locations for a bite and the effects of grappling with teeth depend on relative Size Modifier. These rules draw heavily on concepts explained in New Hit Locations (p. 137). Read that first!
+
+Your SM is no greater than your victim’s. You can’t bite his skull, spine, veins/arteries, or vitals. You can bite his face, neck, torso, or limbs, but you’ll merely nab a fold of flesh. This can only cripple a limb on critical hit results 7, 8, 13, or 14. You can target a tendon within a limb at an extra -3. Handle this like an attack on a joint – it can cripple. You can also target and cripple an ear, nose, or extremity (or, at another -3, the tendons inside an extremity). In all cases, a bite counts as a one-handed grapple for the purpose of strangling, breaking free, techniques, etc.
+
+On subsequent turns, you can worry. This counts as an attack but it always hits – simply roll biting damage each turn. Injury can’t exceed HP/4 to a nose, an ear, or the tendons in an extremity, or HP/3 to an extremity or the tendons in a limb. Keep rolling damage, though! Further attacks inflict full shock. Should total injury reach twice that needed to cripple a nose or an ear, you bite it off. Twice the amount to cripple a hand removes a finger (see Missing Digit, p. B144). You can’t remove an entire extremity or limb.
+
+Your SM exceeds your victim’s by +1 or +2. You can target any hit location susceptible to your bite’s damage type, and can cripple or sever limbs. Treat grapples using your teeth as two-handed for the purpose of strangling, breaking free, Neck Snap, and Wrench Limb, but as one-handed for all other purposes. Otherwise, use the rules above.
+
+Your SM exceeds your victim’s by +3 or more. Your maw can engulf his entire head or torso. This allows you to attack, worry at, and cripple any body part. If you bite and grapple the torso, you can attempt a pin on a standing foe. Success means he’s trapped helplessly in your jaws!
+
+**Born Biters:** Some creatures have elongated jaws built for biting – a zero-cost racial feature. They get +1 to +3 to effective SM only to determine how they bite. Apply the same bonus to rolls to hit their jaw or nose. A SM 0 reptile man with +3 SM for biting would bite as if he had SM +3, but enemies would target his jaw at only -3, his nose at -4. Those with any level of this feature suffer a nose hit on a roll of 1-2 on 1d when struck in the face.
+
+**Biting Techniques:** Targeted Attacks with teeth take the form “TA (Brawling Bite/Hit Location).” Neck Snap (Teeth) and Wrench Limb (Teeth) are distinct from the standard versions, and must be learned separately.

@@ -1,0 +1,1 @@
+Except as noted, these expanded rules apply during any maneuver that permits an active defense. Parry options require a ready melee weapon – or, for an unarmed parry, a hand that isn’t holding onto someone or something. Anything involving a retreat is only possible if you’re standing or lying down, and aren’t stunned.
