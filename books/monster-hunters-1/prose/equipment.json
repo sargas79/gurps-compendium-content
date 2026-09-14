@@ -1,0 +1,738 @@
+[
+  {
+    "_id": "087e5437feeca60e",
+    "name": "Lab, Belt",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Allows you to use one skill, but at -2.</p>"
+  },
+  {
+    "_id": "9b22eb40acf30ea8",
+    "name": "Tool Kit, Belt",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Allows you to use one skill, but at -2.</p>"
+  },
+  {
+    "_id": "5a674918340bde4c",
+    "name": "Lab, Box",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Basic equipment for one skill.</p>"
+  },
+  {
+    "_id": "c5ab719b345d11f9",
+    "name": "Tool Kit, Box",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Basic equipment for one skill.</p>"
+  },
+  {
+    "_id": "d14e45386330c346",
+    "name": "Lab, Field",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +1 to one skill.</p>"
+  },
+  {
+    "_id": "2af863310a8f8dbc",
+    "name": "Tool Kit, Field",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +1 to one skill.</p>"
+  },
+  {
+    "_id": "ddbdd67bd9eed182",
+    "name": "Lab, Shop",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +2 to one skill.</p>"
+  },
+  {
+    "_id": "dc888691e32e7ea0",
+    "name": "Tool Kit, Shop",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +2 to one skill.</p>"
+  },
+  {
+    "_id": "424cf6d4119ce4b6",
+    "name": "Basic Gear",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Champions may just want to write Basic Gear as a single equipment entry, as all of the items below are useful in almost any situation: bandages, a cigarette lighter, duct tape, a mini flashlight, a pocket mirror, a multi-tool, a notebook, pencil, and chalk, and a wristwatch.</p>"
+  },
+  {
+    "_id": "a93ddb5f1fce0a0f",
+    "name": "Bandages (per wound)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enough bandages and aspirin (which negates -2 in pain penalties) to treat two wounds, in a zip-top bag. Only allows bandaging, not full First Aid.</p>"
+  },
+  {
+    "_id": "c4880a1dfc50d925",
+    "name": "Cigarette Lighter",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Useful even for non-smokers.</p>"
+  },
+  {
+    "_id": "1b5a9bdb1175aa83",
+    "name": "Duct Tape, 15 yds.",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A 15-yard, pocket-sized \"flat roll.\" If used as a restraint, ST-3 or Escape roll to break free.</p>"
+  },
+  {
+    "_id": "4e87b29cfbfa8137",
+    "name": "Duct Tape, 60 yds.",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A full 60-yard roll. If used as a restraint, ST-3 or Escape roll to break free.</p>"
+  },
+  {
+    "_id": "92af7005a96400c7",
+    "name": "Mirror, Pocket",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shatter-resistant plastic.</p>"
+  },
+  {
+    "_id": "428234025f3385bb",
+    "name": "Multi-Tool",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A folding, \"Leatherman\"-style belt tool, that counts as improvised gear (-5) for most repairs and includes a small knife.</p>"
+  },
+  {
+    "_id": "c4f209d26a8b0728",
+    "name": "Notebook, Pencil, & Chalk",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For taking notes - or leaving them! Waterproof.</p>"
+  },
+  {
+    "_id": "d10b08c9e630515d",
+    "name": "Wristwatch",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Inexpensive; no features or brand name.</p>"
+  },
+  {
+    "_id": "3df8fa1b53ea6f3e",
+    "name": "Camcorder, Micro",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Runs for 1 hour.</p>"
+  },
+  {
+    "_id": "908245ca2bd5a33c",
+    "name": "Camera, Digital",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Photography. Runs for 10 hours.</p><p>If made good-quality (p. 54), weight becomes 2.5 lbs. If made fine-quality, weight becomes 10 lbs.</p>"
+  },
+  {
+    "_id": "5e90386b00ea24fe",
+    "name": "Camera, Film",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Photography.</p><p>If made good-quality (p. 54), weight becomes 2.5 lbs. If made fine-quality, weight becomes 10 lbs.</p>"
+  },
+  {
+    "_id": "02846834988eb479",
+    "name": "Film, 36 exp.",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A 36-exposure roll.</p>"
+  },
+  {
+    "_id": "ff4b34190134e5b6",
+    "name": "Film, Infared, 36 exp.",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Captures images as if with Infravision. A 36-exposure roll.</p>"
+  },
+  {
+    "_id": "90f648bf8ca27946",
+    "name": "Film, Kirlian, 36 exp.",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Captures waves of psychic energy, identifying psi use, ghosts, and more. Kirlian photography is done at -4 to skill - or no penalty if the operator takes 15 seconds to set up each shot. A 36-exposure roll.</p>"
+  },
+  {
+    "_id": "87adbcab2a4043c9",
+    "name": "Cell Phone",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Has a low-end camera, web browser, etc. - counts as improvised equipment (-5) for Photography, Research, and so on. Quality bonuses offset those penalties but don't affect communication. Runs for 6 hours.</p>"
+  },
+  {
+    "_id": "973a0e4458f6904f",
+    "name": "Flare, Pen",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A disposable launcher that shoots a signal flare up to 70 yards away. Not usable as a weapon, but can be rigged to a trip-wire (roll Traps) for perimeter security.</p>"
+  },
+  {
+    "_id": "9d114fb3abe78965",
+    "name": "Headset, Bluetooth",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Wireless and unencrypted, for cell phone or radio. Runs for 10 hours.</p>"
+  },
+  {
+    "_id": "ca7c7719b032bbae",
+    "name": "Radio, Handheld (5 mi.)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>5-mile range. Runs for 10 hours.</p>"
+  },
+  {
+    "_id": "552ca4691ab7040a",
+    "name": "Radio, Pocket (2 mi.)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>2-mile range. Runs for 10 hours.</p>"
+  },
+  {
+    "_id": "cbd12494e3e9a6ce",
+    "name": "Computer, Desktop (C3)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With monitor, speakers, webcam, etc. Complexity 3.</p>"
+  },
+  {
+    "_id": "ad32e93e1f330457",
+    "name": "Computer, Laptop (C3)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Wi-fi enabled. -1 to skill for long tasks. Complexity 3. Runs for 5 hours.</p>"
+  },
+  {
+    "_id": "3a6f4b838f1b0f88",
+    "name": "PDA, Basic (C1)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>-2 to skill for long tasks. Complexity 1, able to run one or two minor programs (\"apps\") simultaneously. Runs for 5 hours.</p>"
+  },
+  {
+    "_id": "f030dde4c89c4173",
+    "name": "PDA, Full-Featured (C2)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a basic PDA (-2 to skill for long tasks; runs for 5 hours), but Complexity 2, able to run up to 20 apps.</p>"
+  },
+  {
+    "_id": "870c735f25a8288f",
+    "name": "Backpack, Small (50 lbs.)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>Holds 50 lbs. of gear. Quick-release allows dropping it as a free action.</p>"
+  },
+  {
+    "_id": "63afeace6db03cee",
+    "name": "Balloon, Empty",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>Used to hold holy water (p. 57). A filled balloon weighs 0.5 lb.; treat it as a nondamaging grenade (p. 63) in combat. Any fall automatically pops all filled balloons you're carrying. Sold in packs of 10.</p>"
+  },
+  {
+    "_id": "bba5bfd8e5051938",
+    "name": "Balloon, Filled",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>Used to hold holy water (p. 57). A filled balloon weighs 0.5 lb.; treat it as a nondamaging grenade (p. 63) in combat. Any fall automatically pops all filled balloons you're carrying. Sold in packs of 10.</p>"
+  },
+  {
+    "_id": "e9633808add159c2",
+    "name": "Bottle, Empty",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>A half-pint glass bottle, sturdier than a balloon, but used in the same way. Weighs 0.6 lb. filled. A successful hit does thr cr, at -2 per die; at least 1 point of damage must be done for the bottle to break. Any fall has a 2-in-6 chance of breaking each bottle (empty or full) you're carrying.</p>"
+  },
+  {
+    "_id": "c579380200acf168",
+    "name": "Bottle, Filled",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>A half-pint glass bottle, sturdier than a balloon, but used in the same way. Weighs 0.6 lb. filled. A successful hit does thr cr, at -2 per die; at least 1 point of damage must be done for the bottle to break. Any fall has a 2-in-6 chance of breaking each bottle (empty or full) you're carrying.</p>"
+  },
+  {
+    "_id": "75b0711278ed851f",
+    "name": "Load-Bearing Vest (20 lbs.)",
+    "pages": "MH1:54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stuff to put other stuff in is mundane, but important. Quality bonuses add to rolls to Ready things quickly, and offset Stealth penalties for encumbrance. All weights are empty weight.</p><p>Carries 20 lbs. of small articles ergonomically, allowing everything to be retrieved with a Ready maneuver or Fast-Draw roll.</p>"
+  },
+  {
+    "_id": "5733b6449ac97263",
+    "name": "Bolt Cutters (8d(2) cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Do 8d(2) cut to padlocks, chains, etc.</p>"
+  },
+  {
+    "_id": "02f348b0265a9794",
+    "name": "Detonator, Fuse",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Light the match and run away!</p>"
+  },
+  {
+    "_id": "c82594ee4a6e22f1",
+    "name": "Detonator, Remote",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Matched transmitter-receiver pair (0.5 lb. each) with 5-mile range.</p>"
+  },
+  {
+    "_id": "b23a0132878272b6",
+    "name": "Detonator, Timed",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electronic clock allows for specific detonations.</p>"
+  },
+  {
+    "_id": "98ab89b7dfdaaf33",
+    "name": "Dynamite, Stick (9d+1 cr ex)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The prices for dynamite, plastique, and thermite assume that the champion is able to acquire them via a Contact or Patron who has legal access to explosives. If not, he'll have to get them on the black market (at 1d+1 times the price) or use Chemistry or Explosives to make them himself (half price; failure wastes the money, critical failures go boom).</p><p>Roll against Explosives (Demolition) to blow things up properly. To multiply the damage done by N, use (N × N) times as much; e.g., to do 4× the damage with dynamite, use 16 sticks. Before blowing anything up, though, be sure to read Hearing Shots (p. 61) and the note under Grenades (p. 63).</p><p>Does 9d+1 cr ex damage. Needs a detonator.</p>"
+  },
+  {
+    "_id": "c2f16460472dc381",
+    "name": "Go-Bar",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used with Forced Entry to break locks, hinges, etc.</p>"
+  },
+  {
+    "_id": "a4ea26e2e4a219e3",
+    "name": "Lockpicks",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Lockpicking skill. Weight becomes 0.5 lb. if made good-quality (p. 54) or 2 lbs. if made fine-quality.</p>"
+  },
+  {
+    "_id": "dfd8fcb4717fdbe7",
+    "name": "Plastique (5dx3 cr ex)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The prices for dynamite, plastique, and thermite assume that the champion is able to acquire them via a Contact or Patron who has legal access to explosives. If not, he'll have to get them on the black market (at 1d+1 times the price) or use Chemistry or Explosives to make them himself (half price; failure wastes the money, critical failures go boom).</p><p>Roll against Explosives (Demolition) to blow things up properly. To multiply the damage done by N, use (N × N) times as much; e.g., to do 4× the damage with dynamite, use 16 sticks. Before blowing anything up, though, be sure to read Hearing Shots (p. 61) and the note under Grenades (p. 63).</p><p>Self-adhesive block; does 5d×3 cr ex damage. -8 to detect via smell. Needs a detonator.</p>"
+  },
+  {
+    "_id": "ec2ec0983758578e",
+    "name": "Thermite (3d burn/25 sec)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The prices for dynamite, plastique, and thermite assume that the champion is able to acquire them via a Contact or Patron who has legal access to explosives. If not, he'll have to get them on the black market (at 1d+1 times the price) or use Chemistry or Explosives to make them himself (half price; failure wastes the money, critical failures go boom).</p><p>Roll against Explosives (Demolition) to blow things up properly. To multiply the damage done by N, use (N × N) times as much; e.g., to do 4× the damage with dynamite, use 16 sticks. Before blowing anything up, though, be sure to read Hearing Shots (p. 61) and the note under Grenades (p. 63).</p><p>Not an explosive, but hot enough to burn through steel. Does 3d burn per second on contact, treating all DR as semi-ablative! Ignite with a match or lighter; a package burns for 25 seconds.</p>"
+  },
+  {
+    "_id": "dc9356f29b943cd3",
+    "name": "Wire Cutters (2d(2) cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Do 2d(2) cut to cables, fences, etc.</p>"
+  },
+  {
+    "_id": "8123eb2b012ca781",
+    "name": "Bayonet, Long Arm",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Allows a long arm to stab for thr+3 impaling damage, at Reach 1, using Spear skill. A sidearm instead acts as a large knife (p. B272). Either gives -1 to Guns while fixed. Wooden stakes cost 10% as much, but allow only thrusts at -1 to impaling damage and armor divisor (0.5).</p>"
+  },
+  {
+    "_id": "7faa4bec67056767",
+    "name": "Bayonet, Long Arm (Wooden)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Allows a long arm to stab for thr+3 impaling damage, at Reach 1, using Spear skill. A sidearm instead acts as a large knife (p. B272). Either gives -1 to Guns while fixed. Wooden stakes cost 10% as much, but allow only thrusts at -1 to impaling damage and armor divisor (0.5).</p>"
+  },
+  {
+    "_id": "e3d4e0f5766d09e4",
+    "name": "Bayonet, Pistol",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Allows a long arm to stab for thr+3 impaling damage, at Reach 1, using Spear skill. A sidearm instead acts as a large knife (p. B272). Either gives -1 to Guns while fixed. Wooden stakes cost 10% as much, but allow only thrusts at -1 to impaling damage and armor divisor (0.5).</p>"
+  },
+  {
+    "_id": "0e002f327b26f05e",
+    "name": "Bayonet, Pistol (Wooden)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Allows a long arm to stab for thr+3 impaling damage, at Reach 1, using Spear skill. A sidearm instead acts as a large knife (p. B272). Either gives -1 to Guns while fixed. Wooden stakes cost 10% as much, but allow only thrusts at -1 to impaling damage and armor divisor (0.5).</p>"
+  },
+  {
+    "_id": "ade4aca290d47f35",
+    "name": "Holster",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Keeps a pistol accessible, and avoids the -2 to Fast-Draw (Pistol) penalty for drawing from your pocket, belt, etc.</p>"
+  },
+  {
+    "_id": "239b55c60d32f434",
+    "name": "Holster, Concealed",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Keeps a pistol accessible, and avoids the -2 to Fast-Draw (Pistol) penalty for drawing from your pocket, belt, etc. A concealed holster is low-profile and worn under clothing. Gives +1 to Holdout.</p>"
+  },
+  {
+    "_id": "3a4c4af6b3441cee",
+    "name": "Reflex Sight",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives +1 to Guns skill out to 300 yards and negates -3 in darkness penalties. Not cumulative with targeting laser!</p>"
+  },
+  {
+    "_id": "5f85e1957ca3780d",
+    "name": "Scope (+1)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives from +1 to +5 Acc after aiming for seconds equal to the bonus and negates -1 in darkness penalties from aimed shots, but adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "c3f61da67fb3ac0f",
+    "name": "Scope (+2)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives from +1 to +5 Acc after aiming for seconds equal to the bonus and negates -1 in darkness penalties from aimed shots, but adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "ec41ec118d1920d3",
+    "name": "Scope (+3)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives from +1 to +5 Acc after aiming for seconds equal to the bonus and negates -1 in darkness penalties from aimed shots, but adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "0b3f022eaa431a0c",
+    "name": "Scope (+4)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives from +1 to +5 Acc after aiming for seconds equal to the bonus and negates -1 in darkness penalties from aimed shots, but adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "9908fb88584ba65f",
+    "name": "Scope (+5)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives from +1 to +5 Acc after aiming for seconds equal to the bonus and negates -1 in darkness penalties from aimed shots, but adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "7d50eee5f0c367d0",
+    "name": "Silencer",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Reduces the odds of being heard (Hearing Shots, p. 61), but adds -1 Bulk to the gun. Takes three seconds to remove or detach. Not available for revolvers!</p>"
+  },
+  {
+    "_id": "6897febb971a6082",
+    "name": "Sling",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Lets you Fast-Draw your long arm, and safely drop it without losing or damaging it. You may also brace against it when you aim (p. B364), removing the need for a bipod.</p>"
+  },
+  {
+    "_id": "b54975f3ff0d11b6",
+    "name": "Tactical Light",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>When targeting a foe within 25 yards, use the current darkness penalty or -3, whichever is better. Makes you highly visible at night!</p>"
+  },
+  {
+    "_id": "3598cc5f67e93b29",
+    "name": "Targeting Laser, Integral (Sidearm/Bow)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives +1 to Guns skill versus any target within range, though any opponent who notices the dot gets +1 to dodge your attack. Not cumulative with reflex sight! Sidearm: 150-yard range.</p>"
+  },
+  {
+    "_id": "819305908ce7746d",
+    "name": "Targeting Laser, Integral (Rifle)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These make it easier to use or access your firearms (pp. 61-62). Only holsters and slings can take quality modifiers; the bonus applies to Fast-Draw rolls.</p><p>Gives +1 to Guns skill versus any target within range, though any opponent who notices the dot gets +1 to dodge your attack. Not cumulative with reflex sight! Rifle: 750-yard range.</p>"
+  },
+  {
+    "_id": "eabea78916eb78a9",
+    "name": "Tool Kit, Belt (-2 to Electronics Repair)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Allows you to use one skill, but at -2.</p><p>Double the price but halve the weight for Electronics Repair tool kits.</p>"
+  },
+  {
+    "_id": "238e9307776144b7",
+    "name": "Tool Kit, Box (for Electronics Repair)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Basic equipment for one skill.</p><p>Double the price but halve the weight for Electronics Repair tool kits.</p>"
+  },
+  {
+    "_id": "2aff55c346c445b2",
+    "name": "Tool Kit, Field (+1 to Electronics Repair)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +1 to one skill.</p><p>Double the price but halve the weight for Electronics Repair tool kits.</p>"
+  },
+  {
+    "_id": "3c78830200d94e40",
+    "name": "Tool Kit, Shop (+2 to Electronics Repair)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +2 to one skill.</p><p>Double the price but halve the weight for Electronics Repair tool kits.</p>"
+  },
+  {
+    "_id": "a92871237768ee9a",
+    "name": "Flashlight, Mini (5 yds.)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>5-yard beam. Runs for 10 hours.</p>"
+  },
+  {
+    "_id": "f5cfe0ccc2a62154",
+    "name": "Flashlight, Regular (10 yds.)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>10-yard beam. Runs for 50 hours.</p>"
+  },
+  {
+    "_id": "638d13d809603704",
+    "name": "Flashlight, Smart (5/50 yds.)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>Can switch between a 50-yard beam (runs for 2 hours) or a 5-yard beam (40 hours).</p>"
+  },
+  {
+    "_id": "13e0666ae1757fc1",
+    "name": "Glow Stick (2 yds.)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>2-yard radius. Lasts for 12 hours.</p>"
+  },
+  {
+    "_id": "6dfefa84d2b8db9d",
+    "name": "Lantern, Electric (5 yds.)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>5-yard radius. Runs for 20 hours.</p>"
+  },
+  {
+    "_id": "c98209f2902766b3",
+    "name": "UV Bulb",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the area of illumination listed for each source, the darkness penalty cannot be worse than -3. Quality bonuses affect this limit (e.g., a fine-quality flashlight would reduce the darkness penalty to -1).</p><p>Roll vs. DX-2 or any Beam Weapons-2 to hit with the beam; the target may try to dodge. If your opponent has a Weakness to sunlight, then a hit inflicts half that disadvantage's damage. Changing bulbs takes 10 seconds (five seconds with a DX roll). Fits any flashlight.</p>"
+  },
+  {
+    "_id": "4e485c2bc1d45354",
+    "name": "Body Bag",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sometimes necessary to keep a corpse secret!</p>"
+  },
+  {
+    "_id": "275f815e15fd5bf6",
+    "name": "Crash Kit",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Physician; improvised equipment (-5) for Surgery; fine equipment (+2) for First Aid.</p>"
+  },
+  {
+    "_id": "ad7ffda0c3a8b22b",
+    "name": "First Aid Kit",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for First Aid. Weight becomes 2 lbs. if made good-quality (p. 54); fine-quality is a crash kit (above).</p>"
+  },
+  {
+    "_id": "8679e3e96694d03f",
+    "name": "Surgical Kit",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Surgery (+2 for TL; see p. B424).</p>"
+  },
+  {
+    "_id": "a20e0c5b08f593e8",
+    "name": "Climbing Kit (w/100 yds. rope)",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Harness, ascender, descender, fasteners, and 100 yards of 3/8\" rope.</p>"
+  },
+  {
+    "_id": "4a59396cfa0fa31b",
+    "name": "Disguise Kit",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic equipment for Disguise. Weight becomes 50 lbs. if made good-quality (p. 54) or 250 lbs. if made fine-quality.</p>"
+  },
+  {
+    "_id": "807f42731da13b7e",
+    "name": "Grapnel",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Padded for stealth! Use Throwing to place.</p>"
+  },
+  {
+    "_id": "18ce7326227e4e28",
+    "name": "Industrial Cleanser",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Roll vs. Housekeeping to destroy DNA evidence. Enough for one body's worth.</p>"
+  },
+  {
+    "_id": "893504398235e984",
+    "name": "Library",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Allows Research rolls on the occult from the comfort of one's home. May be physical books or a virtual collection on the computer (p. 54) - either way, weight is irrelevant.</p>"
+  },
+  {
+    "_id": "903756a38b7677f5",
+    "name": "Media Player",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>If made good-quality (p. 54), can either play video files or record audio; if made fine-quality, can do both. Runs for 12 hours.</p>"
+  },
+  {
+    "_id": "602dab2f7ccae94e",
+    "name": "Reloading Press",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>For hand-loading special ammo (p. 63) with Armoury (Small Arms).</p>"
+  },
+  {
+    "_id": "85a78c73ba948dfe",
+    "name": "Rope, 3/8 in. x 10 yds.",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supports 650 lbs.</p>"
+  },
+  {
+    "_id": "99b12449ce54727b",
+    "name": "Binoculars",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Telescopic Vision 3.</p>"
+  },
+  {
+    "_id": "78ee193831195630",
+    "name": "Binoculars, Night-Vision",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Night Vision 9, Telescopic Vision 4, and Colorblindness. Run for 20 hours.</p>"
+  },
+  {
+    "_id": "8e06a4c0848f8b8d",
+    "name": "Binoculars, Thermal-Imaging",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Infravision, Telescopic Vision 2, and Colorblindness. Run for 4 hours.</p>"
+  },
+  {
+    "_id": "0c7b9dacd3050866",
+    "name": "Goggles, Night-Vision",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Night Vision 9, Colorblindness, No Depth Perception, and No Peripheral Vision. Hands-free. Run for 20 hours.</p>"
+  },
+  {
+    "_id": "c1f1a93198e32104",
+    "name": "Goggles, Thermal-Imaging",
+    "pages": "MH1:56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Infravision, Telescopic Vision 3, Colorblindness, No Depth Perception, and No Peripheral Vision. Hands-free. Run for 2 hours.</p>"
+  }
+]
