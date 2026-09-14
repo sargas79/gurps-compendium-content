@@ -1,0 +1,9 @@
+Classical Greece was home to some of the world’s oldest verifiable fighting arts. Those described in Martial Arts include Ancient Greek Boxing (p. 153), Pankration (pp. 188-189), and Wrestling (pp. 204-206). Treat Greek wrestling as Submission Wrestling (p. 205) – the styles are very similar.
+
+The most important martial arts of ancient Rome were Armatura (p. 150) and Armatura Equestris (p. 150), developed for the legions. Rome had relatively few native unarmed arts. Gladiators and dedicated legionaries tended to adopt Greek styles of barehanded fighting.
+
+An especially appropriate theme for the Classical campaign is The Contender (p. 250), with the PCs playing Olympic wrestlers, boxers, and pankrationists. Greek fighters such as Milo of Croton (p. 21) and Theogenes of Thasos (p. 21) were professionals, fighting full-time. Theogenes fought so often that he lacked the time to earn his keep any other way! Between Olympic events, athletes toured, competing for prize money in regional matches. The Olympics were the season’s peak event. Roman gladiators suit this theme equally well – pampered, massaged, fed, and trained to fight. The call of the arena seduced free men and women, even nobles, to take up the trident and net.
+
+Another excellent theme is War is Hell (p. 248). Warrior PCs might be elite members of Alexander’s Companions, Spartan hoplites, or Roman legionaries. Appropriate Greek styles are Hoplomachia (pp. 161-162) for hoplites and Heroic Spear Fighting (p. 196) for the early Greek warriors of Homeric epic. Armatura and Armatura Equestris suit Roman troops.
+
+The Quest (p. 247) is almost required for a mythic Greek game. The Gods are always sending strapping young heroes (sometimes demigods) on quests that demand much swordplay, spear combat, and wrestling. On completing their quest, the heroes usually end up in charge. This sets the stage for a mythic War is Hell game, as the heroes fight to expand – or merely to keep – their kingdom.

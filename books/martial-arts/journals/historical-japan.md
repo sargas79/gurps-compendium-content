@@ -1,0 +1,29 @@
+Japan has a rich martial-arts history. Like China, it’s often synonymous with “martial arts” in the popular mind. Two groups of historical Japanese martial artists – the samurai and the ninja – are the subject of a large proportion of martial-arts legend and fiction.
+
+### The “Samurai Era” and Tokugawa Era
+
+The samurai were central to Japanese martial arts from about 800 A.D. until abolished as a class in the 19th century. Along with low-born hopefuls, they fought in the constant conflicts that first fractured and then eventually unified Japan. They rose to prominence when the Yamato government began to rely on local nobles to provide mounted archers, and remained important until around 1600, when Japan was unified under the Tokugawa Shogunate. After that, battle became rare but the martial arts didn’t decline in popularity or social importance.
+
+This entire period is flush with martial arts. Armed styles prevail – taking on armored opponents barehanded is foolhardy if there are weapons handy! Appropriate styles include Bajutsu (p. 151), Bojutsu (p. 192), Iaijutsu (p. 174), Kenjutsu (pp. 173-175), Kusarijutsu (p. 179), Kusarigamajutsu (p. 180), Kyujutsu (pp. 179-180), Naginatajutsu (p. 186), and Sojutsu (pp. 197-198). Shurikenjutsu (pp. 195-197) also exists, and grows useful later in the period, when armor heavy enough to shrug off shuriken isn’t worn routinely. An early samurai would be an expert in the bow and regard it as the central weapon of combat. Later samurai would emphasize the sword, spear, and polearms – but the bow remains in use even after the advent of the gun. On Okinawa, the main weapon style is Kobujutsu (p. 178), although samurai from the mainland and those educated in China practice styles from abroad, too.
+
+Unarmed styles include Aikijutsu (p. 149) and Jujutsu (pp. 166-168). Sumo (pp. 198-199) is mainly a sport . . . but some sources have lords hiring sumotori as bodyguards, implying that sumo hadn’t yet lost all combat utility. Te (pp. 169-170) is the dominant barehanded style on Okinawa, but frequent contact with China makes kung fu styles another possibility.
+
+Ninja participated in the conflicts of this era. Ninja characters should be trained in Taijutsu (pp. 202-203) and some of the armed styles listed for samurai. For more on the topic, see Ninja and Ninjutsu (p. 202).
+
+The Tokugawa era marked an end to the continuous conflict. With more students and instructors surviving to pass on their skills, the period saw an explosion in the number of ryuha. Some detractors point out that this was partly because ineffective styles survived – styles that in an earlier era would have gotten their proponents killed in combat before they could pass on their art. On the other hand, Musashi Miyamoto (pp. 21-22) was active at this time and founded Niten Ichi Ryu (see Nito Ryu, pp. 174-175) . . . and the founder of Jojutsu (p. 192) created his style after an encounter with Musashi. Both styles are quite effective!
+
+What’s certain is that a game set in this age would feature all of the earlier styles plus those developed during the peaceful times that followed. Many of these arts suit any Japanese campaign set before the modern era. Some exist even today, although -do forms are more common than - jutsu forms.
+
+Most Japanese movies and manga depicting these periods boast cinematic abilities and extreme bloodshed. A campaign inspired by this fiction would be an excellent hybrid (see Hybrid Campaigns, pp. 239-241). It might adopt such realistic rules as Harsh Realism for Unarmed Fighters (p. 124) and Realistic Injury (pp. 136-139) (Extreme Dismemberment in particular!), but depict reality as described for Borderline Realism (pp. 237-238) or even Epic (p. 239) games. Especially appropriate themes are The Quest (p. 247) and War is Hell (p. 248).
+
+Running historically accurate Japanese characters can be challenging for non-Japanese. However, such anime as Samurai Champloo simply transplant modern attitudes into the era to facilitate the story. The GM might wish to do the same.
+
+### Modern Japan
+
+After World War II, the American occupiers initially banned most martial arts. The ban didn’t hold up for long, though. American servicemen often trained enthusiastically, and many went on to found dojos upon returning to the U.S. The most famous modern art was probably Karate (pp. 169-172), introduced into Japan prior to WWII by Okinawan instructors.
+
+Today, Karate (especially Shotokan and Kyokushin), Aikido (p. 149), and Taijutsu (pp. 202-203) are all popular. In addition, -do forms of most historical combat arts still exist and some schools keep ancient traditions alive. Yabusame (p. 181) practitioners demonstrate their art on holidays. Japanese participation in Sumo (pp. 198-199) is declining but the sport is still wildly popular – and a steady influx of foreign-born wrestlers competing at the top levels keeps interest high. Such sports as Judo (p. 166), Kendo (p. 175), and Kyudo (p. 181) are common activities for Japanese teenagers, although people of all ages participate.
+
+In late 20th- and early 21st-century Japan, mixed martial arts (p. 189) are becoming more popular. There are a number of competing “brands” or leagues, and fighters often compete in several of these. MMA and kickboxing matches are major television events, and participants endorse products and make TV appearances quite unrelated to fighting!
+
+A modern Japanese campaign might have any realism level and any theme. Recent Japanese fiction runs the gamut from Gritty Realism (p. 237) to Over-the-Top (p. 239). Modern Japan is relatively safe, though, making the “Street” lens (p. 145) on styles inappropriate and the courses represented by “Self-Defense” (p. 145) vanishingly rare. Even the riot police train in formal, traditional styles.

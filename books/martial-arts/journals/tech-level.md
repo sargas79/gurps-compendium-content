@@ -1,0 +1,9 @@
+Tech level (see pp. B511-514) is a crucial parameter in any setting but particularly important in a Martial Arts campaign. Technology – guns in particular – can diminish the importance of martial-arts skills or render them completely irrelevant!
+
+At TL0-3, portable firearms are nonexistent – or so weak as to be no more threatening than muscle-powered weapons. Melee weapons and low-tech missile weapons decide battles, making martial-arts skills vital for warriors. Cinematic abilities can make their wielders supreme! Metallic armor, especially in TL3, makes unarmed combat difficult . . . but armed styles take into account both wearing and defeating such armor.
+
+At TL4, guns begin to dominate the battlefield. Martial artists become less relevant; warfare is about massed firepower more than individual skills. Armor remains heavy but grows less common as firearms advance, and is rare off the battlefield. Martial-arts skills remain important when the powder runs out, for missions where guns aren’t ideal (taking prisoners, stealthy operations, etc.), and in civilian affrays.
+
+At TL5-8, increasingly efficient repeating firearms appear. Armor is rare, so unarmed fighters and melee weapons can in theory be effective . . . but guns are many times as lethal. To be relevant, martial artists need to pour far more points into their skills than do their gun-armed friends and foes. By TL6, even potent cinematic abilities are less useful than an automatic weapon and a point or two in Guns.
+
+At TL9+, realistic ultra-tech renders martial arts little more than a specialized niche. The trend might reverse in a space-opera universe, though. For instance, fighters might wear personal force screens that can stop bullets and beams from small arms, but which have little effect on relatively slow melee attacks. Or they might wield force swords and be able to parry incoming fire with impunity!

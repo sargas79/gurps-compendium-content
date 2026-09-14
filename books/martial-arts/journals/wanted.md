@@ -1,0 +1,7 @@
+A powerful enemy such as a rival school, the mob, or a ninja clan hunts the PCs. Or perhaps the authorities seek them, in which case they could be heroic rebels, vigilantes who went too far, or loyal spies who happen to work for the wrong side. Of course, they might simply be common criminals – assassins, thieves, etc.
+
+The protagonists must either keep moving or operate out of a hideout that their enemies can’t easily locate or penetrate. Regardless, they can’t let down their guard because their hunters could be anywhere . . . or have gotten to anyone. To give them more to do than flee or hide, the GM should consider adding elements of The Quest (p. 247). Perhaps the fugitives seek the piece of information that can prove their innocence, the secret style that will let them turn the tables on their opponents, or the one person who can help them escape to freedom.
+
+The GM can run any Martial Arts game with a small group or a single player, but this theme works especially well under such circumstances. A small group is less prone to squabbles that risk compromising everyone. A single PC, however powerful, will often need to deal with NPCs to get by – exposing himself to adventure and possible betrayal.
+
+The Lone Wolf and Cub series is about a ronin-turned-assassin hunted by a powerful, government-connected ninja clan. It’s also a quest, because the hero seeks revenge – on a huge scale. Robin Hood and his Merry Men (a showcase for Heroic Archer, p. 45, and Quarterstaff, pp. 192-193) constitute another excellent example.
