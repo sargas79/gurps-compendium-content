@@ -1,0 +1,3 @@
+A style often carries a body of legend . . . tales of feats that true masters can perform. These are its cinematic skills, and represent a heroic exaggeration of its teachings. Not every style includes cinematic skills. Modern “scientific” styles developed for military, police, or sporting purposes are too young to have much of a mythology – and their no-nonsense instructors tend to shoot down improbable claims.
+
+A martial artist must spend at least a point on each of his style’s mundane skills and buy its Style Familiarity (p. 49) before he can learn his style’s cinematic skills. Thus, in a Martial Arts game, the prerequisites of these skills are the usual ones (see Cinematic Abilities and Prerequisites, see left) plus the basic components of an appropriate style.

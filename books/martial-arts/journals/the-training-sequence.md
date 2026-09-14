@@ -1,0 +1,19 @@
+In a realistic game, learning a new style involves studying with a teacher (see Learning New Styles During Play, pp. 146-147). Training is a common theme in cinematic stories, too, but traditionally occurs far faster than Improvement Through Study (p. B292) allows – never mind the glacial pace of Learning Secret Martial-Arts Techniques (p. B293). Cinematic heroes learn entire styles in mere days or weeks! Movies help suspend disbelief by inserting a “training sequence.” This is a series of brief scenes – a montage – depicting the hero’s steady improvement and suggesting a lot of time and effort. It always ends in time for the hero to win the big tournament or defeat the bad guys (whose plans were conveniently on hold).
+
+This optional rule describes such a training sequence in game terms. It’s for cinematic games where the PCs lack the downtime for realistic training – and for any gaming group that regards Time Use Sheets (p. B499) as boring accounting. It isn’t just for martial arts. The GM may use a training sequence whenever the PCs have a few days to learn from a great master: musical skills from Apollo, spells from an archmage, and so on.
+
+There are two criteria for a training sequence:
+
+1. A legendary master. The teacher must be a true master of his art. He must have level 20+ with the skills being taught and level 12+ with the Teaching skill. Moreover, he must possess a special advantage that represents his “spark.” For martial arts, this is Trained by a Master or Weapon Master. It might be Magery 3+ for magic, the Spirit meta-trait for shamanic rituals, and so on. Details are up to the GM, who should choose requirements that suit his campaign.
+
+2. An exceptional student. A new martial artist must have no attribute below racial average (10 for a human), and at least two that are two or more levels above this (12+ for a human). The GM may allow Reawakened or a suitable Destiny to substitute; he might even require such a trait. A skilled martial artist adding a new style must know all the skills of another style at level 16+. If he’s trying to add cinematic skills or techniques, he also needs Trained by a Master or Weapon Master. Vary this as needed; for instance, a wizard might need IQ four levels above average and related spells (or the Thaumatology skill) at 16+.
+
+If both conditions are met, choose a training time and roll against the master’s Teaching skill.
+
+**Modifiers:** The Teaching modifiers on p. B224; the bonuses under Equipment Modifiers (p. B345) for lavish training facilities, but never a penalty for poor (or no) equipment; the modifiers under Time Spent (p. B346) for training periods shorter or longer than a full week (-9 for a day, -7 for a weekend, +2 for a month, or +4 for a season).
+
+Success doesn’t give the students points but enables them to spend earned points on any perks, skills, or techniques the master teaches, to a maximum of points equal to the margin of success. Students with Eidetic Memory add five points to this limit; those with Photographic Memory add 10. Those who have the Laziness disadvantage halve the final limit. Critical success means each student also gains a free point, which he must spend on the abilities his master taught.
+
+Failure means the students learn nothing. On a critical failure, they also suffer training injuries. When the training sequence ends, apply the instructor’s most damaging attack to a random hit location for each student, as if he had struck them!
+
+This rule works best when the heroes have the chance to earn points during game sessions building up to an important tournament or showdown, or on a quest for a legendary master. Just before the adventure’s finale, the GM cuts to the training sequence, describes the lessons and exercises, rolls the dice, and lets the players spend points. Then regular game time resumes and the heroes can use their new abilities to compete, confront their enemy, or pass their “final exam.”

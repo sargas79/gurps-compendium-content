@@ -1,0 +1,11 @@
+Each style lists the techniques that students can improve via study at any orthodox school of that art – or even without instruction, if they earn enough points during an adventure – once they’ve bought Style Familiarity and spent a point on each of the style’s skills. Anyone may attempt any technique that defaults to any of his skills. If it doesn’t appear as part of a style he knows, though, raising it above default requires outside instruction.
+
+The GM may ease this restriction, but enforcing it has its benefits. For one thing, it gives combat a roleplaying dimension, with each fighter having his own “repertoire” of moves. It also makes it easier for players to remember the techniques available to them, as it’s simpler to learn the game effects of a handful of techniques than those of every possible technique – especially for players who lack personal martial-arts experience and have trouble visualizing what’s going on.
+
+A martial artist doesn’t have to spend points on any of his style’s techniques. They’re always optional. In game terms, raising one or two techniques per skill above default – possibly to their maximum – is a good investment. It’s an inexpensive way to enjoy a higher effective combat skill in some specialized situations. This is realistic. Martial artists who have learned a style’s basics (its skills) do tend to specialize in a few favorite moves.
+
+However, a martial artist who wishes to improve more than a couple of techniques for a skill is better off raising the skill. He’ll need a lot of time and points to improve his skill to the point where his default with a technique equals a specialist’s level . . . but when he’s done, he’ll be a formidable foe. This, too, is realistic. In the long term, a well-rounded fighter will be more successful, because he’ll have more tools in his toolbox.
+
+### Cinematic Techniques
+
+A style’s cinematic techniques are the least-realistic techniques commonly attributed to it. They’re separated from regular techniques only because they’re more appropriate for cinematic campaigns than for realistic ones. To improve them, a martial artist must have Trained by a Master or Weapon Master, Style Familiarity, and at least a point in each of the style’s mundane skills. Any martial artist can attempt his style’s cinematic techniques at default, however.

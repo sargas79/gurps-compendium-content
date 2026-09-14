@@ -1,0 +1,5 @@
+In game terms, the tactics and methods of a style are a collection of skills, techniques, and perks. Some of these components represent the style’s most basic principles, taught to all students. A martial artist must buy all such required elements to qualify for lessons that teach the style’s more advanced moves, which aren’t mandatory.
+
+The next few sections explain how a martial artist must spend points acquired though training at his style (for details on point costs and learning times, see Buying a Style, pp. 146-148). This means his starting points plus points earned by studying at his school, unless the GM rules otherwise. He can spend points awarded during adventures however he wishes, within the limits set by Adding and Improving Skills and Techniques (p. B292). He can even learn his style’s advanced elements by studying another style that treats them as basic . . . although his master might disapprove!
+
+Not all styles have every component discussed below. Some consist of core skills without techniques. Others offer no perks. Many lack cinematic abilities. If a style omits any of these items, it’s intentional.

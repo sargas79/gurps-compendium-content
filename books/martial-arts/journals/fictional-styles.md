@@ -1,0 +1,1 @@
+Fiction is full of imaginary martial arts. Some of these are similar to historical ones, even inspired by them. Others are radically different. In particular, if a world has magic, nonhuman races, or different physical laws, its fighting styles will reflect this. Below are a few examples. For additional notes, see Designing Techniques for Nonhumans (p. 95).

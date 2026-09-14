@@ -1,0 +1,5 @@
+Buying a style is a simple matter of purchasing its individual elements at their usual point costs, subject to the rules under Components of a Style (pp. 141-143). Since a style’s basic components are typically taught together, and are prerequisites for its advanced abilities, it’s useful to know their minimum cost. This is the “style cost,” which appears at the start of each style entry.
+
+Style cost is a point for Style Familiarity plus an additional point per basic, mundane skill. It always equals the number of skills in the style, plus one. Cinematic and optional skills only increase style cost if the GM deems them “required training” in his campaign. No other traits ever influence style cost.
+
+For game purposes, a martial artist doesn’t “know” a style until he buys all of its basic components by spending points equal to style cost. He can always spend more; style cost is the minimum investment to unlock the style’s advanced abilities. The next few sections discuss different ways of making this investment.
