@@ -1,5 +1,221 @@
 [
   {
+    "_id": "e8200594e4bae651",
+    "name": "Assassin",
+    "pages": "MA31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a silent killer. You might be a ninja, a government agent, a hired hit man, or a dangerous nutcase with an agenda. Whatever your motivations, you've chosen the martial arts as your tool. Unarmed combat is valuable for taking out targets that would never let a weapon get near, while \"traditional\" weapons - bows, knives, etc. - are quieter and less random than firearms or explosives. The trick is to get close enough . . . and you're an expert at that.</p><h3>Customization Notes</h3><p><em>Styles:</em> Ninja should know Taijutsu (pp. 202-203) and at least one of Kenjutsu (pp. 173-175), Kusarijutsu (p. 179), Kyujutsu (pp. 179-180), or Shurikenjutsu (pp. 195-197); those in B-movies often practice Kobujutsu (p. 178). Dagger Fighting (p. 155) or Shortsword Fighting (p. 195) would serve realistic assassins well in any pre-modern setting. Modern government agents are typically taught a form of Military Hand-to-Hand (pp. 182-185). Cinematic killers occasionally eschew weapons for aggressive styles, such as Bando (pp. 151-152) and Muay Thai (pp. 185-186), or those with lethal pressure-point attacks, like Chin Na (p. 154), Hwa Rang Do (pp. 163-164), and Kalaripayit (pp. 168-169).</p><p><em>Style Lenses:</em> Traditional ninja need no lens. \"Military\" makes sense for a modern government agent, while \"Street\" suits a mob hit man or suspense-movie nutcase.</p>"
+  },
+  {
+    "_id": "4c6170668ed9a843",
+    "name": "Contender",
+    "pages": "MA32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a full-time competitor at a combat sport such as boxing, fencing, or sumo. You might be a medal-seeking Olympian, a professional jock, or a tough guy on the no-holds-barred circuit. Stereotypes needn't apply to you: not every Olympian is \"clean,\" jocks aren't universally stupid and greedy, and tough guys don't have to be bloodthirsty. One thing almost certainly is true, though - you're either fighting or training most of the time.</p><h3>Customization Notes</h3><p><em>Styles:</em> Styles for historical contenders include Boxing (pp. 152-153), Greco-Roman Wrestling (p. 205), Pankration (pp. 188-189), and Sumo (pp. 198-199). The most common sportive styles today are Judo (p. 166), Karate (pp. 169-172), Kendo (p. 172), Professional Wrestling (p. 206), Sport Fencing (p. 160), and Tae Kwon Do (p. 200). Among those who compete in mixed martial arts and no-holds-barred events, Bando (pp. 151-152), Brazilian Jiu-jitsu (pp. 167-168), Muay Thai (pp. 185-186), Sambo (p. 185), and Submission Wrestling (p. 205) are popular.</p><p><em>Style Lenses:</em> This template is a style lens - albeit a complex one - but a contender who competes in tournaments hosted by the armed services might have \"Military,\" while one who fights in illegal events could justify \"Street.\"</p>"
+  },
+  {
+    "_id": "f41b81a53aea00e8",
+    "name": "Crimefighter",
+    "pages": "MA32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You use martial-arts skills to uphold justice or keep the peace. You might be a watchman in a time or place where skilled fighters are common (e.g., feudal Japan), a modern cop who prefers to subdue crooks without the lethal finality of a bullet, or a vigilante who goes unarmed because weapons aren't available or would attract unwelcome attention. An interesting - if unlikely - alternative is the detective charged with solving martial arts-related crimes.</p><h3>Customization Notes</h3><p><em>Styles:</em> Taihojutsu (p. 201) merits special mention because it was invented for law enforcers. Most grappling styles - including Aikijutsu (p. 149), Judo (p. 166), Jujutsu (pp. 166-168), and Wrestling (pp. 204-206) - are well-suited to subduing crooks. Being able to hit hard is also useful. Fictional 19th-century detectives might use Bartitsu (p. 167) or Savate (pp. 193-194); pulp heroes and practical cops prefer Boxing (pp. 152-153); modern vigilantes go for styles with \"street cred,\" such as Capoeira (pp. 153-154), Jeet Kune Do (p. 164-165), and Kajukenbo (p. 168); and everyone is familiar with the Shurikenjutsu (pp. 195-197) skills of a famous crime-fighting \"dark knight.\"</p><p><em>Style Lenses:</em> \"Police\" is probable for an actual law officer. A vigilante might have \"Self-Defense\" or \"Street,\" depending on how aggressive his methods are.</p>"
+  },
+  {
+    "_id": "c37b80f9aaf1af0b",
+    "name": "Duelist",
+    "pages": "MA34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've studied the fighting arts, typically a knightly or sword style, in order to win duels for profit. You champion moneyed folk who wish to settle affairs of honor with blood - just not theirs. You're adept at remaining cool enough to strike not necessarily first but best. Dueling attracts hotheads, may be illegal, and often leaves corpses behind, so you must stay on the road to avoid those who would seek glory, vengeance, or justice at your expense.</p><h3>Customization Notes</h3><p><em>Styles:</em> Sword styles dominate the profession. These include Fencing (pp. 156-159), Kenjutsu (pp. 173-175), Longsword Fighting (pp. 180-182), Shortsword Fighting (p. 195), Sword-and-Buckler Play (p. 199), and Sword-and-Shield Fighting (pp. 199-200). Historical duelists might instead know Glaive Fighting (p. 187), Pollaxe Fighting (p. 191), or Quarterstaff (pp. 192-193). A duelist might supplement any of these styles with Combat Wrestling (pp. 204-205) and/or Dagger Fighting (p. 155). An alternative for the well-rounded 15th- through 17th-century European duelist is the very complete Masters of Defence Weapon Training (p. 182).</p><p><em>Style Lenses:</em> Usually none, because the unmodified forms of most styles suitable for duelists are meant for dueling. \"Trained by a Fraud\" is conceivable for a wannabe duelist taught by an unscrupulous master, though.</p>"
+  },
+  {
+    "_id": "bc1fa30f12662d8d",
+    "name": "Instructor",
+    "pages": "MA34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a martial-arts master with your own dojo, salle, gym, etc. While you're an accomplished fighter, your real expertise lies in inspiring students to train and in figuring out where they most need to improve. How you do this is up to you. You might favor newfangled \"scientific\" methods (e.g., geometric patterns on the floor or gleaming machines) or old-fashioned ones. You might patiently tutor your charges or beat them until they get it right . . .</p><h3>Customization Notes</h3><p><em>Styles:</em> Every style has masters, but teachers of certain styles are more likely to elicit strong reactions - usually respect, fear, or disapproval - from their community. Hoplomachia (pp. 161-162), Kalaripayit (pp. 168-169), and Pentjak Silat (pp. 189-191) all have this reputation. Historically, Masters of Defence (p. 17) were outspoken and influential, and often enjoyed noble patronage . . . or censure. In modern times, the menacing drill sergeant who teaches Military Hand-to-Hand (pp. 182-185) is among the strongest of instructor archetypes.</p><p><em>Style Lenses:</em> An instructor normally practices an unmodified style - even if what he teaches has the \"Military,\" \"Police,\" or \"Self-Defense\" lens - but he could have one of these lenses himself. \"Trained by a Fraud\" is unlikely, but some masters are frauds; see Frauds.</p><h3>Frauds</h3><p>Instructor (p. 34-35) depicts a talented martial artist who genuinely teaches a fighting style - whatever his personal flaws. The world is full of frauds, though. Some have little skill but pretend otherwise because they're dishonest or crazy. Others are skilled masters who don't teach anything useful out of laziness, concern that student injuries might ruin their reputation, fear that their teachings might be turned to evil or against them, and so on.</p><p>In a lighthearted game with little mortal combat, it can be fun to play a phony. In any Martial Arts campaign, the GM might wish to keep players on their toes by making some instructors charlatans. To create a convincing fraud, consider the traits listed below. The students of such a pretender must buy their style with the \"Trained by a Fraud\" lens (p. 145). For rules on bogus martial arts in action, see Faking It (p. 130).</p><p><em>Advantages:</em> Charisma, Reputation, Smooth Operator, and Voice can all help lure students. Alternate Identity is an excellent way to avoid getting caught! Don't overlook the Honest Face perk.</p><p><em>Disadvantages:</em> Greed is the motivation of most frauds. Laziness often accompanies it in the case of those with real skill. Compulsive Lying, Delusions, and Overconfidence are all common. Even true masters might harbor Delusions about their skills - or simple Paranoia. Being a fake can be a risky Secret.</p><p><em>Skills:</em> Acting, Fast-Talk, and Performance are crucial. Complete shams might add Stage Combat. Those trying to pass off watered-down styles as valuable in combat have Combat Art/Sport skills. Dishonest masters may truly possess the skills they purport to teach, even if they don't share these with their students. In all cases, Intimidation is a great way to discourage prying questions.</p><p><em>Techniques:</em> Total cons don't know any techniques! Those with combat skills, or at least Art/Sport versions, know their style's usual techniques.</p><p>Dishonest masters may know useless techniques (p. 95). Deluded ones likely have secret techniques (p. 86) . . . which might still be useless.</p>"
+  },
+  {
+    "_id": "a3a36d43cabb4011",
+    "name": "Monk",
+    "pages": "MA36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've isolated yourself from society in order to contemplate existence and purify your soul. You practice martial arts not to defeat foes (although you can fight if you must) but to focus your mind. You might practice your art in a monastery or alone, as a hermit. You don't actively seek adventure - but it might find you during a pilgrimage or a quest, or when disrespectful outsiders challenge the peace of your monastery or hermitage.</p><h3>Customization Notes</h3><p><em>Styles:</em> The most famous monastic style by far is Shaolin Kung Fu (p. 194). Other traditional kung fu styles for Chinese monks include Chin Na (p. 154), Hung Gar (p. 163), Pak Hok (p. 188), and Praying Mantis (pp. 191-192). A Japanese monk might know Bojutsu (p. 192) or Naginatajutsu (p. 186). A European monk could know Quarterstaff (pp. 192-193) - and a former Crusader might be adept at Knightly Mounted Combat (pp. 175-177) or Sword-and-Shield Fighting (pp. 199-200). The best surviving manual on Sword-and-Buckler Play (p. 199) was written by and for Christian monks.</p><p><em>Style Lenses:</em> A monk normally trains in an unmodified style.</p>"
+  },
+  {
+    "_id": "b4ef02052d61b79c",
+    "name": "Movie Star",
+    "pages": "MA36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're an actor, often a contender gone soft, who specializes in martial-arts roles. You might work on swashbuckling films featuring musketeers and pirates, or chambara and wuxia flicks about samurai and kung fu masters - or just bad action movies. Most of your moves are faked and choreographed, but you train at the martial arts to improve your odds of getting a plum role. A lot of your fans think you're the real deal. On a good day, so do you!</p><h3>Customization Notes</h3><p><em>Styles:</em> Unarmed styles with a strong body of kicks are popular on the big screen. These include Hapkido (p. 161), Kyokushin (pp. 171-172), Muay Thai (pp. 185-186), Tae Kwon Do (p. 200), and Wushu (pp. 206-207). Other styles made famous by movie stars are Aikido (p. 149), Jeet Kune Do (pp. 164-165), Professional Wrestling (p. 206), and Wing Chun (pp. 203-204). Actors often use training in modern art and sport forms to simulate Shaolin Kung Fu (p. 194) and Taijutsu (pp. 202-203) - but in a cinematic game, their skills might be real. Weapons show up in film, too, led by the whippy swords of Sport Fencing (p. 160), the trademark nunchaku and sais of Kobujutsu (p. 178), and the \"ninja stars\" of Shurikenjutsu (pp. 195-197).</p><p><em>Style Lenses:</em> The watered-down styles that result from \"Self-Defense\" and \"Trained by a Fraud\" are suitable for a phony. An ex-contender would know the unmodified style.</p>"
+  },
+  {
+    "_id": "bae70d8bd62d2e07",
+    "name": "Spy",
+    "pages": "MA38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You spy for an intelligence, military, or security service. You aren't an analyst or a diplomat, though - you're a more \"hands-on\" kind of spy. Your specialties are physical infiltration, gathering information, and getting out in one piece. You employ martial arts because they're hard to trace, silent, and the ultimate concealed weapon. These features make them handy for taking out inconvenient sentries and making informants talk.</p><h3>Customization Notes</h3><p><em>Styles:</em> Historical ninja were spies, and used Taijutsu (pp. 202-203) when undercover and unarmed. Today, guns relegate martial arts to the court of last resort, for use when the spy is disarmed and has nothing to lose. Various forms of Military Hand-to-Hand (pp. 182-185) are most common, but such training is easily traced. To avoid this, some officers learn popular \"civilian\" styles: Boxing (pp. 152-153), Jujutsu (pp. 166-168), Karate (pp. 169-172), Wrestling (pp. 204-205), etc. Any style works in a cinematic game, but Western super-spies from the 1960s generally know Judo (p. 166) and Karate, while Russian and Chinese secret agents seem to prefer Sambo (p. 185) and Wushu (pp. 206-207), respectively.</p><p><em>Style Lenses:</em> For a ninja, none. For a modern spy, the \"Military\" or \"Police\" lens, depending on the agency. A good spy avoids fights and could get by with \"Self-Defense.\" A wartime spy can't always circumvent violence and might end up with a skill set that looks a lot like the \"Street\" lens.</p>"
+  },
+  {
+    "_id": "91878b2ccfcc1f24",
+    "name": "Student",
+    "pages": "MA38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a martial-arts neophyte - but a talented, driven one. You make up in youthful energy what you lack in experience. In time, you could become a model example of any of the archetypes portrayed by the other templates. For now, you train, making whatever sacrifices this requires of you. You might spend all of your spare time at the gym - or, if you're a traditional student, live with your master and work as his servant.</p><h3>Customization Notes</h3><p><em>Styles:</em> It's possible to be a student of any style. If an ordinary man on the street has martial-arts training in a modern-day game, he'll most likely know Greco-Roman Wrestling (p. 205), Judo (p. 166), Karate (pp. 169-172), Kendo (p. 175), Tae Kwon Do (p. 200), T'ai Chi (the meditative version on p. 201, not T'ai Chi Chuan), Wing Chun (pp. 203-204), or Wushu (pp. 206-207), depending on his culture. Aikido (p. 149) and Hapkido (p. 161) are growing in popularity in the West, as are such actively promoted arts as Hwa Rang Do (pp. 163-164) and Kempo (pp. 172-173).</p><p><em>Style Lenses:</em> See the lenses suggested for the kind of martial artist that the student aspires to become. Lessons at the typical modern-day gym lead to \"Self-Defense.\" \"Trained by a Fraud\" is unfortunately common.</p>"
+  },
+  {
+    "_id": "9d657a9e9eb7d2c4",
+    "name": "Stuntman",
+    "pages": "MA40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You stand in for movie stars (although probably not the skilled ones described under Movie Star, pp. 36-38) and play nameless bad guys in martial-arts movies. A stuntman might work as an aerialist, cowboy, driver, marksman, and many other things, all in the same feature. You're good at some of these things, but you're great at fighting. Most of your martial-arts skills are slanted toward what looks good, but the real thing looks best, and you know enough about it to be convincing.</p><h3>Customization Notes</h3><p><em>Styles:</em> Stuntmen are often former athletes who competed at Boxing (pp. 152-153), Judo (p. 166), Karate (pp. 169-172), or Tae Kwon Do (p. 200). Many tough guys come from the world of Greco-Roman Wrestling (p. 205), Professional Wrestling (p. 206), or Sumo (pp. 198-199), or are ex-soldiers with a Military Hand-to-Hand (pp. 182-185) background. Most of the notes under Movie Star (pp. 36-38) are also applicable.</p><p><em>Style Lenses:</em> Cops or soldiers who've moved into showbiz should have \"Military\" or \"Police,\" as appropriate. \"Street\" suits many tough guys; quite a few real-life stuntmen are the genuine article.</p>"
+  },
+  {
+    "_id": "6d3ada172b4192de",
+    "name": "Warrior",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a full-time man-at-arms. You might be a knight, mercenary, or volunteer - or perhaps you're a conscript, draftee, or levy who never got sent home. Whatever your situation, you're in it for the long haul and you've gravitated to the martial arts as a set of tools that can help you survive on (and off) the battlefield. Unlike most martial artists, you have a good excuse to be skilled with heavy, military weapons.</p><h3>Customization Notes</h3><p><em>Styles:</em> An historical warrior could have any style known in his time and place. Armed styles meant for battlefield use - Armatura (p. 150), Hoplomachia (pp. 161-162), Kenjutsu (pp. 173-175), Kyujutsu (p. 179-180), Naginatajutsu (p. 186), Sojutsu (pp. 197-198), Spear Fighting (pp. 196-197), Sword-and-Shield Fighting (pp. 199-200), etc. - make the most sense. For a mounted warrior, add Bajutsu (p. 151), Furusiyya (pp. 159-161), and Knightly Mounted Combat (p. 175-177) to this list. A smart soldier will supplement his training with an unarmed style - perhaps Aikijutsu (p. 149) or Combat Wrestling (pp. 204-205). Modern troops learn Military Hand-to-Hand (pp. 182-185).</p><p><em>Style Lenses:</em> A genuine battlefield style requires no lens. Other styles should have \"Military\" if taught formally, \"Street\" if picked up in pubs and ports.</p>"
+  },
+  {
+    "_id": "007539a88bbecb2e",
+    "name": "Cinematic Assassin",
+    "pages": "MA31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Invisibility Art, Light Walk, and Lizard Climb are useful for stalking victims.</p>"
+  },
+  {
+    "_id": "a84f6d2084d92718",
+    "name": "Cinematic Contender",
+    "pages": "MA32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Power Blow is excellent for \"finishing moves.\"</p>"
+  },
+  {
+    "_id": "5b2455f11c54db69",
+    "name": "Tough Guy",
+    "pages": "MA32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're a hulking brute! You have no \"mystical\" abilities, but your gifts are just as cinematic.</p><p><em>Movie Star:</em> You're a beast of a man, typecast as the guy who shrugs off baseball bats and fires machine guns one-handed. You're as unbelievable as any flashy wuxia star - but it's all grit, not mystical mumbo-jumbo.</p><p><em>Stuntman:</em> Like the cinematic stuntman, you perform \"impossible\" stunts. The difference is that instead of being impossibly agile, you're tough enough to take those falls for real!</p><p><em>Warrior:</em> You're the soldier from the movies, shrugging off arrows or bullets as you wade into the enemy with a massive two-handed weapon . . . or a hefty machine gun.</p>"
+  },
+  {
+    "_id": "7ead2c7af4e6e0d7",
+    "name": "Cinematic Crimefighter",
+    "pages": "MA34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Hypnotic Hands, Kiai, and Pressure Points are handy for taking prisoners.</p>"
+  },
+  {
+    "_id": "39f5acedaff910ee",
+    "name": "Cinematic Duelist",
+    "pages": "MA34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Flying Leap is extremely useful for surprising adversaries and getting the first strike.</p>"
+  },
+  {
+    "_id": "2ce45f2040f7af57",
+    "name": "Cinematic Instructor",
+    "pages": "MA35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 40 points in your style's cinematic skills (and prerequisites) - preferably all of them.</p>"
+  },
+  {
+    "_id": "5a0f2f6737757f78",
+    "name": "Cinematic Monk",
+    "pages": "MA36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Body Control, Mental Strength, and Zen Archery all suit a meditative monk.</p>"
+  },
+  {
+    "_id": "adb5744b4a12bb67",
+    "name": "Cinematic Movie Star",
+    "pages": "MA37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Flying Leap, Light Walk, and Lizard Climb suit wuxia stars who do their stunts for real.</p>"
+  },
+  {
+    "_id": "cef03c58711ea373",
+    "name": "Cinematic Spy",
+    "pages": "MA38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); Invisibility Art and Light Walk work wonders.</p>"
+  },
+  {
+    "_id": "2e31a2de6e170dd0",
+    "name": "Cinematic Student",
+    "pages": "MA40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 15 points in your style's cinematic skills (and prerequisites); students often drill at Breaking Blow and Sensitivity.</p>"
+  },
+  {
+    "_id": "d24e0f1294a36efc",
+    "name": "Cinematic Stuntman",
+    "pages": "MA40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites); the GM may let you use Breaking Blow when slamming bodily into doors and windows.</p>"
+  },
+  {
+    "_id": "87aca41d2370d930",
+    "name": "Cinematic Warrior",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must take either Trained by a Master or Weapon Master!</p><p>Add 20 points in your style's cinematic skills (and prerequisites).</p>"
+  },
+  {
+    "_id": "d40ac80f6c9c778d",
+    "name": "Hand-to-Hand Combat Instructor",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Add the NCO template to get a drill sergeant.</p>"
+  },
+  {
+    "_id": "2fbe8027a081ac68",
+    "name": "Knight or Samurai",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Status includes +1 from Wealth. Riding is mandatory.</p>"
+  },
+  {
+    "_id": "0f6b5942393bd896",
+    "name": "NCO",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Maximum Military Rank is 4.</p>"
+  },
+  {
+    "_id": "20539e7b2f3525fa",
+    "name": "Officer",
+    "pages": "MA41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a veteran, not a green lieutenant!</p>"
+  },
+  {
     "_id": "e526cb464611423c",
     "name": "Death Fist",
     "pages": "MA207",
