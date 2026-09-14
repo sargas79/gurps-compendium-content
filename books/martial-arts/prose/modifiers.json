@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "a647557a4a7de4e0",
+    "name": "Single Skill",
+    "pages": "MA44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your Extra Attacks apply only to a particular combat skill. For instance, Extra Attack 2 (Single Skill, Karate) lets you attack three times - but at least two of the attacks must be with the Karate skill. To attack more than once using a weapon skill, you need either one weapon per attack or the Multi-Strike enhancement.</p>"
+  },
+  {
+    "_id": "6b0ab3c103003d2b",
+    "name": "Multi-Strike",
+    "pages": "MA44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can strike more than once with the same weapon or body part. This lets you launch more attacks than you have limbs, natural weapons, and attack abilities. You can use your best attack multiple times.</p>"
+  }
+]

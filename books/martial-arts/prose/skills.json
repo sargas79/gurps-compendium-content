@@ -1,0 +1,82 @@
+[
+  {
+    "_id": "dd1e7e2322d4821d",
+    "name": "Fast-Draw (Balisong)",
+    "pages": "MA56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used to open or close a balisong (p. 213) that's already in hand. Roll against skill to do either. Critical failure causes a point of cutting damage to the hand; critical success gives +1 to Intimidation. Use Fast-Draw (Knife) to draw a balisong. If you use Fast-Draw (Balisong) on the same turn, it's at -2; see Multiple Fast-Draw (p. 103).</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
+  },
+  {
+    "_id": "bb8cc6e1e4801864",
+    "name": "Fast-Draw (Flexible)",
+    "pages": "MA56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any chain, rope, or thong used as a weapon, including all Kusari and Whip weapons, and slings (use Sling skill). In cinematic campaigns, add nunchaku (use Flail skill) to the list.</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
+  },
+  {
+    "_id": "6416bdf80d23c3c5",
+    "name": "Fast-Draw (Shuriken)",
+    "pages": "MA56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any weapon hurled using Thrown Weapon (Shuriken).</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
+  },
+  {
+    "_id": "60f7531518091c72",
+    "name": "Fast-Draw (Stone)",
+    "pages": "MA57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sling ammo and throwing stones, when carried in a container. Works like Fast-Draw (Arrow).</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
+  },
+  {
+    "_id": "10fd233277e1d1ba",
+    "name": "Fast-Draw (Tonfa)",
+    "pages": "MA57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any baton with a protruding side handle, for use with Tonfa skill.</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
+  },
+  {
+    "_id": "d44d34bc8cf4c6e0",
+    "name": "Hidden Lore (Hidden Styles)",
+    "pages": "MA57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You know about styles not widely taught in your world - their legends, living masters (and where to find them), techniques, and cinematic abilities, if any. This doesn't mean you know how to use them.</p>"
+  },
+  {
+    "_id": "2fa75f57436b86bf",
+    "name": "Hypnotic Hands",
+    "pages": "MA61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can induce a trancelike state in others through hypnotic hand motions. You can only affect a single victim, who must see your hands. Hypnotic Hands doesn't work on those who are blind, facing away, etc., and is affected by any defense effective against hypnotism or chi-based mind control.</p><p>To use your skill, take a Concentrate maneuver. At the end of your turn, you can either roll to influence your target or opt to continue the motions. If you continue, take another Concentrate maneuver . . . and so on, until you decide to attempt your skill roll. The total focus and complex motions required by this skill give you -2 to all active defenses while concentrating.</p><p>Once you decide to project your chi to influence your victim, spend 1 FP and roll a Quick Contest of Hypnotic Hands against his Will.</p><p><em>Modifiers:</em> -1 per two full yards of distance between you; any visibility penalties (for darkness, smoke, etc.); +1 after two turns of concentration, +2 after four turns, +3 after eight turns, +4 after 16 turns, and a further +1 per doubling of time, with no upper limit.</p><p>If you win, your opponent is mentally stunned (see p. B420) for seconds equal to your margin of victory. After that, he may roll against IQ each turn to recover. Until he does, you can use your Hypnotism skill on him - even in combat! This takes the usual five seconds, but your subject resists at Will instead of at Will+5. See Hypnotism (p. B201) for effects. If you know Invisibility Art (p. B202) and choose to use it, your victim is at -5 in the Quick Contest to notice you.</p>"
+  },
+  {
+    "_id": "32aa7ebcc26bbee9",
+    "name": "Lizard Climb",
+    "pages": "MA61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This skill lets you scale vertical or near-vertical surfaces - walls, steep hills, large tree trunks, etc. - like a gecko. You must climb facing the surface, using (empty) hands and feet, or with your back to it, using elbows and heels. Roll once per second of climbing.</p><p><em>Modifiers:</em> A penalty equal to encumbrance level (e.g., -1 for Light). The type of surface matters: +2 for rough natural materials (bark or a rock face), +0 for most walls (wood, brick, or stone), or -2 for smooth surfaces (glass or steel); +2 if sloped rather than vertical. Add -1 if wet, -3 if icy or slimy, or -5 if greased. Freeing a hand or foot gives -2 per extremity less than four (minimum one) in contact with the surface. Claws (p. B42) or artificial claws (neko-de) give +2 when climbing any surface but a smooth one - but only when facing it.</p><p>Success lets you travel half your Move up, down, or across the surface, or simply cling to it without moving. For instance, with Move 7, you could climb 3.5 yards - about one story - up a sheer wall in a second! Lizard Climb isn't Clinging (p. B43), though. In particular, you can't move along ceilings.</p><p>Failure means you fall, but you can try to catch yourself (see below). On a critical failure, you fall away from the surface and can't reach it in order to stop your fall.</p><p>If falling past a surface close enough that you can reach it, you can try to break your fall. Make a DX roll to touch the surface, and then a Lizard Climb roll at -1 per 5 yards already fallen, plus the above modifiers. Success stops your fall. Failure means you continue to fall; you can't make a repeated attempt.</p><p>You can dodge normally while climbing and retreat by skittering up the wall. If you make a skill roll at a suitable penalty to free a limb, you can even attack and parry at no penalty. However, any combat result that causes a fall - knockback, knockdown, critical miss, etc. - knocks you off the wall. You can try to stop yourself if you're not stunned, but shock penalties (if any) apply.</p><p>When climbing something other than a flat surface (e.g., a rope), a successful Lizard Climb roll gives a bonus to Climbing. This equals half your margin of success, rounded down. Minimum bonus is +1. In a chambara- or wuxia-style campaign, other stunts are possible - see Special Feats for Cinematic Skills (pp. 129-130).</p>"
+  },
+  {
+    "_id": "d30fd0ab2286dc42",
+    "name": "Precognitive Parry",
+    "pages": "MA62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This skill allows you to parry attacks that normally come in too fast to parry - bullets, beams, etc. - without having Enhanced Time Sense. You must be aware of your attacker for Precognitive Parry to work; it's worthless against true surprise attacks. Whenever an attack that satisfies these criteria would hit you, make a Precognitive Parry roll.</p><p><em>Modifiers:</em> Add the higher of your ESP Talent (p. B256) or Forceful Chi (p. 47).</p><p>On a failure, you can't parry. You may still dodge, if the attack is one that permits a Dodge roll. On a critical failure, though, you believe that the attack will miss and don't even bother to dodge!</p><p>On a success, you're alerted to the attack far enough in advance that you can move a weapon or limb to intercept it. You may attempt to parry just as if you were defending against a melee attack. Combat Reflexes and Enhanced Parry give their usual bonuses.</p><p>Failure on the parry means you're hit. Success means you interpose your weapon or limb in time. The attack inflicts its damage on whatever you're using to parry. If using a weapon, it's destroyed if reduced to -5×HP after DR (see Damage to Objects, p. B483) - but only damage in excess of this affects you, and your DR protects normally. If using a limb, you're simply hit in the limb instead of in the attack's original hit location. Success by five or more on the parry, or critical success, deflects the attack without harm to your weapon or limb.</p><p>A force sword or force whip doesn't have DR or HP - it's made of energy. A successful parry with such a weapon deflects an energy attack harmlessly and burns up a projectile. Against a really big projectile, the GM may want to roll damage for the force weapon and compare it to the projectile's DR and HP.</p><p>Knowing when and where a melee attack, thrown weapon, or slower missile will hit is also useful. You may opt to try a Precognitive Parry roll before an active defense against such an attack. Success gives +1 to your defense. Failure means you misjudge, giving -2. As usual, critical failure means you believe the attack will miss and don't even bother to defend.</p>"
+  },
+  {
+    "_id": "c266245947fb9218",
+    "name": "Sensitivity",
+    "pages": "MA62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sensitivity represents skill at being hyperaware of a nearby enemy's stance and intent. Choose one opponent - who must be in close combat with you and either touching you, visible, or detected with Blind Fighting - and roll against Sensitivity. This is a free action on your turn.</p><p><em>Modifiers:</em> +2 for Sensitive Touch; +2 for Vibration Sense; the higher of Telepathy Talent (p. B257) or Inner Balance (p. 47); -1 per failed attempt against the subject this combat.</p><p>Success gives +1 to all close-combat attacks and defenses against that opponent, and to Blind Fighting, Immovable Stance, Precognitive Parry, and Push rolls made to combat him. Success by 3 or more, or critical success, gives +2. These benefits last for as long as you and your rival stay in close combat. If you leave and return, roll again. You may opt to reroll each turn. You must reroll if you change subjects.</p>"
+  }
+]
