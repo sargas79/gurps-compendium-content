@@ -3,13 +3,14 @@
  * through its add-on API.
  *
  * Its group holds the book's switches, all off by default. So far this
- * registers Talents skipping wildcard skills (p. 24) and the book's points
- * (pp. 23, 28, 31); the holy attacks, Ritual Path Magic and gear switches are
- * listed as not built yet until their rules are ported.
+ * registers Talents skipping wildcard skills (p. 24), the book's points
+ * (pp. 23, 28, 31) and holy attacks (p. 51); the Ritual Path Magic and gear
+ * switches are listed as not built yet until their rules are ported.
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { initHoly, readyHoly } from "./holy-contact.js";
 import { mayPay, poolsOf, refreshed, spent, type Pools } from "./points.js";
 import { skipTalentOnWildcard } from "./talents.js";
 
@@ -21,7 +22,7 @@ const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.
 /** The book's switches, as the system's own group named them before they moved here. */
 const RULES = [
   { key: "talentsSkipWildcards", pages: "p. 24", implemented: true },
-  { key: "holyAttacks", pages: "p. 51", implemented: false },
+  { key: "holyAttacks", pages: "p. 51", implemented: true },
   { key: "ritualPathMagic", pages: "pp. 32-39", implemented: false },
   { key: "monsterHuntersGear", pages: "pp. 53-54, 59", implemented: false },
   { key: "bonusPointSpending", pages: "pp. 23, 28, 31", implemented: true },
@@ -72,6 +73,8 @@ function init(api: GWorldApi): void {
       }),
     },
   });
+
+  initHoly(api);
 
   // "Talents never add to wildcard skills" (p. 24).
   Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
@@ -139,6 +142,8 @@ function sectionContext(actor: any): Record<string, unknown> {
 
 function ready(api: GWorldApi): void {
   const pointsOn = () => api.registry.isRuleOn(ruleKey("bonusPointSpending"));
+
+  readyHoly(api, () => api.registry.isRuleOn(ruleKey("holyAttacks")));
 
   // Destiny and wildcard bonus points, beside the system's unspent points (p. 31).
   api.points.registerPointPool({

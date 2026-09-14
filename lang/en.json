@@ -41,7 +41,19 @@
       "NewSessionHint": "Hand out wildcard bonus points, regain a destiny point, and set aside the GM's destiny points (Monster Hunters 1 pp. 23, 28).",
       "NothingToRefresh": "Nobody had points to refresh.",
       "WildcardOnlyItsSkill": "Wildcard bonus points pay only for that skill's rolls.",
-      "NotEnough": "Not enough points in that pool."
+      "NotEnough": "Not enough points in that pool.",
+      "Holy": {
+        "Title": "Holy attack",
+        "Burns": "{name} is burned by {source}: {injury} injury, ignoring DR ({from} → {to} HP). It fizzes for a minute.",
+        "Fizzing": "{name} is still fizzing from the last burn: {source} does nothing for another {seconds} s.",
+        "Rule": "1d ignoring DR, then a minute in which no holy source does more (Monster Hunters 1 p. 51).",
+        "Holy": "Holy",
+        "Contact": "Holy contact",
+        "ContactHint": "Touch whoever is targeted with this: a creature with a Weakness to holy things takes 1d, ignoring DR, unless it is still fizzing (Monster Hunters 1 p. 51).",
+        "NoTarget": "Target who is being touched with it first.",
+        "NoEffect": "Nobody targeted is hurt by holy things, or all of them are still fizzing.",
+        "CannotApply": "You can't change {name}: ask the GM to apply the holy contact."
+      }
     }
   }
 }
