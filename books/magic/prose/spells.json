@@ -1824,6 +1824,150 @@
     "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
   },
   {
+    "_id": "acf8820ac487cce3",
+    "name": "Seek Food",
+    "pages": "M77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Determines the direction, distance, and general nature of the nearest significant source of food. Use the long-distance modifiers (p. 14). The food found will be wholesome, but not necessarily appetizing - e.g., edible insects. Any known sources of food (such as those delicious insects) may be excluded if the caster specifically mentions them before beginning.</p><p><em>Item</em></p><p>A forked stick. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "3a335510da69ec35",
+    "name": "Test Food",
+    "pages": "M77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identifies whether a substance is good to eat. The spell tells nothing about taste or nutrition; it detects poisons, dangerous decay, or foreign objects (razor blades in fruit). It does not check for magic on food.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "74439cccb38c9203",
+    "name": "Decay",
+    "pages": "M77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes food rot away immediately and become worthless (it can be saved if a Counterspell is cast, or Purify Food is cast, within a minute).</p><p><em>Item</em></p><p>Staff or wand. The item must touch the subject. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "de40149bfe48094f",
+    "name": "Season",
+    "pages": "M77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Spices and seasons a single container of food to the caster's preference. The caster's cooking skill determines whether the food tastes any better for it - the spell simply adds the flavors that the caster demands.</p><p><em>Item</em></p><p>A spoon which, when stirred through food, will spice it to the owner's taste. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "865b61ccf2d4283d",
+    "name": "Far-Tasting",
+    "pages": "M77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can taste and smell any object that he can see (even at a great distance) or taste/smell through solid objects totaling no more than two yards of thickness. He automatically makes all Taste/Smell rolls, though any substance that would ordinarily be impossible to taste or smell (an odorless, tasteless gas such as carbon monoxide, for example) will remain undetected. This can be especially useful for sniffing out poisons, since the effects of a poison do not transfer via their odors.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Clothing or jewelry; only affects the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "540672990bdb144c",
+    "name": "Mature",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes any foodstuff that must age and mature as part of its production to do so more quickly. This is most often used with beer and wine, but it can also be used to accelerate cheese, yogurt, bread dough, or even meat.</p><p>Aging processes that normally take days or weeks (beer, wine, aged cheese, pickles, dry-aged meats) take only an hour with this spell. Processes that normally take hours (bread dough, yogurt, fresh cheese) take only a minute. Processes which take years (vintage wines, thousand-year eggs) accelerate a year for every casting of the spell . . . this is a wonderful way to discover whether a particular vintage will age well.</p><p><em>Item</em></p><p>A small keg that works at no energy cost to the user, but only works a limited number of times per day. Energy cost to create: 50 per gallon of size, per each time/day the item is usable. For example, a 10-gallon keg that works twice per day costs 50×10×2=1,000 energy to create.</p>"
+  },
+  {
+    "_id": "44c7d72585c13aa2",
+    "name": "Purify Food",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes foreign objects, poisons, and decay, and renders food fit to eat. Works only on an edible or formerly edible item - and if the whole item is unwholesome, the spell removes all the unwholesomeness and leave nothing.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The item must touch the subject. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "2abc2e6018c10324",
+    "name": "Cook",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns raw ingredients into a finished meal. Produces only simple fare (stews, etc.), which is only as wholesome as the ingredients. No cooking-fire is necessary; the spell provides the heat.</p><p><em>Item</em></p><p>A pot that cooks any food placed within it, at no energy cost to the user. Requires about a minute to cook. The size of the pot does not matter, but each pot can be used only a limited number of times daily. Energy cost to create: 30 per meal per day (e.g., a pot which would cook three meals per day would have an energy cost of 90 to create).</p>"
+  },
+  {
+    "_id": "91ae9863cc4561d8",
+    "name": "Prepare Game",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Dresses out\" a slain animal. If cast on a deer, for instance, the hide is removed, along with all extraneous body parts and innards. If cast on a fish, it is gutted and scaled. Nothing is destroyed by the spell; all of the parts are simply appropriately separated and cleaned in such a way as to best prepare the animal for cooking.</p><p><em>Item</em></p><p>(a) Wand, staff, jewelry, or knife. Energy cost to create: 300. (b) Skinning knife, scaling knife, vegetable peeler, etc. Usable only on the appropriate food type. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "a42299c7244f5870",
+    "name": "Know Recipe",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on an item of food, this spell places complete knowledge of the components of the food (and the method of preparation used by the cook) into the mind of the caster.</p><p>This spell may even be used on alchemical creations. However, such elixirs resist this spell with the skill of the alchemist that made them.</p><p>At the GM's discretion, this spell may be usable to analyze chemicals or drugs.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 450.</p>"
+  },
+  {
+    "_id": "b7b3f3b00a4598e0",
+    "name": "Poison Food",
+    "pages": "M78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Introduces a physical poison into food. This poison remains indefinitely, but can be detected by Test Food. Anyone eating the poisoned food must make a HT roll. On a successful roll, they merely feel sick and lose 2 HP. On a failed roll, they will be seized by painful stomach cramps and lose 1d+1 HP immediately; they will be at -3 for all skills or spells until the lost HP is restored.</p><p><em>Item</em></p><p>Staff or wand. The item must touch the subject. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "c09d484a985732e7",
+    "name": "Preserve Food",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Keeps any organic material from spoiling, drying out, etc. Very useful for travelers!</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Energy cost to create: 200. (b) Chest or sack; always on; the contents of the chest are preserved indefinitely. Energy cost to create: 20 for every pound of food to be held (round up).</p>"
+  },
+  {
+    "_id": "2c132e4422bc9dce",
+    "name": "Create Food",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces edible food. This spell is easier when used to convert already existing material into food; the closer the starting material is to food, the tastier the end result will be.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry; usable only by mages. The item must touch material to be turned into food. Energy cost to create: 600. (b) A pot, as described for Cook, which will turn anything placed inside into a cooked meal. Energy cost to create: 200 per meal per day. (c) A vessel that will create food from nothing. Energy cost to create: 400 per meal per day.</p>"
+  },
+  {
+    "_id": "13511adb0c914669",
+    "name": "Essential Food",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transforms food, or any other material, into unbelievably good, filling, and nutritious food. Essential Food does not spoil, and six meals of it weigh only a pound.</p>"
+  },
+  {
+    "_id": "30ccd89435b8621a",
+    "name": "Water to Wine",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns water or other drinkable liquid into a mildly alcoholic beverage. The nature of the resulting drink depends on the starting material. Water or grape juice becomes wine; fruit juices become \"coolers.\" The quality of the result depends on the caster's roll and the quality of the starting liquid.</p><p><em>Item</em></p><p>A bottle or drinking vessel that can, once per day, change the contents into an alcoholic beverage. The quality of the result depends on the starting material; seawater would make pretty bad beer, while newly melted mountain snow would give excellent wine. Energy cost to create: 500 per gallon capacity of the container. Note that critical failures with this spell have been known to create dangerous items, such as goblets that poison the wine they create - but no one has yet found an enchantment to do this deliberately!</p>"
+  },
+  {
+    "_id": "33dd856e44c4848e",
+    "name": "Distill",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Concentrates a liquid by removing water from it. This spell is mostly used to make strong alcoholic beverages, but alchemists also employ it for other purposes. Each use of the spell halves the volume of the liquid, doubling its concentration. One casting turns wine into fortified wine, two turns it into brandy, and three leaves a distillate of almost pure alcohol. Distill does not work on living subjects.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>A large closed kettle holding up to 5 gallons. Energy cost to create: 400. Illegal anywhere that a mundane \"still\" is illegal!</p>"
+  },
+  {
+    "_id": "a1cd869b04e998bc",
+    "name": "Fool's Banquet",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes any item seem like attractive, tasty food. The underlying nature of the matter does not change, but those who eat it will find it delicious - not necessarily nutritious, but delicious. Can only be cast on things that can be eaten; it would work on mud, but not on stones. A classic complement to the often dull provender created with Create Food.</p><p><em>Item</em></p><p>Wand, staff, or jewelry; usable only by mages. The item must touch the material to be affected. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "b7e3db1f39422c02",
+    "name": "Monk's Banquet",
+    "pages": "M79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Go without food or water for about a day with no ill effects.</p><p><em>Item</em></p><p>Clothing or jewelry; usable only by mages, or (at GM's option) a \"pure\" or \"holy\" person. Energy cost to create: 1,000.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
