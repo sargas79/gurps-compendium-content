@@ -2552,6 +2552,406 @@
     "description": "<p>Destroys any sort of Creation. Does not affect illusions.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 500.</p>"
   },
   {
+    "_id": "cd0123a89be6539d",
+    "name": "Measurement",
+    "pages": "M100",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster any one of the following things about the subject: (a) its weight; (b) its measurements in all dimensions; (c) its area; (d) its volume. This spell will provide information in the native system of the caster, be that pounds, grams, or stones about the size of your head.</p><p>The measurement is as precise as the caster can comprehend. In some settings, where other quantities are commonly measured, other measurements may be possible. At high TLs, for example, the wavelength of a color may be determined, or the frequency of a sound. The speed of a moving object or the local gravity are also quantities that could be measured in some settings.</p><p><em>Item</em></p><p>A different item exists for each of the above functions: an enchanted ruler for measurement, scales for weight, a lens for color, or an onyx cube for volume. The item must touch the subject. Energy cost to create: 50.</p>"
+  },
+  {
+    "_id": "de6bdddfeb81c20a",
+    "name": "Tell Time",
+    "pages": "M100",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster what time it is - as well as the day and year, should that be in doubt.</p><p><em>Item</em></p><p>Jewelry that lets the wearer know the exact time whenever he wants. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "5d68b89ab6d031a2",
+    "name": "Alarm",
+    "pages": "M100",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Alerts the subject at a specified time in the future, awakening him if necessary. It will also remind him of one thing (in effect, delivering a message), provided he specified that thing at the time the Alarm spell was cast. Can be set to \"go off\" up to a week from time of casting.</p><p><em>Item</em></p><p>Jewelry. It will buzz or vibrate at exactly the same time every day, as set by the original creator. Energy cost to create: 60.</p>"
+  },
+  {
+    "_id": "875405cf301f854c",
+    "name": "Far-Feeling",
+    "pages": "M100",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can feel by touch any object that he can see (even at a great distance) or through solid objects totaling no more than 6 feet in thickness. The sensations are one-way (to pinch a wench, use the Manipulate spell); in particular, a mage cannot deliver spells by Far-Feeling!</p><p><em>Item</em></p><p>Gloves or jewelry. Affects only the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "a27b88dd2f63c468",
+    "name": "Find Direction",
+    "pages": "M101",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster which direction is North. Alternately, it can tell which way his home is. Note that no one can have more than one true home, and a wanderer may have none!</p><p><em>Item</em></p><p>Enchanted compass needle that points north, or to the user's home, on command. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "f2e2cd06395cc828",
+    "name": "Tell Position",
+    "pages": "M101",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the subject's exact distance, azimuth, and altitude relative to the caster. The caster must be able to see the subject.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "d6fa9d08543932fa",
+    "name": "Test Load",
+    "pages": "M101",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster how much weight the subject can support before warping or breaking. This can reveal the capacity of bridges, baskets, ropes, etc.</p><p><em>Item</em></p><p>Staff or wand; the item must touch the subject. Energy cost to create: 80.</p>"
+  },
+  {
+    "_id": "55f2a21b59030e41",
+    "name": "Sense Mana",
+    "pages": "M101",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the mana level at the point where he is standing, and whether the local mana is aspected (see GURPS Fantasy) or otherwise unusual. If the spell is successful, a second casting will reveal the precise nature and level of any aspect or other peculiarity.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 200. (b) Ring or necklace. Always on. It vibrates whenever the wearer passes over a boundary between areas of different mana. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "ccf5e6839ef4d549",
+    "name": "Mage Sight",
+    "pages": "M102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Detect all magical items in your field of vision. Each such item will have a glow or \"aura,\" similar to the aura of a living being. This glow is visible through clothes, armor, or up to 1/2\" of solid material.</p><p>The aura of a permanently enchanted item will be stronger than that of something under a temporary spell. Enchanted (or magical) beings also glow, though mages themselves do not unless they actually have spells on them at the moment. The aura may also give a clue to an item's nature. On a good roll, for instance, fire spells will have a distinctive red glow, and evil items will somehow seem to have a \"black glow\" in their auras. A critical success with this spell lets the caster fully identify every magic item he sees. Note that this ability is essentially a more reliable version of the magical sense that comes with Magery 0 (p. B66).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "c36415d413a8d5e9",
+    "name": "Mage Sense",
+    "pages": "M102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster whether some unseen magical item or creature is nearby. The caster may specify that he is looking for any unseen item, or he may specify a certain object.</p><p>Skill modifier: the distance in yards to the object sought. Use the closest distance if the caster moves around during the spell's duration, and roll at the end of that time. At the GM's option, some very powerful magic items may be easier to sense.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "ff204bbf30530a0a",
+    "name": "Seek Magic",
+    "pages": "M102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Determines the direction and approximate distance of the nearest significant magical item, active spell, or magical being (magical beings include demons, elementals, spirits, etc., but not races or individuals with Magery). Regular range penalties apply. Any known examples of magic may be excluded if the caster specifically mentions them before casting.</p><p>This is also a Meta-Spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "d443000818cac879",
+    "name": "Summon Shade",
+    "pages": "M102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Summons a \"shade\" of the subject from a possible future, to answer the caster's questions. The shade will not lie (except on a critical failure) but it will be disoriented; therefore its answers may be unclear and imprecise. One question may be asked per minute the spell is maintained. Since the shade only comes from the most likely future, this spell may be an unsatisfactory augury.</p><p><em>Example:</em> Felix Magister might summon a shade of his friend Rudolph from two months ahead, and ask if his attack on the dragon succeeded - and then, if the answer was \"no,\" persuade the real Rudolph not to try. The shade simply came from a different future. Of course, the shade might also reply \"no - it was called off.\"</p><p>At the time from which the shade is drawn, the subject will have a vivid dream in which he will see his questioner(s) and remember all that is said - if the predicted event came true.</p><p>Skill modifiers: -1 for each year in the future that the shade is drawn; -5 if the subject is not present or -10 if nothing pertaining to the subject (clothing, hair clippings, etc.) is present. -10 if the subjects full name is not known.</p><p>This spell may not be attempted more than once per year on the same person. This is a very powerful spell, and GMs may wish to restrict access to this spell, or require expensive materials.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by a mage. The item does not give ability to cast the spell, but gives +2 skill to one who knows the spell. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "c762be391590442c",
+    "name": "Glass Wall",
+    "pages": "M103",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See through a single wall, floor, ceiling, or other similar barrier up to 4 feet thick (material doesn't matter).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "d0bf1e7b9e157298",
+    "name": "Know Location",
+    "pages": "M103",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a reasonable idea of his geographical location (to within a couple of miles). This will be expressed in terms of the nearest named features that the caster has heard of (if in doubt as to whether or not the caster has heard of the feature, the GM should roll against the caster's Area Knowledge). For example, \"You are in the Sahara Desert, roughly 30 miles north of Timbuktu.\"</p><p><em>Item</em></p><p>Any map, globe, etc., can be enchanted to show the user's location whenever the spell is cast. A mark (chosen by the item's creator) appears at the appropriate spot if successful. No mark appears if the user is outside the map's boundaries. If the casting fails, either no mark appears or an erroneous one does. Energy cost to create: 225.</p>"
+  },
+  {
+    "_id": "bc2d44bcc19cae91",
+    "name": "Wizard Eye",
+    "pages": "M104",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a physical eye - a 2\" ball - through which the caster can see. The Eye can fly through the air, vertically and/or horizontally, with a Move of 10; it moves on the caster's turn. Concentration is necessary to move the eye, but not to see through it. Any vision-enhancing spells affecting the caster will also be usable through the Eye. The Eye is small, with a SM of -7, so it is hard to hit - but if it is hit by a physical attack, or any spell that would reasonably incapacitate it, it is destroyed.</p><p><em>Item</em></p><p>An eyeball carved of ivory and inset with jewels. Usable only by mages. At its holder's command, it will turn into a Wizard Eye; on returning to his hand it will revert to the jeweled form. Cost to create: 1,100 energy; $1,000 for skilled ivory carving, and $600 for emeralds.</p>"
+  },
+  {
+    "_id": "1173d6f0a23a1234",
+    "name": "Invisible Wizard Eye",
+    "pages": "M104",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a Wizard Eye that cannot be seen without the See Invisible spell. Anyone who guesses where it is may still attack, but the -7 penalty for SM combined with the -6 penalty for invisibility makes it very hard to hit.</p><p><em>Item</em></p><p>As Wizard Eye, but more costly. Cost to create: 1,600 energy; $1,000 for skilled ivory carving, and $900 for emeralds and opals.</p>"
+  },
+  {
+    "_id": "8e5f4cb46e2d9b99",
+    "name": "Wizard Mouth",
+    "pages": "M104",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a replica - about 4\" across - of the caster's physical mouth and lips, through which he can speak as well as taste. The Mouth flies through the air with a Move of 10, on the caster's turn, though it may not do so without bumping into things unless accompanied by a Wizard Eye or Ear! Concentration is necessary to move the Mouth, but not to speak or taste through it. Any voice or taste-enhancing spells affecting the caster will also be usable through the Mouth. The Mouth may not cast spells! While tasting through the Mouth, the wizard's own mouth is insensitive. Every turn, he must specify whether he is tasting through the Mouth or through his own mouth.</p><p>The Mouth is small, with a SM of -6, so it is hard to hit - but if it is hit by a physical attack, or any spell that could reasonably incapacitate it, it is destroyed. The Mouth itself cannot inflict any biting damage.</p><p>This is also a Food spell and a Sound spell.</p><p><em>Item</em></p><p>(a) Any item depicting a human mouth may be turned into an immobile Wizard Mouth, through which the holder of a mouth-shaped amulet, enchanted at the same time, may speak regardless of distance. Each such Mouth links to one amulet and vice versa. Energy cost to create: 325. (b) A mouth carved of red coral and inset with ivory teeth. Usable only by mages. At its holder's command, it turns into a Wizard Mouth; on returning to his hand it reverts to the object form. Cost to create: 650 energy, $1,000 for skilled coral carving and $400 in ivory.</p>"
+  },
+  {
+    "_id": "3f80de67a651002f",
+    "name": "Wizard Nose",
+    "pages": "M104",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a disembodied replica - about 2\" to 3\" long - of the caster's physical nose, through which he can smell. The Nose flies through the air with a Move of 10, on the caster's turn, though it may not do so without bumping into things unless accompanied by a Wizard Ear or Eye! Concentration is necessary to move the Nose, but not to smell through it. Any smell-enhancing spells affecting the caster will also be usable through the Nose. While smelling through the Nose, the wizard's own nose is insensitive. Every turn, he must specify whether he is smelling through the Nose or through his own nose.</p><p>The Nose is small, with a SM of -7, but if it is hit by a physical attack or any spell that could reasonably incapacitate it, it is destroyed.</p><p>This is also a Food spell.</p><p><em>Item</em></p><p>(a) Any item depicting a human nose may be turned into an immobile Wizard Nose, through which the holder of a flower-shaped amulet, enchanted at the same time, may smell regardless of distance. Each such Nose links to one amulet and vice versa. Energy cost to create: 475. (b) A Nose carved of precious stone. Usable only by mages. At its holder's command, it will turn into a Wizard Nose; on returning to his hand it will revert to the object form. Cost to create: 500 energy and $500 in materials and workmanship.</p>"
+  },
+  {
+    "_id": "0285c568ba3522e5",
+    "name": "Wizard Hand",
+    "pages": "M104",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a replica of the caster's physical hand, through which he can grasp as well as feel. The hand flies through the air with a Move of 10, on the caster's turn, though it may not do so without bumping into things unless accompanied by a Wizard Ear or Eye!</p><p>Alternatively, it may grope its way along walls, floors, and ceilings at a Move of 3. Concentration is necessary to move the hand, but not to hold or feel through it. The hand may not cast or deliver spells! Any touch-enhancing spells affecting the caster will also be usable through the hand. While feeling through the hand, the wizard's own hands are insensitive. Every turn, he must specify whether he is feeling through the Hand or through his own hands.</p><p>The Hand is small, with a SM of -5, but any hit with a physical attack or any spell that could reasonably incapacitate it will destroy it. The Hand itself cannot inflict any punching damage; it has ST 2 and the caster's DX.</p><p>This is also a Movement spell.</p><p><em>Item</em></p><p>(a) Any item depicting a human hand may be turned into a stationary Wizard Hand, through which the wearer of a glove, enchanted at the same time, may feel regardless of distance. Each such hand links to one glove and vice versa. Energy cost to create: 300. (b) A hand carved of precious wood. Usable only by mages. At its holder's command, it will turn into a Wizard Hand; on returning to his hand it will revert to the object form. Cost to create: 400 energy and $500 in materials and workmanship.</p>"
+  },
+  {
+    "_id": "0580ecdbd6cf99df",
+    "name": "Astral Vision",
+    "pages": "M105",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See insubstantial entities. Examples include ghosts and subjects of Ethereal Body, Projection, or Astral Trip spells.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>(a) Wand or staff. Usable only by mages. Energy cost to create: 900. (b) Spectacles or jewelry. Affects only the wearer; always on. Energy cost to create: 1,400.</p>"
+  },
+  {
+    "_id": "966485e393f5b3f2",
+    "name": "Memorize",
+    "pages": "M105",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>All that the caster perceives at the time of casting (and for 10 seconds thereafter) is implanted perfectly in his memory, as if he had Photographic Memory (p. B51). The spell can be used to memorize maps, faces, an event, etc. It cannot be used to learn a skill or to retain a magically borrowed one.</p><p>This is also a Mind Control spell.</p><p><em>Item</em></p><p>(a) Jewelry or headgear. Energy cost to create: 1,000. (b) Any. Always on; the wearer can recall one thing specified by the creator. The memory fades completely one hour after the item is removed. Energy cost to create: 400. (c) A memory can be made permanent for an energy cost of 50, but it must remain intact while the enchantment occurs.</p>"
+  },
+  {
+    "_id": "0b653a09d1ee9249",
+    "name": "Pathfinder",
+    "pages": "M105",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the direction to a certain place, or the proper way to go to get to that place - his choice. Use long-distance modifiers (p. 14). The GM should apply penalties if the caster has never been to the place, and severe penalties if the caster isn't sure that the place really exists or what it is like. This spell does not find people or things. A city, mountain pass, or public building can be a place. A certain person's home or office isn't a \"place\" for this spell unless the caster has been there.</p><p><em>Item</em></p><p>A forked stick or compass needle that will point, once per day, toward the goal the user names. It will continue pointing for 10 minutes for each point by which the spell roll is made, based on the item's Power. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "238ca816cf4a3849",
+    "name": "Projection",
+    "pages": "M105",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster briefly projects his mind away from his body, to any spot within line of sight (use long-distance modifiers, p. 14), to peruse his surroundings from a different viewpoint. His projected self is totally insubstantial and can only see, hear, feel, smell, and taste. Its presence can be detected by Astral Vision, Sense Spirit, Sense Observation, or the like; it is otherwise imperceptible.</p><p>The Projection cannot cross an Astral Block, Pentagram, or an Utter spell. Repel Spirits will resist its intrusion.</p><p>The Projection cannot move; it can only turn to look in different directions. The body is catatonic for the duration of the spell; it cannot act. If someone attacks the body, the spell is broken automatically.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; only affects the wearer. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "51363dd015284710",
+    "name": "History",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on any inanimate object (or a 1-yard-radius section of a large object), History lets the caster determine the recent past of that object, user's personality, and so on - but no names!</p>"
+  },
+  {
+    "_id": "9dcb6e9b8d6df461",
+    "name": "Ancient History",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As History, but gives a general impression of an item's history over a much greater time.</p>"
+  },
+  {
+    "_id": "919054c9d5decf88",
+    "name": "Prehistory",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is similar to Ancient History, but it gives even less specific information over a period of millennia. The age and function of an item can always be determined, but unless the item took part in an important event, age and function may be the only information available. Fortunately, that's often enough for the archaeological scholars who most often use Prehistory.</p>"
+  },
+  {
+    "_id": "3226dd8d7ae6a72b",
+    "name": "Reconstruct Spell",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster what spells were cast on, at, or by the subject at a specific point in the past selected by the caster. If there were multiple spells on the subject at the selected point, Reconstruct Spell will identify the spell that cost the least energy and tell the caster \"there are more spells.\" The Time modifiers (p. 81) apply. Spells are identified as per Identify Spell (p. 102).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,400.</p>"
+  },
+  {
+    "_id": "5a125d3ea168ce4a",
+    "name": "Know True Shape",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells if the subject is under any kind of Shapeshifting spell or similar magical effect, including Alter Visage, Alter Body, and illusions. The caster must be able to see the subject. The spell also gives a general idea of the subject's true shape; on a critical success, it identifies the subject's true nature (including a common name or description) and the magic used to disguise it. It does not reveal the nature of Hallucinations.</p><p><em>Item</em></p><p>Wand, staff, or jewelry (a favorite is a medallion or coin with an \"Aperture of True Vision\" in it). Usable only by mages. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "7ae18f430b43293f",
+    "name": "Recall",
+    "pages": "M106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject recalls a single forgotten or obscured fact or event as if he had Photographic Memory (p. B51). The penalties given under Time modifiers (p. 81) apply, based on the time since the forgotten event occurred. Eidetic Memory gives a +5 bonus; Photographic Memory gives a +10 bonus (though individuals with Photographic Memory will only need this spell to restore unnaturally removed memories). Only a critical success allows a magically blocked memory to be recalled. A critical failure could cause a false or distorted memory, or eradicate the memory beyond hope of future recovery!</p><p>This is also a Mind Control spell.</p><p><em>Item</em></p><p>(a) Headgear, wand, or jewelry. Usable only by a mage. Energy cost to create: 2,500. (b) A memory can be made permanent for an energy cost of 50, but the memory must remain intact while the enchantment occurs.</p>"
+  },
+  {
+    "_id": "6126380b0d6ae008",
+    "name": "Remember Path",
+    "pages": "M107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While this spell is active, its subject will perfectly remember any path he treads on. The memory would allow the subject to draw an accurate map of his travels or to retrace his steps without error, even in pitch darkness or through distractions such as combat.</p><p>Of course, later alterations of previously traveled terrain will be unknown to the subject (a mine cave-in after the subject has left it, for example).</p><p><em>Item</em></p><p>(a) Jewelry or staff. Energy cost to create: 600. (b) A forked stick or compass needle that will point the way along one path specified by the creator. If activated from off the path, it will point to the nearest point along the path. An alternate form of this item is a small magical ball that will roll along the path just ahead of the traveler, at walking speed. Yet another form of this item is footwear that, while worn, guides the wearer along the path to follow. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "46a164ea113bfab7",
+    "name": "See Secrets",
+    "pages": "M107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes hidden items, doors, traps, etc., to stand out clearly in the subject's vision. This spell works only on things that were deliberately hidden - not lost.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The item must be carved with a picture of an eye. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "9f53262f317a3d22",
+    "name": "Scents of the Past",
+    "pages": "M107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a wall or some object, this spell releases whatever scents it may have been exposed to in the past. The caster specifies the moment from which to start the \"playback.\" The Time modifiers (p. 81) apply. Each time this spell is cast for the same time period, there is a further -1 penalty to skill. A critical failure wipes away the object's \"memory\" of that time period.</p><p>This is also a Food spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 350.</p>"
+  },
+  {
+    "_id": "5522862fe61c1bd0",
+    "name": "Images of the Past",
+    "pages": "M107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a mirror or reflective surface, this spell \"plays back\" whatever images it may have \"seen\" in the past. The caster specifies the moment from which to start viewing (\"Let us see what happened in this room a year ago . . . \"). The Time modifiers (p. 81) apply. Each time this spell is cast for the same time period, there is a further -1 penalty to skill. A critical failure will wipe away the object's \"memory\" of that time period.</p><p>GMs may also allow the spell to be cast on any floor, wall or object, the \"playback\" manifesting itself as a Simple Illusion.</p><p>This is also a Light and Darkness spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 700.</p>"
+  },
+  {
+    "_id": "791adc210c88d2f5",
+    "name": "Echoes of the Past",
+    "pages": "M107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a wall, floor or some object, this spell \"plays back\" whatever sounds it may have \"heard\" in the past. The caster specifies the moment from which to start listening (\"Let us listen to what was said in this room a year ago . . .\"). Time modifiers (p. 81) apply. Each time this spell is cast for the same time period, there is a further -1 penalty to skill. A critical failure will wipe away the object's \"memory\" of that time period.</p><p>This is also a Sound spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "1d480ad8ec26b21a",
+    "name": "Divination",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p>"
+  },
+  {
+    "_id": "aa17f60b11f80c8f",
+    "name": "Divination (Astrology)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Astrology</em></p><p>Astrology is divination through examination of the heavens, including weather. Observation of the sky is necessary; the caster must be outside, and is at a -5 penalty unless it is a clear night, away from city lights. Without a reference library (cost $2,000; weight 200 pounds), all rolls are at -5. Because astrology relies on the predictable movements of the stars, it excels at divinations into the far past or future; no time modifiers apply to astrological divination. If the divination involves an individual, however, his birthplace and birthdate must be known, or all rolls are at -5. All penalties do stack!</p>"
+  },
+  {
+    "_id": "5ae504815854ac1f",
+    "name": "Divination (Augury)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Augury</em></p><p>Augury is the study of portents or omens. The exact nature of the omens is dependent on the culture of the diviner; ancient Roman priests studied the flight and behavior of birds, for instance. Fantasy cultures might find portents in anything from a feeding bear beside a stream to the movement of a breeze through a willow tree; the common factor is the observation of some natural event. When this divination is cast, the GM must roll against the caster's Vision in secret. On a failed roll, the roll to cast the divination is made at -5. Augury is not ideal for divining the past; time modifiers are doubled when using augury to ask questions about past events.</p>"
+  },
+  {
+    "_id": "a9a003802e03fe80",
+    "name": "Divination (Cartomancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Cartomancy</em></p><p>Cartomancy is divination using the tarot or other fortune-telling cards. The cards, symbolic as they are, rarely give a straightforward yes-or-no answer. The only equipment required is a tarot deck (hand-painted and worth $1,000 at TL3 and below, but mass-produced inexpensively at higher tech levels). Cartomancy is highly personal; any attempt to ask questions about people other than the subject is at -5.</p>"
+  },
+  {
+    "_id": "583149d47156958b",
+    "name": "Divination (Crystal-Gazing)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Crystal-Gazing</em></p><p>Crystal-Gazing is the use of a crystal ball (p. 71) or mirror to facilitate a divinatory vision. If it works, the GM describes a scene; it is up to the player to interpret it! The caster may use clear, still water for this divination, but at a -10 to skill.</p>"
+  },
+  {
+    "_id": "c8d81e2a52f2de0a",
+    "name": "Divination (Dactylomancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Dactylomancy</em></p><p>Dactylomancy is divination by movement of a pointer around a board with all the letters of the alphabet, plus Yes and No. Dactylomantic divinations are usually straightforward, but extremely unsubtle; a complex question (indeed, almost any question that cannot be answered in five words or less) is likely to produce cryptic gibberish.</p>"
+  },
+  {
+    "_id": "1b9bfeeb8b9cd77d",
+    "name": "Divination (Extispicy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Extispicy</em></p><p>Extispicy is divination by examining the entrails of a slaughtered animal (must be at least 20 pounds - no pigeons!). It is illegal in many areas. Only one question can be asked per animal. Extispicy is most useful in divining matters of life and death: sickness and health, war and peace, victory and defeat - all are good candidates for extispicy. Other matters are more likely to receive vague and unhelpful answers.</p>"
+  },
+  {
+    "_id": "c16513a4269b9a74",
+    "name": "Divination (Gastromancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Gastromancy</em></p><p>Gastromancy requires a willing subject. The subject is placed in a trance, during which he utters things of a prophetic and cryptic nature. When the spell is cast, the subject loses 5 FP in addition to the energy spent by the caster, whether or not the spell was successful.</p>"
+  },
+  {
+    "_id": "344bc0bda678629f",
+    "name": "Divination (Geomancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Geomancy</em></p><p>Geomancy is divination by examining the earth. Geomancy must be practiced outdoors, where the geomancer can examine the lay of the land. Geomancy is very location-specific; any questions that do not pertain to the area where the divination is being performed are at -10.</p>"
+  },
+  {
+    "_id": "7ad5d573ba0372b1",
+    "name": "Divination (Lecanomancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Lecanomancy</em></p><p>Lecanomancy is divination by observing the results of casting objects into water. Like augury, lecanomancy takes different forms in different cultures. Some diviners pour molten metal into water to observe the shapes the metal takes, while others examine tea leaves or simply throw stones into a pool and observe the ripples. Lecanomancy is invariably vague, and is always subject to a -5 penalty; on the other hand, all time modifiers are halved.</p>"
+  },
+  {
+    "_id": "7dfd68d7c6af9b90",
+    "name": "Divination (Numerology)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Numerology</em></p><p>Numerology, or arithmancy, is divination by the various numbers that define an individual, including those derived from name, birthday and, in contemporary settings, even such things as social security numbers. If the birthday of the subject is unknown, the caster is at a -10 to effective skill.</p>"
+  },
+  {
+    "_id": "ad60465edd5e58db",
+    "name": "Divination (Oneiromancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Oneiromancy</em></p><p>Oneiromancy is the interpretation of the caster's own dreams. It requires no equipment, but only one question can be asked per night, and there is only a 50% chance that the caster dreams at all! The use of Dreaming skill, or any dream spell, disrupts any attempt at oneiromancy. The GM tells the caster what he dreamed; the player must interpret it. Energy cost is paid on awakening.</p>"
+  },
+  {
+    "_id": "0538eb8ed1257097",
+    "name": "Divination (Physiognomy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Physiognomy</em></p><p>Physiognomy is divination by examining and measuring parts of a subject's body. Different traditions usually focus on a particular body part - hands, feet, head, etc. Physiognomy is only really suited to answering questions about the subject or his fortune; attempts to divine information about absent persons are at -5.</p>"
+  },
+  {
+    "_id": "0affd07e99c0ea71",
+    "name": "Divination (Pyromancy)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Pyromancy</em></p><p>Pyromancy is divination by staring into fire or smoke. It may produce a vision, or the caster may hear a voice in the flames. Small amounts of certain rare herbs (value $100 per attempt) must be burned. Questions are at -4 unless something pertaining to the question (e.g., hair of the subject of the divination) is also burned.</p>"
+  },
+  {
+    "_id": "b16a90e9409e60f7",
+    "name": "Divination (Sortilege)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Sortilege</em></p><p>Sortilege is divination through the casting of lots or other objects that reveal information through the pattern in which they fall. The I Ching is a form of sortilege; other cultures have used sortilege by throwing a handful of arrows in the ground to interpret where they fall.</p>"
+  },
+  {
+    "_id": "ac508070f7dcbd78",
+    "name": "Divination (Symbol-Casting)",
+    "pages": "M108",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Symbol-Casting</em></p><p>Symbol-Casting is divination by means of symbol tokens (p. 205). The caster must have a complete set of tokens for his symbolic language, and is at -1 to skill for each stone missing. Mock symbol tokens work perfectly well, but a full set of true tokens gives +2 to skill. A detailed divination takes 30 minutes, or the caster may simply reach into a bag and pull out one or more stones. In the latter case, energy cost is only 1. The GM tells the caster which symbol(s) he drew; it is up to the caster to interpret this, and the symbols drawn on a failed roll will be misleading.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
