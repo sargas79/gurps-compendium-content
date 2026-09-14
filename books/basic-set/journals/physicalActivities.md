@@ -209,3 +209,141 @@ On a failure, you inhale water! Lose 1 FP and roll again in five seconds – and
 You may try to get rid of armor, etc. after making your first successful Swimming roll. Roll vs. DX for each item you try to remove; roll at -4 to remove shields, helmets, or torso armor. A failed roll means you inhale water, with penalties as above.
 
 Once you reach 0 FP, you must make a Will roll every second or fall unconscious, and are likely to die unless you are rescued. See Suffocation (p. 436) for details.
+
+#### Swimming Speed
+
+Land-dwellers such as humans have water Move equal to Basic Move/5 (round down), although it is possible to modify this slightly; see Move in Other Environments (p. 18). Minimum water Move for such characters is 1 yard/second.
+
+Amphibious and Aquatic beings have water Move equal to their full Basic Move.
+
+When swimming long distances, use a 10-second time scale. The number of yards you can swim in 10 seconds is equal to 10 times your water Move, modified downward for encumbrance (see Encumbrance and Move, p. 17). For instance, water Move 1 and Heavy encumbrance would let you swim four yards in 10 seconds.
+
+#### Fatigue Cost
+
+After every minute of top-speed swimming, roll against the higher of HT or Swimming skill. On a failure, you lose 1 FP. Once you are reduced to less than 1/3 your FP, halve your water Move; see Fatigue (p. 426).
+
+If you are swimming slowly, or just staying afloat, make this roll every 30 minutes.
+
+#### Lifesaving
+
+You can use the Swimming skill to rescue a drowning person. Make a Swimming roll at -5, plus or minus the difference in ST between you and the person you are rescuing. If the players think of good lifesaving techniques, the GM may give them a bonus to this roll.
+
+On a failure, you inhale water and lose 1 FP, but may try again after one minute. On a critical failure, the victim nearly drowned you! This costs 6 FP, and you must break off the rescue attempt.
+
+### Throwing
+
+You can throw anything you can pick up – that is, anything with a weight of 8×BL or less. If the object you wish to throw is not already in your hands, you must take one or more Ready maneuvers to pick it up. See Lifting and Moving Things (p. 353) for details.
+
+Throwing an object during combat – whether as an attack or not – requires an Attack maneuver. You can throw objects that weigh up to 2×BL using one hand; heavier objects require a two-handed throw. Roll against DX-3 to hit a specific target, or against DX to lob something into a general area. Apply the usual modifiers for target size, speed, and distance.
+
+#### Throwing Distance
+
+To avoid slowing down the game with math, the GM should allow any throw he deems reasonable . . . but when you need to know the exact distance you can throw an object, use the following procedure:
+
+1. Divide the object’s weight in pounds by your Basic Lift to get the “weight ratio.”
+
+2. Find the weight ratio in the Weight Ratio column of the table below. If it falls between two values, use the higher value.
+
+3. Read across to the Distance Modifier column and find the “distance modifier.”
+
+4. Multiply your ST by the distance modifier to find the distance in yards you can throw the object.
+
+| Weight | Distance | Weight | Distance |
+| --- | --- | --- | --- |
+| Ratio | Modifier | Ratio | Modifier |
+| 0.05 | 3.5 | 2.0 | 0.30 |
+| 0.10 | 2.5 | 2.5 | 0.25 |
+| 0.15 | 2.0 | 3.0 | 0.20 |
+| 0.20 | 1.5 | 4.0 | 0.15 |
+| 0.25 | 1.2 | 5.0 | 0.12 |
+| 0.30 | 1.1 | 6.0 | 0.10 |
+| 0.40 | 1.0 | 7.0 | 0.09 |
+| 0.50 | 0.8 | 8.0 | 0.08 |
+| 0.75 | 0.7 | 9.0 | 0.07 |
+| 1.00 | 0.6 | 10.0 | 0.06 |
+| 1.50 | 0.4 | 12.0 | 0.05 |
+
+Example: You have ST 12, giving a BL of 29 lbs. You need to throw a 120-lb. body over a two-yard pit. Divide weight by BL: 120/29 = 4.1. This falls between 4.0 and 5.0 in the Weight Ratio column, so treat it as 5.0. The associated distance modifier is 0.12. Multiplying by ST, your range is 0.12 × 12 = 1.4 yards. Oops! The body just hit the bottom of the pit.
+
+#### Damage From Thrown Objects
+
+Thrown objects inflict thrust damage for your ST (see Damage Table, p. 16), modified for weight as shown on the table below. Damage is usually crushing, but the GM may rule that a sharp object does cutting, piercing, or impaling damage instead. A fragile object (or a thrown character) takes the same amount of damage it inflicts; roll damage separately for the object and the target.
+
+| Weight | Damage |
+| --- | --- |
+| Up to BL/8 | Thrust, -2 per die |
+| Up to BL/4 | Thrust, -1 per die |
+| Up to BL/2 | Thrust |
+| Up to BL | Thrust, +1 per die |
+| Up to 2×BL | Thrust |
+| Up to 4×BL | Thrust, -1/2 per die |
+
+(round down) Up to 8×BL Thrust, -1 per die
+
+Example: You have ST 28, which gives you a BL of 157 lbs. and a thrust damage of 3d-1. You hit a foe with a hurled 50-lb. bag of cement. It is between BL/4 (39 lbs.) and BL/2 (78 lbs.). As shown on the table above, it does straight thrust damage, or 3d-1.
+
+#### Throwing Skill and Throwing Art
+
+When you throw an object that fits into the palm of your hand – such as a bottle, rock, or grenade – you may roll against Throwing skill (p. 226) to hit a target or a general area. Furthermore, if you know Throwing at DX+1 level, add +1 to ST before you multiply it by the distance modifier. Add +2 to ST if you know Throwing at DX+2 or better.
+
+If you have Throwing Art skill (p. 226), you can use it to throw anything. Roll against skill to hit. If you know Throwing Art at DX level, add +1 to ST before you multiply it by the distance modifier, and add +1 per die to thrust damage. These bonuses increase to +2 if you know Throwing Art at DX+1 or better.
+
+#### Thrown Weapons
+
+The rules above are for throwing rocks, bodies, televisions . . . anything but weapons. Hurled weapons differ in three important ways:
+
+1. Thrown weapons use Thrown Weapon skills (p. 226) to hit, not DX or Throwing (but Throwing Art does allow you to throw weapons).
+
+2. Many throwing weapons travel significantly farther than “ordinary” objects due to streamlining and stabilization. Others have less range, due to the way they are thrown. For instance, you can hurl a throwing knife as far as these rules suggest, but the range at which it will hit point-first and inflict damage is considerably shorter.
+
+3. Throwing weapons have points, edges, dense striking heads, etc. that focus the force of impact. They almost always do more damage than these rules would indicate.
+
+### Extra Effort
+
+Through sheer force of will, you can push your body past its usual limits when you perform physical tasks. This is called “extra effort.” Note that if you have the Machine meta-trait, you cannot use extra effort!
+
+You can use extra effort to increase Basic Lift (but not ST itself) when digging or lifting; daily mileage when hiking; Move when running or swimming; distance (but not Basic Move itself) when jumping; and ST for the purposes of throwing, making a single ST roll, or drawing or cocking a bow or crossbow that’s too strong for you. You cannot use extra effort to increase the time you can hold your breath – that would be self-defeating!
+
+To apply extra effort, make a Will roll.
+
+Modifiers: -1 per 5% increase in capabilities (e.g., to add 10% to ST, roll at -2). If you are fatigued, apply a penalty equal to the missing FP. Roll at +5 if you are motivated by fear, anger, or concern for a loved one (GM’s decision, but you must usually fail a Fright Check or a self-control roll for a suitable disadvantage, or be the victim of a successful Intimidation attempt, to get this bonus).
+
+Extra effort costs FP whether you succeed or fail. Instantaneous feats (e.g., jumps and throws) cost a flat 1 FP per attempt. Ongoing tasks (digging, running, swimming, etc.) require repeated extra effort rolls, and cost 1 FP per roll. Hiking works differently – see below. Pay the FP cost for extra effort immediately after you attempt your Will roll. Note that the FP spent on extra effort do not penalize this attempt, but give a penalty to future attempts until you recover the FP.
+
+On a success, you gain the desired increase in your physical capabilities. This does not guarantee success at the task at hand – you could still fail the DX roll for an extra-effort jump, for instance. On a critical success, you do not have to pay FP for your extra effort.
+
+On a failure, you achieve only what you would have accomplished without extra effort.
+
+A critical failure means you lose HP equal to the FP spent on the attempt – including any FP the task would have cost without extra effort – and the task fails automatically! If you roll a natural 18, you must also make an immediate HT roll to avoid acquiring a temporary disadvantage appropriate to the task (see below for examples). Handle recovery as described in Duration of Crippling Injuries (p. 422). A sufficiently bad HT roll can result in a permanent disadvantage!
+
+#### Notes for Specific Physical Tasks
+
+Instead of rolling against Will to use extra effort, you may make a Will-based roll against a relevant skill (Hiking, Jumping, Lifting, Running, Swimming, or Throwing, as applicable), if that would be better.
+
+Digging: For every hour of digging, make an extra-effort roll and pay 1 FP. This adds to the usual FP cost. On a critical failure, the injury is to your back, and will heal only with rest (not First Aid); on an 18, you temporarily acquire the Bad Back disadvantage (p. 123).
+
+Hiking: Make one extra-effort roll per day. Extra effort increases the FP you suffer by two when you stop on the march (see Fatigue, p. 426). Assess injury due to critical failure at the end of the day, and base it on the modified FP penalty. For instance, if you would normally be missing 5 FP when you stopped, you would be missing 7 FP if you used extra effort – and if you critically failed, you would end the day with 7 HP of injury! When using Hiking skill, make a single Will-based Hiking roll at -1 per 5% extra mileage beyond the basic +20% for a successful Hiking roll (-1 for +25%, -2 for +30%, and so on).
+
+Jumping: On a critical failure, apply the injury to the foot or leg (GM’s option, or roll randomly); on an 18, you temporarily acquire the Crippled Leg disadvantage (see Lame, p. 141).
+
+Lifting and Moving Things: For every minute of continuing effort, make an extra-effort roll and pay 1 FP. (This cost adds to the 1 FP per second for carrying encumbrance over 10×BL, if applicable.) Handle critical failures as described for digging. When using Lifting skill, make a single Will-based Lifting roll, at -1 per 10% extra Basic Lift. This is instead of the usual 5% bonus per point of success.
+
+Running: For every 15 seconds of sprinting or minute of paced running, make an extra-effort roll and pay 1 FP. This adds to the FP cost for failed HT rolls while running! On a critical failure, apply the injury to one of your legs; on an 18, you temporarily acquire the Crippled Leg disadvantage (see Lame, p. 141).
+
+Swimming: For every minute of swimming, make an extra effort roll and pay 1 FP. This adds to the FP cost for failed HT rolls while swimming.
+
+Throwing: Increases to ST affect both damage and distance, but not Basic Lift for the purpose of what you can throw in the first place. For that, make a separate extra-effort lifting attempt! Add bonuses for Throwing or Throwing Art skill after those for extra effort.
+
+#### Optional Rule: Extra Effort in Combat
+
+At the GM’s option, fighters can use extra effort in combat. These rules work differently from those above – mainly to avoid bogging down combat with extra die rolls and calculations.
+
+You must declare that you are using extra effort and spend the required FP before you make your attack or defense roll. A critical failure on the roll causes 1 HP of injury to the arm (if blocking, parrying, or attacking with a shield, weapon, or hand) or leg (if dodging or kicking) in addition to the usual critical miss results. DR does not protect you from this damage!
+
+Feverish Defense: If you take any maneuver other than All-Out Attack, you can spend 1 FP to get +2 to a single active defense roll. (You can use this bonus to offset the penalty for parrying multiple times with one hand; see Parrying, p. 376.)
+
+Flurry of Blows: If you take an Attack maneuver, you can halve the penalty for Rapid Strike (see Rapid Strike, p. 370) by spending 1 FP per attack.
+
+Mighty Blows: If you take an Attack maneuver in melee combat, you can spend FP to gain the damage bonus of an All-Out Attack (Strong) (see All-Out Attack, p. 365) without sacrificing your defenses. This costs 1 FP per attack.
+
+You cannot use Flurry of Blows and Mighty Blows at the same time!

@@ -207,3 +207,95 @@ If you cannot touch or see the subject, there is a further -5 penalty. There are
 - Name a subject; e.g., “The closest person in the next room,” or, “George, who I know is around here somewhere.” The GM determines the actual range to the subject. This is risky! If the subject is farther away than you think – or simply absent – you are inviting failure or even critical failure!
 
 No physical barrier affects a Regular spell. Unless the spell backfires, a Regular spell never hits the wrong target.
+
+##### Area Spells
+
+These spells affect an area rather than an individual. They are cast on a surface – floor, ground, etc. – and their effects extend four yards (12 feet) up from that surface. A few Area spells work differently; see the individual spell descriptions for details.
+
+The size of the area governs the energy cost, but not the difficulty of the roll. The cost listed for an Area spell is its “base cost.” The actual cost to cast the spell is equal to base cost multiplied by the radius of the area of effect in yards (minimum one yard): ×1 for a one-yard radius, ×2 for a two-yard radius, ×3 for a three-yard radius, and so on.
+
+Some Area spells have a fractional base cost, such as 1/2 or 1/10. You must spend a minimum of one energy point on these spells. A few Area spells specify a minimum cost; you must always pay the minimum cost, even if this is larger than the base cost multiplied by the desired radius.
+
+If an Area spell affects living beings, it affects everyone in the area of effect. You may choose to affect only a part of the area, rather than the whole circle, but the cost is still the same.
+
+If you cannot touch some part of the affected area, apply a skill penalty equal to your distance in yards from the nearest edge of the area.
+
+Otherwise, Area spells work like Regular spells.
+
+##### Area Spells on a Battle Map
+
+of a spell cast over a two-yard radius is a central hex and all adjacent hexes. The area of effect of a spell cast over a three-yard radius is a central two-yard area of effect plus the ring of hexes adjacent to that. And so on, building up larger areas by adding successive rings of adjacent hexes.
+
+##### Melee Spells
+
+Melee spells “charge” your hand or magic staff (see box) with harmful energies that affect the first target you strike. These spells require two skill rolls: a roll against spell skill to cast the spell, and a normal melee attack roll to hit your target with your hand or staff.
+
+To cast a Melee spell, concentrate for the required time, roll against spell skill at the end of the final turn of concentration, and pay the energy cost. There is no distance modifier – you are casting the spell on yourself! On a success, you energize your hand or staff with the spell’s magic. On your next turn, you must do one of two things with your spell: hold it or attack with it.
+
+If you hold your spell, your hand or staff remains “charged.” This has no energy cost and requires no skill roll. You cannot cast another spell while holding a Melee spell. You can take any other combat maneuver (but an attack with the energized hand or staff discharges the spell). A parry with that hand or staff does not discharge the spell; an attack is part of the ritual, and nothing else works.
+
+A held Melee spell on a staff persists only for as long as you wield the staff. If you lose hold of your staff, even for an instant, the spell drains away harmlessly. If someone grabs your staff, and you are both holding onto it on your turn, your attempt to wrench it free counts as an attack, and your opponent instantly suffers the spell’s effects!
+
+To attack, roll against DX or an unarmed combat skill to hit with a hand, or the appropriate Melee Weapon skill to hit with a staff. This is a standard melee attack. Your target may attempt any active defense. If he succeeds, your spell is not triggered; you may try again next turn. If he fails, your melee attack does its usual damage and your spell affects him immediately.
+
+Armor protects normally against some Melee spells, not at all against others. If the spell is one that ignores armor, neither an unarmed parry (even with an armored limb) nor a block will protect the target from the spell. Even if such a defense wards off the melee attack, the spell arcs through the target’s armor or shield and affects him.
+
+Note that some Melee spells are Resisted (see p. 241). These spells require a second roll against spell skill, when the spell actually takes effect, to overcome the target’s resistance.
+
+##### Missile Spells
+
+This class of spells encompasses long-distance “projectile” or “bolt” attacks, such as Fireball (p. 247) and Lightning (p. 244). Missile spells require two skill rolls: a roll against spell skill to cast the spell, and a roll against Innate Attack skill (p. 201) to hit the target.
+
+To cast a Missile spell, you must concentrate for one second. At the end of your turn, roll against your skill with the spell. There is no modifier for distance – you are creating a magical missile in your hand. On a success, you may invest one or more points of energy in the spell, to a maximum number of energy points equal to your Magery level. The missile then appears in your hand, “charged” to the desired level.
+
+On your next turn, you have three options with your missile: make a ranged attack with it, hold it, or enlarge it. If you opt to enlarge your missile, you must concentrate for another second. At the end of your turn, you may invest more energy in the spell – anything from one point to points equal to your Magery level. This does not require a skill roll.
+
+The turn after that, you have the same options: attack, hold, or enlarge. On your fourth and subsequent turns, you may only attack or hold. You cannot spend more than three seconds building up a Missile spell.
+
+Once you stop enlarging a Missile spell, you may “hold” it in hand, ready to attack. You do not have to launch the missile until you want to. While holding a Missile spell, you may move up to your full Move, take a Wait or Aim maneuver, or even attack using the hand that isn’t “holding” the missile. You may defend normally. However, you cannot cast another spell.
+
+There is one drawback: if you are injured while you have a missile “in hand,” you must make a Will roll. If you fail, the missile immediately affects you!
+
+When you are ready to attack, roll against your Innate Attack skill to hit. This is a standard ranged attack, subject to the usual modifiers for target size, speed, and range. Once launched, the missile flies in a straight line to the target. Physical barriers affect it just as they would affect any missile weapon.
+
+Your target may block or dodge, but not parry. If he fails, he is hit and the spell affects him. The strength of the effect depends on the energy invested. Most Missile spells inflict 1d of damage per point of energy. Damage Resistance – whether natural or from armor – protects normally against damaging Missile spells.
+
+##### Blocking Spells
+
+A Blocking spell is cast instantly as a defense against either a physical attack or another spell. It is the magical equivalent of a block, parry, or dodge (and often counts as one of these defenses; see the spell description for details). You may cast only one Blocking spell per turn, no matter how skilled you are. You cannot attempt a Blocking spell against a critical hit.
+
+If you try a Blocking spell, it automatically interrupts your own concentration. You lose any spell you were preparing exactly as if you had failed the Will roll to resist a distraction. If you are holding (not casting) a Melee spell, it is unaffected. If you are holding a Missile spell, you cannot enlarge it further but may retain it for later use.
+
+Blocking spells do not get an energy cost reduction for high skill.
+
+##### Information Spells
+
+Information spells are cast to gain knowledge. Some require you to touch the subject, while others function at a distance; see Long-Distance Modifiers (box) for range penalties. Spells intended to find things are at -1 per “known” item you choose to ignore in your search. Most Information spells have additional special modifiers, so be sure to read the spell description carefully.
+
+When you cast an Information spell, the GM rolls for you in secret. If the spell succeeds, the GM gives you the desired information – the better the roll, the better the information. If the spell fails, the GM says, “You sense nothing.” On a critical failure, the GM lies to you! Regardless of the outcome, you must always pay the full energy cost for the spell.
+
+Information spells generally allow only one attempt per day by each caster (or ceremonial group). “Seek” spells are an exception to this.
+
+Except where specifically noted, Information spells have no duration. They grant a momentary glimpse of insight and end immediately; therefore, you cannot maintain them.
+
+##### Resisted Spells
+
+A spell of any type can also be “Resisted.” A spell like this works automatically only on a critical success. On a regular success, your spell must defeat the subject’s resistance to work.
+
+| Distance | Penalty |
+| --- | --- |
+| Up to 200 yards | 0 |
+| 1/2 mile | -1 |
+| 1 mile | -2 |
+| 3 miles | -3 |
+| 10 miles | -4 |
+| 30 miles | -5 |
+| 100 miles | -6 |
+| 300 miles | -7 |
+| 1,000 miles | -8 |
+
+Add another -2 per additional factor of 10.
+
+The subject always has a chance to resist, even if he is unconscious. A conscious subject is aware that something is happening, and may choose not to resist. Individuals who are unconscious, unfamiliar with magic, or wary of hostile magic always try to resist.
+
+To resolve a Resisted spell, you must first succeed at your skill roll. If the spell has a single subject (that is, it isn’t an Area spell), you have a penalty equal to the subject’s Magic Resistance (p. 67), if any – even if he is willing! On a failure, the spell fails and the subject notices nothing. On a success, note your margin of success; e.g., if you rolled a 6 against an effective skill of 13, you succeeded by 7. If the subject is living or sapient, the Rule of 16 applies (see The Rule of 16, p. 349). There is no such limit if the subject is a spell.

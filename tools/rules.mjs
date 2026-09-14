@@ -108,6 +108,32 @@ const SECTIONS = {
  */
 const SHALLOW = new Set(["frontArmor"]);
 
+/**
+ * Rules whose page is their whole section, however long. Physical Feats,
+ * Vehicles and the magic system each cite a run of pages, and a page cut at a
+ * subsection sent the reader back to the book for the rest.
+ */
+const WHOLE = { physicalActivities: 357, vehicles: 470, magic: 241 };
+
+/**
+ * The rules of play that no switch turns off, one page per section: the
+ * chapters on success rolls, combat, tactical combat, special combat
+ * situations, and injuries, illness and fatigue (Campaigns, chapters 10-14).
+ * Each chapter's pages are its second-level sections, or a first-level
+ * section that has none; a section a switch's page already holds is left to
+ * that page. `folder` sorts a section into the journal's chapter folders.
+ */
+const CORE = [
+  {
+    from: 343,
+    to: 361,
+    folder: () => "rolls",
+    // The chapter opens with When to Roll, set across the page as a sidebar
+    // is, so its page is written by hand and found by the section after it.
+    extra: [{ key: "successRolls", title: "Success Rolls", names: ["When the GM Rolls"], page: 344 }],
+  },
+];
+
 function flag(name, fallback = null) {
   const at = process.argv.indexOf(name);
   return at !== -1 && process.argv[at + 1] ? process.argv[at + 1] : fallback;
@@ -404,7 +430,7 @@ function isDebris(block) {
  * -- a whole chapter cited for one switch -- are cut at a subsection boundary,
  * and the page says the rest is in the book.
  */
-async function capture(structure, found, { shallow = false } = {}) {
+async function capture(structure, found, { shallow = false, lastPage = null } = {}) {
   const { volume, page } = found;
 
   if (found.type === "sidebar") {
@@ -423,7 +449,7 @@ async function capture(structure, found, { shallow = false } = {}) {
     };
   }
 
-  const flow = await flowOf(structure, volume, page, page + 14);
+  const flow = await flowOf(structure, volume, page, Math.max(page + 14, lastPage ?? 0));
   const { blocks, asides } = flow;
   const start = blocks.findIndex((b) => b.page === page && b.text === found.block.text && b.kind === found.block.kind);
   if (start === -1) return null;
@@ -445,7 +471,8 @@ async function capture(structure, found, { shallow = false } = {}) {
   let cut = false;
   for (const block of blocks.slice(start + 1)) {
     if (block.kind in LEVEL && (shallow || LEVEL[block.kind] <= level)) break;
-    if (block.kind in LEVEL && length > LONGEST) {
+    if (lastPage && block.page > lastPage) break;
+    if (block.kind in LEVEL && length > LONGEST && !lastPage) {
       cut = true;
       break;
     }
@@ -518,6 +545,59 @@ function registeredRules() {
   return rules;
 }
 
+/** A heading's text as a key: "Damage Resistance and Penetration" is "damageResistanceAndPenetration". */
+function keyOf(text) {
+  const words = titleCase(text).replace(/[’']/g, "").split(/[^A-Za-z0-9]+/).filter(Boolean);
+  return words.map((w, i) => (i === 0 ? w.toLowerCase() : w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())).join("");
+}
+
+async function coreRules(structure, registered) {
+  // What the switches' pages already hold, by the headings they were found under.
+  const taken = new Set();
+  for (const rule of registered) {
+    for (const name of [titleOf(rule.key), ...(ALIASES[rule.key] ?? []), ...(SECTIONS[rule.key] ?? [])]) taken.add(norm(name));
+  }
+  const rules = [];
+  for (const chapter of CORE) {
+    const headings = [];
+    for (let page = chapter.from; page <= chapter.to; page++) {
+      const s = await structure("campaigns", page);
+      if (!s) continue;
+      for (const block of s.blocks) {
+        if (block.kind === "h1" || block.kind === "h2") headings.push({ ...block, page });
+      }
+    }
+    headings.forEach((h, i) => {
+      if (taken.has(norm(titleCase(h.text)))) return;
+      // A first-level section with second-level sections under it has a page
+      // of its own for the text before them: Sense Rolls says what a Sense roll is.
+      const intro = h.kind === "h1" && headings[i + 1]?.kind === "h2";
+      const parent = h.kind === "h2" ? headings.slice(0, i).reverse().find((x) => x.kind === "h1") : h;
+      rules.push({
+        key: keyOf(h.text),
+        reference: `Basic Set: Campaigns p. ${h.page}`,
+        group: chapter.folder(titleCase(parent?.text ?? "")),
+        names: [titleCase(h.text)],
+        core: true,
+        shallow: intro,
+      });
+    });
+  }
+  for (const chapter of CORE) {
+    for (const extra of chapter.extra ?? []) {
+      rules.push({
+        key: extra.key,
+        title: extra.title,
+        reference: `Basic Set: Campaigns p. ${extra.page}`,
+        group: chapter.folder(extra.title),
+        names: extra.names,
+        core: true,
+      });
+    }
+  }
+  return rules;
+}
+
 function readingDecisions() {
   const path = join(book("basic-set").dir, "review.json");
   if (!existsSync(path)) return new Map();
@@ -574,7 +654,8 @@ async function main() {
   const write = process.argv.includes("--write");
   const reviewed = process.argv.includes("--reviewed");
   const decisions = readingDecisions();
-  const rules = registeredRules();
+  const registered = registeredRules();
+  const rules = [...registered, ...(await coreRules(structure, registered))];
   const pages = [];
   const missing = [];
 
@@ -603,8 +684,8 @@ async function main() {
           .join("\n");
       }
     } else {
-      found = await find(structure, rule);
-      captured = found ? await capture(structure, found, { shallow: SHALLOW.has(rule.key) }) : null;
+      found = await find(structure, rule, rule.names ?? null);
+      captured = found ? await capture(structure, found, { shallow: SHALLOW.has(rule.key) || Boolean(rule.shallow), lastPage: WHOLE[rule.key] ?? null }) : null;
       if (captured) markdown = render(captured.blocks, captured.base);
     }
 
@@ -612,14 +693,17 @@ async function main() {
       missing.push(rule);
       continue;
     }
-    const why = doubts(markdown, captured);
-    const read = decisions.get(rule.key);
+    const handFile = join(book("basic-set").dir, "journals-by-hand", `${rule.key}.md`);
+    const byHand = existsSync(handFile);
+    if (byHand) markdown = readFileSync(handFile, "utf8").replace(/\r\n/g, "\n");
+    const why = byHand ? [] : doubts(markdown, captured);
+    const read = byHand ? null : decisions.get(rule.key);
     if (read) why.push(`read and found wanting: ${read}`);
     const endPage = captured.endPage;
     const pagesCited = endPage > found.page ? `${found.page}-${endPage}` : `${found.page}`;
     pages.push({
       rule,
-      title: titleCase(captured.title),
+      title: rule.title ?? titleCase(captured.title).replace(/\/([a-z])/g, (m, c) => "/" + c.toUpperCase()),
       volume: found.volume,
       pagesCited,
       markdown,
@@ -659,7 +743,7 @@ async function main() {
       chapter: page.rule.group.charAt(0).toUpperCase() + page.rule.group.slice(1),
       pages: `B${page.pagesCited}`,
       reference: `Basic Set: ${VOLUMES[page.volume].label} p${page.pagesCited.includes("-") ? "p" : ""}. ${page.pagesCited}`,
-      rule: page.rule.key,
+      rule: page.rule.core ? null : page.rule.key,
       file,
       status: page.why.length ? "needs-review" : reviewed ? "reviewed" : "transcribed",
       ...(page.why.length ? { notes: page.why.join("; ") } : {}),

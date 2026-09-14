@@ -134,12 +134,11 @@
       "id": "physicalActivities",
       "title": "Physical Feats",
       "chapter": "Activities",
-      "pages": "B349-354",
-      "reference": "Basic Set: Campaigns pp. 349-354",
+      "pages": "B349-357",
+      "reference": "Basic Set: Campaigns pp. 349-357",
       "rule": "physicalActivities",
       "file": "physicalActivities.md",
-      "status": "needs-review",
-      "notes": "a long section, cut at a subsection; the rest is in the book"
+      "status": "reviewed"
     },
     {
       "id": "poison",
@@ -175,12 +174,11 @@
       "id": "vehicles",
       "title": "Vehicles",
       "chapter": "Activities",
-      "pages": "B462-468",
-      "reference": "Basic Set: Campaigns pp. 462-468",
+      "pages": "B462-470",
+      "reference": "Basic Set: Campaigns pp. 462-470",
       "rule": "vehicles",
       "file": "vehicles.md",
-      "status": "needs-review",
-      "notes": "a long section, cut at a subsection; the rest is in the book"
+      "status": "reviewed"
     },
     {
       "id": "bulletproofNudity",
@@ -460,8 +458,7 @@
       "reference": "Basic Set: Characters pp. 279-280",
       "rule": "ammunitionTypes",
       "file": "ammunitionTypes.md",
-      "status": "needs-review",
-      "notes": "stops mid-sentence, so the capture was cut short; read and found wanting: the APDS paragraph carries on past the Ultra-Tech Firearm Table, and its end was not captured"
+      "status": "reviewed"
     },
     {
       "id": "frontArmor",
@@ -667,12 +664,11 @@
       "id": "magic",
       "title": "Magic",
       "chapter": "Magic",
-      "pages": "B234-239",
-      "reference": "Basic Set: Characters pp. 234-239",
+      "pages": "B234-241",
+      "reference": "Basic Set: Characters pp. 234-241",
       "rule": "magic",
       "file": "magic.md",
-      "status": "needs-review",
-      "notes": "a long section, cut at a subsection; the rest is in the book"
+      "status": "reviewed"
     },
     {
       "id": "magicItems",
@@ -682,8 +678,7 @@
       "reference": "Basic Set: Campaigns pp. 480-483",
       "rule": "magicItems",
       "file": "magicItems.md",
-      "status": "needs-review",
-      "notes": "read and found wanting: Enchant's paragraph beside the Fortify table was read as that table's first column, and the Power cost table ran into Accuracy's"
+      "status": "reviewed"
     },
     {
       "id": "magicRituals",
@@ -726,6 +721,46 @@
       "status": "reviewed"
     },
     {
+      "id": "climbing",
+      "title": "Climbing",
+      "chapter": "Rolls",
+      "pages": "B349",
+      "reference": "Basic Set: Campaigns p. 349",
+      "rule": null,
+      "file": "climbing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "contests",
+      "title": "Contests",
+      "chapter": "Rolls",
+      "pages": "B348",
+      "reference": "Basic Set: Campaigns p. 348",
+      "rule": null,
+      "file": "contests.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "degreeOfSuccessOrFailure",
+      "title": "Degree of Success or Failure",
+      "chapter": "Rolls",
+      "pages": "B347-348",
+      "reference": "Basic Set: Campaigns pp. 347-348",
+      "rule": null,
+      "file": "degreeOfSuccessOrFailure.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "digging",
+      "title": "Digging",
+      "chapter": "Rolls",
+      "pages": "B350-351",
+      "reference": "Basic Set: Campaigns pp. 350-351",
+      "rule": null,
+      "file": "digging.md",
+      "status": "reviewed"
+    },
+    {
       "id": "extraEffort",
       "title": "Extra Effort",
       "chapter": "Rolls",
@@ -746,6 +781,76 @@
       "status": "reviewed"
     },
     {
+      "id": "hearing",
+      "title": "Hearing",
+      "chapter": "Rolls",
+      "pages": "B358",
+      "reference": "Basic Set: Campaigns p. 358",
+      "rule": null,
+      "file": "hearing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "holdingYourBreath",
+      "title": "Holding Your Breath",
+      "chapter": "Rolls",
+      "pages": "B351-352",
+      "reference": "Basic Set: Campaigns pp. 351-352",
+      "rule": null,
+      "file": "holdingYourBreath.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "influenceRolls",
+      "title": "Influence Rolls",
+      "chapter": "Rolls",
+      "pages": "B359",
+      "reference": "Basic Set: Campaigns p. 359",
+      "rule": null,
+      "file": "influenceRolls.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "jumping",
+      "title": "Jumping",
+      "chapter": "Rolls",
+      "pages": "B352",
+      "reference": "Basic Set: Campaigns p. 352",
+      "rule": null,
+      "file": "jumping.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "liftingAndMovingThings",
+      "title": "Lifting and Moving Things",
+      "chapter": "Rolls",
+      "pages": "B353",
+      "reference": "Basic Set: Campaigns p. 353",
+      "rule": null,
+      "file": "liftingAndMovingThings.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "modifiers",
+      "title": "Modifiers",
+      "chapter": "Rolls",
+      "pages": "B344-345",
+      "reference": "Basic Set: Campaigns pp. 344-345",
+      "rule": null,
+      "file": "modifiers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "quickContests",
+      "title": "Quick Contests",
+      "chapter": "Rolls",
+      "pages": "B348",
+      "reference": "Basic Set: Campaigns p. 348",
+      "rule": null,
+      "file": "quickContests.md",
+      "status": "reviewed"
+    },
+    {
       "id": "reactions",
       "title": "Reaction Rolls",
       "chapter": "Rolls",
@@ -763,6 +868,106 @@
       "reference": "Basic Set: Campaigns p. 349",
       "rule": "regularContests",
       "file": "regularContests.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "repeatedAttempts",
+      "title": "Repeated Attempts",
+      "chapter": "Rolls",
+      "pages": "B348",
+      "reference": "Basic Set: Campaigns p. 348",
+      "rule": null,
+      "file": "repeatedAttempts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "running",
+      "title": "Running",
+      "chapter": "Rolls",
+      "pages": "B354",
+      "reference": "Basic Set: Campaigns p. 354",
+      "rule": null,
+      "file": "running.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "senseRolls",
+      "title": "Sense Rolls",
+      "chapter": "Rolls",
+      "pages": "B358",
+      "reference": "Basic Set: Campaigns p. 358",
+      "rule": null,
+      "file": "senseRolls.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "successRolls",
+      "title": "Success Rolls",
+      "chapter": "Rolls",
+      "pages": "B344",
+      "reference": "Basic Set: Campaigns p. 344",
+      "rule": null,
+      "file": "successRolls.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "swimming",
+      "title": "Swimming",
+      "chapter": "Rolls",
+      "pages": "B354-355",
+      "reference": "Basic Set: Campaigns pp. 354-355",
+      "rule": null,
+      "file": "swimming.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "taskDifficulty",
+      "title": "Task Difficulty",
+      "chapter": "Rolls",
+      "pages": "B345-346",
+      "reference": "Basic Set: Campaigns pp. 345-346",
+      "rule": null,
+      "file": "taskDifficulty.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tasteSmell",
+      "title": "Taste/Smell",
+      "chapter": "Rolls",
+      "pages": "B358",
+      "reference": "Basic Set: Campaigns p. 358",
+      "rule": null,
+      "file": "tasteSmell.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "throwing",
+      "title": "Throwing",
+      "chapter": "Rolls",
+      "pages": "B355-356",
+      "reference": "Basic Set: Campaigns pp. 355-356",
+      "rule": null,
+      "file": "throwing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "vision",
+      "title": "Vision",
+      "chapter": "Rolls",
+      "pages": "B358",
+      "reference": "Basic Set: Campaigns p. 358",
+      "rule": null,
+      "file": "vision.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "willRolls",
+      "title": "Will Rolls",
+      "chapter": "Rolls",
+      "pages": "B360",
+      "reference": "Basic Set: Campaigns p. 360",
+      "rule": null,
+      "file": "willRolls.md",
       "status": "reviewed"
     }
   ]
