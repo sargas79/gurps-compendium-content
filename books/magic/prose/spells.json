@@ -5168,6 +5168,190 @@
     "description": "<p>As Force Wall, but protects against physical and magical attack; has the effect of a combination Force Wall and Spell Wall.</p><p><em>Item</em></p><p>(a) Staff. Usable only by mages. Energy cost to create: 1,000. (b) An Utter Wall may be made permanent at an energy cost of 100 times normal.</p>"
   },
   {
+    "_id": "392070bded3b835c",
+    "name": "Sound",
+    "pages": "M171",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces any sort of meaningless sound the caster wishes - the drone of an insect, the distant babble of voices, the clatter of something falling, or anything similar. The spell cannot produce loud noise. It requires no concentration once the spell is cast.</p><p><em>Item</em></p><p>Any. Continually produces the specified sound (though Link is often used to turn it on and off). Energy cost to create: 50.</p>"
+  },
+  {
+    "_id": "6bd28a2a80e5ca71",
+    "name": "Silence",
+    "pages": "M171",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates an area of quiet. No one within this area can hear anything, and nothing that happens in this area makes any sound. It is the area that is affected and not the people in it; anyone moving out will be able to speak. Note that an area of silence will prevent spoken spells from working!</p><p><em>Item</em></p><p>An area can be permanently silenced; the spell is on the floor or ground, and is broken if that area is torn up. Or a large rug can be enchanted for a portable silent area. Energy cost to create: 80 per yard radius, but only one spell is required for the whole area.</p>"
+  },
+  {
+    "_id": "6e699fec4d95aa47",
+    "name": "Sound Vision",
+    "pages": "M171",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject sees by sound, like a bat or dolphin, as if he had the Scanning Sense (Sonar) advantage (p. B81). The Silence and Wall of Silence spells are equivalent to Darkness to the subject, while someone using Hush or Mage-Stealth will be effectively invisible to Sound Vision. The subject may still see with his normal vision, if he wants to and there is light to do so.</p><p><em>Item</em></p><p>Staff, wand, or jewelry; only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "c4b5c176fd8e4f3b",
+    "name": "Thunderclap",
+    "pages": "M171",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces a single loud sound like an explosion or crash of thunder. The \"subject\" is the spot the caster chooses as the spell's center. Outdoors, anyone within 3 yards of this place must make a HT roll or be deafened; anyone deafened may roll vs. HT every hour to recover. In an enclosed area - less than 10 yards in any dimension - increase this distance to 6 yards! The caster makes his roll at HT+2.</p><p><em>Item</em></p><p>Gloves, staff, wand, or jewelry. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "149b949fad73152a",
+    "name": "Voices",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces a meaningful sound - voices, music, etc. - of normal speaking volume. Requires constant concentration on the part of the caster.</p><p><em>Item</em></p><p>Any. The item repeats a single saying over and over (unless limited with Link). Energy cost to create: 20 per word.</p>"
+  },
+  {
+    "_id": "89f5025b33be3413",
+    "name": "Garble",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (a living being) can no longer make meaningful sounds; it comes out completely garbled. This spell could make an opposing wizard powerless!</p><p><em>Item</em></p><p>(a) Clothing or jewelry; only affects the wearer. Always on. Energy cost to create: 400. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "25cf53f420617bf2",
+    "name": "Imitate Voice",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Alters the subject's voice to precisely imitate that of a single other being known to the caster (including special inflections and accent). Recreating a familiar voice from memory is a -2 penalty to skill, -3 or worse if the caster has only heard the voice a few times or a long time ago (Eidetic or Photographic Memory is helpful here). To determine whether someone familiar with the imitated being's voice is fooled or not, roll a Quick Contest between the spell and the listener's IQ when he first hears it.</p><p><em>Modifiers:</em> +2 for close acquaintances of the imitated being; -2 for listeners who are not expecting trickery or aren't paying close attention.</p>"
+  },
+  {
+    "_id": "41a4b9a40c92180c",
+    "name": "Wall of Silence",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Surrounds the affected area with a wall that sounds will not pass. Those within it cannot hear outside sounds, or be heard by those outside. Casting of spoken spells is unaffected.</p><p><em>Item</em></p><p>As for Silence, but the cost is 100 per yard radius.</p>"
+  },
+  {
+    "_id": "932f11bf1eb06930",
+    "name": "Hush",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (an object or living being) can make no sounds, either accidentally or on purpose. Add 3 to the subject's Stealth skill whenever a roll is necessary, or subtract 5 from the Hearing roll of anyone listening for the subject. This spell can silence an opposing wizard in battle!</p><p><em>Item</em></p><p>Clothing or jewelry; only affects the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "3a2d0f7de8caa294",
+    "name": "Mage-Stealth",
+    "pages": "M172",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can move quietly, breathe without sound, etc., but can still talk when necessary. Other benefits are as for Hush.</p><p><em>Item</em></p><p>Clothing or jewelry; only affects the wearer. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "ec0c048f47c5be61",
+    "name": "Great Voice",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can be heard clearly and distinctly by everyone he can see, even at a great distance. The subject can choose to be heard by only a few chosen targets if he specifies before speaking (those within ordinary earshot will hear him whether he wants it or not, of course). Note that, for instance, one could not cut off the subject's voice by ducking behind a rock. This spell is widely used by ship captains, military commanders, and public speakers. The sound may become irritatingly loud if the original voice is loud, but will not deafen or cause harm.</p><p><em>Item</em></p><p>Staff, wand, helm, or jewelry; only affects the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "0600fd7d23b1895e",
+    "name": "Noise",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fills an area with meaningless, continuous, very loud noise. No one within this area can have a conversation or hear other sounds. Use of any IQ-based skill is either distracted (spells, for example), or at -3 (or both! GM's choice). A Wall of Silence surrounds the affected area. Resists (and is Resisted by) Silence.</p><p><em>Item</em></p><p>An area can be permanently made noisy; the spell is on the floor or ground, and is broken if the area is torn up. Or a large rug could be enchanted for a portable noisy area. Energy cost to create: 100 per yard radius, but only one spell is required for the whole area.</p>"
+  },
+  {
+    "_id": "620a5a9077db8136",
+    "name": "Delayed Message",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates an oral message, which can be delayed to go off until a certain person, specified at casting, arrives in the area. The recipient hears it clearly, regardless of other noise, but nobody else hears it. A Detect Magic spell cast in the area reveals that it contains a delayed message, but only a critical success reveals more. A critical success reveals one of the following (roll randomly): the sender, the intended recipient, or the words (not any hidden meanings) of the message.</p><p>This does not count as a \"continuing spell\" - the mage casts it and forgets about it.</p>"
+  },
+  {
+    "_id": "6c29271a4a267a6e",
+    "name": "Resist Sound",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (person, creature or object), and anything he carries, becomes immune to the effects of sound: Thunderclaps won't deafen him, sonic weapons won't harm him, Sound Jet won't stun him, and so on. Noise may still distract, however. Very popular at high TLs.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>(a) Any. Only affects the wearer. Energy cost to create: 800. (b) Wand, staff, or jewelry. Energy cost to create: 1,200.</p>"
+  },
+  {
+    "_id": "aea93bcef3cbb1df",
+    "name": "Sound Jet",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a thin beam of very shrill sound from a fingertip. Each turn, the caster rolls versus Innate Attack or DX-4 to hit. This attack may be dodged or blocked, but not parried. The spell does no actual damage, but anyone hit by the jet must roll versus their HT minus the energy cost of the spell or be stunned (see Effects of Stun, p. B420). DR gives a +1 bonus to the target's effective HT for every five points of DR. Every turn, a stunned person may roll vs. HT minus the energy cost of the spell to recover.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by a mage. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "4671d44faba8b6cb",
+    "name": "Converse",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Allows the caster and his subject to converse quietly without fear of eavesdropping, even in a noisy environment (such as a raucous party). Each one will hear the words of the other clearly regardless of the surrounding din. Other beings within earshot will hear a meaningless buzz of conversation.</p><p>Converse resists spells that block sound such as Silence or Noise.</p><p><em>Item</em></p><p>Any. Usable only by mages. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "8e662f3dac4929fe",
+    "name": "Far-Hearing",
+    "pages": "M173",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster can hear any conversation that he can see, even at a great distance, or hear through solid objects totaling no more than six feet of thickness. He automatically makes all Hearing rolls.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "17e5c3c7a368132d",
+    "name": "Scribe",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Animates a pen, which writes down whatever the caster dictates for the duration of the spell. If the caster fails by only 1 or 2 points, the pen is still animated, but the transcription is not perfectly accurate! Therefore, the caster should always double-check his work.</p><p>At higher TLs, this spell may also be used with typewriters, computer keyboards, and other transcription devices.</p><p><em>Item</em></p><p>A pen may be permanently animated at an energy cost of 250. For an additional 100 points of energy (which may be a separate enchantment) the caster may attune it to someone else's words.</p>"
+  },
+  {
+    "_id": "132a5aa27933d932",
+    "name": "Musical Scribe",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Animates a pen, which records in musical notation any tune that the caster hums, sings, or plays on an instrument. The caster may also attune the pen to the sounds created by another person (or by a radio, etc.), instead of himself. The pen records only the music; if lyrics are to be recorded simultaneously, a second pen with Scribe cast on it can follow along and do so!</p><p><em>Item</em></p><p>A pen may be permanently animated at an energy cost of 350. The caster can command it to change which source it is \"attuned to\" at will.</p>"
+  },
+  {
+    "_id": "4db3f52debaf394f",
+    "name": "Message",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Send a spoken message to a subject. Use the long-distance modifiers (p. 14). If the caster doesn't know the subject, he is at -2. If he doesn't know the subject's whereabouts, he is also at -5 (a successful Seeker spell will eliminate this). These penalties may be cumulative. A successful Trace gives a +5 bonus.</p><p>The subject hears the message clearly and distinctly whatever his sonic surroundings, but nobody else hears it. Silence, Wall of Silence, and Noise will resist the incoming message.</p><p>This is also a Communication and Empathy spell.</p><p><em>Item</em></p><p>A conch one speaks into while concentrating on a mental picture of the subject and his surroundings. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "e928a89fc554f57e",
+    "name": "Silver Tongue",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grants the subject the Voice advantage (p. B97). The spell has no effect on beings that already have the advantage.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 200. (b) Jewelry; must bear a picture of a nightingale. Always on, only affects the wearer. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "ffc01fa883cae165",
+    "name": "Wizard Ear",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a replica of the caster's physical ear, through which he can hear. The ear may move about without bumping into things (as if it had Sound Vision), though it cannot \"see\" more than the general size and shape of halls and rooms. This spell may be cast on an already existing Wizard Eye (regular or invisible); this does not change its shape, but allows it to hear conversation and other sounds.</p><p><em>Item</em></p><p>Any painting or sculpture depicting a human ear may be turned into an immobile Wizard Ear, through which the holder of an ear-shaped amulet, enchanted at the same time, may hear regardless of distance. Each such Ear links only to one amulet, and vice versa. Energy cost to cast: 450.</p>"
+  },
+  {
+    "_id": "b8435dbb34436989",
+    "name": "Invisible Wizard Ear",
+    "pages": "M174",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a Wizard Ear that cannot be seen without the See Invisible spell. Anyone who guesses where it is may still attack, but the cumulative modifiers from invisibility and its small size make it nigh impossible to hit.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
