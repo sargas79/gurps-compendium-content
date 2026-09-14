@@ -62,7 +62,7 @@ The angle at which you hit adjusts velocity, affecting damage. This is especiall
 
 Head-On: In a head-on collision between two moving objects, collision velocity is the sum of the objects’ velocities. The slower object cannot inflict more dice of damage than the faster one.
 
-Rear-End: If a faster object over-takes and strikes a slower one, collision velocity is that of the striking object minus that of the struck object. The struck object cannot inflict more dice of damage than the striking one.
+Rear-End: If a faster object overtakes and strikes a slower one, collision velocity is that of the striking object minus that of the struck object. The struck object cannot inflict more dice of damage than the striking one.
 
 Side-On Collisions and Falls: If a moving object strikes a stationary one, or strikes a moving object side-on, collision velocity is that of the striking or falling object. The struck object cannot inflict more dice of damage than the striking or falling one.
 
