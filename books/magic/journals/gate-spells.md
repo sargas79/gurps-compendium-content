@@ -1,0 +1,1 @@
+These spells manipulate time, space, and dimensions. As such, the Gate college has a strong affinity with the Movement college; most Gate mages begin as Movement mages. Gate magic is difficult, often dangerous, and always rare. It may not even exist in some settings.

@@ -1,0 +1,1 @@
+These spells deal with the traditional magical “element” of fire. Should the volume of a particular fire matter in play, assume that the flames created or controlled by Fire spells shoot six feet high. See Flame (p. B433) for rules for setting things on fire.

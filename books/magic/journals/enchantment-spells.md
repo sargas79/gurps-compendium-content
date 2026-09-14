@@ -1,0 +1,1 @@
+These spells allow mages to make and unmake permanently magical items. They can only be cast with ceremonial magic (p. 12). A PC may only learn these spells with the GM’s permission; nearly all of them are only available to quite advanced mages.

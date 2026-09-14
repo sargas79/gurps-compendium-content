@@ -1,0 +1,1 @@
+The College of Protection and Warning is a common second specialty for mages. It’s a particularly accessible college; most of its spells have only a few prerequisites. Besides, a wise mage is a mage with a contingency plan.

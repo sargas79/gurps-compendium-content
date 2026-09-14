@@ -1,0 +1,1 @@
+These spells deal with spirits embodying the four classical elements – air, earth, fire, and water. There are different spells for each of the four elements, but in general they conform to the spells given here for air elementals.

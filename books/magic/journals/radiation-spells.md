@@ -1,0 +1,3 @@
+Radiation is insidious; it is odorless, invisible, and silent. Fatal exposure can be reached in a few minutes, but death can take weeks to come – an ugly, agonizingly painful death. See p. B435 for details on the effect radiation can have on a person.
+
+Under some circumstances (particularly with spells such as Radiation Jet), a victim may have only part of his body irradiated. Such doses of radiation do not have the same effect as a dose distributed over the entire body. To assess the dose’s effects, one must convert the body part’s dose into an “equivalent whole-body dose”: divide a dose received by the head or limbs by 15, one received by the torso by 8 and one received by the vitals by 4.

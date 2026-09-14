@@ -1,0 +1,1 @@
+For the purposes of these spells, a “metal” is any conducting material. A “plastic,” by contrast, is any artificial nonconducting unliving polymer material. If it isn’t (a) animal, (b) stone/earth/ceramic/glass, (c) water/simple liquid, (d) air/gas, (e) plant/wood (living or dead), or (f) metal, then it’s “plastic.”
