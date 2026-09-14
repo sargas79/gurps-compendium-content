@@ -1,0 +1,3 @@
+Any number of people may participate in close combat in the same hex. This is easy to depict with flat counters, but it can be difficult to show with 3D figures – especially if some fighters are standing and others are lying down. A good compromise is to allow a fighter to declare himself in close combat with an opponent while still in an adjacent hex.
+
+Up to two fighters may combine their efforts in a takedown attempt against a single foe; up to three may work together in a pin attempt against a single foe. In either case, use the ST, DX, or grappling skill of the attacker with the best score, and add 1/5 (round down) of the score of each of his helpers.

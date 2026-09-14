@@ -1,0 +1,1 @@
+You can only use small, easily managed weapons in close combat. You can attack with any melee weapon with reach “C.” If using a ranged weapon, ignore the usual speed/range penalty and apply the weapon’s Bulk statistic as a penalty to hit.

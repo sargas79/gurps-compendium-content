@@ -341,6 +341,16 @@
       "status": "reviewed"
     },
     {
+      "id": "attackingInTacticalCombat",
+      "title": "Attacking in Tactical Combat",
+      "chapter": "Combat",
+      "pages": "B388",
+      "reference": "Basic Set: Campaigns p. 388",
+      "rule": null,
+      "file": "attackingInTacticalCombat.md",
+      "status": "reviewed"
+    },
+    {
       "id": "blocking",
       "title": "Blocking",
       "chapter": "Combat",
@@ -481,6 +491,26 @@
       "status": "reviewed"
     },
     {
+      "id": "defendingInTacticalCombat",
+      "title": "Defending in Tactical Combat",
+      "chapter": "Combat",
+      "pages": "B390-391",
+      "reference": "Basic Set: Campaigns pp. 390-391",
+      "rule": null,
+      "file": "defendingInTacticalCombat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "defenseInCloseCombat",
+      "title": "Defense in Close Combat",
+      "chapter": "Combat",
+      "pages": "B392",
+      "reference": "Basic Set: Campaigns p. 392",
+      "rule": null,
+      "file": "defenseInCloseCombat.md",
+      "status": "reviewed"
+    },
+    {
       "id": "dirtyTricks",
       "title": "Dirty Tricks",
       "chapter": "Combat",
@@ -531,6 +561,16 @@
       "status": "reviewed"
     },
     {
+      "id": "enteringAFoesHex",
+      "title": "Entering a Foe’s Hex",
+      "chapter": "Combat",
+      "pages": "B391",
+      "reference": "Basic Set: Campaigns p. 391",
+      "rule": null,
+      "file": "enteringAFoesHex.md",
+      "status": "reviewed"
+    },
+    {
       "id": "evading",
       "title": "Evading",
       "chapter": "Combat",
@@ -548,6 +588,16 @@
       "reference": "Basic Set: Campaigns pp. 364-365",
       "rule": null,
       "file": "evaluate.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "facing",
+      "title": "Facing",
+      "chapter": "Combat",
+      "pages": "B385",
+      "reference": "Basic Set: Campaigns p. 385",
+      "rule": null,
+      "file": "facing.md",
       "status": "reviewed"
     },
     {
@@ -581,6 +631,16 @@
       "status": "reviewed"
     },
     {
+      "id": "leavingAFoesHex",
+      "title": "Leaving a Foe’s Hex",
+      "chapter": "Combat",
+      "pages": "B391",
+      "reference": "Basic Set: Campaigns p. 391",
+      "rule": null,
+      "file": "leavingAFoesHex.md",
+      "status": "reviewed"
+    },
+    {
       "id": "malfunctions",
       "title": "Malfunctions",
       "chapter": "Combat",
@@ -601,6 +661,16 @@
       "status": "reviewed"
     },
     {
+      "id": "maneuversInTacticalCombat",
+      "title": "Maneuvers in Tactical Combat",
+      "chapter": "Combat",
+      "pages": "B385",
+      "reference": "Basic Set: Campaigns p. 385",
+      "rule": null,
+      "file": "maneuversInTacticalCombat.md",
+      "status": "reviewed"
+    },
+    {
       "id": "meleeAttackOptions",
       "title": "Melee Attack Options",
       "chapter": "Combat",
@@ -618,6 +688,16 @@
       "reference": "Basic Set: Campaigns p. 369",
       "rule": null,
       "file": "meleeAttacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "meleeAttacksInTacticalCombat",
+      "title": "Melee Attacks (Tactical Combat)",
+      "chapter": "Combat",
+      "pages": "B388-389",
+      "reference": "Basic Set: Campaigns pp. 388-389",
+      "rule": null,
+      "file": "meleeAttacksInTacticalCombat.md",
       "status": "reviewed"
     },
     {
@@ -681,6 +761,26 @@
       "status": "reviewed"
     },
     {
+      "id": "movementAndFacing",
+      "title": "Movement and Facing",
+      "chapter": "Combat",
+      "pages": "B386-387",
+      "reference": "Basic Set: Campaigns pp. 386-387",
+      "rule": null,
+      "file": "movementAndFacing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "movementInTacticalCombat",
+      "title": "Movement in Tactical Combat",
+      "chapter": "Combat",
+      "pages": "B386",
+      "reference": "Basic Set: Campaigns p. 386",
+      "rule": null,
+      "file": "movementInTacticalCombat.md",
+      "status": "reviewed"
+    },
+    {
       "id": "movingThroughOtherCharacters",
       "title": "Moving Through Other Characters",
       "chapter": "Combat",
@@ -688,6 +788,26 @@
       "reference": "Basic Set: Campaigns p. 368",
       "rule": null,
       "file": "movingThroughOtherCharacters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiHexFigures",
+      "title": "Multi-Hex Figures",
+      "chapter": "Combat",
+      "pages": "B392",
+      "reference": "Basic Set: Campaigns p. 392",
+      "rule": null,
+      "file": "multiHexFigures.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multipleCloseCombat",
+      "title": "Multiple Close Combat",
+      "chapter": "Combat",
+      "pages": "B392",
+      "reference": "Basic Set: Campaigns p. 392",
+      "rule": null,
+      "file": "multipleCloseCombat.md",
       "status": "reviewed"
     },
     {
@@ -741,6 +861,16 @@
       "status": "reviewed"
     },
     {
+      "id": "rangedAttacksInTacticalCombat",
+      "title": "Ranged Attacks (Tactical Combat)",
+      "chapter": "Combat",
+      "pages": "B389-390",
+      "reference": "Basic Set: Campaigns pp. 389-390",
+      "rule": null,
+      "file": "rangedAttacksInTacticalCombat.md",
+      "status": "reviewed"
+    },
+    {
       "id": "rapidFire",
       "title": "Rapid Fire",
       "chapter": "Combat",
@@ -768,6 +898,16 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "ready.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "readyingInCloseCombat",
+      "title": "Readying in Close Combat",
+      "chapter": "Combat",
+      "pages": "B391",
+      "reference": "Basic Set: Campaigns p. 391",
+      "rule": null,
+      "file": "readyingInCloseCombat.md",
       "status": "reviewed"
     },
     {
@@ -851,6 +991,16 @@
       "status": "reviewed"
     },
     {
+      "id": "theCombatMap",
+      "title": "The Combat Map",
+      "chapter": "Combat",
+      "pages": "B384-385",
+      "reference": "Basic Set: Campaigns pp. 384-385",
+      "rule": null,
+      "file": "theCombatMap.md",
+      "status": "reviewed"
+    },
+    {
       "id": "thrownWeaponAttacks",
       "title": "Thrown Weapon Attacks",
       "chapter": "Combat",
@@ -898,6 +1048,16 @@
       "reference": "Basic Set: Campaigns p. 366",
       "rule": null,
       "file": "wait.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weaponsForCloseCombat",
+      "title": "Weapons for Close Combat",
+      "chapter": "Combat",
+      "pages": "B391",
+      "reference": "Basic Set: Campaigns p. 391",
+      "rule": null,
+      "file": "weaponsForCloseCombat.md",
       "status": "reviewed"
     },
     {

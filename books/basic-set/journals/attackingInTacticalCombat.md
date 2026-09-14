@@ -1,0 +1,1 @@
+Attacks work as described in Chapter 11, with the difference that a hex grid permits precise determination of range, facing, arc of vision, and area of effect. This calls for a few extra rules – especially for combat in the same hex as your foe (see Close Combat, p. 391).
