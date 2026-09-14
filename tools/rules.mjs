@@ -133,6 +133,8 @@ const CORE = [
     extra: [{ key: "successRolls", title: "Success Rolls", names: ["When the GM Rolls"], page: 344 }],
   },
   { from: 362, to: 383, folder: () => "combat" },
+  // Names a section the chapter shares with an earlier one: Melee Attacks.
+  { from: 384, to: 392, folder: () => "combat", chapter: "Tactical Combat" },
 ];
 
 function flag(name, fallback = null) {
@@ -392,6 +394,7 @@ const MENDS = [
   [/hatch-ets/g, "hatchets"],
   [/over-takes/g, "overtakes"],
   [/over-heat/g, "overheat"],
+  [/hex-byhex/g, "hex-by-hex"],
 ];
 
 /** Characters Markdown would read as formatting: "-10 points*", "a_b". */
@@ -569,6 +572,7 @@ async function coreRules(structure, registered) {
     for (const name of [titleOf(rule.key), ...(ALIASES[rule.key] ?? []), ...(SECTIONS[rule.key] ?? [])]) taken.add(norm(name));
   }
   const rules = [];
+  const used = new Set(registered.map((r) => r.key));
   for (const chapter of CORE) {
     const headings = [];
     for (let page = chapter.from; page <= chapter.to; page++) {
@@ -584,8 +588,19 @@ async function coreRules(structure, registered) {
       // of its own for the text before them: Sense Rolls says what a Sense roll is.
       const intro = h.kind === "h1" && headings[i + 1]?.kind === "h2";
       const parent = h.kind === "h2" ? headings.slice(0, i).reverse().find((x) => x.kind === "h1") : h;
+      // Two chapters can name a section alike -- Melee Attacks in Combat and in
+      // Tactical Combat -- so the later one's key and title carry its chapter.
+      let key = keyOf(h.text);
+      let title;
+      if (used.has(key) && chapter.chapter) {
+        key = keyOf(`${h.text} in ${chapter.chapter}`);
+        title = `${titleCase(h.text)} (${chapter.chapter})`;
+      }
+      if (used.has(key)) throw new Error(`Two rules share the key "${key}".`);
+      used.add(key);
       rules.push({
-        key: keyOf(h.text),
+        key,
+        title,
         reference: `Basic Set: Campaigns p. ${h.page}`,
         group: chapter.folder(titleCase(parent?.text ?? "")),
         names: [titleCase(h.text)],
@@ -596,6 +611,8 @@ async function coreRules(structure, registered) {
   }
   for (const chapter of CORE) {
     for (const extra of chapter.extra ?? []) {
+      if (used.has(extra.key)) throw new Error(`Two rules share the key "${extra.key}".`);
+      used.add(extra.key);
       rules.push({
         key: extra.key,
         title: extra.title,

@@ -1,0 +1,1 @@
+You must make a DX roll to ready a weapon in close combat. If you fail, you still take a Ready maneuver but you accomplish nothing. If you have the Fast-Draw skill, you must make two rolls: the DX roll above and a Fast-Draw roll to get your weapon quickly. If you fail the Fast-Draw roll, you ready the weapon but it takes a full Ready maneuver.
