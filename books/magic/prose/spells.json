@@ -2152,6 +2152,246 @@
     "description": "<p>The area and all within it are temporarily removed from the time stream; the effect is equivalent to having the area's time accelerated infinitely. Unlike Suspend Time, this spell can only be cast from the inside, centered on the caster (the spell ends as soon as he touches its edge). Should the caster die alone in the area, the spell will never end! The caster and any objects caught in the area would simply seem to vanish from the time stream.</p><p>As far as outside observers are concerned, the area \"ages\" instantaneously (which may or may not be perceptible). One moment five ogres were attacking the party while their wizard cast a spell, and the next moment the ogres were dead, the party magically healed, and everybody was in a different position and drinking rum to celebrate.</p><p>From the inside, the area is bounded by a wall (and covered by a ceiling) of utter blackness. Anyone or anything touching the edge of the area is immediately expelled from the area, back into normal time. This causes an automatic mental stun to anyone other than the caster. Missiles of any sort can be thrown blindly out of the area (see Shooting Blind, p. B389) but not into it. Note that, since all missiles fired out of the area will emerge at the same outside time, an archer could create an impressive burst of arrows by simply firing casually for a few subjective hours . . .</p><p>Spells involving the outside simply fail. Any spell requiring concentration and lying inside the area lapses immediately if its caster is left outside. Likewise, any inside spell whose maintenance comes due during the Time Out lapses unless its caster is also inside.</p><p>The \"flow\" of mana into the Timed Out area is effectively nil. Powerstones won't recharge, enchantment is impossible, etc. Mages still recover lost energy (the physical consequences of manipulating mana go away regardless of the local mana supply), but GMs may decree that spells cost much more, or are impossible, within the time-stopped area (since the power must be drawn entirely from the caster's personal life-force). This is entirely dependent on the GM's view of mana in his setting.</p><p><em>Item</em></p><p>Staff or timepiece. Usable only by mages. Energy cost to create: 2,500.</p>"
   },
   {
+    "_id": "944eae3c51b005c4",
+    "name": "Body-Reading",
+    "pages": "M88",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates in the mind of the caster a visual and tactile \"image\" of the interior of the subject's body. Useful for diagnosing pain or illness of uncertain origins, this spell reveals organ ruptures and internal bleeding, bone fractures - even the sex of an unborn child. Use Regular range modifiers. Essentially, this is the magical equivalent of a detailed series of X-rays; what the caster can do with the information gained depends on his medical skills.</p><p>The spell does not reveal the exact nature of any poisons or diseases that may be affecting the subject, but it gives a +2 to any subsequent Poisons or Diagnosis roll. The caster must touch the subject.</p><p><em>Modifiers:</em> -2 if the subject is of a different species than the caster (an Elven wizard reading a human subject, for instance), -4 or worse if totally alien!</p><p><em>Item</em></p><p>Headgear or jewelry. Works only on wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "32dc1a7db4a80e13",
+    "name": "Final Rest",
+    "pages": "M89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a dead body, this spell renders the subject immune to all Necromantic magic. The spirit of the deceased cannot be summoned, nor can the body be animated (or Resurrected). It has no physical effect on the body. The spell may be cast at any time after the subject dies, but there is a cumulative -1 penalty for each month that the subject has been dead, to a maximum of -10. Any given caster may attempt the spell only once per subject.</p><p>This spell has no effect on a living person, and will not affect the undead who have already risen.</p><p>In many settings, this spell is an intrinsic part of funeral rites, and may be restricted to the clergy. GMs may wish to change the prerequisite from Magery to Power Investiture or Blessed. In other settings, this spell is unnecessary; ordinary nonmagical funeral rites are sufficient to safe-guard the dead from necromancy.</p><p>It is usually assumed that this spell functions by sending the soul of the deceased from the mortal plane into the presence of their deity. Some, however (usually members of one deathcult or another), believe that this spell works by destroying the disembodied spirits of the dead!</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>This spell may be consecrated into funerary regalia. Energy cost: 1,200.</p>"
+  },
+  {
+    "_id": "1b5e983b520b85ac",
+    "name": "Share Energy",
+    "pages": "M89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster makes his FP available to another wizard's spell casting. The caster may only cast this spell on himself. He must specify who can draw FP from him in the next second - nobody else may do so. More than one wizard may be specified, and a limit of 5 FP may be drawn in a single second. The caster may specify a lower limit! HP may not be used to cast this spell.</p><p>If a specified wizard does not draw FP before the caster's next turn, the Share Energy spell expires, costing the caster one FP. The wizard casting the other spell does not have to be aware of the Share spell's existence. As he casts his spell, he will feel an outside energy attempting to aid him - he may yield to that or deny it, paying the cost himself.</p><p>A spell can draw power from only one Share spell. If more than one Share spell is cast, use the closest one; roll randomly if two are equally close.</p>"
+  },
+  {
+    "_id": "96ef818453cf0854",
+    "name": "Remove Contagion",
+    "pages": "M90",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Purifies the subject area of contagious disease-causing agents - microbes, disease spirits, foul air, etc. - rendering it sterile and free from infection. This spell can be used to cleanse and sterilize anything from a diseasecult temple to an operating theatre. It will not cure or relieve disease in living creatures; it serves only to cleanse and purify objects and surfaces.</p><p>Infectious areas or objects treated with Remove Contagion cannot serve as a source of contagion (see Contagion, p. B443) until reinfected.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. Subject must be touched by item. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "f30c68d46f5a11b6",
+    "name": "Relieve Sickness",
+    "pages": "M90",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily relieves a subject of any sickness symptoms he may have been displaying (fever, dizziness, rash, cough, etc.). The spells Sickness and Drunkenness get to resist. Note that only the symptoms are cured. Relieve Sickness will sober a drunk for the duration - but for a permanent cure, use Neutralize Poison.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "605d07b4447b243e",
+    "name": "Share Vitality",
+    "pages": "M90",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster heals another's injuries by transferring them to himself, losing as many HP as the subject heals. If the subject had a crippled limb, it will remain so - only the HP loss is healed. Likewise, the injury applied to the caster will not cripple him (although it could certainly put him into unconsciousness or even kill him; the spell includes no \"safety net\" for overly kind wizards). The caster does not suffer the normal skill penalty for spending HP to cast spells, nor is he penalized for recasting on the same subject.</p>"
+  },
+  {
+    "_id": "2a1d97afe8f3b786",
+    "name": "Resist Disease",
+    "pages": "M90",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is immune to diseases for the duration of the spell, as per the Immunity to Disease advantage (p. B80). This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>(a) Jewelry. Always on; the wearer is immune to diseases. A rare and prized item! Energy cost to create: 1,000 for an item that resists one specific disease, 2,500 for one that resists all diseases. (b) Jewelry. Always on; prevents the wearer from spreading any disease he may have. \"Lepers' Cords\" are an example of this item. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "e97fc503ba84dd6e",
+    "name": "Resist Poison",
+    "pages": "M91",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes immune to poisons for the duration of the spell. For some very persistent poisons, this is only a delay of the inevitable, since traces of the poison may still be in the subject's system when the spell ends!</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>Jewelry. The item must bear a picture of a unicorn. Always on; wearer is immune to poison. A rare and prized item! Energy cost to create: 500 for an item that resists one specific poison, 4,000 for one that resists all poisons.</p>"
+  },
+  {
+    "_id": "bbf22afc7f882ccb",
+    "name": "Stop Bleeding",
+    "pages": "M91",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject stops bleeding immediately, as if bandaged by someone with the First Aid skill (p. B195). This restores 1 HP, and prevents further HP loss from bleeding if the optional bleeding rules (p. B420) are in effect. The subject of this spell may not subsequently benefit from further bandaging of the same wounds.</p><p>This spell may also be used to stabilize a mortal wound (p. B423), at a substantially higher cost.</p><p><em>Item</em></p><p>Any item. The item must bear a picture of a pelican. It prevents its wearer from bleeding and from suffering mortal wounds. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "c93619c5d211fbca",
+    "name": "Cure Disease",
+    "pages": "M91",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Eliminates one type of disease or infection from the body of the subject. A successful Diagnosis roll (by the caster or another) should precede the casting; if not, spell use is at -5! Does not cure any damage the illness has done to the subject; the spell just eliminates the underlying sickness.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. The item must touch the subject. Usable only by mages. Energy cost to create: 800 to cure one specific disease, or 1,500 for an item that cures any disease.</p>"
+  },
+  {
+    "_id": "2643ee8f6c9ef90c",
+    "name": "Neutralize Poison",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Eliminates all traces of one chosen poison from the body of the subject. A successful Poisons roll (by the caster or another character) should precede the casting in order to identify the poison being treated; if not, spell use is at -5! This spell is of no use against alchemical elixirs other than those that do direct damage. Does not cure existing damage - the spell just removes the remaining poison, avoiding any further damage.</p><p><em>Item</em></p><p>Staff or wand decorated in a snake pattern. Usable only by a mage or a nonmage with Physician-20 or higher. The item must touch the subject. Cost to create: 400 for an item that cures one specific poison, 1,500 for an item that cures any poison.</p>"
+  },
+  {
+    "_id": "b00830c4da794e66",
+    "name": "Instant Neutralize Poison",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Neutralize Poison, but works instantly. A Poisons roll is not required for successful use of this spell!</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. The item must touch the subject. Usable only by a mage or a nonmage with Physician-20 or higher. Energy cost to create: 800 for an item that neutralizes one specific poison, 3,000 for an item that will neutralize any poison.</p>"
+  },
+  {
+    "_id": "b787382ccf267d35",
+    "name": "Relieve Addiction",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Partially replaces a \"daily dose\" of some drug required by the subject. The subject will still feel the psychological effects of missing a dose (that is, a Will-modified HT roll is still required to count the day toward shaking off the addiction), but will not suffer any physical damage from withdrawal.</p><p><em>Modifiers:</em> This spell is at a -4 penalty if the caster casts it on himself, and at a cumulative -4 per consecutive daily casting on the same subject (thus, it gets harder and harder for the spell to replace the drug). In addition, the withdrawal penalty inherent to the drug is applied to any casting!</p>"
+  },
+  {
+    "_id": "23a2805c4e65dee4",
+    "name": "Relieve Madness",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily restores a subject's sanity, relieving him from a single Delusion, Phobia, Compulsion, or spell-induced Madness (caster's choice). The Madness and Permanent Madness spells get to resist.</p><p>This is also a Mind Control spell.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 850.</p>"
+  },
+  {
+    "_id": "8a9977d3cab8cc4f",
+    "name": "Restore Sight",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily restores the subject's sight, regardless of what caused the loss (if the loss of sight is magical in nature, however, the responsible spell gets to resist). The eyes must not be completely missing (that requires Regeneration). For a permanent cure, use Restoration.</p><p><em>Item</em></p><p>Jewelry or clothing. Always on. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "b957ab34b96d0cf3",
+    "name": "Restore Hearing",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Restore Sight, but for Hearing. The eardrums or other organs of hearing must not be completely missing.</p><p><em>Item</em></p><p>Jewelry (earrings are especially appropriate) or clothing. Always on. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "0ba515a1b33a1bcf",
+    "name": "Restore Memory",
+    "pages": "M92",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used to cure the victims of memory loss, either mundane or magical. The spell restores one forgotten fact or skill at a time. The Forgetfulness spell resists; Permanent Forgetfulness resists at +5. This spell will not permit the subject to recall something that he never actually memorized in the first place (but see the Recall spell, p. 106).</p><p>The spell is risky if used more than once per day on the same subject: each repeat casting is at a cumulative -3 penalty. A critical failure is very hazardous - the memory being sought is destroyed forever, and the subject is plunged into a frightening sequence of buried memories lasting 2d minutes. This causes a Fright Check at a -6 penalty.</p><p>If the caster has Psychology skill at 15 or higher, a \"critical failure\" on this spell counts as an ordinary failure - unless he has already tried the spell more than once that day on the same subject.</p><p><em>Item</em></p><p>Wand or staff; the item must bear a picture of an elephant. The item must touch the subject. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "1e1a2c5c7f2ff6f3",
+    "name": "Restore Speech",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Restore Sight, but for Speech. The tongue and vocal cords cannot be completely missing.</p><p><em>Item</em></p><p>Jewelry or clothing. Always on. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "ad007b0caa0b63b6",
+    "name": "Stop Paralysis",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Counters temporary paralysis (due to spell, paralysis gun, etc.). An ongoing spell (such as Paralyze Limb or Total Paralysis) gets a resistance roll.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "5042ec6f67ccc2e4",
+    "name": "Relieve Paralysis",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily restores a subject's use of his paralyzed or crippled limbs. The limbs must not, of course, be completely missing (that requires Regeneration). Since limbs wither with disuse, the GM should use his judgment and assess DX and ST penalties to the use of such restored limbs.</p><p><em>Item</em></p><p>Jewelry or clothing. Always on. Energy cost to create: 200 per point of crippling threshold effectively restored (should the wearer's crippling threshold be higher than the capacity of the item, assess the difference as a penalty to DX and ST for that limb).</p>"
+  },
+  {
+    "_id": "ac66a89f396d5ab0",
+    "name": "Restoration",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Regain the use of one crippled limb or damaged eye - also restores lost hearing, smell, etc. Will not work on a lost limb or eye - that requires Regeneration. (If a limb has been amputated and is intact, you may try Restoration within the hour, at -5 to skill, to put it back on!)</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. Usable only by mages. Subject must be touched by item. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "01fec349f42c1b14",
+    "name": "Instant Restoration",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Restoration, but works instantly.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. Usable only by mages. The item must touch the subject. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "c600f2bdb4b56c7a",
+    "name": "Regeneration",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Regrow one lost limb or eye.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. Usable only by mages. The item must touch the subject. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "6981933b19380323",
+    "name": "Instant Regeneration",
+    "pages": "M93",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Regeneration, but works instantly.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. Usable only by mages. The item must touch the subject. Energy cost to create: 4,000.</p>"
+  },
+  {
+    "_id": "411c4429ffaaae3b",
+    "name": "Cleansing",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cleanses the subject of any foreign matter in his tissues, including cactus or porcupine spines, arrowheads, barbs, bullets, splinters, etc. Also eliminates external (but not internal) bacteria and parasites. Has no effect against diseases, poisons or drugs. The subject must be willing or totally helpless (e.g., bound or unconscious) and the caster must touch him.</p><p>\"Foreign matter\" that is somehow integral to the subject (gold teeth, steel plates or rods, glass eyes, cyberware, and so on) must be excluded by the caster or it may be destroyed as well! If the caster is careless (or malicious), each item resists separately with HT+5 of the subject.</p><p><em>Item</em></p><p>Wand or staff, decorated in a snake pattern. The item must touch the subject. Usable only by a mage or a nonmage with Surgery-15 or higher. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "897686b34eb9531e",
+    "name": "Suspended Animation",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds the subject in apparent sleep, indefinitely. The effects of severe bleeding, disease, age, etc. are all halted while the spell is in effect. The subject requires neither food nor air, but can still be harmed by fire, weapons, and other natural hazards.</p><p><em>Item</em></p><p>(a) Jewelry, arrow, or clothing. Always on; the item puts its wearer in suspended animation instantly. The spell lifts immediately when the item is removed. Energy cost to create: 2,000. (b) Crypt, coffin, etc. Always on; puts the occupant in suspended animation. Energy cost to create: 2,000 per human-sized space.</p>"
+  },
+  {
+    "_id": "df76ec186143d8f4",
+    "name": "Healing Slumber",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject falls into a deep restorative sleep, and heals 1 HP for every hour of rest. Fatigue is recovered at double the normal rate.</p><p>The subject wakes once completely healed, or after 8 hours have passed; any fatigue from lost sleep is also completely recovered after that time. Otherwise, he can only be awakened by a word from the caster, an injury or the Awaken spell (or Remove Curse, Counterspell, etc.). An unwilling subject resists automatically.</p><p><em>Item</em></p><p>(a) Wand or staff, decorated in a snake pattern. The item must touch the subject. Usable only by a mage or a nonmage with Physician-15 or higher. Energy cost to create: 1,000. (b) Any item. If the wearer is willing to sleep (or faints from fatigue or injury), the item activates. The wearer wakes if the item is removed or once the spell lapses (if the wearer's HP is still negative, see Recovering From Unconsciousness, p. B423). Energy cost to create: 900.</p>"
+  },
+  {
+    "_id": "0b73a1e556299eeb",
+    "name": "Halt Aging",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stops the subject from aging for one month. Cannot be cast again until the first spell wears off.</p><p><em>Item</em></p><p>Jewelry. Always on; the item prevents aging while it is worn. Kingdoms have been toppled for possession of such things . . . Energy cost to create: 10,000.</p>"
+  },
+  {
+    "_id": "6ee94785d294973d",
+    "name": "Youth",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Removes one year from the subject's age. Any attribute levels lost in that period are automatically regained. Does not affect memories, skills, injuries, etc., gained during the \"lost\" months.</p>"
+  },
+  {
+    "_id": "3ec0b1159f1bfbf1",
+    "name": "Resurrection",
+    "pages": "M94",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Brings the subject back to life, provided that the body, or most of it, is available. This is the GM's decision; note that a body that has reached -10×HP is by definition too damaged for resurrection. The resurrected subject has FP and HP 0, and must regain FP and HP in the normal fashion. All his limbs will be intact, regardless of the injuries that killed him. The caster's skill is at a -1 penalty for each full day between the subject's death and the beginning of the spell.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>There are persistent rumors of a magic item that will bring the dead to life, but nothing specific is known.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
