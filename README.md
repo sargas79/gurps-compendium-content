@@ -18,9 +18,16 @@ The split runs along one line:
 
 | GWorld, public | This module, private |
 | --- | --- |
-| The rules, the sheets, the item types | The books' text, for any book |
+| The Basic Set's rules, the sheets, the item types | The books' text, for any book |
 | The Basic Set's statistics, from the GCA data file | Every other book's statistics, from its own GCA data file |
+| The add-on API every other book's rules go through | Every other book's rules, registered through that API |
 | Page references | Rules text as journal entries |
+
+**Nothing from another book goes into the system.** GWorld is the Basic Set,
+and its lint fails on another book's page or this module's id. A book's rules
+live here, in `src/books/<book>/`, and reach the system only through
+`game.gworld.api`. When the API lacks something a book needs, the fix is a
+book-neutral issue on GWorldVTT, never a workaround here.
 
 A document this module ships is the system's own document with
 `system.description` filled in. **It never changes a statistic**, and the build
@@ -120,23 +127,52 @@ books/<book>/
   prose/<pack>.json  the book's text, keyed to each entry's id
   journals/          its rules text, one Markdown file per rule
   packs-src/         its statistics, generated (absent for the Basic Set)
+src/
+  index.ts           the module's script: registers every book's rules
+  books/<book>/      one book's rules, registered through the system's API
+  shared/            what the books share: the module id, the API types
+lang/en.json         the module's own strings, under GCC.
 system/              the GWorld system, a submodule pinned at a release
+types/gworld/        the system's API declarations, generated from system/
 ```
 
-The build is four steps, and `npm run build` runs them in order:
+The build runs in this order under `npm run build`:
 
-1. **merge** — joins each book's statistics to its text into `build/packs-src/`,
+1. **check**: generates the system's API declarations from the submodule
+   (`npm run api-types`), then type-checks, tests and lints the module's script.
+2. **bundle**: builds `src/index.ts` into `dist/scripts/gurps-compendium-content.mjs`.
+3. **merge** — joins each book's statistics to its text into `build/packs-src/`,
    and refuses an orphaned record, a renamed entry, or any attempt to set a
    statistic.
-2. **validate** — runs the system's own pack validator over the result. The
+4. **validate** — runs the system's own pack validator over the result. The
    domain rules live there, not here.
-3. **pack** — compiles the LevelDB packs into `dist/packs/`.
-4. **manifest** — writes `dist/module.json` from the books and the pinned system.
+5. **pack** — compiles the LevelDB packs into `dist/packs/`.
+6. **manifest** — writes `dist/module.json` from the books and the pinned system,
+   with the script, the module's strings and the API range it needs.
 
 Packs are named `<book>-<type>`: `basic-set-advantages`, `magic-spells`. Each
 carries a `gworld.book` flag, which is how the system groups them under one
 switch per book, and Foundry's own compendium sidebar shows them in a folder per
 book.
+
+### A book's rules
+
+Each book exports a `BookRules` from `src/books/<book>/index.ts`, listed in
+`src/books/index.ts`. On `gworld.registerRules` the module registers a rules
+group per book, labelled "GURPS <Book>", and the book adds its switches there,
+all off by default. On `gworld.ready`, with the API, the book registers its
+maneuvers, options, sheet sections and chat cards. The system's README
+documents the API.
+
+The script reaches the system only through `game.gworld.api` and its hooks:
+
+- It never imports the system's source. ESLint refuses the import in `src/`, and
+  the bundle fails if any module under `system/` would end up in it.
+- Tests may import the system's pure rules from `system/src/rules`, so a book's
+  rule can be checked against the Basic Set's without Foundry.
+- No patching or subclassing of the system's classes, sheets or data models.
+- It writes only to its own Item types, `system.extensions.gurps-compendium-content`,
+  its own flags and settings, and switches in its own groups.
 
 ### Writing text
 

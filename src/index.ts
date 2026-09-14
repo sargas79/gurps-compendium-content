@@ -1,0 +1,26 @@
+/**
+ * The module's entry point.
+ *
+ * The module carries other GURPS books into the GWorld system: their text
+ * and statistics in packs, and their rules here, registered through the
+ * system's add-on API. Each book registers a rules group on
+ * `gworld.registerRules`, and whatever else it needs once the world is ready.
+ */
+
+import { BOOKS } from "./books/index.js";
+import { readyBooks, registerBookRules } from "./shared/book.js";
+import { API_RANGE, HOOKS, MODULE_ID, type GWorldApi, type RuleRegistry } from "./shared/module.js";
+
+Hooks.once(HOOKS.registerRules, (registry: RuleRegistry) => {
+  registerBookRules(BOOKS, registry);
+});
+
+Hooks.once(HOOKS.ready, (api: GWorldApi) => {
+  // The manifest's range only warns the GM; an API this build can't use is
+  // left alone rather than half registered.
+  if (!api?.satisfies?.(API_RANGE)) {
+    console.warn(`${MODULE_ID} | the GWorld API ${api?.version ?? "(missing)"} doesn't satisfy ${API_RANGE}; the books' rules are not registered`);
+    return;
+  }
+  readyBooks(BOOKS, api);
+});
