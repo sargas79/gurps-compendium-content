@@ -1656,6 +1656,150 @@
     "description": "<p>By transferring his life force to a Soul Stone, a sorcerer becomes immortal. Although his body may still be hurt (burned, cut, crushed . . .), he may not be killed as long as the soul stone is safe. The caster becomes immune to disease, poison, and aging. He automatically makes all HT \"death checks\" caused by injury. He may still fall unconscious.</p><p>If the soul stone is destroyed, the caster dies, so it is usually hidden in a very hard-to-reach place. Death may also come from some magical causes, such as a Planar Visit failure. Note that the stone need not literally be a piece of rock; examples from folklore and fiction include the caster's own heart (removed once the spell is cast, presumably!), eggs, and more.</p><p>Soul Stone and Soul Jar are mutually exclusive.</p>"
   },
   {
+    "_id": "09d4b33c0d982683",
+    "name": "Seek Fire",
+    "pages": "M72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster the direction and approximate distance of the nearest significant fire or source of intense heat. Use the long-distance modifiers (p. 14). Any known fires or sources of heat may be excluded if the caster specifically mentions them before beginning. The caster may also specify that he is seeking a specific type of fire, based on the fire's fuel (natural gas flame, alcohol fire, wood fire, etc.).</p><p><em>Item</em></p><p>A forked stick. Cost to create: 50 energy and a small ruby worth $100.</p>"
+  },
+  {
+    "_id": "51a2d01f41a7fd92",
+    "name": "Phantom Flame",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates an area of imaginary flame. Those nearby feel heat (and pain, if they touch it); items inside appear to burn. However, the flame does not spread, and does no real damage. Even the pain it creates subsides to a tingling after the first shock. Shape Fire and Extinguish Fire both affect this phantom flame; water will not affect it.</p><p>This is also an Illusion and Creation spell.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 200; must include a $100 ruby.</p>"
+  },
+  {
+    "_id": "8cc49ec0b6cde9e3",
+    "name": "Fireproof",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prevents ignition of fires within the affected area: matches won't light, flint won't make sparks, and so on. Does not extinguish a fire brought in from outside the spell's area, although such a fire would fail to ignite anything else. Useful anywhere that fire is a hazard (as in a gunpowder factory, for example). Any magical attempt to light a fire is at -5 to skill. This spell doesn't resist really intense heat (as from lava or battle lasers), but it does stop guns from working!</p><p><em>Item</em></p><p>An area may be permanently Fireproofed; multiply the base cost by 100. A small quantity of powdered ruby must be used (about $10 per energy point's worth).</p>"
+  },
+  {
+    "_id": "341df8f99e5ea082",
+    "name": "Slow Fire",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes flames to cool down, consuming their surroundings (and burning people) at a slower rate. The damage that the flames do is reduced proportionately. This spell acts as a Slow spell on fire elementals and beings with the Body of Fire meta-trait (p. B262). Slow Fire resists Fast Fire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 350 energy, a $500 ruby, and a $500 black onyx.</p>"
+  },
+  {
+    "_id": "6622de88a83b6578",
+    "name": "Fast Fire",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes flames hotter, consuming their surroundings (and burning people) at a faster rate. The damage that the flames do is proportionately increased. This spell acts as a Great Haste spell on fire elementals and beings with the Body of Fire meta-trait.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Cost to create: 375 energy and a $500 ruby.</p>"
+  },
+  {
+    "_id": "eebdf11b3c354ef7",
+    "name": "Flame Jet",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a jet of flame from one fist. Each turn, the caster rolls versus DX-4 or Innate Attack skill to hit, and rolls for damage if he hits. This attack may be dodged or blocked, but not parried. Treat it as a hand weapon - a flaming sword without the sword - but it cannot parry! This is a wonderfully flashy spell, good for magic shows, melee combat, burning through ropes, etc. The caster may cast the spell as many times as he has hands and have a Flame Jet in each hand; a Flame Jet held in the caster's \"off\" hand suffers the usual -4 penalty to hit.</p><p>For cinematic mage-dueling action, the GM may allow a Flame Jet to parry another Flame Jet. This allows fire wizards to duel mano a mano, which some groups may prefer to the casting and dodging of a more typical duel of magic.</p><p><em>Item</em></p><p>Jewelry. Energy cost to create: 800; must include $500 worth of gold and a $300 ruby. Usable only by mages.</p>"
+  },
+  {
+    "_id": "983ef09f1e8d8662",
+    "name": "Smoke",
+    "pages": "M73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates an area of dense smoke. Even one yard's thickness of such smoke will block vision. Until it dissipates, it has the effect of tear gas (anyone failing a HT roll is unable to do anything but cough and weep). The smoke is somewhat hot and rises slowly (about one foot per second). The rate of dissipation depends on the area and the presence of wind; indoors, it usually lasts until the spell expires, but outdoors on a windy day it may last only 10 seconds or so.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 50.</p>"
+  },
+  {
+    "_id": "da2ed163183a058e",
+    "name": "Rain of Fire",
+    "pages": "M74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fiery droplets rain from the sky onto the area of effect, causing 1d-1 fire damage per second to all within it. Creatures under the Rain of Fire take damage on their own turns; if less than an entire second is spent in the affected area, damage is halved (round down).</p><p>The spell can only be cast outdoors. Armor protects in the usual fashion. A shield with a DB of 2 or better can be held overhead to block the flames, but it may take damage (p. B484). This requires two hands and a Ready action, and succeeds automatically in protecting the character once the shield is readied upwards, but this unreadies the shield from its normal protective functions!</p><p>Inanimate objects such as buildings protect with their DR, but some structures (see HP and DR of Structures, p. B558) may be damaged or catch fire.</p><p><em>Item</em></p><p>Staff. Usable only by mages. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "8856f8fac932d182",
+    "name": "Warmth",
+    "pages": "M74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject remains comfortably warm in cold weather, avoiding the risk of frostbite or hypothermia. This effectively increases the subject's \"local temperature\" by 30˚F towards his optimum comfort level (p. B93). The spell offers no protection against magical cold attacks such as Frostbite. This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>Clothing, staff, jewelry, or blanket; only affects the wearer (holder in the case of the staff). Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "6a36b8ddabf7723b",
+    "name": "Essential Flame",
+    "pages": "M75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for Create Fire, except that the fire created is the magical essence of fire. Any mage can tell the difference by looking. It cannot be extinguished by ordinary water or ordinary magic, but only by a similar quantity of Essential Water or by a Dispel Magic spell. Essential Flame does +1 damage to anyone it burns (+2 to watery creatures).</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 800; must include a $400 ruby.</p>"
+  },
+  {
+    "_id": "1a30809508a4729e",
+    "name": "Flaming Weapon",
+    "pages": "M75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes any weapon to burst into flame, which does not harm the user but lets the weapon do +2 damage to foes or flammable objects (after penetrating armor and figuring other bonuses). Metal weapons are not damaged; wooden ones turn to ashes as soon as the spell ends. The weapon also gives off light as a torch.</p><p><em>Item</em></p><p>A weapon that flames whenever used, at no energy cost to the user. Energy cost to create: 750; a $400 ruby must be set in the weapon.</p>"
+  },
+  {
+    "_id": "0939ef9c3172943e",
+    "name": "Flaming Missiles",
+    "pages": "M75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Flaming Weapon, but cast on a missile weapon. The weapon itself acquires a shimmering, fiery appearance. Any missile it fires bursts into flame, doing +2 damage as per Flaming Weapon; it burns to ashes after it hits a target or after 10 seconds, whichever comes first.</p><p><em>Item</em></p><p>A missile weapon that fires flaming missiles whenever used, at no energy cost to the user. Energy cost to create: 1,000; a $500 ruby must be set in the weapon.</p>"
+  },
+  {
+    "_id": "70d0a2c48f51f1dc",
+    "name": "Flaming Armor",
+    "pages": "M75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is sheathed in flames without feeling any discomfort - he, and anything he carries, is under a basic Resist Fire spell. The flames provide the usual illumination and heat to their surroundings. The subject's melee attacks do an extra point of fire damage.</p><p>Any melee attack that hits the subject triggers a 1d Flame Jet backlash along the weapon at the foe. This attack automatically hits the hand holding the weapon if the weapon's Reach was 1 or less. Should the subject grapple or be grappled, the foe takes 3d burning damage, but the spell will be broken.</p><p><em>Item</em></p><p>(a) Staff or jewelry. Usable only by mages. Energy cost to create: 600; must include $300 worth of rubies. (b) Cape or armor. Only affects the wearer. When activated, the cape seems literally woven of flames; it will protect against attacks from the back and sides, but not from the front, unless it is wielded as a light cloak (see Cloak, p. B184). Energy cost to create: 700 for the cape, 1,000 for armor.</p>"
+  },
+  {
+    "_id": "d93e2f490b2f6b1c",
+    "name": "Fire Cloud",
+    "pages": "M75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a swirling cloud of flames and fiery embers. It does not block vision, but inflicts burning damage to all within it. Creatures in the cloud take damage on their own turns. If less than an entire second is spent in the affected area, damage is halved (round down). Armor protects normally. Only highly flammable materials may catch fire.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Cost to create: 175 energy and a $500 ruby.</p>"
+  },
+  {
+    "_id": "63347ee39d502b2b",
+    "name": "Breathe Fire",
+    "pages": "M76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Flame Jet, except that the flame issues from the caster's mouth, Breathe Fire cannot be maintained, and each energy point buys 1d+1 damage instead of 1d. Caster rolls to hit against DX-2 or Innate Attack skill. This counts as an action; the caster must be facing the target. No hand gestures are required to cast this spell; certain lip and tongue motions are made instead. Thus, Breathe Fire can be cast \"no hands\" at any level of skill.</p><p><em>Item</em></p><p>Jewelry. Usable only by mages. Energy cost to create: 1,000; must include $500 worth of gold and a $500 ruby.</p>"
+  },
+  {
+    "_id": "9031b610f3e25518",
+    "name": "Burning Touch",
+    "pages": "M76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Wreathes the caster's hand in flames. The first target struck after the spell is cast suffers 1d of fire damage for every point of energy that the caster puts into the spell. Armor does not protect, but natural DR does.</p><p><em>Item</em></p><p>Staff, wand, or glove. The item must touch the subject. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "55102cc5dfb30e94",
+    "name": "Body of Flames",
+    "pages": "M76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject gains the Body of Fire meta-trait (p. B262) for the duration of the spell. Clothes (up to 6 pounds) also become fire, but lose any magic powers they might have had. He can carry nothing while in this form.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Only affects the wearer. A severe drawback is that, as soon as it is activated, the item falls through the user's hand. Thus, a spell cast with this item lasts only a minute. Energy cost to create: 3,000. (b) Staff, wand, or jewelry. Only affects the wearer. Unlike the previous item, this item turns to fire along with the wearer, allowing him to maintain the spell longer than 1 minute. While in flame form, the item loses any magical powers it might ordinarily have. Energy cost to create: 6,000.</p>"
+  },
+  {
+    "_id": "a9c16bcf4f0236dd",
+    "name": "Burning Death",
+    "pages": "M76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the victim to burn from within. The caster must strike the subject to trigger this spell; hit location is irrelevant. Every turn, the victim must roll against HT; on a failure (critical or not), he takes 1d-1 fire damage. On a success, he takes no damage that turn; on a critical success, the spell is broken. Neither DR nor Resist Fire protects against this injury! For the duration of the spell, the victim experiences almost unbearable discomfort, equivalent to the effects of a Sickness spell (p. 138).</p><p>If the spell is maintained long enough, the victim's skin and clothes start to char and little flames dart out here and there. Once the victim dies, his body bursts into flame and burns until only a little pile of ashes remains.</p><p>Undead beings are not affected. The caster must concentrate while maintaining this spell, but need not remain in physical contact.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Cost to create: 700 energy and a $500 ruby.</p>"
+  },
+  {
     "_id": "ef5259b085b6b8d6",
     "name": "Summon Fire Elemental",
     "pages": "M27",
