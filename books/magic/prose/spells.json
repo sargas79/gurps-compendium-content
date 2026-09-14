@@ -4128,6 +4128,286 @@
     "description": "<p>Give a subject one continuing command, such as \"Never touch weapons\" or \"Slay all orcs.\" A Great Geas does not have to be reasonably possible; it can occupy the subject for the rest of his life unless removed. Only Remove Curse will negate a geas. A critical failure on a Great Geas costs the caster an IQ point.</p><p><em>Item</em></p><p>Any item. Always on; the item places a Great Geas (specified at time of its creation) on its wearer. The wearer may not voluntarily remove the item; if it is removed, the geas will persist for a year unless removed by Remove Curse. Energy cost to create: 4,000.</p>"
   },
   {
+    "_id": "801878f0c91a7274",
+    "name": "Glue",
+    "pages": "M142",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a surface extremely sticky, trapping anyone stepping onto the surface as if by a Rooted Feet spell (p. 36). If a victim successfully resists, he is free to act until he moves more than a yard from his original position, at which point he becomes stuck again if he is still in the Glue area.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 900 energy. (b) An area may be made permanently sticky for 100 times the normal casting cost.</p>"
+  },
+  {
+    "_id": "a2d62f42ccbd17c4",
+    "name": "Grease",
+    "pages": "M142",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a surface extremely slippery. Anyone stepping onto the surface must roll against DX-2 for every yard he moves within the affected area. If he fails the roll, he falls down. Another DX-2 roll is necessary to stand up (but not to sit or kneel). All close combat, melee attacks, and active defenses are at -3; other physical skills, including missile and thrown weapon attacks, are at -2 for bad footing. This spell can also be cast on vertical surfaces to make climbing impossible. The GM will have to use his judgment with surfaces of intermediate tilt.</p><p>Unlike Ice Slick, whose effects are nearly identical, Grease cannot be seen by normal means. Also, crampon boots are ineffectual against a Greased surface. Grease and Glue resist each other.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 700. (b) An area may be made permanently slippery for 100 times the normal casting cost.</p>"
+  },
+  {
+    "_id": "668294f21e5d89e3",
+    "name": "Hold Fast",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell negates knockback from any source.</p><p><em>Item</em></p><p>Footwear or jewelry. The item must bear a picture of an ox or an oak tree. Always on. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "2a4fa21da5631a12",
+    "name": "Increase Burden",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Increases the weight of an object; the object's wearer (if such is the case) resists using Will. Useful to slow down a charging knight or to keep things from being blown away by the wind.</p>"
+  },
+  {
+    "_id": "15adc2a5d37330f4",
+    "name": "Jump",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Improves the subject's ability to jump, increasing his Basic Move for jumping purposes only.</p><p><em>Item</em></p><p>Staff, jewelry, or footwear. The item must bear a picture of a grasshopper, rabbit, or deer. Energy cost to create: 250 per point of Jumping bonus the item can give (maximum 6).</p>"
+  },
+  {
+    "_id": "bbd83265cb1d1379",
+    "name": "Levitation",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject must be a living being. The subject floats through the air, moving as the caster wills. Moving a levitating subject requires Concentration unless the caster is the subject. Leaving a subject suspended in midair requires no concentration. Maximum Move for a levitated being is 3, horizontally or vertically. A caster who levitates uses DX-based skills normally; other subjects use them at -3.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry; only affects the wearer. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "203d743437390333",
+    "name": "Lighten Burden",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reduces the weight of any equipment the subject is carrying.</p><p><em>Item</em></p><p>A backpack that reduces the weight of equipment held in it. Energy cost to create: 300 for 25% reduction; 600 for 50% reduction.</p>"
+  },
+  {
+    "_id": "88639220eb4ca919",
+    "name": "Locksmith",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Allows fine manipulation of small parts - e.g., the inside of a lock. Adds 5 to the subject's Lockpicking skill by letting him move tumblers, etc., without touching them, if he has normal tools available. Lets a wizard with no tools at all attempt to open a lock at his normal Lockpicking skill. Gives a similar bonus for Mechanic and other skills where a \"third hand\" is useful.</p><p><em>Item</em></p><p>A golden key, or a golden amulet in the shape of a key. Its intrinsic value must be at least $300. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "820f2f601b896d97",
+    "name": "Long March",
+    "pages": "M143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Halves the subject's long-distance travel rate (p. B351). It does not affect the combat Move rate or Basic Speed.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 400. (b) Footwear. The item must bear a picture of a snail. Always on; only affects the wearer. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "e877e8ec81104a6a",
+    "name": "Poltergeist",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Hurls the subject at caster's chosen target. The effect is as if a man with ST 15 threw the subject (see Throwing, p. B355). When it strikes something, it does crushing damage. A DX-4 or Throwing skill roll is necessary to hit the target, who may dodge or block normally. Note that only the subject of the spell - not the target - can resist! 1/2D 20, Max 60, Acc 1. Figure distance to the target from either the caster or the thing being thrown, whichever starts out farther away.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must point at the subject and then at the target. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "8d8a92eb3a757a7a",
+    "name": "Quick March",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Doubles the subject's long-distance travel speed. At the end of the day's travel, the subject loses 10 FP and must sleep. This spell has no effect on Move in combat or on Basic Speed.</p><p><em>Item</em></p><p>Footwear or jewelry. Only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "7038d50b4f5d930f",
+    "name": "Slow Fall",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Slows the velocity of a falling subject to 1 yard per second. No damage will be suffered upon landing on a normal surface (spikes, etc. would still do half damage). This spell can be cast before the subject becomes airborne. If the subject is already falling, he/it will fall another 10 feet (assuming standard gravity of 1G) in the second normally required to cast this spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "c15c43c96632003b",
+    "name": "Wallwalker",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Walk on walls or ceilings as if they were level ground. The subject must keep at least one hand or foot in contact with the surface; otherwise, the spell is broken. Combat is at -2 for both the wallwalker and his foe because of weird angles.</p><p><em>Item</em></p><p>Jewelry or shoes. The item must bear a picture of a spider, fly, or lizard. Only affects the wearer. Cost to create: 1,000 energy.</p>"
+  },
+  {
+    "_id": "011f4e317d93f70a",
+    "name": "Dancing Object",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Animates a single object to do repetitive work. It can accomplish roughly the same sorts of tasks as a ST 15 man: a bucket could carry water from a stream to a barrel, a broom could sweep a building over and over again, a crossbow could cock itself, etc. The object's program cannot be changed or respond to events . . . it just does its work, mindlessly. The clever use of Link can make Dancing Objects effectively respond to situations, but this requires some careful thought.</p><p><em>Item</em></p><p>This spell can be made permanent on any object. Cost to create: 400 energy, $500 magical ingredients. The object must be \"walked through\" its program once per day while the enchantment is going on.</p>"
+  },
+  {
+    "_id": "0b39dc5636d34218",
+    "name": "Distant Blow",
+    "pages": "M144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Attacks a subject at a distance. The caster chooses a single melee weapon that, for the duration of the spell, gains infinite reach with regard to the subject only. The weapon must be one that delivers blows - brass knuckles are all right, but a garrote is not! As long as the subject is within the caster's line of sight, the caster's weapon can strike him. The subject defends normally (dodge, block, parry), as if an invisible double of the caster was engaging him.</p><p>The caster's own body (for punching, biting, and kicking) counts as one weapon for purposes of this spell. If the subject gets inside the weapon's real Reach, normal rules apply.</p><p>The weapon does not actually stretch or leap from the caster's hand; the force of the blow is transmitted magically. Apply standard ranged attack modifiers (p. B548) to the caster's attacks.</p><p>Note that magical properties of the weapon (e.g., Flaming Weapon) or the caster (e.g., Melee spells) cannot be used through this spell!</p><p><em>Item</em></p><p>Staff or other weapon. Energy cost to create: 1,000 per pound of the weapon's weight (minimum 1 pound).</p>"
+  },
+  {
+    "_id": "504ed6fb439c5cdd",
+    "name": "Manipulate",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Allows manipulation of items larger than allowed by the Locksmith spell. Ropes may be untied, doorknobs turned, knives sharpened, handmill cranks turned, etc. The caster need not touch the subject. Any activity complex enough to require a DX penalty gives the same penalty to this spell.</p><p><em>Item</em></p><p>Wand, staff, or glove. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "f6eaa19b90ce85aa",
+    "name": "Slow",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Slows down the subject a great deal; in effect, the subject has one level of Decreased Time Rate for the duration of the spell.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages. Energy cost to create: 1,000. (b) Footwear or jewelry. Always on. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "c1a78c29836b82a9",
+    "name": "Undo",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Unties knots and fastenings of any kind that could normally be undone by hand (but not locks). A critical success would even undo chain mail into its component links! Useful to surreptitiously rob someone of earrings, necklaces, etc. Will unstring bows, unbutton shirts, unlace bodices, unbuckle belts . . .</p><p>Heavier items may be undone at a proportional cost. For instance, if a mage is chained, he might want to Undo a link of the chain, bending it open. The GM rules that it would take ST 20 (twice normal strength) to open a link by hand. So the cost to Undo that link is twice normal, or 6.</p><p><em>Item</em></p><p>(a) Wand, staff, or glove. Only affects the wearer; the item must touch the subject. Energy cost to create: 400. (b) Amulet granting immunity from the Undo spell. Energy cost to create: 40.</p>"
+  },
+  {
+    "_id": "708e7ef8d67f85b0",
+    "name": "Winged Knife",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Magically throw any weapon. The weapon is the \"subject\" for distance purposes when determining whether the spell succeeds. 1/2D 20, Max 40, Acc 1. If it hits, it does the damage it would do if hurled by a man of ST 15. Basic thrusting damage for that ST is 1d+1; basic swing damage is 2d+1.</p><p><em>Item</em></p><p>Any weapon. At holder's command, the weapon will leap from his hand, or from its scabbard, to fly at a target. This is considered an attack maneuver, carried out with DX equal to the item's power. Energy cost to create: 300 per pound of weapon's weight - minimum cost 300.</p>"
+  },
+  {
+    "_id": "50b7da9224699da5",
+    "name": "Flight",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fly through the air under your own control, without wings, at Move 10. Flight speed is reduced normally by encumbrance. A flying character can move and fight normally, and has a combat advantage if above his foes (p. B402).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; only affects the wearer. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "412717367375fadb",
+    "name": "Light Tread",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Walk on any surface (which must be able to bear his weight) without leaving any trace, making tracking impossible. If vegetation is present on the surface, some traces of the subject will remain, making tracking possible at a -8 penalty. This spell will also prevent the subject from triggering pressure-plate traps and the like.</p><p><em>Item</em></p><p>Footwear; the item must bear a picture of a doe. Only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "60bce2df3c6958be",
+    "name": "Slide",
+    "pages": "M145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Slide down a slope as if skiing. The subject uses the Skiing skill, at default if necessary; assess a -2 penalty for not having poles to guide oneself with. The spell works equally well on all types of surfaces (sand, grass, stone . . . ), but the subject still has to avoid any obstacles!</p><p>Down a good slope, the subject can sustain a Move equal to the subject's Skiing skill can be sustained relatively safely. Peak Move, in extremely good conditions, equals twice his Skiing skill.</p><p>On level ground, the spell is a nuisance; the subject is constantly affected as if he has just entered a Greased area!</p><p><em>Item</em></p><p>Jewelry or footwear. The item must bear a picture of an otter. Only affects the wearer. Energy cost to create: 350.</p>"
+  },
+  {
+    "_id": "004613a04d9f098c",
+    "name": "Flying Carpet",
+    "pages": "M146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transforms a carpet (or any other object one could reasonably stand on or in - cauldron, chair, towel, broom, etc.) into a flying vehicle. It is under the command of the first person to step aboard it. If there are several beings already aboard when the spell is cast, roll a Quick Contest of Will to see who gets control; the caster (if aboard) gets a +5 bonus to this roll. If the pilot leaves the carpet, roll another quick contest of Will between the remaining passengers to see who gets control.</p><p>The carpet's maximum Move is equal to the caster's effective skill, and it can handle 1 G turns without skill rolls being necessary (p. B466). Use the Piloting (Contragravity) skill (p. B214) to control the carpet.</p><p>In general, a rider cannot fall from a flying carpet unless he jumps off deliberately or is knocked off by an obstacle (such as a tree branch) or attack; the carpet keeps its riders safely on board through a combination of magic and deft maneuvering. A flying carpet does not bank sharply, fold, or bend; the spell specifically provides a stable, level platform (which makes flying through narrow gaps rather hard). Any rider engaged in strenuous activity such as fighting must make a DX roll every turn to avoid falling off (the GM may modify this roll depending on the activity). In all other respects, treat anyone fighting from a flying carpet as being on the ground (ignore the special rules for flying combatants on p. B548). Characters aiming a missile weapon from a moving carpet can only take the Acc bonus; aiming for extra turns gives no further bonus. Of course, someone fighting from a flying broom or chair would be subject to the usual penalties for being seated (p. B547)</p><p>Generous GMs may stipulate that, after the caster cancels the spell, the conveyance remains airborne for 2d+2 seconds, wobbling more with every passing moment. This sometimes allows a safe, if bumpy, landing.</p><p><em>Item</em></p><p>A carpet may be permanently enchanted for 200 times casting cost.</p>"
+  },
+  {
+    "_id": "adc6f0457e424cd8",
+    "name": "Hawk Flight",
+    "pages": "M146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A very fast Flight spell. The subject has a Move of 40 (80 mph) without encumbrance; encumbrance reduces Move normally. The subject can move and fight normally, and has a combat advantage if above his foes (p. B402).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; only affects the wearer. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "c1ef34fe5ec12d2f",
+    "name": "Ethereal Body",
+    "pages": "M146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes ethereal and can move through solid objects and creatures as if they were not there. His clothes become ethereal, but not his equipment. He cannot wield weapons or move things about, and does not need to breathe, eat, or drink while ethereal. He has, in most respects, become a ghost. He can be seen, though he has a translucent appearance, and can be heard if he speaks.</p><p>Physical attacks and most magic cannot affect someone who is ethereal. However, any spell of the Colleges of Communication and Empathy or Mind Control has normal effect on an ethereal person, and is Resisted at -2! Likewise, Necromantic spells affecting the mind or soul will have normal effect and be Resisted at -2.</p><p>Ethereal individuals can use magic, but at a -5 to skill; the ethereal plane appears to be a low-mana area. Ethereal bodies can interpenetrate, and cannot harm each other except with spells, as above.</p><p><em>Item</em></p><p>(a) Staff, wand, jewelry, or cape; only affects the wearer. A severe drawback is that, with the exception of the cape, the item falls through the caster as soon as the spell is cast! Energy cost to create: 3,000 (8,000 for the cape). (b) Gem that glows and vibrates when any ethereal being is within 50 yards. Cost to create: A gem worth $500, and 100 energy.</p>"
+  },
+  {
+    "_id": "4f08134754c156c1",
+    "name": "Pull",
+    "pages": "M146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a single point, this creates a zone of \"attraction.\" Objects (including living beings) are pulled to the center point at Move 1 by a force that increases as one gets closer to it. Living beings can \"resist\" with a Quick Contest of ST every second. The pull has a ST equal to twice the energy put into the spell at the center, reduced by 1 for every yard of distance. The spell does not have any effect on objects heavier than 20 times its ST. Note that, to drag an ordinary human being (weight 150 pounds) along an ordinary floor, the spell would have to have a ST of at least 8.</p><p>This spell can only be cast on a point in space or on the ground, not on objects or creatures. A small pile of loose objects, dust, dead leaves, small insects, etc, usually forms at the center.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 250. (b) An area may be made permanently attracting for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "a3961c4c98dd0d72",
+    "name": "Repel",
+    "pages": "M147",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Pull, except that the force now repels objects instead of attracting them.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 250. (b) An area may be made permanently repelling for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "34e4a0cb97d7c629",
+    "name": "Swim",
+    "pages": "M147",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Move through water at normal Move (reduced normally for encumbrance). The subject is in full control of his own movement, and can act and fight without the normal penalties for underwater combat. This spell does not provide for the subject's breathing needs! However, the subject automatically makes all Swimming rolls, regardless of fatigue or encumbrance, unless he is actually dragged totally under the water.</p><p>This is also a Water spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or cape. The item must bear a picture of a sleek fish. Only affects the wearer. Cost to create: 1,000 energy.</p>"
+  },
+  {
+    "_id": "3e4b68d522813f94",
+    "name": "Teleport",
+    "pages": "M147",
+    "status": "needs-review",
+    "notes": "The book introduces the energy cost and skill penalty by distance \"as follows:\" but prints no table after it on p. 147; the long-distance modifiers (p. 14) may be meant. The text is otherwise complete.",
+    "description": "<p>Instantly moves the caster to another location. However, the farther away the target spot is, the more energy is required, and the greater is the skill penalty, as follows:</p><p>Normally, you may only teleport to a place you are looking at or one you are familiar with. Penalties: -2 for a place you have \"seen\" only through the mind or memories of another, or via television; -2 for a place you have not seen within a month (except, perhaps, your own home!); and -1 to -3 for a place seen only briefly.</p><p>This spell is dangerous, too. If you fail your roll by 1, you take 1d damage and arrive at your destination physically stunned (HT roll to recover). If you miss your roll by more than 1, you suffer no physical injury - but you go somewhere else. The location is up to the GM! A critical failure with this spell can send the caster anywhere the GM likes - make it interesting! - and cause physical injury, as long as it doesn't kill the caster outright.</p><p>Even a successful teleport can be confusing. A wizard must roll vs. his Body Sense skill (p. B181) in order to act on the same turn in which he teleports. A failed roll means disorientation - no actions except defense are possible on that turn. A critical failure means he falls down, physically stunned. A teleporter arrives in the same position he started in. He may be facing a different direction, but this makes it more likely that he will be disoriented on arrival: -2 to change facing, -5 to go from vertical to horizontal or vice versa!</p><p>Anything carried on your person, up to \"heavy\" encumbrance, goes with you. You can also take one person with you by holding hands, if the added weight does not exceed your \"heavy\" encumbrance limit. On a failed roll, they suffer the same effects you do.</p><p>This is also a Gate spell.</p><p><em>Item</em></p><p>Staff or wand; usable only by mages. Energy cost to create: 3,000. An item that will only take the user to one, predetermined place costs 2,000 to create; the caster must be very familiar with that place.</p>"
+  },
+  {
+    "_id": "1bc59cc5ba1f8f02",
+    "name": "Teleport Other",
+    "pages": "M147",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Same as Teleport, except that the caster does not move, and the subject can be anything or anyone. A part of an object may not be teleported away; neither may a solid object be teleported into another solid object. Separating two connected objects carries a penalty set by the GM; taking the stopper from a jar might be at -1, while teleporting a locked door from its frame might be a -5. Jewelry or clothing being worn, or an object held tightly by another person, is at -5 to teleport away, and the holder may attempt a resistance roll.</p><p>This is also a Gate spell.</p><p>The consequences of a missed roll are similar, but inanimate objects are less likely to suffer physical damage. If a sapient subject resists the roll, the caster suffers no ill effects other than the expenditure of energy.</p><p><em>Item</em></p><p>Staff or wand; usable only by mages. The user must point it first at the subject and then towards the desired destination; this takes a second and cannot be hurried. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "adf098e5143de037",
+    "name": "Blink",
+    "pages": "M148",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Avoid an attack by teleporting instantly out of its way and into an open spot nearby. A spot is not open if someone is standing in it; any lesser obstruction is \"open\" for the purpose of this spell.</p><p>The caster may Blink to any unoccupied spot within 3 yards, in any direction. The caster's facing remains unchanged. The caster must roll against his Body Sense skill to act on his next turn (p. B181). If there are no open spots within 3 yards, the spell will fail.</p><p>For combat purposes, the \"blink\" is treated as a dodge that succeeds automatically if the spell roll is made.</p><p>A critical failure on this spell is treated like a Teleport critical failure, except that the caster rarely goes more than a mile.</p><p>This is also a Gate spell.</p><p><em>Item</em></p><p>Clothing or jewelry. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "3cc0645a47b35cf2",
+    "name": "Blink Other",
+    "pages": "M148",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Blink, but usable on others.</p><p>This is also a Gate spell.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 1,600.</p>"
+  },
+  {
+    "_id": "6c9d0f22992dfeeb",
+    "name": "Freedom",
+    "pages": "M148",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bestows a bonus on the subject's use of skills or attributes to maintain or regain his freedom of movement. Typical cases include: Contests of DX or ST to avoid being grappled, to break free, or to evade; using Escape or Lockpicking; jumping or climbing restraining walls; bending bars apart or forcing doors; resisting Glue, Levitation, or Paralysis spells, and so on.</p><p>The spell does not help with Camouflage, Disguise, or Stealth; Mind Control spells; dodging missiles; using Lockpicking, Climbing, or Jumping to get inside some place, and so on. The GM's judgment is final.</p><p>This is also a Protection and Warning spell.</p><p><em>Item</em></p><p>Jewelry or clothing. Always on. The wearer becomes very hard to hold, keep in chains, or behind bars . . . A rare item! Energy cost to create: 500 per point of bonus.</p>"
+  },
+  {
+    "_id": "17eb70e36b331485",
+    "name": "Cloud-Walking",
+    "pages": "M148",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Walk on clouds (including fog banks) as though they were solid. If the subject falls for any reason (e.g., injury), the spell is broken! If the spell is recast immediately, the subject will fall for only one second (about 5 yards); if he is still in the midst of the cloud, he'll have to \"dig\" his way out, which will take about 5 seconds. If he is already through the cloud deck, too bad!</p><p>This is also a Weather spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or shoes. The jewelry and shoes only affect their wearers. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "249917ba609cafe8",
+    "name": "Cloud-Vaulting",
+    "pages": "M148",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Travel great distances with a few movements. The subject flips into the sky and bounces to his destination using clouds like trampolines. Cloud-Vaulting can only be cast in open air.</p><p>Each casting of this spell carries the subject up to 100 miles, plus 100 miles per skill level above DX in Acrobatics. If there are no clouds at all in the sky (a frequent occurrence over deserts), the subject cannot go farther than 100 miles. Storms will likewise block the subject's path. An Acrobatics roll is required every 100 miles, at a penalty equal to the subject's encumbrance level. On a failure, the subject falls 3d×3 yards (p. B431) and lands at a random location along the intended path - Slow Fall will save the subject from damage, but the Cloud-Vaulting spell is still broken.</p><p>This is a dizzying spell; upon arriving at his destination (or failing his Acrobatics roll), the subject will be physically stunned unless he can roll his Body Sense (p. B181) skill at -1 per 100 miles covered.</p><p>This is also a Weather spell.</p><p><em>Item</em></p><p>(a) Footwear. The item must bear a cloud design. Energy cost to create: 4,000. (b) Jewelry, wand, or staff. Usable only by mages. Energy cost to create: 3,000.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
