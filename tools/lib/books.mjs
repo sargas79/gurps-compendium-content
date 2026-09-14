@@ -123,6 +123,8 @@ export function book(slug) {
       pdfOffset: raw.transcription?.pdfOffset ?? null,
       pageLabel: raw.transcription?.pageLabel ?? raw.prefix ?? "",
       namePrefix: raw.transcription?.namePrefix ? new RegExp(raw.transcription.namePrefix) : null,
+      // Pages set on a tinted panel read as boxes; their contents are the running text.
+      asidesAsText: raw.transcription?.asidesAsText === true,
     },
     dir: join(booksRoot, slug),
   };
