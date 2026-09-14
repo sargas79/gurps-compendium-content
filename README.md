@@ -184,6 +184,18 @@ only its trailing remark. Those decisions are kept in `books/<book>/review.json`
 with the reason for each, so re-running the transcription tool does not quietly
 undo them.
 
+**Capturing again from the page's layout.** `tools/transcribe.mjs` reads the
+Basic Set as one stream of lines, which interleaves two columns and a sidebar
+wherever a page has them. `tools/recapture.mjs` takes each entry instead from the
+layout the rules journal is built from (`lib/book-structure.mjs`), which reads a
+column at a time and keeps sidebars and tables apart from the text. It writes
+nothing to the prose files: it reports every capture beside the text already
+held, least alike first, for a reader to apply after reading.
+
+```bash
+node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
+```
+
 `no-entry` is for names the book never uses. Most come from the GCA data file,
 which writes buying an attribute as "Extra ST" and a row of the barding table as
 "Horse Mail Face Mask". They are left out of the coverage count, because they can
