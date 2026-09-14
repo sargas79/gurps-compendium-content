@@ -4968,6 +4968,206 @@
     "description": "<p>The aquatic equivalent of Body of Wood. The subject becomes an animated mass of green slime - algae, pond scum, and other muck you might find in a swamp - temporarily granting him the Body of Slime meta-trait (see box). Clothes (up to 6 pounds) are also transformed, but lose any magic powers they might have had.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Only affects the wearer. Energy cost to create: 1,300.</p>"
   },
   {
+    "_id": "bccc0e1bac5bc4ec",
+    "name": "Sense Danger",
+    "pages": "M166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells the caster if any immediate danger is nearby; can also detect a far-away danger if it threatens to come close and strike! Gives the nature of any danger that is only a minute or so away; if there is a danger within five minutes, the spell produces foreboding but no details (except possibly on a critical success).</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "10d009f664dfa759",
+    "name": "Detect Poison",
+    "pages": "M166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reveals the presence of toxins and gives a +2 on any subsequent Poisons roll to identify the exact agent(s). The caster may exclude any types of poisons he wishes upon casting (to specifically search for nerve agents, for instance, or to exclude \"benign\" poisons like alcohol).</p><p>This is also a Healing spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "c5e7ffc3a3c0214e",
+    "name": "Block",
+    "pages": "M166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An instantaneous version of the Shield spell - adds to the subject's DB for a single defense roll. This spell is not cumulative with the effects of Shield - use the highest value.</p>"
+  },
+  {
+    "_id": "4f05f4b963daadde",
+    "name": "Hardiness",
+    "pages": "M167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An instantaneous version of the Armor spell - adds to the Damage Resistance of the subject for one attack. This spell is not cumulative with Armor - only the stronger spell applies. Remember that only one Blocking spell may be cast in a turn. A mage cannot follow up a failed Iron Arm with a Hardiness spell, for instance.</p>"
+  },
+  {
+    "_id": "e931733b6ea2ef01",
+    "name": "Watchdog",
+    "pages": "M167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast around an area, this spell warns the caster of anyone or anything crossing with hostile intent. If the caster is asleep, he wakes instantly without being stunned. The spell is not destroyed if triggered; it lasts until its natural expiration.</p><p><em>Item</em></p><p>Can be cast on an area of floor or ground, or on a rug. Energy cost to create: 200 per yard of radius.</p>"
+  },
+  {
+    "_id": "6f8a90cde634410b",
+    "name": "Nightingale",
+    "pages": "M167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a door or section of floor \"noisy.\" A door squeaks loudly when opened; a patch of ground becomes full of snapping sticks when someone walks over it; a floor squeaks, etc. This automatically alerts or awakes the caster if he is within hearing range, and probably alerts others nearby as well (make an IQ roll if there is other noise around).</p><p><em>Item</em></p><p>Can be cast on an area of floor or ground, or on a rug. Energy cost to create: 100 per yard of radius.</p>"
+  },
+  {
+    "_id": "96cf03906f1b37aa",
+    "name": "Sense Observation",
+    "pages": "M167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Alerts the caster if someone or something spies or scries upon the subject area, by means magical or otherwise. A Quick Contest is rolled between the spy's IQ or the effective skill of the Information spell's caster (Trace, Seeker, Crystal Ball, any of the \"Sense\" spells . . .) and the effective skill of the Sense Observation spell's caster; if the caster wins, he becomes aware that the subject area is being observed. A critical success (on the Contest) might give the caster an idea of who or what is doing the scrying or spying.</p><p>If the caster then tries to seek out the spy, the margin of success of the Sense Observation contest can be added as a bonus to the Seeker roll, up to a maximum of +5 (effectively neutralizing the -5 penalty for having nothing associated with the person sought). Another possible course of action is to Counterspell the scrying spell; distance penalties do not apply, but the -5 penalty for absent subject does.</p><p>Sense Observation can also be cast on a being; in that case, the caster can choose to have the spell alert the subject instead when eavesdropping is detected.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 300. (b) Jewelry or clothing. Always on. Only affects the wearer. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "d70f0b31c2acce64",
+    "name": "Turn Blade",
+    "pages": "M167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes an incoming blade turn in its wielder's hand, inflicting only crushing damage instead of cutting. This also unreadies the weapon. Only good against blade attacks - it is useless against a spear, club, or the teeth and claws of an animal. This spell does not count as an active defense itself; it may be combined with a normal Parry, Block, or Dodge.</p><p>If the caster is not the one being attacked, apply regular range modifiers between the caster and the attacker.</p><p><em>Item</em></p><p>A bracelet or other piece of arm apparel. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "0e74dafadf18ede5",
+    "name": "Bladeturning",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A continual version of Turn Blade - all blades attacking the subject are turned, doing only crushing damage and becoming unready. For each bladed attack, roll a Quick Contest between the wielder's DX and the caster's effective skill to see which wins out. Useful only against blade attacks, as per Turn Blade.</p><p>Note that, unlike Turn Blade, the spell is cast on the one being attacked, not on the attacker.</p><p><em>Item</em></p><p>Wand, staff, jewelry, weapon, or armor. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "eab90b71cb92f2b1",
+    "name": "Missile Shield",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns any missiles harmlessly aside by the tiniest fraction needed to ensure they miss the subject; the game effect is that the missile continues in a straight line past the subject. Works on all kinds of missiles - arrows, bullets, falling rocks, missile spells, shrapnel, cream pies - everything. The GM should conceal the existence of the spell from the caster's foes as long as possible, saying they just missed!</p><p><em>Item</em></p><p>Wand, staff, weapon, or armor. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "cc51301d54b53618",
+    "name": "Catch Missile",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster catches one missile about to hit him. This spell is cast with a modifier depending on the nature of the missile caught. Considered a Parry by the caster for combat purposes. The missile is unready when caught. To catch a missile spell, use Catch Spell.</p><table><tr><th>Missile Type</th><th>Penalty</th></tr><tr><td>Large thrown weapons (axes, spears, etc.)</td><td>+4</td></tr><tr><td>Thrown knives</td><td>+2</td></tr><tr><td>Arrows</td><td>0</td></tr><tr><td>Blowgun darts, crossbow bolts</td><td>-5</td></tr><tr><td>Bullets, supersonic missiles</td><td>Impossible</td></tr></table><p><em>Item</em></p><p>Glove. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "ef82a471911e4aff",
+    "name": "Reverse Missiles",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Turns any ranged attack (including Missile spells) back upon the attacker. If the attacker's \"to hit\" roll is successful, he hits himself - if not, he sees the missile fly back toward him and miss. The game effect is as though the missile had bounced straight back from the spell's subject to the attacker.</p><p><em>Item</em></p><p>Wand, staff, weapon, or armor. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "8f2995421e0389a5",
+    "name": "Return Missile",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes one missile (including spells) about to hit the subject to turn back upon the attacker. If the attacker's \"to hit\" was successful, he hits himself - if not, he sees the missile fly back toward him and miss. Considered a Parry (by the caster) for combat purposes. Apply Regular range modifiers if the caster is not the subject.</p><p><em>Item</em></p><p>Jewelry, weapon, or shield. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "33465ba1f55c6e7f",
+    "name": "Reflect Gaze",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Resists one gaze attack (includes Lightning Stare, Fascinate, and any power which requires eye contact) about to hit the subject. If successful, the gaze attack is reflected away from the subject; a success by 10 or more, or a critical success, reflects the gaze back upon the attacker. If failed, the gaze attack affects the subject normally. Considered a parry by the caster for combat purposes. Apply Regular range modifiers if the caster is not the subject.</p><p><em>Item</em></p><p>Jewelry. Energy cost to create: 600; must include a tiny mirror.</p>"
+  },
+  {
+    "_id": "4ee76032f019a555",
+    "name": "Mystic Mist",
+    "pages": "M168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces a dense, opalescent fog that confuses anyone entering it; figures more than 2 yards away cannot be seen except by Mage Sight. Those who were within it when it was cast are immune to its effects; they can sense it as a dim shimmering, but it does not affect their vision or confuse them. Others must roll vs. (IQ + Magic Resistance) every second, or use Mage Sight, to avoid losing their way and walking in randomly chosen directions, unless they have a guide. Absolute Direction avoids this problem.</p><p>A Fright Check is also required of intruders first entering the mist, and again every 5 minutes. Anyone failing the first Fright Check will be very reluctant to enter! Dangerous animals simply avoid the mist, but suffer normal effects if for some reason they must enter it.</p><p>Those \"native\" to the mist have a +1 to their defense rolls when attacked by interlopers, and interlopers have a -1 to their own defense rolls against \"natives.\"</p><p>This spell is an excellent defense for a party camping in dangerous territory. The caster must cast Mystic Mist in an area centered on himself. The wider an area he can cover, the better!</p><p><em>Item</em></p><p>(a) Amulet that keeps wearer immune to the effects of Mystic Mist. Energy cost to create: 400. (b) It is rumored that there is an object that creates a permanent Mystic Mist, controllable in some way, but nothing more is known at present.</p>"
+  },
+  {
+    "_id": "65e18c60faf33f87",
+    "name": "Shade",
+    "pages": "M169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Provides shade for the subject. This prevents sunburn and provides some relief from heat (reducing the effective temperature around the subject by 10˚F, if hot light is a significant source of the heat). The effect is that of an invisible parasol.</p><p>This is also a Light and Darkness spell.</p><p><em>Item</em></p><p>Staff or jewelry. Only affects the wearer. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "a70191ca38401076",
+    "name": "Iron Arm",
+    "pages": "M169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stop a blow with only an arm. If the spell succeeds, the arm becomes harder than iron, momentarily - and automatically parries the attacking weapon without harm to the caster. If the spell fails, the wizard is simply parrying with his arm! This spell can parry no attack that a sword could not parry, and is considered a parry for purposes of combat.</p><p><em>Item</em></p><p>A bracelet or other item worn on the arm. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "3fb7f2f5b2df5769",
+    "name": "Weather Dome",
+    "pages": "M169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a shimmering dome that repels bad weather of all types (up to and including Windstorm spells, volcanic ash, and rains of frogs, as well as flying insects!). Floods, landslides, and similar catastrophes destroy the dome. Inside the dome, the air remains fresh and the temperature remains comfortable for the caster.</p><p>This is also a Weather spell.</p>"
+  },
+  {
+    "_id": "ccff0e22a23ccb3e",
+    "name": "Atmosphere Dome",
+    "pages": "M169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a shimmering dome that is selectively permeable to gases. It can either drive out specified gases, or draw them in. When the dome is created, the caster defines a target atmospheric composition; when the target level for each component gas is reached, the dome ceases acting on that gas until conditions inside the dome change. The composition selected by the caster specifies both proportions and total pressure; this spell can thus be used either to change the composition of the air within the dome or its pressure relative to the surrounding area, or both. An Atmosphere Dome cannot create gas where none exists; if there is no oxygen in a planet's atmosphere, a dome set to accumulate oxygen remains empty.</p><p>This is also an Air spell.</p>"
+  },
+  {
+    "_id": "0f19622457f5a709",
+    "name": "Resist Pressure",
+    "pages": "M169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protects the subject from the effects of pressures higher or lower than his native pressure, providing the equivalent of Pressure Support (p. B77) or Vacuum Support (p. B96). The caster must select that advantage the spell grants and at what level at the time of casting.</p><p>This spell is most appropriate in scientific-paradigm settings; if the space between the planets is filled with ordinary air and the bottom of the ocean is much like the bottom of a river, there's not much use for this spell.</p><p>Resist Pressure does not enable the subject to breathe in the environments it renders survivable; Breathe Water or Hold Breath may be useful in these situations.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 900.</p>"
+  },
+  {
+    "_id": "281f7aa081f3be98",
+    "name": "Teleport Shield",
+    "pages": "M170",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any attempt to Teleport (or Blink) into or out of the area of effect is at -5 to skill. Failed attempts to teleport in have the normal effects. Failed attempts to teleport out leave the caster where he started, physically stunned and having spent all the energy for the attempt! Doubling the energy cost increases the penalty to -10; tripling it increases the penalty to -15!</p><p>This spell works against Teleport, Timeport, Plane Shift, Timeslip, and all their variations.</p><p>This is also a Gate spell.</p><p><em>Item</em></p><p>Can be cost on an area of floor or ground, or on a rug or similar item. Energy cost to create: 50 per yard radius.</p>"
+  },
+  {
+    "_id": "fdd6016a8bde2474",
+    "name": "Force Dome",
+    "pages": "M170",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Weather Dome, but the Force Dome repels any physical force or missile spell. Nothing can enter except light, and only enough light to see by (the interior is always in twilight). Likewise, nothing can leave the Force Dome except light - and not even that, if the caster wills it. However, magic, and magical creatures and items, pass through the Force Dome as though it did not exist.</p><p>Once cast, a Force Dome takes a full second to form; anyone inside the Dome's area at the time it is cast has one turn to leave.</p>"
+  },
+  {
+    "_id": "4aecc0ef1b3126e9",
+    "name": "Force Wall",
+    "pages": "M170",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a shimmering barrier, which physical forces and missile spells cannot cross. Only light and non-Missile spells may pass. The Force Wall is four yards high. Higher walls are possible at a proportionately increased energy cost (double for double height, etc).</p><p><em>Item</em></p><p>(a) Staff. Usable only by mages. Energy cost to create: 300. (b) A Force Wall may be made permanent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "a4aaa21636c38b4e",
+    "name": "Utter Dome",
+    "pages": "M170",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protects against physical and magical attack; has the effect of a combination Force Dome and Pentagram. However, creatures cannot be summoned within it, and there is no marking to erase. Can only be removed by Dispel Magic or Counterspell. Resists any attempt to look through with magic.</p><p>Like Force Dome, an Utter Dome takes a full second to form once cast.</p>"
+  },
+  {
+    "_id": "ca440e97c336c483",
+    "name": "Utter Wall",
+    "pages": "M170",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Force Wall, but protects against physical and magical attack; has the effect of a combination Force Wall and Spell Wall.</p><p><em>Item</em></p><p>(a) Staff. Usable only by mages. Energy cost to create: 1,000. (b) An Utter Wall may be made permanent at an energy cost of 100 times normal.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
