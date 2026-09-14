@@ -1,0 +1,1 @@
+After determining the realism level of his Martial Arts campaign – including its power level – the GM must choose its setting. This decision influences the types of martial artists suitable as PCs, the styles they can learn, and the kinds of adventures they’ll have.

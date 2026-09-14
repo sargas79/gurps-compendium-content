@@ -2675,6 +2675,339 @@
       "reference": "Martial Arts p. 234",
       "file": "sparring-armor.md",
       "status": "reviewed"
+    },
+    {
+      "id": "campaigns",
+      "title": "Campaigns",
+      "chapter": "Campaigns",
+      "pages": "MA235",
+      "reference": "Martial Arts p. 235",
+      "file": "campaigns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-vs-realistic-campaigns",
+      "title": "Cinematic vs. Realistic Campaigns",
+      "chapter": "Campaigns",
+      "pages": "MA236",
+      "reference": "Martial Arts p. 236",
+      "file": "cinematic-vs-realistic-campaigns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-realistic-campaign",
+      "title": "The Realistic Campaign",
+      "chapter": "Campaigns",
+      "pages": "MA236",
+      "reference": "Martial Arts p. 236",
+      "file": "the-realistic-campaign.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "realistic-characters",
+      "title": "Realistic Characters",
+      "chapter": "Campaigns",
+      "pages": "MA236-237",
+      "reference": "Martial Arts pp. 236-237",
+      "file": "realistic-characters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "npcs-for-martial-arts-campaigns",
+      "title": "NPCs for Martial Arts Campaigns",
+      "chapter": "Campaigns",
+      "pages": "MA236",
+      "reference": "Martial Arts p. 236",
+      "file": "npcs-for-martial-arts-campaigns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combat-realism",
+      "title": "Combat Realism",
+      "chapter": "Campaigns",
+      "pages": "MA237-238",
+      "reference": "Martial Arts pp. 237-238",
+      "file": "combat-realism.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-cinematic-campaign",
+      "title": "The Cinematic Campaign",
+      "chapter": "Campaigns",
+      "pages": "MA238",
+      "reference": "Martial Arts p. 238",
+      "file": "the-cinematic-campaign.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-characters",
+      "title": "Cinematic Characters",
+      "chapter": "Campaigns",
+      "pages": "MA238",
+      "reference": "Martial Arts p. 238",
+      "file": "cinematic-characters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mad-crazy-action",
+      "title": "Mad, Crazy Action",
+      "chapter": "Campaigns",
+      "pages": "MA238-239",
+      "reference": "Martial Arts pp. 238-239",
+      "file": "mad-crazy-action.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-case-npcs",
+      "title": "Special-Case NPCs",
+      "chapter": "Campaigns",
+      "pages": "MA238",
+      "reference": "Martial Arts p. 238",
+      "file": "special-case-npcs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hybrid-campaigns",
+      "title": "Hybrid Campaigns",
+      "chapter": "Campaigns",
+      "pages": "MA239-241",
+      "reference": "Martial Arts pp. 239-241",
+      "file": "hybrid-campaigns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-secret-abilities-campaign",
+      "title": "The Secret Abilities Campaign",
+      "chapter": "Campaigns",
+      "pages": "MA240",
+      "reference": "Martial Arts p. 240",
+      "file": "the-secret-abilities-campaign.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "campaign-setting",
+      "title": "Campaign Setting",
+      "chapter": "Campaigns",
+      "pages": "MA241",
+      "reference": "Martial Arts p. 241",
+      "file": "campaign-setting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tech-level",
+      "title": "Tech Level",
+      "chapter": "Campaigns",
+      "pages": "MA241",
+      "reference": "Martial Arts p. 241",
+      "file": "tech-level.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "other-fantastic-abilities",
+      "title": "Other Fantastic Abilities",
+      "chapter": "Campaigns",
+      "pages": "MA241",
+      "reference": "Martial Arts p. 241",
+      "file": "other-fantastic-abilities.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "time-and-place",
+      "title": "Time and Place",
+      "chapter": "Campaigns",
+      "pages": "MA241",
+      "reference": "Martial Arts p. 241",
+      "file": "time-and-place.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "classical-greece-and-rome",
+      "title": "Classical Greece and Rome",
+      "chapter": "Campaigns",
+      "pages": "MA241-242",
+      "reference": "Martial Arts pp. 241-242",
+      "file": "classical-greece-and-rome.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "historical-china",
+      "title": "Historical China",
+      "chapter": "Campaigns",
+      "pages": "MA242-243",
+      "reference": "Martial Arts pp. 242-243",
+      "file": "historical-china.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "historical-japan",
+      "title": "Historical Japan",
+      "chapter": "Campaigns",
+      "pages": "MA243",
+      "reference": "Martial Arts p. 243",
+      "file": "historical-japan.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "post-classical-europe",
+      "title": "Post-Classical Europe",
+      "chapter": "Campaigns",
+      "pages": "MA244-245",
+      "reference": "Martial Arts pp. 244-245",
+      "file": "post-classical-europe.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fantasy",
+      "title": "Fantasy",
+      "chapter": "Campaigns",
+      "pages": "MA245",
+      "reference": "Martial Arts p. 245",
+      "file": "fantasy.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "yrth",
+      "title": "Yrth",
+      "chapter": "Campaigns",
+      "pages": "MA245",
+      "reference": "Martial Arts p. 245",
+      "file": "yrth.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "modern-day",
+      "title": "Modern Day",
+      "chapter": "Campaigns",
+      "pages": "MA246",
+      "reference": "Martial Arts p. 246",
+      "file": "modern-day.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "post-apocalypse",
+      "title": "Post-Apocalypse",
+      "chapter": "Campaigns",
+      "pages": "MA246",
+      "reference": "Martial Arts p. 246",
+      "file": "post-apocalypse.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "science-fiction",
+      "title": "Science Fiction",
+      "chapter": "Campaigns",
+      "pages": "MA246-247",
+      "reference": "Martial Arts pp. 246-247",
+      "file": "science-fiction.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "campaign-themes",
+      "title": "Campaign Themes",
+      "chapter": "Campaigns",
+      "pages": "MA247",
+      "reference": "Martial Arts p. 247",
+      "file": "campaign-themes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-quest",
+      "title": "The Quest",
+      "chapter": "Campaigns",
+      "pages": "MA247",
+      "reference": "Martial Arts p. 247",
+      "file": "the-quest.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "to-serve-and-protect",
+      "title": "To Serve and Protect",
+      "chapter": "Campaigns",
+      "pages": "MA247-248",
+      "reference": "Martial Arts pp. 247-248",
+      "file": "to-serve-and-protect.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "war-is-hell",
+      "title": "War Is Hell",
+      "chapter": "Campaigns",
+      "pages": "MA248",
+      "reference": "Martial Arts p. 248",
+      "file": "war-is-hell.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-quest-for-the-master",
+      "title": "The Quest for the Master",
+      "chapter": "Campaigns",
+      "pages": "MA248",
+      "reference": "Martial Arts p. 248",
+      "file": "the-quest-for-the-master.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "a-learning-experience",
+      "title": "A Learning Experience",
+      "chapter": "Campaigns",
+      "pages": "MA249",
+      "reference": "Martial Arts p. 249",
+      "file": "a-learning-experience.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "vigilante-justice",
+      "title": "Vigilante Justice",
+      "chapter": "Campaigns",
+      "pages": "MA249",
+      "reference": "Martial Arts p. 249",
+      "file": "vigilante-justice.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wanted",
+      "title": "Wanted!",
+      "chapter": "Campaigns",
+      "pages": "MA249",
+      "reference": "Martial Arts p. 249",
+      "file": "wanted.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "warriors-of-the-night",
+      "title": "Warriors of the Night",
+      "chapter": "Campaigns",
+      "pages": "MA249-250",
+      "reference": "Martial Arts pp. 249-250",
+      "file": "warriors-of-the-night.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-contender",
+      "title": "The Contender",
+      "chapter": "Campaigns",
+      "pages": "MA250",
+      "reference": "Martial Arts p. 250",
+      "file": "the-contender.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-silly-campaign",
+      "title": "The Silly Campaign",
+      "chapter": "Campaigns",
+      "pages": "MA250",
+      "reference": "Martial Arts p. 250",
+      "file": "the-silly-campaign.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "glossary",
+      "title": "Glossary",
+      "chapter": "Campaigns",
+      "pages": "MA251",
+      "reference": "Martial Arts p. 251",
+      "file": "glossary.md",
+      "status": "reviewed"
     }
   ]
 }
