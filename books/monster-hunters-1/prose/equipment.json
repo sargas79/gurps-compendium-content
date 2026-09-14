@@ -1,5 +1,117 @@
 [
   {
+    "_id": "fcaef771dc2031df",
+    "name": "Boots, Reinforced",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Use higher DR only vs. attacks to the underside of the foot. Gives +1 to kicking damage.</p>"
+  },
+  {
+    "_id": "38fbaa16f2953245",
+    "name": "Clothing, Extra Outfit",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "bc5fc57be5bd28fc",
+    "name": "Coat, Long",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Gives +4 to Holdout. Can be made undercover for a larger bonus!</p>"
+  },
+  {
+    "_id": "2891e0a56854e950",
+    "name": "Coat, Long Leather",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Gives +4 to Holdout. Can be made undercover for a larger bonus!</p>"
+  },
+  {
+    "_id": "69ba92166ce6a3fc",
+    "name": "Cup, Athletic",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Use higher DR only vs. crushing attacks.</p>"
+  },
+  {
+    "_id": "8be324f13ba5b074",
+    "name": "Helmet, Motorcycle",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Use higher DR only vs. crushing attacks.</p>"
+  },
+  {
+    "_id": "e4563ff8cf126fbd",
+    "name": "Leggings, Sharp-Proof",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Concealable under clothing, not as clothing.</p><p>Use higher DR only vs. cutting and impaling attacks.</p>"
+  },
+  {
+    "_id": "3c4d7ad46224df98",
+    "name": "Sleeves, Sharp-Proof",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Concealable under clothing, not as clothing.</p><p>Use higher DR only vs. cutting and impaling attacks.</p>"
+  },
+  {
+    "_id": "38e509c6cd237b16",
+    "name": "Vest, Advanced",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Concealable under clothing, not as clothing.</p><p>Use lower DR only vs. crushing attacks.</p>"
+  },
+  {
+    "_id": "7e17c2993f2b2e07",
+    "name": "Vest, Concealable",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Concealable under clothing, not as clothing.</p><p>Use higher DR only vs. cutting and piercing attacks.</p>"
+  },
+  {
+    "_id": "47778b4c4afee1e9",
+    "name": "Handheld Sprayer",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Usually filled with holy water (p. 57). The dispersion gives +2 to hit.</p>"
+  },
+  {
+    "_id": "331bcdd7aadc72e7",
+    "name": "Backpack Squirt Gun",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Usually filled with holy water (p. 57). The dispersion gives +2 to hit.</p>"
+  },
+  {
+    "_id": "563df30dd6cd8df3",
+    "name": "Squirt Carbine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Usually filled with holy water (p. 57). The dispersion gives +2 to hit.</p>"
+  },
+  {
+    "_id": "2c4452430f03662a",
+    "name": "Flare Gun",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sometimes a champion has to make do with whatever comes to hand! See Improvised Weapons (p. 60) for details. The following all have Acc 0 and RoF 1.</p><p>Does 1d+1(0.5) cr dkb inc, with Range 10/330 and Shots 1(3) [any Guns-4]. Burns hot for 10 seconds after firing: 1d burn to anyone touching it.</p>"
+  },
+  {
     "_id": "087e5437feeca60e",
     "name": "Lab, Belt",
     "pages": "MH1:56",
@@ -134,6 +246,78 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "74e4a5e115cb0d4a",
+    "name": "Collar, Reinforced",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "b0a81deeeaa54331",
+    "name": "Glasses, Ballistic",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "5c6e9af9687d017c",
+    "name": "Gloves, Sap",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Give +1 to punching damage and Bad Grip 1.</p>"
+  },
+  {
+    "_id": "8e179da6922a7115",
+    "name": "Gloves, Shooting",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "038e49ca17dd21b6",
+    "name": "Hat, Leather",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "10a507bf3d9b49d4",
+    "name": "Helmet, Motorcycle (Visor)",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>A visor for the motorcycle helmet, protecting the eyes and face.</p>"
+  },
+  {
+    "_id": "f57cdf904b4f1a53",
+    "name": "Jacket, Leather",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "98725efe62fe4ad5",
+    "name": "Pants, Leather",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p>"
+  },
+  {
+    "_id": "edbdbebda7e06f9f",
+    "name": "Shoes, Climbing",
+    "pages": "MH1:59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any TL0-8 armor from pp. B283-285 or High-Tech is theoretically available for champions, but in practice, they can't afford to draw too much attention to themselves. Because of this, body armor is rare unless it can pass for (or be worn under) normal clothing.</p><p>The following modifiers exist for clothing. These have \"cost factors\" (CF) that affect price as explained for gadgets (p. 54).</p><p><strong>Scent-Masking:</strong> Keeps scents inside the fabric, giving -4 to Smell rolls to find the wearer (or track him by scent). +2 CF.</p><p><strong>Undercover:</strong> Helps conceal weapons, giving a Holdout bonus: +1 bonus for +4 CF, +2 for +19 CF.</p><p>Give +1 to Climbing and Stealth.</p>"
   },
   {
     "_id": "424cf6d4119ce4b6",
@@ -998,5 +1182,653 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>These pills take two seconds to ready and swallow; they take effect within a minute. They are also available as injections, which require 15 seconds to administer but then work immediately. Injecting a drug quickly (two seconds) requires a First Aid-4 or Physician+2 roll, with failure resulting in a wasted drug.</p><p>Adds +1 to the user's psi rolls for 1d×10 minutes. User must roll HT; on a failure, he is also at -2 to DX and all DX-based rolls for hours equal to the margin of failure. Multiple doses within 24 hours are at a cumulative -1 to this roll. Potentially addictive (-15 points); users are at -5 to all psi use while going through withdrawal.</p>"
+  },
+  {
+    "_id": "b841415511a2be3e",
+    "name": "Tonfa",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tonfa skill is not required to use a tonfa in the manner described on p. B209; anyone may hold the weapon in a reversed grip to benefit his unarmed strikes and parries. The statistics are for those trained in using it as a melee weapon in a standard (\"sword\") grip.</p>"
+  },
+  {
+    "_id": "ac0b97dd69b04d9b",
+    "name": "Chainsaw",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw+1d cut, with Reach 1 and ST 11 [Two-Handed Axe/Mace-2]. A low-end chainsaw is half-price, but has a 1-in-6 chance of the chain snapping if stopped by DR. Runs for one hour on a gallon of gas.</p>"
+  },
+  {
+    "_id": "cee7b8e38a20d119",
+    "name": "Chainsaw, Low-End",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw+1d cut, with Reach 1 and ST 11 [Two-Handed Axe/Mace-2]. A low-end chainsaw is half-price, but has a 1-in-6 chance of the chain snapping if stopped by DR. Runs for one hour on a gallon of gas.</p>"
+  },
+  {
+    "_id": "2b4c465d7dd46862",
+    "name": "Circular Saw",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw+3(2) cut, with Reach 1 and ST 11 [Two-Handed Axe/Mace-3]. Runs for 30 minutes.</p>"
+  },
+  {
+    "_id": "bad3c1c341d8e0b6",
+    "name": "Pool Cue",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw cr, with Reach 1 and ST 9 [Broadsword-1].</p>"
+  },
+  {
+    "_id": "0bf7a60d02655b4f",
+    "name": "Power Drill",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does 1d+2(2) pi++, with Reach C and ST 8 [Knife-2]. Runs for 30 minutes.</p>"
+  },
+  {
+    "_id": "a247d4df218e35e7",
+    "name": "Road Flare",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does 1d-4 burn, with Reach 1 and ST 6 [Shortsword-2]. Disposable; once started, will burn for 30 minutes.</p>"
+  },
+  {
+    "_id": "3637f3bdf107bf4d",
+    "name": "Shovel",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw+3 cut, with Reach 1, 2* and ST 12 [Two-Handed Axe/Mace-2].</p>"
+  },
+  {
+    "_id": "3a2fa611d21efb19",
+    "name": "Scissors",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does thr-2 imp, with Reach C and ST 5 [Knife-1].</p>"
+  },
+  {
+    "_id": "3d17be46878d0a56",
+    "name": "Screwdriver",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does thr-2 imp, with Reach C and ST 5 [Knife-1].</p>"
+  },
+  {
+    "_id": "ba17cd0516b5271e",
+    "name": "Tire Iron",
+    "pages": "MH1:60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>While champions are expected to outfit themselves with appropriate weaponry, sometimes the unexpected happens and the heroes have to resort to whatever is nearby. Many such items are easy to adjudicate (e.g., a box opener cuts as a small knife), but some deserve specific mention.</p><p>For each item, the skill used to wield it is listed in brackets, along with any penalty to do so. Take Improvised Weapons (p. 25) to remove such penalties entirely for that skill. (The \"cost factor\" options for weapons can never be applied to improvised weapons.) Unless explicitly stated otherwise, an improvised weapon cannot be used to parry, and is considered cheap for breakage purposes.</p><p>Does sw+1 cr, with Reach 1 and ST 10 [Axe/Mace-2].</p>"
+  },
+  {
+    "_id": "5ed4966babaa9b65",
+    "name": "Bow Sights",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Many bows and crossbows mount targeting lasers (Gun Accessories, p. 55) for the skill bonus. In addition, crossbows can mount scopes, while bows can mount similar sighting devices (+1 Acc).</p>"
+  },
+  {
+    "_id": "3896dec22d476818",
+    "name": "Arrow, Standard (imp)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "ff0d7b8b014a4651",
+    "name": "Arrow, Bodkin (pi(2))",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "8d2db5ae57b067f5",
+    "name": "Arrow, Willow-Leaf (cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "5db26daf3fac9fa7",
+    "name": "Arrow, Silver Standard (imp)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "5f52d417269752ef",
+    "name": "Arrow, Silver Bodkin (pi(2))",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "fdbf746652960d93",
+    "name": "Arrow, Silver Willow-Leaf (cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "f9bd29f39d69a0f0",
+    "name": "Bolt, Standard (imp)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "2c805e64c2beff32",
+    "name": "Bolt, Bodkin (pi(2))",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "76d1f5c9f0c335e4",
+    "name": "Bolt, Willow-Leaf (cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "393a9e4c00ede8b9",
+    "name": "Bolt, Silver Standard (imp)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "8ac1ed9b964de1fb",
+    "name": "Bolt, Silver Bodkin (pi(2))",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "89b02ef6d9e4d722",
+    "name": "Bolt, Silver Willow-Leaf (cut)",
+    "pages": "MH1:55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for melee weapons (pp. 59-60), many of the weapons from pp. B275-276 are more effective than modern guns at killing monsters! Use their stats as-is, with the following notes.</p><p>At TL8, bows and crossbows may take any of the modifiers below. Each has a \"cost factor\" (CF) that works as for gadgets (p. 54).</p><p><strong>Balanced:</strong> +1 to Accuracy. +4 CF.</p><p><strong>Compound:</strong> Pulleys and cables transfer more energy to the string. Treat the user and weapon as having ST+2 for damage and range purposes. +1 CF.</p><p><strong>Fine:</strong> Increase 1/2D and Max by 20%. +3 CF.</p><p>Arrows and bolts may have a silver head. Their heads can be normal, bodkin-point (damage becomes piercing with a (2) armor divisor), or willow-leaf (damage becomes cutting); cost and weight are unchanged. Wrapping a flaming cloth behind the head adds one point of linked burning damage, but gives -2 to hit.</p>"
+  },
+  {
+    "_id": "eb9d15b0e8b53b63",
+    "name": "Auto Pistol, .40",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "b86ac3e304107559",
+    "name": "Auto Pistol, .50AE",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "c9edae923d75389f",
+    "name": "Backup Auto Pistol, .40",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "f1ca8258facdf8ab",
+    "name": "Revolver, 44M",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "4372f810d51706b0",
+    "name": "Revolver, Snub .38",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "993f7d93b21b276a",
+    "name": "Assault Carbine, 5.56mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "a1d599a617b72403",
+    "name": "Assault Rifle, 5.56mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "afb7341a657ec6fc",
+    "name": "Entry Rifle, .50BW",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "acdcecde42d52297",
+    "name": "Sniper Rifle, 7.62mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Requires two hands to use, regardless of wielder's ST.</p>"
+  },
+  {
+    "_id": "46c1119979f285b8",
+    "name": "Auto Shotgun, 12G",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "65473405ef24a903",
+    "name": "Compact Pump Shotgun, 12G",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Requires two hands to use, regardless of wielder's ST.</p>"
+  },
+  {
+    "_id": "044348af4223c55e",
+    "name": "Pump Shotgun, 12G",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Requires two hands to use, regardless of wielder's ST.</p>"
+  },
+  {
+    "_id": "fdfd568e7db6ea04",
+    "name": "Machine Pistol, 9mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "1446e9809b8dea74",
+    "name": "SMG, .45",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "6eba76f44a66e2ba",
+    "name": "SMG, 9mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "a62f1ac71e7d2ee2",
+    "name": "SMG, Compact 9mm",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p>"
+  },
+  {
+    "_id": "9f30da0c590176f9",
+    "name": "Backpack Flamethrower",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Anyone hit takes 1d burn per second for 2d×5 more seconds (1d×5 past 25 yards).</p><p>Backpack has 1-in-6 chance of exploding if damage penetrates its DR 2; everyone within two yards is hit by one shot.</p>"
+  },
+  {
+    "_id": "4f2dffa88afdc2b7",
+    "name": "Handheld Flamethrower",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Firearms Table (p. 62) adjusts many Basic Set weapons to reflect High-Tech. It includes the most common \"monster hunting\" weapons, along with the psychotronic ones from p. 58. Shots lists reload times in parentheses. For revolvers, this assumes a speedloader; add nine seconds if using loose rounds! Fast-Draw (Ammo) reduces times by a third; e.g., (6) becomes (4).</p><p>Firearms can be improved with customization options. Each option has a \"cost factor\" (CF) that modifies the cost as for gadgets (p. 54).</p><p><strong>Disguised:</strong> The gun resembles a mundane item (e.g., a flamethrower might pass as a hiker's backpack with a rolled tent attached). Realizing the truth requires a Search roll - or an Observation roll if carried. +4 CF.</p><p><strong>Fine:</strong> Gives any firearm with base Acc 2 or better another +1 Acc. +1 CF. Not with very fine.</p><p><strong>Very Fine:</strong> Gives any firearm with base Acc 4 or better another +2 Acc. +4 CF. Not with fine.</p><p>Anyone hit takes 1d burn per second for 2d×5 more seconds (1d×5 past 25 yards).</p>"
+  },
+  {
+    "_id": "81d12f699344cb58",
+    "name": "Nail Gun",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sometimes a champion has to make do with whatever comes to hand! See Improvised Weapons (p. 60) for details. The following all have Acc 0 and RoF 1.</p><p>The safety must be disabled ahead of time or held back with the off hand. Does 2d-1 pi-, with Range 5/25 and Shots 50(3) [Pistol-4].</p>"
+  },
+  {
+    "_id": "e2bf3c46a8a99184",
+    "name": "Spray Can and Lighter",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sometimes a champion has to make do with whatever comes to hand! See Improvised Weapons (p. 60) for details. The following all have Acc 0 and RoF 1.</p><p>Does 1d-2 burn, with Range 1 and Shots 5 [Flamethrower-2 or Sprayer].</p>"
+  },
+  {
+    "_id": "cb9a444087732b9c",
+    "name": "Auto .40, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "df4dd748a1fd2d86",
+    "name": "Auto 50AE, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "b471bd0dc6210319",
+    "name": "Backup .40, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "a945eddd5a95a267",
+    "name": "Revolver, Speedloader",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "97682f9f584cb474",
+    "name": "Assault 5.56mm, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "5de1d77fcbbc9642",
+    "name": "Entry Rifle, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "87032d68882e951b",
+    "name": "Sniper Rifle, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "e6502d5bfafbe086",
+    "name": "Machine Pistol, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "a66037de86eb2943",
+    "name": "SMG .45, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "bb6061caba76804d",
+    "name": "SMG 9mm, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "a2ae3a4026cc06ef",
+    "name": "SMG Compact, Magazine",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "80aace0d3552fbc3",
+    "name": "Backpack Squirt Gun, Reservoir",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "e91c4570c10ee1b1",
+    "name": "Squirt Carbine Reservoir",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p>"
+  },
+  {
+    "_id": "6d7b14648a295694",
+    "name": "Auto .40, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "d6578bb161a55da4",
+    "name": "Auto .50AE, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "9ec0244d2d24230b",
+    "name": "Backup .40, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "50504ab1e115bcf0",
+    "name": "Revolver 44M, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "3f946b223530b25f",
+    "name": "Revolver .38, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "7e1971d1c6894f62",
+    "name": "Assault 5.56mm, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "ca41c2bc0800155c",
+    "name": "Entry Rifle, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "b5c4901334b08856",
+    "name": "Sniper Rifle, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "0a95b1708e0c9685",
+    "name": "Auto Shotgun, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "8b4f38ab30aea8e1",
+    "name": "Compact Shotgun, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "0a62f5840ccb6724",
+    "name": "Pump Shotgun, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "f62f411cccab99bf",
+    "name": "Machine Pistol, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "8f7ea99b57951c6d",
+    "name": "SMG .45, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "5d7c27e17b973dec",
+    "name": "SMG 9mm, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "fedde662722ceca6",
+    "name": "SMG Compact, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "88160669c4e85197",
+    "name": "Backpack Flamethrower, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "5ac198c6654c24ae",
+    "name": "Handheld Flamethrower, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "abf78783ab5dfeb8",
+    "name": "Backpack Squirt Gun, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "f63048c5f4efd9b2",
+    "name": "Squirt Carbine, Reload",
+    "pages": "MH1:62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>On the Firearms Table (p. 62), the weight of one full reload is shown after the slash; for pistols, rifles, and SMGs, this includes the ammo and a magazine or speedloader. The cost of a full reload follows the slash, and the cost of an (empty) magazine, speedloader, or reservoir then appears in parentheses, if applicable. Add the two together to find the price of a full magazine or speedloader.</p><p>Some situations call for special ammo! Each type of ammo (p. 63) has a \"cost factor\" (CF) that affects the cost as for gadgets (p. 54). The final CF multiplier is applied to the reload cost, but does not modify the magazine or speedloader cost.</p><p>You may combine one powder option and one payload option, but no more. Thus, it is possible to obtain extra-powerful hollow-point rounds, but not armor-piercing holy-water rounds or extra-powerful match-grade rounds. All effects stack; e.g., an extra-powerful (×1.1 Range) chemical (×0.4 Range) round would have 0.44 times Range.</p>"
+  },
+  {
+    "_id": "d9308a1e4921b707",
+    "name": "Concussion Grenade",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a rule, grenades are a bad idea. Champions generally have to fight monsters in close proximity, where the thrower (or his friends!) can be easily caught in the blast. They're loud, which is more likely to attract police attention, and being caught with them is far worse than being caught with axes and guns.</p><p>That said, they are offered here as they may fit into certain campaigns or missions. Champions who are not part of a military or paramilitary organization must have a suitable Contact to acquire these. If not, a Streetwise roll at -2 can locate them, but at 1d+1 times the cost!</p><p>These are smaller, lighter grenades than those on p. B277 - safer in close quarters and slightly quieter. Pulling the pin is a Ready maneuver, but the fuse doesn't start until the arming handle is released (a free action). Anyone with ST 10+ can throw a grenade (ST × 3.5) yards using Throwing. The bonus to be heard modifies the roll for Hearing Shots (p. 61).</p><p>4-second fuse. Inflicts 5d cr ex. Heard at +3.</p>"
+  },
+  {
+    "_id": "d42a652100484953",
+    "name": "Fragmentation Grenade",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a rule, grenades are a bad idea. Champions generally have to fight monsters in close proximity, where the thrower (or his friends!) can be easily caught in the blast. They're loud, which is more likely to attract police attention, and being caught with them is far worse than being caught with axes and guns.</p><p>That said, they are offered here as they may fit into certain campaigns or missions. Champions who are not part of a military or paramilitary organization must have a suitable Contact to acquire these. If not, a Streetwise roll at -2 can locate them, but at 1d+1 times the cost!</p><p>These are smaller, lighter grenades than those on p. B277 - safer in close quarters and slightly quieter. Pulling the pin is a Ready maneuver, but the fuse doesn't start until the arming handle is released (a free action). Anyone with ST 10+ can throw a grenade (ST × 3.5) yards using Throwing. The bonus to be heard modifies the roll for Hearing Shots (p. 61).</p><p>4-second fuse. Inflicts 3d-1 [2d] cr ex. Heard at +3.</p>"
+  },
+  {
+    "_id": "2a948f701567eb41",
+    "name": "Smoke Grenade",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a rule, grenades are a bad idea. Champions generally have to fight monsters in close proximity, where the thrower (or his friends!) can be easily caught in the blast. They're loud, which is more likely to attract police attention, and being caught with them is far worse than being caught with axes and guns.</p><p>That said, they are offered here as they may fit into certain campaigns or missions. Champions who are not part of a military or paramilitary organization must have a suitable Contact to acquire these. If not, a Streetwise roll at -2 can locate them, but at 1d+1 times the cost!</p><p>These are smaller, lighter grenades than those on p. B277 - safer in close quarters and slightly quieter. Pulling the pin is a Ready maneuver, but the fuse doesn't start until the arming handle is released (a free action). Anyone with ST 10+ can throw a grenade (ST × 3.5) yards using Throwing. The bonus to be heard modifies the roll for Hearing Shots (p. 61).</p><p>2-second fuse. Fills a 4-yard radius with smoke or tear gas (both p. B439) for 20 seconds. Heard at +0.</p>"
+  },
+  {
+    "_id": "dabbbe41e4c92f33",
+    "name": "Tear Gas Grenade",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a rule, grenades are a bad idea. Champions generally have to fight monsters in close proximity, where the thrower (or his friends!) can be easily caught in the blast. They're loud, which is more likely to attract police attention, and being caught with them is far worse than being caught with axes and guns.</p><p>That said, they are offered here as they may fit into certain campaigns or missions. Champions who are not part of a military or paramilitary organization must have a suitable Contact to acquire these. If not, a Streetwise roll at -2 can locate them, but at 1d+1 times the cost!</p><p>These are smaller, lighter grenades than those on p. B277 - safer in close quarters and slightly quieter. Pulling the pin is a Ready maneuver, but the fuse doesn't start until the arming handle is released (a free action). Anyone with ST 10+ can throw a grenade (ST × 3.5) yards using Throwing. The bonus to be heard modifies the roll for Hearing Shots (p. 61).</p><p>2-second fuse. Fills a 4-yard radius with smoke or tear gas (both p. B439) for 20 seconds. Heard at +0.</p>"
+  },
+  {
+    "_id": "097711c473678062",
+    "name": "WP Grenade",
+    "pages": "MH1:63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As a rule, grenades are a bad idea. Champions generally have to fight monsters in close proximity, where the thrower (or his friends!) can be easily caught in the blast. They're loud, which is more likely to attract police attention, and being caught with them is far worse than being caught with axes and guns.</p><p>That said, they are offered here as they may fit into certain campaigns or missions. Champions who are not part of a military or paramilitary organization must have a suitable Contact to acquire these. If not, a Streetwise roll at -2 can locate them, but at 1d+1 times the cost!</p><p>These are smaller, lighter grenades than those on p. B277 - safer in close quarters and slightly quieter. Pulling the pin is a Ready maneuver, but the fuse doesn't start until the arming handle is released (a free action). Anyone with ST 10+ can throw a grenade (ST × 3.5) yards using Throwing. The bonus to be heard modifies the roll for Hearing Shots (p. 61).</p><p>White Phosphorus (WP): 4-second fuse. Inflicts 2d [1d(0.2)] burn ex. Each shrapnel fragment does damage again every 10 seconds for a minute; roll DX to brush a fragment off. Also acts as a smoke grenade! Heard at +3.</p>"
   }
 ]
