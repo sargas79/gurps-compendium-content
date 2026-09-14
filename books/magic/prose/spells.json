@@ -3168,6 +3168,270 @@
     "description": "<p>Shoot a bolt of concentrated sunlight from one fingertip. It has 1/2D 75, Max 150, Acc 2; use the Innate Attack skill. The light burns like laser light and does burning damage. Increase a shield's DB against this spell by 50%, rounding down, if it is highly polished.</p><p>Whether or not damage gets through armor, a hit to the face blinds the victim unless he makes a HT roll. A hit to the eyes does double damage and blinds the victim unless he makes a HT roll at a penalty equal to the damage suffered. Treat Sunboltinduced blindness as a crippling injury for recovery purposes (p. B420).</p><p>Any mirror will reflect a Sunbolt; if the GM is uncertain of the exact angle of incidence/reflection (if the Sunbolt hits a hand-held mirror, for instance), determine its new direction randomly. Use the rules for hitting the wrong target (p. B389) to determine if anything along the new path is hit.</p><p>Deliberately reflected shots are a much trickier matter; range penalties will be for the total range to the target, with an additional -2 for each \"bounce.\" And unless the mirrors are very large and/or stable and/or deliberately placed for the purpose, the GM may simply declare the shot impossible.</p><p>Defending characters holding mirrors may attempt to reflect the bolt back at the caster - treat this as a Block defense at a -2 penalty; also apply the normal range penalties from the defender to the caster. The DB of the mirror (if it is large enough to offer any; GM call) adds to this roll normally. The caster may defend normally, unless totally surprised.</p><p>Sunbolt is not affected by Missile Shield or Reverse Missiles. Force Dome and Deflect Energy do offer protection. Areas of magical Darkness or Blackout resist Sunbolt.</p><p><em>Item</em></p><p>Staff or wand; the bolt is fired from the tip of the item. Usable only by mages. Cost to create: 800 energy and a sunstone worth at least $1,000.</p>"
   },
   {
+    "_id": "60945921903d99df",
+    "name": "Inspired Creation",
+    "pages": "M115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Helps a subject create one craft work - a weapon, suit of armor, painting, etc. - of a quality far beyond his usual ability. The process is grueling, costing the subject 5 HP and 10 FP. The work is as good as if it were made with a critical success by an artisan of skill 5 levels higher than the subject's actual skill; no roll is required. A weapon created under the effects of this spell is automatically of very fine quality. Such items are not technically magic items, but can be (and often are) enchanted further.</p><p>At the GM's option, this spell may be used on works of art other than crafts - books, performances, songs, etc.</p>"
+  },
+  {
+    "_id": "f91a8f29936a847f",
+    "name": "Awaken Craft Spirit",
+    "pages": "M115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Every well-crafted object, whether a tool, a weapon, or a work of art, may contain a spirit slumbering within it. This spell allows the caster to awaken the spirit of any item created by an artisan with a margin of success by 5 or more (the GM can assume this was the case for an artisan with skill of at least 15, or for any fine or very fine item). Any item created with Inspired Creation has a craft spirit. The spirit can answer one question per minute regarding its maker or any of its owners. The spirit remains awake for the duration of the spell; it may remain awake or return to sleep when the spell expires, according to its own whim.</p><p>Not every setting has craft spirits; if the GM does not feel that they are appropriate to the setting, this spell does not exist.</p><p>This is also a Necromantic spell.</p>"
+  },
+  {
+    "_id": "873c8273bd128de5",
+    "name": "Find Weakness",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sense the weakest part of the subject. Can be cast on any part of a large object; you would not have to cast it on a whole city wall, for instance, but could check one yard of wall at a time. Of course, many subjects will have no special weakness.</p><p>This spell can be used to troubleshoot complex objects; a defect that prevents a machine from working usually qualifies as its weakest part.</p><p><em>Item</em></p><p>Jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "6a0f301b99488c71",
+    "name": "Weaken",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Does 1d damage to the weakest part of the subject (works only on inanimate items) for every two points of energy put into the spell. See p. B557, for DR and HP of various items. No caster may use this spell on the same subject more than once per hour. Subject's DR does not protect it.</p><p><em>Item</em></p><p>Wand, staff, or glove. The item must be used to strike the subject. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "5780eb9feb3d2e09",
+    "name": "Restore",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily makes a broken inanimate object look as good as new. Other senses will not be fooled, nor will Mage Sight.</p>"
+  },
+  {
+    "_id": "6dd468b974ba4f95",
+    "name": "Clean",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cleans the subject area or being (i.e., removes dirt and stains, and polishes surfaces which can hold a polish). Does not remove lingering odors (use Purify Air for that).</p><p><em>Item</em></p><p>Staff, wand, or cleaning instrument (broom, feather duster, etc.). The item must touch the affected area. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "330415b05c63d08a",
+    "name": "Soilproof",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject (person, creature, or object) and anything he carries become soilproof. Clothes neither stain nor become dusty, hands won't collect grime, and so on. The spell doesn't affect stains already on the subject at the time of casting.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 400. (b) For 100 times casting cost, any item may be permanently soilproofed. The item can be made to also resist Ruin (with the Endurance of the enchantment) at double cost. On an ordinary failure, the enchantment loses one point of Endurance. Upon dropping to Endurance 0, the enchantment ceases to function. A critical failure by the Soilproof or a critical success by the Ruin also breaks the enchantment.</p>"
+  },
+  {
+    "_id": "6823bbcedc5777f5",
+    "name": "Dye",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the color of any unliving material, as desired by the caster (note that hair is unliving, as is a thin outer layer of skin!). The color fades in 2d days, but is unaffected by ordinary washing or application of solvents. Only a single, uniform, color can be produced - patterns are not possible, but only part of the subject may be affected if the caster desires.</p>"
+  },
+  {
+    "_id": "18d1813f2d493019",
+    "name": "Copy",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes one or more copies of a single page of writing. Paper or parchment must be supplied for the copies to be made on. Copies of magical scrolls, rune parchments, and so on do not have magic power.</p><p>At higher TLs, this spell may be used on digital media; a single casting of this spell will copy about one kilobyte of information.</p>"
+  },
+  {
+    "_id": "9d66bc7f5ef61627",
+    "name": "Rejoin",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily fixes a broken inanimate object. If some small parts are missing, skill is at -3, but if the spell succeeds the object holds together without the missing parts.</p>"
+  },
+  {
+    "_id": "e60f4019d40d7f85",
+    "name": "Shatter",
+    "pages": "M116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Weaken, but quicker - it can be cast in a single second, and may be cast repeatedly. If the spell does not do enough damage to actually break the subject, the subject takes no harm. This spell only affects inanimate objects.</p><p><em>Item</em></p><p>Wand, staff, or glove. The item must be used to strike the subject. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "5c65100bf6133778",
+    "name": "Animate Object",
+    "pages": "M117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Animates an existing object (statue, sword, chair . . .). Its abilities and attributes depend on its body - this is entirely up to the GM.</p><p><em>Examples:</em> a chair could move about and kick people in the shins or a sword could snake around its wielder's arm, but a teapot could do little more than scuttle amusingly across a table . . .</p><p>Concentration is required; the animated object has no IQ score and is little more than a puppet. Independence and Initiative will not work on an animated object.</p><p>A being holding such an object resists with Will.</p><p><em>Item</em></p><p>(a) Any object may be permanently animated for 100 times casting cost. (b) Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "49c245950a5b7d96",
+    "name": "Stiffen",
+    "pages": "M117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily stiffens a limp object; turns a rope into a pole, for example, or a thread into a lockpick. Does not work on living beings. This spell can be used to make improvised weapons; the GM judges their effectiveness.</p><p>This spell may also be used to stiffen a foe's clothes. In this case, the foe resists the spell with his ST+2. If it works, he is at -1 DX for each pound of clothing that was stiffened, and this DX change does affect his Move.</p>"
+  },
+  {
+    "_id": "af2f00ceaf778b24",
+    "name": "Knot",
+    "pages": "M117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ties a knot that cannot be untied without magic (though the rope can be cut, of course). The knot unties when someone says the password (specified at casting) while touching the rope at any point along its length. Thus, a rope tied at the top of a cliff will come loose when someone at the bottom of the cliff says the password, if he can touch the rope. Knot also works for string, chastity belts, etc.</p><p>The Undo spell also unties a Knot spell, but the Knot spell gets a resistance roll.</p><p><em>Item</em></p><p>Rope. Any knot tied with this rope cannot be untied without magic. A password is set when the rope is enchanted. The enchantment is broken if the rope is cut. Energy cost to cast: 20 per foot of rope.</p>"
+  },
+  {
+    "_id": "162e39ac09a37788",
+    "name": "Reshape",
+    "pages": "M117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Mold any inanimate substance as though it were clay. Does not convey any additional artistic ability to the subject, however! Any inanimate object the subject picks up while under this spell will soften slightly - this can be troublesome. For instance, if he tries to wield a sword or staff, it does only half damage! A gun fired while \"soft\" will be ruined. Any material molded will become hard again, in its new form, as soon as the subject removes his hands from it.</p><p>Inconvenient doors and walls can be removed, at a double-handful of material per second. This spell can even be used to tunnel through rock, but since in effect the subject is digging through soft earth with his hands, it is slow and tiring.</p><p><em>Item</em></p><p>Gloves. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "0012aa1ee8da4c18",
+    "name": "Rive",
+    "pages": "M117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pokes holes in inanimate objects, walls, etc. See p. B557, for the DR and HP of common objects. This spell works like a huge piercing attack, punching a 2-foot-diameter hole (the affected area may be smaller at the caster's discretion).</p><p><em>Item</em></p><p>Wand, staff, or glove. Must strike the object. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "9be892723fbc5755",
+    "name": "Ruin",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Accelerates the natural process of decay on unliving materials. It rusts iron and steel, but has little effect on other metals unless maintained for a very long time. It causes organic material - leather, fur, wood, plastics, etc. - to decay to uselessness. Ceramics are unaffected by Ruin.</p>"
+  },
+  {
+    "_id": "baaeb6aff1b12187",
+    "name": "Explode",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shatter, but the subject, if it shatters, explodes violently, doing fragmentation damage (p. B414).</p><p><em>Item</em></p><p>Wand, staff, or glove. The item must strike the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "3fb91b393e16759e",
+    "name": "Fasten",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ties up the subject with a length of rope or chain (which is not created by the spell, only animated). Useful to wrap packages, moor boats, bind prisoners, and so on. An actively resisting subject resists using DX. The bond is a normal knot (though it may be turned into a magical Knot by increasing the energy expenditure).</p><p><em>Item</em></p><p>A rope or chain which will wrap itself around the subject (which it must touch) when a command word is spoken; the enchantment is lost if it is cut or broken. Energy cost to create: 90 per yard of length.</p>"
+  },
+  {
+    "_id": "78d24daff833a625",
+    "name": "Mapmaker",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a scroll or any other writing surface (including a previously unfinished map), this spell creates a map of what the scroll's holder perceives.</p><p>The caster must declare the scale used for the map, which way is north, the spot on the scroll where mapping begins and which features are to appear on the map. The map thus created is of the same quality as if it had been drawn by someone with a Cartography skill equal to the lower of the caster's effective skill with this spell and his Cartography skill. It is no better in content than if the holder had taken the time to write it himself - the spell is nothing more than a time-saver.</p><p><em>Item</em></p><p>(a) A scroll can be made self-mapping, updating itself whenever its holder enters a new area (and spends energy to activate it). Energy cost to create: 100. (b) Wand or staff. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "444137ee5b63db06",
+    "name": "Repair",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Permanently repairs a broken inanimate object. If some small parts are missing, skill is at -5, and the appropriate materials to make the missing parts must be provided - e.g., a lump of gold to make gold filigreework. If the spell succeeds, the missing parts reappear. Formerly magical items do not regain their magic when repaired (although this spell will restore a weakened magic item to full durability).</p>"
+  },
+  {
+    "_id": "f4b3b00ba037e8d5",
+    "name": "Shatterproof",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a small object (like a weapon, or anything else that a normal human could hold in one hand) resistant to breakage. A cheap or regular metal weapon is treated as a \"fine\" quality weapon while the spell lasts, and a \"fine\" weapon as \"very fine.\" Other items have their hit points doubled, and will never break due to accidental dropping, etc. It doubles the DR and HP of a shield if the shield-breaking rules are used (p. B484). This spell does not increase resistance to \"penetration,\" so it's no good for walls, armor, etc.</p><p><em>Item</em></p><p>Any item can be made permanently shatterproof; if the item does break, the pieces are no longer enchanted. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "d4f5fe5ec2bc7acd",
+    "name": "Sharpen",
+    "pages": "M118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily produces an extraordinary sharpness on cutting and impaling weapons. +1 or more to basic damage.</p><p><em>Item</em></p><p>See Puissance (p. 65). If a weapon already has the Puissance spell on it, the spells don't add; only the stronger one works.</p>"
+  },
+  {
+    "_id": "8ae610874ba8edc0",
+    "name": "Toughen",
+    "pages": "M119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes an inanimate object more difficult to penetrate by increasing its DR. Has no effect on the protective value of armor. If the object takes basic damage equal to or greater than its (toughened) DR, the spell is broken, and must be recast.</p><p><em>Item</em></p><p>See Fortify (p. 66).</p>"
+  },
+  {
+    "_id": "1e929e1770500748",
+    "name": "Transparency",
+    "pages": "M119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes an object transparent. The object's outlines remain visible and its physical characteristics remain unchanged (hardness, weight, etc.). The caster can choose to tint the object as he desires instead of making it colorless.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 850. (b) For 400 points (multiplied by 1+SM), any items can be made permanently transparent.</p>"
+  },
+  {
+    "_id": "b6ba818a18247c26",
+    "name": "Mystic Mark",
+    "pages": "M119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Places an invisible mark on the subject. The mark is visible to the caster at will (simple concentration) and to others using Aura, See Secrets, Mage Sight, Detect Magic, or similar spells. It may be a rune, sigil, monogram, etc. (A Heraldry specialty may be learned to recognize the Mystic Marks in use in the campaign world.) Unwilling subjects resist with IQ.</p><p>Should Seeker be cast regarding a subject bearing the caster's Mystic Mark, there will be no need for \"something associated with the subject sought.\"</p><p>The mark can be erased with Remove Curse.</p><p><em>Item</em></p><p>(a) The mark may be made permanent (no need for the monthly \"fading\" roll) for 30 energy. (b) Staff, wand or writing instrument (including a branding iron). Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "1ada3713928d772a",
+    "name": "Weapon Self",
+    "pages": "M119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster's body magically melds with the melee weapon he is wielding. Clothes (up to 6 pounds) disappear along with him, but the rest of his equipment falls to the ground. The weapon now dances through the air, as if wielded by an invisible opponent. The subject keeps his weapon skill and attributes while assuming a minimum Speed of 5. Attacks on the weapon are at a normal penalty for size (p. B400). The weapon may only dodge or parry, but has natural DR appropriate to its material (p. B483). If the weapon is broken, the spell ends and the subject reappears, unharmed but physically stunned, holding the useless weapon in his hand(s).</p><p>The subject may not speak, so he can only cast spells he knows at skill 20 or better. The subject's HT resists Making and Breaking spells such as Weaken and Shatter.</p><p>Magic weapons resist the melding with their Power. If the subject wishes to activate any of the enchantments on the magic weapon, he must win a Regular Contest of his Will against the weapon's Power.</p><p><em>Item</em></p><p>(a) Jewelry. The item disappears along with its wearer when the spell is cast, so the caster can maintain it. Energy cost to create: 2,000. (b) Any weapon. Energy cost to create: 500 per pound of weapon weight (minimum 1 pound). (c) A magical weapon may be enchanted not to resist the melding for an energy cost of 500 per pound of weapon weight (minimum 1 pound).</p>"
+  },
+  {
+    "_id": "ab46d587c703be77",
+    "name": "Transform Object",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes an object into another object of the same weight. The change can be anything - a gun could be turned into a rag doll, for instance. As with Create Object (p. 98), anything the mage brings into existence must be something he is familiar with. To turn something into a functional object, the caster must have the appropriate skill for making a similar object; the rag doll mentioned above will be a pretty poor rag doll unless the caster has Sewing skill, and if he wants to turn a rag doll into a gun, he'd better have Armoury skill.</p><p>An object held or worn by someone resists with its owner's Will.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "f73ad26f7bd9408b",
+    "name": "Contract Object",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Scales an object down in one dimension. A rope or blade can be made shorter, for instance. This spell could easily render most clothing unwearable. This reduces the object's Size modifier unless the object is not being contracted in its longest dimension. The object's DR is unchanged, but its HP usually decreases in direct proportion to the rescaling.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "be3186ac6dfd67b7",
+    "name": "Extend Object",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Scales an object up in one dimension; the opposite of Contract Object (above).</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "0454eff885304498",
+    "name": "Shrink Object",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Scales an object down in size while maintaining its proportions, decreasing its Size modifier. Multiply weight by 1/3, and HP by 2/3, for every subtracted point of Size modifier; subtract 1 DR for every 2 subtracted points of Size modifier.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "2ba14fa9ac612661",
+    "name": "Enlarge Object",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Scales an object up in size while maintaining its proportions, increasing its Size modifier. Multiply weight by 3.5, and HP by 1.5, for every added point of Size modifier; add 1 DR for every 2 added points of Size modifier.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "ac937febcb8ae441",
+    "name": "Disintegrate",
+    "pages": "M120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to Shatter, but leaves only dust (cannot be repaired!). If damage rolled doesn't destroy the subject, it is unaffected. This spell affects inanimate objects only and cannot affect parts of objects.</p><p><em>Item</em></p><p>As for Shatter. Energy cost to create: 1,500.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
