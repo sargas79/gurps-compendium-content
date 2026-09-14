@@ -77,7 +77,9 @@ const ALIASES = {
   swarms: ["Swarm Attacks"],
   vehicleManeuvers: ["Basic Vehicle Combat"],
   bluntTrauma: ["Flexible Armor and Blunt Trauma"],
+  collisions: ["Collisions and Falls"],
   dualWeaponAttack: ["Dual-Weapon Attacks"],
+  knockdown: ["Knockdown and Stunning"],
   highSpeed: ["High-Speed Movement"],
   frontArmor: ["Armor Tables"],
   layeredArmor: ["Combining and Layering Armor"],
@@ -138,13 +140,29 @@ const CORE = [
   // Melee Attacks, Special Damage.
   { from: 384, to: 392, folder: () => "combat", chapter: "Tactical Combat" },
   // `intros` are sections whose subsections are all switches' pages already,
-  // so their own page is the opening words only.
+  // so their own page is the opening words only. `distinct` are sections named
+  // like a switch whose page is another section: the Afflictions switch's page
+  // is the advantage, not the attacks of chapter 13 or the conditions of 14.
   {
     from: 393,
     to: 417,
     folder: (title) => (title === "Cinematic Combat Rules" ? "cinematic" : "combat"),
     chapter: "Special Combat Situations",
     intros: ["Cinematic Combat Rules"],
+    distinct: ["Afflictions"],
+  },
+  // `covered` are sections a switch's page holds under another heading: the
+  // Poison page runs on through Describing Poisons and Addictive Drugs.
+  {
+    from: 418,
+    to: 444,
+    folder: (title) => (["Injuries", "Recovery", "Fatigue"].includes(title) ? "injury" : "activities"),
+    chapter: "Injuries, Illness, and Fatigue",
+    distinct: ["Afflictions"],
+    covered: ["Describing Poisons", "Addictive Drugs"],
+    // The page's layout loses Resuscitation's heading, so its page is written
+    // by hand and found by the sidebar that follows it.
+    extra: [{ key: "resuscitation", title: "Resuscitation", names: ["Ultra-Tech Drugs"], page: 425, group: "injury" }],
   },
 ];
 
@@ -407,6 +425,8 @@ const MENDS = [
   [/over-heat/g, "overheat"],
   [/hex-byhex/g, "hex-by-hex"],
   [/maneuver-able/g, "maneuverable"],
+  // Not a broken word: the bold run-in of "-1×HP –" stops at the times sign.
+  [/\*\*(-\d+)\*\*×(HP|FP) –/g, "**$1×$2 –**"],
 ];
 
 /** Characters Markdown would read as formatting: "-10 points*", "a_b". */
@@ -595,7 +615,9 @@ async function coreRules(structure, registered) {
       }
     }
     headings.forEach((h, i) => {
-      if (taken.has(norm(titleCase(h.text)))) return;
+      const name = titleCase(h.text);
+      if (taken.has(norm(name)) && !(chapter.distinct ?? []).includes(name)) return;
+      if ((chapter.covered ?? []).includes(name)) return;
       // A first-level section with second-level sections under it has a page
       // of its own for the text before them: Sense Rolls says what a Sense roll is.
       const intro = h.kind === "h1" && headings[i + 1]?.kind === "h2";
@@ -629,7 +651,7 @@ async function coreRules(structure, registered) {
         key: extra.key,
         title: extra.title,
         reference: `Basic Set: Campaigns p. ${extra.page}`,
-        group: chapter.folder(extra.title),
+        group: extra.group ?? chapter.folder(extra.title),
         names: extra.names,
         core: true,
       });
@@ -729,12 +751,14 @@ async function main() {
       if (captured) markdown = render(captured.blocks, captured.base);
     }
 
-    if (!captured || captured.blocks.length === 0) {
+    const handFile = join(book("basic-set").dir, "journals-by-hand", `${rule.key}.md`);
+    const byHand = existsSync(handFile);
+    // A section found whose words the page sets as sidebars -- Injuries opens
+    // its chapter that way -- captures nothing, and its hand page stands in.
+    if (!captured || (captured.blocks.length === 0 && !(found && byHand))) {
       missing.push(rule);
       continue;
     }
-    const handFile = join(book("basic-set").dir, "journals-by-hand", `${rule.key}.md`);
-    const byHand = existsSync(handFile);
     if (byHand) markdown = readFileSync(handFile, "utf8").replace(/\r\n/g, "\n");
     // A section's opening words before its subsections, which have pages of
     // their own, can be a single sentence: Special Movement.

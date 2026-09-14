@@ -1,0 +1,1 @@
+Those aboard a seagoing vessel (excluding large, modern vessels with roll stabilizers) must check for seasickness on their first day afloat. Use the rules for the Motion Sickness disadvantage (p. 144) – but if you lack that disadvantage, you roll at HT+5, and with a success by 5 or more, or a critical success, you suffer no ill effects at all.
