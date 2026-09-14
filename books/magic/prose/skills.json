@@ -1,0 +1,386 @@
+[
+  {
+    "_id": "d8f414626dc90b1f",
+    "name": "Communicate (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Communicate is a verb. <em>Energy cost:</em> 1. <em>Time to cast:</em> 0 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "d2bbcf69997a0d5b",
+    "name": "Control (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Control is a verb. <em>Energy cost:</em> 2. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "dd01b0dfb85ef4cb",
+    "name": "Create (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Create is a verb. <em>Energy cost:</em> 2. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "f2e737cb7ba110c1",
+    "name": "Heal (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Heal is a verb. <em>Energy cost:</em> 1. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "2b89ddefef8745fe",
+    "name": "Move (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Move is a verb. <em>Energy cost:</em> 0. <em>Time to cast:</em> 0 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "1447669ab14c0bca",
+    "name": "Protect (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Protect is a verb. <em>Energy cost:</em> 1. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "fd60226a5ad7eb09",
+    "name": "Sense (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Sense is a verb. <em>Energy cost:</em> 2. <em>Time to cast:</em> 0 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "696644dcef1281da",
+    "name": "Strengthen (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Strengthen is a verb. <em>Energy cost:</em> 1. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "9ea7ea29d3981624",
+    "name": "Transform (Syntactic)",
+    "pages": "M204",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Transform is a verb. <em>Energy cost:</em> 3. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p><p>The verb Transform is a special case, somewhat more complicated than the other verbs. Unlike every other syntactic spell, Transform spells require three rolls: one for Transform, one for the noun governing the beginning material, and one for the noun governing the final material. If the same Word governs both forms, the spell still requires separate rolls for each. Thus, shapeshifting from human to animal can be considered a Transform Body to Animal spell, and the caster would roll against Transform, Body, and Animal; changing a fig to a thistle, however, would be Transform Plant to Plant, requiring one roll against Transform and two against Plant. Transform spells do not suffer the -1 penalty for using a third Word.</p><p>As long as a transformed object remains undamaged, it can (with a new spell or Remove Curse) be restored to its original form, unharmed. If it is damaged, an appropriate amount of damage manifests if its original form is recovered.</p><p>Dealing with transformed objects requires many judgment calls on the part of the GM. In general, a transformed object behaves in all ways like a natural one, except that transformations cannot be used to gain any significant increase in intelligence or knowledge. (A servant made from a dog will be faithful, but not much smarter than he was before.)</p>"
+  },
+  {
+    "_id": "061d4fbab06bbb34",
+    "name": "Weaken (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Weaken is a verb. <em>Energy cost:</em> 1. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "847eb5832c7a1226",
+    "name": "Air (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Air is a noun. <em>Energy cost:</em> 3. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "af0f9879b59c025c",
+    "name": "Animal (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Animal is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 3 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "d9a9882c09756a47",
+    "name": "Body (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Body is a noun. <em>Energy cost:</em> 3. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "32c8e7e13cf8a455",
+    "name": "Earth (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Earth is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 3 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "7d0588ef26c78ccc",
+    "name": "Fire (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Fire is a noun. <em>Energy cost:</em> 4. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "f38137bb72528384",
+    "name": "Food (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Food is a noun. <em>Energy cost:</em> 1. <em>Time to cast:</em> 3 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "bfc02319da52513f",
+    "name": "Image (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Image is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "577d34dfc8f003cf",
+    "name": "Light (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Light is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 1 second (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "4d5d8ebdbf6555ea",
+    "name": "Magic (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Magic is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 4 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "9a2ce5280bfec436",
+    "name": "Mind (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Mind is a noun. <em>Energy cost:</em> 3. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "d39eca757dd23ce6",
+    "name": "Plant (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Plant is a noun. <em>Energy cost:</em> 1. <em>Time to cast:</em> 5 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "eee1ec74a5114b87",
+    "name": "Sound (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Sound is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 2 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "4c01553054373f24",
+    "name": "Spirit (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Spirit is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 4 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "b8bf229e623010cb",
+    "name": "Water (Syntactic)",
+    "pages": "M202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some wizardly traditions don't even use discrete spells. To them, rote and formula are anathema; magic is a creative art that responds to the needs of the moment. These wizards turn their efforts toward mastering fundamental principles of existence instead of learning individual recipes. These fundaments are called Words in the vernacular of wizards. To work magic, wizards bring together these potent principles in much the same way that words are strung together into sentences.</p><p>Every spell has two elements: what is done, and what is done to. Correspondingly, there are two types of Words. Some are described as verbs: Create, Move, Heal, and so on. Others are described as nouns: what is being created, moved, etc.</p><p>Each Word is a separate skill; mages add their Magery to IQ when learning Words.</p><p>Water is a noun. <em>Energy cost:</em> 2. <em>Time to cast:</em> 3 seconds (Word Parameters, p. 204).</p>"
+  },
+  {
+    "_id": "e5768d820c49541e",
+    "name": "Food",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "dfd40f0156766eee",
+    "name": "Sound",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "80ff10c9c035c5d4",
+    "name": "Communicate",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "4ad154c9e2d959d9",
+    "name": "Weaken",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "eb74146dbb120d17",
+    "name": "Strengthen",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "80c68bd6df2ba1a1",
+    "name": "Move",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "debc006c3527aff2",
+    "name": "Protect",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "40b6edccf48d7716",
+    "name": "Air",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "bc07eaa10dbffbc4",
+    "name": "Fire",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "9aa3a4a92a3df2ce",
+    "name": "Image",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "6b6da87b32cad865",
+    "name": "Light",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "b8a2eeb302a1d597",
+    "name": "Plant",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "f1fd45a8ce43fa84",
+    "name": "Water",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "ad086b0fa3f1c3c0",
+    "name": "Heal",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "b2d687b389b570bc",
+    "name": "Sense",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "81c7295822a8677e",
+    "name": "Create",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "121f4d2927c67116",
+    "name": "Control",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "f0ece7a55f3b6830",
+    "name": "Transform",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "54313a51ac6474d7",
+    "name": "Animal",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "a8e06319f3d3093a",
+    "name": "Body",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "b8f9d49758ebfe28",
+    "name": "Earth",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "660fa5c40e602970",
+    "name": "Magic",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "734ca81a61af5ac8",
+    "name": "Mind",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  },
+  {
+    "_id": "6c50815a7d2821f4",
+    "name": "Spirit",
+    "pages": "M205",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>To perform any symbol magic, a wizard must learn the Symbol Drawing skill, specializing in a particular symbolic \"language.\" In addition, he must master each individual symbol before he can use it. Each symbol is a separate IQ-based skill with Symbol Drawing as a prerequisite and no default. Magery does not add to IQ for the purpose of learning symbols.</p><p>A wizard experienced in multiple traditions of Symbol Drawing must learn the symbols separately for each symbolic language! Deep knowledge of the Futhark Body-rune avails not a bit when dealing with an Atlantean Body-sigil.</p><p>In most symbolic systems, the most common interpretations of the symbols correspond to the Words of the syntactic magic system (see Syntactic Magic, p. 202). In any given inscription, however, a related concept may be a more appropriate translation; the symbol for the verb Weaken might also represent concepts like Reduce, Damage, Harm, Undo, Rot, or Break.</p>"
+  }
+]
