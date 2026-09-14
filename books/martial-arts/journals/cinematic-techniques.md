@@ -1,0 +1,3 @@
+These techniques are so risky – or so unlikely to be effective in a real fight – that few reputable real-world schools teach them. This doesn’t mean they’re impossible, only that a martial artist needs Trained by a Master or Weapon Master to improve them. Anybody can attempt a cinematic technique at default, if the GM permits.
+
+The GM is free to forbid a technique – even at default – if he feels it would spoil the game’s “feel.” This might be because the campaign is realistic, but cinematic techniques don’t automatically fit every cinematic setting, either. Conversely, if the GM believes that a technique is realistic, it is . . . at least in his game.

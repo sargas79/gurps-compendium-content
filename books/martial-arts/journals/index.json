@@ -897,6 +897,558 @@
       "reference": "Martial Arts p. 139",
       "file": "cinematic-injury.md",
       "status": "reviewed"
+    },
+    {
+      "id": "techniques",
+      "title": "Techniques",
+      "chapter": "Techniques",
+      "pages": "MA63-64",
+      "reference": "Martial Arts pp. 63-64",
+      "file": "techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "techniques-and-combat-art-sport-skills",
+      "title": "Techniques and Combat Art/Sport Skills",
+      "chapter": "Techniques",
+      "pages": "MA64",
+      "reference": "Martial Arts p. 64",
+      "file": "techniques-and-combat-art-sport-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-techniques-together",
+      "title": "Using Techniques Together",
+      "chapter": "Techniques",
+      "pages": "MA64",
+      "reference": "Martial Arts p. 64",
+      "file": "using-techniques-together.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "learning-techniques",
+      "title": "Learning Techniques",
+      "chapter": "Techniques",
+      "pages": "MA64",
+      "reference": "Martial Arts p. 64",
+      "file": "learning-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "realistic-techniques",
+      "title": "Realistic Techniques",
+      "chapter": "Techniques",
+      "pages": "MA65",
+      "reference": "Martial Arts p. 65",
+      "file": "realistic-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "aggressive-parry",
+      "title": "Aggressive Parry",
+      "chapter": "Techniques",
+      "pages": "MA65",
+      "reference": "Martial Arts p. 65",
+      "file": "aggressive-parry.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "techniques-that-arent",
+      "title": "Techniques That Aren’t",
+      "chapter": "Techniques",
+      "pages": "MA66",
+      "reference": "Martial Arts p. 66",
+      "file": "techniques-that-arent.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "attack-from-above",
+      "title": "Attack from Above",
+      "chapter": "Techniques",
+      "pages": "MA67",
+      "reference": "Martial Arts p. 67",
+      "file": "attack-from-above.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-rule-targeted-attacks",
+      "title": "Optional Rule: Targeted Attacks",
+      "chapter": "Techniques",
+      "pages": "MA68",
+      "reference": "Martial Arts p. 68",
+      "rule": "hitLocations",
+      "file": "optional-rule-targeted-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cavalry-training",
+      "title": "Cavalry Training",
+      "chapter": "Techniques",
+      "pages": "MA69",
+      "reference": "Martial Arts p. 69",
+      "rule": "mountedCombat",
+      "file": "cavalry-training.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "close-combat-technique",
+      "title": "Close Combat",
+      "chapter": "Techniques",
+      "pages": "MA69",
+      "reference": "Martial Arts p. 69",
+      "rule": "closeCombat",
+      "file": "close-combat-technique.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combat-riding",
+      "title": "Combat Riding",
+      "chapter": "Techniques",
+      "pages": "MA69",
+      "reference": "Martial Arts p. 69",
+      "rule": "mountedCombat",
+      "file": "combat-riding.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "counterattack",
+      "title": "Counterattack",
+      "chapter": "Techniques",
+      "pages": "MA70",
+      "reference": "Martial Arts p. 70",
+      "file": "counterattack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disarming",
+      "title": "Disarming",
+      "chapter": "Techniques",
+      "pages": "MA70",
+      "reference": "Martial Arts p. 70",
+      "file": "disarming.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "go-for-the-eyes",
+      "title": "“Go for the eyes!”",
+      "chapter": "Techniques",
+      "pages": "MA71-72",
+      "reference": "Martial Arts pp. 71-72",
+      "file": "go-for-the-eyes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "feint-technique",
+      "title": "Feint",
+      "chapter": "Techniques",
+      "pages": "MA72-73",
+      "reference": "Martial Arts pp. 72-73",
+      "rule": "feint",
+      "file": "feint-technique.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ground-fighting",
+      "title": "Ground Fighting",
+      "chapter": "Techniques",
+      "pages": "MA73",
+      "reference": "Martial Arts p. 73",
+      "file": "ground-fighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hands-free-riding",
+      "title": "Hands-Free Riding",
+      "chapter": "Techniques",
+      "pages": "MA73",
+      "reference": "Martial Arts p. 73",
+      "rule": "mountedCombat",
+      "file": "hands-free-riding.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "head-butt",
+      "title": "Head Butt",
+      "chapter": "Techniques",
+      "pages": "MA74",
+      "reference": "Martial Arts p. 74",
+      "file": "head-butt.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hook",
+      "title": "Hook",
+      "chapter": "Techniques",
+      "pages": "MA74",
+      "reference": "Martial Arts p. 74",
+      "file": "hook.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "jam",
+      "title": "Jam",
+      "chapter": "Techniques",
+      "pages": "MA74-75",
+      "reference": "Martial Arts pp. 74-75",
+      "file": "jam.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tricks",
+      "title": "Dirty Tricks",
+      "chapter": "Techniques",
+      "pages": "MA76",
+      "reference": "Martial Arts p. 76",
+      "rule": "dirtyTricks",
+      "file": "dirty-tricks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "low-fighting",
+      "title": "Low Fighting",
+      "chapter": "Techniques",
+      "pages": "MA77",
+      "reference": "Martial Arts p. 77",
+      "file": "low-fighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "low-line-defense",
+      "title": "Low-Line Defense",
+      "chapter": "Techniques",
+      "pages": "MA77",
+      "reference": "Martial Arts p. 77",
+      "file": "low-line-defense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mounted-shooting",
+      "title": "Mounted Shooting",
+      "chapter": "Techniques",
+      "pages": "MA77",
+      "reference": "Martial Arts p. 77",
+      "rule": "mountedCombat",
+      "file": "mounted-shooting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "neck-snap",
+      "title": "Neck Snap",
+      "chapter": "Techniques",
+      "pages": "MA77",
+      "reference": "Martial Arts p. 77",
+      "file": "neck-snap.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "retain-weapon",
+      "title": "Retain Weapon",
+      "chapter": "Techniques",
+      "pages": "MA78",
+      "reference": "Martial Arts p. 78",
+      "file": "retain-weapon.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-your-legs",
+      "title": "Using Your Legs",
+      "chapter": "Techniques",
+      "pages": "MA79",
+      "reference": "Martial Arts p. 79",
+      "rule": "grappling",
+      "file": "using-your-legs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-rule-combinations",
+      "title": "Optional Rule: Combinations",
+      "chapter": "Techniques",
+      "pages": "MA80",
+      "reference": "Martial Arts p. 80",
+      "rule": "rapidStrike",
+      "file": "optional-rule-combinations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "staying-seated",
+      "title": "Staying Seated",
+      "chapter": "Techniques",
+      "pages": "MA81",
+      "reference": "Martial Arts p. 81",
+      "rule": "mountedCombat",
+      "file": "staying-seated.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sweep",
+      "title": "Sweep",
+      "chapter": "Techniques",
+      "pages": "MA81",
+      "reference": "Martial Arts p. 81",
+      "file": "sweep.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "trip",
+      "title": "Trip",
+      "chapter": "Techniques",
+      "pages": "MA81",
+      "reference": "Martial Arts p. 81",
+      "file": "trip.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wrench-limb",
+      "title": "Wrench (Limb)",
+      "chapter": "Techniques",
+      "pages": "MA82",
+      "reference": "Martial Arts p. 82",
+      "file": "wrench-limb.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-techniques",
+      "title": "Cinematic Techniques",
+      "chapter": "Techniques",
+      "pages": "MA82",
+      "reference": "Martial Arts p. 82",
+      "file": "cinematic-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dual-weapon-defense",
+      "title": "Dual-Weapon Defense",
+      "chapter": "Techniques",
+      "pages": "MA83",
+      "reference": "Martial Arts p. 83",
+      "rule": "dualWeaponAttack",
+      "file": "dual-weapon-defense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fighting-while-seated",
+      "title": "Fighting While Seated",
+      "chapter": "Techniques",
+      "pages": "MA83",
+      "reference": "Martial Arts p. 83",
+      "file": "fighting-while-seated.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grand-disarm",
+      "title": "Grand Disarm",
+      "chapter": "Techniques",
+      "pages": "MA84",
+      "reference": "Martial Arts p. 84",
+      "file": "grand-disarm.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hand-catch",
+      "title": "Hand Catch",
+      "chapter": "Techniques",
+      "pages": "MA84",
+      "reference": "Martial Arts p. 84",
+      "file": "hand-catch.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hand-clap-parry",
+      "title": "Hand-Clap Parry",
+      "chapter": "Techniques",
+      "pages": "MA84-85",
+      "reference": "Martial Arts pp. 84-85",
+      "file": "hand-clap-parry.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "initial-carving",
+      "title": "Initial Carving",
+      "chapter": "Techniques",
+      "pages": "MA85",
+      "reference": "Martial Arts p. 85",
+      "file": "initial-carving.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "secret-techniques",
+      "title": "Secret Techniques",
+      "chapter": "Techniques",
+      "pages": "MA86",
+      "reference": "Martial Arts p. 86",
+      "file": "secret-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pressure-point-strike",
+      "title": "Pressure-Point Strike",
+      "chapter": "Techniques",
+      "pages": "MA87",
+      "reference": "Martial Arts p. 87",
+      "file": "pressure-point-strike.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "springing-attack",
+      "title": "Springing Attack",
+      "chapter": "Techniques",
+      "pages": "MA87-89",
+      "reference": "Martial Arts pp. 87-89",
+      "file": "springing-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "silly-techniques",
+      "title": "Silly Techniques",
+      "chapter": "Techniques",
+      "pages": "MA88",
+      "reference": "Martial Arts p. 88",
+      "file": "silly-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "eye-poke-defense",
+      "title": "Eye-Poke Defense",
+      "chapter": "Techniques",
+      "pages": "MA88",
+      "reference": "Martial Arts p. 88",
+      "file": "eye-poke-defense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "halitosis-attack",
+      "title": "Halitosis Attack",
+      "chapter": "Techniques",
+      "pages": "MA88",
+      "reference": "Martial Arts p. 88",
+      "file": "halitosis-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "timed-defense",
+      "title": "Timed Defense",
+      "chapter": "Techniques",
+      "pages": "MA89",
+      "reference": "Martial Arts p. 89",
+      "file": "timed-defense.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "whirlwind-attack",
+      "title": "Whirlwind Attack",
+      "chapter": "Techniques",
+      "pages": "MA89",
+      "reference": "Martial Arts p. 89",
+      "file": "whirlwind-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "creating-new-techniques",
+      "title": "Creating New Techniques",
+      "chapter": "Techniques",
+      "pages": "MA89",
+      "reference": "Martial Arts p. 89",
+      "file": "creating-new-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-prerequisites",
+      "title": "Prerequisites",
+      "chapter": "Techniques",
+      "pages": "MA90",
+      "reference": "Martial Arts p. 90",
+      "file": "technique-prerequisites.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-defaults",
+      "title": "Defaults",
+      "chapter": "Techniques",
+      "pages": "MA90-92",
+      "reference": "Martial Arts pp. 90-92",
+      "file": "technique-defaults.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "basic-attacks",
+      "title": "Basic Attacks",
+      "chapter": "Techniques",
+      "pages": "MA90",
+      "reference": "Martial Arts p. 90",
+      "file": "basic-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-specialties",
+      "title": "Specialties",
+      "chapter": "Techniques",
+      "pages": "MA92-93",
+      "reference": "Martial Arts pp. 92-93",
+      "file": "technique-specialties.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-difficulty-level",
+      "title": "Difficulty Level",
+      "chapter": "Techniques",
+      "pages": "MA93",
+      "reference": "Martial Arts p. 93",
+      "file": "technique-difficulty-level.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-maximum-level",
+      "title": "Maximum Level",
+      "chapter": "Techniques",
+      "pages": "MA93",
+      "reference": "Martial Arts p. 93",
+      "file": "technique-maximum-level.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "technique-description",
+      "title": "Description",
+      "chapter": "Techniques",
+      "pages": "MA93",
+      "reference": "Martial Arts p. 93",
+      "file": "technique-description.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "designing-realistic-techniques",
+      "title": "Designing Realistic Techniques",
+      "chapter": "Techniques",
+      "pages": "MA93-94",
+      "reference": "Martial Arts pp. 93-94",
+      "file": "designing-realistic-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "designing-cinematic-techniques",
+      "title": "Designing Cinematic Techniques",
+      "chapter": "Techniques",
+      "pages": "MA94-95",
+      "reference": "Martial Arts pp. 94-95",
+      "file": "designing-cinematic-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "useless-techniques",
+      "title": "Useless Techniques",
+      "chapter": "Techniques",
+      "pages": "MA95",
+      "reference": "Martial Arts p. 95",
+      "file": "useless-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "designing-techniques-for-nonhumans",
+      "title": "Designing Techniques for Nonhumans",
+      "chapter": "Techniques",
+      "pages": "MA95",
+      "reference": "Martial Arts p. 95",
+      "file": "designing-techniques-for-nonhumans.md",
+      "status": "reviewed"
     }
   ]
 }
