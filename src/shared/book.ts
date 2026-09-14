@@ -6,6 +6,7 @@
  * a table turns on the books it owns.
  */
 
+import { registerExtensionFields } from "./extensions.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "./module.js";
 
 export interface BookRules {
@@ -43,6 +44,8 @@ export function initBooks(books: readonly BookRules[], api: GWorldApi): void {
       console.error(`${MODULE_ID} | ${book.label}: its init work failed`, error);
     }
   }
+  // The books' fields on the system's documents, registered together.
+  registerExtensionFields(api);
 }
 
 /** Lets each book register what needs the ready world. */

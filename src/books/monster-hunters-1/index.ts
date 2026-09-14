@@ -4,17 +4,22 @@
  *
  * Its group holds the book's switches, all off by default. So far this
  * registers Talents skipping wildcard skills (p. 24), the book's points
- * (pp. 23, 28, 31) and holy attacks (p. 51); the Ritual Path Magic and gear
- * switches are listed as not built yet until their rules are ported.
+ * (pp. 23, 28, 31), holy attacks (p. 51) and Ritual Path Magic (pp. 32-39);
+ * the gear switch is listed as not built yet until its rules are ported.
  */
 
 import type { BookRules } from "../../shared/book.js";
+import { addExtensionFields } from "../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initHoly, readyHoly } from "./holy-contact.js";
 import { mayPay, poolsOf, refreshed, spent, type Pools } from "./points.js";
+import { initRitualPath, readyRitualPath } from "./ritual/index.js";
 import { skipTalentOnWildcard } from "./talents.js";
 
 const SLUG = "monster-hunters-1";
+
+/** The actor types the book keeps data on. */
+export const ACTOR_TYPES = ["character", "npc"] as const;
 const REFERENCE = "Monster Hunters 1: Champions";
 const L = (key: string) => game.i18n.localize(`GCC.MH1.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MH1.${key}`, data);
@@ -23,7 +28,7 @@ const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.
 const RULES = [
   { key: "talentsSkipWildcards", pages: "p. 24", implemented: true },
   { key: "holyAttacks", pages: "p. 51", implemented: true },
-  { key: "ritualPathMagic", pages: "pp. 32-39", implemented: false },
+  { key: "ritualPathMagic", pages: "pp. 32-39", implemented: true },
   { key: "monsterHuntersGear", pages: "pp. 53-54, 59", implemented: false },
   { key: "bonusPointSpending", pages: "pp. 23, 28, 31", implemented: true },
 ] as const;
@@ -55,26 +60,22 @@ const poolRef = (id: string): { kind: "destiny" } | { kind: "wildcard"; skill: s
 function init(api: GWorldApi): void {
   const f = foundry.data.fields as any;
   // Where the pools are kept: null for a pool never spent from, which starts full.
-  api.data.registerDataExtension({
-    module: MODULE_ID,
-    documentName: "Actor",
-    types: ["character", "npc"],
-    schema: {
-      points: new f.SchemaField({
-        destiny: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: 0 }),
-        gmDestiny: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: 0 }),
-        wildcard: new f.ArrayField(
-          new f.SchemaField({
-            skill: new f.StringField({ required: true, blank: false }),
-            value: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
-          }),
-          { required: true, initial: [] },
-        ),
-      }),
-    },
+  addExtensionFields("Actor", ACTOR_TYPES, {
+    points: new f.SchemaField({
+      destiny: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: 0 }),
+      gmDestiny: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: 0 }),
+      wildcard: new f.ArrayField(
+        new f.SchemaField({
+          skill: new f.StringField({ required: true, blank: false }),
+          value: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+        }),
+        { required: true, initial: [] },
+      ),
+    }),
   });
 
-  initHoly(api);
+  initHoly();
+  initRitualPath(api, () => api.registry.isRuleOn(ruleKey("ritualPathMagic")));
 
   // "Talents never add to wildcard skills" (p. 24).
   Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
@@ -144,6 +145,7 @@ function ready(api: GWorldApi): void {
   const pointsOn = () => api.registry.isRuleOn(ruleKey("bonusPointSpending"));
 
   readyHoly(api, () => api.registry.isRuleOn(ruleKey("holyAttacks")));
+  readyRitualPath(api, () => api.registry.isRuleOn(ruleKey("ritualPathMagic")));
 
   // Destiny and wildcard bonus points, beside the system's unspent points (p. 31).
   api.points.registerPointPool({

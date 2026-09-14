@@ -117,6 +117,9 @@ async function main() {
       ],
     },
     esmodules: [SCRIPT],
+    // The module's own item types, named `gurps-compendium-content.<type>` in
+    // the world: Ritual Path Magic's rituals.
+    documentTypes: { Item: { ritual: {} } },
     languages: [{ lang: "en", name: "English", path: "lang/en.json" }],
     flags: { [SYSTEM_ID]: { apiVersion: API_RANGE } },
     packs,

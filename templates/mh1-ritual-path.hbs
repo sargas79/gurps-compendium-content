@@ -1,0 +1,79 @@
+{{!-- Ritual Path Magic on the Magic tab (Monster Hunters 1 pp. 32-39): nine
+     Path skills held under Thaumatology and 12 + Magery, a reserve of
+     Magery x 3, and the rituals cast and still in effect. --}}
+<div class="isec" data-gcc-ritual-path>
+  <div class="ish">{{localize "GCC.MH1.RitualPath.Title"}}</div>
+  <div class="npcline" style="gap: 14px; align-items: center; flex-wrap: wrap">
+    {{#if state.ceiling}}
+      <span data-tooltip="{{localize 'GCC.MH1.RitualPath.CeilingHint'}}">
+        <span class="fl">{{localize "GCC.MH1.RitualPath.Ceiling"}}</span>
+        <strong>{{state.ceiling}}</strong>
+      </span>
+    {{else}}
+      <span class="bad">{{localize "GCC.MH1.RitualPath.NoThaumatology"}}</span>
+    {{/if}}
+    {{#if state.adept}}
+      <span class="tag tag-accent" data-tooltip="{{localize 'GCC.MH1.RitualPath.AdeptHint'}}">{{localize "GCC.MH1.RitualPath.Adept"}}</span>
+    {{else}}
+      <span class="tag" data-tooltip="{{localize 'GCC.MH1.RitualPath.NonAdeptHint'}}">{{localize "GCC.MH1.RitualPath.NonAdept"}}</span>
+    {{/if}}
+    {{#if state.reserve.max}}
+      <label style="display: inline-flex; gap: 6px; align-items: center" data-tooltip="{{localize 'GCC.MH1.RitualPath.ReserveHint'}}">
+        <span class="fl">{{localize "GCC.MH1.RitualPath.Reserve"}}</span>
+        <input type="number" data-gcc-reserve value="{{state.reserve.value}}" min="0" max="{{state.reserve.max}}" step="1" style="width: 56px" {{#unless editable}}disabled{{/unless}}>
+        <span>{{reserveLabel}}</span>
+      </label>
+      {{#if editable}}
+        <button type="button" class="ibtn" data-gcc-top-off>{{localize "GCC.MH1.RitualPath.TopOff"}}</button>
+      {{/if}}
+    {{/if}}
+  </div>
+  {{#if state.ceiling}}
+    <div class="cellgrid">
+      {{#each state.paths as |p|}}
+        <div class="cell{{#unless p.owned}} dim{{/unless}}" data-gcc-path="{{p.path}}">
+          <span class="cl">{{p.name}}</span>
+          <span class="cv">{{p.level}}</span>
+          <span class="cd">{{#if p.capped}}{{localize "GCC.MH1.RitualPath.Capped"}}{{else if p.atDefault}}{{localize "GCC.MH1.RitualPath.Default"}}{{/if}}</span>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
+
+{{#if inEffect.length}}
+  <div class="isec" style="gap: 0">
+    <div class="grph">
+      {{localize "GCC.MH1.RitualCast.InEffect"}}
+      <span class="sub">{{hanging}}</span>
+    </div>
+    <table class="gt">
+      <thead>
+        <tr>
+          <th>{{localize "GCC.MH1.Ritual.Title"}}</th>
+          <th>{{localize "GCC.MH1.RitualCast.Status"}}</th>
+          <th class="n">{{localize "GCC.MH1.Ritual.Column.Energy"}}</th>
+          <th class="n">{{localize "GCC.MH1.RitualCast.Margin"}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each inEffect as |r|}}
+          <tr data-active-id="{{r.id}}" {{#if r.expired}}class="dim"{{/if}}>
+            <td>{{r.name}}{{#if r.conditional}} <span class="tag">{{localize "GCC.MH1.RitualCast.ConditionalTag"}}</span>{{/if}}</td>
+            <td class="wmode">{{r.status}}</td>
+            <td class="n">{{r.energy}}</td>
+            <td class="n">{{r.margin}}</td>
+            <td class="c" style="white-space: nowrap">
+              {{#if @root.editable}}
+                {{#if r.showTrigger}}<button type="button" class="ibtn" data-gcc-active="trigger">{{localize "GCC.MH1.RitualCast.Trigger"}}</button>{{/if}}
+                {{#if r.extendable}}<button type="button" class="ibtn" data-gcc-active="extend">{{localize "GCC.MH1.RitualCast.Extend"}}</button>{{/if}}
+                <button type="button" class="ibtn" data-gcc-active="cancel">{{r.cancelLabel}}</button>
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{/if}}
