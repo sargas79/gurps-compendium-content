@@ -1,0 +1,17 @@
+{{!-- Signature Gear and concealment on the Gear tab (Monster Hunters 1 pp. 53, 59). --}}
+<div class="cellgrid" data-gcc-gear-tab>
+  {{#if signature}}
+    <div class="cell">
+      <span class="cl">{{localize "GCC.MH1.Gadget.SignatureGear"}}</span>
+      <span class="cv">{{signature}}</span>
+      <span class="cd" data-tooltip="{{localize 'GCC.MH1.Gadget.SignatureHint'}}">{{localize "GCC.MH1.Gadget.SignatureNeeded"}}</span>
+    </div>
+  {{/if}}
+  {{#if showConcealment}}
+    <div class="cell">
+      <span class="cl">{{localize "GCC.MH1.Gadget.Concealment"}}</span>
+      <span class="cv">{{concealment}}</span>
+      <span class="cd">{{concealmentNote}}</span>
+    </div>
+  {{/if}}
+</div>

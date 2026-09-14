@@ -4,13 +4,14 @@
  *
  * Its group holds the book's switches, all off by default. So far this
  * registers Talents skipping wildcard skills (p. 24), the book's points
- * (pp. 23, 28, 31), holy attacks (p. 51) and Ritual Path Magic (pp. 32-39);
- * the gear switch is listed as not built yet until its rules are ported.
+ * (pp. 23, 28, 31), holy attacks (p. 51), Ritual Path Magic (pp. 32-39) and
+ * the book's gear (pp. 53-54, 59-61, 63).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { addExtensionFields } from "../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { initGear, readyGear } from "./gear/index.js";
 import { initHoly, readyHoly } from "./holy-contact.js";
 import { mayPay, poolsOf, refreshed, spent, type Pools } from "./points.js";
 import { initRitualPath, readyRitualPath } from "./ritual/index.js";
@@ -29,7 +30,7 @@ const RULES = [
   { key: "talentsSkipWildcards", pages: "p. 24", implemented: true },
   { key: "holyAttacks", pages: "p. 51", implemented: true },
   { key: "ritualPathMagic", pages: "pp. 32-39", implemented: true },
-  { key: "monsterHuntersGear", pages: "pp. 53-54, 59", implemented: false },
+  { key: "monsterHuntersGear", pages: "pp. 53-54, 59", implemented: true },
   { key: "bonusPointSpending", pages: "pp. 23, 28, 31", implemented: true },
 ] as const;
 
@@ -75,6 +76,7 @@ function init(api: GWorldApi): void {
   });
 
   initHoly();
+  initGear();
   initRitualPath(api, () => api.registry.isRuleOn(ruleKey("ritualPathMagic")));
 
   // "Talents never add to wildcard skills" (p. 24).
@@ -146,6 +148,7 @@ function ready(api: GWorldApi): void {
 
   readyHoly(api, () => api.registry.isRuleOn(ruleKey("holyAttacks")));
   readyRitualPath(api, () => api.registry.isRuleOn(ruleKey("ritualPathMagic")));
+  readyGear(api, () => api.registry.isRuleOn(ruleKey("monsterHuntersGear")));
 
   // Destiny and wildcard bonus points, beside the system's unspent points (p. 31).
   api.points.registerPointPool({

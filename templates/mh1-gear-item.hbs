@@ -1,0 +1,86 @@
+{{!-- Monster Hunters 1's gear options on an item (pp. 53-54, 59-61, 63): each a
+     cost factor that reprices the item from its list figures, and a firearm's
+     special loads. --}}
+<div class="isub" data-gcc-gear-section>
+  <div class="isub-head">{{localize "GCC.MH1.Gadget.Title"}}</div>
+
+  {{#if gadget}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.CuttingEdgeHint'}}"><input type="checkbox" data-gcc-gear="gadget.cuttingEdge" {{#if data.gadget.cuttingEdge}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.CuttingEdge"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.DisguisedHint'}}"><input type="checkbox" data-gcc-gear="gadget.disguised" {{#if data.gadget.disguised}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.Disguised"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.RuggedHint'}}"><input type="checkbox" data-gcc-gear="gadget.rugged" {{#if data.gadget.rugged}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.Rugged"}}</label>
+      {{#if gadget.clothing}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.ScentMaskingHint'}}"><input type="checkbox" data-gcc-gear="gadget.scentMasking" {{#if data.gadget.scentMasking}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.ScentMasking"}}</label>
+      {{/if}}
+    </div>
+    <div class="ifields">
+      {{#if gadget.clothing}}
+        <label data-tooltip="{{localize 'GCC.MH1.Gadget.UndercoverHint'}}">{{localize "GCC.MH1.Gadget.Undercover"}}
+          <select data-gcc-gear="gadget.undercover" {{#unless editable}}disabled{{/unless}}>
+            {{#each gadget.undercover as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+      <label data-tooltip="{{localize 'GCC.MH1.Gadget.HoldoutHint'}}">{{localize "GCC.MH1.Gadget.Holdout"}}
+        <input type="number" data-gcc-gear="holdout" value="{{data.holdout}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+    <p class="ihint">{{gadget.hint}}</p>
+  {{/if}}
+
+  {{#if weapon}}
+    <div class="ichecks">
+      {{#if weapon.melee}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.BalancedHint'}}"><input type="checkbox" data-gcc-gear="weapon.balanced" {{#if data.weapon.balanced}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.WeaponImprovement.Balanced"}}</label>
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.TitaniumHint'}}"><input type="checkbox" data-gcc-gear="weapon.titanium" {{#if data.weapon.titanium}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.WeaponImprovement.Titanium"}}</label>
+        {{#if weapon.twoHandedAxe}}
+          <label class="icheck" data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.WeightedHint'}}"><input type="checkbox" data-gcc-gear="weapon.weighted" {{#if data.weapon.weighted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.WeaponImprovement.Weighted"}}</label>
+        {{/if}}
+      {{/if}}
+      {{#if weapon.bow}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.BalancedBowHint'}}"><input type="checkbox" data-gcc-gear="weapon.balanced" {{#if data.weapon.balanced}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.WeaponImprovement.Balanced"}}</label>
+        <label class="icheck" data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.CompoundHint'}}"><input type="checkbox" data-gcc-gear="weapon.compound" {{#if data.weapon.compound}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.WeaponImprovement.Compound"}}</label>
+      {{/if}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.DisguisedHint'}}"><input type="checkbox" data-gcc-gear="weapon.disguised" {{#if data.weapon.disguised}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.Disguised"}}</label>
+    </div>
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.MH1.WeaponImprovement.ImprovisedHint'}}">{{localize "GCC.MH1.WeaponImprovement.Improvised"}}
+        <input type="number" data-gcc-gear="improvisedPenalty" value="{{data.improvisedPenalty}}" step="1" max="0" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+    <p class="ihint">{{weapon.hint}}</p>
+    {{#each weapon.problems as |p|}}<p class="ihint bad" data-gcc-gear-problem>{{p}}</p>{{/each}}
+  {{/if}}
+
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.MH1.Gadget.ListCostHint'}}">{{localize "GCC.MH1.Gadget.ListCost"}}
+      <input type="number" data-gcc-gear="listCost" value="{{data.listCost}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label data-tooltip="{{localize 'GCC.MH1.Gadget.ListWeightHint'}}">{{localize "GCC.MH1.Gadget.ListWeight"}}
+      <input type="number" data-gcc-gear="listWeight" value="{{data.listWeight}}" step="0.01" min="0" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label class="icheck" data-tooltip="{{localize 'GCC.MH1.Gadget.SignatureHint'}}"><input type="checkbox" data-gcc-gear="signature" {{#if data.signature}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MH1.Gadget.Signature"}}</label>
+  </div>
+  {{#if priced}}<p class="ihint" data-gcc-gear-priced>{{priced}}</p>{{/if}}
+
+  {{#each loads as |l|}}
+    <div class="irow" data-gcc-load-row="{{l.index}}">
+      <span class="wmode">{{l.name}}</span>
+      <select data-gcc-load="powder" data-mode="{{l.index}}" aria-label="{{localize 'GCC.MH1.SpecialAmmo.PowderLabel'}}" data-tooltip="{{localize 'GCC.MH1.SpecialAmmo.PowderHint'}}" {{#unless @root.editable}}disabled{{/unless}}>
+        {{#each l.powders as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+      <select data-gcc-load="payload" data-mode="{{l.index}}" aria-label="{{localize 'GCC.MH1.SpecialAmmo.PayloadLabel'}}" data-tooltip="{{localize 'GCC.MH1.SpecialAmmo.PayloadHint'}}" {{#unless @root.editable}}disabled{{/unless}}>
+        {{#each l.payloads as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+      <input type="number" data-gcc-load="magazineCost" data-mode="{{l.index}}" value="{{l.magazineCost}}" step="1" min="0" style="width: 64px"
+             aria-label="{{localize 'GCC.MH1.SpecialAmmo.Magazine'}}" data-tooltip="{{localize 'GCC.MH1.SpecialAmmo.MagazineHint'}}" {{#unless @root.editable}}disabled{{/unless}} />
+      {{#if l.handLoaded}}
+        {{#if @root.editable}}
+          <button type="button" class="ibtn" data-gcc-hand-load data-mode="{{l.index}}" data-tooltip="{{localize 'GCC.MH1.SpecialAmmo.HandLoadHint'}}">{{localize "GCC.MH1.SpecialAmmo.HandLoad"}}</button>
+        {{/if}}
+        {{#if l.adjust}}<span class="tag">CF {{l.adjust}}</span>{{/if}}
+      {{/if}}
+      {{#if l.reload}}<span class="wmode">{{l.reload}}</span>{{/if}}
+    </div>
+  {{/each}}
+</div>

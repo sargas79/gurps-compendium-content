@@ -10,6 +10,7 @@
  */
 
 import { addExtensionFields } from "../../../shared/extensions.js";
+import { ITEM_TYPES } from "../gear/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import {
   RITUAL_DURATIONS,
@@ -205,7 +206,7 @@ export function registerRitualData(): void {
     }),
   });
 
-  addExtensionFields("Item", ["equipment"], {
+  addExtensionFields("Item", ITEM_TYPES, {
     /**
      * A charm (pp. 38-39): a conditional ritual bound to this fragile object.
      * Breaking it sets the ritual off "using its original margin of
