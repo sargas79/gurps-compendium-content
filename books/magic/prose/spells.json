@@ -2392,6 +2392,166 @@
     "description": "<p>Brings the subject back to life, provided that the body, or most of it, is available. This is the GM's decision; note that a body that has reached -10×HP is by definition too damaged for resurrection. The resurrected subject has FP and HP 0, and must regain FP and HP in the normal fashion. All his limbs will be intact, regardless of the injuries that killed him. The caster's skill is at a -1 penalty for each full day between the subject's death and the beginning of the spell.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>There are persistent rumors of a magic item that will bring the dead to life, but nothing specific is known.</p>"
   },
   {
+    "_id": "d54a53919fcbfe1a",
+    "name": "Simple Illusion",
+    "pages": "M95",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a purely visual image that can be seen by anyone in view of the area it occupies. It may be a single object or an entire scene. It may move to a different area, or change size or shape up to its maximum area, if the caster concentrates. Any sapient creature can dispel it by \"disbelieving\" - taking a Concentrate action and making a successful Will roll. The illusion is automatically dispelled by any attack, any other spell except Control Illusion, or the touch of any sapient creature.</p>"
+  },
+  {
+    "_id": "c3c9fcaa75ce169e",
+    "name": "Complex Illusion",
+    "pages": "M96",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Simple Illusion, but affects hearing as well as sight. It is not automatically dispelled by a spell or touch; however, any amount of actual damage will dispel the illusion.</p>"
+  },
+  {
+    "_id": "c8d298ce6eb925ea",
+    "name": "Perfect Illusion",
+    "pages": "M96",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Complex Illusion, but affects all the senses except touch; your hand will go through it. It cannot be dispelled except by Dispel Magic or Dispel Illusion. Any damage at all will temporarily disturb the illusion, revealing it for what it is without dispelling it.</p>"
+  },
+  {
+    "_id": "8469f2f777e080c9",
+    "name": "Illusion Shell",
+    "pages": "M96",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This illusion makes a chosen object look, sound, and feel different. The base object must be of the appropriate size and shape. The illusion may be disbelieved, but is otherwise stable. However, it will not move about unless the underlying object moves. Damage done by the underlying object is unaffected. For example, an illusion shell of a horse could be cast over a wooden horse. It would stamp, nicker, and smell like a horse, but could not be ridden! Concentration is not required to maintain the illusion.</p><p><em>Item</em></p><p>For 200 times the base cost, the spell can be made permanent; it will not be disbelieved!</p>"
+  },
+  {
+    "_id": "b6fcf40b33e530bf",
+    "name": "Illusion Disguise",
+    "pages": "M96",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This illusion disguises a living being. The caster must first create the illusion (using any basic Illusion spell). The Illusion Disguise spell then superimposes the illusion over the subject, so it covers him and moves with him. The better the Illusion spell used, the better and more permanent the disguise; a Perfect Illusion Disguise even fools the sense of touch. Concentration is not required to maintain the disguise. The illusion disguise counts as only a single spell \"on.\"</p><p><em>Item</em></p><p>Jewelry or clothing; the item casts an Illusion Disguise (specified when the item is enchanted) over the wearer. Energy cost to create: 150 Simple, 300 Complex, 500 Perfect Illusion. There is no energy cost to the wearer!</p>"
+  },
+  {
+    "_id": "4bd3e3545bdd2396",
+    "name": "Independence",
+    "pages": "M96",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell can be used with any controlled creation or illusion. It lets the caster \"program\" the creation or illusion to move about, speak (if it can make sounds), and even react in predetermined ways. All this is done with no further concentration on the caster's part; it does not count as a separate spell \"on.\" If faced with something for which it is not \"programmed,\" it may do nothing or (if an illusion) simply vanish, at the GM's whim.</p>"
+  },
+  {
+    "_id": "73f9951fb4edca1c",
+    "name": "Know Illusion",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tells whether the subject is either an illusion or creation, and if so, just what kind it is. The caster must be able to see the subject.</p>"
+  },
+  {
+    "_id": "6d713b2c8411010e",
+    "name": "Control Illusion",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take control of an illusion that someone else has cast. If your spell succeeds, you must pay any further energy costs to maintain the illusion. If you fail, the illusion still belongs to the original caster. This spell does not affect an Illusion Disguise. If the spell is cast over something that is not an illusion, the energy cost is still spent but the spell has no effect.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 300. The item must touch the illusion to be controlled.</p>"
+  },
+  {
+    "_id": "3054bd2c7c7928ab",
+    "name": "Dispel Illusion",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dispels any Illusion or Illusion Disguise. Does not affect creations.</p><p><em>Item</em></p><p>Wand or staff; the item must touch the subject illusion. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "b042150dd0f66754",
+    "name": "Inscribe",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates an inscription (either writing or images) on any surface. Appropriate specializations of Artist (Calligraphy, Illumination, etc.) should be used to assess the aesthetics of the result. The image can be as stylish as the caster desires: letters of silver flame, simple block-lettering, reflected light on the surface of water, and so on. The inscription is integral to the subject's surface, fading only when the spell is canceled or expires. Any living things to be inscribed get to resist.</p><p>This is also a Making and Breaking spell.</p><p><em>Item</em></p><p>(a) Any inscription can be made permanent for 20 times the cost to cast the spell. (b) A stylus, brush, etc. that can leave inscriptions on anything, without ever needing ink or paint. Energy cost to create: 30.</p>"
+  },
+  {
+    "_id": "87a5fb94b9753bc5",
+    "name": "Phantom",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Perfect Illusion, but a phantom can impede movement and inflict real damage. The first time any living creature physically contacts a phantom, roll a Quick Contest between the caster's effective skill and the being's IQ. If the caster loses, then the phantom is treated as a Perfect Illusion for all purposes with regards to that character.</p><p>If the caster wins, the phantom has substance and may proceed to strike, grapple, shove, and so on as if it were real. A phantom may have any ST and DX up to the mage's skill with the spell for the purposes of contests, damage inflicted, and so on.</p><p>When the spell is first cast, the GM should note the margin of success. If a single attack on the phantom inflicts this amount (or more) of basic damage, the phantom is immediately dispelled. Any spells that work on illusions (Dispel Illusion, Control Illusion, Independence, etc.) work on phantoms.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 300; half cost for an item that will create a single, creator-determined phantom.</p>"
+  },
+  {
+    "_id": "be64364c67101e14",
+    "name": "Initiative",
+    "pages": "M97",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell can be cast on any creation or illusion the caster controls, giving it a semblance of intelligence in order to act on its own initiative. The subject is totally loyal to the caster, and obeys him (or anyone else the caster orders it to heed) to the best of its ability.</p><p>The base cost of the spell is based on what knowledge the caster grants the subject. Creations start with their own DX and IQ as listed in the spell description. For the purposes of this spell, Illusions and Phantoms start with IQ 0 and DX 8. The subject's DX and IQ may be raised as high as the caster's. The subject may also be given the caster's skills - every skill granted is known at the same relative level as the caster. Illusions and creations with Initiative may use defaults on any skill.</p><p>Once the spell is cast, the subject acts on its own until the spell expires. If the subject comes across a situation that confuses it, it attempts to return to the caster for clarification. Like Independence (p. 96), this spell does not count as a spell \"on,\" and does not require separate maintenance.</p><p><em>Example:</em> Lady Ann Goulding has created a magical servant to amuse her noble and decadent guests. She wishes it to circulate throughout the party, serving food, dancing with the noblewomen, and showing appropriate respect - without requiring constant supervision, so that she can enjoy herself. It begins with 9 in every attribute, but no skills (Lady Ann could have created a skilled servitor, but she has Create Servant-15 and can maintain an unskilled one indefinitely). To this base she adds 2 points of DX (bringing it up to her own DX of 11), and 2 points of IQ (well below her own IQ of 14) to make it wittier. This is a total attribute increase of 4, for a base cost of 2.</p><p>Lady Ann then gives it two skills - Dancing and Savoir-Faire. She has Dancing-14 (DX+3), and since the servant has the same DX as she does, the servant will, too. The lady's knowledge of Savoir-Faire is considerable (skill 15, or IQ+1), but the servant is not as smart as she, and will only have it at its own IQ+1, for a net Savoir-Faire-13. These two skills add 2 more to the base cost, for a total of 4. Since the servant is less than 1 yard in radius, a casting at base cost will suffice.</p>"
+  },
+  {
+    "_id": "aab517787debdbdc",
+    "name": "Create Object",
+    "pages": "M98",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create any sort of simple artifact with which the caster is familiar - e.g., a robe, a sword, a cup. It cannot create a magical item or a living creature.</p><p><em>Limitations:</em> Food created this way will seem nourishing, but in fact is not. Information cannot be created; a book could not be created unless the caster knew all its contents by heart. A work of art will be only as good as the caster could make it by hand. A mechanical device cannot be created unless the caster could build it himself. (GMs - the intent of this rule is to make it almost impossible for mages to create cars, transistor radios, etc. Be strict.)</p>"
+  },
+  {
+    "_id": "5363b51e53ef2a14",
+    "name": "Duplicate",
+    "pages": "M98",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Create Object, but instead of creating an object from the caster's mind, the Duplicate spell duplicates an actual item, which must be held or touched by the caster while the spell is cast. This permits a mage with no knowledge of Armoury to create a gun - if he has another one handy to copy. It also permits perfect forgeries of works of art, money, documents, and so on. The magical duplicate follows all normal rules for items made with Create Object - it must remain in contact with a living thing, for instance, or it will disappear.</p><p>The mage may also attempt to alter the creation. For instance, he could copy a sword and add inscribed runes, or forge a passport with a different name or picture, etc. In this case, normal rules for the caster's abilities apply; Forgery skill rolls may be required. A mage with no knowledge of guns could gold-plate a duplicate, but he couldn't modify the firing mechanism or ammunition capacity.</p><p><em>Item</em></p><p>a) Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 650. (b) A duplicate may be made permanent for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "52fe968773bd4e6d",
+    "name": "Create Servant",
+    "pages": "M98",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a stupid but obedient servitor (all attributes equal to 9) to do the caster's bidding. The caster determines the servant's appearance. This same spell can also create a Brute - a servant with ST of 16, and all other attributes at 9. Or it can create a servant with attributes at 9 and one noncombat non-IQ-based skill at level 16. Any created servant follows simple spoken commands, delivers verbal messages, etc. It is under the GM's control. It cannot fight or handle confusing situations; it has no skills. Faced with danger, it whimpers, flees, or simply vanishes. If questioned, it knows only who its master is and what its orders are.</p>"
+  },
+  {
+    "_id": "1622e903a54aaf1a",
+    "name": "Create Warrior",
+    "pages": "M98",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a warrior to fight as the caster commands. He has IQ 10; ST, DX, and HT 12; and skill 16 with any single weapon (or unarmed combat ability) the caster desires. He has no weapons or armor when created, but uses what he is given.</p>"
+  },
+  {
+    "_id": "5636d047b97caaaa",
+    "name": "Create Animal",
+    "pages": "M98",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create an animal (IQ 5 or less) that does your mental bidding while it exists. A created living being continues to exist until the caster stops maintaining the spell, or until it is killed, at which point it vanishes.</p><p>A living creation must be identical to a \"real\" living being with which the caster is familiar. You cannot create an imaginary being, or even a real creature of which you have only heard stories. Neither can you create a bear with poison fangs . . . but some wizards occasionally research private variations on the spell to make unusual creatures.</p><p>Create Animal may also be used to create a swarm of small creatures (p. B461). A \"swarm\" costs 2 energy to create.</p>"
+  },
+  {
+    "_id": "d022cab96715fdc5",
+    "name": "Create Mount",
+    "pages": "M99",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a stupid but obedient mount on which to ride while it exists. It can also be used as a draft animal.</p><p>The mount's traits are equivalent to a pony (p. B460), but the caster sets its appearance at casting time; it can be a horse, camel, dolphin, dwarf elephant, huge ostrich, or anything else the GM agrees to (use the Create Animal guidelines). The mount can only understand very simple spoken commands, such as stop, go, left, right, about face, etc. It is under the GM's control and cannot fight or handle confusing situations; it has no skills. Faced with danger, it will whimper, bolt, or simply vanish.</p><p>The caster may also choose to create a Brute mount with ST 35, a Winged mount with Move 7/14, a Racing mount with Move 18, or a War-Trained mount that remains calm in dangerous situations and can be ordered to trample or attack.</p><p><em>Item</em></p><p>(a) A mage may create a permanent mount for 100 times the casting cost. (b) Horn or whistle. Usable only by mages. Sounding the horn or whistle causes the mount to appear as if summoned. Energy cost to create: 200 times the casting cost for the intended type of mount.</p>"
+  },
+  {
+    "_id": "5d83cbac67ac4ed6",
+    "name": "Control Creation",
+    "pages": "M99",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Takes control of a living Creation cast by someone else. On a success, further energy costs are necessary to maintain the creation. On a failure, the creation remains the original caster's. This spell cannot affect an Illusion.</p><p><em>Item</em></p><p>Wand or staff; the item must touch the subject creation. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "87616dda5394036d",
+    "name": "Dispel Creation",
+    "pages": "M99",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Destroys any sort of Creation. Does not affect illusions.</p><p><em>Item</em></p><p>Wand or staff. Energy cost to create: 500.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
