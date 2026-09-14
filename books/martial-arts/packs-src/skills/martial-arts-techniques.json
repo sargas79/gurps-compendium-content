@@ -1,0 +1,4370 @@
+[
+  {
+    "_id": "4d9051b436c58f51",
+    "name": "Acrobatic Stand (Acrobatics)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Acrobatics",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "ca2f58ea6065dadb",
+    "name": "Wrist Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "5bb09363c951651b",
+    "name": "Wrist Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d3c15aff017589a5",
+    "name": "Wrist Lock (Tonfa)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d7d9571c05fbfa54",
+    "name": "Armed Grapple (Cloak)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Cloak",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "a401cf8eab92931c",
+    "name": "Axe Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "db59a8f3fa1dd754",
+    "name": "Bind Weapon (Jitte/Sai)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "a1e1d040682678c8",
+    "name": "Breakfall (Acrobatics)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Acrobatics",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "7ba5bcb77b470130",
+    "name": "Breakfall (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "8bf605d4c3ae74b9",
+    "name": "Breakfall (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "53dd357afcd37176",
+    "name": "Triangle Choke (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "d4ae702913286fa5",
+    "name": "Triangle Choke (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "2b6aaf6b5634768c",
+    "name": "Crack (Whip)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Whip",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "5eb05e032b44e424",
+    "name": "Drop Kick (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "3811603d717bb214",
+    "name": "Drop Kick (Sumo Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "cb2078040833d9fa",
+    "name": "Drop Kick (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "d2442d2781b5c534",
+    "name": "Ear Clap (Boxing)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "966ed9328ac1ca7d",
+    "name": "Ear Clap (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "0f9685be771c5d91",
+    "name": "Ear Clap (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "8e64a875869c665a",
+    "name": "Elbow Drop (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "8f429abd77ed46f8",
+    "name": "Elbow Drop (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "267a2957b00c4cfb",
+    "name": "Entangle (Kusari)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "9a1ee6d706a94e80",
+    "name": "Entangle (Whip)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Whip",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "c9d1df0d468731f0",
+    "name": "Evade (Acrobatics)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Acrobatics",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "7b2a4a5d5c17dccf",
+    "name": "Evade (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "e04abb16b85b356c",
+    "name": "Exotic Hand Strike (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "5859e97d01bdbbf6",
+    "name": "Eye-Gouge (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "c29f158221a017a5",
+    "name": "Eye-Gouge (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "7e47a89129205860",
+    "name": "Eye-Gouge (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "b84daffa1c415db3",
+    "name": "Eye-Pluck (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "a31aaf58865e1ed6",
+    "name": "Eye-Pluck (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "093ddff93c897011",
+    "name": "Eye-Poke (Boxing)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "5c0011dff27843a5",
+    "name": "Eye-Poke (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "3baced88f431f081",
+    "name": "Eye-Poke (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "0724e24d44f738bf",
+    "name": "Eye-Rake (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "0bc76ca5e35d3c79",
+    "name": "Eye-Rake (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "6e63e75fc1367956",
+    "name": "Lethal Eye-Poke (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": -5,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "82f511d04350a3f6",
+    "name": "Hammer Fist (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "0e484c473fe9181b",
+    "name": "Hammer Fist (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "3c4adb40e52560cb",
+    "name": "Handcuffing (Binding)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Binding",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "73837d64edff1682",
+    "name": "Handcuffing (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "690631408a68fa65",
+    "name": "Handcuffing (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "bbbb8d4950fe0244",
+    "name": "Head Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "1a45d7c0077382f4",
+    "name": "Head Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "b194385920e2d53b",
+    "name": "Judo Throw (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "bd0fb72f24c074c8",
+    "name": "Leg Throw (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "26861a95064c44ae",
+    "name": "Knee Drop (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "f2ec0d80b31b2bab",
+    "name": "Knee Drop (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "a6a26d198ca68756",
+    "name": "Leg Grapple (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "13afb9bf1a470f3b",
+    "name": "Leg Grapple (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "618833b028a7ef4e",
+    "name": "Leg Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "e8e12105f52e541a",
+    "name": "Leg Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "8ff9fe66f04282e4",
+    "name": "Push Kick (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "fc7b96b090518555",
+    "name": "Push Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "11ff931af6d59bc4",
+    "name": "Quick Mount (Acrobatics)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Acrobatics",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "40716ac4cbc88d2a",
+    "name": "Quick Mount (Jumping)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Jumping",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "e47ae610149598c1",
+    "name": "Return Strike (Flail)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Flail",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "dfaccbcbc01c481d",
+    "name": "Return Strike (Kusari)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "f1c04a79b472ceec",
+    "name": "Reverse Grip (Tonfa)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "10ffc4ec1b8057f8",
+    "name": "Sacrifice Throw (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "c65a9693bc82270c",
+    "name": "Scissors Hold (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "e684240cabc2ebd6",
+    "name": "Spinning Punch (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "de7ce4cf1d977516",
+    "name": "Spinning Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "0e367c5f009b17f5",
+    "name": "Stamp Kick (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "c8abd50ce5cc76ea",
+    "name": "Stamp Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "689489bfd3e7c699",
+    "name": "Two-Handed Punch (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "756748b52b6b7ac8",
+    "name": "Uppercut (Boxing)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "2224f9b6fb2fd69c",
+    "name": "Uppercut (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "a6e358dda1f4abb8",
+    "name": "Uppercut (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "da8521bdd9749621",
+    "name": "Wrench Spine (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "483d21fc46888c17",
+    "name": "Lower-Body Arm Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d7ec7d74fd688d99",
+    "name": "Lower-Body Arm Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "e2bb01a28c088b49",
+    "name": "Lower-Body Head Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "9c09a3d9fba9d21f",
+    "name": "Lower-Body Head Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "7e256806f7eab6ac",
+    "name": "Lower-Body Leg Lock (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "9f1ed678aed1331b",
+    "name": "Lower-Body Leg Lock (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "96802ae2146e1e5a",
+    "name": "Backbreaker (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "dda1404fdd77a0ff",
+    "name": "Binding (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "467fd66e11947a77",
+    "name": "Binding (Knot-Tying)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Knot-Tying",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "5b05c04f361fb4f9",
+    "name": "Flying Jump Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "4b00c3e8a9b181f3",
+    "name": "Lethal Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "c79aff8af48a66bf",
+    "name": "Lethal Strike (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "e8324ed0599687d2",
+    "name": "Piledriver (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "9200a4a7f06f6cf4",
+    "name": "Pole-Vault Kick (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "c02cd2d0e407e7e2",
+    "name": "Roll with Blow (Acrobatics)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Acrobatics",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "a8e0d0e0e455c861",
+    "name": "Snap Weapon (Jitte/Sai)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "f72242e723fd67de",
+    "name": "Double Eye-Poke (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "58d0cb7ff4bcf3c4",
+    "name": "Double Eye-Poke (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "aa8b9ec459e6f80e",
+    "name": "Flying Atomic Wedgie (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "cff0eb6a909eaf45",
+    "name": "Flying Atomic Wedgie (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "af00268981b5a82f",
+    "name": "Noogie (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "649e1b9302d1b1be",
+    "name": "Noogie (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "4befafc723298b07",
+    "name": "Nose Slap (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "c8ba14d86fea5d66",
+    "name": "Nose Slap (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "aba9f6d54e798842",
+    "name": "Wet Willy (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "fb581ee9232f1d17",
+    "name": "Wet Willy (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "4e3209c429c35e8b",
+    "name": "Arm Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d29bf9828b32a237",
+    "name": "Arm Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "5bde799f2ba1a2f6",
+    "name": "Arm Lock (Tonfa Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "b98f833a7f5c8462",
+    "name": "Wrist Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "b82623953e9c92c8",
+    "name": "Wrist Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "01e7b30e134cf541",
+    "name": "Wrist Lock (Tonfa Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "f8778618441b8068",
+    "name": "Armed Grapple (Cloak Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Cloak Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "9b2b9698320f53a8",
+    "name": "Axe Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "965c54e09d0c4750",
+    "name": "Back Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "02a6fc9244340ecf",
+    "name": "Bind Weapon (Jitte/Sai Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "725f6776b7a53f4f",
+    "name": "Breakfall (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "1cb206dc59063c3e",
+    "name": "Breakfall (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "c2c0c37e7650ac94",
+    "name": "Choke Hold (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "6494178f797cf5be",
+    "name": "Choke Hold (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "c6056b93ea801bfa",
+    "name": "Crack (Whip Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Whip Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "9083b2fcc6ed5641",
+    "name": "Drop Kick (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "0036a8b1708f53e5",
+    "name": "Drop Kick (Sumo Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "f0ac4964a3ae2daa",
+    "name": "Drop Kick (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "2104281ab6b64a71",
+    "name": "Ear Clap (Boxing Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "dc031b3d541f63df",
+    "name": "Ear Clap (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "d65390332858f61f",
+    "name": "Ear Clap (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "b34ed6ecb39c9f2a",
+    "name": "Elbow Drop (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "375fccb56c0d0e53",
+    "name": "Elbow Drop (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "bb8511bc5cf7e9fe",
+    "name": "Elbow Strike (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "74be5e1a92be4a71",
+    "name": "Elbow Strike (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "ae59fa71e2a89a35",
+    "name": "Entangle (Kusari Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "c1843971137c32f6",
+    "name": "Entangle (Whip Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Whip Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "076f1c52385fed92",
+    "name": "Evade (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "92119a458167ec97",
+    "name": "Exotic Hand Strike (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "de9ba5d37e4f06f8",
+    "name": "Eye-Gouge (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "0f5b21f35bde66e7",
+    "name": "Eye-Gouge (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "591b8bff174388a5",
+    "name": "Eye-Gouge (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "b0f5252a9fed62ff",
+    "name": "Eye-Pluck (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "76e240d78deab0f8",
+    "name": "Eye-Pluck (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "72e3370198683e6a",
+    "name": "Eye-Poke (Boxing Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Art",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "4dfd0120757baa64",
+    "name": "Eye-Poke (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "d5b49c453fdd9867",
+    "name": "Eye-Poke (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "2031627949421f6c",
+    "name": "Eye-Rake (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "b2d98b8e7d8e1233",
+    "name": "Eye-Rake (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "469af2129a9daf2e",
+    "name": "Lethal Eye-Poke (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": -5,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "56c43ce8d39b5c63",
+    "name": "Finger Lock (Arm Lock (Judo Art))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Arm Lock (Judo Art)",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "508d3937e79ed736",
+    "name": "Finger Lock (Arm Lock (Wrestling Art))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Arm Lock (Wrestling Art)",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "b121d8190b7497ca",
+    "name": "Hammer Fist (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "5b3a82d3c7904a75",
+    "name": "Hammer Fist (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "e86c6d4eaeb23b27",
+    "name": "Handcuffing Art (Binding)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Binding",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "dc9193e212cd7278",
+    "name": "Handcuffing (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "d2b19587c89e74fb",
+    "name": "Handcuffing (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "0a0c8b556801bdd9",
+    "name": "Head Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "43166e0d9457901d",
+    "name": "Head Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "6733283282b05e5e",
+    "name": "Horse Archery (Bow Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Bow Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "03e3caf909d08a0c",
+    "name": "Judo Art Throw (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "6283842af6e4c713",
+    "name": "Jump Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "237362171acfb5cc",
+    "name": "Kicking (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "6d5e29807aacbb71",
+    "name": "Kicking (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "4aadac7dc39c08e7",
+    "name": "Knee Drop (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "3228313df9a9f7cf",
+    "name": "Knee Drop (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "d1edca3b347bdfdc",
+    "name": "Knee Strike (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "32c4d9765a4c917c",
+    "name": "Knee Strike (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "10f35ff9d3a4c2f4",
+    "name": "Leg Grapple (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "a79e9bb3ac4d5746",
+    "name": "Leg Grapple (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "9bdd884ba814ac43",
+    "name": "Leg Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "e511a50783614e82",
+    "name": "Leg Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "0642000ee3413089",
+    "name": "Push Kick (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "a56e2d924ab8de71",
+    "name": "Push Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "012fc24c98e8f4dd",
+    "name": "Return Strike (Flail Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Flail Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "d5d64fc9055bc186",
+    "name": "Return Strike (Kusari Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "06ede33c13ace6e9",
+    "name": "Reverse Grip (Tonfa Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "da3158ba6875a4e4",
+    "name": "Sacrifice Throw (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "1b7fae28d6ac160e",
+    "name": "Scissors Hold (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "ade562159eee8075",
+    "name": "Spinning Punch (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "318a69cfd2f910b6",
+    "name": "Spinning Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "69f5d76224ede68b",
+    "name": "Stamp Kick (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "b9db8982f19e4002",
+    "name": "Stamp Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "09fe469cdb74876c",
+    "name": "Two-Handed Punch (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "6c9f32aebcb56db8",
+    "name": "Uppercut (Boxing Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "905d12bf5b317730",
+    "name": "Uppercut (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "6115997ba94bf003",
+    "name": "Uppercut (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "32f3e176bbf8e063",
+    "name": "Wrench Spine (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "b99e6b1a51708278",
+    "name": "Leg Throw (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "9d2b4809a2e1a486",
+    "name": "Lower-Body Arm Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "34412e76bafd16e6",
+    "name": "Lower-Body Arm Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "7230ea22b7ef8b58",
+    "name": "Lower-Body Head Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "72ec4f4e19ba8758",
+    "name": "Lower-Body Head Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "2ac95280d04d792f",
+    "name": "Lower-Body Leg Lock (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "e539e3c066e18c8e",
+    "name": "Lower-Body Leg Lock (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "7ffa85ea2938c4ec",
+    "name": "Triangle Choke (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "18569ec10b844608",
+    "name": "Triangle Choke (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "76a2395e5d8c78ec",
+    "name": "Leg Throw (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "837f6899f4865007",
+    "name": "Lower-Body Arm Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "39f4a0f3299385e5",
+    "name": "Lower-Body Arm Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "8e57b3cc6c301e7b",
+    "name": "Lower-Body Head Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "d71dd9d36d03959e",
+    "name": "Lower-Body Head Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "2a09897636875ce6",
+    "name": "Lower-Body Leg Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "3fe578068de025f1",
+    "name": "Lower-Body Leg Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "1ab6e682e421e82e",
+    "name": "Triangle Choke (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "e6d481c36bf3b973",
+    "name": "Triangle Choke (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "d57823f3aa57d9c6",
+    "name": "Backbreaker (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "7a6269af22e3d27a",
+    "name": "Binding (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "d66d6f058b15e19a",
+    "name": "Dual-Weapon Attack (Beam Weapons Art (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Beam Weapons Art (Pistol)",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "ff77593bd5b250b4",
+    "name": "Dual-Weapon Attack (Guns Art (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Guns Art (Pistol)",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "6e2ddba7bd7f9257",
+    "name": "Dual-Weapon Attack (Bow Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Bow Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "d4284b7528f52ae1",
+    "name": "Flying Jump Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "50ec78f991a73737",
+    "name": "Lethal Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "896db46dd08687a7",
+    "name": "Lethal Strike (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "0d36d3114637e455",
+    "name": "Piledriver (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "dd132a0b0fda385b",
+    "name": "Pole-Vault Kick (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "f6fd25765f472757",
+    "name": "Snap Weapon (Jitte/Sai Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai Art",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "9a1e5343ea02e68e",
+    "name": "Double Eye-Poke (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "fa822ae52ae47a4b",
+    "name": "Double Eye-Poke (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "a2e271e5c3ee59e5",
+    "name": "Flying Atomic Wedgie (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "9ba88f25812133e4",
+    "name": "Flying Atomic Wedgie (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "4070e8b5c3cc72cd",
+    "name": "Noogie (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "50def298e02793ab",
+    "name": "Noogie (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "e68526f17dc70684",
+    "name": "Nose Slap (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "7dc891dfb5660627",
+    "name": "Nose Slap (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "c21d058395342faa",
+    "name": "Wet Willy (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "5b173b35925c325e",
+    "name": "Wet Willy (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "32c2e84a9651c8c2",
+    "name": "Arm Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "c10a8b9a9f839a7e",
+    "name": "Arm Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "b756d3c583c01f38",
+    "name": "Arm Lock (Tonfa Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "8a87e5e1dca1506f",
+    "name": "Wrist Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "bf0b61093549ba66",
+    "name": "Wrist Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "e2288851a2360dae",
+    "name": "Wrist Lock (Tonfa Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "ee29112a95e8042e",
+    "name": "Armed Grapple (Cloak Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Cloak Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "d12d39edd077036d",
+    "name": "Axe Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "9a98e2dade747644",
+    "name": "Back Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "b94d925d71748c96",
+    "name": "Bind Weapon (Jitte/Sai Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "047bd88d2f53562c",
+    "name": "Breakfall (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "c79d7ddb74de80b0",
+    "name": "Breakfall (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "87ee785f024c1a59",
+    "name": "Choke Hold (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "767d8bd47fc6b6bd",
+    "name": "Choke Hold (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "63e6e86d7de8550f",
+    "name": "Crack (Whip Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Whip Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "4e144524c6857357",
+    "name": "Drop Kick (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "b9272aaac8efab68",
+    "name": "Drop Kick (Sumo Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "6c053443ba3371f9",
+    "name": "Drop Kick (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "f9a9dff7f0a996f8",
+    "name": "Ear Clap (Boxing Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "2ef36b5d829b5732",
+    "name": "Ear Clap (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "104ec36ae3af0885",
+    "name": "Ear Clap (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "edcf0a770d98401c",
+    "name": "Elbow Drop (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "17d9036a91df164f",
+    "name": "Elbow Drop (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "b8d7a758d9ee1f49",
+    "name": "Elbow Strike (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "8b5081bb35a91bf5",
+    "name": "Elbow Strike (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "a3f35463a5e675f0",
+    "name": "Entangle (Kusari Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "549115a555cc4cb9",
+    "name": "Entangle (Whip Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Whip Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "df9ef584079fc5f0",
+    "name": "Evade (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "437bdc4d81d8f2c2",
+    "name": "Exotic Hand Strike (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "8a39d522bc003f25",
+    "name": "Eye-Gouge (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "a7706ee29a440644",
+    "name": "Eye-Gouge (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "f7026e795fe14a11",
+    "name": "Eye-Gouge (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "69ac83a99afe7ea8",
+    "name": "Eye-Pluck (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "e8918f98b3213eed",
+    "name": "Eye-Pluck (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "bb73836f42bbf0c7",
+    "name": "Eye-Poke (Boxing Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Sport",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "ca8d08784a074e6b",
+    "name": "Eye-Poke (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "c6e269044dafd336",
+    "name": "Eye-Poke (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "0a54eff7ecd24045",
+    "name": "Eye-Rake (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "065f2b92a8304dd0",
+    "name": "Eye-Rake (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "012efe2298676b22",
+    "name": "Lethal Eye-Poke (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": -5,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "1142a334d851f418",
+    "name": "Finger Lock (Arm Lock (Judo Sport))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Arm Lock (Judo Sport)",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "a81e2b83eb92e458",
+    "name": "Finger Lock (Arm Lock (Wrestling Sport))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Arm Lock (Wrestling Sport)",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "7e67398e6843f8f5",
+    "name": "Hammer Fist (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "11ef5e393aa8f1c1",
+    "name": "Hammer Fist (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "175a9ae5c8432c15",
+    "name": "Handcuffing Sport (Binding)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Binding",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "d0ab57a8c5b02186",
+    "name": "Handcuffing (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "cadb70db0a97d116",
+    "name": "Handcuffing (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "b0e065f9d130c461",
+    "name": "Head Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "a094d42be8c789bb",
+    "name": "Head Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "3c7f2f92583eb34d",
+    "name": "Horse Archery (Bow Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Bow Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "1439dd9e1b45c1b4",
+    "name": "Judo Sport Throw (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "7322262e86a3a025",
+    "name": "Jump Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "505c68d1e0fe62b4",
+    "name": "Kicking (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "c0bf36320b54718c",
+    "name": "Kicking (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "29478a897cfcb523",
+    "name": "Knee Drop (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "c2872bf6094c055e",
+    "name": "Knee Drop (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "ba1a9e6820905c5c",
+    "name": "Knee Strike (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "b7517857959ac591",
+    "name": "Knee Strike (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "b3148a3cc606f7b2",
+    "name": "Leg Grapple (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "3fe58d9f5be29b8b",
+    "name": "Leg Grapple (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "fe404b6a4c7bd081",
+    "name": "Leg Lock (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "1b8c2a9cef1b5cb9",
+    "name": "Leg Lock (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "6b033e16c2160286",
+    "name": "Push Kick (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "e78cfa38f3abc87f",
+    "name": "Push Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "900f569fed91f1ce",
+    "name": "Return Strike (Flail Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Flail Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "1682747eb2252598",
+    "name": "Return Strike (Kusari Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Kusari Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "33b50573a6ac1abf",
+    "name": "Reverse Grip (Tonfa Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "d75c6999b97fc4d7",
+    "name": "Sacrifice Throw (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "298a2342bb44c4b6",
+    "name": "Scissors Hold (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "46cdd0c90650373d",
+    "name": "Spinning Punch (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "ce60d21d7a8d140b",
+    "name": "Spinning Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "4ed268ccb6b397d1",
+    "name": "Stamp Kick (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "004c1f86c123001d",
+    "name": "Stamp Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "be414dd218398273",
+    "name": "Two-Handed Punch (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "0a6c08d3032245c0",
+    "name": "Uppercut (Boxing Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Boxing Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "69165d044f7e30ef",
+    "name": "Uppercut (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "0c3ae0bfd49671cd",
+    "name": "Uppercut (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "db881ba364b42685",
+    "name": "Wrench Spine (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "bbe0cbcc21081d63",
+    "name": "Backbreaker (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "b886d216ea91bdec",
+    "name": "Binding (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "986caa3fe64ad29d",
+    "name": "Dual-Weapon Attack (Beam Weapons Sport (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Beam Weapons Sport (Pistol)",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "a37918c3c251a313",
+    "name": "Dual-Weapon Attack (Guns Sport (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Guns Sport (Pistol)",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "ee9e48bcedf8390e",
+    "name": "Dual-Weapon Attack (Bow Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Bow Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "26b149fc7a63230b",
+    "name": "Flying Jump Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "18d7e938a01030da",
+    "name": "Lethal Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "06ff1e871316bb62",
+    "name": "Lethal Strike (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "85c31ba2cf00f621",
+    "name": "Piledriver (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "c40ac06e6e09c24c",
+    "name": "Pole-Vault Kick (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "9482494171a6491b",
+    "name": "Snap Weapon (Jitte/Sai Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Jitte/Sai Sport",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "9062ffa747186224",
+    "name": "Double Eye-Poke (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "113c61d6b512a18f",
+    "name": "Double Eye-Poke (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "a267abe398a1e690",
+    "name": "Flying Atomic Wedgie (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "d950befa4c7e1c65",
+    "name": "Flying Atomic Wedgie (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "75cf062c5943de0f",
+    "name": "Noogie (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "4c8da1927fffd89f",
+    "name": "Noogie (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "d7b09c0e12f13cb2",
+    "name": "Nose Slap (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "52fe6b105c3a011b",
+    "name": "Nose Slap (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "cf5fceadced3c031",
+    "name": "Wet Willy (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "1a6c82f38ffa21d9",
+    "name": "Wet Willy (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  }
+]

@@ -1,0 +1,182 @@
+[
+  {
+    "_id": "8cc649d64bde189f",
+    "name": "Force Saber Art",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Force Saber",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Force Saber Sport",
+          "modifier": -3
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 215"
+    }
+  },
+  {
+    "_id": "ca23796941d46362",
+    "name": "Force Saber Sport",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Force Saber",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Force Saber Art",
+          "modifier": -3
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 215"
+    }
+  },
+  {
+    "_id": "293c6c25854a178d",
+    "name": "Force Saber",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Force Sword",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Main-Gauche",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Rapier",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Saber",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Smallsword",
+          "modifier": -3
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 215"
+    }
+  },
+  {
+    "_id": "2fa75f57436b86bf",
+    "name": "Hypnotic Hands",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 61"
+    }
+  },
+  {
+    "_id": "32aa7ebcc26bbee9",
+    "name": "Lizard Climb",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 61"
+    }
+  },
+  {
+    "_id": "d30fd0ab2286dc42",
+    "name": "Precognitive Parry",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 62"
+    }
+  },
+  {
+    "_id": "c266245947fb9218",
+    "name": "Sensitivity",
+    "type": "skill",
+    "system": {
+      "attribute": "Per",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 62"
+    }
+  }
+]

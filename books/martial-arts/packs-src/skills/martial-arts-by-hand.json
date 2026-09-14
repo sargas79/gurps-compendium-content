@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "dd1e7e2322d4821d",
+    "name": "Fast-Draw (Balisong)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 56"
+    }
+  },
+  {
+    "_id": "bb8cc6e1e4801864",
+    "name": "Fast-Draw (Flexible)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 56"
+    }
+  },
+  {
+    "_id": "6416bdf80d23c3c5",
+    "name": "Fast-Draw (Shuriken)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 56"
+    }
+  },
+  {
+    "_id": "60f7531518091c72",
+    "name": "Fast-Draw (Stone)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 56"
+    }
+  },
+  {
+    "_id": "10fd233277e1d1ba",
+    "name": "Fast-Draw (Tonfa)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 56"
+    }
+  },
+  {
+    "_id": "f9557691f54d8c44",
+    "name": "Thrown Weapon (Disc)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Throwing",
+          "modifier": -2
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 231"
+    }
+  },
+  {
+    "_id": "d44d34bc8cf4c6e0",
+    "name": "Hidden Lore (Hidden Styles)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "Martial Arts p. 57"
+    }
+  },
+  {
+    "_id": "8c53a72950d28a92",
+    "name": "Arm Lock (Tonfa)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Tonfa",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  }
+]
