@@ -1,27 +1,5 @@
 {
   "_standard": "Every captured entry was read and judged coherent and complete. This is not word-by-word collation against the printed page. An entry listed here was read and found wanting, and stays needs-review until fixed by hand.",
-  "disadvantages": {
-    "Short Lifespan": "a table's figures are spliced into the sentences",
-    "Sleepy": "a table is flattened into the text",
-    "Bestial": "only a trailing note; the description is missing",
-    "Stress Atavism": "only a trailing note; the description is missing",
-    "Skinny": "the Build table is spliced into the middle of a sentence",
-    "Bad Grip": "runs into a limitation from another entry",
-    "Unique": "the ending belongs to a fatigue rule, not to Unique",
-    "Restricted Diet": "only a trailing note; the description is missing",
-    "Wounded": "runs on into the disadvantage-limit example",
-    "Phantom Voices": "only a trailing note; the description is missing",
-    "Trademark": "a character-creation sidebar is spliced in",
-    "Vow": "runs on into the section on physical quirks",
-    "Mistaken Identity": "runs into Odious Personal Habits",
-    "Reputation (Disadvantage)": "carries Affliction's Disadvantage enhancement, not Reputation",
-    "Congenial": "runs into the next quirk, Delusions",
-    "Dull": "runs into the next quirk, Habits or Expressions",
-    "Imaginative": "runs into the next quirk, Incompetence",
-    "Nosy": "runs into the next quirk, Obsessions",
-    "Cannot Float": "runs into the next quirk, Distinctive Features",
-    "Horrible Hangovers": "runs into the next quirk, Minor Addiction"
-  },
   "templates": {
     "Investigator": "a line of the disadvantage list was lost"
   },
