@@ -1,5 +1,5 @@
 /**
- * Captures the Basic Set's entries again, from the page's layout.
+ * Captures a book's entries again, from the page's layout.
  *
  * `transcribe.mjs` reads the book as one stream of lines, which is what it had
  * when the text was first captured. Where a page has two columns and a sidebar,
@@ -15,6 +15,10 @@
  *
  * Usage:
  *   node tools/recapture.mjs <pack> --characters <pdf> --campaigns <pdf> [--status needs-review,reviewed]
+ *   node tools/recapture.mjs <pack> --book <slug> --pdf <pdf> [--status ...]
+ *
+ * The Basic Set is two volumes sharing one run of pages; any other book is one
+ * PDF, read at its book.json `transcription.pdfOffset`.
  *
  * Output: build/recapture/<pack>.json and build/recapture/<pack>.txt
  */
@@ -27,10 +31,17 @@ import { joinText, structureOf, useLexicon } from "./lib/book-structure.mjs";
 import { lexiconOf } from "./lib/lexicon.mjs";
 import { openBook, readPage } from "./lib/pdf-layout.mjs";
 
-const VOLUMES = {
+const BASIC_SET_VOLUMES = {
   characters: { first: 1, last: 336, pdfPage: (page) => page + 2 },
   campaigns: { first: 337, last: 576, pdfPage: (page) => page - 334 },
 };
+
+/** A book's volumes: the Basic Set's two, or one for any other book, cached under its slug. */
+function volumesOf(bk) {
+  if (bk.slug === "basic-set") return BASIC_SET_VOLUMES;
+  const offset = bk.transcription.pdfOffset ?? 0;
+  return { [bk.slug]: { first: 1, last: 100000, pdfPage: (page) => page + offset } };
+}
 
 const RANK = { chapter: 0, h1: 1, h2: 2, h3: 3, h4: 4 };
 
@@ -50,18 +61,26 @@ const PERK_INLINE = /[.!?](?=\s+[A-Z][a-z'’-]+(?:\s+[A-Z][a-z'’-]+){0,3}(?:\
 /** Lines that are a skill's or spell's statistics, not its description. */
 const STAT_PARAGRAPH = /^(?:Defaults?|Prerequisites?)\s*:/;
 
+/**
+ * A spell's statistics after its description: its duration, cost, time to cast
+ * and prerequisites, which the system holds. GURPS Magic sets them as paragraphs
+ * between the description and the item it can be enchanted into.
+ */
+const SPELL_STATS = /^(?:Duration|(?:Base |Energy )?Cost(?: to (?:cast|create))?|Time to cast|Prerequisites?)\b[^:]{0,30}:/i;
+
 function option(name) {
   const at = process.argv.indexOf(name);
   return at !== -1 ? process.argv[at + 1] : null;
 }
 
-function library(paths) {
+function library(paths, volumes) {
   const open = new Map();
   const memory = new Map();
+  const names = Object.keys(volumes);
   return async function structure(page) {
     if (memory.has(page)) return memory.get(page);
-    const volume = page <= VOLUMES.characters.last ? "characters" : "campaigns";
-    const { first, last, pdfPage } = VOLUMES[volume];
+    const volume = names.find((name) => page <= volumes[name].last) ?? names.at(-1);
+    const { first, last, pdfPage } = volumes[volume];
     if (page < first || page > last) return null;
     const cacheDir = join(projectRoot, "extracted", "structure", volume);
     const cacheFile = join(cacheDir, `${page}.json`);
@@ -144,6 +163,8 @@ function headingName(text) {
     .replace(/[†‡*]+/g, "")
     // A Very Hard spell is marked so beside its name: "Great Haste (VH)".
     .replace(/\s*\(VH\)/, "")
+    // A technological spell carries its tech level: "Seek Machine/TL".
+    .replace(/\/TL\b/, "")
     .replace(/(\s+[\d/]+){1,3}\s*$/, "")
     .replace(TRAILING_STAT, "")
     .trim();
@@ -169,7 +190,7 @@ function candidatesFor(name) {
 }
 
 /** Paragraphs from a heading to where its section ends. */
-function section(blocks, at) {
+function section(blocks, at, spells = false) {
   // An entry set as a fourth-level heading with its cost -- "Alternate Form
   // Variable" under Shapeshifting -- has sub-headings at the same level
   // ("Special Limitations"), so it ends at the next heading that carries a cost,
@@ -196,6 +217,16 @@ function section(blocks, at) {
       continue;
     }
     if (b.kind !== "p") continue;
+    if (spells && SPELL_STATS.test(b.text.trim())) {
+      statOpen = !/[.!?]$/.test(b.text.trim());
+      continue;
+    }
+    if (spells && statOpen && !leading && /^[a-z(]/.test(b.text.trim())) {
+      statOpen = !/[.!?]$/.test(b.text.trim());
+      continue;
+    }
+    // A spell's class, set as a line of text under its name: "Regular; Resisted by HT".
+    if (spells && leading && STAT_LINE.test(b.text.trim())) continue;
     // The book's icon digits for a trait's type, set apart from its heading: "3 1".
     if (/^[\d/\s]+$/.test(b.text)) continue;
     if (PERK_HEADING.test(b.text.trim())) break;
@@ -213,8 +244,10 @@ function section(blocks, at) {
       continue;
     }
     if (leading && /^\*/.test(b.text.trim())) continue;
-    // "see Melee Weapon, p. 208": a cross-reference, not a description.
-    if (leading && /^see\b/i.test(b.text)) return null;
+    // "see Melee Weapon, p. 208": a cross-reference, not a description. A
+    // description can open with the word too -- "See through air" -- so only a
+    // short line naming a page counts.
+    if (leading && /^see\b/i.test(b.text) && /\bpp?\.\s*\d/.test(b.text) && b.text.length < 120) return null;
     leading = false;
     out.push({ kind: "p", text: b.text.trim(), runIn: b.runIn });
     for (const rows of b.tables ?? []) out.push({ kind: "table", rows });
@@ -248,7 +281,7 @@ function variantOf(paragraphs, variant, name) {
   return [...opening, ...own];
 }
 
-async function capture(structure, record) {
+async function capture(structure, record, spells) {
   const cited = Number(/\d+/.exec(record.pages ?? "")?.[0] ?? 0);
   if (!cited) return { found: false, why: "no page cited" };
   const { blocks, asides } = await flowOf(structure, Math.max(1, cited - 1), cited + 3);
@@ -264,15 +297,31 @@ async function capture(structure, record) {
     });
 
   for (const hit of headings.filter(({ b }) => exact.some((n) => norm(headingName(b.text)) === norm(n)))) {
-    const paragraphs = section(blocks, hit.i);
+    const paragraphs = section(blocks, hit.i, spells);
     if (paragraphs) return { found: true, kind: "heading", page: hit.b.page, paragraphs };
   }
   for (const hit of headings.filter(({ b }) => family.some((n) => norm(headingName(b.text)) === norm(n)))) {
-    const paragraphs = section(blocks, hit.i);
+    const paragraphs = section(blocks, hit.i, spells);
     if (!paragraphs) continue;
     const own = variant ? variantOf(paragraphs, variant, record.name) : null;
     if (own) return { found: true, kind: "variant", page: hit.b.page, paragraphs: own };
     return { found: true, kind: "family", page: hit.b.page, paragraphs };
+  }
+  // A heading written as a pattern for several entries: "Summon (Air) Elemental",
+  // "(Animal) Control", "Keen (Sense)", "Command Spirit (type)". Each entry it
+  // stands for takes its whole text.
+  for (const { b, i } of headings) {
+    const name = headingName(b.text);
+    if (!/\([A-Za-z ]+\)/.test(name)) continue;
+    const pattern = new RegExp(
+      "^" + name.split(/(\([A-Za-z ]+\))/).map((part, k) => (k % 2 ? "(?:\\(?)[A-Za-z' -]+?(?:\\)?)" : part.replace(/[.*+?^${}|[\]\\]/g, "\\$&"))).join("") + "$",
+      "i",
+    );
+    // "Command Spirit" as well as "Command Spirit (Banshees)".
+    const bare = norm(name.replace(/\s*\([A-Za-z ]+\)\s*/g, " "));
+    if (!exact.some((n) => pattern.test(n) || norm(n) === bare)) continue;
+    const paragraphs = section(blocks, i, spells);
+    if (paragraphs?.length) return { found: true, kind: "family", page: b.page, paragraphs };
   }
   // An entry printed as a labelled paragraph with no heading of its own.
   for (const n of [...exact, ...family]) {
@@ -376,15 +425,20 @@ function likeness(a, b) {
 
 async function main() {
   const pack = process.argv[2];
-  const paths = { characters: option("--characters"), campaigns: option("--campaigns") };
+  const bk = book(option("--book") ?? "basic-set");
+  const paths = bk.slug === "basic-set"
+    ? { characters: option("--characters"), campaigns: option("--campaigns") }
+    : { [bk.slug]: option("--pdf") };
   const statuses = new Set((option("--status") ?? "needs-review,reviewed").split(","));
-  if (!pack || pack.startsWith("--") || !paths.characters || !paths.campaigns) {
-    console.error("Usage: node tools/recapture.mjs <pack> --characters <pdf> --campaigns <pdf> [--status needs-review,reviewed]");
+  if (!pack || pack.startsWith("--") || Object.values(paths).some((path) => !path)) {
+    console.error(
+      "Usage: node tools/recapture.mjs <pack> --characters <pdf> --campaigns <pdf> [--status needs-review,reviewed]\n" +
+        "       node tools/recapture.mjs <pack> --book <slug> --pdf <pdf> [--status ...]",
+    );
     process.exit(1);
   }
-  useLexicon(await lexiconOf([paths.characters, paths.campaigns]));
-  const structure = library(paths);
-  const bk = book("basic-set");
+  useLexicon(await lexiconOf(Object.values(paths)));
+  const structure = library(paths, volumesOf(bk));
   const { records } = readProse(bk, pack);
 
   const results = [];
@@ -392,7 +446,7 @@ async function main() {
   for (const record of records.values()) {
     if (!statuses.has(record.status)) continue;
     if (only && record.name !== only) continue;
-    const got = await capture(structure, record);
+    const got = await capture(structure, record, pack === "spells");
     if (only) console.log(JSON.stringify(got, null, 2));
     const description = got.found ? toHtml(got.paragraphs) : "";
     results.push({
@@ -412,7 +466,8 @@ async function main() {
 
   const outDir = join(buildRoot, "recapture");
   mkdirSync(outDir, { recursive: true });
-  writeFileSync(join(outDir, `${pack}.json`), JSON.stringify(results, null, 2), "utf8");
+  const stem = bk.slug === "basic-set" ? pack : `${bk.slug}-${pack}`;
+  writeFileSync(join(outDir, `${stem}.json`), JSON.stringify(results, null, 2), "utf8");
   const text = (html) => plainText(String(html).replace(/<\/p>|<\/li>/g, "\n").replace(/<[^>]+>/g, "")).trim();
   const report = results.map(
     (r) =>
@@ -420,7 +475,7 @@ async function main() {
       (r.notes ? `NOTES: ${r.notes}\n` : "") +
       `--- OLD ---\n${text(r.old)}\n--- NEW ---\n${text(r.description)}\n`,
   );
-  writeFileSync(join(outDir, `${pack}.txt`), report.join("\n"), "utf8");
+  writeFileSync(join(outDir, `${stem}.txt`), report.join("\n"), "utf8");
   const tally = {};
   for (const r of results) tally[r.kind] = (tally[r.kind] ?? 0) + 1;
   const same = results.filter((r) => r.likeness >= 0.97).length;
