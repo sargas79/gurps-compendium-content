@@ -1,0 +1,25 @@
+{
+  // The same compiler settings as the GWorld system, so the system's API
+  // declarations and its pure rules (in tests) check the same way here.
+  "compilerOptions": {
+    "target": "ES2023",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "types": ["node", "vitest/globals"]
+  },
+  // types/gworld is generated from the pinned system by `npm run api-types`;
+  // foundry.d.ts is the system's own declaration of the Foundry globals.
+  "include": ["src/**/*.ts", "types/gworld/**/*.d.ts", "system/src/system/foundry.d.ts", "*.ts"]
+}

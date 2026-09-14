@@ -6,6 +6,9 @@ dist/
 # Merged pack source, an intermediate between books/ and dist/.
 build/
 
+# The system's add-on API declarations, generated from the pinned submodule.
+types/
+
 # Release artifact, built on demand.
 *.zip
 

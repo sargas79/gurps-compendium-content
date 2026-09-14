@@ -8,17 +8,30 @@
     "node": ">=24.13.1"
   },
   "scripts": {
+    "api-types": "node tools/api-types.mjs",
+    "typecheck": "npm run api-types && tsc --noEmit",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "bundle": "vite build",
+    "check": "npm run typecheck && npm run test && npm run lint",
     "coverage": "node tools/coverage.mjs",
     "merge": "node tools/merge.mjs",
     "validate": "node tools/merge.mjs && node tools/validate.mjs",
-    "build": "npm run validate && node tools/pack.mjs && node tools/manifest.mjs",
+    "build": "npm run check && npm run bundle && npm run validate && node tools/pack.mjs && node tools/manifest.mjs",
     "extract": "node tools/extract.mjs",
     "deploy": "node tools/deploy.mjs",
     "release": "npm run build && node tools/release.mjs"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.5",
     "@foundryvtt/foundryvtt-cli": "^3.0.4",
+    "@types/node": "^24.13.4",
+    "eslint": "^9.39.5",
     "marked": "^16.0.0",
-    "pdfjs-dist": "^4.10.38"
+    "pdfjs-dist": "^4.10.38",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.0",
+    "vite": "^7.3.6",
+    "vitest": "^3.2.7"
   }
 }

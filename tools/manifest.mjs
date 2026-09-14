@@ -13,12 +13,15 @@
  *     book (GWorldVTT #100).
  *   - `packFolders` groups the same packs in Foundry's own compendium sidebar,
  *     which needs no system change at all.
+ *   - `esmodules` loads the books' rules, built by `npm run bundle`, and
+ *     `flags.gworld.apiVersion` is the range of the system's add-on API the
+ *     script needs, so the GM is warned when the system doesn't provide it.
  *
  * Usage: node tools/manifest.mjs
  */
 
-import { existsSync } from "node:fs";
-import { mkdir, writeFile } from "node:fs/promises";
+import { existsSync, readFileSync } from "node:fs";
+import { cp, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import {
@@ -33,6 +36,17 @@ import {
 
 /** Where this module's source and releases live. */
 const REPOSITORY = "sargas79/gurps-compendium-content";
+
+/** The range of the system's add-on API the module's script is built for, read from where the script declares it. */
+const API_RANGE = (() => {
+  const source = readFileSync(join(import.meta.dirname, "..", "src", "shared", "module.ts"), "utf8");
+  const range = /export const API_RANGE = "([^"]+)"/.exec(source)?.[1];
+  if (!range) throw new Error("src/shared/module.ts declares no API_RANGE");
+  return range;
+})();
+
+/** The module's script, as `vite build` writes it. */
+const SCRIPT = `scripts/${MODULE_ID}.mjs`;
 
 /** What the system gives its own packs, so the module's behave the same way. */
 const OWNERSHIP = { PLAYER: "OBSERVER", ASSISTANT: "OWNER" };
@@ -102,9 +116,18 @@ async function main() {
         },
       ],
     },
+    esmodules: [SCRIPT],
+    languages: [{ lang: "en", name: "English", path: "lang/en.json" }],
+    flags: { [SYSTEM_ID]: { apiVersion: API_RANGE } },
     packs,
     packFolders,
   };
+
+  if (!existsSync(join(distRoot, SCRIPT))) {
+    console.error(`No dist/${SCRIPT}. Run "npm run bundle" first.`);
+    process.exit(1);
+  }
+  await cp(join(import.meta.dirname, "..", "lang"), join(distRoot, "lang"), { recursive: true });
 
   await mkdir(distRoot, { recursive: true });
   await writeFile(join(distRoot, "module.json"), JSON.stringify(manifest, null, 2) + "\n", "utf8");
