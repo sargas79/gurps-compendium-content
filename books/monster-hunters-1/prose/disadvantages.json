@@ -1,0 +1,34 @@
+[
+  {
+    "_id": "6c22473d9d78ed16",
+    "name": "Compulsive Snooping",
+    "pages": "MH1:15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Worth -5 points* if you eavesdrop, go through mail, peek in desks, etc., or -10 points* if you also use Mind Reading and/or Mind Probe to steal secrets.</p><p>Only Telepathy can justify the more serious version of Compulsive Snooping.</p>"
+  },
+  {
+    "_id": "4300e5039777e4b4",
+    "name": "Compulsive Thrill-Seeking",
+    "pages": "MH1:7",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Compulsive Thrill-Seeking (9) [-15] is a Compulsive Behavior (p. B128) for adrenaline junkies. You must make a self-control roll when presented with a potentially dangerous (but not suicidal) situation; e.g., BASE jumping or monster hunting. Failure means you must participate, though you may first equip and prepare yourself. If nothing presents itself on a given day, roll to avoid seeking something out on your own! This is worth -10 points, modified to -15 for the lower self-control number (p. B120).</p>"
+  },
+  {
+    "_id": "bbb17e619ecca410",
+    "name": "Obsession (Rid the world of monsters)",
+    "pages": "MH1:7",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Obsession (Rid the world of monsters) (9) [-15] fits a hero who takes it personally. You can perform other actions, but must make a self-control roll to engage in any activity that might interfere with slaying a known foe.</p>"
+  },
+  {
+    "_id": "dba2e6a2e8efc8fd",
+    "name": "Divine Curse (Monster Magnet)",
+    "pages": "MH1:7",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Divine Curse (Monster Magnet) [-15] fits those targeted by Fate. Any monster near your town will eventually run into you or your friends, or otherwise cause havoc in your life. This is not a conscious enmity, however - just a dangerous coincidence!</p>"
+  }
+]
