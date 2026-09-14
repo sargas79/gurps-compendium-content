@@ -64,6 +64,78 @@
     "description": "<p>These \"items\" (which are actually a collection of many items) do not take quality modifiers; their bonus is dependent on their size. A lab is required equipment to do physical work involving one of Biology, Chemistry, Forensics, or Pharmacy. (Cerebral sciences, like Mathematics and Physics, don't require labs.) Similarly, a separate tool kit is needed to use each specialty of Armoury, Electronics Repair, Explosives, or Mechanic. Using a tool kit for the wrong specialty of the right skill gives an extra -2 to skill.</p><p>Gives +2 to one skill.</p>"
   },
   {
+    "_id": "330416480eaec6d9",
+    "name": "Grimoire (+2)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "bd32084377788218",
+    "name": "Grimoire (+3)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "f304514c395924fb",
+    "name": "Grimoire (+4)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "acfdc1c052e30efa",
+    "name": "Grimoire (+5)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "ef43075146caa053",
+    "name": "Grimoire (+6)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "a378f59243b00a71",
+    "name": "Grimoire (+7)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "8c5620e466639d92",
+    "name": "Grimoire (+8)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "78e0585137d29e37",
+    "name": "Grimoire (+9)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
+    "_id": "c8b399fe29241a6d",
+    "name": "Grimoire (+10)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>For an explanation of grimoires, see p. 39. Even more so than most esoteric tools, grimoires can be difficult to acquire. First, only shops dealing in ancient magical texts (usually disguised as simple used book stores) even offer the product at all. Just as important, an infinite number of rituals exist, which means weak odds of finding a grimoire for the one ritual you want.</p><p>Thus, when a hunter goes shopping between missions, what he wants may not be available. For each ritual, whether as a standalone book or as part of a collection, roll 3d-8 to determine the maximum bonus available. If the result is less than +2, no grimoire is available for that spell - he may try again after the next mission. The champion can buy a lesser version if he can't afford the best. (Don't roll during character creation; the hero may start the game with whatever he can afford.)</p><p>Sellers rarely keep potent grimoires in stock; once ordered, the customer comes back for it. During downtime, this can be abstracted, but if the hunter hits the store in the middle of a mission, and needs something right now, roll 3d-12 instead of 3d-8.</p><p>A grimoire's bonus affects its weight - larger modifiers require more text, diagrams, and so on. Grimoires have two options available, both explained on p. 39, each of which has a \"cost factor\" (CF) which modifies the cost as for gadgets (p. 54):</p><p><strong>Dead-Language:</strong> The grimoire requires comprehension of an ancient tongue, or translation. -0.2 CF.</p><p><strong>Encrypted:</strong> The grimoire must be decoded before use. -0.2 CF.</p>"
+  },
+  {
     "_id": "424cf6d4119ce4b6",
     "name": "Basic Gear",
     "pages": "MH1:54",
@@ -734,5 +806,197 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Each type of optic provides the effects of the listed traits while being used. Goggles are dangerous to wear when fighting - No Depth Perception gives -1 to melee combat, and -3 to ranged!</p><p>Infravision, Telescopic Vision 3, Colorblindness, No Depth Perception, and No Peripheral Vision. Hands-free. Run for 2 hours.</p>"
+  },
+  {
+    "_id": "4d017dd8b019a09f",
+    "name": "Grimoire Collection",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>If multiple grimoires are being purchased (or are discovered) at once, they may be part of a collection. This is a single book that encompasses multiple rituals, and may be used when casting any of them. The rituals must all share at least one common Path skill, but the bonuses do not have to match.</p><p>A collection costs the same as the individual grimoires would - the savings is one of weight, not money. Take the weight listed for the best bonus, then add 1/5 of the total weight for every other ritual.</p><p><em>Example:</em> Brad wants a collection aiding three rituals: a cloaking spell (Greater Destroy Energy), a spontaneous-combustion spell (Greater Create Energy), and a hacking spell (Greater Strengthen Chance and Lesser Sense Energy). All three use Path of Energy, so they can be collected. The GM rolls 3d-8 for each, resulting in +3, +5, and +2. Brad can't afford that, so he buys grimoires worth +3, +4, and +2. The collection weighs 3 + (4.5/5) = 3.9 lbs, and he can use it for +3 to cloak, +4 to burn, or +2 to hack.</p>"
+  },
+  {
+    "_id": "3eaa3d114ce843c3",
+    "name": "Charm, Homemade",
+    "pages": "MH1:38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Conditional spells are often cast on fragile objects, forming \"physical spells\" known as charms. The object is usually an inexpensive glass or ceramic token - many casters use cheap jewelry bought from thrift stores - but anything with DR 0 and HP 1 (e.g., origami constructs or cloth shirts) will do. Preparing a charm takes extra time (see below), but requires no additional rolls beyond those required for casting.</p><p>Charms have their own unique properties:</p><p>• The subject of the ritual can be easily changed by moving the charm. This can be convenient, as it lets a caster easily supply his friends with magical protection . . . but it also lets a knowledgeable foe eliminate this protection by stealing the charm!</p><p>• The ritual can be triggered by the subject breaking the charm. This takes a Ready maneuver, which is far faster than most spells. Most non-adepts prepare several charms in advance to take advantage of this speed. The spell goes off automatically, using its original margin of success if it matters.</p><p>• Alternatively, the spell can be set to break the charm when it goes off. For example, a ward may alert the subject that it's been penetrated by shattering the pendant it's bound to.</p><p>Turning the fragile object into a charm requires a workspace (p. 57) - typically a converted kitchen, with pentagram-etched pans, magically inert tools, etc. - and uses the normal equipment modifiers for nontechnological skills (p. B345). Thus, working in the field with nothing gives -5 to all skill rolls to make a charm, borrowing a friend's kitchen gives -2, a normal workspace kit gives no modifier, a good-quality one gives +1, and a fine-quality kit gives +2. The actual creation requires 30 minutes to prepare the object, after which the conditional ritual must immediately be cast onto it, making it a charm.</p>"
+  },
+  {
+    "_id": "7db0ed11f286cc5a",
+    "name": "Charm, Purchased",
+    "pages": "MH1:38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Conditional spells are often cast on fragile objects, forming \"physical spells\" known as charms. The object is usually an inexpensive glass or ceramic token - many casters use cheap jewelry bought from thrift stores - but anything with DR 0 and HP 1 (e.g., origami constructs or cloth shirts) will do. Preparing a charm takes extra time (see below), but requires no additional rolls beyond those required for casting.</p><p>Charms have their own unique properties:</p><p>• The subject of the ritual can be easily changed by moving the charm. This can be convenient, as it lets a caster easily supply his friends with magical protection . . . but it also lets a knowledgeable foe eliminate this protection by stealing the charm!</p><p>• The ritual can be triggered by the subject breaking the charm. This takes a Ready maneuver, which is far faster than most spells. Most non-adepts prepare several charms in advance to take advantage of this speed. The spell goes off automatically, using its original margin of success if it matters.</p><p>• Alternatively, the spell can be set to break the charm when it goes off. For example, a ward may alert the subject that it's been penetrated by shattering the pendant it's bound to.</p><p>Turning the fragile object into a charm requires a workspace (p. 57) - typically a converted kitchen, with pentagram-etched pans, magically inert tools, etc. - and uses the normal equipment modifiers for nontechnological skills (p. B345). Thus, working in the field with nothing gives -5 to all skill rolls to make a charm, borrowing a friend's kitchen gives -2, a normal workspace kit gives no modifier, a good-quality one gives +1, and a fine-quality kit gives +2. The actual creation requires 30 minutes to prepare the object, after which the conditional ritual must immediately be cast onto it, making it a charm.</p>"
+  },
+  {
+    "_id": "d15963528a9c5987",
+    "name": "Workspace Kit, Basic",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>A collection of special pans, spoons, candlesticks, burners, etc. - necessary for casters trying to make charms (pp. 38-39) without a penalty. The room in which it's used will end up resembling a cross between a kitchen and a high-school chemistry lab. Takes an hour to safely set up or pack.</p>"
+  },
+  {
+    "_id": "5bfc8d2c9f696f05",
+    "name": "Workspace Kit, Good",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>Several boxes full of high-end gear, with inlaid copper pentagrams, magically inert utensils, etc. Gives +1 on all rolls to make a charm. Takes five hours to set up or pack.</p>"
+  },
+  {
+    "_id": "855a0897c99b19ff",
+    "name": "Workspace Kit, Fine",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>Enough gear to pack a huge room! Anodized orichalcum handles, swamp-gas burners, and so on. Gives +2 on all rolls to make a charm. Takes 20 hours to set up or pack.</p>"
+  },
+  {
+    "_id": "87dd10d6437a2d16",
+    "name": "Esoteric Kit",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>Basic equipment for Esoteric Healing - asafetida candles, chakra charts, incense, acupuncture needles, etc.</p>"
+  },
+  {
+    "_id": "ad2a5766005bb916",
+    "name": "Holy Symbol",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>Hand-made, well-used representation of the user's faith. Against demons or vampires, can be used as a holy attack (p. 51); treat as a sap, using Boxing-1, Brawling, or Karate-1 to hit.</p>"
+  },
+  {
+    "_id": "acb34b234cec267e",
+    "name": "Holy Symbol, Aged",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>A symbol that's been used for decades. Hand-made, well-used representation of the user's faith. Against demons or vampires, can be used as a holy attack (p. 51); treat as a sap, using Boxing-1, Brawling, or Karate-1 to hit. It also gives +1 in all Quick Contests against evil supernatural entities involving Exorcism, Mysticism abilities, etc., when brandished.</p>"
+  },
+  {
+    "_id": "7421965c17e7ebea",
+    "name": "Holy Symbol, Ancient",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>One that's been used for centuries. Hand-made, well-used representation of the user's faith. Against demons or vampires, can be used as a holy attack (p. 51); treat as a sap, using Boxing-1, Brawling, or Karate-1 to hit. It also gives +2 in all Quick Contests against evil supernatural entities involving Exorcism, Mysticism abilities, etc., when brandished.</p>"
+  },
+  {
+    "_id": "e5b8ebeed789419f",
+    "name": "Holy Symbol, Mass-Produced",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>A small symbol bought from a store or online. Can not be used as a holy attack!</p>"
+  },
+  {
+    "_id": "949825a31c6dc104",
+    "name": "Holy Water (per half-pint)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>Not for sale, but available free from many churches! Anyone with Clerical Investment may use Religious Ritual to make some out of ordinary water; this takes about a minute per pint (minimum one minute). Use it to fill balloons (p. 54), bottles (p. 54), or liquid projectors (p. 62).</p>"
+  },
+  {
+    "_id": "f97e00aac189013c",
+    "name": "EWD",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p><strong>Ectocognitive Wave Detector (EWD):</strong> A handheld meter that measures projected psychic energy, which can be used to identify both ghosts and active psi use. The GM rolls for the operator, applying range penalties (p. B550). Success by 0-2 acts as Detect (Vague), by 3-4 as Detect, and by 5+ as Detect (Precise); see p. B48.</p>"
+  },
+  {
+    "_id": "751c0c9ad830434a",
+    "name": "Ethereal Barrier Power Converter",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>Resembling \"rope lights,\" this inch-thick cord can be used to cordon off an area from psychic energy. The cord must form an enclosed shape, like a circle. Once laid out and powered up, any psionics used across the boundary must win a Quick Contest against the cord's power of 12 to have any effect. Failure (but not a tie) costs the psi 1 FP. Similarly, any spirit attempting to cross the boundary must win a Quick Contest: the better of its ST, HT, or Will against the cord's power of 12, with the same effects on a failure. However, for every psionic ability or spirit that does get through, the cord must roll against its HT 11 or short out until repaired. (To enclose a circle, multiply the radius by 6.3 for the amount of cord needed.) Runs on external power, through a power converter.</p>"
+  },
+  {
+    "_id": "2011864d5e056b31",
+    "name": "Ethereal Barrier Cord (per yd.)",
+    "pages": "MH1:57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>Resembling \"rope lights,\" this inch-thick cord can be used to cordon off an area from psychic energy. The cord must form an enclosed shape, like a circle. Once laid out and powered up, any psionics used across the boundary must win a Quick Contest against the cord's power of 12 to have any effect. Failure (but not a tie) costs the psi 1 FP. Similarly, any spirit attempting to cross the boundary must win a Quick Contest: the better of its ST, HT, or Will against the cord's power of 12, with the same effects on a failure. However, for every psionic ability or spirit that does get through, the cord must roll against its HT 11 or short out until repaired. (To enclose a circle, multiply the radius by 6.3 for the amount of cord needed.) Runs on external power, through a power converter.</p>"
+  },
+  {
+    "_id": "541d30062e43030c",
+    "name": "Mental Shield (+4)",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>This resembles a small colander, form-fitted to the head, with wires and resistors coming out of it. It must be worn in contact with the scalp, precluding the use of a helmet. Gives the wearer Mind Shield 4, cumulative with any natural Mind Shield, but most people react to him at -2. It also provides an extra DR 1 to the skull, but for every hit, the shield must roll against its HT 11 or short out until repaired.</p>"
+  },
+  {
+    "_id": "26623d0dfb93d2e2",
+    "name": "Spiricom",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>A system of frequency-tone generators that can isolate a spiritual \"carrier wave\" so everyone can hear it. Look up the operator's margin of success on the \"Size\" column of the Size and Speed/Range Table (p. B550). Within this range, if any psi uses Telesend, or any ghost attempts to communicate, the spiricom converts it to sound. Runs on external power.</p>"
+  },
+  {
+    "_id": "48787cf2daf04f2b",
+    "name": "Ghost Blaster",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>A backpack containing a stripped-down nuclear accelerator connected to a rifle-sized particle thrower, capable of projecting energy that disrupts a spirit's ties to this astral plane. It can only affect insubstantial foes, including ghosts, certain demons, astral projectors, etc. If the \"damage\" reduces the target to 0 FP, it immediately returns to wherever it belongs - ghosts move on, demons go to Hell, projectors return to their bodies, and so on. See the Firearms Table (p. 62) for stats.</p>"
+  },
+  {
+    "_id": "ff4e1be01b059397",
+    "name": "Mind Disruptor",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>This weapon is useful for humans you don't want to hurt, and resembles a cross between a rifle and a \"beach-combing\" metal detector. When hit, the target must roll against Will-2, with a bonus equal to any Mind Shield, or be mentally stunned; he may roll again each turn to recover. On a critical failure, he falls unconscious! The effect disrupts short-term memory; victims who succumb never remember what happened to them during the second they were shot, or the second before that. See the Firearms Table (p. 62) for stats.</p>"
+  },
+  {
+    "_id": "b51fedd0c6715dc1",
+    "name": "Neutralizer",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>The ghost blaster, mind disruptor, and neutralizer use Beam Weapons (Projector), and can be given the \"cost factor\" modifiers found under Firearms (p. 61). All of the other electronic gear requires an Electronics Operation (Psychotronics) roll to use properly.</p><p>This bulky rifle, attached to a hip-pack battery, is useful when going up against rogue psis. When hit, the target must roll against Will-4, with a bonus equal to any Mind Shield, or lose access to all of his psionic abilities for seconds equal to the margin of failure (minutes on a critical failure). See the Firearms Table (p. 62) for stats.</p>"
+  },
+  {
+    "_id": "00e69918eb74cacf",
+    "name": "Psi-Block (Pill)",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>These pills take two seconds to ready and swallow; they take effect within a minute. They are also available as injections, which require 15 seconds to administer but then work immediately. Injecting a drug quickly (two seconds) requires a First Aid-4 or Physician+2 roll, with failure resulting in a wasted drug.</p><p>Alters the user's morphic field: For 1d×10 minutes, psis are at -4 to use their abilities (whether mental, physical, or even divination) on him. If given to a psi, he is also at -8 to use any of his own abilities!</p>"
+  },
+  {
+    "_id": "350d03b23951d09a",
+    "name": "Psi-Block (Syringe)",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>These pills take two seconds to ready and swallow; they take effect within a minute. They are also available as injections, which require 15 seconds to administer but then work immediately. Injecting a drug quickly (two seconds) requires a First Aid-4 or Physician+2 roll, with failure resulting in a wasted drug.</p><p>Alters the user's morphic field: For 1d×10 minutes, psis are at -4 to use their abilities (whether mental, physical, or even divination) on him. If given to a psi, he is also at -8 to use any of his own abilities!</p>"
+  },
+  {
+    "_id": "d233ff14584c24c5",
+    "name": "Psi-Boost (Pill)",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>These pills take two seconds to ready and swallow; they take effect within a minute. They are also available as injections, which require 15 seconds to administer but then work immediately. Injecting a drug quickly (two seconds) requires a First Aid-4 or Physician+2 roll, with failure resulting in a wasted drug.</p><p>Adds +1 to the user's psi rolls for 1d×10 minutes. User must roll HT; on a failure, he is also at -2 to DX and all DX-based rolls for hours equal to the margin of failure. Multiple doses within 24 hours are at a cumulative -1 to this roll. Potentially addictive (-15 points); users are at -5 to all psi use while going through withdrawal.</p>"
+  },
+  {
+    "_id": "abaa0b4312b19353",
+    "name": "Psi-Boost (Syringe)",
+    "pages": "MH1:58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These items are not available on the open market. Champions are free to start off with them, but getting them in play requires an appropriate Contact or Patron, use of a relevant skill (e.g., Streetwise), or tracking down a specialty shop. These items do not take the modifiers listed for gadgets (p. 54).</p><p>This technology interacts with psi, or uses psionic principles to accomplish something \"impossible,\" such as interacting with spirits.</p><p>These pills take two seconds to ready and swallow; they take effect within a minute. They are also available as injections, which require 15 seconds to administer but then work immediately. Injecting a drug quickly (two seconds) requires a First Aid-4 or Physician+2 roll, with failure resulting in a wasted drug.</p><p>Adds +1 to the user's psi rolls for 1d×10 minutes. User must roll HT; on a failure, he is also at -2 to DX and all DX-based rolls for hours equal to the margin of failure. Multiple doses within 24 hours are at a cumulative -1 to this roll. Potentially addictive (-15 points); users are at -5 to all psi use while going through withdrawal.</p>"
   }
 ]
