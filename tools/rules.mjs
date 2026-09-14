@@ -78,6 +78,7 @@ const ALIASES = {
   vehicleManeuvers: ["Basic Vehicle Combat"],
   bluntTrauma: ["Flexible Armor and Blunt Trauma"],
   dualWeaponAttack: ["Dual-Weapon Attacks"],
+  highSpeed: ["High-Speed Movement"],
   frontArmor: ["Armor Tables"],
   layeredArmor: ["Combining and Layering Armor"],
   minimumSt: ["ST (Strength)"],
@@ -133,8 +134,18 @@ const CORE = [
     extra: [{ key: "successRolls", title: "Success Rolls", names: ["When the GM Rolls"], page: 344 }],
   },
   { from: 362, to: 383, folder: () => "combat" },
-  // Names a section the chapter shares with an earlier one: Melee Attacks.
+  // A chapter's name tells apart a section it shares with an earlier chapter:
+  // Melee Attacks, Special Damage.
   { from: 384, to: 392, folder: () => "combat", chapter: "Tactical Combat" },
+  // `intros` are sections whose subsections are all switches' pages already,
+  // so their own page is the opening words only.
+  {
+    from: 393,
+    to: 417,
+    folder: (title) => (title === "Cinematic Combat Rules" ? "cinematic" : "combat"),
+    chapter: "Special Combat Situations",
+    intros: ["Cinematic Combat Rules"],
+  },
 ];
 
 function flag(name, fallback = null) {
@@ -395,6 +406,7 @@ const MENDS = [
   [/over-takes/g, "overtakes"],
   [/over-heat/g, "overheat"],
   [/hex-byhex/g, "hex-by-hex"],
+  [/maneuver-able/g, "maneuverable"],
 ];
 
 /** Characters Markdown would read as formatting: "-10 points*", "a_b". */
@@ -605,7 +617,7 @@ async function coreRules(structure, registered) {
         group: chapter.folder(titleCase(parent?.text ?? "")),
         names: [titleCase(h.text)],
         core: true,
-        shallow: intro,
+        shallow: intro || (chapter.intros ?? []).includes(titleCase(h.text)),
       });
     });
   }
@@ -724,7 +736,9 @@ async function main() {
     const handFile = join(book("basic-set").dir, "journals-by-hand", `${rule.key}.md`);
     const byHand = existsSync(handFile);
     if (byHand) markdown = readFileSync(handFile, "utf8").replace(/\r\n/g, "\n");
-    const why = byHand ? [] : doubts(markdown, captured);
+    // A section's opening words before its subsections, which have pages of
+    // their own, can be a single sentence: Special Movement.
+    const why = byHand ? [] : doubts(markdown, captured).filter((doubt) => !(rule.shallow && doubt === "very short"));
     const read = byHand ? null : decisions.get(rule.key);
     if (read) why.push(`read and found wanting: ${read}`);
     const endPage = captured.endPage;

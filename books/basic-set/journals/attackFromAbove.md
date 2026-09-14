@@ -1,0 +1,7 @@
+Ambush from above is a good surprise tactic. Roll a Quick Contest to see if it works: your Stealth vs. the victim’s Vision. A victim walking along a trail, alley, etc. is at -2 to notice someone lurking above, unless he specifically states he is looking in the trees, high windows, etc.; then he gets +2 (but -2 to notice things on his own level!). Peripheral Vision is of no special value in this situation.
+
+If you win the Quick Contest, your victim fails to spot you. He gets no active defense against your attack! At the GM’s option, a particularly unwary individual might “freeze up”; see Surprise Attacks and Initiative (p. 393). Even if you lose – or your target is warned – your victim’s active defenses are at -2 against your attack. However, an alerted foe can take a Wait maneuver and make a “stop thrust” when you drop (see Wait, p. 366).
+
+You can drop from any height before attacking (a special kind of “step”). You have an extra -2 to hit. Regardless of the results of your attack, you take falling damage if you dropped from more than two yards – see Falling (p. 431). You may attempt an Acrobatics roll to reduce this. Natural ambushers-from-above (e.g., jaguars) have Catfall (p. 41).
+
+You can opt to drop onto your victim instead – animals often attack this way! Resolve damage to yourself and your target separately from your attack. Note that a victim is a soft thing to land on, unless he has DR 3+.
