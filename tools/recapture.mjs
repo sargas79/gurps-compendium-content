@@ -142,6 +142,8 @@ function anchorOf(table, page) {
 function headingName(text) {
   return String(text)
     .replace(/[†‡*]+/g, "")
+    // A Very Hard spell is marked so beside its name: "Great Haste (VH)".
+    .replace(/\s*\(VH\)/, "")
     .replace(/(\s+[\d/]+){1,3}\s*$/, "")
     .replace(TRAILING_STAT, "")
     .trim();

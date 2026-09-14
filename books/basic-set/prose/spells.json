@@ -259,57 +259,57 @@
     "_id": "20b2e35f0218d0ee",
     "name": "Accuracy",
     "pages": "B480",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a weapon more likely to hit by adding to the user's effective skill.</p>"
   },
   {
     "_id": "4d3bd6ea0712524e",
     "name": "Deflect",
     "pages": "B480",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Adds a Defense Bonus to armor, clothing, a shield, or a weapon. This adds to all active defense rolls made by the user.</p>"
   },
   {
     "_id": "2445ca05894854eb",
     "name": "Enchant",
     "pages": "B480",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is a prerequisite for all other Enchantment spells.</p>"
   },
   {
     "_id": "8718e261456cb3b3",
     "name": "Fortify",
     "pages": "B480",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Increases the DR of clothing or a suit of armor.</p>"
   },
   {
     "_id": "179d69002c3fd5d8",
     "name": "Power",
     "pages": "B480",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes a magic item partially or completely \"self-powered.\" Each point of Power reduces the energy cost to cast or to maintain any spell on the item by 1. Halve this bonus in a low-mana area (round down); double it in a high- or very high-mana area. Power has no effect on the energy cost of the user's spells!</p><p>If Power reduces the cost to maintain a spell to 0, treat the item as \"always on\" after the cost to cast is paid - but the wearer must stay awake to maintain the spell. If Power reduces the cost to cast to 0, the item is \"always on\" for all purposes, although the owner may turn it off if he wishes.</p>"
   },
   {
     "_id": "61f8b47a2e806ecf",
     "name": "Puissance",
     "pages": "B481",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Adds to the basic damage a weapon does when it hits.</p>"
   },
   {
     "_id": "d53b264cf3bf09de",
     "name": "Staff",
     "pages": "B481",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Enchants a magic staff - see Magic Staffs (p. 240) for details. Though many magic items must be in the form of a wand or staff, they do not have to have this spell on them.</p>"
   },
   {
     "_id": "c7f31f31b070e22e",
@@ -363,9 +363,9 @@
     "_id": "d4ec41f5a4881841",
     "name": "Cold",
     "pages": "B247",
-    "status": "needs-review",
-    "notes": "a character did not survive extraction",
-    "description": "<p>This spell is the reverse of Heat (above). It can reduce the temperature of any object to absolute zero, if maintained for long enough.</p><p>Duration, Cost, and Time to cast: As for Heat, except each minute lowers the target's temperature by 20�.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is the reverse of Heat (above). It can reduce the temperature of any object to absolute zero, if maintained for long enough.</p><p>Duration, Cost, and Time to cast: As for Heat, except each minute lowers the target's temperature by 20°.</p>"
   },
   {
     "_id": "a0ca02dce2d13559",
@@ -411,9 +411,9 @@
     "_id": "faace63d44205eff",
     "name": "Plane Shift",
     "pages": "B248",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell bodily transports the caster - along with anything he is carrying (up to Heavy encumbrance) - to a particular plane of existence. Each plane requires its own Plane Shift spell. This is a one-way trip. To get back, the caster must know Plane Shift for his home plane or get a wizard in the other plane to cast Banish (p. 252) on him.</p><p>This spell gives the caster no special immunity to his surroundings. To safely visit a plane where the natural conditions are vacuum, flame, etc., you must learn the necessary protective spells.</p>"
   },
   {
     "_id": "4174d7d25b2b9626",
@@ -459,17 +459,17 @@
     "_id": "3fc75ec98b14d432",
     "name": "Major Healing",
     "pages": "B248",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Restores up to 8 HP to the subject. Does not eliminate disease or poison, but cures the damage they cause.</p><p>Otherwise, this spell functions just like Minor Healing: it is at -3 per casting on the same subject in one day, and Physician skill at level 15 or higher mitigates the effects of a critical failure.</p><p>The penalties for repeated casting accrue separately for Minor Healing and Major Healing. For instance, a caster could cast both spells on the same subject in the same day at no penalty.</p>"
   },
   {
     "_id": "4a2ec4c7441b1bc0",
     "name": "Great Healing",
     "pages": "B248",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Restores all of the subject's missing HP. Does not eliminate disease or poison, nor does it restore crippled or missing body parts, but it can heal HP lost to any of these things.</p><p>A given subject can only benefit from this spell once per day, whether cast by the same caster or by a different caster each time.</p><p>If you have the Physician skill at level 15 or higher, a critical failure with this spell counts only as an ordinary failure.</p>"
   },
   {
     "_id": "14ee009b3230cba2",
@@ -595,8 +595,8 @@
     "_id": "fec623ebba74fbe9",
     "name": "Mass Daze",
     "pages": "B251",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>As Daze, but can be cast over an area.</p>"
   },
   {
@@ -611,8 +611,8 @@
     "_id": "eacbf04585efb11b",
     "name": "Mass Sleep",
     "pages": "B251",
-    "status": "needs-review",
-    "notes": "very short",
+    "status": "reviewed",
+    "notes": "",
     "description": "<p>As Sleep, but can be cast over an area.</p>"
   },
   {
@@ -635,9 +635,9 @@
     "_id": "8b6da22fb6224cb9",
     "name": "Great Haste",
     "pages": "B251",
-    "status": "no-entry",
-    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
-    "description": ""
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Speeds the subject up a lot. In effect, the subject has one level of Altered Time Rate (p. 38) for the duration of the spell.</p>"
   },
   {
     "_id": "cf50b9f67215e2b3",
@@ -779,9 +779,9 @@
     "_id": "4f6ec8deb1ba1c72",
     "name": "Shape Water",
     "pages": "B253",
-    "status": "needs-review",
-    "notes": "a character did not survive extraction",
-    "description": "<p>Lets the caster sculpt water (including ice or steam) into any form, and even move it about. Once given a shape, the water holds it without further concentration until the spell ends. Water moved with this spell travels at Move 3.</p><p>A useful shape is a wall of water to stop fiery attacks. Twenty gallons creates a wall 2 yards high � 1 yard wide. This stops Fireball spells and ordinary fire.</p>"
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lets the caster sculpt water (including ice or steam) into any form, and even move it about. Once given a shape, the water holds it without further concentration until the spell ends. Water moved with this spell travels at Move 3.</p><p>A useful shape is a wall of water to stop fiery attacks. Twenty gallons creates a wall 2 yards high × 1 yard wide. This stops Fireball spells and ordinary fire.</p>"
   },
   {
     "_id": "80617c2231f88f34",
