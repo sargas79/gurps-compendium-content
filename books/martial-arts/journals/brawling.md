@@ -1,0 +1,7 @@
+*See p. B182.*
+
+The Brawling skill has a more modest damage bonus than Boxing and Karate, doesn’t grant the improved retreating bonus that those skills provide when parrying, and (unlike Karate) is at -3 to parry weapons. It also gives no defaults to “fancy” techniques such as high kicks, exotic hand strikes, and lethal cinematic attacks. Point for point, though, it can be just as deadly as Boxing or Karate . . . under the right circumstances.
+
+First, Brawling is Easy, which means that the same investment in points buys +1 or +2 to hit relative to Boxing (Average) or Karate (Hard). This lets the brawler more easily target vulnerable body parts. Second, Brawling includes the ability to use a blackjack or sap, which largely equalizes damage. Third, Brawling is one of the few ways to improve one’s skill and damage with biting, which can be a potent attack in close combat (see Teeth, p. 115), and can replace DX in a slam or when smashing foes into walls (see Grab and Smash!, p. 118). Finally, Brawling gives defaults to several vicious techniques that Boxing and Karate don’t cover, including Drop Kick (p. 70), Elbow Drop (pp. 70-71), Eye-Gouging (p. 71), Knee Drop (p. 76), and Two-Handed Punch (p. 81). The last two points in particular mean that fighters with Boxing or Karate might want to invest in Brawling to expand their close-combat options.
+
+The damage bonus from Brawling only applies when using that skill to attack. It doesn’t “stack” with Boxing or Karate bonuses.

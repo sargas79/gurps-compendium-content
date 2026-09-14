@@ -1,0 +1,7 @@
+Many martial artists are honorable warriors, dedicated athletes, or respectful traditionalists. These individuals frequently have such disadvantages as Code of Honor (p. B127); Disciplines of Faith (p. B132), typically Asceticism in historical settings; Pacifism (p. B148), most likely Reluctant Killer or Self-Defense Only; Sense of Duty (p. B153), to fellow students or a master; and Vow (p. B160).
+
+The martial arts also attract more than their share of intemperate, obsessed, vengeful, and violent people who want to learn to maim or kill – or who believe in victory at any cost. These individuals often have some combination of Bad Temper (p. B124); Berserk (p. B124); Bloodlust (p. B125); Bully (p. B125); Callous (p. B125); Fanaticism (p. B136); Intolerance (p. B140); Obsession (p. B146); and Sadism (p. B152).
+
+Either kind of fighter might find his confidence in his training blossoming into Overconfidence (p. B148). From an outsider’s perspective, the dedication of a career martial artist looks like Workaholic (p. B162). Both disadvantages are almost universal among movie action heroes!
+
+Finally, a few disadvantages are actually desirable for certain martial artists. Overweight, Fat, and Very Fat (p. B19) benefit those who practice Sumo (pp. 198-199), by reducing knockback from shoves and slams. Gigantism (p. B20), by granting +1 SM, gives a discount on the point cost of ST and a bonus to pin attempts (p. B370), making it valuable to grapplers.

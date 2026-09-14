@@ -1,0 +1,7 @@
+*See p. B51.*
+
+The GM decides how many levels of these traits are available. Enhanced Defenses are cinematic and not especially suitable for a purely realistic game . . . but in a campaign that adds subtle cinematic elements to a largely realistic setting (see Hybrid Campaigns, pp. 239-241), a single level won’t upset things. The typical “action movie” game can take two levels in stride. Campaigns that feature extreme comic-book and wuxia action might go up to three levels, but probably not beyond that – not unless the GM likes untouchable fighters!
+
+Most martial artists can only take Enhanced Defenses listed under “Optional Traits” for their styles; see Chapter 5. Those with Trained by a Master or Weapon Master have access to all Enhanced Defenses. Weapon Masters who have Enhanced Parry may add their bonus to parries made using the Parry Missile Weapons skill (p. B212) as well as with regular Melee Weapon skills, when armed with suitable weapons.
+
+To mute the deadliness of ranged weapons so that most fights end up at melee range, the GM may let heroes buy Enhanced Parry (All parries against ranged weapons) for 5 points/level – possibly at higher levels than other types of Enhanced Parry. This gives a bonus to regular parries against thrown weapons (see Parrying, p. B376) and to parries with the Parry Missile Weapons skill. Its bonus “stacks” with those for weapon-specific Enhanced Parry advantages.

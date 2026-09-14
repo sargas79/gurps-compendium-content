@@ -1,0 +1,3 @@
+*See p. B57.*
+
+Stealthy assassins and warriors in martial-arts fiction, especially ninja, always seem to have exactly the hardware they need – blowpipes, flash grenades, garrotes, knives, smoke bombs, throwing stars, vials of poison, etc. – without carrying a concealed armory that slows them with its weight or draws suspicion with its bulk. To simulate this, the GM may permit those with Weapon Master to buy Gizmos with an Accessibility limitation: Only for style, -20%. This limits the Gizmos to things typically used by the martial artist’s style (GM’s opinion) and that weigh no more than 1 lb. apiece . . . but they’re undetectable and don’t count as encumbrance until revealed.

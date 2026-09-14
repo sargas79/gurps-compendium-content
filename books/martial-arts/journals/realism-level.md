@@ -1,0 +1,1 @@
+Few fields are as fertile ground for extravagant claims as the martial arts. Such claims, in turn, drive skeptics to doubt even believable, well-documented feats, further obscuring matters. Fortunately, the GM has the final say about what’s “real” in his campaign – which is as important as the power level.

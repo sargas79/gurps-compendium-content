@@ -1,0 +1,1 @@
+The advantages discussed below either work differently in a Martial Arts game or require additional interpretation for martial artists. Consult with the GM before taking any trait described as “cinematic.” Such abilities may have additional prerequisites (typically Trained by a Master or Weapon Master) and are likely off-limits in a realistic campaign.
