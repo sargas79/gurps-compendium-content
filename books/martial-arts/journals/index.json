@@ -2503,6 +2503,178 @@
       "reference": "Martial Arts p. 207",
       "file": "fictional-styles.md",
       "status": "reviewed"
+    },
+    {
+      "id": "weapons-and-equipment",
+      "title": "Weapons and Equipment",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA211",
+      "reference": "Martial Arts p. 211",
+      "file": "weapons-and-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weapons",
+      "title": "Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA212",
+      "reference": "Martial Arts p. 212",
+      "file": "weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cross-cultural-encounters",
+      "title": "Cross-Cultural Encounters",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA212",
+      "reference": "Martial Arts p. 212",
+      "file": "cross-cultural-encounters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weapon-glossary",
+      "title": "Weapon Glossary",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA212-226",
+      "reference": "Martial Arts pp. 212-226",
+      "file": "weapon-glossary.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combination-weapons",
+      "title": "Combination Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA214",
+      "reference": "Martial Arts p. 214",
+      "file": "combination-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weapons-of-quality",
+      "title": "Weapons of Quality",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA216",
+      "reference": "Martial Arts p. 216",
+      "rule": "weaponQuality",
+      "file": "weapons-of-quality.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hidden-weapons",
+      "title": "Hidden Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA218",
+      "reference": "Martial Arts p. 218",
+      "file": "hidden-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "unorthodox-attacks",
+      "title": "Unorthodox Attacks",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA220",
+      "reference": "Martial Arts p. 220",
+      "file": "unorthodox-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "designing-the-perfect-weapon",
+      "title": "Designing the Perfect Weapon",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA221",
+      "reference": "Martial Arts p. 221",
+      "file": "designing-the-perfect-weapon.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "parrying-flails",
+      "title": "Parrying Flails",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA221",
+      "reference": "Martial Arts p. 221",
+      "file": "parrying-flails.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "silly-weapons",
+      "title": "Silly Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA223",
+      "reference": "Martial Arts p. 223",
+      "file": "silly-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "improvised-weapons",
+      "title": "Improvised Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA224",
+      "reference": "Martial Arts p. 224",
+      "file": "improvised-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-arrows",
+      "title": "Special Arrows",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA232",
+      "reference": "Martial Arts p. 232",
+      "file": "special-arrows.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "training-equipment",
+      "title": "Training Equipment",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA232-233",
+      "reference": "Martial Arts pp. 232-233",
+      "file": "training-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gloves",
+      "title": "Gloves",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA233",
+      "reference": "Martial Arts p. 233",
+      "file": "gloves.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "targets",
+      "title": "Targets",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA233",
+      "reference": "Martial Arts p. 233",
+      "file": "targets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "training-weapons",
+      "title": "Training Weapons",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA234",
+      "reference": "Martial Arts p. 234",
+      "file": "training-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "weights",
+      "title": "Weights",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA234",
+      "reference": "Martial Arts p. 234",
+      "file": "weights.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sparring-armor",
+      "title": "Armor",
+      "chapter": "Weapons and Equipment",
+      "pages": "MA234",
+      "reference": "Martial Arts p. 234",
+      "file": "sparring-armor.md",
+      "status": "reviewed"
     }
   ]
 }
