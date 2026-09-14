@@ -12,6 +12,7 @@ import type { BookRules } from "../../shared/book.js";
 import { addExtensionFields } from "../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initGear, readyGear } from "./gear/index.js";
+import { migrateWorld } from "./migration.js";
 import { initHoly, readyHoly } from "./holy-contact.js";
 import { mayPay, poolsOf, refreshed, spent, type Pools } from "./points.js";
 import { initRitualPath, readyRitualPath } from "./ritual/index.js";
@@ -149,6 +150,18 @@ function ready(api: GWorldApi): void {
   readyHoly(api, () => api.registry.isRuleOn(ruleKey("holyAttacks")));
   readyRitualPath(api, () => api.registry.isRuleOn(ruleKey("ritualPathMagic")));
   readyGear(api, () => api.registry.isRuleOn(ruleKey("monsterHuntersGear")));
+
+  // A world that used the book under the system's own rules has its data
+  // moved into this module's, once, by the GM's client.
+  if (game.user?.isGM) {
+    void migrateWorld(api).then((steps) => {
+      const changed = steps.reduce((sum, s) => sum + s.changed, 0);
+      const failed = steps.reduce((sum, s) => sum + s.failed, 0);
+      if (changed || failed) console.info(`${MODULE_ID} | Monster Hunters 1 migration`, steps);
+      if (failed) ui.notifications?.error(F("Migration.Failed", { failed }), { permanent: true });
+      else if (changed) ui.notifications?.info(F("Migration.Done", { changed }));
+    });
+  }
 
   // Destiny and wildcard bonus points, beside the system's unspent points (p. 31).
   api.points.registerPointPool({

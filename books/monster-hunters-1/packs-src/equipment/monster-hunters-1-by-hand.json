@@ -24,8 +24,7 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": 3,
-      "holdout": 0
+      "soleDr": 3
     }
   },
   {
@@ -63,8 +62,7 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -96,7 +94,11 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "holdout": 4
+      "extensions": {
+        "gurps-compendium-content": {
+          "holdout": 4
+        }
+      }
     }
   },
   {
@@ -128,7 +130,11 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "holdout": 4
+      "extensions": {
+        "gurps-compendium-content": {
+          "holdout": 4
+        }
+      }
     }
   },
   {
@@ -167,8 +173,7 @@
       "frontOnly": true,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -207,8 +212,7 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -246,8 +250,7 @@
       "frontOnly": false,
       "concealable": true,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -285,8 +288,7 @@
       "frontOnly": false,
       "concealable": true,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -317,8 +319,7 @@
       "frontOnly": false,
       "concealable": true,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -354,8 +355,7 @@
       "frontOnly": false,
       "concealable": true,
       "blocksPeripheralVision": false,
-      "soleDr": null,
-      "holdout": 0
+      "soleDr": null
     }
   },
   {
@@ -381,7 +381,6 @@
       "weaponClass": "",
       "listCost": 10,
       "listWeight": 0.1,
-      "improvisedPenalty": 0,
       "meleeModes": [],
       "rangedModes": [
         {
@@ -411,11 +410,6 @@
           "loaded": 0,
           "reloadWeight": 0,
           "ammunition": "",
-          "powder": "",
-          "payload": "",
-          "powderAdjust": 0,
-          "payloadAdjust": 0,
-          "magazineCost": 0,
           "minSt": 3,
           "twoHanded": false,
           "weaponSt": null,
@@ -451,7 +445,6 @@
       "weaponClass": "",
       "listCost": 45,
       "listWeight": 18,
-      "improvisedPenalty": 0,
       "meleeModes": [],
       "rangedModes": [
         {
@@ -481,11 +474,6 @@
           "loaded": 0,
           "reloadWeight": 15,
           "ammunition": "",
-          "powder": "",
-          "payload": "",
-          "powderAdjust": 0,
-          "payloadAdjust": 0,
-          "magazineCost": 15,
           "minSt": 4,
           "twoHanded": false,
           "weaponSt": null,
@@ -495,7 +483,21 @@
           "recoil": 0,
           "malfunction": null
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "loads": [
+            {
+              "mode": 0,
+              "powder": "",
+              "payload": "",
+              "powderAdjust": 0,
+              "payloadAdjust": 0,
+              "magazineCost": 15
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -521,7 +523,6 @@
       "weaponClass": "",
       "listCost": 30,
       "listWeight": 3.5,
-      "improvisedPenalty": 0,
       "meleeModes": [],
       "rangedModes": [
         {
@@ -551,11 +552,6 @@
           "loaded": 0,
           "reloadWeight": 2,
           "ammunition": "",
-          "powder": "",
-          "payload": "",
-          "powderAdjust": 0,
-          "payloadAdjust": 0,
-          "magazineCost": 5,
           "minSt": 4,
           "twoHanded": false,
           "weaponSt": null,
@@ -565,7 +561,21 @@
           "recoil": 0,
           "malfunction": null
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "loads": [
+            {
+              "mode": 0,
+              "powder": "",
+              "payload": "",
+              "powderAdjust": 0,
+              "payloadAdjust": 0,
+              "magazineCost": 5
+            }
+          ]
+        }
+      }
     }
   },
   {
@@ -591,7 +601,6 @@
       "weaponClass": "firearm",
       "listCost": 480,
       "listWeight": 2,
-      "improvisedPenalty": -4,
       "meleeModes": [],
       "rangedModes": [
         {
@@ -621,11 +630,6 @@
           "loaded": 0,
           "reloadWeight": 0,
           "ammunition": "",
-          "powder": "",
-          "payload": "",
-          "powderAdjust": 0,
-          "payloadAdjust": 0,
-          "magazineCost": 0,
           "minSt": null,
           "twoHanded": false,
           "weaponSt": null,
@@ -635,7 +639,12 @@
           "recoil": 0,
           "malfunction": null
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "improvisedPenalty": -4
+        }
+      }
     }
   },
   {
@@ -879,18 +888,22 @@
       "listWeight": 2,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 2
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 2
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -919,18 +932,22 @@
       "listWeight": 2.5,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 3
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 3
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -959,18 +976,22 @@
       "listWeight": 3,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 4
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 4
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -999,18 +1020,22 @@
       "listWeight": 3.5,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 5
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 5
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1039,18 +1064,22 @@
       "listWeight": 4,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 6
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 6
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1079,18 +1108,22 @@
       "listWeight": 5,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 7
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 7
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1119,18 +1152,22 @@
       "listWeight": 6,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 8
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 8
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1159,18 +1196,22 @@
       "listWeight": 8,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 9
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 9
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1199,18 +1240,22 @@
       "listWeight": 10,
       "meleeModes": [],
       "rangedModes": [],
-      "grimoire": {
-        "rituals": [
-          {
-            "ritual": "",
-            "identity": "",
-            "bonus": 10
+      "extensions": {
+        "gurps-compendium-content": {
+          "grimoire": {
+            "rituals": [
+              {
+                "ritual": "",
+                "identity": "",
+                "bonus": 10
+              }
+            ],
+            "deadLanguage": "",
+            "translation": "none",
+            "encrypted": false,
+            "decoded": false
           }
-        ],
-        "deadLanguage": "",
-        "translation": "none",
-        "encrypted": false,
-        "decoded": false
+        }
       }
     }
   },
@@ -1239,7 +1284,11 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "holy": true
+      "extensions": {
+        "gurps-compendium-content": {
+          "holy": true
+        }
+      }
     }
   },
   {
@@ -1267,7 +1316,11 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "holy": true
+      "extensions": {
+        "gurps-compendium-content": {
+          "holy": true
+        }
+      }
     }
   },
   {
@@ -1295,7 +1348,11 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "holy": true
+      "extensions": {
+        "gurps-compendium-content": {
+          "holy": true
+        }
+      }
     }
   },
   {
@@ -1323,7 +1380,11 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "holy": true
+      "extensions": {
+        "gurps-compendium-content": {
+          "holy": true
+        }
+      }
     }
   }
 ]
