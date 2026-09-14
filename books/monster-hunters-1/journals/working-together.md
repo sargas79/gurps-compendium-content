@@ -1,0 +1,1 @@
+If multiple casters work together on the same ritual, they can accumulate much more energy in a shorter time; add their energy totals together. The caster with the highest skill always makes the final roll. All rolls involved with the ritual are at -1 for every caster past the first, however, and critical failures affect everyone equally.

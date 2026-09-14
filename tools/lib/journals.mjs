@@ -86,6 +86,7 @@ export async function journalPack(bk) {
 
     const id = await stableId(bk.slug, page.id);
     const pageId = await stableId(bk.slug, page.id, "page");
+    const folderId = page.chapter ? await stableId(bk.slug, "folder", page.chapter) : null;
     const body = render(readFileSync(file, "utf8"));
     // A page may name its own volume: the Basic Set is two books sharing one
     // run of page numbers, and the book's default reference is only right for
@@ -119,7 +120,7 @@ export async function journalPack(bk) {
           flags: {},
         },
       ],
-      folder: null,
+      folder: folderId,
       sort: 0,
       flags: {
         [MODULE_ID]: {
@@ -136,6 +137,26 @@ export async function journalPack(bk) {
     });
   }
 
+  // One folder per chapter, which is what `chapter` promises: without the
+  // Folder documents in the pack, every entry sits loose at the top of it.
+  // Named and sorted as the index names them, so "1. Templates" comes first.
+  const rules = documents.length;
+  for (const chapter of [...chapters].sort()) {
+    const folderId = await stableId(bk.slug, "folder", chapter);
+    documents.push({
+      _key: `!folders!${folderId}`,
+      _id: folderId,
+      name: chapter,
+      type: "JournalEntry",
+      description: "",
+      folder: null,
+      sorting: "a",
+      sort: 0,
+      color: null,
+      flags: {},
+    });
+  }
+
   return {
     book: bk,
     pack: "rules",
@@ -145,7 +166,7 @@ export async function journalPack(bk) {
     documents,
     problems,
     chapters: [...chapters].sort(),
-    byStatus: new Map([["rule", documents.length]]),
+    byStatus: new Map([["rule", rules]]),
   };
 }
 

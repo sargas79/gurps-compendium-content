@@ -1,0 +1,1 @@
+To work a ritual, you must first define exactly what it is that you're trying to accomplish. That determines the amount of energy - raw magical power - needed for the spell. The process of casting a spell is nothing more than the act of gathering this energy; once you have enough, a single skill roll determines how well you channeled it.

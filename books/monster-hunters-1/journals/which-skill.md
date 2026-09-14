@@ -1,0 +1,3 @@
+Once the energy requirement is known, the caster can begin performing the ritual. At this point, it is important to determine which Path skill (pp. 32-33) the caster will use; all rolls for this spell will be against this skill.
+
+If only one Path is being used, this is simple; e.g., a spell of Lesser Control Undead and Greater Destroy Undead would use Path of Undead for all rolls. For spells that mix two paths, the caster uses the lower of the two. (Remember that anyone with Thaumatology skill knows all of the Path skills at default!) If the spell requires three or more paths, the caster uses his lowest one and is at a -1 penalty (to all ritual-related rolls) for every Path past the first two.

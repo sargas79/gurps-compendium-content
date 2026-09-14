@@ -1,0 +1,354 @@
+{
+  "pages": [
+    {
+      "id": "campaign-types",
+      "title": "Campaign Types",
+      "chapter": "1. Monster Hunter Templates",
+      "pages": "MH1:5-6",
+      "reference": "Monster Hunters 1: Champions pp. 5-6",
+      "file": "campaign-types.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "why-we-fight",
+      "title": "Why We Fight",
+      "chapter": "1. Monster Hunter Templates",
+      "pages": "MH1:7",
+      "reference": "Monster Hunters 1: Champions p. 7",
+      "file": "why-we-fight.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disadvantage-limit",
+      "title": "Disadvantage Limit",
+      "chapter": "2. Champions' Cheat Sheet",
+      "pages": "MH1:26",
+      "reference": "Monster Hunters 1: Champions p. 26",
+      "file": "disadvantage-limit.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wildcard-skills",
+      "title": "Wildcard Skills and Hyper-Competency",
+      "chapter": "2. Champions' Cheat Sheet",
+      "pages": "MH1:28",
+      "reference": "Monster Hunters 1: Champions p. 28",
+      "rule": "bonusPointSpending",
+      "file": "wildcard-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "other-uses-for-points",
+      "title": "Other Uses for Points",
+      "chapter": "2. Champions' Cheat Sheet",
+      "pages": "MH1:31",
+      "reference": "Monster Hunters 1: Champions p. 31",
+      "rule": "bonusPointSpending",
+      "file": "other-uses-for-points.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "words-of-magic",
+      "title": "Words of Magic",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:32",
+      "reference": "Monster Hunters 1: Champions p. 32",
+      "rule": "ritualPathMagic",
+      "file": "words-of-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "learning-magic",
+      "title": "Learning Magic",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:32-33",
+      "reference": "Monster Hunters 1: Champions pp. 32-33",
+      "rule": "ritualPathMagic",
+      "file": "learning-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "performing-magic",
+      "title": "Performing Magic",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:33",
+      "reference": "Monster Hunters 1: Champions p. 33",
+      "rule": "ritualPathMagic",
+      "file": "performing-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ritual-definition-and-cost",
+      "title": "Ritual Definition and Cost",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:33-35",
+      "reference": "Monster Hunters 1: Champions pp. 33-35",
+      "rule": "ritualPathMagic",
+      "file": "ritual-definition-and-cost.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "divinations",
+      "title": "Divinations",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:34",
+      "reference": "Monster Hunters 1: Champions p. 34",
+      "rule": "ritualPathMagic",
+      "file": "divinations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ritual-effect-table",
+      "title": "Ritual Effect Table",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:35",
+      "reference": "Monster Hunters 1: Champions p. 35",
+      "rule": "ritualPathMagic",
+      "file": "ritual-effect-table.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "which-skill",
+      "title": "Which Skill?",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:35",
+      "reference": "Monster Hunters 1: Champions p. 35",
+      "rule": "ritualPathMagic",
+      "file": "which-skill.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "energy-accumulation",
+      "title": "Energy Accumulation",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:35-36",
+      "reference": "Monster Hunters 1: Champions pp. 35-36",
+      "rule": "ritualPathMagic",
+      "file": "energy-accumulation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "warding",
+      "title": "Warding",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:35",
+      "reference": "Monster Hunters 1: Champions p. 35",
+      "rule": "ritualPathMagic",
+      "file": "warding.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "non-adepts-and-magic",
+      "title": "Non-Adepts and Magic",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:36",
+      "reference": "Monster Hunters 1: Champions p. 36",
+      "rule": "ritualPathMagic",
+      "file": "non-adepts-and-magic.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "casting-the-spell",
+      "title": "Casting the Spell",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:36-37",
+      "reference": "Monster Hunters 1: Champions pp. 36-37",
+      "rule": "ritualPathMagic",
+      "file": "casting-the-spell.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "blocking-spells",
+      "title": "\"Blocking\" Spells",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:37",
+      "reference": "Monster Hunters 1: Champions p. 37",
+      "rule": "ritualPathMagic",
+      "file": "blocking-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "post-casting",
+      "title": "Post-Casting",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:37",
+      "reference": "Monster Hunters 1: Champions p. 37",
+      "rule": "ritualPathMagic",
+      "file": "post-casting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "stacking-spells",
+      "title": "Stacking Spells",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:37",
+      "reference": "Monster Hunters 1: Champions p. 37",
+      "rule": "ritualPathMagic",
+      "file": "stacking-spells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "conditional-rituals",
+      "title": "Conditional Rituals",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:38",
+      "reference": "Monster Hunters 1: Champions p. 38",
+      "rule": "ritualPathMagic",
+      "file": "conditional-rituals.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "charms",
+      "title": "Charms",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:38-39",
+      "reference": "Monster Hunters 1: Champions pp. 38-39",
+      "rule": "ritualPathMagic",
+      "file": "charms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "defining-rituals",
+      "title": "Defining Rituals",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:39",
+      "reference": "Monster Hunters 1: Champions p. 39",
+      "rule": "ritualPathMagic",
+      "file": "defining-rituals.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grimoires",
+      "title": "Grimoires",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:39",
+      "reference": "Monster Hunters 1: Champions p. 39",
+      "rule": "ritualPathMagic",
+      "file": "grimoires.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "working-together",
+      "title": "Working Together",
+      "chapter": "3. Ritual Path Magic",
+      "pages": "MH1:39",
+      "reference": "Monster Hunters 1: Champions p. 39",
+      "rule": "ritualPathMagic",
+      "file": "working-together.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "powers",
+      "title": "Powers",
+      "chapter": "4. Powers",
+      "pages": "MH1:40",
+      "reference": "Monster Hunters 1: Champions p. 40",
+      "file": "powers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magic-vs-powers",
+      "title": "Magic vs. Powers",
+      "chapter": "4. Powers",
+      "pages": "MH1:42",
+      "reference": "Monster Hunters 1: Champions p. 42",
+      "file": "magic-vs-powers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "anti-psi",
+      "title": "Anti-Psi",
+      "chapter": "4. Powers",
+      "pages": "MH1:46",
+      "reference": "Monster Hunters 1: Champions p. 46",
+      "file": "anti-psi.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "inhuman-races",
+      "title": "Inhuman Races",
+      "chapter": "5. Inhuman Races",
+      "pages": "MH1:49",
+      "reference": "Monster Hunters 1: Champions p. 49",
+      "file": "inhuman-races.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "holy-attacks",
+      "title": "Holy Attacks",
+      "chapter": "5. Inhuman Races",
+      "pages": "MH1:51",
+      "reference": "Monster Hunters 1: Champions p. 51",
+      "rule": "holyAttacks",
+      "file": "holy-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "budgeting",
+      "title": "Budgeting, Patrons, Wealth and Signature Gear",
+      "chapter": "6. Gear",
+      "pages": "MH1:53",
+      "reference": "Monster Hunters 1: Champions p. 53",
+      "rule": "monsterHuntersGear",
+      "file": "budgeting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gadget-improvements",
+      "title": "Gadget Improvements",
+      "chapter": "6. Gear",
+      "pages": "MH1:54",
+      "reference": "Monster Hunters 1: Champions p. 54",
+      "rule": "monsterHuntersGear",
+      "file": "gadget-improvements.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "to-gear-or-not-to-gear",
+      "title": "To Gear or Not to Gear",
+      "chapter": "6. Gear",
+      "pages": "MH1:58",
+      "reference": "Monster Hunters 1: Champions p. 58",
+      "file": "to-gear-or-not-to-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "improvised-weapons",
+      "title": "Improvised Weapons",
+      "chapter": "6. Gear",
+      "pages": "MH1:60",
+      "reference": "Monster Hunters 1: Champions p. 60",
+      "rule": "monsterHuntersGear",
+      "file": "improvised-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hearing-shots",
+      "title": "Hearing Shots",
+      "chapter": "6. Gear",
+      "pages": "MH1:61",
+      "reference": "Monster Hunters 1: Champions p. 61",
+      "file": "hearing-shots.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-ammo",
+      "title": "Special Ammo",
+      "chapter": "6. Gear",
+      "pages": "MH1:63",
+      "reference": "Monster Hunters 1: Champions p. 63",
+      "rule": "monsterHuntersGear",
+      "file": "special-ammo.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grenades",
+      "title": "Grenades",
+      "chapter": "6. Gear",
+      "pages": "MH1:63",
+      "reference": "Monster Hunters 1: Champions p. 63",
+      "file": "grenades.md",
+      "status": "reviewed"
+    }
+  ]
+}

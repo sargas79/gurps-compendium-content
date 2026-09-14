@@ -1,0 +1,5 @@
+Demons and vampires are both vulnerable to holy water and the touch of holy artifacts. The latter does not mean that just any holy symbol would do damage - it would have to have some significance (e.g., a cross that has hung on a church's pulpit for over a year); see p. 57.
+
+Even fleeting contact with holy water or objects does 1d of injury, ignoring all DR. However, a second attack immediately afterward will not do further damage! Once a demon or vampire has been burned by holy might, the wound continues to "fizz" for the next minute, bubbling and hissing (but not causing further damage) as it works itself deep into the monster's core. Until that minute has passed and the fizzing has stopped, the creature will not take further damage from any holy source! This means that, for example, a demon submerged in holy water will take a steady 1d of injury per minute.
+
+Thus, holy attacks are an excellent fight opener, but will usually only work once per fight for each foe. Champions with holy water will generally hose down every demon or vampire present, then switch to a different method of attack.
