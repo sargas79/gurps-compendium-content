@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "5109e02ec49b3f47",
+    "name": "Bioenhancement",
+    "pages": "MH1:41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your abilities are tied directly to your unique body chemistry. You must have Unusual Biochemistry (p. B160); if you ever roll a 4-5 for that disadvantage, the drug in question works, but the \"harmful effect\" is always losing access to all of your Bioenhancement abilities for 1d minutes.</p><p>Enemies with scientific minds can learn much about you if they can get a copy of your file - that is, the data on the experiments that produced you, including the abilities you were given. (Even if you destroy it, new copies inevitably seem to pop up in different hands.) Readers can use Bioengineering or Biology to make an educated guess at any new abilities you may have developed, and Chemistry or Pharmacy to produce targeted pathogens and drugs that can be used to hamper, overload, or neutralize your abilities.</p>"
+  },
+  {
+    "_id": "e9225771b5bb8fbc",
+    "name": "Mysticism",
+    "pages": "MH1:43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You must meet the high standards of the spiritual force that grants your Mysticism abilities, by adopting an appropriate moral code worth -10 points; see Crusader (pp. 10-11) for examples. If you ever violate this code, you lose all of your Mysticism abilities, though your benefactor will not take them away quickly enough to endanger you (unless the sin is particularly egregious). Recovering your power requires significant penance: a full month of fasting, charitable donations of $20,000 or more, a major quest, etc.</p>"
+  },
+  {
+    "_id": "02cd43277a805bb5",
+    "name": "Psionic: ESP",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your abilities are vulnerable to anti-psi and psychotronics. Anti-psi is a group of advantages, including Neutralize, Psi Static, and Resistant to Psionics; these traits are found both in monsters and in the general public (Anti-Psi, p. 46). Psychotronics (or \"psi-tech\") is a label for various drugs and electronic devices that can affect psionic powers; see pp. 57-58 for examples.</p>"
+  },
+  {
+    "_id": "8806b2669ba1a53f",
+    "name": "Psionic: Psychokinesis",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your abilities are vulnerable to anti-psi and psychotronics. Anti-psi is a group of advantages, including Neutralize, Psi Static, and Resistant to Psionics; these traits are found both in monsters and in the general public (Anti-Psi, p. 46). Psychotronics (or \"psi-tech\") is a label for various drugs and electronic devices that can affect psionic powers; see pp. 57-58 for examples.</p>"
+  },
+  {
+    "_id": "dc0e32d28755c3b5",
+    "name": "Psionic: Telepathy",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your abilities are vulnerable to anti-psi and psychotronics. Anti-psi is a group of advantages, including Neutralize, Psi Static, and Resistant to Psionics; these traits are found both in monsters and in the general public (Anti-Psi, p. 46). Psychotronics (or \"psi-tech\") is a label for various drugs and electronic devices that can affect psionic powers; see pp. 57-58 for examples.</p>"
+  },
+  {
+    "_id": "0be72fc8483839b3",
+    "name": "Psionic: Teleportation",
+    "pages": "MH1:45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your abilities are vulnerable to anti-psi and psychotronics. Anti-psi is a group of advantages, including Neutralize, Psi Static, and Resistant to Psionics; these traits are found both in monsters and in the general public (Anti-Psi, p. 46). Psychotronics (or \"psi-tech\") is a label for various drugs and electronic devices that can affect psionic powers; see pp. 57-58 for examples.</p>"
+  }
+]
