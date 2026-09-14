@@ -1,0 +1,1 @@
+A “maneuver” is an action that you can take on your turn. Each turn, you must choose one of the following maneuvers: Aim, All-Out Attack, All-Out Defense, Attack, Change Posture, Concentrate, Do Nothing, Evaluate, Feint, Move, Move and Attack, Ready, or Wait. Your choice determines what you can do on your turn, and sets your options for active defense and movement.
