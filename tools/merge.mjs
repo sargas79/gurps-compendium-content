@@ -122,7 +122,7 @@ async function main() {
     ).length;
     const detail =
       pack.type === "JournalEntry"
-        ? `${pack.documents.length} rules`
+        ? `${pack.documents.filter((d) => d._key?.startsWith("!journal!")).length} rules`
         : `${written}/${pack.documents.length} with text`;
     console.log(`  ${pack.id.padEnd(28)} ${detail}`);
   }

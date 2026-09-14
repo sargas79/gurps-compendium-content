@@ -1,0 +1,5 @@
+Put simply, an inhuman is a bad guy gone good. This may be because he was created a little bit "off," or the result of an epiphany that got him back in touch with his human side. Regardless, his natural abilities are now his biggest asset.
+
+For details on racial templates, see p. B260. Always apply the modifiers and traits from the racial template first; then, when choosing advantages and disadvantages, be sure not to select any that duplicate or contradict your racial traits. Racial disadvantages cannot be bought off - the inherent drawbacks are an important part of playing an inhuman.
+
+Bad Guys don't use these templates as written - most add traits, including some level of Unkillable. Of course, they are psychotic, evil, and not in true control of themselves, so PC inhumans really come out ahead. While most of these races are incredibly long-lived, this has no effect in a monster hunting game - attacks or spells that affect age always afflict victims in proportion to racial life expectancy. Thus, all templates omit Unaging.

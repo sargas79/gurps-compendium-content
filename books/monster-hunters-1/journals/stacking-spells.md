@@ -1,0 +1,5 @@
+Magic does not "stack." This is expressed here as two separate, but related, rules.
+
+1. A person cannot be under the influence of the same spell effect (p. 33) from different rituals. For example, a witch cannot cast a Lesser Strengthen Body to give someone +1 to ST, then cast another Lesser Strengthen Body to give the same person Ambidexterity. In such a case, the spell which took more energy to cast remains, while the other fizzles without effect. (That witch could have cast a single spell which combined two Lesser Strengthen Body effects, however.) For these purposes, a Greater effect and Lesser effect are two different things - Greater Strengthen Body to add DR 4 would overlap just fine with any of the spells above.
+
+2. Results from different rituals are never cumulative with each other, regardless of the spell effect used. For example, if someone is under the effect of Lesser Control Chance for +4 to rolls to remain undetected and Lesser Strengthen Body for +3 to Stealth rolls, he does not get +7 to Stealth! Only use the highest bonus (in this case, +4).

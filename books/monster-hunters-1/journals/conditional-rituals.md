@@ -1,0 +1,7 @@
+A caster can delay a ritual so that it doesn't take effect until a certain condition is met (or ends when a certain condition is met). This requires adding a Lesser Control Magic effect to the spell. The condition must be simple enough that a person watching the subject would automatically be aware of it happening (e.g., "Release the spirit in this jar if anyone other than the five of us enters this room.") More complex conditions - such as, "Ward this room if Billy escapes from jail" - require an appropriate Sense effect to be added to the ritual as well.
+
+The spell will "hang" indefinitely; once triggered, it will last for its normal duration. The caster cannot cancel the spell before it expires or go back and prolong the duration, however - by casting conditionally, he's given up control of the spell.
+
+Any given caster can only have (Thaumatology + Magery) conditional rituals "hanging" at once. For example, a sage with Thaumatology-15 and Magery 3 could have up to 18 conditional rituals waiting simultaneously. If he were to cast a 19th one, his oldest conditional spell would be immediately defused without effect. There is no overt sign of this, so the subject of the old spell will not necessarily realize that he is no longer under its potential effects.
+
+The stacking rules (p. 37) apply to conditional rituals as well - a subject cannot be protected by two conditional rituals with the same effect, or be covered by a conditional ritual with the same effect as an active spell. In such a case, the weaker spell is immediately defused without effect.
