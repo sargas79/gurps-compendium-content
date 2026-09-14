@@ -144,6 +144,358 @@
     "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
   },
   {
+    "_id": "4c4562dbd6ef40fb",
+    "name": "Beast-Soother",
+    "pages": "M29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Calms a single animal. The beast's reaction roll to the caster is improved by twice the energy put into the spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "db95cead2c631db7",
+    "name": "Beast-Rouser",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Excites a single animal. The beast's reaction roll (to anyone) is worsened by twice the energy put into the spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "0dc241b45c4e23fc",
+    "name": "Vermin Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large animal (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. This spell will not work on a sapient being (racial IQ 6 or higher). There is a separate Control spell for each category of animal.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Allows the user to control a single species of animal. Energy cost to create: 100 energy per point of target species' racial IQ. (b) Staff, wand, or jewelry. Allows the user to control any animal within a category. Energy cost to create: 200 energy times the cost to cast for that category.</p>"
+  },
+  {
+    "_id": "e17bed4e28d50873",
+    "name": "Fish Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large animal (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. This spell will not work on a sapient being (racial IQ 6 or higher). There is a separate Control spell for each category of animal.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Allows the user to control a single species of animal. Energy cost to create: 100 energy per point of target species' racial IQ. (b) Staff, wand, or jewelry. Allows the user to control any animal within a category. Energy cost to create: 200 energy times the cost to cast for that category.</p>"
+  },
+  {
+    "_id": "7f24354804e7a80b",
+    "name": "Reptile Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large animal (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. This spell will not work on a sapient being (racial IQ 6 or higher). There is a separate Control spell for each category of animal.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Allows the user to control a single species of animal. Energy cost to create: 100 energy per point of target species' racial IQ. (b) Staff, wand, or jewelry. Allows the user to control any animal within a category. Energy cost to create: 200 energy times the cost to cast for that category.</p>"
+  },
+  {
+    "_id": "7f2c382f11146e0e",
+    "name": "Bird Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large animal (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. This spell will not work on a sapient being (racial IQ 6 or higher). There is a separate Control spell for each category of animal.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Allows the user to control a single species of animal. Energy cost to create: 100 energy per point of target species' racial IQ. (b) Staff, wand, or jewelry. Allows the user to control any animal within a category. Energy cost to create: 200 energy times the cost to cast for that category.</p>"
+  },
+  {
+    "_id": "531e09648c763b01",
+    "name": "Mammal Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large animal (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. This spell will not work on a sapient being (racial IQ 6 or higher). There is a separate Control spell for each category of animal.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Allows the user to control a single species of animal. Energy cost to create: 100 energy per point of target species' racial IQ. (b) Staff, wand, or jewelry. Allows the user to control any animal within a category. Energy cost to create: 200 energy times the cost to cast for that category.</p>"
+  },
+  {
+    "_id": "d8b29a34db941e15",
+    "name": "Hybrid Control",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Controls the actions of one large hybrid creature (any size) or a single swarm (see Swarm Attacks, p. B461). Remember, however, that subjects larger than SM 0 increase the casting cost. Concentration is required. The caster must know all the Control spells relevant to the hybrid (controlling a gryphon would require knowledge of both Mammal and Bird Control, for example); his effective skill with this spell is the lowest of the various spells involved, including Hybrid Control. This spell does not work on a sapient being (racial IQ 6 or higher).</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 800 (will control only one particular type of hybrid).</p>"
+  },
+  {
+    "_id": "28621778d541b6fb",
+    "name": "Beast Summoning",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Calls one creature of a named type (anything under IQ 6). Range does not matter for this spell. If the spell is cast successfully, the caster knows the location of the closest creature of the type, and how long it will take for that creature to come to him. It moves toward the caster as fast as it can, until the spell ends or the animal can see the caster. It stays nearby, without attacking, until the spell ends. The summoned animal then has a +1 on its reaction to the caster (only). If the caster or someone near the caster attacks the creature, the spell is broken.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 400 for an item that summons one particular species, or 800 for an item that can summon any beast.</p>"
+  },
+  {
+    "_id": "a8a8a9c929f3bb53",
+    "name": "Master",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Holds any beast motionless and quiet as long as the caster maintains eye contact and concentration. Note that darkness breaks eye contact! May be cast as a Blocking spell if the animal is entering Close Combat range with the caster - e.g., to attack.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "5e8f0b2f2b8eaa6c",
+    "name": "Beast Link",
+    "pages": "M30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Establishes a mental link with an animal. The animal will not stray far from the caster after that (generally not more than a half-hour's travel). It will then come, once, whenever the caster wishes, at a fast but not killing pace. If it is a wild beast, any reactions must be re-determined when the creature arrives; previous good reactions from Beast-Soother, for instance, no longer hold! This spell is similar to Beast-Summoning, but is cast in advance and on a specific creature.</p><p><em>Item</em></p><p>Matched amulets. The gold one is worn by the human, the silver one by the animal. This gives the human the power to cast the Beast Link, or (if self-powered) creates the link automatically. Energy cost to create: 500 for the pair.</p>"
+  },
+  {
+    "_id": "2f132205124fd016",
+    "name": "Beast Speech",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Communicate with any animal in the creature's own \"language.\" The amount of information exchanged depends on the animal's intelligence; no creature below the level of a bird is likely to know much of interest. An ant may crawl over gold, but it knows only that the material is hard and inedible. Each minute of the spell allows one question and answer.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 1,000 for an item that talks to one particular species, or 4,000 for an item that can talk to any creature.</p>"
+  },
+  {
+    "_id": "993aaf3cf160fa5f",
+    "name": "Repel Vermin",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels animals from an area. The spell resists attempts by animals to enter it (or stay in it) every second; roll a Quick Contest between the caster's effective skill and the Animal's ST.</p><p>Like (Animal) Control, this is actually several different spells. There is a Repel (Animal) spell for each category of animal. Like all Area spells, the affected area extends 4 yards upward (an important detail for flying animals such as bats or birds). Casters may extend the area upward by spending proportionately more energy; double base cost will create an area 8 yards high, and so on. Beings with Animal Empathy may feel uneasy and irritable while in the affected area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting; thus, a shepherd may drive off wolves without driving away his flock.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "b696d46b857ed15b",
+    "name": "Repel Fish",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels animals from an area. The spell resists attempts by animals to enter it (or stay in it) every second; roll a Quick Contest between the caster's effective skill and the Animal's ST.</p><p>Like (Animal) Control, this is actually several different spells. There is a Repel (Animal) spell for each category of animal. Like all Area spells, the affected area extends 4 yards upward (an important detail for flying animals such as bats or birds). Casters may extend the area upward by spending proportionately more energy; double base cost will create an area 8 yards high, and so on. Beings with Animal Empathy may feel uneasy and irritable while in the affected area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting; thus, a shepherd may drive off wolves without driving away his flock.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "3d80978e315534fd",
+    "name": "Repel Reptile",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels animals from an area. The spell resists attempts by animals to enter it (or stay in it) every second; roll a Quick Contest between the caster's effective skill and the Animal's ST.</p><p>Like (Animal) Control, this is actually several different spells. There is a Repel (Animal) spell for each category of animal. Like all Area spells, the affected area extends 4 yards upward (an important detail for flying animals such as bats or birds). Casters may extend the area upward by spending proportionately more energy; double base cost will create an area 8 yards high, and so on. Beings with Animal Empathy may feel uneasy and irritable while in the affected area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting; thus, a shepherd may drive off wolves without driving away his flock.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "d2cee8f09f4aebad",
+    "name": "Repel Bird",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels animals from an area. The spell resists attempts by animals to enter it (or stay in it) every second; roll a Quick Contest between the caster's effective skill and the Animal's ST.</p><p>Like (Animal) Control, this is actually several different spells. There is a Repel (Animal) spell for each category of animal. Like all Area spells, the affected area extends 4 yards upward (an important detail for flying animals such as bats or birds). Casters may extend the area upward by spending proportionately more energy; double base cost will create an area 8 yards high, and so on. Beings with Animal Empathy may feel uneasy and irritable while in the affected area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting; thus, a shepherd may drive off wolves without driving away his flock.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "9d90c6513a73ee66",
+    "name": "Repel Mammal",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels animals from an area. The spell resists attempts by animals to enter it (or stay in it) every second; roll a Quick Contest between the caster's effective skill and the Animal's ST.</p><p>Like (Animal) Control, this is actually several different spells. There is a Repel (Animal) spell for each category of animal. Like all Area spells, the affected area extends 4 yards upward (an important detail for flying animals such as bats or birds). Casters may extend the area upward by spending proportionately more energy; double base cost will create an area 8 yards high, and so on. Beings with Animal Empathy may feel uneasy and irritable while in the affected area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting; thus, a shepherd may drive off wolves without driving away his flock.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "2f274c170ba03d5d",
+    "name": "Repel Hybrids",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Repels hybrids from an area. The spell resists attempts by hybrids to enter it (or stay in it); every second, roll a Quick Contest between the caster's effective skill and the beast's ST. The caster must know all the Repel (Animal) spells relevant to the hybrid; his effective skill with this spell is the lowest of the various spells involved, including Repel Hybrids. Beings with Animal Empathy may feel uneasy and irritable while in the area.</p><p>The caster may exclude specific animals from the spell's effect at the time of casting.</p><p><em>Item</em></p><p>An area can be made permanently repellent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "e155a6c329e08df8",
+    "name": "Rider",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Mount and ride a subject creature as though it were a trained, loyal riding animal. The creature must be capable of carrying the caster, and the caster must still make a Riding roll whenever it would normally be required. No concentration is required on the caster's part.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. The spell does not affect the creature until the would-be rider actually mounts it. If the rider dismounts, the creature will remain docile for about a minute before fleeing or attacking (whichever is its nature). Energy cost to create: 800 for an item that controls one particular species, or 3,000 for an item that can control any creature.</p>"
+  },
+  {
+    "_id": "08a24ac98ae250cb",
+    "name": "Rider Within",
+    "pages": "M31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Works on any type of animal (but not sapient beings). This is the animal version of the Soul Rider spell. The caster becomes able to see through the subject's eyes, hear through its ears, etc, as long as he concentrates. (He also remains aware of his own body and may act normally.) The caster exerts no control whatsoever over the subject, and the subject is unaware the caster is \"watching.\"</p><p><em>Item</em></p><p>A pair of identical pieces of jewelry - one gold, one silver. The gold one must be worn by the caster, the silver one by the subject (e.g., on a collar). The spell can then be cast at any time, regardless of distance. Usable only by a mage. If a Powerstone is included in the item, it is in the gold one. If either item is broken, the other loses its enchantment. Energy cost to create: 1,000 (for the pair). Each of the pair must contain an opal worth $100.</p>"
+  },
+  {
+    "_id": "fc79d276b9d2a351",
+    "name": "Spider Silk",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster shoots a strand of spider silk, which stretches from his fingertip to the target. The strands appear wispy and weightless, but are very strong, and can support up to 500 pounds without snapping. As a missile, the strand has 1/2D n/a, Max equal to strand length, Acc 3; use the caster's DX-4 or Innate Attack to hit. On a hit, the victim as grappled and immobilized as per the Binding advantage with the Sticky enhancement (see p. B40). A single strand has an effective ST of 10 and DR 3. Spider Silk takes triple damage from fire-based attacks.</p><p>The caster may shoot as many strands as he has arms from a single casting of Spider Silk; however, the cost to cast is based on the total length of all strands created. Thus, a many-armed spider demon can throw half a dozen strands at once, but it won't be cheap.</p><p>Strands of Spider Silk may also be used to build a web by anchoring successive strands between two surfaces. This web creates an area that will grapple anyone who passes through it; mechanically, this is similar to a Binding attack with the Sticky and Area Effect enhancements (p. B40). The web has ST 10 and DR 3, plus 1 ST for each additional strand.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages. The item must bear a picture of a spider. The strand is shot from the item's tip. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "e749a6a6e33131a4",
+    "name": "Beast Seeker",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell is similar to Seeker (p. 105), but it works only on animals. It may be cast for any species of animal, an individual, or simply any animal.</p><p><em>Item</em></p><p>A forked stick (wood, bone, or ivory) or compass-needle (carved out of bone) that will point to a particular species of animal, specified when the item is created, or to any animal. One ounce of bone from the animal species must be used in making the item. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "087212724b621755",
+    "name": "Beast Possession",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Rider Within - except caster is in full control of the subject, \"from the inside,\" and has full access to the beast's memories and abilities. While in the subject's body, the caster may use all its skills and abilities as though they were his own. He may use his own mental abilities, but not his physical ones (so he cannot cast spells unless he knows them so well that they require no speech or gesture). The caster's own body lies unconscious during the spell, and must be safeguarded.</p><p><em>Item</em></p><p>As for Rider Within, but more costly. Energy cost to create: 1,500 (for the pair). Each of the pair must include an opal worth $200.</p>"
+  },
+  {
+    "_id": "e45ef0327c38421f",
+    "name": "Permanent Beast Possession",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Beast Possession, but the caster's consciousness remains in the body of the subject until he chooses to leave or is \"exorcised\" by a Dispel Possession, Counterspell, Remove Curse, or similar spell. Remember that the caster must know the appropriate (Animal) Control spell for the spell to work on the chosen subject. The caster's body is in Suspended Animation (p. 94) while the spell continues. If the caster's body dies, the spell is broken. Whenever the subject body takes damage, the caster must roll against his own body's HT or take the same damage. If the subject animal dies, the caster must roll vs. HT or die himself!</p><p>In addition, the caster must roll against his IQ every day; a failed roll means that he loses one point of IQ. The caster does not need to roll once he reaches the beast's normal IQ range. The lost IQ is regained when the spell is ended. Should IQ drop to 5, only Remove Curse or Dispel Possession will end the spell.</p><p><em>Item</em></p><p>Cap, crown, helmet, or other headgear. The item must bear a picture of the animal form it is usable on. Usable only by mages. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "8d9e72ad384c7d42",
+    "name": "Protect Animal",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cast on an area, this spell protects all animals of a certain kind within its borders. Attempts to harm them are warded off as if by invisible defenders; protected animals gain DB +3 and DR 5.</p><p>This is also a Protection and Warning spell.</p>"
+  },
+  {
+    "_id": "cde7a226da1f9e00",
+    "name": "Shapeshifting",
+    "pages": "M32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Change to the form of an animal. Each animal form is a different spell, to be learned separately. The caster may only learn the form of an animal with which he is familiar. Many worlds have only a limited number of animal forms available. Clothing, jewelry, and armor vanish when the beast-form is taken and reappear when the human form is resumed (magical jewelry cannot be detected while \"vanished\"). Backpacks, carried items, etc., simply fall to the ground.</p><p>The caster retains his intelligence, but gains all the physical attributes of the new form. This means that the wearer cannot cast spells unless he knows them so well that they can be performed without gestures! Note that Fatigue Points are not increased for spellcasting purposes.</p><p>Each hour that the spell continues, the caster must make a roll against IQ; failure means that the caster loses a point of IQ, continuing until the normal IQ of that beast is reached. Should the caster's IQ drop to 5, he is trapped in beast form forever unless the spell is removed by Remove Curse (other spells won't counter it). Lost IQ is regained when human form is reassumed.</p><p>For most natural beast forms, an energy cost of 6 to cast and 2 to maintain is appropriate; animals with great strength, for example, tend to be counterbalanced by reduced agility. If the GM allows supernatural creatures as beast forms, however, or if he is concerned about the power of a given animal form, he may wish to change the cost of the spell. A reasonable guideline is to calculate the point value of the physical characteristics of the beast form and charge 1/20 of the form's cost to cast and 1/60 to maintain, with a minimum cost of 3 to cast and 1 to maintain.</p><p><em>Item</em></p><p>(a) Jewelry. The item must bear the likeness of the shape to be taken; usable only by a mage, or by someone descended from a natural were. It remains with the caster when the spell is cast - therefore, a collar or necklace is most convenient. There is no cost to maintain the spell, but the caster cannot change back unless he still has the item; otherwise, a Remove Curse spell must be used if he is to regain normal form. Energy cost to create: 1,500. (b) Skin of the shape to be taken. As above, but merges into the subject and so cannot be lost! Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "a99575d2bc670e49",
+    "name": "Shapeshift Others",
+    "pages": "M33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but usable on others. The subject cannot end the spell; only the caster, or a Remove Curse spell, can do that. If the spell continues until the subject's IQ drops to 5, he is trapped in the beast form!</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by a mage; the item must touch the subject. Energy cost to create: 3,000. (b) Skin of the shape to be taken. Always on. Placed on the subject, it puts the spell on him permanently (soon causing IQ loss as per Shapeshifting) until it is taken off by Remove Curse; the item may then be reused. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "d57f54ce0378123e",
+    "name": "Permanent Shapeshifting",
+    "pages": "M33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Shapeshifting, but the subject remains in animal form until he chooses to resume his normal form. He must roll for IQ loss daily rather than hourly.</p><p><em>Item</em></p><p>(a) Jewelry. The item must bear a picture of the form to be taken. Usable only by a mage or a descendant of a natural were. It remains with the subject when the spell is cast; note that the subject cannot end the spell if he loses the item while in beast form (if he does, only Remove Curse can turn him back!). Energy cost to create: 3,000. (b) Skin of the shape to be taken. As above, but merges into the subject and cannot be lost. Energy cost to create: 4,500.</p>"
+  },
+  {
+    "_id": "f7e1c1b1ade2d9bd",
+    "name": "Partial Shapeshifting",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Some known variations are:</p><p>Chameleon Eyes (3 to cast): The subject gains Enhanced Tracking 1 (p. B53) and Peripheral Vision (p. B74).</p><p>Crocodile Jaws (5 to cast): The subject's head becomes a crocodile's, granting the subject Sharp Teeth (p. B91) and a ST of 20 for the purposes of biting only. Speech is slurred but intelligible. He also gains Peripheral Vision and Colorblindness (p. B127) as side effects.</p><p>Elephant Trunk (3 to cast): The subject's nose becomes a trunk, granting him an Extra Arm (p. B53). He also gains Peripheral Vision and Colorblindness as side effects.</p><p>Feathered Arms (3 to cast): The subject's arms transform into wings, giving him Flight (Winged) (p. B56).</p><p>Fish Tail (3 to cast): The subject's legs fuse into a single powerful fluke, giving him Enhanced Move 1 (Water) (p. B52).</p><p>Mountain Goat Hooves (4 to cast): The subject's feet become mountain goat hooves, granting him Climbing-14 (only usable while mountaineering) and Jumping-14.</p><p>Saber Teeth (5 to cast): The subject's canines become saber-teeth, granting him Fangs (p. B91) and ST 25 for the purposes of biting only. Speech is slightly slurred. The subject acquires Colorblindness as a side effect.</p><p>Scorpion Tail (7 to cast): The subject grows a scorpion's stinger, complete with poison gland. This is an Impaling Striker (p. B88) with the Follow-Up enhancement; on a successful penetrating hit, a 1d+2 Innate Attack (Toxic, Melee Attack, Resistible) takes effect. A victim may resist the scorpion venom by making a HT-6 roll.</p><p>Serpent's Fangs (3 to cast): The subject's canines become fangs, able to deliver a venomous bite; this is a 1d+1 Innate Attack (Melee Attack, Contact Agent, Toxic, Resistible (HT-4), Cyclic (daily, expires after three days)).</p><p>Skunk Tail (3 to cast): The subject grows a huge skunk's tail (2 yards long), and gains the ability to use the Stench spell (p. 24) at will. The area of effect is two yards in radius and must be centered on some portion of the tail. This ability costs 2 FP to use.</p><p>Spider Arms (7 to cast): The subject grows two Extra Arms and gains one Extra Attack (p. B53).</p><p>Tiger Paws (4 to cast): The subject's hands become tiger paws, granting him Sharp Claws and Striking ST 24, but he also gains No Fine Manipulators (p. B145).</p><p>Toad Tongue (3 to cast): The subject's tongue becomes long and adhesive, serving as an Extra Arm with the Long and Weak enhancements and additional Striking ST - it attacks with the subject's full strength, but lifts with only 1/4 of the subject's ST. The subject also gains Peripheral Vision as a side effect.</p><p>Turtle Shell (10 to cast): The subject becomes encased in a turtle shell. It has DR 5 and weighs 4 pounds per point of ST of the subject.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "a6ebe8983d4e69c6",
+    "name": "Partial Shapeshifting (Chameleon Eyes)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Chameleon Eyes (3 to cast): The subject gains Enhanced Tracking 1 (p. B53) and Peripheral Vision (p. B74).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "abd6b753d3eb25e3",
+    "name": "Partial Shapeshifting (Crocodile Jaws)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Crocodile Jaws (5 to cast): The subject's head becomes a crocodile's, granting the subject Sharp Teeth (p. B91) and a ST of 20 for the purposes of biting only. Speech is slurred but intelligible. He also gains Peripheral Vision and Colorblindness (p. B127) as side effects.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "693804fe2e3c1b88",
+    "name": "Partial Shapeshifting (Elephant Trunk)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Elephant Trunk (3 to cast): The subject's nose becomes a trunk, granting him an Extra Arm (p. B53). He also gains Peripheral Vision and Colorblindness as side effects.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "fd775967591b4aac",
+    "name": "Partial Shapeshifting (Feathered Arms)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Feathered Arms (3 to cast): The subject's arms transform into wings, giving him Flight (Winged) (p. B56).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "7d78c6061d248a16",
+    "name": "Partial Shapeshifting (Fish Tail)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Fish Tail (3 to cast): The subject's legs fuse into a single powerful fluke, giving him Enhanced Move 1 (Water) (p. B52).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "877fb806c8f4d2ca",
+    "name": "Partial Shapeshifting (Mountain Goat Hooves)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Mountain Goat Hooves (4 to cast): The subject's feet become mountain goat hooves, granting him Climbing-14 (only usable while mountaineering) and Jumping-14.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "8df7aff9dae2881b",
+    "name": "Partial Shapeshifting (Saber Teeth)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Saber Teeth (5 to cast): The subject's canines become saber-teeth, granting him Fangs (p. B91) and ST 25 for the purposes of biting only. Speech is slightly slurred. The subject acquires Colorblindness as a side effect.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "27ae5f628ab6557b",
+    "name": "Partial Shapeshifting (Scorpion Tail)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Scorpion Tail (7 to cast): The subject grows a scorpion's stinger, complete with poison gland. This is an Impaling Striker (p. B88) with the Follow-Up enhancement; on a successful penetrating hit, a 1d+2 Innate Attack (Toxic, Melee Attack, Resistible) takes effect. A victim may resist the scorpion venom by making a HT-6 roll.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "08f309d76bcafb6b",
+    "name": "Partial Shapeshifting (Serpent's Fangs)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Serpent's Fangs (3 to cast): The subject's canines become fangs, able to deliver a venomous bite; this is a 1d+1 Innate Attack (Melee Attack, Contact Agent, Toxic, Resistible (HT-4), Cyclic (daily, expires after three days)).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "8d41292bc7534084",
+    "name": "Partial Shapeshifting (Skunk Tail)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Skunk Tail (3 to cast): The subject grows a huge skunk's tail (2 yards long), and gains the ability to use the Stench spell (p. 24) at will. The area of effect is two yards in radius and must be centered on some portion of the tail. This ability costs 2 FP to use.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "9d7d353689dd9989",
+    "name": "Partial Shapeshifting (Spider Arms)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Spider Arms (7 to cast): The subject grows two Extra Arms and gains one Extra Attack (p. B53).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "2b5b30f73fc9f2ee",
+    "name": "Partial Shapeshifting (Tiger Paws)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Tiger Paws (4 to cast): The subject's hands become tiger paws, granting him Sharp Claws and Striking ST 24, but he also gains No Fine Manipulators (p. B145).</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "17bbf1f9aa8a1c64",
+    "name": "Partial Shapeshifting (Toad Tongue)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Toad Tongue (3 to cast): The subject's tongue becomes long and adhesive, serving as an Extra Arm with the Long and Weak enhancements and additional Striking ST - it attacks with the subject's full strength, but lifts with only 1/4 of the subject's ST. The subject also gains Peripheral Vision as a side effect.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "1193dcb657b9a64c",
+    "name": "Partial Shapeshifting (Turtle Shell)",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shapeshifting, but affects only one body part. The subject of the spell can be the caster or someone else. Each variation is a separate spell.</p><p>The resulting body part preserves the subject's scale: Shapeshifting a human's head into a hummingbird's head results in a human with a human-sized hummingbird head. Some variations bear misleading titles: Crocodile Jaws, for example, transforms the subject's entire head, not just his jaws - the jaw muscles must be properly anchored!</p><p>Turtle Shell (10 to cast): The subject becomes encased in a turtle shell. It has DR 5 and weighs 4 pounds per point of ST of the subject.</p><p><em>Item</em></p><p>The item's form depends on the body part affected - gloves to shapeshift the hands, boots for the feet, a mask for the face, and so on. It must bear a likeness of the shape to be taken. There is no cost to maintain; the spell ends when the user mimics pulling off the item. Energy cost to create: 1,000 plus 250 per point of casting cost.</p>"
+  },
+  {
+    "_id": "393d74d430c2ccf2",
+    "name": "Great Shapeshift",
+    "pages": "M34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Perform multiple, fast, repeated changes of shape, temporarily accessing the Morph ability (p. B84). The spell lapses, however, if at any point the caster returns to his natural form. The caster is mentally stunned when the spell ends.</p><p>Clothing, jewelry, and armor vanish when the spell is cast, reappearing when it lapses (magical jewelry cannot be detected while \"vanished\"). Items that the caster was carrying when the spell was cast (including backpacks, etc.) simply fall to the ground.</p><p>At its minimum cost, Great Shapeshift allows the caster to change into any creature whose racial template costs 0 points or less (note that this is slightly different from the Morph ability). Each additional point of energy, however, adds 5 character points to the maximum point value of the allowable templates.</p><p>A caster remains subject to the Magic Rituals requirements (p. 8) while shapeshifted; if he changes into a form that cannot gesture or speak, he cannot use any spell known at a skill less than 20.</p><p>Mages who know Great Shapeshift can use Counterspell to hold a Great Shapeshifted caster in whatever form he currently has, for as many seconds as the Counterspell wins the contest by (or until the Great Shapeshift lapses).</p><p><em>Item</em></p><p>Jewelry, decorated with an abundance of animal motifs. Usable only by mages. The item vanishes when the spell is cast, to reappear when it lapses. Energy cost to create: 5,000.</p>"
+  },
+  {
     "_id": "f7c56fc7cf81130d",
     "name": "Summon Earth Elemental",
     "pages": "M27",
