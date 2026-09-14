@@ -40,6 +40,14 @@
     "description": "<p>Any baton with a protruding side handle, for use with Tonfa skill.</p><p>For special Fast-Draw rules, see Multiple Fast-Draw (p. 103), Fast-Draw from Odd Positions (pp. 103-104), Who Draws First? (p. 103), and Quick-Readying Nearby Weapons (p. 104).</p>"
   },
   {
+    "_id": "f9557691f54d8c44",
+    "name": "Thrown Weapon (Disc)",
+    "pages": "MA231",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<h3>Hurled Melee Weapons</h3><p>The table below gives the skill used to hurl a weapon not built for throwing. Such an attack has an extra -4 to hit! Damage is the weapon's usual thrusting or swinging damage - consult the \"Attack\" column to learn which. Those who know Throwing Art may use that skill instead, at no penalty, and get its usual damage bonus. In all cases, Acc is 0; Range is ×0.5/×1 for weapons up to 4 lbs., ×0.2/×0.5 for heavier ones; RoF is 1; Shots is T(1); ST is unchanged; and Bulk is the Holdout penalty calculated in Hidden Weapons (p. 218).</p><p><em>Thrown Weapon (Disc):</em> Shield; thrust.</p>"
+  },
+  {
     "_id": "d44d34bc8cf4c6e0",
     "name": "Hidden Lore (Hidden Styles)",
     "pages": "MA57",
@@ -54,6 +62,30 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>An arm (or wrist) lock is an attempt to restrain or cripple an opponent by twisting his arm. It normally uses Judo or Wrestling skill. This technique lets you improve effective skill for this purpose only.</p><p>To use Arm Lock, you must have two hands free and make a successful barehanded parry with Judo or Wrestling against your opponent's melee attack. On your first turn following the parry, you may attempt to capture your attacker's arm if he's still within one yard. This is an attack: step into close combat and roll against Arm Lock to hit. Your foe may use any active defense - he can parry your hand with a weapon! If his defense fails, you trap his arm.</p><p>Your foe may attempt to break free (p. B371) on his next turn, but you're at +4 in the Quick Contest. If he loses, he has a cumulative -1 on future attempts to break free.</p><p>On your next turn - and each turn thereafter, until your foe breaks free - you may try to damage the trapped arm. Roll a Quick Contest: the higher of your ST (including your Wrestling bonus) or Arm Lock vs. the higher of your victim's ST or HT. If you win, you inflict crushing damage equal to your margin of victory. The target's rigid DR protects normally. Flexible armor, including natural DR with the Flexible or Tough Skin limitation, has no effect.</p><p>If you cripple your victim's arm, he drops anything in that hand. You can inflict no further damage on a crippled limb but you can continue to roll the Contest each turn. If you win, your target suffers shock and stunning just as if you had inflicted damage.</p><p>Rolls to inflict damage are completely passive and don't count as attacks. You can simultaneously make close-combat attacks on your opponent, who defends at -4 in addition to any penalties due to injury caused by the lock itself. If you decide to throw him using the lock, this does count as an attack; see Throws from Locks (pp. 118-119).</p><p>You can use this ability offensively as well. Instead of waiting to parry an attack, grapple your foe normally with Judo or Wrestling. If he fails to break free on his next turn, you may try Arm Lock on your next turn, just as if you had parried his attack.</p><p>You can also apply this lock with a weapon. Default and prerequisite skills become a weapon skill. To initiate the lock requires a weapon parry or an Armed Grapple (p. 67). A reach C weapon gets +1 in the Quick Contest to cause damage; anything longer gets +2. Edged weapons can inflict crushing or cutting damage, but you must make a DX roll when you roll to inflict injury. Failure does thrust cutting damage to your off hand (DR protects normally). Otherwise, use the rules above.</p><p>Arm Lock uses precision and skill to cripple a foe's limb. For a brute-force technique, see Wrench (Limb) (p. 82).</p>"
+  },
+  {
+    "_id": "8cc649d64bde189f",
+    "name": "Force Saber Art",
+    "pages": "MA215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Science Fiction. A space-opera swashbuckler's energy blade. The Basic Set version is used one- or two-handed - like a Katana (pp. B271, B274) - with the Force Sword skill. A smaller, one-handed model might do 7d(5) burn, have reach 1, cost $6,000, and weigh 1 lb. At the GM's option, it may have a Parry statistic of 0F and use Force Saber.</p>"
+  },
+  {
+    "_id": "ca23796941d46362",
+    "name": "Force Saber Sport",
+    "pages": "MA215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Science Fiction. A space-opera swashbuckler's energy blade. The Basic Set version is used one- or two-handed - like a Katana (pp. B271, B274) - with the Force Sword skill. A smaller, one-handed model might do 7d(5) burn, have reach 1, cost $6,000, and weigh 1 lb. At the GM's option, it may have a Parry statistic of 0F and use Force Saber.</p>"
+  },
+  {
+    "_id": "293c6c25854a178d",
+    "name": "Force Saber",
+    "pages": "MA215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Science Fiction. A space-opera swashbuckler's energy blade. The Basic Set version is used one- or two-handed - like a Katana (pp. B271, B274) - with the Force Sword skill. A smaller, one-handed model might do 7d(5) burn, have reach 1, cost $6,000, and weigh 1 lb. At the GM's option, it may have a Parry statistic of 0F and use Force Saber.</p>"
   },
   {
     "_id": "2fa75f57436b86bf",
