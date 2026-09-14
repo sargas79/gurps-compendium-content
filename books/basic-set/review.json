@@ -1,22 +1,5 @@
 {
   "_standard": "Every captured entry was read and judged coherent and complete. This is not word-by-word collation against the printed page. An entry listed here was read and found wanting, and stays needs-review until fixed by hand.",
-  "advantages": {
-    "Morph (Cosmetic)": "carries Alternate Form's Cosmetic limitation, not Morph's",
-    "Morph": "starts at a later paragraph; the opening description is missing",
-    "Absolute Timing": "runs into the GM's note on exotic and supernatural traits",
-    "Legal Enforcement Powers": "only the trailing note about Duty; the description is missing",
-    "Social Regard (Feared)": "the family's opening and the variant label are spliced mid-sentence",
-    "Social Regard (Respected)": "the family's opening and the variant label are spliced mid-sentence",
-    "Social Regard (Venerated)": "the family's opening and the variant label are spliced mid-sentence",
-    "Shtick": "runs on past the perk into the modifiers chapter",
-    "Zeroed": "runs on into the introduction to perks",
-    "Special Rapport": "runs into Spines",
-    "Warp": "only the Warp Jump enhancement; the description is missing",
-    "ESP Talent": "runs into the Psychic Healing abilities",
-    "Psychic Healing Talent": "runs into the PK abilities",
-    "PK Talent": "runs into the Teleportation ability",
-    "Unaging": "cut off mid-word in its special enhancements"
-  },
   "disadvantages": {
     "Short Lifespan": "a table's figures are spliced into the sentences",
     "Sleepy": "a table is flattened into the text",
