@@ -496,6 +496,446 @@
     "description": "<p>Perform multiple, fast, repeated changes of shape, temporarily accessing the Morph ability (p. B84). The spell lapses, however, if at any point the caster returns to his natural form. The caster is mentally stunned when the spell ends.</p><p>Clothing, jewelry, and armor vanish when the spell is cast, reappearing when it lapses (magical jewelry cannot be detected while \"vanished\"). Items that the caster was carrying when the spell was cast (including backpacks, etc.) simply fall to the ground.</p><p>At its minimum cost, Great Shapeshift allows the caster to change into any creature whose racial template costs 0 points or less (note that this is slightly different from the Morph ability). Each additional point of energy, however, adds 5 character points to the maximum point value of the allowable templates.</p><p>A caster remains subject to the Magic Rituals requirements (p. 8) while shapeshifted; if he changes into a form that cannot gesture or speak, he cannot use any spell known at a skill less than 20.</p><p>Mages who know Great Shapeshift can use Counterspell to hold a Great Shapeshifted caster in whatever form he currently has, for as many seconds as the Counterspell wins the contest by (or until the Great Shapeshift lapses).</p><p><em>Item</em></p><p>Jewelry, decorated with an abundance of animal motifs. Usable only by mages. The item vanishes when the spell is cast, to reappear when it lapses. Energy cost to create: 5,000.</p>"
   },
   {
+    "_id": "89436930da41e60c",
+    "name": "Climbing",
+    "pages": "M35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives the subject a strong, sure grip, increasing his Climbing skill.</p><p><em>Item</em></p><p>Shoes, gloves, clothing, or jewelry; only affects the wearer. Energy cost to create: 250 times the maximum Climbing bonus (no more than 5) the item can give.</p>"
+  },
+  {
+    "_id": "4ca65c8edbc4d938",
+    "name": "Touch",
+    "pages": "M35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject feels a light touch at a spot of the caster's choice. The touch is easily felt, even through armor, but has no effect other than to attract the subject's attention; it cannot cause pain or discomfort, but it is very likely to distract him.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 50.</p>"
+  },
+  {
+    "_id": "7d72b7d9e557d3d0",
+    "name": "Perfume",
+    "pages": "M35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject smells strongly of any odor that the caster desires. The subject can detect the odor, but does not find it especially offensive (although his companions certainly might), regardless of its nature.</p><p><em>Item</em></p><p>Staff or wand. The item must touch the subject. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "ac8ae28f9d694446",
+    "name": "Stop Spasm",
+    "pages": "M35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stops any seizure the subject is undergoing. This works against epilepsy, vomiting fits, etc.</p><p>This is also a Healing spell.</p><p><em>Item</em></p><p>(a) Staff or wand, decorated in a snake pattern. Usable only by a mage or a nonmage with Physician-15 or higher. Energy cost to create: 400. (b) Any item. Always on. The item prevents its wearer from suffering seizures (grants a bonus of +5 when resisting Spasm). Energy cost to create: 750.</p>"
+  },
+  {
+    "_id": "6d09b04ba5d97abe",
+    "name": "Tickle",
+    "pages": "M36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject feels he is being tickled. If he does not resist, he is helpless with laughter, jerking about to try to escape from his invisible tormentor. This is a serious ticklefest; the victim is incapacitated as if by a seizure (see Incapacitating Conditions, p. B428). The subject must make a second Will roll if he tries to keep silent. High/Low Pain Threshold has no effect on the spell's outcome. Unfazeable characters get a +5 bonus to their resistance roll.</p><p><em>Item</em></p><p>(a) Wand, staff, or feather. Usable only by mages; the item must touch the subject. Energy cost to create: 600. (b) Chair, cushion, or pillow. Always on. Anyone sitting in it is immediately \"attacked\" by the spell. A great practical joke. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "92b47488d635f89f",
+    "name": "Tanglefoot",
+    "pages": "M36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject trips and falls down.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must be pointed at (but not necessarily touching) the subject. Energy cost to create: 600.</p>"
+  },
+  {
+    "_id": "12d235ed8ab5bbf9",
+    "name": "Roundabout",
+    "pages": "M36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Change the facing of a subject to any direction desired. This is not a teleport-in-place, but a physical spin. On the subject's next turn, a roll vs. Body Sense or DX-6 is needed to take any action. If the subject moved 2 or more yards the previous turn, he must make an IQ roll to avoid continuing in the new direction.</p>"
+  },
+  {
+    "_id": "89f5db30dc72e6a4",
+    "name": "Debility",
+    "pages": "M36",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Reduces the subject's ST temporarily. This will affect the subject's basic damage with weapons, but not HP. It does affect encumbrance, but GMs are free to ignore this detail in the interest of playability.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must be pointed at (but not necessarily touch) subject. Energy cost to create: 900. (b) Any item. Always on; reduces wearer's ST. Energy cost to create: 100 for every point by which wearer's ST is reduced.</p>"
+  },
+  {
+    "_id": "df604e734ac0f966",
+    "name": "Frailty",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lowers the subject's HT temporarily. This affects all considerations that depend upon HT (Basic Speed, HT-based skills, poison and spell resistance, unconsciousness, death, etc.) except for those dependent upon FP, which is unaffected. The cost to cast is not reduced by high skill.</p><p><em>Item</em></p><p>(a) Any. Always on; the wearer's HT is lowered while the item is worn. Energy cost to create: 200 per point of HT reduction. (b) Staff or wand. Usable only by mages; the user must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "2d7e70b4d37b5f6f",
+    "name": "Might",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Raises the subject's ST temporarily. This affects damage, encumbrance, and hit points, but does not heal wounds. If, when the spell wears off, the subject's wounds put him below -HT, he will have to make a HT roll to live. High skill does not reduce cost to cast this spell.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer's ST is raised while item is worn. Energy cost to create: 1,500 per point of increase (maximum 5). (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "a2f87ccb9f1dcd7e",
+    "name": "Grace",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Raises the subject's DX temporarily. His Basic Speed and ability with all DX-based skills are also raised. A caster can raise his own DX to increase his chances of hitting with missile spells, etc.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer's DX is raised while item is worn! This is a very rare item. Energy cost to create: 2,000 per point of increase (maximum 5). (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "342d7b0f114d0844",
+    "name": "Vigor",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Raises the subject's HT temporarily. This affects his Basic Speed, FP, and ability to resist trauma and disease. A caster can raise his HT. If the subject's FP when the spell wears off is below zero, he will immediately take 1 point of damage for every point of fatigue below zero, risking unconsciousness. High skill does not reduce cost to cast this spell.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer's HT is raised while item is worn. Energy cost to create: 1,500 per point of increase (maximum 5). (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "4127fa1880cdf005",
+    "name": "Boost Dexterity",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell has four separate variants: Boost Dexterity, Boost Health, Boost Intelligence, and Boost Strength. Each must be studied separately, but all four work identically.</p><p>This spell raises the subject's attribute just long enough for a single die roll or short action - one Quick Contest, one attribute check, delivering a blow, readying a weapon, resisting a spell, throwing an object, etc. It cannot be used to increase a roll that represents several seconds of effort, such as a Regular Contest. The boosted attribute affects all secondary characteristics except HP and FP. High skill does not reduce the cost to cast this spell.</p><p>Boost Intelligence is a Mind Control spell, not a Body Control spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or article of clothing. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "e8390fcaa2d3776c",
+    "name": "Boost Health",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell has four separate variants: Boost Dexterity, Boost Health, Boost Intelligence, and Boost Strength. Each must be studied separately, but all four work identically.</p><p>This spell raises the subject's attribute just long enough for a single die roll or short action - one Quick Contest, one attribute check, delivering a blow, readying a weapon, resisting a spell, throwing an object, etc. It cannot be used to increase a roll that represents several seconds of effort, such as a Regular Contest. The boosted attribute affects all secondary characteristics except HP and FP. High skill does not reduce the cost to cast this spell.</p><p>Boost Intelligence is a Mind Control spell, not a Body Control spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or article of clothing. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "4a4007bbe7bda71b",
+    "name": "Boost Strength",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell has four separate variants: Boost Dexterity, Boost Health, Boost Intelligence, and Boost Strength. Each must be studied separately, but all four work identically.</p><p>This spell raises the subject's attribute just long enough for a single die roll or short action - one Quick Contest, one attribute check, delivering a blow, readying a weapon, resisting a spell, throwing an object, etc. It cannot be used to increase a roll that represents several seconds of effort, such as a Regular Contest. The boosted attribute affects all secondary characteristics except HP and FP. High skill does not reduce the cost to cast this spell.</p><p>Boost Intelligence is a Mind Control spell, not a Body Control spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or article of clothing. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "4ed6a33f43fac59f",
+    "name": "Boost Intelligence",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell has four separate variants: Boost Dexterity, Boost Health, Boost Intelligence, and Boost Strength. Each must be studied separately, but all four work identically.</p><p>This spell raises the subject's attribute just long enough for a single die roll or short action - one Quick Contest, one attribute check, delivering a blow, readying a weapon, resisting a spell, throwing an object, etc. It cannot be used to increase a roll that represents several seconds of effort, such as a Regular Contest. The boosted attribute affects all secondary characteristics except HP and FP. High skill does not reduce the cost to cast this spell.</p><p>Boost Intelligence is a Mind Control spell, not a Body Control spell.</p><p><em>Item</em></p><p>Staff, wand, jewelry, or article of clothing. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "f88a29b3b2a65bdd",
+    "name": "Stun",
+    "pages": "M37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is physically stunned (p. B420) and must roll vs. HT each second to recover.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer is stunned until it is removed. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,100.</p>"
+  },
+  {
+    "_id": "4509fc71fb70a4df",
+    "name": "Nauseate",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes nauseated (see Irritating Conditions, p. B428).</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "a9046800d2e06f20",
+    "name": "Retch",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject loses his lunch, retching for (25-HT) seconds (see Incapacitating Conditions, p. B428).</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "70111c4c66ef5a2b",
+    "name": "Fumble",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject automatically fumbles the action he is taking. Regular range penalties apply. If the action is an attack or parry, roll on the Critical Miss Table. A fumbled dodge results in a fall, and a fumbled block unreadies the shield. If he was taking some other action (Move, Ready Weapon, etc), the GM should determine the result as he sees fit. \"Mental\" actions (concentration, speech, and so on) are unaffected, but a spell requiring body motions of some sort is affected!</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000. (b) Jewelry. Always on; only affects the wearer. The wearer keeps fumbling! Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "00b11a2391d9a8c9",
+    "name": "Strike Dumb",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject cannot speak. This makes it impossible to cast any spell that requires speaking (p. 8).</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer cannot speak. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,500.</p>"
+  },
+  {
+    "_id": "cedd1c1e7ea4406b",
+    "name": "Strike Blind",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is temporarily blinded. See Blindness, p. B124, for a full description of the effects; the most important is that he is at -10 to attack anyone physically, and cannot see to target spells.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer is blinded. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "94a04f7785c12ffc",
+    "name": "Strike Deaf",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is temporarily deafened.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer is deafened. Energy cost to create: 400. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "d0569b0b8544c407",
+    "name": "Hunger",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Inflicts 1 FP of starvation damage, equivalent to a single missed meal. Fatigue taken in this fashion can only be recovered by a day of rest and adequate nourishment (see Starvation, p. B426).</p><p>This is also a Food spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "79872f7a4e03b445",
+    "name": "Thirst",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Inflicts 4 FP and 1 HP of dehydration damage, equivalent to a full day without water. Dehydration fatigue may be recovered in full with a full day's rest and plentiful water (see Dehydration, p. B426). HP damage heals normally. Repeated castings may render the subject nearly unable to speak, because his throat will be parched and his tongue swollen.</p><p>This is also a Food spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "0a68cc498d487307",
+    "name": "Resist Pain",
+    "pages": "M38",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes temporarily impervious to pain. He may ignore Spasm and other pain-causing spells. He cannot be stunned in combat, and does not suffer a shock penalty when he is wounded or slow down when his HT is reduced to 3. However, he does not gain any actual resistance to injury - only to the pain it causes.</p><p><em>Item</em></p><p>Any item; only affects the wearer. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "dfe4fc560d0ad336",
+    "name": "Hold Breath",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Temporarily eliminates the caster's need for air, as if he had Doesn't Breathe (p. B49). He could thus stay underwater, or in a room full of poison gas, without trouble. This spell does not actually provide air; it simply delays suffocation while the caster seeks (or creates) a safer environment. This spell does not supply pressure support against vacuum or deep sea pressure.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 900.</p>"
+  },
+  {
+    "_id": "913bd63322c4e657",
+    "name": "Ambidexterity",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject gains Ambidexterity (p. B39) for the duration of the spell. The spell has no effect on beings that already have the advantage. It also only affects a single pair of limbs; beings with more than two limbs require multiple castings of the spell.</p><p><em>Item</em></p><p>(a) Any. Always on; the wearer becomes ambidextrous. A rare item! Energy cost to create: 1,500. (b) Staff or wand. Usable only by mages. Energy cost to create: 500.</p>"
+  },
+  {
+    "_id": "cd4ce82f5e6fdb95",
+    "name": "Balance",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject gains Perfect Balance (p. B74) for the duration of the spell. It has no effect on beings that already possess this advantage.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 300. (b) Jewelry or headgear. Always on; affects only the wearer. Energy cost to create: 750.</p>"
+  },
+  {
+    "_id": "afb2f76c9771625d",
+    "name": "Reflexes",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject gains Combat Reflexes (p. B43) for the duration of the spell. The spell has no effect on beings that already have the advantage.</p><p><em>Item</em></p><p>(a) Any item. Always on; the wearer gains the Combat Reflexes advantage. Rare item! Energy cost to create: 1,200. (b) Staff or wand. Usable only by mages. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "b236951a09896a21",
+    "name": "Cadence",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Doubles the rate of production of crafted items by both hastening the craftsman's movements and making them surer, eliminating wasted strokes. Any use of a skill that creates or improves a handmade object can be assisted by this spell; magical craft work (such as scroll writing or enchantment) cannot.</p><p><em>Item</em></p><p>Tool. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "923af61059dcf461",
+    "name": "Hair Growth",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes the subject's hair and nails to grow at a million times the usual rate (meaning an inch of hair every five seconds and an inch of nails every 30 seconds). If left unchecked, such growth interferes with vision (as hair falls in the eyes), movement (as the subject trips on his beard) and handling ability (as nails get in the way). Some bald people appreciate this spell, while it lasts (baldness returns within about a month as the hair falls out naturally).</p><p><em>Item</em></p><p>(a) Any item; always on. Hair starts growing an hour after the item is put on and grows for an hour after the item is taken off. Energy cost to create: 100. (b) Staff or wand. The item must touch the subject. Energy cost to create: 250.</p>"
+  },
+  {
+    "_id": "975d28d400f23623",
+    "name": "Haircut",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trims the subject's hair (beard, mustache, fur, etc.) as the caster sees fit. To determine the aesthetic quality of the job, roll against Barber skill (a DX/Average Professional Skill). Can also be used to shear sheep, pluck chickens, or to trim the subject's nails. The spell will not blunt the subject's claws or horns (although it may give them a manicure).</p><p><em>Item</em></p><p>(a) The effect may be made permanent (preventing hair from growing back) for 10 times casting cost. (b) Headgear. The item trims the hair of whoever puts it on, to the style specified by the creator. Energy cost to create: 150. (c) Staff or wand. Energy cost to create: 300.</p>"
+  },
+  {
+    "_id": "55a6dbcd893b1d46",
+    "name": "Sensitize",
+    "pages": "M39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes extremely sensitive to pain, gaining the Low Pain Threshold disadvantage (p. B142). The spell does not affect characters that already have the disadvantage.</p><p><em>Item</em></p><p>(a) Any. Always on; only affects the wearer. Energy cost to create: 300. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "ed95a2030c2fb51a",
+    "name": "Agonize",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Magnifies the subject's sense of touch to painful levels: a gentle touch feels like a blow, someone else's breath feels like a scorching flame, a cool breeze feels like a freezing blast. Even the contact of his own clothes becomes unbearable; the subject feels like his skin is being scraped raw. He is rendered helpless with agony (see Incapacitating Conditions, p. B428).</p><p><em>Item</em></p><p>(a) Any. Always on; only affects the wearer. Energy cost to create: 500. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "2074e63333198756",
+    "name": "Weaken Blood",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject acquires Hemophilia (p. B138) for the duration of the spell. All wounds will cause severe bleeding.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>Any item; always on. The wearer is a hemophiliac! Energy cost to create: 200. (Usually combined with Hex.)</p>"
+  },
+  {
+    "_id": "ef9eedac35e1763b",
+    "name": "Strike Numb",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject temporarily loses all sense of touch, as per the Numb disadvantage (p. B146). This includes the effects of the Resist Pain spell, so it is sometimes a blessing in disguise. The subject does not feel blows (beyond a jolt), does not feel a pickpocket going through his possessions, does not feel the heat of the stove top he is leaning on . . . If the caster desires, the spell can selectively numb the subject (numbing only the arms, for instance).</p><p><em>Item</em></p><p>(a) Any. Always on; only affects the wearer. Energy cost to create: 300. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "2e2951b35194fa03",
+    "name": "Choke",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject becomes unable to breathe (or speak) and suffers the effects of suffocation (see Suffocation, p. B436). The spell cannot be maintained; so constant recasting is required to cut off enough of the victim's air supply to do any real harm.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "f3a22001d9f29438",
+    "name": "Control Limb",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>One of the subject's limbs (including wings, tentacles, etc) is under the caster's control! Arms can be made to swing weapons (use the caster's skill); legs can be made to kick, twist, and so on. The caster must continually concentrate to control the limb once the spell is cast; failure to do so causes the limb to \"go dead\" for the duration. The victim may attempt to grapple himself to prevent his limb from acting, but he is at -3 on contests of ST or DX with himself!</p><p>If a caster forces the subject to attack himself with his own weapon or fist, hit rolls are still required (against the subject's skill+4), and the victim may Dodge at -2. He can even parry (also at -2) if he has an appropriate weapon in his other hand! Treat as Close Combat for legal weapons and any appropriate penalties.</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must be pointed at the subject. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "f31cfc13d58e1c2b",
+    "name": "Total Paralysis",
+    "pages": "M40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster must touch the subject on the head (-5 to caster's attack roll). If the subject fails to resist, he is totally paralyzed and cannot move at all for one minute (in the average game, until that battle is over).</p><p><em>Item</em></p><p>Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000.</p>"
+  },
+  {
+    "_id": "7c091d605b3a3054",
+    "name": "Strike Barren",
+    "pages": "M41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Renders infertile any subject that was capable of producing offspring. Restoration or Remove Curse will undo the spell. Used on a plant, this spell prevents it from ever bearing pollen, fruit, or seed.</p><p>This is also a Necromantic spell.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 200. (b) Any item. Always on; the wearer is infertile/barren while the item is worn. Energy cost to create: 800.</p>"
+  },
+  {
+    "_id": "3469c1e04b03564d",
+    "name": "Alter Voice",
+    "pages": "M41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the subject's voice as the caster wills. If the caster is trying to duplicate an existing voice, the \"model\" voice should be available. Recreating a familiar voice from memory is at -2 to skill, -3 or worse if the caster has only heard the voice a few times, or a long time ago. Eidetic Memory is helpful here (p. 51).</p><p>The subject's voice can also be altered to make it more pleasing or more grating, granting a bonus or penalty (from +2 to -2) to reaction rolls and skills involving vocal communication for the duration of the spell.</p><p>The spell cannot \"give\" a voice to a mute person. If this spell is used to permanently improve a PC's voice (giving him the Voice advantage), the GM should require him to pay the appropriate character points!</p><p>This is also a Sound spell.</p><p><em>Item</em></p><p>Any, but usually jewelry. Gives the wearer a new voice, preset by the caster. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "4c07a8fcded41b72",
+    "name": "Alter Visage",
+    "pages": "M41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the subject's face as the caster wills. Any new organs (e.g., extra eyes) do not really function. Other than that, any change is possible. If the caster is trying to duplicate an existing face, he is at -1 if he does not have the model (or a good picture) available; if he is not too familiar with the model, -2 or worse.</p><p>This spell cannot be used to injure the subject. Mages do not get an automatic IQ + Magery roll to realize someone is under this spell.</p><p>If this spell or Alter Body (below) is used to permanently improve a PC's looks, the GM should require him to pay the appropriate character points for the improvement!</p><p><em>Item</em></p><p>Any, but usually clothing or jewelry. Gives the wearer a new face, preset by the caster. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "8592bb29b712e2af",
+    "name": "Alter Body",
+    "pages": "M41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As for Alter Visage, except that the subject's entire body (e.g., skin, hair, limbs) may be altered. The subject's general form cannot change: humanoids stay humanoid. No extra limbs, wings, etc., may be added. Simpler additions are possible (non-prehensile tails, horns, hooves), but the subject will be unfamiliar with them, and may suffer penalties to DX until a suitable adjustment period (GM's decision) has passed. The subject's mass must remain the same; basic stats do not change.</p><p><em>Item</em></p><p>Any, but usually clothing or jewelry. Gives the wearer a new appearance, preset by the caster. Energy cost to create: 4,000.</p>"
+  },
+  {
+    "_id": "9646f1aac65aa95d",
+    "name": "Lengthen Limb",
+    "pages": "M41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster's arm (usually - but legs, pseudopods and so on are also legal) lengthens, becoming like a very long snake. The limb lengthens at a rate of 1 yard per second, with no upper limit. The caster retains his full sense of touch, and must feel his way forward once the end of the limb grows out of view, or use Wizard Eye or some similar spell to guide it. He must remain still; the actual lengthening requires concentration, but the caster may relax once he has achieved the desired length.</p><p>The extended limb may make a tempting target for whoever happens on it! When the spell ends, or in an emergency, the limb is \"reeled back in\" at the caster's full Basic Speed score. This is useful for reaching the keys outside the cell, or snatching the caliph's prize jewel as he sleeps.</p><p><em>Item</em></p><p>Wand. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "8a8ab525e50e124f",
+    "name": "Decapitation",
+    "pages": "M42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's head comes off! When this spell is cast, the subject's head (or one of them, if the subject has several) comes free of its body, but continues to live on its own. The subject is not harmed, but the head takes falling damage if it is not carefully removed or caught! The head can talk, see, and control the actions of its body normally. If the head is somehow blinded (put in a bag, for instance), then it will have trouble telling its body where to walk . . .</p><p>The spell, once cast, is permanent until somebody puts the head back in the proper place and wills it to attach (if the head is unwilling, proceed to a Regular Contest of Wills). If it is cast on a foe, who then regains the head and reattaches it, the caster has no say in the matter, although he can certainly cast the spell again . . .</p><p>This spell, while useful in combat, has several other uses. A mage with a broken leg could leave his body behind and travel with the party as a head! Note, however, that bodies cannot feed themselves without mouths, and if the mage attempted to cast a spell requiring hand motions, the range penalties would apply from his body, not his head!</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "13100461c1f0c573",
+    "name": "Shrink",
+    "pages": "M42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster's size decreases, reducing his Size modifier. For every 1 point of SM reduction, the caster's ST, HP, and Move are all multiplied by 2/3. For every 2 points of SM reduction, his DR is reduced by 1. The caster's clothing shrinks with him if he wishes, but jewelry, armor, weapons, carried items, and other substantial volumes of harder substances remain at their original size (though they can be reduced separately with Shrink Object).</p><p>IQ, DX, HT, FP, Basic Speed, and Dodge do not change with size. Weight decreases dramatically; every point of SM reduction divides the caster's weight by 3.5. The caster is harder to hit, as appropriate to his new SM.</p><p>The GM may opt to set a floor of 1 HP and Move 1, so that shrunken wizards may still accomplish something on foot. This may not be realistic, but it is in keeping with the traditions of heroic fiction.</p><p><em>Item</em></p><p>(a) Wand. Usable only by mages. Energy cost to create: 2,000. (b) A size change can be made permanent for 100 times casting cost (the GM may require that the subject's new size be maintained while the enchantment goes on!)</p>"
+  },
+  {
+    "_id": "40b79012c09f37a1",
+    "name": "Shrink Other",
+    "pages": "M42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Shrink, but usable on other beings. The spell can only be countered by the original caster or by Remove Curse. The GM should keep in mind the potential psychological effects of this spell on unaware or unwilling subjects.</p><p><em>Item</em></p><p>(a) Wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000. (b) A size change can be made permanent for 100 times casting cost (the GM may require that the subject's new size be maintained while the enchantment goes on!)</p>"
+  },
+  {
+    "_id": "c2b10d84763d8640",
+    "name": "Enlarge",
+    "pages": "M42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The caster grows in size, increasing his Size modifier. For every 1 point of increased SM, the caster's ST, HP, and Basic Move are all multiplied by 1.5. For every 2 points of increased SM, his DR increases by 1. The caster's clothing grows with him if he wishes, but jewelry, armor, weapons, carried items, and other substantial volumes of harder substances remain at their original size (though they can be enlarged separately with Enlarge Object). See Corpulence, p. 43, for the effects of \"bursting\" out of armor.</p><p>IQ, DX, HT, FP, Basic Speed, and Dodge do not change with size. Weight increases dramatically; every point of increased SM multiplies the caster's weight by 3.5.</p><p>If the caster is enclosed in a room or other space that is too small to accommodate his larger size, his growth stops. However, if his maximum thrusting damage is enough to penetrate the enclosure's DR, he bursts through in one second per point of DR.</p><p><em>Item</em></p><p>(a) Wand. Usable only by mages. Energy cost to create: 2,000. (b) A size change can be made permanent for 100 times casting cost (the GM may require that the subject's new size be maintained while the enchantment goes on!)</p>"
+  },
+  {
+    "_id": "f9518f9f70c69cb0",
+    "name": "Enlarge Other",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Enlarge, but usable on other beings. The spell can only be countered by the original caster or by Remove Curse. Cast on a volunteer soldier, this changes him into an instant siege engine . . . but also makes him a prime target for the enemy's artillery and magic.</p><p><em>Item</em></p><p>(a) Wand. Usable only by mages; the item must touch the subject. Energy cost to create: 2,000. (b) A size change can be made permanent for 100 times casting cost (the GM may require that the subject's new size be maintained while the enchantment goes on!)</p>"
+  },
+  {
+    "_id": "bafb67badf1925dc",
+    "name": "Corpulence",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's girth temporarily increases by one level, going from Skinny to Normal, from Normal to Overweight, from Overweight to Fat, or from Fat to Very Fat, as applicable (see Build, p. B18, for details). Beyond Very Fat, the subject's weight increases by 100% of his base weight (not counting Fat or Skinny modifiers from this spell or otherwise) per casting. Subjects already affected resist repeated castings at a cumulative +5 per casting.</p><p>In addition to the normal effects of the increased weight, ordinary clothes will rip; each piece of rigid armor will constrict, inflicting DR/3 points of crushing damage (round down), and then suffocate (p. B436). Once the subject is incapable of moving, he may be suffocated by his own weight.</p><p><em>Item</em></p><p>(a) Any. Wearer acquires the new girth specified by the creator of the item. Energy cost to create: 2,000. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "6d32c4d476760b12",
+    "name": "Gauntness",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject is temporarily emaciated, losing one level of weight (the opposite of the Corpulence spell). Armor and clothing hangs on the subject, hampering him (-2 DX). Beyond Skinny, the subject loses 20% of his current weight, and loses 1d FP, per casting. Repeated castings on already-affected subjects are resisted at a cumulative +5 per casting.</p><p><em>Item</em></p><p>(a) Any. The wearer acquires the gauntness specified by the creator of the item. Energy cost to create: 2,000. (b) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 1,000.</p>"
+  },
+  {
+    "_id": "c70f3845f3e6db98",
+    "name": "Transform Body",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take the form of another sapient race. Each race is a different spell, to be learned separately. The caster may only learn the form of a race with which he is familiar. Clothing, jewelry, and armor do not vanish when the transformation occurs; a caster who fails to shed rigid armor may be painfully squeezed (see Corpulence, above, for details).</p><p>The caster acquires only the physical traits of the new form, keeping his original mental traits. Note that Fatigue Points are not increased for spellcasting purposes.</p><p>The energy cost of this spell depends on the point value of the assumed form's physical traits; it costs 1/10 of the form's cost to cast and 1/20 to maintain, with a minimum of 5 to cast and 2 to maintain.</p><p><em>Item</em></p><p>Jewelry. The item must bear the likeness of the shape to be taken; usable only by mages. There is no cost to maintain the spell, but the caster cannot change back unless he still has the item; otherwise, a Remove Curse spell must be used if he is to regain normal form. Energy cost to create: 1,500.</p>"
+  },
+  {
+    "_id": "1d2bc6e058a6f511",
+    "name": "Transform Other",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Transform Body, but usable on others. The subject cannot end the spell; only the caster, or a Remove Curse spell, can do that.</p><p><em>Item</em></p><p>(a) Staff or wand. Usable only by mages; the item must touch the subject. Energy cost to create: 3,000.</p>"
+  },
+  {
+    "_id": "8f4cc2451d41aeeb",
+    "name": "Transmogrification",
+    "pages": "M43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Change a person into an inanimate object of similar weight. The object may be anything that the caster is familiar with. A living thing with IQ 0, such as a plant, qualifies as an inanimate object for this purpose. The subject is conscious throughout the duration of the spell, but cannot take any action, including spells or psionic powers. He can dimly hear what goes on around him and feel whatever his transformed self is in contact with, but cannot see or smell anything. If the object is destroyed, the subject dies; if it is damaged, the subject will suffer a proportionate loss of HP upon being returned to his natural form.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Usable only by mages. Energy cost to create: 5,000.</p>"
+  },
+  {
     "_id": "f7c56fc7cf81130d",
     "name": "Summon Earth Elemental",
     "pages": "M27",
