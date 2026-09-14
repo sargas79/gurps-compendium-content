@@ -1,0 +1,1 @@
+A “major wound” is any single injury of greater than 1/2 your HP. If you are using hit locations, a lesser injury that cripples a body part also counts as a major wound – see Crippling Injury (below). Any major wound requires a HT roll to avoid knockdown and stunning (see below).

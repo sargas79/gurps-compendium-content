@@ -1,0 +1,3 @@
+Maladies and strange diseases may affect adventurers in far-off lands . . . or even at home. The search for a cure – whether for the Princess’ wasting disease, an alien plague, or a terrorist’s bioweapon – is a wonderful plot device. The invention of diseases is an excellent opportunity for the GM to exercise a morbid sort of creativity.
+
+Magical or technological items, the Resistant advantage (p. 80), and high HT can all protect you from disease. Risks are greatest in warm, moist areas. If you catch something, you won’t know until the symptoms start to show . . . the GM makes your roll to avoid it!

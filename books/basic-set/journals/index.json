@@ -1,6 +1,26 @@
 {
   "pages": [
     {
+      "id": "acid",
+      "title": "Acid",
+      "chapter": "Activities",
+      "pages": "B428",
+      "reference": "Basic Set: Campaigns p. 428",
+      "rule": null,
+      "file": "acid.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "afflictionsInInjuriesIllnessAndFatigue",
+      "title": "Afflictions (Injuries, Illness, and Fatigue)",
+      "chapter": "Activities",
+      "pages": "B428-429",
+      "reference": "Basic Set: Campaigns pp. 428-429",
+      "rule": null,
+      "file": "afflictionsInInjuriesIllnessAndFatigue.md",
+      "status": "reviewed"
+    },
+    {
       "id": "aging",
       "title": "Age and Aging",
       "chapter": "Activities",
@@ -8,6 +28,16 @@
       "reference": "Basic Set: Campaigns p. 444",
       "rule": "aging",
       "file": "aging.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "atmosphericPressure",
+      "title": "Atmospheric Pressure",
+      "chapter": "Activities",
+      "pages": "B429-430",
+      "reference": "Basic Set: Campaigns pp. 429-430",
+      "rule": null,
+      "file": "atmosphericPressure.md",
       "status": "reviewed"
     },
     {
@@ -91,6 +121,26 @@
       "status": "reviewed"
     },
     {
+      "id": "gravityAndAcceleration",
+      "title": "Gravity and Acceleration",
+      "chapter": "Activities",
+      "pages": "B434",
+      "reference": "Basic Set: Campaigns p. 434",
+      "rule": null,
+      "file": "gravityAndAcceleration.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hazards",
+      "title": "Hazards",
+      "chapter": "Activities",
+      "pages": "B428",
+      "reference": "Basic Set: Campaigns p. 428",
+      "rule": null,
+      "file": "hazards.md",
+      "status": "reviewed"
+    },
+    {
       "id": "hiking",
       "title": "Hiking",
       "chapter": "Activities",
@@ -101,6 +151,16 @@
       "status": "reviewed"
     },
     {
+      "id": "illness",
+      "title": "Illness",
+      "chapter": "Activities",
+      "pages": "B442",
+      "reference": "Basic Set: Campaigns p. 442",
+      "rule": null,
+      "file": "illness.md",
+      "status": "reviewed"
+    },
+    {
       "id": "study",
       "title": "Improvement Through Study",
       "chapter": "Activities",
@@ -108,6 +168,16 @@
       "reference": "Basic Set: Characters pp. 292-294",
       "rule": "study",
       "file": "study.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "infection",
+      "title": "Infection",
+      "chapter": "Activities",
+      "pages": "B444",
+      "reference": "Basic Set: Campaigns p. 444",
+      "rule": null,
+      "file": "infection.md",
       "status": "reviewed"
     },
     {
@@ -151,6 +221,16 @@
       "status": "reviewed"
     },
     {
+      "id": "pressure",
+      "title": "Pressure",
+      "chapter": "Activities",
+      "pages": "B435",
+      "reference": "Basic Set: Campaigns p. 435",
+      "rule": null,
+      "file": "pressure.md",
+      "status": "reviewed"
+    },
+    {
       "id": "radiation",
       "title": "Radiation",
       "chapter": "Activities",
@@ -161,6 +241,16 @@
       "status": "reviewed"
     },
     {
+      "id": "seasickness",
+      "title": "Seasickness",
+      "chapter": "Activities",
+      "pages": "B436",
+      "reference": "Basic Set: Campaigns p. 436",
+      "rule": null,
+      "file": "seasickness.md",
+      "status": "reviewed"
+    },
+    {
       "id": "socialBackground",
       "title": "Social Background",
       "chapter": "Activities",
@@ -168,6 +258,26 @@
       "reference": "Basic Set: Characters pp. 22-25",
       "rule": "socialBackground",
       "file": "socialBackground.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "suffocation",
+      "title": "Suffocation",
+      "chapter": "Activities",
+      "pages": "B436-437",
+      "reference": "Basic Set: Campaigns pp. 436-437",
+      "rule": null,
+      "file": "suffocation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "vacuum",
+      "title": "Vacuum",
+      "chapter": "Activities",
+      "pages": "B437",
+      "reference": "Basic Set: Campaigns p. 437",
+      "rule": null,
+      "file": "vacuum.md",
       "status": "reviewed"
     },
     {
@@ -288,6 +398,16 @@
       "reference": "Basic Set: Campaigns p. 374",
       "rule": null,
       "file": "activeDefenseRolls.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "afflictionsInSpecialCombatSituations",
+      "title": "Afflictions (Special Combat Situations)",
+      "chapter": "Combat",
+      "pages": "B416",
+      "reference": "Basic Set: Campaigns p. 416",
+      "rule": null,
+      "file": "afflictionsInSpecialCombatSituations.md",
       "status": "reviewed"
     },
     {
@@ -1421,6 +1541,16 @@
       "status": "reviewed"
     },
     {
+      "id": "cripplingInjury",
+      "title": "Crippling Injury",
+      "chapter": "Injury",
+      "pages": "B420-422",
+      "reference": "Basic Set: Campaigns pp. 420-422",
+      "rule": null,
+      "file": "cripplingInjury.md",
+      "status": "reviewed"
+    },
+    {
       "id": "criticalTables",
       "title": "Critical Success and Failure",
       "chapter": "Injury",
@@ -1428,6 +1558,16 @@
       "reference": "Basic Set: Campaigns pp. 556-557",
       "rule": "criticalTables",
       "file": "criticalTables.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "death",
+      "title": "Death",
+      "chapter": "Injury",
+      "pages": "B423",
+      "reference": "Basic Set: Campaigns p. 423",
+      "rule": null,
+      "file": "death.md",
       "status": "reviewed"
     },
     {
@@ -1441,6 +1581,46 @@
       "status": "reviewed"
     },
     {
+      "id": "fatigue",
+      "title": "Fatigue",
+      "chapter": "Injury",
+      "pages": "B426",
+      "reference": "Basic Set: Campaigns p. 426",
+      "rule": null,
+      "file": "fatigue.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fatigueCosts",
+      "title": "Fatigue Costs",
+      "chapter": "Injury",
+      "pages": "B426",
+      "reference": "Basic Set: Campaigns p. 426",
+      "rule": null,
+      "file": "fatigueCosts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "firstAid",
+      "title": "First Aid",
+      "chapter": "Injury",
+      "pages": "B424",
+      "reference": "Basic Set: Campaigns p. 424",
+      "rule": null,
+      "file": "firstAid.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "generalInjuryLostHitPoints",
+      "title": "General Injury: Lost Hit Points",
+      "chapter": "Injury",
+      "pages": "B419",
+      "reference": "Basic Set: Campaigns p. 419",
+      "rule": null,
+      "file": "generalInjuryLostHitPoints.md",
+      "status": "reviewed"
+    },
+    {
       "id": "hitLocations",
       "title": "Hit Location",
       "chapter": "Injury",
@@ -1448,6 +1628,16 @@
       "reference": "Basic Set: Campaigns pp. 398-401",
       "rule": "hitLocations",
       "file": "hitLocations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "injuries",
+      "title": "Injuries",
+      "chapter": "Injury",
+      "pages": "B418",
+      "reference": "Basic Set: Campaigns p. 418",
+      "rule": null,
+      "file": "injuries.md",
       "status": "reviewed"
     },
     {
@@ -1468,6 +1658,136 @@
       "reference": "Basic Set: Campaigns p. 420",
       "rule": "knockdown",
       "file": "knockdown.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "lostFatiguePoints",
+      "title": "Lost Fatigue Points",
+      "chapter": "Injury",
+      "pages": "B426",
+      "reference": "Basic Set: Campaigns p. 426",
+      "rule": null,
+      "file": "lostFatiguePoints.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "majorWounds",
+      "title": "Major Wounds",
+      "chapter": "Injury",
+      "pages": "B420",
+      "reference": "Basic Set: Campaigns p. 420",
+      "rule": null,
+      "file": "majorWounds.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "medicalCare",
+      "title": "Medical Care",
+      "chapter": "Injury",
+      "pages": "B424",
+      "reference": "Basic Set: Campaigns p. 424",
+      "rule": null,
+      "file": "medicalCare.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mortalWounds",
+      "title": "Mortal Wounds",
+      "chapter": "Injury",
+      "pages": "B423",
+      "reference": "Basic Set: Campaigns p. 423",
+      "rule": null,
+      "file": "mortalWounds.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "naturalRecovery",
+      "title": "Natural Recovery",
+      "chapter": "Injury",
+      "pages": "B424",
+      "reference": "Basic Set: Campaigns p. 424",
+      "rule": null,
+      "file": "naturalRecovery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "recoveringFromFatigue",
+      "title": "Recovering From Fatigue",
+      "chapter": "Injury",
+      "pages": "B427",
+      "reference": "Basic Set: Campaigns p. 427",
+      "rule": null,
+      "file": "recoveringFromFatigue.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "recoveringFromUnconsciousness",
+      "title": "Recovering From Unconsciousness",
+      "chapter": "Injury",
+      "pages": "B423",
+      "reference": "Basic Set: Campaigns p. 423",
+      "rule": null,
+      "file": "recoveringFromUnconsciousness.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "recovery",
+      "title": "Recovery",
+      "chapter": "Injury",
+      "pages": "B423",
+      "reference": "Basic Set: Campaigns p. 423",
+      "rule": null,
+      "file": "recovery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "resuscitation",
+      "title": "Resuscitation",
+      "chapter": "Injury",
+      "pages": "B425",
+      "reference": "Basic Set: Campaigns p. 425",
+      "rule": null,
+      "file": "resuscitation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shock",
+      "title": "Shock",
+      "chapter": "Injury",
+      "pages": "B419",
+      "reference": "Basic Set: Campaigns p. 419",
+      "rule": null,
+      "file": "shock.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "starvationAndDehydration",
+      "title": "Starvation and Dehydration",
+      "chapter": "Injury",
+      "pages": "B426",
+      "reference": "Basic Set: Campaigns p. 426",
+      "rule": null,
+      "file": "starvationAndDehydration.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "surgery",
+      "title": "Surgery",
+      "chapter": "Injury",
+      "pages": "B424",
+      "reference": "Basic Set: Campaigns p. 424",
+      "rule": null,
+      "file": "surgery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ultraTechDrugs",
+      "title": "Ultra-Tech Drugs",
+      "chapter": "Injury",
+      "pages": "B425",
+      "reference": "Basic Set: Campaigns p. 425",
+      "rule": null,
+      "file": "ultraTechDrugs.md",
       "status": "reviewed"
     },
     {
