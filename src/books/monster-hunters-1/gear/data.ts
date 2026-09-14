@@ -7,14 +7,14 @@
  * price), and this module's otherwise.
  */
 
-import { addExtensionFields } from "../../../shared/extensions.js";
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import type { GadgetImprovements } from "./gadgets.js";
 import { PAYLOAD_OPTIONS, POWDER_OPTIONS, type AmmunitionLoad, type PayloadOption, type PowderOption } from "./special-ammunition.js";
 import type { WeaponImprovements } from "./weapon-improvements.js";
 
 /** The item types this module keeps data on. */
-export const ITEM_TYPES = ["armor", "equipment"] as const;
+export const ITEM_TYPES = ITEM_EXTENSION_TYPES;
 
 /** One ranged mode's special load, by the mode's index. */
 export interface StoredLoad extends AmmunitionLoad {

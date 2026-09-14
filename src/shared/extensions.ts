@@ -13,6 +13,9 @@ import { MODULE_ID, type GWorldApi } from "./module.js";
 
 type DocumentName = "Actor" | "Item";
 
+/** The item types every book's Item fields are on, since the system takes one extension per document. */
+export const ITEM_EXTENSION_TYPES = ["armor", "equipment"] as const;
+
 interface PendingExtension {
   documentName: DocumentName;
   types: string[];
