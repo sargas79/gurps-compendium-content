@@ -1320,6 +1320,342 @@
     "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
   },
   {
+    "_id": "7320173e1646f899",
+    "name": "Temporary Enchantment",
+    "pages": "M56",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This lets the enchanter create magic items that only function a few times before losing their enchantment, at a substantial savings in energy cost (and therefore time).</p><p>An item can be temporarily enchanted at an energy cost of 15% the normal cost for an item of that type per use. An item with only a single use can be created for 15% of the normal energy, two uses would cost 30%, four would cost 60% (very costineffective under most circumstances) and the cost for an item limited to 7 or more uses actually exceeds the cost of a permanent item.</p><p>The temporarily enchanted item acts, in all respects, as a normal item of that type until all of its uses are consumed. Once all the uses of the temporary item are gone, the item is no longer magical.</p><p>The Temporary Enchantment spell is used in place of the Enchant spell. A single item may not be enchanted with both temporary and permanent spells simultaneously.</p><p>Temporary Enchantment can only be used to give items a one-time ability to cast a certain spell - not to cast the spell on the object. For example, a mage couldn't make a one-shot set of invisible armor - it would never wear off. He could give the armor the ability to cast the Invisibility spell on itself at normal energy and duration costs.</p><p>Temporary Enchantment cannot be used in conjunction with any Enchantment college or Meta-Spell college spells except the following: Hex, Limit, Link, Name, Power, and Speed. Temporary Enchantment absolutely cannot be used to further reduce the cost of enchantments that already have limited uses (e.g., Skull-Spirit).</p>"
+  },
+  {
+    "_id": "eef79ec5313fa778",
+    "name": "Scroll",
+    "pages": "M57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Write a magical scroll charged with a spell from one of the other colleges. If a mage who understands the scroll's language at Accented comprehension or better reads it aloud, the scroll casts its spell, after which its power dissipates and the writing on the scroll vanishes. Reading a scroll requires twice the normal casting time for the spell; the mage reading the scroll pays the normal energy cost. No skill roll is required when the spell is read unless it is Resisted. In that case, roll using the skill level of the mage who wrote the scroll.</p><p>Pronunciation is important when reading a scroll aloud! If the mage reading the scroll has Accented spoken comprehension of the scroll's language, the scroll casts its spell at a -1 penalty; if he has Broken spoken comprehension, the scroll casts at -3. If he has None, he cannot articulate the words properly and cannot cast the spell.</p><p>A scroll can be read silently, to see what it says. Any mage who understands the language will know what spell it is supposed to be. This does not cast the spell!</p><p>Spells may be written on any material, but parchment is traditional. Damage to a scroll does not affect its power as long as the scroll is legible.</p><p><em>Example:</em> The Rear Vision spell normally costs 3 energy to cast. A Rear Vision scroll would take 3 full days to write, and would normally cost $100. At the end of the writing time, the GM rolls against the writer's skill with Scroll or the spell being written - whichever is lower. A successful roll means the spell is good. A failure means the scroll will not work. A critical failure means it will cast a flawed spell!</p>"
+  },
+  {
+    "_id": "0ce133f06b382c50",
+    "name": "Hex",
+    "pages": "M57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the item impossible to put down/take off/get out of/etc. In itself, this effect is merely inconvenient, and can even be useful - for instance, you will never drop a hexed weapon, and a hexed pair of glasses will never fall off. However, if the hexed object has another malign spell on it, it becomes much more dangerous. The hex effect is \"always on.\"</p><p>To escape from a hexed object, you must remove or suppress the enchantment, find someone to cast a Remove Curse spell, or amputate the body part involved. Attempts to break or cut off the hexed item will fail (or result in amputation). GMs should permit this rule to have illogical results, if necessary, to keep the hexed object on the victim. Hexes aren't logical!</p><p>A hex may be limited by a Link or Password spell. For instance, a ring could be made with a Hex, the Strike Blind spell, and the password \"Gesundheit.\" Anyone wearing the ring would go blind - but should they say the magic word, the ring would fall off!</p>"
+  },
+  {
+    "_id": "5513680f5f61fbe8",
+    "name": "Speed",
+    "pages": "M57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Decreases the casting time of any other enchantments on an item enchanted with Speed. Each point of Speed cuts the casting time in half, just as high skill does for a mage. If the casting time is reduced below 1 second, the item can be used to cast the spell without concentration.</p><table><tr><th>Speed</th><th>Cost</th></tr><tr><td>1 point</td><td>500</td></tr><tr><td>2 points</td><td>1,000</td></tr><tr><td>3 points</td><td>2,000</td></tr><tr><td>4 points</td><td>4,000</td></tr></table><p>Double the cost for each additional point. May be recast at a higher level, as per Accuracy (p. 65).</p>"
+  },
+  {
+    "_id": "e61082f5ea076f18",
+    "name": "Remove Enchantment",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Takes one enchantment spell off the subject item. This does not affect other enchantments on that same item. Exception: A failed attempt to remove a Limiting Enchantment removes all enchantments from the item.</p><p>Skill modifiers: -3 if the caster does not know how to cast the enchantment he is trying to remove. -3 if he does not know exactly what that spell is. -3 for each other spell on the item. These are cumulative.</p>"
+  },
+  {
+    "_id": "e56c27757a2239bc",
+    "name": "Suspend Enchantment",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As Remove Enchantment, but the enchantment is merely suppressed. It seems to vanish, but reappears when the Suspend Enchantment spell ends. If anyone attempts to study or detect a suspended enchantment, it resists the information spell at -5.</p><p>Skill modifiers: -3 if the caster does not know how to cast the enchantment he is trying to suspend. -3 if he does not know exactly what that spell is. -3 for each other spell on the item. These are cumulative.</p>"
+  },
+  {
+    "_id": "0aa9418f73928f48",
+    "name": "Resist Enchantment",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An item enchanted with this spell resists attempts to enchant it further, imposing a penalty on the enchantment skill roll. Further, this enchantment itself resists any attempt to remove or suspend it, imposing twice the regular penalty.</p><p>It is possible for the enchanter to set Resist Enchantment to not resist specific further enchantments, but the enchanter himself must cast those spells or be present for the entire casting.</p>"
+  },
+  {
+    "_id": "98cb65a7279ca811",
+    "name": "Lesser Wish",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell, like the more powerful Wish spells (below), must be cast on a ring, amulet, or jewel. The wearer of that item may then specify the result of any one die roll made in his presence, just before that roll is made - except a die roll involving magic. This is not an \"action.\" It takes no time, and may be done at any time. Once used, a wish is lost.</p><p>Only one roll or action can be affected by one wish; you could use a wish on your attack roll or on the damage, but not both. GMs should feel free to disallow any wish use that they consider abusive or imbalancing.</p>"
+  },
+  {
+    "_id": "fc5f3faac9feb2cd",
+    "name": "Adjustable Clothing",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Causes an item of clothing to adjust to fit whoever wears it, within limits. The adjustment occurs as the wearer begins to put it on, so the enchantment won't be discovered if someone picks up the item and immediately discards it as \"obviously\" the wrong size. When removed, the item returns to its original size. The change in size does change weight as well; an object that doubled in size would increase in weight eightfold.</p><p>This enchantment is rare; few enchanters need to make \"any size fits all\" enchanted clothing. It is sometimes found in extremely expensive theatrical costumes. It is also used when the item is intended to outlive its original wearer, and often commissioned for intended heirlooms.</p><p>For gloves, boots, shoes, a belt, a hat, or similar small items, halve the cost. For something ring or earringsized, use one-third cost. For overalls, or a full-length gown, double cost. For a pressure suit or other item that literally covers the whole body, triple the cost.</p><p>An item with a few incidental metal parts (zippers, buttons, etc.) counts as \"cloth,\" as does thin leather. Leather thick enough to have DR doubles cost. Scale armor, chainmail, or similar items triple the cost. Plate armor and other solid metal clothing multiply cost by five. For exceptionally light clothing (a veil or lingerie), halve cost.</p><p>If the item can adjust in size by 25%, double cost. If it can halve or double in size, triple cost. If it can decrease to 1/5 size, or grow to five times size, quadruple cost.</p>"
+  },
+  {
+    "_id": "c3f381ece1d0ac74",
+    "name": "Golem",
+    "pages": "M59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create and animate a permanent servant or warrior. Golems make excellent warriors; they never grow tired, and are immune to stunning, pain, and the like. Likewise, there is no known spell to \"steal\" a golem from its maker. The spell is permanent; the golem is \"always on.\" A golem follows verbal orders from its maker; the maker may instruct it to obey others. It understands only one language (which must be spoken by the caster). It takes no initiative, and ignores any situation for which it has been given no orders. However, it never forgets anything it sees or is told.</p><p>Golems do not heal on their own, and are destroyed if reduced to -HP. They may be repaired with Healing spells (except Resurrection) if cast by the golem's creator. There is no other way to repair a golem. To create a golem, the creator must make its body - doing all the work himself - then animate it with this spell. Once animated, a golem lasts until reduced to 0 HP or until its creator commands it to cease functioning. No concentration or maintenance is required to control a golem.</p><p>A basic clay golem (see box) costs 250 energy to enchant. A more powerful golem costs an additional 2 energy for every extra character point of abilities added to the golem. In most cases, additional abilities should be restricted to extra ST, HP, and DR (a rule of thumb: 20 points of energy buys 1 ST, 5 HP, or 2 DR); however, GMs may allow more sweeping changes to the basic golem if they feel comfortable doing so. More powerful golems may require more durable (and more costly) materials, adding to the cost and time required to create the golem's body. (Optionally, the GM may allow less powerful golems; golems worth less than 0 points cost 2 less energy for every character point below zero, to a minimum of 130 energy.)</p>"
+  },
+  {
+    "_id": "a1da93c4e162ec3e",
+    "name": "Impression Blocker",
+    "pages": "M60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Seeker (p. 105) and related spells require an object associated with the item or person sought in order to work. The Impression Blocker Enchantment creates a container that allows people to carry items without them becoming \"associated\" with the carrier.</p><p>An object in a closed blocker container retains the impressions it had when the container was shut. If removed, handled briefly, and replaced, the object will acquire a very faint impression of the handler, but it won't be enough for a Seeker spell unless the handler does so once a day for decades. It is possible for an object in a blocker container still to be useful; for example, a book open to an important page, and stored in a glass container, can still be read! At sufficiently advanced tech levels, a \"waldo\" or remote-manipulation box can be enchanted, allowing handling of the object without opening the box.</p><p>In some settings, these containers can also be used to preserve evidence. If an object is owned for one person for a long time, and then transferred to a new owner, the original owner's impressions may wear off. A blocker container preserves the original owner's impressions. (In other settings, impressions never wear off; they just accumulate, so an item can be used to cast Seeker on any previous owner.)</p>"
+  },
+  {
+    "_id": "0c94455a7be3fae5",
+    "name": "Malefice",
+    "pages": "M60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Through this foul enchantment, the caster can put a victim under his thrall. He must fashion a doll (usually out of wax, but clay, straw, and other materials may be appropriate with the GM's permission) with something personally relevant to the target imbedded in it. Parts of the body (nail clippings, hair, blood, spittle, etc.) allow a casting at base skill. Other items allow a casting at a varying penalty; for example, threads from a shirt worn for years might be worth -2, while dirt from a fresh footprint might be worth -6.</p><p>Malefice is a lasting spell (p. 10) that continues until its Endurance is reduced to 0. It starts with an Endurance equal to its caster's effective skill.</p><p>The doll can be used by its maker (and no one else) to cast harmful spells (such as Pain) on the target, at normal energy cost, while ignoring distance penalties. The caster uses the lower of the Malefice's Endurance and his skill with the channeled spell. The target resists all such attacks, even if the spell is normally not Resisted (spells without normal resistance rules are Resisted by HT when cast through a Malefice doll).</p><p>If the victim resists the very first spell cast upon him through the doll, the enchantment is immediately broken. Otherwise, every successful resistance simply weakens the Malefice, reducing its Endurance by 1. Upon reaching Endurance 0, the Malefice dissipates (though the doll is still a viable item for re-enchantment, and its magical association with the target offsets one point of casting penalty). A critical failure by the channeled spell or a critical success by the subject also breaks the enchantment, reducing the doll's Endurance to zero.</p><p>Destroying the doll breaks the spell, but it also inflicts on the target a Deathtouch (p. 41) of as many dice as the Malefice's current Endurance divided by 5 (round down, maximum of 3d). This damage occurs as long as the Malefice has any Endurance remaining. Remove Curse frees the target from the Malefice without harm to him.</p>"
+  },
+  {
+    "_id": "ee37fd5dd7a2e6cd",
+    "name": "Ensorcel",
+    "pages": "M60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An ensorcelment is a durable spell, usually malign but sometimes beneficial, cast on a single being. The process requires something that is personally relevant to the subject; use the modifiers listed under Malefice.</p><p>The caster's spell roll is determined by the lower of his skills with this spell and the specific spell being placed on the subject. If the caster has assistants, their skills with both spells must be 15 or greater, but the roll is based on the caster's skill.</p><p>Possible ensorcelments include quite a few Body or Mind Control spells and others such as Shapeshift Other, Flesh to Stone, the various \"Body of\" spells, Walk on Air, the various \"Resist\" spells, Hide, Invisibility, the various \"Vision\" spells and Plant Form Other. In all cases, it must be a maintainable Regular spell.</p><p>When the spell is cast, the subject gets a resistance roll if the object spell allows one; distance is not a factor. Remove Curse is effective against any ensorcelment.</p><p>The cost of the enchantment can be reduced if the caster includes an \"escape clause\" - a particular action or condition that will break the spell. Examples include speaking a magic word, being kissed as a gesture of true love, abstaining from speech for three years, and so on. The value of the energy reduction depends on just how difficult the condition will be to meet - and the \"escape clause\" must be at least possible to be worth any reduction. The \"discount\" can be anything from 10% (for truly difficult or unlikely conditions) to 90% (for something that the subject could easily and automatically do, and easily discover).</p>"
+  },
+  {
+    "_id": "2fcfc59c13226d46",
+    "name": "Spell Stone",
+    "pages": "M60",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A spell stone stores a spell until someone (even a nonmage) uses it. The stone's user concentrates for a second while crushing the spell stone in his hand, thus casting the spell. At the beginning of his next turn, roll against the spell stone's Power. If the roll is successful, the spell is cast. If it is failed, the stone is simply wasted. If the stone is crushed without the requisite second of concentration, it is likewise wasted.</p><p>The spell's energy is included in the enchantment; none is required of the user, who also may not opt to supply any power to maintain the spell. Likewise, he may not cancel the spell once cast, although the creator of the stone may specify a shorter duration than ordinary and may also invest extra energy into the enchantment so that the spell will maintain itself. A person may use only one spell stone per second.</p><p>A spell stone must be made from a jewel worth $10×P² + $40×P, where P is the maximum energy of the spell that may be contained.</p><p>Any spell except a Blocking or Enchantment spell may be stored in a spell stone. Limiting Enchantments may be put on the stone. If the spell stored in the stone requires that the caster know another spell (Counterspell, for instance), that other spell must be specified at creation time. It is thus possible to create a spell stone that will counter one specific spell, but it is impossible to create a generic Counterspell spell stone.</p><p>It is also possible to create spell stones which, when crushed, do not cast the spell for the user, but on him!</p><p>Analyze Magic reveals which spell a spell stone contains, whether the spell will be cast for or on the caster, how much energy was invested, etc. (one question per casting).</p>"
+  },
+  {
+    "_id": "aa94442f8be08582",
+    "name": "Wish",
+    "pages": "M61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Allows the wisher to change the very recent past. It erases any just-made die roll - except a die roll for spell casting - and replaces it with the wisher's desired roll. The restrictions on use for Lesser Wish also apply to Wish.</p>"
+  },
+  {
+    "_id": "c95a09a05560ac6a",
+    "name": "Hideaway",
+    "pages": "M61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on an object, Hideaway makes it larger inside than it is outside. Can be used on a pocket, pouch, drawer, pitcher - anything that can normally hold other things. The caster may add any amount of pound-capacity he can afford, while increasing the size of the \"inside\" by 2 cubic feet for each pound; the extra space may be hidden by a false bottom, etc. Depending on the energy used to cast the spell, objects within the Hideaway may or may not count as encumbrance. The contents vanish forever if the object is destroyed. The time required to find an object in a Hideaway depends on how deep it is!</p><p>A large enough Hideaway could hold a person. There is no problem with air unless the Hideaway is sealed off.</p>"
+  },
+  {
+    "_id": "8821056f020f6090",
+    "name": "Leak",
+    "pages": "M61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A perversion of the Cornucopia spell (p. 64). The bag, purse, quiver, backpack, or other container enchanted will have an uncanny tendency to \"lose\" whatever is put in it (coins, arrows, clothes, etc.). A Leaky purse would lose a coin or two a day, a Leaky quiver would lose an arrow or two a day, a Leaky back-pack would lose a piece of equipment once in a while . . . The lost items may \"drop\" out of the container, be whisked away by thieving magpies, or magically vanish into thin air (as the GM's fancy takes him). Living beings are unaffected.</p>"
+  },
+  {
+    "_id": "91602974b24189db",
+    "name": "Simulacrum",
+    "pages": "M61",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Create a golem in the exact image of a particular victim. The golem must be prepared for a specific target; this requires the incorporation of something from the original's body (hair, blood, etc.) into the creation. Otherwise, any materials appropriate for golems (clay, stone, flesh, etc.) may be used, along with any other materials that the GM approves. An appropriate Shape spell or Artist (Sculpting) skill roll at -10 is necessary to achieve a good likeness - the caster need not do this himself. The simulacrum, once enchanted, appears identical to the target (including such details as eye color and skin tone) through a sort of always-on Perfect Illusion Disguise.</p><p>The simulacrum has the same attributes as the underlying golem. Golems intended as simulacra are often designed with higher IQ than ordinary golems, to improve the deception.</p><p>Once the simulacrum is activated, it takes on the persona and knowledge of the target, as the caster perceives them. That is, the Simulacrum cannot know something that the target does if the caster didn't. IQ rolls may be required of the caster as challenges come up (what was the name of his great-uncle, anyway?). Like any golem, the simulacrum is under the direct control of the caster.</p><p>Time to build body: As for the underlying golem, adding a week of work.</p>"
+  },
+  {
+    "_id": "41c992668e6ac399",
+    "name": "Bane",
+    "pages": "M62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is also considered a Limiting Enchantment (p. 68). It is used to make a magical weapon with powers that work only against one type of foe. Successfully cast before any offensive weapon enchantment, it reduces the energy cost of those spells, but they will work only against the named foe. For instance, a sword could be made that did +3 damage, but only against orcs - and this would be easier to enchant than a weapon that did +3 against everything. Note that a Bane spell cannot be removed unless the enchantments it controls are also removed.</p><p>The same caster who placed the Bane on the sword must cast the enchantments limited by the Bane. The more specific the bane (GM's decision) the greater the reduction in the other spells' cost(s). Banes like \"All my foes\" are not allowed! Examples of legal Banes:</p><p>Against a specific nation, religion, or race: Divide costs by 2.</p><p>Against a specific type of creature, or folk of a certain city: Divide costs by 3.</p><p>Against all members of one specific family: Divide costs by 4.</p><p>Against one specific foe: Divide costs by 10.</p>"
+  },
+  {
+    "_id": "71f78f7d62e054fd",
+    "name": "Graceful Weapon",
+    "pages": "M63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This enchantment is a toned-down version of Quick-Draw (below). The item does not become unready after attacking or parrying, even on a critical miss. If Graceful Weapon encounters Turn Blade or Bladeturning, it resists those spells with its Power.</p><p><em>Item</em></p><p>May be cast on any sort of tool - not just a weapon.</p>"
+  },
+  {
+    "_id": "daedbed4a6a7eca8",
+    "name": "Loyal Sword",
+    "pages": "M63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject weapon seeks to return to the wearer's hand if it is dropped or thrown - even if the wearer becomes unable to fight. When dropped, it returns on the next turn, as though Quick-Drawn (below). When thrown, it flies until it hits something or falls to the ground, and then returns in as straight a line as possible, with a Move of 12. It avoids enemies and obstacles when returning! If its owner dies, it returns to the body - but after that, it becomes loyal to the next person to pick it up.</p><p>A loyal weapon can be trapped, captured out of the air, etc., while returning, but it requires a DX-4 roll to catch it, and its constant attempts to return to its owner give anyone else a -4 to fight with it.</p><p>A loyal weapon can be sold or given away at any time, but the transaction must be wholly voluntary; it is then loyal to the new owner. It may have only one owner at a time. Limiting spells may be used to limit the class of people who can use it.</p><p>Note that if this spell is placed on a Dancing Weapon (below) it makes the Dancing Weapon spell almost worthless. The effect will be a Loyal weapon that strikes at foes on its way back to its owner (but at no other time).</p><p><em>Item</em></p><p>May be cast on any sort of tool - not just a weapon.</p>"
+  },
+  {
+    "_id": "40202800d2172eaa",
+    "name": "Quick-Draw",
+    "pages": "M63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The weapon will leap to the owner's hand when he wants it, becoming ready instantly (no Ready maneuver required!). Only the owner's mental command is required; no die roll is needed.</p><p>The enchantment does not work if the weapon is more than a yard away, or if it is tied down, peacebonded (tied into the scabbard with rope or wire), within a pack, etc. A weapon with this spell does not become unready after attacking or parrying (p. B382).</p><p><em>Item</em></p><p>May be cast on any sort of tool - not just a weapon.</p>"
+  },
+  {
+    "_id": "a650830b183c75e4",
+    "name": "Penetrating Weapon",
+    "pages": "M63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cutting, impaling, or piercing weapons with this enchantment pass through armor as if it were butter. Specifically, the spell grants the weapon an armor divisor (p. B268). Such a weapon does not do extra damage to unarmored foes. Hardened DR defends against the armor divisor conferred by this spell as normal.</p><table><tr><th>Armor Divisor</th><th>Cost</th></tr><tr><td>2</td><td>250</td></tr><tr><td>3</td><td>750</td></tr><tr><td>5</td><td>2,500</td></tr><tr><td>10</td><td>7,500</td></tr><tr><td>Ignores DR</td><td>25,000</td></tr></table><p>Double the cost if the subject is a missile weapon (e.g., a bow). Divide the cost by 10 if subject is a missile (e.g., an arrow). If the item falls in more than one class (weapon, missile weapon, missile), use the higher enchantment cost. In addition to weapons, any sort of cutting tool may be enchanted. Note that this spell may be recast at a higher level as per Accuracy.</p>"
+  },
+  {
+    "_id": "1c4d90b6c83e53b5",
+    "name": "Defending Weapon",
+    "pages": "M64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject weapon permits its wielder to parry more skillfully; each level of enchantment will give the wielder a +1 to Parry, up to a maximum of +3. The spell does not protect the weapon from being broken (p. B401).</p><p>If this enchantment is combined with Dancing Weapon, the weapon attacks opponents engaged with the owner and wards off blows from attackers when possible. It uses the weapon's skill as per Dancing Weapon, plus this spell's bonus. The owner can command it to defend a given side of him (much like Dancing Shield) and to either defend (in which case it gets two parries per turn) or attack (in which case it gets a single attack and a single parry each turn). If a dancing, defending weapon does not parry a blow, the owner may still use any of his own applicable defenses.</p><p>This spell can only be cast on a balanced weapon that can normally parry.</p>"
+  },
+  {
+    "_id": "08a7a48392960e8b",
+    "name": "Weapon Spirit",
+    "pages": "M64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transfers the personality and some of the intelligence of a recently deceased being (humanoid or not - dogs are popular subjects) to a weapon, usually a sword. The enchantment is at -1 for each full day that elapsed between the donor's death and the beginning of the enchantment. Most of the body must be present at the beginning of the enchantment, but may disposed of after it commences.</p><p>The enchanter can pass on as little or as much of the donor's IQ as he wishes to the weapon, as well as some of the donor's skills, advantages, and disadvantages. The weapon has no memory of its former existence. Although it has no sensory organs, it possesses sight and hearing (Per 10). Quirks (or disadvantages reduced to quirk level) are sometimes transferred from the donor to the weapon, whether the enchanter wants them or not (this is why dogs are popular; their personalities tend to make biddable but effective weapons).</p><p>The weapon can communicate with its wielder through an extremely basic empathy. When the wielder takes a course of action the weapon approves of, he gets a \"good feeling,\" and if he takes one the weapon disapproves of, he gets an equivalent \"bad feeling.\" The weapon may be enchanted with the Voices spell to give it a voice. Various Communication and Empathy enchantments may be added to the weapon to enhance the communication.</p><p>Each time it gets a new wielder, the weapon must make a single reaction roll, which sets the tone for its relationship with the wielder from that point on. On a very good reaction, the weapon will do literally anything for its wielder; on a very bad one, it refuses to communicate or cooperate in any way. The GM should record the result; the weapon cannot be forced to roll a new reaction by being passed back and forth between wielders!</p><p>The weapon's skills cannot be improved, although skills such as History or Area Knowledge may be kept current through the absorption of new knowledge.</p>"
+  },
+  {
+    "_id": "fb2f3e42a7ba42bb",
+    "name": "Cornucopia",
+    "pages": "M64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives a quiver, bag of pellets, or other container of ammunition an \"infinite\" supply of one type of ammunition - but items must be taken out by hand, one at a time. Each missile exists for one minute after being removed from the container; then it vanishes (or, if picked up by anyone but the Cornucopia's owner, it vanishes immediately). Therefore, this spell cannot be used to make a single quiver supply enough arrows for an army! It cannot be cast on a weapon. A high-tech wizard could create a pouch that always contained one armor-piercing tracer shell; he could not enchant a .50-caliber machine-gun to fire forever.</p><p>This means that a mage in a medieval world could not make a \"quiver\" for high-tech ammo; that ammo is priceless in his world. A Cornucopia quiver can be made to produce magic arrows, but only if the creating mage is capable of making such an arrow - and the energy cost will be tremendous.</p>"
+  },
+  {
+    "_id": "5e81008aab420d41",
+    "name": "Quick-Aim",
+    "pages": "M65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject missile weapon (bow, sling, etc) gains uncanny responsiveness; in game terms, an Aim action taken with the subject weapon has the effect of two turns of aiming.</p>"
+  },
+  {
+    "_id": "3bece9605ce68a7a",
+    "name": "Ghost Weapon",
+    "pages": "M65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A weapon enchanted with this spell affects ghosts (and other insubstantial beings and spirits) as if they were tangible. If the weapon itself is made intangible (through whatever means the GM deems feasible), the weapon still affects the physical world at the whim of its wielder.</p>"
+  },
+  {
+    "_id": "aa230dcfeac6d885",
+    "name": "Spell Arrow",
+    "pages": "M65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to a Spell Stone, a spell arrow stores a spell until it is fired. The archer need not be a mage. The arrow's user must concentrate for the appropriate time to cast to \"arm\" the spell. This cannot be simultaneous with aiming the bow, and isn't reduced by high skill (but see Speed Skill Arrow, below). An unused spell arrow disarms after 1 minute. The spell activates when the arrow hits a solid object; roll against the effective skill of the arrow's enchanter. If the roll is successful, the spell is cast. If it is a normal failure, the spell is simply wasted. Critical failures go to the Critical Spell Failure Table (p. 7). If the arrow is fired without the required concentration, the spell is wasted, but the arrow still does normal damage.</p><p>The spell's energy is included in the enchantment. The archer need not (and cannot) provide any to cast the spell or maintain it. Similarly, the archer may not cancel the spell once cast, though the enchanter may specify a shorter duration than normal, and may also invest extra energy so the spell will maintain itself.</p><p>The head of a spell arrow must contain a jewel worth $10×P² + $40×P, where P is the maximum energy of the contained spell. The gem is destroyed when the spell activates. (The rest of the arrow may be recoverable, but is now nonmagical.)</p><p>Any spell that can be enchanted into a magic item can be placed in a spell arrow, except for Blocking spells, Enchantment spells, Melee spells, or spells whose magic item description specifies \"must touch.\" Note that some permissible spells are pointless (e.g., Beast-Soother), since the archer must hit the target with an arrow anyway. Enchantments may be placed on the arrow itself normally, including limiting enchantments.</p><p>The only decision the archer can make is what he's aiming at. If the spell requires a subject, whatever the arrow hits is the subject. (If it is not a legal subject - e.g., a wooden wall for Strike Blind - the spell is wasted.) What constitutes a \"solid object\" may require the GM's judgment (for example, drops of rain are not enough to trigger the spell). If it is an Area spell, the point of impact is the center of the area. If it is a Missile spell, the effect is as if the missile hit the target, in addition to the arrow (the missile does not launch itself from the point of impact). If the spell creates an object, the object appears as close as possible to the point of impact. If the spell would normally affect both a subject and the caster (e.g., (Animal) Control) the archer is treated as the caster. If the spell requires a human target, the spell still works even if the arrow hits clothing instead of skin. The enchanter specifies everything else: duration, area, precise effect, etc.</p><p>Analyze Magic can reveal what spell a spell arrow contains, how much energy was invested, and so on (one question per casting). Arrows intended for the consumer market are usually color-coded.</p><p>The GM may decide this spell can work on other kinds of missiles (e.g., bullets). If so, for those missiles, multiply the contained spell's casting cost by 1/10 the missile's Max range, instead of 30. If the missile should pass beyond the Max range (for example, if fired from a more powerful gun) the spell is wasted. (This last rules does not apply to actual arrows and bolts.) Note that the need for a jewel still applies to bullets!</p>"
+  },
+  {
+    "_id": "d4615e158b3ecb9f",
+    "name": "Blank Spell Arrow",
+    "pages": "M66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This enchantment creates a spell arrow with no spell stored. Instead, any spellcaster may, at a later date, place a spell in the blank spell arrow, and then use it as if it were a normal spell arrow.</p><p>Blank spell arrows have a capacity, representing the energy cost of the largest spell they can hold. When a spellcaster wishes to use the arrow, he casts the spell normally, but directs it into the arrow. If the spell is too big for the arrow, it is wasted. After the arrow has been filled, it must be used within one day (by the spellcaster or someone else), or the spell dissipates harmlessly, making the arrow blank again.</p><p>All other rules for spell arrows also apply to blank spell arrows, with one exception. If the caster of the spell is also the archer, he can determine its effect at firing time, and maintain it normally. (He cannot put more or less casting energy into the spell at firing; casting energy must be in the arrow.)</p>"
+  },
+  {
+    "_id": "b8d09e1008d95101",
+    "name": "Speed Spell Arrow",
+    "pages": "M66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell can only be cast on missiles enchanted with Spell Arrow. Like the Speed enchantment, it reduces the time the archer must concentrate to activate the contained spell. Each level of Speed Spell Arrow halves the concentration time. If time is reduced below 1 second, no concentration is required.</p><table><tr><th>Speed</th><th>Cost</th></tr><tr><td>1</td><td>50</td></tr><tr><td>2</td><td>100</td></tr><tr><td>3</td><td>200</td></tr></table><p>Double the cost for each additional point. May be recast at a higher level, as per Accuracy (p. 65).</p>"
+  },
+  {
+    "_id": "bdf5e0894e602607",
+    "name": "Lighten",
+    "pages": "M67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes armor or shields lighter and easier to carry. The subject becomes lighter only when it is actually being worn. Armor in a backpack would still have its full weight.</p>"
+  },
+  {
+    "_id": "99fa597be3ff95f3",
+    "name": "Dancing Shield",
+    "pages": "M67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A shield enchanted with this spell protects its owner as if wielded by an invisible shield-bearer. The shield has Shield-16, Basic Speed 5, and ST equal to the Power of the enchantment (for bashing purposes). It follows its owner's mental or spoken instructions as to which side to guard. If the owner is knocked out, the shield continues protecting him to the best of its abilities. If the owner dies, the shield falls to the ground.</p><p>The shield can Block two different attacks per turn, regardless of its owner's actions (so the owner could parry any blow that got by the shield, for instance). The shield can be instructed to bash (p. B406), in which case its owner forfeits the shield's protection until the beginning of his next turn (the shield will travel no more than two yards from the owner to bash).</p><p>The shield can be attacked at a penalty of its DB-4. The shield's defense will be either a Block (using Shield/2) or a Dodge (using Speed); it does not get any DB bonus from itself. The shield could also be netted or bagged (standard to-hit roll). If the shield gets a critical miss or is struck by a critical hit, it is stunned and out of the fight until its owner grasps it and \"wakes it up\" (a Ready maneuver). The shield loses its magic if destroyed; if penetrated by an impaling or piercing weapon, it loses one point each of Power, Shield skill, and Basic Speed. As always, if Power drops below 15, the item ceases to function.</p>"
+  },
+  {
+    "_id": "0533ea6aef6754bf",
+    "name": "Defending Shield",
+    "pages": "M67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The enchanted shield allows its wielder to block more skillfully; each level of enchantment gives the wielder a +1 to Block, up to a maximum of +3. The spell may not be combined with Dancing Shield.</p><p>The spell may be recast at a higher level as with Accuracy (p. 65).</p>"
+  },
+  {
+    "_id": "9d7f53bc1c1d89f6",
+    "name": "Limit",
+    "pages": "M68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The enchanted item works only for the user, or class of users, specified by the caster when the Limit is cast. This class of users may be as simple or complex as the caster wishes. A Limit spell may affect all the spells on the item, or just some of them.</p>"
+  },
+  {
+    "_id": "d46cc48cdccdce17",
+    "name": "Name",
+    "pages": "M68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gives a magical name to an enchanted object. The magic of the subject functions only for someone who knows its name. The user must speak the item's name the first time he tries to use it, to show he knows the name.</p>"
+  },
+  {
+    "_id": "d7b1b3706132c5a6",
+    "name": "Password",
+    "pages": "M68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The reverse of the Name enchantment. A magical item with a Password functions unless the Password is spoken. If the Password is spoken, the item will be inert until the next time its powers would normally be invoked - or for one minute (choice of person making the item). An item may have some spells that are passworded and others that are not. The details, of course, depend on the spell.</p><p><em>Examples:</em> (a) a magic ring that gave the power of flight - but puts the wearer in Suspended Animation unless the password was used; (b) a Pentagram that can be \"turned off\" with a word; (c) a Dancing Sword that stops swinging for one minute if the password is said.</p>"
+  },
+  {
+    "_id": "9b3d995666a68e24",
+    "name": "Attune",
+    "pages": "M69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This limiting enchantment, a derivative of Bane, makes a magic item work better against a specific target. It works on any Resisted spell, providing a penalty to the target's resistance roll. If enchanted into a magic item before the spell to be affected, the cost to enchant the affected spell is halved.</p><p>The enchanter must possess something connected to the target. The accuracy of the symbolic representation determines the penalty to the resistance roll.</p><table><tr><th>Symbolic Representation</th><th>Penalty</th></tr><tr><td>Minimal (drawing)</td><td>-2</td></tr><tr><td>Small belonging/piece of clothing</td><td>-4</td></tr><tr><td>Hair or fingernail clippings</td><td>-5</td></tr><tr><td>Photographs or blood samples</td><td>-6</td></tr><tr><td>DNA sample or video</td><td>-7</td></tr><tr><td>Target is present during enchantment</td><td>-8</td></tr></table><p>In every case but the last, the representation must be incorporated into the magic item, though it need not remain intact (e.g., a videotape may be crushed to powder). If the target is present, presumably he has either been misled as to the purpose of the enchantment, or has agreed to it for more complex reasons (for instance, he's worried he might run amok in the future).</p><p>The downside of this enchantment is that, when the item is used against other targets, they get a +5 to their resistance roll. An Attune Enchantment cannot be removed from an item unless the enchantment or enchantments it controls are removed first.</p>"
+  },
+  {
+    "_id": "ba4d95b3a5d23815",
+    "name": "Powerstone",
+    "pages": "M69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Infuses mana into an object for later use by a wizard. Traditionally, a gemstone serves as the subject of this spell (for this reason, \"Powerstone\" is the generic word for an object containing stored mana), but any object can potentially be used. Any wizard touching a Powerstone may take any or all of the energy it contains, using it instead of his body's own energy to cast a spell.</p><p>Each Powerstone is said to have a \"capacity.\" This is the maximum amount of energy it can hold. Since a wizard can only use one Powerstone at a time, a large Powerstone is more useful than a handful of small ones. A large Powerstone can be used to cast a large spell; a group of small ones can be used one at a time to help maintain a spell, but cannot be used all at once.</p><p>A Powerstone \"recharges\" itself after use, by absorbing mana from the surrounding area. The rate of recharge varies with the area's mana level.</p><table><tr><th>Local Mana</th><th>Recharge Rate</th></tr><tr><td>None</td><td>None</td></tr><tr><td>Low</td><td>1 point/week</td></tr><tr><td>Normal</td><td>1 point/day</td></tr><tr><td>High</td><td>1 point/12 hours</td></tr><tr><td>Very High</td><td>1 point/6 hours</td></tr></table><p>A Powerstone does not recharge if it is within six feet of a larger Powerstone. Stones of the same size split the available mana and recharge at slower speed. This unfortunate fact means that the owner of several Powerstones must let some of them out of his sight to get them recharged!</p><p>A Powerstone is enchanted one step at a time. The first time Powerstone is cast on an object, it becomes an uncharged Powerstone with capacity 1. Each additional casting increases its capacity by 1. Thus, 15 castings would create a Powerstone with a capacity of 15. But note that with this many castings, there would be a cumulative chance of nearly 1 in 4 that a critical failure would be rolled at some point, destroying the stone. For 60 successive castings, the cumulative chance of critical failure is 2 in 3!</p><p>Further, each ordinary failure while casting puts some sort of magical \"quirk\" on the stone. Thus, it is possible for work for months and end up with a 20-energy Powerstone that smells like fish and can only be used on Wednesdays . . . This makes big stones without serious flaws more valuable than others of the same strength. The quirks of a Powerstone are set by the GM, and can be used as a tool for campaign balance. Most of them will be peculiar, arbitrary limitations on how the stone can recharge (e.g., only while bathed in bat blood) or how it can be used (e.g., only on Fire spells; only by a green-eyed virgin; not by anyone wearing a hat). A severe quirk affects the user of the stone (e.g., renders him mute for an hour).</p><p>The caster knows if his spell has failed, but not what quirk his Powerstone now has. The Analyze Magic spell can determine what quirks a Powerstone has. Two failures in a row indicate that no further growth is possible for that stone.</p><p>Any object may be used to produce a Powerstone. However, it is easier to enchant a Powerstone using an item with intrinsic value. The cost to cast Powerstone is quadrupled if the item being enchanted has a value of less than $10×P² + $40×P, where P is the target capacity of the Powerstone. This is one reason gemstones are popular; a valuable stone is compact and durable.</p><p>A Powerstone is uncharged when created (though if it already contained energy, that energy is unaffected by a casting to increase its capacity). The energy from a Powerstone cannot be used for further enchantments on that stone - a Powerstone cannot be used to help enchant itself!</p><p><em>\"Dedicated\" Powerstones</em></p><p>If a Powerstone is attached to an item before that item is enchanted, the Powerstone becomes a part of the magical item. It is then a \"dedicated\" Powerstone. The item's user may tap its energy - but only to power the spells cast by or through that item.</p><p>If a dedicated Powerstone is removed from a magical item, the magical item is automatically broken and loses its enchantment, but the Powerstone is intact, and becomes a \"normal\" Powerstone again. (Of course, if the Powerstone is built into the item in some way - e.g., set in a magic ring - a successful skill roll may be required to remove it without breaking it.)</p><p>The advantage of a dedicated Powerstone is that its energy, being specifically channeled, is used twice as efficiently. A one-point dedicated Powerstone gives two points of energy (but still recharges in one day in a normal-mana area).</p><p><em>\"Exclusive\" Powerstones</em></p><p>An item can also be made with a built-in Powerstone, in such a way that only its integral Powerstone(s) can power it. This is done exactly as for dedicated Powerstones, but the energy of an exclusive Powerstone is three times as efficient - i.e., a one-point exclusive Powerstone delivers three points of energy, but then the item is useless until the stone recharges.</p><p><em>One-College Powerstones</em></p><p>This is a variation that follows all normal Powerstone rules. A One-College Powerstone is enchanted in such a way that it can provide energy only for spells of a particular college. One-College Powerstones may not be Dedicated or Exclusive.</p><p>The advantage of a One-College Powerstone is that each casting only requires 12 energy, not 20.</p>"
+  },
+  {
+    "_id": "e9ed87e66e15af11",
+    "name": "Manastone",
+    "pages": "M70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Manastone is an unrechargeable Powerstone. Use all normal Powerstone rules (limits by value, etc.), except that a Manastone does not recharge its power - although the item may be re-enchanted with multiple applications of the spell. If a Manastone \"quirks\" in enchanting, the quirks (naturally) must be appropriate to a nonrecharging object (no quirks about recharging limitations!). Manastones have no effect on the recharge rate of nearby Powerstones.</p>"
+  },
+  {
+    "_id": "64fda270be2a243b",
+    "name": "Homunculus",
+    "pages": "M70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grow a miniature image from your flesh. This image, called a homunculus, has ST 1, DX 0, and no IQ or HT. It must be kept inside a glass bottle and fed at least 1 HP worth of human blood each day to remain alive. If the bottle is broken or submitted to intense heat or light, the homunculus dies.</p><p>Whenever he wishes, the caster can move his spirit into the homunculus, no matter how far away it is (as per Possession, p. 49), at an energy cost of 4 for the first minute and 2 for every minute thereafter. He may then observe and communicate with anyone in the homunculus' presence. Although the caster can cast spells from the homunculus (using his own energy), he cannot perform any physical action, since the homunculus is trapped inside the bottle. The caster may return to his original body at will.</p><p>If a hostile wizard gains possession of a live homunculus, he can cast Communication and Empathy spells at the homunculus' creator at no range penalty! The creator also resists any such spells at -5 when cast through the homunculus. A homunculus is thus a great vulnerability and is only entrusted to the most faithful of servants.</p><p>The caster may own several homunculi; he can move his spirit to only one at a time. While thus \"away,\" the caster's body is very vulnerable and should be safeguarded.</p>"
+  },
+  {
+    "_id": "272e0095026ffa56",
+    "name": "Soul Stone",
+    "pages": "M71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>By transferring his life force to a Soul Stone, a sorcerer becomes immortal. Although his body may still be hurt (burned, cut, crushed . . .), he may not be killed as long as the soul stone is safe. The caster becomes immune to disease, poison, and aging. He automatically makes all HT \"death checks\" caused by injury. He may still fall unconscious.</p><p>If the soul stone is destroyed, the caster dies, so it is usually hidden in a very hard-to-reach place. Death may also come from some magical causes, such as a Planar Visit failure. Note that the stone need not literally be a piece of rock; examples from folklore and fiction include the caster's own heart (removed once the spell is cast, presumably!), eggs, and more.</p><p>Soul Stone and Soul Jar are mutually exclusive.</p>"
+  },
+  {
     "_id": "ef5259b085b6b8d6",
     "name": "Summon Fire Elemental",
     "pages": "M27",
@@ -1366,5 +1702,61 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Create a spirit of the appropriate element. The caster may determine the capabilities of the created elemental by increasing or decreasing the attributes of the basic elemental of that type; he may only change, add or subtract advantages and disadvantages with GM permission. There are no limits to the alteration of attributes, though a very stupid elemental will not understand complex commands. A newly created elemental serves the caster obediently for one hour. At the end of that time, roll a contest between the caster's skill with the spell, and the elemental's combined IQ and ST. If the caster wins, the elemental serves for a further hour, at the end of which another contest is required, and so on. When the caster loses, the elemental escapes control and leaves (or attacks, on a very bad reaction).</p>"
+  },
+  {
+    "_id": "b5766a84a3b690e8",
+    "name": "Talisman",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A talisman is an item that grants the wearer a one-time boon when attacked by a specific spell or nonmagical attack or affliction. The talisman's enchantment adds to the resistance roll, attribute check, or defense roll against its specific attack or affliction. The talisman is always \"on\" while worn by or in physical contact with its owner; otherwise it is inactive. It lasts until the thing it protects against happens; then it loses its enchantment. Talismans may protect against disease, arrows, curses, lightning, and other calamities.</p><p>Although most talismans are created using pieces of jewelry, any item may be so enchanted. It is even possible to tattoo a talisman onto its wearer! When creating a talisman against a spell, the enchanter uses the lower of his skills with Talisman and the spell being opposed.</p><p>Each protection is a different spell, to be learned separately. Talismans also work against variants of the base spell: a talisman against Fireball also works against Explosive Fireball.</p><p>Alchemists can create magical objects called talismans (p. 220); they are, however, not the same as the items produced by this spell.</p>"
+  },
+  {
+    "_id": "5661f490757b42e1",
+    "name": "Amulet",
+    "pages": "M58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An amulet is an item that grants the wearer magic resistance against a specific spell. Amulets are often enchanted with several Amulet spells, to cover a wide spectrum of effects. Although most amulets are pieces of jewelry, any item may be so enchanted. It is even possible to tattoo an amulet onto its wearer!</p><p>The enchanter uses the lower of his skills with Amulet and the spell being opposed. Amulets also work against variants of the base spell: an amulet against Fireball also works against Explosive Fireball.</p><p>Alchemists can create magical objects called amulets (p. 220); although they have a similar function, they are not the same as the items produced by this spell.</p>"
+  },
+  {
+    "_id": "2d8b3cb7b784b91f",
+    "name": "Doppelgänger",
+    "pages": "M62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Doppelgänger is a duplicate of a person, fabricated through powerful magic. The Doppelgänger must be prepared for a specific target; both a sample of the target's body (hair, blood, etc.) and a cherished personal possession of the target are required. A statue of the original must be sculpted, using some pure elemental \"material\" - pure ice or snow from a mountaintop, stone or fire from the bowels of a volcano, and so on are all appropriate materials. The likeness is achieved with an appropriate Shape spell or Artist (Sculpting) skill roll at -10.</p><p>The Doppelgänger has all the attributes, skills, and knowledge of the original, with the exception of magic; it has no Magery and cannot cast any spells. It gets its knowledge from the embedded object; anything that the History spell could divine, it will know. It acts as the original would, had the Doppelgänger's creator enslaved him. Suspend Curse paralyzes it, and Remove Curse destroys it. When destroyed, all that is left is a mass of the original material (a puddle of water, a mound of earth, a sudden rush of flames) and the personal possession.</p><p>It is very difficult to detect the trickery. Whenever the GM judges an Information spell does not altogether fail to tell the copy from the original, he should let the Doppelgänger spell resist. The Aura spell and the Empathy advantage would be Resisted, for example.</p><p>Time to build body: 6 weeks of work.</p>"
+  },
+  {
+    "_id": "92559ac694896f7c",
+    "name": "Great Wish",
+    "pages": "M62",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spell can do just about anything. In particular: (1) It can be used to cast any one spell, at no energy cost, with automatic success and no chance of resistance (for spells with variable cost, the maximum energy available is 1,000). The caster does not have to know the spell, or even have it in a book - he just has to know the spell exists. If the spell is a \"continuing\" one, it is up to the GM to determine how long it should last.</p><p>(2) It can permanently improve a character's scores. It will increase any one attribute by 1 level, or any one skill or spell by 3 levels. It can also reduce an enemy's scores, but only if that enemy is present when the wish is made.</p><p>(3) It will grant any one advantage worth 20 points or less, or remove any one disadvantage worth 20 points or less. An enemy can likewise be cursed by losing an advantage or gaining a disadvantage, but only if that enemy is present when the wish is made. The enemy does not get a chance to resist!</p><p>(4) It can do absolutely anything else that the GM feels will not ridiculously unbalance the adventure or the campaign!</p><p>Though incredibly powerful, this spell is not used often. It can never be learned at a level better than 15. Furthermore, any failed roll when creating a Great Wish costs the caster, and each helper, 1 point of IQ and 6d damage! Critical failures have toppled civilizations. Great Wishes are not normally found for sale. If they are, the price should be at least $100,000.</p>"
+  },
+  {
+    "_id": "d4c658e70387d999",
+    "name": "Dancing Weapon",
+    "pages": "M63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A weapon enchanted with this spell fights on its own at the owner's command, hanging in the air as though wielded by an invisible warrior. It has a skill of 15, a Basic Speed of 5, and a ST (for damage purposes) equal to its Power. It uses intelligent strategy and follows its owner's spoken or mental commands about which enemy to attack. It continues fighting until it is dealt with (see below) or its owner dies or tells it to stop. This spell does not work on a missile weapon!</p><p>Any attack on a dancing weapon is at a penalty: from -4 (for a polearm) to -5 (a sword or axe) to -6 (a dagger or pistol). If the weapon gets a critical miss, or is struck by a critical hit, it is \"stunned\" and out of the fight (unless it breaks, in which case it is destroyed). If its owner is killed, it falls to the floor - but if he is merely knocked unconscious, it continues to attack the closest foe. A dancing weapon can also be trapped in a net or bag (same basic roll as to hit it, but the GM can give bonuses or penalties depending on the cleverness of the method used).</p><p>The weapon can also be left with orders to attack anyone who approaches within a certain distance; a Link can be used to activate it only if a certain event takes place. Once activated, if its owner is not around, it attacks anyone in range - closest first, unless the Link had other instructions.</p><p>A dancing weapon cannot change owners while animated; grasping the handle of a dancing weapon is not enough to make it change sides.</p>"
+  },
+  {
+    "_id": "cabc351f80b9757d",
+    "name": "Effigy",
+    "pages": "M71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A mage can enchant an effigy, a life-size statue of himself, which attracts hostile magic directed at him to itself. Like Malefice, Effigy is a lasting spell, which continues until its Endurance is reduced to zero. Every time a spell attacks the effigy's maker, the effigy resists with its current Endurance, modified for the distance separating it from him (use the long-distance modifiers, p. 14). If the effigy succeeds, the spell affects it rather than its maker, The GM must decide what constitutes a \"hostile\" spell; for instance, Deathtouch is, but Mind-Reading isn't. Redirected spells that have no effect on inanimate statues (such as Paralyze Limb or Death Vision) instead \"attack\" the enchantment. The effigy then resists with its current Endurance. Every such successful attack reduces the effigy's Endurance by one; when the effigy's Endurance drops below 0, it ceases functioning. A critical failure by the effigy or a critical success by the attacking spell also breaks the enchantment, as does physical destruction. An enchanter may only have one effigy at any one time.</p>"
+  },
+  {
+    "_id": "bc9cbd7aba040517",
+    "name": "Crystal Ball",
+    "pages": "M71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used in the Crystal-Gazing variant of Divination. Requires a ball of flawless crystal at least 2\" in diameter (value $1,000). A 3\" ball (value $5,000) gives +1 to divinations. A 4\" ball (value $20,000) gives +2.</p>"
   }
 ]
