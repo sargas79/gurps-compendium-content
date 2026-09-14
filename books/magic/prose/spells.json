@@ -2952,6 +2952,222 @@
     "description": "<p>Gives the caster a vision relevant to his question, or the answer to one yes-or-no question. There are many sorts of divination; each is a separate spell, and requires the appropriate materials (see below). Each has its own strengths and weaknesses. Those methods that are linked to a particular element or elements will give more detailed answers if the answer has something to do with that element - e.g., lecanomancy would work better than extispicy for a question about the sea.</p><p>Skill modifiers: Standard long-distance modifiers (p. 14). If repeated questions are asked on the same subject within a day, the \"vibes\" are muddled; -4 skill for the second question, -8 for the third, and so on. Questions about the past or future are also harder; use the Time modifiers (p. 81).</p><p><em>Symbol-Casting</em></p><p>Symbol-Casting is divination by means of symbol tokens (p. 205). The caster must have a complete set of tokens for his symbolic language, and is at -1 to skill for each stone missing. Mock symbol tokens work perfectly well, but a full set of true tokens gives +2 to skill. A detailed divination takes 30 minutes, or the caster may simply reach into a bag and pull out one or more stones. In the latter case, energy cost is only 1. The GM tells the caster which symbol(s) he drew; it is up to the caster to interpret this, and the symbols drawn on a failed roll will be misleading.</p>"
   },
   {
+    "_id": "4900fc912d48f6b0",
+    "name": "Colors",
+    "pages": "M110",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Changes the color of any light. The spell must be cast on the source of the light. If the caster concentrates, multiple color-changes are possible with the same spell.</p>"
+  },
+  {
+    "_id": "ccef43671c38e6fc",
+    "name": "Remove Shadow",
+    "pages": "M110",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's shadow seems to disappear. Unwilling subjects resist with Will. (If there is more than one light source, all shadows vanish!)</p><p><em>Item</em></p><p>Jewelry. Always on; only affects the wearer. Energy cost to create: 100; must include a $100 black onyx.</p>"
+  },
+  {
+    "_id": "e86d830db64d6fa4",
+    "name": "Shape Light",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>With this spell, the caster may transform a uniform light source into a directional one. The caster may specify any number of \"baffles\" or restrict the illumination to specific beams. Thus, the spell can change a torch into a hooded lantern of sorts. Concentration is required to change the light's shape, but not to maintain it.</p><p>The spell can also be used to bend and twist light beams. The GM should allow any effect that isn't already covered by such spells as Simple Illusion, Small Vision, Invisibility, and so on.</p><p><em>Item</em></p><p>(a) The effects may be made permanent for 100 times casting cost (creating a permanent light-sculpture), although the light itself must also somehow be preserved. (b) Staff, wand, or jewelry. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "587caba43ad2082a",
+    "name": "Bright Vision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Peer safely into intense sources of light (like a roaring fire or the sun) and protect against blinding from the Flash spell, Vision-based attacks, or similar occurrences.</p><p><em>Item</em></p><p>Staff, wand, or jewelry (sunglasses or welding visors are certainly appropriate in more modern settings). Only affects the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "a350dff9e083cc98",
+    "name": "Infravision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See \"infrared\" or heat rays in addition to normal light, as with the Infravision advantage (p. B60). This spell does not let invisible objects be seen.</p><p><em>Item</em></p><p>Staff, wand, or jewelry; affects only the wearer. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "528d927c7c0a61ee",
+    "name": "Night Vision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>See clearly as long as there is any light at all, as with Night Vision 9. In utter darkness, the subject is still blind.</p><p><em>Item</em></p><p>Staff, wand, or jewelry; affects only the wearer. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "1b2a1417570121db",
+    "name": "Hawk Vision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grants the subject extraordinary clarity of vision and the ability to \"zoom in\" on distant objects, providing the equivalent of Telescopic Vision (p. B92). Each level lets the subject ignore -1 in range penalties to Vision rolls at all times, or -2 in range penalties if you take an Aim maneuver to zoom in on a particular target. This ability can also function as a telescopic sight, giving up to +1 Accuracy per level with ranged attacks provided you take an Aim maneuver for seconds equal to the bonus. These benefits of this spell are not cumulative with those of technological aids such as binoculars or scopes. If you use both, you must opt for one or the other.</p><p><em>Item</em></p><p>Clothing or jewelry, including a picture of a hawk. Affects only the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "984df107b0d2dcf7",
+    "name": "Small Vision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can examine objects within his reach as if they were under ×100 magnification, as per Microscopic Vision 2 (p. B68). While the spell is on, the subject is extremely nearsighted (see Bad Sight. p. B123): he is incapable of seeing objects further than a yard away clearly - they appear blurred and all melee attacks are made at -2 to skill.</p><p>This is also a Knowledge spell.</p><p><em>Item</em></p><p>(a) Clothing or jewelry. The item must bear a life-size picture of a flea. Only affects the wearer. Energy cost to create: 400. (b) A gem that works as a magnifying glass. Cost to create: 400 energy, plus the cost of the gem.</p>"
+  },
+  {
+    "_id": "3770f2839a04e167",
+    "name": "Dark Vision",
+    "pages": "M111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject can see even in pitch darkness, as if he had the Dark Vision advantage. He can also ignore the effects of the Darkness spell.</p><p><em>Item</em></p><p>Staff, wand, or jewelry; only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "e6648c4896e956e8",
+    "name": "Blackout",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shrouds the affected area in impenetrable blackness. No one can see into the affected area, and no one within the affected area can see anything; see p. B394 for combat rules.</p><p>The Dark Vision advantage lets you see through a Blackout spell, but Night Vision and Infravision do not.</p><p><em>Item</em></p><p>Floor, ground, or a rug can be enchanted so that the area above (about 6 feet) is in permanent blackout. Energy cost to create: 15 per square foot.</p>"
+  },
+  {
+    "_id": "c08dd77582563823",
+    "name": "Glow",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Suffuses an area with a uniform glow. Objects and beings standing in the area won't project any shadows unless a source of light stronger than the ambient glow is brought in.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 250. (b) An area can be permanently illuminated for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "5d556129840d2e89",
+    "name": "Flash",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a brilliant flash of light. This will totally blind some that see it, and reduce the DX of others by 3 (which reduces all DX-based skills). It may affect anyone who is facing the flash and has his eyes open (GM's decision, if miniatures are not being used). The caster himself is not affected if he closes his eyes as he casts the spell. Each other creature in range must make a HT roll to avoid the worst effects:</p><table><tr><th>Distance</th><th>Within 10 yards</th><th>11 to 25 yards</th><th>26 or more yards</th></tr><tr><td>If HT roll is made</td><td>1 minute at -3 DX</td><td>10 sec. at -3 DX</td><td>no effect</td></tr><tr><td>If HT roll is not made</td><td>3 sec. blind, 1 min. at -3 DX</td><td>1 minute at -3 DX</td><td>3 seconds at -3 DX</td></tr></table>"
+  },
+  {
+    "_id": "c9c79553a151e940",
+    "name": "Gloom",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Plunges an area into gloom. The more energy is put into the base cost, the gloomier the ambient light becomes. Unlike the Darkness spell, sources of light still work normally within the area.</p><p><em>Item</em></p><p>(a) Wand, staff, or jewelry. Energy cost to create: 250. (b) An area can be permanently darkened for 100 times casting cost.</p>"
+  },
+  {
+    "_id": "1d713dca4a049606",
+    "name": "Light Jet",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Emit a beam of bright light from one finger. This beam can be used like a flashlight. It gives good illumination for 10 yards in the direction it is pointed, and some vision will be possible up to 30 yards away. It can be used as a signal for up to a mile if visibility is good.</p><p>Can be used in combat to blind foes within 10 yards, but only in relative darkness (e.g., when the combat penalty is at least -5). Each turn, the caster rolls against Innate Attack skill or DX-4, with a -5 penalty to hit the face. This attack can be dodged or blocked, but not parried. If the target is hit, he will be at a -4 penalty to combat skills on his next turn, and at a -1 penalty for the remainder of the combat. This effect is not cumulative. Foes with Night Vision double these penalties.</p><p><em>Item</em></p><p>Glove or ring; the item lets the wearer cast the spell. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "f162b1e83f9f7b46",
+    "name": "Mirror",
+    "pages": "M112",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a reflective surface. It can be cast on an object or can be free-standing (in which case it is twosided). The mirror surface is not necessarily flat; the caster could create fun-house mirrors, for example.</p><p>In a scientific-paradigm universe, casters with knowledge of physics can use this spell to create parabolic reflectors. A simple curve can be sufficient to cook meat; a large and precise one could be used to melt lead, given sufficient sunlight at appropriate angles. Against living targets, the GM can assume that such a mirror would do 1 point of burning damage per yard radius of mirror every 10 seconds. To ignite things, use the Ignite Fire guidelines (p. 72), substituting the Mirror size for the listed energy cost. An 8-yard-radius Mirror ignites heavy wood in about 10 seconds. Other, similar uses are subject to GM approval.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Energy cost to create: 350; the item must include a tiny mirror.</p>"
+  },
+  {
+    "_id": "6f614d38d1ce9d51",
+    "name": "Remove Reflection",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's reflection(s) seem to disappear from mirrors, pools, etc. At higher TLs, this may make the subject invisible to sensors that use mirrors as part of their optical pathways, at the GM's discretion.</p><p><em>Item</em></p><p>Jewelry. Always on. Only affects the wearer. Energy cost to create: 200; must include a $100 black onyx.</p>"
+  },
+  {
+    "_id": "772c4d3fc3b27719",
+    "name": "Wall of Light",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a curtain of light around an area. The wall is four yards high, but may be made higher; simply scale the cost as the height (double for 8 yards high, triple for 12 yards high and so on).</p><p>The only thing it blocks is vision, both ways. It has no effect on spells, beings, sounds, etc. Bright Vision allows one to see through the wall.</p><p><em>Item</em></p><p>(a) Staff, wand, or jewelry. Energy cost to create: 200. (b) A Wall of Light may be made permanent at an energy cost of 100 times normal.</p>"
+  },
+  {
+    "_id": "2d08ac635d29e57d",
+    "name": "Shape Darkness",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shape and move three-dimensional darkness created with the Darkness or Blackout spells at a Move of 5. It also allows the caster to shape existing two-dimensional shadows into other two-dimensional shadowy shapes. Shadows can be reduced in size easily, but enlarging the shadows makes them slightly transparent. The average casual observer won't notice, but anyone looking intently at the shadow gets an IQ roll to notice that it doesn't have the \"substance\" it should. Shadows do not have to remain attached to the objects that cast them.</p><p><em>Item</em></p><p>Staff, wand, or jewelry. Energy cost to create: 200.</p>"
+  },
+  {
+    "_id": "51bad7acea7fc2e7",
+    "name": "Hide",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Makes the subject harder to find. A Vision roll is necessary to see a subject in plain sight; Sense rolls to detect a subject already hidden are at -1 per point of energy spent, to a maximum of -5. These effects only apply while the subject remains still, but if he moves and then stops moving before the spell expires, the effects resume.</p><p><em>Item</em></p><p>(a) Jewelry, wand, or staff; only affects the wearer. Energy cost to create: 1,000. (b) Any item can be enchanted to make it permanently \"hidden,\" at an energy cost of 200 per point of \"hiddenness.\"</p>"
+  },
+  {
+    "_id": "89d82858693d0dcd",
+    "name": "See Invisible",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Subject can see anything concealed by the Invisibility spell or by \"natural\" invisibility. These things will be slightly translucent; thus, you can see through them and tell that they appear invisible to others.</p><p><em>Item</em></p><p>Staff, wand, or jewelry; only affects the wearer. Energy cost to create: 400.</p>"
+  },
+  {
+    "_id": "9d012df0cb54617f",
+    "name": "Mage Light",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Creates a small light. However, the illumination that it provides is only perceptible to mages, magical creatures, and those under the influence of Mage Sight. It moves just like Light does. An IQ+Magery roll is not required to see or use the light provided.</p><p><em>Item</em></p><p>Wand, staff, jewelry, or lantern. Usable only by mages. Energy cost to create: 100.</p>"
+  },
+  {
+    "_id": "59c9cbaba2f5e904",
+    "name": "Continual Mage Light",
+    "pages": "M113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>When cast on a small object (up to fist-sized, or 1 pound), or a small part of a large object, this spell makes that object glow with Mage Light.</p><p><em>Item</em></p><p>Any item may be made to radiate mage light permanently, for 100 times the above energy cost (e.g., 200 for a dim glow, etc.)</p>"
+  },
+  {
+    "_id": "05da8f3320e04544",
+    "name": "Sunlight",
+    "pages": "M114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The area is illuminated in full daylight - even underground! The area extends skyward, stopping only when it hits some sort of ceiling. If cast in a cave, the area is a huge shaft of light extending upward to the rock. If cast on a cloudy day outdoors, the light appears to break through the clouds above. If cast at night, the light appears to come from an overhead star which brightens to sun level for those inside the area.</p><p>Treat the light as natural sunlight for all purposes - it can be used to grow plants, get a tan, etc. Creatures who are susceptible to the effects of sunlight (such as vampires) are fully affected.</p><p><em>Item</em></p><p>Wand, staff, or jewelry. Usable only by mages. Energy cost to create: 150.</p>"
+  },
+  {
+    "_id": "00e04da8c131f798",
+    "name": "Continual Sunlight",
+    "pages": "M114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Illuminates an area as per the Sunlight spell, but lasts longer and cannot be maintained.</p><p><em>Item</em></p><p>The area may be permanently illuminated for 100 times the cost to cast the spell.</p>"
+  },
+  {
+    "_id": "bd5a65d4cb79c40e",
+    "name": "Invisibility",
+    "pages": "M114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject cannot be seen and does not appear in reflections or photographs. He still makes sounds and can be tracked by scent or footprints. Anything he picks up becomes invisible, unless he wills it to stay visible. Infravision cannot detect him, but See Invisible can. Invisible characters have a great advantage in combat: see p. B394.</p><p><em>Item</em></p><p>(a) Jewelry, wand, or staff; only affects the wearer. Energy cost to create: 1,200. (b) An item can be made permanently invisible at an energy cost of 500 per hex of size or 50 pounds of weight, whichever is greater.</p>"
+  },
+  {
+    "_id": "4c3ceb9960ab30dc",
+    "name": "Body of Shadow",
+    "pages": "M114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The subject's body fades away, leaving only his shadow. The subject is now a two-dimensional shadow on the wall or floor, gaining the Shadow Form advantage (p. B83) for the duration of the spell. His clothing (up to 6 pounds) also becomes shadow, but while in shadow form it loses any magic powers it might have had. The rest of his equipment tumbles to the ground; he can carry nothing while in this form.</p><p>Note that this spell does not augment the subject's senses to allow him to see in pitch darkness!</p><p><em>Item</em></p><p>Staff, wand, jewelry, or cape. Only affects the wearer. A severe drawback of each of these items except the cape is that it falls through the subject as soon as the spell is cast! Energy cost to create: 2,500 (6,000 for the cape).</p>"
+  },
+  {
+    "_id": "3c2aea7a10453e77",
+    "name": "Sunbolt",
+    "pages": "M114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoot a bolt of concentrated sunlight from one fingertip. It has 1/2D 75, Max 150, Acc 2; use the Innate Attack skill. The light burns like laser light and does burning damage. Increase a shield's DB against this spell by 50%, rounding down, if it is highly polished.</p><p>Whether or not damage gets through armor, a hit to the face blinds the victim unless he makes a HT roll. A hit to the eyes does double damage and blinds the victim unless he makes a HT roll at a penalty equal to the damage suffered. Treat Sunboltinduced blindness as a crippling injury for recovery purposes (p. B420).</p><p>Any mirror will reflect a Sunbolt; if the GM is uncertain of the exact angle of incidence/reflection (if the Sunbolt hits a hand-held mirror, for instance), determine its new direction randomly. Use the rules for hitting the wrong target (p. B389) to determine if anything along the new path is hit.</p><p>Deliberately reflected shots are a much trickier matter; range penalties will be for the total range to the target, with an additional -2 for each \"bounce.\" And unless the mirrors are very large and/or stable and/or deliberately placed for the purpose, the GM may simply declare the shot impossible.</p><p>Defending characters holding mirrors may attempt to reflect the bolt back at the caster - treat this as a Block defense at a -2 penalty; also apply the normal range penalties from the defender to the caster. The DB of the mirror (if it is large enough to offer any; GM call) adds to this roll normally. The caster may defend normally, unless totally surprised.</p><p>Sunbolt is not affected by Missile Shield or Reverse Missiles. Force Dome and Deflect Energy do offer protection. Areas of magical Darkness or Blackout resist Sunbolt.</p><p><em>Item</em></p><p>Staff or wand; the bolt is fired from the tip of the item. Usable only by mages. Cost to create: 800 energy and a sunstone worth at least $1,000.</p>"
+  },
+  {
     "_id": "77c49957ae8b3862",
     "name": "Summon Water Elemental",
     "pages": "M27",
