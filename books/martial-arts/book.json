@@ -7,7 +7,8 @@
   "gdf": "GURPS Martial Arts 4e.gdf",
   "transcription": {
     "pdfOffset": 1,
-    "pageLabel": "MA"
+    "pageLabel": "MA",
+    "asidesAsText": true
   },
   "modifiers": {
     "from": 44,

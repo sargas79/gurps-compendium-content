@@ -105,6 +105,35 @@ function library(paths, volumes) {
   };
 }
 
+/**
+ * Whether the book's boxes are its running text.
+ *
+ * GURPS Martial Arts sets nearly every page on a tinted panel, which the layout
+ * reader takes for a box: an entry's heading is the box's title, or a heading
+ * inside it, and the page's own running text is a few stray lines. A book that
+ * says so in `transcription.asidesAsText` is read with each box's title as a
+ * heading and its paragraphs as text, in the order the boxes stand; a box the
+ * reader found twice is read once.
+ */
+let asidesAsText = false;
+
+/** A page's blocks, with its boxes' contents read as text where the book asks for that. */
+function pageBlocks(s) {
+  if (!asidesAsText) return s.blocks;
+  const out = [];
+  const seen = new Set();
+  for (const aside of s.asides) {
+    if (aside.kind === "table") continue;
+    const inner = (aside.blocks ?? []).filter((b) => b.kind in RANK || b.kind === "p");
+    const key = inner.map((b) => b.text).join("\n");
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    if (aside.title) out.push({ kind: "h3", text: aside.title, page: s.page, y: aside.y ?? 0, column: aside.column });
+    out.push(...inner);
+  }
+  return [...out, ...s.blocks];
+}
+
 /** The running text of a stretch of pages, a paragraph broken over a page made whole. */
 async function flowOf(structure, from, to) {
   const blocks = [];
@@ -115,7 +144,7 @@ async function flowOf(structure, from, to) {
     // Which block of the flow each of the page's blocks became, so a table can
     // be placed after the text it is printed under.
     const became = new Map();
-    for (const block of s.blocks) {
+    for (const block of pageBlocks(s)) {
       const last = blocks[blocks.length - 1];
       const unfinished =
         last && last.kind === "p" && block.kind === "p" && !block.runIn &&
@@ -442,6 +471,7 @@ async function main() {
     process.exit(1);
   }
   useLexicon(await lexiconOf(Object.values(paths)));
+  asidesAsText = Boolean(bk.transcription?.asidesAsText);
   const structure = library(paths, volumesOf(bk));
   const { records } = readProse(bk, pack);
   // An entry with no text yet is captured too, as status "none", for a book
