@@ -25,6 +25,10 @@ name is a GCA placeholder	Grimoire (+7 to [ritual])
 name is a GCA placeholder	Grimoire (+8 to [ritual])
 name is a GCA placeholder	Grimoire (+9 to [ritual])
 name is a GCA placeholder	Grimoire (+10 to [ritual])
+duplicate name	Holy Symbol
+duplicate name	Holy Symbol, Aged
+duplicate name	Holy Symbol, Ancient
+duplicate name	Holy Water (per half-pint)
 duplicate name	Boots, Reinforced
 duplicate name	Clothing, Extra Outfit
 duplicate name	Coat, Long
