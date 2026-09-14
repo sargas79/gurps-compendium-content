@@ -1,0 +1,1 @@
+Especially brilliant alchemists push the discipline to the very limits of possibility, creating strange and wonderful things. All these preparations are very rare – their formularies are almost never seen, and they may even be regarded as mere myths.

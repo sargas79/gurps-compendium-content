@@ -1,0 +1,5 @@
+The cost in materials to manufacture an alchemical charm is the same as for an elixir with the same effects. The time to make such an amulet or talisman is 10 times that listed to make the elixir; making a charm is hard work, requiring long hours and correct timing of the planetary influences to capture the essences desired. The GM may vary time or cost to make charms more or less available in his world. At the end of the time period, the alchemist makes his skill roll, applying any penalties as per the equivalent elixir. A critical failure has the usual explosive results, while a normal failure merely wastes the time and materials.
+
+The knowledge of how to make charms is a potent and difficult skill – each charm is a separate Hard technique, with its own formulary, which defaults to the corresponding elixir technique-2.
+
+In many settings, the secrets of making charms may be restricted to Masters or Grand Masters of the Alchemists’ Guild. The GM may also want to employ any or all of the suggested methods for limiting regular enchantment (p. 17).

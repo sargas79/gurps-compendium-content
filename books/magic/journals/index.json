@@ -1098,6 +1098,195 @@
       "reference": "Magic p. 209",
       "file": "the-ogham-alphabet.md",
       "status": "reviewed"
+    },
+    {
+      "id": "alchemy",
+      "title": "Alchemy",
+      "chapter": "Alchemy",
+      "pages": "M210",
+      "reference": "Magic p. 210",
+      "file": "alchemy.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-alchemy-skill",
+      "title": "The Alchemy Skill",
+      "chapter": "Alchemy",
+      "pages": "M210",
+      "reference": "Magic p. 210",
+      "file": "the-alchemy-skill.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "making-alchemical-items",
+      "title": "Making Alchemical Items",
+      "chapter": "Alchemy",
+      "pages": "M210-211",
+      "reference": "Magic pp. 210-211",
+      "file": "making-alchemical-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-herb-lore-skill",
+      "title": "The Herb Lore Skill",
+      "chapter": "Alchemy",
+      "pages": "M211",
+      "reference": "Magic p. 211",
+      "file": "the-herb-lore-skill.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "other-alchemist-abilities",
+      "title": "Other Alchemist Abilities",
+      "chapter": "Alchemy",
+      "pages": "M211-212",
+      "reference": "Magic pp. 211-212",
+      "file": "other-alchemist-abilities.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "inventing-new-elixirs",
+      "title": "Inventing New Elixirs",
+      "chapter": "Alchemy",
+      "pages": "M212",
+      "reference": "Magic p. 212",
+      "file": "inventing-new-elixirs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-alchemical-items",
+      "title": "Using Alchemical Items",
+      "chapter": "Alchemy",
+      "pages": "M212",
+      "reference": "Magic p. 212",
+      "file": "using-alchemical-items.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "forms-of-elixir",
+      "title": "Forms of Elixir",
+      "chapter": "Alchemy",
+      "pages": "M213",
+      "reference": "Magic p. 213",
+      "file": "forms-of-elixir.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magic-resistance",
+      "title": "Magic Resistance (Elixirs)",
+      "chapter": "Alchemy",
+      "pages": "M213",
+      "reference": "Magic p. 213",
+      "file": "magic-resistance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cost-and-availability",
+      "title": "Cost and Availability",
+      "chapter": "Alchemy",
+      "pages": "M213",
+      "reference": "Magic p. 213",
+      "file": "cost-and-availability.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "types-of-elixirs",
+      "title": "Types of Elixirs",
+      "chapter": "Alchemy",
+      "pages": "M213",
+      "reference": "Magic p. 213",
+      "file": "types-of-elixirs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alchemical-charms",
+      "title": "Alchemical Charms",
+      "chapter": "Alchemy",
+      "pages": "M220",
+      "reference": "Magic p. 220",
+      "file": "alchemical-charms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "time-and-cost-to-make",
+      "title": "Time and Cost to Make",
+      "chapter": "Alchemy",
+      "pages": "M220",
+      "reference": "Magic p. 220",
+      "file": "time-and-cost-to-make.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "detection-and-analysis",
+      "title": "Detection and Analysis (Charms)",
+      "chapter": "Alchemy",
+      "pages": "M220",
+      "reference": "Magic p. 220",
+      "file": "detection-and-analysis.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-charms",
+      "title": "Using Charms",
+      "chapter": "Alchemy",
+      "pages": "M220",
+      "reference": "Magic p. 220",
+      "file": "using-charms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "popular-elixirs",
+      "title": "Popular Elixirs",
+      "chapter": "Alchemy",
+      "pages": "M218",
+      "reference": "Magic p. 218",
+      "file": "popular-elixirs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "exotic-preparations",
+      "title": "Exotic Preparations",
+      "chapter": "Alchemy",
+      "pages": "M220",
+      "reference": "Magic p. 220",
+      "file": "exotic-preparations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alkahest",
+      "title": "Alkahest",
+      "chapter": "Alchemy",
+      "pages": "M220-221",
+      "reference": "Magic pp. 220-221",
+      "file": "alkahest.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "homunculus",
+      "title": "Homunculus",
+      "chapter": "Alchemy",
+      "pages": "M221",
+      "reference": "Magic p. 221",
+      "file": "homunculus.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "philosophers-stone",
+      "title": "Philosophers’ Stone",
+      "chapter": "Alchemy",
+      "pages": "M221",
+      "reference": "Magic p. 221",
+      "file": "philosophers-stone.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magically-potent-materials",
+      "title": "Magically Potent Materials",
+      "chapter": "Alchemy",
+      "pages": "M222",
+      "reference": "Magic p. 222",
+      "file": "magically-potent-materials.md",
+      "status": "reviewed"
     }
   ]
 }

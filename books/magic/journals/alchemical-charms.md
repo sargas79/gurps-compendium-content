@@ -1,0 +1,3 @@
+In some settings, alchemists may turn their abilities to the manufacture of alchemical charms – minor magical items that confer the effects of an alchemical elixir on a more lasting basis. Most charms either protect or enhance the wearer in some fashion. For game purposes, a charm with protective powers is called an amulet, while a charm with empowering abilities is called a talisman (not to be confused with the Amulet and Talisman meta-spells).
+
+Alchemical charms are not appropriate to every campaign. If the GM is concerned about treading on enchanters’ toes, or about alchemists becoming overpowered, he should not allow alchemists to create the items that follow. However, charms can add scope and interest to alchemy, and bring more depth to a setting.

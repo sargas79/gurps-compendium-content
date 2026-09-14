@@ -1,0 +1,1 @@
+Anyone with the Magic Resistance advantage gets a resistance roll of HT+MR when dosed with any elixir – even a beneficial one. If he rolls HT+MR exactly, the potion takes half effect (the GM determines the details). If he rolls less than HT+MR, the potion has no effect!
