@@ -1,0 +1,902 @@
+{
+  "pages": [
+    {
+      "id": "combat",
+      "title": "Combat",
+      "chapter": "Combat",
+      "pages": "MA96",
+      "reference": "Martial Arts p. 96",
+      "file": "combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "expanded-combat-maneuvers",
+      "title": "Expanded Combat Maneuvers",
+      "chapter": "Combat",
+      "pages": "MA97",
+      "reference": "Martial Arts p. 97",
+      "file": "expanded-combat-maneuvers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "aim",
+      "title": "Aim",
+      "chapter": "Combat",
+      "pages": "MA97",
+      "reference": "Martial Arts p. 97",
+      "file": "aim.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "all-out-attack",
+      "title": "All-Out Attack",
+      "chapter": "Combat",
+      "pages": "MA97-98",
+      "reference": "Martial Arts pp. 97-98",
+      "file": "all-out-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "attack",
+      "title": "Attack",
+      "chapter": "Combat",
+      "pages": "MA98",
+      "reference": "Martial Arts p. 98",
+      "file": "attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "change-posture",
+      "title": "Change Posture",
+      "chapter": "Combat",
+      "pages": "MA98",
+      "reference": "Martial Arts p. 98",
+      "file": "change-posture.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "acrobatic-stand",
+      "title": "Acrobatic Stand",
+      "chapter": "Combat",
+      "pages": "MA98",
+      "reference": "Martial Arts p. 98",
+      "file": "acrobatic-stand.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "postures-hit-locations-and-techniques",
+      "title": "Postures, Hit Locations, and Techniques",
+      "chapter": "Combat",
+      "pages": "MA98-99",
+      "reference": "Martial Arts pp. 98-99",
+      "file": "postures-hit-locations-and-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "committed-attack",
+      "title": "Committed Attack",
+      "chapter": "Combat",
+      "pages": "MA99-100",
+      "reference": "Martial Arts pp. 99-100",
+      "file": "committed-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "defensive-attack",
+      "title": "Defensive Attack",
+      "chapter": "Combat",
+      "pages": "MA100",
+      "reference": "Martial Arts p. 100",
+      "file": "defensive-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "evaluate",
+      "title": "Evaluate",
+      "chapter": "Combat",
+      "pages": "MA100",
+      "reference": "Martial Arts p. 100",
+      "file": "evaluate.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "feint",
+      "title": "Feint",
+      "chapter": "Combat",
+      "pages": "MA100-101",
+      "reference": "Martial Arts pp. 100-101",
+      "rule": "feint",
+      "file": "feint.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "feints-using-non-combat-skills",
+      "title": "Feints Using Non-Combat Skills",
+      "chapter": "Combat",
+      "pages": "MA101",
+      "reference": "Martial Arts p. 101",
+      "rule": "feint",
+      "file": "feints-using-non-combat-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ready",
+      "title": "Ready",
+      "chapter": "Combat",
+      "pages": "MA101-102",
+      "reference": "Martial Arts pp. 101-102",
+      "file": "ready.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiple-fast-draw",
+      "title": "Multiple Fast-Draw",
+      "chapter": "Combat",
+      "pages": "MA103",
+      "reference": "Martial Arts p. 103",
+      "file": "multiple-fast-draw.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fast-draw-from-odd-positions",
+      "title": "Fast-Draw from Odd Positions",
+      "chapter": "Combat",
+      "pages": "MA103-104",
+      "reference": "Martial Arts pp. 103-104",
+      "file": "fast-draw-from-odd-positions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "who-draws-first",
+      "title": "Who Draws First?",
+      "chapter": "Combat",
+      "pages": "MA103",
+      "reference": "Martial Arts p. 103",
+      "file": "who-draws-first.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "quick-readying-nearby-weapons",
+      "title": "Quick-Readying Nearby Weapons",
+      "chapter": "Combat",
+      "pages": "MA104",
+      "reference": "Martial Arts p. 104",
+      "file": "quick-readying-nearby-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "switching-weapon-skills",
+      "title": "Switching Weapon Skills",
+      "chapter": "Combat",
+      "pages": "MA104",
+      "reference": "Martial Arts p. 104",
+      "file": "switching-weapon-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "move",
+      "title": "Move",
+      "chapter": "Combat",
+      "pages": "MA105",
+      "reference": "Martial Arts p. 105",
+      "file": "move.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "acrobatic-movement",
+      "title": "Acrobatic Movement",
+      "chapter": "Combat",
+      "pages": "MA105-107",
+      "reference": "Martial Arts pp. 105-107",
+      "rule": "evading",
+      "file": "acrobatic-movement.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dealing-with-charging-foes",
+      "title": "Dealing with Charging Foes",
+      "chapter": "Combat",
+      "pages": "MA106",
+      "reference": "Martial Arts p. 106",
+      "file": "dealing-with-charging-foes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "move-and-attack",
+      "title": "Move and Attack",
+      "chapter": "Combat",
+      "pages": "MA107",
+      "reference": "Martial Arts p. 107",
+      "file": "move-and-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wait",
+      "title": "Wait",
+      "chapter": "Combat",
+      "pages": "MA108",
+      "reference": "Martial Arts p. 108",
+      "file": "wait.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "additional-combat-options",
+      "title": "Additional Combat Options",
+      "chapter": "Combat",
+      "pages": "MA109",
+      "reference": "Martial Arts p. 109",
+      "file": "additional-combat-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "melee-attack-options",
+      "title": "Melee Attack Options",
+      "chapter": "Combat",
+      "pages": "MA109",
+      "reference": "Martial Arts p. 109",
+      "file": "melee-attack-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combinations",
+      "title": "Combinations",
+      "chapter": "Combat",
+      "pages": "MA109",
+      "reference": "Martial Arts p. 109",
+      "rule": "rapidStrike",
+      "file": "combinations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "defensive-grip",
+      "title": "Defensive Grip",
+      "chapter": "Combat",
+      "pages": "MA109-111",
+      "reference": "Martial Arts pp. 109-111",
+      "file": "defensive-grip.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "a-matter-of-inches",
+      "title": "A Matter of Inches",
+      "chapter": "Combat",
+      "pages": "MA110",
+      "reference": "Martial Arts p. 110",
+      "file": "a-matter-of-inches.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pummeling",
+      "title": "Pummeling",
+      "chapter": "Combat",
+      "pages": "MA111",
+      "reference": "Martial Arts p. 111",
+      "file": "pummeling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "reversed-grip",
+      "title": "Reversed Grip",
+      "chapter": "Combat",
+      "pages": "MA111-112",
+      "reference": "Martial Arts pp. 111-112",
+      "file": "reversed-grip.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "what-is-a-deceptive-attack",
+      "title": "What Is . . . a Deceptive Attack?",
+      "chapter": "Combat",
+      "pages": "MA111",
+      "reference": "Martial Arts p. 111",
+      "rule": "deceptiveAttack",
+      "file": "what-is-a-deceptive-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shin-kicks",
+      "title": "Shin Kicks",
+      "chapter": "Combat",
+      "pages": "MA112",
+      "reference": "Martial Arts p. 112",
+      "file": "shin-kicks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shoves-with-weapons",
+      "title": "Shoves with Weapons",
+      "chapter": "Combat",
+      "pages": "MA112",
+      "reference": "Martial Arts p. 112",
+      "file": "shoves-with-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "slams-with-long-weapons",
+      "title": "Slams with Long Weapons",
+      "chapter": "Combat",
+      "pages": "MA112",
+      "reference": "Martial Arts p. 112",
+      "rule": "slams",
+      "file": "slams-with-long-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "striking-at-shields",
+      "title": "Striking at Shields",
+      "chapter": "Combat",
+      "pages": "MA112-113",
+      "reference": "Martial Arts pp. 112-113",
+      "file": "striking-at-shields.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "telegraphic-attack",
+      "title": "Telegraphic Attack",
+      "chapter": "Combat",
+      "pages": "MA113",
+      "reference": "Martial Arts p. 113",
+      "file": "telegraphic-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tip-slash",
+      "title": "Tip Slash",
+      "chapter": "Combat",
+      "pages": "MA113",
+      "reference": "Martial Arts p. 113",
+      "file": "tip-slash.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "untrained-fighters",
+      "title": "Untrained Fighters",
+      "chapter": "Combat",
+      "pages": "MA113",
+      "reference": "Martial Arts p. 113",
+      "file": "untrained-fighters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "close-combat-options",
+      "title": "Close-Combat Options",
+      "chapter": "Combat",
+      "pages": "MA114",
+      "reference": "Martial Arts p. 114",
+      "rule": "closeCombat",
+      "file": "close-combat-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "all-out-and-committed-attacks-when-grappling",
+      "title": "All-Out and Committed Attacks When Grappling",
+      "chapter": "Combat",
+      "pages": "MA114",
+      "reference": "Martial Arts p. 114",
+      "rule": "grappling",
+      "file": "all-out-and-committed-attacks-when-grappling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "close-combat-and-body-morphology",
+      "title": "Close Combat and Body Morphology",
+      "chapter": "Combat",
+      "pages": "MA114-117",
+      "reference": "Martial Arts pp. 114-117",
+      "rule": "grappling",
+      "file": "close-combat-and-body-morphology.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "teeth",
+      "title": "Teeth",
+      "chapter": "Combat",
+      "pages": "MA115",
+      "reference": "Martial Arts p. 115",
+      "file": "teeth.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-sound-of-one-hand-grappling",
+      "title": "The Sound of One Hand Grappling",
+      "chapter": "Combat",
+      "pages": "MA116",
+      "reference": "Martial Arts p. 116",
+      "rule": "grappling",
+      "file": "the-sound-of-one-hand-grappling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "long-weapons-in-close-combat",
+      "title": "Long Weapons in Close Combat",
+      "chapter": "Combat",
+      "pages": "MA117",
+      "reference": "Martial Arts p. 117",
+      "rule": "closeCombat",
+      "file": "long-weapons-in-close-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "more-actions-after-a-grapple",
+      "title": "More Actions After a Grapple",
+      "chapter": "Combat",
+      "pages": "MA117-119",
+      "reference": "Martial Arts pp. 117-119",
+      "rule": "grappling",
+      "file": "more-actions-after-a-grapple.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grab-and-smash",
+      "title": "Grab and Smash!",
+      "chapter": "Combat",
+      "pages": "MA118",
+      "reference": "Martial Arts p. 118",
+      "rule": "grappling",
+      "file": "grab-and-smash.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pain-in-close-combat",
+      "title": "Pain in Close Combat",
+      "chapter": "Combat",
+      "pages": "MA119",
+      "reference": "Martial Arts p. 119",
+      "rule": "grappling",
+      "file": "pain-in-close-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sprawling",
+      "title": "Sprawling",
+      "chapter": "Combat",
+      "pages": "MA119",
+      "reference": "Martial Arts p. 119",
+      "rule": "grappling",
+      "file": "sprawling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ranged-attack-options",
+      "title": "Ranged Attack Options",
+      "chapter": "Combat",
+      "pages": "MA119",
+      "reference": "Martial Arts p. 119",
+      "file": "ranged-attack-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "quick-shooting-bows",
+      "title": "Quick-Shooting Bows",
+      "chapter": "Combat",
+      "pages": "MA119-120",
+      "reference": "Martial Arts pp. 119-120",
+      "file": "quick-shooting-bows.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "rapid-strike-with-thrown-weapons",
+      "title": "Rapid Strike with Thrown Weapons",
+      "chapter": "Combat",
+      "pages": "MA120-121",
+      "reference": "Martial Arts pp. 120-121",
+      "rule": "rapidStrike",
+      "file": "rapid-strike-with-thrown-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "rapid-fire-with-thrown-weapons",
+      "title": "Rapid Fire with Thrown Weapons",
+      "chapter": "Combat",
+      "pages": "MA120",
+      "reference": "Martial Arts p. 120",
+      "rule": "rapidFire",
+      "file": "rapid-fire-with-thrown-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tricky-shooting",
+      "title": "Tricky Shooting",
+      "chapter": "Combat",
+      "pages": "MA121",
+      "reference": "Martial Arts p. 121",
+      "file": "tricky-shooting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "active-defense-options",
+      "title": "Active Defense Options",
+      "chapter": "Combat",
+      "pages": "MA121",
+      "reference": "Martial Arts p. 121",
+      "file": "active-defense-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cross-parry",
+      "title": "Cross Parry",
+      "chapter": "Combat",
+      "pages": "MA121",
+      "reference": "Martial Arts p. 121",
+      "file": "cross-parry.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "defense-while-grappling",
+      "title": "Defense While Grappling",
+      "chapter": "Combat",
+      "pages": "MA121-122",
+      "reference": "Martial Arts pp. 121-122",
+      "rule": "grappling",
+      "file": "defense-while-grappling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fencing-parries",
+      "title": "Fencing Parries",
+      "chapter": "Combat",
+      "pages": "MA122",
+      "reference": "Martial Arts p. 122",
+      "file": "fencing-parries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "limiting-dodges",
+      "title": "Limiting Dodges",
+      "chapter": "Combat",
+      "pages": "MA122-123",
+      "reference": "Martial Arts pp. 122-123",
+      "file": "limiting-dodges.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "what-is-a-parry",
+      "title": "What Is . . . a Parry?",
+      "chapter": "Combat",
+      "pages": "MA122",
+      "reference": "Martial Arts p. 122",
+      "file": "what-is-a-parry.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiple-blocks",
+      "title": "Multiple Blocks",
+      "chapter": "Combat",
+      "pages": "MA123",
+      "reference": "Martial Arts p. 123",
+      "file": "multiple-blocks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "parries-with-legs-or-feet",
+      "title": "Parries with Legs or Feet",
+      "chapter": "Combat",
+      "pages": "MA123",
+      "reference": "Martial Arts p. 123",
+      "file": "parries-with-legs-or-feet.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "parrying-with-two-handed-weapons",
+      "title": "Parrying with Two-Handed Weapons",
+      "chapter": "Combat",
+      "pages": "MA123",
+      "reference": "Martial Arts p. 123",
+      "file": "parrying-with-two-handed-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "retreat-options",
+      "title": "Retreat Options",
+      "chapter": "Combat",
+      "pages": "MA123-124",
+      "reference": "Martial Arts pp. 123-124",
+      "rule": "retreat",
+      "file": "retreat-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "riposte",
+      "title": "Riposte",
+      "chapter": "Combat",
+      "pages": "MA124-125",
+      "reference": "Martial Arts pp. 124-125",
+      "file": "riposte.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "harsh-realism-for-unarmed-fighters",
+      "title": "Harsh Realism for Unarmed Fighters",
+      "chapter": "Combat",
+      "pages": "MA124",
+      "reference": "Martial Arts p. 124",
+      "file": "harsh-realism-for-unarmed-fighters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "unbalanced-parries",
+      "title": "Unbalanced Parries",
+      "chapter": "Combat",
+      "pages": "MA125",
+      "reference": "Martial Arts p. 125",
+      "file": "unbalanced-parries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-combat",
+      "title": "Cinematic Combat",
+      "chapter": "Combat",
+      "pages": "MA125-126",
+      "reference": "Martial Arts pp. 125-126",
+      "file": "cinematic-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiple-attacks",
+      "title": "Multiple Attacks",
+      "chapter": "Combat",
+      "pages": "MA126-128",
+      "reference": "Martial Arts pp. 126-128",
+      "rule": "rapidStrike",
+      "file": "multiple-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "faster-combat",
+      "title": "Faster Combat",
+      "chapter": "Combat",
+      "pages": "MA126",
+      "reference": "Martial Arts p. 126",
+      "file": "faster-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "feints-and-multiple-attacks",
+      "title": "Feints and Multiple Attacks",
+      "chapter": "Combat",
+      "pages": "MA127",
+      "reference": "Martial Arts p. 127",
+      "rule": "feint",
+      "file": "feints-and-multiple-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiple-targets",
+      "title": "Multiple Targets",
+      "chapter": "Combat",
+      "pages": "MA127-128",
+      "reference": "Martial Arts pp. 127-128",
+      "file": "multiple-targets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "what-is-a-rapid-strike",
+      "title": "What Is . . . a Rapid Strike?",
+      "chapter": "Combat",
+      "pages": "MA127",
+      "reference": "Martial Arts p. 127",
+      "rule": "rapidStrike",
+      "file": "what-is-a-rapid-strike.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "chambara-fighting",
+      "title": "Chambara Fighting",
+      "chapter": "Combat",
+      "pages": "MA128",
+      "reference": "Martial Arts p. 128",
+      "file": "chambara-fighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "chambara-attacks",
+      "title": "Chambara Attacks",
+      "chapter": "Combat",
+      "pages": "MA128-129",
+      "reference": "Martial Arts pp. 128-129",
+      "file": "chambara-attacks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "other-multiple-actions",
+      "title": "Other Multiple Actions",
+      "chapter": "Combat",
+      "pages": "MA128",
+      "reference": "Martial Arts p. 128",
+      "file": "other-multiple-actions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "chambara-defenses",
+      "title": "Chambara Defenses",
+      "chapter": "Combat",
+      "pages": "MA129",
+      "reference": "Martial Arts p. 129",
+      "file": "chambara-defenses.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-feats-for-cinematic-skills",
+      "title": "Special Feats for Cinematic Skills",
+      "chapter": "Combat",
+      "pages": "MA129-130",
+      "reference": "Martial Arts pp. 129-130",
+      "file": "special-feats-for-cinematic-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mind-games",
+      "title": "Mind Games",
+      "chapter": "Combat",
+      "pages": "MA130",
+      "reference": "Martial Arts p. 130",
+      "file": "mind-games.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "faking-it",
+      "title": "Faking It",
+      "chapter": "Combat",
+      "pages": "MA130",
+      "reference": "Martial Arts p. 130",
+      "file": "faking-it.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "extra-effort-in-combat",
+      "title": "Extra Effort in Combat",
+      "chapter": "Combat",
+      "pages": "MA131",
+      "reference": "Martial Arts p. 131",
+      "rule": "extraEffort",
+      "file": "extra-effort-in-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "more-cinematic-combat-rules",
+      "title": "More Cinematic Combat Rules",
+      "chapter": "Combat",
+      "pages": "MA132",
+      "reference": "Martial Arts p. 132",
+      "file": "more-cinematic-combat-rules.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shout-it-out",
+      "title": "Shout It Out!",
+      "chapter": "Combat",
+      "pages": "MA132",
+      "reference": "Martial Arts p. 132",
+      "file": "shout-it-out.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "proxy-fighting",
+      "title": "Proxy Fighting",
+      "chapter": "Combat",
+      "pages": "MA132-133",
+      "reference": "Martial Arts pp. 132-133",
+      "file": "proxy-fighting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bullet-time",
+      "title": "Bullet Time",
+      "chapter": "Combat",
+      "pages": "MA133",
+      "reference": "Martial Arts p. 133",
+      "file": "bullet-time.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tournament-combat",
+      "title": "Tournament Combat",
+      "chapter": "Combat",
+      "pages": "MA134",
+      "reference": "Martial Arts p. 134",
+      "file": "tournament-combat.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "roleplaying-tournaments",
+      "title": "Roleplaying Tournaments",
+      "chapter": "Combat",
+      "pages": "MA134",
+      "reference": "Martial Arts p. 134",
+      "file": "roleplaying-tournaments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "competition-types",
+      "title": "Competition Types",
+      "chapter": "Combat",
+      "pages": "MA134-135",
+      "reference": "Martial Arts pp. 134-135",
+      "file": "competition-types.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "injury-and-recovery",
+      "title": "Injury and Recovery",
+      "chapter": "Combat",
+      "pages": "MA136",
+      "reference": "Martial Arts p. 136",
+      "file": "injury-and-recovery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "realistic-injury",
+      "title": "Realistic Injury",
+      "chapter": "Combat",
+      "pages": "MA136",
+      "reference": "Martial Arts p. 136",
+      "file": "realistic-injury.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "partial-injuries",
+      "title": "Partial Injuries",
+      "chapter": "Combat",
+      "pages": "MA136",
+      "reference": "Martial Arts p. 136",
+      "file": "partial-injuries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "extreme-dismemberment",
+      "title": "Extreme Dismemberment",
+      "chapter": "Combat",
+      "pages": "MA136",
+      "reference": "Martial Arts p. 136",
+      "file": "extreme-dismemberment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "new-hit-locations",
+      "title": "New Hit Locations",
+      "chapter": "Combat",
+      "pages": "MA137",
+      "reference": "Martial Arts p. 137",
+      "rule": "hitLocations",
+      "file": "new-hit-locations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "severe-bleeding",
+      "title": "Severe Bleeding",
+      "chapter": "Combat",
+      "pages": "MA138",
+      "reference": "Martial Arts p. 138",
+      "rule": "bleeding",
+      "file": "severe-bleeding.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "lasting-and-permanent-injuries",
+      "title": "Lasting and Permanent Injuries",
+      "chapter": "Combat",
+      "pages": "MA138-139",
+      "reference": "Martial Arts pp. 138-139",
+      "file": "lasting-and-permanent-injuries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "how-gurps-works-stun-vs-real-injury",
+      "title": "How GURPS Works: “Stun” vs. “Real” Injury",
+      "chapter": "Combat",
+      "pages": "MA138",
+      "reference": "Martial Arts p. 138",
+      "file": "how-gurps-works-stun-vs-real-injury.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-injury",
+      "title": "Cinematic Injury",
+      "chapter": "Combat",
+      "pages": "MA139",
+      "reference": "Martial Arts p. 139",
+      "file": "cinematic-injury.md",
+      "status": "reviewed"
+    }
+  ]
+}

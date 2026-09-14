@@ -1,0 +1,7 @@
+You can carefully line up an attack in combat much as you would during a stress-free practice session, gaining the +4 for routine skill use discussed on p. B171. Such an attack is often termed “telegraphic” because it transmits your intentions to your foe. This makes it easy to avoid: all active defenses against a Telegraphic Attack are at +2!
+
+A Telegraphic Attack is the opposite of a Deceptive Attack (p. B369) and you cannot combine the two. Likewise, you cannot use a Telegraphic Attack as a Riposte (pp. 124-125) and it gains no benefit from an earlier feint. The +4 to hit doesn’t “stack” with the bonus for Evaluate, either. You can combine it with all other combat options.
+
+There’s also a restriction on the results of a Telegraphic Attack: the +4 to hit doesn’t affect your chance of a critical hit. Use your skill before the bonus to determine this. For instance, if you had skill 11 and the +4 made it 15, you would roll a critical hit on 3-4, not on 3-5; if you had skill 15 and the +4 gave you 19, you would score a critical hit on a roll of 3-5, not 3-6.
+
+Use this option when you must attack at a penalty but All-Out Attack (Determined) or Committed Attack (Determined) would be too risky. Fighters most often use Telegraphic Attack to offset the -3 for Combat Art or Sport skills in combat (athletes often have good accuracy but little subtlety), shock penalties, and penalties for attacks that are at the edge of their skill level (e.g., for specific hit locations) . . . and to strike from behind!

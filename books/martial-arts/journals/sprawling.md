@@ -1,0 +1,3 @@
+When an attacker tries a takedown (p. B370) or a technique based on a takedown, you may opt to fall willingly in an attempt to achieve superior ground position. This is known as “sprawling.” It’s risky, but it’s useful against someone you know is less adept than you are at Ground Fighting (p. 73).
+
+If you sprawl, you fall down – that is, your enemy’s takedown works automatically – but the Quick Contest still occurs and you roll at +3. If your rival wins, you simply fall. If he loses or ties, though, he falls, too – in tactical combat, you end up lying atop him in the same two hexes – and he loses any grapple he had on you.

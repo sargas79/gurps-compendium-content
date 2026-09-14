@@ -1,0 +1,9 @@
+As stated on p. B369, a Deceptive Attack can represent “any number of advanced fighting techniques.” This doesn’t mean “techniques” in the sense of Chapter 3, although some of those techniques penalize the target’s defenses. In fact, one can deliver almost any attack using any technique in a deceptive way. Common deceptions include:
+
+- Change-up. The attacker waits for his target to commit to a defense and then abruptly alters his attack vector (or his attack!) to avoid it; e.g., starting a rapier thrust to the throat so that the defender will move to protect his upper body, and then dropping the sword point to the gut at the last moment. Unlike using Rapid Strike to feint and attack, this is one fluid motion – which is why it uses one die roll. The logic behind the penalty is similar, though: the attacker is performing a lot of action in relatively little time.
+
+- Radical angle of attack. The attacker angles his blow so that it passes over, under, or around the defender’s guard; e.g., stabbing upward with a dagger held low, swinging an axe wide so that it comes in behind a shield, or moving in close and looping a punch outside the victim’s field of vision. The awkwardness of the angle explains the attacker’s penalty.
+
+- Sheer speed. The attacker strikes so swiftly that the defender has little time to respond. The penalty on the attack roll reflects the difficulty of aiming a fast-moving attack. The “secret techniques” of many masters are simply ordinary techniques combined with this kind of Deceptive Attack. Bruce Lee (pp. 24-25) was famous for this!
+
+Which option you use is a “special effect” – it has no effect on game play. In a combat-heavy game, though, describing your Deceptive Attacks is an important part of roleplaying. The GM may award character points accordingly.

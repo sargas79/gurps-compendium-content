@@ -1,0 +1,1 @@
+These rules significantly enhance the “firepower” of muscle-powered ranged weapons. They describe feats that might be possible for extremely skilled realistic warriors, but the GM is free to reserve them for Weapon Masters.

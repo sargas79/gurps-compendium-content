@@ -1,0 +1,3 @@
+A grappled fighter has -4 to DX (p. B370). This affects combat skills, giving -2 to Block and Parry – and a grappled limb can’t block or parry. Dodge is at -1, equivalent to the effect of -4 DX on Basic Speed (which isn’t reduced). If a technique gives a worse defense penalty (e.g., -4 for Arm Lock), use that instead. Finally, the victim can’t step or change posture while defending, so he can’t retreat or use Acrobatic Dodge.
+
+The grappler has no penalties. However, he can’t parry with a limb without releasing its hold on his victim. To retreat or use Acrobatic Dodge, he must let go with all of his limbs.

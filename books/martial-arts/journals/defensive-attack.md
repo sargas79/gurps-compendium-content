@@ -1,0 +1,5 @@
+This represents a cautious “probing” attack made from a full guard position, such as a jab with a thrusting weapon (including a fist or foot) or a quick, light tap with a swung one. The fighter must use a ready melee attack. He gets -2 damage or -1 damage per die, whichever is worse, but enjoys improved active defenses – see below. If he attempts to grab or grapple, his target gets +1 to defend.
+
+**Movement:** Step. Movement can come before or after the attack.
+
+**Active Defense:** Any. Before the attacker rolls, he must select a defensive benefit. If he attacks with a balanced weapon (including a hand or a shield), he may choose either +1 to Parry with one of his weapons or +1 to Block. He can assign the bonus to the weapon he’s striking with. If he attacks with an unbalanced weapon (one with “U” in its Parry statistic), he may claim +1 to Parry or Block with a different weapon, or opt to parry with the same weapon, at no bonus, despite using it to attack. If he kicks, he gets no Block or Parry bonus but +2 on rolls to avoid a Leg Grapple (p. 76) and on DX rolls to avoid falling.
