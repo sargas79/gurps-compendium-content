@@ -1,0 +1,1 @@
+Some elixirs naturally lend themselves to being made into a charm. The most popular elixirs for amulets include Health, Magic Resistance, Calm, Hardheartedness, and Antidotes. The most popular elixirs for talismans include Attractiveness, Charisma, Fertility, Gambling, Leadership, Luck, and Wisdom.

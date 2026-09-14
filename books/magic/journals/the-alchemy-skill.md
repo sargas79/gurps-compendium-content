@@ -1,0 +1,1 @@
+Alchemy is an IQ/Very Hard skill; there is no default. Like spells, alchemy can be learned at only half-speed without a teacher. It cannot be learned in a no-mana area! Much of the skill has to do with experience in watching, hearing, and feeling the magical reactions proceed. A lone student can do this by experimentation – but only in an area where alchemy works!
