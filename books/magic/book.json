@@ -29,19 +29,38 @@
   "patch": [
     {
       "pack": "spells",
-      "pattern": "^(Acid Jet|Air Jet|Ball of Lightning|Breathe Fire|Breathe Radiation|Breathe Steam|Flame Jet|Icy Breath|Light Jet|Lightning Stare|Lightning Whip|Mud Jet|Radiation Jet|Rain of Acid|Rain of Fire|Rain of Ice Daggers|Rain of Stones|Sand Jet|Snow Jet|Sound Jet|Spit Acid|Steam Jet|Water Jet)$",
+      "pattern": "^(Acid Jet|Air Jet|Breathe Fire|Breathe Radiation|Breathe Steam|Flame Jet|Icy Breath|Light Jet|Lightning Stare|Mud Jet|Radiation Jet|Sand Jet|Snow Jet|Sound Jet|Spit Acid|Steam Jet|Water Jet)$",
       "set": {
-        "system.attack": {
-          "skill": "",
-          "damage": "",
-          "damageType": "",
-          "accuracy": 0,
-          "halfDamageRange": 0,
-          "maxRange": 0,
-          "explosive": false
-        }
+        "system.attack.behavior": "gurps-compendium-content.magic-jet"
       },
-      "reason": "jets, breaths and rains do damage without being Missile or Melee spells, which the system cannot carry yet (sargas79/GWorldVTT#192); the damage is in the text"
+      "reason": "Regular spells that attack each turn, dodged or blocked but not parried, delivered by this module's jet behavior"
+    },
+    {
+      "pack": "spells",
+      "pattern": "^(Rain of Acid|Rain of Fire|Rain of Ice Daggers|Rain of Stones)$",
+      "set": {
+        "system.attack.behavior": "gurps-compendium-content.magic-rain",
+        "system.attack.area": true
+      },
+      "reason": "Area spells that do damage each second to everyone in the area, delivered by this module's rain behavior"
+    },
+    {
+      "pack": "spells",
+      "pattern": "^(Breathe Fire|Breathe Radiation|Icy Breath)$",
+      "set": {
+        "system.attack.skill": "Innate Attack (Breath)"
+      },
+      "reason": "the data file lists these breaths' skills without its SK: prefix, which the parser does not read"
+    },
+    {
+      "pack": "spells",
+      "pattern": "^(Air Jet|Ball of Lightning|Breathe Radiation|Lightning Whip|Radiation Jet|Snow Jet|Water Jet)$",
+      "set": {
+        "system.attack.damage": "",
+        "system.attack.damageType": "",
+        "system.attack.explosive": false
+      },
+      "reason": "what these do is knockback, radiation, a whip wielded as a weapon or a floating ball, not dice of injury per energy; it is in the text"
     },
     {
       "pack": "spells",

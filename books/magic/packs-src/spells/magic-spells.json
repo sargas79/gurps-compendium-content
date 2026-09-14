@@ -167,13 +167,14 @@
       "prerequisiteCount": 3,
       "prerequisites": "Shape Air",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 24"
@@ -6667,13 +6668,14 @@
       "prerequisiteCount": 4,
       "prerequisites": "Create Earth",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 52"
@@ -6713,13 +6715,14 @@
       "prerequisiteCount": 8,
       "prerequisites": "Create Earth or Create Water, Water Jet or Create Water, Sand Jet",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 52"
@@ -6940,12 +6943,14 @@
       "prerequisites": "Magery 2, Create Earth",
       "attack": {
         "skill": "",
-        "damage": "",
-        "damageType": "",
+        "damage": "1d-1",
+        "damageType": "cr",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-rain",
+        "area": true
       },
       "description": "",
       "reference": "Magic p. 53"
@@ -9596,13 +9601,14 @@
       "prerequisiteCount": 3,
       "prerequisites": "Create Fire, Shape Fire",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Beam)",
+        "damage": "1d",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 73"
@@ -9687,12 +9693,14 @@
       "prerequisites": "Magery 2, Create Fire",
       "attack": {
         "skill": "",
-        "damage": "",
-        "damageType": "",
+        "damage": "1d-1",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-rain",
+        "area": true
       },
       "description": "",
       "reference": "Magic p. 74"
@@ -10002,13 +10010,14 @@
       "prerequisiteCount": 7,
       "prerequisites": "Magery 1, Flame Jet, Resist Fire",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Breath)",
+        "damage": "1d+1",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 76"
@@ -17275,13 +17284,14 @@
       "prerequisiteCount": 2,
       "prerequisites": "Continual Light or Shape Light",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 112"
@@ -29811,13 +29821,14 @@
       "prerequisiteCount": 4,
       "prerequisites": "Great Voice",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 173"
@@ -31798,13 +31809,14 @@
       "prerequisiteCount": 8,
       "prerequisites": "Irradiate, Resist Radiation",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 182"
@@ -31843,13 +31855,14 @@
       "prerequisiteCount": 9,
       "prerequisites": "Magery 2, Radiation Jet",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Breath)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 182"
@@ -32838,13 +32851,14 @@
       "prerequisiteCount": 4,
       "prerequisites": "Shape Water",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 187"
@@ -33380,13 +33394,14 @@
       "prerequisiteCount": 6,
       "prerequisites": "Water Jet, Freeze",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Beam)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 189"
@@ -33832,12 +33847,14 @@
       "prerequisites": "Magery 2, Create Water, Create Earth",
       "attack": {
         "skill": "",
-        "damage": "",
-        "damageType": "",
+        "damage": "1d-1",
+        "damageType": "cor",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-rain",
+        "area": true
       },
       "description": "",
       "reference": "Magic p. 191"
@@ -33876,13 +33893,14 @@
       "prerequisiteCount": 10,
       "prerequisites": "Water Jet, Boil Water",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Beam)",
+        "damage": "1d-1",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 191"
@@ -33921,13 +33939,14 @@
       "prerequisiteCount": 10,
       "prerequisites": "Magery 3, Acid Jet, Resist Acid",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Breath)",
+        "damage": "1d",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 192"
@@ -34011,13 +34030,14 @@
       "prerequisiteCount": 10,
       "prerequisites": "Magery 2, Water Jet, Create Acid",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Beam)",
+        "damage": "1d-1",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 192"
@@ -34057,12 +34077,14 @@
       "prerequisites": "Magery 2, Hail, Ice Dagger",
       "attack": {
         "skill": "",
-        "damage": "",
-        "damageType": "",
+        "damage": "1d-2",
+        "damageType": "imp",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-rain",
+        "area": true
       },
       "description": "",
       "reference": "Magic p. 192"
@@ -34101,13 +34123,14 @@
       "prerequisiteCount": 12,
       "prerequisites": "Magery 1, Snow Jet, Resist Cold",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Breath)",
+        "damage": "1d+1",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 192"
@@ -34146,13 +34169,14 @@
       "prerequisiteCount": 14,
       "prerequisites": "Magery 1, Steam Jet, Resist Fire",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Breath)",
+        "damage": "1d",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 192"
@@ -35254,7 +35278,7 @@
       "prerequisiteCount": 8,
       "prerequisites": "Apportation, Lightning",
       "attack": {
-        "skill": "",
+        "skill": "Innate Attack (Projectile)",
         "damage": "",
         "damageType": "",
         "accuracy": 0,
@@ -35300,13 +35324,14 @@
       "prerequisiteCount": 8,
       "prerequisites": "Lightning, Resist Lightning",
       "attack": {
-        "skill": "",
-        "damage": "",
-        "damageType": "",
+        "skill": "Innate Attack (Gaze)",
+        "damage": "1d",
+        "damageType": "burn",
         "accuracy": 0,
         "halfDamageRange": 0,
         "maxRange": 0,
-        "explosive": false
+        "explosive": false,
+        "behavior": "gurps-compendium-content.magic-jet"
       },
       "description": "",
       "reference": "Magic p. 198"
