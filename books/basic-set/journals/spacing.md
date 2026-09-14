@@ -1,0 +1,1 @@
+A human-sized fighter needs about one yard (3’) of space; thus, two warriors could move down a passage two yards wide shoulder-to-shoulder – or hold it against a foe. A doorway is about one yard wide, so a single person could hold it. All this assumes room to attack and defend. Noncombatants could be packed in much more tightly, but they would have no room to react.

@@ -132,6 +132,7 @@ const CORE = [
     // is, so its page is written by hand and found by the section after it.
     extra: [{ key: "successRolls", title: "Success Rolls", names: ["When the GM Rolls"], page: 344 }],
   },
+  { from: 362, to: 383, folder: () => "combat" },
 ];
 
 function flag(name, fallback = null) {

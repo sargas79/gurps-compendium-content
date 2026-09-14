@@ -1,0 +1,1 @@
+A “ranged attack” is any attack with a weapon used at a distance, from a thrown rock to a laser rifle. This includes Missile spells and the Affliction, Binding, and Innate Attack advantages (unless given the Aura, Malediction, or Melee Attack modifiers). Most other spells and advantages are not considered ranged attacks.
