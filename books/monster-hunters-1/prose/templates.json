@@ -158,5 +158,53 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Like the operative above, you secretly eliminate monsters on behalf of an organization, but yours is distinctly military in flavor. This can range from working for a hidden division of your country's armed forces to being part of a private paramilitary corps. The group will typically act as a Patron, but if you're truly on your own once you've been sent into the field, choose from the other advantages.</p>"
+  },
+  {
+    "_id": "5a60f81128b2eca4",
+    "name": "Demon",
+    "pages": "MH1:49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are a creature from the depths of Hell, but that doesn't mean you're a bad person! You've rejected your calling and sided with the forces of good - call it a \"character flaw.\" Unfortunately, humanity doesn't reciprocate; you have to keep well-covered in public to avoid panicking crowds. You have some advantage choices; these represent what type of demon you are - once chosen, you cannot change them or add new ones.</p>"
+  },
+  {
+    "_id": "bf8d880ac6f01589",
+    "name": "Demonspawn",
+    "pages": "MH1:50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are the product of a demon, a human, and the tender moment that they shared . . . this allows you to blend into humanity while using your (more subtle) abilities to protect them.</p>"
+  },
+  {
+    "_id": "7aa8377eb771562f",
+    "name": "Lycanthrope",
+    "pages": "MH1:50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>All lycanthropes have a human side, but you have managed to retain full control over your bestial side as well. This allows you not only to transform at will, but to act rationally when in animal form. During the three nights of the full moon, any stressful or emotional situation may force you to transform; you can avoid this with a Will roll (at the usual -2 for Lunacy). You have no control over your Infectious Attack - any human you attack unarmed (regardless of which form you're in) may become a lycanthrope during the next full moon.</p><p>Choose a single were-form (below) when you take this template. You may only transform between your human form and this one were-form; in fact, nothing (not even powerful magic) can force your body into a different form! It takes a single Ready maneuver to switch between human and beast. You may attempt to switch as a free action, at the start of your turn; this costs 2 FP and requires a HT-2 roll, but failure means you Do Nothing this turn! Any clothing or gear you have as a human is left behind when you change, unless you can carry it as an animal.</p><p>All of the benefits below apply in your human form as well as your were-form! You are always stronger, faster at healing, vulnerable to silver, etc. The latter means you take 4× injury from pure silver, but only 3× from silver-coated weapons.</p><p>Choose which type of beast you transform into. While in that form, you gain the attribute bonuses, advantages, and disadvantages listed. You retain all of your normal traits, including those from the lycanthrope racial template; e.g., a were-bear has ST+2 in human form, and ST+12 in bear form. Some traits (e.g., those that require speech) may be useless in animal mode, of course. The GM may allow other types of lycanthropes; if so, each new form should temporarily add 125 points' worth of traits.</p>"
+  },
+  {
+    "_id": "252b96f751e5b64d",
+    "name": "Outcast Angel",
+    "pages": "MH1:51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You were never one of the bad guys - just one \"tainted\" enough to be cast down to Earth. Alternatively, you may be an angel intentionally designed as close to man as possible, to better understand and help him. (The disadvantage choice in this template reflects whether you see yourself as serving humanity or above them.) Either way, while you retain some innate power, you can no longer call upon the full force of Heaven.</p>"
+  },
+  {
+    "_id": "6e927cdda915054b",
+    "name": "Vampire",
+    "pages": "MH1:51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are fueled by the blood of living creatures - human tastes best, though any mammal's will do - but you can control your cravings. You must obtain permission before entering a private dwelling . . . but a \"Welcome\" mat or similar sign is good enough! You must always be on your guard against sunlight, stake, or fire - the things that can easily kill you. And you may have angst about the whole \"undead\" thing, but it's not a strict requirement.</p><p>This template has neither Dominance nor Infectious Attack. New vampires cannot be created accidentally, and even if you were to intentionally do so (a big no-no for the good guys!), it wouldn't be bound to you. You can attempt to mentally influence (as for Suggest, p. B191) anyone you've bitten - progeny or otherwise - but it's by no means automatic.</p>"
+  },
+  {
+    "_id": "5f9579105e5c2f55",
+    "name": "Dhampir",
+    "pages": "MH1:51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You are the child of a woman who was turned into a vampire while already pregnant, or the issue of a mortal woman and a vampire using powerful magic to temporarily remove his sterility. Dhampirs (of either origin) are very rare. You have none of the drawbacks of your vampire brethren, and many of their strengths.</p>"
   }
 ]
