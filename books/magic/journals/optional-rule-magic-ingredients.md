@@ -1,0 +1,7 @@
+Traditionally, spells have often required the use of exotic ingredients: dragon scale, virgin’s blood, eye of newt, mandrake root, Nixon campaign buttons, or what have you. This book, however, does not specify what ingredients are required for spells, aside from some materials required for enchantments. It would be nearly impossible to produce a list of ingredients that would make sense across a variety of settings, to say nothing of the space such a list would take up.
+
+Instead, spell ingredients should be regarded as a powerful tool for GMs to use for fine-tuning the feel of magic in their games. Spells you wish to constrain may require expensive and rare ingredients. If a particular spell is getting out of hand, maybe the mandrake crop will fail this year. Spell ingredients can also serve as a useful cash sink, if the amount of money in PC hands is getting excessive.
+
+Exotic ingredients can be extremely useful for moderating the use of magic. Ordinarily, wizards have little incentive not to use up all their energy at every encounter; as long as the party has some time to rest afterwards, they’ll be back up to scratch in no time. If there’s only so much eye of newt to last until the next visit to town, however, wizards may start trying to use their magic to best effect, and to find alternate ways to be useful in a pinch.
+
+For some possible ingredients and their typical uses, see Magically Potent Materials, p. 222.

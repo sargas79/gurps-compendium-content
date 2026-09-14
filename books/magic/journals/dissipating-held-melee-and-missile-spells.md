@@ -1,0 +1,3 @@
+You will sometimes need to dispel a held Melee or Missile spell quickly, without taking a full turn to make an attack – for instance, so you can concentrate on another spell. You can do this as a free action at any point during your turn; simply state that you are dissipating the spell and it “evaporates” harmlessly.
+
+You can also get rid of a Missile spell (not a Melee spell) by “dropping” it at your feet. This, too, is a free action. This does not damage you, unless the missile is explosive, but it damages whatever you are standing on. Missiles that inflict burning damage are liable to set fires!
