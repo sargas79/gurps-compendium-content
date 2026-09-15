@@ -1,5 +1,39 @@
 # Changelog
 
+## v0.5.0 — Martial Arts combat rules
+
+Built from the Basic Set, Monster Hunters 1 and Magic against **gworld
+v1.7.0**, which this release requires (add-on API 1.33.0). Every new switch is
+off by default.
+
+- **GURPS Martial Arts** gets eighteen more switches:
+  - Defensive and Reversed Grips, Pummeling, Tip Slash and Telegraphic Attack
+    (`meleeOptions`, #179);
+  - styles and the Training Sequence (`styles`, `training`, #180);
+  - weapon balance, custom quality, combination and hidden weapons
+    (`weaponBuilding`, #181);
+  - the finer hit locations, with their wounds (`finerHitLocations`, #182);
+  - longer Rapid Strikes, several targets and feints in a sequence
+    (`multipleAttacks`, `cinematicRapidStrike`, #183);
+  - Cross Parry, Riposte, Dive, Sideslip and Slip, multiple blocks, leg parries
+    and dodge limits (`defenseOptions`, `limitedDefenses`, #184);
+  - Targeted Attacks, Combinations, and Art and Sport defaults
+    (`targetedAttacks`, #185);
+  - Giant Step, Great Lunge, Heroic Charge and Rapid Recovery, with one offensive
+    and one defensive option a turn (`extraEffort`, #186);
+  - quick-shooting bows, thrown Rapid Strike and handfuls, prediction shots and
+    ranged feints (`rangedOptions`, `cinematicRangedOptions`, #187);
+  - unfamiliar weapons, two-handers in one hand, hurled melee weapons and
+    improvised weapons (`unfamiliarWeapons`, `unorthodoxWeapons`, #188);
+  - shoves and cross-checks with weapons, and striking at or grabbing shields
+    (`shovesAndShields`, #190);
+  - untrained fighters and Harsh Realism for Unarmed Fighters
+    (`untrainedFighters`, `harshRealism`, #191).
+- **Journal pages:** the Martial Arts journal links more of its pages to the
+  switches that apply them.
+- **Martial Arts pack:** still out of the release, until the last of the
+  book's rules arrive.
+
 ## v0.4.0 — Magic's rules, and the first Martial Arts rules
 
 Built from the Basic Set, Monster Hunters 1 and Magic against **gworld
