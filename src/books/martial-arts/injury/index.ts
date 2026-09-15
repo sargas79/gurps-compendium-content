@@ -33,6 +33,9 @@ const L = (key: string) => game.i18n.localize(`GCC.MA.Injury.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MA.Injury.${key}`, data);
 
 const WOUNDS_FLAG = "partialWounds";
+/** What each part's long-term pain does now, for the hooks that can't be a condition's lines: kicks and Move. */
+const EFFECTS_FLAG = "partialEffects";
+type PartialEffects = Partial<Record<"arm" | "leg" | "torso", { dx: number; move: number }>>;
 const SEVERE_FLAG = "severeWounds";
 
 interface Wound { amount: number; round: number | null; time: number }
@@ -140,8 +143,10 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
     if (!partial() || !Object.keys(wounds).length || healed) {
       if (healed && Object.keys(wounds).length) await actor.unsetFlag(MODULE_ID, WOUNDS_FLAG);
       for (const location of ["arm", "leg", "torso"]) await clear(location);
+      if (actor.getFlag(MODULE_ID, EFFECTS_FLAG)) await actor.unsetFlag(MODULE_ID, EFFECTS_FLAG);
       return;
     }
+    const effects: PartialEffects = {};
     const at = now();
     const ht = Number(api.actors.attribute(actor, "HT")) || 10;
     const pain = painOf(actor);
@@ -154,18 +159,39 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
         continue;
       }
       const dx = painThreshold(effect.dx, pain);
-      const rolls = location === "leg" ? ["kick"] : ["attack", "parry", "block"];
+      effects[location] = { dx, move: effect.move };
+      // An arm's pain is on what it does; the torso's on every DX roll. A leg's
+      // is on kicks, which no condition can name, so a hook adds it (below).
+      const rolls = location === "torso" ? ["attack", "parry", "block", "DX"] : ["attack", "parry", "block"];
       await api.actors.applyCondition(actor, {
         module: MODULE_ID,
         key: `ma-partial-${location}`,
-        label: F(`Partial.${location}`, { dx, will: painWill(pain) }),
+        label: F(`Partial.${location}${effect.willRoll ? "Will" : ""}`, { dx, will: `${painWill(pain) >= 0 ? "+" : ""}${painWill(pain)}` }),
         effects: {
           modifiers: [
-            ...(dx && !effect.willRoll ? [{ label: L("LongTermPain"), value: dx, rolls }] : []),
+            ...(dx && location !== "leg" ? [{ label: L("LongTermPain"), value: dx, rolls }] : []),
             ...(effect.dodge ? [{ label: L("LongTermPain"), value: effect.dodge, rolls: ["dodge"] }] : []),
           ],
         },
       });
+    }
+    await actor.setFlag(MODULE_ID, EFFECTS_FLAG, effects);
+  });
+
+  const effectsOf = (actor: any): PartialEffects => (partial() ? (actor?.getFlag?.(MODULE_ID, EFFECTS_FLAG) ?? {}) : {});
+  // A wounded leg kicks at its pain's penalty (p. 136).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const leg = effectsOf(context?.actor).leg;
+    if (!leg?.dx || context.ranged) return;
+    const label = `${String(context.dataset?.rollLabel ?? "")} ${String(context.mode?.derived ?? "")}`;
+    if (/kick/i.test(label)) context.modifiers.push({ label: L("LongTermPain"), value: leg.dx });
+  });
+  // Wounded legs and torsos slow a fighter down (p. 136; API 1.42.0).
+  Hooks.on((api.data.hooks as any).moveModifiers ?? "gworld.moveModifiers", (context: any) => {
+    const effects = effectsOf(context?.actor);
+    for (const location of ["leg", "torso"] as const) {
+      const move = effects[location]?.move;
+      if (move !== undefined && move < 1) context.lines.push({ label: L(`MoveLabel.${location}`), multiplier: move });
     }
   });
 
