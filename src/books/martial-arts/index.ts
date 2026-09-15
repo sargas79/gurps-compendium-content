@@ -13,7 +13,8 @@
  * (pp. 214, 216-218, 221), new hit locations (p. 137), multiple attacks
  * (pp. 126-128), active defense options (pp. 121-125), Targeted Attacks
  * and Combinations (pp. 64, 68, 80), extra effort in combat (p. 131), and
- * ranged attack options (pp. 97, 119-121).
+ * ranged attack options (pp. 97, 119-121), and unfamiliar, one-handed,
+ * hurled and improvised weapons (pp. 212, 220, 224).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -33,6 +34,7 @@ import { readyDefenseOptions } from "./defense-options/index.js";
 import { readyTechniques } from "./techniques/index.js";
 import { readyExtraEffort } from "./extra-effort/index.js";
 import { readyRangedOptions } from "./ranged/index.js";
+import { initUnorthodox, readyUnorthodox } from "./unorthodox/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -59,6 +61,8 @@ const RULES = [
   { key: "extraEffort", pages: "p. 131", implemented: true },
   { key: "rangedOptions", pages: "pp. 97, 119-121", implemented: true },
   { key: "cinematicRangedOptions", pages: "p. 120", implemented: true },
+  { key: "unfamiliarWeapons", pages: "p. 212", implemented: true },
+  { key: "unorthodoxWeapons", pages: "pp. 220, 224", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -97,6 +101,7 @@ function ready(api: GWorldApi): void {
   readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")));
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
   readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
+  readyUnorthodox(api, () => api.registry.isRuleOn(ruleKey("unfamiliarWeapons")), () => api.registry.isRuleOn(ruleKey("unorthodoxWeapons")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 
@@ -105,6 +110,7 @@ function init(): void {
   initReadying();
   initStyles();
   initWeapons();
+  initUnorthodox();
 }
 
 export const book: BookRules = {
