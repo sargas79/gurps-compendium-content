@@ -612,6 +612,14 @@
         "cinematicRangedOptions": {
           "Name": "Cinematic ranged options",
           "Hint": "Quick-shooting in combat without the realistic -4, and handfuls of BL/20 lbs. of any small thrown weapon."
+        },
+        "unfamiliarWeapons": {
+          "Name": "Unfamiliar weapons",
+          "Hint": "Weapons belong to groups and fighters know some: -2 to wield an unfamiliar weapon, -1 to parry one, and -2 in feints and disarms against one unless both sides face the unfamiliar."
+        },
+        "unorthodoxWeapons": {
+          "Name": "Unorthodox weapon use",
+          "Hint": "Two-handed weapons in one hand for the strong, melee weapons hurled, and everyday items improvised as weapons."
         }
       },
       "Committed": {
@@ -1159,6 +1167,54 @@
         "HandfulLabel": "Handful",
         "Handful": "Handful of {count}",
         "ReadyInHand": "One hand holds {ready} ready: the rest of these {attacks} throws are readied as the Rapid Strike goes, one Ready or Fast-Draw each"
+      },
+      "Unorthodox": {
+        "Unfamiliar": "Unfamiliar",
+        "UnfamiliarHint": "A weapon from outside the groups this fighter knows: {penalty} to skill",
+        "FacingUnfamiliar": "Facing an unfamiliar weapon",
+        "FamiliarTitle": "Familiar weapon groups",
+        "FamiliarHint": "The weapon groups this fighter has trained with or against, separated by commas. A weapon with no group is familiar to everyone.",
+        "FamiliarPlaceholder": "e.g. European, Japanese",
+        "GroupLabel": "Weapon group",
+        "GroupHint": "The group this weapon belongs to, e.g. a culture. Fighters who don't list it wield it at -2 and parry it at -1.",
+        "OneHand": "One hand",
+        "OneHandHint": "A two-handed weapon in one hand: {skill}, -1 damage",
+        "NowOneHand": "{weapon} is now wielded in one hand",
+        "NowTwoHands": "{weapon} is back in two hands",
+        "Hurl": "Hurl",
+        "HurlMode": "Hurled ({skill})",
+        "Improvised": "Improvised weapons",
+        "ImproviseFor": "Character",
+        "ImproviseItem": "Item",
+        "Improvise": "Improvise",
+        "ImprovisedName": "{item} (as {base})",
+        "NoBase": "No {base} in the compendia to improvise from",
+        "GlassHolds": "{weapon}: the glass holds",
+        "GlassBreaks": "{weapon} breaks!",
+        "GlassCuts": "{weapon} breaks and cuts the hand!",
+        "GlassHand": "{weapon}: cut hand",
+        "Items": {
+          "barbell": "Barbell",
+          "beltBuckle": "Belt (buckle)",
+          "beltWhip": "Belt (whip)",
+          "bottleBroken": "Bottle, broken",
+          "bottleIntact": "Bottle, intact",
+          "carAntenna": "Car antenna",
+          "chain": "Chain, unweighted",
+          "curtainRodSolid": "Curtain rod, solid",
+          "curtainRodHollow": "Curtain rod, hollow",
+          "dumbbell": "Dumbbell",
+          "iceScraper": "Ice scraper",
+          "magazine": "Magazine, tightly rolled",
+          "nailClippers": "Nail clippers",
+          "pen": "Pen or pencil",
+          "purseSwung": "Purse, swung on strap",
+          "ruler": "Ruler, steel",
+          "scarfWeighted": "Scarf, weighted",
+          "scissors": "Scissors",
+          "shank": "Shank or shiv"
+        },
+        "ImprovisedDone": "{actor} now has {weapon}"
       }
     }
   },

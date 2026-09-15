@@ -2545,6 +2545,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA212",
       "reference": "Martial Arts p. 212",
+      "rule": "gurps-compendium-content.unfamiliarWeapons",
       "file": "weapons.md",
       "status": "reviewed"
     },
@@ -2554,6 +2555,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA212",
       "reference": "Martial Arts p. 212",
+      "rule": "gurps-compendium-content.unfamiliarWeapons",
       "file": "cross-cultural-encounters.md",
       "status": "reviewed"
     },
@@ -2602,6 +2604,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA220",
       "reference": "Martial Arts p. 220",
+      "rule": "gurps-compendium-content.unorthodoxWeapons",
       "file": "unorthodox-attacks.md",
       "status": "reviewed"
     },
@@ -2639,6 +2642,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA224",
       "reference": "Martial Arts p. 224",
+      "rule": "gurps-compendium-content.unorthodoxWeapons",
       "file": "improvised-weapons.md",
       "status": "reviewed"
     },
