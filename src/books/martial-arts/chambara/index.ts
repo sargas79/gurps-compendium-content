@@ -25,6 +25,7 @@ import {
   leapsFully,
   lizardHandsPenalty,
   lizardRetreat,
+  onMoveAndAttack,
   retreatFits,
   retreatLines,
   stepsThisTurn,
@@ -238,22 +239,38 @@ export function readyChambara(api: GWorldApi, on: () => boolean): void {
     label: L("Technique"),
     // The dialog shows the first choice as chosen, so the first is none.
     input: { type: "select", choices: [{ value: "", label: "—" }, ...CHAMBARA_TECHNIQUES.map((value) => ({ value, label: L(`Techniques.${value}`) }))] },
-    available: (context: any) => master(context.actor) && !context.ranged && context.maneuver === "moveAndAttack",
+    available: (context: any) => master(context.actor) && !context.ranged,
     refuse: (context: any) => {
       const actor = context.actor;
+      const kind = context.chosen?.[`${MODULE_ID}.${TECHNIQUE_OPTION}`] as ChambaraTechnique | undefined;
+      if (kind && onMoveAndAttack(kind) && context.maneuver !== "moveAndAttack") return L("NeedsMoveAndAttack");
       if (!leapsFully({ dx: dx(actor), acrobatics: level(actor, "Acrobatics"), jumping: level(actor, "Jumping") })) return L("NeedsAcrobaticsJumping");
       const offensive = [...(actor.items ?? [])].some((i: any) => i.type === "technique" && Number(i.system?.points) >= 1 && !["parry", "block", "dodge"].includes(String(i.system?.defaultFrom ?? "skill")));
       return offensive ? null : L("NeedsTechnique");
     },
     apply: (context: any, value: unknown) => {
       if (!CHAMBARA_TECHNIQUES.includes(value as ChambaraTechnique)) return null;
-      const stunt = optionValue(context.actor, STUNT_OPTIONS[value as ChambaraTechnique]) === true ? -1 : 0;
-      return { modifiers: chambaraTechniqueLines(stunt).map((line) => ({ label: L(`Lines.${line.key}`), value: line.value })) };
+      const kind = value as ChambaraTechnique;
+      if (!onMoveAndAttack(kind)) return { modifiers: chambaraTechniqueLines(kind, 0).map((line) => ({ label: L(`Lines.${line.key}`), value: line.value })) };
+      const stunt = optionValue(context.actor, STUNT_OPTIONS[kind as "acrobatic" | "flying"]) === true ? -1 : 0;
+      return { modifiers: chambaraTechniqueLines(kind, stunt).map((line) => ({ label: L(`Lines.${line.key}`), value: line.value })) };
     },
   } as any);
-  // The technique also lifts Move and Attack's skill cap of 9.
+  // The technique also lifts the skill cap of 9; the spinning version buys off the Wild Swing's penalty.
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
-    if (!master(context?.actor) || !CHAMBARA_TECHNIQUES.includes(context.options?.[`${MODULE_ID}.${TECHNIQUE_OPTION}`])) return;
+    const kind = context?.options?.[`${MODULE_ID}.${TECHNIQUE_OPTION}`] as ChambaraTechnique;
+    if (!master(context?.actor) || !CHAMBARA_TECHNIQUES.includes(kind)) return;
+    // A version the dialog refused (acrobatic or flying off a Move and Attack) does nothing.
+    if (onMoveAndAttack(kind) && context.actor.system?.maneuver !== "moveAndAttack") return;
+    if (kind === "spinning") {
+      if (!context.wildSwing) {
+        context.refusal = L("NeedsWildSwing");
+        return;
+      }
+      const swing = (context.modifiers ?? []).find((m: any) => m?.label === game.i18n.localize("GWORLD.Melee.WildSwing"));
+      const lines = chambaraTechniqueLines("spinning", 0, Number(swing?.value) || 0).filter((line) => line.key === "wildSwing");
+      for (const line of lines) context.modifiers.push({ label: L(`Lines.${line.key}`), value: line.value });
+    }
     context.skillCap = null;
   });
 

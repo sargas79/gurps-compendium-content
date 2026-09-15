@@ -8,6 +8,7 @@ import {
   flyingLeapFatigue,
   halvedPenalty,
   isMaster,
+  onMoveAndAttack,
   leapsFully,
   lizardHandsPenalty,
   lizardRetreat,
@@ -33,7 +34,9 @@ describe("chambara movement and attacks", () => {
     expect(tradeableAttacks({ basicAttacks: 2, traded: 0 })).toBe(1);
     expect(tradeableAttacks({ basicAttacks: 2, traded: 1 })).toBe(0);
     expect(stepsThisTurn({ maneuverSteps: 1, traded: 1 })).toBe(2);
-    expect(chambaraTechniqueLines(-1)).toEqual([{ key: "techniqueDefault", value: -6 }, { key: "moveAndAttack", value: 4 }, { key: "stunt", value: 1 }]);
+    expect(chambaraTechniqueLines("acrobatic", -1)).toEqual([{ key: "techniqueDefault", value: -6 }, { key: "moveAndAttack", value: 4 }, { key: "stunt", value: 1 }]);
+    expect(chambaraTechniqueLines("spinning", 0, -5)).toEqual([{ key: "techniqueDefault", value: -6 }, { key: "wildSwing", value: 5 }]);
+    expect([onMoveAndAttack("flying"), onMoveAndAttack("spinning")]).toEqual([true, false]);
   });
 });
 
