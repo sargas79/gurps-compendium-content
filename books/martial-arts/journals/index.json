@@ -673,6 +673,7 @@
       "chapter": "Combat",
       "pages": "MA127-128",
       "reference": "Martial Arts pp. 127-128",
+      "rule": "gurps-compendium-content.multipleAttacks",
       "file": "multiple-targets.md",
       "status": "reviewed"
     },
@@ -864,7 +865,7 @@
       "chapter": "Combat",
       "pages": "MA137",
       "reference": "Martial Arts p. 137",
-      "rule": "hitLocations",
+      "rule": "gurps-compendium-content.finerHitLocations",
       "file": "new-hit-locations.md",
       "status": "reviewed"
     },
