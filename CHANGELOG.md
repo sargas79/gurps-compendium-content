@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.4.0 — Magic's rules, and the first Martial Arts rules
+
+Built from the Basic Set, Monster Hunters 1 and Magic against **gworld
+v1.6.0**, which this release requires (add-on API 1.20.0). Every new switch is
+off by default.
+
+- **GURPS Magic** now ships, with its pack and a rules group on the Rules page:
+  - Powerstones: priced by capacity, recharged with the world's time at the
+    local mana level, and offered as energy in the casting dialog (#168);
+  - jets, breaths and rains: jets attack as cast and each turn after, and
+    rains roll damage each second, halved for part of a second (#169).
+- **GURPS Martial Arts**, a rules group with its first seven switches:
+  - Committed and Defensive Attack as maneuvers (#170);
+  - All-Out Attack (Long), slams at full Move, and Move and Attack with any
+    melee attack (#171);
+  - Acrobatic Stand, movement stunts, and Acrobatic and Flying Attacks (#172);
+  - the posture tables, and dropping to the ground as part of an attack (#173);
+  - Beats, Ruses, defensive feints, and resisting a feint with the best
+    combat skill (#174);
+  - readying weapons: multiple Fast-Draw, where a weapon is carried, grips,
+    rapid grip changes, and quick-readying (#175).
+- The Martial Arts pack stays out of the release until the rest of the book's
+  rules arrive.
+
 ## v0.3.0 — Monster Hunters 1's rules, in the add-on
 
 The GWorld system is the Basic Set and nothing else. Monster Hunters 1's rules
