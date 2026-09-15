@@ -688,6 +688,42 @@
         "chambara": {
           "Name": "Chambara fighting",
           "Hint": "Masters (Trained by a Master or Weapon Master) leap, trade attacks for steps, retreat for +3 again and again, use acrobatics with every defense, and sense attacks from behind; Flying Leap, Light Walk and Lizard Climb gain their chambara feats."
+        },
+        "contestOfWills": {
+          "Name": "Contest of Wills",
+          "Hint": "A Concentrate challenges a foe to a turn-by-turn contest of Will; the loser reacts with the margin as a bonus, and attacks the winner at that penalty."
+        },
+        "concentration": {
+          "Name": "Concentration",
+          "Hint": "Giving in to a distracting disadvantage (not Berserk or Bloodlust) leaves a fighter at -2 DX."
+        },
+        "fear": {
+          "Name": "Fear and martial artists",
+          "Hint": "Gruesome wounds offer the GM a Fright Check without the heat-of-battle bonus, and known victories add to Intimidation of minor NPCs."
+        },
+        "fakingIt": {
+          "Name": "Faking it",
+          "Hint": "Stage Combat defaults to Combat Art and Sport at -2 and to combat skills and Performance at -3; a GM tool rolls a faker against a trained fighter."
+        },
+        "unarmedEtiquette": {
+          "Name": "Unarmed Etiquette",
+          "Hint": "Weapons and shields can't parry or block unarmed attacks."
+        },
+        "shakingItOff": {
+          "Name": "Shaking It Off",
+          "Hint": "A PC may spend 1 FP right after a failed knockdown roll to stay standing."
+        },
+        "shoutItOut": {
+          "Name": "Shout It Out!",
+          "Hint": "A secret style lets a fighter shout one attack (-1 to defend) or defense (+1) per style per battle."
+        },
+        "proxyFighting": {
+          "Name": "Proxy fighting",
+          "Hint": "Techniques through objects and people: -4, the borrowed part's penalty, or an unwilling puppet's ST/2."
+        },
+        "bulletTime": {
+          "Name": "Bullet Time",
+          "Hint": "A GM tool spends 3 unspent points for one turn in stopped time, against defenseless foes."
         }
       },
       "Committed": {
@@ -1620,6 +1656,108 @@
           "acrobaticAgain": "Acrobatic defense already this turn"
         },
         "StoodOnLine": "Weapon stood on"
+      },
+      "Cinematic": {
+        "Wills": {
+          "Option": "Contest of Wills",
+          "Challenge": "Challenge",
+          "Pick": "Target the foe to challenge",
+          "AlreadyRefused": "{foe} already refused this challenge this combat",
+          "Title": "Contest of Wills",
+          "Accept": "Accept",
+          "Refuse": "Refuse (Will)",
+          "Round": "Roll this turn",
+          "RefuseRoll": "Will: refuse the Contest of Wills",
+          "Reputation": "Reputation",
+          "Balanced": "Balanced (Regular Contest)",
+          "NoWinner": "No winner this turn",
+          "Won": "{name} wins by {margin}",
+          "Reaction": "{loser} reacts: {rolled} +{bonus} = {total}, {reaction} (potential combat). Attacking {winner} anyway: {penalty} to hit.",
+          "Lost": "Lost the Contest of Wills",
+          "Status": {
+            "challenged": "{challenger} locks eyes with {foe}.",
+            "running": "{challenger} and {foe} are locked in a Contest of Wills.",
+            "refused": "{foe} refuses {challenger}'s challenge.",
+            "over": "The Contest of Wills between {challenger} and {foe} is over."
+          },
+          "Lines": {
+            "fearlessness": "Fearlessness",
+            "indomitable": "Indomitable",
+            "unfazeable": "Unfazeable",
+            "betterFighter": "Better fighter",
+            "reputation": "Reputation"
+          }
+        },
+        "Distracted": "Distracted by {trait}: -2 DX",
+        "DistractedLine": "Distracted",
+        "Fear": {
+          "Title": "Gruesome wound",
+          "Text": "{name} may need a Fright Check, without the +5 for the heat of battle.",
+          "Roll": "Fright Check",
+          "Victories": "Known victories",
+          "Defeated": "Foes known defeated",
+          "DefeatedHint": "Minor NPCs who know of these victories: +1 to Intimidation per five, to +4"
+        },
+        "Faking": {
+          "Default": "Stage Combat default",
+          "Title": "Faking it",
+          "Pick": "Select or target the faker, and target a trained fighter watching (if any)",
+          "Label": "{name} fakes martial arts",
+          "Performance": "Performance (DX)",
+          "BestCombat": "Best combat skill (IQ)",
+          "Fooled": "{observer} is convinced",
+          "SeenThrough": "{observer} sees through it"
+        },
+        "Etiquette": "Unarmed Etiquette: no weapon or shield against an unarmed attack",
+        "Shake": {
+          "Title": "Shaking It Off",
+          "Text": "{name} may spend 1 FP to shake off the failed knockdown roll.",
+          "Spend": "Spend 1 FP",
+          "Done": "{name} shakes it off and stays standing."
+        },
+        "Bullet": {
+          "Title": "Bullet Time",
+          "Pick": "Select or target the character entering Bullet Time",
+          "Ask": "Spend {cost} unspent character points for {name} to take one turn in stopped time?",
+          "NotSuggested": "The book suggests Bullet Time only for Enhanced Time Sense, Trained by a Master or Weapon Master.",
+          "CantPay": "Not enough unspent points ({cost} needed)",
+          "Condition": "Bullet Time",
+          "Text": "{name} acts in stopped time: foes are defenseless, and a step makes paused attacks miss.",
+          "End": "End Bullet Time",
+          "Ended": "Time resumes for {name}.",
+          "Defenseless": "Bullet Time: no defense"
+        },
+        "Shout": {
+          "Secret": "Secret style",
+          "Marked": "{style} is a secret style",
+          "Unmarked": "{style} is no longer a secret style",
+          "OverLimit": "More secret styles than the GM's limit of {allowed} (one per 50 points)",
+          "Attack": "Shout the attack",
+          "Defense": "Shout the defense",
+          "AllUsed": "Every secret style has been shouted this battle",
+          "Shouted": "Shouted: {style}"
+        },
+        "Proxy": {
+          "Attack": "Through a proxy",
+          "Defense": "Defend through a proxy",
+          "Distance": "Proxy distance (yards)",
+          "TooFar": "A proxy reaches at most {yards} yards",
+          "NeedGrapple": "Grapple the proxy with both hands from behind first",
+          "NeedTarget": "Target the person to slap into the foe",
+          "Outskilled": "Your best melee skill must beat the proxy's",
+          "ObjectNote": "Through an object: no heavier than Basic Lift (1/10 for suspended or rolling ones)",
+          "SlapNote": "If the proxy fails to defend, the borrowed part strikes the foe; the proxy is unharmed",
+          "PuppetNote": "Damage is unchanged; a parry that would hurt you hurts the proxy",
+          "Struck": "The proxy is hit, not {name}",
+          "Kinds": {
+            "object": "Object (-4)",
+            "slapArm": "Slap: arm (-6)",
+            "slapLeg": "Slap: leg (-6)",
+            "slapHead": "Slap: head (-9)",
+            "puppetWilling": "Puppet, willing (-4)",
+            "puppetUnwilling": "Puppet, unwilling (ST/2)"
+          }
+        }
       }
     }
   },

@@ -763,6 +763,7 @@
       "chapter": "Combat",
       "pages": "MA130",
       "reference": "Martial Arts p. 130",
+      "rule": "gurps-compendium-content.contestOfWills",
       "file": "mind-games.md",
       "status": "reviewed"
     },
@@ -772,6 +773,7 @@
       "chapter": "Combat",
       "pages": "MA130",
       "reference": "Martial Arts p. 130",
+      "rule": "gurps-compendium-content.fakingIt",
       "file": "faking-it.md",
       "status": "reviewed"
     },
@@ -791,6 +793,7 @@
       "chapter": "Combat",
       "pages": "MA132",
       "reference": "Martial Arts p. 132",
+      "rule": "gurps-compendium-content.unarmedEtiquette",
       "file": "more-cinematic-combat-rules.md",
       "status": "reviewed"
     },
@@ -800,6 +803,7 @@
       "chapter": "Combat",
       "pages": "MA132",
       "reference": "Martial Arts p. 132",
+      "rule": "gurps-compendium-content.shoutItOut",
       "file": "shout-it-out.md",
       "status": "reviewed"
     },
@@ -809,6 +813,7 @@
       "chapter": "Combat",
       "pages": "MA132-133",
       "reference": "Martial Arts pp. 132-133",
+      "rule": "gurps-compendium-content.proxyFighting",
       "file": "proxy-fighting.md",
       "status": "reviewed"
     },
@@ -818,6 +823,7 @@
       "chapter": "Combat",
       "pages": "MA133",
       "reference": "Martial Arts p. 133",
+      "rule": "gurps-compendium-content.bulletTime",
       "file": "bullet-time.md",
       "status": "reviewed"
     },
