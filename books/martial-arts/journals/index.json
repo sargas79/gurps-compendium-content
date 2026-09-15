@@ -394,7 +394,7 @@
       "chapter": "Combat",
       "pages": "MA114-117",
       "reference": "Martial Arts pp. 114-117",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.bodiesInClose",
       "file": "close-combat-and-body-morphology.md",
       "status": "reviewed"
     },
@@ -404,6 +404,7 @@
       "chapter": "Combat",
       "pages": "MA115",
       "reference": "Martial Arts p. 115",
+      "rule": "gurps-compendium-content.bodiesInClose",
       "file": "teeth.md",
       "status": "reviewed"
     },
@@ -443,7 +444,7 @@
       "chapter": "Combat",
       "pages": "MA118",
       "reference": "Martial Arts p. 118",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grabAndSmash",
       "file": "grab-and-smash.md",
       "status": "reviewed"
     },
@@ -453,7 +454,7 @@
       "chapter": "Combat",
       "pages": "MA119",
       "reference": "Martial Arts p. 119",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grabAndSmash",
       "file": "pain-in-close-combat.md",
       "status": "reviewed"
     },
