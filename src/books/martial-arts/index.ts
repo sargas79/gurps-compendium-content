@@ -6,7 +6,8 @@
  * Attack (pp. 97-98), Move and Attack with any melee attack (p. 107), and
  * acrobatics: Acrobatic Stand, movement stunts, Acrobatic and Flying Attacks
  * (pp. 98, 105-107), and the posture tables with drops during an attack
- * (pp. 98-99).
+ * (pp. 98-99), and feints: Beats, Ruses, defensive feints and resisting them
+ * (pp. 49, 100-101).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -15,6 +16,7 @@ import { readyCommittedDefensive } from "./committed-defensive/index.js";
 import { readyAllOutAttack, readyMoveAndAttack } from "./maneuvers/index.js";
 import { readyAcrobatics } from "./acrobatics/index.js";
 import { initPostureAttacks, readyPostureAttacks } from "./posture-attacks.js";
+import { readyFeints } from "./feints/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -26,6 +28,7 @@ const RULES = [
   { key: "moveAndAttack", pages: "p. 107", implemented: true },
   { key: "acrobatics", pages: "pp. 98, 105-107", implemented: true },
   { key: "postures", pages: "pp. 98-99", implemented: true },
+  { key: "feints", pages: "pp. 49, 100-101", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -54,6 +57,7 @@ function ready(api: GWorldApi): void {
   readyMoveAndAttack(api, () => api.registry.isRuleOn(ruleKey("moveAndAttack")));
   readyAcrobatics(api, () => api.registry.isRuleOn(ruleKey("acrobatics")));
   readyPostureAttacks(api, () => api.registry.isRuleOn(ruleKey("postures")));
+  readyFeints(api, () => api.registry.isRuleOn(ruleKey("feints")));
 }
 
 function init(): void {
