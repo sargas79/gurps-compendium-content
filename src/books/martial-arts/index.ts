@@ -15,7 +15,8 @@
  * and Combinations (pp. 64, 68, 80), extra effort in combat (p. 131), and
  * ranged attack options (pp. 97, 119-121), and unfamiliar, one-handed,
  * hurled and improvised weapons (pp. 212, 220, 224), and shoves and slams
- * with weapons and striking at or grabbing shields (pp. 112-113).
+ * with weapons and striking at or grabbing shields (pp. 112-113), and
+ * untrained fighters and Harsh Realism for Unarmed Fighters (pp. 113, 124).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -37,6 +38,7 @@ import { readyExtraEffort } from "./extra-effort/index.js";
 import { readyRangedOptions } from "./ranged/index.js";
 import { initUnorthodox, readyUnorthodox } from "./unorthodox/index.js";
 import { readyShoves } from "./shields/index.js";
+import { allowsAdvancedOptions, readyUntrained } from "./untrained/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -66,6 +68,8 @@ const RULES = [
   { key: "unfamiliarWeapons", pages: "p. 212", implemented: true },
   { key: "unorthodoxWeapons", pages: "pp. 220, 224", implemented: true },
   { key: "shovesAndShields", pages: "pp. 112-113", implemented: true },
+  { key: "untrainedFighters", pages: "p. 113", implemented: true },
+  { key: "harshRealism", pages: "p. 124", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -89,7 +93,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 }
 
 function ready(api: GWorldApi): void {
-  readyCommittedDefensive(api, () => api.registry.isRuleOn(ruleKey("committedDefensiveAttack")));
+  readyCommittedDefensive(api, () => api.registry.isRuleOn(ruleKey("committedDefensiveAttack")), allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters"))));
   readyAllOutAttack(api, () => api.registry.isRuleOn(ruleKey("allOutAttackOptions")));
   readyMoveAndAttack(api, () => api.registry.isRuleOn(ruleKey("moveAndAttack")));
   readyAcrobatics(api, () => api.registry.isRuleOn(ruleKey("acrobatics")));
@@ -100,12 +104,13 @@ function ready(api: GWorldApi): void {
   readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
   readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
-  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")), () => api.registry.isRuleOn(ruleKey("rangedOptions")));
-  readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")));
+  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")), () => api.registry.isRuleOn(ruleKey("rangedOptions")), (actor) => ({ ok: allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters")))(actor), reason: game.i18n.localize("GCC.MA.Untrained.Limited") }));
+  readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
   readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
   readyUnorthodox(api, () => api.registry.isRuleOn(ruleKey("unfamiliarWeapons")), () => api.registry.isRuleOn(ruleKey("unorthodoxWeapons")));
   readyShoves(api, () => api.registry.isRuleOn(ruleKey("shovesAndShields")));
+  readyUntrained(api, () => api.registry.isRuleOn(ruleKey("untrainedFighters")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

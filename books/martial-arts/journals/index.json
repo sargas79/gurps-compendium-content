@@ -364,6 +364,7 @@
       "chapter": "Combat",
       "pages": "MA113",
       "reference": "Martial Arts p. 113",
+      "rule": "gurps-compendium-content.untrainedFighters",
       "file": "untrained-fighters.md",
       "status": "reviewed"
     },
@@ -630,6 +631,7 @@
       "chapter": "Combat",
       "pages": "MA124",
       "reference": "Martial Arts p. 124",
+      "rule": "gurps-compendium-content.harshRealism",
       "file": "harsh-realism-for-unarmed-fighters.md",
       "status": "reviewed"
     },

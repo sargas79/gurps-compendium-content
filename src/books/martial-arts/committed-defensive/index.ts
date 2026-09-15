@@ -79,8 +79,8 @@ const select = (values: readonly string[], prefix: string) => ({
 });
 
 /** Registers the maneuvers, their options and the hooks that carry them out. */
-export function readyCommittedDefensive(api: GWorldApi, on: () => boolean): void {
-  const offered = () => on();
+export function readyCommittedDefensive(api: GWorldApi, on: () => boolean, allowed: (actor: any) => boolean = () => true): void {
+  const offered = (actor?: any) => on() && (actor === undefined || allowed(actor));
 
   api.combat.registerManeuver({ module: MODULE_ID, key: COMMITTED, label: L("Committed.Title"), movement: "step", defense: "any", attacks: true, available: offered });
   api.combat.registerManeuver({ module: MODULE_ID, key: DEFENSIVE, label: L("Defensive.Title"), movement: "step", defense: "any", attacks: true, available: offered });
