@@ -12,7 +12,8 @@
  * styles and training (pp. 49, 141-148, 232-233), and building weapons
  * (pp. 214, 216-218, 221), new hit locations (p. 137), multiple attacks
  * (pp. 126-128), active defense options (pp. 121-125), Targeted Attacks
- * and Combinations (pp. 64, 68, 80), and extra effort in combat (p. 131).
+ * and Combinations (pp. 64, 68, 80), extra effort in combat (p. 131), and
+ * ranged attack options (pp. 97, 119-121).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -31,6 +32,7 @@ import { readyMultipleAttacks } from "./multiple-attacks/index.js";
 import { readyDefenseOptions } from "./defense-options/index.js";
 import { readyTechniques } from "./techniques/index.js";
 import { readyExtraEffort } from "./extra-effort/index.js";
+import { readyRangedOptions } from "./ranged/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -55,6 +57,8 @@ const RULES = [
   { key: "limitedDefenses", pages: "pp. 122-123", implemented: true },
   { key: "targetedAttacks", pages: "pp. 64, 68, 80", implemented: true },
   { key: "extraEffort", pages: "p. 131", implemented: true },
+  { key: "rangedOptions", pages: "pp. 97, 119-121", implemented: true },
+  { key: "cinematicRangedOptions", pages: "p. 120", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -89,9 +93,10 @@ function ready(api: GWorldApi): void {
   readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
   readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
-  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
+  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")), () => api.registry.isRuleOn(ruleKey("rangedOptions")));
   readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")));
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
+  readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

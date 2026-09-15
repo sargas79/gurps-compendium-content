@@ -604,6 +604,14 @@
         "extraEffort": {
           "Name": "Extra effort in combat",
           "Hint": "Giant Step, Great Lunge, Heroic Charge and Rapid Recovery; one offensive and one defensive extra-effort option a turn; Flurry of Blows a point of FP per Rapid Strike attack, halved again; Mighty Blows on Attack only; a critical failure on a new option costs 1 HP."
+        },
+        "rangedOptions": {
+          "Name": "Ranged attack options",
+          "Hint": "Quick-shooting bows, blowpipes and slings; Rapid Strike and handfuls of thrown weapons; prediction shots that lower Dodge; feints at range; a Heroic Archer's extra aim."
+        },
+        "cinematicRangedOptions": {
+          "Name": "Cinematic ranged options",
+          "Hint": "Quick-shooting in combat without the realistic -4, and handfuls of BL/20 lbs. of any small thrown weapon."
         }
       },
       "Committed": {
@@ -1046,7 +1054,8 @@
         "Refusals": {
           "oneSpecial": "Only one of Rapid Strike, Combination or Dual-Weapon Attack per maneuver",
           "noRapidOnMove": "No Rapid Strike on a Move and Attack",
-          "alreadyRapid": "This turn's Rapid Strike is already under way"
+          "alreadyRapid": "This turn's Rapid Strike is already under way",
+          "noRapidHere": "No Rapid Strike with this attack"
         },
         "Skipped": "Skipping {skipped} yard(s) between targets uses up {skipped} attack(s)",
         "TooFar": "Skipping {skipped} yard(s) to that target would use up the attacks left",
@@ -1121,6 +1130,35 @@
           "mightyAttackOnly": "Mighty Blows only on an Attack maneuver"
         },
         "FlurryWithoutRapidStrike": "Flurry of Blows needs a Rapid Strike: no FP spent"
+      },
+      "Ranged": {
+        "QuickShoot": "Quick-shoot",
+        "QuickTitle": "Quick-shoot: {weapon}",
+        "WithFastDraw": "Roll {skill} first, for a shot this turn with nothing drawn",
+        "NotKnown": "not known",
+        "UnderFire": "Under fire (realistic)",
+        "UnderFireHint": "In combat in a realistic game: -4 to the Fast-Draw and readying rolls.",
+        "ReadyLabel": "Quick-shoot: ready {weapon}",
+        "NoSkill": "No {skill} skill to quick-shoot with",
+        "ArrowDropped": "The ammunition is dropped: the turn is spent on a Ready",
+        "DroppedWeapon": "{weapon} is dropped!",
+        "TooSlow": "Readied too slowly to shoot this turn; it can shoot on a later turn at no penalty",
+        "ShootNow": "{weapon} is ready: its next shot this turn is at {penalty}",
+        "Prediction": "Prediction shot (Deceptive, Dodge only)",
+        "PredictionTooLow": "A prediction shot needs effective skill {minimum} or better; this shot is at {skill}",
+        "FeintRange": "Range ({yards} yd)",
+        "FeintOutOfRange": "The target is {yards} yards away, past this weapon's range of {range}",
+        "TargetSize": "Target's size",
+        "HeroicArcherAim": "Heroic Archer, aiming",
+        "Hand": "Throwing hand",
+        "Hands": {
+          "one": "One hand",
+          "master": "Both hands: master hand (-4)",
+          "off": "Both hands: off hand (-8)"
+        },
+        "HandfulLabel": "Handful",
+        "Handful": "Handful of {count}",
+        "ReadyInHand": "One hand holds {ready} ready: the rest of these {attacks} throws are readied as the Rapid Strike goes, one Ready or Fast-Draw each"
       }
     }
   },

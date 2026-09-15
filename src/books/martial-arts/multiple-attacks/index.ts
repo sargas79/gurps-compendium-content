@@ -7,10 +7,12 @@
  * attack picks its own target. This module's own Rapid Strike option stands in
  * for the system's, so a Rapid Strike can have more than two attacks under the
  * cinematic rule; the same grappling move can't be repeated on a foe in one
- * turn.
+ * turn. With the ranged options switched on, a Rapid Strike may be thrown
+ * (pp. 120-121).
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { thrownModes } from "../ranged/index.js";
 import {
   attacksLeft,
   baseAttacks,
@@ -51,8 +53,10 @@ function yardsBetween(a: any, b: any): number {
 }
 
 /** Registers the sequence, the Rapid Strike option and the hooks. */
-export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinematic: () => boolean): void {
+export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinematic: () => boolean, thrown: () => boolean = () => false): void {
   const state = <T>(actor: any, key: string): T | undefined => api.combat.getCombatState(actor, MODULE_ID, key) as T | undefined;
+  // A Rapid Strike is a melee attack's, or a thrown weapon's under the ranged options (p. 120).
+  const rapidAttack = (ranged: boolean, item: any, derived?: unknown) => !ranged || (thrown() && !derived && thrownModes(item).length > 0);
 
   Hooks.on(api.combat.hooks.attackSequence, (context: any) => {
     if (!on() || !context?.actor) return;
@@ -83,9 +87,9 @@ export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinemati
     module: MODULE_ID,
     key: RAPID_STRIKE,
     label: L("RapidStrike"),
-    attack: "melee",
+    attack: "any",
     input: { type: "number", min: 0, max: 9 },
-    available: (context) => on() && api.combat.attackSequence(context.actor).count > 0,
+    available: (context) => on() && rapidAttack(Boolean(context.ranged), context.item) && api.combat.attackSequence(context.actor).count > 0,
     refuse: (context) => {
       const reason = specialRefusal("rapidStrike", state<SpecialOption>(context.actor, SPECIAL) ?? null, String(context.maneuver ?? ""));
       if (reason) return L(`Refusals.${reason}`);
@@ -106,11 +110,17 @@ export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinemati
     // A Rapid Strike declared on this attack, or one still running.
     const declared = Math.min(rapidStrikeLimit(cinematic()), Math.floor(Number(context.options?.[`${MODULE_ID}.${RAPID_STRIKE}`]) || 0));
     const running = state<RapidState>(actor, RAPID);
-    if (!context.ranged && declared >= 2) {
+    const rapid = rapidAttack(Boolean(context.ranged), context.item, context.mode?.derived);
+    // Offered on a thrown weapon's every row, but a handful is one burst, not a Rapid Strike (p. 121).
+    if (!rapid && declared >= 2) {
+      context.refusal = L("Refusals.noRapidHere");
+      return;
+    }
+    if (rapid && declared >= 2) {
       const penalty = rapidStrikePenalty(declared, halves(actor));
       writes.push(api.combat.setCombatState(actor, MODULE_ID, RAPID, { attacks: declared, remaining: declared - 1, penalty } satisfies RapidState, "turn"));
       writes.push(api.combat.setCombatState(actor, MODULE_ID, SPECIAL, "rapidStrike", "turn"));
-    } else if (!context.ranged && running && running.remaining > 0) {
+    } else if (rapid && running && running.remaining > 0) {
       context.modifiers.push({ label: F("RapidStrikeLine", { attacks: running.attacks }), value: running.penalty });
       writes.push(api.combat.setCombatState(actor, MODULE_ID, RAPID, { ...running, remaining: running.remaining - 1 }, "turn"));
     }
