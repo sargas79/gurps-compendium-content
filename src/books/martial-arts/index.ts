@@ -19,7 +19,9 @@
  * untrained fighters and Harsh Realism for Unarmed Fighters (pp. 113, 124),
  * close combat: grappling options and long weapons (pp. 114-122), and Grab and
  * Smash, pain, teeth and bodies in close combat (pp. 114-119), and realistic
- * injury (pp. 136, 138-139).
+ * injury (pp. 136, 138-139), and who acts first: Who Draws First?, Stop Hits,
+ * Cascading Waits and A Matter of Inches (pp. 103, 108, 110), and charging
+ * foes (p. 106).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -45,6 +47,8 @@ import { allowsAdvancedOptions, readyUntrained } from "./untrained/index.js";
 import { readyCloseCombat } from "./close-combat/index.js";
 import { readyGrabAndSmash } from "./grab-smash/index.js";
 import { readyInjury } from "./injury/index.js";
+import { initTiming, readyTiming } from "./timing/index.js";
+import { readyCharging } from "./charging/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -84,6 +88,11 @@ const RULES = [
   { key: "extremeDismemberment", pages: "p. 136", implemented: true },
   { key: "severeBleeding", pages: "p. 138", implemented: true },
   { key: "lastingInjuries", pages: "pp. 138-139", implemented: true },
+  { key: "whoDrawsFirst", pages: "p. 103", implemented: true },
+  { key: "chargingFoes", pages: "p. 106", implemented: true },
+  { key: "stopHits", pages: "p. 108", implemented: true },
+  { key: "cascadingWaits", pages: "p. 108", implemented: true },
+  { key: "matterOfInches", pages: "p. 110", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -128,6 +137,8 @@ function ready(api: GWorldApi): void {
   readyCloseCombat(api, () => api.registry.isRuleOn(ruleKey("grapplingOptions")), () => api.registry.isRuleOn(ruleKey("longWeaponsInClose")));
   readyGrabAndSmash(api, () => api.registry.isRuleOn(ruleKey("grabAndSmash")), () => api.registry.isRuleOn(ruleKey("bodiesInClose")));
   readyInjury(api, () => api.registry.isRuleOn(ruleKey("partialInjuries")), () => api.registry.isRuleOn(ruleKey("extremeDismemberment")), () => api.registry.isRuleOn(ruleKey("severeBleeding")), () => api.registry.isRuleOn(ruleKey("lastingInjuries")));
+  readyTiming(api, () => api.registry.isRuleOn(ruleKey("whoDrawsFirst")), () => api.registry.isRuleOn(ruleKey("stopHits")), () => api.registry.isRuleOn(ruleKey("cascadingWaits")), () => api.registry.isRuleOn(ruleKey("matterOfInches")));
+  readyCharging(api, () => api.registry.isRuleOn(ruleKey("chargingFoes")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 
@@ -137,6 +148,7 @@ function init(): void {
   initStyles();
   initWeapons();
   initUnorthodox();
+  initTiming();
 }
 
 export const book: BookRules = {

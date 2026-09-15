@@ -155,6 +155,7 @@
       "chapter": "Combat",
       "pages": "MA103",
       "reference": "Martial Arts p. 103",
+      "rule": "gurps-compendium-content.whoDrawsFirst",
       "file": "who-draws-first.md",
       "status": "reviewed"
     },
@@ -201,6 +202,7 @@
       "chapter": "Combat",
       "pages": "MA106",
       "reference": "Martial Arts p. 106",
+      "rule": "gurps-compendium-content.chargingFoes",
       "file": "dealing-with-charging-foes.md",
       "status": "reviewed"
     },
@@ -219,6 +221,7 @@
       "chapter": "Combat",
       "pages": "MA108",
       "reference": "Martial Arts p. 108",
+      "rule": "gurps-compendium-content.stopHits",
       "file": "wait.md",
       "status": "reviewed"
     },
@@ -266,6 +269,7 @@
       "chapter": "Combat",
       "pages": "MA110",
       "reference": "Martial Arts p. 110",
+      "rule": "gurps-compendium-content.matterOfInches",
       "file": "a-matter-of-inches.md",
       "status": "reviewed"
     },
