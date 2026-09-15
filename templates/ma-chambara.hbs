@@ -1,0 +1,33 @@
+{{!-- Chambara fighting (Martial Arts pp. 128-130): jumps, steps, and the special feats. --}}
+<div class="isec" data-ma-chambara>
+  <div class="grph">{{localize "GCC.MA.Chambara.Title"}}</div>
+  <p class="ihint">{{jumps}}</p>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    <span class="tag">{{steps}}</span>
+    <button type="button" class="ibtn" data-ma-trade-step {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.TradeStep"}}</button>
+  </div>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    <label class="icheck"><input type="checkbox" data-ma-leap-double {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Chambara.Double"}}</label>
+    <label class="icheck"><input type="checkbox" data-ma-leap-floating {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Chambara.Floating"}}</label>
+    <select data-ma-leap-haste aria-label="{{localize 'GCC.MA.Chambara.Haste'}}" {{#unless editable}}disabled{{/unless}}>
+      <option value="0">{{localize "GCC.MA.Chambara.HasteNone"}}</option>
+      <option value="-10">{{localize "GCC.MA.Chambara.HasteInstant"}}</option>
+    </select>
+    <button type="button" class="ibtn" data-ma-flying-leap-feat {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.FlyingLeap"}}</button>
+  </div>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    <select data-ma-surface aria-label="{{localize 'GCC.MA.Chambara.LightWalk'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each surfaces as |s|}}<option value="{{s.key}}">{{s.label}}</option>{{/each}}
+      <option value="balance">{{localize "GCC.MA.Chambara.Balance"}}</option>
+    </select>
+    <input type="number" data-ma-thickness value="0" step="1" style="width: 56px" data-tooltip="{{localize 'GCC.MA.Chambara.Thickness'}}" aria-label="{{localize 'GCC.MA.Chambara.Thickness'}}" {{#unless editable}}disabled{{/unless}} />
+    <button type="button" class="ibtn" data-ma-light-walk {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.LightWalk"}}</button>
+    <button type="button" class="ibtn" data-ma-weapon-leap {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.WeaponLeap"}}</button>
+  </div>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    <input type="number" data-ma-climb-modifier value="0" step="1" style="width: 56px" data-tooltip="{{localize 'GCC.MA.Chambara.ClimbModifier'}}" aria-label="{{localize 'GCC.MA.Chambara.ClimbModifier'}}" {{#unless editable}}disabled{{/unless}} />
+    <button type="button" class="ibtn" data-ma-cling {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.Cling"}}</button>
+    <input type="number" data-ma-climb-hands value="0" min="0" max="4" step="1" style="width: 56px" data-tooltip="{{localize 'GCC.MA.Chambara.FreeHands'}}" aria-label="{{localize 'GCC.MA.Chambara.FreeHands'}}" {{#unless editable}}disabled{{/unless}} />
+    <button type="button" class="ibtn" data-ma-climb-retreat {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Chambara.ClimbRetreat"}}</button>
+  </div>
+</div>
