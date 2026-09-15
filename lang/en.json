@@ -536,6 +536,14 @@
         "committedDefensiveAttack": {
           "Name": "Committed and Defensive Attack",
           "Hint": "Two maneuvers between Attack and the All-Out ones. Committed Attack: +2 to hit or +1 damage, a second step at -2, and defenses at -2 with no retreat. Defensive Attack: -2 damage, or -1 per die, for +1 to a defense or an unbalanced weapon that can still parry."
+        },
+        "allOutAttackOptions": {
+          "Name": "All-Out Attack (Long) and slams",
+          "Hint": "All-Out Attack (Long): a yard more reach, swings at -2 damage or -1 per die, and a DX roll to end in a crouch. A slam, flying tackle, pounce or shield rush may take All-Out Attack at full Move with Determined, Feint or Strong."
+        },
+        "moveAndAttack": {
+          "Name": "Move and Attack with any melee attack",
+          "Hint": "Move and Attack allows a parry with what didn't strike. There is no retreat, no dodge after a kick or bite, no block with a shield that struck, and no Rapid Strike or Deceptive Attack, and a thrust may use slam damage where that is better."
         }
       },
       "Committed": {
@@ -571,6 +579,26 @@
           "defensive": "Defensive Attack"
         },
         "Respond": "Respond now"
+      },
+      "Long": {
+        "Title": "Long",
+        "Note": "Long: one yard more reach",
+        "Crouch": "End in a crouch (DX)",
+        "CrouchRoll": "Ending the Long attack in a crouch",
+        "OnlyLong": "Only with All-Out Attack (Long)"
+      },
+      "Slam": {
+        "FullMove": "Slam at full Move",
+        "NotThisOption": "A slam at full Move takes Determined, Feint or Strong"
+      },
+      "Move": {
+        "SlamDamage": "Thrusts use slam damage when better",
+        "NoDodge": "No dodge after striking with a leg, head or body on Move and Attack",
+        "NoBlock": "No block with the shield that struck on Move and Attack",
+        "NoParry": "Struck on Move and Attack",
+        "NoRetreat": "No retreat after a Move and Attack",
+        "NoRapidStrike": "No Rapid Strike on Move and Attack",
+        "NoDeceptive": "No Deceptive Attack on Move and Attack"
       }
     }
   },

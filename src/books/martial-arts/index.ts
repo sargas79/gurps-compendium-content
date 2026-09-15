@@ -2,12 +2,14 @@
  * GURPS Martial Arts: the book's rules, registered with the GWorld system
  * through its add-on API. The book calls every one of its rules optional
  * (p. 96), so its group's switches all start off. So far this registers
- * Committed Attack and Defensive Attack (pp. 99-100).
+ * Committed Attack and Defensive Attack (pp. 99-100), the wider All-Out
+ * Attack (pp. 97-98), and Move and Attack with any melee attack (p. 107).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { readyCommittedDefensive } from "./committed-defensive/index.js";
+import { readyAllOutAttack, readyMoveAndAttack } from "./maneuvers/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -15,6 +17,8 @@ const REFERENCE = "Martial Arts";
 /** The book's switches. */
 const RULES = [
   { key: "committedDefensiveAttack", pages: "pp. 99-100", implemented: true },
+  { key: "allOutAttackOptions", pages: "pp. 97-98", implemented: true },
+  { key: "moveAndAttack", pages: "p. 107", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -39,6 +43,8 @@ function registerRules(registry: RuleRegistry, group: string): void {
 
 function ready(api: GWorldApi): void {
   readyCommittedDefensive(api, () => api.registry.isRuleOn(ruleKey("committedDefensiveAttack")));
+  readyAllOutAttack(api, () => api.registry.isRuleOn(ruleKey("allOutAttackOptions")));
+  readyMoveAndAttack(api, () => api.registry.isRuleOn(ruleKey("moveAndAttack")));
 }
 
 export const book: BookRules = {
