@@ -18,7 +18,8 @@
  * with weapons and striking at or grabbing shields (pp. 112-113), and
  * untrained fighters and Harsh Realism for Unarmed Fighters (pp. 113, 124),
  * close combat: grappling options and long weapons (pp. 114-122), and Grab and
- * Smash, pain, teeth and bodies in close combat (pp. 114-119).
+ * Smash, pain, teeth and bodies in close combat (pp. 114-119), and realistic
+ * injury (pp. 136, 138-139).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -43,6 +44,7 @@ import { readyShoves } from "./shields/index.js";
 import { allowsAdvancedOptions, readyUntrained } from "./untrained/index.js";
 import { readyCloseCombat } from "./close-combat/index.js";
 import { readyGrabAndSmash } from "./grab-smash/index.js";
+import { readyInjury } from "./injury/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -78,6 +80,10 @@ const RULES = [
   { key: "longWeaponsInClose", pages: "p. 117", implemented: true },
   { key: "grabAndSmash", pages: "pp. 118-119", implemented: true },
   { key: "bodiesInClose", pages: "pp. 114-117", implemented: true },
+  { key: "partialInjuries", pages: "p. 136", implemented: true },
+  { key: "extremeDismemberment", pages: "p. 136", implemented: true },
+  { key: "severeBleeding", pages: "p. 138", implemented: true },
+  { key: "lastingInjuries", pages: "pp. 138-139", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -121,6 +127,7 @@ function ready(api: GWorldApi): void {
   readyUntrained(api, () => api.registry.isRuleOn(ruleKey("untrainedFighters")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
   readyCloseCombat(api, () => api.registry.isRuleOn(ruleKey("grapplingOptions")), () => api.registry.isRuleOn(ruleKey("longWeaponsInClose")));
   readyGrabAndSmash(api, () => api.registry.isRuleOn(ruleKey("grabAndSmash")), () => api.registry.isRuleOn(ruleKey("bodiesInClose")));
+  readyInjury(api, () => api.registry.isRuleOn(ruleKey("partialInjuries")), () => api.registry.isRuleOn(ruleKey("extremeDismemberment")), () => api.registry.isRuleOn(ruleKey("severeBleeding")), () => api.registry.isRuleOn(ruleKey("lastingInjuries")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

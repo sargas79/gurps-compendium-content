@@ -864,6 +864,7 @@
       "chapter": "Combat",
       "pages": "MA136",
       "reference": "Martial Arts p. 136",
+      "rule": "gurps-compendium-content.partialInjuries",
       "file": "partial-injuries.md",
       "status": "reviewed"
     },
@@ -873,6 +874,7 @@
       "chapter": "Combat",
       "pages": "MA136",
       "reference": "Martial Arts p. 136",
+      "rule": "gurps-compendium-content.extremeDismemberment",
       "file": "extreme-dismemberment.md",
       "status": "reviewed"
     },
@@ -892,7 +894,7 @@
       "chapter": "Combat",
       "pages": "MA138",
       "reference": "Martial Arts p. 138",
-      "rule": "bleeding",
+      "rule": "gurps-compendium-content.severeBleeding",
       "file": "severe-bleeding.md",
       "status": "reviewed"
     },
@@ -902,6 +904,7 @@
       "chapter": "Combat",
       "pages": "MA138-139",
       "reference": "Martial Arts pp. 138-139",
+      "rule": "gurps-compendium-content.lastingInjuries",
       "file": "lasting-and-permanent-injuries.md",
       "status": "reviewed"
     },
