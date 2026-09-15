@@ -580,6 +580,14 @@
         "finerHitLocations": {
           "Name": "New hit locations",
           "Hint": "Ear, jaw, joints, nose, spine, and veins and arteries as called shots, the skull and face from behind, crushing blows at the vitals, the 1d sub-rolls on random hits, and the lasting results of an ear, nose, spine or joint wound for the GM to confirm."
+        },
+        "multipleAttacks": {
+          "Name": "Multiple attacks",
+          "Hint": "Attacks from the maneuver and Extra Attack (All-Out Attack (Double) adds one), a Rapid Strike option applied to every attack in it, one special option per maneuver, a target picked per attack with an attack used up per yard skipped, feints traded for attacks, and no grappling move repeated on the same foe in a turn."
+        },
+        "cinematicRapidStrike": {
+          "Name": "Cinematic Rapid Strike",
+          "Hint": "A Rapid Strike may have more than two attacks, at -6 per attack past the first on each (halved with Trained by a Master or Weapon Master). The GM may reserve it for those advantages, or cap adjusted skill at 12."
         }
       },
       "Committed": {
@@ -1014,6 +1022,19 @@
         },
         "Confirm": "Apply as a condition",
         "Applied": "{name}: {what}"
+      },
+      "MultipleAttacks": {
+        "RapidStrike": "Rapid Strike (attacks, 2+)",
+        "RapidStrikeLine": "Rapid Strike ({attacks} attacks)",
+        "UseOwnRapidStrike": "Use the Martial Arts Rapid Strike option below",
+        "Refusals": {
+          "oneSpecial": "Only one of Rapid Strike, Combination or Dual-Weapon Attack per maneuver",
+          "noRapidOnMove": "No Rapid Strike on a Move and Attack",
+          "alreadyRapid": "This turn's Rapid Strike is already under way"
+        },
+        "Skipped": "Skipping {skipped} yard(s) between targets uses up {skipped} attack(s)",
+        "TooFar": "Skipping {skipped} yard(s) to that target would use up the attacks left",
+        "RepeatedGrapple": "The same grappling move can't be repeated on this foe this turn"
       }
     }
   },
