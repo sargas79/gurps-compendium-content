@@ -53,7 +53,14 @@ function yardsBetween(a: any, b: any): number {
 }
 
 /** Registers the sequence, the Rapid Strike option and the hooks. */
-export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinematic: () => boolean, thrown: () => boolean = () => false): void {
+export function readyMultipleAttacks(
+  api: GWorldApi,
+  on: () => boolean,
+  cinematic: () => boolean,
+  thrown: () => boolean = () => false,
+  /** Whether a fighter may use a Rapid Strike at all, where another rule limits it. */
+  allowed: (actor: any) => { ok: boolean; reason: string } = () => ({ ok: true, reason: "" }),
+): void {
   const state = <T>(actor: any, key: string): T | undefined => api.combat.getCombatState(actor, MODULE_ID, key) as T | undefined;
   // A Rapid Strike is a melee attack's, or a thrown weapon's under the ranged options (p. 120).
   const rapidAttack = (ranged: boolean, item: any, derived?: unknown) => !ranged || (thrown() && !derived && thrownModes(item).length > 0);
@@ -91,6 +98,8 @@ export function readyMultipleAttacks(api: GWorldApi, on: () => boolean, cinemati
     input: { type: "number", min: 0, max: 9 },
     available: (context) => on() && rapidAttack(Boolean(context.ranged), context.item) && api.combat.attackSequence(context.actor).count > 0,
     refuse: (context) => {
+      const limit = allowed(context.actor);
+      if (!limit.ok) return limit.reason;
       const reason = specialRefusal("rapidStrike", state<SpecialOption>(context.actor, SPECIAL) ?? null, String(context.maneuver ?? ""));
       if (reason) return L(`Refusals.${reason}`);
       return state<RapidState>(context.actor, RAPID) ? L("Refusals.alreadyRapid") : null;

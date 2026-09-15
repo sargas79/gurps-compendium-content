@@ -624,6 +624,14 @@
         "shovesAndShields": {
           "Name": "Shoves, slams and shields",
           "Hint": "Shoves with weapons and shields, cross-checking slams with long weapons, striking at shields and cloaks, and grabbing them."
+        },
+        "untrainedFighters": {
+          "Name": "Untrained fighters",
+          "Hint": "Fear and the Coin Toss for those with no combat skills or Combat Reflexes; Committed and Defensive Attack, Feints, Deceptive Attacks, Rapid Strikes and Defensive Grips need a melee skill at DX level."
+        },
+        "harshRealism": {
+          "Name": "Harsh Realism for Unarmed Fighters",
+          "Hint": "Bare-handed parries against weapons at -3 with the limb in the way, low-line parries, footwork dives, skull blows that hurt, the off hand, and bruised knuckles."
         }
       },
       "Committed": {
@@ -1245,6 +1253,27 @@
         "BreakFreeLabel": "{name} breaks free of the shield grab",
         "Strapped": "strapped shield",
         "Free": "{name} pulls the shield free"
+      },
+      "Untrained": {
+        "Fear": "Fear",
+        "FearText": "{names}: no combat skills or Combat Reflexes. Fright Check at +{bonus} for the heat of battle, or drop weapons and flee.",
+        "CoinToss": "Coin Toss",
+        "CoinAttack": "{name} rolls {roll}: All-Out Attack (Determined) on the nearest threat",
+        "CoinDefend": "{name} rolls {roll}: All-Out Defense (Increased Dodge), backing away",
+        "Limited": "Needs a melee combat skill at DX level or better (an Art or Sport skill at DX+3)",
+        "ParryWeapon": "Bare-handed against a weapon (harsh)",
+        "LowLine": "Low-line parry by hand",
+        "LimbHit": "{name}'s parry failed by 3 or less: the blow lands on the parrying arm",
+        "OffHand": "Off hand (-4)",
+        "OffHandSt": "Off hand: -2 ST",
+        "OffHandTrained": "Off hand, trained: no penalty",
+        "Bruised": "Hurt striking part: its shock (0-4)",
+        "BruisedFullPower": "Strike the hurt part at full power",
+        "BruisedPulled": "Pulled for the hurt part",
+        "BruisedIgnored": "High Pain Threshold: the hurt part doesn't matter",
+        "BruisedFull": "Full power with a hurt part: shock {shock} again",
+        "BruisedFullLow": "Full power with a hurt part: shock {shock} again, and a Will roll at {shock} or the blow is pulled anyway",
+        "Shock": "Shock"
       }
     }
   },

@@ -12,6 +12,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { footworkParry } from "../untrained/rules.js";
 import {
   RETREAT_OPTIONS,
   crossParryBreakage,
@@ -84,7 +85,7 @@ export function weaponParry(defender: any, parryWeapon: { itemId?: string; natur
 const crossParrying = new Map<string, Array<{ itemId: string; weight: number; quality: string }>>();
 
 /** Registers the options and hooks. */
-export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: () => boolean): void {
+export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: () => boolean, harsh: () => boolean = () => false): void {
   const lock = (defender: any, ids: string[]) => {
     const locked = (api.combat.getCombatState(defender, MODULE_ID, LOCKED) as string[] | undefined) ?? [];
     return api.combat.setCombatState(defender, MODULE_ID, LOCKED, [...new Set([...locked, ...ids])], "turn");
@@ -153,7 +154,8 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     refuse: (context) => (context.retreating ? L("RetreatAlready") : null),
     apply: (context, value) => {
       if (!RETREAT_OPTIONS.includes(value as RetreatOption)) return null;
-      const fencing = context.defense === "parry" && context.parryWeapon?.isFencing === true;
+      // A fencing parry's dive keeps only +1, and under harsh realism so does a Boxing, Judo or Karate parry's (p. 124).
+      const fencing = context.defense === "parry" && (context.parryWeapon?.isFencing === true || (harsh() && footworkParry(String(context.parryWeapon?.skill ?? ""))));
       const retreat = api.rules.retreatBonus({ defense: context.defense, skill: String(context.parryWeapon?.skill ?? ""), isFencing: fencing });
       return { modifiers: [{ label: L(`Retreats.${value}`), value: retreatOptionBonus(value as RetreatOption, retreat, fencing) }] };
     },
