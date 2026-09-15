@@ -21,7 +21,9 @@
  * Smash, pain, teeth and bodies in close combat (pp. 114-119), and realistic
  * injury (pp. 136, 138-139), and who acts first: Who Draws First?, Stop Hits,
  * Cascading Waits and A Matter of Inches (pp. 103, 108, 110), and charging
- * foes (p. 106), and chambara fighting (pp. 128-130).
+ * foes (p. 106), and chambara fighting (pp. 128-130), and the other cinematic
+ * rules: mind games, faking it, Unarmed Etiquette, Shaking It Off, Shout It
+ * Out!, Proxy Fighting and Bullet Time (pp. 130, 132-133).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -50,6 +52,7 @@ import { readyInjury } from "./injury/index.js";
 import { initTiming, readyTiming } from "./timing/index.js";
 import { readyCharging } from "./charging/index.js";
 import { chambaraFighter, readyChambara } from "./chambara/index.js";
+import { readyCinematic } from "./cinematic/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -95,6 +98,15 @@ const RULES = [
   { key: "cascadingWaits", pages: "p. 108", implemented: true },
   { key: "matterOfInches", pages: "p. 110", implemented: true },
   { key: "chambara", pages: "pp. 128-130", implemented: true },
+  { key: "contestOfWills", pages: "p. 130", implemented: true },
+  { key: "concentration", pages: "p. 130", implemented: true },
+  { key: "fear", pages: "p. 130", implemented: true },
+  { key: "fakingIt", pages: "p. 130", implemented: true },
+  { key: "unarmedEtiquette", pages: "p. 132", implemented: true },
+  { key: "shakingItOff", pages: "p. 132", implemented: true },
+  { key: "shoutItOut", pages: "p. 132", implemented: true },
+  { key: "proxyFighting", pages: "pp. 132-133", implemented: true },
+  { key: "bulletTime", pages: "p. 133", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -143,6 +155,18 @@ function ready(api: GWorldApi): void {
   readyTiming(api, () => api.registry.isRuleOn(ruleKey("whoDrawsFirst")), () => api.registry.isRuleOn(ruleKey("stopHits")), () => api.registry.isRuleOn(ruleKey("cascadingWaits")), () => api.registry.isRuleOn(ruleKey("matterOfInches")));
   readyCharging(api, () => api.registry.isRuleOn(ruleKey("chargingFoes")));
   readyChambara(api, () => api.registry.isRuleOn(ruleKey("chambara")));
+  const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
+  readyCinematic(api, {
+    wills: rule("contestOfWills"),
+    concentration: rule("concentration"),
+    fear: rule("fear"),
+    faking: rule("fakingIt"),
+    etiquette: rule("unarmedEtiquette"),
+    shaking: rule("shakingItOff"),
+    shout: rule("shoutItOut"),
+    proxy: rule("proxyFighting"),
+    bulletTime: rule("bulletTime"),
+  });
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

@@ -1,0 +1,9 @@
+{{!-- Fear and martial artists (Martial Arts p. 130): victories minor NPCs have heard of. --}}
+<div class="isub" data-ma-foes-defeated-section>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.MA.Cinematic.Fear.DefeatedHint'}}">{{localize "GCC.MA.Cinematic.Fear.Defeated"}}
+      <input type="number" min="0" step="1" data-ma-foes-defeated value="{{value}}" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    {{#if bonus}}<span class="tag tag-accent">+{{bonus}} {{localize "GCC.MA.Cinematic.Fear.Victories"}}</span>{{/if}}
+  </div>
+</div>

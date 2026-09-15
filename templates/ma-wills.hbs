@@ -1,0 +1,17 @@
+{{!-- The Contest of Wills (Martial Arts p. 130). --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+<div class="gc-result">{{text}}</div>
+{{#each turns}}<div class="gc-note">{{this}}</div>{{/each}}
+{{#if challenged}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="accept">{{localize "GCC.MA.Cinematic.Wills.Accept"}}</button>
+    <button type="button" class="gc-apply-button" data-addon-card-action="refuse">{{localize "GCC.MA.Cinematic.Wills.Refuse"}}</button>
+  </div>
+{{/if}}
+{{#if running}}
+  <div class="gc-apply">
+    <label>{{challengerName}} {{localize "GCC.MA.Cinematic.Wills.Reputation"}} <input type="number" value="{{repFirst}}" step="1" style="width: 3.5em" data-addon-card-input="repFirst" /></label>
+    <label>{{foeName}} {{localize "GCC.MA.Cinematic.Wills.Reputation"}} <input type="number" value="{{repSecond}}" step="1" style="width: 3.5em" data-addon-card-input="repSecond" /></label>
+    <button type="button" class="gc-apply-button" data-addon-card-action="round">{{localize "GCC.MA.Cinematic.Wills.Round"}}</button>
+  </div>
+{{/if}}

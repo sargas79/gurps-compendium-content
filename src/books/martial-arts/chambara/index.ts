@@ -236,7 +236,8 @@ export function readyChambara(api: GWorldApi, on: () => boolean): void {
     module: MODULE_ID,
     key: TECHNIQUE_OPTION,
     label: L("Technique"),
-    input: { type: "select", choices: CHAMBARA_TECHNIQUES.map((value) => ({ value, label: L(`Techniques.${value}`) })) },
+    // The dialog shows the first choice as chosen, so the first is none.
+    input: { type: "select", choices: [{ value: "", label: "—" }, ...CHAMBARA_TECHNIQUES.map((value) => ({ value, label: L(`Techniques.${value}`) }))] },
     available: (context: any) => master(context.actor) && !context.ranged && context.maneuver === "moveAndAttack",
     refuse: (context: any) => {
       const actor = context.actor;
