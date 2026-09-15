@@ -34,7 +34,7 @@ describe("the books' rule groups", () => {
     const magic = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "magic");
     expect(magic.map((rule: any) => [rule.key, rule.default, rule.reference])).toEqual([["powerstones", false, "GURPS Magic pp. 20, 69-70"], ["spellAttacks", false, "GURPS Magic pp. 73-76, 187-198"]]);
     const martialArts = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "martial-arts");
-    expect(martialArts.map((rule: any) => [rule.key, rule.default, rule.reference])).toEqual([["committedDefensiveAttack", false, "Martial Arts pp. 99-100"], ["allOutAttackOptions", false, "Martial Arts pp. 97-98"], ["moveAndAttack", false, "Martial Arts p. 107"], ["acrobatics", false, "Martial Arts pp. 98, 105-107"], ["postures", false, "Martial Arts pp. 98-99"], ["feints", false, "Martial Arts pp. 49, 100-101"], ["readying", false, "Martial Arts pp. 101-104"], ["meleeOptions", false, "Martial Arts pp. 109-113"]]);
+    expect(martialArts.map((rule: any) => [rule.key, rule.default, rule.reference])).toEqual([["committedDefensiveAttack", false, "Martial Arts pp. 99-100"], ["allOutAttackOptions", false, "Martial Arts pp. 97-98"], ["moveAndAttack", false, "Martial Arts p. 107"], ["acrobatics", false, "Martial Arts pp. 98, 105-107"], ["postures", false, "Martial Arts pp. 98-99"], ["feints", false, "Martial Arts pp. 49, 100-101"], ["readying", false, "Martial Arts pp. 101-104"], ["meleeOptions", false, "Martial Arts pp. 109-113"], ["styles", false, "Martial Arts pp. 49, 141-148"], ["training", false, "Martial Arts pp. 147, 232-233"]]);
   });
 
   it("lets a book register its switches in its own group, and keeps going past one that fails", () => {

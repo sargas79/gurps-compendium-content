@@ -564,6 +564,14 @@
         "meleeOptions": {
           "Name": "Grips, Pummeling, Tip Slash and Telegraphic Attack",
           "Hint": "Defensive Grip and half-swording, Reversed Grip with its forearm parry, Pummeling and Tip Slash as attack modes, and Telegraphic Attack. A weapon's grip is set by a Ready in the Readying section."
+        },
+        "styles": {
+          "Name": "Styles and Style Familiarity",
+          "Hint": "Whether a character knows each style they have Style Familiarity for, and their Style Perk allowance, on the Skills tab (warnings only). Style Familiarity with every style a foe knows takes 1 off his feints and Deceptive Attacks."
+        },
+        "training": {
+          "Name": "Training equipment and The Training Sequence",
+          "Hint": "A character's training equipment adds to Teaching rolls, and a GM tool runs The Training Sequence for a master and students."
         }
       },
       "Committed": {
@@ -828,6 +836,57 @@
         "TelegraphicDeceptive": "A Telegraphic Attack can't be a Deceptive Attack",
         "TelegraphicFeint": "Telegraphic Attack: no feint",
         "TelegraphicEvaluate": "Telegraphic Attack: no Evaluate bonus"
+      },
+      "Styles": {
+        "Title": "Styles",
+        "General": "General Style Perks allowed:",
+        "Style": "Style",
+        "Cost": "Cost",
+        "Spent": "Spent",
+        "Known": "Known",
+        "Perks": "Style Perks",
+        "Together": "All styles together: points spent / cost",
+        "NotAll": "not every style is known yet",
+        "OverPerks": "More Style Perks than the allowance",
+        "None": "No Style Familiarity a style template describes.",
+        "TooManyPerks": "{taken} of this style's perks, {allowed} allowed",
+        "CinematicWithoutSpark": "Cinematic ({skills}) without Trained by a Master or Weapon Master",
+        "Familiarity": "Style Familiarity",
+        "Equipment": {
+          "none": "No training equipment",
+          "basic": "Basic (+0)",
+          "good": "Good (+1)",
+          "fine": "Fine (+2)",
+          "best": "Best (+TL/2)"
+        },
+        "Training": {
+          "Title": "The Training Sequence",
+          "Master": "Master",
+          "Style": "Style",
+          "Time": "Time",
+          "Students": "Students",
+          "Roll": "Roll Teaching",
+          "Times": {
+            "day": "A day (-9)",
+            "weekend": "A weekend (-7)",
+            "week": "A week",
+            "month": "A month (+2)",
+            "season": "A season (+4)"
+          },
+          "Equipment": "Training equipment",
+          "Label": "The Training Sequence: {style}",
+          "MasterFails": "{master} can't lead a Training Sequence: {reasons}",
+          "Reasons": {
+            "skills": "the style's skills at 20+",
+            "teaching": "Teaching 12+",
+            "spark": "Trained by a Master or Weapon Master"
+          },
+          "StudentFails": "doesn't qualify (attributes, or the style's skills at 16+)",
+          "Critical": "critical failure: the master's worst attack strikes this student",
+          "Nothing": "learns nothing this time",
+          "Allowance": "may spend up to {points} earned points on what was taught",
+          "AllowanceFree": "may spend up to {points} earned points on what was taught, and gains {free} free point"
+        }
       }
     }
   },

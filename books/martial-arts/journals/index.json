@@ -1743,6 +1743,7 @@
       "chapter": "Characters",
       "pages": "MA49",
       "reference": "Martial Arts p. 49",
+      "rule": "gurps-compendium-content.styles",
       "file": "style-perks.md",
       "status": "reviewed"
     },
@@ -2328,6 +2329,7 @@
       "chapter": "Styles",
       "pages": "MA146",
       "reference": "Martial Arts p. 146",
+      "rule": "gurps-compendium-content.styles",
       "file": "buying-a-style.md",
       "status": "reviewed"
     },
@@ -2346,6 +2348,7 @@
       "chapter": "Styles",
       "pages": "MA146-147",
       "reference": "Martial Arts pp. 146-147",
+      "rule": "gurps-compendium-content.styles",
       "file": "learning-new-styles-during-play.md",
       "status": "reviewed"
     },
@@ -2364,6 +2367,7 @@
       "chapter": "Styles",
       "pages": "MA147-148",
       "reference": "Martial Arts pp. 147-148",
+      "rule": "gurps-compendium-content.styles",
       "file": "combining-styles.md",
       "status": "reviewed"
     },
@@ -2373,6 +2377,7 @@
       "chapter": "Styles",
       "pages": "MA147",
       "reference": "Martial Arts p. 147",
+      "rule": "gurps-compendium-content.training",
       "file": "the-training-sequence.md",
       "status": "reviewed"
     },
@@ -2635,6 +2640,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA232-233",
       "reference": "Martial Arts pp. 232-233",
+      "rule": "gurps-compendium-content.training",
       "file": "training-equipment.md",
       "status": "reviewed"
     },
