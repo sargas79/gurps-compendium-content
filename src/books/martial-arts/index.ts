@@ -14,7 +14,8 @@
  * (pp. 126-128), active defense options (pp. 121-125), Targeted Attacks
  * and Combinations (pp. 64, 68, 80), extra effort in combat (p. 131), and
  * ranged attack options (pp. 97, 119-121), and unfamiliar, one-handed,
- * hurled and improvised weapons (pp. 212, 220, 224).
+ * hurled and improvised weapons (pp. 212, 220, 224), and shoves and slams
+ * with weapons and striking at or grabbing shields (pp. 112-113).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -35,6 +36,7 @@ import { readyTechniques } from "./techniques/index.js";
 import { readyExtraEffort } from "./extra-effort/index.js";
 import { readyRangedOptions } from "./ranged/index.js";
 import { initUnorthodox, readyUnorthodox } from "./unorthodox/index.js";
+import { readyShoves } from "./shields/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -63,6 +65,7 @@ const RULES = [
   { key: "cinematicRangedOptions", pages: "p. 120", implemented: true },
   { key: "unfamiliarWeapons", pages: "p. 212", implemented: true },
   { key: "unorthodoxWeapons", pages: "pp. 220, 224", implemented: true },
+  { key: "shovesAndShields", pages: "pp. 112-113", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -102,6 +105,7 @@ function ready(api: GWorldApi): void {
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
   readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
   readyUnorthodox(api, () => api.registry.isRuleOn(ruleKey("unfamiliarWeapons")), () => api.registry.isRuleOn(ruleKey("unorthodoxWeapons")));
+  readyShoves(api, () => api.registry.isRuleOn(ruleKey("shovesAndShields")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 
