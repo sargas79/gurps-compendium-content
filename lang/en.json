@@ -684,6 +684,10 @@
         "matterOfInches": {
           "Name": "A matter of inches",
           "Hint": "Weapon length and weight in who draws first, Stop Hits and Cascading Waits, and weight in feints, Beats, multiple parries and parrying flails."
+        },
+        "chambara": {
+          "Name": "Chambara fighting",
+          "Hint": "Masters (Trained by a Master or Weapon Master) leap, trade attacks for steps, retreat for +3 again and again, use acrobatics with every defense, and sense attacks from behind; Flying Leap, Light Walk and Lizard Climb gain their chambara feats."
         }
       },
       "Committed": {
@@ -782,7 +786,8 @@
           "bounces": "Further bounces",
           "repeats": "Repeats",
           "window": "Through a window",
-          "acrobaticAttack": "Acrobatic Attack"
+          "acrobaticAttack": "Acrobatic Attack",
+          "chambara": "Chambara: penalty halved"
         },
         "Note": {
           "asStep": "Up, and that counts as the step of your maneuver",
@@ -1545,6 +1550,76 @@
         "HeldOff": "{victim} is held off.",
         "PassesThrough": "{victim} takes {injury} more injury. His thrust with the weapon (up to {max}) beats DR {dr}: it comes out his back as he moves in, and it's stuck.",
         "Stuck": "{victim} takes {injury} more injury, but his thrust with the weapon (up to {max}) doesn't beat DR {dr}: he can't come further."
+      },
+      "Chambara": {
+        "Title": "Chambara",
+        "NoSkill": "No {skill} skill",
+        "Jumps": "Jumps: {high} in. high and {broad} ft. broad standing; {runningHigh} in. and {runningBroad} ft. running",
+        "NoFullLeap": "Needs Acrobatics and Jumping at DX or better to leap full distance in combat",
+        "Steps": "Steps this turn: {steps}",
+        "TradeStep": "Trade an attack for a step",
+        "NoTrade": "No basic attack left to trade for a step",
+        "Traded": "{name} trades an attack for a step: {steps} steps this turn",
+        "FlyingLeap": "Flying Leap",
+        "Double": "Only double",
+        "Floating": "Floating",
+        "Haste": "Haste",
+        "HasteNone": "Prepared",
+        "HasteInstant": "Instantly (-10)",
+        "EasierLeap": "Easier leap",
+        "NoFatigue": "Success by 5 or more: no FP spent",
+        "LightWalk": "Light Walk",
+        "Balance": "Feat of balance",
+        "Thickness": "Thickness SM",
+        "Across": "Light Walk across {surface}",
+        "Surfaces": {
+          "skylight": "a glass skylight",
+          "tent": "a tent",
+          "laundry": "hanging laundry",
+          "hedge": "a dense hedge",
+          "treetop": "treetops"
+        },
+        "WeaponLeap": "Leap onto a weapon",
+        "TargetFoe": "Target the foe whose weapon you leap onto",
+        "NoFoeWeapon": "The foe has no melee weapon ready",
+        "Weapon": "Weapon",
+        "WeaponLeapLabel": "Light Walk onto the {weapon}",
+        "WeaponSize": "Weapon size",
+        "StoodOnAsk": "If {foe} fails to defend, {name} is standing on the {weapon}.",
+        "StoodOnApply": "Standing on it",
+        "StoodOn": "{weapon} stood on: -4 to hit with anything else",
+        "CantUse": "Someone is standing on the {weapon}: take a Ready to dump them off",
+        "LizardClimb": "Lizard Climb",
+        "Cling": "Lizard Climb: cling to the wall",
+        "Falls": "The climber falls, and the turn ends",
+        "ClimbModifier": "Climb modifiers",
+        "ClimbRetreat": "Lizard Climb upward",
+        "FreeHands": "Hands left free",
+        "Lizard": {
+          "bonus": "Climbing upward: +1 more to the next retreat",
+          "automatic": "Critical success: the next defense succeeds automatically",
+          "fails": "The climb failed: the next defense fails",
+          "criticallyFails": "The climb critically failed: the next defense critically fails"
+        },
+        "Technique": "Chambara technique",
+        "Techniques": {
+          "acrobatic": "Acrobatic version",
+          "flying": "Flying version"
+        },
+        "NeedsAcrobaticsJumping": "Needs Acrobatics and Jumping at DX or better",
+        "NeedsTechnique": "Needs a point in an offensive technique",
+        "RetreatYards": "Retreat yards",
+        "TickRetreat": "Tick Retreat to retreat more than a step",
+        "BeyondMove": "Retreats this turn can't go past Move {move}",
+        "Lines": {
+          "techniqueDefault": "Chambara technique default",
+          "moveAndAttack": "Bought off: Move and Attack",
+          "stunt": "Bought off: the stunt's -1",
+          "again": "Retreated already this turn",
+          "yards": "Retreat distance",
+          "acrobaticAgain": "Acrobatic defense already this turn"
+        },
+        "StoodOnLine": "Weapon stood on"
       }
     }
   },

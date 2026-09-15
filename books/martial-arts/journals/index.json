@@ -714,6 +714,7 @@
       "chapter": "Combat",
       "pages": "MA128",
       "reference": "Martial Arts p. 128",
+      "rule": "gurps-compendium-content.chambara",
       "file": "chambara-fighting.md",
       "status": "reviewed"
     },
@@ -723,6 +724,7 @@
       "chapter": "Combat",
       "pages": "MA128-129",
       "reference": "Martial Arts pp. 128-129",
+      "rule": "gurps-compendium-content.chambara",
       "file": "chambara-attacks.md",
       "status": "reviewed"
     },
@@ -741,6 +743,7 @@
       "chapter": "Combat",
       "pages": "MA129",
       "reference": "Martial Arts p. 129",
+      "rule": "gurps-compendium-content.chambara",
       "file": "chambara-defenses.md",
       "status": "reviewed"
     },
@@ -750,6 +753,7 @@
       "chapter": "Combat",
       "pages": "MA129-130",
       "reference": "Martial Arts pp. 129-130",
+      "rule": "gurps-compendium-content.chambara",
       "file": "special-feats-for-cinematic-skills.md",
       "status": "reviewed"
     },

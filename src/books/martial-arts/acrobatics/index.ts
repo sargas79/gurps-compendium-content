@@ -9,6 +9,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { STUNTS, acrobaticDodge, standModifiers, standOutcome, stuntAttackPenalty, stuntRoll, type LowPosture } from "./rules.js";
+import { halvedPenalty } from "../chambara/rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.MA.Acrobatics.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MA.Acrobatics.${key}`, data);
@@ -29,7 +30,15 @@ function levelOf(api: GWorldApi, actor: any, name: string): number | null {
   return name === "DX" ? api.actors.attribute(actor, "DX") : api.actors.skillLevel(actor, name);
 }
 
-async function standUp(api: GWorldApi, actor: any, allOut: boolean, crouch: boolean): Promise<void> {
+/** A chambara fighter's stunt lines: the total penalty halved, rounding against him (p. 128). */
+function chambaraHalved(lines: Array<{ key: string; value: number }>, halves: boolean): Array<{ key: string; value: number }> {
+  if (!halves) return lines;
+  const total = lines.reduce((sum, line) => sum + line.value, 0);
+  const halved = halvedPenalty(total);
+  return halved === total ? lines : [...lines, { key: "chambara", value: halved - total }];
+}
+
+async function standUp(api: GWorldApi, actor: any, allOut: boolean, crouch: boolean, halves: boolean): Promise<void> {
   const from = String(actor?.system?.posture ?? "standing");
   if (from !== "lying" && from !== "sitting" && from !== "crawling") {
     ui.notifications?.info(L("AlreadyUp"));
@@ -46,7 +55,7 @@ async function standUp(api: GWorldApi, actor: any, allOut: boolean, crouch: bool
     base: acrobatics,
     label: L("Stand"),
     skill: "Acrobatics",
-    modifiers: standModifiers(encumbrance, allOut).map((line) => ({ label: L(`Line.${line.key}`), value: line.value })),
+    modifiers: chambaraHalved(standModifiers(encumbrance, allOut), halves).map((line) => ({ label: L(`Line.${line.key}`), value: line.value })),
   } as any);
   if (!outcome) return;
   const result = standOutcome(from as LowPosture, outcome, crouch);
@@ -55,7 +64,7 @@ async function standUp(api: GWorldApi, actor: any, allOut: boolean, crouch: bool
   if (result.note !== "none") ui.notifications?.info(L(`Note.${result.note}`));
 }
 
-async function performStunt(api: GWorldApi, actor: any, key: string, input: number, window: boolean): Promise<void> {
+async function performStunt(api: GWorldApi, actor: any, key: string, input: number, window: boolean, halves: boolean): Promise<void> {
   const stunt = STUNTS.find((s) => s.key === key);
   if (!stunt) return;
   const acrobaticAttack = String(actor?.system?.maneuver ?? "") === "moveAndAttack" && optionValue(actor, ACROBATIC_ATTACK) === true;
@@ -76,7 +85,7 @@ async function performStunt(api: GWorldApi, actor: any, key: string, input: numb
     base: roll.base,
     label: `${L(`Stunt.${key}`)} (${roll.skill})`,
     ...(roll.skill === "DX" ? { kind: "attribute" } : { skill: roll.skill }),
-    modifiers: roll.modifiers.map((line) => ({ label: L(`Line.${line.key}`), value: line.value })),
+    modifiers: chambaraHalved(roll.modifiers, halves).map((line) => ({ label: L(`Line.${line.key}`), value: line.value })),
   } as any);
   if (outcome) await api.combat.setCombatState(actor, MODULE_ID, DODGE, acrobaticDodge(outcome.success), "combat");
 }
@@ -99,23 +108,26 @@ async function flyingLeap(api: GWorldApi, actor: any): Promise<void> {
 }
 
 /** Registers the section, the options and the defense hooks. */
-export function readyAcrobatics(api: GWorldApi, on: () => boolean): void {
+export function readyAcrobatics(api: GWorldApi, on: () => boolean, chambara: (actor: any) => boolean = () => false): void {
+  // A chambara fighter may use all of this, at half the penalty (p. 128).
+  const allowed = (actor: any) => on() || chambara(actor);
   // An Acrobatic Attack or a Flying Attack, as the Move and Attack it is (p. 107).
   api.combat.registerManeuverOption({
     module: MODULE_ID,
     key: ACROBATIC_ATTACK,
     maneuver: "moveAndAttack",
     label: L("AcrobaticAttack"),
-    available: () => on(),
+    available: (actor: any) => allowed(actor),
     refuse: ({ chosen }) => (chosen[`${MODULE_ID}.${FLYING_ATTACK}`] === true ? L("OneOrOther") : null),
-    attack: () => ({ modifiers: [{ label: L("AcrobaticAttack"), value: stuntAttackPenalty("acrobatic") }] }),
+    // A chambara fighter's -2 is halved, like a Flying Attack's -1 (p. 129).
+    attack: (context: any) => ({ modifiers: [{ label: L("AcrobaticAttack"), value: chambara(context?.actor) ? halvedPenalty(stuntAttackPenalty("acrobatic")) : stuntAttackPenalty("acrobatic") }] }),
   });
   api.combat.registerManeuverOption({
     module: MODULE_ID,
     key: FLYING_ATTACK,
     maneuver: "moveAndAttack",
     label: L("FlyingAttack"),
-    available: () => on(),
+    available: (actor: any) => allowed(actor),
     refuse: ({ chosen }) => (chosen[`${MODULE_ID}.${ACROBATIC_ATTACK}`] === true ? L("OneOrOther") : null),
     attack: () => ({ modifiers: [{ label: L("FlyingAttack"), value: stuntAttackPenalty("flying") }] }),
   });
@@ -127,7 +139,7 @@ export function readyAcrobatics(api: GWorldApi, on: () => boolean): void {
     tab: "combat",
     position: "start",
     template: `modules/${MODULE_ID}/templates/ma-acrobatics.hbs`,
-    visible: () => on(),
+    visible: (actor) => allowed(actor),
     context: (actor) => {
       const posture = String(actor?.system?.posture ?? "standing");
       return {
@@ -142,13 +154,13 @@ export function readyAcrobatics(api: GWorldApi, on: () => boolean): void {
       element.querySelector("[data-ma-stand]")?.addEventListener("click", () => {
         const allOut = element.querySelector<HTMLInputElement>("[data-ma-stand-allout]")?.checked ?? false;
         const crouch = element.querySelector<HTMLInputElement>("[data-ma-stand-crouch]")?.checked ?? false;
-        void standUp(api, actor, allOut, crouch);
+        void standUp(api, actor, allOut, crouch, chambara(actor));
       });
       element.querySelector("[data-ma-stunt-roll]")?.addEventListener("click", () => {
         const key = element.querySelector<HTMLSelectElement>("[data-ma-stunt]")?.value ?? "";
         const input = Number(element.querySelector<HTMLInputElement>("[data-ma-stunt-input]")?.value) || 0;
         const window = element.querySelector<HTMLInputElement>("[data-ma-stunt-window]")?.checked ?? false;
-        void performStunt(api, actor, key, input, window);
+        void performStunt(api, actor, key, input, window, chambara(actor));
       });
       element.querySelector("[data-ma-flying-leap]")?.addEventListener("click", () => void flyingLeap(api, actor));
     },
@@ -156,18 +168,18 @@ export function readyAcrobatics(api: GWorldApi, on: () => boolean): void {
 
   // The next dodge after a stunt is an Acrobatic Dodge (p. 105).
   Hooks.on(api.combat.hooks.defenseModifiers, (context: any) => {
-    if (!on() || context?.defense !== "dodge") return;
+    if (!allowed(context?.defender) || context?.defense !== "dodge") return;
     const value = Number(api.combat.getCombatState(context.defender, MODULE_ID, DODGE));
     if (value) context.modifiers.push({ label: L("AcrobaticDodge"), value });
   });
   Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
-    if (!on() || !context?.actor?.isOwner || !(context.tags ?? []).includes("dodge")) return;
+    if (!allowed(context?.actor) || !context?.actor?.isOwner || !(context.tags ?? []).includes("dodge")) return;
     if (api.combat.getCombatState(context.actor, MODULE_ID, DODGE) !== undefined) void api.combat.clearCombatState(context.actor, MODULE_ID, DODGE);
   });
 
   // An all-out stand leaves no active defenses (p. 98).
   Hooks.on(api.combat.hooks.defenseChoices, (context: any) => {
-    if (!on() || api.combat.getCombatState(context?.defender, MODULE_ID, NO_DEFENSE) !== true) return;
+    if (!allowed(context?.defender) || api.combat.getCombatState(context?.defender, MODULE_ID, NO_DEFENSE) !== true) return;
     for (const choice of context.choices ?? []) Object.assign(choice, { available: false, refusal: L("NoDefenseAllOut") });
   });
 

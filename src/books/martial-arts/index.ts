@@ -21,7 +21,7 @@
  * Smash, pain, teeth and bodies in close combat (pp. 114-119), and realistic
  * injury (pp. 136, 138-139), and who acts first: Who Draws First?, Stop Hits,
  * Cascading Waits and A Matter of Inches (pp. 103, 108, 110), and charging
- * foes (p. 106).
+ * foes (p. 106), and chambara fighting (pp. 128-130).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -49,6 +49,7 @@ import { readyGrabAndSmash } from "./grab-smash/index.js";
 import { readyInjury } from "./injury/index.js";
 import { initTiming, readyTiming } from "./timing/index.js";
 import { readyCharging } from "./charging/index.js";
+import { chambaraFighter, readyChambara } from "./chambara/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -93,6 +94,7 @@ const RULES = [
   { key: "stopHits", pages: "p. 108", implemented: true },
   { key: "cascadingWaits", pages: "p. 108", implemented: true },
   { key: "matterOfInches", pages: "p. 110", implemented: true },
+  { key: "chambara", pages: "pp. 128-130", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -119,7 +121,8 @@ function ready(api: GWorldApi): void {
   readyCommittedDefensive(api, () => api.registry.isRuleOn(ruleKey("committedDefensiveAttack")), allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters"))));
   readyAllOutAttack(api, () => api.registry.isRuleOn(ruleKey("allOutAttackOptions")));
   readyMoveAndAttack(api, () => api.registry.isRuleOn(ruleKey("moveAndAttack")));
-  readyAcrobatics(api, () => api.registry.isRuleOn(ruleKey("acrobatics")));
+  const chambara = chambaraFighter(() => api.registry.isRuleOn(ruleKey("chambara")));
+  readyAcrobatics(api, () => api.registry.isRuleOn(ruleKey("acrobatics")), chambara);
   readyPostureAttacks(api, () => api.registry.isRuleOn(ruleKey("postures")));
   readyFeints(api, () => api.registry.isRuleOn(ruleKey("feints")));
   readyReadying(api, () => api.registry.isRuleOn(ruleKey("readying")));
@@ -127,7 +130,7 @@ function ready(api: GWorldApi): void {
   readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
   readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
-  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")), () => api.registry.isRuleOn(ruleKey("rangedOptions")), (actor) => ({ ok: allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters")))(actor), reason: game.i18n.localize("GCC.MA.Untrained.Limited") }));
+  readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), (actor) => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")) || chambara(actor), () => api.registry.isRuleOn(ruleKey("rangedOptions")), (actor) => ({ ok: allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters")))(actor), reason: game.i18n.localize("GCC.MA.Untrained.Limited") }));
   readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
   readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
@@ -139,6 +142,7 @@ function ready(api: GWorldApi): void {
   readyInjury(api, () => api.registry.isRuleOn(ruleKey("partialInjuries")), () => api.registry.isRuleOn(ruleKey("extremeDismemberment")), () => api.registry.isRuleOn(ruleKey("severeBleeding")), () => api.registry.isRuleOn(ruleKey("lastingInjuries")));
   readyTiming(api, () => api.registry.isRuleOn(ruleKey("whoDrawsFirst")), () => api.registry.isRuleOn(ruleKey("stopHits")), () => api.registry.isRuleOn(ruleKey("cascadingWaits")), () => api.registry.isRuleOn(ruleKey("matterOfInches")));
   readyCharging(api, () => api.registry.isRuleOn(ruleKey("chargingFoes")));
+  readyChambara(api, () => api.registry.isRuleOn(ruleKey("chambara")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

@@ -56,7 +56,8 @@ function yardsBetween(a: any, b: any): number {
 export function readyMultipleAttacks(
   api: GWorldApi,
   on: () => boolean,
-  cinematic: () => boolean,
+  /** The cinematic Rapid Strike, for a fighter: its switch, or chambara fighting (p. 128). */
+  cinematic: (actor?: any) => boolean,
   thrown: () => boolean = () => false,
   /** Whether a fighter may use a Rapid Strike at all, where another rule limits it. */
   allowed: (actor: any) => { ok: boolean; reason: string } = () => ({ ok: true, reason: "" }),
@@ -105,7 +106,7 @@ export function readyMultipleAttacks(
       return state<RapidState>(context.actor, RAPID) ? L("Refusals.alreadyRapid") : null;
     },
     apply: (context, value) => {
-      const attacks = Math.min(rapidStrikeLimit(cinematic()), Math.floor(Number(value) || 0));
+      const attacks = Math.min(rapidStrikeLimit(cinematic(context.actor)), Math.floor(Number(value) || 0));
       if (attacks < 2) return null;
       return { modifiers: [{ label: F("RapidStrikeLine", { attacks }), value: rapidStrikePenalty(attacks, halves(context.actor)) }] };
     },
@@ -117,7 +118,7 @@ export function readyMultipleAttacks(
     const writes: Array<Promise<unknown>> = [];
 
     // A Rapid Strike declared on this attack, or one still running.
-    const declared = Math.min(rapidStrikeLimit(cinematic()), Math.floor(Number(context.options?.[`${MODULE_ID}.${RAPID_STRIKE}`]) || 0));
+    const declared = Math.min(rapidStrikeLimit(cinematic(actor)), Math.floor(Number(context.options?.[`${MODULE_ID}.${RAPID_STRIKE}`]) || 0));
     const running = state<RapidState>(actor, RAPID);
     const rapid = rapidAttack(Boolean(context.ranged), context.item, context.mode?.derived);
     // Offered on a thrown weapon's every row, but a handful is one burst, not a Rapid Strike (p. 121).
