@@ -14,6 +14,7 @@
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { gripOf } from "../readying/index.js";
 import { GRIPS, type Grip } from "../readying/rules.js";
+import { weaponParry } from "../defense-options/index.js";
 import {
   DEFENSIVE_GRIP_BREAKAGE,
   TELEGRAPHIC_DEFENSE,
@@ -339,8 +340,8 @@ export function readyMeleeOptions(api: GWorldApi, on: () => boolean): void {
     refuse: (context) => (forearm(context.defender) === null ? L("ForearmNone") : null),
     apply: (context) => {
       const score = forearm(context.defender);
-      const current = Number(context.defender?.system?.derived?.defenses?.parry?.total);
-      if (score === null || !Number.isFinite(current) || score === current) return null;
+      const current = weaponParry(context.defender, context.parryWeapon);
+      if (score === null || current === null || score === current) return null;
       return { modifiers: [{ label: L("Forearm"), value: score - current }] };
     },
     after: async (context, outcome) => {
