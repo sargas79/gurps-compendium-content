@@ -60,3 +60,47 @@ describe("defense while grappling, and long weapons", () => {
     expect(haftOnly("Broadsword", "1")).toBe(false);
   });
 });
+
+describe("more actions after a grapple (pp. 116-119)", () => {
+  it("squeezes only a torso held in two limbs, by somebody bigger", async () => {
+    const { bearHugRefusal } = await import("./rules.js");
+    const base = { hitLocation: "torso", hands: 2, limbs: "arms" as const, smGrappler: 1, smVictim: 0, fatigueOnly: false, victimWeight: 150, basicLift: 20 };
+    expect(bearHugRefusal(base)).toBeNull();
+    expect(bearHugRefusal({ ...base, hitLocation: "neck" })).toBe("torso");
+    expect(bearHugRefusal({ ...base, hands: 1 })).toBe("hands");
+    expect(bearHugRefusal({ ...base, hands: 1, limbs: "legs" })).toBeNull();
+    expect(bearHugRefusal({ ...base, smGrappler: 0 })).toBe("size");
+    expect(bearHugRefusal({ ...base, smGrappler: 0, fatigueOnly: true, victimWeight: 80, basicLift: 20 })).toBeNull();
+    expect(bearHugRefusal({ ...base, smGrappler: 0, fatigueOnly: true, victimWeight: 81, basicLift: 20 })).toBe("size");
+  });
+
+  it("gives the bear hug its lines", async () => {
+    const { bearHugModifiers } = await import("./rules.js");
+    expect(bearHugModifiers({ constriction: false, limbs: "legs" })).toEqual([{ key: "noConstriction", value: -5 }, { key: "legs", value: 2 }]);
+    expect(bearHugModifiers({ constriction: true, limbs: "arms" })).toEqual([]);
+  });
+
+  it("costs a one-handed lock its hand or the crook of an arm", async () => {
+    const { oneHandedPenalty } = await import("./rules.js");
+    expect([oneHandedPenalty("hand"), oneHandedPenalty("crook"), oneHandedPenalty("")]).toEqual([-2, -4, 0]);
+  });
+
+  it("needs an attacking maneuver, and allows two only on All-Out Attack (Double)", async () => {
+    const { grappleActionAllowed, grappleActionsAllowed } = await import("./rules.js");
+    expect(grappleActionAllowed("attack", false)).toBe(true);
+    expect(grappleActionAllowed("allOutAttack", false)).toBe(true);
+    expect(grappleActionAllowed("attack", true)).toBe(true);
+    expect(grappleActionAllowed("move", false)).toBe(false);
+    expect(grappleActionsAllowed("allOutAttack", "double")).toBe(2);
+    expect(grappleActionsAllowed("allOutAttack", "strong")).toBe(1);
+    expect(grappleActionsAllowed("attack", "double")).toBe(1);
+  });
+
+  it("holds a long weapon to its haft until a Ready chokes it up, and again after", async () => {
+    const { haftRefused } = await import("./rules.js");
+    expect(haftRefused({ inClose: true, chokedUp: false })).toBe(true);
+    expect(haftRefused({ inClose: true, chokedUp: true })).toBe(false);
+    expect(haftRefused({ inClose: false, chokedUp: true })).toBe(true);
+    expect(haftRefused({ inClose: false, chokedUp: false })).toBe(false);
+  });
+});

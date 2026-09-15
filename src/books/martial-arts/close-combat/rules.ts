@@ -107,3 +107,59 @@ export function haftOnly(skill: string, reach: string): boolean {
   const { longest } = reachOf(reach);
   return longest >= 2 && longest <= 3 && ["polearm", "spear", "two-handed axe/mace"].includes(skill.trim().toLowerCase());
 }
+
+/** The limbs a grapple is held with (p. 118). */
+export type GrappleLimbs = "arms" | "legs";
+
+/** Why a bear hug can't be squeezed (p. 117), or null when it can. */
+export function bearHugRefusal(options: {
+  hitLocation: string;
+  hands: number;
+  limbs: GrappleLimbs;
+  smGrappler: number;
+  smVictim: number;
+  fatigueOnly: boolean;
+  victimWeight: number;
+  basicLift: number;
+}): "torso" | "hands" | "size" | null {
+  if (options.hitLocation !== "torso") return "torso";
+  if (options.limbs === "arms" && Math.floor(Number(options.hands) || 0) < 2) return "hands";
+  const lead = (Number(options.smGrappler) || 0) - (Number(options.smVictim) || 0);
+  if (lead > 0) return null;
+  // Crushing the breath out of somebody your own size, if he is light enough (p. 117).
+  if (options.fatigueOnly && lead === 0 && (Number(options.victimWeight) || 0) <= (Number(options.basicLift) || 0) * 4) return null;
+  return "size";
+}
+
+/** A bear hug's lines (p. 117): -5 without Constriction Attack, and the legs' +2 ST. */
+export function bearHugModifiers(options: { constriction: boolean; limbs: GrappleLimbs }): Array<{ key: "noConstriction" | "legs"; value: number }> {
+  return [
+    ...(options.constriction ? [] : [{ key: "noConstriction" as const, value: -5 }]),
+    ...(options.limbs === "legs" ? [{ key: "legs" as const, value: 2 }] : []),
+  ];
+}
+
+/** One-handed grappling (p. 116): the DX roll to start a lock or hold, and the roll to damage with one. */
+export const ONE_HANDED_INITIATE = -2;
+export const ONE_HANDED_CROOK = -4;
+export const ONE_HANDED_DAMAGE = -4;
+
+/** What a one-handed lock takes to start: the crook of an arm costs more than a hand. */
+export function oneHandedPenalty(how: string): number {
+  return how === "crook" ? ONE_HANDED_CROOK : how === "hand" ? ONE_HANDED_INITIATE : 0;
+}
+
+/** Whether a maneuver lets a fighter act after a grapple (p. 119). */
+export function grappleActionAllowed(maneuver: string, committed: boolean): boolean {
+  return committed || maneuver === "attack" || maneuver === "allOutAttack";
+}
+
+/** How many actions after a grapple a turn allows (p. 119): two on All-Out Attack (Double). */
+export function grappleActionsAllowed(maneuver: string, option: string): number {
+  return maneuver === "allOutAttack" && option === "double" ? 2 : 1;
+}
+
+/** Whether a long weapon may be used normally, where choking it up is what close combat allows (p. 117). */
+export function haftRefused(options: { inClose: boolean; chokedUp: boolean }): boolean {
+  return options.inClose !== options.chokedUp;
+}
