@@ -544,6 +544,10 @@
         "moveAndAttack": {
           "Name": "Move and Attack with any melee attack",
           "Hint": "Move and Attack allows a parry with what didn't strike. There is no retreat, no dodge after a kick or bite, no block with a shield that struck, and no Rapid Strike or Deceptive Attack, and a thrust may use slam damage where that is better."
+        },
+        "acrobatics": {
+          "Name": "Acrobatics in combat",
+          "Hint": "Acrobatic Stand from the ground; movement stunts (banister sliding, skidding, spinning, swinging, tic-tacs, tumbling, vaulting) that make the next dodge +2 or -2; and Acrobatic and Flying Attacks as Move and Attack."
         }
       },
       "Committed": {
@@ -599,6 +603,56 @@
         "NoRetreat": "No retreat after a Move and Attack",
         "NoRapidStrike": "No Rapid Strike on Move and Attack",
         "NoDeceptive": "No Deceptive Attack on Move and Attack"
+      },
+      "Acrobatics": {
+        "Title": "Acrobatics",
+        "Hint": "A stunt makes your next dodge an Acrobatic Dodge: +2 if it worked, -2 if not. The number is the yards moved, the footing penalty, further bounces or repeats, as the stunt needs.",
+        "Stand": "Acrobatic Stand",
+        "StandHint": "Acrobatics-6, less encumbrance: up from lying, or up as a step from sitting or crawling",
+        "AllOut": "All-out (+4, no defenses)",
+        "IntoCrouch": "Into a crouch",
+        "AlreadyUp": "Already on your feet",
+        "NoAcrobatics": "Acrobatic Stand needs the Acrobatics skill",
+        "NoSkill": "This stunt needs one of: {skills}",
+        "StuntLabel": "Stunt",
+        "InputHint": "Yards moved, footing penalty, further bounces or repeats",
+        "Window": "Through a window",
+        "Perform": "Perform stunt",
+        "FlyingLeap": "Flying Attack leap",
+        "AcrobaticAttack": "Acrobatic Attack",
+        "FlyingAttack": "Flying Attack",
+        "OneOrOther": "An attack is either acrobatic or flying",
+        "AcrobaticDodge": "Acrobatic Dodge",
+        "NoDefenseAllOut": "No active defenses after an all-out Acrobatic Stand",
+        "Stunt": {
+          "banisterSitting": "Banister slide (sitting)",
+          "banisterStanding": "Banister slide (standing)",
+          "skidding": "Skidding",
+          "spinning": "Spinning",
+          "swinging": "Swinging",
+          "ticTac": "Tic-tac",
+          "tumbling": "Tumbling",
+          "vaulting": "Vaulting and diving"
+        },
+        "Line": {
+          "stand": "Acrobatic Stand",
+          "encumbrance": "Encumbrance",
+          "allOut": "All-out",
+          "banisterSitting": "Banister slide",
+          "banisterStanding": "Standing on the banister",
+          "ticTac": "Tic-tac",
+          "speed": "Speed",
+          "footing": "Footing",
+          "bounces": "Further bounces",
+          "repeats": "Repeats",
+          "window": "Through a window",
+          "acrobaticAttack": "Acrobatic Attack"
+        },
+        "Note": {
+          "asStep": "Up, and that counts as the step of your maneuver",
+          "turnOver": "Up, but your turn is over",
+          "fellFlying": "The leap failed: you fall, and don't attack"
+        }
       }
     }
   },

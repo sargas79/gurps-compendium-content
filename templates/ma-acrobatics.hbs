@@ -1,0 +1,25 @@
+{{!-- Acrobatic Stand and acrobatic movement (Martial Arts pp. 98, 105-107). --}}
+<div class="isec" data-ma-acrobatics>
+  <div class="grph">{{localize "GCC.MA.Acrobatics.Title"}}</div>
+  <div class="npcline" style="gap: 10px; align-items: center; flex-wrap: wrap">
+    {{#if low}}
+      <label class="icheck"><input type="checkbox" data-ma-stand-allout {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Acrobatics.AllOut"}}</label>
+      <label class="icheck"><input type="checkbox" data-ma-stand-crouch {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Acrobatics.IntoCrouch"}}</label>
+      <button type="button" class="ibtn" data-ma-stand {{#unless editable}}disabled{{/unless}}
+              data-tooltip="{{localize 'GCC.MA.Acrobatics.StandHint'}}">{{localize "GCC.MA.Acrobatics.Stand"}}</button>
+    {{/if}}
+    <select data-ma-stunt aria-label="{{localize 'GCC.MA.Acrobatics.StuntLabel'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each stunts as |s|}}<option value="{{s.key}}">{{s.label}}</option>{{/each}}
+    </select>
+    <input type="number" data-ma-stunt-input value="0" min="0" step="1" style="width: 56px"
+           data-tooltip="{{localize 'GCC.MA.Acrobatics.InputHint'}}" aria-label="{{localize 'GCC.MA.Acrobatics.InputHint'}}" {{#unless editable}}disabled{{/unless}} />
+    <label class="icheck"><input type="checkbox" data-ma-stunt-window {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Acrobatics.Window"}}</label>
+    <button type="button" class="ibtn" data-ma-stunt-roll {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Acrobatics.Perform"}}</button>
+    {{#if flying}}
+      <button type="button" class="ibtn" data-ma-flying-leap {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Acrobatics.FlyingLeap"}}</button>
+    {{/if}}
+    {{#if dodge}}<span class="tag tag-accent">{{localize "GCC.MA.Acrobatics.AcrobaticDodge"}} {{dodge}}</span>{{/if}}
+    {{#if noDefense}}<span class="tag tag-danger">{{localize "GCC.MA.Acrobatics.NoDefenseAllOut"}}</span>{{/if}}
+  </div>
+  <p class="ihint">{{localize "GCC.MA.Acrobatics.Hint"}}</p>
+</div>
