@@ -664,6 +664,26 @@
         "lastingInjuries": {
           "Name": "Lasting injuries",
           "Hint": "A major wound to the neck, skull, veins or vitals rolls on its table for a lasting or permanent effect."
+        },
+        "whoDrawsFirst": {
+          "Name": "Who draws first",
+          "Hint": "A GM tool settles a standoff between two fighters drawing weapons: Fast-Draw, weapon skill, and who strikes first."
+        },
+        "chargingFoes": {
+          "Name": "Charging foes",
+          "Hint": "Weapon skill against an evader, striking him for half damage on a win; a foe hurt by a stop thrust must force his way past the weapon or run himself onto it."
+        },
+        "stopHits": {
+          "Name": "Stop Hits",
+          "Hint": "A Wait may attack into the foe's attack: both roll to hit, and the one who does worse defends at -1, or -3 parrying with his attacking weapon."
+        },
+        "cascadingWaits": {
+          "Name": "Cascading Waits",
+          "Hint": "A GM tool rolls the Quick Contest for several Waits triggering together and posts the order they act in."
+        },
+        "matterOfInches": {
+          "Name": "A matter of inches",
+          "Hint": "Weapon length and weight in who draws first, Stop Hits and Cascading Waits, and weight in feints, Beats, multiple parries and parrying flails."
         }
       },
       "Committed": {
@@ -1436,6 +1456,95 @@
           "maintenanceConstant": "Maintenance (constant)"
         },
         "Surgeon": "Surgeon"
+      },
+      "Timing": {
+        "ByName": "By its name: {length}",
+        "NotListed": "Not on the scale",
+        "LengthLabel": "Length",
+        "LengthHint": "Where the weapon sits among weapons of the same Reach.",
+        "Lengths": {
+          "extremelyLong": "Extremely long",
+          "veryLong": "Very long",
+          "long": "Long",
+          "medium": "Medium",
+          "short": "Short",
+          "veryShort": "Very short"
+        },
+        "Lines": {
+          "greased": "Greased scabbard",
+          "handOnWeapon": "Hand on weapon",
+          "longer": "Longer weapon",
+          "heavier": "Heavier weapon",
+          "weight": "Weapon weight",
+          "swing": "Swing",
+          "combatReflexes": "Combat Reflexes",
+          "againstReady": "Against a ready weapon",
+          "basicSpeed": "Basic Speed",
+          "stationary": "Needn't move",
+          "distance": "Distance",
+          "late": "Jumping in late",
+          "flailWeight": "Weapon weight against a flail",
+          "beatWeight": "Weapon heft"
+        },
+        "Draw": {
+          "Title": "Who draws first",
+          "Pick": "Select one fighter's token and target the other, or target both",
+          "NoWeapon": "Each fighter needs a weapon or a bare-handed attack",
+          "Weapon": "Weapon",
+          "Ready": "Weapon ready",
+          "FastDraw": "Fast-Draw",
+          "None": "None",
+          "Other": "Fast-Draw modifiers",
+          "OtherHint": "Fast-Draw modifiers: the situation and where the weapon is carried.",
+          "Resolve": "Resolve",
+          "Label": "Who draws first: {a} and {b}",
+          "First": "{name} strikes first.",
+          "BothReady": "Both weapons are ready: the turn sequence decides.",
+          "Simultaneous": "They attack at the same moment: each may dodge or block, but not parry.",
+          "ThrowsAway": "{name} throws the weapon away, and {foe} strikes first!",
+          "Greasy": "Greasy weapon"
+        },
+        "StopHit": {
+          "Option": "Stop Hit",
+          "Respond": "Stop Hit",
+          "Pick": "Target the foe the Stop Hit is against",
+          "Armed": "{name} attacks into {foe}'s attack: both roll to hit before either defends.",
+          "Penalty": "Stop Hit"
+        },
+        "Waits": {
+          "Title": "Cascading Waits",
+          "Pick": "Target the waiting fighters (two or more)",
+          "Proceed": "Proceeds",
+          "Score": "Rolls against",
+          "Distance": "Moves",
+          "Late": "Late",
+          "none": "Not at all",
+          "step": "A step",
+          "Yards": "{yards} yards",
+          "Roll": "Roll",
+          "RollLabel": "{name}: who acts first",
+          "Together": "at the same moment; they can't parry with the weapons they attack with",
+          "StillWaiting": "Still waiting: {names}"
+        }
+      },
+      "Charging": {
+        "Obstruction": "Obstruction",
+        "Obstructs": "{foe} stops {mover} with the {weapon}.",
+        "StrikeHalf": "Strike for half damage",
+        "ObstructionDamage": "Obstruction: {weapon}, half damage",
+        "AtBay": "Holding a foe at bay",
+        "Impaled": "If {victim} was closing on {attacker}, the {weapon} is inside him. He can spend two movement points to back off and change paths, or run himself onto it.",
+        "InTheWay": "If {victim} was closing on {attacker}, the {weapon} is in the way. He must win a Quick Contest of ST to get closer, or spend two movement points to sidestep.",
+        "IfKnockedDown": "If the knockdown roll failed, he falls, stunned, and his turn ends.",
+        "Knockback": "Knocked back {yards} yards: he must use more movement to close the gap.",
+        "RunThrough": "Run himself through",
+        "RunThroughLabel": "{victim} runs onto the weapon",
+        "StContest": "Contest of ST",
+        "StContestLabel": "{victim} forces past {attacker}'s weapon",
+        "PushesIn": "{victim} forces his way closer.",
+        "HeldOff": "{victim} is held off.",
+        "PassesThrough": "{victim} takes {injury} more injury. His thrust with the weapon (up to {max}) beats DR {dr}: it comes out his back as he moves in, and it's stuck.",
+        "Stuck": "{victim} takes {injury} more injury, but his thrust with the weapon (up to {max}) doesn't beat DR {dr}: he can't come further."
       }
     }
   },
