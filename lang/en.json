@@ -640,6 +640,14 @@
         "longWeaponsInClose": {
           "Name": "Long weapons in close combat",
           "Hint": "-4 skill a yard of reach, Parry from that skill and -1 swing damage a yard, and a haft attack for long polearms."
+        },
+        "grabAndSmash": {
+          "Name": "Grab and Smash, and pain",
+          "Hint": "All-out grapple and strike, Kiss the Wall, locks and strangles that cause pain instead of injury, and -4 to attack from inside a grapple."
+        },
+        "bodiesInClose": {
+          "Name": "Teeth and bodies in close combat",
+          "Hint": "Everyone can bite and hold on, with what a bite reaches set by size; extra arms and legs in grappling."
         }
       },
       "Committed": {
@@ -1322,6 +1330,28 @@
         "InClose": "In close combat",
         "InCloseHint": "A long weapon in close combat: {skill} skill, {parry} Parry, less swing damage",
         "Haft": "Haft (close combat)"
+      },
+      "GrabSmash": {
+        "FromInside": "Attacking from inside a grapple",
+        "Smash": "Grab and Smash (All-Out Attack, Strong)",
+        "KissTheWall": "Kiss the wall",
+        "Location": "Location",
+        "HardSurface": "A hard surface (+1)",
+        "KissLabel": "Kiss the wall: {foe}'s {location}",
+        "KissDamage": "Kiss the wall: {foe}",
+        "KissSlip": "Kiss the wall: slipped, into your own face",
+        "InflictPain": "Inflict pain",
+        "PainHint": "The points the lock or hold would have done: they become pain instead (2-3 moderate, 4-5 severe, 6-9 terrible, 10+ agony).",
+        "Points": "Points",
+        "PainChokes": "Strangling from now on causes pain, not injury",
+        "Pained": "{foe} is in {pain}",
+        "NoPain": "{foe} shrugs it off",
+        "Bite": "Bite",
+        "BiteHold": "Bite: hold on",
+        "BiteCantReach": "A bite this size can't reach that",
+        "ExtraArms": "Extra arms",
+        "MoreArms": "More arms",
+        "ExtraLegs": "Extra legs"
       }
     }
   },

@@ -14,7 +14,7 @@ import type { GWorldApi } from "../../types/gworld/src/system/api.js";
 export const MODULE_ID = "gurps-compendium-content";
 
 /** The API range this build works with, as the manifest declares it. */
-export const API_RANGE = "^1.34.0";
+export const API_RANGE = "^1.35.0";
 
 /** The hooks the system fires for add-ons. */
 export const HOOKS = Object.freeze({
