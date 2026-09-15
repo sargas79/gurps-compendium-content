@@ -764,7 +764,7 @@
       "chapter": "Combat",
       "pages": "MA131",
       "reference": "Martial Arts p. 131",
-      "rule": "extraEffort",
+      "rule": "gurps-compendium-content.extraEffort",
       "file": "extra-effort-in-combat.md",
       "status": "reviewed"
     },
@@ -938,6 +938,7 @@
       "chapter": "Techniques",
       "pages": "MA64",
       "reference": "Martial Arts p. 64",
+      "rule": "gurps-compendium-content.targetedAttacks",
       "file": "using-techniques-together.md",
       "status": "reviewed"
     },
@@ -992,7 +993,7 @@
       "chapter": "Techniques",
       "pages": "MA68",
       "reference": "Martial Arts p. 68",
-      "rule": "hitLocations",
+      "rule": "gurps-compendium-content.targetedAttacks",
       "file": "optional-rule-targeted-attacks.md",
       "status": "reviewed"
     },

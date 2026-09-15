@@ -11,8 +11,8 @@
  * options: grips, Pummeling, Tip Slash and Telegraphic Attack (pp. 109-113),
  * styles and training (pp. 49, 141-148, 232-233), and building weapons
  * (pp. 214, 216-218, 221), new hit locations (p. 137), multiple attacks
- * (pp. 126-128), active defense options (pp. 121-125), and Targeted Attacks
- * and Combinations (pp. 64, 68, 80).
+ * (pp. 126-128), active defense options (pp. 121-125), Targeted Attacks
+ * and Combinations (pp. 64, 68, 80), and extra effort in combat (p. 131).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -30,6 +30,7 @@ import { readyHitLocations } from "./hit-locations/index.js";
 import { readyMultipleAttacks } from "./multiple-attacks/index.js";
 import { readyDefenseOptions } from "./defense-options/index.js";
 import { readyTechniques } from "./techniques/index.js";
+import { readyExtraEffort } from "./extra-effort/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -53,6 +54,7 @@ const RULES = [
   { key: "defenseOptions", pages: "pp. 121-125", implemented: true },
   { key: "limitedDefenses", pages: "pp. 122-123", implemented: true },
   { key: "targetedAttacks", pages: "pp. 64, 68, 80", implemented: true },
+  { key: "extraEffort", pages: "p. 131", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -90,6 +92,7 @@ function ready(api: GWorldApi): void {
   readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
   readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")));
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
+  readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 
 function init(): void {
