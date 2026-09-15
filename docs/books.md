@@ -8,7 +8,7 @@
 npm run coverage -- basic-set --pack advantages --list
 ```
 
-A record has exactly these fields. `_id` and `name` must match the system's
+A record may have only these fields. `_id` and `name` must match the system's
 entry.
 
 ```json
