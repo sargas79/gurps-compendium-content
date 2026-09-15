@@ -69,6 +69,11 @@ export function carryModifier(specialty: string, carry: Carry, options: { revers
   return row[carry]! + (specialty === "sword" && options.noScabbard ? -2 : 0);
 }
 
+/** Whether a boot's own -2 is ignored: from a crouch, kneeling or sitting. */
+export function bootReachable(posture: string): boolean {
+  return posture === "crouching" || posture === "kneeling" || posture === "sitting";
+}
+
 /**
  * The situation's modifiers to a Fast-Draw roll, or a DX roll to reach a
  * weapon (p. 103). A weapon in a boot is easy to reach from a crouch, kneeling
@@ -83,7 +88,7 @@ export function situationModifiers(options: {
   carry: Carry | null;
 }): Array<{ key: string; value: number }> {
   const lines: Array<{ key: string; value: number }> = [];
-  const low = options.posture === "crouching" || options.posture === "kneeling" || options.posture === "sitting";
+  const low = bootReachable(options.posture);
   if (options.posture === "crawling" || options.posture === "lying") lines.push({ key: "posture", value: -4 });
   else if (low && options.carry !== "boot") lines.push({ key: "posture", value: -2 });
   if (options.grappled) lines.push({ key: "grappled", value: -4 });
@@ -91,11 +96,6 @@ export function situationModifiers(options: {
   if (options.moving) lines.push({ key: "moving", value: -2 });
   if (options.hand === "off") lines.push({ key: "offHand", value: -4 });
   return lines;
-}
-
-/** Whether a boot's own -2 is ignored: from a crouch, kneeling or sitting. */
-export function bootReachable(posture: string): boolean {
-  return posture === "crouching" || posture === "kneeling" || posture === "sitting";
 }
 
 /** A rapid grip change's roll (p. 102): -4 two-handed, -6 one-handed, 0 with a tonfa. Never to or from a Defensive Grip. */
