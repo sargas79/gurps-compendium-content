@@ -724,6 +724,10 @@
         "bulletTime": {
           "Name": "Bullet Time",
           "Hint": "A GM tool spends 3 unspent points for one turn in stopped time, against defenseless foes."
+        },
+        "tournaments": {
+          "Name": "Tournament combat",
+          "Hint": "A GM tool resolves bouts by Quick Contest (once, per round or per point, with deadly hits) or by the detailed method's lulls, flurries and presses."
         }
       },
       "Committed": {
@@ -1758,6 +1762,72 @@
             "puppetUnwilling": "Puppet, unwilling (ST/2)"
           }
         }
+      },
+      "Tournament": {
+        "Title": "Tournament bout",
+        "Pick": "Select one fighter's token and target the other, or target both",
+        "Between": "{first} against {second}",
+        "Competition": "Competition",
+        "Method": "Method",
+        "Count": "Rounds, or points to win",
+        "Deadly": "To the death (hits on failure)",
+        "RoundSeconds": "Round length (seconds, detailed)",
+        "OneFlurry": "One flurry per round (detailed)",
+        "Start": "Start",
+        "NoSkill": "{name} has no skill for this competition ({kinds})",
+        "Competitions": {
+          "demonstration": "Demonstration",
+          "nonContact": "Non-contact",
+          "lightContact": "Light contact",
+          "fullContactProtected": "Full contact, protected",
+          "fullContactUnprotected": "Full contact, unprotected",
+          "noHoldsBarred": "No holds barred",
+          "earlyJoust": "Melee or joust (early)",
+          "lateJoust": "Joust (later)"
+        },
+        "Methods": {
+          "single": "Quick Contest",
+          "rounds": "Quick Contest per round",
+          "points": "Quick Contest per point",
+          "detailed": "Detailed method"
+        },
+        "Kinds": {
+          "art": "Combat Art",
+          "sport": "Combat Sport",
+          "combat": "combat skills"
+        },
+        "ContestLabel": "Bout {n}: {first} against {second}",
+        "Tie": "Bout {n}: a tie",
+        "Won": "Bout {n}: {name} wins",
+        "Hits": "{name} takes {hits} hit(s): no defense",
+        "HitLabel": "Tournament hit on {victim} ({attack})",
+        "Winner": "{name} wins the match, {first} to {second}",
+        "Draw": "A draw, {first} to {second}",
+        "RoundTitle": "Round {round}: {first} against {second}",
+        "BetweenRounds": "Between rounds (after round {round})",
+        "Clock": "{phase}: {left} s left in it ({elapsed}/{total} s, {remaining} s to go)",
+        "Phases": {
+          "lull": "Lull",
+          "flurry": "Flurry",
+          "between": "Between rounds"
+        },
+        "StartRound": "Start round",
+        "PhaseOver": "Phase over",
+        "EarlyLull": "Early lull",
+        "PressFirst": "{name} presses",
+        "PressBoth": "Both press",
+        "EndRound": "End round (fatigue)",
+        "RoundStarts": "Round {round} starts",
+        "LullStarts": "A lull of {seconds} s",
+        "FlurryStarts": "A flurry of {seconds} s",
+        "RoundOver": "The round is over",
+        "Disengage": "Both disengage: an early lull",
+        "BothPress": "Both press: {seconds} s more",
+        "PressLabel": "{name} presses the fight (Tactics)",
+        "Pressed": "{name} presses: {seconds} s more",
+        "PressFailed": "{name} fails to press: a lull begins",
+        "Fatigue": "A round of fighting",
+        "FatigueTaken": "Fatigue for the round: {fp} FP each"
       }
     }
   },

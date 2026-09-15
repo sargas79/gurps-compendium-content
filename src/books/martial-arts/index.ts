@@ -23,7 +23,8 @@
  * Cascading Waits and A Matter of Inches (pp. 103, 108, 110), and charging
  * foes (p. 106), and chambara fighting (pp. 128-130), and the other cinematic
  * rules: mind games, faking it, Unarmed Etiquette, Shaking It Off, Shout It
- * Out!, Proxy Fighting and Bullet Time (pp. 130, 132-133).
+ * Out!, Proxy Fighting and Bullet Time (pp. 130, 132-133), and tournament
+ * combat (pp. 134-135).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -53,6 +54,7 @@ import { initTiming, readyTiming } from "./timing/index.js";
 import { readyCharging } from "./charging/index.js";
 import { chambaraFighter, readyChambara } from "./chambara/index.js";
 import { readyCinematic } from "./cinematic/index.js";
+import { readyTournaments } from "./tournaments/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -107,6 +109,7 @@ const RULES = [
   { key: "shoutItOut", pages: "p. 132", implemented: true },
   { key: "proxyFighting", pages: "pp. 132-133", implemented: true },
   { key: "bulletTime", pages: "p. 133", implemented: true },
+  { key: "tournaments", pages: "pp. 134-135", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -167,6 +170,7 @@ function ready(api: GWorldApi): void {
     proxy: rule("proxyFighting"),
     bulletTime: rule("bulletTime"),
   });
+  readyTournaments(api, rule("tournaments"));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

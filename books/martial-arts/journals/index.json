@@ -842,6 +842,7 @@
       "chapter": "Combat",
       "pages": "MA134",
       "reference": "Martial Arts p. 134",
+      "rule": "gurps-compendium-content.tournaments",
       "file": "roleplaying-tournaments.md",
       "status": "reviewed"
     },
@@ -851,6 +852,7 @@
       "chapter": "Combat",
       "pages": "MA134-135",
       "reference": "Martial Arts pp. 134-135",
+      "rule": "gurps-compendium-content.tournaments",
       "file": "competition-types.md",
       "status": "reviewed"
     },
