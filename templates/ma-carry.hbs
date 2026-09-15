@@ -1,0 +1,9 @@
+{{!-- Where the weapon is carried, for Fast-Draw (Martial Arts p. 104). --}}
+<div class="ifields" data-ma-carry-section>
+  <label>{{localize "GCC.MA.Readying.Carry"}}
+    <select data-ma-carry {{#unless editable}}disabled{{/unless}}>
+      <option value=""></option>
+      {{#each carries as |c|}}<option value="{{c.value}}" {{#if c.selected}}selected{{/if}}>{{c.label}}</option>{{/each}}
+    </select>
+  </label>
+</div>

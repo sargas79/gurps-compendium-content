@@ -556,6 +556,10 @@
         "feints": {
           "Name": "Beats, Ruses and defensive feints",
           "Hint": "A feint may be made as a Beat against one defense or a Ruse on IQ, or turned on the foe's next attack. Anyone resists with their best combat skill or a Feint technique, and Evaluate offsets feints and Deceptive Attacks from the evaluated foe."
+        },
+        "readying": {
+          "Name": "Readying weapons",
+          "Hint": "Multiple Fast-Draw at -2 per earlier draw with the hand, Fast-Draw from odd positions and carry locations, a Ready that combines drawing with a grip change, rapid grip changes, and quick-readying a weapon from the floor, a rack or the ground."
         }
       },
       "Committed": {
@@ -719,6 +723,84 @@
         "DefensiveBy": "Defensive feint by {name}",
         "EvaluateOffset": "Evaluate against the feint",
         "Evaluate": "Evaluate"
+      },
+      "Readying": {
+        "Title": "Readying weapons",
+        "Counts": "Draws this turn (master / off):",
+        "Skill": "Fast-Draw skill",
+        "Weapon": "Weapon",
+        "Hand": "Hand",
+        "Hands": {
+          "master": "Master hand",
+          "off": "Off hand",
+          "both": "Both hands"
+        },
+        "Count": "Weapons drawn at once",
+        "IntoGrip": "Into grip",
+        "Grip": "Grip",
+        "Grips": {
+          "regular": "regular",
+          "defensive": "Defensive Grip",
+          "reversed": "Reversed Grip"
+        },
+        "Grappled": "Grappled",
+        "UpsideDown": "Upside down",
+        "NoScabbard": "No scabbard",
+        "Draw": "Fast-Draw",
+        "Ready": "Ready",
+        "ReadyHint": "One Ready draws, changes reach, hands and grip, and regains control",
+        "Rapid": "Rapid grip change",
+        "RapidHint": "Weapon skill at -4 two-handed, -6 one-handed, unpenalized with a tonfa; not to or from a Defensive Grip",
+        "RapidLabel": "Rapid grip change ({weapon})",
+        "RapidOnlyReversed": "A rapid grip change is between a regular and a Reversed Grip",
+        "RapidDropped": "Failed: the weapon is dropped, and the turn is over",
+        "RapidCritical": "Critical failure: a Tip Slash to your torso, and the weapon is dropped",
+        "Readied": "{weapon} readied in a {grip}",
+        "Quick": "Quick-ready",
+        "Sources": {
+          "floorCrouch": "From the floor, crouching",
+          "floorFlip": "From the floor, with a foot",
+          "rack": "From a rack or table",
+          "stuckOnFoot": "Sword stuck in the ground",
+          "stuckMounted": "Stuck sword, from horseback"
+        },
+        "QuickFailed": "Failed: the turn is spent clutching at air",
+        "QuickCritical": "Critical failure: the weapon is knocked 1d yards away (on an 18, it hurts)",
+        "NoFastDraw": "Pick a Fast-Draw skill",
+        "TurnOver": "The draw failed, and no more are possible this turn",
+        "DroppedAll": "Critical failure: the weapon (or all of them) is dropped",
+        "DefensiveNeedsReady": "Drawn: getting into a Defensive Grip still takes a Ready",
+        "Carry": "Carried",
+        "Carries": {
+          "hip": "At the hip",
+          "oppositeHip": "Hip, opposite the weapon hand",
+          "sameHip": "Hip, same side as the weapon hand",
+          "shoulder": "Over a shoulder",
+          "backSling": "Back sling",
+          "inHand": "In hand, sheathed",
+          "quiver": "Quiver",
+          "ground": "Stuck in the ground",
+          "elsewhere": "Sheathed elsewhere",
+          "chestHandleDown": "Handle-down on the chest",
+          "boot": "In a boot",
+          "belt": "Through a belt",
+          "concealed": "Pocket or concealed",
+          "teeth": "In the teeth",
+          "pegs": "Pegs or pouch",
+          "coiled": "Coiled at the belt",
+          "wrapped": "Worn or wrapped",
+          "other": "Some other way"
+        },
+        "Line": {
+          "multiple": "Multiple Fast-Draw",
+          "posture": "Posture",
+          "grappled": "Grappled",
+          "upsideDown": "Upside down",
+          "moving": "Moving",
+          "offHand": "Off hand",
+          "carry": "Where it's carried",
+          "rapid": "Rapid grip change"
+        }
       }
     }
   },

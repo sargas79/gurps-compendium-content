@@ -1,0 +1,43 @@
+{{!-- Readying weapons (Martial Arts pp. 101-104). --}}
+<div class="isec" data-ma-readying>
+  <div class="grph">{{localize "GCC.MA.Readying.Title"}}
+    <span class="sub">{{localize "GCC.MA.Readying.Counts"}} {{counts.master}} / {{counts.off}}</span>
+  </div>
+  <div class="npcline" style="gap: 8px; align-items: center; flex-wrap: wrap">
+    <select data-ma-draw-skill aria-label="{{localize 'GCC.MA.Readying.Skill'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each skills as |s|}}<option value="{{s}}">{{s}}</option>{{/each}}
+    </select>
+    <select data-ma-draw-weapon aria-label="{{localize 'GCC.MA.Readying.Weapon'}}" {{#unless editable}}disabled{{/unless}}>
+      <option value=""></option>
+      {{#each weapons as |w|}}<option value="{{w.id}}">{{w.name}} ({{w.grip}})</option>{{/each}}
+    </select>
+    <select data-ma-draw-hand aria-label="{{localize 'GCC.MA.Readying.Hand'}}" {{#unless editable}}disabled{{/unless}}>
+      <option value="master">{{localize "GCC.MA.Readying.Hands.master"}}</option>
+      <option value="off">{{localize "GCC.MA.Readying.Hands.off"}}</option>
+      <option value="both">{{localize "GCC.MA.Readying.Hands.both"}}</option>
+    </select>
+    <input type="number" data-ma-draw-count value="1" min="1" step="1" style="width: 48px" aria-label="{{localize 'GCC.MA.Readying.Count'}}"
+           data-tooltip="{{localize 'GCC.MA.Readying.Count'}}" {{#unless editable}}disabled{{/unless}} />
+    <select data-ma-draw-grip aria-label="{{localize 'GCC.MA.Readying.IntoGrip'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each grips as |g|}}<option value="{{g.value}}">{{g.label}}</option>{{/each}}
+    </select>
+    <label class="icheck"><input type="checkbox" data-ma-draw-grappled {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Readying.Grappled"}}</label>
+    <label class="icheck"><input type="checkbox" data-ma-draw-upside {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Readying.UpsideDown"}}</label>
+    <label class="icheck"><input type="checkbox" data-ma-draw-noscabbard {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Readying.NoScabbard"}}</label>
+    <button type="button" class="ibtn" data-ma-draw {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Readying.Draw"}}</button>
+  </div>
+  <div class="npcline" style="gap: 8px; align-items: center; flex-wrap: wrap">
+    <select data-ma-ready-weapon aria-label="{{localize 'GCC.MA.Readying.Weapon'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each weapons as |w|}}<option value="{{w.id}}">{{w.name}} ({{w.grip}})</option>{{/each}}
+    </select>
+    <select data-ma-ready-grip aria-label="{{localize 'GCC.MA.Readying.Grip'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each grips as |g|}}<option value="{{g.value}}">{{g.label}}</option>{{/each}}
+    </select>
+    <button type="button" class="ibtn" data-ma-ready {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.MA.Readying.ReadyHint'}}">{{localize "GCC.MA.Readying.Ready"}}</button>
+    <button type="button" class="ibtn" data-ma-rapid {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.MA.Readying.RapidHint'}}">{{localize "GCC.MA.Readying.Rapid"}}</button>
+    <select data-ma-quick-source aria-label="{{localize 'GCC.MA.Readying.Quick'}}" {{#unless editable}}disabled{{/unless}}>
+      {{#each sources as |s|}}<option value="{{s.value}}">{{s.label}}</option>{{/each}}
+    </select>
+    <button type="button" class="ibtn" data-ma-quick {{#unless editable}}disabled{{/unless}}>{{localize "GCC.MA.Readying.Quick"}}</button>
+  </div>
+</div>
