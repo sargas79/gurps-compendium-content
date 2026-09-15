@@ -1,5 +1,25 @@
 # Changelog
 
+## v0.7.0 — Book text in the picker, and Martial Arts follow-ups
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.9.0**, which this release requires (add-on API 1.42.0).
+
+- **Book text in the compendium picker (#204):** in the sheet's Add pickers and
+  the character builder, an entry with book text has its name marked as a link.
+  Hovering or focusing it shows the text in a tooltip, and clicking it opens the
+  entry. Nothing is loaded until a name is hovered.
+- **Martial Arts:**
+  - chambara fighters get the spinning version of their techniques, used with the
+    system's new Wild Swing (#205);
+  - a Stop Hit's unbalanced or unready weapon parries only that foe, and only
+    once (#205);
+  - Who Draws First applies posture, grapples, moving and where the weapon is
+    carried from the readying rules (#205);
+  - partial injuries apply the worst band's -5, slow wounded legs and torsos,
+    put the torso's penalty on every DX roll, and penalize kicks with a wounded
+    leg, which never applied before (#206).
+
 ## v0.6.0 — GURPS Martial Arts
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
