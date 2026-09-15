@@ -106,6 +106,9 @@ function foundryDocument(entry, prose, bk) {
       [MODULE_ID]: {
         book: bk.slug,
         status: prose ? prose.status : NO_PROSE,
+        // Whether there is text to show, so the compendium picker can tell
+        // from a pack's index without loading any document.
+        ...(String(prose?.description ?? "").trim() ? { hasText: true } : {}),
         ...(prose?.pages ? { pages: prose.pages } : {}),
         ...(prose?.notes ? { notes: prose.notes } : {}),
       },
