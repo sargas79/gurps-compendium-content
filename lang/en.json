@@ -576,6 +576,10 @@
         "weaponBuilding": {
           "Name": "Weapon balance, custom quality, combination and hidden weapons",
           "Hint": "Balance and custom quality levels, combination-weapon accessories with their attack modes, and concealment (rigs, trick weapons, special clothing, disguises) on a weapon's item sheet, priced in the book's order. Holdout and trick-weapon buttons on the weapon's row."
+        },
+        "finerHitLocations": {
+          "Name": "New hit locations",
+          "Hint": "Ear, jaw, joints, nose, spine, and veins and arteries as called shots, the skull and face from behind, crushing blows at the vitals, the 1d sub-rolls on random hits, and the lasting results of an ear, nose, spine or joint wound for the GM to confirm."
         }
       },
       "Committed": {
@@ -963,6 +967,53 @@
         "Deploy": "Deploy",
         "DeployLabel": "Working the mechanism ({weapon})",
         "PopOut": "Pops out of another weapon"
+      },
+      "HitLocations": {
+        "Locations": {
+          "ear": "Ear",
+          "earSlice": "Ear (slicing it off)",
+          "jaw": "Jaw",
+          "nose": "Nose",
+          "spine": "Spine",
+          "armJoint": "Arm joint",
+          "legJoint": "Leg joint",
+          "handJoint": "Hand joint",
+          "footJoint": "Foot joint",
+          "armVein": "Arm vein or artery",
+          "legVein": "Leg vein or artery",
+          "neckVein": "Neck vein or artery",
+          "skullBehind": "Skull (from behind)",
+          "faceBehind": "Face (from behind)",
+          "vitalsCrushing": "Vitals (crushing)"
+        },
+        "Outcomes": {
+          "earLost": {
+            "Title": "Ear cut",
+            "Text": "{name}'s ear is cut; injury past HP/4 was lost. It counts as a major wound, without the face's -5 to knockdown."
+          },
+          "earRemoved": {
+            "Title": "Ear lost",
+            "Text": "{name}'s ear is cut off: a major wound, and a level of Appearance lost."
+          },
+          "noseBroken": {
+            "Title": "Broken nose",
+            "Text": "{name}'s nose is broken: a major wound to the face, and No Sense of Smell/Taste until it heals."
+          },
+          "noseLopped": {
+            "Title": "Nose lopped off",
+            "Text": "{name}'s nose is cut off: two levels of Appearance lost."
+          },
+          "spineCrippled": {
+            "Title": "Crippled spine",
+            "Text": "{name}'s spine is crippled: automatic knockdown and stunning, Bad Back (Severe) and Lame (Paraplegic), each with its own recovery roll."
+          },
+          "jointCrippled": {
+            "Title": "Crippled joint",
+            "Text": "{name}'s joint is crippled; recovery rolls are at -2."
+          }
+        },
+        "Confirm": "Apply as a condition",
+        "Applied": "{name}: {what}"
       }
     }
   },
