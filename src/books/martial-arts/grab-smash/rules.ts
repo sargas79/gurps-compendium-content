@@ -75,3 +75,93 @@ export function morePinArms(arms: number, foeArms: number): number {
 export function extraLegBonus(legs: number): number {
   return Math.max(0, Math.floor(Number(legs) || 2) - 2);
 }
+
+// ── worrying at a bite (p. 115) ──
+
+/** The parts worrying can only hurt so far, and what it may take off (p. 115). */
+export type BittenPart = "nose" | "ear" | "extremityTendon" | "extremity" | "limbTendon" | "other";
+
+/** Which of those parts a bite is at, from the system's location and the module's finer one. */
+export function bittenPart(hitLocation: string, addonLocation: string | null | undefined): BittenPart {
+  const addon = String(addonLocation ?? "");
+  if (/.ma-nose$/.test(addon)) return "nose";
+  if (/.ma-ear$/.test(addon)) return "ear";
+  if (/.ma-(hand|foot)Joint$/.test(addon)) return "extremityTendon";
+  if (/.ma-(arm|leg)Joint$/.test(addon)) return "limbTendon";
+  if (["hand", "foot"].includes(hitLocation)) return "extremity";
+  return "other";
+}
+
+/** The most injury worrying does to a part in one turn (p. 115): HP/4 or HP/3, and no cap elsewhere. */
+export function worryCap(part: BittenPart, hp: number): number | null {
+  const points = Math.max(1, Number(hp) || 10);
+  if (part === "nose" || part === "ear" || part === "extremityTendon") return Math.floor(points / 4);
+  if (part === "extremity" || part === "limbTendon") return Math.floor(points / 3);
+  return null;
+}
+
+/**
+ * What worrying takes off (p. 115): a nose or an ear once the injury reaches
+ * twice what cripples it, and a finger once it reaches twice what cripples the
+ * hand. Nothing larger comes off.
+ */
+export function bittenOff(part: BittenPart, totalInjury: number, hp: number): "nose" | "ear" | "finger" | null {
+  const points = Math.max(1, Number(hp) || 10);
+  const total = Math.max(0, Number(totalInjury) || 0);
+  if (part === "nose" && total >= 2 * Math.floor(points / 4)) return "nose";
+  if (part === "ear" && total >= 2 * Math.floor(points / 4)) return "ear";
+  if (part === "extremity" && total >= 2 * Math.floor(points / 3)) return "finger";
+  return null;
+}
+
+// ── bodies in close combat (pp. 119-120) ──
+
+/** How much a Born Biter's jaw and nose are easier to hit (p. 115): the feature's own bonus. */
+export function bornBiterTargeting(levels: number): number {
+  return Math.max(0, Math.min(3, Math.floor(Number(levels) || 0)));
+}
+
+/** A Horizontal fighter's lines against an upright foe of much the same size (p. 119). */
+export function horizontalHit(location: string, smDifference: number): number {
+  if (Math.abs(Number(smDifference) || 0) > 1) return 0;
+  if (["foot", "leg", "groin"].includes(location)) return 1;
+  if (["neck", "face", "eye", "skull"].includes(location)) return -1;
+  return 0;
+}
+
+/** What Horizontal does to damage per die (p. 119): -1 kicking without claws, +1 with a head butt. */
+export function horizontalDamagePerDie(kind: string, claws: boolean): number {
+  if (kind === "headButt") return 1;
+  if (["kick", "aerialKick"].includes(kind) && !claws) return -1;
+  return 0;
+}
+
+/** The attacks a Horizontal body cannot make at all (p. 119). */
+export const HORIZONTAL_PROHIBITED: readonly string[] = [
+  "backbreaker", "elbowDrop", "elbowStrike", "kneeDrop", "kneeStrike", "piledriver", "twoHandedPunch", "uppercut", "flyingTackle",
+];
+
+/** Whether Horizontal rules an attack out, by the attack's name (p. 119). */
+export function horizontalRefuses(name: string): boolean {
+  const n = String(name ?? "").toLowerCase();
+  return /backbreaker|elbow drop|elbow strike|knee drop|knee strike|piledriver|two-handed punch|uppercut|flying tackle/.test(n);
+}
+
+/** What close combat does to a fighter whose legs are gone (p. 120): -3 crippled, -6 missing, and the foe's +3. */
+export function lameCloseCombat(kind: "crippledLegs" | "missingLegs" | "legless" | null, standing: boolean): { rolls: number; foeKnockdown: number } {
+  if (!kind || !standing) return { rolls: 0, foeKnockdown: 0 };
+  if (kind === "crippledLegs") return { rolls: -3, foeKnockdown: 3 };
+  return { rolls: -6, foeKnockdown: 3 };
+}
+
+/** The grappling techniques that need fingers, which No Fine Manipulators rules out (p. 120). */
+export function needsFingers(name: string): boolean {
+  return /strangl|chok(e|ing)|eye-poke|finger lock|lethal strike|pole-vault kick|grab(bing)? weapon/i.test(String(name ?? ""));
+}
+
+/** The grappling techniques No Fine Manipulators makes clumsy (p. 120): -4 unless legs or teeth do the work. */
+export function clumsyGrappling(name: string): boolean {
+  const n = String(name ?? "").toLowerCase();
+  if (/scissors hold|leg grapple|leg lock|teeth|bite/.test(n)) return false;
+  return /arm lock|backbreaker|choke hold|head lock|piledriver|judo throw|wrist lock|grapple/.test(n);
+}

@@ -79,8 +79,9 @@ export function locationAvailable(definition: LocationDefinition, removals: Read
  * - Torso: a 1 is the vitals for piercing and crushing kinds, or the spine for
  *   cutting from behind.
  */
-export function refineRandomHit(location: Parent, damageType: string | null, arc: Arc | null, die: number): { key: string | null; basic: Parent | null } {
-  if (die !== 1) return { key: null, basic: null };
+export function refineRandomHit(location: Parent, damageType: string | null, arc: Arc | null, die: number, noseOn = 1): { key: string | null; basic: Parent | null } {
+  // A Born Biter's jaw leaves his nose in the way: a face hit finds it on 1-2 (p. 115).
+  if (die !== 1 && !(location === "face" && die <= Math.max(1, noseOn))) return { key: null, basic: null };
   const piercing = damageType !== null && (PIERCING as readonly string[]).includes(damageType);
   const crushing = damageType === "cr";
   switch (location) {

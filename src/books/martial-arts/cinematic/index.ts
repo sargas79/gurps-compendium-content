@@ -72,6 +72,14 @@ const fromUuid = (uuid: unknown) => (globalThis as any).fromUuidSync?.(String(uu
 const isActiveGm = () => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
 const gmIds = () => [...((game as any).users ?? [])].filter((u: any) => u.isGM).map((u: any) => u.id);
 
+/** Offers the GM the Fright Check for a gruesome wound, while Fear is on (p. 130). */
+let fearCard: ((victim: any) => void) | null = null;
+
+/** Offers a Fright Check for a wound another module made gruesome, such as a part bitten off. */
+export function offerFrightCheck(victim: any): void {
+  fearCard?.(victim);
+}
+
 /** Registers every rule's options, cards, tools and hooks. */
 export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
   const state = <T>(actor: any, key: string) => api.combat.getCombatState(actor, MODULE_ID, key) as T | undefined;
@@ -227,6 +235,10 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
   });
 
   // ── fear (p. 130) ──
+  fearCard = (victim: any) => {
+    if (!on.fear() || !isActiveGm() || !victim) return;
+    void card({ title: L("Fear.Title"), text: F("Fear.Text", { name: String(victim.name ?? "") }), buttons: [{ action: "fright", label: L("Fear.Roll") }], actorUuid: String(victim.uuid) }, victim, true);
+  };
   Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
     const victim = context?.actor;
     const result = context?.result;
@@ -238,7 +250,7 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
     const dismembered = ["arm", "leg", "hand", "foot"].includes(location) && threshold !== null && raw > 2 * threshold;
     const gruesome = dismembered || (result.crippled && (location === "eye" || /\.ma-(ear|nose)$/.test(addon)));
     if (!gruesome) return;
-    void card({ title: L("Fear.Title"), text: F("Fear.Text", { name: String(victim.name ?? "") }), buttons: [{ action: "fright", label: L("Fear.Roll") }], actorUuid: String(victim.uuid) }, victim, true);
+    fearCard?.(victim);
   });
 
   api.sheets.registerSheetSection({

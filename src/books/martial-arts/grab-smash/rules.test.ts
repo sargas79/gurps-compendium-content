@@ -54,3 +54,47 @@ describe("teeth and bodies", () => {
     expect(extraLegBonus(4)).toBe(2);
   });
 });
+
+describe("worrying at a bite (p. 115)", () => {
+  it("names the part, caps the injury and takes parts off", async () => {
+    const { bittenPart, worryCap, bittenOff } = await import("./rules.js");
+    expect(bittenPart("face", "gurps-compendium-content.ma-nose")).toBe("nose");
+    expect(bittenPart("hand", null)).toBe("extremity");
+    expect(bittenPart("arm", "gurps-compendium-content.ma-armJoint")).toBe("limbTendon");
+    expect(bittenPart("torso", null)).toBe("other");
+    expect([worryCap("nose", 12), worryCap("extremity", 12), worryCap("other", 12)]).toEqual([3, 4, null]);
+    expect(bittenOff("nose", 5, 12)).toBeNull();
+    expect(bittenOff("nose", 6, 12)).toBe("nose");
+    expect(bittenOff("ear", 6, 12)).toBe("ear");
+    expect(bittenOff("extremity", 8, 12)).toBe("finger");
+    expect(bittenOff("other", 100, 12)).toBeNull();
+  });
+});
+
+describe("bodies in close combat (pp. 115, 119-120)", () => {
+  it("makes a Born Biter's jaw and nose easier to find", async () => {
+    const { bornBiterTargeting } = await import("./rules.js");
+    expect([bornBiterTargeting(0), bornBiterTargeting(3), bornBiterTargeting(5)]).toEqual([0, 3, 3]);
+  });
+
+  it("gives a Horizontal fighter the low line and costs him the high one", async () => {
+    const { horizontalHit, horizontalDamagePerDie, horizontalRefuses } = await import("./rules.js");
+    expect([horizontalHit("leg", 0), horizontalHit("skull", 1), horizontalHit("torso", 0), horizontalHit("leg", 2)]).toEqual([1, -1, 0, 0]);
+    expect([horizontalDamagePerDie("kick", false), horizontalDamagePerDie("kick", true), horizontalDamagePerDie("headButt", false)]).toEqual([-1, 0, 1]);
+    expect([horizontalRefuses("Piledriver"), horizontalRefuses("Elbow Strike"), horizontalRefuses("Punch")]).toEqual([true, true, false]);
+  });
+
+  it("weighs crippled and missing legs in close combat", async () => {
+    const { lameCloseCombat } = await import("./rules.js");
+    expect(lameCloseCombat("crippledLegs", true)).toEqual({ rolls: -3, foeKnockdown: 3 });
+    expect(lameCloseCombat("missingLegs", true)).toEqual({ rolls: -6, foeKnockdown: 3 });
+    expect(lameCloseCombat("missingLegs", false)).toEqual({ rolls: 0, foeKnockdown: 0 });
+    expect(lameCloseCombat(null, true)).toEqual({ rolls: 0, foeKnockdown: 0 });
+  });
+
+  it("tells the grapples that need fingers from the ones that are merely clumsy", async () => {
+    const { needsFingers, clumsyGrappling } = await import("./rules.js");
+    expect([needsFingers("Strangle"), needsFingers("Finger Lock"), needsFingers("Arm Lock")]).toEqual([true, true, false]);
+    expect([clumsyGrappling("Arm Lock"), clumsyGrappling("Scissors Hold"), clumsyGrappling("Wrench Limb (Teeth)"), clumsyGrappling("Punch")]).toEqual([true, false, false, false]);
+  });
+});

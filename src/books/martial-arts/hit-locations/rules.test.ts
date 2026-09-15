@@ -73,3 +73,12 @@ describe("what a wound does", () => {
     expect(woundOutcome("spine", { raw: 12, maxHp: 12, damageType: "cr", crippled: false })).toBeNull();
   });
 });
+
+describe("a Born Biter's nose (p. 115)", () => {
+  it("takes a face hit on a 2 as well, and leaves other locations alone", async () => {
+    const { refineRandomHit } = await import("./rules.js");
+    expect(refineRandomHit("face", "cr", "front", 2, 2).key).toBe("nose");
+    expect(refineRandomHit("face", "cr", "front", 2, 1).key).toBeNull();
+    expect(refineRandomHit("torso", "cr", "front", 2, 2).key).toBeNull();
+  });
+});
