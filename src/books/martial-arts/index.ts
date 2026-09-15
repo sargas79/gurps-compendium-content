@@ -10,7 +10,7 @@
  * (pp. 49, 100-101), readying weapons (pp. 101-104), and the melee attack
  * options: grips, Pummeling, Tip Slash and Telegraphic Attack (pp. 109-113),
  * styles and training (pp. 49, 141-148, 232-233), and building weapons
- * (pp. 214, 216-218, 221).
+ * (pp. 214, 216-218, 221), and new hit locations (p. 137).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -24,6 +24,7 @@ import { initReadying, readyReadying } from "./readying/index.js";
 import { readyMeleeOptions } from "./grips/index.js";
 import { initStyles, readyStyles } from "./styles/index.js";
 import { initWeapons, readyWeapons } from "./weapons/index.js";
+import { readyHitLocations } from "./hit-locations/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -41,6 +42,7 @@ const RULES = [
   { key: "styles", pages: "pp. 49, 141-148", implemented: true },
   { key: "training", pages: "pp. 147, 232-233", implemented: true },
   { key: "weaponBuilding", pages: "pp. 214, 216-218, 221", implemented: true },
+  { key: "finerHitLocations", pages: "p. 137", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -74,6 +76,7 @@ function ready(api: GWorldApi): void {
   readyMeleeOptions(api, () => api.registry.isRuleOn(ruleKey("meleeOptions")));
   readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
+  readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
 }
 
 function init(): void {
