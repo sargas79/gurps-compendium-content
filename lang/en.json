@@ -600,6 +600,10 @@
         "targetedAttacks": {
           "Name": "Targeted Attacks and Combinations",
           "Hint": "Techniques named TA (Skill Attack/Target) and Combination (A + B + C) work out their levels, ceilings and costs; an attack aimed where a TA aims takes its bought levels; Combinations run from the Combat tab; combat techniques also default to Art and Sport skills."
+        },
+        "extraEffort": {
+          "Name": "Extra effort in combat",
+          "Hint": "Giant Step, Great Lunge, Heroic Charge and Rapid Recovery; one offensive and one defensive extra-effort option a turn; Flurry of Blows a point of FP per Rapid Strike attack, halved again; Mighty Blows on Attack only; a critical failure on a new option costs 1 HP."
         }
       },
       "Committed": {
@@ -1097,6 +1101,26 @@
         "ComboDefended": "Combination: an attack missed or was defended",
         "Predictable": "Predictable",
         "SetupFailed": "{name} ends: its setup failed"
+      },
+      "Effort": {
+        "GiantStep": "Giant Step",
+        "GiantStepNote": "Giant Step: an extra step before or after the attack",
+        "GreatLunge": "Great Lunge",
+        "GreatLungeNote": "Great Lunge: +1 reach, swings -2 damage (or -1 per die), defenses kept",
+        "HeroicCharge": "Heroic Charge",
+        "HeroicChargeNote": "Heroic Charge: no Move and Attack penalty or cap; its defense limits still apply",
+        "Flurry": "Flurry of Blows (Rapid Strike)",
+        "RapidRecovery": "Rapid Recovery (1 FP)",
+        "Recovered": "{weapon} can parry again this turn",
+        "Critical": "{option}: critical failure",
+        "CriticalLeg": "{option}: critical failure, hurting the leg",
+        "Refusals": {
+          "oneOffense": "Only one offensive extra-effort option a turn",
+          "oneDefense": "Only one defensive extra-effort option a turn",
+          "defensiveGrip": "No Great Lunge from a Defensive Grip",
+          "mightyAttackOnly": "Mighty Blows only on an Attack maneuver"
+        },
+        "FlurryWithoutRapidStrike": "Flurry of Blows needs a Rapid Strike: no FP spent"
       }
     }
   },
