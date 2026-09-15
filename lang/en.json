@@ -1390,7 +1390,9 @@
           "ma-sit-on-him": "Sit on him",
           "ma-shove-around": "Shove around",
           "ma-throw-from-lock": "Throw from the lock",
-          "ma-sprawl": "Sprawl"
+          "ma-sprawl": "Sprawl",
+          "ma-bear-hug": "Bear hug",
+          "ma-switch-limbs": "Switch arms for legs"
         },
         "ShiftTo": "Shift the grip to",
         "ShiftLabel": "{name} shifts grip to the {to}",
@@ -1410,7 +1412,34 @@
         "HandsHolding": "Both hands are holding",
         "InClose": "In close combat",
         "InCloseHint": "A long weapon in close combat: {skill} skill, {parry} Parry, less swing damage",
-        "Haft": "Haft (close combat)"
+        "Haft": "Haft (close combat)",
+        "BearHugAsk": "Squeeze {foe}: crush the breath out of him for fatigue, or squeeze for injury?",
+        "BearHugFatigue": "Fatigue",
+        "BearHugInjury": "Injury",
+        "BearHugLabel": "{name} squeezes {foe} (bear hug)",
+        "BearHugDamage": "Bear hug on {foe}",
+        "BearHugHeld": "{foe} holds out against the squeeze.",
+        "BearHugFp": "{foe} loses {fp} FP to the squeeze.",
+        "BearHug": {
+          "torso": "A bear hug squeezes a torso, not another body part",
+          "hands": "A bear hug takes two arms, or the legs",
+          "noConstriction": "No Constriction Attack",
+          "legs": "Squeezing with the legs",
+          "size": "Your Size Modifier must exceed his, or he must weigh no more than your Basic Lift x4 for fatigue"
+        },
+        "SwitchedToLegs": "The grapple is held with the legs now; the hands are free.",
+        "SwitchedToArms": "The grapple is held with the arms now.",
+        "ActionManeuver": "An action after a grapple takes an Attack, All-Out Attack or Committed Attack maneuver",
+        "ActionUsed": "That is this turn's action after a grapple; All-Out Attack (Double) allows two",
+        "OneHandHalf": "One hand: half ST",
+        "OneHanded": "One-handed lock or hold",
+        "OneHandedHand": "With one hand (-2)",
+        "OneHandedCrook": "With the crook of an arm (-4)",
+        "OneHandedNote": "Damage rolls and throws from the lock are at -4, and ST-based effects use half ST",
+        "ChokeUp": "Choke up (Ready)",
+        "ChokedUp": "The {weapon} is choked up around the head.",
+        "ChokedDown": "The {weapon} is held normally again.",
+        "HaftOnlyHint": "In close combat this weapon only does quarterstaff damage with its haft until a Ready chokes it up"
       },
       "GrabSmash": {
         "FromInside": "Attacking from inside a grapple",
