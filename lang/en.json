@@ -481,6 +481,10 @@
         "powerstones": {
           "Name": "Powerstones",
           "Hint": "A stone's capacity prices it, it recharges by the mana where it is, and a carried stone can pay for a spell in place of fatigue: a One-College stone for its college, a dedicated or exclusive one for its item's spells."
+        },
+        "spellAttacks": {
+          "Name": "Jets, breaths and rains",
+          "Hint": "A Regular spell whose record declares an attack rolls it as it is cast and each turn it lasts, dodged or blocked but not parried; an Area spell's damage falls each second on everyone in the area, halved for less than a whole second."
         }
       },
       "Powerstone": {
@@ -511,6 +515,20 @@
         "RechargedAll": "Powerstones regained {points} energy (characters with stones: {characters})",
         "Fill": "Fill to capacity",
         "NotCarried": "Only a character's stones recharge"
+      },
+      "SpellAttack": {
+        "Jet": "Jet, breath or stare",
+        "Rain": "Rain",
+        "Attack": "Attack",
+        "AttackHint": "This turn's attack: rolled against the spell's Innate Attack skill, dodged or blocked but not parried",
+        "RainApply": "A second of it",
+        "RainHint": "Rolls the spell's damage for the creatures in the area to take through the damage card, with armor protecting as usual. No attack roll and no defense.",
+        "RainTitle": "{spell}: a second of it",
+        "RainLabel": "{spell}: a second",
+        "RainDamage": "Damage to each",
+        "RainPartial": "Less than a whole second in the area (half)",
+        "BadFormula": "\"{formula}\" is not a damage roll",
+        "NoDamage": "{spell} does what its description says; roll it by hand"
       }
     }
   },
