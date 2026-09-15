@@ -1,0 +1,43 @@
+{{!-- Building a weapon (Martial Arts pp. 214, 216-218, 221): balance and custom quality, accessories, and concealment. --}}
+<div class="isub" data-ma-weapon-build>
+  <div class="isub-head">{{localize "GCC.MA.Weapons.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.MA.Weapons.BalanceHint'}}">{{localize "GCC.MA.Weapons.BalanceLabel"}}
+      <select data-ma-build="balance" {{#unless editable}}disabled{{/unless}}>
+        {{#each balances as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{localize 'GCC.MA.Weapons.PresentationHint'}}">{{localize "GCC.MA.Weapons.Presentation"}}
+      <input type="number" data-ma-build="presentation" value="{{build.presentation}}" min="0" step="100" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label>{{localize "GCC.MA.Weapons.SilverLabel"}}
+      <select data-ma-build="silver" {{#unless editable}}disabled{{/unless}}>
+        {{#each silvers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  <div class="ichecks" data-tooltip="{{localize 'GCC.MA.Weapons.AccessoriesHint'}}">
+    {{#each accessories as |a|}}
+      <label class="icheck"><input type="checkbox" data-ma-build="accessories" value="{{a.value}}" {{#if a.checked}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{a.label}}</label>
+    {{/each}}
+  </div>
+  <div class="ifields">
+    <label>{{localize "GCC.MA.Weapons.RigLabel"}}
+      <select data-ma-build="rig" {{#unless editable}}disabled{{/unless}}>
+        {{#each rigs as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label>{{localize "GCC.MA.Weapons.ClothingLabel"}}
+      <select data-ma-build="clothing" {{#unless editable}}disabled{{/unless}}>
+        {{#each clothings as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label>{{localize "GCC.MA.Weapons.DisguiseLabel"}}
+      <select data-ma-build="disguise" {{#unless editable}}disabled{{/unless}}>
+        {{#each disguises as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label class="icheck" data-tooltip="{{localize 'GCC.MA.Weapons.TrickHint'}}"><input type="checkbox" data-ma-build="trick" {{#if build.concealment.trick}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.MA.Weapons.Trick"}}</label>
+  </div>
+  <p class="ihint">{{holdout}}</p>
+</div>

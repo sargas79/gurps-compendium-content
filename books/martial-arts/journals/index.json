@@ -2558,6 +2558,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA214",
       "reference": "Martial Arts p. 214",
+      "rule": "gurps-compendium-content.weaponBuilding",
       "file": "combination-weapons.md",
       "status": "reviewed"
     },
@@ -2577,6 +2578,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA218",
       "reference": "Martial Arts p. 218",
+      "rule": "gurps-compendium-content.weaponBuilding",
       "file": "hidden-weapons.md",
       "status": "reviewed"
     },
@@ -2595,6 +2597,7 @@
       "chapter": "Weapons and Equipment",
       "pages": "MA221",
       "reference": "Martial Arts p. 221",
+      "rule": "gurps-compendium-content.weaponBuilding",
       "file": "designing-the-perfect-weapon.md",
       "status": "reviewed"
     },
