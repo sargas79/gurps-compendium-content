@@ -572,6 +572,10 @@
         "training": {
           "Name": "Training equipment and The Training Sequence",
           "Hint": "A character's training equipment adds to Teaching rolls, and a GM tool runs The Training Sequence for a master and students."
+        },
+        "weaponBuilding": {
+          "Name": "Weapon balance, custom quality, combination and hidden weapons",
+          "Hint": "Balance and custom quality levels, combination-weapon accessories with their attack modes, and concealment (rigs, trick weapons, special clothing, disguises) on a weapon's item sheet, priced in the book's order. Holdout and trick-weapon buttons on the weapon's row."
         }
       },
       "Committed": {
@@ -887,6 +891,78 @@
           "Allowance": "may spend up to {points} earned points on what was taught",
           "AllowanceFree": "may spend up to {points} earned points on what was taught, and gains {free} free point"
         }
+      },
+      "Weapons": {
+        "Title": "Weapon build",
+        "BalanceLabel": "Balance",
+        "BalanceHint": "Cheap: -60% and -1 to skill (or Acc for missile weapons). Fine: +400% and +1 (not sticks or improvised weapons).",
+        "Balance": {
+          "cheap": "Cheap balance",
+          "good": "Good balance",
+          "fine": "Fine balance",
+          "none": "—"
+        },
+        "Presentation": "Presentation (%)",
+        "PresentationHint": "Presentation quality: +400% or more.",
+        "SilverLabel": "Silver",
+        "Silver": {
+          "solid": "Solid silver (+1,900%, breaks as cheap)",
+          "edged": "Silver-edged (+200%)",
+          "none": "—"
+        },
+        "AccessoriesHint": "Combination-weapon accessories: each adds its cost, weight and an attack mode; +1 ST per lb. (per 2 lbs. two-handed); a kusari makes the weapon two-handed.",
+        "Accessories": {
+          "hammer": "Hammer ($25, 0.5 lb.)",
+          "hook": "Hook ($25)",
+          "kusari2": "Two-yard kusari ($40, 2.5 lbs.)",
+          "kusari4": "Four-yard kusari ($80, 5 lbs.)",
+          "pick": "Pick ($50, 0.5 lb.)",
+          "sickle": "Sickle ($30, 0.5 lb.)",
+          "spear": "Spearhead ($30, 0.5 lb.)"
+        },
+        "Modes": {
+          "hammer": "Hammer",
+          "hook": "Hook",
+          "kusari2": "Kusari (2 yards)",
+          "kusari4": "Kusari (4 yards)",
+          "pick": "Pick",
+          "sickleCut": "Sickle (cutting)",
+          "sickleImp": "Sickle (impaling)",
+          "spear": "Spearhead"
+        },
+        "RigLabel": "Concealed-carry rig",
+        "Rig": {
+          "1": "+1 ($50)",
+          "2": "+2 ($200)",
+          "none": "—"
+        },
+        "ClothingLabel": "Special clothing",
+        "Clothing": {
+          "1": "+1 (cost of living)",
+          "2": "+2 (4× cost of living)",
+          "none": "—"
+        },
+        "DisguiseLabel": "Disguised",
+        "Disguise": {
+          "harmless": "Looks harmless (×2 cost)",
+          "cap": "Capped pole weapon (+$30, or $150 presentation; +0.5 lb.)",
+          "sheathed": "Sheathed inside an item (×3 cost, a grade lower)",
+          "none": "—"
+        },
+        "Trick": "Trick weapon (+50%, +2 Holdout)",
+        "TrickHint": "Deploying it takes a DX roll. Strapped on: -1 to skill in melee; a missile weapon has Acc 0 and gets no Aim bonus.",
+        "TrickNoAim": "Trick weapon: Acc 0, no Aim",
+        "Combination": "Combination weapon",
+        "HoldoutLine": "Holdout: {penalty} for the weapon, +{bonus} from rigs, trick mechanism and clothing.",
+        "DisguisedSearch": "Disguised: finding it takes a Search roll, not Holdout.",
+        "Holdout": "Holdout",
+        "HoldoutLabel": "Holdout ({weapon})",
+        "HoldoutPenalty": "Weapon size",
+        "HoldoutBonus": "Concealment",
+        "SizeModifier": "Size Modifier",
+        "Deploy": "Deploy",
+        "DeployLabel": "Working the mechanism ({weapon})",
+        "PopOut": "Pops out of another weapon"
       }
     }
   },
