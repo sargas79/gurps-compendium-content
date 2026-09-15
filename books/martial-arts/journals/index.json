@@ -34,6 +34,7 @@
       "chapter": "Combat",
       "pages": "MA97-98",
       "reference": "Martial Arts pp. 97-98",
+      "rule": "gurps-compendium-content.allOutAttackOptions",
       "file": "all-out-attack.md",
       "status": "reviewed"
     },
@@ -52,6 +53,7 @@
       "chapter": "Combat",
       "pages": "MA98",
       "reference": "Martial Arts p. 98",
+      "rule": "gurps-compendium-content.postures",
       "file": "change-posture.md",
       "status": "reviewed"
     },
@@ -61,6 +63,7 @@
       "chapter": "Combat",
       "pages": "MA98",
       "reference": "Martial Arts p. 98",
+      "rule": "gurps-compendium-content.acrobatics",
       "file": "acrobatic-stand.md",
       "status": "reviewed"
     },
@@ -70,6 +73,7 @@
       "chapter": "Combat",
       "pages": "MA98-99",
       "reference": "Martial Arts pp. 98-99",
+      "rule": "gurps-compendium-content.postures",
       "file": "postures-hit-locations-and-techniques.md",
       "status": "reviewed"
     },
@@ -108,7 +112,7 @@
       "chapter": "Combat",
       "pages": "MA100-101",
       "reference": "Martial Arts pp. 100-101",
-      "rule": "feint",
+      "rule": "gurps-compendium-content.feints",
       "file": "feint.md",
       "status": "reviewed"
     },
@@ -118,7 +122,7 @@
       "chapter": "Combat",
       "pages": "MA101",
       "reference": "Martial Arts p. 101",
-      "rule": "feint",
+      "rule": "gurps-compendium-content.feints",
       "file": "feints-using-non-combat-skills.md",
       "status": "reviewed"
     },
@@ -128,6 +132,7 @@
       "chapter": "Combat",
       "pages": "MA101-102",
       "reference": "Martial Arts pp. 101-102",
+      "rule": "gurps-compendium-content.readying",
       "file": "ready.md",
       "status": "reviewed"
     },
@@ -137,6 +142,7 @@
       "chapter": "Combat",
       "pages": "MA103",
       "reference": "Martial Arts p. 103",
+      "rule": "gurps-compendium-content.readying",
       "file": "multiple-fast-draw.md",
       "status": "reviewed"
     },
@@ -146,6 +152,7 @@
       "chapter": "Combat",
       "pages": "MA103-104",
       "reference": "Martial Arts pp. 103-104",
+      "rule": "gurps-compendium-content.readying",
       "file": "fast-draw-from-odd-positions.md",
       "status": "reviewed"
     },
@@ -165,6 +172,7 @@
       "chapter": "Combat",
       "pages": "MA104",
       "reference": "Martial Arts p. 104",
+      "rule": "gurps-compendium-content.readying",
       "file": "quick-readying-nearby-weapons.md",
       "status": "reviewed"
     },
@@ -192,7 +200,7 @@
       "chapter": "Combat",
       "pages": "MA105-107",
       "reference": "Martial Arts pp. 105-107",
-      "rule": "evading",
+      "rule": "gurps-compendium-content.acrobatics",
       "file": "acrobatic-movement.md",
       "status": "reviewed"
     },
@@ -212,6 +220,7 @@
       "chapter": "Combat",
       "pages": "MA107",
       "reference": "Martial Arts p. 107",
+      "rule": "gurps-compendium-content.moveAndAttack",
       "file": "move-and-attack.md",
       "status": "reviewed"
     },
@@ -508,7 +517,7 @@
       "chapter": "Combat",
       "pages": "MA120",
       "reference": "Martial Arts p. 120",
-      "rule": "gurps-compendium-content.rangedOptions",
+      "rule": "gurps-compendium-content.cinematicRangedOptions",
       "file": "rapid-fire-with-thrown-weapons.md",
       "status": "reviewed"
     },
@@ -616,7 +625,7 @@
       "chapter": "Combat",
       "pages": "MA123-124",
       "reference": "Martial Arts pp. 123-124",
-      "rule": "retreat",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "retreat-options.md",
       "status": "reviewed"
     },
@@ -665,7 +674,7 @@
       "chapter": "Combat",
       "pages": "MA126-128",
       "reference": "Martial Arts pp. 126-128",
-      "rule": "rapidStrike",
+      "rule": "gurps-compendium-content.multipleAttacks",
       "file": "multiple-attacks.md",
       "status": "reviewed"
     },
@@ -704,7 +713,7 @@
       "chapter": "Combat",
       "pages": "MA127",
       "reference": "Martial Arts p. 127",
-      "rule": "rapidStrike",
+      "rule": "gurps-compendium-content.cinematicRapidStrike",
       "file": "what-is-a-rapid-strike.md",
       "status": "reviewed"
     },
