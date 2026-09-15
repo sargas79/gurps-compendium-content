@@ -13,8 +13,20 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { offerFrightCheck } from "../cinematic/index.js";
+import { attackKind } from "../posture.js";
 import {
   GRAPPLED_ATTACK,
+  bittenOff,
+  bittenPart,
+  bornBiterTargeting,
+  clumsyGrappling,
+  horizontalDamagePerDie,
+  horizontalHit,
+  horizontalRefuses,
+  lameCloseCombat,
+  needsFingers,
+  worryCap,
   PAINS,
   biteAllows,
   biteCanPin,
@@ -39,6 +51,12 @@ const SMASH = "ma-smash";
 const BITE_HOLD = "ma-bite-hold";
 const BITE_PENDING = "ma-bite-pending";
 const BITE_GRAPPLE = "ma-bite-grapple";
+/** What worrying has done to each part so far, by the grappled location. */
+const WORRIED = "ma-worried";
+/** The finer location a bite holds, beside the grapple's own. */
+const BITE_LOCATION = "ma-bite-location";
+/** The shock a fighter is feeling, for a break free attempted at once (p. 116). */
+const SHOCK = "ma-shock";
 const PAIN = "ma-cause-pain";
 const BITE_MODE = `${MODULE_ID}.ma-bite`;
 
@@ -50,6 +68,10 @@ const legsOf = (actor: any) => 2 + traitLevels(actor, /^extra legs?\b/i);
 const hasTeeth = (actor: any) => traitLevels(actor, /^(sharp teeth|teeth|fangs|sharp beak|weak bite)\b/i) > 0;
 const bornBiter = (actor: any) => Math.min(3, traitLevels(actor, /^born biter\b/i));
 const smOf = (actor: any) => Number(actor?.system?.sm) || 0;
+const isActiveGm = () => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
+const fromUuid = (uuid: unknown) => (globalThis as any).fromUuidSync?.(String(uuid ?? "")) ?? null;
+/** What marks a worrying bite's damage, so the card's result can be followed (API 1.43.0). */
+const WORRY_SOURCE = "ma-worry";
 
 /** Registers both switches' hooks, the bite, and the grapple actions. */
 export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: () => boolean): void {
@@ -86,7 +108,7 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
         return;
       }
       if (context.options?.[`${MODULE_ID}.${BITE_HOLD}`] && foe) {
-        void api.combat.setCombatState(actor, MODULE_ID, BITE_PENDING, { foe: String(foe.uuid), hitLocation: context.calledShot?.hitLocation ?? "torso", lead }, "turn");
+        void api.combat.setCombatState(actor, MODULE_ID, BITE_PENDING, { foe: String(foe.uuid), hitLocation: context.calledShot?.hitLocation ?? "torso", addonLocation: context.calledShot?.addonLocation ?? null, lead }, "turn");
       }
     }
   });
@@ -110,23 +132,37 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
     run: async ({ actor, foe }) => {
       if (!foe) return;
       const lying = String(foe.system?.posture ?? "standing") !== "standing";
+      // A twofer: the grappled foe goes into another one, who defends (p. 114).
+      const other = [...((game as any).user?.targets ?? [])].map((t: any) => t?.actor).find((a: any) => a && a.uuid !== foe.uuid && a.uuid !== actor.uuid) ?? null;
       const locations = kissTheWallLocations(lying);
       const options = locations.map((loc) => `<option value="${loc}">${game.i18n.localize(`GWORLD.HitLocation.${loc}`)}</option>`).join("");
       const asked = await foundry.applications.api.DialogV2.prompt({
         window: { title: L("KissTheWall") },
         content: `<div class="gworld" style="display:flex;flex-direction:column;gap:6px">
           <label style="display:flex;justify-content:space-between;gap:8px"><span>${L("Location")}</span><select name="loc">${options}</select></label>
-          <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="hard" checked> <span>${L("HardSurface")}</span></label></div>`,
+          <label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="hard" checked> <span>${L("HardSurface")}</span></label>
+          ${other ? `<label style="display:flex;gap:8px;align-items:center"><input type="checkbox" name="twofer"> <span>${F("Twofer", { foe: String(other.name ?? "") })}</span></label>
+          <label style="display:flex;justify-content:space-between;gap:8px"><span>${L("TwoferLocation")}</span><select name="other">${options}</select></label>` : ""}</div>`,
         ok: {
           label: L("KissTheWall"),
           callback: (_e: Event, button: HTMLElement) => {
             const form = button.closest<HTMLElement>(".application");
-            return { loc: form?.querySelector<HTMLSelectElement>('[name="loc"]')?.value ?? locations[0], hard: form?.querySelector<HTMLInputElement>('[name="hard"]')?.checked === true };
+            return {
+              loc: form?.querySelector<HTMLSelectElement>('[name="loc"]')?.value ?? locations[0],
+              hard: form?.querySelector<HTMLInputElement>('[name="hard"]')?.checked === true,
+              twofer: form?.querySelector<HTMLInputElement>('[name="twofer"]')?.checked === true,
+              other: form?.querySelector<HTMLSelectElement>('[name="other"]')?.value ?? locations[0],
+            };
           },
         },
         rejectClose: false,
-      }) as { loc: string; hard: boolean } | null;
+      }) as { loc: string; hard: boolean; twofer: boolean; other: string } | null;
       if (!asked) return;
+      // Into another fighter: the worst of the two hit location penalties, and
+      // his own defense, with the body counting as a weapon of the first victim's ST (p. 114).
+      const twofer = asked.twofer && other ? other : null;
+      const penaltyOf = (loc: string) => Number((api.rules as any).HIT_LOCATIONS?.[loc]?.toHit) || 0;
+      if (twofer) asked.loc = penaltyOf(asked.other) < penaltyOf(asked.loc) ? asked.other : asked.loc;
       const skill = skillOf(actor, ["DX", "Brawling", "Sumo Wrestling", "Wrestling"]);
       if (!skill) return;
       const penalty = Number((api.rules as any).HIT_LOCATIONS?.[asked.loc]?.toHit) || 0;
@@ -152,7 +188,85 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
       }
       if (!outcome.success) return;
       await api.roll.damage({ actor, label: F("KissDamage", { foe: String(foe.name ?? "") }), formula: thrust, damageType: "cr", ...(bonus ? { modifiers: [{ label: L("KissTheWall"), value: bonus }] } : {}), calledShot: { hitLocation: asked.loc } } as any);
+      if (!twofer) return;
+      // The second fighter defends, and takes the same blow if he fails; the
+      // hard-surface bonus belongs to skulls knocked together only.
+      const weight = Number(api.actors.attribute(foe, "ST")) || 10;
+      await ChatMessage.implementation.create({
+        speaker: ChatMessage.implementation.getSpeaker({ actor }),
+        content: `<div class="gworld gworld-chat"><div class="gc-result">${foundry.utils.escapeHTML(F("TwoferNote", { victim: String(twofer.name ?? ""), weight }))}</div></div>`,
+      });
+      await api.roll.damage({ actor, label: F("KissDamage", { foe: String(twofer.name ?? "") }), formula: thrust, damageType: "cr", ...(bonus ? { modifiers: [{ label: L("KissTheWall"), value: bonus }] } : {}), calledShot: { hitLocation: asked.loc } } as any);
     },
+  });
+
+  // ── worrying (p. 115) ──
+  const hpOf = (actor: any) => Number(actor?.system?.hp?.max) || 10;
+  api.combat.registerGrappleAction({
+    module: MODULE_ID,
+    key: "ma-worry",
+    label: L("Worry"),
+    applies: (grapple, actor) => bodies() && grapple.holding && api.combat.getCombatState(actor, MODULE_ID, BITE_GRAPPLE) !== undefined,
+    run: async ({ actor, foe, grapple }) => {
+      if (!foe) return;
+      const rows = (api.actors.derived(actor)?.melee ?? []) as any[];
+      const bite = rows.find((row) => row.derivedMode === BITE_MODE || /^bite\b/i.test(String(row.name ?? "")));
+      if (!bite?.damage) return void ui.notifications?.warn(L("WorryNoBite"));
+      const location = String(grapple.hitLocation ?? "torso");
+      const addon = String(api.combat.getCombatState(actor, MODULE_ID, BITE_LOCATION) ?? "") || null;
+      const part = bittenPart(location, addon);
+      const cap = worryCap(part, hpOf(foe));
+      // It always hits: only the damage is rolled (p. 115).
+      await api.roll.damage({
+        actor,
+        label: F("WorryLabel", { foe: String(foe.name ?? ""), part: game.i18n.localize(`GWORLD.HitLocation.${location}`) }),
+        formula: String(bite.damage),
+        damageType: String(bite.damageType ?? "cr"),
+        calledShot: { hitLocation: location, ...(addon ? { addonLocation: addon } : {}) },
+        source: WORRY_SOURCE,
+        ...(cap === null ? {} : { notes: [F("WorryCap", { cap })] }),
+      } as any);
+    },
+  });
+  // What worrying has done so far, and the part it takes off (p. 115).
+  Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
+    const victim = context?.actor;
+    if (!bodies() || !victim || !isActiveGm() || context?.damage?.source !== WORRY_SOURCE) return;
+    const result = context.result;
+    const part = bittenPart(String(result?.hitLocation ?? ""), String(result?.addonLocation ?? "") || null);
+    if (part === "other") return;
+    const worried = { ...((api.combat.getCombatState(victim, MODULE_ID, WORRIED) as Record<string, number> | undefined) ?? {}) };
+    // A key with no dots in it: a stored object nests them into paths.
+    const key = `${result?.hitLocation ?? ""}-${String(result?.addonLocation ?? "").split(".").pop() ?? ""}`;
+    const total = (Number(worried[key]) || 0) + (Number(result?.injury) || 0) + (Number(result?.excessLost) || 0);
+    worried[key] = total;
+    void api.combat.setCombatState(victim, MODULE_ID, WORRIED, worried, "combat");
+    const off = bittenOff(part, total, hpOf(victim));
+    if (!off) return;
+    ui.notifications?.info(F("BittenOff", { victim: String(victim.name ?? ""), part: L(`Parts.${off}`) }));
+    void ChatMessage.implementation.create({
+      speaker: ChatMessage.implementation.getSpeaker({ actor: victim }),
+      content: `<div class="gworld gworld-chat"><div class="gc-result">${foundry.utils.escapeHTML(F("BittenOffCard", { victim: String(victim.name ?? ""), part: L(`Parts.${off}`) }))}</div></div>`,
+      whisper: [...((game as any).users ?? [])].filter((u: any) => u.isGM).map((u: any) => u.id),
+    });
+    // A part bitten off is as gruesome as a dismemberment (p. 132).
+    offerFrightCheck(victim);
+  });
+
+  // ── shock, and breaking free at once (p. 116) ──
+  Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
+    const victim = context?.actor;
+    const shock = Number(context?.result?.consequences?.shock) || 0;
+    if (!bodies() || !victim?.isOwner || !shock) return;
+    // It is gone before the wounded fighter's next turn, so it is kept for this one.
+    void api.combat.setCombatState(victim, MODULE_ID, SHOCK, shock, "turn");
+  });
+  Hooks.on(api.combat.hooks.grappleContest, (context: any) => {
+    if (!bodies() || context?.move !== "breakFree") return;
+    const first = Number(api.combat.getCombatState(context.actor, MODULE_ID, SHOCK)) || 0;
+    const second = Number(api.combat.getCombatState(context.foe, MODULE_ID, SHOCK)) || 0;
+    if (first) context.first.modifiers.push({ label: L("Shock"), value: first });
+    if (second) context.second.modifiers.push({ label: L("Shock"), value: second });
   });
 
   // ── pain in close combat (p. 119) ──
@@ -229,7 +343,7 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
   });
   Hooks.on(api.combat.hooks.afterSuccessRoll, async (context: any) => {
     const actor = context?.actor;
-    const pending = actor ? (api.combat.getCombatState(actor, MODULE_ID, BITE_PENDING) as { foe: string; hitLocation: string; lead: number } | undefined) : undefined;
+    const pending = actor ? (api.combat.getCombatState(actor, MODULE_ID, BITE_PENDING) as { foe: string; hitLocation: string; addonLocation: string | null; lead: number } | undefined) : undefined;
     if (!pending || !(context.tags ?? []).includes("attack")) return;
     await api.combat.clearCombatState(actor, MODULE_ID, BITE_PENDING);
     if (!context.outcome?.success || !bodies()) return;
@@ -238,12 +352,114 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
     // A bite holds as one hand, or as two for a biter a size or two larger (p. 115).
     await api.combat.beginGrapple({ grappler: actor, victim: foe, hands: pending.lead >= 1 ? 2 : 1, hitLocation: pending.hitLocation });
     await api.combat.setCombatState(actor, MODULE_ID, BITE_GRAPPLE, pending.lead, "combat");
+    // The finer location the teeth are in, which the system's grapple doesn't hold.
+    await api.combat.setCombatState(actor, MODULE_ID, BITE_LOCATION, pending.addonLocation ?? "", "combat");
   });
   Hooks.on(api.combat.hooks.grappleMove, (context: any) => {
     if (!bodies() || context?.move !== "pin") return;
     const lead = Number(api.combat.getCombatState(context.actor, MODULE_ID, BITE_GRAPPLE));
     const grapple = api.combat.grapple(context.actor);
     if (grapple?.holding && grapple.hitLocation === "torso" && biteCanPin(lead)) context.waiveRequirements = true;
+  });
+
+  // ── the bodies that fight differently (pp. 115, 119-120) ──
+  const traitNamed = (actor: any, pattern: RegExp) => [...(actor?.items ?? [])].some((i: any) => i.type === "trait" && pattern.test(String(i.name ?? "")));
+  const horizontal = (actor: any) => traitNamed(actor, /^horizontal\b/i);
+  const clawed = (actor: any) => traitNamed(actor, /^claws\b/i);
+  const diffuse = (actor: any) => traitNamed(actor, /^injury tolerance \(diffuse\)/i);
+  const homogenous = (actor: any) => traitNamed(actor, /^injury tolerance \(homogenous\)/i);
+  const noFineManipulators = (actor: any) => traitNamed(actor, /^no fine manipulators\b/i);
+  const oneHandOnly = (actor: any) => traitNamed(actor, /^one (arm|hand)\b/i);
+  const spiny = (actor: any) => traitNamed(actor, /^spines\b/i);
+  const lameKind = (actor: any): "crippledLegs" | "missingLegs" | "legless" | null => {
+    if (traitNamed(actor, /^lame \(legless\)/i) || traitNamed(actor, /^no legs\b/i)) return "legless";
+    if (traitNamed(actor, /^lame \(missing legs\)/i)) return "missingLegs";
+    if (traitNamed(actor, /^lame \(crippled legs\)/i)) return "crippledLegs";
+    return null;
+  };
+  const standing = (actor: any) => String(actor?.system?.posture ?? "standing") === "standing";
+
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!bodies() || !context?.actor) return;
+    const name = `${String(context.dataset?.rollLabel ?? "")}`.trim();
+    const target = (context.targets ?? [])[0] ?? null;
+    const location = String(context.calledShot?.hitLocation ?? "torso");
+    // A Born Biter's jaw and nose are that much easier to find (p. 115).
+    const addon = String(context.calledShot?.addonLocation ?? "");
+    if (target && /\.ma-(jaw|nose)$/.test(addon)) {
+      const bonus = bornBiterTargeting(traitLevels(target, /^born biter\b/i));
+      if (bonus) context.modifiers.push({ label: L("BornBiter"), value: bonus });
+    }
+    if (horizontal(context.actor)) {
+      if (horizontalRefuses(name)) {
+        context.refusal = F("HorizontalNo", { attack: name });
+        return;
+      }
+      const line = target && standing(target) ? horizontalHit(location, smOf(context.actor) - smOf(target)) : 0;
+      if (line) context.modifiers.push({ label: L("Horizontal"), value: line });
+    }
+    // Clumsy hands make a grapple that needs fingers impossible, and the rest awkward (p. 120).
+    if (noFineManipulators(context.actor)) {
+      if (needsFingers(name)) {
+        context.refusal = F("NoFingers", { attack: name });
+        return;
+      }
+      if (clumsyGrappling(name)) context.modifiers.push({ label: L("NoFineManipulators"), value: -4 });
+    }
+    // Crippled or missing legs weigh on every DX-based roll in close combat (p. 120).
+    const lame = lameCloseCombat(lameKind(context.actor), standing(context.actor));
+    if (lame.rolls && context.actor.system?.conditions?.closeCombat === true) context.modifiers.push({ label: L("Lame"), value: lame.rolls });
+  });
+
+  Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
+    if (!bodies() || !context?.actor || !horizontal(context.actor)) return;
+    const kind = attackKind(String(context.label ?? ""), null);
+    const perDie = horizontalDamagePerDie(kind, clawed(context.actor));
+    if (!perDie) return;
+    const dice = Number((api.rules as any).parseDiceAdds?.(String(context.formula ?? ""))?.dice) || 0;
+    if (dice) context.modifiers.push({ label: L("Horizontal"), value: perDie * dice });
+  });
+
+  // Diffuse bodies cannot be grappled at all, and homogenous ones take no injury
+  // from locks and throws (p. 120).
+  Hooks.on(api.combat.hooks.grappleMove, (context: any) => {
+    if (!bodies() || !diffuse(context?.foe)) return;
+    context.refusal = F("Diffuse", { foe: String(context.foe?.name ?? "") });
+  });
+  Hooks.on(api.combat.hooks.injury, (context: any) => {
+    if (!bodies() || !homogenous(context?.actor)) return;
+    if (!/lock|throw|wrench|neck snap/i.test(String(context.damage?.label ?? ""))) return;
+    context.damage.basicDamage = 0;
+    ui.notifications?.info(F("Homogenous", { name: String(context.actor?.name ?? "") }));
+  });
+
+  Hooks.on(api.combat.hooks.grappleContest, (context: any) => {
+    if (!bodies() || !context) return;
+    const { move, actor, foe } = context;
+    // One arm or one hand: half ST to choke, and a two-handed foe pins more easily (p. 120).
+    if (move === "choke" && oneHandOnly(actor)) {
+      context.first.base = Math.floor(Number(context.first.base) / 2);
+      context.first.modifiers.push({ label: L("OneArm"), value: 0 });
+    }
+    if (move === "pin") {
+      if (oneHandOnly(foe) && !oneHandOnly(actor)) context.first.modifiers.push({ label: L("OneArmFoe"), value: 3 });
+      if (oneHandOnly(actor) && !oneHandOnly(foe)) context.second.modifiers.push({ label: L("OneArmFoe"), value: 3 });
+    }
+    // Legs that are gone leave a fighter easy to take down (p. 120).
+    if (move === "takedown") {
+      const lame = lameCloseCombat(lameKind(foe), standing(foe));
+      if (lame.foeKnockdown) context.first.modifiers.push({ label: L("Lame"), value: lame.foeKnockdown });
+    }
+  });
+
+  // Spines injure whoever holds on (p. 120).
+  Hooks.on(api.combat.hooks.turnStart, (_combat: any, combatant: any) => {
+    const actor = combatant?.actor;
+    if (!bodies() || !isActiveGm() || !actor) return;
+    const grapple = api.combat.grapple(actor);
+    const foe = grapple?.foe ? fromUuid(grapple.foe) : null;
+    if (!foe || !spiny(foe)) return;
+    ui.notifications?.info(F("Spines", { name: String(actor.name ?? ""), foe: String(foe.name ?? "") }));
   });
 
   // ── extra arms and legs (p. 114) ──

@@ -67,7 +67,9 @@ export function readyHitLocations(api: GWorldApi, on: () => boolean): void {
   // Random hits get the book's 1d sub-rolls (p. 137).
   Hooks.on(api.combat.hooks.randomHitLocation, (context: any) => {
     if (!on() || context?.addonLocation) return;
-    const refined = refineRandomHit(context.location as Parent, context.damageType ?? null, context.arc ?? null, Number(context.d6?.()) || 0);
+    // A Born Biter's nose is in the way of a face hit on 1-2 (p. 115).
+    const bornBiter = [...(context.actor?.items ?? [])].some((item: any) => item.type === "trait" && /^born biter\b/i.test(String(item.name ?? "")));
+    const refined = refineRandomHit(context.location as Parent, context.damageType ?? null, context.arc ?? null, Number(context.d6?.()) || 0, bornBiter ? 2 : 1);
     const removals = removalsOf(context.actor);
     if (refined.basic) context.location = refined.basic;
     else if (refined.key) {
