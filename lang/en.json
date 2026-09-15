@@ -596,6 +596,10 @@
         "limitedDefenses": {
           "Name": "Limits on dodging and blocking",
           "Hint": "-1 per dodge after the first in a turn, more than one block at -5 each (less for a Weapon Master), and dodging firearms only with evasive movement against the shooter. Trained by a Master and Weapon Master fighters are exempt from the dodge limits, as the book recommends."
+        },
+        "targetedAttacks": {
+          "Name": "Targeted Attacks and Combinations",
+          "Hint": "Techniques named TA (Skill Attack/Target) and Combination (A + B + C) work out their levels, ceilings and costs; an attack aimed where a TA aims takes its bought levels; Combinations run from the Combat tab; combat techniques also default to Art and Sport skills."
         }
       },
       "Committed": {
@@ -1070,6 +1074,29 @@
         "MultipleBlocks": "Blocked already this turn",
         "Evasive": "Evasive movement (against the shooter you target at the end of your turn)",
         "NoEvasive": "Dodging firearms takes evasive movement against this shooter"
+      },
+      "Techniques": {
+        "TargetedAttack": "Targeted Attack",
+        "Combination": "Combination",
+        "TaName": "Name it TA (Skill Attack/Target), e.g. TA (Broadsword Swing/Neck)",
+        "ComboName": "Name it Combination (Skill Attack/Target + Skill Attack/Target), with two or three attacks",
+        "ComboMissing": "A Combination needs every attack's skill",
+        "ComboUnusable": "Without Trained by a Master or Weapon Master, a three-attack Combination needs 5 points spent on it",
+        "NoSkill": "No {skill} skill to default from",
+        "TaNote": "Default {default}, ceiling {ceiling}",
+        "Together": "Techniques used together (relative level)",
+        "Combinations": "Combinations",
+        "Start": "Start",
+        "Running": "attack {index} of {count}",
+        "NoMove": "No Combination on a Move and Attack",
+        "OneSpecial": "Only one of Rapid Strike, Combination or Dual-Weapon Attack per maneuver",
+        "Started": "{name}: {levels}",
+        "NextPart": "Next in the Combination: {part}",
+        "AimAt": "This attack of the Combination is aimed at the {target}",
+        "PartLine": "{name}, attack {index}",
+        "ComboDefended": "Combination: an attack missed or was defended",
+        "Predictable": "Predictable",
+        "SetupFailed": "{name} ends: its setup failed"
       }
     }
   },
