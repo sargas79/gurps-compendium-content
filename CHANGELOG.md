@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.6.0 — GURPS Martial Arts
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.8.0**, which this release requires (add-on API 1.39.0). Every new
+switch is off by default.
+
+- **GURPS Martial Arts ships**, with its pack, and 23 more switches:
+  - close combat: all-out grappling, one-handed locks, shifting grips, throws
+    from locks, sprawling and long weapons in close combat
+    (`grapplingOptions`, `longWeaponsInClose`, #193);
+  - Grab and Smash, pain in close combat, bites and bodies in close combat
+    (`grabAndSmash`, `bodiesInClose`, #194);
+  - realistic injury: partial injuries, extreme dismemberment, severe bleeding
+    and lasting wounds (`partialInjuries`, `extremeDismemberment`,
+    `severeBleeding`, `lastingInjuries`, #195);
+  - who draws first, Stop Hits, Cascading Waits, A Matter of Inches, and
+    charging foes (`whoDrawsFirst`, `stopHits`, `cascadingWaits`,
+    `matterOfInches`, `chargingFoes`, #196);
+  - chambara fighting, for masters only, with Flying Leap, Light Walk and
+    Lizard Climb feats (`chambara`, #197);
+  - the Contest of Wills, concentration, fear, faking it, Unarmed Etiquette,
+    Shaking It Off, Shout It Out!, Proxy Fighting and Bullet Time
+    (`contestOfWills`, `concentration`, `fear`, `fakingIt`,
+    `unarmedEtiquette`, `shakingItOff`, `shoutItOut`, `proxyFighting`,
+    `bulletTime`, #198);
+  - tournament bouts, by Quick Contest or the detailed method
+    (`tournaments`, #199).
+- **Journal pages:** every Martial Arts rule page links to the switch that
+  applies it (#202).
+- **Fix:** the chambara technique attack option no longer applies unless it is
+  chosen (#198).
+
 ## v0.5.0 — Martial Arts combat rules
 
 Built from the Basic Set, Monster Hunters 1 and Magic against **gworld
