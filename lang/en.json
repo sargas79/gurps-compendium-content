@@ -1442,9 +1442,12 @@
         "CarryResult": "{victim}'s other {part}: DR {dr}, {injury} injury",
         "LongTermPain": "Long-term pain",
         "Partial": {
-          "arm": "Wounded arm: {dx} DX with it (at the worst, Will {will} to use it)",
+          "arm": "Wounded arm: {dx} DX with it",
+          "armWill": "Badly wounded arm: {dx} DX with it, and a Will roll ({will}) to use it at all",
           "leg": "Wounded leg: {dx} DX to kick with it",
-          "torso": "Wounded torso: {dx} DX"
+          "legWill": "Badly wounded leg: {dx} DX to kick with it, and a Will roll ({will}) to use it at all",
+          "torso": "Wounded torso: {dx} DX",
+          "torsoWill": "Wounded torso: {dx} DX"
         },
         "SevereWound": "Severe wound",
         "Staunch": "Staunch with Surgery",
@@ -1500,7 +1503,11 @@
           "maintenanceThrice": "Maintenance (three times a day)",
           "maintenanceConstant": "Maintenance (constant)"
         },
-        "Surgeon": "Surgeon"
+        "Surgeon": "Surgeon",
+        "MoveLabel": {
+          "leg": "Wounded leg",
+          "torso": "Wounded torso"
+        }
       },
       "Timing": {
         "ByName": "By its name: {length}",
