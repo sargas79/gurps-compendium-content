@@ -1,5 +1,35 @@
 # Changelog
 
+## v0.9.0 — Grappling, biting and bodies in close combat
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.11.0**, which this release requires (add-on API 1.44.0).
+
+- **Grappling (#215):**
+  - a bear hug squeezes a torso held in two arms or the legs, for crushing
+    damage or for fatigue;
+  - a grapple can be switched from the arms to the legs, which frees the hands;
+  - one-handed locks and holds take their -2 (or -4 with the crook of an arm),
+    use half ST, and roll damage and throws at -4;
+  - an action after a grapple takes an Attack, All-Out Attack or Committed
+    Attack maneuver, one a turn — two on All-Out Attack (Double);
+  - long weapons can be used in close combat at their penalties, and a reach 2
+    or 3 polearm, spear or two-handed axe has only its haft until a Ready chokes
+    it up.
+- **Biting and bodies (#216):**
+  - worrying at a bite rolls damage each turn, notes the part's injury cap, and
+    bites a nose, an ear or a finger off once the injury doubles what cripples
+    it — which offers the Fright Check;
+  - a Born Biter's jaw and nose are easier to hit, and a face hit finds the nose
+    on 1-2;
+  - shock lowers both sides of a break free attempted at once;
+  - Kiss the Wall can ram the grappled foe into another fighter;
+  - Horizontal, Injury Tolerance (Diffuse and Homogenous), crippled and missing
+    legs, One Arm and One Hand, No Fine Manipulators and Spines change close
+    combat as the book says.
+
+With these, the Martial Arts follow-ups collected in #201 are all done.
+
 ## v0.8.0 — Martial Arts follow-ups on API 1.44, and techniques bought off a defense
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
