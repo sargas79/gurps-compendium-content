@@ -6,7 +6,7 @@ Built from the Basic Set, Monster Hunters 1 and Magic against **gworld
 v1.7.0**, which this release requires (add-on API 1.33.0). Every new switch is
 off by default.
 
-- **GURPS Martial Arts** gets twenty more switches:
+- **GURPS Martial Arts** gets eighteen more switches:
   - Defensive and Reversed Grips, Pummeling, Tip Slash and Telegraphic Attack
     (`meleeOptions`, #179);
   - styles and the Training Sequence (`styles`, `training`, #180);
