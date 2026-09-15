@@ -67,7 +67,7 @@ Dry run with `npm run extract -- martial-arts`.
 |---|---|---|---|
 | Off a named skill | 337 | 71 | parsed (312 after the overlap) |
 | Off a placeholder skill: "Disarming ([Melee Combat Skill])", "Arm Lock (%Melee Weapon Skill%)" | 253 | 96 | rejected; **needs the system first** |
-| Off a defense: Parry, Block or Dodge (Aggressive Parry, Dual-Weapon Defense, Eye-Poke Defense, Hand Catch, Hand-Clap Parry, Jam, Low-Line Defense, Timed Defense, Trip) | 90 | 9 | rejected; **needs the system first** |
+| Off a defense: Parry, Block or Dodge (Aggressive Parry, Dual-Weapon Defense, Eye-Poke Defense, Hand Catch, Hand-Clap Parry, Jam, Low-Line Defense, Timed Defense, Trip) | 90 | 9 | the 66 on a named skill kept by hand, with an open Dual-Weapon Defense for melee weapon skills (#209); the rest wait on sargas79/GWorldVTT#368 |
 | Off an attribute, as one of their defaults (Backbreaker, Beat, Halitosis Attack, Handcuffing, Head Butt, Leg Grapple, Neck Snap, Piledriver, Retain Weapon, Ruse, Snap Weapon, Wrench Arm, Wrench Leg, Wrench Spine, and their Art and Sport versions) | 43 | 15 | rejected where the attribute default comes first; **needs the system first** |
 
 Many techniques have more than one default. The parser reads the first, so a
@@ -132,6 +132,9 @@ records it blocks, as Magic did for powerstones.
   under 96 names. The Basic Set needs it too, for Disarming.
 - **A technique that defaults to a defense or an attribute**
   (sargas79/GWorldVTT#195): 24 techniques, with their Art and Sport versions.
+  The parser reads them since sargas79/GWorldVTT#230. The ones off a defense on a
+  named skill are kept by hand (#209); re-extracting waits on
+  sargas79/GWorldVTT#368, which gets open techniques and attribute defaults wrong.
 - **An equipment attack that adds the unarmed-skill damage bonus**
   (sargas79/GWorldVTT#196): 10 attack modes.
 - **A melee attack mode used at a penalty to hit** (sargas79/GWorldVTT#199):

@@ -2614,5 +2614,541 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>To attempt a Wet Willy, you must first take a Ready maneuver and moisten a finger with saliva. The following turn, roll against Wet Willy to wiggle the slimy finger around in your adversary's ear. If he's hit, he must roll as if Squeamish (p. B156) with a self-control roll equal to his Will. If he's already Squeamish, he must attempt his normal self-control roll at -3. Failure has the usual effect.</p>"
+  },
+  {
+    "_id": "54fcea984f16f6d2",
+    "name": "Aggressive Parry (Boxing)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "b6a280f0189e7ac9",
+    "name": "Aggressive Parry (Brawling)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "2c8f1f258a279db9",
+    "name": "Aggressive Parry (Karate)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "59dfbdb5505ea2fb",
+    "name": "Jam (Brawling)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "f42a559608f124f4",
+    "name": "Jam (Karate)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "074ffd1f90019389",
+    "name": "Low-Line Defense (Boxing)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "9cce781814bd2dd4",
+    "name": "Low-Line Defense (Sumo Wrestling)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "6b658867643d04aa",
+    "name": "Trip (Judo)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "6fa18d19cdf93c3b",
+    "name": "Trip (Sumo Wrestling)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "b88c3055f8a8580d",
+    "name": "Trip (Wrestling)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "ece6b83d9b0e1f25",
+    "name": "Dual-Weapon Defense (Shield (Buckler))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "588d33342004844d",
+    "name": "Dual-Weapon Defense (Shield (Shield))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "07702518d41f65c6",
+    "name": "Dual-Weapon Defense (Shield (Force))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "f556e27174b040f7",
+    "name": "Hand Catch (Judo)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "fe958fbc7c6c46ad",
+    "name": "Hand Catch (Sumo Wrestling)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "654108bad3de0218",
+    "name": "Hand Catch (Wrestling)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "edf37caca9f71cf1",
+    "name": "Hand-Clap Parry (Judo)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "414def5a596e894f",
+    "name": "Hand-Clap Parry (Karate)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "539284a5c8a6356c",
+    "name": "Timed Defense (Dodge)",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "850ccf9771c41af0",
+    "name": "Timed Defense (Shield (Buckler))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "8c74252aa37b5742",
+    "name": "Timed Defense (Shield (Shield))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "7488ac37bf6bafdc",
+    "name": "Timed Defense (Shield (Force))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "b2fa7b04b477c152",
+    "name": "Aggressive Parry (Boxing Art)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "dad595102fa789e3",
+    "name": "Aggressive Parry (Brawling Art)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "d31fc65b72940c6d",
+    "name": "Aggressive Parry (Karate Art)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "bb0118e5853276dd",
+    "name": "Jam (Brawling Art)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "1f2f3fc4f9d51152",
+    "name": "Jam (Karate Art)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "aed060b28d935433",
+    "name": "Low-Line Defense (Boxing Art)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "f109abb7ba454e95",
+    "name": "Low-Line Defense (Sumo Wrestling Art)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "c0c6bdf988fa751e",
+    "name": "Trip (Judo Art)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "52f23bff50ed804f",
+    "name": "Trip (Sumo Wrestling Art)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "7126ac633302ffd0",
+    "name": "Trip (Wrestling Art)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "1ccf88225680d9a2",
+    "name": "Dual-Weapon Defense (Shield Art (Buckler))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "0bb50558594a7e86",
+    "name": "Dual-Weapon Defense (Shield Art (Shield))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "3e3e842f7b33f048",
+    "name": "Dual-Weapon Defense (Shield Art (Force))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "f5f86f00aca84caf",
+    "name": "Hand Catch (Judo Art)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "7191b0dc5cfda430",
+    "name": "Hand Catch (Sumo Wrestling Art)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "3b79a607669541df",
+    "name": "Hand Catch (Wrestling Art)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "469a903b54914468",
+    "name": "Hand-Clap Parry (Judo Art)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "13bfb8350fe5ffff",
+    "name": "Hand-Clap Parry (Karate Art)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "eb7b7fd8d5ae741d",
+    "name": "Timed Defense (Dodge Art)",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "725ff6d188026202",
+    "name": "Timed Defense (Shield Art (Buckler))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "86aba83e844a2b39",
+    "name": "Timed Defense (Shield Art (Shield))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "442de984990ba4f7",
+    "name": "Timed Defense (Shield Art (Force))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "ea1fed5d01c4c9c8",
+    "name": "Aggressive Parry (Boxing Sport)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "0e7f40770637b1cb",
+    "name": "Aggressive Parry (Brawling Sport)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "45be71d325c1d52a",
+    "name": "Aggressive Parry (Karate Sport)",
+    "pages": "MA65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Only a few \"hard\" styles teach this tactic. Instead of merely deflecting a blow, you attempt to injure your attacker with an especially forceful parry. This is incompatible with Cross Parry (p. 121).</p><p>Roll against Aggressive Parry to defend, at the usual -2 for Boxing vs. a kick, or -3 for Boxing or Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit an arm or leg, -4 to hit a hand or foot; -2 for Boxing vs. a leg or foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Boxing or Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-4 crushing damage or thrust-2 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p><p>Weapon parries against unarmed attacks are essentially aggressive \"for free\"; see Parrying Unarmed Attacks (p. B376).</p>"
+  },
+  {
+    "_id": "b53749120273ff8b",
+    "name": "Jam (Brawling Sport)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "b7636e355db1c0ae",
+    "name": "Jam (Karate Sport)",
+    "pages": "MA74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Jam is an attempt to parry a low-line attack – typically a kick – by interposing a foot or leg aggressively enough to injure the attacker. It's only useful against attacks on your lower body (feet, legs, or groin). You may attempt it instead of a non-damaging leg or foot parry once per turn; see Parries with Legs or Feet (p. 123).</p><p>Roll against Jam to defend, at the usual -3 for Brawling vs. a swung weapon. You cannot retreat. Failure means you're hit; your attacker may choose to hit his original target, your parrying leg, or your parrying foot. Success means you parry and may roll against the underlying skill to strike the attacking body part or weapon, modified as follows.</p><p><em>Modifiers:</em> The usual -2 for kicking. Against unarmed, +0 to hit a leg, -2 to hit an arm or foot, -4 to hit a hand; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Brawling vs. a swung weapon.</p><p>Success on this skill roll inflicts thrust-3 crushing damage or thrust-1 at -1 per die, whichever is worse, on the targeted weapon or body part. Skill bonuses apply normally. Failure means you didn't parry forcefully enough to inflict damage.</p>"
+  },
+  {
+    "_id": "3c75e8e271a3b70a",
+    "name": "Low-Line Defense (Boxing Sport)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "a231f15e57e301eb",
+    "name": "Low-Line Defense (Sumo Wrestling Sport)",
+    "pages": "MA77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Kicking is illegal in the boxing or sumo ring, so boxers and sumotori don't normally train to face it – which is why Boxing and Sumo Wrestling parries are at -2 against kicks. Fighters who cross-train against kicking martial artists or use their skills outside the ring can certainly learn to parry kicks, however! This technique lets them buy off the -2.</p>"
+  },
+  {
+    "_id": "8b1bea94d21510d0",
+    "name": "Trip (Judo Sport)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "f31b89419f40beed",
+    "name": "Trip (Sumo Wrestling Sport)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "d8de9ff312fb6eb7",
+    "name": "Trip (Wrestling Sport)",
+    "pages": "MA81",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trip lets you cause a two-legged foe to stumble and miss with a slam. It counts as a parry with the prerequisite skill.</p><p>Success means you avoid the slam and your attacker must make a DX or Acrobatics roll at -5 or fall down!</p><p>Per p. B376, a charging fighter's \"effective weight\" as a weapon equals his ST. Since your weight limit with an unarmed parry equals your Basic Lift, Trip fails automatically if your foe's effective weight exceeds your BL. At ST 8 and BL 13, you couldn't stop a ST 14+ opponent. With ST 14 and BL 39, only ST 40+ giants would be a problem.</p><p>Shield DB doesn't benefit Trip. You can't retreat for a bonus, either – or use a Slip or Sideslip (see Retreat Options, pp. 123-124). You can Dive by assuming a crawling posture across your foe's path. Apply the usual modifier to your roll and use 2×BL to determine whom you can trip.</p><p>You can't attack with Trip – use Sweep (see above) for that. However, you can use Trip to intercept someone running past you (not merely stepping) within a yard. On a battle map, that's through your hex or an adjacent hex. This works like a regular Trip and counts as a parry.</p><p><em>Trip can use many body parts:</em> arms, legs, a hip, etc. You must Dive or use a free foot to intercept a runner who isn't trying to slam you.</p>"
+  },
+  {
+    "_id": "cd821a003f055a5f",
+    "name": "Dual-Weapon Defense (Shield Sport (Buckler))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "5795e17868f48240",
+    "name": "Dual-Weapon Defense (Shield Sport (Shield))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "f0bdbb911b38af4d",
+    "name": "Dual-Weapon Defense (Shield Sport (Force))",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
+  },
+  {
+    "_id": "6f12c50c0301501e",
+    "name": "Hand Catch (Judo Sport)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "d441450741b121b4",
+    "name": "Hand Catch (Sumo Wrestling Sport)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "e94ffba573ec9b83",
+    "name": "Hand Catch (Wrestling Sport)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique – popular with cinematic warriors, muscular henchmen, and super \"bricks\" – involves catching an incoming attack in your hand. It isn't realistic! It's a one-handed parry, even if the prerequisite skill usually parries with two hands, and incompatible with Cross Parry (p. 121).</p><p>Roll against Hand Catch to defend, at the usual -2 for Sumo Wrestling vs. a kick, or -3 for Sumo Wrestling or Wrestling vs. a weapon. You cannot retreat. Failure means you're hit. The attacker may choose to hit his original target, your parrying arm, or your parrying hand. Success means you parry and may roll against the prerequisite skill to grab your attacker, modified as follows.</p><p><em>Modifiers:</em> Against unarmed, -2 to hit a hand or foot; -2 for Sumo Wrestling vs. a foot; -1 if your foe knows Rapid Retraction (p. 51). Against armed, a basic -3; another -3 to -5 for weapon size (see p. B400); a further -3 for Sumo Wrestling or Wrestling vs. a weapon.</p><p>Success on this skill roll means you grapple the extremity or grab the weapon! On later turns, you can use any combat option or technique that requires a grab or grapple to set up – Disarming, Finger Lock, Judo Throw, Snap Weapon, Wrench Limb, etc., as applicable. Failure means you deflect the attack but fail to catch your attacker.</p><p>The GM may let realistic fighters try this technique at default. The consequences of failure are steep enough to keep it under control.</p><p>† You can also learn Hand Catch for Parry Missile Weapons in order to catch ranged weapons. If you have Precognitive Parry, you can use any Hand Catch specialty for this. Hand Catch can only trap projectiles (not beams) that the underlying parry could deflect. Use the standard modifiers for such parries instead of those above. Success plucks the weapon from the air, regardless of hand DR. Failure means you're hit. Don't use Hand Catch to catch something thrown to you – use Catching (p. B355).</p>"
+  },
+  {
+    "_id": "dd50d1824153b43a",
+    "name": "Hand-Clap Parry (Judo Sport)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "e78a5d730b3acb5c",
+    "name": "Hand-Clap Parry (Karate Sport)",
+    "pages": "MA84",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This often-foolhardy cinematic technique – common in samurai stories – lets you trap an opponent's weapon in mid-stroke. By clapping your hands together, you capture the weapon's blade, haft, or head.</p><p>Roll against Hand-Clap Parry to defend against an attacker's weapon. Success means you stop the attack and trap the weapon. Failure means you're hit, and your assailant may choose to hit his original target or either of your hands! Succeed or fail, this is the only parry you may make with your hands this turn.</p><p>If you trap the weapon, your enemy's turn ends immediately. He loses any additional attacks or maneuvers he might have had, and can't step. He can't use the trapped weapon to parry or attack until you relinquish it. On future turns, he may try to break free. If he opts to give up his weapon, it's a free action on his turn.</p><p>On your next turn, you may attempt to disarm or use Snap Weapon (p. 87). You don't have to do either – you can act normally while holding onto the weapon, as long as you leave two hands on the weapon and don't step away from your victim. Relinquishing the weapon is a free action on your turn.</p><p>If you make a successful disarm attempt – or your foe releases his weapon – you may try to reverse the weapon and ready it yourself on your next turn. This requires a DX roll. Success means you catch the weapon, which counts as a Ready maneuver. On a critical success, you ready the weapon instantly! Failure means you drop it. On a critical failure, you also inflict Tip Slash (p. 113) damage on your torso.</p>"
+  },
+  {
+    "_id": "e29374a6e9e058a3",
+    "name": "Timed Defense (Dodge Sport)",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "deb82f12a799d278",
+    "name": "Timed Defense (Shield Sport (Buckler))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "479885ba94e931da",
+    "name": "Timed Defense (Shield Sport (Shield))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "1dbc5251212f4bf4",
+    "name": "Timed Defense (Shield Sport (Force))",
+    "pages": "MA89",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique helps you defend against opponents who use acrobatics or speed to move behind you and attack. It lets you buy off the -2 for a flank or \"runaround\" attack (p. B391) for one active defense. For Block or Parry, you must specialize by combat skill. You may use Timed Defense (Dodge) only once per turn.</p>"
+  },
+  {
+    "_id": "61bf01ef9abeae6a",
+    "name": "Dual-Weapon Defense",
+    "pages": "MA83",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're normally at -1 to defend against a Dual-Weapon Attack (p. B417). This technique lets you buy off that penalty. To ward off both attacks, you must make two defense rolls simultaneously: a parry with either hand or a parry with one hand and a block with the other. Roll against Dual-Weapon Defense for the weapon or shield in each hand.</p><p>You can also learn Dual-Weapon Defense for use with a two-yard or longer Polearm, Spear, Staff, or Two-Handed Sword weapon. This lets you buy off the -1 to parry both halves of a Dual-Weapon Attack with a single parry; see Parrying with Two-Handed Weapons (p. 123).</p>"
   }
 ]
