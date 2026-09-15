@@ -548,6 +548,10 @@
         "acrobatics": {
           "Name": "Acrobatics in combat",
           "Hint": "Acrobatic Stand from the ground; movement stunts (banister sliding, skidding, spinning, swinging, tic-tacs, tumbling, vaulting) that make the next dodge +2 or -2; and Acrobatic and Flying Attacks as Move and Attack."
+        },
+        "postures": {
+          "Name": "Postures, hit locations and techniques",
+          "Hint": "Each posture's hit location effects, prohibited attacks and modified attacks, on top of the usual posture and location modifiers; and dropping to kneeling, crawling, prone, sitting or face-up as part of an attack."
         }
       },
       "Committed": {
@@ -652,6 +656,37 @@
           "asStep": "Up, and that counts as the step of your maneuver",
           "turnOver": "Up, but your turn is over",
           "fellFlying": "The leap failed: you fall, and don't attack"
+        }
+      },
+      "Posture": {
+        "Title": "Posture",
+        "Drop": "Drop to",
+        "Drops": {
+          "kneeling": "Kneeling",
+          "crawling": "Crawling",
+          "prone": "Prone",
+          "sitting": "Sitting",
+          "faceUp": "Face-up"
+        },
+        "CantDropFromHere": "Not a drop you can make from this posture",
+        "Prohibited": "{attack} can't be made while {posture}",
+        "OutOfReach": "{attack} can't reach there while {posture}",
+        "FaceUp": "Lying face-up",
+        "FaceUpHint": "Face-up or prone: the Martial Arts posture tables treat them differently",
+        "Postures": {
+          "standing": "standing",
+          "kneeling": "kneeling",
+          "sitting": "sitting",
+          "crawling": "crawling",
+          "faceUp": "lying face-up",
+          "prone": "prone"
+        },
+        "Line": {
+          "location": "Posture and location",
+          "stoop": "Stooping to a lying foe",
+          "technique": "Posture and technique",
+          "awkward": "Awkward from this posture",
+          "stability": "Stability"
         }
       }
     }
