@@ -632,6 +632,14 @@
         "harshRealism": {
           "Name": "Harsh Realism for Unarmed Fighters",
           "Hint": "Bare-handed parries against weapons at -3 with the limb in the way, low-line parries, footwork dives, skull blows that hurt, the off hand, and bruised knuckles."
+        },
+        "grapplingOptions": {
+          "Name": "Grappling options",
+          "Hint": "All-Out and Committed Attacks in grappling, one-handed strangles, more actions after a grapple, throws from locks, sprawling, and defense while grappling."
+        },
+        "longWeaponsInClose": {
+          "Name": "Long weapons in close combat",
+          "Hint": "-4 skill a yard of reach, Parry from that skill and -1 swing damage a yard, and a haft attack for long polearms."
         }
       },
       "Committed": {
@@ -1274,6 +1282,46 @@
         "BruisedFull": "Full power with a hurt part: shock {shock} again",
         "BruisedFullLow": "Full power with a hurt part: shock {shock} again, and a Will roll at {shock} or the blow is pulled anyway",
         "Shock": "Shock"
+      },
+      "CloseCombat": {
+        "Committed": "Committed Attack: -2 against follow-ups",
+        "Determined": "Determined grappling",
+        "Strong": "Strong grappling",
+        "OneHand": "One hand",
+        "SatOn": "Sat on: +5 grip",
+        "ShovedBack": "Won the shove",
+        "Sprawl": "Sprawling",
+        "SprawlReady": "{name} will sprawl against the next takedown",
+        "SprawlWorked": "{foe} sprawled: {taker} falls too and loses the grapple",
+        "SprawlFailed": "{foe} sprawled, but {taker} won the takedown",
+        "Actions": {
+          "ma-add-hand": "Add a hand",
+          "ma-release-hand": "Release a hand",
+          "ma-shift-grip": "Shift grip",
+          "ma-sit-on-him": "Sit on him",
+          "ma-shove-around": "Shove around",
+          "ma-throw-from-lock": "Throw from the lock",
+          "ma-sprawl": "Sprawl"
+        },
+        "ShiftTo": "Shift the grip to",
+        "ShiftLabel": "{name} shifts grip to the {to}",
+        "FreeHands": "More free hands",
+        "SitLabel": "{name} sits on {foe}",
+        "Size": "Size",
+        "SatOnText": "{name} sits on {foe}: hands free, and {foe} breaks free against +5",
+        "ShoveLabel": "{name} shoves {foe} around",
+        "Shoved": "{name} moves {foe}: behind, around, or a step in any direction",
+        "ThrowLabel": "{name} throws {foe} from the lock",
+        "ThrowStanding": "Only a standing foe can be thrown from a lock",
+        "ThrowDamage": "Throw from the lock: the {location}",
+        "Breakfall": "{foe} breakfalls: down, but not thrown for damage",
+        "Grappled": "Grappled",
+        "GrappledNoRetreat": "Grappled: no retreat",
+        "LetGoToRetreat": "Let go with every limb to retreat",
+        "HandsHolding": "Both hands are holding",
+        "InClose": "In close combat",
+        "InCloseHint": "A long weapon in close combat: {skill} skill, {parry} Parry, less swing damage",
+        "Haft": "Haft (close combat)"
       }
     }
   },

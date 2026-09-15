@@ -16,7 +16,8 @@
  * ranged attack options (pp. 97, 119-121), and unfamiliar, one-handed,
  * hurled and improvised weapons (pp. 212, 220, 224), and shoves and slams
  * with weapons and striking at or grabbing shields (pp. 112-113), and
- * untrained fighters and Harsh Realism for Unarmed Fighters (pp. 113, 124).
+ * untrained fighters and Harsh Realism for Unarmed Fighters (pp. 113, 124),
+ * and close combat: grappling options and long weapons (pp. 114-122).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -39,6 +40,7 @@ import { readyRangedOptions } from "./ranged/index.js";
 import { initUnorthodox, readyUnorthodox } from "./unorthodox/index.js";
 import { readyShoves } from "./shields/index.js";
 import { allowsAdvancedOptions, readyUntrained } from "./untrained/index.js";
+import { readyCloseCombat } from "./close-combat/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -70,6 +72,8 @@ const RULES = [
   { key: "shovesAndShields", pages: "pp. 112-113", implemented: true },
   { key: "untrainedFighters", pages: "p. 113", implemented: true },
   { key: "harshRealism", pages: "p. 124", implemented: true },
+  { key: "grapplingOptions", pages: "pp. 114, 116-119, 121-122", implemented: true },
+  { key: "longWeaponsInClose", pages: "p. 117", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -111,6 +115,7 @@ function ready(api: GWorldApi): void {
   readyUnorthodox(api, () => api.registry.isRuleOn(ruleKey("unfamiliarWeapons")), () => api.registry.isRuleOn(ruleKey("unorthodoxWeapons")));
   readyShoves(api, () => api.registry.isRuleOn(ruleKey("shovesAndShields")));
   readyUntrained(api, () => api.registry.isRuleOn(ruleKey("untrainedFighters")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
+  readyCloseCombat(api, () => api.registry.isRuleOn(ruleKey("grapplingOptions")), () => api.registry.isRuleOn(ruleKey("longWeaponsInClose")));
   readyExtraEffort(api, () => api.registry.isRuleOn(ruleKey("extraEffort")), () => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")));
 }
 

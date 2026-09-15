@@ -384,7 +384,7 @@
       "chapter": "Combat",
       "pages": "MA114",
       "reference": "Martial Arts p. 114",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grapplingOptions",
       "file": "all-out-and-committed-attacks-when-grappling.md",
       "status": "reviewed"
     },
@@ -413,7 +413,7 @@
       "chapter": "Combat",
       "pages": "MA116",
       "reference": "Martial Arts p. 116",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grapplingOptions",
       "file": "the-sound-of-one-hand-grappling.md",
       "status": "reviewed"
     },
@@ -423,7 +423,7 @@
       "chapter": "Combat",
       "pages": "MA117",
       "reference": "Martial Arts p. 117",
-      "rule": "closeCombat",
+      "rule": "gurps-compendium-content.longWeaponsInClose",
       "file": "long-weapons-in-close-combat.md",
       "status": "reviewed"
     },
@@ -433,7 +433,7 @@
       "chapter": "Combat",
       "pages": "MA117-119",
       "reference": "Martial Arts pp. 117-119",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grapplingOptions",
       "file": "more-actions-after-a-grapple.md",
       "status": "reviewed"
     },
@@ -463,7 +463,7 @@
       "chapter": "Combat",
       "pages": "MA119",
       "reference": "Martial Arts p. 119",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grapplingOptions",
       "file": "sprawling.md",
       "status": "reviewed"
     },
@@ -542,7 +542,7 @@
       "chapter": "Combat",
       "pages": "MA121-122",
       "reference": "Martial Arts pp. 121-122",
-      "rule": "grappling",
+      "rule": "gurps-compendium-content.grapplingOptions",
       "file": "defense-while-grappling.md",
       "status": "reviewed"
     },
