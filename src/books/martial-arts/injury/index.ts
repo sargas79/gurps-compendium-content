@@ -12,11 +12,13 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
+  LASTING_TRAITS,
   carryThroughDr,
   carryThroughInjury,
   otherPart,
   painSetsIn,
   painThreshold,
+  namesTrait,
   painWill,
   partialInjury,
   severeWound,
@@ -33,6 +35,7 @@ const L = (key: string) => game.i18n.localize(`GCC.MA.Injury.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MA.Injury.${key}`, data);
 
 const WOUNDS_FLAG = "partialWounds";
+const LASTING_CARD = "ma-lasting";
 /** What each part's long-term pain does now, for the hooks that can't be a condition's lines: kicks and Move. */
 const EFFECTS_FLAG = "partialEffects";
 type PartialEffects = Partial<Record<"arm" | "leg" | "torso", { dx: number; move: number }>>;
@@ -56,6 +59,41 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
   const hpOf = (actor: any) => Number(actor?.system?.hp?.max) || 10;
   const crippling = (location: string, actor: any): number | null => (api.rules as any).cripplingThreshold?.(location, hpOf(actor)) ?? null;
   const drAt = (actor: any, location: string) => Number(api.actors.derived(actor)?.drByLocation?.[location]) || 0;
+
+  // A lasting injury that is a trait: the card finds it in the compendia, for the GM to drag onto the character.
+  api.chat.registerChatCard({
+    module: MODULE_ID,
+    key: LASTING_CARD,
+    template: `modules/${MODULE_ID}/templates/ma-lasting.hbs`,
+    actions: {
+      findTrait: { permission: "gm", run: async ({ data }: any) => {
+        const entry: any = await (globalThis as any).fromUuid?.(String(data.entryUuid ?? ""));
+        const pack: any = entry?.pack ? (game as any).packs.get(entry.pack) : null;
+        if (!pack) return void ui.notifications?.warn(F("NoTraitEntry", { trait: String(data.trait ?? "") }));
+        // Rendered to the end before the search goes in, or the render clears it.
+        const app: any = pack.apps?.[0] ?? null;
+        if (app) await app.render({ force: true });
+        else pack.render(true);
+        const search = app?.element?.querySelector?.('input[type="search"]') as HTMLInputElement | null;
+        if (!search) return;
+        search.value = String(entry.name ?? data.trait ?? "");
+        search.dispatchEvent(new KeyboardEvent("keyup", { bubbles: true }));
+        search.dispatchEvent(new Event("input", { bubbles: true }));
+      } },
+    },
+  } as any);
+  /** The compendium entry for a trait: the module's own packs first, as the system shows them. */
+  const traitEntry = async (trait: string): Promise<any | null> => {
+    const packs = [...((game as any).packs ?? [])].filter((p: any) => p.documentName === "Item")
+      .sort((a: any, b: any) => Number(b.collection.startsWith(`${MODULE_ID}.`)) - Number(a.collection.startsWith(`${MODULE_ID}.`)));
+    for (const pack of packs) {
+      const index = await pack.getIndex();
+      const found = [...index].filter((e: any) => e.type === "trait" && namesTrait(String(e.name ?? ""), trait))
+        .sort((a: any, b: any) => String(a.name).length - String(b.name).length)[0];
+      if (found) return found;
+    }
+    return null;
+  };
 
   Hooks.on(api.combat.hooks.afterDamage, async (context: any) => {
     const victim = context?.actor;
@@ -274,13 +312,21 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
     const ht = Number(api.actors.attribute(victim, "HT")) || 10;
     const outcome: any = await api.roll.success({ actor: victim, base: ht, label: L("DurationRoll"), kind: "attribute" } as any);
     const duration = woundDuration(outcome ?? { success: true });
-    await whisperGm(`<div class="gc-head"><span class="gc-label">${L("LastingTitle")}</span></div>
-      <div class="gc-result">${foundry.utils.escapeHTML(F("LastingResult", {
+    const key = `${effect}${grave && game.i18n.has(`GCC.MA.Injury.Effects.${effect}Grave`) ? "Grave" : ""}`;
+    const trait = LASTING_TRAITS[key] ?? null;
+    const entry = trait ? await traitEntry(trait) : null;
+    await api.chat.post(`${MODULE_ID}.${LASTING_CARD}`, {
+      title: L("LastingTitle"),
+      text: F("LastingResult", {
         victim: String(victim.name ?? ""),
         table: L(`Tables.${table}`),
         rolls: rolls.join(", "),
-        effect: L(`Effects.${effect}${grave && game.i18n.has(`GCC.MA.Injury.Effects.${effect}Grave`) ? "Grave" : ""}`),
+        effect: L(`Effects.${key}`),
         duration: L(`Durations.${duration}`),
-      }))}</div>`, victim);
+      }),
+      buttons: entry ? [{ action: "findTrait", label: F("FindTrait", { trait: String(entry.name ?? trait) }) }] : [],
+      trait: trait ?? "",
+      entryUuid: entry ? String(entry.uuid ?? "") : "",
+    }, { actor: victim, whisper: [...((game as any).users ?? [])].filter((u: any) => u.isGM).map((u: any) => u.id) } as any);
   }
 }

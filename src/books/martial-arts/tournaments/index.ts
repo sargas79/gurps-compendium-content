@@ -20,6 +20,7 @@ import {
   matchWinner,
   nextPhase,
   pressResult,
+  secondsFought,
   type Competition,
   type Pressing,
   type SkillKind,
@@ -45,6 +46,8 @@ interface BoutData {
   phase: "lull" | "flurry" | "between";
   phaseLeft: number;
   flurries: number;
+  /** Seconds of the current flurry fought so far, as the GM enters them. */
+  fought?: number;
   log: string[];
   [key: string]: unknown;
 }
@@ -151,7 +154,9 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
     const rows = ((api.actors.derived(attacker)?.melee ?? []) as any[]).filter((r) => r.damageRollable !== false && typeof r.skillLevel === "number" && r.damage);
     const row = rows.sort((x, y) => y.skillLevel - x.skillLevel)[0];
     if (!row) return;
-    const location = (api.rules as any).randomHitLocation?.(await dice("3d6"), await dice("1d6"))?.location ?? "torso";
+    // Rolled as the system rolls a random location, with the modules' own (API 1.43.0).
+    const picked: any = await (api.roll as any).hitLocation?.({ actor: victim, damageType: row.damageType ?? null });
+    const location = picked?.hitLocation ?? "torso";
     await api.roll.damage({
       actor: attacker,
       item: row.itemId ? attacker.items?.get?.(row.itemId) ?? null : null,
@@ -160,7 +165,7 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
       formula: String(row.damage),
       damageType: row.damageType,
       armorDivisor: Number(row.armorDivisor) || 1,
-      calledShot: { hitLocation: location },
+      calledShot: { hitLocation: location, ...(picked?.addonLocation ? { addonLocation: picked.addonLocation } : {}) },
     } as any);
   }
 
@@ -180,7 +185,7 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
   async function begin(data: BoutData, phase: "lull" | "flurry"): Promise<BoutData> {
     const remaining = Math.max(0, data.roundSeconds - data.elapsed);
     const length = Math.min(remaining, await dice(phase === "lull" ? LULL_DICE : FLURRY_DICE));
-    return { ...data, phase, phaseLeft: length, flurries: data.flurries + (phase === "flurry" ? 1 : 0), log: [...data.log, F(phase === "lull" ? "LullStarts" : "FlurryStarts", { seconds: length })] };
+    return { ...data, phase, phaseLeft: length, fought: 0, flurries: data.flurries + (phase === "flurry" ? 1 : 0), log: [...data.log, F(phase === "lull" ? "LullStarts" : "FlurryStarts", { seconds: length })] };
   }
 
   api.chat.registerChatCard({
@@ -204,7 +209,11 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
       } },
       earlyLull: { permission: "gm", run: async ({ message, data }: any) => {
         const current = data as BoutData;
-        await api.chat.update(message, view(await begin({ ...current, log: [...current.log, L("Disengage")] }, "lull")));
+        await api.chat.update(message, view(await begin(endFlurry(current, L("Disengage")), "lull")));
+      } },
+      fought: { permission: "gm", run: async ({ message, data, value }: any) => {
+        const current = data as BoutData;
+        await api.chat.update(message, view({ ...current, fought: secondsFought(Number(value), current.phaseLeft) }));
       } },
       pressFirst: { permission: "gm", run: ({ message, data }: any) => press(message, data, "first") },
       pressSecond: { permission: "gm", run: ({ message, data }: any) => press(message, data, "second") },
@@ -220,6 +229,12 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
       } },
     },
   } as any);
+
+  /** A flurry cut short: the seconds fought count toward the round (p. 134). */
+  function endFlurry(data: BoutData, line: string): BoutData {
+    const fought = secondsFought(Number(data.fought ?? 0), data.phaseLeft);
+    return { ...data, elapsed: Math.min(data.roundSeconds, data.elapsed + fought), phaseLeft: 0, log: [...data.log, F("FoughtLog", { seconds: fought }), line] };
+  }
 
   /** A fighter presses the fight, or both do (p. 134). */
   async function press(message: any, data: BoutData, pressing: Pressing): Promise<void> {
@@ -244,7 +259,7 @@ export function readyTournaments(api: GWorldApi, on: () => boolean): void {
     const name = pressing === "first" ? data.firstName : data.secondName;
     if (outcome.lull) {
       // The current flurry ends where it is, and a lull begins at once.
-      await api.chat.update(message, view(await begin({ ...data, phaseLeft: 0, log: [...data.log, F("PressFailed", { name })] }, "lull")));
+      await api.chat.update(message, view(await begin(endFlurry(data, F("PressFailed", { name })), "lull")));
       return;
     }
     const seconds = Math.min(remaining, outcome.seconds);

@@ -44,3 +44,17 @@ export function runThroughInjury(options: { maxDamage: number; dr: number; wound
 export function passesThrough(maxThrustDamage: number, backDr: number): boolean {
   return maxThrustDamage > backDr;
 }
+
+/**
+ * The "weapon weight" of an unarmed attacker a weapon parries as he enters
+ * close combat (p. 106): ST/10 lbs. for a grab or grapple, ST lbs. otherwise.
+ */
+export function chargeWeight(st: number, grabs: boolean): number {
+  const strength = Math.max(0, Number(st) || 0);
+  return grabs ? strength / 10 : strength;
+}
+
+/** Whether an attack's tags make it a grab or grapple. */
+export function grabsOrGrapples(tags: readonly string[]): boolean {
+  return tags.some((tag) => tag === "grapple" || tag === "grab" || /^grapple/i.test(tag));
+}

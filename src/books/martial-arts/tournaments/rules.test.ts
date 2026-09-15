@@ -29,3 +29,10 @@ describe("the detailed method", () => {
     expect([nextPhase({ phase: "lull", flurries: 0, oneFlurry: false }), nextPhase({ phase: "flurry", flurries: 1, oneFlurry: false }), nextPhase({ phase: "lull", flurries: 1, oneFlurry: true })]).toEqual(["flurry", "lull", "lull"]);
   });
 });
+
+describe("a flurry cut short (p. 134)", () => {
+  it("counts the seconds fought within the flurry", async () => {
+    const { secondsFought } = await import("./rules.js");
+    expect([secondsFought(3, 7), secondsFought(9, 7), secondsFought(-2, 7), secondsFought(Number.NaN, 7)]).toEqual([3, 7, 0, 0]);
+  });
+});

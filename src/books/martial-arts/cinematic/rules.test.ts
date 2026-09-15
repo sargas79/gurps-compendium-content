@@ -76,3 +76,12 @@ describe("proxies and Bullet Time", () => {
 function proxyPenalties(): number[] {
   return [proxyPenalty("object"), proxyPenalty("slapArm"), proxyPenalty("slapLeg"), proxyPenalty("slapHead"), proxyPenalty("puppetWilling"), proxyPenalty("puppetUnwilling", 6), proxyPenalty("puppetUnwilling", 13)];
 }
+
+describe("proxy limits (pp. 132-133)", () => {
+  it("weighs an object against Basic Lift and holds a puppeteer to a step", async () => {
+    const { proxyObjectFits, puppetMovement } = await import("./rules.js");
+    expect(proxyObjectFits(20, 20)).toBe(true);
+    expect(proxyObjectFits(21, 20)).toBe(false);
+    expect(["none", "step", "half", "full"].map(puppetMovement)).toEqual(["none", "step", "step", "step"]);
+  });
+});

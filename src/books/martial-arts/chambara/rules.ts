@@ -117,3 +117,8 @@ export function lizardRetreat(outcome: { success: boolean; criticalSuccess?: boo
 export function lizardHandsPenalty(freeExtremities: number): number {
   return -2 * Math.max(0, Math.min(4, Math.floor(freeExtremities))) || 0;
 }
+
+/** The defense a Lizard Climb settles (p. 130), as the system's settled result, or null for the +1. */
+export function lizardSettles(result: string): "success" | "failure" | "criticalFailure" | null {
+  return result === "automatic" ? "success" : result === "fails" ? "failure" : result === "criticallyFails" ? "criticalFailure" : null;
+}

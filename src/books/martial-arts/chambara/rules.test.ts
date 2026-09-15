@@ -69,3 +69,10 @@ describe("special feats", () => {
     expect(lizardHandsPenalty(2)).toBe(-4);
   });
 });
+
+describe("a Lizard Climb settles the defense (p. 130)", () => {
+  it("turns the climb into an automatic success or failure", async () => {
+    const { lizardSettles } = await import("./rules.js");
+    expect(["bonus", "automatic", "fails", "criticallyFails"].map(lizardSettles)).toEqual([null, "success", "failure", "criticalFailure"]);
+  });
+});

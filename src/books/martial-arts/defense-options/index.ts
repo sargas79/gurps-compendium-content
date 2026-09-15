@@ -85,7 +85,10 @@ export function weaponParry(defender: any, parryWeapon: { itemId?: string; natur
 const crossParrying = new Map<string, Array<{ itemId: string; weight: number; quality: string }>>();
 
 /** Registers the options and hooks. */
-export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: () => boolean, harsh: () => boolean = () => false): void {
+export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: () => boolean, harsh: () => boolean = () => false, chambara: (actor: any) => boolean = () => false): void {
+  // A chambara fighter has the retreat options, Multiple Blocks and the
+  // two-handed parry rules whatever the switches say (p. 129).
+  const optionsFor = (actor: any) => on() || chambara(actor);
   const lock = (defender: any, ids: string[]) => {
     const locked = (api.combat.getCombatState(defender, MODULE_ID, LOCKED) as string[] | undefined) ?? [];
     return api.combat.setCombatState(defender, MODULE_ID, LOCKED, [...new Set([...locked, ...ids])], "turn");
@@ -150,7 +153,7 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     key: RETREAT,
     label: L("RetreatOption"),
     input: { type: "select", choices: RETREAT_OPTIONS.map((value) => ({ value, label: L(`Retreats.${value}`) })) },
-    available: (context) => on() && context.delivery !== "ranged" && !api.combat.getCombatState(context.defender, MODULE_ID, LEG_USED),
+    available: (context) => optionsFor(context.defender) && context.delivery !== "ranged" && !api.combat.getCombatState(context.defender, MODULE_ID, LEG_USED),
     refuse: (context) => (context.retreating ? L("RetreatAlready") : null),
     apply: (context, value) => {
       if (!RETREAT_OPTIONS.includes(value as RetreatOption)) return null;
@@ -256,7 +259,7 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     key: DUAL,
     label: L("Dual"),
     defenses: ["parry"],
-    available: (context) => on() && longWeapon(context),
+    available: (context) => optionsFor(context.defender) && longWeapon(context),
     apply: () => ({ modifiers: [{ label: L("Dual"), value: -1 }] }),
     after: (_context, outcome) => {
       if (outcome && !outcome.success) ui.notifications?.info(L("DualFailed"));
@@ -267,20 +270,20 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     const defender = context?.defender;
     if (!defender) return;
     const counts = context.defenseCounts ?? { parries: 0, blocks: 0, dodges: 0 };
-    if (on() && context.defense === "parry") {
+    if (optionsFor(defender) && context.defense === "parry") {
       const line = (context.modifiers ?? []).find((m: any) => m?.label === game.i18n.localize("GWORLD.Defense.MultipleParries"));
       if (line) {
         // Half the multiple-parry penalty for a long two-handed weapon (p. 123),
         // and a fencing weapon's halving only against attacks from the front (p. 122).
         if (longWeapon(context)) line.value = Math.trunc(line.value / 2);
-        else if (context.parryWeapon?.isFencing && (context.arc === "side" || context.arc === "back")) line.value *= 2;
+        else if (on() && context.parryWeapon?.isFencing && (context.arc === "side" || context.arc === "back")) line.value *= 2;
       }
     }
     if (limits() && context.defense === "dodge" && !master(defender)) {
       const value = dodgeLimitPenalty(counts.dodges);
       if (value) context.modifiers.push({ label: L("DodgeLimit"), value });
     }
-    if (limits() && context.defense === "block") {
+    if ((limits() || chambara(defender)) && context.defense === "block") {
       const value = multipleBlockPenalty(counts.blocks, weaponMaster(defender));
       if (value) context.modifiers.push({ label: L("MultipleBlocks"), value });
     }
@@ -297,9 +300,9 @@ export function readyDefenseOptions(api: GWorldApi, on: () => boolean, limits: (
     }
     // No retreat in a turn a leg parried (p. 123).
     if (on() && api.combat.getCombatState(defender, MODULE_ID, LEG_USED)) Object.assign(context.retreat, { available: false, refusal: L("LegNoRetreat") });
-    if (!limits()) return;
     // More than one block, at a price (p. 123).
-    context.blockAgain = true;
+    if (limits() || chambara(defender)) context.blockAgain = true;
+    if (!limits()) return;
     // Dodging a firearm takes evasive movement against that shooter (p. 122).
     if (firearm(context.attackWeapon?.skill) && !master(defender)) {
       const against = api.combat.getCombatState(defender, MODULE_ID, EVASIVE_STATE);

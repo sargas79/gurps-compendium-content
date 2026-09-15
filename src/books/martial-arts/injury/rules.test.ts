@@ -65,3 +65,14 @@ describe("severe bleeding and lasting wounds", () => {
     expect([woundDuration({ success: true }), woundDuration({ success: false }), woundDuration({ success: false, criticalFailure: true })]).toEqual(["shortTerm", "lasting", "permanent"]);
   });
 });
+
+describe("lasting injuries' traits (pp. 138-139)", () => {
+  it("names the trait an effect is, and matches it with a specialty", async () => {
+    const { LASTING_TRAITS, namesTrait } = await import("./rules.js");
+    expect(LASTING_TRAITS.amnesiaGrave).toBe("Amnesia (Total)");
+    expect(LASTING_TRAITS.lessHt).toBeUndefined();
+    expect(namesTrait("Bad Sight (Nearsighted)", "Bad Sight")).toBe(true);
+    expect(namesTrait("Bad Sightedness", "Bad Sight")).toBe(false);
+    expect(namesTrait("Numb", "numb")).toBe(true);
+  });
+});

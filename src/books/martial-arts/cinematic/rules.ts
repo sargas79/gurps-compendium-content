@@ -150,3 +150,13 @@ export const BULLET_TIME_COST = 3;
 export function bulletTimeSuggested(traitNames: readonly string[]): boolean {
   return traitNames.some((name) => /^(enhanced time sense|trained by a master|weapon master)\b/i.test(name));
 }
+
+/** An object can be a proxy if it weighs no more than Basic Lift (p. 132); pass a tenth of a suspended or rolling one's weight. */
+export function proxyObjectFits(weight: number, basicLift: number): boolean {
+  return Math.max(0, Number(weight) || 0) <= Math.max(0, Number(basicLift) || 0);
+}
+
+/** A grappled proxy allows no maneuver that needs more than a step (p. 133). */
+export function puppetMovement(movement: string): string {
+  return movement === "none" ? "none" : "step";
+}

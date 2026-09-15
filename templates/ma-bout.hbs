@@ -13,3 +13,4 @@
   {{/if}}
   {{#if inRound}}<button type="button" class="gc-apply-button" data-addon-card-action="endRound">{{localize "GCC.MA.Tournament.EndRound"}}</button>{{/if}}
 </div>
+{{#if inFlurry}}<div class="gc-apply"><label>{{localize "GCC.MA.Tournament.Fought"}} <input type="number" min="0" max="{{phaseLeft}}" value="{{fought}}" data-addon-card-input="fought"></label></div>{{/if}}

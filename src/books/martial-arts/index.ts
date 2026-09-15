@@ -146,7 +146,7 @@ function ready(api: GWorldApi): void {
   readyWeapons(api, () => api.registry.isRuleOn(ruleKey("weaponBuilding")));
   readyHitLocations(api, () => api.registry.isRuleOn(ruleKey("finerHitLocations")));
   readyMultipleAttacks(api, () => api.registry.isRuleOn(ruleKey("multipleAttacks")), (actor) => api.registry.isRuleOn(ruleKey("cinematicRapidStrike")) || chambara(actor), () => api.registry.isRuleOn(ruleKey("rangedOptions")), (actor) => ({ ok: allowsAdvancedOptions(() => api.registry.isRuleOn(ruleKey("untrainedFighters")))(actor), reason: game.i18n.localize("GCC.MA.Untrained.Limited") }));
-  readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")), () => api.registry.isRuleOn(ruleKey("harshRealism")));
+  readyDefenseOptions(api, () => api.registry.isRuleOn(ruleKey("defenseOptions")), () => api.registry.isRuleOn(ruleKey("limitedDefenses")), () => api.registry.isRuleOn(ruleKey("harshRealism")), chambara);
   readyTechniques(api, () => api.registry.isRuleOn(ruleKey("targetedAttacks")));
   readyRangedOptions(api, () => api.registry.isRuleOn(ruleKey("rangedOptions")), () => api.registry.isRuleOn(ruleKey("cinematicRangedOptions")));
   readyUnorthodox(api, () => api.registry.isRuleOn(ruleKey("unfamiliarWeapons")), () => api.registry.isRuleOn(ruleKey("unorthodoxWeapons")));
