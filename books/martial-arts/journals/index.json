@@ -245,7 +245,7 @@
       "chapter": "Combat",
       "pages": "MA109",
       "reference": "Martial Arts p. 109",
-      "rule": "rapidStrike",
+      "rule": "gurps-compendium-content.targetedAttacks",
       "file": "combinations.md",
       "status": "reviewed"
     },
@@ -1181,7 +1181,7 @@
       "chapter": "Techniques",
       "pages": "MA80",
       "reference": "Martial Arts p. 80",
-      "rule": "rapidStrike",
+      "rule": "gurps-compendium-content.targetedAttacks",
       "file": "optional-rule-combinations.md",
       "status": "reviewed"
     },

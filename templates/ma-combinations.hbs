@@ -1,0 +1,15 @@
+{{!-- Combinations (Martial Arts p. 80): start one, and see how far it has got. --}}
+<div class="isec" data-ma-combinations>
+  <div class="grph">{{localize "GCC.MA.Techniques.Combinations"}}</div>
+  <table class="gt">
+    <tbody>
+      {{#each combos as |c|}}
+      <tr data-item-id="{{c.id}}">
+        <td>{{c.name}} {{#if c.running}}<span class="tag">{{c.running}}</span>{{/if}}</td>
+        <td class="c">{{c.levels}}</td>
+        <td class="c">{{#if ../editable}}<button type="button" class="ibtn tiny" data-ma-combo-start="{{c.id}}">{{localize "GCC.MA.Techniques.Start"}}</button>{{/if}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
