@@ -552,6 +552,10 @@
         "postures": {
           "Name": "Postures, hit locations and techniques",
           "Hint": "Each posture's hit location effects, prohibited attacks and modified attacks, on top of the usual posture and location modifiers; and dropping to kneeling, crawling, prone, sitting or face-up as part of an attack."
+        },
+        "feints": {
+          "Name": "Beats, Ruses and defensive feints",
+          "Hint": "A feint may be made as a Beat against one defense or a Ruse on IQ, or turned on the foe's next attack. Anyone resists with their best combat skill or a Feint technique, and Evaluate offsets feints and Deceptive Attacks from the evaluated foe."
         }
       },
       "Committed": {
@@ -688,6 +692,33 @@
           "awkward": "Awkward from this posture",
           "stability": "Stability"
         }
+      },
+      "Feint": {
+        "Title": "Martial Arts feints",
+        "As": "Feint as",
+        "Kinds": {
+          "beat": "Beat",
+          "ruse": "Ruse"
+        },
+        "BeatAgainst": "Beat against",
+        "Defenses": {
+          "parry": "Parry",
+          "block": "Block",
+          "dodge": "Dodge"
+        },
+        "OnlyBeat": "Only for a Beat",
+        "Defensive": "Defensive feint",
+        "OnSt": "ST-based",
+        "DxOrSt": "DX- or ST-based",
+        "OnIq": "IQ-based",
+        "PerDxOrTactics": "Per-, DX-based or Tactics",
+        "BestCombatSkill": "best combat skill",
+        "BeatLanded": "Beat: {foe}'s {defense} is at {penalty} until the end of your next turn",
+        "BeatBy": "Beaten by {name}",
+        "DefensiveLanded": "Defensive feint: {foe}'s next attack on you is at {penalty}",
+        "DefensiveBy": "Defensive feint by {name}",
+        "EvaluateOffset": "Evaluate against the feint",
+        "Evaluate": "Evaluate"
       }
     }
   },
