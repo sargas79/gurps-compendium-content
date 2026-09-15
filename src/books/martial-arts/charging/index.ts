@@ -8,11 +8,13 @@
  * closer or the Will roll that runs him onto an impaling weapon.
  *
  * The parry against an attacker entering close combat is the system's own
- * strike after parrying an unarmed attack.
+ * strike after parrying an unarmed attack. The attacker weighs ST/10 lbs. for
+ * the parrying weapon if he grabs or grapples, ST lbs. otherwise, and the
+ * strike can hold him at bay like a stop thrust.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { holdAtBay, maximumDamage, passesThrough, runThroughInjury, runThroughModifier, strikeBase } from "./rules.js";
+import { chargeWeight, grabsOrGrapples, holdAtBay, maximumDamage, passesThrough, runThroughInjury, runThroughModifier, strikeBase } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.MA.Charging.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.MA.Charging.${key}`, data);
@@ -91,6 +93,13 @@ export function readyCharging(api: GWorldApi, on: () => boolean): void {
     }, foe);
   });
 
+  // ── Parry (p. 106): the unarmed attacker's "weapon weight" (API 1.44.0) ──
+  Hooks.on(api.combat.hooks.breakageOdds, (context: any) => {
+    if (!on() || context?.delivery !== "unarmed" || !context.attacker || !("attackWeight" in context)) return;
+    const st = Number(api.actors.attribute(context.attacker, "ST")) || 10;
+    context.attackWeight = Math.max(Number(context.attackWeight) || 0, chargeWeight(st, grabsOrGrapples(context.attackTags ?? [])));
+  });
+
   // ── Holding a Foe at Bay (p. 106) ──
   Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
     const victim = context?.actor;
@@ -100,7 +109,9 @@ export function readyCharging(api: GWorldApi, on: () => boolean): void {
     if (!on() || !isActiveGm() || !victim || !attacker || !result || context.mode?.ranged) return;
     const stopThrust = attacker.system?.maneuver === "wait";
     const obstructed = api.combat.getCombatState(attacker, MODULE_ID, OBSTRUCTED) === victim.uuid;
-    if (!stopThrust && !obstructed) return;
+    // The system's strike after a weapon parried an unarmed attack (API 1.43.0).
+    const parried = context.damage?.source === "parriedLimb";
+    if (!stopThrust && !obstructed && !parried) return;
     const row = rowsOf(attacker).find((r) => r.itemId === item.id && r.modeIndex === Number(context.mode?.index ?? 0)) ?? null;
     const outcome = holdAtBay({ injury: Number(result.injury) || 0, thrust: row?.damageBase === "thr", damageType: String(context.damage?.type ?? "") });
     const notes = [

@@ -138,3 +138,39 @@ export function woundDuration(outcome: { success: boolean; criticalSuccess?: boo
   if (outcome.criticalFailure) return "permanent";
   return outcome.success ? "shortTerm" : "lasting";
 }
+
+/** The Basic Set trait a lasting injury's effect is, by name, for the GM to find; null for one that isn't a trait. */
+export const LASTING_TRAITS: Readonly<Record<string, string>> = {
+  numb: "Numb",
+  voice: "Disturbing Voice",
+  voiceGrave: "Cannot Speak",
+  epilepsy: "Epilepsy",
+  lowEmpathy: "Low Empathy",
+  amnesia: "Amnesia (Partial)",
+  amnesiaGrave: "Amnesia (Total)",
+  dyslexia: "Dyslexia",
+  stuttering: "Stuttering",
+  badSight: "Bad Sight",
+  hardOfHearing: "Hard of Hearing",
+  hamFisted: "Ham-Fisted",
+  hamFistedGrave: "Ham-Fisted",
+  neuroMild: "Neurological Disorder",
+  neuroSevere: "Neurological Disorder",
+  neuroCrippling: "Neurological Disorder",
+  easyToKill: "Easy to Kill",
+  wounded: "Wounded",
+  chronicPain: "Chronic Pain",
+  restrictedDiet: "Restricted Diet",
+  slowHealing: "Slow Healing",
+  unfit: "Unfit",
+  maintenanceDaily: "Maintenance",
+  maintenanceThrice: "Maintenance",
+  maintenanceConstant: "Maintenance",
+};
+
+/** Whether a compendium entry's name is the trait: the name itself, or the name with a specialty. */
+export function namesTrait(entryName: string, trait: string): boolean {
+  const name = String(entryName ?? "").trim().toLowerCase();
+  const wanted = String(trait ?? "").trim().toLowerCase();
+  return Boolean(wanted) && (name === wanted || name.startsWith(`${wanted} (`));
+}

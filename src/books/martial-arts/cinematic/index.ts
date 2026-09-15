@@ -20,6 +20,8 @@ import {
   SHOUTED_DEFENSE,
   bulletTimeSuggested,
   commandsProxy,
+  proxyObjectFits,
+  puppetMovement,
   defeatedFoesBonus,
   distracts,
   etiquetteRefuses,
@@ -318,6 +320,9 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
       if (!choice.available) continue;
       if (etiquetteRefuses({ delivery: context.delivery, defense: choice.key, bareHanded: context.parryWeapon?.natural === true })) {
         Object.assign(choice, { available: false, refusal: L("Etiquette") });
+        // The unarmed defenses that injure -- Aggressive Parry and Jam -- aren't
+        // affected, so the bare-handed parry and its techniques stay on offer (API 1.43.0).
+        if (choice.key === "parry" && context.bareHandedParry) context.bareHandedParry.available = true;
       }
     }
   });
@@ -329,6 +334,19 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
     void card({
       title: L("Shake.Title"),
       text: F("Shake.Text", { name: String(actor.name ?? "") }),
+      buttons: [{ action: "shake", label: L("Shake.Spend") }],
+      actorUuid: String(actor.uuid),
+      posture: String(context.previousPosture ?? "standing"),
+    }, actor);
+  });
+
+  // ...and after a failed roll to stay conscious (API 1.43.0).
+  Hooks.on((api.combat.hooks as any).afterConsciousnessRoll ?? "gworld.afterConsciousnessRoll", (context: any) => {
+    const actor = context?.actor;
+    if (!on.shaking() || !actor?.isOwner || actor.type !== "character" || context.outcome?.success !== false) return;
+    void card({
+      title: L("Shake.Title"),
+      text: F("Shake.TextConscious", { name: String(actor.name ?? "") }),
       buttons: [{ action: "shake", label: L("Shake.Spend") }],
       actorUuid: String(actor.uuid),
       posture: String(context.previousPosture ?? "standing"),
@@ -448,6 +466,30 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
     const grapple = api.combat.grapple(actor);
     return grapple && !grapple.holding ? null : grapple?.foe ? fromUuid(grapple.foe) ?? grapple.foe : null;
   };
+  const PUPPET = "ma-puppet";
+  const basicLiftOf = (actor: any) => Number(api.actors.basicLift(actor)) || 0;
+  /** An object proxy heavier than Basic Lift can't be used; the weight entered is already a tenth for a rolling or suspended one. */
+  const objectRefusal = (actor: any, proxy: unknown, weight: unknown) => (proxy === "object" && !proxyObjectFits(Number(weight) || 0, basicLiftOf(actor)) ? F("Proxy.TooHeavy", { bl: basicLiftOf(actor) }) : null);
+  /** A fighter using a puppet does no more than step until the grapple ends (p. 133). */
+  const usePuppet = async (actor: any, proxy: unknown) => {
+    if (!String(proxy ?? "").startsWith("puppet")) return;
+    const puppet = puppetOf(actor);
+    if (!puppet) return;
+    await api.combat.setCombatState(actor, MODULE_ID, PUPPET, String(api.combat.grapple(actor)?.foe ?? ""), "combat");
+    actor.reset?.();
+    if (actor.sheet?.rendered) actor.sheet.render(false);
+  };
+  Hooks.on(api.combat.hooks.maneuverAllowances, (context: any) => {
+    const actor = context?.actor;
+    if (!on.proxy() || !actor) return;
+    const held = state<string>(actor, PUPPET);
+    if (!held) return;
+    let grapple: any = null;
+    try { grapple = api.combat.grapple(actor); } catch { grapple = null; }
+    // Only while the grapple on that proxy lasts.
+    if (!grapple || grapple.holding === false || String(grapple.foe ?? "") !== held) return;
+    context.movement = puppetMovement(String(context.movement ?? "full"));
+  });
   api.combat.registerAttackOption({
     module: MODULE_ID,
     key: "ma-proxy",
@@ -458,19 +500,31 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
     available: () => on.proxy(),
     refuse: (context: any) => {
       const value = context.chosen?.[`${MODULE_ID}.ma-proxy`] as Proxy | undefined;
-      if (!value || value === "object") return null;
+      if (value === "object") return objectRefusal(context.actor, value, context.chosen?.[`${MODULE_ID}.ma-proxy-weight`]);
+      if (!value) return null;
       const person = value.startsWith("puppet") ? puppetOf(context.actor) : (context.targets ?? [])[0]?.actor ?? null;
       if (!person) return L(value.startsWith("puppet") ? "Proxy.NeedGrapple" : "Proxy.NeedTarget");
       return commandsProxy(bestCombat(context.actor), bestCombat(person)) ? null : L("Proxy.Outskilled");
     },
     apply: (context: any, value: unknown) => {
       if (!PROXIES.includes(value as Proxy)) return null;
+      void usePuppet(context.actor, value);
       const puppet = value === "puppetUnwilling" ? puppetOf(context.actor) : null;
       return {
         modifiers: [{ label: L(`Proxy.Kinds.${value}`), value: proxyPenalty(value as Proxy, puppet ? attr(puppet, "ST") : 0) }],
         notes: [L(value === "object" ? "Proxy.ObjectNote" : String(value).startsWith("slap") ? "Proxy.SlapNote" : "Proxy.PuppetNote")],
       };
     },
+  } as any);
+  // What the object weighs, against Basic Lift.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: "ma-proxy-weight",
+    label: L("Proxy.Weight"),
+    attack: "melee",
+    input: { type: "number", min: 0, max: 10000 },
+    available: () => on.proxy(),
+    apply: () => null,
   } as any);
   api.combat.registerAttackOption({
     module: MODULE_ID,
@@ -495,13 +549,29 @@ export function readyCinematic(api: GWorldApi, on: CinematicSwitches): void {
     label: L("Proxy.Defense"),
     input: { type: "select", choices: (["object", "puppetWilling", "puppetUnwilling"] as Proxy[]).map((value) => ({ value, label: L(`Proxy.Kinds.${value}`) })) },
     available: () => on.proxy(),
+    refuse: (context: any) => objectRefusal(context.defender, context.chosen?.[`${MODULE_ID}.ma-proxy-defense`], context.chosen?.[`${MODULE_ID}.ma-proxy-defense-weight`]),
     apply: (context: any, value: unknown) => {
       if (!PROXIES.includes(value as Proxy)) return null;
       const puppet = value === "puppetUnwilling" ? puppetOf(context.defender) : null;
       return { modifiers: [{ label: L(`Proxy.Kinds.${value}`), value: proxyPenalty(value as Proxy, puppet ? attr(puppet, "ST") : 0) }] };
     },
-    after: (context: any, outcome: any) => {
-      if (outcome && !outcome.success) ui.notifications?.info(F("Proxy.Struck", { name: String(context.defender?.name ?? "") }));
+    after: async (context: any, outcome: any, value: unknown) => {
+      await usePuppet(context.defender, value);
+      if (!outcome || outcome.success) return;
+      // Failure means the proxy is hit, not his controller: the GM applies the blow to the proxy.
+      const puppet = String(value ?? "").startsWith("puppet") ? puppetOf(context.defender) : null;
+      await card({
+        title: L("Proxy.Defense"),
+        text: puppet ? F("Proxy.StruckPuppet", { proxy: String(puppet.name ?? ""), name: String(context.defender?.name ?? "") }) : F("Proxy.Struck", { name: String(context.defender?.name ?? "") }),
+      }, context.defender, true);
     },
+  } as any);
+  api.combat.registerDefenseOption({
+    module: MODULE_ID,
+    key: "ma-proxy-defense-weight",
+    label: L("Proxy.Weight"),
+    input: { type: "number", min: 0, max: 10000 },
+    available: () => on.proxy(),
+    apply: () => null,
   } as any);
 }

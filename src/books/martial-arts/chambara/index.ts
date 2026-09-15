@@ -25,6 +25,7 @@ import {
   leapsFully,
   lizardHandsPenalty,
   lizardRetreat,
+  lizardSettles,
   onMoveAndAttack,
   retreatFits,
   retreatLines,
@@ -294,7 +295,11 @@ export function readyChambara(api: GWorldApi, on: () => boolean): void {
     const climbed = state<string>(defender, LIZARD);
     if (climbed) {
       if (climbed === "bonus" && context.retreating) context.modifiers.push({ label: L("ClimbRetreat"), value: 1 });
-      else if (climbed !== "bonus") ui.notifications?.info(L(`Lizard.${climbed}`));
+      // An automatic defense, or a failed one, isn't rolled (API 1.43.0).
+      else if (lizardSettles(climbed)) {
+        context.settle = lizardSettles(climbed);
+        context.settleLabel = "Lizard Climb";
+      }
       void api.combat.clearCombatState(defender, MODULE_ID, LIZARD);
     }
   });

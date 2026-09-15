@@ -26,3 +26,13 @@ describe("holding a foe at bay", () => {
     expect(strikeBase(["thr"])).toBe("thr");
   });
 });
+
+describe("parrying a charge (p. 106)", () => {
+  it("weighs a grab or grapple at ST/10 and anything else at ST", async () => {
+    const { chargeWeight, grabsOrGrapples } = await import("./rules.js");
+    expect(chargeWeight(13, true)).toBeCloseTo(1.3);
+    expect(chargeWeight(13, false)).toBe(13);
+    expect(grabsOrGrapples(["attack", "grapple"])).toBe(true);
+    expect(grabsOrGrapples(["slam", "attack"])).toBe(false);
+  });
+});

@@ -76,3 +76,8 @@ export function nextPhase(options: { phase: "lull" | "flurry"; flurries: number;
   if (options.phase === "flurry") return "lull";
   return options.oneFlurry && options.flurries >= 1 ? "lull" : "flurry";
 }
+
+/** The seconds of a flurry fought before it ended early: what the GM entered, within the flurry. */
+export function secondsFought(entered: number, flurryLeft: number): number {
+  return Math.max(0, Math.min(Math.floor(Number(flurryLeft) || 0), Math.floor(Number(entered) || 0)));
+}

@@ -1457,7 +1457,7 @@
         "NoLasting": "{victim}'s major wound (rolled {rolls}): no lasting effect",
         "LastingTitle": "Lasting injury",
         "DurationRoll": "HT: how long it lasts",
-        "LastingResult": "{victim}, {table} wound (rolled {rolls}): {effect}, {duration}. The GM adds it if it applies.",
+        "LastingResult": "{victim}, {table} wound (rolled {rolls}): {effect}, {duration}. The GM adds it if it applies: a trait can be dragged from the compendium onto the character.",
         "Tables": {
           "neck": "neck",
           "skull": "skull",
@@ -1507,7 +1507,9 @@
         "MoveLabel": {
           "leg": "Wounded leg",
           "torso": "Wounded torso"
-        }
+        },
+        "FindTrait": "Find {trait} in the compendium",
+        "NoTraitEntry": "No compendium entry for {trait}"
       },
       "Timing": {
         "ByName": "By its name: {length}",
@@ -1730,7 +1732,8 @@
           "Title": "Shaking It Off",
           "Text": "{name} may spend 1 FP to shake off the failed knockdown roll.",
           "Spend": "Spend 1 FP",
-          "Done": "{name} shakes it off and stays standing."
+          "Done": "{name} shakes it off and stays standing.",
+          "TextConscious": "{name} may spend 1 FP to shake off the failed roll to stay conscious."
         },
         "Bullet": {
           "Title": "Bullet Time",
@@ -1773,7 +1776,10 @@
             "slapHead": "Slap: head (-9)",
             "puppetWilling": "Puppet, willing (-4)",
             "puppetUnwilling": "Puppet, unwilling (ST/2)"
-          }
+          },
+          "Weight": "Proxy object's weight (lbs.; 1/10 if suspended or rolling)",
+          "TooHeavy": "The object weighs more than your Basic Lift ({bl} lbs.)",
+          "StruckPuppet": "{proxy} is hit, not {name}"
         }
       },
       "Tournament": {
@@ -1840,7 +1846,9 @@
         "Pressed": "{name} presses: {seconds} s more",
         "PressFailed": "{name} fails to press: a lull begins",
         "Fatigue": "A round of fighting",
-        "FatigueTaken": "Fatigue for the round: {fp} FP each"
+        "FatigueTaken": "Fatigue for the round: {fp} FP each",
+        "Fought": "Seconds fought in this flurry",
+        "FoughtLog": "{seconds} s of the flurry fought"
       }
     }
   },
