@@ -11,6 +11,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { CARRIES, carryModifier, situationModifiers, specialtyOf, type Carry } from "../readying/rules.js";
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
 import {
   WEAPON_LENGTHS,
@@ -46,7 +47,14 @@ const STOP_HIT_ROLL = "ma-stop-hit-roll";
 const STOP_HIT_OPTION = "ma-stop-hit";
 const FEINT_KIND_OPTION = "ma-feint-as";
 
-interface StoredStopHit extends StopHitRoll { vs: string; itemId: string }
+interface StoredStopHit extends StopHitRoll {
+  vs: string;
+  itemId: string;
+  /** The weapon could only parry because of the Stop Hit. */
+  unlocked?: boolean;
+  /** And it has parried. */
+  parried?: boolean;
+}
 
 /** Adds the length field on weapons. */
 export function initTiming(): void {
@@ -166,8 +174,27 @@ export function readyTiming(api: GWorldApi, draws: () => boolean, stopHits: () =
     const [a, b] = sides as [typeof sides[number], typeof sides[number]];
     if (!a.row || !b.row) return void ui.notifications?.warn(L("Draw.NoWeapon"));
     const on = inches();
+    // Fast-Draw from Odd Positions applies whatever skill is rolled (p. 103).
+    const oddPositions = (s: typeof a) => {
+      const item = s.row?.itemId ? s.actor.items?.get?.(s.row.itemId) : null;
+      const stored = item?.system?.extensions?.[MODULE_ID]?.carry;
+      const carry = CARRIES.includes(stored as Carry) ? (stored as Carry) : null;
+      const maneuver = String(s.actor.system?.maneuver ?? "");
+      const lines = situationModifiers({
+        posture: String(s.actor.system?.posture ?? "standing"),
+        grappled: Boolean(api.combat.grapple(s.actor)) && !api.combat.grapple(s.actor)?.holding,
+        upsideDown: false,
+        moving: maneuver === "move" || maneuver === "moveAndAttack",
+        hand: "master",
+        carry,
+      });
+      const located = carry ? carryModifier(specialtyOf(s.fastDrawSkill), carry) : null;
+      if (located) lines.push({ key: "carry", value: located });
+      return lines.filter((l) => l.value).map((l) => ({ label: game.i18n.localize(`GCC.MA.Readying.Line.${l.key}`), value: l.value }));
+    };
     const drawing = (s: typeof a, foe: typeof a, extra: ModifierKey[] = []) => [
       ...lineLabels([...drawModifiers(s.side, foe.side, on), ...extra]),
+      ...oddPositions(s),
       ...(s.other ? [{ label: L("Draw.Other"), value: s.other }] : []),
     ];
     const label = F("Draw.Label", { a: a.actor.name, b: b.actor.name });
@@ -308,14 +335,33 @@ export function readyTiming(api: GWorldApi, draws: () => boolean, stopHits: () =
     if (inches() && context?.attackWeapon?.flail) context.parriesFlail = true;
   });
 
-  // A Stop Hit's weapon may parry that foe though it was unbalanced or went unready (p. 108).
+  // A Stop Hit's weapon may parry that foe though it was unbalanced or went
+  // unready, as part of the Stop Hit -- but no one else, and not again (p. 108).
   Hooks.on(api.combat.hooks.parryWeapons, (context: any) => {
     if (!stopHits() || !context?.actor) return;
     const roll = stopHitRoll(context.actor);
     if (!roll?.itemId) return;
     for (const candidate of context.candidates ?? []) {
-      if (candidate.itemId === roll.itemId && candidate.excluded) candidate.excluded = false;
+      if (candidate.itemId === roll.itemId && candidate.excluded) {
+        candidate.excluded = false;
+        void api.combat.setCombatState(context.actor, MODULE_ID, STOP_HIT_ROLL, { ...roll, unlocked: true }, "round");
+      }
     }
+  });
+  Hooks.on(api.combat.hooks.defenseChoices, (context: any) => {
+    if (!stopHits() || !context?.defender) return;
+    const roll = stopHitRoll(context.defender);
+    if (!roll?.unlocked || !roll.itemId || context.parryWeapon?.itemId !== roll.itemId) return;
+    const refusal = roll.parried ? L("StopHit.ParriedAlready") : context.attacker?.uuid !== roll.vs ? L("StopHit.OnlyThatFoe") : null;
+    if (!refusal) return;
+    for (const choice of context.choices ?? []) {
+      if (choice.key === "parry" && choice.available) Object.assign(choice, { available: false, refusal });
+    }
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    if (!stopHits() || !context?.actor?.isOwner || !(context.tags ?? []).includes("parry")) return;
+    const roll = stopHitRoll(context.actor);
+    if (roll?.unlocked && !roll.parried) void api.combat.setCombatState(context.actor, MODULE_ID, STOP_HIT_ROLL, { ...roll, parried: true }, "round");
   });
 
   // Weight in feints and Beats (p. 110): the feinter's weapon here, the foe's parry below.

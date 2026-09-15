@@ -1539,8 +1539,8 @@
           "Ready": "Weapon ready",
           "FastDraw": "Fast-Draw",
           "None": "None",
-          "Other": "Fast-Draw modifiers",
-          "OtherHint": "Fast-Draw modifiers: the situation and where the weapon is carried.",
+          "Other": "Other modifiers",
+          "OtherHint": "Posture, a grapple, moving and where the weapon is carried are applied for you; add anything else here.",
           "Resolve": "Resolve",
           "Label": "Who draws first: {a} and {b}",
           "First": "{name} strikes first.",
@@ -1554,7 +1554,9 @@
           "Respond": "Stop Hit",
           "Pick": "Target the foe the Stop Hit is against",
           "Armed": "{name} attacks into {foe}'s attack: both roll to hit before either defends.",
-          "Penalty": "Stop Hit"
+          "Penalty": "Stop Hit",
+          "OnlyThatFoe": "This weapon can only parry the foe of the Stop Hit",
+          "ParriedAlready": "This weapon parried as part of the Stop Hit, and can't parry again"
         },
         "Waits": {
           "Title": "Cascading Waits",
@@ -1644,7 +1646,8 @@
         "Technique": "Chambara technique",
         "Techniques": {
           "acrobatic": "Acrobatic version",
-          "flying": "Flying version"
+          "flying": "Flying version",
+          "spinning": "Spinning version (with a Wild Swing)"
         },
         "NeedsAcrobaticsJumping": "Needs Acrobatics and Jumping at DX or better",
         "NeedsTechnique": "Needs a point in an offensive technique",
@@ -1657,9 +1660,12 @@
           "stunt": "Bought off: the stunt's -1",
           "again": "Retreated already this turn",
           "yards": "Retreat distance",
-          "acrobaticAgain": "Acrobatic defense already this turn"
+          "acrobaticAgain": "Acrobatic defense already this turn",
+          "wildSwing": "Bought off: Wild Swing"
         },
-        "StoodOnLine": "Weapon stood on"
+        "StoodOnLine": "Weapon stood on",
+        "NeedsMoveAndAttack": "The acrobatic and flying versions are a Move and Attack",
+        "NeedsWildSwing": "Tick Wild Swing for the spinning version"
       },
       "Cinematic": {
         "Wills": {

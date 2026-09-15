@@ -31,16 +31,27 @@ export function stepsThisTurn(options: { maneuverSteps: number; traded: number }
   return Math.max(0, options.maneuverSteps) + Math.max(0, options.traded);
 }
 
-export type ChambaraTechnique = "acrobatic" | "flying";
-export const CHAMBARA_TECHNIQUES: readonly ChambaraTechnique[] = ["acrobatic", "flying"];
+export type ChambaraTechnique = "acrobatic" | "flying" | "spinning";
+export const CHAMBARA_TECHNIQUES: readonly ChambaraTechnique[] = ["acrobatic", "flying", "spinning"];
+
+/** The versions that are a Move and Attack; the spinning one is a Wild Swing on any attack. */
+export function onMoveAndAttack(kind: ChambaraTechnique): boolean {
+  return kind !== "spinning";
+}
 
 /**
- * An acrobatic or flying version of an offensive technique, at default (p. 129):
- * -6, buying off Move and Attack's -4 and the stunt's own -1, and lifting the
- * skill cap of 9.
+ * A chambara version of an offensive technique, at default (p. 129): -6, and
+ * the skill cap of 9 lifted. An acrobatic or flying version buys off Move and
+ * Attack's -4 and the stunt's own -1; a spinning one buys off the Wild Swing's
+ * penalty (`wildSwing`, the line already on the roll).
  */
-export function chambaraTechniqueLines(stuntPenalty: number): Array<{ key: string; value: number }> {
-  const lines = [{ key: "techniqueDefault", value: -6 }, { key: "moveAndAttack", value: 4 }];
+export function chambaraTechniqueLines(kind: ChambaraTechnique, stuntPenalty: number, wildSwing = 0): Array<{ key: string; value: number }> {
+  const lines = [{ key: "techniqueDefault", value: -6 }];
+  if (kind === "spinning") {
+    if (wildSwing < 0) lines.push({ key: "wildSwing", value: -wildSwing });
+    return lines;
+  }
+  lines.push({ key: "moveAndAttack", value: 4 });
   if (stuntPenalty < 0) lines.push({ key: "stunt", value: -stuntPenalty });
   return lines;
 }
