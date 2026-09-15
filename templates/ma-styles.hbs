@@ -1,0 +1,47 @@
+{{!-- Styles and training (Martial Arts pp. 49, 141-148, 232-233). --}}
+<div class="isec" data-ma-styles>
+  {{#if styles}}
+  <div class="grph">{{localize "GCC.MA.Styles.Title"}}
+    <span class="sub">{{localize "GCC.MA.Styles.General"}} {{general}}</span>
+  </div>
+  {{#if rows.length}}
+  <table class="gt">
+    <thead><tr>
+      <th>{{localize "GCC.MA.Styles.Style"}}</th>
+      <th class="c">{{localize "GCC.MA.Styles.Cost"}}</th>
+      <th class="c">{{localize "GCC.MA.Styles.Spent"}}</th>
+      <th class="c">{{localize "GCC.MA.Styles.Known"}}</th>
+      <th class="c">{{localize "GCC.MA.Styles.Perks"}}</th>
+    </tr></thead>
+    <tbody>
+      {{#each rows as |row|}}
+      <tr>
+        <td>{{row.name}}
+          {{#each row.warnings as |w|}}<span class="tag tag-danger">{{w}}</span>{{/each}}
+        </td>
+        <td class="c">{{row.cost}}</td>
+        <td class="c">{{row.spent}}</td>
+        <td class="c">{{#if row.known}}&check;{{else}}<span class="bad" data-tooltip="{{row.missing}}">&mdash;</span>{{/if}}</td>
+        <td class="c">{{row.perks}} / {{row.perksAllowed}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{#if together}}
+  <p class="ihint">{{localize "GCC.MA.Styles.Together"}} {{together.spent}} / {{together.cost}}{{#unless together.known}} &mdash; {{localize "GCC.MA.Styles.NotAll"}}{{/unless}}</p>
+  {{/if}}
+  {{#if overPerks}}<p class="ihint bad">{{localize "GCC.MA.Styles.OverPerks"}} ({{perksTaken}} / {{perksAllowed}})</p>{{/if}}
+  {{else}}
+  <p class="ihint">{{localize "GCC.MA.Styles.None"}}</p>
+  {{/if}}
+  {{/if}}
+  {{#if training}}
+  <div class="npcline" style="gap: 8px; align-items: center">
+    <label>{{localize "GCC.MA.Styles.Training.Equipment"}}
+      <select name="{{field}}" {{#unless editable}}disabled{{/unless}}>
+        {{#each equipment as |e|}}<option value="{{e.value}}" {{#if e.selected}}selected{{/if}}>{{e.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  {{/if}}
+</div>

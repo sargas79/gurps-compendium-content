@@ -8,7 +8,8 @@
  * (pp. 98, 105-107), and the posture tables with drops during an attack
  * (pp. 98-99), and feints: Beats, Ruses, defensive feints and resisting them
  * (pp. 49, 100-101), readying weapons (pp. 101-104), and the melee attack
- * options: grips, Pummeling, Tip Slash and Telegraphic Attack (pp. 109-113).
+ * options: grips, Pummeling, Tip Slash and Telegraphic Attack (pp. 109-113),
+ * and styles and training (pp. 49, 141-148, 232-233).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -20,6 +21,7 @@ import { initPostureAttacks, readyPostureAttacks } from "./posture-attacks.js";
 import { readyFeints } from "./feints/index.js";
 import { initReadying, readyReadying } from "./readying/index.js";
 import { readyMeleeOptions } from "./grips/index.js";
+import { initStyles, readyStyles } from "./styles/index.js";
 
 const SLUG = "martial-arts";
 const REFERENCE = "Martial Arts";
@@ -34,6 +36,8 @@ const RULES = [
   { key: "feints", pages: "pp. 49, 100-101", implemented: true },
   { key: "readying", pages: "pp. 101-104", implemented: true },
   { key: "meleeOptions", pages: "pp. 109-113", implemented: true },
+  { key: "styles", pages: "pp. 49, 141-148", implemented: true },
+  { key: "training", pages: "pp. 147, 232-233", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -65,11 +69,13 @@ function ready(api: GWorldApi): void {
   readyFeints(api, () => api.registry.isRuleOn(ruleKey("feints")));
   readyReadying(api, () => api.registry.isRuleOn(ruleKey("readying")));
   readyMeleeOptions(api, () => api.registry.isRuleOn(ruleKey("meleeOptions")));
+  readyStyles(api, () => api.registry.isRuleOn(ruleKey("styles")), () => api.registry.isRuleOn(ruleKey("training")));
 }
 
 function init(): void {
   initPostureAttacks();
   initReadying();
+  initStyles();
 }
 
 export const book: BookRules = {
