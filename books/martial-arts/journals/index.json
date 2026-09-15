@@ -525,6 +525,7 @@
       "chapter": "Combat",
       "pages": "MA121",
       "reference": "Martial Arts p. 121",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "cross-parry.md",
       "status": "reviewed"
     },
@@ -544,6 +545,7 @@
       "chapter": "Combat",
       "pages": "MA122",
       "reference": "Martial Arts p. 122",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "fencing-parries.md",
       "status": "reviewed"
     },
@@ -553,6 +555,7 @@
       "chapter": "Combat",
       "pages": "MA122-123",
       "reference": "Martial Arts pp. 122-123",
+      "rule": "gurps-compendium-content.limitedDefenses",
       "file": "limiting-dodges.md",
       "status": "reviewed"
     },
@@ -571,6 +574,7 @@
       "chapter": "Combat",
       "pages": "MA123",
       "reference": "Martial Arts p. 123",
+      "rule": "gurps-compendium-content.limitedDefenses",
       "file": "multiple-blocks.md",
       "status": "reviewed"
     },
@@ -580,6 +584,7 @@
       "chapter": "Combat",
       "pages": "MA123",
       "reference": "Martial Arts p. 123",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "parries-with-legs-or-feet.md",
       "status": "reviewed"
     },
@@ -589,6 +594,7 @@
       "chapter": "Combat",
       "pages": "MA123",
       "reference": "Martial Arts p. 123",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "parrying-with-two-handed-weapons.md",
       "status": "reviewed"
     },
@@ -608,6 +614,7 @@
       "chapter": "Combat",
       "pages": "MA124-125",
       "reference": "Martial Arts pp. 124-125",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "riposte.md",
       "status": "reviewed"
     },
@@ -626,6 +633,7 @@
       "chapter": "Combat",
       "pages": "MA125",
       "reference": "Martial Arts p. 125",
+      "rule": "gurps-compendium-content.defenseOptions",
       "file": "unbalanced-parries.md",
       "status": "reviewed"
     },

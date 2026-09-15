@@ -588,6 +588,14 @@
         "cinematicRapidStrike": {
           "Name": "Cinematic Rapid Strike",
           "Hint": "A Rapid Strike may have more than two attacks, at -6 per attack past the first on each (halved with Trained by a Master or Weapon Master). The GM may reserve it for those advantages, or cap adjusted skill at 12."
+        },
+        "defenseOptions": {
+          "Name": "Active defense options",
+          "Hint": "Cross Parry and Supported Parry, Dive, Sideslip and Slip, Riposte, leg parries, a long two-handed weapon's parry against both halves of a Dual-Weapon Attack, and the fencing and two-handed refinements to multiple parries."
+        },
+        "limitedDefenses": {
+          "Name": "Limits on dodging and blocking",
+          "Hint": "-1 per dodge after the first in a turn, more than one block at -5 each (less for a Weapon Master), and dodging firearms only with evasive movement against the shooter. Trained by a Master and Weapon Master fighters are exempt from the dodge limits, as the book recommends."
         }
       },
       "Committed": {
@@ -1035,6 +1043,33 @@
         "Skipped": "Skipping {skipped} yard(s) between targets uses up {skipped} attack(s)",
         "TooFar": "Skipping {skipped} yard(s) to that target would use up the attacks left",
         "RepeatedGrapple": "The same grappling move can't be repeated on this foe this turn"
+      },
+      "Defenses": {
+        "Cross": "Cross Parry",
+        "Supported": "Supported Parry",
+        "Locked": "Used in a Cross or Supported Parry this turn",
+        "RetreatOption": "Retreat option",
+        "Retreats": {
+          "dive": "Dive",
+          "sideslip": "Sideslip",
+          "slip": "Slip"
+        },
+        "RetreatAlready": "A retreat option replaces Retreat: untick one",
+        "Riposte": "Riposte",
+        "RiposteFloor": "A Riposte can't take the Parry below 8",
+        "RipostePending": "Riposte: -{penalty} on {foe}'s defense against your next attack with that weapon",
+        "WaitParried": "This unbalanced weapon parried during the Wait, and can't attack in it",
+        "Leg": "Leg parry",
+        "LegOnly": "A leg parry defends only the feet, legs and groin",
+        "LegUsed": "One leg parry a turn",
+        "LegNoRetreat": "No retreat in a turn you parried with a leg",
+        "LegHit": "Failed leg parry against a weapon: the attacker may strike the leg instead.",
+        "Dual": "Parry both halves (Dual-Weapon Attack)",
+        "DualFailed": "Failed: both halves of the Dual-Weapon Attack hit.",
+        "DodgeLimit": "Dodged already this turn",
+        "MultipleBlocks": "Blocked already this turn",
+        "Evasive": "Evasive movement (against the shooter you target at the end of your turn)",
+        "NoEvasive": "Dodging firearms takes evasive movement against this shooter"
       }
     }
   },
