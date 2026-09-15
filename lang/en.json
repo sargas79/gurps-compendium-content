@@ -560,6 +560,10 @@
         "readying": {
           "Name": "Readying weapons",
           "Hint": "Multiple Fast-Draw at -2 per earlier draw with the hand, Fast-Draw from odd positions and carry locations, a Ready that combines drawing with a grip change, rapid grip changes, and quick-readying a weapon from the floor, a rack or the ground."
+        },
+        "meleeOptions": {
+          "Name": "Grips, Pummeling, Tip Slash and Telegraphic Attack",
+          "Hint": "Defensive Grip and half-swording, Reversed Grip with its forearm parry, Pummeling and Tip Slash as attack modes, and Telegraphic Attack. A weapon's grip is set by a Ready in the Readying section."
         }
       },
       "Committed": {
@@ -741,6 +745,7 @@
         "Grips": {
           "regular": "regular",
           "defensive": "Defensive Grip",
+          "halfSword": "Defensive Grip (half-swording)",
           "reversed": "Reversed Grip"
         },
         "Grappled": "Grappled",
@@ -801,6 +806,28 @@
           "carry": "Where it's carried",
           "rapid": "Rapid grip change"
         }
+      },
+      "Grips": {
+        "Defensive": "Defensive Grip",
+        "HalfSword": "Half-swording",
+        "Reversed": "Reversed Grip",
+        "DefensiveHint": "One-handed: -2 to hit, +1 damage, counts as two-handed. Two-handed: swings -2 damage (or -1 per die), -1 to breakage, Wild Swings -2 more. +1 to parry from the front, -1 more from the side.",
+        "HalfSwordHint": "Reach C, thrusts only, and 2 less off the chinks-in-armor penalty.",
+        "ReversedHint": "Reach shortened, thrusts +1 damage, swings -2 (or -1 per die), parry -2. Feints and Deceptive Attacks to the front or sides give -1 more to defend.",
+        "NoSwing": "Half-swording allows no swings",
+        "Chinks": "Half-swording",
+        "DefensiveParry": "Defensive Grip",
+        "ReversedDeception": "Reversed Grip",
+        "Forearm": "Forearm parry",
+        "ForearmNone": "A forearm parry needs Brawling or Karate and a reach C or 1 weapon in a Reversed Grip",
+        "ForearmFailed": "Failed forearm parry: the attacker may choose to strike the weapon instead.",
+        "Pummel": "Pummeling",
+        "TipSlash": "Tip Slash",
+        "ButtStrike": "Butt strike",
+        "Telegraphic": "Telegraphic Attack",
+        "TelegraphicDeceptive": "A Telegraphic Attack can't be a Deceptive Attack",
+        "TelegraphicFeint": "Telegraphic Attack: no feint",
+        "TelegraphicEvaluate": "Telegraphic Attack: no Evaluate bonus"
       }
     }
   },

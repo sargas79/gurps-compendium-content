@@ -255,6 +255,7 @@
       "chapter": "Combat",
       "pages": "MA109-111",
       "reference": "Martial Arts pp. 109-111",
+      "rule": "gurps-compendium-content.meleeOptions",
       "file": "defensive-grip.md",
       "status": "reviewed"
     },
@@ -273,6 +274,7 @@
       "chapter": "Combat",
       "pages": "MA111",
       "reference": "Martial Arts p. 111",
+      "rule": "gurps-compendium-content.meleeOptions",
       "file": "pummeling.md",
       "status": "reviewed"
     },
@@ -282,6 +284,7 @@
       "chapter": "Combat",
       "pages": "MA111-112",
       "reference": "Martial Arts pp. 111-112",
+      "rule": "gurps-compendium-content.meleeOptions",
       "file": "reversed-grip.md",
       "status": "reviewed"
     },
@@ -338,6 +341,7 @@
       "chapter": "Combat",
       "pages": "MA113",
       "reference": "Martial Arts p. 113",
+      "rule": "gurps-compendium-content.meleeOptions",
       "file": "telegraphic-attack.md",
       "status": "reviewed"
     },
@@ -347,6 +351,7 @@
       "chapter": "Combat",
       "pages": "MA113",
       "reference": "Martial Arts p. 113",
+      "rule": "gurps-compendium-content.meleeOptions",
       "file": "tip-slash.md",
       "status": "reviewed"
     },

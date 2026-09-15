@@ -101,7 +101,7 @@ async function fastDraw(api: GWorldApi, actor: any, form: HTMLElement): Promise<
   }
   // Drawing into a Defensive Grip still needs its Ready (p. 102).
   if (weapon && grip === "reversed") await api.combat.setWeaponState(weapon, MODULE_ID, { grip });
-  if (grip === "defensive") ui.notifications?.info(L("DefensiveNeedsReady"));
+  if (grip === "defensive" || grip === "halfSword") ui.notifications?.info(L("DefensiveNeedsReady"));
 }
 
 async function readyGrip(api: GWorldApi, actor: any, form: HTMLElement): Promise<void> {
@@ -118,7 +118,7 @@ async function rapidGrip(api: GWorldApi, actor: any, form: HTMLElement): Promise
   const grip = form.querySelector<HTMLSelectElement>("[data-ma-ready-grip]")?.value as Grip;
   if (!weapon || !GRIPS.includes(grip)) return;
   const from = gripOf(api, weapon);
-  if (grip === "defensive" || from === "defensive" || grip === from) {
+  if (grip === "defensive" || grip === "halfSword" || from === "defensive" || from === "halfSword" || grip === from) {
     ui.notifications?.warn(L("RapidOnlyReversed"));
     return;
   }

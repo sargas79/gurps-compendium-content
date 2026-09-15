@@ -5,8 +5,9 @@
  */
 
 export type Hand = "master" | "off" | "both";
-export type Grip = "regular" | "defensive" | "reversed";
-export const GRIPS: readonly Grip[] = ["regular", "defensive", "reversed"];
+/** A weapon's grip; half-swording is a sword's Defensive Grip (p. 111). */
+export type Grip = "regular" | "defensive" | "halfSword" | "reversed";
+export const GRIPS: readonly Grip[] = ["regular", "defensive", "halfSword", "reversed"];
 
 /** Draws made so far this turn, by hand. A two-handed draw counts for both. */
 export interface DrawCounts {
