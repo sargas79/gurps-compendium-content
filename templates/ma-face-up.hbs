@@ -1,0 +1,6 @@
+{{!-- Lying face-up or prone, which the Martial Arts posture tables tell apart (pp. 98-99). --}}
+<div class="npcline" data-ma-face-up-section style="gap: 10px; align-items: center">
+  <label class="icheck" data-tooltip="{{localize 'GCC.MA.Posture.FaceUpHint'}}">
+    <input type="checkbox" data-ma-face-up {{#if faceUp}}checked{{/if}} {{#unless editable}}disabled{{/unless}} />
+    {{localize "GCC.MA.Posture.FaceUp"}}</label>
+</div>
