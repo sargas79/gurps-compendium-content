@@ -648,6 +648,22 @@
         "bodiesInClose": {
           "Name": "Teeth and bodies in close combat",
           "Hint": "Everyone can bite and hold on, with what a bite reaches set by size; extra arms and legs in grappling."
+        },
+        "partialInjuries": {
+          "Name": "Partial injuries",
+          "Hint": "Wounds to an arm, leg or the torso start to hurt after 2×HT seconds: DX, Dodge and Move penalties by how bad they are."
+        },
+        "extremeDismemberment": {
+          "Name": "Extreme dismemberment",
+          "Hint": "A cut that severs an arm, hand, leg or foot the victim is using may carry through to the other one."
+        },
+        "severeBleeding": {
+          "Name": "Severe bleeding",
+          "Hint": "Severed parts, the neck, skull, veins and vitals bleed faster and harder; First Aid takes the same penalty, and some need Surgery."
+        },
+        "lastingInjuries": {
+          "Name": "Lasting injuries",
+          "Hint": "A major wound to the neck, skull, veins or vitals rolls on its table for a lasting or permanent effect."
         }
       },
       "Committed": {
@@ -1352,6 +1368,74 @@
         "ExtraArms": "Extra arms",
         "MoreArms": "More arms",
         "ExtraLegs": "Extra legs"
+      },
+      "Injury": {
+        "CarryTitle": "Carry through",
+        "CarryAsk": "{attacker}'s cut severs {victim}'s {part}. Carry it through to the other one?",
+        "CarryLabel": "Carry through to {victim}'s other limb",
+        "CarryPenalty": "Carrying through",
+        "CarryResult": "{victim}'s other {part}: DR {dr}, {injury} injury",
+        "LongTermPain": "Long-term pain",
+        "Partial": {
+          "arm": "Wounded arm: {dx} DX with it (at the worst, Will {will} to use it)",
+          "leg": "Wounded leg: {dx} DX to kick with it",
+          "torso": "Wounded torso: {dx} DX"
+        },
+        "SevereWound": "Severe wound",
+        "Staunch": "Staunch with Surgery",
+        "StaunchWho": "Target the patient",
+        "NoSurgery": "The surgeon has no Surgery skill",
+        "StaunchLabel": "Surgery to staunch {patient}'s bleeding",
+        "NoLasting": "{victim}'s major wound (rolled {rolls}): no lasting effect",
+        "LastingTitle": "Lasting injury",
+        "DurationRoll": "HT: how long it lasts",
+        "LastingResult": "{victim}, {table} wound (rolled {rolls}): {effect}, {duration}. The GM adds it if it applies.",
+        "Tables": {
+          "neck": "neck",
+          "skull": "skull",
+          "veins": "vein or artery",
+          "vitals": "vitals"
+        },
+        "Durations": {
+          "shortTerm": "short-term",
+          "lasting": "lasting",
+          "permanent": "permanent"
+        },
+        "Effects": {
+          "lessHt": "-1 HT",
+          "lessDx": "-1 DX",
+          "lessIq": "-1 IQ",
+          "lessSpeed": "-1 Basic Speed",
+          "lessFp": "-1 FP",
+          "numb": "Numb",
+          "voice": "Disturbing Voice",
+          "voiceGrave": "Cannot Speak",
+          "epilepsy": "Epilepsy",
+          "lowEmpathy": "Low Empathy",
+          "amnesia": "Partial Amnesia",
+          "amnesiaGrave": "Total Amnesia",
+          "dyslexia": "Dyslexia",
+          "stuttering": "Stuttering",
+          "badSight": "Bad Sight",
+          "hardOfHearing": "Hard of Hearing",
+          "hamFisted": "Ham-Fisted",
+          "hamFistedGrave": "Ham-Fisted (two levels)",
+          "neuroMild": "Neurological Disorder (Mild)",
+          "neuroSevere": "Neurological Disorder (Severe)",
+          "neuroCrippling": "Neurological Disorder (Crippling)",
+          "crippledLimb": "a crippled limb",
+          "easyToKill": "Easy to Kill",
+          "wounded": "Wounded",
+          "chronicPain": "Chronic Pain",
+          "restrictedDiet": "Restricted Diet",
+          "susceptible": "Susceptible to Disease",
+          "slowHealing": "Slow Healing 1",
+          "unfit": "Unfit",
+          "maintenanceDaily": "Maintenance (daily)",
+          "maintenanceThrice": "Maintenance (three times a day)",
+          "maintenanceConstant": "Maintenance (constant)"
+        },
+        "Surgeon": "Surgeon"
       }
     }
   },
