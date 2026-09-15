@@ -314,6 +314,7 @@
       "chapter": "Combat",
       "pages": "MA112",
       "reference": "Martial Arts p. 112",
+      "rule": "gurps-compendium-content.shovesAndShields",
       "file": "shoves-with-weapons.md",
       "status": "reviewed"
     },
@@ -323,7 +324,7 @@
       "chapter": "Combat",
       "pages": "MA112",
       "reference": "Martial Arts p. 112",
-      "rule": "slams",
+      "rule": "gurps-compendium-content.shovesAndShields",
       "file": "slams-with-long-weapons.md",
       "status": "reviewed"
     },
@@ -333,6 +334,7 @@
       "chapter": "Combat",
       "pages": "MA112-113",
       "reference": "Martial Arts pp. 112-113",
+      "rule": "gurps-compendium-content.shovesAndShields",
       "file": "striking-at-shields.md",
       "status": "reviewed"
     },

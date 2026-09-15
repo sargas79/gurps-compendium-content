@@ -620,6 +620,10 @@
         "unorthodoxWeapons": {
           "Name": "Unorthodox weapon use",
           "Hint": "Two-handed weapons in one hand for the strong, melee weapons hurled, and everyday items improvised as weapons."
+        },
+        "shovesAndShields": {
+          "Name": "Shoves, slams and shields",
+          "Hint": "Shoves with weapons and shields, cross-checking slams with long weapons, striking at shields and cloaks, and grabbing them."
         }
       },
       "Committed": {
@@ -1215,6 +1219,32 @@
           "shank": "Shank or shiv"
         },
         "ImprovisedDone": "{actor} now has {weapon}"
+      },
+      "Shields": {
+        "Title": "Shields",
+        "WeaponShove": "Shove with a weapon or shield",
+        "LongShove": "Shove two foes with a long weapon",
+        "CrossCheck": "Cross-check with a long weapon",
+        "CrossCheckNeck": "Cross-check at the neck (-5)",
+        "CrossCheckTwo": "Cross-check two foes (-4 each)",
+        "With": "With {weapon}",
+        "NeckNote": "At the neck: crushing damage there counts as to the neck",
+        "ShieldHeld": "Your shield is held",
+        "Grab": "Grab shield",
+        "GrabHint": "Grab the targeted foe's shield or cloak: DX or a grappling skill at -4 plus its DB. Held, it gives no Block or DB until they break free.",
+        "Hands": "Hands",
+        "OneHand": "One hand",
+        "TwoHands": "Two hands",
+        "GrabLabel": "Grab {foe}'s {shield}",
+        "Grabbed": "{shield} held",
+        "NoDb": "no DB",
+        "HeldBy": "Shield held by {name}",
+        "OneTarget": "Target the one foe whose shield you grab",
+        "NoShield": "{name} has no shield or cloak ready",
+        "BreakFree": "Break free",
+        "BreakFreeLabel": "{name} breaks free of the shield grab",
+        "Strapped": "strapped shield",
+        "Free": "{name} pulls the shield free"
       }
     }
   },

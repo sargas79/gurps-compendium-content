@@ -1,0 +1,11 @@
+{{!-- Grabbing shields (Martial Arts p. 113): grab a foe's, or break free of a grab on your own. --}}
+<div class="isec" data-ma-shields>
+  <div class="ish">{{localize "GCC.MA.Shields.Title"}}</div>
+  <div class="toolbar">
+    {{#if editable}}
+      <button type="button" class="ibtn" data-ma-grab-shield data-tooltip="{{localize 'GCC.MA.Shields.GrabHint'}}">{{localize "GCC.MA.Shields.Grab"}}</button>
+      {{#if held}}<button type="button" class="ibtn" data-ma-break-free>{{localize "GCC.MA.Shields.BreakFree"}}</button>{{/if}}
+    {{/if}}
+    {{#if held}}<span class="tag tag-danger">{{held}}</span>{{/if}}
+  </div>
+</div>
