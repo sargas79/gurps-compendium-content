@@ -24,6 +24,7 @@
       "chapter": "Combat",
       "pages": "MA97",
       "reference": "Martial Arts p. 97",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "aim.md",
       "status": "reviewed"
     },
@@ -469,6 +470,7 @@
       "chapter": "Combat",
       "pages": "MA119",
       "reference": "Martial Arts p. 119",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "ranged-attack-options.md",
       "status": "reviewed"
     },
@@ -478,6 +480,7 @@
       "chapter": "Combat",
       "pages": "MA119-120",
       "reference": "Martial Arts pp. 119-120",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "quick-shooting-bows.md",
       "status": "reviewed"
     },
@@ -487,7 +490,7 @@
       "chapter": "Combat",
       "pages": "MA120-121",
       "reference": "Martial Arts pp. 120-121",
-      "rule": "rapidStrike",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "rapid-strike-with-thrown-weapons.md",
       "status": "reviewed"
     },
@@ -497,7 +500,7 @@
       "chapter": "Combat",
       "pages": "MA120",
       "reference": "Martial Arts p. 120",
-      "rule": "rapidFire",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "rapid-fire-with-thrown-weapons.md",
       "status": "reviewed"
     },
@@ -507,6 +510,7 @@
       "chapter": "Combat",
       "pages": "MA121",
       "reference": "Martial Arts p. 121",
+      "rule": "gurps-compendium-content.rangedOptions",
       "file": "tricky-shooting.md",
       "status": "reviewed"
     },
