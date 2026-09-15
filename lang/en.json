@@ -530,6 +530,48 @@
         "BadFormula": "\"{formula}\" is not a damage roll",
         "NoDamage": "{spell} does what its description says; roll it by hand"
       }
+    },
+    "MA": {
+      "Rules": {
+        "committedDefensiveAttack": {
+          "Name": "Committed and Defensive Attack",
+          "Hint": "Two maneuvers between Attack and the All-Out ones. Committed Attack: +2 to hit or +1 damage, a second step at -2, and defenses at -2 with no retreat. Defensive Attack: -2 damage, or -1 per die, for +1 to a defense or an unbalanced weapon that can still parry."
+        }
+      },
+      "Committed": {
+        "Title": "Committed Attack",
+        "Mode": "Committed as",
+        "Modes": {
+          "determined": "Determined (+2 to hit)",
+          "strong": "Strong (+1 damage)"
+        },
+        "Steps": "Steps taken",
+        "SecondStep": "Second step",
+        "NoDodge": "No dodge after a Committed Attack kick",
+        "NoBlock": "No block with the shield that made the Committed Attack",
+        "NoParry": "Made the Committed Attack",
+        "NoRetreat": "No retreat after a Committed Attack",
+        "NoFeverish": "No Feverish Defense after a Committed Attack"
+      },
+      "Defensive": {
+        "Title": "Defensive Attack",
+        "Benefit": "Defensive Attack for",
+        "Benefits": {
+          "parry": "+1 to Parry",
+          "block": "+1 to Block",
+          "sameWeapon": "Parry with this unbalanced weapon",
+          "kick": "Kick: +2 against Leg Grapple and to stay standing"
+        }
+      },
+      "Wait": {
+        "Response": "Respond with",
+        "Responses": {
+          "committedDetermined": "Committed Attack (Determined)",
+          "committedStrong": "Committed Attack (Strong)",
+          "defensive": "Defensive Attack"
+        },
+        "Respond": "Respond now"
+      }
     }
   },
   "TYPES": {

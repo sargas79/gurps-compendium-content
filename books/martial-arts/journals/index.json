@@ -78,6 +78,7 @@
       "chapter": "Combat",
       "pages": "MA99-100",
       "reference": "Martial Arts pp. 99-100",
+      "rule": "gurps-compendium-content.committedDefensiveAttack",
       "file": "committed-attack.md",
       "status": "reviewed"
     },
@@ -87,6 +88,7 @@
       "chapter": "Combat",
       "pages": "MA100",
       "reference": "Martial Arts p. 100",
+      "rule": "gurps-compendium-content.committedDefensiveAttack",
       "file": "defensive-attack.md",
       "status": "reviewed"
     },
