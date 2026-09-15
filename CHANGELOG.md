@@ -1,5 +1,30 @@
 # Changelog
 
+## v0.8.0 — Martial Arts follow-ups on API 1.44, and techniques bought off a defense
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.11.0**, which this release requires (add-on API 1.44.0).
+
+- **Techniques bought off a defense (#210):** Aggressive Parry, Jam, Dual-Weapon
+  Defense, Hand Catch, Hand-Clap Parry, Low-Line Defense, Timed Defense and Trip
+  are in the Martial Arts pack, with their Art and Sport versions and an open
+  Dual-Weapon Defense for melee weapon skills.
+- **Martial Arts (#208):**
+  - parrying a charge weighs the attacker at ST/10 lbs. for a grab or grapple and
+    ST lbs. otherwise, and the strike after the parry can hold him at bay;
+  - a Lizard Climb makes the next defense succeed or fail without a roll;
+  - chambara fighters get the retreat options, Multiple Blocks and the two-handed
+    parry rules even with the defense option switches off;
+  - Unarmed Etiquette offers the bare-handed parry and its techniques when it
+    refuses a weapon parry;
+  - Shaking It Off also follows a failed roll to stay conscious;
+  - Proxy Fighting refuses an object heavier than Basic Lift, holds a fighter using
+    a puppet to a step, and says who takes a blow the proxy failed to stop;
+  - tournament deadly hits roll their location through the add-on's hit
+    locations, and a flurry cut short counts the seconds the GM enters;
+  - a lasting injury that is a trait has a button that opens it in the compendium,
+    to drag onto the character.
+
 ## v0.7.0 — Book text in the picker, and Martial Arts follow-ups
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
