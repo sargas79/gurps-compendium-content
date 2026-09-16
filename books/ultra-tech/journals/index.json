@@ -2255,6 +2255,7 @@
       "title": "Warheads and Ammunition",
       "chapter": "Weaponry",
       "pages": "UT152",
+      "rule": "gurps-compendium-content.warheads",
       "reference": "Ultra-Tech p. 152",
       "file": "warheads-and-ammunition.md",
       "status": "reviewed"
@@ -2264,6 +2265,7 @@
       "title": "Nuclear and Antimatter",
       "chapter": "Weaponry",
       "pages": "UT156",
+      "rule": "gurps-compendium-content.warheads",
       "reference": "Ultra-Tech p. 156",
       "file": "nuclear-and-antimatter.md",
       "status": "reviewed"
@@ -2273,6 +2275,7 @@
       "title": "Energy",
       "chapter": "Weaponry",
       "pages": "UT157",
+      "rule": "gurps-compendium-content.warheads",
       "reference": "Ultra-Tech p. 157",
       "file": "energy.md",
       "status": "reviewed"
