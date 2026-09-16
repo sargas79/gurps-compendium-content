@@ -20,6 +20,7 @@ import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
 import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
 import { initComputers, readyComputers } from "./computers/index.js";
 import { initFabrication, readyFabrication } from "./fabrication/index.js";
+import { initGuns, readyGuns } from "./guns/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { readyInterfaces } from "./interfaces/index.js";
 import { initMelee, readyMelee } from "./melee/index.js";
@@ -75,6 +76,9 @@ const RULES = [
   { key: "armorSystems", pages: "pp. 170-171, 187-190", implemented: true },
   { key: "biochemicalAgents", pages: "pp. 159-161", implemented: true },
   { key: "nanoweapons", pages: "pp. 161-162", implemented: true },
+  { key: "propellantSettings", pages: "pp. 135-141", implemented: true },
+  { key: "gyrocsAndLaunchers", pages: "pp. 134, 144-147", implemented: true },
+  { key: "homingProjectiles", pages: "p. 146", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -114,6 +118,7 @@ function init(): void {
   initMelee();
   initArmor();
   initAgents();
+  initGuns();
   registerRecordData();
 }
 
@@ -125,6 +130,8 @@ function ready(api: GWorldApi): void {
   readyBeamOptions(api, { options: rule("beamOptions"), hotshots: rule("hotshots") });
   readyBeams(api, rule("beamWeapons"), beamIgnoresEnvironment(rule("beamOptions")));
   readyWarheads(api, rule("warheads"));
+  // After the warheads, so a loaded warhead's damage is what ETC multiplies.
+  readyGuns(api, { propellant: rule("propellantSettings"), launchers: rule("gyrocsAndLaunchers"), homing: rule("homingProjectiles") });
   readyLaserOptions(api, rule("laserOptions"));
   readyNeuralSonic(api, rule("neuralAndSonic"));
   readyComputers(api, rule("computers"));

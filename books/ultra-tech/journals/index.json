@@ -2062,6 +2062,7 @@
       "title": "Sprays",
       "chapter": "Weaponry",
       "pages": "UT134",
+      "rule": "gurps-compendium-content.gyrocsAndLaunchers",
       "reference": "Ultra-Tech p. 134",
       "file": "sprays.md",
       "status": "reviewed"
@@ -2071,6 +2072,7 @@
       "title": "Vortex Ring Projectors",
       "chapter": "Weaponry",
       "pages": "UT134",
+      "rule": "gurps-compendium-content.gyrocsAndLaunchers",
       "reference": "Ultra-Tech p. 134",
       "file": "vortex-ring-projectors.md",
       "status": "reviewed"
@@ -2098,6 +2100,7 @@
       "title": "Conventional and Etc Guns",
       "chapter": "Weaponry",
       "pages": "UT135",
+      "rule": "gurps-compendium-content.propellantSettings",
       "reference": "Ultra-Tech p. 135",
       "file": "conventional-and-etc-guns.md",
       "status": "reviewed"
@@ -2107,6 +2110,7 @@
       "title": "Gas-Powered Air Guns",
       "chapter": "Weaponry",
       "pages": "UT139-140",
+      "rule": "gurps-compendium-content.propellantSettings",
       "reference": "Ultra-Tech pp. 139-140",
       "file": "gas-powered-air-guns.md",
       "status": "reviewed"
@@ -2116,6 +2120,7 @@
       "title": "Electromagnetic Guns",
       "chapter": "Weaponry",
       "pages": "UT141",
+      "rule": "gurps-compendium-content.propellantSettings",
       "reference": "Ultra-Tech p. 141",
       "file": "electromagnetic-guns.md",
       "status": "reviewed"
@@ -2134,6 +2139,7 @@
       "title": "Gyrocs",
       "chapter": "Weaponry",
       "pages": "UT144",
+      "rule": "gurps-compendium-content.gyrocsAndLaunchers",
       "reference": "Ultra-Tech p. 144",
       "file": "gyrocs.md",
       "status": "reviewed"
@@ -2143,6 +2149,7 @@
       "title": "Rockets and Missiles",
       "chapter": "Weaponry",
       "pages": "UT145",
+      "rule": "gurps-compendium-content.gyrocsAndLaunchers",
       "reference": "Ultra-Tech p. 145",
       "file": "rockets-and-missiles.md",
       "status": "reviewed"
@@ -2152,6 +2159,7 @@
       "title": "Homing Projectiles",
       "chapter": "Weaponry",
       "pages": "UT146",
+      "rule": "gurps-compendium-content.homingProjectiles",
       "reference": "Ultra-Tech p. 146",
       "file": "homing-projectiles.md",
       "status": "reviewed"
@@ -2161,6 +2169,7 @@
       "title": "Hand Grenades",
       "chapter": "Weaponry",
       "pages": "UT146",
+      "rule": "gurps-compendium-content.gyrocsAndLaunchers",
       "reference": "Ultra-Tech p. 146",
       "file": "hand-grenades.md",
       "status": "reviewed"
