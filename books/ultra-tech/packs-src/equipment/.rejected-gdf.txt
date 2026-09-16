@@ -7,6 +7,7 @@ attack: damage "0" 	Mini Hand Grenade, 40mm
 attack: damage "0" 	Thimble Grenade, 25mm
 Blade: damage "sw+1d+R" cut	Monowire Switchblade
 Blade: damage "sw+1d+R" cut	Stasis Switchblade
+duplicate name	Sonic Shuriken
 DR "%Style_alt1list%" not a plain figure or a split	Monocrys
 DR "%Style_alt1list%" not a plain figure or a split	Reflex
 DR "%Style_alt1list%" not a plain figure or a split	Nanoweave

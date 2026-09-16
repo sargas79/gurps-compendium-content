@@ -910,6 +910,47 @@
   "patch": [
     {
       "pack": "equipment",
+      "pattern": "^Electric Stun Wand$",
+      "set": {
+        "system.lc": 4,
+        "system.meleeModes.0.linked": {
+          "damage": "HT-5",
+          "damageType": "cr",
+          "armorDivisor": 0.5,
+          "affliction": true,
+          "afflictionAttribute": "HT",
+          "afflictionModifier": -5,
+          "label": "Linked"
+        }
+      },
+      "reason": "LC4, and the swing carries the linked HT-5 stun as the thrust does (p. 165)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Neurolash Baton$",
+      "set": {
+        "system.meleeModes.0.linked": {
+          "damage": "HT-5",
+          "damageType": "cr",
+          "armorDivisor": 2,
+          "affliction": true,
+          "afflictionAttribute": "HT",
+          "afflictionModifier": -5,
+          "label": "Linked"
+        }
+      },
+      "reason": "the swing carries the linked HT-5 (2) affliction as the thrust does (p. 166)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Zap Glove$",
+      "set": {
+        "system.lc": 3
+      },
+      "reason": "a zap glove is LC3 (p. 165)"
+    },
+    {
+      "pack": "equipment",
       "pattern": "^(Heavy )?Ghost Particle Cannon$",
       "set": {
         "system.rangedModes.0.radiation": true,

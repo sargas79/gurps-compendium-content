@@ -2027,6 +2027,18 @@
         "warheads": {
           "Name": "Warheads and ammunition",
           "Hint": "Each ranged mode of a gun, launcher, grenade or mine is loaded with one of the book's warheads its calibre and TL allow, and its row fires it: armour-piercing, hollow-point, memory baton, monochain, shotshell and burrow darts change the round; APHEX, HE and concussion rounds keep it with a follow-up or linked blast; shaped charges, HEMP, SEFOP, thermobaric, stingray, force, plasma and implosion warheads use the book's table by size; EMP, strobe, warbler and psi-bomb warheads are area afflictions with their effects; tanglers, flares, jammers, biochemical fillers, swarms, stasis and vortex warheads are noted for the GM; mininukes and antimatter come in their yields. Proximity-fused HE is an attack at +4."
+        },
+        "bladeTech": {
+          "Name": "Ultra-tech blades",
+          "Hint": "A cutting or impaling weapon can have a superfine (+2, (2), x6 cost), monowire (+2 cutting, (10), x10), hyperdense (+2, (5), weight and ST x1.5) or nanothorn (corrosion, (10), x20) edge, and a vibro field (+1d cutting, +1 at TL11 and +2 at TL12, (3), or (5) superfine and (10) hyperdense; x10, x30 with superfine) switched on with a Ready. The book's exclusions are refused. A rocket striker on an axe, pick or spear adds +6 Striking ST and +3 to the ST needed for a boosted blow, six uses at TL9 doubling per TL. Monowire whips and switchblades take a length within their reach; a switchblade's blade adds its reach to damage and switches to a whip with a Ready; a snare pulled taut cuts thrust+1d(10) each turn. A GM tool pulls off a limpet mine."
+        },
+        "energyMelee": {
+          "Name": "Stunners and neurolashes",
+          "Hint": "Stun wands, zap gloves, neurolashes and neurogloves spend their cell's strikes (a zap glove's kill counts twice). Nonmetallic armour adds +2 per DR to resist a stunner; a failure knocks the victim down paralysed until a HT-5 roll, which a GM tool makes. A neurolash or neuroglove strikes with the neural disruptor's outcome for its setting; from TL11 it can be built with several (+50% each), and only a high-power one delivers a death beam. A neurolash can be added to any melee weapon for $500, and a sonic shuriken can carry a drug sprayer."
+        },
+        "forceSwords": {
+          "Name": "Force swords",
+          "Hint": "Force blades, glaives, swords and whips and the stasis switchblade can't break. A variable force sword (+$500) sets its reach from C to 2. A force blade cuts the weapon it parries or that parries it short of a critical success, only another force blade or a sonic blade unharmed: a row action rolls its damage against the targeted character's weapon."
         }
       },
       "Gadget": {
@@ -3574,6 +3586,106 @@
           "Note": "Proximity-fused: attack an area at +4; fragments only (Ultra-Tech p. 154; Campaigns p. 414)"
         },
         "EmpDr": "DR at the warhead's (2)"
+      },
+      "Melee": {
+        "Title": "Ultra-tech melee",
+        "BladeLabel": "Blade",
+        "Blade": {
+          "none": "Ordinary",
+          "superfine": "Superfine",
+          "monowire": "Monowire",
+          "hyperdense": "Hyperdense",
+          "nanothorn": "Nanothorn",
+          "vibro": "Vibroblade"
+        },
+        "Reach": "Length (yards)",
+        "ReachHint": "A monowire whip's, switchblade's or variable force sword's reach, within the weapon's own; blank for its longest. Changing it takes a Ready.",
+        "Vibro": "Vibroblade",
+        "VibroHint": "Vibrates when switched on: +1d cutting and an armour divisor (Ultra-Tech p. 164).",
+        "RocketLabel": "Rocket striker",
+        "RocketHint": "+$500 and 1 lb.; a boosted blow has +6 Striking ST and needs +3 ST (Ultra-Tech p. 163).",
+        "Neurolash": "Neurolash generator",
+        "NeurolashHint": "A neurolash added to this weapon: +$500, 0.5 lbs., a B cell for 20 strikes (Ultra-Tech p. 165).",
+        "HighPower": "High-power",
+        "HighPowerHint": "Delivers a death beam's contact on the death setting (Ultra-Tech p. 165).",
+        "Sprayer": "Drug sprayer",
+        "SprayerHint": "+$50: two doses delivered as a follow-up once it penetrates (Ultra-Tech p. 166).",
+        "Variable": "Variable length",
+        "VariableHint": "+$500: reach from C to 2, a Ready to change (Ultra-Tech p. 166).",
+        "SettingLabel": "Setting",
+        "Setting": {
+          "agony": "Agony",
+          "ecstasy": "Ecstasy",
+          "neuralStun": "Neural stun",
+          "paralysis": "Paralysis",
+          "seizure": "Seizure",
+          "deathBeam": "Death"
+        },
+        "Refused": "Not on this weapon: {problem}.",
+        "Problem": {
+          "notEdged": "that edge needs a cutting or impaling weapon",
+          "notCutting": "that edge needs a cutting weapon",
+          "vibroMonowire": "a vibroblade can't be monowire",
+          "vibroNanothorn": "a vibroblade can't be nanothorn"
+        },
+        "On": "on",
+        "Off": "off",
+        "VibroLine": "Vibroblade ({state}): {seconds} seconds on a C cell; a Ready or Fast-Draw switches it on. A Hearing roll at a yard picks out its hum.",
+        "RocketLine": "Rocket striker: {left} of {uses} boosts left; +{st} Striking ST and +{minSt} to the ST needed for a boosted blow.",
+        "SwitchLine": "Now a {mode}; changing length or mode takes a Ready.",
+        "Switch": {
+          "blade": "blade",
+          "whip": "whip"
+        },
+        "SnareLine": "A snare pulled taut cuts thrust+1d({divisor}) each turn; a drop-weapon critical miss hits the wielder or a friend.",
+        "LimpetLine": "Plants a mine that goes off 0 to {delay} seconds later; {magazine} mines to a magazine.",
+        "ChargesLine": "{left} of {strikes} strikes left on the cell.",
+        "StunnerLine": "A failed HT roll knocks the victim down paralysed; HT{recovery} each second to recover, DR no help. Holding contact with a Concentrate stops recovery and spends a strike a second.",
+        "ZapGloveLine": "DR {dr} to the hand. Built into armour: +${cost} and {weight} lb.",
+        "NeurogloveLine": "DR {dr}; damage through it wrecks it on a 1 in 6.",
+        "NeuralLine": "Neural setting: {setting}.",
+        "ForceLine": "A Ready (or a Fast-Draw roll as it's drawn) activates it; the blade takes {seconds} second to form. It cuts any material as a tool.",
+        "NeuralHint": "A failed HT roll has the neural disruptor's effect for this setting (Ultra-Tech pp. 121-122, 165).",
+        "RocketSt": "Rocket striker ST",
+        "RocketNote": "Rocket striker: +{st} Striking ST on this blow.",
+        "RocketEmpty": "The rocket striker is out of fuel.",
+        "Drained": "{name}'s cell is drained.",
+        "Switched": "Switched to {setting}.",
+        "VibroToggle": "Vibro on/off",
+        "VibroOn": "The vibro field is on.",
+        "VibroOff": "The vibro field is off.",
+        "SwitchToggle": "Blade/whip",
+        "SnareTitle": "Snare pulled taut",
+        "SnareLabel": "{name}: snare pulled taut",
+        "Recharge": "Replace cell",
+        "Recharged": "A fresh cell.",
+        "RocketRefuel": "Refuel striker",
+        "Refueled": "The rocket striker is refuelled.",
+        "CutTitle": "Cut a weapon",
+        "CutHint": "The weapon the blade parried, or that parried or blocked it short of a critical success (Ultra-Tech p. 166).",
+        "CutLabel": "{name} cuts {weapon}",
+        "PickTarget": "Target the character whose weapon the blade met.",
+        "NoWeapons": "{name} has no weapon.",
+        "NonmetallicDr": "Nonmetallic armour",
+        "StunnedLine": "{name} convulses, falls and is paralysed: HT{recovery} each second to recover.",
+        "ToolTitle": "Melee gadgets",
+        "RecoverTitle": "Recover from a stunner",
+        "RecoverLabel": "{name} recovers from the stun",
+        "Stunned": "Stunned",
+        "Recovered": "{name} can move again.",
+        "PickToken": "Select a token first.",
+        "LimpetTitle": "Pull off a limpet mine",
+        "LimpetDr": "DR of what it's stuck to",
+        "LimpetFlesh": "Stuck to flesh (1 HP to pull off)",
+        "LimpetStuck": "Stuck on",
+        "BladeTooltip": "An ultra-tech edge, which reprices the weapon and changes its damage (Ultra-Tech pp. 163-164).",
+        "BladeHint": {
+          "superfine": "+2 cutting and impaling, armour divisor (2) (Ultra-Tech p. 163).",
+          "monowire": "+2 cutting, armour divisor (10); can't cut into a flat surface (Ultra-Tech p. 163).",
+          "hyperdense": "+2 cutting and impaling, armour divisor (5); ST 1.5 times (Ultra-Tech p. 164).",
+          "nanothorn": "Corrosion instead of cutting, armour divisor (10) (Ultra-Tech p. 164).",
+          "vibro": "The vibro field is on: +1d cutting and a better armour divisor (Ultra-Tech p. 164)."
+        }
       }
     }
   },

@@ -2312,6 +2312,7 @@
       "title": "Physical Weapons",
       "chapter": "Weaponry",
       "pages": "UT162",
+      "rule": "gurps-compendium-content.bladeTech",
       "reference": "Ultra-Tech p. 162",
       "file": "physical-weapons.md",
       "status": "reviewed"

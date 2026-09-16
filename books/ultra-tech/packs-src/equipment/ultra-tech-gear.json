@@ -19441,7 +19441,7 @@
       "carried": true,
       "equipped": false,
       "tl": "9",
-      "lc": 4,
+      "lc": 3,
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "Ultra-Tech p. 165",
@@ -19521,7 +19521,7 @@
       "carried": true,
       "equipped": false,
       "tl": "9",
-      "lc": 3,
+      "lc": 4,
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "Ultra-Tech p. 165",
@@ -19558,7 +19558,16 @@
           "isFlail": false,
           "minSt": 5,
           "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 0.5,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         },
         {
           "name": "Thrust",
@@ -19701,7 +19710,16 @@
           "isFlail": false,
           "minSt": 6,
           "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 2,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         },
         {
           "name": "Thrust",
@@ -19800,60 +19818,6 @@
             "afflictionModifier": -5,
             "label": "Linked"
           }
-        }
-      ],
-      "rangedModes": []
-    }
-  },
-  {
-    "_id": "a0f149e93a7ec14a",
-    "name": "Sonic Shuriken",
-    "type": "equipment",
-    "system": {
-      "quantity": 1,
-      "weight": 0.5,
-      "cost": 2000,
-      "carried": true,
-      "equipped": false,
-      "tl": "11^",
-      "lc": 3,
-      "costOfLivingPercent": 0,
-      "description": "",
-      "reference": "Ultra-Tech p. 166",
-      "category": "weapon",
-      "equipmentQuality": "basic",
-      "forSkills": [],
-      "quality": "good",
-      "material": "",
-      "weaponClass": "",
-      "listCost": 2000,
-      "hpLost": 0,
-      "meleeModes": [
-        {
-          "name": "attack",
-          "skill": "Force Sword",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "6d",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 5,
-          "reach": "C,1",
-          "parryModifier": -1,
-          "canParry": true,
-          "unbalanced": false,
-          "isFencing": false,
-          "isFlail": false,
-          "minSt": 2,
-          "twoHanded": false,
-          "unreadyAfterAttack": false
         }
       ],
       "rangedModes": []
