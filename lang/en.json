@@ -1935,6 +1935,10 @@
         "computers": {
           "Name": "Computers and software",
           "Hint": "A computer's Complexity from its model and TL (+2 at TL10, +1 per TL after), its storage, and the programs it runs at once (two of its own Complexity, ten times as many per level below). Hardware options (compact, fast, genius, hardened, high-capacity, printed, quantum, slow, FTL) reprice it and change its Complexity and LC. A program without a listed price costs what the Software Cost Table gives at the campaign's TL. A program used as a tool gives +1 at Complexity 4 or 5 and +2 at 6 or 7, by the skill's difficulty. Each computer shows the highest-IQ AI it could run, and a GM tool works out how long breaking encryption takes."
+        },
+        "swarmbots": {
+          "Name": "Swarmbots",
+          "Hint": "Build a swarm from its area in square yards, microbots or nanobots, chassis, power supply and type, with a second type for a multi-function swarm, a disguise or self-replication. The item is repriced and shows the swarm's statistics, Move and endurance. A GM can turn it into a swarm NPC that the Basic Set's swarm rules fight. A GM tool runs a second of a combat swarm against its targets: devourers and disassemblers stopped only by sealed DR, stingers and terminators by Sealed (only stingers slowed by clothing), gremlins' damage and malfunction number on machinery, and sentries against other swarms."
         }
       },
       "Gadget": {
@@ -2138,6 +2142,152 @@
           "NoSkill": "{name} has no Cryptography skill.",
           "RollLabel": "Cryptography: breaking {standard} encryption"
         }
+      },
+      "Swarm": {
+        "Title": "Swarm",
+        "None": "None",
+        "SquareYards": "Square yards",
+        "SquareYardsHint": "The swarm's area. Its price is per square yard; a square yard weighs about two pounds (Ultra-Tech pp. 35, 37).",
+        "BotsLabel": "Bots",
+        "BotsHint": "Microbots are insect-sized (TL10) and nanobots cell-sized (TL11); nanobots can ooze through cracks (Ultra-Tech p. 35).",
+        "Bots": {
+          "microbot": "Microbots",
+          "nanobot": "Nanobots"
+        },
+        "ChassisLabel": "Chassis",
+        "ChassisHint": "The bots' bodies and how they move, which change the price (Ultra-Tech p. 36).",
+        "Chassis": {
+          "crawler": "Crawler",
+          "aerostat": "Aerostat (nanobots)",
+          "armoredCrawler": "Armored crawler (+100%, twice the HP)",
+          "dust": "Dust (surveillance nanobots, -80%)",
+          "flier": "Flier (+100%)",
+          "hopper": "Hopper (microbots, +50%)",
+          "space": "Space",
+          "swimmer": "Swimmer",
+          "cgFlier": "Contragrav flier (TL11^, +200%)"
+        },
+        "PowerLabel": "Power",
+        "PowerHint": "What runs the bots, and what it adds to the price (Ultra-Tech pp. 36-37).",
+        "Power": {
+          "cells": "Power cells",
+          "beamed": "Beamed power (+50%)",
+          "gastrobot": "Gastrobot (+100%)",
+          "rtg": "RTG (+100%, LC1)",
+          "solar": "Solar cells (+50%)",
+          "organovore": "Organovore (TL11, +200%, LC3)",
+          "broadcast": "Broadcast power (TL11^, +100%)"
+        },
+        "TypeLabel": "Type",
+        "TypeHint": "What the swarm does, from the Swarm Type Table (Ultra-Tech p. 37).",
+        "SecondTypeLabel": "Second type",
+        "SecondTypeHint": "A multi-function swarm, microbots at TL11 or nanobots at TL12, combines two types at their added cost, doing one at a time (Ultra-Tech p. 37).",
+        "ExtraModels": "Further kinds repaired",
+        "ExtraModelsHint": "A repair swarm costs $250 more per square yard for each further kind of equipment it repairs (Ultra-Tech p. 37).",
+        "Disguised": "Disguised",
+        "DisguisedHint": "Looks like insects or something else its size: $1,000 more per square yard. Not for aerostats (Ultra-Tech p. 36).",
+        "SelfReplicating": "Self-replicating",
+        "SelfReplicatingHint": "A TL12 devourer, pesticide or defoliator swarm that feeds and copies itself, doubling every hour or so: ten times the cost, LC0, and it must be a gastrobot or organovore (Ultra-Tech pp. 37, 92).",
+        "Type": {
+          "bughunter": "Bughunter",
+          "cannibal": "Cannibal",
+          "cleaning": "Cleaning",
+          "construction": "Construction",
+          "decontamination": "Decontamination",
+          "defoliator": "Defoliator",
+          "devourer": "Devourer",
+          "disassembler": "Disassembler",
+          "explorer": "Explorer",
+          "firefly": "Firefly",
+          "forensic": "Forensic",
+          "gremlin": "Gremlin",
+          "harvester": "Harvester",
+          "massage": "Massage",
+          "painter": "Painter",
+          "paramedical": "Paramedical",
+          "pesticide": "Pesticide",
+          "play": "Play",
+          "pollinator": "Pollinator",
+          "repair": "Repair",
+          "security": "Security",
+          "sentry": "Sentry",
+          "stinger": "Stinger",
+          "surveillance": "Surveillance",
+          "terminator": "Terminator"
+        },
+        "Price": "${total} for {squareYards} sq. yd. (${perSquareYard} each).",
+        "Legality": "LC{lc}.",
+        "Problem": {
+          "chassisBots": "That chassis isn't available to these bots.",
+          "chassisType": "A dust chassis is only for surveillance swarms.",
+          "chassisTl": "That chassis needs a later TL.",
+          "nanobotTl": "Nanobots are TL11.",
+          "powerTl": "That power supply needs a later TL.",
+          "aerostatDisguise": "Aerostat swarms can't be disguised.",
+          "multiFunctionTl": "Two types need microbots at TL11 or nanobots at TL12.",
+          "selfReplicatingTl": "Self-replicating swarms are TL12.",
+          "selfReplicatingType": "Only devourer, pesticide and defoliator swarms self-replicate.",
+          "selfReplicatingPower": "A self-replicating swarm must be a gastrobot or organovore.",
+          "disassemblerBots": "Disassemblers aren't available as microbots."
+        },
+        "Statistics": "Per square yard: ST {st}, DX {dx}, IQ {iq}, HT {ht}; HP {hp}, Will {will}, Per {per}, Speed {speed}; {move}. Weighs {weight} lbs.",
+        "MoveGround": "Move {move}",
+        "MoveAir": "Air Move {move}",
+        "MoveWater": "Water Move {move}",
+        "NoMove": "drifts",
+        "EnduranceHours": "Runs each bot {hours} hours before recharging in a hive, like a C cell; idle, it runs indefinitely.",
+        "Endurance": {
+          "beamed": "Runs indefinitely in line of sight of its beamed power.",
+          "gastrobot": "Eats about 0.1 lb. of biomass an hour; breathes air.",
+          "organovore": "Eats 0.1-0.5 lbs. an hour of anything carbon-based.",
+          "broadcast": "Runs indefinitely on broadcast power."
+        },
+        "Attack": {
+          "devourer": "Attacks: 1d(2) corrosion a second to anyone in it; only sealed DR protects.",
+          "disassembler": "Attacks: 1d-2(10) corrosion a second to anyone in it; only sealed DR protects.",
+          "cannibal": "Attacks electronics as a disassembler does while it builds its gadget.",
+          "stinger": "Attacks: 1 FP a turn to the living unless Sealed; slowed by clothing.",
+          "terminator": "Attacks: 1 toxic a turn to the living unless Sealed.",
+          "gremlin": "Attacks: 1 point a turn per square yard to unsealed machinery, ignoring DR, with a malfunction number of 17 less 1 per 10% HP lost.",
+          "sentry": "Attacks: 2d a turn to other microbot swarms."
+        },
+        "Controller": "Commanded through swarm controller software (Complexity {complexity}, one program per type) and a secret Electronics Operation (Robots) roll. All swarms are Sealed.",
+        "Deploy": "Make swarm NPC",
+        "DeployHint": "Creates an NPC for one square yard of the swarm with the Swarm Statistics Table's figures, for the swarm rules of Campaigns p. 461.",
+        "DeployedName": "{name} (swarm)",
+        "Deployed": "{name} created, a group of {count}.",
+        "About": "a square yard of {bots}",
+        "Tactics": "Sealed, Doesn't Breathe and Vacuum Support. Treated as Diffuse, but can be stomped or swatted.",
+        "TacticsGastrobot": "Sealed and Doesn't Breathe (Oxygen Combustion). Treated as Diffuse, but can be stomped or swatted.",
+        "AttackTitle": "Swarmbot attack",
+        "AttackCard": "{type} swarm",
+        "SelectSwarm": "Select a swarm NPC made from a combat swarm (devourer, disassembler, cannibal, stinger, terminator, gremlin or sentry).",
+        "TargetVictims": "Target whoever is caught in the swarm.",
+        "Covering": "What they wear",
+        "Covered": {
+          "none": "Nothing that keeps insects out",
+          "clothing": "Ordinary clothing (2 seconds)",
+          "armor": "Low-tech armor (5 seconds)"
+        },
+        "Seconds": "Seconds in the swarm",
+        "AttackGo": "Swarm them",
+        "Rolled": "{dice}{divisor}: {rolled}.",
+        "Injured": "{name} takes {amount} {type}, HP now {now}.",
+        "Fatigued": "{name} loses {amount} FP, now {now}.",
+        "DamageType": {
+          "cor": "corrosion",
+          "tox": "toxic",
+          "cr": "damage",
+          "fat": "fatigue"
+        },
+        "Proof": {
+          "notAffected": "{name} isn't what this swarm attacks.",
+          "sealed": "{name} is sealed against it.",
+          "covered": "{name}'s covering still keeps the swarm out.",
+          "none": "{name} takes nothing."
+        },
+        "Malfunction": "{name} malfunctions on {number} or more.",
+        "Corrosion": "{name}'s DR there drops by {dr} (1 per 5 points of corrosion)."
       }
     }
   },

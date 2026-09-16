@@ -8950,5 +8950,29 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This provides highly accurate lie detection by monitoring brain waves transmitted through a braintap neural interface (p. 215). It gives a human or computer a bonus of +TL/2 to Detect Lies skill.</p><p>Neural veridicators are completely reliable, providing an automatic success on a Detect Lies roll. However, people can forget, delude themselves, be fooled, or have their memories altered by brainwashing technology. A veridicator does not provide absolute truth; it just tells if someone believes they are telling the truth.</p>"
+  },
+  {
+    "_id": "e4fc05a9f25c9cd9",
+    "name": "Sentry Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These microbots are equipped with weapons optimized for combating other microbots. Each hex inflicts 2d damage per turn on other microbot swarms.</p>"
+  },
+  {
+    "_id": "919e1753cec46126",
+    "name": "Swarmbot Hive",
+    "pages": "UT37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This container can house a square yard of swarmbots, allowing them to recharge from external power.</p>"
+  },
+  {
+    "_id": "90ca3751b420523a",
+    "name": "Swarm Controller Software",
+    "pages": "UT37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Lets a user command and control microbot swarms using a radio, laser, or infrared communicator. The GM can make a secret Electronics Operation (Robots) roll to see if the swarm understands the orders (apply penalties for confusing instructions). Failure means the swarm does not do exactly what was intended. A separate program is needed for each swarm type.</p>"
   }
 ]
