@@ -1,0 +1,24 @@
+{{!-- A powered suit's or gravpack's state (Ultra-Tech pp. 75, 181-186). --}}
+<div class="isub" data-gcc-ut-suit-section>
+  <div class="isub-head">{{localize "GCC.UT.Suits.Title"}}</div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.UT.Suits.OnHint'}}"><input type="checkbox" data-gcc-ut-suit="on" {{#if fields.on}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Suits.On"}}</label>
+    {{#if switchable}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Suits.AugmentationHint'}}"><input type="checkbox" data-gcc-ut-suit="augmentation" {{#if fields.augmentation}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Suits.Augmentation"}}</label>
+    {{/if}}
+    {{#if fitting}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Suits.FittedHint'}}"><input type="checkbox" data-gcc-ut-suit="fitted" {{#if fields.fitted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Suits.Fitted"}}</label>
+    {{/if}}
+    {{#if gravpack}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Suits.AccustomedHint'}}"><input type="checkbox" data-gcc-ut-suit="accustomed" {{#if fields.accustomed}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Suits.Accustomed"}}</label>
+    {{/if}}
+  </div>
+  {{#if load}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Suits.LoadHint'}}">{{localize "GCC.UT.Suits.Load"}}
+        <input type="number" data-gcc-ut-suit="load" value="{{fields.load}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+</div>

@@ -2479,6 +2479,7 @@
       "title": "Powered Suits",
       "chapter": "Defenses",
       "pages": "UT181",
+      "rule": "gurps-compendium-content.poweredSuits",
       "reference": "Ultra-Tech p. 181",
       "file": "powered-suits.md",
       "status": "reviewed"
@@ -2488,6 +2489,7 @@
       "title": "Exoskeletons",
       "chapter": "Defenses",
       "pages": "UT181",
+      "rule": "gurps-compendium-content.poweredSuits",
       "reference": "Ultra-Tech p. 181",
       "file": "exoskeletons.md",
       "status": "reviewed"
@@ -2497,6 +2499,7 @@
       "title": "Full-Body Exoskeletons",
       "chapter": "Defenses",
       "pages": "UT181",
+      "rule": "gurps-compendium-content.poweredSuits",
       "reference": "Ultra-Tech p. 181",
       "file": "full-body-exoskeletons.md",
       "status": "reviewed"
@@ -2506,6 +2509,7 @@
       "title": "Battlesuits",
       "chapter": "Defenses",
       "pages": "UT182",
+      "rule": "gurps-compendium-content.poweredSuits",
       "reference": "Ultra-Tech p. 182",
       "file": "battlesuits.md",
       "status": "reviewed"
