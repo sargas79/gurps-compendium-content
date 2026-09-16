@@ -1,0 +1,35 @@
+{{!-- A stealth system or disguise on a piece of gear (Ultra-Tech pp. 95-100). --}}
+<div class="isub" data-gcc-ut-stealth-section>
+  <div class="isub-head">{{localize "GCC.UT.Stealth.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.UT.Stealth.KindHint'}}">{{localize "GCC.UT.Stealth.KindLabel"}}
+      <select data-gcc-ut-stealth="kind" {{#unless editable}}disabled{{/unless}}>
+        {{#each kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if hasForm}}
+      <label data-tooltip="{{localize 'GCC.UT.Stealth.FormHint'}}">{{localize "GCC.UT.Stealth.FormLabel"}}
+        <select data-gcc-ut-stealth="form" {{#unless editable}}disabled{{/unless}}>
+          {{#each forms as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+    <label data-tooltip="{{localize 'GCC.UT.Stealth.ShapeMemoryHint'}}">{{localize "GCC.UT.Stealth.ShapeMemoryLabel"}}
+      <select data-gcc-ut-stealth="shapeMemory" {{#unless editable}}disabled{{/unless}}>
+        {{#each shapeMemories as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if multi}}
+      <label data-tooltip="{{localize 'GCC.UT.Stealth.DisguiseCostHint'}}">{{localize "GCC.UT.Stealth.DisguiseCost"}}
+        <input type="number" data-gcc-ut-stealth="disguiseCost" value="{{data.disguiseCost}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+    <label data-tooltip="{{localize 'GCC.UT.Stealth.StatedBonusHint'}}">{{localize "GCC.UT.Stealth.StatedBonus"}}
+      <input type="number" data-gcc-ut-stealth="statedBonus" value="{{data.statedBonus}}" step="1" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label data-tooltip="{{localize 'GCC.UT.Stealth.StatedSkillsHint'}}">{{localize "GCC.UT.Stealth.StatedSkills"}}
+      <input type="text" data-gcc-ut-stealth="statedSkills" value="{{statedSkills}}" {{#unless editable}}disabled{{/unless}} />
+    </label>
+  </div>
+  {{#if shapeLine}}<p class="ihint">{{shapeLine}}</p>{{/if}}
+</div>

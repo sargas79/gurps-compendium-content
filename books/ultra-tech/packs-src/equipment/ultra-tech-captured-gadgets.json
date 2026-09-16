@@ -8586,6 +8586,13 @@
               "endurance": "2 hr.",
               "raw": "A/2 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 3,
+            "statedSkills": [
+              "Lockpicking",
+              "Electronics Operation (Security)"
+            ]
           }
         }
       }
@@ -8625,6 +8632,13 @@
               "endurance": "2 hr.",
               "raw": "A/2 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 3,
+            "statedSkills": [
+              "Lockpicking",
+              "Electronics Operation (Security)"
+            ]
           }
         }
       }
@@ -8808,6 +8822,12 @@
               "endurance": "12 hr.",
               "raw": "A/12 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 4,
+            "statedSkills": [
+              "Lockpicking"
+            ]
           }
         }
       }
@@ -8948,7 +8968,8 @@
       "category": "tool",
       "equipmentQuality": "fine",
       "forSkills": [
-        "Forgery"
+        "Forgery",
+        "Counterfeiting"
       ],
       "quality": "good",
       "material": "",
@@ -8989,7 +9010,8 @@
       "category": "tool",
       "equipmentQuality": "good",
       "forSkills": [
-        "Forgery"
+        "Forgery",
+        "Counterfeiting"
       ],
       "quality": "good",
       "material": "",
@@ -9138,7 +9160,7 @@
   },
   {
     "_id": "7e0ecaf0c78fc863",
-    "name": "Attach� Case",
+    "name": "Attaché Case",
     "type": "equipment",
     "system": {
       "quantity": 1,
@@ -9152,8 +9174,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 97",
       "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Smuggling"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -9179,8 +9203,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 97",
       "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Smuggling"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -9206,8 +9232,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 97",
       "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Smuggling"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -9233,8 +9261,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 97",
       "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Smuggling"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
