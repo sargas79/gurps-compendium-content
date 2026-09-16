@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "8a22b281aabb803b",
+    "name": "T-Ray Vision",
+    "pages": "UT30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your Scanning Sense uses sub-millimeterwave (terahertz) radar, bordering on the infrared. Base range is 200 yards. Use the rules for terahertz radar (p. 65).</p>"
+  },
+  {
+    "_id": "b707e560ad0ca606",
+    "name": "Telecommunication (Cable Jack)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cyborgs and robots might have any form of Telecommunication. Some additional versions are applicable to robots and cyborgs.</p><p>Cable Jack: You can send and receive information through a fiber-optic cable. This allows direct, unjammable communication with any other computer or communicator with a similar jack and interface. A cable (up to 10 yards long) is included.</p>"
+  },
+  {
+    "_id": "241b3558e2d6ac05",
+    "name": "Telecommunication (Directional Sound)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cyborgs and robots might have any form of Telecommunication. Some additional versions are applicable to robots and cyborgs.</p><p>Directional Sound: You communicate using a laser-thin sound beam as described for Sonic Projectors (p. 51). Base range is 100 yards in a direct line of sight.</p>"
+  },
+  {
+    "_id": "7e9cd4684f044b0e",
+    "name": "Telecommunication (Gravity-Ripple Comm)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cyborgs and robots might have any form of Telecommunication. Some additional versions are applicable to robots and cyborgs.</p><p>Gravity-Ripple Comm: You communicate using gravity waves, as described for Gravity Ripple Communicators (p. 45). Base range is 1,000 miles.</p>"
+  },
+  {
+    "_id": "8b5bf5ea9027bf1a",
+    "name": "Telecommunication (Neutrino Comm)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cyborgs and robots might have any form of Telecommunication. Some additional versions are applicable to robots and cyborgs.</p><p>Neutrino Comm: You communicate using a modulated beam of neutrinos (or similar particles) as described for Neutrino Communicators (p. 45). Base range is 1,000 miles in a straight line.</p>"
+  },
+  {
+    "_id": "7363547264f6e3de",
+    "name": "Telecommunication (Sonar Comm)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Cyborgs and robots might have any form of Telecommunication. Some additional versions are applicable to robots and cyborgs.</p><p>Sonar Comm: You communicate using omnidirectional modulated sonar, as described for Sonar Communicators (pp. 44-45). Base range is three miles underwater. In air, Sonar Comm has a range of 50 yards multiplied by the air pressure in atmospheres. It doesn't work at all in vacuum. At the GM's option, Sonar Comm is equivalent to Ultrasonic Speech.</p>"
+  }
+]

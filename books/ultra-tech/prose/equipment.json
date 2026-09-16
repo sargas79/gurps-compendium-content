@@ -1,0 +1,338 @@
+[
+  {
+    "_id": "a554ad9cc16ace7f",
+    "name": "Massage Swarm",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These swarmbots are similar to a cleaning swarm (pp. 69-70), but they are equipped and programmed to deliver relaxing or erotic tactile sensations to their subject. They use Professional Skill (Massage)-10 and Erotic Art-10, (+1 per TL after introduction), or provide a +TL/2 (quality) bonus to someone directing them.</p>"
+  },
+  {
+    "_id": "4de0b62a039b716a",
+    "name": "Play Swarm",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These swarmbots are equipped to play and interact with one another in an amusing fashion. For example, a \"farm in a box\" might contain `bots that look and act like tiny animals, agricultural robots, human farmers, and so on.</p>"
+  },
+  {
+    "_id": "48913b167aacbf7e",
+    "name": "AA cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These tiny cells operate devices with minimal power requirements, like very small robots or brain implants.</p>"
+  },
+  {
+    "_id": "95057470be1517c3",
+    "name": "A cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These small cells are often used in clothing or consumer goods that require low power outputs. They're about the size of a watch battery, or postage stamp-sized for flexible cells (see below).</p>"
+  },
+  {
+    "_id": "311236279f5a669d",
+    "name": "B cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These power wearable computers, tiny radios, small tools, and other devices with modest power requirements, including some low-powered weapons. A typical B cell is the same size as a pistol cartridge or an AA battery.</p>"
+  },
+  {
+    "_id": "d467f5d0451115be",
+    "name": "C cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are the most common energy source for personal beam weapons, tools and high-power electronics. Equipment designed for larger or smaller cells often has an adapter for C-cell operation. An ultra-tech battlefield may be littered with expended C cells. Each cell is about the same size as a pistol magazine.</p>"
+  },
+  {
+    "_id": "4e717c82dd1e5e8f",
+    "name": "D cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These power military beam weapons and heavy equipment. They are often worn as a separate power pack. They're about the size of a thick paperback book.</p>"
+  },
+  {
+    "_id": "7a7018142b0c4058",
+    "name": "E cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These power small vehicles, battlesuits, support weapons and other power-intensive systems. They're about the size of a backpack.</p>"
+  },
+  {
+    "_id": "4e4a2945a67734cf",
+    "name": "F cell",
+    "pages": "UT19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These power medium or large vehicles and cannon-sized beam weapons. They're about the size of a compact car engine.</p>"
+  },
+  {
+    "_id": "11178b7c14f89e72",
+    "name": "Android (TL 9)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This general-purpose humanoid robot body comes in male, female, and androgynous versions. Custom designs, including those that resemble real people, are also possible. Higher-TL models are cheaper and more reliable.</p>"
+  },
+  {
+    "_id": "ccace892271622a1",
+    "name": "Android (TL10)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This general-purpose humanoid robot body comes in male, female, and androgynous versions. Custom designs, including those that resemble real people, are also possible. Higher-TL models are cheaper and more reliable.</p>"
+  },
+  {
+    "_id": "25c12229cf7af957",
+    "name": "Android (TL11)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This general-purpose humanoid robot body comes in male, female, and androgynous versions. Custom designs, including those that resemble real people, are also possible. Higher-TL models are cheaper and more reliable.</p>"
+  },
+  {
+    "_id": "ca1018803a7ee7e0",
+    "name": "Android (TL12)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This general-purpose humanoid robot body comes in male, female, and androgynous versions. Custom designs, including those that resemble real people, are also possible. Higher-TL models are cheaper and more reliable.</p>"
+  },
+  {
+    "_id": "55315e7b51fdd31b",
+    "name": "Petbot (TL 9)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small mechanical beast with a head and four legs. It may look cute or fierce, depending on the market. Typical models resemble small dogs, house cats, miniature dinosaurs, and so on, although they usually have modified paws or claws with opposable thumbs that give them some manipulatory ability.</p><p>Robots of this type are often used for home security, keeping track of children, or pest control. They can be equipped with a range of sensors and \"natural\" weapons.</p>"
+  },
+  {
+    "_id": "9f1ce560a0c9f636",
+    "name": "Petbot (TL10)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small mechanical beast with a head and four legs. It may look cute or fierce, depending on the market. Typical models resemble small dogs, house cats, miniature dinosaurs, and so on, although they usually have modified paws or claws with opposable thumbs that give them some manipulatory ability.</p><p>Robots of this type are often used for home security, keeping track of children, or pest control. They can be equipped with a range of sensors and \"natural\" weapons.</p>"
+  },
+  {
+    "_id": "31070142445e2cbe",
+    "name": "Petbot (TL11)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small mechanical beast with a head and four legs. It may look cute or fierce, depending on the market. Typical models resemble small dogs, house cats, miniature dinosaurs, and so on, although they usually have modified paws or claws with opposable thumbs that give them some manipulatory ability.</p><p>Robots of this type are often used for home security, keeping track of children, or pest control. They can be equipped with a range of sensors and \"natural\" weapons.</p>"
+  },
+  {
+    "_id": "a357271f4cb3b349",
+    "name": "Petbot (TL12)",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small mechanical beast with a head and four legs. It may look cute or fierce, depending on the market. Typical models resemble small dogs, house cats, miniature dinosaurs, and so on, although they usually have modified paws or claws with opposable thumbs that give them some manipulatory ability.</p><p>Robots of this type are often used for home security, keeping track of children, or pest control. They can be equipped with a range of sensors and \"natural\" weapons.</p>"
+  },
+  {
+    "_id": "bbe0e8d503ce7f5e",
+    "name": "Semi-Portable Fission Reactor",
+    "pages": "UT20",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "d67b362fc661d9b5",
+    "name": "Semi-Portable Fusion Reactor",
+    "pages": "UT20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small nuclear fusion reactor. It fuses hydrogen into helium, liberating energy in the process.</p>"
+  },
+  {
+    "_id": "373d538ad5f197f3",
+    "name": "Portable Fusion Reactor",
+    "pages": "UT20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a compact reactor using antimatter or exotic matter (such as muons) to catalyze a fusion reaction. This could also be a superscience \"cold fusion\" device available at TL10^.</p>"
+  },
+  {
+    "_id": "c8759f226bf47f95",
+    "name": "Semi-Portable Cold Fusion Generator",
+    "pages": "UT20",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "36441175b9637212",
+    "name": "Portable Cold Fusion Generator",
+    "pages": "UT20",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "5e72486c8a945f4d",
+    "name": "Semi-Portable Antimatter Generator",
+    "pages": "UT20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An installation that can fit in a truck bed. Provides external power for five years (TL11) or 50 years (TL12).</p>"
+  },
+  {
+    "_id": "9a22fce7ce560464",
+    "name": "Portable Antimatter Generator",
+    "pages": "UT20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A backpack-sized antimatter power plant. Provides external power for up to five years.</p>"
+  },
+  {
+    "_id": "cddb10435006bab2",
+    "name": "Solar Power Array",
+    "pages": "UT20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This semi-portable array of solar panels is a generator that provides external power. It takes a minute to deploy, and covers about 400 square feet. The size assumes an earthlike level of sunlight; multiply cost and weight by relative light levels for other environments.</p>"
+  },
+  {
+    "_id": "8fd46a7a2eb6a386",
+    "name": "Solar Paint",
+    "pages": "UT21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These cheap plastic solar cells can be painted onto any surface, including clothing or rooftops. A coating of solar paint is only 20% of the cost and weight of regular solar panels, but it requires twice the surface area and has no DR.</p>"
+  },
+  {
+    "_id": "82db352b7d81861a",
+    "name": "Tiny Computer",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The smallest multi-purpose computer in regular use. It's used as a wearable computer or implant, or built into gadgets or robots. It is Complexity 3 and stores 1 TB (at TL9).</p>"
+  },
+  {
+    "_id": "96fc299c5166b807",
+    "name": "Small Computer",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is used as a notebook or wearable computer, or the brain of a small robot. It has Complexity 4 and stores 10 TB (at TL9).</p>"
+  },
+  {
+    "_id": "8e592284698a975d",
+    "name": "Personal Computer",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A workhorse system. Almost every middle-class household may have a system like this, serving as the \"house brain.\" Small businesses and departments of large businesses also use them, as do many vehicles and robots. A personal computer is Complexity 5 and stores 100 TB data (at TL9).</p>"
+  },
+  {
+    "_id": "287c511792410b32",
+    "name": "Microframe",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A high-end cabinet-sized machine, common in labs, large vehicles, as a network server, or on an office floor (often with several terminals networked to it). Other applications include commercial spacecraft, mobile asteroidmining complexes, university learning centers, and so on. Merchant ships use a microframe as the ship's main computer. Large warships frequently use microframes as the backup control systems of fighting, damage control, maneuvering and tactical-planning stations. A microframe is Complexity 6 and stores 1,000 TB (at TL9).</p>"
+  },
+  {
+    "_id": "e762e62c4a025a71",
+    "name": "Mainframe",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These powerful computers are often used for control and systems-monitoring functions for a starship, major business, manufacturing complex, or laboratory. A mainframe is Complexity 7 and stores 10,000 TB (at TL9).</p>"
+  },
+  {
+    "_id": "7f769fbf0b2764fb",
+    "name": "Macroframe",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This size of computer is often found administering the traffic, sewage, power, maintenance, and bureaucracy functions for an entire city. They are also found as the main computer aboard large ships and used to run cutting-edge science projects. Macroframes are usually the property of government agencies or major corporations. They are Complexity 8 and store 100,000 TB (at TL9).</p>"
+  },
+  {
+    "_id": "d9dd96e85fdb8963",
+    "name": "Megacomputer",
+    "pages": "UT22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a computer the size of an entire building! Systems this large may be placed in charge of running entire countries, although they're sometimes also installed in capital ships or giant cybertanks. They're often upgraded for even more performance - with a genius option, a megacomputer can cost billions! A megacomputer is Complexity 9 and stores 1,000,000 TB (at TL9).</p>"
+  },
+  {
+    "_id": "8a6132ad2976beac",
+    "name": "Data Storage",
+    "pages": "UT23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Additional built-in data storage can be purchased for $1 and 0.001 lb. per additional TB (at TL9). Multiply storage by 1,000 per TL after TL9.</p>"
+  },
+  {
+    "_id": "f0b601e9058870b2",
+    "name": "Datapad",
+    "pages": "UT23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny color video screen and touch-pad resembling a cell phone. It can be built into the computer or worn separately (e.g., as a wristwatch). It includes a microcommunicator (p. 43), a cable jack (p. 42), a speaker/ microphone, and a mini-camera (p. 51). Any tasks requiring use of the keyboard and screen for lengthy or complex periods are at -2 to skill. It has a datachip (p. 51) removable drive.</p>"
+  },
+  {
+    "_id": "ed72a2cf4c5a3c36",
+    "name": "Head-Up Display (HUD)",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a 3D video display integrated into glasses or a helmet visor, or designed to be projected onto a windscreen. A HUD can also be printed onto a flat surface. See Using a HUD (below). Many vehicles, suits, sensor goggles, and the like incorporate a HUD at no extra cost, and direct neural interfaces (pp. 48-49) make a HUD unnecessary.</p>"
+  },
+  {
+    "_id": "1309f3e26ec21850",
+    "name": "Sleve Display",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A square of touch-sensitive digital cloth woven into the fabric of clothing, uniforms, and body armor. It is equivalent to a datapad, except that at TL9, the user will need to rely on the computer's built-in sound system for a voice interface. At TL10+, the cloth incorporates a speaker.</p>"
+  },
+  {
+    "_id": "d16a88d00bf75beb",
+    "name": "Portable Terminal",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small but functional color video display and multi-system interface (keyboard, mouse, speakers, mike, video camera), typical of laptop computers. A portable terminal is also used as a remote control for many types of devices, such as sensors, communicators, and drones. It's adequate for most tasks, although the GM may rule that time-consuming or graphics-intensive tasks require a desktop workstation (see below) to avoid a -1 penalty. It has both datachip (p. 51) and removable drives.</p>"
+  },
+  {
+    "_id": "37738dfa52da68f7",
+    "name": "Workstation Terminal",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A complete desktop, vehicular console, or office system with the same capabilities as a portable terminal, It has a larger keyboard, a full-size 3D monitor, a document scanner/printer, and whatever other peripherals might be standard at higher TLs (GM's option).</p>"
+  },
+  {
+    "_id": "fee165ffaf439e75",
+    "name": "Computerized Crew Station",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A high-end workstation with controls that can be reconfigured, multi-function programmable displays, and a padded, adjustable seat. This sort of system may be required to control complex systems such as vehicles or power stations.</p>"
+  },
+  {
+    "_id": "5d348aaf7fdcdf23",
+    "name": "Holographic Crew Station",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A computerized crew station (above) that uses holographic projection to immerse the user in 3D imagery. Vehicular versions may be designed to make the rest of the vehicle vanish, leaving the user \"floating in air\" except for his seat and controls.</p>"
+  },
+  {
+    "_id": "8dd0f8c48279e40a",
+    "name": "Multisensory Holographic Crew Station",
+    "pages": "UT24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As above, but the controls and displays can be configured for nonhuman senses - for example, ultrasonic, infrared, or even olfactory outputs.</p>"
+  }
+]

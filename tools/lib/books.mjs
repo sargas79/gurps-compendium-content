@@ -125,6 +125,18 @@ export function book(slug) {
       namePrefix: raw.transcription?.namePrefix ? new RegExp(raw.transcription.namePrefix) : null,
       // Pages set on a tinted panel read as boxes; their contents are the running text.
       asidesAsText: raw.transcription?.asidesAsText === true,
+      // Data-file names the book prints differently: a typo, or a shorter name.
+      aliases: raw.transcription?.aliases ?? {},
+      // Weapons a book describes once for a whole family: "These weapons are
+      // available in the same models as TL10 high-energy lasers". Each rule turns
+      // a name into the model's -- "Heavy X-Ray Laser Pistol" into "Heavy Laser
+      // Pistol" -- and names the heading the family's own text is under.
+      families: (raw.transcription?.families ?? []).map((rule) => ({
+        pattern: new RegExp(rule.pattern),
+        replace: String(rule.replace ?? ""),
+        heading: String(rule.heading),
+        headingOnly: rule.headingOnly === true,
+      })),
     },
     dir: join(booksRoot, slug),
   };

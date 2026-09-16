@@ -1,0 +1,42 @@
+[
+  {
+    "_id": "98693c03963240d5",
+    "name": "Robot Mule",
+    "pages": "UT79",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a rugged robot cargo cart that moves on big tires and does what it's told. It has no limbs. It can also be ridden, although the passenger must give it commands. Widely used by expeditions, military units, tourists, and others.</p>"
+  },
+  {
+    "_id": "b03466f747350769",
+    "name": "Hunter Missile",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An arm-sized missile powered by a turbojet engine. It can fly at up to 1,000 mph, but can't slow down below 1/4 its speed. A hunter missile's Payload may be any 64mm warhead. It can be fired from a 64mm missile launcher, such as the IML or MLAWS (p. 145). It flies for one minute and then will crash and self-destruct.</p><p>A hunter missile uses a low-probability intercept multimode radar (2,000-yard range) as its main sense. It can also detect laser, radar and radio emissions and use that to find targets. It can receive command updates via radio, and use inertial guidance to fly to map coordinates.</p><p>The hunter missile's maximum straight-line range is 16 miles.</p>"
+  },
+  {
+    "_id": "ba2f421ea318a4c8",
+    "name": "Striker Missile",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A larger, smarter, and faster version of the hunter missile. It has a maximum speed of 2,000 mph and a maximum range of 32 miles. Its radar has a 4,000-yard range, but it can turn that off and use Hyperspectral Vision instead. A striker missile's Payload may be any 100mm warhead. It can be fired from any 100mm missile launcher such as the Tactical Missile Launcher (p. 145).</p><p>The TL10 version uses much cheaper nanoelectronics, but is otherwise similar.</p>"
+  },
+  {
+    "_id": "dad67b73b2baa0aa",
+    "name": "Floater Missile",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to the Striker Missile, but its reactionless thrusters and contragravity technology enhance maneuverability and range (320 miles).</p>"
+  },
+  {
+    "_id": "1fcf5db5d1f890fa",
+    "name": "Smart Shuriken",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A razor-sharp missile that uses contragrav to reach speeds of 200 mph. It may be shaped like a knife, wedge, card, or disk. At low speed it is dangerous and highly maneuverable, and can hide and sneak up on foes, but its most lethal attack is to accelerate up to its full speed and ram. This uses the rules for sharp collisions (see p. B430): it inflicts half-normal collision damage but that damage is cutting.</p><p>A smart shuriken can be fired from a 25mm missile launcher or simply thrown - often, after hitting or missing all programmed targets, it returns to the thrower's hand. It can fly for 10 minutes; then it's immobile until its C cell is replaced.</p>"
+  }
+]
