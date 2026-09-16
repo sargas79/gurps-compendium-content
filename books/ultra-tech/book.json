@@ -13,6 +13,9 @@
     "pdfOffset": 1,
     "pageLabel": "UT"
   },
+  "types": {
+    "creatures": "Actor"
+  },
   "notes": "GCA cites this book as UT113, the plain prefix. PDF page = book page + 1. The data file's header says it holds weapons and armour; it also holds the cybernetics twice (as advantages with point costs and as equipment with dollar costs), the power items and the computers. Chapters 3, 4, 5, 8 (medical gear and drugs) and 9 (vehicles) are not in it at all, so about 600 gadgets are captured from the PDF instead (#229). The parsers do not read the file's 35 templates, so the robot bodies and their lenses are kept by hand (#228). Six records also cite a Basic Set page and are left to the system's packs; none of the six is in the Basic Set pack, so all six are added by hand (#227). See TRIAGE.md.",
   "exclude": [
     {

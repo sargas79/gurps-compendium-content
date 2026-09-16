@@ -1,0 +1,8338 @@
+[
+ {
+  "_id": "817e98c8b857e617",
+  "name": "Android",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 111,
+   "attributes": {
+    "ST": 3,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 7,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 44,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Payload 1",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.050e7ea397fbceb3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Personal computer)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41"
+  }
+ },
+ {
+  "_id": "bc40936af93a47d3",
+  "name": "Android: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -5,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 75000,
+      "weight": "150-250 lbs.",
+      "power": "2D/8 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "610fa2ddfa54d1af",
+  "name": "Android: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 11,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 1
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 10,
+   "entries": [
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 50000,
+      "weight": "100-250 lbs.",
+      "power": "2D/24 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "183cba22119fc126",
+  "name": "Android: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 24,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 20,
+   "entries": [
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 30000,
+      "weight": "70-250 lbs.",
+      "power": "4D/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "d4a3a086fe4b8108",
+  "name": "Android: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 38,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 3
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 30,
+   "entries": [
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 25000,
+      "weight": "50-250 lbs.",
+      "power": "4D/1 month",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "28287bfbad3795cd",
+  "name": "Android: Child Body",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -30,
+   "attributes": {
+    "ST": -3,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": -30,
+   "entries": [],
+   "choices": [],
+   "features": [
+    "A smaller body, the size of a 9- to 12-year-old: remove the ST bonus, halve weight and cells."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "-40%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "6c45563e53c7703a",
+  "name": "Android: Artificial Womb",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 2,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Payload 2",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.050e7ea397fbceb3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": 3,
+      "costModifier": "+$10,000"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "1a656fd68d01cb96",
+  "name": "Petbot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 71,
+   "attributes": {
+    "ST": -3,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 1,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 5
+   },
+   "sizeModifier": -2,
+   "attributeCost": -3,
+   "entries": [
+    {
+     "name": "Absolute Direction (Requires signal, -20%)",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Discriminatory Smell",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 5 (Cannot Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Legs (4 legs)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Infravision",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a14750c6b604643e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Secure, +20%)",
+     "itemType": "trait",
+     "points": 12,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sharp Claws",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.31e6eaf2c3a1a206",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sharp Teeth",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1264f5f04f6eebbb",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ultrahearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6aaa4213359c3b65",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Small computer; fire extinguisher)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Bad Grip 1",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.6d983efe685d7262",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Horizontal",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4d037d517570e922",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41"
+  }
+ },
+ {
+  "_id": "2038df9024687447",
+  "name": "Petbot: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -5,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 15000,
+      "weight": "20-50 lbs.",
+      "power": "2C/8 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "f64c042fd3371263",
+  "name": "Petbot: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 1,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 10000,
+      "weight": "20-50 lbs.",
+      "power": "3C/24 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "ae515c7d652de10d",
+  "name": "Petbot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 4,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 7000,
+      "weight": "20-50 lbs.",
+      "power": "D/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "85ce9d926948b02f",
+  "name": "Petbot: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 8,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 41",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 5000,
+      "weight": "20-50 lbs.",
+      "power": "D/1 month",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "d1e2504a70832540",
+  "name": "Housebot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 58,
+   "attributes": {
+    "ST": -3,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 5,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": -1,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Absolute Direction (Requires signal, -20%)",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 5 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Infrared Communication (Reduced Range 5, -20%)",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.74f1538d5f71f22a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Silence 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b6f2c535e277ba1b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Payload 2 (2 lbs. cargo)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.050e7ea397fbceb3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Secure, +20%)",
+     "itemType": "trait",
+     "points": 12,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessory (Cleaning equipment, tiny computer)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Striking ST -2",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.179c1ca124004fb4",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 69"
+  }
+ },
+ {
+  "_id": "28c48b07fb743e32",
+  "name": "Housebot: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -30,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Bad Grip 1",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.6d983efe685d7262",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Wheeled",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5015a6151df8c8b1",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 69",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 4000,
+      "weight": "20 lbs.",
+      "power": "C/8 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "c2ed586e0b26a52f",
+  "name": "Housebot: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 6,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Legs (four)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 69",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 1000,
+      "weight": "20 lbs.",
+      "power": "C/24 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "38d9341afe0bc493",
+  "name": "Housebot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 9,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Legs (four)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 69",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 1000,
+      "weight": "20 lbs.",
+      "power": "C/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "1d99fb1dfc7dbd43",
+  "name": "Scout Robot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 36,
+   "attributes": {
+    "ST": -7,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": -4,
+   "attributeCost": -50,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 15 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 45,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Arm (Weapon Mount, -80%)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Hearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 19,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radiation Tolerance 5",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6b8630ab6bd6db2e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Vision (Tunnel Vision)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.66f2de8c7be0c43c",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 80",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 5000,
+      "weight": "4 lbs.",
+      "power": "2B/8 hr.",
+      "lc": null,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "37b8b7d344f07c02",
+  "name": "Scout Robot: Aerial Scout",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 107,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 1 (Air)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3659051c7356544e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight",
+     "itemType": "trait",
+     "points": 40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Parabolic Hearing 3",
+     "itemType": "trait",
+     "points": 12,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d476a6d376a5a860",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 80"
+  }
+ },
+ {
+  "_id": "ae5621d2ee7c4500",
+  "name": "Scout Robot: Submarine",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 62,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Enhanced Move 1 (Water)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.2e79d52384a1a36e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Pressure Support 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0d84db3a7971b0da",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sonar (LPI, +10%; Multi-Mode, +50%)",
+     "itemType": "trait",
+     "points": 32,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.e6aca587225ec9ed",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Aquatic)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.a4cb09ef5cbacc2d",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 80"
+  }
+ },
+ {
+  "_id": "da23dcd33353fd9f",
+  "name": "Scout Robot: Contragrav (TL11^)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 115,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 1 (Air)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3659051c7356544e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Parabolic Hearing 3",
+     "itemType": "trait",
+     "points": 12,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d476a6d376a5a860",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Silence 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b6f2c535e277ba1b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 80"
+  }
+ },
+ {
+  "_id": "251b646c67ca6cf9",
+  "name": "Techbot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 135,
+   "attributes": {
+    "ST": -2,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 6,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": -1,
+   "attributeCost": -8,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 15 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 45,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Arm (Weapon Mount, -80%)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Microscopic Vision 3",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3a0660d8180647dc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 19,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Payload 2",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.050e7ea397fbceb3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Hearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radiation Tolerance 5",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6b8630ab6bd6db2e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessory (Personal computer, fast option)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Cannot Float",
+     "itemType": "trait",
+     "points": -1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.f60feac3fb0fa1ea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 85"
+  }
+ },
+ {
+  "_id": "0a76bea11c00aeb3",
+  "name": "Techbot: TL9 Techbot",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -40,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "High Manual Dexterity 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Tracked)",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4cbae38e3dbcecfc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Numb",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 20000,
+      "weight": "50 lbs.",
+      "power": "D/8 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "05187eee4ea71a22",
+  "name": "Techbot: TL10 Techbot",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 1
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 10,
+   "entries": [
+    {
+     "name": "High Manual Dexterity 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 10000,
+      "weight": "50 lbs.",
+      "power": "D/24 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "a770e48ca974d8c2",
+  "name": "Techbot: TL10^ Contragrav Techbot",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 59,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 1
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 10,
+   "entries": [
+    {
+     "name": "High Manual Dexterity 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "As the TL10 techbot, with a spherical body and no legs."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "50 lbs.",
+      "power": "D/24 hr.",
+      "lc": 4,
+      "costModifier": "+$10,000"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "516cc8e37a640cf0",
+  "name": "Bush Robot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 490,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 7,
+    "will": 0,
+    "per": 2,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 44,
+   "entries": [
+    {
+     "name": "360-Degree Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c595de80a1f6fc96",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ambidexterity",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4f01fcff86293bec",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Discriminatory Taste",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.079a48e6fb744c35",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Double-Jointed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.12c70ef2aed12c83",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 15 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 45,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Tracking 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1a76cd335ec241bd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Arms 4 (Extra Flexible, +50%)",
+     "itemType": "trait",
+     "points": 60,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Attack 2",
+     "itemType": "trait",
+     "points": 50,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a45a931aece940c3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "High Manual Dexterity 4",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Brain, No Eyes)",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ladar",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ce545398baedf4e3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Laser Communication",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dea5ccf89de34f4d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Microscopic Vision 6",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 6,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3a0660d8180647dc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sensitive Touch",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7495327b28ce833d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Quick Gadgeteer (Not for inventing new gadgets, -50%)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vibration Sense",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.77c9d84b7ccb0255",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessory (Compact microframe computer)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86"
+  }
+ },
+ {
+  "_id": "5c2b6c1acfdf76c0",
+  "name": "Bush Robot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 4,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 150000,
+      "weight": "75 lbs.",
+      "power": "3D/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "b2adb5ee70ca63c1",
+  "name": "Bush Robot: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 8,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 86",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 100000,
+      "weight": "50 lbs.",
+      "power": "3D/1 month",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "8654c5decc00d034",
+  "name": "Bush Robot: Contragrav (TL11^)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 38,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 87",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+$10,000"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "b87aa59135643b82",
+  "name": "Bush Robot: Budding (TL12)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Duplication (Duplicate is -1 SM, +0%; Shared Resources, -40%)",
+     "itemType": "trait",
+     "points": 21,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5ef2c00d62d7869b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Up to five copies, at 21 points each."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 87"
+  }
+ },
+ {
+  "_id": "dccdf93e5912f933",
+  "name": "Robobug",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": -32,
+   "attributes": {
+    "ST": -9,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": -3
+   },
+   "sizeModifier": -9,
+   "attributeCost": -105,
+   "entries": [
+    {
+     "name": "Absolute Direction (Requires signal, -20%)",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Clinging",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1f844d4015341385",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 1 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 3,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Arm (Weapon Mount, -80%)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Peripheral Vision",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0db406553b859f7b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Reduced Range 1/10, -30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 16,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sharp Teeth",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1264f5f04f6eebbb",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Flashlight, tiny computer)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Bad Sight (Nearsighted)",
+     "itemType": "trait",
+     "points": -25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.fb7d8b2834f63bb1",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "3a93aee07246e419",
+  "name": "Robobug: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -80,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Increased Consumption 3",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.995bef864baa3d0b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Mute",
+     "itemType": "trait",
+     "points": -25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c68d6cb5b66c8171",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Numb",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 100,
+      "weight": "0.01 lbs.",
+      "power": "2A/1 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "3ce6cbc43c7a66d9",
+  "name": "Robobug: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 5,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Discriminatory Smell",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Infravision",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a14750c6b604643e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Disturbing Voice",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.001dd24b79f30e5a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Increased Consumption 1",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.995bef864baa3d0b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 50,
+      "weight": "0.01 lbs.",
+      "power": "2A/4 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "0960e99a6541666e",
+  "name": "Robobug: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 27,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Discriminatory Smell",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Infravision",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a14750c6b604643e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 1",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 20,
+      "weight": "0.01 lbs.",
+      "power": "2AA/12 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "75f985c15808a0a0",
+  "name": "Robobug: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 44,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Discriminatory Smell",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.81eead1e783e0a6f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 10,
+      "weight": "0.01 lbs.",
+      "power": "AA/1 day",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "604533be510b22f5",
+  "name": "Robobug: Crawler",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 16,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Legs (6 legs)",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c4be9482f4b16afc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Super Climbing 2",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1abe483cdddb0aaf",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "5764554e1ce38bba",
+  "name": "Robobug: Flier",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 41,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Legs (4 legs)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight (Small Wings, -10%)",
+     "itemType": "trait",
+     "points": 36,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "7cf41cce3e4d20b1",
+  "name": "Robobug: Rodent",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -35,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Legs (Four Legs)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Horizontal",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4d037d517570e922",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Fine Manipulators",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.5e3fdd7735ff3825",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "f5e139f23c4393ed",
+  "name": "Robobug: Toy Soldier",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -15,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Peripheral Vision (removed)",
+     "itemType": "trait",
+     "points": -15,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Delete Peripheral Vision [15]."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "b0c9f1a1c02d7775",
+  "name": "Robobug: Worm",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -35,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Double-Jointed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.12c70ef2aed12c83",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Slithers)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c2d5090268ee3bea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Manipulators",
+     "itemType": "trait",
+     "points": -50,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c9f4803da544fb8a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110"
+  }
+ },
+ {
+  "_id": "30cb3fc3175b8ac9",
+  "name": "Robobug: Vehicle",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -80,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Enhanced Move 1 (Ground)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c7c32d7f4821e2d5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Horizontal",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4d037d517570e922",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Tracked or Wheeled)",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Manipulators",
+     "itemType": "trait",
+     "points": -50,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c9f4803da544fb8a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Numb",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Wheels or tracks."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "-50%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "b9194edc7de260e6",
+  "name": "Robobug: Contragrav (TL11^)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 38,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+20%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "681e5fa3892f20cf",
+  "name": "Robobug: Chameleon (TL10)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Chameleon 3 (Extended, Infravision and Ultravision, +40%)",
+     "itemType": "trait",
+     "points": 21,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.895d4cd89bb9af13",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": 3,
+      "costModifier": "+$100"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "a1ac013fd03e720d",
+  "name": "Robobug: Nuclear (TL11)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 10,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Doesn't Eat or Drink",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": 3,
+      "costModifier": "+$100"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "b8e231eb5aac9404",
+  "name": "Robobug: Water Jets",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 10,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Amphibious",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c52c8999ac621fd0",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 110",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+50%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "f2aaf059055855b5",
+  "name": "Nanomorph",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 518,
+   "attributes": {
+    "ST": 5,
+    "DX": 2,
+    "IQ": 0,
+    "HT": 4
+   },
+   "secondary": {
+    "hp": 5,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0.5,
+    "basicMove": 3
+   },
+   "sizeModifier": 0,
+   "attributeCost": 165,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Appearance (Handsome)",
+     "itemType": "trait",
+     "points": 12,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa68f64b0094685f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 1/2 (Ground)",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c7c32d7f4821e2d5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (Homogenous)",
+     "itemType": "trait",
+     "points": 40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Long Talons",
+     "itemType": "trait",
+     "points": 11,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8babca1341ecbee2",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Hearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Recovery",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b2cbcab2224ff72d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Regeneration (Very Fast)",
+     "itemType": "trait",
+     "points": 100,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d3676c554d1e8782",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Regrowth",
+     "itemType": "trait",
+     "points": 40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9b8665b46b0092a1",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sensitive Touch",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7495327b28ce833d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Slippery 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.25a564fc05875038",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Striking ST +5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.179c1ca124004fb4",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Super Jump 1",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae9f648837e68d1d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Universal Digestion",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae010196039bc33e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessory (Fast personal computer)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 111"
+  }
+ },
+ {
+  "_id": "0b11d06ef494c721",
+  "name": "Nanomorph: TL11 Model (Bioplastic)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 140,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 15 (Flexible, -20%)",
+     "itemType": "trait",
+     "points": 60,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Morph (Mass Conservation, -20%)",
+     "itemType": "trait",
+     "points": 80,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ebb8689e5f04c39a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 111",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 50000,
+      "weight": "100 lbs.",
+      "power": "",
+      "lc": 3,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "0d9f0e74c08a2781",
+  "name": "Nanomorph: TL12 Model (Living Metal)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 255,
+   "attributes": {
+    "ST": 5,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 50,
+   "entries": [
+    {
+     "name": "Damage Resistance 15",
+     "itemType": "trait",
+     "points": 75,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Morph (Unlimited, +50%; Mass Conservation, -20%)",
+     "itemType": "trait",
+     "points": 130,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ebb8689e5f04c39a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 111",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 150000,
+      "weight": "150 lbs.",
+      "power": "",
+      "lc": 3,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "e9a9845c49da6d41",
+  "name": "Nanomorph: Budding",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Duplication (Shared Resources, -40%)",
+     "itemType": "trait",
+     "points": 21,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5ef2c00d62d7869b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 111",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+50% per bud"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "9e4411b22ada0967",
+  "name": "Nanomorph: Contragrav (TL11^)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 38,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 111"
+  }
+ },
+ {
+  "_id": "24a6bf34161df40a",
+  "name": "Combat Android",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 371,
+   "attributes": {
+    "ST": 10,
+    "DX": 3,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 180,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Detect (Radio, Lasers, and Radar; Signal Detection, +0%)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.febaea525a083c4b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Discriminatory Hearing",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.77cd6f85f4a80d93",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Silence 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b6f2c535e277ba1b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Temperature Tolerance 20",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 20,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3befda2450abe9cc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ultrahearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6aaa4213359c3b65",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessory (Microframe computer)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ambidexterity",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4f01fcff86293bec",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Appearance",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa68f64b0094685f",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Combat Reflexes",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e0b5b4a89b6987c",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Time Sense",
+     "itemType": "trait",
+     "points": 45,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.85a41b13f963c356",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "High Pain Threshold",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d2fb98faa5ee5c79",
+     "group": "g1",
+     "note": ""
+    }
+   ],
+   "choices": [
+    {
+     "id": "g1",
+     "label": "60 points chosen from",
+     "kind": "points",
+     "required": 60
+    }
+   ],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "474e133601bca48c",
+  "name": "Combat Android: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 145,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 30",
+     "itemType": "trait",
+     "points": 150,
+     "levels": 30,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 300000,
+      "weight": "150-300 lbs.",
+      "power": "2D/8 hr.",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "ad9201ed3b3a8f3b",
+  "name": "Combat Android: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 231,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 45",
+     "itemType": "trait",
+     "points": 225,
+     "levels": 45,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 200000,
+      "weight": "100-300 lbs.",
+      "power": "2D/24 hr.",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "6b605449d265f02f",
+  "name": "Combat Android: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 329,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 60",
+     "itemType": "trait",
+     "points": 300,
+     "levels": 60,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 150000,
+      "weight": "70-300 lbs.",
+      "power": "4D/1 week",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "7a33275ed09d7cf5",
+  "name": "Combat Android: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 483,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 90",
+     "itemType": "trait",
+     "points": 450,
+     "levels": 90,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 50000,
+      "weight": "50-300 lbs.",
+      "power": "4D/1 month",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "aaa148f46d8f4356",
+  "name": "Combat Android: Combat Exoskeleton",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -20,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Numb",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "683523636e8a74b1",
+  "name": "Combat Android: Infiltrator",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 40,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 30 (Ablative, -80%)",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 30,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Mimicry",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.bad68427f4ec3555",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "The DR is an outer layer of living flesh."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+20%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "4b61bd50b38a542d",
+  "name": "Combat Android: Chameleon",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Chameleon 3 (Extended, Infravision and Ultravision, +40%)",
+     "itemType": "trait",
+     "points": 21,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.895d4cd89bb9af13",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "1228c746b36aa4b8",
+  "name": "Combat Android: Nuclear-Powered",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 20,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Doesn't Eat or Drink",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (removed)",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Remove Restricted Diet (Very Common, power cells) [-10]."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "5b333bca3d27411d",
+  "name": "Combat Android: Weapon Mount",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 2,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Extra Arm 1 (Weapon Mount, -80%)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "14a8c6f51412ff3c",
+  "name": "Warbot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 289,
+   "attributes": {
+    "ST": 15,
+    "DX": 2,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 15,
+    "will": 0,
+    "per": 5,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 3,
+   "attributeCost": 191,
+   "entries": [
+    {
+     "name": "Extra Arms 3 (Weapon Mount, -80%)",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Lifting ST +15 (Size, -30%)",
+     "itemType": "trait",
+     "points": 32,
+     "levels": 15,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8afbe24586000a40",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Payload 5",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.050e7ea397fbceb3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Hearing",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radiation Tolerance 5",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6b8630ab6bd6db2e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, E cell)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167"
+  }
+ },
+ {
+  "_id": "5ff21b7718f4e3a2",
+  "name": "Warbot: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 115,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 50 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 150,
+     "levels": 50,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (3 persons, weekly)",
+     "itemType": "trait",
+     "points": -15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Numb",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.efa21721942c6481",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 200000,
+      "weight": "1,000 lbs.",
+      "power": "",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "db550152ba501808",
+  "name": "Warbot: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 229,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 75 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 225,
+     "levels": 75,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 200000,
+      "weight": "1,000 lbs.",
+      "power": "",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "7171067cb40913e5",
+  "name": "Warbot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 329,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 100 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 300,
+     "levels": 100,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Telescopic Vision 5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7e3407d22088ef3e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 200000,
+      "weight": "1,000 lbs.",
+      "power": "",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "bf996d127236dbc7",
+  "name": "Warbot: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 458,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 150 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 450,
+     "levels": 150,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "The book states +483 points; the traits it lists add up to +458."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 167",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 200000,
+      "weight": "1,000 lbs.",
+      "power": "",
+      "lc": 2,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "6687f9e8e620a872",
+  "name": "Warbot: Submarine",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 62,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Aquatic)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.a4cb09ef5cbacc2d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 1 (Water)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.2e79d52384a1a36e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Pressure Support 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.0d84db3a7971b0da",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sonar (Increased Range x10, +30%; LPI, +10%; Targeting, +20%)",
+     "itemType": "trait",
+     "points": 32,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.e6aca587225ec9ed",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Basic Move becomes Water Move; ground Move is 0."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 168"
+  }
+ },
+ {
+  "_id": "860f2c0590aea095",
+  "name": "Warbot: Walking Tank",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 87,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 1 (Ground)",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c7c32d7f4821e2d5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Legs (4 legs)",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.6866453a2e7c510f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radar (Increased Range x10, +30%; LPI, +10%; Multi-Mode, +50%; Targeting, +20%)",
+     "itemType": "trait",
+     "points": 42,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b3614cb0e0f8008b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Super Jump 1",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae9f648837e68d1d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 168"
+  }
+ },
+ {
+  "_id": "db700267b3ca773e",
+  "name": "Warbot: Vertol",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 142,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "3D Spatial Sense",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b2e6f01fb6db8d7a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 3 (Air)",
+     "itemType": "trait",
+     "points": 60,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3659051c7356544e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight (Small Wings, -10%)",
+     "itemType": "trait",
+     "points": 36,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Noisy 3",
+     "itemType": "trait",
+     "points": -6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.dd915ac723751e40",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radar (Increased Range x10, +30%; LPI, +10%; Multi-Mode, +50%; Targeting, +20%)",
+     "itemType": "trait",
+     "points": 42,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b3614cb0e0f8008b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Basic Move becomes Air Move; ground Move is 0."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 168"
+  }
+ },
+ {
+  "_id": "a4596678b927cf01",
+  "name": "Warbot: Vertol (Contragrav)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 140,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "No Legs (Aerial)",
+     "itemType": "trait",
+     "points": 0,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4bff8762fbc798ea",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Move 3 (Air)",
+     "itemType": "trait",
+     "points": 60,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3659051c7356544e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Flight (Planetary, -5%)",
+     "itemType": "trait",
+     "points": 38,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ae39e5b68a1e3620",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radar (Increased Range x10, +30%; LPI, +10%; Multi-Mode, +50%; Targeting, +20%)",
+     "itemType": "trait",
+     "points": 42,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b3614cb0e0f8008b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "TL10^. Basic Move becomes Air Move; ground Move is 0."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 168"
+  }
+ },
+ {
+  "_id": "5d564e5b097f7227",
+  "name": "Nursebot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 209,
+   "attributes": {
+    "ST": 3,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 2
+   },
+   "secondary": {
+    "hp": 7,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 64,
+   "entries": [
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ambidexterity",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4f01fcff86293bec",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Discriminatory Taste (Profiling, +50%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.079a48e6fb744c35",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "High Manual Dexterity 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Infravision",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a14750c6b604643e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Microscopic Vision 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3a0660d8180647dc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Penetrating Vision 1 (Blockable, Dense Substances, -30%)",
+     "itemType": "trait",
+     "points": 7,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.126bb60018a28563",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 19,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sensitive Touch",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7495327b28ce833d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sharp Claws (Switchable, +10%)",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.31e6eaf2c3a1a206",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Personal computer; surgical instruments)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sanitized Metabolism",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8b9c15c942cb33c2",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 202"
+  }
+ },
+ {
+  "_id": "9e7de37688b6d92f",
+  "name": "Nursebot: TL9 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -5,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, weekly)",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 150000,
+      "weight": "150 lbs.",
+      "power": "2D/8 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "79ec24ce9097b642",
+  "name": "Nursebot: TL10 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 1,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, bi-weekly)",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 2",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 100000,
+      "weight": "150 lbs.",
+      "power": "2D/24 hr.",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "cd82d60f1e19b0b9",
+  "name": "Nursebot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 4,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 70000,
+      "weight": "150 lbs.",
+      "power": "4D/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "ba2891b2a62e1555",
+  "name": "Nursebot: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 8,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 50000,
+      "weight": "150 lbs.",
+      "power": "4D/1 month",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "102537df5bdc458f",
+  "name": "Medical Bush Robot",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": 475,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 4
+   },
+   "secondary": {
+    "hp": 7,
+    "will": 0,
+    "per": 2,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 64,
+   "entries": [
+    {
+     "name": "360-Degree Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.c595de80a1f6fc96",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Absolute Direction",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Ambidexterity",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4f01fcff86293bec",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Chameleon 1",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.895d4cd89bb9af13",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Discriminatory Taste",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.079a48e6fb744c35",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Double-Jointed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.12c70ef2aed12c83",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 10 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 10,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Enhanced Tracking 2",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1a76cd335ec241bd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Arms 4 (Extra Flexible, +50%)",
+     "itemType": "trait",
+     "points": 60,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.4e935ac3f3af161f",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Mouth 5",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1254cb155874cc34",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Extra Attack 2",
+     "itemType": "trait",
+     "points": 50,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a45a931aece940c3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "High Manual Dexterity 4",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a1551284fe91e790",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hyperspectral Vision",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.b46e9be458557233",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Brain, No Eyes)",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Microscopic Vision 6",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 6,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.3a0660d8180647dc",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Penetrating Vision 1 (Flesh Only, -40%; Sense-Based, Touch, -20%)",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.126bb60018a28563",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Protected Vision",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 19,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sensitive Touch",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.7495327b28ce833d",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sharp Teeth",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.1264f5f04f6eebbb",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vacuum Support",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d7568145a162e209",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Vibration Sense",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.77c9d84b7ccb0255",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Microframe computer; surgical instruments)",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Restricted Diet (Very Common, power cells)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.9f5af49fa85e6c45",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead"
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203"
+  }
+ },
+ {
+  "_id": "60873c6458c8743d",
+  "name": "Medical Bush Robot: TL11 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 4,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Maintenance (one person, monthly)",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.10e51523f7cbb9d3",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reduced Consumption 3",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 220000,
+      "weight": "75 lbs.",
+      "power": "3D/1 week",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "3be77a4412647233",
+  "name": "Medical Bush Robot: TL12 Model",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 8,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Reduced Consumption 4",
+     "itemType": "trait",
+     "points": 8,
+     "levels": 4,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.aa8c886023c4a898",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 120000,
+      "weight": "50 lbs.",
+      "power": "3D/1 month",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "36a585c567cab04f",
+  "name": "Medical Bush Robot: Budding (TL12)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 21,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Duplication (Duplicate is -1 SM, +0%; Shared Resources, -40%)",
+     "itemType": "trait",
+     "points": 21,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5ef2c00d62d7869b",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Up to five copies, at 21 points and $20,000 each."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+$20,000"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "e642042a3c4acd26",
+  "name": "Medical Bush Robot: Combat Medic (TL11)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 177,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Damage Resistance 60 (Can't Wear Armor, -40%) (upgrade from DR 10)",
+     "itemType": "trait",
+     "points": 150,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Chameleon 4 (Extended, Infravision, Radar and Ultravision, +60%) (upgrade from Chameleon 1)",
+     "itemType": "trait",
+     "points": 27,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Upgrade DR to DR 60 (Can't Wear Armor, -40%) [180].",
+    "Upgrade Chameleon to Chameleon 4 (Extended, Infravision, Radar and Ultravision, +60%) [32].",
+    "+20% to weight as well as cost."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 203",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+20%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "6fc293b2bc9254c4",
+  "name": "Computer Implant",
+  "type": "template",
+  "system": {
+   "kind": "racial",
+   "statedCost": -17,
+   "attributes": {
+    "ST": -10,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 4
+   },
+   "secondary": {
+    "hp": 2,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": -6
+   },
+   "sizeModifier": 0,
+   "attributeCost": -86,
+   "entries": [
+    {
+     "name": "Absolute Direction (Requires signal, -20%)",
+     "itemType": "trait",
+     "points": 4,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ad2e6f8fb271133b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Absolute Timing",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.35f4a2a55f40771a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Sleep",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Intuitive Mathematician",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.60eecd6f128789b7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Photographic Memory",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d10fa6d5ed9d1923",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Breathe",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.57b74ad3e54dce3e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Eat or Drink",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.a8ed1685e69c8a13",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Damage Resistance 5 (Can't Wear Armor, -40%)",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 5,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.00f1473aca8f5177",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Eyes, No Head, No Neck)",
+     "itemType": "trait",
+     "points": 17,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Immunity to Metabolic Hazards",
+     "itemType": "trait",
+     "points": 30,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Injury Tolerance (No Blood, Unliving)",
+     "itemType": "trait",
+     "points": 25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.9093ff6d3a29e0e5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Unhealing (Total)",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36452691e467413e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Mindlink",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d0ac60ca9f39fcde",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Mind Reading (Mindlink Required, -40%; Sensory Only, -20%; Touch-Based, -20%)",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ce5e2f7de4f5251e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Sealed",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.ea874ecdda2ea307",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Radio (Burst, +30%; Secure, +20%; Video, +40%)",
+     "itemType": "trait",
+     "points": 19,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.dcd068838e0f86dd",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Accessories (Tiny computer)",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.37fe6effc4e3c3c5",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Electrical",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4e51503f0465a74b",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Quadriplegic",
+     "itemType": "trait",
+     "points": -80,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.12bef94636dada26",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Eight-hour energy reserve; needs refuelling three times a day",
+    "Neither has nor can spend Fatigue Points",
+    "Does not age; wears out instead",
+    "Also needs a tiny computer and AI software or a mind emulation."
+   ],
+   "tabooTraits": [
+    "Fixed ST, DX, HT, HP"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 216",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 4000,
+      "weight": "",
+      "power": "",
+      "lc": 4,
+      "costModifier": ""
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "8bf2bc6db5f28570",
+  "name": "Computer Implant: Puppeteer (TL9)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 100,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Possession (Mindlink Required, -40%; No Memory Access, -10%; Telecontrol, +50%)",
+     "itemType": "trait",
+     "points": 100,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.bc9e1a8e9d31c12e",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "With a biopresence implant in the host, add Puppet [5] for +105 points."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 216"
+  }
+ },
+ {
+  "_id": "de6b28a9cbdadf78",
+  "name": "Computer Implant: Mind Interface (TL10)",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 6,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Mind Reading (Sensory Only removed)",
+     "itemType": "trait",
+     "points": 6,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Remove the Sensory Only limitation on Mind Reading."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 216",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": 3,
+      "costModifier": "+$10,000"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "2efeb4a83a08b3fe",
+  "name": "Intelligence: Cyborg Brain",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 0,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [],
+   "choices": [],
+   "features": [
+    "The robot's computer is reduced one size to make room for the brain case."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 27"
+  }
+ },
+ {
+  "_id": "cf6bbebf20a22f4f",
+  "name": "Intelligence: Drone",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -255,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": -10,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": -200,
+   "entries": [
+    {
+     "name": "Dead Broke",
+     "itemType": "trait",
+     "points": -25,
+     "levels": 0,
+     "uuid": "",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Social Stigma (Subjugated)",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.e5f54ed031a83dc6",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Runs a Complexity 3 program."
+   ],
+   "tabooTraits": [
+    "Fixed IQ"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 27"
+  }
+ },
+ {
+  "_id": "fe00950eadc8525a",
+  "name": "Intelligence: Mind Emulation",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 5,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Needs hardware and software of Complexity (IQ+5)/2, rounded up."
+   ],
+   "tabooTraits": [
+    "Complexity-Limited IQ"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 27"
+  }
+ },
+ {
+  "_id": "f8ead1eb8e490280",
+  "name": "Intelligence: Non-Volitional AI",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -38,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Indomitable",
+     "itemType": "trait",
+     "points": 15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.8d209804d3b8353a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Absolute Timing",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.35f4a2a55f40771a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Sleep",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Intuitive Mathematician",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.60eecd6f128789b7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Photographic Memory",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d10fa6d5ed9d1923",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hidebound",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c0320b5905659713",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Incurious (6)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.2062cbdf790b0958",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Low Empathy",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36ffb2afe82ac330",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Sense of Humor",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36467486bdf36443",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Slave Mentality",
+     "itemType": "trait",
+     "points": -40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.64d3974ee15da74a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Needs hardware and software of Complexity (IQ/2)+2, rounded up."
+   ],
+   "tabooTraits": [
+    "Complexity-Limited IQ"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 27"
+  }
+ },
+ {
+  "_id": "537a81cd8e0b24e0",
+  "name": "Intelligence: Volitional AI",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 32,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Absolute Timing",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.35f4a2a55f40771a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Sleep",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Intuitive Mathematician",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.60eecd6f128789b7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Photographic Memory",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d10fa6d5ed9d1923",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Needs hardware and software of Complexity (IQ/2)+3, rounded up."
+   ],
+   "tabooTraits": [
+    "Complexity-Limited IQ"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "53c3e62aafeb5d89",
+  "name": "Intelligence: Weak Dedicated AI",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -83,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Cannot Learn",
+     "itemType": "trait",
+     "points": -30,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.11f8db990baa935e",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Absolute Timing",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.35f4a2a55f40771a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Sleep",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Intuitive Mathematician",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.60eecd6f128789b7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Photographic Memory",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d10fa6d5ed9d1923",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Hidebound",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c0320b5905659713",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Incurious (6)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.2062cbdf790b0958",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Low Empathy",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36ffb2afe82ac330",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "No Sense of Humor",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36467486bdf36443",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Slave Mentality",
+     "itemType": "trait",
+     "points": -40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.64d3974ee15da74a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Needs hardware and software of Complexity IQ/2, rounded up."
+   ],
+   "tabooTraits": [
+    "Complexity-Limited IQ"
+   ],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "d2eadca256bf44de",
+  "name": "Intelligence: Fast",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 45,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Enhanced Time Sense",
+     "itemType": "trait",
+     "points": 45,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.85a41b13f963c356",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "+1 Complexity."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "ccf9c722f9b3f4bb",
+  "name": "Intelligence: Fragment",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -10,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Partial Amnesia",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.00ea3eccf9a5cee0",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "374f25cddd8850e7",
+  "name": "Intelligence: Reprogrammable",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -10,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Reprogrammable",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.4f123ce75a3198a4",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Mind emulations only."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "7498326d4105c721",
+  "name": "Intelligence: Expiration Date",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -100,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Terminally Ill (1 year)",
+     "itemType": "trait",
+     "points": -50,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.b39956ff8490c122",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Terminally Ill (1 month)",
+     "itemType": "trait",
+     "points": -75,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.b39956ff8490c122",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Terminally Ill (up to 1 month)",
+     "itemType": "trait",
+     "points": -100,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.b39956ff8490c122",
+     "group": "g1",
+     "note": ""
+    }
+   ],
+   "choices": [
+    {
+     "id": "g1",
+     "label": "One of",
+     "kind": "count",
+     "required": 1
+    }
+   ],
+   "features": [
+    "Costs -50 to -100 points, by how soon the mind expires."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "5cfd7bedc643c45d",
+  "name": "Intelligence: Low-Res Upload",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -35,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": -1,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": -20,
+   "entries": [
+    {
+     "name": "Confused (12)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.d8574ed83bbc1196",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Hidebound",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c0320b5905659713",
+     "group": "g1",
+     "note": ""
+    },
+    {
+     "name": "Neurological Disorder (Mild)",
+     "itemType": "trait",
+     "points": -15,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.53cfcd88b4f49a67",
+     "group": "g1",
+     "note": ""
+    }
+   ],
+   "choices": [
+    {
+     "id": "g1",
+     "label": "-5 to -20 points chosen from",
+     "kind": "count",
+     "required": 1
+    }
+   ],
+   "features": [
+    "Take -5 to -20 points from the list.",
+    "-1 Complexity."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "48dc4a1acd6f6aa0",
+  "name": "Intelligence: Very-Low-Res Copy",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -45,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": -1,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": -20,
+   "entries": [
+    {
+     "name": "Total Amnesia",
+     "itemType": "trait",
+     "points": -25,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.ddba3b2da3b9df4a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "Only a quarter of the original's points in skills.",
+    "Loses advantages based on emotional sensitivity.",
+    "A 50% chance of Flashbacks (Mild) [-5]."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 220"
+  }
+ },
+ {
+  "_id": "0a37ef11caad3398",
+  "name": "Biomorphic: Sculpted Body",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 0,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [],
+   "choices": [],
+   "features": [
+    "TL9."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28"
+  }
+ },
+ {
+  "_id": "1a5a1264e97c20b9",
+  "name": "Biomorphic: Mannequin",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -2,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Unnatural Features 2",
+     "itemType": "trait",
+     "points": -2,
+     "levels": 2,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.39a9e816ebb99306",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "TL9."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+10%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "54c46a7946feecfe",
+  "name": "Biomorphic: Semi-Sculpted Body",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -3,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Unnatural Features 3",
+     "itemType": "trait",
+     "points": -3,
+     "levels": 3,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.39a9e816ebb99306",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "TL9."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+5%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "dc321f2dce7f6de1",
+  "name": "Biomorphic: Realistic Flesh",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": -1,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Unnatural Features 1",
+     "itemType": "trait",
+     "points": -1,
+     "levels": 1,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.39a9e816ebb99306",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "TL9."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+20%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "d19ea62349ef9516",
+  "name": "Biomorphic: Furry",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 1,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Fur",
+     "itemType": "trait",
+     "points": 1,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.217885df4e1a4272",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [
+    "TL9."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+10%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "55d8f2675a23c11e",
+  "name": "Biomorphic: Living Flesh",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 0,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [],
+   "choices": [],
+   "features": [
+    "TL10."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+50%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "373a683b4e882f4a",
+  "name": "Biomorphic: Synthetic Organs",
+  "type": "template",
+  "system": {
+   "kind": "lens",
+   "statedCost": 0,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [],
+   "choices": [],
+   "features": [
+    "TL10."
+   ],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 28",
+   "extensions": {
+    "gurps-compendium-content": {
+     "robotBody": {
+      "cost": 0,
+      "weight": "",
+      "power": "",
+      "lc": null,
+      "costModifier": "+100%"
+     }
+    }
+   }
+  }
+ },
+ {
+  "_id": "794c345d7758cbc2",
+  "name": "AI (Not Reprogrammable)",
+  "type": "template",
+  "system": {
+   "kind": "metaTrait",
+   "statedCost": 42,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Absolute Timing",
+     "itemType": "trait",
+     "points": 2,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.35f4a2a55f40771a",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Digital Mind",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.492b9331e5b87f3c",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Doesn't Sleep",
+     "itemType": "trait",
+     "points": 20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.5fe7d50817a889f7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Intuitive Mathematician",
+     "itemType": "trait",
+     "points": 5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.60eecd6f128789b7",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Photographic Memory",
+     "itemType": "trait",
+     "points": 10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-advantages.Item.d10fa6d5ed9d1923",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 29"
+  }
+ },
+ {
+  "_id": "70df1f4154173ae9",
+  "name": "Automaton (Has Sense of Humor)",
+  "type": "template",
+  "system": {
+   "kind": "metaTrait",
+   "statedCost": -75,
+   "attributes": {
+    "ST": 0,
+    "DX": 0,
+    "IQ": 0,
+    "HT": 0
+   },
+   "secondary": {
+    "hp": 0,
+    "will": 0,
+    "per": 0,
+    "fp": 0,
+    "basicSpeed": 0,
+    "basicMove": 0
+   },
+   "sizeModifier": 0,
+   "attributeCost": 0,
+   "entries": [
+    {
+     "name": "Hidebound",
+     "itemType": "trait",
+     "points": -5,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.c0320b5905659713",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Incurious (6)",
+     "itemType": "trait",
+     "points": -10,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.2062cbdf790b0958",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Low Empathy",
+     "itemType": "trait",
+     "points": -20,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.36ffb2afe82ac330",
+     "group": "",
+     "note": ""
+    },
+    {
+     "name": "Slave Mentality",
+     "itemType": "trait",
+     "points": -40,
+     "levels": 0,
+     "uuid": "Compendium.gurps-compendium-content.basic-set-disadvantages.Item.64d3974ee15da74a",
+     "group": "",
+     "note": ""
+    }
+   ],
+   "choices": [],
+   "features": [],
+   "tabooTraits": [],
+   "description": "",
+   "reference": "Ultra-Tech p. 29"
+  }
+ }
+]

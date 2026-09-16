@@ -187,4 +187,33 @@ wonder:
   base price for one square yard; chassis, power supply and disguise reprice it
   (pp. 35-37), which is the swarmbots rule's (#240).
 
+## What #228 found
+
+- **Twelve robot bodies and the computer implant are racial templates.** Each
+  body's lenses (model by TL, configuration, optional upgrades) are lens
+  templates named "Body: Lens", and so are the machine intelligence, optional
+  intelligence and biomorphic lenses (pp. 27-28). The two meta-trait variants on
+  p. 29 are meta-trait templates. The mind emulation sub-race (p. 220) is the
+  Mind Emulation intelligence lens, with the very-low-res copy beside it.
+- **Meta-traits are spelled out.** Machine, AI, Automaton, Quadruped,
+  Vermiform and Ground Vehicle become the Basic Set traits they stand for,
+  taken from the system's own templates, so a body adds up to what it states.
+  Aerial and Aquatic [0] are No Legs (Aerial) and No Legs (Aquatic).
+- **A body's price, weight and power ride on its lens.** The book prices a
+  robot by its model lens, so `extensions.gurps-compendium-content.robotBody`
+  holds cost, weight range, power cells and LC there; a lens that changes the
+  price holds that as `costModifier` ("+20%", "+$10,000").
+- **Lenses that remove or upgrade a body's trait carry the change as an entry.**
+  Toy Soldier, Nuclear-Powered, Combat Medic and Mind Interface each hold one
+  entry worth the difference, marked "(removed)" or "(upgrade from ...)", so the
+  lens adds up to its stated cost.
+- **The Warbot's TL12 model lens adds up to +458, not the +483 printed.** It
+  lists DR 150 [450] and Reduced Consumption 4 [8]. The lens states 458 and
+  says so, rather than inventing the missing 25 points.
+- **Five robots with no points are creatures.** The robot mule (p. 80), the
+  hunter, striker and floater missiles (p. 168) and the smart shuriken
+  (p. 169) are an Actor pack. Their stat blocks print no trait costs, so each
+  trait is at its unmodified cost; a skill printed below the lowest level
+  points can buy is one point with a penalty.
+
 The plan these came from: https://claude.ai/artifact/Gua2htvv1cQcD2TvQRwgvJ
