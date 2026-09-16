@@ -21,6 +21,9 @@ describe("the Surgical Procedures Table (Ultra-Tech p. 207)", () => {
   it("finds each implant's procedure by its record's name, eased at higher TLs", () => {
     expect(procedureAt(implantOf("Boosted Reflexes")!, 9)).toBe("major");
     expect(procedureAt(implantOf("Boosted Reflexes")!, 10)).toBe("minor");
+    expect(procedureAt(implantOf("Total Cyborg Brain Transplant")!, 9)).toBe("radical");
+    expect(procedureAt(implantOf("Total Cyborg Brain Transplant")!, 10)).toBe("major");
+    expect(implantOf("Total Cyborg Brain Transplant")!.brain).toBe(true);
     expect(procedureAt(implantOf("Accelerated Reflexes")!, 11)).toBe("radical");
     expect(procedureAt(implantOf("Accelerated Reflexes")!, 12)).toBe("major");
     expect(implantOf("bionic eye (two)")).toMatchObject({ eye: true, count: 2 });

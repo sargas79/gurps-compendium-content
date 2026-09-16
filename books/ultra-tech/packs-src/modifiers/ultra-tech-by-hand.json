@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "5c11652a27049c3a",
+    "name": "Planetary",
+    "type": "modifier",
+    "system": {
+      "kind": "limitation",
+      "value": -5,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "group": "Flight",
+      "description": "",
+      "reference": "Ultra-Tech p. 30"
+    }
+  },
+  {
+    "_id": "511cabf7ffde4244",
+    "name": "Burst",
+    "type": "modifier",
+    "system": {
+      "kind": "enhancement",
+      "value": 0,
+      "costTable": [
+        30,
+        60,
+        90,
+        120,
+        150,
+        180
+      ],
+      "levelNames": [
+        "10x",
+        "100x",
+        "1,000x",
+        "10,000x",
+        "100,000x",
+        "1,000,000x"
+      ],
+      "maxLevels": 6,
+      "group": "Telecommunication",
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  }
+]

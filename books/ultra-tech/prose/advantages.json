@@ -84,8 +84,8 @@
     "name": "Boosted Reflexes",
     "pages": "UT210",
     "status": "reviewed",
-    "notes": "",
-    "description": "<p>These implanted glands release chemicals on mental command, triggering a controlled adrenaline-like response.</p><p><em>Statistics:</em> Basic Speed +2 (Costs Fatigue, 2 FP, -10%) [18]. 18 points.</p>"
+    "notes": "Basic Speed +1, per the errata; the book prints +2 at the same 18 points.",
+    "description": "<p>These implanted glands release chemicals on mental command, triggering a controlled adrenaline-like response.</p><p><em>Statistics:</em> Basic Speed +1 (Costs Fatigue, 2 FP, -10%) [18]. 18 points.</p>"
   },
   {
     "_id": "ea74f6c8f5435473",

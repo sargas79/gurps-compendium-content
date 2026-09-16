@@ -80,10 +80,9 @@ export function gadgetPrice(figures: {
  * What a gadget's weight, cost and power cells are multiplied by for a user of
  * this Size Modifier (p. 16).
  *
- * The book's table prints two SM -2 rows -- "SM -2 ×1/10" and "SM -2 ×1/5" --
- * which cannot both be the factor for SM -2. The rows are read here as the
- * mirror of the positive side the table sets beside them (×2, ×5, ×10, ×20),
- * so ×1/5 is SM -2 and ×1/10 is SM -3.
+ * The book's table prints its first rows as SM -3, -2, -2 and -1; the errata
+ * corrects them to SM -4, -3, -2 and -1, so ×1/20 is SM -4, ×1/10 SM -3 and
+ * ×1/5 SM -2.
  */
 export const SM_FACTORS: Readonly<Record<number, number>> = Object.freeze({
   [-4]: 1 / 20,

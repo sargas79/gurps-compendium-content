@@ -525,33 +525,6 @@
     }
   },
   {
-    "_id": "feb368a332e7c582",
-    "name": "Riot Shield",
-    "type": "equipment",
-    "system": {
-      "quantity": 1,
-      "weight": 4,
-      "cost": 100,
-      "carried": true,
-      "equipped": false,
-      "tl": "9",
-      "lc": 4,
-      "costOfLivingPercent": 0,
-      "description": "",
-      "reference": "Ultra-Tech p. 188",
-      "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
-      "quality": "good",
-      "material": "",
-      "weaponClass": "",
-      "listCost": 100,
-      "hpLost": 0,
-      "meleeModes": [],
-      "rangedModes": []
-    }
-  },
-  {
     "_id": "bfeb88d17a6df995",
     "name": "Suit Patches",
     "type": "equipment",

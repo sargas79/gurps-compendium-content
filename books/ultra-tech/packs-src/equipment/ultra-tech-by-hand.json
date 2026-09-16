@@ -7228,5 +7228,336 @@
         }
       }
     }
+  },
+  {
+    "_id": "feb368a332e7c582",
+    "name": "Riot Shield",
+    "type": "shield",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "db": 3,
+      "dr": 30,
+      "hp": 60,
+      "composition": "plastic",
+      "listCost": 100,
+      "listWeight": 4,
+      "skill": "Shield",
+      "meleeModes": []
+    }
+  },
+  {
+    "_id": "6f8f4e41e16f33cb",
+    "name": "Rescue Bubble (TL10)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 600,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a8b8e1f4762eba96",
+    "name": "Rescue Bubble (TL11)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 400,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1a6ffd1eab9a0d89",
+    "name": "Rescue Bubble (TL12)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 300,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "9e5d9749867d69ab",
+    "name": "Survival Cocoon (TL12)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 78",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "25d4cb160efea863",
+    "name": "Bioplas One-Man Tent",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "6 wk.",
+              "raw": "D/6 wk."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "38b049d20e4868a9",
+    "name": "Bioplas Three-Man Tent",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 3,
+              "endurance": "6 wk.",
+              "raw": "3D/6 wk."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a1eb82841b957402",
+    "name": "Bioplas Eight-Man Tent",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 7000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 7000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "8 wk.",
+              "raw": "E/8 wk."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d924709baab6d64f",
+    "name": "Total Cyborg Brain Transplant",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 40000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 219",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2449c71461978862",
+    "name": "Rescue Bubble (TL9)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 800,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 800,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "490ec866cd2399f3",
+    "name": "Survival Cocoon (TL11)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 78",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
   }
 ]
