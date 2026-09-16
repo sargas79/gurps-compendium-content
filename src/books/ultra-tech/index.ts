@@ -12,6 +12,7 @@ import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { readyBeams } from "./beams/index.js";
 import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
+import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
 import { initComputers, readyComputers } from "./computers/index.js";
 import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
@@ -54,6 +55,7 @@ const RULES = [
   { key: "matterTransmission", pages: "pp. 104, 233-235", implemented: true },
   { key: "beamWeapons", pages: "pp. 113-132", implemented: true },
   { key: "laserOptions", pages: "pp. 113-118", implemented: true },
+  { key: "neuralAndSonic", pages: "pp. 120-126, 132", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -80,6 +82,7 @@ function init(): void {
   initGadgets();
   initPower();
   initLaserOptions();
+  initNeuralSonic();
   initComputers();
   initSwarms();
   initStealth();
@@ -95,6 +98,7 @@ function ready(api: GWorldApi): void {
   readyPower(api, rule("powerCells"));
   readyBeams(api, rule("beamWeapons"));
   readyLaserOptions(api, rule("laserOptions"));
+  readyNeuralSonic(api, rule("neuralAndSonic"));
   readyComputers(api, rule("computers"));
   readySwarms(api, rule("swarmbots"));
   readyRobots(api, { robots: rule("robots"), cinematic: rule("cinematicRobots") });

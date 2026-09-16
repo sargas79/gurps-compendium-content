@@ -2007,6 +2007,10 @@
         "laserOptions": {
           "Name": "Laser options",
           "Hint": "High-energy lasers can be built with dazzle and blinding modes (+10% each) and as pulse or pulse-beam lasers (+100%), and switched between settings on the item. Dazzle is a HT-5 affliction that blinds for minutes equal to the margin; blinding is HT-10 and blinds for good; Protected Vision and a Nictitating Membrane help resist both. A pulse is crushing and explosive, a step less divisor, at twice the range. The attacker can say the beam crosses weather, which adds DR equal to the vision penalty along its path, or strikes glass, which gives a (10) divisor. An eye a laser cripples is crippled for good."
+        },
+        "neuralAndSonic": {
+          "Name": "Neural, psionic and sonic beams",
+          "Hint": "Neural disruptors are built with settings (agony, ecstasy, neural stun, paralysis, seizure, death beam; +50% for each after the first) and switched between them. A failure afflicts for minutes equal to the margin; agony and ecstasy stop a heart on a failure by 5, and a death beam on any failure. They reach nobody sealed, nor machines and bodies without a brain. Mind disruptors are resisted by Will with Mind Shield added: dazing, choking or maddening beams. Mindrippers leave a coma. MAD beams add DR to the roll and inflict agony while in the beam. Sonic stunners add a point per 5 DR and knock out; nauseators pain and sicken anyone who can hear, with Protected Hearing adding 5; screamers take their victims' hearing."
         }
       },
       "Gadget": {
@@ -3191,6 +3195,82 @@
         "DazzledLine": "{name} is blind for {minutes} minute(s) (Ultra-Tech p. 113; Characters p. 124).",
         "BlindedLine": "{name}'s eyes are crippled: Blindness until healed (Ultra-Tech p. 114; Characters p. 124).",
         "EyeLost": "A laser crippled {name}'s eye: the crippling is permanent (One Eye, or Blindness with only one eye) (Ultra-Tech p. 114)."
+      },
+      "Neural": {
+        "Title": "Settings",
+        "SettingLabel": "Set to",
+        "SettingHintLabel": "What the weapon fires now. Changing settings is a Ready maneuver (Ultra-Tech pp. 121, 132).",
+        "Cost": "Tunable: ×{factor} the price, +50% for each setting after the first (Ultra-Tech pp. 121, 132).",
+        "Switched": "Switched to {setting}: a Ready maneuver.",
+        "Setting": {
+          "agony": "Agony",
+          "ecstasy": "Ecstasy",
+          "neuralStun": "Neural stun",
+          "paralysis": "Paralysis",
+          "seizure": "Seizure",
+          "deathBeam": "Death beam",
+          "hypnogogic": "Hypnogogic (eraser)",
+          "insanity": "Insanity",
+          "psionicNeutralizer": "Psionic neutralizer"
+        },
+        "SettingHint": {
+          "agony": "Agony for minutes equal to the margin, then Moderate Pain as long; a failure by 5+ is a heart attack (Ultra-Tech p. 121).",
+          "ecstasy": "Ecstasy for minutes equal to the margin, then Euphoria as long; a failure by 5+ is a heart attack (Ultra-Tech p. 121).",
+          "neuralStun": "Unconscious for minutes equal to the margin (Ultra-Tech p. 121).",
+          "paralysis": "Paralysis for minutes equal to the margin (Ultra-Tech p. 121).",
+          "seizure": "A seizure for minutes equal to the margin (Ultra-Tech p. 121).",
+          "deathBeam": "Any failure: a heart attack (neural, Ultra-Tech p. 122); choking for twice the margin in seconds, and a heart attack by 5+ (mind, p. 132).",
+          "hypnogogic": "Dazed for minutes equal to the margin, unconscious first on a failure by 5+, and no memory of the moment (Ultra-Tech p. 132).",
+          "insanity": "Hallucinating for minutes equal to the margin; by 5+, a coma of nightmares (Ultra-Tech p. 132).",
+          "psionicNeutralizer": "Psionic powers lost for minutes equal to the margin (Ultra-Tech p. 132)."
+        },
+        "Resist": {
+          "Dr": "DR against the beam",
+          "MindShield": "Mind Shield",
+          "ProtectedHearing": "Protected Hearing"
+        },
+        "Immune": {
+          "noNerves": "{name} has no nervous system a neural beam can reach: no effect (Ultra-Tech p. 121).",
+          "sealed": "{name} is sealed: a neural beam has no effect (Ultra-Tech p. 121).",
+          "noMind": "{name} has no mind for a mind disruptor to reach: no effect (Ultra-Tech p. 132).",
+          "deaf": "{name} can't hear: a nauseator has no effect (Ultra-Tech p. 125)."
+        },
+        "Neural": {
+          "agony": "{name} is in agony for {minutes} minute(s), then in moderate pain as long (Ultra-Tech p. 121).",
+          "ecstasy": "{name} is in ecstasy for {minutes} minute(s), then euphoric as long (Ultra-Tech p. 121).",
+          "neuralStun": "{name} is unconscious for {minutes} minute(s) (Ultra-Tech p. 121).",
+          "paralysis": "{name} is paralyzed for {minutes} minute(s) (Ultra-Tech p. 121).",
+          "seizure": "{name} has a seizure lasting {minutes} minute(s) (Ultra-Tech p. 121).",
+          "heartAttack": "{name} failed by 5 or more: a heart attack (Ultra-Tech p. 121).",
+          "deathBeam": "{name} failed against a death beam: a heart attack (Ultra-Tech p. 122)."
+        },
+        "Mind": {
+          "hypnogogic": "{name} is dazed for {minutes} minute(s), or until struck or shaken, and won't remember the moment (Ultra-Tech p. 132).",
+          "hypnogogicWorse": "{name} is unconscious for {minutes} minute(s), then dazed as long, and won't remember the moment (Ultra-Tech p. 132).",
+          "deathBeam": "{name} is choking for {seconds} seconds, losing 1 FP a second unless they needn't breathe (Ultra-Tech p. 132).",
+          "heartAttack": "{name} failed by 5 or more against a death beam: a heart attack too (Ultra-Tech p. 132).",
+          "insanity": "{name} is hallucinating for {minutes} minute(s) (Ultra-Tech p. 132).",
+          "insanityWorse": "{name} falls into a coma of horrific dreams, and has Nightmares (12) for 1d weeks after surviving it (Ultra-Tech p. 132).",
+          "psionicNeutralizer": "{name} loses all psionic powers for {minutes} minute(s) (Ultra-Tech p. 132)."
+        },
+        "Mindripper": {
+          "coma": "{name} is in a coma, and the mindripper holds a low-res copy of their mind (Ultra-Tech p. 122).",
+          "worse": "{name} is in a coma, with permanent Total Amnesia after recovering; the mindripper holds a high-res copy of their mind (Ultra-Tech p. 122)."
+        },
+        "Mad": {
+          "agony": "{name} is in agony for as long as they stay in the beam, and a second after (Ultra-Tech p. 120)."
+        },
+        "Sonic": {
+          "stun": "{name} is unconscious for {minutes} minute(s); a hit to a limb or extremity incapacitates it instead (Ultra-Tech p. 125)."
+        },
+        "Nauseator": {
+          "pain": "{name} is Hard of Hearing and in moderate pain for {minutes} minute(s) (Ultra-Tech p. 125).",
+          "worse": "{name} failed by 5 or more: Deafness, retching, and Bad Smell until cleaned up (Ultra-Tech p. 125)."
+        },
+        "Screamer": {
+          "hardOfHearing": "{name} took over half their HP from a screamer: Hard of Hearing until the injury heals (Ultra-Tech p. 125).",
+          "deafness": "{name} took over two-thirds of their HP from a screamer: Deafness until the injury heals (Ultra-Tech p. 125)."
+        }
       }
     }
   },
