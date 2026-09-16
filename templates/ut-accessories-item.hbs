@@ -1,0 +1,54 @@
+{{!-- Firearm accessories on a weapon, or a tactical program (Ultra-Tech pp. 149-152). --}}
+<div class="isub" data-gcc-ut-accessories-section>
+  <div class="isub-head">{{localize "GCC.UT.Accessories.Title"}}</div>
+  {{#if weapon}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.ScopeHint'}}">{{localize "GCC.UT.Accessories.ScopeLabel"}}
+        <select data-gcc-ut-accessory="scope" {{#unless editable}}disabled{{/unless}}>
+          {{#each scopes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.HarnessHint'}}">{{localize "GCC.UT.Accessories.HarnessLabel"}}
+        <select data-gcc-ut-accessory="harness" {{#unless editable}}disabled{{/unless}}>
+          {{#each harnesses as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.AccessHint'}}">{{localize "GCC.UT.Accessories.AccessLabel"}}
+        <select data-gcc-ut-accessory="accessControl" {{#unless editable}}disabled{{/unless}}>
+          {{#each accessControls as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.TripodHint'}}">{{localize "GCC.UT.Accessories.TripodLabel"}}
+        <select data-gcc-ut-accessory="tripod" {{#unless editable}}disabled{{/unless}}>
+          {{#each tripods as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.RailsHint'}}">{{localize "GCC.UT.Accessories.Rails"}}
+        <input type="number" data-gcc-ut-accessory="rails" value="{{data.rails}}" min="0" max="4" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.SmartgripHint'}}"><input type="checkbox" data-gcc-ut-accessory="smartgrip" {{#if data.smartgrip}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.Smartgrip"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.CompensatorHint'}}"><input type="checkbox" data-gcc-ut-accessory="compensator" {{#if data.compensator}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.Compensator"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.SelfDestructHint'}}"><input type="checkbox" data-gcc-ut-accessory="selfDestruct" {{#if data.selfDestruct}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.SelfDestruct"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.DTagHint'}}"><input type="checkbox" data-gcc-ut-accessory="dTag" {{#if data.dTag}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.DTag"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.IffHint'}}"><input type="checkbox" data-gcc-ut-accessory="iff" {{#if data.iff}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.Iff"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Accessories.NoSmartgunHint'}}"><input type="checkbox" data-gcc-ut-accessory="noSmartgun" {{#if data.noSmartgun}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Accessories.NoSmartgun"}}</label>
+    </div>
+  {{/if}}
+  {{#if program}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Accessories.ProgramHint'}}">{{localize "GCC.UT.Accessories.ProgramLabel"}}
+        <select data-gcc-ut-accessory="program" {{#unless editable}}disabled{{/unless}}>
+          {{#each programs as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if targeting}}
+        <label data-tooltip="{{localize 'GCC.UT.Accessories.ProgramSkillHint'}}">{{localize "GCC.UT.Accessories.ProgramSkill"}}
+          <input type="text" data-gcc-ut-accessory="programSkill" value="{{data.programSkill}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#each lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>

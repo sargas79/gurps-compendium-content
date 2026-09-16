@@ -49,7 +49,8 @@ const complexityOf = (item: any) => Number(item?.system?.extensions?.[MODULE_ID]
 /** Worn gear with a HUD or a neural interface, which makes one unnecessary (pp. 24, 48-49, 60). */
 const HUD_GEAR = /head-up display|\bhud\b|goggles or visor|video glasses|binoculars|contacts|neural interface helmet|neural induction (helmet|pad)/i;
 
-function hudSource(actor: any): string | null {
+/** The worn HUD or neural interface a character sees through, by name, or null. */
+export function hudSource(actor: any): string | null {
   const item = [...(actor?.items ?? [])].find((i: any) => worn(i) && HUD_GEAR.test(String(i.name)));
   if (item) return String(item.name);
   const trait = [...(actor?.items ?? [])].find((i: any) => i.type === "trait" && /neural interface|computer implant/i.test(String(i.name)));

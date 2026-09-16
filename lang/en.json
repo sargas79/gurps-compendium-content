@@ -2019,6 +2019,10 @@
         "hotshots": {
           "Name": "Hotshots and overheating",
           "Hint": "A beam weapon that fires more than ten times its RoF without a 10-second pause between attacks overheats, and malfunctions on 14 until it has cooled for a minute. A hotshot spends two shots for +1 damage per die, or a 30% deeper resistance penalty, at Malf. 14 (12 while overheated). Gatlings don't overheat and can't fire hotshots; neither can plasma guns on cartridges."
+        },
+        "firearmAccessories": {
+          "Name": "Firearm accessories",
+          "Hint": "Scopes, rails, harnesses, access control, self-destruct, D-tags, IFF, smartgrips, gravitic compensators and tripods are fields on a weapon that reprice it. Every TL9+ firearm has a laser sight, HUD link, grip or ring and diagnostic computer. On an aimed shot a targeting scope adds +2 to +5 by TL, a point a second aimed; without one, a worn HUD's link adds +1 within 300 yards. Targeting software adds +1 or +2 to its Guns or Gunner specialization. A mounted weapon with that software and a locked tactical sensor gets its Acc instead of every other targeting bonus. Gyrostabilized harnesses and servomounts cancel Move and Attack's Bulk; an articulated harness braces and cuts ST to two-thirds; a smartgrip takes 1 off ST; a compensator makes ST 0 and Recoil 1; a tripod lifts a mounted weapon's ST. Power holsters add TL/2 to Fast-Draw, TacNet +1 or +2 to Tactics, and a sniper mirror lets a laser fire around corners at -4."
         }
       },
       "Gadget": {
@@ -3307,6 +3311,119 @@
           "Note": "Hotshot: two shots, Malf. 14 (12 overheated)",
           "Damage": "Hotshot (+1 per die)",
           "Resist": "Hotshot"
+        }
+      },
+      "Accessories": {
+        "Title": "Firearm accessories",
+        "ScopeLabel": "Targeting scope",
+        "ScopeHint": "A compact or enhanced targeting scope, which adds its bonus to aimed shots and interfaces with the HUD sight (p. 149).",
+        "Scope": {
+          "none": "None",
+          "cts": "Compact targeting scope",
+          "ets": "Enhanced targeting scope"
+        },
+        "HarnessLabel": "Harness",
+        "HarnessHint": "Priced by the weapon's loaded weight (pp. 150-152).",
+        "Harness": {
+          "none": "None",
+          "gyrostabilized": "Gyrostabilized harness",
+          "articulated": "Articulated harness",
+          "servomount": "Shoulder servomount"
+        },
+        "AccessLabel": "Access control",
+        "AccessHint": "A transponder ring, a recognition grip, or both. A TL9+ firearm's smartgun electronics include one (p. 150).",
+        "Access": {
+          "none": "None",
+          "ring": "Transponder ring",
+          "grip": "Recognition grip",
+          "both": "Ring and grip"
+        },
+        "TripodLabel": "Tripod",
+        "TripodHint": "A tripod or powered tripod for a mounted weapon (M after its ST), up to ST 25 (p. 151).",
+        "Tripod": {
+          "none": "None",
+          "tripod": "Tripod",
+          "powered": "Powered tripod"
+        },
+        "Rails": "Accessory rails",
+        "RailsHint": "Up to four, $100 and 0.2 lbs. each (p. 150).",
+        "Smartgrip": "Smartgrip",
+        "SmartgripHint": "ST requirement -1 (p. 152).",
+        "Compensator": "Gravitic compensator",
+        "CompensatorHint": "Recoil 1 and ST 0 while on; priced per 10 lbs. of loaded weight (p. 152).",
+        "SelfDestruct": "Self-destruct anti-theft",
+        "SelfDestructHint": "Locks and counts down in a stranger's hands (p. 150).",
+        "DTag": "D-tag",
+        "DTagHint": "A hidden radio tag (p. 151).",
+        "Iff": "IFF interrogator",
+        "IffHint": "Built into the laser sight (p. 151).",
+        "NoSmartgun": "No smartgun electronics",
+        "NoSmartgunHint": "For a setting where TL9+ firearms lack the standard laser sight, HUD link, grip or ring and diagnostic computer (p. 149).",
+        "ProgramLabel": "Tactical program",
+        "ProgramHint": "Which of the book's tactical programs this is (pp. 149-150).",
+        "Program": {
+          "none": "None",
+          "silhouette": "Silhouette",
+          "tacNet": "TacNet",
+          "targeting": "Targeting program",
+          "targetTracking": "Target tracking"
+        },
+        "ProgramSkill": "For skill",
+        "ProgramSkillHint": "The one Guns or Gunner specialization targeting software helps, e.g. Guns (Rifle).",
+        "NoSkill": "no skill chosen",
+        "Smartgun": "Smartgun electronics: laser sight, HUD link, recognition grip or transponder ring, and a diagnostic computer (+1 to repair), powered by a built-in B cell.",
+        "ScopeLine": "Scope: +{bonus} to aimed shots, a point a second aimed; {magnification}x, {vision} with Tunnel Vision as a passive sensor; power {power}",
+        "HudLine": "HUD link: +1 Acc within {yards} yards to a shooter wearing a HUD, and the shots left.",
+        "Vision": {
+          "infravision": "Infravision",
+          "hyperspectral": "Hyperspectral Vision"
+        },
+        "ArticulatedBulk": "An articulated harness is generally for weapons of Bulk -4 or worse.",
+        "ServomountLine": "Shoulder servomount: counts as an Extra Arm (Weapon Mount); needs a HUD, or -2 and no Aim.",
+        "AccessLine": "Access control: bypassing or reprogramming it is Armoury (Small Arms) or Electronics Operation (Security) at {penalty}; {seconds} seconds the first try, {minutes} minutes each after.",
+        "SelfDestructLine": "Self-destruct: {seconds} seconds for the code, then {damage} explosion. Circumventing it is Electronics Operation (Security){penalty}, {minutes} minutes a try.",
+        "DTagLine": "D-tag: Electronics Operation (Security) to find, and again at {penalty} to disable it quietly.",
+        "IffLine": "IFF interrogator: {yards} yards.",
+        "CompensatorLine": "Gravitic compensator: {cells} B cell(s), 10 hours each.",
+        "TripodLine": "Tripod: ST ignored for weapons up to ST {st}; {readies} Ready maneuvers to mount or dismount; two hands, sitting or kneeling.",
+        "TripodNotMounted": "A tripod takes a mounted weapon (M after its ST); this one isn't.",
+        "TargetingLine": "Targeting: +{bonus} to {skill} with a HUD link.",
+        "TacNetLine": "TacNet: +{bonus} to Tactics when everyone is in communication.",
+        "ProgramCost": "{times} times the Software Cost Table's price.",
+        "HudLink": "HUD link ({hud})",
+        "ActiveTargeting": "Active-sensor targeting ({sensor})",
+        "ServomountNoHud": "Servomount without a HUD",
+        "ServomountNoAim": "No Aim without a HUD",
+        "MirrorLabel": "Sniper mirror",
+        "MirrorNote": "Range is the distance to the mirror plus the mirror's distance to the target (p. 151).",
+        "BypassTitle": "Bypass access control",
+        "BypassLabel": "Bypassing {name}'s access control",
+        "BypassPenalty": "Access control",
+        "BypassTime": "The first try takes {seconds} seconds; each after, {minutes} minutes.",
+        "AntiTheftTitle": "Self-destruct",
+        "Circumvent": "Try to circumvent it (Electronics Operation (Security){penalty}, {minutes} minutes)",
+        "Explode": "The code wasn't given within {seconds} seconds",
+        "CircumventLabel": "Circumventing {name}'s self-destruct",
+        "ExplodeLabel": "{name} self-destructs",
+        "Outcome": {
+          "disabled": "The anti-theft system is disabled.",
+          "countdown": "The destruct sequence starts: the code within 10 seconds, or it explodes.",
+          "explodes": "It explodes at once."
+        },
+        "RepairTitle": "Repair with diagnostics",
+        "RepairLabel": "Repairing {name}",
+        "Diagnostic": "Diagnostic computer",
+        "Notes": {
+          "Tripod": "Tripod",
+          "Compensator": "Compensator",
+          "Articulated": "Harness",
+          "Smartgrip": "Smartgrip"
+        },
+        "Hints": {
+          "Tripod": "On its tripod the weapon's ST is ignored (Ultra-Tech p. 151).",
+          "Compensator": "ST 0 and Recoil 1 while the compensator is on (Ultra-Tech p. 152).",
+          "Articulated": "ST to two-thirds, and braced, standing or moving (Ultra-Tech p. 151).",
+          "Smartgrip": "ST requirement -1 (Ultra-Tech p. 152)."
         }
       }
     }

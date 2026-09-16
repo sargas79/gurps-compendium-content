@@ -9182,5 +9182,125 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This is an advanced form of total virtual reality. It transforms the user's dream-state into a teaching environment via direct neural interface; it is sometimes known as a \"dream sensei.\"</p>"
+  },
+  {
+    "_id": "d92cc101274dde78",
+    "name": "Compact Targeting Scope",
+    "pages": "UT149",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A video sight with telescopic optics that feeds the weapon's HUD sight. It sees in infrared at TL9 and hyperspectrally from TL10. Aimed shots get +2 at TL9-10, +3 at TL11 and +4 at TL12.</p><p>Used as a passive sensor, it works as Infravision or Hyperspectral Vision limited to a narrow field, magnifying 4x at TL9-10, 8x at TL11 and 16x at TL12. The weapon has to point at whatever is being watched.</p>"
+  },
+  {
+    "_id": "b3d9335327e1c947",
+    "name": "Enhanced Targeting Scope",
+    "pages": "UT149",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavier hyperspectral sight for snipers and heavy weapons crews. It reads wind, temperature and gravity and compensates for them. Aimed shots get +3 at TL9-10, +4 at TL11 and +5 at TL12.</p><p>As a passive sensor it gives narrow-field Hyperspectral Vision at 8x (TL9-10), 16x (TL11) or 32x (TL12), aimed along the weapon.</p>"
+  },
+  {
+    "_id": "d870b160308a1a07",
+    "name": "Silhouette",
+    "pages": "UT149",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Recognition software that identifies military targets and brings up what its databases know about them. Commercial databases are shallow; military ones are detailed, encrypted, and need Military Rank or Security Clearance. Complexity 5, at twice the table price.</p>"
+  },
+  {
+    "_id": "28b3b8499cb27243",
+    "name": "TacNet (+1)",
+    "pages": "UT149",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A software tool that tracks a unit's positions, fields of fire, blind spots and chain of command for its leader. It gives +1 to Tactics while everyone is in communication. Complexity 5, at ten times the table price.</p>"
+  },
+  {
+    "_id": "e5f97c23d3298267",
+    "name": "TacNet (+2)",
+    "pages": "UT149",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The stronger TacNet: +2 to Tactics while everyone is in communication. Complexity 6, at ten times the table price.</p>"
+  },
+  {
+    "_id": "4e58c4a73723012a",
+    "name": "Targeting Program (+1)",
+    "pages": "UT150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A software tool for a HUD link that speeds target acquisition, models ballistics, corrects for the environment and ranks threats. It gives +1 to one Guns or Gunner specialization, chosen on the item. Complexity 3, at five times the table price.</p>"
+  },
+  {
+    "_id": "5aa21fd3095fb22b",
+    "name": "Targeting Program (+2)",
+    "pages": "UT150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The stronger targeting program: +2 to one Guns or Gunner specialization with a HUD link. Complexity 4, at five times the table price.</p>"
+  },
+  {
+    "_id": "d65285b1f29372c9",
+    "name": "Target Tracking",
+    "pages": "UT150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Software that follows up to 10 targets or emitters picked up by a sensor, showing their size, bearing and movement on a map. Complexity 2 at five times the table price; each tenfold increase in targets adds a Complexity and doubles the price.</p>"
+  },
+  {
+    "_id": "a861d6eedbe8d719",
+    "name": "Transponder Ring",
+    "pages": "UT150",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A ring that radios a coded authorization over an inch or so to a weapon with access control, which won't fire without it. It can be built into an armored glove.</p>"
+  },
+  {
+    "_id": "be734422c6de9be3",
+    "name": "Power Holster",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A holster for a pistol or knife that throws the weapon into the hand when a wrist sensor reads the wearer's intent to draw. Each weapon model needs its own. It adds half its TL to Fast-Draw (Knife, Pistol or Ammo).</p>"
+  },
+  {
+    "_id": "6d9deb67fd1f02b9",
+    "name": "Sniper Mirror",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A folding optical mirror, about two feet across when open and remotely steerable, that lets a visible-light laser be fired at a target's reflection. The shot is at -4, and its range is the distance to the mirror plus the mirror's distance to the target. Placing one well may call for Tactics or Traps.</p>"
+  },
+  {
+    "_id": "57c4f2b618573952",
+    "name": "Tripod",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A ground mount for a mounted weapon (M after its ST), or a sensor up to 125 lbs. The weapon's ST is ignored for weapons up to ST 25; it traverses 180 degrees and elevates. Mounting or removing the weapon takes at least three Ready maneuvers, and the gunner uses two hands, usually sitting or kneeling.</p>"
+  },
+  {
+    "_id": "48bb07976e9594cf",
+    "name": "Powered Tripod Mount",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A motorized tripod. With a sensor plugged into the weapon, a computer can aim it remotely, and with suitable AI software it can fire on its own. It takes the same weapons and sensors as a tripod.</p>"
+  },
+  {
+    "_id": "d619e6734ae78a13",
+    "name": "D-Tag",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny receiver hidden in a weapon or other item that answers a coded radio signal. Finding one takes an Electronics Operation (Security) roll; disabling it without harming the item or alerting anyone takes a second roll at -2.</p>"
+  },
+  {
+    "_id": "6006d0a1233cddb8",
+    "name": "IFF Interrogator",
+    "pages": "UT151",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pulse-coded laser, usually part of the weapon's laser sight, that challenges a target. A target wearing an IFF system answers, and the shooter's HUD marks it friendly, unknown or hostile. Its range is 500 yards at TL9, doubling each TL; beyond that the GM may ask for Electronics Operation (Sensors).</p>"
   }
 ]

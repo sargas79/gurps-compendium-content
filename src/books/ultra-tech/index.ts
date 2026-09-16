@@ -10,6 +10,7 @@
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { initAccessories, readyAccessories } from "./accessories/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
 import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
@@ -59,6 +60,7 @@ const RULES = [
   { key: "neuralAndSonic", pages: "pp. 120-126, 132", implemented: true },
   { key: "beamOptions", pages: "pp. 132-133", implemented: true },
   { key: "hotshots", pages: "p. 133", implemented: true },
+  { key: "firearmAccessories", pages: "pp. 149-152", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -93,6 +95,7 @@ function init(): void {
   initSensors();
   initFabrication();
   initTransport();
+  initAccessories();
   registerRecordData();
 }
 
@@ -111,6 +114,8 @@ function ready(api: GWorldApi): void {
   readyStealth(api, rule("stealthSystems"), () => rule("stealthSystems")() || rule("securitySystems")());
   readySecurity(api, { security: rule("securitySystems"), restraints: rule("restraints"), interrogation: rule("interrogation") });
   readyUploading(api, rule("uploading"));
+  // After the computers (a program's table price) and before the sensors (a lock replaced by active-sensor targeting).
+  readyAccessories(api, rule("firearmAccessories"));
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });
