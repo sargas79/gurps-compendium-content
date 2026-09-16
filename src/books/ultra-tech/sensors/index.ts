@@ -15,6 +15,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { jammersAgainst, spoofFools } from "../stealth/index.js";
 import {
   ACTIVE_RANGES,
   CONCEALED_WEAPONS,
@@ -27,6 +28,12 @@ import {
   activeByName,
   activeRangePenalty,
   activeTlFactor,
+  airSonarRange,
+  CELL_DETECTION,
+  gravscannerDetection,
+  hydrophoneDetection,
+  radscannerDetection,
+  slowedRangeFactor,
   chemsnifferBonuses,
   commByName,
   commModeFactors,
@@ -94,6 +101,19 @@ function distanceText(yards: number): string {
   return F("Yards", { value: Math.round(yards) });
 }
 
+/** A passive detector's bonus by size and TL (pp. 62-63). */
+function passiveLine(item: any): string {
+  const name = String(item?.name ?? "");
+  const tl = Math.max(itemTl(item), tlOf(item?.actor?.system?.tl) ?? 0);
+  const hydrophone = /^(Small|Medium|Large) Hydrophone$/i.exec(name)?.[1]?.toLowerCase();
+  if (hydrophone) return F("Hydrophone", { bonus: hydrophoneDetection(hydrophone as any, tl), tl });
+  const grav = /^(Very Large|Large|Medium|Small) Gravscanner$/i.exec(name)?.[1]?.toLowerCase();
+  if (grav) return F("Gravscanner", { bonus: gravscannerDetection((grav === "very large" ? "veryLarge" : grav) as any, tl), tl });
+  const rad = /^(Large|Medium|Small) Radscanner$/i.exec(name)?.[1]?.toLowerCase();
+  if (rad) return F("Radscanner", { bonus: radscannerDetection(rad as any, tl), tl, cells: Object.entries(CELL_DETECTION).map(([cell, mod]) => `${cell} ${mod >= 0 ? "+" : ""}${mod}`).join(", ") });
+  return "";
+}
+
 /** The TL an item was made at, for a comm or sensor: its own. */
 function itemContext(item: any, on: SensorSwitches): Record<string, unknown> {
   const data = sensorData(item);
@@ -115,6 +135,10 @@ function itemContext(item: any, on: SensorSwitches): Record<string, unknown> {
     lines.push(F("Emissions", { range: distanceText(emissionDetectionRange(figures.range * factor, data.lpi)) }));
     if (data.tactical) lines.push(F("Tactical", { factor: tacticalFactor(active.kind) }));
   }
+  if (comm) lines.push(F("SlowedData", { quarter: slowedRangeFactor(1 / 4), hundredth: slowedRangeFactor(1 / 100), tenThousandth: slowedRangeFactor(1 / 10000) }));
+  if (active?.kind === "sonar") lines.push(F("AirSonar", { range: distanceText(airSonarRange(ACTIVE_RANGES.sonar[active.size].range * activeTlFactor("sonar", tl), 1)) }));
+  const passive = on.sensors() ? passiveLine(item) : "";
+  if (passive) lines.push(passive);
   const visual = on.sensors() ? VISUAL_SENSORS[String(item.name)] : undefined;
   if (visual) {
     const introduced = Number(/\d+/.exec(String(item.system?.tl ?? ""))?.[0]) || 9;
@@ -203,12 +227,14 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
     row(L("Sensor"), `<select name="sensor">${sensors.map((s, i) => `<option value="${i}">${esc(s.item.name)}</option>`).join("")}</select>`)
     + row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 100)}" min="0" style="width:90px" />`)
     + row(L("Imaging"), `<input type="checkbox" name="imaging" />`)
-    + row(L("LadarUnknown"), `<input type="checkbox" name="unknown" />`),
+    + row(L("LadarUnknown"), `<input type="checkbox" name="unknown" />`)
+    + row(L("Spoof"), `<input type="checkbox" name="spoof" />`),
     (form) => ({
       index: Number(form.querySelector<HTMLSelectElement>("[name=sensor]")?.value) || 0,
       yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
       imaging: Boolean(form.querySelector<HTMLInputElement>("[name=imaging]")?.checked),
       unknown: Boolean(form.querySelector<HTMLInputElement>("[name=unknown]")?.checked),
+      spoof: Boolean(form.querySelector<HTMLInputElement>("[name=spoof]")?.checked),
     }));
   if (!answer) return;
   const chosen = sensors[answer.index] ?? sensors[0]!;
@@ -220,8 +246,17 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
   const penalty = activeRangePenalty(answer.yards, base, data.lpi);
   if (penalty) modifiers.push({ label: F("RangeLine", { range: distanceText(data.lpi ? base / 2 : base) }), value: penalty });
   if (active.kind === "ladar") modifiers.push({ label: L(answer.unknown ? "LadarUnknown" : "LadarIdentify"), value: answer.unknown ? LADAR.unknown : LADAR.identify });
+  // Jammers on the target (p. 99): their penalty, or, spoofing, a roll to see through them.
+  const sensorKind = active.kind === "radar" ? (answer.imaging ? "imagingRadar" : "radar") : active.kind === "sonar" ? "sonar" : "active";
+  const jammers = target ? jammersAgainst(target, sensorKind) : [];
+  const spoofing = jammers.length > 0 && answer.spoof;
+  if (!spoofing) for (const jammer of jammers) modifiers.push({ label: jammer.name, value: jammer.penalty });
   const skill = active.kind === "sonar" ? "Electronics Operation (Sonar)" : "Electronics Operation (Sensors)";
-  await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("SweepLabel", { sensor: chosen.item.name }), modifiers } as any);
+  const result: any = await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("SweepLabel", { sensor: chosen.item.name }), modifiers } as any);
+  if (result && spoofing) {
+    const worst = Math.min(...jammers.map((j) => j.penalty));
+    await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor: selected }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(L(spoofFools(result.margin, result.success, worst) ? "Spoofed" : "SeesThrough"))}</div></div>` });
+  }
 }
 
 /** Locks a sensor onto the targeted token (p. 63): it takes an Aim, and lasts the combat. */
@@ -259,7 +294,7 @@ export function readySensors(api: GWorldApi, on: SensorSwitches): void {
     key: "ut-sensor-item",
     sheet: "item",
     template: `modules/${MODULE_ID}/templates/ut-sensor-item.hbs`,
-    visible: (item) => (on.communicators() && Boolean(commByName(String(item?.name)))) || (on.sensors() && (Boolean(activeByName(String(item?.name))) || Boolean(VISUAL_SENSORS[String(item?.name)]))),
+    visible: (item) => (on.communicators() && Boolean(commByName(String(item?.name)))) || (on.sensors() && (Boolean(activeByName(String(item?.name))) || Boolean(VISUAL_SENSORS[String(item?.name)]) || Boolean(passiveLine(item)))),
     context: (item) => itemContext(item, on),
     listeners: (element, item) => itemListeners(element, item),
   });

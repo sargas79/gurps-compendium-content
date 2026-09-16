@@ -23,6 +23,7 @@ import {
   FOAM_POUNDS_PER_GALLON,
   MICROGRAM_POUNDS,
   REPLICATORS,
+  REPLICATOR_TEMPLATE,
   SLIPSPRAY_VEHICLE,
   antimatterTrapCapacity,
   blueprintComplexity,
@@ -121,6 +122,7 @@ async function fabricationTool(): Promise<void> {
   } else if (answer.kind in REPLICATORS) {
     const capacity = REPLICATORS[answer.kind]!;
     lines.push(item.weight <= capacity ? F("Tool.Replicator", { capacity }) : F("Tool.TooHeavy", { capacity }));
+    lines.push(F("Tool.Template", { complexity: REPLICATOR_TEMPLATE.complexity, cost: round(answer.cost * REPLICATOR_TEMPLATE.cost) }));
   } else {
     const hours = facilityHours(answer.kind, item, answer.tl, answer.units);
     const skill = facilitySkill(answer.kind);

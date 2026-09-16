@@ -26,6 +26,8 @@ import {
   THRUSTERS,
   crashwebDr,
   interceptorOpponent,
+  interstellarJumpCost,
+  telegateFactor,
   landingRadius,
   lifeSupportDays,
   projectorModifier,
@@ -163,10 +165,13 @@ async function mtTool(api: GWorldApi): Promise<void> {
   const { selected, targets } = picked();
   if (!selected) return void ui.notifications?.warn(L("Mt.Pick"));
   const answer = await ask(L("Mt.Title"),
-    row(L("Mt.Kind"), select("kind", [["projector", L("Mt.projector")], ["interceptor", L("Mt.interceptor")]]))
+    row(L("Mt.Kind"), select("kind", [["projector", L("Mt.projector")], ["interceptor", L("Mt.interceptor")], ["telegate", L("Mt.telegate")], ["interstellar", L("Mt.interstellar")]]))
+    + row(L("Mt.Radius"), num("radius", 1)) + row(L("Mt.Paired"), `<input type="checkbox" name="paired" />`)
     + row(L("Mt.Miles"), num("miles", 100)) + row(L("Mt.Cooperating"), `<input type="checkbox" name="coop" />`) + row(L("Mt.SystemTl"), num("tl", 12)),
-    (form) => ({ kind: val(form, "kind")?.value ?? "projector", miles: Number(val(form, "miles")?.value) || 0, coop: Boolean(val(form, "coop")?.checked), tl: Number(val(form, "tl")?.value) || 12 }));
+    (form) => ({ kind: val(form, "kind")?.value ?? "projector", miles: Number(val(form, "miles")?.value) || 0, coop: Boolean(val(form, "coop")?.checked), tl: Number(val(form, "tl")?.value) || 12, radius: Number(val(form, "radius")?.value) || 1, paired: Boolean(val(form, "paired")?.checked) }));
   if (!answer) return;
+  if (answer.kind === "telegate") return void say(selected, L("Mt.telegate"), [F("Mt.TelegatePrice", { factor: telegateFactor({ radiusYards: answer.radius, paired: answer.paired }) })]);
+  if (answer.kind === "interstellar") return void say(selected, L("Mt.interstellar"), [F("Mt.JumpCost", { radius: answer.radius, cost: interstellarJumpCost(answer.radius).toLocaleString() })]);
   const skill = "Electronics Operation (Matter Transmitters)";
   const level = api.actors.skillLevel(selected, skill) ?? api.actors.skillLevel(selected, "Electronics Operation (Matter Transmission)") ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5;
   if (answer.kind === "projector") {

@@ -18,6 +18,8 @@ import {
   EMULATION_TB,
   HIDDEN_FLAWS,
   LOST_MINUTES,
+  OVERLAY_DISADVANTAGES,
+  brainUploadable,
   QUICK_LOW_RES,
   SAME_SPECIES_OTHER_PERSON,
   copiedSkillPoints,
@@ -78,7 +80,9 @@ async function upload(api: GWorldApi): Promise<void> {
     + row(L("Dead"), `<input type="checkbox" name="dead" />`)
     + row(L("HoursDead"), `<input type="number" name="hours" value="0" min="0" style="width:60px" />`)
     + row(L("Preserved"), `<input type="checkbox" name="preserved" />`)
-    + row(L("Frozen"), `<input type="checkbox" name="frozen" />`),
+    + row(L("Frozen"), `<input type="checkbox" name="frozen" />`)
+    + row(L("Destroyed"), `<input type="checkbox" name="destroyed" />`)
+    + row(L("Rads"), `<input type="number" name="rads" value="0" min="0" style="width:80px" />`),
     (form) => ({
       method: field(form, "method")?.value ?? "nonDestructive",
       tl: Number(field(form, "tl")?.value) || 10,
@@ -87,8 +91,14 @@ async function upload(api: GWorldApi): Promise<void> {
       hours: Number(field(form, "hours")?.value) || 0,
       preserved: Boolean(field(form, "preserved")?.checked),
       frozen: Boolean(field(form, "frozen")?.checked),
+      destroyed: Boolean(field(form, "destroyed")?.checked),
+      rads: Number(field(form, "rads")?.value) || 0,
     }));
   if (!answer) return;
+  const hp = subject.system?.hp ?? {};
+  if (answer.dead && !brainUploadable({ hp: Number(hp.value) || 0, maxHp: Number(hp.max) || 10, rads: answer.rads, skullOrEyeDeath: answer.destroyed })) {
+    return void whisper(L("UploadTitle"), [F("Unuploadable", { name: subject.name })]);
+  }
   const common: Array<{ label: string; value: number }> = [];
   if (answer.dead) common.push({ label: L("DeadModifier"), value: deadBrainModifier({ hoursDead: answer.hours, preserved: answer.preserved, frozen: answer.frozen }) });
   let resolution: Resolution;
@@ -173,6 +183,7 @@ async function download(api: GWorldApi): Promise<void> {
   if (result.outcome === "replaced" && answer.lowRes) resolution = "lowRes";
   const lines = [F(`Download.${result.outcome}`, { name: host.name })];
   if (result.outcome === "hiddenFlaw") lines.push(F("Flaw", { flaw: L(`Flaws.${HIDDEN_FLAWS[Math.floor(Math.random() * HIDDEN_FLAWS.length)]}`) }));
+  if (answer.recipient === "otherPerson" && result.outcome === "replaced") lines.push(F("Overlay", { least: OVERLAY_DISADVANTAGES.least, most: OVERLAY_DISADVANTAGES.most }));
   if (resolution === "lowRes" || resolution === "veryLowRes") {
     lines.push(F(`Result.${resolution}`, { name: host.name }));
     if (answer.apply) lines.push(...await applyCopy(host, resolution));
