@@ -16,7 +16,9 @@ Not every special modifier in the Basic Set suits all of these traits. Broadcast
 
 Burst: Not available for Directional Sound or Sonar Comm. You transmit a high-speed “blip” that conveys information much faster than you can speak or draw. +30% for 10 times normal speed, +60% for 100 times, +90% for 1,000 times, and so on. Each factor of 10 gives -1 to attempts to intercept the transmission.
 
-FTL: Your signal travels faster than the speed of light, letting you communicate with little or no “light lag.” Recommended signal speed is 0.1 parsec/day, to a maximum range in parsecs equal to 1/5,000 ordinary range in miles, but the GM can adjust this to suit the setting. +120%.
+FTL: Your signal travels faster than the speed of light, letting you communicate with little or no “light lag.”
+
+Recommended signal speed is 0.1 parsec/day, to a maximum range in parsecs equal to 1/5,000 ordinary range in miles, but the GM can adjust this to suit the setting. +120%.
 
 Secure: Your signal employs security measures that make it harder to intercept. Eavesdroppers must win a Quick Contest of IQ (if using Telecommunication) or Electronics Operation (if using technology) against your IQ to understand the content of the transmission. If they lose, they get garbage. This represents an exceptionally “frequency agile” system. +20%.
 

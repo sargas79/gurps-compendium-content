@@ -1,1 +1,5 @@
+Tilt-rotor airplanes have two oversized propellers that can swivel between a vertical position (to fly like a helicopter) and horizontal position (for efficient, high-speed airplane flight). They are especially useful for military special ops, but may also be popular commuter and cargo aircraft.
+
+The tilt rotor has two computerized crew stations (p. 24) for the pilot and co-pilot, with a cabin and cargo area to the rear. Access is provided by two side doors and a rear cargo door under the tail. The aircraft is sealed with limited life support (60 man-hours). Other onboard systems include an inertial navigation system (p. 74), a personal computer (p. 22), a medium multi-mode radar (p. 65), and a medium radio (p. 44).
+
 A tilt-rotor pilot uses Piloting (Light Airplane) when in fixed-wing flight (required for speeds over 150 mph) and Piloting (Helicopter) when in a helicopter mode. Electronics Operation (Comm, Sensors) and Navigation (Air) skills are useful. A co-pilot is not required, but can share the workload.

@@ -9,37 +9,3 @@ Non-Volitional AI: This program is capable of understanding natural speech, lear
 Volitional AI: This is a “strong AI” program with just as much initiative and creativity as a living creature of equivalent intelligence. Its Complexity is (IQ/2)+3. A volitional AI is LC4 if IQ 6-8, LC3 if IQ 9-14, or LC2 if IQ 15-19, or LC1 if IQ 20+.
 
 See Machine Intelligence Lenses (pp. 27-28) for appropriate character traits and lenses for AIs.
-
-$1 $3 $10 $30 $100 $300 $1,000 $3,000 $10,000 $30,000 $100,000 $300,000 $1,000,000 unavailable unavailable
-
-TL12 $0.10
-
-$0.01 $0.30
-
-$0.03 $1
-
-$0.10 $3
-
-$0.30 $10
-
-$1 $30
-
-$3 $100
-
-$10 $300
-
-$30 $1,000
-
-$100 $3,000
-
-$300 $10,000
-
-$1,000 $30,000
-
-$3,000 $100,000
-
-$10,000 $300,000
-
-$30,000 $1,000,000
-
-$100,000

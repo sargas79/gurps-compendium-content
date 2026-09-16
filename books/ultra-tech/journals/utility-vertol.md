@@ -1,3 +1,1 @@
-(p. 74), a medium multi-mode radar (p. 65), a medium radio (p. 44), two personal computers (p. 22), and a large radar (p. 65). Military models add additional stealth systems – see the Defenses chapter for various options. It has a sealed hull with an NBC kit (p. 224).
-
-The pilot uses Piloting (Vertol) skill. Other useful skills are Electronics Operation (Communications and Sensors) and Navigation (Air). A co-pilot is common, and will have the same skills.
+These are wingless direct-lift transport vehicles, similar to the air car (p. 225) but larger. They perform the same roles as helicopters do at TL7-8, but their lack of wings or rotors lets them maneuver in built-up areas. Typical missions include aerial assault, flying ambulance, logistics support, and VIP transport.

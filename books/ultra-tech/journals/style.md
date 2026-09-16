@@ -1,8 +1,6 @@
 Now that the coverage has been selected, decide whether the clothing is heavy, normal, light, or diaphanous. This will multiply DR, cost, and weight, and may affect LC.
 
-Heavy: Trench coats, winter clothing, etc. If it’s supposed
-
-to be anything else, it’s easily recognized as a protective outfit. Multiply weight, cost, and DR by 1.5. Reduce LC by 1.
+Heavy: Trench coats, winter clothing, etc. If it’s supposed to be anything else, it’s easily recognized as a protective outfit. Multiply weight, cost, and DR by 1.5. Reduce LC by 1.
 
 Normal: The outfit can pass as typical civilian attire, such as shirts, jackets, skirts, and trousers. Use the base values.
 

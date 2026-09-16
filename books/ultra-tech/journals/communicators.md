@@ -34,16 +34,4 @@ Very Large: A room-sized installation, often with a large antenna, used for dedi
 
 The relative size of a comm – micro, tiny, small, medium, large, or very large – determines its range. Not all comms come in all sizes. The listed range for a given size assumes that both transmitter and receiver are that size. If they differ, use the range given for the smaller comm modified for the size of the larger ones as follows:
 
-Modified Range One size greater
-
-3× shorter range Two sizes greater
-
-10× shorter range Three sizes greater
-
-30 × shorter range Four sizes greater
-
-100 × shorter range etc.
-
-etc.
-
 Example: We want to see whether a medium radio (with a 100-mile range) can be picked up by a tiny radio (one-mile range). We use the shorter of the two ranges (one mile) × 10 (medium radio is two sizes greater) = a 10-mile range. As long as both radios are within 10 miles of each other, they can talk without a skill roll being required to extend range.

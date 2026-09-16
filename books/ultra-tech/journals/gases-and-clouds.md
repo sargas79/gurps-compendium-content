@@ -1,3 +1,3 @@
-These come in many varieties, from sleep gas and nerve gas to smoke and prismatic smoke. They create a cloud with a radius depending on the dispersal mechanism (see below). Chemical clouds may disperse within a few seconds or linger for minutes, depending on the wind. Most chemical clouds last for 300 seconds before dispersing; in winds
+These come in many varieties, from sleep gas and nerve gas to smoke and prismatic smoke. They create a cloud with a radius depending on the dispersal mechanism (see below). Chemical clouds may disperse within a few seconds or linger for minutes, depending on the wind. Most chemical clouds last for 300 seconds before dispersing; in winds of one mile per hour or more, divide this duration by the wind speed in mph. Most chemicals have no effect once dispersed, but some virulent poison gases cause injury even when greatly diluted.
 
-Guns and launchers replace their normal piercing damage with the warhead damage shown below.
+The usual dispersion methods are a biochemical warhead (p. 153), an aerosol spray (p. 134), or a vortex ring projector (p. 134).

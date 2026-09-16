@@ -1,1 +1,0 @@
-No matter how advanced ranged weapons become, there will be times and places – stealthy assassinations, boarding actions, riot control, or just a startown brawl – where hand-to-hand combat cannot be avoided.

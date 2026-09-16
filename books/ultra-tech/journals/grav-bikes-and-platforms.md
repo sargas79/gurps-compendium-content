@@ -1,0 +1,1 @@
+These are small vehicles that use superscience contragravity (CG) generators for lift and propulsion. Grav vehicles are quiet, unless they are hybrid machines that use contragravity only to cancel lift and some other propulsion system for thrust.

@@ -8,36 +8,6 @@ Unless otherwise noted, a battlesuit opens at the waist so that the user can eas
 
 At TL9-10, most battlesuits should be fitted to the wearer. Refitting takes two hours and requires an Armoury (Body Armor)+2 roll. Failure means another attempt is required. Critical failure damages the suit, which will need minor repairs before it is usable, or suffer a fault that will not be apparent until it is used in action. It is possible to use an unfitted suit, provided the user is the same size, shape, and sex as the last wearer (height/weight should be no more than 2% off). However, the wearer will suffer a -1 penalty to DX and all DX-based skills.
 
-LC 20/0
-
-$50,000
-
-E/24 hr. 10/0
-
-$25,000
-
-D/12 hr. 8/0
-
-$12,000
-
-2D/24 hr. 8/0
-
-$2,000
-
-C/12 hr. 20/0
-
-$50,000
-
-D/12 hr. 12/0
-
-$10,000
-
-2C/8 hr. $100,000
-
-C/1 hr.
-
-If an exoskeleton has a split DR, use the higher DR against any swinging melee attacks, falls, or collisions. Use the lower
-
 At TL11+, nanogel systems based on smart bioplastic layers are routinely built into all battlesuits. A nanogel system fits like a glove and adjusts itself to conform to any wearer within 10% of the weight and height of whatever average it was built for.
 
 ### Flying Battlesuits

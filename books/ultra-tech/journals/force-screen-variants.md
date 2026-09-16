@@ -1,34 +1,6 @@
 Numerous types of force screen are possible; some examples are given below, and others can be created by the GM. It’s possible that one of these variants might be the only type of screen available to a particular technology path.
 
-Options can be combined, except where noted. Modifiers are cumulative. an area. On the other hand, this damage will reduce the screen’s semi-ablative DR, and if there are multiple occupants spread about inside the screened area (e.g., a force screen around a campsite) someone else could still be hit. Use the Occupant Hit Table on p. B555.
-
-Heavy Force Screen (TL11^): A powerful barrier screen, used to protect fortified strong points, tanks, or warships. The standard field diameter is 15 yards (SM +7), but larger fields are possible at increased weight, cost, and power consumption; see below.
-
-Medium Force Screen (TL11^): This screen is used by light armored vehicles, to defend secure buildings, and by combat or exploration vessels. The minimum field diameter is 10 yards (SM +6), but other sizes are possible.
-
-Light Force Screen (TL11^): This screen is small enough to be (barely) man-portable, and is often used to protect light vehicles, such as grav cars, or to generate a hemispherical field suitable for campsite perimeter defense. The minimum field diameter is five yards (SM +4), but other sizes are possible.
-
-Screen statistics are shown on the Force Screen Table. They may be adjusted for screen options.
-
-LC $1,500,000
-
-1,500 $250,000
-
-$25,000
-
-protect worn or carried equipment, up to a maximum of extra-heavy encumbrance. (Once the screen is on, if the user picks up anything else, it will take a Ready maneuver to adjust the screen to cover it.) Conformal screens have the same SM as their intended wearer, or the object they are built to protect.
-
-Personal Force Screen (TL12^): A belt-mounted screen, also built into some suits, robots, and small vehicles. Its power cell lasts for 15 minutes of continuous use.
-
-Tactical Force Screen (TL12^): A powerful man-portable screen, often carried in a backpack or built into a robot. Its power cell lasts for an hour of continuous use.
-
-LC $8,000
-
-2.5
-
-C/15 min. $20,000
-
-D/1 hr.
+Options can be combined, except where noted. Modifiers are cumulative.
 
 ### Adjustable
 

@@ -1,12 +1,6 @@
 Equipment, robots, and vehicles often use standardized power supplies, known as power cells.
 
-All power cells are assumed to be compact and
-
-relatively inexpensive. They may be advanced
-
-electrical batteries, micro fuel cells, super-
-
-conductor loops, or even more exotic power supplies.
+All power cells are assumed to be compact and relatively inexpensive. They may be advanced electrical batteries, micro fuel cells, superconductor loops, or even more exotic power supplies.
 
 Fuel cells combine hydrogen or methanol with oxygen (often in the form of water, which contains oxygen) in an electrochemical reaction. Fuel cells are more complex than batteries, incorporating a fuel tank and microelectronics to control fuel flow.
 

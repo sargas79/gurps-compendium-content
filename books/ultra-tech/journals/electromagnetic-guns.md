@@ -52,4 +52,4 @@ Electromag Mortar, 64mm (TL10): This heavy base-mounted tube is a standard semi-
 
 Railgun, 40mm (TL10): An electromagnetic cannon with a very long barrel, firing a projectile at hypersonic velocities. It’s a suitable main gun for a tank or small war-ship.
 
-Underbarrel Electromag GL, 25mm (TL10): This is a Gauss grenade launcher that can be attached under any weapon with Bulk -3 or more. It’s also called a mini-GL. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in. TL Weapon
+Underbarrel Electromag GL, 25mm (TL10): This is a Gauss grenade launcher that can be attached under any weapon with Bulk -3 or more. It’s also called a mini-GL. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.
