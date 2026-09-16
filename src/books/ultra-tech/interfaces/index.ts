@@ -4,13 +4,26 @@
  *
  * A worn HUD or neural interface gives +1 to Driving, Piloting and Free Fall;
  * a visual enhancement program +1 to Vision. Row actions experience a sensie
- * (immersion or surface mode), use a virtual tutor at skill 12, and take a
- * dose of instaskill nano. An item section explains VR levels, translators,
- * dreamgames, dream teachers and neural interfaces as the book gives them.
+ * (immersion or surface mode) and feel its pain and horrors, or total VR's;
+ * use a virtual tutor at skill 12; take a dose of instaskill nano, whose point
+ * arrives once it assimilates; take off a neural interface helmet (1d if it
+ * isn't disconnected first); run a holoprojection's Quick Contests against
+ * the targets; and release a scent synthesizer's nauseating odor. An item
+ * section explains VR levels, translators, dreamgames, dream teachers, neural
+ * interfaces, video masking, scent masking and sonic projectors' ranges as
+ * the book gives them.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { agentEffects } from "../agents/rules.js";
 import {
+  NEURAL_HELMET,
+  SCENT_SYNTH,
+  holoContest,
+  holoVictimModifier,
+  sensieShock,
+  sonicProjectorRange,
+  type HoloAim,
   CONSOLE_GAME_BONUS,
   DREAMGAME_ADDICTION,
   HOLOPROJECTION_NO_INTERFACE,
@@ -103,13 +116,36 @@ async function virtualTutor(api: GWorldApi, item: any, actor: any): Promise<void
   await api.roll.success({ actor, base, label: F("Tutor.Label", { tutor: item.name, task: task || L("Tutor.TheTask") }) } as any);
 }
 
+const INSTASKILL_FLAG = "utInstaskill";
+interface PendingDose { skillId: string; at: number }
+const pendingDoses = (actor: any): PendingDose[] => {
+  const stored = actor?.getFlag?.(MODULE_ID, INSTASKILL_FLAG);
+  return Array.isArray(stored) ? stored.filter((d: any) => d && typeof d.skillId === "string") : [];
+};
+const worldTime = () => Number((game as any).time?.worldTime) || 0;
+
+/** Gives the points of doses that have assimilated by now (p. 59). */
+async function assimilate(actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const doses = pendingDoses(actor);
+  const ready = doses.filter((d) => d.at <= worldTime());
+  if (!ready.length) return;
+  for (const dose of ready) {
+    const skill = actor.items.get(dose.skillId);
+    if (!skill) continue;
+    await skill.update({ "system.points": (Number(skill.system?.points) || 0) + 1 });
+    await say(actor, L("Instaskill.Title"), [F("Instaskill.Assimilated", { name: actor.name, skill: skill.name })]);
+  }
+  await actor.setFlag(MODULE_ID, INSTASKILL_FLAG, doses.filter((d) => d.at > worldTime()));
+}
+
 /** A dose of instaskill nano (p. 59): a point in a skill the user has a point or less in. */
 async function takeInstaskill(api: GWorldApi, item: any, actor: any): Promise<void> {
   const skills = [...(actor.items ?? [])].filter((i: any) => (i.type === "skill" || i.type === "technique") && instaskillTakes(Number(i.system?.points) || 0));
   if (!skills.length) return void ui.notifications?.warn(L("Instaskill.None"));
   const answer = await ask(L("Instaskill.Title"),
     row(L("Instaskill.Skill"), `<select name="skill">${skills.map((s: any) => `<option value="${s.id}">${esc(s.name)} (${Number(s.system?.points) || 0})</option>`).join("")}</select>`)
-    + row(L("Instaskill.Unassimilated"), `<input type="checkbox" name="stacked" />`)
+    + row(L("Instaskill.Unassimilated"), `<input type="checkbox" name="stacked" ${pendingDoses(actor).some((d) => d.at > worldTime()) ? "checked" : ""} />`)
     + row(L("Instaskill.Superscience"), `<input type="checkbox" name="super" />`),
     (form) => ({ skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value ?? "", stacked: Boolean(form.querySelector<HTMLInputElement>("[name=stacked]")?.checked), superscience: Boolean(form.querySelector<HTMLInputElement>("[name=super]")?.checked) }));
   if (!answer) return;
@@ -127,10 +163,117 @@ async function takeInstaskill(api: GWorldApi, item: any, actor: any): Promise<vo
       return;
     }
   }
-  await skill.update({ "system.points": (Number(skill.system?.points) || 0) + 1 });
-  lines.push(F("Instaskill.Point", { name: actor.name, skill: skill.name, hours: instaskillHours(answer.superscience) }));
+  // The point comes once the dose has assimilated (p. 59).
+  const hours = instaskillHours(answer.superscience);
+  await actor.setFlag(MODULE_ID, INSTASKILL_FLAG, [...pendingDoses(actor), { skillId: skill.id, at: worldTime() + hours * 3600 }]);
+  lines.push(F("Instaskill.Point", { name: actor.name, skill: skill.name, hours }));
   if (Number(item.system?.quantity) > 1) await item.update({ "system.quantity": Number(item.system.quantity) - 1 });
   await say(actor, L("Instaskill.Title"), lines);
+}
+
+/** Takes off a neural interface helmet (p. 49): 1d injury if it wasn't disconnected first. */
+async function removeHelmet(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const disconnected = await ask(L("Helmet.Title"), row(L("Helmet.Disconnected"), `<input type="checkbox" name="off" checked />`), (form) => Boolean(form.querySelector<HTMLInputElement>("[name=off]")?.checked));
+  if (disconnected === null) return;
+  await item.update({ "system.equipped": false });
+  if (disconnected) return void say(actor, String(item.name), [F("Helmet.Removed", { name: actor.name, seconds: NEURAL_HELMET.seconds })]);
+  // GURPS dice are sixes: "1d" is 1d6.
+  const roll = await new Roll(NEURAL_HELMET.yank.replace(/d(?!\d)/g, "d6")).evaluate();
+  await api.actors.applyInjury(actor, { amount: Number(roll.total) || 0, label: String(item.name) });
+  await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }), rolls: [roll], content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(item.name)}</span></div><div class="gc-result">${esc(F("Helmet.Yanked", { name: actor.name, injury: roll.total }))}</div></div>` });
+}
+
+const HOLOPROJECTORS = /^(mini |super )?holoprojector$|^interactive holoprojection$/i;
+
+/** Runs a holoprojection against the targeted characters (p. 53). */
+async function holoprojection(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
+  if (!targets.length) return void ui.notifications?.warn(L("Holo.Pick"));
+  const aims: HoloAim[] = ["fool", "fright", "impersonate"];
+  const answer = await ask(L("Holo.Title"),
+    row(L("Holo.Aim"), `<select name="aim">${aims.map((a) => `<option value="${a}">${esc(L(`Holo.${a}`))}</option>`).join("")}</select>`)
+    + row(L("Holo.Warned"), `<input type="checkbox" name="warned" />`)
+    + row(L("Holo.Unsubtle"), `<input type="checkbox" name="unsubtle" />`)
+    + row(L("Holo.People"), `<input type="number" name="people" value="0" min="0" style="width:60px" />`)
+    + row(L("Holo.Believability"), `<input type="number" name="believability" value="0" min="-5" max="10" style="width:60px" />`)
+    + row(L("Holo.Darkness"), `<input type="number" name="darkness" value="0" max="0" style="width:60px" />`)
+    + (/^interactive/i.test(String(item.name)) ? row(L("Holo.NoInterface"), `<input type="checkbox" name="nointerface" />`) : ""),
+    (form) => {
+      const get = (name: string) => form.querySelector<HTMLInputElement>(`[name=${name}]`);
+      return {
+        aim: (form.querySelector<HTMLSelectElement>("[name=aim]")?.value ?? "fool") as HoloAim,
+        warned: Boolean(get("warned")?.checked), unsubtle: Boolean(get("unsubtle")?.checked),
+        people: Number(get("people")?.value) || 0, believability: Number(get("believability")?.value) || 0,
+        darkness: Number(get("darkness")?.value) || 0, noInterface: Boolean(get("nointerface")?.checked),
+      };
+    });
+  if (!answer) return;
+  const contest = holoContest(answer.aim);
+  const levels = contest.operator.map((skill) => ({ skill, level: api.actors.skillLevel(actor, skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5 }));
+  const operator = levels.reduce((best, next) => (contest.lowest ? next.level < best.level : next.level > best.level) ? next : best);
+  const victimModifier = holoVictimModifier(answer);
+  for (const target of targets) {
+    const scores = contest.victim.map((score) => ({ score, value: api.actors.attribute(target, score as any) ?? 10 }));
+    const victim = scores.reduce((best, next) => (next.value > best.value ? next : best));
+    const result: any = await api.roll.quickContest({
+      label: F("Holo.Label", { name: item.name, target: target.name }),
+      first: { actor, base: operator.level, note: operator.skill, modifiers: answer.noInterface ? [{ label: L("Holo.NoInterface"), value: HOLOPROJECTION_NO_INTERFACE }] : [] },
+      second: { actor: target, base: victim.value, note: victim.score, modifiers: victimModifier ? [{ label: L("Holo.VictimLine"), value: victimModifier }] : [] },
+      tags: ["holoprojection"],
+    } as any);
+    if (!result) continue;
+    const fooled = result.outcome === "first";
+    await say(actor, String(item.name), [F(fooled ? `Holo.${answer.aim}Won` : "Holo.Lost", { target: target.name })]);
+    if (fooled && answer.aim === "fright") await api.roll.frightCheck(target, 0);
+  }
+}
+
+const SCENT_SYNTHESIZERS = /^(odor synthesizer|programmable perfume)$/i;
+
+/** A scent synthesizer's nauseating odor (p. 52): a mild riot gas, resisted at HT. */
+async function nauseatingOdor(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
+  if (!targets.length) return void ui.notifications?.warn(L("Scent.Pick"));
+  const lines: string[] = [];
+  for (const target of targets) {
+    const result: any = await api.roll.success({ actor: target, base: api.actors.attribute(target, "HT") ?? 10, kind: "attribute", tags: ["HT"], label: F("Scent.Resist", { name: item.name }), modifiers: SCENT_SYNTH.nauseaResist ? [{ label: String(item.name), value: SCENT_SYNTH.nauseaResist }] : [] } as any);
+    if (!result) continue;
+    if (result.success) { lines.push(F("Scent.Resisted", { target: target.name })); continue; }
+    for (const effect of agentEffects("riotGas", Number(result.margin) || 0, Boolean(result.criticalFailure))) {
+      if (effect.condition) await api.actors.applyCondition(target, { key: effect.condition } as any);
+    }
+    lines.push(F("Scent.Sick", { target: target.name }));
+  }
+  if (lines.length) await say(actor, String(item.name), lines);
+}
+
+/** A sensie's pain and horrors, or total VR's without safety interlocks (pp. 55, 57). */
+async function feelIt(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const sensie = /^sensie player$/i.test(String(item.name));
+  const mode = (api.actors.conditions(actor) ?? []).some((c: any) => String(c?.id ?? "").endsWith("ut-sensie-surface")) ? "surface" : "immersion";
+  const answer = await ask(L("Feel.Title"),
+    (sensie ? row(L("Feel.Injury"), `<input type="number" name="injury" value="0" min="0" style="width:60px" />`) : "")
+    + row(L("Feel.Fright"), `<input type="checkbox" name="fright" ${sensie ? "" : "checked"} />`)
+    + row(L("Feel.Penalty"), `<input type="number" name="penalty" value="0" max="0" style="width:60px" />`),
+    (form) => ({
+      injury: Number(form.querySelector<HTMLInputElement>("[name=injury]")?.value) || 0,
+      fright: Boolean(form.querySelector<HTMLInputElement>("[name=fright]")?.checked),
+      penalty: Math.min(0, Number(form.querySelector<HTMLInputElement>("[name=penalty]")?.value) || 0),
+    }));
+  if (!answer) return;
+  const lines: string[] = [];
+  if (sensie && answer.injury > 0) {
+    const shock = sensieShock(answer.injury, Number(api.actors.derived(actor)?.hp?.max ?? actor.system?.hp?.max) || 10, mode);
+    if (shock) {
+      await api.actors.applyCondition(actor, { module: MODULE_ID, key: "ut-sensie-shock", label: L("Feel.Shock"), duration: { turns: 1 }, effects: { modifiers: [{ label: L("Feel.Shock"), value: shock, rolls: ["skill", "attack", "DX", "IQ"] }] } } as any);
+      lines.push(F("Feel.ShockLine", { name: actor.name, shock, mode: L(`Sensie.${mode}`) }));
+    }
+  }
+  if (lines.length) await say(actor, String(item.name), lines);
+  // A surface-mode sensie's +4 to the check is on its condition already.
+  if (answer.fright) await api.roll.frightCheck(actor, answer.penalty);
 }
 
 /** What the item section says about a record, by name. */
@@ -158,6 +301,15 @@ function itemLines(item: any): string[] {
   if (/^Entertainment Console$/i.test(name)) lines.push(F("Console", { bonus: CONSOLE_GAME_BONUS }));
   if (/^Interactive Holoprojection$/i.test(name)) lines.push(F("Holoprojection", { penalty: HOLOPROJECTION_NO_INTERFACE }));
   if (/^Sensie Player$/i.test(name)) lines.push(F("SensiePlayer", { immersion: SENSIE_BANDWIDTH.immersion, surface: SENSIE_BANDWIDTH.surface }));
+  if (/^Video Masking$/i.test(name)) lines.push(L("VideoMasking"));
+  if (SCENT_SYNTHESIZERS.test(name)) lines.push(F("ScentSynth", { mask: SCENT_SYNTH.mask }));
+  if (/^Total VR$/i.test(name)) lines.push(L("TotalVr"));
+  if (/^Neural Interface Helmet$/i.test(name)) lines.push(F("HelmetLine", { seconds: NEURAL_HELMET.seconds, yank: NEURAL_HELMET.yank }));
+  const projector = /^Sonic Projector \((Large|Medium|Small)\)$/i.exec(name)?.[1]?.toLowerCase() as "large" | "medium" | "small" | undefined;
+  if (projector) {
+    const tl = Math.max(Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 9, Number(/\d+/.exec(String(item?.actor?.system?.tl ?? ""))?.[0]) || 0);
+    lines.push(F("SonicProjector", { range: sonicProjectorRange(projector, tl), tl }));
+  }
   return lines;
 }
 
@@ -182,6 +334,17 @@ export function readyInterfaces(api: GWorldApi, on: () => boolean): void {
 
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-sensie", itemTypes: ["equipment"], label: L("Sensie.Title"), icon: "fa-solid fa-head-side-virus", visible: (item) => on() && /^Sensie Player$/i.test(String(item?.name)), run: (_item, actor) => experienceSensie(api, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-virtual-tutor", itemTypes: ["equipment"], label: L("Tutor.Title"), icon: "fa-solid fa-chalkboard-user", visible: (item) => on() && /^Virtual Tutor/i.test(String(item?.name)), run: (item, actor) => virtualTutor(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-feel-it", itemTypes: ["equipment"], label: L("Feel.Title"), icon: "fa-solid fa-face-grimace", visible: (item) => on() && /^(Sensie Player|Total VR)$/i.test(String(item?.name)), run: (item, actor) => feelIt(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-helmet-off", itemTypes: ["equipment"], label: L("Helmet.Title"), icon: "fa-solid fa-helmet-un", visible: (item) => on() && /^Neural Interface Helmet$/i.test(String(item?.name)) && item?.system?.equipped === true, run: (item, actor) => removeHelmet(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-holoprojection", itemTypes: ["equipment"], label: L("Holo.Title"), icon: "fa-solid fa-cube", visible: (item) => on() && HOLOPROJECTORS.test(String(item?.name)), run: (item, actor) => holoprojection(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-scent", itemTypes: ["equipment"], label: L("Scent.Title"), icon: "fa-solid fa-wind", visible: (item) => on() && SCENT_SYNTHESIZERS.test(String(item?.name)), run: (item, actor) => nauseatingOdor(api, item, actor) });
+
+  // Instaskill doses assimilate as world time passes (p. 59); the GM's client gives the points.
+  Hooks.on("updateWorldTime", () => {
+    if (!on() || !(game as any).user?.isGM) return;
+    for (const actor of (game as any).actors ?? []) if (pendingDoses(actor).length) void assimilate(actor);
+  });
+
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-instaskill", itemTypes: ["equipment"], label: L("Instaskill.Title"), icon: "fa-solid fa-syringe", visible: (item) => on() && /^Instaskill Nano$/i.test(String(item?.name)), run: (item, actor) => takeInstaskill(api, item, actor) });
 
   api.sheets.registerSheetSection({

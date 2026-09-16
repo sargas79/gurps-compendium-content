@@ -2977,7 +2977,8 @@
           "Overdose": "IQ: doses before assimilation",
           "Voices": "{name} hears Phantom Voices for {days} days, and can't use instaskill until they stop.",
           "VoicesForever": "{name} hears Phantom Voices permanently.",
-          "Point": "{name} gains a point in {skill} in {hours} hours."
+          "Point": "{name} takes a dose for {skill}: the point comes when it assimilates, in {hours} hour(s).",
+          "Assimilated": "{name}'s instaskill dose has assimilated: +1 point in {skill}."
         },
         "Vr": {
           "Interface": "{level}: needs a Complexity {complexity}+ computer.",
@@ -3010,6 +3011,52 @@
           "teacher": "teacher",
           "intensive": "Intensive Training",
           "education": "Education"
+        },
+        "Helmet": {
+          "Title": "Take off the helmet",
+          "Disconnected": "Disconnected first",
+          "Removed": "{name} takes off the helmet ({seconds} seconds).",
+          "Yanked": "{name} yanks the helmet off without disconnecting: {injury} injury."
+        },
+        "HelmetLine": "{seconds} seconds to don or remove; yanking it off before disconnecting does {yank} injury.",
+        "Holo": {
+          "Title": "Holoprojection",
+          "Pick": "Target whoever might notice the projection.",
+          "Aim": "What it tries",
+          "fool": "Seem real (Electronics Operation (Media) vs. Per)",
+          "fright": "Frighten (Artist (Holoprojection) vs. IQ or Per)",
+          "impersonate": "Pass as someone they know (lowest skill vs. IQ or Per)",
+          "Warned": "The victim was warned (+4)",
+          "Unsubtle": "Made in plain sight, or checked by touch (+10)",
+          "People": "Fake people in the projection",
+          "Believability": "How believable (-5 to +10 for the victim)",
+          "Darkness": "Darkness penalty (it glows)",
+          "NoInterface": "No neural interface (-6)",
+          "VictimLine": "Warnings, clues and believability",
+          "Label": "{name} against {target}",
+          "foolWon": "{target} believes the projection is real.",
+          "frightWon": "{target} is frightened by the projection: Fright Check.",
+          "impersonateWon": "{target} takes the projection for the person they know.",
+          "Lost": "{target} sees through the projection."
+        },
+        "Scent": {
+          "Title": "Nauseating odor",
+          "Pick": "Target everyone in the odor's radius.",
+          "Resist": "Resisting the {name}'s odor",
+          "Resisted": "{target} shrugs off the smell.",
+          "Sick": "{target} is sickened by the smell, as by a mild riot gas."
+        },
+        "ScentSynth": "Masking odors give {mask} to detect things by smell; a nauseating odor is a mild riot gas, resisted at HT.",
+        "VideoMasking": "Changes the user's features and voice on video: their video Appearance is whatever the persona's is.",
+        "TotalVr": "Every sense engaged. Without safety interlocks, pain is real but does no injury; being hurt, killed or tortured calls for Fright Checks.",
+        "SonicProjector": "Range {range} yards at TL{tl}. Focusing on a moving target is an attack roll with Beam Weapons (Projector): Acc 6, Bulk -2.",
+        "Feel": {
+          "Title": "Feel it",
+          "Injury": "Injury the sensie transmits",
+          "Fright": "Terrifying, torture or death: Fright Check",
+          "Penalty": "Fright Check penalty",
+          "Shock": "Sensie shock",
+          "ShockLine": "{name} feels the pain ({mode}): {shock} to DX and IQ next turn, with no injury."
         }
       },
       "Fab": {

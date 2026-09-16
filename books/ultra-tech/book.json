@@ -1029,6 +1029,138 @@
           }
         },
         "reason": "most mini-toolkits are $200, 4 lbs., 5B/10 hr.; the $400 read is the electronics kit's (p. 82). Its -2 (quality) has no grade, so it names no skill"
+      },
+      {
+        "pattern": "^Sonic Projector \\(Large\\)$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "focus",
+              "skill": "Beam Weapons (Projector)",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": true,
+              "surge": false,
+              "armorDivisor": 1,
+              "accuracy": 6,
+              "scopeBonus": 0,
+              "halfDamageRange": 0,
+              "maxRange": 200,
+              "rangeIsStMultiple": false,
+              "rateOfFire": 1,
+              "projectiles": 1,
+              "shots": "",
+              "loaded": 0,
+              "reloadWeight": 0,
+              "ammunition": "",
+              "minSt": 0,
+              "twoHanded": false,
+              "weaponSt": null,
+              "thrown": false,
+              "mount": "",
+              "bulk": -2,
+              "recoil": 1,
+              "malfunction": null
+            }
+          ]
+        },
+        "reason": "focusing on a moving target is an attack roll with Beam Weapons (Projector), Acc 6, Bulk -2, at its 200-yard range (p. 52)"
+      },
+      {
+        "pattern": "^Sonic Projector \\(Medium\\)$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "focus",
+              "skill": "Beam Weapons (Projector)",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": true,
+              "surge": false,
+              "armorDivisor": 1,
+              "accuracy": 6,
+              "scopeBonus": 0,
+              "halfDamageRange": 0,
+              "maxRange": 100,
+              "rangeIsStMultiple": false,
+              "rateOfFire": 1,
+              "projectiles": 1,
+              "shots": "",
+              "loaded": 0,
+              "reloadWeight": 0,
+              "ammunition": "",
+              "minSt": 0,
+              "twoHanded": false,
+              "weaponSt": null,
+              "thrown": false,
+              "mount": "",
+              "bulk": -2,
+              "recoil": 1,
+              "malfunction": null
+            }
+          ]
+        },
+        "reason": "focusing on a moving target is an attack roll with Beam Weapons (Projector), Acc 6, Bulk -2, at its 100-yard range (p. 52)"
+      },
+      {
+        "pattern": "^Sonic Projector \\(Small\\)$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "focus",
+              "skill": "Beam Weapons (Projector)",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": true,
+              "surge": false,
+              "armorDivisor": 1,
+              "accuracy": 6,
+              "scopeBonus": 0,
+              "halfDamageRange": 0,
+              "maxRange": 10,
+              "rangeIsStMultiple": false,
+              "rateOfFire": 1,
+              "projectiles": 1,
+              "shots": "",
+              "loaded": 0,
+              "reloadWeight": 0,
+              "ammunition": "",
+              "minSt": 0,
+              "twoHanded": false,
+              "weaponSt": null,
+              "thrown": false,
+              "mount": "",
+              "bulk": -2,
+              "recoil": 1,
+              "malfunction": null
+            }
+          ]
+        },
+        "reason": "focusing on a moving target is an attack roll with Beam Weapons (Projector), Acc 6, Bulk -2, at its 10-yard range (p. 52)"
       }
     ]
   },
