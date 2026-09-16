@@ -10700,6 +10700,13 @@
               "endurance": "4 hr.",
               "raw": "C/4 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 4,
+            "statedSkills": [
+              "Explosives (EOD)",
+              "Search"
+            ]
           }
         }
       }
@@ -10739,6 +10746,12 @@
               "endurance": "4 hr.",
               "raw": "C/4 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 4,
+            "statedSkills": [
+              "Search"
+            ]
           }
         }
       }
@@ -10778,6 +10791,12 @@
               "endurance": "4 hr.",
               "raw": "C/4 hr."
             }
+          },
+          "stealth": {
+            "statedBonus": 4,
+            "statedSkills": [
+              "Search"
+            ]
           }
         }
       }
@@ -10965,34 +10984,17 @@
       "listCost": 4500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
-    }
-  },
-  {
-    "_id": "be517f8a3f06b276",
-    "name": "Surveillance Swarm (\"Surveillance Dust\")",
-    "type": "equipment",
-    "system": {
-      "quantity": 1,
-      "weight": 0,
-      "cost": 500,
-      "carried": true,
-      "equipped": false,
-      "tl": "10",
-      "lc": 3,
-      "costOfLivingPercent": 0,
-      "description": "",
-      "reference": "Ultra-Tech p. 106",
-      "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
-      "quality": "good",
-      "material": "",
-      "weaponClass": "",
-      "listCost": 500,
-      "hpLost": 0,
-      "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "stealth": {
+            "statedBonus": 3,
+            "statedSkills": [
+              "Search"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -11052,7 +11054,7 @@
       "category": "tool",
       "equipmentQuality": "fine",
       "forSkills": [
-        "Electronics Operation"
+        "Electronics Operation (Surveillance)"
       ],
       "quality": "good",
       "material": "",
@@ -11566,8 +11568,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 108",
       "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Interrogation"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -11684,7 +11688,9 @@
       "reference": "Ultra-Tech p. 109",
       "category": "tool",
       "equipmentQuality": "good",
-      "forSkills": [],
+      "forSkills": [
+        "Electronics Operation (Medical)"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -11789,7 +11795,9 @@
       "reference": "Ultra-Tech p. 110",
       "category": "tool",
       "equipmentQuality": "good",
-      "forSkills": [],
+      "forSkills": [
+        "Electronics Operation (Medical)"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",

@@ -1951,6 +1951,18 @@
         "stealthSystems": {
           "Name": "Stealth systems",
           "Hint": "Worn chameleon and invisibility surfaces, cloaks and nets add to Stealth against whatever sense the character says they're hiding from, halved while moving as the book says. Programmable camouflage adds to Camouflage by terrain, scent masking gives +4 to Tracking to cover a trail, and an active flesh mask gives +3 to Disguise. Attacks on a holobelt's wearer are at -1, and on a moving invisible one at -6. The Gear tab lists the detection penalties from infrared cloaking, radar stealth and jammers. Cloaks and nets, shape-memory disguises (half the LC) and tools whose bonus the book states are priced and applied."
+        },
+        "securitySystems": {
+          "Name": "Security systems",
+          "Hint": "A GM tool runs a barrier against the targeted characters. Laser fences can be avoided at Acrobatics-3 or Escape-3 when open and burn when tight. Cutting wire takes DX-5 or cuts. Fragwire bursts, monowire cuts by how fast someone walks into it, and sonic barriers nauseate at HT-6. A neural disruptor field is resisted at HT-1 with sealed armour, a dream net at Will-4 unless Sealed, and a disintegrator field ignores DR. Doors, safes and locks show their DR and modifiers by TL, and scanners carry their bonus to Search."
+        },
+        "restraints": {
+          "Name": "Restraints",
+          "Hint": "A row action on cufftape, razortape and electronic cuffs breaks free: a Quick Contest of ST against the restraint's ST, or Escape (at -6 or -8 for cuffs). Tape does a point of damage on each failure, and razortape cuts whoever breaks it by force. Cuffs get tougher by TL. A row action resists a power damper (Quick Contest of Will), neuronic restraints (HT-5) and a neural pacifier (the higher of HT-3 and Will-3)."
+        },
+        "interrogation": {
+          "Name": "Interrogation and lie detection",
+          "Hint": "Sensory restraints worn by the subject add to Interrogation, and a veridicator adds +TL/2 to Detect Lies (and is an automatic success). GM tools run neural programming (a Regular Contest of Brainwashing against Will at -1 per 5 points of the disadvantage, plus the software's quality) and mind probes (Electronics Operation (Medical), slow or fast, where a fast probe risks brain damage or a coma)."
         }
       },
       "Gadget": {
@@ -2466,6 +2478,127 @@
         },
         "ScentMaskingLine": "{name} (covering your trail)",
         "InvisibleMoving": "{name} (shimmering while moving)"
+      },
+      "Security": {
+        "Title": "Security",
+        "Barrier": {
+          "Title": "Security barrier",
+          "Target": "Target whoever crosses the barrier.",
+          "Kind": "Barrier",
+          "Tight": "Tight fence",
+          "Speed": "Walking into monowire",
+          "Effect": "Neural field's effect",
+          "walking": "Walking (2d(10))",
+          "slow": "Very slowly (1d(10))",
+          "running": "Running (3d(10))",
+          "laserFence": "Laser fence",
+          "electrolaserFence": "Electrolaser fence",
+          "rainbowLaserFence": "Rainbow laser fence",
+          "xrayLaserFence": "X-ray laser fence",
+          "graserFence": "Graser fence",
+          "cuttingWire": "Cutting wire",
+          "fragwire": "Fragwire",
+          "monowire": "Monowire",
+          "sonicBarrier": "Sonic barrier",
+          "neuralDisruptorField": "Neural disruptor field",
+          "dreamNet": "Dream net",
+          "disintegratorField": "Disintegrator field",
+          "paralysis": "paralysis",
+          "agony": "agony",
+          "seizure": "seizure",
+          "moderatePain": "moderate pain",
+          "stunned": "stunned",
+          "nauseated": "nauseated",
+          "Avoid": "Getting past the {barrier}",
+          "Avoided": "{name} gets past without touching it.",
+          "Immune": "{name} is sealed or a digital mind, and the barrier has no hold on them.",
+          "Resist": "Resisting the {barrier}",
+          "SealedArmor": "Sealed armour",
+          "Afflicted": "{name} is {effect}.",
+          "AfflictedMinutes": "{name} suffers {effect} while on the grid and {minutes} minutes after.",
+          "DreamNetRemoval": "Pulling them out without shutting the simulation off calls for a Will roll: stunned for seconds equal to the margin of failure, or 1d hours unconscious on a critical failure.",
+          "Resisted": "{name} resists.",
+          "DamageLabel": "{barrier}: {name}"
+        },
+        "Item": {
+          "Safe": "DR {dr}, HP {hp} at TL{tl}.",
+          "Door": "An inch of armoured door is HP 50, DR {dr} at TL{tl}; $1,000 and 200 lbs. per 10 square feet.",
+          "Lock": "{modifier} to Lockpicking.",
+          "Cuffs": "ST {st}, DR {dr}.",
+          "Tape": "ST {st}, DR {dr}; six points of cutting, corrosion or burning damage sever it.",
+          "Collar": "A 15mm HE warhead at the neck: DR 10, HP 2. Damaging it without removing it at once sets it off; disarming it takes Traps-4.",
+          "Brainwipe": "Gives the subject Amnesia, erasing their memories of their personal life; skills and personality stay."
+        },
+        "Break": {
+          "Title": "Break free",
+          "Method": "How",
+          "St": "Quick Contest of ST against ST {st}",
+          "Escape": "Escape roll",
+          "ArmsAndLegs": "Arms and legs both cuffed",
+          "Attempt": "Attempt number",
+          "Label": "Breaking free of {name}",
+          "Razor": "{name} cuts on the way out",
+          "Cuffed": "Cuffed",
+          "BothCuffed": "Arms and legs cuffed",
+          "Freed": "{name} breaks free of the {restraint}.",
+          "Held": "The {restraint} holds {name}.",
+          "Time": "That try takes {seconds} seconds.",
+          "Chafed": "{name} takes a point of damage where it's taped."
+        },
+        "Resist": {
+          "Title": "Resist the device",
+          "Talent": "Talent for the power",
+          "TalentLine": "Talent",
+          "DamperLabel": "Pushing against the {name}",
+          "DamperBurnt": "{name} overloads the damper, which burns out.",
+          "DamperHeld": "The damper holds; {name} can't try again for {hours} hours.",
+          "InTank": "In a sensory deprivation tank",
+          "Label": "Resisting the {name}",
+          "Resisted": "{name} resists.",
+          "Neurolashed": "{name} suffers the neurolash's effect.",
+          "Setting": "Setting",
+          "sleep": "Sleep",
+          "control": "Control",
+          "Pacified": "Pacified (Slave Mentality)",
+          "Pacifier": {
+            "sleep": "{name} falls into a deep sleep until the pacifier is removed.",
+            "control": "{name} is easily led: Slave Mentality while it stays on."
+          }
+        },
+        "Interrogation": {
+          "Worn": "{name} on the subject",
+          "Veridicator": "{name} (automatic success)"
+        },
+        "Programmer": {
+          "Title": "Neural programmer",
+          "Pick": "Select the operator's token and target the subject.",
+          "Points": "Disadvantage's points",
+          "Software": "Software",
+          "basic": "Complexity 7",
+          "good": "Complexity 9 (+1)",
+          "fine": "Complexity 11 (+2)",
+          "Disadvantage": "Per 5 points of disadvantage",
+          "Quality": "Software quality",
+          "Label": "Programming {name}",
+          "Won": "{name} takes the programming after {days} days.",
+          "Lost": "{name}'s mind resists the programming."
+        },
+        "Probe": {
+          "Title": "Mind probe",
+          "Pick": "Select the operator's token and target the subject.",
+          "Speed": "Probe",
+          "slow": "Slow (safe)",
+          "fast": "Fast (dangerous)",
+          "Tl": "Probe's TL",
+          "Label": "Probing {name}'s memories ({hours} hours)",
+          "exact": "The probe retrieves exactly the memory wanted from {name}.",
+          "mixed": "The probe retrieves some of the memories, mixed with exaggerations, errors and unrelated associations.",
+          "fragments": "The probe retrieves fragments of no interest, or obviously false memories.",
+          "falseMemories": "{name}'s brain constructs false memories that seem real.",
+          "Risk": "HT (or the operator's skill): the fast probe's risk",
+          "BrainDamage": "{name} suffers brain damage: -1 IQ.",
+          "Coma": "{name} falls into a coma and can't be interrogated until they recover."
+        }
       }
     }
   },

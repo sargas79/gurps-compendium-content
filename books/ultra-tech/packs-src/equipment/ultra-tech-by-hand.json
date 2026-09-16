@@ -795,8 +795,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 104",
       "category": "tool",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Search"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -830,8 +832,10 @@
       "description": "",
       "reference": "Ultra-Tech p. 106",
       "category": "tool",
-      "equipmentQuality": "basic",
-      "forSkills": [],
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Electronics Operation (Surveillance)"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
@@ -914,6 +918,12 @@
           "swarm": {
             "squareYards": 1,
             "pricePerSquareYard": 4000
+          },
+          "stealth": {
+            "statedBonus": 3,
+            "statedSkills": [
+              "Forensics"
+            ]
           }
         }
       }
@@ -4686,6 +4696,60 @@
           }
         }
       }
+    }
+  },
+  {
+    "_id": "f07e2e5ac3747cd8",
+    "name": "Small Safe",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 102",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3e0c83338c747b3d",
+    "name": "Armored Vault",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4000,
+      "cost": 30000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 102",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
     }
   }
 ]
