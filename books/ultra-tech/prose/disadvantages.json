@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "2f449da273091540",
+    "name": "Bionic Ear",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crude cybernetic implants to repair damaged or lost hearing were available at TL8; these are much more advanced, providing some benefits over natural ears.</p><p><em>Statistics:</em> Hard of Hearing (Mitigator, -70%) [-3]. -3 points.</p>"
+  },
+  {
+    "_id": "3500339c59691b24",
+    "name": "Bionic Ears",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crude cybernetic implants to repair damaged or lost hearing were available at TL8; these are much more advanced, providing some benefits over natural ears.</p><p>Statistics: Protected Hearing [5]; Deafness (Mitigator, -70%) [-6]. -1 point.</p>"
+  },
+  {
+    "_id": "d1f35fe7036ed74a",
+    "name": "Bionic Eye (Two)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The eye is a complex organ, but TL9 cybernetics may be able to replace it with something that works just as well or better than the original. Standard features are roughly equivalent to night vision contact lenses, including a video display option and low-light and telescopic (2×) optics.</p><p><em>Statistics:</em> Accessory (Video Display) [1]; Nictitating Membrane 2 [2]; Night Vision 2 (Temporary Disadvantage, Electrical, -20%) [2]; Protected Vision [5]; Telescopic Vision 1 (Temporary Disadvantage, Electrical, -20%) [4]; Blindness (Mitigator, -70%) [-15]. -1 points.</p>"
+  },
+  {
+    "_id": "11184a09444b75da",
+    "name": "Bionic Organ Transplant",
+    "pages": "UT210",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Complete cybernetic replacement of the heart, lungs, or other vital organs is usually performed only to save a life. This may be combined with additional implants that improve on the original organ.</p><p>One of the most common operations, this extends TL8 medicine with better pacemakers, artificial lungs, etc. The procedure is common, and therefore cheaper than most cybernetics.</p><p><em>Statistics:</em> Hard to Kill (Temporary Disadvantage, Electrical, -20%) +2 [4]; Terminally Ill (Up to one month; Mitigator, -70%) [-30]. -26 points.</p>"
+  },
+  {
+    "_id": "b24ae2eef974f8bd",
+    "name": "Cybervoder",
+    "pages": "UT210",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant replaces the recipient's voicebox, and may include an artificial tongue if the original was damaged. Someone with a damaged or recovering voicebox can croak or gurgle, but cannot actually speak. These implants can also be used to give animals the power of speech, although at IQ 5 or less, they can only parrot words.</p><p><em>Statistics:</em> Cannot Speak (Mitigator, -70%) [-3]. -3 points. Availability: Minor procedure.</p>"
+  },
+  {
+    "_id": "ce2dcf839153b8e8",
+    "name": "Heavy Weapon Arm Mount",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are modular weapons installations attached to a cyborg's body. Each can mount a single weapon that weighs no more than the recipient's Basic Lift. Mounted weapons cost cash - not points - and their weight counts as encumbrance.</p><p>A mounted weapon is plugged-in, not built-in. The user can swap it for another weapon with a suitable interface. It takes five seconds to mount or remove a weapon.</p><p>Concealing a weapon mount is similar to hiding a firearm of similar bulk. A Bulk -5 rifle built into one's arm will have a protruding muzzle, while a Bulk -1 holdout pistol may have only a tiny gun-port built into the user's palm.</p><p>All mounted weapons can be detected by searches. Enemies or the authorities can unplug and confiscate them, just like carried weapons.</p><p>This weapon mount replaces the user's arm with a socket joint and a hardpoint for attaching a weapon, usually rifle-sized. The mounted weapon must weigh equal to or less than the user's Basic Lift.</p><p><em>Statistics:</em> To replace one arm with a weapon mount, take Extra Arm (Weapon Mount, -80%) [2] and One Arm [-20]. -18 points.</p>"
+  }
+]

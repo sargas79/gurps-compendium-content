@@ -1,5 +1,421 @@
 [
   {
+    "_id": "abaa13cf0e822c55",
+    "name": "Biomonitor Implant",
+    "pages": "UT208",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant monitors vital signs: pulse, heartbeat, blood pressure, respiration, brainwaves, blood sugar, and alcohol levels, as well as the overall condition of the user's other cybernetics. It includes a small wrist display, and can connect to a neural interface (p. 48) or computer implant (p. 215). It gives a +2 bonus to any First Aid, Diagnosis or Physician rolls on the cyborg, as long as the medic can see the display. Halve the bonus if the user can see it but has to describe it to the medic. If the medic has a neural interface or a computer, he can jack it into a port beside the visual readout and monitor the cyborg directly.</p><p><em>Statistics:</em> Accessory (Biomonitor) [1]. 1 point. Availability: Minor procedure (simple at TL10-12).</p>"
+  },
+  {
+    "_id": "f0f6a570c159f376",
+    "name": "Bionic Arm (One)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is slightly stronger than the original, but constrained by the limits of the flesh-and-bone shoulder it is attached to.</p><p><em>Statistics:</em> Arm ST+2 (One arm; Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%) [5]; DR 2 (One arm, -40%) [6]; One Arm (Mitigator, -70%) [-6]. 5 points.</p>"
+  },
+  {
+    "_id": "a9c8715eaf0e76d9",
+    "name": "Bionic Arm (Two)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is slightly stronger than the original, but constrained by the limits of the flesh-and-bone shoulder it is attached to.</p><p><em>Statistics:</em> Arm ST+2 (Both arms; Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%) [8]; DR 2 (Arms, -20%) [8]; No Fine Manipulators (Mitigator, -70%) [-9]. 7 points.</p>"
+  },
+  {
+    "_id": "316091acad1a23fd",
+    "name": "Bionic Hand",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is slightly stronger than the original, but constrained by the limits of the flesh-and-bone shoulder it is attached to.</p><p>A cybernetic hand and wrist. Statistics: Arm ST+1 (One arm, Temporary Disadvantage, Electrical, -20%) [3]; DR 2 (One hand, -80%) [2]; One Hand (Mitigator, -70%) [-4]. 1 point. Availability: Major procedure.</p>"
+  },
+  {
+    "_id": "97003508f593a0a2",
+    "name": "Bionic Ears (Advanced)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Crude cybernetic implants to repair damaged or lost hearing were available at TL8; these are much more advanced, providing some benefits over natural ears.</p><p>These ears are connected to a computerized soundprofiling database.</p><p><em>Statistics:</em> Discriminatory Hearing (Temporary Disadvantage, Electrical, -20%) [12]; Protected Hearing [5]; Deafness (Mitigator, -70%) [-6]. 11 points.</p>"
+  },
+  {
+    "_id": "e079f37860b9d508",
+    "name": "Bionic Eye (One)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The eye is a complex organ, but TL9 cybernetics may be able to replace it with something that works just as well or better than the original. Standard features are roughly equivalent to night vision contact lenses, including a video display option and low-light and telescopic (2×) optics.</p><p><em>Statistics:</em> Accessory (Video Display) [1]; Nictitating Membrane 2 (One eye, -50%) [1]; Night Vision 2 (Temporary Disadvantages, Electrical and No Depth Perception, -35%) [2]; Telescopic Vision 1 (Temporary Disadvantages, Electrical and No Depth Perception, -35%) [4]; One Eye (Mitigator, -70%) [-4]. 4 points.</p>"
+  },
+  {
+    "_id": "66f07d1522bd34f2",
+    "name": "Bionic Leg (One)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A single cybernetic leg is limited by the capabilities of the remaining original leg. A pair of legs are more useful.</p><p><em>Statistics:</em> DR 3 (One leg, -40%) [9]; Missing Legs (Mitigator, -70%) [-6]. 3 points.</p>"
+  },
+  {
+    "_id": "3cbe53d8578d3ff7",
+    "name": "Bionic Leg (Two)",
+    "pages": "UT209",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A single cybernetic leg is limited by the capabilities of the remaining original leg. A pair of legs are more useful.</p><p><em>Statistics:</em> Basic Move +1 (Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%) [4]; Super Jump 1 (Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%) [8]; DR 3 (Legs, -20%) [12]; Legless (Mitigator, -70%) [-9]. 15 points.</p>"
+  },
+  {
+    "_id": "5569f475a64f09a5",
+    "name": "Boosted Heart",
+    "pages": "UT210",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This combination of a cybernetic heart upgrade and arterial reinforcement allows the recipient to temporarily boost his metabolism beyond human norms. It can be added to either a healthy or a bionic heart.</p><p><em>Statistics:</em> Basic Speed +1 (Costs Fatigue 1, -5%; Temporary Disadvantage, Electrical, -20%) [15]; Immunity to Heart Attack (Temporary Disadvantage, Electrical, -20%) [4]. 19 points.</p>"
+  },
+  {
+    "_id": "a4f15d2e247c9c34",
+    "name": "Silvertongue Implant",
+    "pages": "UT210",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant replaces the recipient's voicebox, and may include an artificial tongue if the original was damaged. Someone with a damaged or recovering voicebox can croak or gurgle, but cannot actually speak. These implants can also be used to give animals the power of speech, although at IQ 5 or less, they can only parrot words.</p><p><em>Statistics:</em> Cannot Speak (Mitigator, -70%) [-3]; Voice (Temporary Disadvantage, Electrical, -20%) [8]. 5 points.</p>"
+  },
+  {
+    "_id": "ac2d9265f9afdb40",
+    "name": "Boosted Reflexes",
+    "pages": "UT210",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These implanted glands release chemicals on mental command, triggering a controlled adrenaline-like response.</p><p><em>Statistics:</em> Basic Speed +2 (Costs Fatigue, 2 FP, -10%) [18]. 18 points.</p>"
+  },
+  {
+    "_id": "ea74f6c8f5435473",
+    "name": "Cyber Claws",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The recipient's hands or feet are equipped with ceramic or metal claws. The claws are retractable, triggered by muscle contractions.</p><p><em>Statistics:</em> Sharp Claws (Switchable, +10%) [6]. Availability: Minor procedure. Halve the cost and treat as a simple procedure if adding these to a bionic hand or arm.</p>"
+  },
+  {
+    "_id": "7da02f2d0fb9d385",
+    "name": "Filter Implant",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A self-regenerating particle-filtration system integrated into the recipient's lungs.</p><p><em>Statistics:</em> Filter Lungs [5]. Availability: Minor procedure (simple at TL11-12).</p>"
+  },
+  {
+    "_id": "6ba143592c39fce0",
+    "name": "Gyrobalance",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a miniature electronic gyroscope implanted in the inner ears (both ears - but treat as a single operation), and interfaced to improve the recipient's sense of balance.</p><p><em>Statistics:</em> Klutz (Mitigator, -70%) [-2]; Perfect Balance (Temporary Disadvantage, Electrical, -20%) [12]. 10 points.</p>"
+  },
+  {
+    "_id": "6893dbcdda052ec6",
+    "name": "Hidden Compartments",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A cybernetic arm or leg may have a compartment large enough for any small object of up to Basic Lift/10 lbs. weight.</p><p><em>Statistics:</em> Payload 1 [1]. Availability: Simple procedure.</p>"
+  },
+  {
+    "_id": "0a5cc39c312f3a04",
+    "name": "Implant Radio",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This \"implant communicator\" is a radio (p. 44) with a range of one mile. It is spliced into the recipient's auditory nerve; the user may speak normally or subvocalize. A character with an implant radio can use it to subscribe to a cell phone or net service provider.</p><p><em>Statistics:</em> Radio (Reduced Range, 1/10, -30%; Secure, +20%; Temporary Disadvantage, Electrical, -20%) [7]. 7 points.</p>"
+  },
+  {
+    "_id": "af1e4cf62e42af82",
+    "name": "Implant Video Comm",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implanted radio communicator (p. 44) is spliced into the recipient's optic nerves to provide a video display. It has a range of one mile, and can be used to subscribe to a cell phone or net service provider.</p><p><em>Statistics:</em> Radio (Reduced Range, ×1/10, -30%; Temporary Disadvantage, Electrical, -20%; Video, +40%) [9]. 9 points.</p>"
+  },
+  {
+    "_id": "ce54e8eaa4277f30",
+    "name": "Memory Flesh",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These synthetic flesh implants allow the recipient to shift between two different sets of facial and bodily features: his own and another set specified when it is installed.</p><p><em>Statistics:</em> Alternate Form (Cosmetic, -50%, Temporary Disadvantage, Electrical, -20%) [5]. 5 points.</p>"
+  },
+  {
+    "_id": "4bf2d0646ed95612",
+    "name": "Subdermal Armor",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This flexible armor is implanted under the skin. At TL9, the skin is peeled off and the armor inserted, then replacement skin is grafted back on. At TL10+ it may be possible to use nanotechnology to actually grow the armor under the skin. A careful tactile examination, a diagnostic bed, or a medscanner can detect the armor, but it is invisible to the naked eye and does not appear on metal detectors. It provides DR 12 vs. piercing and cutting damage and DR 4 vs. other damage.</p><p><em>Statistics:</em> DR 8 (Limited, Piercing and Cutting, -20%; Tough Skin, -40%) [16]; DR 4 (Tough Skin, -40%) [12]. 28 points.</p>"
+  },
+  {
+    "_id": "f0026860c3b00f36",
+    "name": "Smart Tattoos",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These tattoos are made with video ink. They can follow preprogrammed scripts, or even act in response to changes their sensors detect in the skin (sweat, temperature, etc.). A tiger tattoo might roar when it detects anger, or purr when the wearer is aroused.</p><p><em>Statistics:</em> Distinctive Features 1 (Switchable, -10%) [0]. 0 points.</p>"
+  },
+  {
+    "_id": "9701a4bb3d1bcbb6",
+    "name": "Stinger",
+    "pages": "UT211",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This concealed implant houses a single disposable hypo (p. 197) sheathed under a fingernail or in a body cavity. The recipient has no ability to manufacture drugs or toxins; he must buy hypos loaded with injectable drugs, poisons, or metabolic weapons. It takes 10 seconds to remove and replace a hypo in the mount.</p><p>A fingernail-mounted stinger attacks just like a jab with a disposable hypo. It has reach C, does 1 HP damage for penetration purposes, but with no wounding, and delivers a follow-up attack based on whatever agent was loaded into it. If the user has claws rather than normal fingernails, the injection can be a follow-up attack to the claw's damage.</p><p>A body-cavity stinger is mostly useful to deliver a surprise attack during an intimate moment; the GM may allow a Touch-8 sense roll to notice the tiny mount before it can be used. A stinger in the mouth can also be a follow-up attack to a bite.</p><p><em>Statistics:</em> Extra Arm (Switchable, +10%; Takes Recharge, -10%; Weapon Mount, -80%) [2]. 2 points.</p>"
+  },
+  {
+    "_id": "8c7c41030701013e",
+    "name": "Bionic Hand Weapon Mount",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are modular weapons installations attached to a cyborg's body. Each can mount a single weapon that weighs no more than the recipient's Basic Lift. Mounted weapons cost cash - not points - and their weight counts as encumbrance.</p><p>A mounted weapon is plugged-in, not built-in. The user can swap it for another weapon with a suitable interface. It takes five seconds to mount or remove a weapon.</p><p>Concealing a weapon mount is similar to hiding a firearm of similar bulk. A Bulk -5 rifle built into one's arm will have a protruding muzzle, while a Bulk -1 holdout pistol may have only a tiny gun-port built into the user's palm.</p><p>All mounted weapons can be detected by searches. Enemies or the authorities can unplug and confiscate them, just like carried weapons.</p><p>This is a weapon mount built into an existing bionic arm or hand (p. 209). It may be mounted above or below the arm, or fire out through the palm. The weapon's weight may not exceed Basic Lift if in an arm, or half of Basic Lift if in a hand.</p><p><em>Statistics:</em> Extra Arm (Weapon Mount, -80%) [2]. Availability: Minor procedure. $100/lb. of weapon weight. LC of weapon.</p>"
+  },
+  {
+    "_id": "276c6260e0c14c77",
+    "name": "Bionic Arm Weapon Mount",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are modular weapons installations attached to a cyborg's body. Each can mount a single weapon that weighs no more than the recipient's Basic Lift. Mounted weapons cost cash - not points - and their weight counts as encumbrance.</p><p>A mounted weapon is plugged-in, not built-in. The user can swap it for another weapon with a suitable interface. It takes five seconds to mount or remove a weapon.</p><p>Concealing a weapon mount is similar to hiding a firearm of similar bulk. A Bulk -5 rifle built into one's arm will have a protruding muzzle, while a Bulk -1 holdout pistol may have only a tiny gun-port built into the user's palm.</p><p>All mounted weapons can be detected by searches. Enemies or the authorities can unplug and confiscate them, just like carried weapons.</p><p>This is a weapon mount built into an existing bionic arm or hand (p. 209). It may be mounted above or below the arm, or fire out through the palm. The weapon's weight may not exceed Basic Lift if in an arm, or half of Basic Lift if in a hand.</p><p><em>Statistics:</em> Extra Arm (Weapon Mount, -80%) [2]. Availability: Minor procedure. $100/lb. of weapon weight. LC of weapon.</p>"
+  },
+  {
+    "_id": "f63a2a051570e259",
+    "name": "Accelerated Reflexes",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A system of electronic nerves and computer hardware that replaces large sections of the nervous system.</p><p><em>Statistics:</em> Extra Attack 1 (Temporary Disadvantage, Electrical, -20%) [20]. 20 points.</p>"
+  },
+  {
+    "_id": "e8bfa40069f3f976",
+    "name": "Bioplastic Skin",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This modification covers the recipient's body with a sheath of living smart bioplastic (p. 171). It is thin and sensitive enough that it looks and behaves like normal skin, and even heals itself. It is invisible armor covering the entire body. It has DR 15 vs. burning or piercing damage, DR 5 vs. other types of damage.</p><p><em>Statistics:</em> DR 10 (Limited, Burning and Piercing damage, -20%; Tough Skin, -40%) [20]; DR 5 (Tough Skin, -40%) [15]. 35 points.</p>"
+  },
+  {
+    "_id": "a48439d5688ebb2a",
+    "name": "Cyberhair (Shoulder-Length)",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant replaces sections of ordinary hair with thin cybernetic tendrils attached to a reinforced scalp. Cyberhair does not grow and cannot be cut by ordinary razors or scissors, but it can coil close to the scalp when the recipient needs a \"haircut.\"</p><p>Cyberhair can be used as a simple manipulator, which may be useful if the user is grappled or tied up. It must be at least shoulder-length to be effective.</p><p><em>Statistics:</em> Extra Arm 1 (Extra-Flexible, +50%; Short, -50%; Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%; Weak, 1/4 body ST, -50%) [3]. 3 points.</p>"
+  },
+  {
+    "_id": "d958611b2c9f5dc9",
+    "name": "Cyberhair (Waist-Length)",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant replaces sections of ordinary hair with thin cybernetic tendrils attached to a reinforced scalp. Cyberhair does not grow and cannot be cut by ordinary razors or scissors, but it can coil close to the scalp when the recipient needs a \"haircut.\"</p><p>Cyberhair can be used as a simple manipulator, which may be useful if the user is grappled or tied up. It must be at least shoulder-length to be effective.</p><p><em>Statistics:</em> Extra Arm 1 (Extra-Flexible, +50%; Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%; Weak, 1/4 body ST, -50%) [8]. 8 points.</p>"
+  },
+  {
+    "_id": "a7ae339b327c1f6f",
+    "name": "Cyberhair (Knee-Length)",
+    "pages": "UT212",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant replaces sections of ordinary hair with thin cybernetic tendrils attached to a reinforced scalp. Cyberhair does not grow and cannot be cut by ordinary razors or scissors, but it can coil close to the scalp when the recipient needs a \"haircut.\"</p><p>Cyberhair can be used as a simple manipulator, which may be useful if the user is grappled or tied up. It must be at least shoulder-length to be effective.</p><p>Longer and tougher, with a reinforced scalp to support the hair's capabilities.</p><p><em>Statistics:</em> Extra Arm 1 (Extra-Flexible, +50%; Long, +100%; Temporary Disadvantages, Electrical, -20%, and Maintenance, 1 person, weekly, -5%; Weak, 1/2 body ST, -25%) [20]. 20 points.</p>"
+  },
+  {
+    "_id": "b5f1709c99b78ed7",
+    "name": "Variskin",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The recipient's skin is replaced or coated with smart film. He can change its color and texture to blend in with the surroundings. If nude, he gets +2 to Stealth skill when perfectly still, or +1 if moving. Clothing reduces this to +1 when perfectly still. It takes one second to alter skin pigment, and unnatural colors such as green or chrome are possible. The skin can also function as a video display terminal for data run through neural interface or computer implant.</p><p><em>Statistics:</em> Accessory (Video terminal) [1]; Chameleon 1 (Controllable, +20%) [6]. 7 points.</p>"
+  },
+  {
+    "_id": "103d23c4790ec7eb",
+    "name": "Gill Implant",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant allows the recipient to breathe underwater, using a device that extracts oxygen from water (it's not a true set of fish gills). It uses two C cells per day of operation.</p><p>Maintenance involves opening an access panel in his chest or back, cleaning filters, and installing new power cells.</p><p><em>Statistics:</em> Doesn't Breathe (Gills, -50%; Temporary Disadvantages, Maintenance, 1 hour, daily, -10%, and Electrical, -20%) [4]. 4 points.</p>"
+  },
+  {
+    "_id": "d0048e8f552c01f7",
+    "name": "Hive Implant",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implanted swarmbot hive (p. 37) can carry a single swarm measuring one square yard. It includes recharging ports hidden by a skin flap, allowing the swarm to recharge from a power system or the included C cell. The swarm and a control system (such as an implant computer and advanced com implant) must be acquired separately.</p><p><em>Statistics:</em> Accessory (Swarmbot Hive) [1]; Payload 1 [1]. 2 points.</p>"
+  },
+  {
+    "_id": "a150dcd49943cdf3",
+    "name": "Intestinal Recycler",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The human digestive system is imperfect, so waste matter always contains useful chemicals that could have been metabolized and used by the body. This implant collects waste matter and reprocesses it.</p><p><em>Statistics:</em> Reduced Consumption 2 [4]. 4 points. Availability: Major procedure (minor at TL11-12).</p>"
+  },
+  {
+    "_id": "e9949f8378488e62",
+    "name": "Nanoweave Subdermal Armor",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Advanced flexible armor implanted under the patient's skin. It has DR 18 vs. piercing and cutting damage and DR 6 vs. other damage.</p><p><em>Statistics:</em> DR 12 (Limited, Piercing and Cutting, -20%; Tough Skin, -40%) [24]; DR 6 (Tough Skin, -40%) [18]. 42 points.</p>"
+  },
+  {
+    "_id": "5b28ecb5cff3305f",
+    "name": "Polyskin Body",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A combination of micromachines, smart bioplastic implants, and artificial glands that allow the recipient to alter his appearance. He can adjust apparent weight, skin color and tone, and facial structure.</p><p>The system can be purchased for the face or for the entire body. It can also be combined with sexmorph (p. 214).</p><p>If the recipient already has TL10+ bioplastic skin (p. 212) divide the dollar cost of the implant and the recovery time by 2.</p><p><em>Statistics:</em> Elastic Skin (Temporary Disadvantage, Electrical, -20%) [16]. 16 points.</p>"
+  },
+  {
+    "_id": "227bdaff7420bcdb",
+    "name": "Polyskin Face",
+    "pages": "UT213",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A combination of micromachines, smart bioplastic implants, and artificial glands that allow the recipient to alter his appearance. He can adjust apparent weight, skin color and tone, and facial structure.</p><p>The system can be purchased for the face or for the entire body. It can also be combined with sexmorph (p. 214).</p><p>If the recipient already has TL10+ bioplastic skin (p. 212) divide the dollar cost of the implant and the recovery time by 2.</p><p><em>Statistics:</em> Elastic Skin (Face only, -25%; Temporary Disadvantage, Electrical, -20%) [11]. 11 points.</p>"
+  },
+  {
+    "_id": "fa41622a3d3d655e",
+    "name": "Reinforced Skeleton",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Micro- or nanomachines can reinforce a patient's skeleton with carbon fibers, transforming his bones into structures with the strength of metal. Implants take over the function of bone marrow and produce blood cells. Weight does not increase. While the reinforced bones do not show up on metal detectors, they can be identified with X-rays, diagnostic beds, and other advanced sensors.</p><p><em>Statistics:</em> HP+5 [10]; DR 20 (Skull only, -70%) [30]; DR 10 (Limited, Crushing, -40%; Tough Skin, -40%) [10]. 60 points.</p>"
+  },
+  {
+    "_id": "dd72a23598d3cd00",
+    "name": "Ripsnake",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This cybernetic assassin's weapon is a concealed bionic limb linked to the user's nervous system. It uncoils from a natural body opening (usually the mouth) when deployed, and can attack semi-autonomously.</p><p>In certain situations, a ripsnake can deliver an automatically successful attack to the vital organs. For example, if a would-be assassin with a ripsnake concealed in his mouth kisses someone, it can coil out and down his victim's throat.</p><p><em>Statistics:</em> Extra Attack 1 (Ripsnake Only, -20%) [20]; Impaling Striker (Cannot Parry, -40%; Long, +1 SM, +100%; Temporary Disadvantage, Electrical, -20%) [12]. 32 points.</p>"
+  },
+  {
+    "_id": "b1bcc993b5ba34cc",
+    "name": "Sexmorph",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This suite of sphincter valves, synthetic hormone glands and memory or bioplastic implants allows the recipient to switch gender in 10 seconds. If desired, a user can also adopt a neuter phase (no obvious genitalia or breasts) or transsexual phase (male genitalia, female breasts, or vice versa) with voice and features as desired.</p><p><em>Statistics:</em> Hermaphromorph (Temporary Disadvantage, Electrical, -20%; transsexual form also, +20%) [5]. 5 points.</p>"
+  },
+  {
+    "_id": "9a6387271ea7a558",
+    "name": "Slickskin",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The recipient's skin is covered with a switchable smart matter nanofilm. When activated, most of his skin becomes virtually frictionless. The palms of the hands and the soles of the feet are not affected.</p><p><em>Statistics:</em> Slippery 3 [6]. 6 points. Availability: Major procedure (minor at TL11-12).</p>"
+  },
+  {
+    "_id": "037e499c6550052c",
+    "name": "Thermal Imaging Eyes",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a pair of bionic eyes with tiny infrared imaging cameras, day/night telescopic optics, and a HUD (p. 24) chipped into the optic nerves.</p><p><em>Statistics:</em> Accessory (HUD) [1]; Infravision (Temporary Disadvantage, Electrical, -20%) [8]; Nictitating Membrane 2 [2]; Telescopic Vision 1 (Temporary Disadvantage, Electrical, -20%) [4]; Blindness (Mitigator, -70%) [-15]. 0 points.</p>"
+  },
+  {
+    "_id": "c6b39494576ef4ec",
+    "name": "Hyperdense Skeleton",
+    "pages": "UT214",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A reinforced skeleton (above) impregnated with hyperdense nanoparticles for additional damage resistance. A hyperdense skeleton increases body weight by 10 to 20 percent.</p><p><em>Statistics:</em> HP+5 [10]; DR 40 (Skull only, -70%) [60]; DR 20 (Limited, Crushing, -40%; Tough Skin, -40%) [20]. 90 points.</p>"
+  },
+  {
+    "_id": "fcd3ea8d22ec49c4",
+    "name": "Hyperspectral Eyes",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These bionic eyes are similar to thermal imaging eyes (p. 214), except that multispectral cameras replace the infrared cameras.</p><p><em>Statistics:</em> Accessory (HUD) [1]; Hyperspectral Vision (Temporary Disadvantage, Electrical, -20%) [20]; Nictitating Membrane 3 [3]; Telescopic Vision 1 (Temporary Disadvantage, Electrical, -20%) [4]; Blindness (Mitigator, -70%) [-15]. 13 points.</p>"
+  },
+  {
+    "_id": "14d1a89f972163d1",
+    "name": "Monocrys Subdermal Armor",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This diamondoid nanocrystal mesh grown under the patient's skin provides DR 24 vs. piercing and cutting damage and DR 8 vs. other damage.</p><p><em>Statistics:</em> DR 16 (Limited, Piercing and Cutting, -20%; Tough Skin, -40%) [32]; DR 8 (Tough Skin, -40%) [24]. 56 points.</p>"
+  },
+  {
+    "_id": "bbfebe5e5ec76053",
+    "name": "Living Metal Skin",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A thin, flexible, sensor-equipped nanoskin of living metal replaces the recipient's own skin. The endoskeleton is self-sealing and enhances strength.</p><p><em>Statistics:</em> Filter Lungs [5]; DR 20 (Flexible, -20%) [80]; Lifting ST +5 [15]; Nictitating Membrane 5 [5]; Sealed [15]; Striking ST +5 [25]; Super Jump 1 [10]; Temperature Tolerance 5 [5]. 160 points.</p>"
+  },
+  {
+    "_id": "e2884ad38f36f6e2",
+    "name": "Braintap Jack",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A braintap is an advanced form of implant communicator that lets the recipient transmit his experiences as sensies (p. 57). Others can use the receiver to experience or record the sensory information experienced by the braintapped character.</p><p>Braintaps are used by sensie stars, journalists, or anyone else who wants to record his personal experiences. A normal braintap can be turned on or off by the user, but remote-controlled braintaps are also possible. It is possible to implant a braintap in an animal. If well-trained, such animals make very useful scouts or familiars. A braintap can also be implanted without someone's knowledge, during other surgery - a favorite trick of intelligence agencies.</p><p>This incorporates a plug-in cable jack (p. 42) plus a sensie transmission module. If the user has a computer implant (below), he can store data in it.</p><p><em>Statistics:</em> Cable Jack (Send Only, -50%; Sensie, +80%) [7].</p>"
+  },
+  {
+    "_id": "676d921b8072d865",
+    "name": "Wireless Braintap",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A braintap is an advanced form of implant communicator that lets the recipient transmit his experiences as sensies (p. 57). Others can use the receiver to experience or record the sensory information experienced by the braintapped character.</p><p>Braintaps are used by sensie stars, journalists, or anyone else who wants to record his personal experiences. A normal braintap can be turned on or off by the user, but remote-controlled braintaps are also possible. It is possible to implant a braintap in an animal. If well-trained, such animals make very useful scouts or familiars. A braintap can also be implanted without someone's knowledge, during other surgery - a favorite trick of intelligence agencies.</p><p>This incorporates a radio transmitter with a one-mile range and a sensie-transmission module. If the user has a computer implant, he can store data in it.</p><p><em>Statistics:</em> Radio (Secure, +20%; Reduced Range, ×1/10, -30%; Send Only, -50%; Sensie, +80%) [12].</p>"
+  },
+  {
+    "_id": "f8b85a4f17fd104e",
+    "name": "Computer Implant",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a computer implanted in the recipient's head and controlled through its own direct neural interface. It takes only a thought to call up a file or access a database. Data scrolls across the periphery of the user's vision, and he hears the computer as a voice in his head.</p><p>The implant includes an optical-recognition feature using the user's eyes and ears as sensors. It can speed-read documents, for example, and store them in its database. (It takes normal time to read them later, though one could ask the computer to provide a synopsis).</p><p>The interface can also run \"virtual tutor\" (p. 56) augmented reality programs that not only talk but show how to do things by overlaying instructions on the user's visual field. Although several programs could theoretically be run at once, the user can only focus on one at a time. A computer implant is most useful with an implanted communicator.</p><p>The recovery time represents the amount of time needed to master the computer's functions.</p>"
+  },
+  {
+    "_id": "761e7fefc75f0e1f",
+    "name": "Neural Interface Jack",
+    "pages": "UT216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A neural interface (pp. 48-49) permits the user to control electronic devices using his mind. It picks up electronic impulses and translates them into electrochemical signals in his brain. There are two models in common use, and some people may implant both:</p><p>This is a socket implanted in the body (usually the back of the neck, base of the spine, or skull) with a communications interface. The user can plug an optical cable (p. 43) into it and connect to a phone line, modem, etc.</p><p><em>Statistics:</em> Cable Jack (Sensie, +80%) [9]. 9 points. Accessibility: Major procedure (minor at TL10-12).</p>"
+  },
+  {
+    "_id": "98674ff1ed108e18",
+    "name": "Wireless Neural Interface",
+    "pages": "UT216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A neural interface (pp. 48-49) permits the user to control electronic devices using his mind. It picks up electronic impulses and translates them into electrochemical signals in his brain. There are two models in common use, and some people may implant both:</p><p>This is a wireless neural interface radio with a one-mile range. It can also function as a radio communicator.</p><p><em>Statistics:</em> Radio (Reduced Range, ×1/10, -30%; Secure, +20%; Sensie, +80%) [17]. 17 points.</p>"
+  },
+  {
+    "_id": "01bd709dc15732c7",
+    "name": "Biological Operating System Implant (BOS)",
+    "pages": "UT217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This implant controls biofeedback systems and diagnostic monitors, as well as nanomachine drug factories that that help the user manage his body's physiological state.</p><p><em>Statistics:</em> Alcohol Tolerance [1], Deep Sleeper [1], Metabolism Control 1 [5], No Hangover [1]. 8 points.</p>"
+  },
+  {
+    "_id": "50149ae4e0c814ce",
+    "name": "Sensie Transeiver Jack",
+    "pages": "UT217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These brain implants enable a person to transmit or receive live or recorded sensory impressions from another person. They are essentially two-way braintaps.</p><p>This incorporates a plug-in cable jack (p. 42) plus a sensie transceiver module. If the user has a computer implant (p. 215), he can store data in it.</p><p><em>Statistics:</em> Cable Jack (Sensie Only, +0%) [5]. Availability: Major procedure (minor at TL10-12).</p>"
+  },
+  {
+    "_id": "70eaa3e3e2ff42ea",
+    "name": "Wireless Sensie Transceiver",
+    "pages": "UT217",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These brain implants enable a person to transmit or receive live or recorded sensory impressions from another person. They are essentially two-way braintaps.</p><p>This incorporates a radio transmitter with a one-mile range and a sensie-transmission module. If the user has a computer implant, he can store data in it.</p><p><em>Statistics:</em> Radio (Secure, +20%; Reduced Range, ×1/10, -30%; Sensie Only, +0%) [9].</p>"
+  },
+  {
     "_id": "8a22b281aabb803b",
     "name": "T-Ray Vision",
     "pages": "UT30",
