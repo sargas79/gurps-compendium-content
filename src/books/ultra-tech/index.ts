@@ -14,6 +14,7 @@ import { initAccessories, readyAccessories } from "./accessories/index.js";
 import { initAgents, readyAgents } from "./agents/index.js";
 import { initArmor, readyArmor } from "./armor/index.js";
 import { initPoweredSuits, readyPoweredSuits } from "./armor/powered.js";
+import { initCybernetics, readyCybernetics } from "./cyber/index.js";
 import { initForceFields, readyForceFields } from "./force/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
@@ -81,6 +82,7 @@ const RULES = [
   { key: "forceScreens", pages: "pp. 190-192", implemented: true },
   { key: "forceShields", pages: "pp. 192-193", implemented: true },
   { key: "stasisAndTime", pages: "pp. 193-195", implemented: true },
+  { key: "cybernetics", pages: "pp. 207-219", implemented: true },
   { key: "biochemicalAgents", pages: "pp. 159-161", implemented: true },
   { key: "nanoweapons", pages: "pp. 161-162", implemented: true },
   { key: "propellantSettings", pages: "pp. 135-141", implemented: true },
@@ -129,6 +131,7 @@ function init(): void {
   initArmor();
   initPoweredSuits();
   initForceFields();
+  initCybernetics();
   initAgents();
   initGuns();
   initMedical();
@@ -159,6 +162,7 @@ function ready(api: GWorldApi): void {
   readyArmor(api, { threat: rule("threatProtection"), laser: rule("laserResistantArmor"), tailored: rule("tailoredArmor"), systems: rule("armorSystems") });
   readyPoweredSuits(api, rule("poweredSuits"));
   readyForceFields(api, { screens: rule("forceScreens"), shields: rule("forceShields"), stasis: rule("stasisAndTime") });
+  readyCybernetics(api, rule("cybernetics"));
   readyAgents(api, { biochemical: rule("biochemicalAgents"), nano: rule("nanoweapons") });
   readyMedical(api, { gear: rule("medicalGear"), drugs: rule("ultraTechDrugs"), regeneration: rule("regeneration") });
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
