@@ -1,5 +1,1408 @@
 [
   {
+    "_id": "71cacdfc2ab66a0b",
+    "name": "Acrobatic Stand",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Acrobatics"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "9a121ddefc8e5878",
+    "name": "Aggressive Parry",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing",
+        "Brawling",
+        "Karate",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "2b28d01e0decd46f",
+    "name": "Axe Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "7f73fb7b94c72826",
+    "name": "Back Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "fcf23f225f984653",
+    "name": "Breakfall",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Acrobatics",
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 68"
+    }
+  },
+  {
+    "_id": "60c22f41c01809b1",
+    "name": "Crack",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Whip",
+        "Whip Art",
+        "Whip Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "8e157a48a9a4e571",
+    "name": "Drop Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Sumo Wrestling",
+        "Wrestling",
+        "Brawling Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "219e170fdf14163d",
+    "name": "Ear Clap",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing",
+        "Brawling",
+        "Karate",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": -1,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "cdc304429b69cfeb",
+    "name": "Elbow Drop",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Wrestling",
+        "Brawling Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "85bebabe10488363",
+    "name": "Elbow Strike",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "58e65ac0e6914825",
+    "name": "Entangle",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Kusari",
+        "Whip",
+        "Kusari Art",
+        "Whip Art",
+        "Kusari Sport",
+        "Whip Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "0c5002c82bf567ba",
+    "name": "Evade",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Acrobatics",
+        "Judo",
+        "Judo Art",
+        "Judo Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "09eb4e6709e71eaf",
+    "name": "Exotic Hand Strike",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "9d20a6e3f50a076b",
+    "name": "Eye-Gouge",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Judo",
+        "Wrestling",
+        "Brawling Art",
+        "Judo Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 71"
+    }
+  },
+  {
+    "_id": "654b89efc6e4145c",
+    "name": "Eye-Pluck",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -10,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "44e36be1d751676b",
+    "name": "Eye-Poke",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing",
+        "Brawling",
+        "Karate",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": -4,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "ff69145eb3d34e5d",
+    "name": "Eye-Rake",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "238ea8023e8e9a21",
+    "name": "Lethal Eye-Poke",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": -5,
+      "description": "",
+      "reference": "Martial Arts p. 72"
+    }
+  },
+  {
+    "_id": "221582c6b01f1172",
+    "name": "Finger Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Arm Lock (Judo)",
+        "Arm Lock (Wrestling)",
+        "Arm Lock (Judo Art)",
+        "Arm Lock (Wrestling Art)",
+        "Arm Lock (Judo Sport)",
+        "Arm Lock (Wrestling Sport)"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "16afcc734e65ba51",
+    "name": "Hammer Fist",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "0ddeac47f036cecd",
+    "name": "Handcuffing",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Binding",
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "d7cb2b5af040b272",
+    "name": "Head Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "541069243f944e71",
+    "name": "Jam",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "c22f36faec3fd653",
+    "name": "Judo Throw",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "cd761ef983ceb628",
+    "name": "Jump Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "b4e3faa0e44810fd",
+    "name": "Kicking",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "67a16317196445c1",
+    "name": "Knee Drop",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Wrestling",
+        "Brawling Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "617ab687d9dcd5cd",
+    "name": "Knee Strike",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "8d6650c9837fe5a2",
+    "name": "Leg Grapple",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Judo",
+        "Wrestling Art",
+        "Judo Art",
+        "Wrestling Sport",
+        "Judo Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "f26e12de9969390e",
+    "name": "Leg Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Judo",
+        "Wrestling Art",
+        "Judo Art",
+        "Wrestling Sport",
+        "Judo Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "86e77ac68439dd2e",
+    "name": "Leg Throw",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Judo Art",
+        "Judo Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 75"
+    }
+  },
+  {
+    "_id": "f01dd40443bd578f",
+    "name": "Low-Line Defense",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing",
+        "Sumo Wrestling",
+        "Boxing Art",
+        "Sumo Wrestling Art",
+        "Boxing Sport",
+        "Sumo Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "9e652fae140e0402",
+    "name": "Lower-Body Arm Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "905bdaff4437b9bd",
+    "name": "Lower-Body Leg Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Judo",
+        "Wrestling Art",
+        "Judo Art",
+        "Wrestling Sport",
+        "Judo Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "5b7eeca3288f3869",
+    "name": "Lower-Body Head Lock",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "31f6d7eb012b2d08",
+    "name": "Neck Snap",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "any"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "e143ab112b640ce4",
+    "name": "Push Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "de8dc954d39508db",
+    "name": "Quick Mount",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Acrobatics",
+        "Jumping"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "7560ec7301389bca",
+    "name": "Return Strike",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Flail",
+        "Kusari",
+        "Flail Art",
+        "Kusari Art",
+        "Flail Sport",
+        "Kusari Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "fa898c7ec6ef1549",
+    "name": "Sacrifice Throw",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Judo Art",
+        "Judo Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "3a29c4f9085cce3e",
+    "name": "Scissors Hold",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Wrestling Art",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "e2065e58e89217c2",
+    "name": "Spinning Punch",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "29179cd438ebe3c8",
+    "name": "Spinning Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
+    "_id": "7d020d8de9b1b086",
+    "name": "Stamp Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "5f1041ca70e85632",
+    "name": "Trip",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Sumo Wrestling",
+        "Wrestling",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "d89f250dd3a053fa",
+    "name": "Two-Handed Punch",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Brawling Art",
+        "Brawling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "b0cd70d6b1b2060c",
+    "name": "Uppercut",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing",
+        "Brawling",
+        "Karate",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "502c92b9dc4a0f63",
+    "name": "Wrench Arm",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "any"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "81c5d2125d47ac3c",
+    "name": "Wrench Leg",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "any"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "f30c7ad89a75092b",
+    "name": "Wrench [Limb]",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "any"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "b0019013e1798802",
+    "name": "Wrench Spine",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Wrestling Art",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "54cd3156d02de775",
+    "name": "Backbreaker",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Wrestling Art",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "c0abe0ede4d36c73",
+    "name": "Binding",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Knot-Tying",
+        "Judo Art",
+        "Judo Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "1de9828a33b0a9ed",
+    "name": "Flying Jump Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -7,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "177c5f29b3f5be52",
+    "name": "Hand Catch",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Sumo Wrestling",
+        "Wrestling",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "cde47671fd6ae8e2",
+    "name": "Hand-Clap Parry",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Karate",
+        "Judo Art",
+        "Karate Art",
+        "Judo Sport",
+        "Karate Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "709ace9ae217940d",
+    "name": "Lethal Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "fb9591ee28f82719",
+    "name": "Lethal Strike",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "bbaf4f18334cc936",
+    "name": "Piledriver",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Wrestling",
+        "Wrestling Art",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "52f7dcaddd07f4d2",
+    "name": "Pole-Vault Kick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Karate",
+        "Karate Art",
+        "Karate Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "7fdc730dd89dcbb5",
+    "name": "Snap Weapon",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Jitte/Sai",
+        "Jitte/Sai Art",
+        "Jitte/Sai Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "9744577b2122b93b",
+    "name": "Double Eye-Poke",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "2eeca1bb779008ca",
+    "name": "Flying Atomic Wedgie",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Wrestling",
+        "Brawling Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -8,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "764ab81cf6363820",
+    "name": "Halitosis Attack",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillFamilies": [
+        "any"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "e110ddc65358026f",
+    "name": "Noogie",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "af85c5a255b002f3",
+    "name": "Nose Slap",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Wrestling",
+        "Brawling Art",
+        "Wrestling Art",
+        "Brawling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "0463adebed15640a",
+    "name": "Wet Willy",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Brawling",
+        "Karate",
+        "Brawling Art",
+        "Karate Art",
+        "Brawling Sport",
+        "Karate Sport"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
     "_id": "4d9051b436c58f51",
     "name": "Acrobatic Stand (Acrobatics)",
     "type": "technique",
@@ -7,6 +1410,51 @@
       "difficulty": "A",
       "prerequisite": "Acrobatics",
       "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "54fcea984f16f6d2",
+    "name": "Aggressive Parry (Boxing)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "b6a280f0189e7ac9",
+    "name": "Aggressive Parry (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "2c8f1f258a279db9",
+    "name": "Aggressive Parry (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -56,6 +1504,24 @@
     }
   },
   {
+    "_id": "11c383f60f2f439a",
+    "name": "Wrist Lock (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
     "_id": "d7d9571c05fbfa54",
     "name": "Armed Grapple (Cloak)",
     "type": "technique",
@@ -63,6 +1529,43 @@
       "difficulty": "H",
       "prerequisite": "Cloak",
       "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "33bdd411129fe40a",
+    "name": "Armed Grapple (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "109917591e2f2c7d",
+    "name": "Attack from Above (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -84,12 +1587,50 @@
     }
   },
   {
+    "_id": "c5db253c187bcbfd",
+    "name": "Back Strike (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
     "_id": "db59a8f3fa1dd754",
     "name": "Bind Weapon (Jitte/Sai)",
     "type": "technique",
     "system": {
       "difficulty": "H",
       "prerequisite": "Jitte/Sai",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "08413c8abd39bfa4",
+    "name": "Bind Weapon (Fencing Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche",
+        "Rapier",
+        "Saber",
+        "Smallsword"
+      ],
       "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
@@ -140,6 +1681,24 @@
     }
   },
   {
+    "_id": "2830262de9c75485",
+    "name": "Cavalry Training (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
     "_id": "53dd357afcd37176",
     "name": "Triangle Choke (Judo)",
     "type": "technique",
@@ -165,6 +1724,47 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "f197cdce7295850b",
+    "name": "Triangle Choke",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Judo",
+        "Wrestling",
+        "Judo Art",
+        "Wrestling Art",
+        "Judo Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "0fd47e916b53977d",
+    "name": "Counterattack (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
     }
   },
   {
@@ -546,6 +2146,21 @@
     }
   },
   {
+    "_id": "ecb332d7f74c872b",
+    "name": "Handcuffing (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
     "_id": "3c4adb40e52560cb",
     "name": "Handcuffing (Binding)",
     "type": "technique",
@@ -616,6 +2231,54 @@
     }
   },
   {
+    "_id": "4a4e62a7546571b9",
+    "name": "Hook (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "59dfbdb5505ea2fb",
+    "name": "Jam (Brawling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "f42a559608f124f4",
+    "name": "Jam (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
     "_id": "b194385920e2d53b",
     "name": "Judo Throw (Judo)",
     "type": "technique",
@@ -667,6 +2330,21 @@
       "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "d18dd215740393b8",
+    "name": "Leg Grapple (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
       "description": "",
       "reference": "Martial Arts p. 76"
     }
@@ -725,6 +2403,55 @@
       "maxRelativeToPrerequisite": 4,
       "description": "",
       "reference": "Martial Arts p. 76"
+    }
+  },
+  {
+    "_id": "5ef26655310daa40",
+    "name": "Low Fighting (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "074ffd1f90019389",
+    "name": "Low-Line Defense (Boxing)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "9cce781814bd2dd4",
+    "name": "Low-Line Defense (Sumo Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
     }
   },
   {
@@ -826,6 +2553,58 @@
     }
   },
   {
+    "_id": "84e6113980ece5cc",
+    "name": "Reverse Grip (One-Handed Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillFamilies": [
+        "oneHandedMelee"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "22fafde4553717dd",
+    "name": "Reverse Grip (Two-Handed Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Force Sword",
+        "Force Whip",
+        "Garrote",
+        "Jitte/Sai",
+        "Kusari",
+        "Main-Gauche",
+        "Monowire Whip",
+        "Polearm",
+        "Rapier",
+        "Saber",
+        "Shortsword",
+        "Smallsword",
+        "Spear",
+        "Staff",
+        "Tonfa",
+        "Two-Handed Axe/Mace",
+        "Two-Handed Flail",
+        "Two-Handed Sword",
+        "Whip"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
     "_id": "10ffc4ec1b8057f8",
     "name": "Sacrifice Throw (Judo)",
     "type": "technique",
@@ -882,6 +2661,24 @@
     }
   },
   {
+    "_id": "0a3ebdeddf278bf0",
+    "name": "Spinning Strike (Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
     "_id": "0e367c5f009b17f5",
     "name": "Stamp Kick (Brawling)",
     "type": "technique",
@@ -907,6 +2704,51 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "6b658867643d04aa",
+    "name": "Trip (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "6fa18d19cdf93c3b",
+    "name": "Trip (Sumo Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "b88c3055f8a8580d",
+    "name": "Trip (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
     }
   },
   {
@@ -963,6 +2805,51 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "6bf3b1da6acf8364",
+    "name": "Wrench Arm (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "7812b840b62e5ed9",
+    "name": "Wrench Leg (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "7bef0b4aaf781cf9",
+    "name": "Wrench Spine (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
     }
   },
   {
@@ -1064,6 +2951,21 @@
     }
   },
   {
+    "_id": "e118d9a44bacde77",
+    "name": "Backbreaker (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
     "_id": "96802ae2146e1e5a",
     "name": "Backbreaker (Wrestling)",
     "type": "technique",
@@ -1106,6 +3008,90 @@
     }
   },
   {
+    "_id": "ece6b83d9b0e1f25",
+    "name": "Dual-Weapon Defense (Shield (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "588d33342004844d",
+    "name": "Dual-Weapon Defense (Shield (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "07702518d41f65c6",
+    "name": "Dual-Weapon Defense (Shield (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "c512109a35bd20ee",
+    "name": "Dual-Weapon Defense (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "d667d562a752721a",
+    "name": "Fighting While Seated (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
     "_id": "5b05c04f361fb4f9",
     "name": "Flying Jump Kick (Karate)",
     "type": "technique",
@@ -1117,6 +3103,179 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "4dc12be8a02e2c57",
+    "name": "Flying Lunge (Thrusting Melee Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Shield (Shield)",
+        "Shield (Buckler)",
+        "Shield (Force)",
+        "Axe/Mace",
+        "Broadsword",
+        "Cloak",
+        "Flail",
+        "Force Sword",
+        "Jitte/Sai",
+        "Knife",
+        "Kusari",
+        "Main-Gauche",
+        "Polearm",
+        "Rapier",
+        "Saber",
+        "Shortsword",
+        "Smallsword",
+        "Spear",
+        "Staff",
+        "Tonfa",
+        "Two-Handed Axe/Mace",
+        "Two-Handed Flail",
+        "Two-Handed Sword"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "2af05083634e396d",
+    "name": "Grand Disarm (Fencing Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche",
+        "Rapier",
+        "Saber",
+        "Smallsword"
+      ],
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "2ac88440d4b277ea",
+    "name": "Grand Disarm (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "f556e27174b040f7",
+    "name": "Hand Catch (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "fe958fbc7c6c46ad",
+    "name": "Hand Catch (Sumo Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "654108bad3de0218",
+    "name": "Hand Catch (Wrestling)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "edf37caca9f71cf1",
+    "name": "Hand-Clap Parry (Judo)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "414def5a596e894f",
+    "name": "Hand-Clap Parry (Karate)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "9994ba05057a0f6c",
+    "name": "Initial Carving (Fencing Weapon)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche",
+        "Rapier",
+        "Saber",
+        "Smallsword"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
     }
   },
   {
@@ -1141,6 +3300,21 @@
       "difficulty": "H",
       "prerequisite": "Karate",
       "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "e43d6294de4c1813",
+    "name": "Piledriver (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -5,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -1176,6 +3350,25 @@
     }
   },
   {
+    "_id": "354765bc63aecab9",
+    "name": "Pressure-Point Strike (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
     "_id": "c02cd2d0e407e7e2",
     "name": "Roll with Blow (Acrobatics)",
     "type": "technique",
@@ -1185,6 +3378,38 @@
       "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "a60f4cee1e73128b",
+    "name": "Roll with Blow (Unarmed Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "unarmed"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "df20518912975e60",
+    "name": "Snap Weapon (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
       "description": "",
       "reference": "Martial Arts p. 87"
     }
@@ -1201,6 +3426,105 @@
       "maxRelativeToPrerequisite": 3,
       "description": "",
       "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "33fbc3342eab5da8",
+    "name": "Springing Attack (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "539284a5c8a6356c",
+    "name": "Timed Defense (Dodge)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "dodge",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "850ccf9771c41af0",
+    "name": "Timed Defense (Shield (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "8c74252aa37b5742",
+    "name": "Timed Defense (Shield (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "7488ac37bf6bafdc",
+    "name": "Timed Defense (Shield (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "1f95e03e18d8e2dd",
+    "name": "Timed Defense (Melee Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "melee",
+        "shield",
+        "unarmed"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
     }
   },
   {
@@ -1232,6 +3556,24 @@
     }
   },
   {
+    "_id": "4279f95282144883",
+    "name": "Eye-Poke Defense (Unarmed Combat)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillFamilies": [
+        "unarmed"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
     "_id": "aa8b9ec459e6f80e",
     "name": "Flying Atomic Wedgie (Brawling)",
     "type": "technique",
@@ -1255,6 +3597,21 @@
       "defaultModifier": -8,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "cb35c50449fa0d9e",
+    "name": "Halitosis Attack (HT)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "HT",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 88"
     }
@@ -1344,6 +3701,51 @@
     }
   },
   {
+    "_id": "b2fa7b04b477c152",
+    "name": "Aggressive Parry (Boxing Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "dad595102fa789e3",
+    "name": "Aggressive Parry (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d31fc65b72940c6d",
+    "name": "Aggressive Parry (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
     "_id": "4e3209c429c35e8b",
     "name": "Arm Lock (Judo Art)",
     "type": "technique",
@@ -1378,6 +3780,50 @@
     "system": {
       "difficulty": "A",
       "prerequisite": "Tonfa Art",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "d000182555b837a8",
+    "name": "Arm Lock (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
       "defaultModifier": 0,
       "points": 0,
       "maxRelativeToPrerequisite": 4,
@@ -1428,6 +3874,50 @@
     }
   },
   {
+    "_id": "4174bd9ef592682c",
+    "name": "Wrist Lock (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
     "_id": "f8778618441b8068",
     "name": "Armed Grapple (Cloak Art)",
     "type": "technique",
@@ -1435,6 +3925,100 @@
       "difficulty": "H",
       "prerequisite": "Cloak Art",
       "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "086b91bf8c60623a",
+    "name": "Armed Grapple (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "54d7017ba127176d",
+    "name": "Attack from Above (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -1470,12 +4054,76 @@
     }
   },
   {
+    "_id": "f5e3612edb22b2c9",
+    "name": "Back Strike (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
     "_id": "02a6fc9244340ecf",
     "name": "Bind Weapon (Jitte/Sai Art)",
     "type": "technique",
     "system": {
       "difficulty": "H",
       "prerequisite": "Jitte/Sai Art",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "4d0eba92d9036ba5",
+    "name": "Bind Weapon (Fencing Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Art",
+        "Polearm Art",
+        "Saber Art",
+        "Smallsword Art"
+      ],
       "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
@@ -1512,6 +4160,50 @@
     }
   },
   {
+    "_id": "3a9e61fdc927ad16",
+    "name": "Cavalry Training (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
     "_id": "c2c0c37e7650ac94",
     "name": "Choke Hold (Judo Art)",
     "type": "technique",
@@ -1540,6 +4232,100 @@
     }
   },
   {
+    "_id": "d5490c19f74937ac",
+    "name": "Choke Hold (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "3ab2326a7c593591",
+    "name": "Counterattack (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
     "_id": "c6056b93ea801bfa",
     "name": "Crack (Whip Art)",
     "type": "technique",
@@ -1549,6 +4335,56 @@
       "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "e67431fb37d08a8b",
+    "name": "Disarming (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 70"
     }
@@ -1904,6 +4740,56 @@
     }
   },
   {
+    "_id": "4c511f8e48c2303d",
+    "name": "Feint (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
     "_id": "56c43ce8d39b5c63",
     "name": "Finger Lock (Arm Lock (Judo Art))",
     "type": "technique",
@@ -1932,6 +4818,56 @@
     }
   },
   {
+    "_id": "b95758c6b514e5b7",
+    "name": "Ground Fighting (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
     "_id": "b121d8190b7497ca",
     "name": "Hammer Fist (Brawling Art)",
     "type": "technique",
@@ -1953,6 +4889,21 @@
       "difficulty": "A",
       "prerequisite": "Karate Art",
       "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "6ba2b6bb78d62939",
+    "name": "Handcuffing Art (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -2030,6 +4981,50 @@
     }
   },
   {
+    "_id": "01979b2c57964ad6",
+    "name": "Hook (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
     "_id": "6733283282b05e5e",
     "name": "Horse Archery (Bow Art)",
     "type": "technique",
@@ -2037,6 +5032,36 @@
       "difficulty": "H",
       "prerequisite": "Bow Art",
       "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "bb0118e5853276dd",
+    "name": "Jam (Brawling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "1f2f3fc4f9d51152",
+    "name": "Jam (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -2156,6 +5181,21 @@
     }
   },
   {
+    "_id": "c11cb388b90a6fc9",
+    "name": "Leg Grapple Art (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
     "_id": "10f35ff9d3a4c2f4",
     "name": "Leg Grapple (Wrestling Art)",
     "type": "technique",
@@ -2212,6 +5252,101 @@
     }
   },
   {
+    "_id": "fd07c5e448aa9cbe",
+    "name": "Low Fighting (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "aed060b28d935433",
+    "name": "Low-Line Defense (Boxing Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "f109abb7ba454e95",
+    "name": "Low-Line Defense (Sumo Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "0aa6c4974986f186",
+    "name": "Neck Snap Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
     "_id": "0642000ee3413089",
     "name": "Push Kick (Brawling Art)",
     "type": "technique",
@@ -2235,6 +5370,50 @@
       "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "2bf3e18a777a4847",
+    "name": "Retain Weapon (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 78"
     }
@@ -2275,6 +5454,59 @@
       "difficulty": "A",
       "prerequisite": "Tonfa Art",
       "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "95507b8fcbee3193",
+    "name": "Reverse Grip (One-Handed Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Tonfa",
+        "Tonfa Art",
+        "Tonfa Sport"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "44fa2fee2559a297",
+    "name": "Reverse Grip (Two-Handed Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Kusari Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art"
+      ],
+      "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -2338,6 +5570,50 @@
     }
   },
   {
+    "_id": "79fb59ae8394cdff",
+    "name": "Spinning Strike (Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
     "_id": "69f5d76224ede68b",
     "name": "Stamp Kick (Brawling Art)",
     "type": "technique",
@@ -2363,6 +5639,101 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "daa11e910ee43c03",
+    "name": "Sweep (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "c0c6bdf988fa751e",
+    "name": "Trip (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "52f23bff50ed804f",
+    "name": "Trip (Sumo Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "7126ac633302ffd0",
+    "name": "Trip (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
     }
   },
   {
@@ -2419,6 +5790,51 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "c74793e7886f164d",
+    "name": "Wrench Arm Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "159154426237baac",
+    "name": "Wrench Leg Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "6d23ef20c2414019",
+    "name": "Wrench Spine Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
     }
   },
   {
@@ -2688,6 +6104,21 @@
     }
   },
   {
+    "_id": "fff16fbc87afda47",
+    "name": "Backbreaker Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
     "_id": "d57823f3aa57d9c6",
     "name": "Backbreaker (Wrestling Art)",
     "type": "technique",
@@ -2758,6 +6189,221 @@
     }
   },
   {
+    "_id": "f5d52705ebb42a69",
+    "name": "Dual-Weapon Attack (One Handed Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Beam Weapons (Pistol)",
+        "Guns (Pistol)",
+        "Bow",
+        "Beam Weapons Art (Pistol)",
+        "Guns Art (Pistol)",
+        "Bow Art",
+        "Beam Weapons Sport (Pistol)",
+        "Guns Sport (Pistol)",
+        "Bow Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "797a685ba5f83549",
+    "name": "Dual-Weapon Attack (One-Handed Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art",
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "1ccf88225680d9a2",
+    "name": "Dual-Weapon Defense (Shield Art (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "0bb50558594a7e86",
+    "name": "Dual-Weapon Defense (Shield Art (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "3e3e842f7b33f048",
+    "name": "Dual-Weapon Defense (Shield Art (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "d596772816d5aa7b",
+    "name": "Dual-Weapon Defense (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "b21afc1e87b9d97e",
+    "name": "Fighting While Seated (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
     "_id": "d4284b7528f52ae1",
     "name": "Flying Jump Kick (Karate Art)",
     "type": "technique",
@@ -2769,6 +6415,209 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "6a7ba8d1da8ac4ea",
+    "name": "Flying Lunge (Thrusting Melee Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Main-Gauche Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "c81a6156248c4f84",
+    "name": "Grand Disarm (Fencing Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Art",
+        "Polearm Art",
+        "Saber Art",
+        "Smallsword Art"
+      ],
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "05e68f9d741e8f4c",
+    "name": "Grand Disarm (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "f5f86f00aca84caf",
+    "name": "Hand Catch (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "7191b0dc5cfda430",
+    "name": "Hand Catch (Sumo Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "3b79a607669541df",
+    "name": "Hand Catch (Wrestling Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "469a903b54914468",
+    "name": "Hand-Clap Parry (Judo Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "13bfb8350fe5ffff",
+    "name": "Hand-Clap Parry (Karate Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Art",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "782697e7e9213f2b",
+    "name": "Initial Carving (Fencing Weapon Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Art",
+        "Polearm Art",
+        "Saber Art",
+        "Smallsword Art"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
     }
   },
   {
@@ -2793,6 +6642,21 @@
       "difficulty": "H",
       "prerequisite": "Karate Art",
       "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "4139495edffa8788",
+    "name": "Piledriver Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -5,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -2828,6 +6692,93 @@
     }
   },
   {
+    "_id": "cc365d532ad7451a",
+    "name": "Pressure-Point Strike (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "4256310df2c88d67",
+    "name": "Roll with Blow (Unarmed Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "70464a7947b5b26c",
+    "name": "Snap Weapon Art (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
     "_id": "f6fd25765f472757",
     "name": "Snap Weapon (Jitte/Sai Art)",
     "type": "technique",
@@ -2839,6 +6790,217 @@
       "maxRelativeToPrerequisite": 3,
       "description": "",
       "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "147c110994542ba5",
+    "name": "Springing Attack (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "eb7b7fd8d5ae741d",
+    "name": "Timed Defense (Dodge Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "dodge",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "725ff6d188026202",
+    "name": "Timed Defense (Shield Art (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "86aba83e844a2b39",
+    "name": "Timed Defense (Shield Art (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "442de984990ba4f7",
+    "name": "Timed Defense (Shield Art (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Art (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "6dfff6e9cad9e955",
+    "name": "Timed Defense (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "b8bebeb9ac18beab",
+    "name": "Whirlwind Attack (Melee Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Art",
+        "Broadsword Art",
+        "Cloak Art",
+        "Flail Art",
+        "Force Sword Art",
+        "Force Whip Art",
+        "Garrote Art",
+        "Jitte/Sai Art",
+        "Knife Art",
+        "Kusari Art",
+        "Lance Art",
+        "Main-Gauche Art",
+        "Monowire Whip Art",
+        "Parry Missile Weapons Art",
+        "Polearm Art",
+        "Saber Art",
+        "Shortsword Art",
+        "Smallsword Art",
+        "Spear Art",
+        "Staff Art",
+        "Tonfa Art",
+        "Two-Handed Axe/Mace Art",
+        "Two-Handed Flail Art",
+        "Two-Handed Sword Art",
+        "Whip Art",
+        "Shield Art (Shield)",
+        "Shield Art (Buckler)",
+        "Shield Art (Force)",
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
     }
   },
   {
@@ -2870,6 +7032,29 @@
     }
   },
   {
+    "_id": "145c31dcc5883045",
+    "name": "Eye-Poke Defense (Unarmed Combat Art)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Art",
+        "Brawling Art",
+        "Karate Art",
+        "Judo Art",
+        "Sumo Wrestling Art",
+        "Wrestling Art"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
     "_id": "a2e271e5c3ee59e5",
     "name": "Flying Atomic Wedgie (Brawling Art)",
     "type": "technique",
@@ -2893,6 +7078,21 @@
       "defaultModifier": -8,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "6842b4ae1989703b",
+    "name": "Halitosis Attack Art(HT)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "HT",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 88"
     }
@@ -2982,6 +7182,51 @@
     }
   },
   {
+    "_id": "ea1fed5d01c4c9c8",
+    "name": "Aggressive Parry (Boxing Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "0e7f40770637b1cb",
+    "name": "Aggressive Parry (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "45be71d325c1d52a",
+    "name": "Aggressive Parry (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
     "_id": "32c2e84a9651c8c2",
     "name": "Arm Lock (Judo Sport)",
     "type": "technique",
@@ -3016,6 +7261,50 @@
     "system": {
       "difficulty": "A",
       "prerequisite": "Tonfa Sport",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
+    "_id": "eb491bb27ed396bd",
+    "name": "Arm Lock (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
       "defaultModifier": 0,
       "points": 0,
       "maxRelativeToPrerequisite": 4,
@@ -3066,6 +7355,50 @@
     }
   },
   {
+    "_id": "4714e33755234f4e",
+    "name": "Wrist Lock (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 65"
+    }
+  },
+  {
     "_id": "ee29112a95e8042e",
     "name": "Armed Grapple (Cloak Sport)",
     "type": "technique",
@@ -3073,6 +7406,100 @@
       "difficulty": "H",
       "prerequisite": "Cloak Sport",
       "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "69ac098e1e4209ea",
+    "name": "Armed Grapple (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "ee19185bb79e9888",
+    "name": "Attack from Above (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -3108,12 +7535,76 @@
     }
   },
   {
+    "_id": "f2f76273daaddd33",
+    "name": "Back Strike (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
     "_id": "b94d925d71748c96",
     "name": "Bind Weapon (Jitte/Sai Sport)",
     "type": "technique",
     "system": {
       "difficulty": "H",
       "prerequisite": "Jitte/Sai Sport",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 67"
+    }
+  },
+  {
+    "_id": "813d984f29b1ff5d",
+    "name": "Bind Weapon (Fencing Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Smallsword Sport"
+      ],
       "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
@@ -3150,6 +7641,50 @@
     }
   },
   {
+    "_id": "39bbde9d4d64064d",
+    "name": "Cavalry Training (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
     "_id": "87ee785f024c1a59",
     "name": "Choke Hold (Judo Sport)",
     "type": "technique",
@@ -3178,6 +7713,100 @@
     }
   },
   {
+    "_id": "ea8892cf0c8913d2",
+    "name": "Choke Hold (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 69"
+    }
+  },
+  {
+    "_id": "78e0f9e8da53f0c2",
+    "name": "Counterattack (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
     "_id": "63e6e86d7de8550f",
     "name": "Crack (Whip Sport)",
     "type": "technique",
@@ -3187,6 +7816,56 @@
       "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 70"
+    }
+  },
+  {
+    "_id": "82c8db9bfed14811",
+    "name": "Disarming (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 70"
     }
@@ -3542,6 +8221,56 @@
     }
   },
   {
+    "_id": "b728501f75dd112e",
+    "name": "Feint (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
     "_id": "1142a334d851f418",
     "name": "Finger Lock (Arm Lock (Judo Sport))",
     "type": "technique",
@@ -3570,6 +8299,56 @@
     }
   },
   {
+    "_id": "ced7241e3ea8ad76",
+    "name": "Ground Fighting (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
     "_id": "7e67398e6843f8f5",
     "name": "Hammer Fist (Brawling Sport)",
     "type": "technique",
@@ -3591,6 +8370,21 @@
       "difficulty": "A",
       "prerequisite": "Karate Sport",
       "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 73"
+    }
+  },
+  {
+    "_id": "3236375c16d41546",
+    "name": "Handcuffing Sport (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": -2,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -3668,6 +8462,50 @@
     }
   },
   {
+    "_id": "f102a6d29e143975",
+    "name": "Hook (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
     "_id": "3c7f2f92583eb34d",
     "name": "Horse Archery (Bow Sport)",
     "type": "technique",
@@ -3675,6 +8513,36 @@
       "difficulty": "H",
       "prerequisite": "Bow Sport",
       "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "b53749120273ff8b",
+    "name": "Jam (Brawling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Brawling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 74"
+    }
+  },
+  {
+    "_id": "b7636e355db1c0ae",
+    "name": "Jam (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -3794,6 +8662,21 @@
     }
   },
   {
+    "_id": "36c6d995afc4e7a9",
+    "name": "Leg Grapple Sport (DX)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "DX",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "Martial Arts p. 76"
+    }
+  },
+  {
     "_id": "b3148a3cc606f7b2",
     "name": "Leg Grapple (Wrestling Sport)",
     "type": "technique",
@@ -3850,6 +8733,101 @@
     }
   },
   {
+    "_id": "c2be93a9fa662ced",
+    "name": "Low Fighting (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "3c75e8e271a3b70a",
+    "name": "Low-Line Defense (Boxing Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Boxing Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "a231f15e57e301eb",
+    "name": "Low-Line Defense (Sumo Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
+    "_id": "0b08133be51b2ac2",
+    "name": "Neck Snap Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 77"
+    }
+  },
+  {
     "_id": "6b033e16c2160286",
     "name": "Push Kick (Brawling Sport)",
     "type": "technique",
@@ -3873,6 +8851,50 @@
       "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "a2d73ba32bc2ffa6",
+    "name": "Retain Weapon (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 78"
     }
@@ -3913,6 +8935,75 @@
       "difficulty": "A",
       "prerequisite": "Tonfa Sport",
       "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "27f67157669edec1",
+    "name": "Reverse Grip (One-Handed Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Whip Sport"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 78"
+    }
+  },
+  {
+    "_id": "9d02e44f43a8504f",
+    "name": "Reverse Grip (Two-Handed Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Kusari Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport"
+      ],
+      "defaultModifier": -4,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -3976,6 +9067,50 @@
     }
   },
   {
+    "_id": "e19f157360a5a798",
+    "name": "Spinning Strike (Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 79"
+    }
+  },
+  {
     "_id": "4ed268ccb6b397d1",
     "name": "Stamp Kick (Brawling Sport)",
     "type": "technique",
@@ -4001,6 +9136,101 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 80"
+    }
+  },
+  {
+    "_id": "12dfa434f07d9da7",
+    "name": "Sweep (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "8b1bea94d21510d0",
+    "name": "Trip (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "f31b89419f40beed",
+    "name": "Trip (Sumo Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
+    }
+  },
+  {
+    "_id": "d8de9ff312fb6eb7",
+    "name": "Trip (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 81"
     }
   },
   {
@@ -4060,6 +9290,51 @@
     }
   },
   {
+    "_id": "470a9ffe5db4b600",
+    "name": "Wrench Arm Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "8bec4c5f25ed3888",
+    "name": "Wrench Leg Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "39ea7330f4a79f76",
+    "name": "Wrench Spine Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
     "_id": "db881ba364b42685",
     "name": "Wrench Spine (Wrestling Sport)",
     "type": "technique",
@@ -4067,6 +9342,21 @@
       "difficulty": "H",
       "prerequisite": "Wrestling Sport",
       "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 82"
+    }
+  },
+  {
+    "_id": "67e819a5c876450c",
+    "name": "Backbreaker Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -3,
       "points": 0,
       "maxRelativeToPrerequisite": 3,
       "description": "",
@@ -4144,6 +9434,221 @@
     }
   },
   {
+    "_id": "35dcd36f8db93452",
+    "name": "Dual-Weapon Attack (One Handed Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Beam Weapons (Pistol)",
+        "Guns (Pistol)",
+        "Bow",
+        "Beam Weapons Art (Pistol)",
+        "Guns Art (Pistol)",
+        "Bow Art",
+        "Beam Weapons Sport (Pistol)",
+        "Guns Sport (Pistol)",
+        "Bow Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "fbcc5b5a272d9b9c",
+    "name": "Dual-Weapon Attack (One-Handed Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport",
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "cd821a003f055a5f",
+    "name": "Dual-Weapon Defense (Shield Sport (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "5795e17868f48240",
+    "name": "Dual-Weapon Defense (Shield Sport (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "f0bdbb911b38af4d",
+    "name": "Dual-Weapon Defense (Shield Sport (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "16ac708705dcd816",
+    "name": "Dual-Weapon Defense (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -1,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "9fed4de100d9a00a",
+    "name": "Fighting While Seated (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
     "_id": "26b149fc7a63230b",
     "name": "Flying Jump Kick (Karate Sport)",
     "type": "technique",
@@ -4155,6 +9660,209 @@
       "maxRelativeToPrerequisite": 0,
       "description": "",
       "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "df9a3ded54cc8944",
+    "name": "Flying Lunge (Thrusting Melee Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Main-Gauche Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 83"
+    }
+  },
+  {
+    "_id": "1f57a0415e03f53b",
+    "name": "Grand Disarm (Fencing Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Smallsword Sport"
+      ],
+      "defaultModifier": -9,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "753f337f2980e2af",
+    "name": "Grand Disarm (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -11,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "6f12c50c0301501e",
+    "name": "Hand Catch (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "d441450741b121b4",
+    "name": "Hand Catch (Sumo Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Sumo Wrestling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "e94ffba573ec9b83",
+    "name": "Hand Catch (Wrestling Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Wrestling Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -3,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "dd50d1824153b43a",
+    "name": "Hand-Clap Parry (Judo Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Judo Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "e78a5d730b3acb5c",
+    "name": "Hand-Clap Parry (Karate Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Karate Sport",
+      "defaultFrom": "parry",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 84"
+    }
+  },
+  {
+    "_id": "a93ec2f2648619be",
+    "name": "Initial Carving (Fencing Weapon Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Main-Gauche Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Smallsword Sport"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
     }
   },
   {
@@ -4179,6 +9887,21 @@
       "difficulty": "H",
       "prerequisite": "Karate Sport",
       "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 85"
+    }
+  },
+  {
+    "_id": "bd33221db8da3682",
+    "name": "Piledriver Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -5,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
       "description": "",
@@ -4214,6 +9937,93 @@
     }
   },
   {
+    "_id": "e97226bb17eda084",
+    "name": "Pressure-Point Strike (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "0f1a4bd35daa6997",
+    "name": "Roll with Blow (Unarmed Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "53890620df095d0d",
+    "name": "Snap Weapon Sport (ST)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "ST",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 3,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
     "_id": "9482494171a6491b",
     "name": "Snap Weapon (Jitte/Sai Sport)",
     "type": "technique",
@@ -4225,6 +10035,217 @@
       "maxRelativeToPrerequisite": 3,
       "description": "",
       "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "eb7422216645618f",
+    "name": "Springing Attack (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 87"
+    }
+  },
+  {
+    "_id": "e29374a6e9e058a3",
+    "name": "Timed Defense (Dodge Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "defaultFrom": "dodge",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "deb82f12a799d278",
+    "name": "Timed Defense (Shield Sport (Buckler))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Buckler)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "479885ba94e931da",
+    "name": "Timed Defense (Shield Sport (Shield))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Shield)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "1dbc5251212f4bf4",
+    "name": "Timed Defense (Shield Sport (Force))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Shield Sport (Force)",
+      "defaultFrom": "block",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "78fee9b5d5cdbd88",
+    "name": "Timed Defense (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
+    }
+  },
+  {
+    "_id": "b21fa3b122b80e1f",
+    "name": "Whirlwind Attack (Melee Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Axe/Mace Sport",
+        "Broadsword Sport",
+        "Cloak Sport",
+        "Flail Sport",
+        "Force Sword Sport",
+        "Force Whip Sport",
+        "Garrote Sport",
+        "Jitte/Sai Sport",
+        "Knife Sport",
+        "Kusari Sport",
+        "Lance Sport",
+        "Main-Gauche Sport",
+        "Monowire Whip Sport",
+        "Parry Missile Weapons Sport",
+        "Polearm Sport",
+        "Saber Sport",
+        "Shortsword Sport",
+        "Smallsword Sport",
+        "Spear Sport",
+        "Staff Sport",
+        "Tonfa Sport",
+        "Two-Handed Axe/Mace Sport",
+        "Two-Handed Flail Sport",
+        "Two-Handed Sword Sport",
+        "Whip Sport",
+        "Shield Sport (Shield)",
+        "Shield Sport (Buckler)",
+        "Shield Sport (Force)",
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 89"
     }
   },
   {
@@ -4256,6 +10277,29 @@
     }
   },
   {
+    "_id": "5c9108b770295129",
+    "name": "Eye-Poke Defense (Unarmed Combat Sport)",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Boxing Sport",
+        "Brawling Sport",
+        "Karate Sport",
+        "Judo Sport",
+        "Sumo Wrestling Sport",
+        "Wrestling Sport"
+      ],
+      "defaultFrom": "parry",
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
     "_id": "a267abe398a1e690",
     "name": "Flying Atomic Wedgie (Brawling Sport)",
     "type": "technique",
@@ -4279,6 +10323,21 @@
       "defaultModifier": -8,
       "points": 0,
       "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "Martial Arts p. 88"
+    }
+  },
+  {
+    "_id": "30eed8390b215b53",
+    "name": "Halitosis Attack Sport (HT)",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "defaultFrom": "HT",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 5,
       "description": "",
       "reference": "Martial Arts p. 88"
     }

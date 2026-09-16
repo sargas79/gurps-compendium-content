@@ -67,7 +67,7 @@ Dry run with `npm run extract -- martial-arts`.
 |---|---|---|---|
 | Off a named skill | 337 | 71 | parsed (312 after the overlap) |
 | Off a placeholder skill: "Disarming ([Melee Combat Skill])", "Arm Lock (%Melee Weapon Skill%)" | 253 | 96 | rejected; **needs the system first** |
-| Off a defense: Parry, Block or Dodge (Aggressive Parry, Dual-Weapon Defense, Eye-Poke Defense, Hand Catch, Hand-Clap Parry, Jam, Low-Line Defense, Timed Defense, Trip) | 90 | 9 | the 66 on a named skill kept by hand, with an open Dual-Weapon Defense for melee weapon skills (#209); the rest wait on sargas79/GWorldVTT#368 |
+| Off a defense: Parry, Block or Dodge (Aggressive Parry, Dual-Weapon Defense, Eye-Poke Defense, Hand Catch, Hand-Clap Parry, Jam, Low-Line Defense, Timed Defense, Trip) | 90 | 9 | parsed since sargas79/GWorldVTT#230, and re-extracted in #219 |
 | Off an attribute, as one of their defaults (Backbreaker, Beat, Halitosis Attack, Handcuffing, Head Butt, Leg Grapple, Neck Snap, Piledriver, Retain Weapon, Ruse, Snap Weapon, Wrench Arm, Wrench Leg, Wrench Spine, and their Art and Sport versions) | 43 | 15 | rejected where the attribute default comes first; **needs the system first** |
 
 Many techniques have more than one default. The parser reads the first, so a
@@ -129,14 +129,16 @@ records it blocks, as Magic did for powerstones.
 
 - **A technique bought against a skill chosen when it is added**, such as
   Disarming for any Melee Weapon skill (sargas79/GWorldVTT#194): 253 records
-  under 96 names. The Basic Set needs it too, for Disarming.
+  under 96 names. In the pack since #219, each reading its own choice list
+  (sargas79/GWorldVTT#368).
 - **A technique that defaults to a defense or an attribute**
   (sargas79/GWorldVTT#195): 24 techniques, with their Art and Sport versions.
-  The parser reads them since sargas79/GWorldVTT#230. The ones off a defense on a
-  named skill are kept by hand (#209); re-extracting waits on
-  sargas79/GWorldVTT#368, which gets open techniques and attribute defaults wrong.
+  Parsed since sargas79/GWorldVTT#230, and in the pack since #219. A default that
+  rebases a technique on an attribute (Snap Weapon's ST-DX) keeps the skill and
+  its penalty; the rebasing has no field in the model.
 - **An equipment attack that adds the unarmed-skill damage bonus**
-  (sargas79/GWorldVTT#196): 10 attack modes.
+  (sargas79/GWorldVTT#196): 10 attack modes. In the pack since #219, with the
+  three weapons that had nothing else (Bladed Hand, Myrmex, Sap Glove).
 - **A melee attack mode used at a penalty to hit** (sargas79/GWorldVTT#199):
   13 modes on eight weapons.
 - **The Basic Set technique data errors** above (sargas79/GWorldVTT#193).
