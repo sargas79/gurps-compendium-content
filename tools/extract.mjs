@@ -36,8 +36,10 @@ import { existsSync, readdirSync, readFileSync, rmSync, writeFileSync } from "no
 import { mkdir } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
+import { pathToFileURL } from "node:url";
 
-import { book, books, statisticsDir, systemRoot } from "./lib/books.mjs";
+import { MODULE_ID, book, books, statisticsDir, systemRoot } from "./lib/books.mjs";
+import { powerOf } from "./lib/power-cells.mjs";
 
 /** Where the GCA data files live on this machine, unless the book says otherwise. */
 const GDF_ROOT = process.env.GURPS_GDF_DIR ?? "E:/data files";
@@ -188,6 +190,12 @@ async function main() {
     }
   }
 
+  // What each gadget is powered by, which no parser reads because no book but
+  // this one has power cells: the size, how many, whether it is worn as a pack,
+  // and how long it lasts. It goes in the module's own extension data, where
+  // the book's rules read it and the system's schema never sees it.
+  if (write) await addPowerCells(gdf, out);
+
   // A parser that found nothing still writes its file, under the Basic Set's
   // name when it has no stem of its own: an empty spells pack is not a pack.
   if (write) {
@@ -217,3 +225,47 @@ async function main() {
 }
 
 await main();
+
+/**
+ * Writes what each gadget is powered by into the records the parsers produced.
+ *
+ * The GCA file carries it in three columns the system's reader keeps but no
+ * parser uses, because power cells are this book's (pp. 18-20) and the system
+ * implements the Basic Set. So the file is read again here, through the
+ * system's own reader, and matched to the records by name.
+ */
+async function addPowerCells(gdfPath, out) {
+  const gdf = readFileSync(gdfPath, "utf8");
+  const { fields, nameOf, records } = await import(
+    pathToFileURL(join(systemRoot, "tools", "gdf.mjs")).href
+  );
+
+  const byName = new Map();
+  for (const record of records(gdf)) {
+    const power = powerOf(fields(record.text));
+    if (power) byName.set(nameOf(record), power);
+  }
+  if (byName.size === 0) return;
+
+  let written = 0;
+  for (const entry of readdirSync(out, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+    const dir = join(out, entry.name);
+    for (const file of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.includes("-by-hand"))) {
+      const docs = JSON.parse(readFileSync(join(dir, file), "utf8"));
+      if (!Array.isArray(docs)) continue;
+      let changed = false;
+      for (const doc of docs) {
+        const power = byName.get(String(doc.name ?? ""));
+        if (!power) continue;
+        doc.system ??= {};
+        doc.system.extensions ??= {};
+        doc.system.extensions[MODULE_ID] ??= {};
+        doc.system.extensions[MODULE_ID].power = power;
+        changed = true;
+        written += 1;
+      }
+      if (changed) writeFileSync(join(dir, file), JSON.stringify(docs, null, 2) + "\n", "utf8");
+    }
+  }
+  console.log(`  power cells written on ${written} record(s) of ${byName.size} the file gives one`);
+}

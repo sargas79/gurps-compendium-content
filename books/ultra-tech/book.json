@@ -16,7 +16,7 @@
   "notes": "GCA cites this book as UT113, the plain prefix. PDF page = book page + 1. The data file's header says it holds weapons and armour; it also holds the cybernetics twice (as advantages with point costs and as equipment with dollar costs), the power items and the computers. Chapters 3, 4, 5, 8 (medical gear and drugs) and 9 (vehicles) are not in it at all, so about 600 gadgets are captured from the PDF instead (#229). The parsers do not read the file's 35 templates, so the robot bodies and their lenses are kept by hand (#228). Six records also cite a Basic Set page and are left to the system's packs; none of the six is in the Basic Set pack, so all six are added by hand (#227). See TRIAGE.md.",
   "exclude": [
     {
-      "pack": "armor",
+      "pack": "equipment",
       "pattern": "%",
       "reason": "build-your-own armour whose DR, cost and weight are GCA sheet formulas over choice lists; the tailored armour builder covers them (#253)"
     },
@@ -30,44 +30,1047 @@
     {
       "pack": "equipment",
       "pattern": "^Tiny Computer$",
-      "set": { "system.complexity": 3 },
+      "set": {
+        "system.complexity": 3
+      },
       "reason": "Complexity is only in the record's description, which the reader drops on purpose (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Small Computer$",
-      "set": { "system.complexity": 4 },
+      "set": {
+        "system.complexity": 4
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Personal Computer$",
-      "set": { "system.complexity": 5 },
+      "set": {
+        "system.complexity": 5
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Microframe$",
-      "set": { "system.complexity": 6 },
+      "set": {
+        "system.complexity": 6
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Mainframe$",
-      "set": { "system.complexity": 7 },
+      "set": {
+        "system.complexity": 7
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Macroframe$",
-      "set": { "system.complexity": 8 },
+      "set": {
+        "system.complexity": 8
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
     },
     {
       "pack": "equipment",
       "pattern": "^Megacomputer$",
-      "set": { "system.complexity": 9 },
+      "set": {
+        "system.complexity": 9
+      },
       "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Assault Boots \\(TL  9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 6,
+        "system.soleDr": 12
+      },
+      "reason": "boots give \"their full DR against attacks to the underside of the foot ... but half DR against attacks from other angles\" (p. 173), which is the system's sole DR rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Assault Boots \\(TL 10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 9,
+        "system.soleDr": 18
+      },
+      "reason": "boots give \"their full DR against attacks to the underside of the foot ... but half DR against attacks from other angles\" (p. 173), which is the system's sole DR rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Assault Boots \\(TL 11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 15,
+        "system.soleDr": 30
+      },
+      "reason": "boots give \"their full DR against attacks to the underside of the foot ... but half DR against attacks from other angles\" (p. 173), which is the system's sole DR rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Hardsuit \\(TL 9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 30,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 50
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Hardsuit \\(TL10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 45,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 75
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Hardsuit \\(TL11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 60,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 100
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Hardsuit \\(TL12\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 90,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 150
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Armor \\(TL 9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 30,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 50
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Armor \\(TL10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 45,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 75
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Armor \\(TL11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 60,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 100
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Armor \\(TL12\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 90,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 150
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the torso, and its lower DR for attacks to other areas\" (p. 179); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Infantry Helmet \\(TL 9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 12,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 18
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Infantry Helmet \\(TL10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 18,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 27
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Infantry Helmet \\(TL11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 24,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 36
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Infantry Helmet \\(TL12\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 36,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 54
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Combat Helmet \\(TL 9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 30,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 40
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Combat Helmet \\(TL10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 45,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 60
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Combat Helmet \\(TL11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 60,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 80
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Combat Helmet \\(TL12\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 60,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 100
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Visored Space Helmet \\(TL 9\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 15,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 20
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Visored Space Helmet \\(TL10\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 22,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 30
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Visored Space Helmet \\(TL11\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 30,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 40
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Visored Space Helmet \\(TL12\\)$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 45,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 60
+          }
+        ]
+      },
+      "reason": "\"use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes\" (p. 180); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Combat Walker$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 120,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso",
+              "skull"
+            ],
+            "dr": 200
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Marine Combat Walker$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 120,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso",
+              "skull"
+            ],
+            "dr": 200
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Combat Walker$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 120,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso",
+              "skull"
+            ],
+            "dr": 200
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Powered Combat Armor$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 50,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 70
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Powered Combat Armor Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 50,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 70
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Commando Battlesuit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 75,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 105
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Commando Battlesuit Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 75,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 105
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy Battlesuit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 100,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 150
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy Battlesuit Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 100,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 150
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dreadnought Battlesuit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 150,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "torso"
+            ],
+            "dr": 200
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dreadnought Battlesuit Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 150,
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull"
+            ],
+            "dr": 200
+          }
+        ]
+      },
+      "reason": "\"the higher DR against attacks to the torso (and skull, for helmets or suits that cover all locations); the lower DR protects other locations\" (p. 186); a higher DR on one location rather than a damage-type split"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Jacket$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 4,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 24,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Suit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 4,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 24,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Trousers$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 4,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 24,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Nanoplas Jacket$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 6,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 36,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Nanoplas Suit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 6,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 36,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ablative Nanoplas Trousers$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 6,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 36,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        },
+        "system.ablative": "semiAblative"
+      },
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Reflec Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 20,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Reflec Jacket$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 20,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Reflec Suit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 20,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Retro-Reflective Helmet$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 40,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Retro-Reflective Jacket$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 40,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Retro-Reflective Suit$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 40,
+          "fullDrAgainst": "laser",
+          "reference": "Ultra-Tech p. 173"
+        }
+      },
+      "reason": "\"full DR against microwaves and lasers (but not X-ray or gamma-ray lasers), but provides no protection against other weapons\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy Exoskeleton$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 20,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Light Exoskeleton$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 10,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Lower Body Exoskeleton$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 8,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Power Sleeve$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 8,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ranger Exoskeleton$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 20,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Stealth Exoskeleton$",
+      "set": {
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.dr": 0,
+        "system.extensions.gurps-compendium-content.armor": {
+          "fullDr": 12,
+          "fullDrAgainst": "swingFallCollision",
+          "reference": "Ultra-Tech p. 182"
+        }
+      },
+      "reason": "\"the higher DR against any swinging melee attacks, falls, or collisions ... the lower DR against all other damage types\" (p. 182); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#254)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Bioplas (Bodysuit|Gloves|Suit)|Space Biosuit)$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "cr",
+          "cut",
+          "imp",
+          "tox",
+          "cor",
+          "fat"
+        ]
+      },
+      "reason": "bioplas \"provides its full DR against burning and piercing damage, but gets only one-third DR vs. other damage types\" (p. 174); the reader fills the list from the Basic Set's high-tech table, which is a different set"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Fusion Generators, Semi-Portable$",
+      "set": {
+        "name": "Semi-Portable Fusion Reactor"
+      },
+      "reason": "the book prints \"Semi-Portable Fusion Reactor (TL10)\" at these figures (p. 20); the file inverts the name at a comma to sort it"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Fusion Generator, Portable$",
+      "set": {
+        "name": "Portable Fusion Reactor"
+      },
+      "reason": "the book prints \"Portable Fusion Reactor (TL11)\" at these figures (p. 20); the file inverts the name at a comma to sort it"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Antimatter Generator, Semi-Portable$",
+      "set": {
+        "name": "Semi-Portable Antimatter Generator"
+      },
+      "reason": "the book prints \"Semi-Portable Antimatter Generator (TL11)\" (p. 20); the file inverts the name at a comma to sort it"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Antimatter Generator, Portable$",
+      "set": {
+        "name": "Portable Antimatter Generator"
+      },
+      "reason": "the book prints \"Portable Antimatter Generator (TL12)\" (p. 20); the file inverts the name at a comma to sort it"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Cold Fusion Generator, Semi-Portable$",
+      "set": {
+        "name": "Semi-Portable Cold Fusion Generator"
+      },
+      "reason": "the word order the file inverted at a comma. The book names no such item: these two are the \"divide cost by 5 and weight by 10\" note for TL^ fusion plants (p. 20) made into records, so only the order is mended"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Cold Fusion Generator, Portable$",
+      "set": {
+        "name": "Portable Cold Fusion Generator"
+      },
+      "reason": "the word order the file inverted at a comma; see the note above"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Fission Generators$",
+      "set": {
+        "name": "Semi-Portable Fission Reactor"
+      },
+      "reason": "the book describes \"a typical semi-portable system\" at exactly these figures under the heading \"Fission Generators (TL9)\" (p. 20). The heading is the family, not the item, and the plural name read as though the record were several"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Bionic Ear$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -3 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Bionic Ears$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -1 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Bionic Eye \\(Two\\)$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -1 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Bionic Organ Transplant$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -26 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Cybervoder$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -4 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
+    },
+    {
+      "pack": "advantages",
+      "pattern": "^Heavy Weapon Arm Mount$",
+      "set": {
+        "system.category": "disadvantage"
+      },
+      "reason": "a net cost of -18 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
     }
   ]
 }

@@ -1,0 +1,5083 @@
+[
+  {
+    "_id": "23eaa8b4a8a015ab",
+    "name": "Reflex Bodysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "ad23a998e74228c7",
+    "name": "Reflex Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 6,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "441feb126a515a5d",
+    "name": "Reflex Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "cdad860b8767a998",
+    "name": "Reflex Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "a52f2deae05f5add",
+    "name": "Reflex Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 280,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "612661ce44fdfacc",
+    "name": "Reflex Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "b7a3d981a728534a",
+    "name": "Nanoweave Bodysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 18,
+      "drSplit": 6,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "8f3495e2c5e36e16",
+    "name": "Nanoweave Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 9,
+      "drSplit": 3,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "2268bdc7ea2a398d",
+    "name": "Nanoweave Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 18,
+      "drSplit": 6,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "458df963231cea61",
+    "name": "Nanoweave Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 18,
+      "drSplit": 6,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "92f940414009ebd2",
+    "name": "Nanoweave Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 280,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 18,
+      "drSplit": 6,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "0b2aaa40eda0b34a",
+    "name": "Nanoweave Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 18,
+      "drSplit": 6,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "cec84be92b343c93",
+    "name": "Monocrys Bodysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 24,
+      "drSplit": 8,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "d75c372ae47d12e8",
+    "name": "Monocrys Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 12,
+      "drSplit": 4,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "02d0139c9a1e3d93",
+    "name": "Monocrys Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 24,
+      "drSplit": 8,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "5792c028bb8761a5",
+    "name": "Monocrys Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 24,
+      "drSplit": 8,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e2363aa473692875",
+    "name": "Monocrys Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 280,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 24,
+      "drSplit": 8,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "525bceb81cb60493",
+    "name": "Monocrys Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 172",
+      "dr": 24,
+      "drSplit": 8,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "df6c8ec584c41947",
+    "name": "Reflex Tactical Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 18,
+      "drSplit": 7,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "9c363606c363810b",
+    "name": "Reflex Tactical Vest trauma plates",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 34,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "307b3adf518fea67",
+    "name": "Nanoweave Tactical Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 24,
+      "drSplit": 10,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "bcc523e98a7aa4d8",
+    "name": "Nanoweave Tactical Vest trauma plates",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 46,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "2ebb216d4364f4e8",
+    "name": "Monocrys Tactical Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 36,
+      "drSplit": 15,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c37f1050d782137b",
+    "name": "Monocrys Tactical Vest trauma plates",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 69,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "4c4212ce629a9df8",
+    "name": "Assault Boots (TL  9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": 12
+    }
+  },
+  {
+    "_id": "37214e7c27f99fa4",
+    "name": "Assault Boots (TL 10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 9,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": 18
+    }
+  },
+  {
+    "_id": "15fd4c87b897fbda",
+    "name": "Assault Boots (TL 11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": 30
+    }
+  },
+  {
+    "_id": "8e5a270393a512c1",
+    "name": "Assault Boots (TL 12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 173",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e50567ee96610fa5",
+    "name": "Ablative Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 24,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "8425844fc27b519a",
+    "name": "Ablative Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 24,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "8fca12844e995ecf",
+    "name": "Ablative Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 280,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 24,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "b066131cefcc35df",
+    "name": "Reflec Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 20,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6bfa65578219e6b1",
+    "name": "Reflec Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "arm"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 20,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8a90ee5a182be2a9",
+    "name": "Reflec Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 20,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "7bddfc67dfe0905d",
+    "name": "Ablative Nanoplas Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 36,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "10cb83e751ce4fc1",
+    "name": "Ablative Nanoplas Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 36,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "f310a824d302774d",
+    "name": "Ablative Nanoplas Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 280,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 36,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      },
+      "ablative": "semiAblative"
+    }
+  },
+  {
+    "_id": "ea56721d292d70a3",
+    "name": "Retro-Reflective Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 40,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a3cd14b5b821302b",
+    "name": "Retro-Reflective Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "arm"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 40,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "25315e9374d21c9c",
+    "name": "Retro-Reflective Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 40,
+            "fullDrAgainst": "laser",
+            "reference": "Ultra-Tech p. 173"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d60fc28e43fd75a0",
+    "name": "Bioplas Bodysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 1800,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 15,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "imp",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "f973b98d939c0eba",
+    "name": "Bioplas Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 60,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 15,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "imp",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "5a8d4ebf442a5c32",
+    "name": "Bioplas Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2400,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 15,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "imp",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "91651edaed22f849",
+    "name": "Energy Cloth Bodysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c55636c6c35e21c7",
+    "name": "Energy Cloth Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "bb344b77a6d60b8e",
+    "name": "Energy Cloth Jacket",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "a5abc5183b94116c",
+    "name": "Energy Cloth Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 4000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "8e82d1906ac97b21",
+    "name": "Energy Cloth Trousers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.8,
+      "cost": 1400,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "040b6a090c2f48e4",
+    "name": "Energy Cloth Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 174",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "16b3c8106478b04b",
+    "name": "Armored Shades (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "83295472de60f41e",
+    "name": "Light Infantry Helmet (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 18,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "8725c8b6be668edd",
+    "name": "Light Infantry Helmet Visor (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "a0a06bf1d98e9991",
+    "name": "Armored Shades (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "93d9111e20d7fe2b",
+    "name": "Light Infantry Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 24,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e3afc051bbf4c91d",
+    "name": "Light Infantry Helmet Visor (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 20,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "38c1db486a07a91b",
+    "name": "Armored Shades (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 20,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "9e12af9b0989ffe0",
+    "name": "Light Infantry Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 36,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c0c573c5fd351929",
+    "name": "Light Infantry Helmet Visor (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c7df520966f131c5",
+    "name": "Armored Shades (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "b2c7966a4f6b4eb1",
+    "name": "Light Infantry Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 48,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "17fdf17780bb4652",
+    "name": "Light Infantry Helmet Visor (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 40,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "a65a1e661121eebf",
+    "name": "Heavy Clamshell (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 18,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "37e948005c85b6b0",
+    "name": "Light Clamshell (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e172665b769fde0d",
+    "name": "Heavy Clamshell (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 18,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "d6750ec2c30a08dc",
+    "name": "Light Clamshell (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c79c7488cc3c14e1",
+    "name": "Heavy Clamshell (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 18,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 90,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "b35a39eaf7011120",
+    "name": "Light Clamshell (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 176",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "ec2e5da3a6492988",
+    "name": "Air Mask",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "df91d6402e2ef5e0",
+    "name": "Artificial Gill",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e5f96518c3416130",
+    "name": "Filter Mask",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "d17d0d331d349522",
+    "name": "Respirator",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "dd5e59f26ae7a0e7",
+    "name": "Reducing Respirator",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "45f224bf42d4f961",
+    "name": "Filter Skin",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 177",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "e19f8c5001bd53c9",
+    "name": "Desert Environment Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "fc070ee6a8355b5f",
+    "name": "Drysuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "64398905bdf2825a",
+    "name": "Heatsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "71dd8ebf3188f75a",
+    "name": "Protective Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "442e9d5c7a01e64f",
+    "name": "Expedition Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "98d2e0aeaf138bea",
+    "name": "Gill Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "78cfc63b4fc9438c",
+    "name": "Reflex Tacsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 20,
+      "drSplit": 10,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "75e152a3f1a4539d",
+    "name": "Nanoweave Tacsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 30,
+      "drSplit": 15,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "15e598c32d366f99",
+    "name": "Monocrys Tacsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 40,
+      "drSplit": 20,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "d5a489732090ece5",
+    "name": "Energy Tacsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 6000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 178",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "a0875859b637c0bf",
+    "name": "Civilian Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "eb851124fcb9ea4e",
+    "name": "Reflex Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 12000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 20,
+      "drSplit": 10,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "68603cc87dc68af4",
+    "name": "Skinsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "ca1c5bda3e52d5e9",
+    "name": "Smart Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "7c24d477517d36e8",
+    "name": "Space Biosuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 15,
+      "drSplit": 3,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "imp",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "7f03a5a61dc14f07",
+    "name": "Nanoweave Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 12000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 30,
+      "drSplit": 15,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "173bd5669320cd30",
+    "name": "Monocrys Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 12000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 40,
+      "drSplit": 20,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "38a2a73a04e5b5ff",
+    "name": "Energy Vacc Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "40fe18806e93148b",
+    "name": "Combat Hardsuit (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 50
+        }
+      ]
+    }
+  },
+  {
+    "_id": "e8f2eaad88728622",
+    "name": "Space Armor (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 50
+        }
+      ]
+    }
+  },
+  {
+    "_id": "9802317f3852b8c8",
+    "name": "Combat Hardsuit (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 75
+        }
+      ]
+    }
+  },
+  {
+    "_id": "06d795c33a7960a5",
+    "name": "Space Armor (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 75
+        }
+      ]
+    }
+  },
+  {
+    "_id": "f1fc021416253b08",
+    "name": "Combat Hardsuit (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 100
+        }
+      ]
+    }
+  },
+  {
+    "_id": "824984ff6aca4511",
+    "name": "Space Armor (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 100
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ab35fda960d30310",
+    "name": "Combat Hardsuit (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 90,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 150
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a61e4cc85f6c44eb",
+    "name": "Space Armor (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 179",
+      "dr": 90,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 150
+        }
+      ]
+    }
+  },
+  {
+    "_id": "c746ba9ac9aee87a",
+    "name": "Bubble Helmet (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "fd051ce243930d06",
+    "name": "Combat Infantry Helmet (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 12,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 18
+        }
+      ]
+    }
+  },
+  {
+    "_id": "c4628a749be39ab9",
+    "name": "Space Combat Helmet (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 40
+        }
+      ]
+    }
+  },
+  {
+    "_id": "6b98efd5bfc5f3ae",
+    "name": "Visored Space Helmet (TL 9)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 20
+        }
+      ]
+    }
+  },
+  {
+    "_id": "70bec780946a691e",
+    "name": "Bubble Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 9,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "9e3a67e7b49d5744",
+    "name": "Combat Infantry Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 18,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 27
+        }
+      ]
+    }
+  },
+  {
+    "_id": "11b30f0428681dd9",
+    "name": "Flexible Space Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "45e00e0ac67da938",
+    "name": "Space Combat Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 60
+        }
+      ]
+    }
+  },
+  {
+    "_id": "82df312a1d134e4e",
+    "name": "Visored Space Helmet (TL10)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 22,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 30
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a38a3bc6b7b68d1d",
+    "name": "Bubble Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 20,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "163d7d1150c7557b",
+    "name": "Combat Infantry Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 24,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 36
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a989e30a65043ffa",
+    "name": "Flexible Space Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 8,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "8ae763017e1f8c05",
+    "name": "Space Combat Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 80
+        }
+      ]
+    }
+  },
+  {
+    "_id": "66f5a56adc6ba74a",
+    "name": "Visored Space Helmet (TL11)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 40
+        }
+      ]
+    }
+  },
+  {
+    "_id": "4e5bcfa252314e02",
+    "name": "Bubble Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 30,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c49cb516d86dc7a6",
+    "name": "Combat Infantry Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 36,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 54
+        }
+      ]
+    }
+  },
+  {
+    "_id": "4b3457eea9637254",
+    "name": "Flexible Space Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c0182644651bf2f7",
+    "name": "Space Combat Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 60,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 100
+        }
+      ]
+    }
+  },
+  {
+    "_id": "8257ed6c5b3a72c5",
+    "name": "Visored Space Helmet (TL12)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 180",
+      "dr": 45,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 60
+        }
+      ]
+    }
+  },
+  {
+    "_id": "fc55d0ba9e8a6bd5",
+    "name": "Heavy Exoskeleton",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 200,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 20,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "7f438260a44587f9",
+    "name": "Light Exoskeleton",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 10,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ee6c87c98bae73a6",
+    "name": "Lower Body Exoskeleton",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 12000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "groin",
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 8,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "573ee38eecc2d4d5",
+    "name": "Power Sleeve",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm",
+        "hand"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 8,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "5d2a40c4fa397bc2",
+    "name": "Ranger Exoskeleton",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 20,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6255dd376af46601",
+    "name": "Stealth Exoskeleton",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "extensions": {
+        "gurps-compendium-content": {
+          "armor": {
+            "fullDr": 12,
+            "fullDrAgainst": "swingFallCollision",
+            "reference": "Ultra-Tech p. 182"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "56bb734a155eb604",
+    "name": "Exofield Belt",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 182",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin",
+        "arm",
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "da0c6aa56ee3f7fa",
+    "name": "Combat Walker",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 800,
+      "cost": 300000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 120,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso",
+            "skull"
+          ],
+          "dr": 200
+        }
+      ]
+    }
+  },
+  {
+    "_id": "ae5cc8a16d7a78f6",
+    "name": "Marine Combat Walker",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 900,
+      "cost": 320000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 120,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso",
+            "skull"
+          ],
+          "dr": 200
+        }
+      ]
+    }
+  },
+  {
+    "_id": "c673801655d75d56",
+    "name": "Powered Combat Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 150,
+      "cost": 80000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 70
+        }
+      ]
+    }
+  },
+  {
+    "_id": "bc9e0a1d6ac66067",
+    "name": "Powered Combat Armor Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 50,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 70
+        }
+      ]
+    }
+  },
+  {
+    "_id": "bec664eb877687cf",
+    "name": "Space Combat Walker",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 950,
+      "cost": 330000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 120,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso",
+            "skull"
+          ],
+          "dr": 200
+        }
+      ]
+    }
+  },
+  {
+    "_id": "d631aa5e4e460d80",
+    "name": "Zero-G Worksuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 150,
+      "cost": 60000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 40,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "f5bf1553187f20ad",
+    "name": "Commando Battlesuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 150,
+      "cost": 80000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 75,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 105
+        }
+      ]
+    }
+  },
+  {
+    "_id": "d781a6a467df5e4e",
+    "name": "Commando Battlesuit Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 75,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 105
+        }
+      ]
+    }
+  },
+  {
+    "_id": "a7e586b2db63b8cd",
+    "name": "Heavy Battlesuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 480,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 100,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 150
+        }
+      ]
+    }
+  },
+  {
+    "_id": "1bdc28544976611c",
+    "name": "Heavy Battlesuit Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 100,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 150
+        }
+      ]
+    }
+  },
+  {
+    "_id": "95a4ca5c6d26b4cf",
+    "name": "HEX Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 140,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "02acd626acac99c5",
+    "name": "Cybersuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 35000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 40,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "ec5e6494b52b38b0",
+    "name": "Military Cybersuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 80,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "ee3eb823ad02a19f",
+    "name": "Dreadnought Battlesuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 500,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 150,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "torso"
+          ],
+          "dr": 200
+        }
+      ]
+    }
+  },
+  {
+    "_id": "2f25fa4f0faffc3e",
+    "name": "Dreadnought Battlesuit Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 150,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "drByLocation": [
+        {
+          "locations": [
+            "skull"
+          ],
+          "dr": 200
+        }
+      ]
+    }
+  },
+  {
+    "_id": "b0e4f9814158b4a4",
+    "name": "Nanosuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 70000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 100,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  },
+  {
+    "_id": "c88fc65863345b03",
+    "name": "Warsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 500,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 186",
+      "dr": 300,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "skull",
+        "face",
+        "eye",
+        "neck",
+        "groin",
+        "arm",
+        "leg",
+        "hand",
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null
+    }
+  }
+]

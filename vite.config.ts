@@ -42,6 +42,8 @@ export default defineConfig({
   test: {
     globals: true,
     environment: "node",
-    include: ["src/**/*.test.ts"],
+    // The build tools are ES modules of their own, and what they read out of a
+    // GCA file is worth testing beside the rules.
+    include: ["src/**/*.test.ts", "tools/**/*.test.mjs"],
   },
 });

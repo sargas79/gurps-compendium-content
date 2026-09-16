@@ -1,0 +1,3 @@
+cost not a number: "displaycost(1-5)"	Flesh Pocket
+cost not a number: "displaycost(varies)"	Chip Slots
+cost not a number: "displaycost(varies)"	Skip Slots

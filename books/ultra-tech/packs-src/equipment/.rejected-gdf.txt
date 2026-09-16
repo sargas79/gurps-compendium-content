@@ -1,0 +1,18 @@
+attack: accuracy "var."	Dazzle Laser Mode
+attack: accuracy "var."	Blinding Mode
+attack: range "x0.1/x0.5"	Military Ladar
+attack: damage "0" 	Saucer Grenade, 40mm warhead
+attack: damage "0" 	Hand Grenade, 64mm
+attack: damage "0" 	Mini Hand Grenade, 40mm
+attack: damage "0" 	Thimble Grenade, 25mm
+Blade: damage "sw+1d+R" cut	Monowire Switchblade
+Blade: damage "sw+1d+R" cut	Stasis Switchblade
+DR "%Style_alt1list%" not a plain figure or a split	Monocrys
+DR "%Style_alt1list%" not a plain figure or a split	Reflex
+DR "%Style_alt1list%" not a plain figure or a split	Nanoweave
+DR "%Style_alt1list%" not a plain figure or a split	Ablative
+DR "%Style_alt1list%" not a plain figure or a split	Reflec
+DR "%Style_alt1list%" not a plain figure or a split	Ablative Nanoplas
+DR "%Style_alt1list%" not a plain figure or a split	Retro-Reflective
+DR "%Style_alt1list%" not a plain figure or a split	Bioplas
+DR "%Style_alt1list%" not a plain figure or a split	Energy Cloth
