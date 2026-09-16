@@ -17,6 +17,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { hasAegis } from "../medical/index.js";
 import {
   AGENTS,
   AGENT_POISONS,
@@ -170,6 +171,8 @@ function poisonOf(agent: Agent): any {
 
 /** Whether a victim is out of an agent's reach, and why. */
 function protection(api: GWorldApi, actor: any, agent: Agent): string | null {
+  // Aegis nanobots keep out known metabolic nanoweapons (p. 206).
+  if (NANO.has(agent) && hasAegis(actor)) return "aegis";
   const effects = api.actors.derived(actor)?.traitEffects ?? {};
   const traits = [...(actor?.items ?? [])].filter((i: any) => i.type === "trait").map((i: any) => String(i.name ?? ""));
   return protectedFrom(agent, {

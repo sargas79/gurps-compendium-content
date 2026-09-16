@@ -2079,6 +2079,18 @@
         "poweredSuits": {
           "Name": "Powered suits",
           "Hint": "A worn exoskeleton or battlesuit that is switched on and has power left adds its Lifting and Striking ST, Arm ST, Super Jump, Basic Move and Enhanced Move, and carries its own weight (except a lower-body exoskeleton, a power sleeve and an exofield belt). DX rolls and DX-based skills are held to Battlesuit skill while a suit that limits them is powered, -1 more in an unfitted TL9-10 suit. A switchable cybersuit can turn its augmentation off. A lower-body exoskeleton and a gravpack carry a load weightlessly, the gravpack at -1 DX per 40 lbs. until the wearer is used to it. An exofield belt gives no DR without power. Row actions suit up (a Battlesuit roll halves the checkout) and refit a suit."
+        },
+        "medicalGear": {
+          "Name": "Medical gear",
+          "Hint": "Automeds, suitcase docs, pocket medics, suit docs and paramedical swarms treat with their own skills through the system's First Aid, physician's rounds and surgery. Bandage spray and plasti-skin stop bleeding (the spray restores 1 HP); a smart bandage rolls its own First Aid-12 for 1d. A patient attached to life support makes daily mortal wound checks with the unit's bonus (+2 hospital, +1 transport or automed). A medical bed gives +3 to a physician's rounds, medical supplies +1, the best of them counting. Hibernation and neural inhibitors from their items."
+        },
+        "ultraTechDrugs": {
+          "Name": "Drugs and nano",
+          "Hint": "Morphazine, soothe and crediline are dosed and resisted through the system's poison rules (sleep for 8 hours a point of failure, euphoria for five minutes a point, Gullibility for 25-HT minutes). The other drugs and nano are taken from their items: analgine, antirad, hyperstim (and its wearing off), ascepaline (with its weekly limit), purge, memory-beta, tailored and programmable immune machines (a Physician roll clears illnesses), quickheal (1d, once an hour), critical repair nano, respirocytes (breathing not needed), torpine (24 hours out, then healed at 1 FP) and fast regeneration nano. A drug's form sets its price: aerosol or contact x2, aerosol contact x10. Aegis nanobots keep out metabolic nanoweapons."
+        },
+        "regeneration": {
+          "Name": "Regeneration and revival",
+          "Hint": "Nanostasis and revival from it by the supervisor's Physician roll; regeneration tanks healing 1 HP per 12 hours (an hour in a chrysalis machine, twice as long on a failed roll); rejuvenation's outcomes; a chrysalis machine reviving the dead at -2 an hour dead; the pocket regenerator's bandaging and First Aid in a minute; and the regeneration ray healing everything at high power, or 3d toxic and no treatment for 1d weeks on a failure."
         }
       },
       "Gadget": {
@@ -3999,7 +4011,8 @@
         "Protected": {
           "sealed": "{name}'s sealed suit keeps it out.",
           "breath": "{name} doesn't breathe it in.",
-          "metabolic": "{name} has no metabolism for it to act on."
+          "metabolic": "{name} has no metabolism for it to act on.",
+          "aegis": "{name}'s Aegis nanobots destroy the invaders."
         },
         "Failed": {
           "riotGasNauseated": "{name} is nauseated while in the cloud.",
@@ -4215,6 +4228,156 @@
         "RefitDone": "After {hours} hours the suit fits its new wearer.",
         "RefitAgain": "After {hours} hours the suit still doesn't fit: another attempt is needed.",
         "RefitBroken": "After {hours} hours the suit is damaged, or has a fault that won't show until it's used in action (GM's choice)."
+      },
+      "Medical": {
+        "Title": "Medical gear and drugs",
+        "FormLabel": "Form",
+        "FormHint": "Pill or injection at the listed price, aerosol or contact agent x2, aerosol contact agent x10 (Ultra-Tech p. 204).",
+        "Form": {
+          "none": "As listed",
+          "pill": "Pill",
+          "injection": "Injection",
+          "aerosol": "Aerosol (x2)",
+          "contact": "Contact agent (x2)",
+          "aerosolContact": "Aerosol contact agent (x10)"
+        },
+        "Skill": {
+          "firstAid": "First Aid-{skill}",
+          "physician": "Physician-{skill}",
+          "surgery": "Surgery-{skill}",
+          "diagnosis": "Diagnosis-{skill}"
+        },
+        "DeviceSkills": "Treats on its own: {skills}.",
+        "DeviceLabel": "{name} ({skill})",
+        "TreatTitle": "Treat a patient",
+        "Treatment": "Treatment",
+        "LifeSupportLine": "Life support: attach a patient with Electronics Operation (Medical), 10 seconds a try; mortal wound checks daily, +{bonus}.",
+        "MedicalBedLine": "+{bonus} to a physician's rounds; {rounds} rounds a day.",
+        "SuppliesLine": "+1 to a physician's rounds, {days} patient-days; a doctor makes {rounds} rounds a day for up to {patients} patients. Without supplies, care is at TL6.",
+        "SuitDocLine": "Physician-10 care for the wearer; a drug pack lasts {days} days.",
+        "SprayLine": "Stops bleeding and restores 1 HP in {seconds} seconds.",
+        "DressTitle": "Dress the wound",
+        "BleedingStopped": "{name}'s bleeding stops.",
+        "SprayHeals": "{hp} HP back in {seconds} seconds.",
+        "PlastiSkin": "Bandaging takes 20 seconds.",
+        "SmartBandageTitle": "Smart bandage",
+        "SmartBandageLabel": "{name} treats shock after {minutes} minutes",
+        "SmartBandageResult": "{name}: {hp} HP.",
+        "AttachTitle": "Attach to life support",
+        "AttachLabel": "Attaching {patient} to {name}",
+        "Attached": "{name} is on life support (+{bonus} to mortal wound checks, made daily).",
+        "TraumaTitle": "Trauma maintenance check",
+        "CaregiverPhysician": "Caregiver's Physician (0 for none)",
+        "BedTitle": "In or out of the bed",
+        "InBed": "{name} is in the medical bed: +3 to a physician's rounds, {rounds} a day.",
+        "OutOfBed": "{name} is out of the medical bed.",
+        "MedicalBed": "Medical bed",
+        "SuspendTitle": "Suspend or revive",
+        "IntoHibernation": "{name} goes into hibernation over {hours} hour: a tenth the life support and ageing.",
+        "IntoNanostasis": "{name} goes into nanostasis over {hours} hours: no air, food or ageing.",
+        "OutOfHibernation": "{name} wakes from hibernation at 0 FP.",
+        "ReviveLabel": "Reviving {name} from nanostasis",
+        "Revived": {
+          "clear": "{name} is revived after {out} hours, confused (9) for {hours} hours.",
+          "daily": "{name} is revived after {out} hours: confused (9) for {hours} hours and partial amnesia for at least a week, a HT roll daily to recover.",
+          "weekly": "{name} is revived after {out} hours: confused (9) for {hours} hours and partial amnesia for at least a week, a HT roll weekly to recover."
+        },
+        "InhibitorTitle": "Apply a neural inhibitor",
+        "Placement": "Placed on",
+        "Place": {
+          "limb": "A limb",
+          "spine": "The spine",
+          "skull": "The skull"
+        },
+        "Unwilling": "Not cooperating (HT-6)",
+        "InhibitorResisted": "{name} resists the inhibitor.",
+        "Inhibited": {
+          "limb": "{name}'s limb is paralysed and numb below the disk; +1 to First Aid for shock.",
+          "spine": "{name} is paralysed from the neck down.",
+          "skull": "{name} is unconscious until it's removed."
+        },
+        "TankTitle": "Tank procedure",
+        "Procedure": {
+          "regenerate": "Regeneration",
+          "rejuvenate": "Rejuvenation",
+          "revive": "Revive the dead"
+        },
+        "Hours": "Hours of treatment",
+        "HoursDead": "Hours dead",
+        "HoursDeadLine": "{hours} hours dead",
+        "ProcedureLabel": {
+          "regenerate": "Supervising {name}'s regeneration",
+          "rejuvenate": "Supervising {name}'s rejuvenation",
+          "revive": "Reviving {name}"
+        },
+        "Regenerated": "{name} regains {hp} HP over {hours} hours.",
+        "Rejuvenation": {
+          "rejuvenated": "{name} is young and healthy again after {days} days.",
+          "confused": "{name} is rejuvenated after {days} days, but confused (9) for 1d days.",
+          "amnesia": "{name} is rejuvenated after {days} days, with partial amnesia.",
+          "disaster": "The rejuvenation goes terribly wrong for {name}: a messy death, or a body with no mind."
+        },
+        "Chrysalis": {
+          "restored": "{name} lives again.",
+          "amnesia": "{name} lives again, with partial amnesia.",
+          "mindless": "{name}'s body lives again, with no mind or personality."
+        },
+        "RayTitle": "Regeneration ray (high power)",
+        "RayLabel": "Regeneration ray on {name}",
+        "RayBarred": "{name} can't take regeneration treatment again yet.",
+        "Ray": {
+          "healed": "{name} is healed of all damage; age and mortal-wound losses are restored and missing parts regrow.",
+          "toxic": "Something goes wrong: {name} takes 3d toxic and can't be treated again for 1d weeks.",
+          "sideEffect": "{name} seems healed, but a side effect will show in 1d weeks."
+        },
+        "PocketTitle": "Regenerate a wound",
+        "DoseTitle": "Take a dose",
+        "DrugName": {
+          "morphazine": "Morphazine",
+          "soothe": "Soothe",
+          "crediline": "Crediline",
+          "respirocytes": "Respirocytes"
+        },
+        "Resisted": {
+          "morphazine": "{name} falls into a deep, dreamless sleep for {minutes} minutes.",
+          "soothe": "{name} drifts into euphoria, with High Pain Threshold, for {minutes} minutes, and won't remember it.",
+          "crediline": "{name} becomes trusting and talkative: Gullibility (9) for {minutes} minutes."
+        },
+        "Drug": {
+          "analgine": "{name} feels no pain, and is Numb, for {hours} hours.",
+          "antirad": "The next exposure's rads are halved for {name}.",
+          "hyperstim": "{name} is awake and can't fail a roll to stay conscious; when it wears off, roll HT.",
+          "ascepaline": "{name} regenerates 1 HP every 4 hours for a day.",
+          "ascepalineDamage": "{name}'s natural healing is damaged: Unhealing (Partial).",
+          "purge": "{name}'s system clears of active drugs in {minutes} minutes.",
+          "purgeNausea": "The purge does nothing, and {name} is nauseated for an hour.",
+          "purgeFailed": "The purge has no effect on {name}.",
+          "memoryBeta": "{name} can recall almost anything with an IQ roll; a failure loses them in their memories.",
+          "immune": "The nanomachines cure {name} in {dice}d hours.",
+          "immuneWrong": "The treatment was wrong: no effect.",
+          "quickheal": "{name} regains {hp} HP after an hour.",
+          "criticalRepair": "{name} can lose the Wounded disadvantage or regain the HT a mortal wound took.",
+          "respirocytes": "{name} has +2 FP and doesn't need to breathe until the oxygen is used up.",
+          "torpine": "{name} falls into a healing trance for 24 hours.",
+          "fastRegeneration": "{name} regenerates fast for an hour, at 1 FP for each HP healed."
+        },
+        "AscepalineRoll": "Ascepaline, dose {doses} this week",
+        "AscepalineRepeat": "Repeated dose",
+        "QuickhealHour": "No more than one dose of quickheal an hour.",
+        "ImmuneTitle": "Immune machines",
+        "ImmuneLabel": "Prescribing immune machines for {name}",
+        "Disease": "Disease",
+        "DiseaseKind": {
+          "known": "Known",
+          "rare": "Rare",
+          "unknown": "Unknown"
+        },
+        "Torpine": "Torpine",
+        "TorpineWakesTitle": "Torpine trance ends",
+        "TorpineWakes": "{name} wakes fully healed, famished, at 1 FP.",
+        "HyperstimOff": "Hyperstim wears off",
+        "RespirocytesSpent": "Respirocytes used up",
+        "RespirocytesGone": "{name}'s respirocytes are spent."
       }
     }
   },

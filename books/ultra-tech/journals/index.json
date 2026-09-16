@@ -2666,6 +2666,7 @@
       "title": "Biomedical Equipment",
       "chapter": "Medical and Biotech",
       "pages": "UT196",
+      "rule": "gurps-compendium-content.medicalGear",
       "reference": "Ultra-Tech p. 196",
       "file": "biomedical-equipment.md",
       "status": "reviewed"
@@ -2675,6 +2676,7 @@
       "title": "Medical Gear",
       "chapter": "Medical and Biotech",
       "pages": "UT196",
+      "rule": "gurps-compendium-content.medicalGear",
       "reference": "Ultra-Tech p. 196",
       "file": "medical-gear.md",
       "status": "reviewed"
@@ -2702,6 +2704,7 @@
       "title": "Drugs and Nano",
       "chapter": "Medical and Biotech",
       "pages": "UT204-205",
+      "rule": "gurps-compendium-content.ultraTechDrugs",
       "reference": "Ultra-Tech pp. 204-205",
       "file": "drugs-and-nano.md",
       "status": "reviewed"
