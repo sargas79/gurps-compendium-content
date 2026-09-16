@@ -1030,7 +1030,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -1078,7 +1078,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -1117,7 +1117,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -1281,7 +1281,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -1329,7 +1329,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -1368,7 +1368,7 @@
           }
         }
       },
-      "ablative": "semiAblative"
+      "ablative": "none"
     }
   },
   {
@@ -3076,11 +3076,8 @@
       "drSplit": 3,
       "drSplitAppliesTo": [
         "cr",
-        "cut",
-        "imp",
         "tox",
-        "cor",
-        "fat"
+        "cor"
       ],
       "locations": [
         "torso",

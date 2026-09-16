@@ -11,6 +11,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initAccessories, readyAccessories } from "./accessories/index.js";
+import { initArmor, readyArmor } from "./armor/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
 import { initWarheads, readyWarheads } from "./warheads/index.js";
@@ -67,6 +68,10 @@ const RULES = [
   { key: "bladeTech", pages: "pp. 162-164", implemented: true },
   { key: "energyMelee", pages: "pp. 164-166", implemented: true },
   { key: "forceSwords", pages: "pp. 164, 166", implemented: true },
+  { key: "threatProtection", pages: "pp. 171, 176-181, 188", implemented: true },
+  { key: "laserResistantArmor", pages: "pp. 173-174", implemented: true },
+  { key: "tailoredArmor", pages: "pp. 174-175", implemented: true },
+  { key: "armorSystems", pages: "pp. 170-171, 187-190", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -104,6 +109,7 @@ function init(): void {
   initTransport();
   initAccessories();
   initMelee();
+  initArmor();
   registerRecordData();
 }
 
@@ -126,6 +132,7 @@ function ready(api: GWorldApi): void {
   // After the computers (a program's table price) and before the sensors (a lock replaced by active-sensor targeting).
   readyAccessories(api, rule("firearmAccessories"));
   readyMelee(api, { blades: rule("bladeTech"), energy: rule("energyMelee"), force: rule("forceSwords") });
+  readyArmor(api, { threat: rule("threatProtection"), laser: rule("laserResistantArmor"), tailored: rule("tailoredArmor"), systems: rule("armorSystems") });
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });

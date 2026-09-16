@@ -2349,6 +2349,7 @@
       "title": "Materials",
       "chapter": "Defenses",
       "pages": "UT170",
+      "rule": "gurps-compendium-content.armorSystems",
       "reference": "Ultra-Tech p. 170",
       "file": "materials.md",
       "status": "reviewed"
@@ -2367,6 +2368,7 @@
       "title": "Threat Protection",
       "chapter": "Defenses",
       "pages": "UT171",
+      "rule": "gurps-compendium-content.threatProtection",
       "reference": "Ultra-Tech p. 171",
       "file": "threat-protection.md",
       "status": "reviewed"
@@ -2385,6 +2387,7 @@
       "title": "Tailoring Armor",
       "chapter": "Defenses",
       "pages": "UT174",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 174",
       "file": "tailoring-armor.md",
       "status": "reviewed"
@@ -2394,6 +2397,7 @@
       "title": "Armor Type",
       "chapter": "Defenses",
       "pages": "UT175",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 175",
       "file": "armor-type.md",
       "status": "reviewed"
@@ -2403,6 +2407,7 @@
       "title": "Coverage",
       "chapter": "Defenses",
       "pages": "UT175",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 175",
       "file": "coverage.md",
       "status": "reviewed"
@@ -2412,6 +2417,7 @@
       "title": "Style",
       "chapter": "Defenses",
       "pages": "UT175",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 175",
       "file": "style.md",
       "status": "reviewed"
@@ -2421,6 +2427,7 @@
       "title": "Tailoring Armor: Cut",
       "chapter": "Defenses",
       "pages": "UT175",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 175",
       "file": "tailoring-armor-cut.md",
       "status": "reviewed"
@@ -2430,6 +2437,7 @@
       "title": "Accessories",
       "chapter": "Defenses",
       "pages": "UT175",
+      "rule": "gurps-compendium-content.tailoredArmor",
       "reference": "Ultra-Tech p. 175",
       "file": "accessories.md",
       "status": "reviewed"
@@ -2439,6 +2447,7 @@
       "title": "Environmental Gear and Suits",
       "chapter": "Defenses",
       "pages": "UT176",
+      "rule": "gurps-compendium-content.threatProtection",
       "reference": "Ultra-Tech p. 176",
       "file": "environmental-gear-and-suits.md",
       "status": "reviewed"
@@ -2448,6 +2457,7 @@
       "title": "Sealed Helmets",
       "chapter": "Defenses",
       "pages": "UT180",
+      "rule": "gurps-compendium-content.threatProtection",
       "reference": "Ultra-Tech p. 180",
       "file": "sealed-helmets.md",
       "status": "reviewed"
@@ -2529,6 +2539,7 @@
       "title": "Defense Systems",
       "chapter": "Defenses",
       "pages": "UT187",
+      "rule": "gurps-compendium-content.armorSystems",
       "reference": "Ultra-Tech p. 187",
       "file": "defense-systems.md",
       "status": "reviewed"
@@ -2538,6 +2549,7 @@
       "title": "Miscellaneous Accessories",
       "chapter": "Defenses",
       "pages": "UT187",
+      "rule": "gurps-compendium-content.armorSystems",
       "reference": "Ultra-Tech p. 187",
       "file": "miscellaneous-accessories.md",
       "status": "reviewed"
@@ -2547,6 +2559,7 @@
       "title": "Other Defenses",
       "chapter": "Defenses",
       "pages": "UT187",
+      "rule": "gurps-compendium-content.armorSystems",
       "reference": "Ultra-Tech p. 187",
       "file": "other-defenses.md",
       "status": "reviewed"
