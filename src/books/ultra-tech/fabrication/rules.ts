@@ -212,3 +212,28 @@ export function psychotronicFeedback(result: { success: boolean; margin: number 
   if (result.success) return "none";
   return result.margin >= 5 ? "coma" : "seizure";
 }
+
+/** A vapor canteen draws a quart at 50% humidity in 4 hours, 3 at TL10, 2 at TL11, 1 at TL12 (p. 76). */
+export function vaporCanteenHours(tl: number): number {
+  return tl >= 12 ? 1 : tl >= 11 ? 2 : tl >= 10 ? 3 : 4;
+}
+
+/** A square inch of gecko adhesive holds 800 lbs. indefinitely (p. 83). */
+export const GECKO_ADHESIVE_LOAD = 800;
+
+/**
+ * A nail gun (p. 82) won't fire at anything with the warmth of living flesh,
+ * unless disabled with an Electronics Operation (Security) roll, a minute an
+ * attempt; it can't tell flesh under armour of DR 3 or better.
+ */
+export const NAIL_GUN_SAFETY = Object.freeze({ skill: "Electronics Operation (Security)", minutes: 1, blindDr: 3 });
+
+/** A sonic probe: Electronics Operation (Sonar), six inches, -1 per 10 DR it looks through; +2 to Lockpicking a mechanical combination lock (p. 84). */
+export const SONIC_PROBE = Object.freeze({ skill: "Electronics Operation (Sonar)", inches: 6, lockpicking: 2 });
+export function sonicProbePenalty(dr: number): number {
+  const tens = Math.floor(Math.max(0, Number(dr) || 0) / 10);
+  return tens ? -tens : 0;
+}
+
+/** A molecular bonder: a second's beam, standing still; flesh torn free on a Will roll takes 1d-4 (pp. 84-85). */
+export const MOLECULAR_BONDER = Object.freeze({ torn: "1d-4" });

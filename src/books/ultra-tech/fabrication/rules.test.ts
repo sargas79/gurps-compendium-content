@@ -21,6 +21,11 @@ import {
   ropeStressModifier,
   slipsprayModifier,
   tractorBeam,
+  GECKO_ADHESIVE_LOAD,
+  NAIL_GUN_SAFETY,
+  SONIC_PROBE,
+  sonicProbePenalty,
+  vaporCanteenHours,
 } from "./rules.js";
 
 describe("manufacturing (Ultra-Tech pp. 89-94)", () => {
@@ -93,5 +98,26 @@ describe("gravity and psi (Ultra-Tech pp. 79, 94)", () => {
     expect(psiAmpCriticalFailure(15, false, true)).toBe(false);
     expect(psychotronicFeedback({ success: false, margin: 5 })).toBe("coma");
     expect(psychotronicFeedback({ success: false, margin: 2 })).toBe("seizure");
+  });
+});
+
+describe("tools with numbers (#299, pp. 76-85)", () => {
+  it("draws a quart of water faster at higher TLs", () => {
+    expect([9, 10, 11, 12].map(vaporCanteenHours)).toEqual([4, 3, 2, 1]);
+  });
+
+  it("holds 800 lbs. a square inch with gecko adhesive", () => {
+    expect(GECKO_ADHESIVE_LOAD).toBe(800);
+  });
+
+  it("keeps a nail gun off living flesh unless its safety is disabled", () => {
+    expect(NAIL_GUN_SAFETY.blindDr).toBe(3);
+  });
+
+  it("probes -1 per 10 DR with a sonic probe", () => {
+    expect(sonicProbePenalty(0)).toBe(0);
+    expect(sonicProbePenalty(9)).toBe(0);
+    expect(sonicProbePenalty(25)).toBe(-2);
+    expect(SONIC_PROBE.lockpicking).toBe(2);
   });
 });

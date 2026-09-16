@@ -15,7 +15,7 @@ import {
 const env = (patch: Partial<BeamEnvironment> = {}): BeamEnvironment => ({ ...STANDARD_ENVIRONMENT, ...patch });
 const row = { accuracy: 6, halfDamageRange: 200, maxRange: 600, armorDivisor: 2 };
 
-/** Every beam weapon the book's records carry; grav hammers (p. 84) and sonic projectors (p. 52) are tools rather than a beam family. */
+/** Every beam weapon the book's records carry; grav hammers (p. 84), sonic projectors (p. 52) and molecular bonders (p. 84) are tools rather than a beam family. */
 function beamRecords(): string[] {
   const dir = join(import.meta.dirname, "../../../../books/ultra-tech/packs-src/equipment");
   const names: string[] = [];
@@ -23,7 +23,7 @@ function beamRecords(): string[] {
     const data = JSON.parse(readFileSync(join(dir, file), "utf8"));
     for (const record of Array.isArray(data) ? data : Object.values(data)) {
       const modes: any[] = (record as any)?.system?.rangedModes ?? [];
-      if (/^Grav (Hammer|Ram)$|^Sonic Projector \(/.test(String((record as any)?.name))) continue;
+      if (/^Grav (Hammer|Ram)$|^Sonic Projector \(|Molecular Bonder$/.test(String((record as any)?.name))) continue;
       if (modes.some((m) => /Beams?\)|Beam Weapons/.test(String(m.skill ?? "")))) names.push(String((record as any).name));
     }
   }
