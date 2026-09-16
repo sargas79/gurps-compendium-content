@@ -1,0 +1,818 @@
+[
+  {
+    "_id": "817e98c8b857e617",
+    "name": "Android",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This general-purpose humanoid robot body comes in male, female, and androgynous versions. Custom designs, including those that resemble real people, are also possible. Higher-TL models are cheaper and more reliable.</p>"
+  },
+  {
+    "_id": "bc40936af93a47d3",
+    "name": "Android: TL9 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "610fa2ddfa54d1af",
+    "name": "Android: TL10 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "183cba22119fc126",
+    "name": "Android: TL11 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "d4a3a086fe4b8108",
+    "name": "Android: TL12 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "28287bfbad3795cd",
+    "name": "Android: Child Body",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller robot body, the size of a 9- to 12-year-old. Halve the body weight and number of power cells (e.g., D instead of 2D).</p>"
+  },
+  {
+    "_id": "6c45563e53c7703a",
+    "name": "Android: Artificial Womb",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The android has an artificial flexible womb. If stocked with eggs, it can become pregnant.</p>"
+  },
+  {
+    "_id": "1a656fd68d01cb96",
+    "name": "Petbot",
+    "pages": "UT41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small mechanical beast with a head and four legs. It may look cute or fierce, depending on the market. Typical models resemble small dogs, house cats, miniature dinosaurs, and so on, although they usually have modified paws or claws with opposable thumbs that give them some manipulatory ability.</p><p>Robots of this type are often used for home security, keeping track of children, or pest control. They can be equipped with a range of sensors and \"natural\" weapons.</p>"
+  },
+  {
+    "_id": "2038df9024687447",
+    "name": "Petbot: TL9 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "f64c042fd3371263",
+    "name": "Petbot: TL10 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "ae515c7d652de10d",
+    "name": "Petbot: TL11 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "85ce9d926948b02f",
+    "name": "Petbot: TL12 Model",
+    "pages": "UT41",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "d1e2504a70832540",
+    "name": "Housebot",
+    "pages": "UT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This small domestic robot serves as a waiter, janitor, or homemaker, depending on how it is configured. Its internal payload space can accommodate a garbage can, vacuum cleaner, microwave oven, ultrasonic dishwasher, or a reservoir for cleaning agents. It is designed to run quietly, to avoid disturbing people while working. It moves on wheels at TL9, or on legs at TL10+. At higher TLs, these robots are often replaced by cleaning swarms or utility fog.</p>"
+  },
+  {
+    "_id": "28c48b07fb743e32",
+    "name": "Housebot: TL9 Model",
+    "pages": "UT69",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "c2ed586e0b26a52f",
+    "name": "Housebot: TL10 Model",
+    "pages": "UT69",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "38d9341afe0bc493",
+    "name": "Housebot: TL11 Model",
+    "pages": "UT69",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "1d99fb1dfc7dbd43",
+    "name": "Scout Robot",
+    "pages": "UT80",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a compact machine about 10 inches long, usually with a fish- or bee-shaped body. Variants are available for different environments. It has a sensor head, two manipulator arms, and a single hardpoint that can be equipped with anything from a camera or searchlight to a carbine or submachine gun.</p>"
+  },
+  {
+    "_id": "37b8b7d344f07c02",
+    "name": "Scout Robot: Aerial Scout",
+    "pages": "UT80",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This uses ducted fans for quiet flight, and is equipped with surveillance sensors.</p>"
+  },
+  {
+    "_id": "ae5621d2ee7c4500",
+    "name": "Scout Robot: Submarine",
+    "pages": "UT80",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This uses water jets, and is equipped to operate in the ocean depths.</p>"
+  },
+  {
+    "_id": "da23dcd33353fd9f",
+    "name": "Scout Robot: Contragrav (TL11^)",
+    "pages": "UT80",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses contragravity instead of ducted fans.</p>"
+  },
+  {
+    "_id": "251b646c67ca6cf9",
+    "name": "Techbot",
+    "pages": "UT85",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a general-purpose technical robot. It has a cylindrical body and a pair of arms, and moves on either legs or tracks, depending on the model. It can operate in a wide variety of environments, and may be used for everything from working in a garage to hazardous waste disposal. Its payload space usually holds tools.</p><p>Its weapon mount is built into its rotating head; it can carry a weapon up to 6 lbs. weight, which is more likely to be a laser or plasma torch than an actual weapon.</p>"
+  },
+  {
+    "_id": "0a76bea11c00aeb3",
+    "name": "Techbot: TL9 Techbot",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This moves on a pair of articulated tracks.</p>"
+  },
+  {
+    "_id": "05187eee4ea71a22",
+    "name": "Techbot: TL10 Techbot",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This model has a bipedal barrelshaped body.</p>"
+  },
+  {
+    "_id": "a770e48ca974d8c2",
+    "name": "Techbot: TL10^ Contragrav Techbot",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A spherical body with no legs.</p>"
+  },
+  {
+    "_id": "516cc8e37a640cf0",
+    "name": "Bush Robot",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are multipurpose robots resembling a walking leafless bush. A bush robot has six arms branching into multiple \"fingers,\" each of which branches into a set of smaller fingers, and so on, down to nanometer scale. Each set of fingers is capable of independent sensing and operation; a \"bushbot\" can perform complex repairs or surgery without special tools. Massive processing capability is needed to control these \"bush manipulators\" - the robot's brain is equivalent to a microframe computer, and is distributed throughout its body.</p><p>These highly adaptable robots may be standard generalpurpose machines, as well as popular bodies for sapient volitional AIs and mind emulations.</p>"
+  },
+  {
+    "_id": "5c2b6c1acfdf76c0",
+    "name": "Bush Robot: TL11 Model",
+    "pages": "UT86",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "b2adb5ee70ca63c1",
+    "name": "Bush Robot: TL12 Model",
+    "pages": "UT86",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "8654c5decc00d034",
+    "name": "Bush Robot: Contragrav (TL11^)",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Capable of flight!</p>"
+  },
+  {
+    "_id": "b87aa59135643b82",
+    "name": "Bush Robot: Budding (TL12)",
+    "pages": "UT86",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some bushbots can bud off parts of themselves as smaller copies.</p>"
+  },
+  {
+    "_id": "dccdf93e5912f933",
+    "name": "Robobug",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a single robot the size of a large insect. It is bigger than most microbots, but still small enough to easily escape notice. It is designed for surveillance, forensics, scouting, or assassination. It may also patrol power conduits or air ducts, performing security or maintenance tasks. Its weapon mount can hold a weapon up to 0.01 lbs. weight, such as a micro-laser or a drug injector.</p>"
+  },
+  {
+    "_id": "3a93aee07246e419",
+    "name": "Robobug: TL9 Model",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "3ce6cbc43c7a66d9",
+    "name": "Robobug: TL10 Model",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "0960e99a6541666e",
+    "name": "Robobug: TL11 Model",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "75f985c15808a0a0",
+    "name": "Robobug: TL12 Model",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "604533be510b22f5",
+    "name": "Robobug: Crawler",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A spider-bot that crawls along the ground.</p>"
+  },
+  {
+    "_id": "5764554e1ce38bba",
+    "name": "Robobug: Flier",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A dragonfly-like ornithopter.</p>"
+  },
+  {
+    "_id": "7cf41cce3e4d20b1",
+    "name": "Robobug: Rodent",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A mouse-sized robot.</p>"
+  },
+  {
+    "_id": "f5e139f23c4393ed",
+    "name": "Robobug: Toy Soldier",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A humanoid robot, like a miniature figure.</p>"
+  },
+  {
+    "_id": "b0c9f1a1c02d7775",
+    "name": "Robobug: Worm",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A serpentine robot slim enough to squirm through a keyhole-sized opening, along a drain pipe, or even down a throat to explore someone's stomach.</p>"
+  },
+  {
+    "_id": "30cb3fc3175b8ac9",
+    "name": "Robobug: Vehicle",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny robot all-terrain vehicle, like a toy car.</p>"
+  },
+  {
+    "_id": "b9194edc7de260e6",
+    "name": "Robobug: Contragrav (TL11^)",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small flying sphere with a pair of arms.</p>"
+  },
+  {
+    "_id": "681e5fa3892f20cf",
+    "name": "Robobug: Chameleon (TL10)",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "a1ac013fd03e720d",
+    "name": "Robobug: Nuclear (TL11)",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "b8e231eb5aac9404",
+    "name": "Robobug: Water Jets",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "f2aaf059055855b5",
+    "name": "Nanomorph",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a shapeshifting nanotech robot. Its intelligence is distributed through its body, and its smart matter structure is capable of rapid self-repair. In addition to assuming whole new shapes, it can also extrude spikes or talons at will. Unlike most robots, nanomorphs have bioconvertor power systems that consume food, although they aren't very fussy about what they eat - they devour most organic substances, including plastics!</p>"
+  },
+  {
+    "_id": "0b11d06ef494c721",
+    "name": "Nanomorph: TL11 Model (Bioplastic)",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nanomorphs can be made of plastic rather than living metal.</p>"
+  },
+  {
+    "_id": "0d9f0e74c08a2781",
+    "name": "Nanomorph: TL12 Model (Living Metal)",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Living metal nanomorphs can transform into just about anything, and are stronger and tougher than bioplastic versions.</p>"
+  },
+  {
+    "_id": "e9a9845c49da6d41",
+    "name": "Nanomorph: Budding",
+    "pages": "UT111",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some nanomorphs can bud off copies of themselves, just like bush robots.</p>"
+  },
+  {
+    "_id": "9e4411b22ada0967",
+    "name": "Nanomorph: Contragrav (TL11^)",
+    "pages": "UT111",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "24a6bf34161df40a",
+    "name": "Combat Android",
+    "pages": "UT167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a humanoid combat machine, strong and heavily armored. Depending on the choice of traits, it could be designed as an assassin, bodyguard, police officer, or soldier.</p>"
+  },
+  {
+    "_id": "474e133601bca48c",
+    "name": "Combat Android: TL9 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "ad9201ed3b3a8f3b",
+    "name": "Combat Android: TL10 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "6b605449d265f02f",
+    "name": "Combat Android: TL11 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "7a33275ed09d7cf5",
+    "name": "Combat Android: TL12 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "aaa148f46d8f4356",
+    "name": "Combat Android: Combat Exoskeleton",
+    "pages": "UT167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot resembles a metallic skeleton.</p>"
+  },
+  {
+    "_id": "683523636e8a74b1",
+    "name": "Combat Android: Infiltrator",
+    "pages": "UT167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot is covered with living flesh and appears human. It is optimized for black ops, undercover, or bodyguard missions.</p>"
+  },
+  {
+    "_id": "4b61bd50b38a542d",
+    "name": "Combat Android: Chameleon",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "1228c746b36aa4b8",
+    "name": "Combat Android: Nuclear-Powered",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "5b333bca3d27411d",
+    "name": "Combat Android: Weapon Mount",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "14a8c6f51412ff3c",
+    "name": "Warbot",
+    "pages": "UT167",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The warbot is a nonhumanoid fighting machine the size of a subcompact car. It weighs half a ton (without weapons) and is available in submarine, walking tank, and aircraft versions. All models have a pair of manipulator arms.</p>"
+  },
+  {
+    "_id": "5ff21b7718f4e3a2",
+    "name": "Warbot: TL9 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "db550152ba501808",
+    "name": "Warbot: TL10 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "7171067cb40913e5",
+    "name": "Warbot: TL11 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "bf996d127236dbc7",
+    "name": "Warbot: TL12 Model",
+    "pages": "UT167",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "6687f9e8e620a872",
+    "name": "Warbot: Submarine",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Basic Move becomes Water Move; ground Move is 0.</p>"
+  },
+  {
+    "_id": "860f2c0590aea095",
+    "name": "Warbot: Walking Tank",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An insectoid ground combat machine.</p>"
+  },
+  {
+    "_id": "db700267b3ca773e",
+    "name": "Warbot: Vertol",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This robot can fly and hover using ducted fans. Basic Move becomes Air Move; ground Move is 0.</p>"
+  },
+  {
+    "_id": "a4596678b927cf01",
+    "name": "Warbot: Vertol (Contragrav)",
+    "pages": "UT168",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The machine uses contragravity generators for lift and thrust; this is TL10^. Its Basic Move becomes Air Move; ground Move is 0.</p>"
+  },
+  {
+    "_id": "5d564e5b097f7227",
+    "name": "Nursebot",
+    "pages": "UT202",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This man-shaped robot caregiver can assist the elderly and disabled, both at home and in clinics and hospitals. Its long, dextrous fingers have retractable surgical instruments, which can function as claws if used in combat. Its oversized head contains infrared and sonar systems for patient imaging.</p><p>Some nursebots can pass as human, although a sculpted humanoid version is more common.</p>"
+  },
+  {
+    "_id": "9e7de37688b6d92f",
+    "name": "Nursebot: TL9 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "79ec24ce9097b642",
+    "name": "Nursebot: TL10 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "cd82d60f1e19b0b9",
+    "name": "Nursebot: TL11 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "ba2891b2a62e1555",
+    "name": "Nursebot: TL12 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "102537df5bdc458f",
+    "name": "Medical Bush Robot",
+    "pages": "UT203",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a mobile \"robot bush\" equipped with branching manipulators and sensors. It is a variant of the technical bush robot (p. 86). A \"medical bush\" can perform the most delicate forms of surgery without any additional tools.</p>"
+  },
+  {
+    "_id": "60873c6458c8743d",
+    "name": "Medical Bush Robot: TL11 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "3be77a4412647233",
+    "name": "Medical Bush Robot: TL12 Model",
+    "pages": "UT203",
+    "status": "no-entry",
+    "notes": "the book prints only this lens's statistics, which the record holds",
+    "description": ""
+  },
+  {
+    "_id": "36a585c567cab04f",
+    "name": "Medical Bush Robot: Budding (TL12)",
+    "pages": "UT203",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some bushbots can bud off smaller copies of themselves.</p>"
+  },
+  {
+    "_id": "e642042a3c4acd26",
+    "name": "Medical Bush Robot: Combat Medic (TL11)",
+    "pages": "UT203",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An armored \"thorn bush.\"</p>"
+  },
+  {
+    "_id": "6fc293b2bc9254c4",
+    "name": "Computer Implant",
+    "pages": "UT215",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a computer implanted in the recipient's head and controlled through its own direct neural interface. It takes only a thought to call up a file or access a database. Data scrolls across the periphery of the user's vision, and he hears the computer as a voice in his head.</p><p>The implant includes an optical-recognition feature using the user's eyes and ears as sensors. It can speed-read documents, for example, and store them in its database. (It takes normal time to read them later, though one could ask the computer to provide a synopsis).</p><p>The interface can also run \"virtual tutor\" (p. 56) augmented reality programs that not only talk but show how to do things by overlaying instructions on the user's visual field. Although several programs could theoretically be run at once, the user can only focus on one at a time. A computer implant is most useful with an implanted communicator.</p><p>The recovery time represents the amount of time needed to master the computer's functions.</p>"
+  },
+  {
+    "_id": "8bf2bc6db5f28570",
+    "name": "Computer Implant: Puppeteer (TL9)",
+    "pages": "UT216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The computer can use biopresence software to possess the body of its host. This can also be combined with any of the above subrace options.</p>"
+  },
+  {
+    "_id": "de6b28a9cbdadf78",
+    "name": "Computer Implant: Mind Interface (TL10)",
+    "pages": "UT216",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The computer implant can sense the surface thoughts of its host. This can be combined with Puppeteer.</p>"
+  },
+  {
+    "_id": "2efeb4a83a08b3fe",
+    "name": "Intelligence: Cyborg Brain",
+    "pages": "UT27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A living brain is housed inside the machine. The robot template's computer is reduced one size to make room. See Total Cyborg Brain Transplants (p. 219) for the size of brain case that the machine can hold.</p>"
+  },
+  {
+    "_id": "cf6bbebf20a22f4f",
+    "name": "Intelligence: Drone",
+    "pages": "UT27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a Complexity 3 program.</p>"
+  },
+  {
+    "_id": "fe00950eadc8525a",
+    "name": "Intelligence: Mind Emulation",
+    "pages": "UT27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This digital intelligence simulates the functioning of a living brain. Some mind emulations may be sapient copies or \"uploads\" of human minds - see Uploading (pp. 219-220). It requires computer hardware and software with a Complexity equal to or greater than its (IQ+5)/2, rounded up.</p>"
+  },
+  {
+    "_id": "f8ead1eb8e490280",
+    "name": "Intelligence: Non-Volitional AI",
+    "pages": "UT27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This program lacks selfdirection, initiative, creativity, and empathy. It ignores orders from anyone but its master. It requires computer hardware and software with a Complexity equal to or greater than its (IQ/2)+2, rounded up.</p>"
+  },
+  {
+    "_id": "537a81cd8e0b24e0",
+    "name": "Intelligence: Volitional AI",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This sentient program has as much self-initiative and creativity as a living creature of equivalent intelligence. This means it requires computer hardware and software with a Complexity equal to or greater than its (IQ/2)+3, rounded up.</p>"
+  },
+  {
+    "_id": "53c3e62aafeb5d89",
+    "name": "Intelligence: Weak Dedicated AI",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This non-volitional AI is also incapable of self-improvement. It might seem to learn by storing and remembering data, but it cannot assimilate information and use that knowledge in new ways. This means it requires computer hardware and software with a Complexity equal to or greater than its IQ/2, rounded up.</p>"
+  },
+  {
+    "_id": "d2eadca256bf44de",
+    "name": "Intelligence: Fast",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The AI is speeded up and can think much faster than a normal entity.</p>"
+  },
+  {
+    "_id": "ccf9c722f9b3f4bb",
+    "name": "Intelligence: Fragment",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take this lens for any damaged or partially erased program.</p>"
+  },
+  {
+    "_id": "374f25cddd8850e7",
+    "name": "Intelligence: Reprogrammable",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is only available for mind emulations. The emulation was designed so that it is easy to edit.</p>"
+  },
+  {
+    "_id": "7498326d4105c721",
+    "name": "Intelligence: Expiration Date",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The AI is programmed to delete itself after a particular time has passed.</p>"
+  },
+  {
+    "_id": "5cfd7bedc643c45d",
+    "name": "Intelligence: Low-Res Upload",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Take this for a mind emulation that was produced using low-resolution uploading.</p>"
+  },
+  {
+    "_id": "48dc4a1acd6f6aa0",
+    "name": "Intelligence: Very-Low-Res Copy",
+    "pages": "UT220",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "0a37ef11caad3398",
+    "name": "Biomorphic: Sculpted Body",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot has a sculpted humanoid body that may be quite attractive, but is clearly that of a machine. It has metal, shiny chrome, or plastic skin. No change to dollar cost. It does not have Unnatural Features, since no one seeing it will think of it as anything other than a robot, full cyborg, etc.</p>"
+  },
+  {
+    "_id": "1a5a1264e97c20b9",
+    "name": "Biomorphic: Mannequin",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot can sometimes pass as a living thing of a particular race, but the details of its complexion or physical features are unconvincing or unfinished. Up close, it looks like a well-made doll. A successful Vision (including Infravision), Smell, or Touch roll will reveal its artificial nature. So will any diagnostic attempt or injury, since it doesn't bleed or bruise. A robot with Mannequin has Unnatural Features 2.</p>"
+  },
+  {
+    "_id": "54c46a7946feecfe",
+    "name": "Biomorphic: Semi-Sculpted Body",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot has a mannequin's doll-like face, but the rest of its body (except possibly its hands) is obviously artificial. It can only pass as a human if fully clothed in poor light. It has Unnatural Features 3.</p>"
+  },
+  {
+    "_id": "dc321f2dce7f6de1",
+    "name": "Biomorphic: Realistic Flesh",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot has realistic synthetic skin (and optionally, hair) of the correct temperature and texture. Complex pseudo-muscles in its face allow it to adopt facial expressions, muscle tics, etc. It looks and feels real. However, subtle imperfections may give it away - perhaps it lacks a pulse, or doesn't sweat. This can be noticed with a Vision-4 roll, Smell-2 roll, or a Touch sense roll. The robot does not bleed or bruise, so any injury that inflicts damage or successful use of diagnostic sensors reveals its mechanical nature.</p>"
+  },
+  {
+    "_id": "d19ea62349ef9516",
+    "name": "Biomorphic: Furry",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The android's body is covered with realistic fur; it may also have animal features such as a muzzle or ears. This must be combined with Living Flesh, Mannequin or Realistic Flesh.</p>"
+  },
+  {
+    "_id": "55d8f2675a23c11e",
+    "name": "Biomorphic: Living Flesh",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is similar to realistic flesh, with the addition that the robot can sweat, bruise, bleed, and even heal. It will pass normal inspection as a living thing. However, the robot's nature can be revealed by a Smell roll at -4, a cut deep enough to cause at least 1 HP of damage, or a successful use of diagnostic sensors.</p>"
+  },
+  {
+    "_id": "373a683b4e882f4a",
+    "name": "Biomorphic: Synthetic Organs",
+    "pages": "UT28",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot has functional synthetic organs. It is nearly impossible to tell the robot from a partial cyborg (p. 27) without an autopsy or a detailed examination of its brain. This is otherwise the same as living flesh.</p>"
+  },
+  {
+    "_id": "794c345d7758cbc2",
+    "name": "AI (Not Reprogrammable)",
+    "pages": "UT29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is applicable for AIs that have extremely complicated brains, or which are sophisticated learning computers.</p>"
+  },
+  {
+    "_id": "70df1f4154173ae9",
+    "name": "Automaton (Has Sense of Humor)",
+    "pages": "UT29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The machine is programmed to understand and respond to the rules of humor. It still has Low Empathy, so it's not a very good comedian.</p>"
+  }
+]

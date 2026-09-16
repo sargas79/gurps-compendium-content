@@ -96,6 +96,23 @@ const COST = new RegExp(
 const STATS = /^(duration|cost|base cost|time to cast|casting time|prerequisites?|item|energy cost)\s*:/i;
 
 /**
+ * Where an Ultra-Tech robot's traits begin, which ends its text: a robot
+ * template's text is its opening paragraph, not the trait list.
+ */
+const TEMPLATE_STATS = /^(Attribute Modifiers|Attributes|Secondary Characteristic Modifiers|Advantages):/;
+
+/** The legality class an Ultra-Tech gadget's closing line ends on: "... LC3." */
+const GADGET_CLOSE = /\bLC\s*\d\.?$/;
+
+/**
+ * What ends an Ultra-Tech gadget's text that has no closing price: the next
+ * gadget's inline label ("Assault Laser (TL9): ..."), a weapon table's header
+ * or its skill line ("BEAM WEAPONS (RIFLE) (DX-4, ...)"), or a table's caption.
+ */
+const GADGET_STOP =
+  /^(?:TL\s+Weapon\b|[A-Z][A-Z ()'-]+\((?:DX|IQ|HT)[-+]\d|.{0,80}?\(TL[\d^-]+\):|[A-Z][^.:]{2,60}\(TL[\d^-]+\)$)|\bTable$/;
+
+/**
  * How a power's ability is built: "Statistics: Recovery (PM, -10%) [9]".
  *
  * It is the last thing an ability prints, bar a footnote to it, and it is the
@@ -206,7 +223,7 @@ function captureCreature(entry, pages, offset) {
     // the plural -- "Camels", "Elephants", "Oxen" -- with no line of its own
     // in the singular.
     const headings = [name, `${name}s`, `${name}es`, IRREGULAR_PLURALS[name]].filter(Boolean);
-    const at = lines.findIndex((line) => headings.includes(line));
+    const at = lines.findIndex((line) => headings.includes(line) || headings.includes(withoutTechLevel(line)));
     if (at === -1) continue;
 
     const own = [];
@@ -320,9 +337,14 @@ function escapeRegExp(text) {
  */
 function stripPrice(text) {
   return text
+    // Ultra-Tech closes a gadget on price, weight, power and legality: "$50,
+    // neg. weight, A/10 hr. (uses flexible cells). LC4."
+    .replace(/\s*(?:If bought separately:\s*)?\+?\$[\d,]+(?:\.\d+)?[^$]{0,100}?\bLC\s*\d\.?\s*$/, "")
+    // A force blade prints only its cells and running time: "2C/420 seconds. LC2."
+    .replace(/\s*\d?[A-F]{1,2}\/[\d,]+\s*(?:seconds|minutes|hours|hrs?)\.?(?:\s*LC\s*\d\.?)?\s*$/, "")
     // "$50, 2 lbs.", "$40, 12 hrs.", "Per set: $50, 4 lbs.", "$200.", and a
     // weight with a decimal point in it, "$2, 0.5 lb.", "$250, 0.25 lb., 10 hrs."
-    .replace(/\s*(Per\s+[\w\s]+:\s*)?\$[\d,]+(\.\d+)?(\s*,\s*(?:[^.;]|\.(?=\d)|\.,){1,32})?\.?\s*$/i, "")
+    .replace(/\s*(Per\s+[\w\s]+:\s*)?\+?\$[\d,]+(\.\d+)?(\s*,\s*(?:[^.;]|\.(?=\d)|\.,){1,32})?\.?\s*$/i, "")
     .replace(/\s*,?\s*[\d./]+\s*lbs?\.?\s*$/i, "")
     .trim();
 }
@@ -393,12 +415,38 @@ function headingNames(bk) {
  */
 function printedNames(name, bk) {
   const own = normalise(name);
+  const alias = bk.transcription.aliases?.[own];
+  if (alias) return [own, normalise(alias)];
   const prefix = bk.transcription.namePrefix;
-  if (!prefix || !prefix.test(own)) return [own];
+  if (!prefix || !prefix.test(own)) return [own, ...gadgetNames(own)];
   const bare = own.replace(prefix, "");
   const unlevelled = bare.replace(/\s+\d$/, "");
   const family = unlevelled.replace(/\s*\([^)]*\)$/, "");
   return [...new Set([own, bare, unlevelled, family])];
+}
+
+/**
+ * The shorter names Ultra-Tech prints a data file's gadget under.
+ *
+ * The data file tells apart what the book prints once: "Anti-Materiel Rifle,
+ * 15mmCL" is headed "Anti-Materiel Rifle", "IML, 64mm (TL10)" is the IML, and a
+ * robot's lens, "Android: TL10 Model", is printed "TL10 Model" under the
+ * Android. The fullest name comes first, so it wins where the book prints it.
+ */
+function gadgetNames(name) {
+  const out = [];
+  let short = name.replace(/\s*\(TL[\d\s^-]+\)$/, "");
+  if (short !== name) out.push(short);
+  const uncalibred = short.replace(/,\s*[^,]*\d[^,]*$/, "");
+  if (uncalibred !== short) out.push((short = uncalibred));
+  const lens = /^[^:]+: (.+)$/.exec(short);
+  if (lens) out.push(lens[1]);
+  return out;
+}
+
+/** A heading's tech level, which the data file's name leaves off: "Android (TL9-12)". */
+function withoutTechLevel(line) {
+  return line.replace(/\s*\(TL[\d\s^-]+\)$/, "");
 }
 
 /**
@@ -409,13 +457,13 @@ function printedNames(name, bk) {
  * "Seekersense 29 points", "Spirit Channeling see p. 44".
  */
 function isHeading(line, names, next = "") {
-  if (line.length >= 60) return false;
+  if (withoutTechLevel(line).length >= 60) return false;
   // A wildcard skill printed in another book's list -- Detective! and Gun!
   // are the Basic Set's, between Blade! and Inventor! -- is a name this book's
   // packs do not know, but its shape gives it away: a short line with no
   // closing punctuation, and its attribute alone on the next.
   if (/^(ST|DX|IQ|HT|Will|Per)$/.test(next) && line.length < 30 && !/[.,;:]$/.test(line)) return true;
-  if (names.has(bare(line))) return true;
+  if (names.has(bare(line)) || names.has(withoutTechLevel(line))) return true;
   for (let at = line.indexOf(" "); at !== -1; at = line.indexOf(" ", at + 1)) {
     if (names.has(line.slice(0, at)) && COST.test(line.slice(at + 1))) return true;
   }
@@ -431,7 +479,7 @@ function headsEntry(line, candidate) {
   if (line.startsWith(`${candidate} `) && line.length - candidate.length < 40 && COST.test(line.slice(candidate.length + 1))) {
     return "costed";
   }
-  return bare(line) === candidate ? "bare" : null;
+  return bare(line) === candidate || withoutTechLevel(line) === candidate ? "bare" : null;
 }
 
 /**
@@ -457,7 +505,7 @@ function labelledParts(line, names) {
       .filter((name) => name.length > 3)
       .sort((a, b) => b.length - a.length)
       .map(escapeRegExp);
-    labelSplitters.set(names, labels.length ? new RegExp(`(?<=[.!?)]\\s)(?=(?:${labels.join("|")}):\\s)`) : null);
+    labelSplitters.set(names, labels.length ? new RegExp(`(?<=[.!?):]\\s)(?=(?:${labels.join("|")})(?:\\s*\\([^)]*\\))*:\\s)`) : null);
   }
   const splitter = labelSplitters.get(names);
   return splitter ? line.split(splitter) : [line];
@@ -478,6 +526,106 @@ function usefulLines(page) {
 }
 
 /**
+ * A weapon the book describes once for its whole family.
+ *
+ * "X-ray lasers are available in the same models as TL10 high-energy lasers",
+ * so the Heavy X-Ray Laser Pistol's text is what the book says of X-ray lasers,
+ * then what it says of the heavy laser pistol. The book's `families` rules map
+ * one name to the other and name the family's heading.
+ */
+function captureFamily(entry, pages, offset, names, bk, byName) {
+  const cited = citedPage(entry);
+  if (cited === null) return null;
+  for (const rule of bk.transcription.families ?? []) {
+    if (!rule.pattern.test(entry.name)) continue;
+    // A rule with no model -- "Heavy Mind Disruptor", which no neural disruptor
+    // matches -- takes the family's text alone.
+    let own = { paragraphs: [] };
+    if (!rule.headingOnly) {
+      const model = byName.get(entry.name.replace(rule.pattern, rule.replace).replace(/\s+/g, " ").trim());
+      if (!model) continue;
+      own = capture(model, pages, offset, names, bk);
+      if (!own?.paragraphs.length) continue;
+    }
+    for (const delta of [0, -1, 1, -2, 2]) {
+      const index = cited + offset - 1 + delta;
+      if (index < 0 || index >= pages.length) continue;
+      const lines = usefulLines(pages[index]);
+      const at = lines.findIndex((line) => withoutTechLevel(line) === rule.heading);
+      if (at === -1) continue;
+      // The family's opening runs until the next heading, which is short.
+      const opening = [];
+      for (const line of lines.slice(at + 1)) {
+        // A capitalised section title ("SONIC WEAPONS") ends it as surely.
+        if (FURNITURE.test(line) || (line.length < 60 && /[^.!?:)"]$/.test(line))) break;
+        opening.push(line);
+      }
+      if (!opening.length) continue;
+      return { kind: "family", paragraphs: [...rejoin(opening), ...own.paragraphs], page: cited + delta };
+    }
+  }
+  return null;
+}
+
+/** Whether an entry is a lens printed under its robot: "Android: TL10 Model". */
+function lensScoped(entry) {
+  return entry.type === "template" && /^[^:]+: /.test(entry.name);
+}
+
+/**
+ * The lines a lens is looked for in.
+ *
+ * Android and Petbot both print a "TL10 Model" on p. 41, so a lens is taken
+ * only after its own robot's heading, running on into the next page. A lens of
+ * no robot ("Intelligence: Drone") or whose robot began a page earlier is
+ * looked for on the page as it is.
+ */
+function lensScope(entry, pages, index, lines) {
+  if (!lensScoped(entry)) return lines;
+  const robot = entry.name.split(": ")[0];
+  const at = lines.findIndex((line) => withoutTechLevel(line) === robot);
+  if (at === -1) return lines;
+  // Reading order can put a column of lenses before the heading they follow on
+  // the printed page, so what precedes the heading is looked at last.
+  return [...lines.slice(at + 1), ...usefulLines(pages[index + 1] ?? ""), ...lines.slice(0, at)];
+}
+
+/**
+ * A capture carried on past the line it started on.
+ *
+ * A paragraph broken by a column or a page arrives as two lines, and the first
+ * does not end a sentence: "...uses holographic projection to" / "immerse the
+ * user in 3D imagery." Lines are added until one does.
+ */
+function continued(text, lines, at, pages, index, names) {
+  let out = text;
+  for (const line of [...lines.slice(at + 1), ...usefulLines(pages[index + 1] ?? "")]) {
+    if (/[.!?"')]$/.test(out)) break;
+    if (FURNITURE.test(line)) continue;
+    // The next line may go on to start the next entry: "...ducted fans for" /
+    // "quiet flight. Submarine (TL9) (+62 points): This uses water jets".
+    const parts = labelledParts(line, names);
+    out = `${out} ${parts[0]}`;
+    if (parts.length > 1) break;
+  }
+  return out;
+}
+
+/** A sentence that only states a lens's traits or price, which the record holds. */
+const LENS_STATISTICS = /\[[-+]?\d+(?:\/copy)?\]|\$\d|\bLC\s*\d|% to (?:dollar )?cost|^(?:Add|Remove|Delete|Upgrade)\b|^[-+]\d+ Complexity/;
+
+/** A lens's text without the sentences that only state its statistics. */
+function withoutStatistics(text) {
+  // A sentence ends where the next begins with a capital, a sign or a price, so
+  // "(p. 109)" and "0.01 lbs." stay inside theirs.
+  return text
+    .split(/(?<=[.!?]["')]?)\s+(?=["'(]?[A-Z+$-])/)
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => sentence && !LENS_STATISTICS.test(sentence))
+    .join(" ");
+}
+
+/**
  * The text under one entry.
  *
  * Returns `{ kind, paragraphs, page }`, or null when the book has no such entry.
@@ -487,6 +635,8 @@ function capture(entry, pages, offset, names, bk) {
   if (cited === null) return null;
   const candidates = printedNames(entry.name, bk);
   const name = candidates[candidates.length > 1 ? 1 : 0];
+  // A lens is never printed under its robot's name, only its own.
+  const inlineNames = lensScoped(entry) ? candidates.slice(1) : candidates;
 
   // Outward from the cited page. Most entries are on it or beside it, but a
   // spell cites the page its college begins on, and a college runs for several
@@ -521,6 +671,7 @@ function capture(entry, pages, offset, names, bk) {
       let j = i + 1;
       while (j < lines.length && COST.test(lines[j])) j++;
       let built = false;
+      let closed = false;
       for (; j < lines.length; j++) {
         const line = lines[j];
         if (FURNITURE.test(line)) continue;
@@ -530,19 +681,32 @@ function capture(entry, pages, offset, names, bk) {
         // book lists; the cost line under it is the usual confirmation, but a
         // perk has none, so a short line bearing a known name is enough.
         if (isHeading(line, names, lines[j + 1]) || SUBHEADING.test(line)) break;
-        if (STATS.test(line)) break;
+        if (STATS.test(line) || TEMPLATE_STATS.test(line) || GADGET_STOP.test(line)) break;
+        // An Ultra-Tech gadget closes on its price and legality class: "$20,000,
+        // 5 lbs., B/10 hr. LC3." That line is the record's, and the gadget ends.
+        if (GADGET_CLOSE.test(line)) {
+          const own = stripPrice(line).replace(GADGET_CLOSE, "").trim();
+          if (own) body.push(own);
+          closed = true;
+          break;
+        }
         body.push(line);
         if (STATISTICS.test(line)) built = true;
       }
       // An entry that runs to the foot of the page continues at the top of the
       // next one, before that page's first heading.
-      if (j >= lines.length && !built && index + 1 < pages.length) {
+      if (j >= lines.length && !built && !closed && index + 1 < pages.length) {
         const following = usefulLines(pages[index + 1]);
         for (const [k, line] of following.entries()) {
           if (FURNITURE.test(line)) continue;
           if (built && !AFTER_STATISTICS.test(line)) break;
           if (isHeading(line, names, following[k + 1]) || SUBHEADING.test(line)) break;
-          if (COST.test(line) || STATS.test(line)) break;
+          if (COST.test(line) || STATS.test(line) || TEMPLATE_STATS.test(line) || GADGET_STOP.test(line)) break;
+          if (GADGET_CLOSE.test(line)) {
+            const own = stripPrice(line).replace(GADGET_CLOSE, "").trim();
+            if (own) body.push(own);
+            break;
+          }
           body.push(line);
           if (STATISTICS.test(line)) built = true;
         }
@@ -560,19 +724,42 @@ function capture(entry, pages, offset, names, bk) {
     // (var.)" varies by TL, and a name read without it repeats itself in its own
     // description.
     // A footnote mark may follow the name: "Camera, Digital*. Basic equipment..."
-    const inline = new RegExp(`^${escapeRegExp(name)}\\s*(\\([^)]*\\))?\\*?\\s*[.:]\\s*(.+)$`, "i");
-    for (const line of lines.flatMap(itemsOf).flatMap((l) => labelledParts(l, names))) {
-      const match = inline.exec(line);
-      if (!match) continue;
-      const text = withoutTrailingCost(stripPrice(match[2]));
-      if (text.length < 15) continue;
-      // A weapon table row reads as an inline entry and is not one: "Pistol
-      // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
-      // figure of which the system already holds. Prose is sentences.
-      if (/\b(thr|sw)\s*[+-]?\d*\s+(imp|cut|cr|pi\+*|pi-|burn|tox|fat|cor)\b/i.test(text)) continue;
-      if ((text.match(/\b[a-z]{3,}\b/gi) ?? []).length < 5) continue;
-      return { kind: "inline", paragraphs: [text], page: cited + delta };
+    // Ultra-Tech prints more between the name and the colon -- "Mannequin (-2
+    // points) (TL9):" -- and names the same lens under several robots, so a lens
+    // is looked for only under its own robot's heading.
+    const scoped = lensScope(entry, pages, index, lines);
+    // A weapon may also print its calibre there: "Wrist Needler, 3mm (TL9):".
+    for (const candidate of inlineNames) {
+      const inline = new RegExp(
+        `^${escapeRegExp(candidate)}((?:\\s*\\([^)]*\\)|,\\s*[^,:()]{1,12}(?=\\s*[(:]))*)\\*?\\s*[.:]\\s*(.+)$`,
+        "i",
+      );
+      for (const [at, whole] of scoped.entries()) {
+        for (const line of itemsOf(whole).flatMap((l) => labelledParts(l, names))) {
+          const match = inline.exec(line);
+          if (!match) continue;
+          // Only the last piece of a line can run on to the next.
+          const last = whole.endsWith(line);
+          const text = withoutTrailingCost(stripPrice(last ? continued(match[2], scoped, at, pages, index, names) : match[2]));
+          if (lensScoped(entry)) {
+            const own = withoutStatistics(text);
+            if (own.length < 15) return { kind: "statistics", paragraphs: [], page: cited + delta };
+            return { kind: "inline", paragraphs: [own], page: cited + delta };
+          }
+          if (text.length < 15) continue;
+          // A weapon table row reads as an inline entry and is not one: "Pistol
+          // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
+          // figure of which the system already holds. Prose is sentences.
+          if (/\b(thr|sw)\s*[+-]?\d*\s+(imp|cut|cr|pi\+*|pi-|burn|tox|fat|cor)\b/i.test(text)) continue;
+          // A gadget labelled with its tech level may say little: "Nausea Pistol
+          // (TL9): A handy pistol-sized version."
+          const words = (text.match(/\b[a-z]{3,}\b/gi) ?? []).length;
+          if (words < (/\(TL[\d\s^-]+\)/.test(match[1]) ? 3 : 5)) continue;
+          return { kind: "inline", paragraphs: [text], page: cited + delta };
+        }
+      }
     }
+    if (lensScoped(entry)) continue;
 
     // A variant. The book gives the family one heading and each variant a
     // paragraph opening with its own name and a colon -- "Blunt Claws: Very
@@ -612,6 +799,9 @@ function capture(entry, pages, offset, names, bk) {
     // A sub-entry with no colon: a paragraph that simply opens with the name.
     for (const candidate of [name, family].filter(Boolean)) {
       for (const line of unmarked) {
+        // "Tangler Pistol, 25mm (TL9): ..." opens with "Tangler" and is another
+        // gadget's own label, not a paragraph about the tangler.
+        if (/^[^:]{0,80}\(TL[\d\s^-]+\):/.test(line)) continue;
         if (line.startsWith(candidate + " ") && line.length > candidate.length + 25 && !COST.test(line)) {
           return { kind: candidate === name ? "sub-entry" : "variant", paragraphs: [line], page: cited + delta };
         }
@@ -731,7 +921,11 @@ async function main() {
   const readingNotes = readingDecisions(bk, packName);
 
   const records = [];
-  const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, empty: 0, absent: 0, kept: 0 };
+  const tally = { heading: 0, inline: 0, "sub-entry": 0, variant: 0, family: 0, statistics: 0, empty: 0, absent: 0, kept: 0 };
+  const byName = new Map();
+  for (const pack of packsOf(bk)) {
+    for (const { entry } of readStatistics(bk, pack)) byName.set(entry.name, entry);
+  }
 
   for (const { entry } of readStatistics(bk, packName)) {
     const already = existing.get(entry._id);
@@ -743,7 +937,19 @@ async function main() {
 
     const found = ACTOR_TYPES.has(entry.type)
       ? captureCreature(entry, pages, offset)
-      : capture(entry, pages, offset, names, bk);
+      : (capture(entry, pages, offset, names, bk) ?? captureFamily(entry, pages, offset, names, bk, byName));
+    if (found?.kind === "statistics") {
+      tally.statistics++;
+      records.push({
+        _id: entry._id,
+        name: entry.name,
+        pages: `${label}${found.page}`,
+        status: "no-entry",
+        notes: "the book prints only this lens's statistics, which the record holds",
+        description: "",
+      });
+      continue;
+    }
     if (!found) {
       tally.absent++;
       // For a trait or an item, not finding a name means the book never uses
@@ -821,6 +1027,8 @@ async function main() {
     if (group.length < 2) continue;
     const families = new Set(group.map((r) => family(r.name)));
     if (families.size !== 1) continue;
+    // "Blaster Cannon (TL10)" and "(TL11)" are one weapon the book prints once.
+    if (group.every((record) => /\(TL ?\d+\)$/.test(record.name))) continue;
     for (const record of group) {
       if (record.status === "reviewed") continue;
       const why = "shares its text with its sibling variants, so it is the family's note, not its own";

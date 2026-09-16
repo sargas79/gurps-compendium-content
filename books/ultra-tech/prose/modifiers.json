@@ -1,0 +1,98 @@
+[
+  {
+    "_id": "3189bd9a6e2c555d",
+    "name": "Bio-Scan",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Para-Radar only. You receive vital signs and biochemical information from anything you scan - both the target itself and anything living on its surface. This lets you use skills like Biology and Diagnosis from a distance. With Penetrating, you can also examine living beings inside inanimate objects (e.g., the passengers of a car). +50%.</p>"
+  },
+  {
+    "_id": "e01c76022b1881bd",
+    "name": "Controllable",
+    "pages": "UT29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can consciously select your surface pattern. The effects are mainly aesthetic, but there's a useful side benefit. You can assume a high-visibility pattern that gives +2 per level to your attempts to signal others and distract enemies, and to others' rolls to spot you. This is mutually exclusive with Always On. +20%.</p>"
+  },
+  {
+    "_id": "8c270d833ddd77b8",
+    "name": "Dynamic",
+    "pages": "UT29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your surface pattern adapts instantly to new surroundings and corrects for \"motion blur.\" You get your full Stealth bonus (+2 per level) when moving. +40%.</p>"
+  },
+  {
+    "_id": "db1e879da3f4b1eb",
+    "name": "FTL",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your signal travels faster than the speed of light, letting you communicate with little or no \"light lag.\"</p>"
+  },
+  {
+    "_id": "67d39826f60e33b2",
+    "name": "Profiling",
+    "pages": "UT29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You possess an extensive mental database of sensory \"signatures\" that you can quickly compare to new sensory impressions. This doubles the bonus to analyze and recognize targets (but not to sense or track them) to +8. All attempts to memorize new signatures succeed automatically - there's no need for an IQ roll. +50%.</p>"
+  },
+  {
+    "_id": "9b1a2806543c9cad",
+    "name": "Scanner",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Para-Radar only. You receive detailed information about the composition, energy output, radiation emissions, and other characteristics of anything you scan. You can use scientific skills such as Chemistry and Physics to do detailed analysis from a distance. With Penetrating, you can spot specific systems within a complex machine and analyze them using Engineer skill. Robots with built-in ultra-scan typically have both enhancements - and often Bio-Scan, too. +50%.</p>"
+  },
+  {
+    "_id": "20cbddfc9f3b78fe",
+    "name": "Secure",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Your signal employs security measures that make it harder to intercept. Eavesdroppers must win a Quick Contest of IQ (if using Telecommunication) or Electronics Operation (if using technology) against your IQ to understand the content of the transmission. If they lose, they get garbage. This represents an exceptionally \"frequency agile\" system. +20%.</p>"
+  },
+  {
+    "_id": "34d40b614f365e96",
+    "name": "Sensie",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can transmit your sensory impressions in real time, as described under Sensies (pp. 57-58). This is possible for any form of Telecommunication save Directional Sound or Sonar Comm - but with anything other than Telesend, the recipient needs a specially equipped receiver to get the \"full experience.\" +80%.</p>"
+  },
+  {
+    "_id": "025d54560fb86745",
+    "name": "Sensie (Laser Communication)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sensie: You can transmit your sensory impressions in real time, as described under Sensies (pp. 57-58). This is possible for any form of Telecommunication save Directional Sound or Sonar Comm - but with anything other than Telesend, the recipient needs a specially equipped receiver to get the \"full experience.\" +80%.</p>"
+  },
+  {
+    "_id": "669905ca0079ea76",
+    "name": "Sensie (Radio)",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sensie: You can transmit your sensory impressions in real time, as described under Sensies (pp. 57-58). This is possible for any form of Telecommunication save Directional Sound or Sonar Comm - but with anything other than Telesend, the recipient needs a specially equipped receiver to get the \"full experience.\" +80%.</p>"
+  },
+  {
+    "_id": "3baf26317c8861bf",
+    "name": "Sensie Only",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As above, but you cannot transmit or receive signals other than sensory impressions. You could communicate by talking (other people would hear what you hear - the sound of your own voice), but you can't transmit silently. +0%.</p>"
+  },
+  {
+    "_id": "67b7250394cf0302",
+    "name": "Species-Specific",
+    "pages": "UT32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The robot is a pacifist toward certain species, usually its creator's species and other friendly species. However, its Pacifism does not apply to anything else. This is a -80% limitation on Pacifism. The species must be very common (like humans).</p>"
+  }
+]
