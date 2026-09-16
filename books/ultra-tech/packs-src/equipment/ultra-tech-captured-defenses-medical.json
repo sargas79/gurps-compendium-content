@@ -199,7 +199,14 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 2
+          }
+        }
+      }
     }
   },
   {

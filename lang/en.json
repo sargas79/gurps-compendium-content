@@ -1931,6 +1931,10 @@
         "powerCells": {
           "Name": "Power cells",
           "Hint": "Gear runs on the cells its table line gives. Non-rechargeable cells last twice as long and give twice the shots, a superscience cell gives a weapon five times the shots, and a cosmic cell never runs down. The Gear tab tracks each gadget's endurance and changes its cells in the seconds their size takes. Gadgets can be rigged to smaller cells with Electrician-2, and cells that blow up are explosives with a REF set by TL. Gear with no cell data, the Basic Set's beam weapons among it, is unaffected (their Shots already assume superscience cells)."
+        },
+        "computers": {
+          "Name": "Computers and software",
+          "Hint": "A computer's Complexity from its model and TL (+2 at TL10, +1 per TL after), its storage, and the programs it runs at once (two of its own Complexity, ten times as many per level below). Hardware options (compact, fast, genius, hardened, high-capacity, printed, quantum, slow, FTL) reprice it and change its Complexity and LC. A program without a listed price costs what the Software Cost Table gives at the campaign's TL. A program used as a tool gives +1 at Complexity 4 or 5 and +2 at 6 or 7, by the skill's difficulty. Each computer shows the highest-IQ AI it could run, and a GM tool works out how long breaking encryption takes."
         }
       },
       "Gadget": {
@@ -2026,6 +2030,114 @@
         "WeaponHint": "A weapon's cells are changed with its Reload button, which offers Fast-Draw (Ammo) to take a second off (Ultra-Tech p. 19).",
         "Supplies": "{cells} {size} cells",
         "SupplyPacks": "{cells} {size} cells, worn as a pack"
+      },
+      "Computer": {
+        "Title": "Computer",
+        "SoftwareTitle": "Software",
+        "KindLabel": "Is a",
+        "KindHint": "A computer is one of the book's standard models; a program is rated by its Complexity (Ultra-Tech pp. 22, 24).",
+        "Kind": {
+          "none": "Neither",
+          "computer": "Computer",
+          "program": "Program"
+        },
+        "ModelLabel": "Model",
+        "ModelHint": "The standard model: its Complexity and storage at TL9, and +2 Complexity at TL10, +1 per TL after (Ultra-Tech p. 22).",
+        "Model": {
+          "tiny": "Tiny (Complexity 3)",
+          "small": "Small (Complexity 4)",
+          "personal": "Personal (Complexity 5)",
+          "microframe": "Microframe (Complexity 6)",
+          "mainframe": "Mainframe (Complexity 7)",
+          "macroframe": "Macroframe (Complexity 8)",
+          "megacomputer": "Megacomputer (Complexity 9)"
+        },
+        "ExtraStorageLabel": "Extra storage",
+        "ExtraStorageHint": "Storage built in on top, at $1 and 0.001 lb. per unit: terabytes at TL9, petabytes at TL10, and so on (Ultra-Tech p. 23).",
+        "Excluded": "not with the other",
+        "Option": {
+          "compact": "Compact",
+          "compactHint": "Twice the cost, half the weight; half the cells and half the operating time.",
+          "fast": "Fast",
+          "fastHint": "+1 Complexity at 20 times the cost. Not with Slow or Genius.",
+          "genius": "Genius",
+          "geniusHint": "+2 Complexity at 500 times the cost; LC -1. Not with Fast or Slow.",
+          "hardened": "Hardened",
+          "hardenedHint": "+3 HT against EMP, microwaves and other attacks on electrical gadgets; twice the cost and weight.",
+          "highCapacity": "High-capacity",
+          "highCapacityHint": "Runs half again as many programs at once, at 1.5 times the cost.",
+          "printed": "Printed",
+          "printedHint": "Printed on fabric or skin, four square feet per pound; -1 Complexity and a thousandth the storage. Runs on solar or flexible cells. Not quantum.",
+          "quantum": "Quantum",
+          "quantumHint": "10 times the cost, twice the weight, LC -1; +5 Complexity to break encryption.",
+          "slow": "Slow",
+          "slowHint": "-1 Complexity and a tenth the storage, at a twentieth the cost. Not with Fast or Genius.",
+          "ftl": "FTL",
+          "ftlHint": "Superscience (TL11^): +1 Complexity at 100 times the cost, twice the weight; LC -1."
+        },
+        "Figures": "Complexity {complexity}, {storage} {unit}. Runs {own} programs of Complexity {complexity} at once, or {below} one level below.",
+        "Legality": "LC{lc} with its options.",
+        "CompactCells": "Compact: half the power cells and half the operating time.",
+        "Hardened": "Hardened: +{bonus} HT against attacks on electrical gadgets.",
+        "Ai": {
+          "dedicated": "dedicated",
+          "nonVolitional": "non-volitional",
+          "volitional": "volitional",
+          "weakDedicated": "weak dedicated",
+          "mindEmulation": "mind emulation"
+        },
+        "AiUpTo": "{kind} AI up to IQ {iq} (LC{lc})",
+        "AiNone": "no {kind} AI",
+        "ComplexityLabel": "Complexity",
+        "ComplexityHint": "The least Complexity a computer must have to run the program (Ultra-Tech p. 21).",
+        "DifficultyLabel": "Skill difficulty",
+        "DifficultyHint": "The difficulty of the skill a software tool is for: an Easy skill needs less Complexity for the same bonus (Ultra-Tech p. 25).",
+        "RunsOnLabel": "Runs on",
+        "RunsOnHint": "Which of the character's computers the program is running on.",
+        "NotRunning": "Not running",
+        "ComplexityShort": "Complexity {complexity}",
+        "MassMarket": "Mass-market",
+        "MassMarketHint": "Software sold to a huge user base costs as little as a tenth of the table's price (Ultra-Tech p. 24).",
+        "TablePrice": "${cost}: Complexity {complexity} at TL{tl} on the Software Cost Table.",
+        "Unavailable": "Complexity {complexity} software is unavailable at TL{tl}.",
+        "Tool": {
+          "basic": "Too simple to give a bonus to {skills}: good needs Complexity {good}, fine {fine}.",
+          "good": "A good tool for {skills} (+1); fine needs Complexity {fine}.",
+          "fine": "A fine tool for {skills} (+2)."
+        },
+        "SetQuality": "Set its quality",
+        "GearTitle": "Computers",
+        "Computer": "Computer",
+        "ComplexityShortHead": "Complexity",
+        "Storage": "Storage",
+        "Programs": "Running",
+        "TooComplex": "Too complex for this computer to run.",
+        "Overloaded": "Over capacity",
+        "OverloadedHint": "More programs than the computer runs at once: two of its own Complexity, ten times as many per level below.",
+        "Encryption": {
+          "Title": "Break encryption",
+          "Standard": "Encryption",
+          "basic": "Basic",
+          "secure": "Secure",
+          "Tl": "Encryption TL",
+          "Complexity": "Computer's Complexity",
+          "Quantum": "Quantum computer",
+          "Hours": "Hours spent",
+          "BaseTime": "base time",
+          "Roller": "{name} rolls Cryptography.",
+          "NoRoller": "Select a token to roll its Cryptography.",
+          "Go": "Work it out",
+          "RealTime": "in real time",
+          "hours": "{value} hours",
+          "minutes": "{value} minutes",
+          "seconds": "{value} seconds",
+          "QuantumNote": " (quantum, +5)",
+          "Result": "{standard} encryption at TL{tl} needs Complexity {needed} for an hourly attempt. Complexity {complexity}{quantum}: each attempt takes {time}.",
+          "TimeModifier": "Time spent: {modifier} to Cryptography.",
+          "TimeSpent": "Time spent",
+          "NoSkill": "{name} has no Cryptography skill.",
+          "RollLabel": "Cryptography: breaking {standard} encryption"
+        }
       }
     }
   },

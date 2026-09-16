@@ -8934,5 +8934,21 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>As above, but the controls and displays can be configured for nonhuman senses - for example, ultrasonic, infrared, or even olfactory outputs.</p>"
+  },
+  {
+    "_id": "1751854f00612b8b",
+    "name": "Verifier Software",
+    "pages": "UT106",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This computer program monitors a person's facial expression, especially facial movements near the eye muscles; different programs are needed for nonhumans. Creating software for other races requires knowledge of the race's biology and psychology. The software uses passive visual sensors (p. 60), and has Detect Lies-12.</p>"
+  },
+  {
+    "_id": "b52527e6a57ae2f0",
+    "name": "Veridicator Program",
+    "pages": "UT107",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This provides highly accurate lie detection by monitoring brain waves transmitted through a braintap neural interface (p. 215). It gives a human or computer a bonus of +TL/2 to Detect Lies skill.</p><p>Neural veridicators are completely reliable, providing an automatic success on a Detect Lies roll. However, people can forget, delude themselves, be fooled, or have their memories altered by brainwashing technology. A veridicator does not provide absolute truth; it just tells if someone believes they are telling the truth.</p>"
   }
 ]
