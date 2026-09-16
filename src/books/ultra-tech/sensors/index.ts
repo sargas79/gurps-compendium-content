@@ -278,6 +278,20 @@ async function lockOn(api: GWorldApi, item: any, actor: any): Promise<void> {
   await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(F("Locked", { sensor: item.name, target: target.name }))}</div></div>` });
 }
 
+/**
+ * The sensor a character has locked onto one of these targets (p. 63), and
+ * whether it's a tactical sensor, or null. A key other listeners read: where
+ * a listener set `context[ACTIVE_TARGETING]`, the lock's +3 is already
+ * replaced by active-sensor targeting (p. 150).
+ */
+export function lockedSensor(api: GWorldApi, actor: any, targets: any[]): { item: any; tactical: boolean } | null {
+  const lock = api.combat.getCombatState(actor, MODULE_ID, LOCK) as { targetUuid: string; itemId: string } | undefined;
+  if (!lock || !(targets ?? []).some((t) => String(t?.uuid) === lock.targetUuid)) return null;
+  const item = actor?.items?.get?.(lock.itemId);
+  return item ? { item, tactical: sensorData(item).tactical } : null;
+}
+export const ACTIVE_TARGETING = `${MODULE_ID}.activeTargeting`;
+
 export function readySensors(api: GWorldApi, on: SensorSwitches): void {
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -407,13 +421,9 @@ export function readySensors(api: GWorldApi, on: SensorSwitches): void {
 
   // A lock gives +3 to an aimed ranged attack at that target (p. 63).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
-    if (!on.sensors() || !context?.actor || context?.mode?.ranged !== true) return;
-    const lock = api.combat.getCombatState(context.actor, MODULE_ID, LOCK) as { targetUuid: string; itemId: string } | undefined;
-    if (!lock) return;
-    const targets = (context.targets ?? []) as any[];
-    if (!targets.some((t) => String(t?.uuid) === lock.targetUuid)) return;
-    const sensor = context.actor.items?.get?.(lock.itemId);
-    context.modifiers.push({ label: F("LockLine", { sensor: sensor?.name ?? "" }), value: TARGETING_LOCK });
+    if (!on.sensors() || !context?.actor || context?.mode?.ranged !== true || context[ACTIVE_TARGETING]) return;
+    const locked = lockedSensor(api, context.actor, context.targets ?? []);
+    if (locked) context.modifiers.push({ label: F("LockLine", { sensor: locked.item.name ?? "" }), value: TARGETING_LOCK });
   });
 
   // An ESM warns of an attack aimed with an active targeting sensor: +1 to Dodge (p. 62).

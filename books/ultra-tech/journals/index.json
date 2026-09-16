@@ -2215,6 +2215,7 @@
       "title": "Firearm Accessories",
       "chapter": "Weaponry",
       "pages": "UT149",
+      "rule": "gurps-compendium-content.firearmAccessories",
       "reference": "Ultra-Tech p. 149",
       "file": "firearm-accessories.md",
       "status": "reviewed"
@@ -2224,6 +2225,7 @@
       "title": "Tactical Programs",
       "chapter": "Weaponry",
       "pages": "UT149",
+      "rule": "gurps-compendium-content.firearmAccessories",
       "reference": "Ultra-Tech p. 149",
       "file": "tactical-programs.md",
       "status": "reviewed"
@@ -2233,6 +2235,7 @@
       "title": "Smartgun Electronics",
       "chapter": "Weaponry",
       "pages": "UT149-150",
+      "rule": "gurps-compendium-content.firearmAccessories",
       "reference": "Ultra-Tech pp. 149-150",
       "file": "smartgun-electronics.md",
       "status": "reviewed"
@@ -2242,6 +2245,7 @@
       "title": "Targeting with Active Sensors",
       "chapter": "Weaponry",
       "pages": "UT150",
+      "rule": "gurps-compendium-content.firearmAccessories",
       "reference": "Ultra-Tech p. 150",
       "file": "targeting-with-active-sensors.md",
       "status": "reviewed"
