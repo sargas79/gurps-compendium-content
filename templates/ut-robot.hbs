@@ -1,0 +1,11 @@
+{{!-- A robot or total cyborg: its body, intelligence, computer, price and
+     backup (Ultra-Tech pp. 26-30). --}}
+<section class="card" data-gcc-ut-robot>
+  <div class="card-head"><h3>{{localize "GCC.UT.Robot.Title"}}</h3></div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+  {{#if showsSoftware}}
+    <label data-tooltip="{{localize 'GCC.UT.Robot.ExtraPointsHint'}}">{{localize "GCC.UT.Robot.ExtraPoints"}}
+      <input type="number" data-gcc-ut-robot-points value="{{extraPoints}}" step="1" style="width:70px" {{#unless editable}}disabled{{/unless}} />
+    </label>
+  {{/if}}
+</section>

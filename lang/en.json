@@ -1939,6 +1939,14 @@
         "swarmbots": {
           "Name": "Swarmbots",
           "Hint": "Build a swarm from its area in square yards, microbots or nanobots, chassis, power supply and type, with a second type for a multi-function swarm, a disguise or self-replication. The item is repriced and shows the swarm's statistics, Move and endurance. A GM can turn it into a swarm NPC that the Basic Set's swarm rules fight. A GM tool runs a second of a combat swarm against its targets: devourers and disassemblers stopped only by sealed DR, stingers and terminators by Sealed (only stingers slowed by clothing), gremlins' damage and malfunction number on machinery, and sentries against other swarms."
+        },
+        "robots": {
+          "Name": "Robots",
+          "Hint": "For a character built from the book's robot templates, the Traits tab shows the body's price with its lenses, and the AI software's price (the Software Cost Table at the Complexity its IQ needs, +5% per extra mental point, never under 20%). It also shows whether the computer the body carries runs that AI (one size smaller for a total cyborg), the robot's LC, and the size of its digital backup. A GM tool reprograms an AI: Electronics Repair (Computers) with physical access, or Computer Programming (AI) against its IQ, at +3 against an Automaton. A critical hit from a surge attack knocks out anything Electrical."
+        },
+        "cinematicRobots": {
+          "Name": "Cinematic robot combat",
+          "Hint": "The movie ways of beating robots. A robot knocked back rolls IQ at -2 a yard or is stunned for a turn, even if nothing got through its DR. Automaton robots don't dodge. GM tools cover paint on the sensors (DX or Throwing at -10, then an IQ roll against panic) and a logical paradox (a Quick Contest of Psychology, Fast-Talk or Computer Programming (AI) against a sapient robot's IQ)."
         }
       },
       "Gadget": {
@@ -2288,6 +2296,91 @@
         },
         "Malfunction": "{name} malfunctions on {number} or more.",
         "Corrosion": "{name}'s DR there drops by {dr} (1 per 5 points of corrosion)."
+      },
+      "Robot": {
+        "Title": "Robot",
+        "NoBody": "No robot body lens with a price: apply one of the template's TL lenses.",
+        "Body": "{name}: ${cost} (base ${base}), {weight}, {power}.",
+        "NoPower": "no power cells listed",
+        "NoIntelligence": "No machine intelligence lens: apply one (Intelligence: ...).",
+        "Intelligence": "Intelligence: {kind}.",
+        "Kind": {
+          "cyborgBrain": "cyborg brain",
+          "drone": "drone",
+          "mindEmulation": "mind emulation",
+          "nonVolitional": "non-volitional AI",
+          "volitional": "volitional AI",
+          "weakDedicated": "weak dedicated AI"
+        },
+        "Model": {
+          "tiny": "tiny computer",
+          "small": "small computer",
+          "personal": "personal computer",
+          "microframe": "microframe",
+          "mainframe": "mainframe",
+          "macroframe": "macroframe",
+          "megacomputer": "megacomputer"
+        },
+        "Computer": "Its {model} is Complexity {complexity} at TL{tl}.",
+        "ComputerCyborg": "Its computer is one size smaller for the brain case: a {model}, Complexity {complexity} at TL{tl}.",
+        "Fits": "IQ {iq} needs Complexity {needed}: the computer runs it.",
+        "TooComplex": "IQ {iq} needs Complexity {needed}, more than the computer's {complexity}.",
+        "HighestIq": "The computer runs this intelligence up to IQ {iq}.",
+        "Needs": "IQ needs Complexity {needed}.",
+        "Software": "AI software: ${price} (${base} for Complexity {complexity} at TL{tl}, {points} extra points).",
+        "MindEmulationPrice": "A mind emulation's software is priced by uploading (Ultra-Tech p. 220).",
+        "CyborgBrainPrice": "A cyborg brain's case and operation are priced as a brain transplant (Ultra-Tech p. 219).",
+        "Total": "Robot and software: ${total}.",
+        "Legality": "LC{lc}.",
+        "Backup": "A digital backup (Extra Life, Copy, Requires Body) takes {size} and {seconds} seconds.",
+        "ExtraPoints": "Extra mental points",
+        "ExtraPointsHint": "Character points of IQ, Perception, Will and mental traits (skills and techniques included) bought on top of the templates. Each adds 5% to the AI software's price; a negative total takes it down, but never below 20% (Ultra-Tech p. 29).",
+        "NoDodge": "Automaton robots don't dodge (Ultra-Tech p. 34).",
+        "Surge": {
+          "Title": "Surge",
+          "ShortCircuit": "{name} short-circuits: a critical hit from a surge attack knocks out anything Electrical."
+        },
+        "Knockback": {
+          "Label": "IQ: shaken by knockback",
+          "Yards": "Knocked back {yards} yd."
+        },
+        "Reprogram": {
+          "Title": "Reprogram an AI",
+          "Pick": "Select the hacker's token and target the AI.",
+          "Method": "Method",
+          "physical": "Physical access (Electronics Repair, 10 min.)",
+          "involuntary": "Without the codes (Computer Programming (AI) vs. IQ, 1 hour)",
+          "PhysicalLabel": "Reprogramming {name} by hand ({minutes} min.)",
+          "Done": "{name} is reprogrammed after {minutes} minutes.",
+          "Failed": "{minutes} minutes of work on {name} come to nothing.",
+          "Damaged": "The attempt damages or destroys {name}'s brain.",
+          "NoSkill": "{name} doesn't know {skill}.",
+          "Automaton": "Automaton or Slave Mentality",
+          "ContestLabel": "Hacking {name}",
+          "Won": "After an hour, {name} obeys a new master, and its passwords can be changed.",
+          "Lost": "An hour's hacking fails to take control of {name}."
+        },
+        "Paint": {
+          "Title": "Paint the sensors",
+          "Pick": "Select the attacker's token and target the robot.",
+          "Label": "Covering {name}'s sensors",
+          "Penalty": "Paint on the sensors",
+          "Condition": "Sensors painted over",
+          "Panic": "IQ: not panicking while blinded",
+          "Panicked": "{name} panics, spinning out of control or firing wildly for {turns} turns.",
+          "Calm": "{name} keeps its head: it retreats, or relies on other sensors."
+        },
+        "Paradox": {
+          "Title": "Logical paradox",
+          "Pick": "Select the talker's token and target the robot.",
+          "Skill": "Skill",
+          "NotSapient": "{name} isn't sapient enough (IQ 6) to be confused.",
+          "NoSkill": "{name} knows none of Psychology, Fast-Talk or Computer Programming (AI).",
+          "ContestLabel": "A paradox in {name}'s programming",
+          "Condition": "Caught in a paradox",
+          "Won": "{name} struggles to resolve the paradox instead of attacking.",
+          "Lost": "{name} shrugs the paradox off."
+        }
       }
     }
   },
