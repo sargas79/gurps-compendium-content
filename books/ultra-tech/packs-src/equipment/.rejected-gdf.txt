@@ -16,3 +16,29 @@ DR "%Style_alt1list%" not a plain figure or a split	Ablative Nanoplas
 DR "%Style_alt1list%" not a plain figure or a split	Retro-Reflective
 DR "%Style_alt1list%" not a plain figure or a split	Bioplas
 DR "%Style_alt1list%" not a plain figure or a split	Energy Cloth
+not modelled	Bionic Ear: advantage in the file, read as a disadvantage at -3 points
+not modelled	Bionic Ears: advantage in the file, read as a disadvantage at -1 points
+not modelled	Bionic Eye (Two): advantage in the file, read as a disadvantage at -1 points
+not modelled	Bionic Organ Transplant: advantage in the file, read as a disadvantage at -26 points
+not modelled	Cybervoder: advantage in the file, read as a disadvantage at -4 points
+not modelled	Heavy Weapon Arm Mount: advantage in the file, read as a disadvantage at -18 points
+not modelled	Dazzler Carbine: damage type says "aff (3 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Laser Penlight: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Mini Laser Flashlight: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Heavy Laser Flashlight: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Laser Searchlight: damage type says "aff (2 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Portable MAD: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Tactical MAD: damage type says "aff (3 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	EMP Gun: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Pulse Carbine: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Scrambler: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Tactical Disruptor: damage type says "aff (3 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Holdout Nerve Disruptor: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Nerve Pistol: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Nerve Rifle: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Short-Range Mindripper: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Tactical Neural Disruptor: damage type says "aff (3 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Long-Range Mindripper: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Nausea Carbine: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Nausea Pistol: damage type says "aff (1 yd)"; a radius or a cone's width, and the record does not say which
+not modelled	Tactical Nauseator: damage type says "aff (3 yd)"; a radius or a cone's width, and the record does not say which

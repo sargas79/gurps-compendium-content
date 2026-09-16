@@ -1023,54 +1023,6 @@
         "name": "Semi-Portable Fission Reactor"
       },
       "reason": "the book describes \"a typical semi-portable system\" at exactly these figures under the heading \"Fission Generators (TL9)\" (p. 20). The heading is the family, not the item, and the plural name read as though the record were several"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Bionic Ear$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -3 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Bionic Ears$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -1 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Bionic Eye \\(Two\\)$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -1 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Bionic Organ Transplant$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -26 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Cybervoder$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -4 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
-    },
-    {
-      "pack": "advantages",
-      "pattern": "^Heavy Weapon Arm Mount$",
-      "set": {
-        "system.category": "disadvantage"
-      },
-      "reason": "a net cost of -18 points: the data file keeps every cybernetic implant in its Advantages section, and a trait that costs negative points is a disadvantage. Remove once the reader files a record by the sign of its cost (sargas79/GWorldVTT#396)"
     }
   ]
 }

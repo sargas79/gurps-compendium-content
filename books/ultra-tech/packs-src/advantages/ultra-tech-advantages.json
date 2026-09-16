@@ -88,50 +88,6 @@
     }
   },
   {
-    "_id": "2f449da273091540",
-    "name": "Bionic Ear",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -3,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 209"
-    }
-  },
-  {
-    "_id": "3500339c59691b24",
-    "name": "Bionic Ears",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -1,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 209"
-    }
-  },
-  {
     "_id": "97003508f593a0a2",
     "name": "Bionic Ears (Advanced)",
     "type": "trait",
@@ -160,28 +116,6 @@
     "system": {
       "category": "advantage",
       "points": 4,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 209"
-    }
-  },
-  {
-    "_id": "d1f35fe7036ed74a",
-    "name": "Bionic Eye (Two)",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -1,
       "levels": 0,
       "pointsPerLevel": 0,
       "costTable": [],
@@ -242,56 +176,12 @@
     }
   },
   {
-    "_id": "11184a09444b75da",
-    "name": "Bionic Organ Transplant",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -26,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 210"
-    }
-  },
-  {
     "_id": "5569f475a64f09a5",
     "name": "Boosted Heart",
     "type": "trait",
     "system": {
       "category": "advantage",
       "points": 19,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 210"
-    }
-  },
-  {
-    "_id": "b24ae2eef974f8bd",
-    "name": "Cybervoder",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -4,
       "levels": 0,
       "pointsPerLevel": 0,
       "costTable": [],
@@ -600,28 +490,6 @@
     "system": {
       "category": "advantage",
       "points": 2,
-      "levels": 0,
-      "pointsPerLevel": 0,
-      "costTable": [],
-      "levelNames": [],
-      "maxLevels": 0,
-      "reactionModifier": 0,
-      "talentSkills": [],
-      "power": "",
-      "powerTalent": false,
-      "meleeModes": [],
-      "rangedModes": [],
-      "description": "",
-      "reference": "Ultra-Tech p. 212"
-    }
-  },
-  {
-    "_id": "ce2dcf839153b8e8",
-    "name": "Heavy Weapon Arm Mount",
-    "type": "trait",
-    "system": {
-      "category": "disadvantage",
-      "points": -18,
       "levels": 0,
       "pointsPerLevel": 0,
       "costTable": [],
