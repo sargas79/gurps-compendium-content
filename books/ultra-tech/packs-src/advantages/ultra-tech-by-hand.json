@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "8a22b281aabb803b",
+    "name": "T-Ray Vision",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 25,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 30"
+    }
+  },
+  {
+    "_id": "b707e560ad0ca606",
+    "name": "Telecommunication (Cable Jack)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  },
+  {
+    "_id": "241b3558e2d6ac05",
+    "name": "Telecommunication (Directional Sound)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 5,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  },
+  {
+    "_id": "7e9cd4684f044b0e",
+    "name": "Telecommunication (Gravity-Ripple Comm)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 20,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  },
+  {
+    "_id": "8b5bf5ea9027bf1a",
+    "name": "Telecommunication (Neutrino Comm)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 25,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  },
+  {
+    "_id": "7363547264f6e3de",
+    "name": "Telecommunication (Sonar Comm)",
+    "type": "trait",
+    "system": {
+      "category": "advantage",
+      "points": 10,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "Ultra-Tech p. 31"
+    }
+  }
+]

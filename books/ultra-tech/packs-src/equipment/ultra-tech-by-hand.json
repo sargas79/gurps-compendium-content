@@ -1,0 +1,2988 @@
+[
+  {
+    "_id": "50ec3cfe41517d76",
+    "name": "Hand Grenade",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 146",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "attack",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "8dx2",
+          "damageType": "cr",
+          "explosive": true,
+          "fragmentation": "3d",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -2,
+          "recoil": 0,
+          "malfunction": null
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "warhead": {
+            "size": "64mm",
+            "type": "HE"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "5e559e104a6c6309",
+    "name": "Mini Hand Grenade",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 146",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "attack",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "8d",
+          "damageType": "cr",
+          "explosive": true,
+          "fragmentation": "2d",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -2,
+          "recoil": 0,
+          "malfunction": null
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "warhead": {
+            "size": "40mm",
+            "type": "HE"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "64c92762c038013a",
+    "name": "Thimble Grenade",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.06,
+      "cost": 2.5,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 146",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2.5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "attack",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "4d",
+          "damageType": "cr",
+          "explosive": true,
+          "fragmentation": "1d+1",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -2,
+          "recoil": 0,
+          "malfunction": null
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "warhead": {
+            "size": "25mm",
+            "type": "HE"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "60770f1468ef09a2",
+    "name": "Saucer Grenade",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 147",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [
+        {
+          "name": "attack",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "8d",
+          "damageType": "cr",
+          "explosive": true,
+          "fragmentation": "2d",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 2,
+          "scopeBonus": 0,
+          "halfDamageRange": 3,
+          "maxRange": 5,
+          "rangeIsStMultiple": true,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -1,
+          "recoil": 0,
+          "malfunction": null
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "warhead": {
+            "size": "40mm",
+            "type": "HE"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "782184e71bbd9010",
+    "name": "Limpet Mine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 140,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 147",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 140,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "warhead": {
+            "size": "64mm",
+            "type": "HE"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a554ad9cc16ace7f",
+    "name": "Massage Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 41",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 200
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "4de0b62a039b716a",
+    "name": "Play Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 41",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 200
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "4f5e9da9960f4058",
+    "name": "Cleaning Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 69",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "20b33f91a7c06282",
+    "name": "Firefly Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 74",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 100
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3f3adea87c64731f",
+    "name": "Explorer Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "56fff57e26ade3e7",
+    "name": "Construction Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 86",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6ec14bd862c96dcc",
+    "name": "Decontamination Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "998c8f8fa8078a28",
+    "name": "Defoliator Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "45ddbef4b70bb61e",
+    "name": "Harvester Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 2000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "eb0aade53f0e99c2",
+    "name": "Painter Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "17e1604b18068281",
+    "name": "Pesticide Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "066e214a13988868",
+    "name": "Pollinator Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a7202e085d83feb3",
+    "name": "Repair Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 87",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 500,
+            "perExtraModel": 250,
+            "maxModels": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b91d7202dd9c6152",
+    "name": "Security Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 104",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "2b25448b39460ec5",
+    "name": "Bughunter Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 4000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 106",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 4000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 4000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0d10f89a1c1f29cf",
+    "name": "Surveillance Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 106",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "15f0a20f46d69606",
+    "name": "Forensic Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 4000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 107",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 4000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 4000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "435f206f1149c80e",
+    "name": "Devourer Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 8000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 8000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 8000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "00f71779abd67eaf",
+    "name": "Gremlin Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 2000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a7f5f3a82d48959d",
+    "name": "Stinger Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "32ade7cb50e35456",
+    "name": "Terminator Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 1500
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "432466c1f73ad4ef",
+    "name": "Disassembler Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 10000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c06c62e8665144ab",
+    "name": "Cannibal Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 15000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 169",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 15000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "636114c97b52bdcc",
+    "name": "Paramedical Swarm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 6000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "tool",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 6000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 6000
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a071d78ed0c9a134",
+    "name": "Smart Car",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2800.0,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 224",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 46,
+        "handling": 1,
+        "stability": 5,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 3,
+        "topSpeed": 60,
+        "loadedWeight": 1.4,
+        "load": 0.6,
+        "sm": 3,
+        "occupants": "1+4",
+        "dr": 5,
+        "range": 0,
+        "skill": "Driving (Automobile)",
+        "locations": "G4W",
+        "locomotion": "wheels",
+        "roadBound": true,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "4cd8be8436e244e4",
+    "name": "Wheeled ATV",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20000,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 224",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 100,
+        "handling": -1,
+        "stability": 4,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 40,
+        "loadedWeight": 10,
+        "load": 2,
+        "sm": 5,
+        "occupants": "1+9PVS",
+        "dr": 40,
+        "range": 0,
+        "skill": "Driving (Heavy Wheeled)",
+        "locations": "g8W",
+        "locomotion": "wheels",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "c1b7774bb869c729",
+    "name": "Dynamic Car",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2200.0,
+      "cost": 30000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 224",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 40,
+        "handling": 2,
+        "stability": 5,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 6,
+        "topSpeed": 75,
+        "loadedWeight": 1.1,
+        "load": 0.6,
+        "sm": 3,
+        "occupants": "1+4",
+        "dr": 10,
+        "range": 0,
+        "skill": "Driving (Automobile)",
+        "locations": "G4W",
+        "locomotion": "wheels",
+        "roadBound": true,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "753ff384acd17eb4",
+    "name": "Exo-Spider",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10000,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 224",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 80,
+        "handling": 2,
+        "stability": 2,
+        "ht": 13,
+        "fragility": "",
+        "acceleration": 8,
+        "topSpeed": 16,
+        "loadedWeight": 5,
+        "load": 1,
+        "sm": 4,
+        "occupants": "1+4PVS",
+        "dr": 70,
+        "range": 0,
+        "skill": "Driving (Mecha)",
+        "locations": "g6L",
+        "locomotion": "legs",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "f2ac38b7de61adf5",
+    "name": "Air Car",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2400.0,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 225",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 45,
+        "handling": 2,
+        "stability": 3,
+        "ht": 11,
+        "fragility": "f",
+        "acceleration": 4,
+        "topSpeed": 190,
+        "loadedWeight": 1.2,
+        "load": 0.4,
+        "sm": 3,
+        "occupants": "1+3P",
+        "dr": 4,
+        "range": 0,
+        "skill": "",
+        "locations": "G4Wr",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "f5c95d14265cd35a",
+    "name": "Grav Jeep",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4000,
+      "cost": 400000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 225",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 400000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": 3,
+        "stability": 3,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 100,
+        "loadedWeight": 2,
+        "load": 1,
+        "sm": 4,
+        "occupants": "1+5",
+        "dr": 4,
+        "range": 0,
+        "skill": "Piloting (Contragravity)",
+        "locations": "O",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "de8b4e01980d479b",
+    "name": "Supersonic Air Car",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4000,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 225",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": 4,
+        "stability": 4,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 600,
+        "loadedWeight": 2,
+        "load": 0.8,
+        "sm": 3,
+        "occupants": "1+4P",
+        "dr": 12,
+        "range": 0,
+        "skill": "Piloting (Vertol)",
+        "locations": "g",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "ea2128185dbac8dc",
+    "name": "Grav Speeder",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3200.0,
+      "cost": 2000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 225",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": 10,
+        "stability": 5,
+        "ht": 13,
+        "fragility": "",
+        "acceleration": 50,
+        "topSpeed": 1500,
+        "loadedWeight": 1.6,
+        "load": 0.6,
+        "sm": 4,
+        "occupants": "1+3P",
+        "dr": 100,
+        "range": 0,
+        "skill": "Piloting (Contragravity)",
+        "locations": "g",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "793d60bfbcd8bb24",
+    "name": "Light Battle Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 60000,
+      "cost": 2000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 227",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 150,
+        "handling": -2,
+        "stability": 5,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 25,
+        "loadedWeight": 30,
+        "load": 1,
+        "sm": 5,
+        "occupants": "2S",
+        "dr": 500,
+        "range": 0,
+        "skill": "Driving (Tracked)",
+        "locations": "2CTt",
+        "locomotion": "tracks",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 200
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b2afb854ca400afc",
+    "name": "Hovertank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 60000,
+      "cost": 3000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 227",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 150,
+        "handling": -3,
+        "stability": 4,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 50,
+        "loadedWeight": 30,
+        "load": 1,
+        "sm": 5,
+        "occupants": "2S",
+        "dr": 700,
+        "range": 0,
+        "skill": "Driving (Hovercraft)",
+        "locations": "Tt",
+        "locomotion": "wheels",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 300,
+            "locomotion": "hover"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "664d995f20c131d1",
+    "name": "Grav Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 60000,
+      "cost": 3500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 227",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 150,
+        "handling": 1,
+        "stability": 5,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 500,
+        "loadedWeight": 30,
+        "load": 1,
+        "sm": 5,
+        "occupants": "2SV",
+        "dr": 700,
+        "range": 0,
+        "skill": "Piloting (Contragravity)",
+        "locations": "Tt",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 300
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "74e50d538ccdcc79",
+    "name": "Armored Hovercraft",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40000,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 227",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 130,
+        "handling": -2,
+        "stability": 4,
+        "ht": 11,
+        "fragility": "f",
+        "acceleration": 5,
+        "topSpeed": 50,
+        "loadedWeight": 20,
+        "load": 2,
+        "sm": 5,
+        "occupants": "2+8S",
+        "dr": 150,
+        "range": 0,
+        "skill": "Driving (Hovercraft)",
+        "locations": "tX",
+        "locomotion": "wheels",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 70,
+            "locomotion": "hover"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "26de065c07c4a449",
+    "name": "Hover Jeep",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4000,
+      "cost": 40000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 227",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": -1,
+        "stability": 3,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 3,
+        "topSpeed": 40,
+        "loadedWeight": 2,
+        "load": 1,
+        "sm": 4,
+        "occupants": "2+3",
+        "dr": 10,
+        "range": 0,
+        "skill": "Driving (Hovercraft)",
+        "locations": "OX",
+        "locomotion": "wheels",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "locomotion": "hover"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "81eb22aa9a6b508c",
+    "name": "Aquasled",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 260.0,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 228",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 15,
+        "handling": 0,
+        "stability": 2,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 15,
+        "loadedWeight": 0.13,
+        "load": 0.1,
+        "sm": -1,
+        "occupants": "1",
+        "dr": 5,
+        "range": 0,
+        "skill": "",
+        "locations": "E",
+        "locomotion": "water",
+        "roadBound": false,
+        "draft": 2,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "63f3affc82bb1d8f",
+    "name": "Deep-Sea Minisub",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 56000,
+      "cost": 25000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 228",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 150,
+        "handling": 0,
+        "stability": 3,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 1,
+        "topSpeed": 6,
+        "loadedWeight": 28,
+        "load": 1,
+        "sm": 6,
+        "occupants": "6PS",
+        "dr": 100,
+        "range": 0,
+        "skill": "",
+        "locations": "2Argst",
+        "locomotion": "water",
+        "roadBound": false,
+        "draft": 10,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "3af448d0fcf0a563",
+    "name": "Supercav Minisub",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40000,
+      "cost": 30000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 228",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 135,
+        "handling": 1,
+        "stability": 3,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 8,
+        "topSpeed": 150,
+        "loadedWeight": 20,
+        "load": 0.5,
+        "sm": 5,
+        "occupants": "2PS",
+        "dr": 30,
+        "range": 0,
+        "skill": "",
+        "locations": "gst",
+        "locomotion": "water",
+        "roadBound": false,
+        "draft": 6,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "7da352ee991828e4",
+    "name": "Nuclear Minisub",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 56000,
+      "cost": 50000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 228",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 150,
+        "handling": 0,
+        "stability": 3,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 18,
+        "loadedWeight": 28,
+        "load": 1,
+        "sm": 6,
+        "occupants": "6PS",
+        "dr": 150,
+        "range": 0,
+        "skill": "",
+        "locations": "2Argst",
+        "locomotion": "water",
+        "roadBound": false,
+        "draft": 10,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "145820faef030828",
+    "name": "Underwater Jet Pack",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 220.0,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 228",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 600,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 11,
+        "handling": 0,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 6,
+        "topSpeed": 12,
+        "loadedWeight": 0.11,
+        "load": 0.1,
+        "sm": -3,
+        "occupants": "1",
+        "dr": 5,
+        "range": 0,
+        "skill": "",
+        "locations": "E",
+        "locomotion": "water",
+        "roadBound": false,
+        "draft": 2,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "01d402a7927ef8e0",
+    "name": "Tactical Tilt-Rotor",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40000,
+      "cost": 40000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 229",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 130,
+        "handling": -1,
+        "stability": 4,
+        "ht": 12,
+        "fragility": "f",
+        "acceleration": 4,
+        "topSpeed": 200,
+        "loadedWeight": 20,
+        "load": 3,
+        "sm": 6,
+        "occupants": "2+18",
+        "dr": 30,
+        "range": 0,
+        "skill": "",
+        "locations": "gt3WrWi",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "skills": [
+              "Piloting (Helicopter)",
+              "Piloting (Light Airplane)"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "343ae40b112c77ff",
+    "name": "Tilt-Rotor Transport",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40000,
+      "cost": 20000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 229",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 130,
+        "handling": -1,
+        "stability": 4,
+        "ht": 11,
+        "fragility": "f",
+        "acceleration": 4,
+        "topSpeed": 200,
+        "loadedWeight": 20,
+        "load": 4,
+        "sm": 6,
+        "occupants": "2+28",
+        "dr": 6,
+        "range": 0,
+        "skill": "",
+        "locations": "G3WrWi",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "skills": [
+              "Piloting (Helicopter)",
+              "Piloting (Light Airplane)"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "05680cbd9b4d2686",
+    "name": "Utility Vertol",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20000,
+      "cost": 12000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 229",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 12000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 90,
+        "handling": 3,
+        "stability": 3,
+        "ht": 11,
+        "fragility": "x",
+        "acceleration": 4,
+        "topSpeed": 200,
+        "loadedWeight": 10,
+        "load": 2,
+        "sm": 5,
+        "occupants": "2+8S",
+        "dr": 30,
+        "range": 0,
+        "skill": "Piloting (Vertol)",
+        "locations": "g3Rr",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "ff3d73c1f20eb82a",
+    "name": "Nuclear-Powered Vertol",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 24000,
+      "cost": 24000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 229",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 24000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 100,
+        "handling": 3,
+        "stability": 4,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 350,
+        "loadedWeight": 12,
+        "load": 4,
+        "sm": 5,
+        "occupants": "2+12PSV",
+        "dr": 90,
+        "range": 0,
+        "skill": "Piloting (Vertol)",
+        "locations": "g3Rr",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "fc63a51307a6ddcb",
+    "name": "Dragonfly",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 280.0,
+      "cost": 4000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 230",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 4000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 16,
+        "handling": 2,
+        "stability": 5,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 5,
+        "topSpeed": 35,
+        "loadedWeight": 0.14,
+        "load": 0.11,
+        "sm": 2,
+        "occupants": "1",
+        "dr": 2,
+        "range": 0,
+        "skill": "",
+        "locations": "E2R2Wi",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 15
+      }
+    }
+  },
+  {
+    "_id": "93f499101efc3ef8",
+    "name": "Backpack Dragonfly",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 260.0,
+      "cost": 6000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 230",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 6000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 16,
+        "handling": 2,
+        "stability": 5,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 5,
+        "topSpeed": 35,
+        "loadedWeight": 0.13,
+        "load": 0.11,
+        "sm": 2,
+        "occupants": "1",
+        "dr": 2,
+        "range": 0,
+        "skill": "",
+        "locations": "E2R2Wi",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 15
+      }
+    }
+  },
+  {
+    "_id": "98b2d34ccf32b68c",
+    "name": "Contragravity Platform",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 420.0,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 230",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 10,
+        "handling": 0,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 5,
+        "topSpeed": 15,
+        "loadedWeight": 0.21,
+        "load": 0.1,
+        "sm": -2,
+        "occupants": "1+1",
+        "dr": 3,
+        "range": 0,
+        "skill": "",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "343b5d31ad949abc",
+    "name": "Grav Bike",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 800.0,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 230",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 30,
+        "handling": 4,
+        "stability": 2,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 20,
+        "topSpeed": 80,
+        "loadedWeight": 0.4,
+        "load": 0.2,
+        "sm": 0,
+        "occupants": "1+1",
+        "dr": 3,
+        "range": 0,
+        "skill": "Piloting (Contragravity)",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "d2934de47861dd42",
+    "name": "Nightwing",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000.0,
+      "cost": 540000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 230",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 540000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 36,
+        "handling": 6,
+        "stability": 4,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 600,
+        "loadedWeight": 0.5,
+        "load": 0.15,
+        "sm": 3,
+        "occupants": "1+1P",
+        "dr": 30,
+        "range": 0,
+        "skill": "",
+        "locations": "gr3WrWi",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "907d9417b9f039dd",
+    "name": "Hand Thruster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 200.0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 6,
+        "handling": 1,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 1,
+        "topSpeed": 30,
+        "loadedWeight": 0.1,
+        "load": 0.1,
+        "sm": -5,
+        "occupants": "1",
+        "dr": 5,
+        "range": 0,
+        "skill": "Free Fall",
+        "locations": "",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "accelerationG": 0.1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "31623892dd444ce3",
+    "name": "Helipack",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 680.0,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 17,
+        "handling": 2,
+        "stability": 2,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 3,
+        "topSpeed": 30,
+        "loadedWeight": 0.34,
+        "load": 0.3,
+        "sm": -2,
+        "occupants": "1",
+        "dr": 10,
+        "range": 0,
+        "skill": "Piloting (Flight Pack)",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "4c4484824217858d",
+    "name": "Thruster Pack",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 240.0,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 14,
+        "handling": 3,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 3,
+        "topSpeed": 300,
+        "loadedWeight": 0.12,
+        "load": 0.1,
+        "sm": -2,
+        "occupants": "1",
+        "dr": 10,
+        "range": 0,
+        "skill": "Free Fall",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "accelerationG": 0.3
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "719ae8b7f515afe1",
+    "name": "Contragravity Belt",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 320.0,
+      "cost": 12000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 12000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 10,
+        "handling": 2,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 40,
+        "loadedWeight": 0.16,
+        "load": 0.15,
+        "sm": -3,
+        "occupants": "1",
+        "dr": 3,
+        "range": 0,
+        "skill": "Piloting (Flight Pack)",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "c307890e60ce8098",
+    "name": "Nuclear Jetpack",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 700.0,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 18,
+        "handling": 2,
+        "stability": 1,
+        "ht": 11,
+        "fragility": "",
+        "acceleration": 5,
+        "topSpeed": 30,
+        "loadedWeight": 0.35,
+        "load": 0.3,
+        "sm": -2,
+        "occupants": "1",
+        "dr": 20,
+        "range": 0,
+        "skill": "Piloting (Flight Pack)",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "23d0c02a7854035a",
+    "name": "Grav Cloak",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 300.0,
+      "cost": 6000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 231",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 6000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 7,
+        "handling": 2,
+        "stability": 1,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 10,
+        "topSpeed": 40,
+        "loadedWeight": 0.15,
+        "load": 0.15,
+        "sm": -3,
+        "occupants": "1",
+        "dr": 3,
+        "range": 0,
+        "skill": "Piloting (Flight Pack)",
+        "locations": "E",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "ffe7f8897116a017",
+    "name": "Life Pod",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 232",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": -5,
+        "stability": 1,
+        "ht": 13,
+        "fragility": "",
+        "acceleration": 1,
+        "topSpeed": 1000,
+        "loadedWeight": 1,
+        "load": 0.5,
+        "sm": 2,
+        "occupants": "4SV",
+        "dr": 100,
+        "range": 0,
+        "skill": "Piloting (High-Performance Spacecraft)",
+        "locations": "",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 20,
+            "accelerationG": 0.1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f5cd54f415ffe015",
+    "name": "Drop Capsule",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 232",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": 0,
+        "stability": 0,
+        "ht": 13,
+        "fragility": "",
+        "acceleration": 0,
+        "topSpeed": 0,
+        "loadedWeight": 1,
+        "load": 0.5,
+        "sm": 2,
+        "occupants": "2SV",
+        "dr": 100,
+        "range": 0,
+        "skill": "",
+        "locations": "",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 20
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "29ceb469ab86a3ea",
+    "name": "Stealth Capsule",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 232",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 50,
+        "handling": 0,
+        "stability": 0,
+        "ht": 13,
+        "fragility": "",
+        "acceleration": 0,
+        "topSpeed": 0,
+        "loadedWeight": 1,
+        "load": 0.3,
+        "sm": 2,
+        "occupants": "1SV",
+        "dr": 100,
+        "range": 0,
+        "skill": "",
+        "locations": "",
+        "locomotion": "air",
+        "roadBound": false,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "vehicle": {
+            "secondDr": 20
+          }
+        }
+      }
+    }
+  }
+]
