@@ -24,6 +24,11 @@
       "pack": "equipment",
       "pattern": "^(Dazzle Laser Mode|Blinding Mode)$",
       "reason": "settings every high-energy laser can have, not weapons of their own; derived rows on the laser (#246)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Software - Complexity +\\d+( \\(TL ?\\d+\\))?$",
+      "reason": "fifteen placeholders at $0 named by Complexity; software is priced from Complexity and TL by the table on p. 25, which the computers rule (#238) does as a calculated field"
     }
   ],
   "patch": [
@@ -1023,6 +1028,136 @@
         "name": "Semi-Portable Fission Reactor"
       },
       "reason": "the book describes \"a typical semi-portable system\" at exactly these figures under the heading \"Fission Generators (TL9)\" (p. 20). The heading is the family, not the item, and the plural name read as though the record were several"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Monowire Switchblade$",
+      "set": {
+        "system.meleeModes": [
+          {
+            "name": "Blade",
+            "skill": "Force Sword",
+            "damageBase": "sw",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 1,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 10,
+            "reach": "C-5",
+            "parryModifier": 0,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 5,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          },
+          {
+            "name": "Whip",
+            "skill": "Monowire Whip",
+            "damageBase": "sw",
+            "damageModifier": -2,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 1,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 10,
+            "reach": "1-7*",
+            "parryModifier": -2,
+            "canParry": true,
+            "unbalanced": true,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 5,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          }
+        ],
+        "system.extensions.gurps-compendium-content.switchblade": {
+          "mode": "Blade",
+          "damagePerYardOfReach": 1
+        }
+      },
+      "reason": "the rigid blade does \"swing + 1d + R(10) cutting damage, where R is its current reach (treat C as 0)\" at reach C-5 (p. 164). The data file writes it sw+1d+R, which no damage formula can hold, so the reader rejects the mode: the blade is kept at its reach-C figure and the per-yard addition waits for the melee rule (#252)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Stasis Switchblade$",
+      "set": {
+        "system.meleeModes": [
+          {
+            "name": "Blade",
+            "skill": "Force Sword",
+            "damageBase": "sw",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 1,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 10,
+            "reach": "C-30",
+            "parryModifier": 0,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 5,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          },
+          {
+            "name": "Whip",
+            "skill": "Monowire Whip",
+            "damageBase": "sw",
+            "damageModifier": -1,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 1,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 10,
+            "reach": "1-30*",
+            "parryModifier": -2,
+            "canParry": true,
+            "unbalanced": true,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 5,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          }
+        ],
+        "system.extensions.gurps-compendium-content.switchblade": {
+          "mode": "Blade",
+          "damagePerYardOfReach": 1
+        }
+      },
+      "reason": "the rigid blade does \"swing + 1d + R(10) cutting damage, where R is its current reach (treat C as 0)\" at reach C-30 (p. 164). The data file writes it sw+1d+R, which no damage formula can hold, so the reader rejects the mode: the blade is kept at its reach-C figure and the per-yard addition waits for the melee rule (#252)"
     }
   ]
 }

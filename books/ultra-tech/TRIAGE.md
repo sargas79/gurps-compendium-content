@@ -152,4 +152,39 @@ wonder:
    gives as animal stat blocks become an Actor pack.
 7. **Vehicles are kept by hand** as vehicle-category equipment.
 
+8. **Software is priced, not picked.** The data file's fifteen "Software -
+   Complexity N" records cost $0, while software's price comes from the table
+   on p. 25 by Complexity and TL. They are excluded, and the computers rule
+   (#238) prices software as a calculated field. Settled 2026-09-16 between the
+   data and rules work, the question having been left open when this was filed.
+
+## What #227 found
+
+- **The helmets and suits are one piece each, not two.** Filing expected a
+  suit split by location to become two items. The system gained a DR by
+  location on one piece instead (sargas79/GWorldVTT#392), which is what #226
+  used, so nothing is kept by hand for them.
+- **Chip Slots, Neurotherapy Implant and Psych Implant need no trait record.**
+  Chip Slots is the Basic Set's own Modular Abilities (Chip Slots), already in
+  the system's pack. The other two are the Mitigator or Temporary Disadvantage
+  limitation applied to a disadvantage (p. 217), not traits of their own. All
+  three are in the pack as priced equipment.
+- **The Military Ladar's blinding mode is a setting of a sensor.** The data
+  file writes it as a weapon costing "var." whose range is a tenth and a half of
+  the sensor's (p. 114), the same as the dazzle and blinding modes already
+  excluded. The ladar itself is in no data file and is captured with the
+  sensors (#229); its blinding row belongs to that sensor (#241).
+- **There are 36 vehicles, not 33.** The nine tables on pp. 224-233 print 36.
+  None prints an LC, and the prose that gives some cannot be told apart from
+  its neighbour's in the extracted text, so vehicles carry no LC. A vehicle's
+  second DR, a hovercraft's true locomotion, a space vehicle's acceleration in
+  G and a tilt-rotor's two skills are kept in this module's extension data.
+- **Grenades take their effect from a warhead.** A grenade's cost is "the base
+  cost for a high explosive fragmentation grenade" (p. 146), so each carries the
+  HE warhead's TL9 damage for its size and names that size for the warheads
+  rule (#250) to swap.
+- **Swarms are built, not bought whole.** Each of the 24 types is kept at its
+  base price for one square yard; chassis, power supply and disguise reprice it
+  (pp. 35-37), which is the swarmbots rule's (#240).
+
 The plan these came from: https://claude.ai/artifact/Gua2htvv1cQcD2TvQRwgvJ
