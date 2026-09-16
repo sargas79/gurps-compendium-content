@@ -1973,6 +1973,7 @@
       "title": "Neural Weapons",
       "chapter": "Weaponry",
       "pages": "UT121",
+      "rule": "gurps-compendium-content.neuralAndSonic",
       "reference": "Ultra-Tech p. 121",
       "file": "neural-weapons.md",
       "status": "reviewed"
@@ -2002,6 +2003,7 @@
       "title": "Sonic Weapons",
       "chapter": "Weaponry",
       "pages": "UT124-125",
+      "rule": "gurps-compendium-content.neuralAndSonic",
       "reference": "Ultra-Tech pp. 124-125",
       "file": "sonic-weapons.md",
       "status": "reviewed"
