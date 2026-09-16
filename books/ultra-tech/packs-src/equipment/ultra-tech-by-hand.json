@@ -4751,5 +4751,77 @@
       "meleeModes": [],
       "rangedModes": []
     }
+  },
+  {
+    "_id": "6c10202f675de552",
+    "name": "Ghost Compiler",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 220",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Computer Programming"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 10
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b66ac2336bfcb806",
+    "name": "Ghost-Editor Program",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 220",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Brainwashing"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 11
+          }
+        }
+      }
+    }
   }
 ]

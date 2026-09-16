@@ -1963,6 +1963,10 @@
         "interrogation": {
           "Name": "Interrogation and lie detection",
           "Hint": "Sensory restraints worn by the subject add to Interrogation, and a veridicator adds +TL/2 to Detect Lies (and is an automatic success). GM tools run neural programming (a Regular Contest of Brainwashing against Will at -1 per 5 points of the disadvantage, plus the software's quality) and mind probes (Electronics Operation (Medical), slow or fast, where a fast probe risks brain damage or a coma)."
+        },
+        "uploading": {
+          "Name": "Uploading and downloading minds",
+          "Hint": "GM tools upload and download minds. A destructive upload rolls Physician-5 and Electronics Operation (Medical)-5 (Surgery for a bush robot): failing by 1 leaves a low-res copy, by 2 a very-low-res one, by 3 or more nothing. A non-destructive scan takes an hour: low-res only at TL10, full at TL11, or low-res in 10 minutes at +2. A critical failure quietly drops a step. Dead brains are at -2, -1 an hour, and -3 frozen. Downloading rolls Electronics Operation (Medical): a failure destroys the host's brain, and a critical failure or failure by 5+ hides a flaw. A low- or very-low-res copy can be applied to the host (skill points halved or quartered, amnesia, -1 IQ, 50% Flashbacks)."
         }
       },
       "Gadget": {
@@ -2599,6 +2603,60 @@
           "BrainDamage": "{name} suffers brain damage: -1 IQ.",
           "Coma": "{name} falls into a coma and can't be interrogated until they recover."
         }
+      },
+      "Upload": {
+        "Pick": "Select the operator's token and target the subject.",
+        "UploadTitle": "Upload a mind",
+        "DownloadTitle": "Download a mind",
+        "Method": "Method",
+        "nonDestructive": "Non-destructive scan",
+        "destructive": "Destructive uploading",
+        "bushRobot": "Destructive, by a bush robot",
+        "Tl": "Imaging TL",
+        "QuickLowRes": "Quick low-res scan (TL11, +2)",
+        "Dead": "The subject is dead",
+        "HoursDead": "Hours since death",
+        "Preserved": "Brain preserved or in nanostasis",
+        "Frozen": "Preserved by freezing",
+        "DeadModifier": "Uploading the dead",
+        "TenMinutes": "10 minutes",
+        "AnHour": "an hour",
+        "ScanLabel": "Scanning {name}'s mind ({time})",
+        "DestructiveLabel": "Uploading {name}: {skill}",
+        "Result": {
+          "full": "A full-resolution upload of {name}.",
+          "lowRes": "A low-res copy of {name}: half the skill points, perhaps Partial Amnesia.",
+          "veryLowRes": "A very-low-res copy of {name}: -1 IQ, Total Amnesia, a quarter of the skill points.",
+          "failed": "The upload of {name} fails."
+        },
+        "Hidden": "The scan is a step lower than the operator believes.",
+        "Emulation": "Its mind emulation needs Complexity {complexity} and about {tb} TB. A backup is Extra Life (Copy).",
+        "LostMinutes": "Memories of the last {dice} x {times} minutes before death are usually lost.",
+        "BrainDestroyed": "The brain is destroyed either way; only one try was possible.",
+        "Recipient": "Host",
+        "blank": "A blank mind",
+        "otherPerson": "Another person of the same species (-1)",
+        "otherSpecies": "Another species",
+        "Physiology": "Physiology modifier",
+        "DeliberateLowRes": "Deliberately low-res (+2)",
+        "ApplyCopy": "Apply a low-res copy's effects to the host",
+        "DownloadLabel": "Downloading into {name}",
+        "Download": {
+          "replaced": "The emulation replaces {name}'s memories and personality.",
+          "brainDestroyed": "The transfer fails and destroys {name}'s brain.",
+          "hiddenFlaw": "The transfer into {name} seems to work, but there's a hidden flaw."
+        },
+        "Flaw": "The flaw: {flaw}.",
+        "Flaws": {
+          "partialAmnesia": "Partial Amnesia",
+          "splitPersonality": "a Split Personality",
+          "wrongEmulation": "the wrong emulation was transferred"
+        },
+        "AppliedSkills": "Skill points cut to {fraction}.",
+        "AppliedIq": "IQ {iq}.",
+        "AppliedTraits": "Added {traits}.",
+        "AppliedLost": "Lost {traits}.",
+        "MindTransfer": "The host keeps its racial template, with the Mind vs. Brain rule (Characters p. 296)."
       }
     }
   },
