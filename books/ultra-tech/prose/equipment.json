@@ -9630,5 +9630,13 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>A pocket-sized laser microphone: it bounces an invisible beam off a window or faceplate and picks up the speech behind it with an Electronics Operation (Surveillance) roll. Range 300 yards, doubled at TL10, x5 at TL11 and x10 at TL12.</p>"
+  },
+  {
+    "_id": "cd3cb4e143cabf4c",
+    "name": "Defense Globe (per lb. of weapon)",
+    "pages": "UT101",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small remote-controlled turret disguised as a light fixture or smoke detector, holding any ranged weapon up to 4 lbs. It is SM -6, HP 8, and has no active defenses; beam weapons in it run on building power. $100 per pound of weapon, plus the weapon and a smart sight. Traps-9 to spot it first.</p>"
   }
 ]

@@ -5,10 +5,11 @@
  *   - **Security systems:** a GM tool that runs a barrier against its targets
  *     (fences, wire, monowire, sonic barriers, neural disruptor fields, dream
  *     nets, disintegrator fields); an item section for doors, safes and locks
- *     by TL.
+ *     by TL, and remote weapons' Traps-9; a row action to sweep for bugs.
  *   - **Restraints:** a row action to break free of cuffs and tape, and to
  *     resist power dampers, neuronic restraints and neural pacifiers.
- *   - **Interrogation:** sensory restraints' bonus against their wearer, the
+ *   - **Interrogation:** sensory restraints' bonus against their wearer (the
+ *     tank's +3 after an hour, with its Fright Checks as the hours pass), the
  *     veridicator's bonus to Detect Lies, and GM tools for neural programming
  *     and mind probes.
  */
@@ -18,6 +19,7 @@ import {
   BARRIERS,
   CUFFTAPE_FAILURE_DAMAGE,
   CUFFTAPE_SEVERED,
+  REMOTE_WEAPON_SPOT,
   VERIFIER_SKILL,
   dreamNetRemoval,
   fenceCost,
@@ -42,6 +44,8 @@ import {
   safeDr,
   sensoryRestraintBonus,
   struggleSeconds,
+  sweeperSkill,
+  tankFrightChecks,
   veridicatorBonus,
 } from "./rules.js";
 
@@ -196,7 +200,50 @@ function securityItemLines(item: any): string[] {
   if (/^Monowire/i.test(name)) lines.push(F("Item.Monowire", { unaware: monowireSpotting(false), looking: monowireSpotting(true) }));
   if (/^Verifier Software$/i.test(name)) lines.push(F("Item.Verifier", { skill: VERIFIER_SKILL }));
   if (/brainwipe/i.test(name)) lines.push(L("Item.Brainwipe"));
+  if (/^defense globe\b/i.test(name)) lines.push(F("Item.RemoteWeapon", { modifier: REMOTE_WEAPON_SPOT }));
+  if (BUG_SWEEPER.test(name)) lines.push(/^rf bug detector$/i.test(name) ? L("Item.RfDetector") : F("Item.Sweeper", { skill: sweeperSkill(tlOf(item?.system?.tl) ?? 9) }));
+  if (/^sensory deprivation tank$/i.test(name)) lines.push(F("Item.Tank", { hours: tankHours(item) }));
   return lines;
+}
+
+const BUG_SWEEPER = /^(rf bug detector|multispectral bug sweeper|gut bug sweeper)$/i;
+const TANK_FLAG = "utTankHours";
+const tankHours = (item: any): number => Math.max(0, Number(item?.getFlag?.(MODULE_ID, TANK_FLAG) ?? item?.flags?.[MODULE_ID]?.[TANK_FLAG]) || 0);
+
+/** Sweeps for a hidden bug: a Quick Contest of Electronics Operation (Surveillance) against whoever hid it (p. 105). */
+async function sweepForBugs(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const skill = "Electronics Operation (Surveillance)";
+  const automatic = !/^rf bug detector$/i.test(String(item.name));
+  const answer = await ask(L("Sweep.Title"),
+    row(L("Sweep.Hider"), `<input type="number" name="hider" value="12" min="0" style="width:70px" />`)
+    + (automatic ? row(L("Sweep.Automatic"), `<input type="checkbox" name="auto" />`) : ""),
+    (form) => ({ hider: Number(value(form, "hider")?.value) || 0, auto: Boolean(value(form, "auto")?.checked) }));
+  if (!answer) return;
+  const base = answer.auto ? sweeperSkill(tlOf(item.system?.tl) ?? 9) : level(api, actor, skill, { attribute: "IQ", modifier: -5 });
+  const result: any = await api.roll.quickContest({
+    label: F("Sweep.Label", { name: item.name }),
+    first: { actor, base, note: answer.auto ? String(item.name) : skill },
+    second: { actor: null, base: answer.hider, note: L("Sweep.HiderNote") },
+    tags: ["bugSweep"],
+  } as any);
+  if (result) await say(actor, String(item.name), [L(result.outcome === "first" ? "Sweep.Found" : "Sweep.Missed")]);
+}
+
+/**
+ * Time in a sensory deprivation tank (p. 108): the hours so far, which raise its
+ * Interrogation bonus to +3 after one, and a Fright Check for each interval of
+ * the Size and Speed/Range Table passed, read in hours.
+ */
+async function tankTime(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const before = tankHours(item);
+  const answer = await ask(L("Tank.Title"), row(L("Tank.Hours"), `<input type="number" name="hours" value="${before}" min="0" step="1" style="width:80px" />`), (form) => Math.max(0, Number(value(form, "hours")?.value) || 0));
+  if (answer === null) return;
+  await item.setFlag(MODULE_ID, TANK_FLAG, answer);
+  const checks = tankFrightChecks(before, answer);
+  await say(actor, String(item.name), [F("Tank.Now", { name: actor.name, hours: answer }), ...(checks.length ? [F("Tank.Checks", { count: checks.length })] : [])]);
+  for (const penalty of checks) await api.roll.frightCheck(actor, penalty);
 }
 
 // ── restraints ──
@@ -326,7 +373,7 @@ function wornRestraint(actor: any): { name: string; bonus: number } | null {
   let best: { name: string; bonus: number } | null = null;
   for (const item of actor?.items ?? []) {
     if (!isGear(item) || item.system?.equipped !== true) continue;
-    const bonus = sensoryRestraintBonus(String(item.name));
+    const bonus = sensoryRestraintBonus(String(item.name), tankHours(item));
     if (bonus > (best?.bonus ?? 0)) best = { name: String(item.name), bonus };
   }
   return best;
@@ -363,6 +410,25 @@ export function readySecurity(api: GWorldApi, on: SecuritySwitches): void {
     icon: "fa-solid fa-hand-fist",
     visible: (item) => on.restraints() && RESISTED.test(String(item?.name ?? "")),
     run: (item, actor) => resistDevice(api, item, actor),
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-bug-sweep",
+    itemTypes: ["equipment"],
+    label: L("Sweep.Title"),
+    icon: "fa-solid fa-bug",
+    visible: (item) => on.security() && BUG_SWEEPER.test(String(item?.name ?? "")),
+    run: (item, actor) => sweepForBugs(api, item, actor),
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-tank-time",
+    itemTypes: ["equipment"],
+    label: L("Tank.Title"),
+    icon: "fa-solid fa-water",
+    visible: (item) => on.interrogation() && /^sensory deprivation tank$/i.test(String(item?.name ?? "")),
+    run: (item, actor) => tankTime(api, item, actor),
   });
 
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {

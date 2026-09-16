@@ -159,3 +159,64 @@ export const STEALTH_KINDS = [
   "thermoOptic", "multispectral", "dynamicMultispectral", "ultimate", "invisibility", "infraredCloaking", "radarStealth",
   "programmableCamouflage", "scentMasking", "radarJammer", "sonarJammer", "distortionField", "holoDistort", "distortionChip", "holobelt", "fleshMask",
 ] as const;
+
+/** An electromagnetic autograpnel (p. 96): 30 yards, a winch lifting 800 lbs. at 5 yards a second, 7 at TL11, 10 at TL12; -2 unfamiliar. */
+export const AUTOGRAPNEL = Object.freeze({ range: 30, lift: 800, unfamiliar: -2 });
+export function autograpnelSpeed(tl: number): number {
+  return tl >= 12 ? 10 : tl >= 11 ? 7 : 5;
+}
+
+/**
+ * Gecko gear (p. 96): half Basic Move on walls and ceilings, 50 lbs. per limb
+ * in contact. The limbs a weight needs, and whether that leaves the user
+ * crawling (three or four limbs).
+ */
+export const GECKO_PER_LIMB = 50;
+export function geckoLimbs(weight: number): { limbs: number; crawling: boolean; tooHeavy: boolean } {
+  const limbs = Math.max(1, Math.ceil(Math.max(0, Number(weight) || 0) / GECKO_PER_LIMB));
+  return { limbs, crawling: limbs >= 3, tooHeavy: limbs > 4 };
+}
+
+/**
+ * An exophase field (p. 96): its user is affected by gravity and gravitic beams,
+ * but other physical and energy attacks can't harm him, nor can he harm
+ * others; two people in exophase interact normally. Whether a blow lands.
+ */
+export function exophaseAllows(attackerPhased: boolean, targetPhased: boolean, gravitic: boolean): boolean {
+  if (attackerPhased === targetPhased) return true;
+  return targetPhased && gravitic;
+}
+
+/** A gravitic attack: a graviton beam or a grav hammer (pp. 84, 129). */
+export function isGravitic(name: string): boolean {
+  return /\bgraviton\b|^grav (hammer|ram)$/i.test(String(name ?? "").trim());
+}
+
+export type ForgeryTool = "docFab" | "wallet" | "holoPaper";
+
+/** The forgery tool a record's name is (p. 97). */
+export function forgeryToolByName(name: string): ForgeryTool | null {
+  const text = String(name ?? "").trim();
+  if (/doc-fab$/i.test(text)) return "docFab";
+  if (/^programmable wallet$/i.test(text)) return "wallet";
+  if (/^holopaper$/i.test(text)) return "holoPaper";
+  return null;
+}
+
+/**
+ * A forgery roll with one of the book's tools (p. 97), given the tool's TL and
+ * the document's.
+ *
+ * - A doc-fab gives its grade at its own TL, "increasing to +TL/2 for any
+ *   lower-TL documents": `bonus` is the whole bonus, which replaces the grade.
+ * - A programmable wallet rolls its own Forgery-15, "-5 (quality) ... at its own
+ *   TL, but counts as basic equipment for lower-TL documents".
+ * - HoloPaper rolls Forgery-15 against a visual search, and "will not defeat
+ *   examination at its own TL or higher".
+ */
+export function forgeryRoll(tool: ForgeryTool, toolTl: number, documentTl: number, grade = 0): { ownSkill: number | null; bonus: number; fails: boolean } {
+  const lower = documentTl < toolTl;
+  if (tool === "docFab") return { ownSkill: null, bonus: lower ? Math.max(grade, Math.floor(toolTl / 2)) : grade, fails: false };
+  if (tool === "wallet") return { ownSkill: 15, bonus: lower ? 0 : -5, fails: false };
+  return { ownSkill: 15, bonus: 0, fails: !lower };
+}

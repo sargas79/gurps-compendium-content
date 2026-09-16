@@ -13,6 +13,13 @@ import {
   signaturePenalty,
   spoofFools,
   stealthKindByName,
+  AUTOGRAPNEL,
+  autograpnelSpeed,
+  exophaseAllows,
+  forgeryRoll,
+  forgeryToolByName,
+  geckoLimbs,
+  isGravitic,
 } from "./rules.js";
 
 describe("chameleon surfaces (Ultra-Tech pp. 98-99)", () => {
@@ -86,5 +93,39 @@ describe("camouflage and disguises (Ultra-Tech p. 97, 99)", () => {
     expect(stealthKindByName("Invisibility Cloak")).toEqual({ kind: "invisibility", form: "cloak" });
     expect(stealthKindByName("Dynamic Multispectral Chameleon Surface")?.kind).toBe("dynamicMultispectral");
     expect(stealthKindByName("Gecko Gear")).toBeNull();
+  });
+});
+
+describe("covert gear with numbers (#299, pp. 96-97)", () => {
+  it("winds an autograpnel faster at higher TLs", () => {
+    expect(AUTOGRAPNEL.range).toBe(30);
+    expect([10, 11, 12].map(autograpnelSpeed)).toEqual([5, 7, 10]);
+  });
+
+  it("holds 50 lbs. a limb on gecko gear, crawling at three limbs", () => {
+    expect(geckoLimbs(40)).toEqual({ limbs: 1, crawling: false, tooHeavy: false });
+    expect(geckoLimbs(150)).toEqual({ limbs: 3, crawling: true, tooHeavy: false });
+    expect(geckoLimbs(210).tooHeavy).toBe(true);
+  });
+
+  it("lets only gravitic attacks reach someone in exophase", () => {
+    expect(exophaseAllows(false, true, false)).toBe(false);
+    expect(exophaseAllows(false, true, true)).toBe(true);
+    expect(exophaseAllows(true, false, false)).toBe(false);
+    expect(exophaseAllows(true, true, false)).toBe(true);
+    expect(isGravitic("Graviton Beamer")).toBe(true);
+    expect(isGravitic("Grav Hammer")).toBe(true);
+    expect(isGravitic("Laser Rifle")).toBe(false);
+  });
+
+  it("forges with a doc-fab, a programmable wallet and HoloPaper", () => {
+    expect(forgeryToolByName("Desktop Doc-Fab")).toBe("docFab");
+    expect(forgeryToolByName("HoloPaper")).toBe("holoPaper");
+    expect(forgeryRoll("docFab", 9, 9, 2)).toEqual({ ownSkill: null, bonus: 2, fails: false });
+    expect(forgeryRoll("docFab", 10, 8, 1)).toEqual({ ownSkill: null, bonus: 5, fails: false });
+    expect(forgeryRoll("wallet", 11, 11)).toEqual({ ownSkill: 15, bonus: -5, fails: false });
+    expect(forgeryRoll("wallet", 11, 8)).toEqual({ ownSkill: 15, bonus: 0, fails: false });
+    expect(forgeryRoll("holoPaper", 11, 11).fails).toBe(true);
+    expect(forgeryRoll("holoPaper", 11, 9).fails).toBe(false);
   });
 });
