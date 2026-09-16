@@ -15,6 +15,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { beamEnvironment } from "../beams/index.js";
 import { jammersAgainst, spoofFools } from "../stealth/index.js";
 import {
   ACTIVE_RANGES,
@@ -136,7 +137,14 @@ function itemContext(item: any, on: SensorSwitches): Record<string, unknown> {
     if (data.tactical) lines.push(F("Tactical", { factor: tacticalFactor(active.kind) }));
   }
   if (comm) lines.push(F("SlowedData", { quarter: slowedRangeFactor(1 / 4), hundredth: slowedRangeFactor(1 / 100), tenThousandth: slowedRangeFactor(1 / 10000) }));
-  if (active?.kind === "sonar") lines.push(F("AirSonar", { range: distanceText(airSonarRange(ACTIVE_RANGES.sonar[active.size].range * activeTlFactor("sonar", tl), 1)) }));
+  // Sonar in air (p. 65), at the pressure the GM set for the scene's beams.
+  const environment = beamEnvironment();
+  if (active?.kind === "sonar" && !environment.underwater) {
+    const atmospheres = environment.atmospheres;
+    lines.push(atmospheres > 0
+      ? F("AirSonar", { range: distanceText(airSonarRange(ACTIVE_RANGES.sonar[active.size].range * activeTlFactor("sonar", tl), atmospheres)), atmospheres })
+      : L("VacuumSonar"));
+  }
   const passive = on.sensors() ? passiveLine(item) : "";
   if (passive) lines.push(passive);
   const visual = on.sensors() ? VISUAL_SENSORS[String(item.name)] : undefined;
@@ -241,7 +249,10 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
   const active = chosen.active!;
   const data = sensorData(chosen.item);
   const figures = ACTIVE_RANGES[active.kind][active.size];
-  const base = (answer.imaging && figures.imaging ? figures.imaging : figures.range) * activeTlFactor(active.kind, itemTl(chosen.item));
+  const environment = beamEnvironment();
+  const inWater = (answer.imaging && figures.imaging ? figures.imaging : figures.range) * activeTlFactor(active.kind, itemTl(chosen.item));
+  // Out of the water, sonar reaches a tenth as far times the scene's pressure (p. 65).
+  const base = active.kind === "sonar" && !environment.underwater ? airSonarRange(inWater, environment.atmospheres) : inWater;
   const modifiers: Array<{ label: string; value: number }> = [];
   const penalty = activeRangePenalty(answer.yards, base, data.lpi);
   if (penalty) modifiers.push({ label: F("RangeLine", { range: distanceText(data.lpi ? base / 2 : base) }), value: penalty });
