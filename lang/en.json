@@ -2011,6 +2011,14 @@
         "neuralAndSonic": {
           "Name": "Neural, psionic and sonic beams",
           "Hint": "Neural disruptors are built with settings (agony, ecstasy, neural stun, paralysis, seizure, death beam; +50% for each after the first) and switched between them. A failure afflicts for minutes equal to the margin; agony and ecstasy stop a heart on a failure by 5, and a death beam on any failure. They reach nobody sealed, nor machines and bodies without a brain. Mind disruptors are resisted by Will with Mind Shield added: dazing, choking or maddening beams. Mindrippers leave a coma. MAD beams add DR to the roll and inflict agony while in the beam. Sonic stunners add a point per 5 DR and knock out; nauseators pain and sicken anyone who can hear, with Protected Hearing adding 5; screamers take their victims' hearing."
+        },
+        "beamOptions": {
+          "Name": "Beam options",
+          "Hint": "Beam weapons can be field-jacketed or FTL, which frees them from the air and water limits the beam weapons switch applies, and FTL beams have their 1/2D at Max. Lasers, microwave and particle beams can take gravitic focus, up to TL-9 levels: each halves the damage, multiplies the range by 10 and doubles the cost, and can be turned off."
+        },
+        "hotshots": {
+          "Name": "Hotshots and overheating",
+          "Hint": "A beam weapon that fires more than ten times its RoF without a 10-second pause between attacks overheats, and malfunctions on 14 until it has cooled for a minute. A hotshot spends two shots for +1 damage per die, or a 30% deeper resistance penalty, at Malf. 14 (12 while overheated). Gatlings don't overheat and can't fire hotshots; neither can plasma guns on cartridges."
         }
       },
       "Gadget": {
@@ -3270,6 +3278,35 @@
         "Screamer": {
           "hardOfHearing": "{name} took over half their HP from a screamer: Hard of Hearing until the injury heals (Ultra-Tech p. 125).",
           "deafness": "{name} took over two-thirds of their HP from a screamer: Deafness until the injury heals (Ultra-Tech p. 125)."
+        }
+      },
+      "BeamOptions": {
+        "Title": "Beam options",
+        "Jacket": "Field-jacketed",
+        "JacketHint": "Enclosed in a force field that keeps air, vacuum and water from interfering: ultraviolet, X-ray and gamma-ray lasers work in air, blasters, electrolasers and sonic weapons in vacuum, and any beam underwater. The GM decides whether it costs nothing or doubles the price (Ultra-Tech p. 133).",
+        "JacketNone": "No",
+        "JacketFree": "Yes, at no cost",
+        "JacketDoubled": "Yes, at twice the cost",
+        "Jacketed": "Field-jacketed",
+        "JacketedHint": "The air, vacuum or water doesn't limit this beam (Ultra-Tech p. 133).",
+        "FocusLabel": "Gravitic focus (levels)",
+        "FocusHint": "Each level halves the damage and multiplies the range by 10, up to TL-9 levels, and doubles the cost (Ultra-Tech p. 133).",
+        "FocusOn": "Focus on",
+        "FocusOnHint": "Gravitic focus can always be turned off, and the weapon does its normal damage (Ultra-Tech p. 133).",
+        "Focus": "Grav focus {levels}",
+        "Ftl": "FTL",
+        "FtlHint": "The beam reaches its target instantly: it ignores the environment's limits, its 1/2D is its Max, and the attacker takes only half the usual speed/range penalty (Ultra-Tech p. 133).",
+        "Cost": "Options: ×{factor} the price.",
+        "Heat": "Heat: {shots} of {limit} shots.",
+        "HeatOver": "Overheated: {shots} shots past {limit}. It malfunctions on 14 until it has cooled for a minute.",
+        "Cool": "Let it cool",
+        "Overheated": "Overheated",
+        "OverheatedHint": "More than ten times its RoF fired without a pause: it malfunctions on 14 until it has cooled for a minute (Ultra-Tech p. 133).",
+        "Hotshot": {
+          "Label": "Hotshot",
+          "Note": "Hotshot: two shots, Malf. 14 (12 overheated)",
+          "Damage": "Hotshot (+1 per die)",
+          "Resist": "Hotshot"
         }
       }
     }

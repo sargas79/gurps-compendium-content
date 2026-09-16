@@ -134,7 +134,7 @@ async function setEnvironment(): Promise<void> {
 }
 
 /** Registers the table-side parts. */
-export function readyBeams(api: GWorldApi, on: () => boolean): void {
+export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment: (item: any) => boolean = () => false): void {
   api.sheets.registerGmTool({
     module: MODULE_ID,
     key: "ut-beam-environment",
@@ -148,7 +148,8 @@ export function readyBeams(api: GWorldApi, on: () => boolean): void {
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
     if (!on()) return;
     const family = familyOf(context?.item);
-    if (!family) return;
+    // A field-jacketed or FTL beam isn't touched by air or water (p. 133).
+    if (!family || ignoresEnvironment(context.item)) return;
     const environment = beamEnvironment();
     for (const entry of context.rows ?? []) {
       if (entry.kind !== "ranged") continue;

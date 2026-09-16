@@ -1,0 +1,31 @@
+{{!-- A beam weapon's options and heat (Ultra-Tech pp. 132-133). --}}
+<div class="isub" data-gcc-ut-beam-options>
+  <div class="isub-head">{{localize "GCC.UT.BeamOptions.Title"}}</div>
+  {{#if optionsOn}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.BeamOptions.JacketHint'}}">{{localize "GCC.UT.BeamOptions.Jacket"}}
+        <select data-gcc-ut-beam-option="fieldJacket" {{#unless editable}}disabled{{/unless}}>
+          {{#each jackets as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if focusAllowed}}
+        <label data-tooltip="{{localize 'GCC.UT.BeamOptions.FocusHint'}}">{{localize "GCC.UT.BeamOptions.FocusLabel"}}
+          <input type="number" data-gcc-ut-beam-option="gravFocus" value="{{options.gravFocus}}" min="0" max="{{focusMax}}" step="1" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.BeamOptions.FtlHint'}}"><input type="checkbox" data-gcc-ut-beam-option="ftl" {{#if options.ftl}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.BeamOptions.Ftl"}}</label>
+      {{#if focusAllowed}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.UT.BeamOptions.FocusOnHint'}}"><input type="checkbox" data-gcc-ut-beam-option="gravFocusOn" {{#if options.gravFocusOn}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.BeamOptions.FocusOn"}}</label>
+      {{/if}}
+    </div>
+    <p class="ihint">{{cost}}</p>
+  {{/if}}
+  {{#if hotshotsOn}}{{#if heat}}
+    <div class="ifields">
+      <span class="ihint">{{heat}}</span>
+      <button type="button" class="ibtn tiny" data-gcc-ut-cool {{#unless editable}}disabled{{/unless}}>{{localize "GCC.UT.BeamOptions.Cool"}}</button>
+    </div>
+  {{/if}}{{/if}}
+</div>

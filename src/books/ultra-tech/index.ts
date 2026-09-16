@@ -10,6 +10,7 @@
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
 import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
 import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
@@ -56,6 +57,8 @@ const RULES = [
   { key: "beamWeapons", pages: "pp. 113-132", implemented: true },
   { key: "laserOptions", pages: "pp. 113-118", implemented: true },
   { key: "neuralAndSonic", pages: "pp. 120-126, 132", implemented: true },
+  { key: "beamOptions", pages: "pp. 132-133", implemented: true },
+  { key: "hotshots", pages: "p. 133", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -83,6 +86,7 @@ function init(): void {
   initPower();
   initLaserOptions();
   initNeuralSonic();
+  initBeamOptions();
   initComputers();
   initSwarms();
   initStealth();
@@ -96,7 +100,9 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyGadgets(api, { options: rule("gadgetOptions"), sm: rule("adjustingForSm"), legality: rule("legalityAndAntiques") });
   readyPower(api, rule("powerCells"));
-  readyBeams(api, rule("beamWeapons"));
+  // Gravitic focus lengthens a beam before the air or water limits it, so the options go first.
+  readyBeamOptions(api, { options: rule("beamOptions"), hotshots: rule("hotshots") });
+  readyBeams(api, rule("beamWeapons"), beamIgnoresEnvironment(rule("beamOptions")));
   readyLaserOptions(api, rule("laserOptions"));
   readyNeuralSonic(api, rule("neuralAndSonic"));
   readyComputers(api, rule("computers"));
