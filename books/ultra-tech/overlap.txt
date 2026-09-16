@@ -1,0 +1,6 @@
+ADVANTAGES	T-Ray Vision	B81, UT30
+ADVANTAGES	Telecommunication (Cable Jack)	B91, UT31
+ADVANTAGES	Telecommunication (Directional Sound)	B91, UT31
+ADVANTAGES	Telecommunication (Gravity-Ripple Comm)	B91, UT31
+ADVANTAGES	Telecommunication (Neutrino Comm)	B91, UT31
+ADVANTAGES	Telecommunication (Sonar Comm)	B91, UT31
