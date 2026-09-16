@@ -197,3 +197,21 @@ export function isDisintegrated(hp: number, maxHp: number): boolean {
 
 /** A lethal electrolaser's "kill" setting uses two shots, and a failure by 5 or more is a heart attack (p. 119). */
 export const KILL_SETTING = Object.freeze({ extraShots: 1, heartAttackMargin: 5 });
+
+/**
+ * The part of a force screen that counts against a DR-ignoring beam that only a
+ * reality-stabilized screen stops (p. 131): a ghost particle beam at a fifth,
+ * a reality disintegrator as a disintegrator (a tenth). Null for other beams.
+ */
+export function stabilizedScreenPart(name: string, stabilized: boolean): number | null {
+  const text = String(name ?? "");
+  if (/\bghost particle\b/i.test(text)) return stabilized ? 0.2 : 0;
+  if (/\breality disintegrator\b/i.test(text)) return stabilized ? 0.1 : 0;
+  return null;
+}
+
+/** An electrolaser built with the kill setting is LC2 (p. 119). */
+export const LETHAL_ELECTROLASER_LC = 2;
+
+/** A hotshot multiplies an area's radius by 1.3 (p. 133). */
+export const HOTSHOT_RADIUS = 1.3;

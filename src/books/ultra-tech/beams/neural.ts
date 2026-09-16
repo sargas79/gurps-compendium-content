@@ -159,3 +159,15 @@ export function screamerHearing(injury: number, maxHp: number): "" | "hardOfHear
   if (hurt > hp / 2) return "hardOfHearing";
   return "";
 }
+
+/**
+ * The condition that follows another once it ends (pp. 121, 132): Moderate Pain
+ * after Agony and Euphoria after Ecstasy, "for an equal length of time"; a
+ * hypnogogic beam's victim knocked out is dazed after, for as long.
+ */
+export function followingCondition(setting: BeamSetting, condition: string): string | null {
+  if (setting === "agony" && condition === "agony") return "moderatePain";
+  if (setting === "ecstasy" && condition === "ecstasy") return "euphoria";
+  if (setting === "hypnogogic" && condition === "unconscious") return "daze";
+  return null;
+}

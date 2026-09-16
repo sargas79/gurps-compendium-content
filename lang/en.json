@@ -3382,7 +3382,11 @@
         "Kill": {
           "Label": "Kill setting",
           "Note": "Kill setting: two shots",
-          "HeartAttack": "{name} failed by 5 or more against a lethal electrolaser: a heart attack (Ultra-Tech p. 119; Campaigns p. 429)."
+          "HeartAttack": "{name} failed by 5 or more against a lethal electrolaser: a heart attack (Ultra-Tech p. 119; Campaigns p. 429).",
+          "Title": "Electrolaser",
+          "Built": "Built with the kill setting",
+          "Hint": "Any electrolaser may have an optional kill setting, which uses two shots and makes a failure by 5 a heart attack. Lethal electrolasers are LC2 (Ultra-Tech p. 119).",
+          "Lc": "LC2 with the kill setting."
         },
         "Electrolaser": {
           "Recover": "{name} is stunned, and rolls HT every turn at the same penalty, without the DR bonus, to recover (Ultra-Tech p. 119)."
@@ -3395,7 +3399,9 @@
           "Sm": "Size Modifier"
         },
         "ForceField": "Against this beam at {part} of its DR",
-        "Disintegrated": "{name} is reduced to -10×HP or less: disintegrated (Ultra-Tech p. 130)."
+        "Disintegrated": "{name} is reduced to -10×HP or less: disintegrated (Ultra-Tech p. 130).",
+        "Stabilized": "Reality-stabilized: {part} of its DR",
+        "NotStabilized": "Not reality-stabilized: no protection"
       },
       "Lasers": {
         "Title": "Laser",
@@ -3542,7 +3548,8 @@
           "Label": "Hotshot",
           "Note": "Hotshot: two shots, Malf. 14 (12 overheated)",
           "Damage": "Hotshot (+1 per die)",
-          "Resist": "Hotshot"
+          "Resist": "Hotshot",
+          "Radius": "Hotshot radius {radius} yards"
         }
       },
       "Accessories": {
@@ -3656,7 +3663,13 @@
           "Compensator": "ST 0 and Recoil 1 while the compensator is on (Ultra-Tech p. 152).",
           "Articulated": "ST to two-thirds, and braced, standing or moving (Ultra-Tech p. 151).",
           "Smartgrip": "ST requirement -1 (Ultra-Tech p. 152)."
-        }
+        },
+        "DTagLabel": "D-tag",
+        "DTagFind": "Finding the {name}'s D-tag",
+        "DTagDeactivate": "Deactivating the {name}'s D-tag",
+        "DTagHidden": "No D-tag found.",
+        "DTagOff": "The D-tag is off, quietly.",
+        "DTagTripped": "The attempt fails: the weapon may be disabled or the authorities notified (GM's call)."
       },
       "Warheads": {
         "Title": "Warheads",

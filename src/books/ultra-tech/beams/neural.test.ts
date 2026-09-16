@@ -11,6 +11,7 @@ import {
   settingsFor,
   tunableFactor,
   type Target,
+  followingCondition,
 } from "./neural.js";
 
 const person = (patch: Partial<Target> = {}): Target => ({ traits: [], iq: 10, sealed: false, deaf: false, injuryTolerance: {}, ...patch });
@@ -83,5 +84,15 @@ describe("sonic weapons (Ultra-Tech p. 125)", () => {
     expect(screamerHearing(5, 10)).toBe("");
     expect(screamerHearing(6, 10)).toBe("hardOfHearing");
     expect(screamerHearing(7, 10)).toBe("deafness");
+  });
+});
+
+describe("conditions that follow others (#299)", () => {
+  it("leaves pain after agony, euphoria after ecstasy and a daze after a hypnogogic knockout", () => {
+    expect(followingCondition("agony", "agony")).toBe("moderatePain");
+    expect(followingCondition("ecstasy", "ecstasy")).toBe("euphoria");
+    expect(followingCondition("hypnogogic", "unconscious")).toBe("daze");
+    expect(followingCondition("hypnogogic", "daze")).toBeNull();
+    expect(followingCondition("agony", "heartAttack")).toBeNull();
   });
 });

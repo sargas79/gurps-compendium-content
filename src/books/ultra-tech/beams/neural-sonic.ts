@@ -25,6 +25,7 @@ import {
   tunableFactor,
   type BeamOutcome,
   type BeamSetting,
+  followingCondition,
 } from "./neural.js";
 import { beamFamily, drResistBonus, type BeamFamily } from "./rules.js";
 
@@ -37,6 +38,27 @@ const ALL_SETTINGS: readonly string[] = [...new Set([...settingsFor("neural"), .
 
 /** Families this switch rules. */
 const FAMILIES: ReadonlySet<BeamFamily> = new Set(["neural", "mindDisruptor", "mindripper", "mad", "nauseator", "screamer", "sonicStun"]);
+
+const FOLLOW_FLAG = "utFollowingConditions";
+interface FollowUp { condition: string; at: number; seconds: number }
+const followUps = (actor: any): FollowUp[] => {
+  const stored = actor?.getFlag?.(MODULE_ID, FOLLOW_FLAG);
+  return Array.isArray(stored) ? stored.filter((f: any) => f && typeof f.condition === "string") : [];
+};
+
+/** Applies the conditions whose time has come, for as long as what came before (pp. 121, 132). */
+async function applyFollowUps(api: GWorldApi, actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const now = Number((game as any).time?.worldTime) || 0;
+  const all = followUps(actor);
+  const due = all.filter((f) => f.at <= now);
+  if (!due.length) return;
+  await actor.setFlag(MODULE_ID, FOLLOW_FLAG, all.filter((f) => f.at > now));
+  for (const f of due) {
+    const left = f.at + f.seconds - now;
+    if (left > 0) await api.actors.applyCondition(actor, { key: f.condition, duration: { seconds: left } } as any);
+  }
+}
 
 export function initNeuralSonic(): void {
   const f = foundry.data.fields as any;
@@ -183,10 +205,21 @@ export function readyNeuralSonic(api: GWorldApi, on: () => boolean): void {
     else if (family === "nauseator") outcomes = nauseatorOutcome(margin);
     else if (family === "mad") outcomes = [{ condition: "agony", seconds: 1, note: "Mad.agony" }];
     else if (family === "sonicStun") outcomes = [{ condition: "unconscious", seconds: Math.max(1, margin) * 60, note: "Sonic.stun" }];
+    const following: FollowUp[] = [];
+    const now = Number((game as any).time?.worldTime) || 0;
     for (const outcome of outcomes) {
       if (outcome.condition) context.effects.push({ key: outcome.condition, ...(outcome.seconds ? { duration: { seconds: outcome.seconds } } : {}) });
+      const next = setting && outcome.condition && outcome.seconds ? followingCondition(setting, outcome.condition) : null;
+      if (next && outcome.seconds) following.push({ condition: next, at: now + outcome.seconds, seconds: outcome.seconds });
     }
+    if (following.length && actor?.isOwner) void actor.setFlag(MODULE_ID, FOLLOW_FLAG, [...followUps(actor), ...following]);
     void say(actor, context.label ?? "", outcomes.map((o) => F(o.note, { name, minutes: Math.max(1, margin), seconds: o.seconds ?? 0 })));
+  });
+
+  // Moderate pain after agony, euphoria after ecstasy, a daze after a hypnogogic knockout, as world time passes.
+  Hooks.on("updateWorldTime", () => {
+    if (!on() || !(game as any).user?.isGM) return;
+    for (const actor of (game as any).actors ?? []) if (followUps(actor).length) void applyFollowUps(api, actor);
   });
 
   // A screamer "shakes and bakes": a living victim's hearing goes with half its HP, or two-thirds (p. 125).

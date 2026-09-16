@@ -10,6 +10,9 @@ import {
   isDisintegrated,
   isVacuum,
   type BeamEnvironment,
+  HOTSHOT_RADIUS,
+  LETHAL_ELECTROLASER_LC,
+  stabilizedScreenPart,
 } from "./rules.js";
 
 const env = (patch: Partial<BeamEnvironment> = {}): BeamEnvironment => ({ ...STANDARD_ENVIRONMENT, ...patch });
@@ -127,5 +130,19 @@ describe("disintegrators (p. 130)", () => {
   it("disintegrate at -10 times HP", () => {
     expect(isDisintegrated(-100, 10)).toBe(true);
     expect(isDisintegrated(-99, 10)).toBe(false);
+  });
+});
+
+describe("stabilized screens, lethal electrolasers and hotshots (#299)", () => {
+  it("lets a stabilized screen stand at a fifth against ghost particles (p. 131)", () => {
+    expect(stabilizedScreenPart("Ghost Particle Cannon", true)).toBe(0.2);
+    expect(stabilizedScreenPart("Ghost Particle Cannon", false)).toBe(0);
+    expect(stabilizedScreenPart("Reality Disintegrator Rifle", true)).toBe(0.1);
+    expect(stabilizedScreenPart("Disintegrator Pistol", true)).toBeNull();
+  });
+
+  it("makes a lethal electrolaser LC2 and a hotshot's radius x1.3 (pp. 119, 133)", () => {
+    expect(LETHAL_ELECTROLASER_LC).toBe(2);
+    expect(HOTSHOT_RADIUS).toBe(1.3);
   });
 });

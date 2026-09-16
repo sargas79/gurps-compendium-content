@@ -13,6 +13,7 @@
  *     option that spends two shots for a point more damage per die at Malf. 14.
  */
 
+import { HOTSHOT_RADIUS } from "./rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -217,7 +218,7 @@ export function readyBeamOptions(api: GWorldApi, switches: { options: () => bool
         shots: 1,
         malfunction: heatMalfunction(overheated(context.item), true),
         ...(dice ? { damageModifiers: [{ label: L("Hotshot.Damage"), value: dice }] } : {}),
-        notes: [L("Hotshot.Note")],
+        notes: [L("Hotshot.Note"), ...(Number(mode?.radius) > 0 ? [F("Hotshot.Radius", { radius: Math.round(Number(mode.radius) * HOTSHOT_RADIUS * 10) / 10 })] : [])],
       };
     },
   } as any);

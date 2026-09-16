@@ -1,0 +1,9 @@
+{{!-- An electrolaser's kill setting (Ultra-Tech p. 119): built in, it makes the
+     weapon LC2 and lets it fire the kill setting. --}}
+<div class="isub" data-gcc-ut-electrolaser-section>
+  <div class="isub-head">{{localize "GCC.UT.Beams.Kill.Title"}}</div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.UT.Beams.Kill.Hint'}}"><input type="checkbox" data-gcc-ut-kill-setting {{#if killSetting}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Beams.Kill.Built"}}</label>
+  </div>
+  {{#if killSetting}}<p class="ihint">{{localize "GCC.UT.Beams.Kill.Lc"}}</p>{{/if}}
+</div>

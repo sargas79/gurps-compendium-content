@@ -21,8 +21,11 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import {
   FORCE_FIELD_PART,
+  LETHAL_ELECTROLASER_LC,
+  stabilizedScreenPart,
   KILL_SETTING,
   STANDARD_ENVIRONMENT,
   beamFamily,
@@ -41,6 +44,18 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 const ENVIRONMENT_FLAG = "beamEnvironment";
 /** The attack option for an electrolaser's kill setting, and the weapon state it leaves. */
 const KILL_OPTION = "ut-electrolaser-kill";
+const BUILD_FIELD = "beamBuild";
+
+/** Registers the fields for how a beam was built: an electrolaser's kill setting (p. 119). */
+export function initBeams(): void {
+  const f = foundry.data.fields as any;
+  addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
+    [BUILD_FIELD]: new f.SchemaField({ killSetting: new f.BooleanField({ initial: false }) }),
+  });
+}
+
+/** Whether an electrolaser was built with the kill setting "any electrolaser may have" (p. 119). */
+const hasKillSetting = (item: any) => item?.system?.extensions?.[MODULE_ID]?.[BUILD_FIELD]?.killSetting === true;
 
 /** The scene whose air the beams are fired through: the one being viewed, or the active one. */
 function beamScene(): any {
@@ -182,7 +197,7 @@ export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment
     module: MODULE_ID,
     key: KILL_OPTION,
     label: L("Kill.Label"),
-    available: (context: any) => on() && Boolean(context?.ranged) && familyOf(context?.item) === "electrolaser",
+    available: (context: any) => on() && Boolean(context?.ranged) && familyOf(context?.item) === "electrolaser" && hasKillSetting(context?.item),
     apply: () => ({ shots: KILL_SETTING.extraShots, notes: [L("Kill.Note")] }),
   } as any);
   // Which setting the last shot was on, for the roll it forces.
@@ -229,9 +244,39 @@ export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment
     }
   });
 
+  // An electrolaser's kill setting, built in or not (p. 119).
+  api.sheets.registerSheetSection({
+    module: MODULE_ID,
+    key: "ut-electrolaser-item",
+    sheet: "item",
+    template: `modules/${MODULE_ID}/templates/ut-electrolaser-item.hbs`,
+    visible: (item) => on() && familyOf(item) === "electrolaser",
+    context: (item) => ({ killSetting: hasKillSetting(item), lc: LETHAL_ELECTROLASER_LC }),
+    listeners: (element, item) => {
+      element.querySelector<HTMLInputElement>("[data-gcc-ut-kill-setting]")?.addEventListener("change", (event) => {
+        void item.update({ [`system.extensions.${MODULE_ID}.${BUILD_FIELD}.killSetting`]: (event.currentTarget as HTMLInputElement).checked });
+      });
+    },
+  });
+
+  // Only a reality-stabilized screen stops a ghost particle beam or a reality disintegrator (p. 131).
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on() || !context?.ignoresDr || !context.actor) return;
+    for (const line of context.lines ?? []) {
+      if (!line.forceField) continue;
+      const screen = line.itemId ? context.actor.items?.get?.(line.itemId) : null;
+      const stabilized = screen?.system?.extensions?.[MODULE_ID]?.utField?.realityStabilized === true;
+      const part = stabilizedScreenPart(String(context.item?.name ?? ""), stabilized);
+      if (part === null) return;
+      line.againstIgnoresDr = part;
+      line.reason = F(stabilized ? "Stabilized" : "NotStabilized", { part: part === 0.2 ? "1/5" : "1/10" });
+    }
+  });
+
   // Force fields meet graviton beams and disintegrators at a fraction (pp. 129-130).
   Hooks.on(api.combat.hooks.armorDr, (context: any) => {
     if (!on() || !context?.ignoresDr) return;
+    if (stabilizedScreenPart(String(context.item?.name ?? ""), false) !== null) return;
     const part = FORCE_FIELD_PART[familyOf(context.item) as BeamFamily];
     if (!part) return;
     for (const line of context.lines ?? []) {
