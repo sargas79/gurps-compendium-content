@@ -216,4 +216,32 @@ wonder:
   trait is at its unmodified cost; a skill printed below the lowest level
   points can buy is one point with a penalty.
 
+## What #229 found in chapters 7 and 8
+
+- **Gadgets are read off their closing line.** `tools/capture-gear.mjs` finds
+  each label with a tech level ("Pocket Medic (TL9):", or "Automed (TL9)" as a
+  heading) and reads the price, weight, cells and LC that close the gadget's
+  text. 117 records come from pp. 170-221; the 11 whose figures are only in a
+  table or under another label are kept by hand (four air tank sizes, five force
+  screens, morphwear, the Aegis nanobots).
+- **Both text orders are read.** On a page with a table beside the text, reading
+  order runs table rows into the paragraph (Transparent Bioplas read "$3,000 ...
+  LC2" off the laser-resistant armour table), and stored order sometimes files a
+  closing line under the wrong label. A record the two disagree on is read against
+  the page; `capture.skip` and `capture.set` in book.json hold what reading settled.
+- **Names the data file already holds under another spelling are skipped**:
+  One Bionic Arm is Bionic Arm (One), Neural Jack is Neural Interface Jack, and so
+  on. Chapter 8's other cybernetics came from the data file.
+- **Quality bonuses become grades.** +1 is good, +2 fine, +TL/2 best. The
+  diagnostic bed, medical bed, medscanner and diagnostic probes print +3, which
+  no grade holds; they are fine (+2) rather than overstated. The regeneration
+  ray's +6 to Physician is best at TL12.
+- **Drugs and nanomachines priced per dose are consumables** with no weight.
+  Neural Uplift's price is $5,000 per point of the animal's racial IQ; the
+  record holds $5,000. The telepathic barrier is priced per square foot.
+- **Smartsuit options are priced for a smartsuit or cybersuit**, the dearer of
+  the two prices the book gives; a biosuit or nanosuit pays less.
+- **Force screens carry no DR here.** The DR is the force field rule's (#255),
+  and a new extension key would be dropped on import until registered.
+
 The plan these came from: https://claude.ai/artifact/Gua2htvv1cQcD2TvQRwgvJ
