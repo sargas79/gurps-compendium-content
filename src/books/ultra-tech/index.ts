@@ -21,6 +21,7 @@ import { readySecurity } from "./security/index.js";
 import { initSensors, readySensors } from "./sensors/index.js";
 import { initStealth, readyStealth } from "./stealth/index.js";
 import { initSwarms, readySwarms } from "./swarms/index.js";
+import { initTransport, readyTransport } from "./transport/index.js";
 import { readyUploading } from "./uploading/index.js";
 
 const SLUG = "ultra-tech";
@@ -47,6 +48,8 @@ const RULES = [
   { key: "fabrication", pages: "pp. 76-93", implemented: true },
   { key: "gravityControl", pages: "pp. 78-79, 84", implemented: true },
   { key: "psiAmplifiers", pages: "p. 94", implemented: true },
+  { key: "vehicleSystems", pages: "pp. 222-232", implemented: true },
+  { key: "matterTransmission", pages: "pp. 104, 233-235", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -77,6 +80,7 @@ function init(): void {
   initStealth();
   initSensors();
   initFabrication();
+  initTransport();
   registerRecordData();
 }
 
@@ -93,6 +97,7 @@ function ready(api: GWorldApi): void {
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });
+  readyTransport(api, { vehicles: rule("vehicleSystems"), matterTransmission: rule("matterTransmission") });
 }
 
 export const book: BookRules = {
