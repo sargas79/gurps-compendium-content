@@ -4,18 +4,71 @@ on:
   issues:
     types: [opened]
 
+# Adds every new issue to the owner's project board. This repository being
+# private is the whole difficulty: the project lives on the user account, not in
+# the repository, so a run needs a token that can both write the project and
+# read an issue here. The built-in GITHUB_TOKEN can do the second but not the
+# first; a token with project scope alone can do the first but not the second,
+# and fails with a bare "Could not resolve to a node with the global id of
+# 'I_...'" that says nothing about the cause. The steps below name it instead.
+#
+# PERSONAL_PROJECT_TOKEN must be one of:
+#   - a classic PAT with the `repo` and `project` scopes; or
+#   - a fine-grained PAT with this repository selected, its Issues permission
+#     set to read, and the account-level Projects permission set to read+write.
+#
+# A token with project scope alone works in the public GWorldVTT repository and
+# fails here, which is why this went unnoticed until issues #225-#259 were
+# opened and all thirty-five runs failed. Those were added to the project by
+# hand; anything opened after the token is fixed lands there by itself.
+
 jobs:
   add-to-project:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - name: Add Issue to Project
-        uses: actions/add-to-project@v1.0.2
-        with:
-          # A user-owned project lives under /users/<owner>/projects/<number>;
-          # an organisation's under /orgs/<owner>/projects/<number>.
-          project-url: https://github.com/users/${{ github.repository_owner }}/projects/4
-          # A personal access token with project write scope. The built-in
-          # GITHUB_TOKEN cannot write to a project that lives outside this
-          # repository, so this cannot fall back to it.
-          github-token: ${{ secrets.PERSONAL_PROJECT_TOKEN }}
+      - name: Add issue to project
+        env:
+          # The node id comes from the event payload, so no read is needed to
+          # find it. The mutation still resolves it server-side, which is where
+          # a token without access to this repository fails.
+          ISSUE_NODE_ID: ${{ github.event.issue.node_id }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          PROJECT_OWNER: ${{ github.repository_owner }}
+          PROJECT_NUMBER: "4"
+          GH_TOKEN: ${{ secrets.PERSONAL_PROJECT_TOKEN }}
+        run: |
+          set -uo pipefail
+
+          if [ -z "${GH_TOKEN}" ]; then
+            echo "::error::PERSONAL_PROJECT_TOKEN is empty or unset. See the comment at the top of this workflow for the scopes it needs."
+            exit 1
+          fi
+
+          if ! project_id=$(gh api graphql \
+            -f query='query($owner:String!,$number:Int!){ user(login:$owner){ projectV2(number:$number){ id } } }' \
+            -F owner="${PROJECT_OWNER}" \
+            -F number="${PROJECT_NUMBER}" \
+            --jq '.data.user.projectV2.id' 2>project_error.txt)
+          then
+            sed 's/^/  /' project_error.txt
+            echo "::error::Could not read project ${PROJECT_NUMBER} for ${PROJECT_OWNER}. PERSONAL_PROJECT_TOKEN is missing the Projects permission (read and write)."
+            exit 1
+          fi
+
+          if item_id=$(gh api graphql \
+            -f query='mutation($project:ID!,$content:ID!){ addProjectV2ItemById(input:{projectId:$project,contentId:$content}){ item { id } } }' \
+            -F project="${project_id}" \
+            -F content="${ISSUE_NODE_ID}" \
+            --jq '.data.addProjectV2ItemById.item.id' 2>mutation_error.txt)
+          then
+            echo "Issue #${ISSUE_NUMBER} added to project ${PROJECT_NUMBER} as item ${item_id}."
+          else
+            sed 's/^/  /' mutation_error.txt
+            if grep -q "Could not resolve to a node" mutation_error.txt; then
+              echo "::error::The token could not resolve issue #${ISSUE_NUMBER} in this private repository. It can write the project but cannot read this repository's issues, so it is missing the repo (or fine-grained Issues) permission. See the comment at the top of this workflow."
+            else
+              echo "::error::Adding issue #${ISSUE_NUMBER} to project ${PROJECT_NUMBER} failed; the response is above."
+            fi
+            exit 1
+          fi
