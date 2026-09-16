@@ -1927,6 +1927,10 @@
         "legalityAndAntiques": {
           "Name": "Legality and antiques",
           "Hint": "An obsolete gadget may be carried at a higher Legality Class: one step for every two full tech levels it is behind the campaign, at most two steps and no higher than LC4. Also the price below which a gadget is too simple to need maintenance checks."
+        },
+        "powerCells": {
+          "Name": "Power cells",
+          "Hint": "Gear runs on the cells its table line gives. Non-rechargeable cells last twice as long and give twice the shots, a superscience cell gives a weapon five times the shots, and a cosmic cell never runs down. The Gear tab tracks each gadget's endurance and changes its cells in the seconds their size takes. Gadgets can be rigged to smaller cells with Electrician-2, and cells that blow up are explosives with a REF set by TL. Gear with no cell data, the Basic Set's beam weapons among it, is unaffected (their Shots already assume superscience cells)."
         }
       },
       "Gadget": {
@@ -1970,6 +1974,58 @@
         "Maintained": "Worth maintenance checks at TL{campaign}: it costs more than ${threshold}.",
         "Simple": "Too simple to maintain at TL{campaign}: under ${threshold}, assume it works indefinitely.",
         "Rugged": "Rugged"
+      },
+      "Power": {
+        "Title": "Power",
+        "Supply": "a {size} cell",
+        "SupplyPack": "a {size} cell, worn as a pack",
+        "SupplyWeight": "a {weight}-lb. power pack",
+        "Endurance": "lasts {endurance}",
+        "Flexible": "Flexible",
+        "FlexibleHint": "Flat cells stuck on like stamps: AA and A cost the usual, larger ones four times as much (Ultra-Tech p. 19).",
+        "NonRechargeable": "Non-rechargeable",
+        "NonRechargeableHint": "Last twice as long, or give twice the shots, but can't be recharged (Ultra-Tech p. 19).",
+        "Cosmic": "Cosmic",
+        "CosmicHint": "Unlimited power to an ordinary device, at a hundred times the price; LC2, or LC1 for E and F cells (Ultra-Tech pp. 19-20).",
+        "Superscience": "Superscience",
+        "SuperscienceHint": "Five times the weapon's shots (Ultra-Tech p. 133). The Basic Set's beam weapons already assume these cells; divide their Shots by 5 for mundane ones.",
+        "Tl": "Cells' TL",
+        "TlHint": "The TL the cells were made at, where it isn't the gadget's; zero for the gadget's own. Sets how hard an exploding cell hits (Ultra-Tech p. 19).",
+        "CellPrice": "One {size} cell: ${cost}, {lc}.",
+        "NoLc": "no LC",
+        "ShotsTimes": "Shots ×{times} with these cells.",
+        "ShotsUnlimited": "No count of shots: a cosmic cell never runs down.",
+        "Blast": "If the cells explode: {dice}d cr ex (REF {ref} at TL{tl}).",
+        "BlastHint": "At the GM's option, cells may explode when destroyed, as an explosive of their weight with a REF by TL (Ultra-Tech pp. 19-20; damage by Campaigns p. 415).",
+        "Rig": "Rig to smaller cells:",
+        "RigHint": "Ten cells one size smaller stand in for one larger cell. Rigging it is Electrician-2 and ten minutes a try, and a critical failure damages the gadget (Ultra-Tech p. 19).",
+        "RigLabel": "Jury-rig {name}",
+        "RigPenalty": "Jury-rigged cells",
+        "RigNotSmaller": "{smaller} cells aren't smaller than {size}.",
+        "RigDone": "Rigged to run on {cells} {smaller} cells in place of its {size}, after {minutes} minutes' work.",
+        "RigFailed": "The rig didn't take: another {minutes} minutes to try again.",
+        "RigDamaged": "The rig went badly wrong: the gadget is damaged.",
+        "GearTitle": "Power cells",
+        "Item": "Gear",
+        "Cells": "Cells",
+        "Charge": "Left",
+        "Left": "{value} {unit} of {endurance}",
+        "ShotsLeft": "{loaded}/{capacity} shots",
+        "Unlimited": "Unlimited (cosmic)",
+        "Unit": {
+          "hr": "hr.",
+          "day": "days",
+          "wk": "wk."
+        },
+        "Used": "used (hr.)",
+        "UsedHint": "Hours the gadget has run on these cells. Cells keep their charge indefinitely when not in use (Ultra-Tech p. 18).",
+        "Change": "Change cells",
+        "Changed": "Changed the {supply}: {seconds} seconds.",
+        "ChangedNoTime": "Changed the {supply}.",
+        "ReloadOnCombat": "Reload on the Combat tab",
+        "WeaponHint": "A weapon's cells are changed with its Reload button, which offers Fast-Draw (Ammo) to take a second off (Ultra-Tech p. 19).",
+        "Supplies": "{cells} {size} cells",
+        "SupplyPacks": "{cells} {size} cells, worn as a pack"
       }
     }
   },
