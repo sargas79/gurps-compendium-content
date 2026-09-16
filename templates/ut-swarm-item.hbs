@@ -1,0 +1,53 @@
+{{!-- Building a swarm: its area, bots, chassis, power and type, what it costs,
+     and the statistics it fights with (Ultra-Tech pp. 35-37). --}}
+<div class="isub" data-gcc-ut-swarm-section>
+  <div class="isub-head">{{localize "GCC.UT.Swarm.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.SquareYardsHint'}}">{{localize "GCC.UT.Swarm.SquareYards"}}
+      <input type="number" data-gcc-ut-swarm="squareYards" value="{{squareYards}}" step="1" min="1" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.BotsHint'}}">{{localize "GCC.UT.Swarm.BotsLabel"}}
+      <select data-gcc-ut-swarm="bots" {{#unless editable}}disabled{{/unless}}>
+        {{#each bots as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.ChassisHint'}}">{{localize "GCC.UT.Swarm.ChassisLabel"}}
+      <select data-gcc-ut-swarm="chassis" {{#unless editable}}disabled{{/unless}}>
+        {{#each chassis as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.PowerHint'}}">{{localize "GCC.UT.Swarm.PowerLabel"}}
+      <select data-gcc-ut-swarm="power" {{#unless editable}}disabled{{/unless}}>
+        {{#each powers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#unless typeFromName}}
+      <label data-tooltip="{{localize 'GCC.UT.Swarm.TypeHint'}}">{{localize "GCC.UT.Swarm.TypeLabel"}}
+        <select data-gcc-ut-swarm="type" {{#unless editable}}disabled{{/unless}}>
+          {{#each types as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/unless}}
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.SecondTypeHint'}}">{{localize "GCC.UT.Swarm.SecondTypeLabel"}}
+      <select data-gcc-ut-swarm="secondType" {{#unless editable}}disabled{{/unless}}>
+        {{#each secondTypes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if repair}}
+      <label data-tooltip="{{localize 'GCC.UT.Swarm.ExtraModelsHint'}}">{{localize "GCC.UT.Swarm.ExtraModels"}}
+        <input type="number" data-gcc-ut-swarm="extraModels" value="{{build.extraModels}}" step="1" min="0" {{#if maxModels}}max="{{maxModels}}"{{/if}} {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+  </div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.UT.Swarm.DisguisedHint'}}"><input type="checkbox" data-gcc-ut-swarm="disguised" {{#if build.disguised}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Swarm.Disguised"}}</label>
+    <label class="icheck" data-tooltip="{{localize 'GCC.UT.Swarm.SelfReplicatingHint'}}"><input type="checkbox" data-gcc-ut-swarm="selfReplicating" {{#if build.selfReplicating}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Swarm.SelfReplicating"}}</label>
+  </div>
+  <p class="ihint">{{price}}{{#if lc}} {{lc}}{{/if}}</p>
+  {{#each problems as |p|}}<p class="ihint"><strong>{{p}}</strong></p>{{/each}}
+  <p class="ihint">{{statistics}}</p>
+  <p class="ihint">{{endurance}}</p>
+  {{#if attack}}<p class="ihint">{{attack}}</p>{{/if}}
+  <p class="ihint">{{controller}}</p>
+  {{#if canDeploy}}<button type="button" class="ibtn tiny" data-gcc-ut-swarm-deploy data-tooltip="{{localize 'GCC.UT.Swarm.DeployHint'}}">{{localize "GCC.UT.Swarm.Deploy"}}</button>{{/if}}
+</div>
