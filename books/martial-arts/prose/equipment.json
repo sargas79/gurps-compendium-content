@@ -630,5 +630,29 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Universal. Any heavy stick balanced enough to throw.</p>"
+  },
+  {
+    "_id": "5ae7e04196f8bb7d",
+    "name": "Bladed Hand",
+    "pages": "MA226",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Japan. A hand blade commonly associated with ninja, worn as the neko-de. Used for both climbing and fighting.</p>"
+  },
+  {
+    "_id": "691cebafed053079",
+    "name": "Myrmex",
+    "pages": "MA226",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ancient Greece. Leather hand wrapping with sharp edges that inflict shallow cuts when punching. Gives DR 1 to the hand – but also Bad Grip 1 (p. B123).</p>"
+  },
+  {
+    "_id": "4fdd3b073200fe1c",
+    "name": "Sap Glove",
+    "pages": "MA226",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Universal. A soft leather glove with steel shot or lead powder sewn into it to increase punching power. Gives the hand DR 2 and Bad Grip 1 (p. B123).</p>"
   }
 ]
