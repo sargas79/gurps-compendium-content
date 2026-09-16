@@ -26,6 +26,7 @@ import {
   weatherDr,
   type LaserOptions,
   type LaserSetting,
+  BLINDING_SHOTS,
 } from "./lasers.js";
 import { beamFamily, type BeamFamily } from "./rules.js";
 
@@ -98,6 +99,20 @@ function itemContext(item: any): Record<string, unknown> {
   };
 }
 
+/** Shots loaded, counted in the new setting's shots: a blinding shot is a tenth of one (p. 114). */
+async function rescaleLoaded(item: any, before: LaserSetting, after: LaserSetting): Promise<void> {
+  const into = after === "blinding" && before !== "blinding" ? BLINDING_SHOTS : before === "blinding" && after !== "blinding" ? 1 / BLINDING_SHOTS : 1;
+  if (into === 1) return;
+  const modes = foundry.utils.deepClone(item.system?.rangedModes ?? []);
+  let changed = false;
+  for (const mode of modes) {
+    if (mode.affliction || typeof mode.loaded !== "number") continue;
+    mode.loaded = Math.floor(mode.loaded * into);
+    changed = true;
+  }
+  if (changed) await item.update({ "system.rangedModes": modes });
+}
+
 function itemListeners(element: HTMLElement, item: any): void {
   const store = (patch: Record<string, unknown>) => item.update(Object.fromEntries(Object.entries(patch).map(([k, v]) => [`system.extensions.${MODULE_ID}.${FIELD}.${k}`, v])));
   element.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-gcc-ut-laser]").forEach((input) => {
@@ -106,7 +121,9 @@ function itemListeners(element: HTMLElement, item: any): void {
       if (field === "dazzle" || field === "blinding") await store({ [field]: (input as HTMLInputElement).checked });
       else if (field === "pulse") await store({ pulse: input.value });
       else if (field === "setting") {
+        const before = activeSetting(laserOptionsOf(item));
         await store({ setting: input.value });
+        await rescaleLoaded(item, before, activeSetting(laserOptionsOf(item)));
         // "Switching to or from this mode takes a Ready maneuver" (pp. 113-114, 118).
         if (item.actor) await say(item.actor, item.name, F("Switched", { setting: L(`Setting.${input.value}`) }));
       }
@@ -126,6 +143,15 @@ export function readyLaserOptions(api: GWorldApi, on: () => boolean): void {
       const factor = laserOptionFactor(laserOptionsOf(item));
       return factor === 1 ? null : { cost: Math.round(price.cost * factor * 100) / 100, label: L("Title") };
     },
+  });
+
+  // Blinding mode fires ten shots for each of the beam's (p. 114).
+  Hooks.on(api.combat.hooks.shotsEntry, (context: any) => {
+    if (!on() || !context?.entry || context.entry.capacity === null || context.entry.capacity === undefined) return;
+    const family = familyOf(context.item);
+    if (!family || !HIGH_ENERGY.has(family)) return;
+    if (activeSetting(laserOptionsOf(context.item)) !== "blinding") return;
+    context.entry.capacity = Number(context.entry.capacity) * BLINDING_SHOTS;
   });
 
   // The row each setting fires.

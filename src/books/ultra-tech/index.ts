@@ -17,7 +17,7 @@ import { initPoweredSuits, readyPoweredSuits } from "./armor/powered.js";
 import { initCybernetics, readyCybernetics } from "./cyber/index.js";
 import { initForceFields, readyForceFields } from "./force/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
-import { readyBeams } from "./beams/index.js";
+import { initBeams, readyBeams } from "./beams/index.js";
 import { initWarheads, readyWarheads } from "./warheads/index.js";
 import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
 import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
@@ -116,6 +116,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initGadgets();
   initPower();
+  initBeams();
   initLaserOptions();
   initNeuralSonic();
   initBeamOptions();

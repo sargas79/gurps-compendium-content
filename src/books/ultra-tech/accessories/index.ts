@@ -21,7 +21,7 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { beamFamily } from "../beams/rules.js";
 import { computerData } from "../computers/data.js";
 import { hudSource } from "../interfaces/index.js";
-import { ACTIVE_TARGETING, lockedSensor } from "../sensors/index.js";
+import { ACTIVE_TARGETING, activeSensorRange, lockedSensor } from "../sensors/index.js";
 import {
   ACCESS,
   ACCESS_CONTROLS,
@@ -297,6 +297,22 @@ async function antiTheft(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (explodes) await api.roll.damage({ actor, label: F("ExplodeLabel", { name: item.name }), formula: SELF_DESTRUCT.damage, damageType: "cr", explosive: true } as any);
 }
 
+/**
+ * Finding a D-tag: an Electronics Operation (Security) roll, then a second at -2
+ * to deactivate it without disabling the weapon or notifying the authorities (p. 151).
+ */
+async function findDTag(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const skill = "Electronics Operation (Security)";
+  const base = api.actors.skillLevel(actor, skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
+  const found: any = await api.roll.success({ actor, base, skill, label: F("DTagFind", { name: item.name }) } as any);
+  if (!found) return;
+  if (!found.success) return void say(actor, String(item.name), [L("DTagHidden")]);
+  const off: any = await api.roll.success({ actor, base, skill, label: F("DTagDeactivate", { name: item.name }), modifiers: [{ label: L("DTagLabel"), value: D_TAG.deactivate }] } as any);
+  if (!off) return;
+  if (off.success) await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.dTag`]: false });
+  await say(actor, String(item.name), [L(off.success ? "DTagOff" : "DTagTripped")]);
+}
+
 /** Fixing damage or a malfunction with the diagnostic computer's +1 (p. 151). */
 async function diagnose(api: GWorldApi, item: any, actor: any): Promise<void> {
   const skill = armourySkillFor(String(item.system?.rangedModes?.[0]?.skill ?? ""));
@@ -391,7 +407,10 @@ export function readyAccessories(api: GWorldApi, on: () => boolean): void {
     // A mounted weapon, a targeting program and a locked tactical sensor: the weapon's Acc replaces the rest (p. 150).
     const locked = lockedSensor(api, actor, targets);
     const program = programsOf(actor, "targeting").find((p) => targetingProgramBonus(p.complexity) > 0);
-    if (/^gunner\b/i.test(skill) && program && locked?.tactical) {
+    // "The target must be in range of the active sensor" (p. 150).
+    const sensorRange = locked ? activeSensorRange(locked.item) : null;
+    const inRange = sensorRange === null || yards === null || yards <= sensorRange;
+    if (/^gunner\b/i.test(skill) && program && locked?.tactical && inRange) {
       context[ACTIVE_TARGETING] = true;
       modifiers.push({ label: F("ActiveTargeting", { sensor: locked.item.name }), value: activeSensorTargeting(Number(mode.accuracy) || 0) });
     } else {
@@ -452,5 +471,6 @@ export function readyAccessories(api: GWorldApi, on: () => boolean): void {
 
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-access-control", itemTypes: ["equipment"], label: L("BypassTitle"), icon: "fa-solid fa-fingerprint", visible: (item) => on() && isWeapon(item) && (Boolean(accessoryData(item).accessControl) || smartgun(item)), run: (item, actor) => bypassAccess(api, item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-anti-theft", itemTypes: ["equipment"], label: L("AntiTheftTitle"), icon: "fa-solid fa-bomb", visible: (item) => on() && isWeapon(item) && accessoryData(item).selfDestruct, run: (item, actor) => antiTheft(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-d-tag", itemTypes: ["equipment"], label: L("DTagLabel"), icon: "fa-solid fa-tower-broadcast", visible: (item) => on() && isWeapon(item) && accessoryData(item).dTag, run: (item, actor) => findDTag(api, item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-diagnostic", itemTypes: ["equipment"], label: L("RepairTitle"), icon: "fa-solid fa-screwdriver-wrench", visible: (item) => on() && isWeapon(item) && smartgun(item), run: (item, actor) => diagnose(api, item, actor) });
 }

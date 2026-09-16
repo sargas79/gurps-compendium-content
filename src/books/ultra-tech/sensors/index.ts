@@ -391,6 +391,13 @@ export function lockedSensor(api: GWorldApi, actor: any, targets: any[]): { item
 }
 export const ACTIVE_TARGETING = `${MODULE_ID}.activeTargeting`;
 
+/** An active sensor item's range in yards at its TL, halved with LPI, or null for anything else (pp. 63-66). */
+export function activeSensorRange(item: any): number | null {
+  const active = activeByName(String(item?.name ?? ""));
+  if (!active) return null;
+  return ACTIVE_RANGES[active.kind][active.size].range * activeTlFactor(active.kind, itemTl(item)) * (sensorData(item).lpi ? 0.5 : 1);
+}
+
 export function readySensors(api: GWorldApi, on: SensorSwitches): void {
   api.data.registerPriceModifier({
     module: MODULE_ID,

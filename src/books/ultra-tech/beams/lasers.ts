@@ -120,3 +120,6 @@ export function weatherDr(pathPenalty: number): number {
 
 /** A laser striking glass, a visor or a window that isn't laser-resistant has a (10) divisor (p. 114). */
 export const GLASS_DIVISOR = 10;
+
+/** "Each shot in blinding mode counts as one-tenth of a normal shot": ten times as many (p. 114). */
+export const BLINDING_SHOTS = 10;
