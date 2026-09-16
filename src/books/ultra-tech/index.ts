@@ -13,6 +13,7 @@ import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/modul
 import { initAccessories, readyAccessories } from "./accessories/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
+import { initWarheads, readyWarheads } from "./warheads/index.js";
 import { initLaserOptions, readyLaserOptions } from "./beams/laser-options.js";
 import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
 import { initComputers, readyComputers } from "./computers/index.js";
@@ -61,6 +62,7 @@ const RULES = [
   { key: "beamOptions", pages: "pp. 132-133", implemented: true },
   { key: "hotshots", pages: "p. 133", implemented: true },
   { key: "firearmAccessories", pages: "pp. 149-152", implemented: true },
+  { key: "warheads", pages: "pp. 152-159", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -89,6 +91,7 @@ function init(): void {
   initLaserOptions();
   initNeuralSonic();
   initBeamOptions();
+  initWarheads();
   initComputers();
   initSwarms();
   initStealth();
@@ -106,6 +109,7 @@ function ready(api: GWorldApi): void {
   // Gravitic focus lengthens a beam before the air or water limits it, so the options go first.
   readyBeamOptions(api, { options: rule("beamOptions"), hotshots: rule("hotshots") });
   readyBeams(api, rule("beamWeapons"), beamIgnoresEnvironment(rule("beamOptions")));
+  readyWarheads(api, rule("warheads"));
   readyLaserOptions(api, rule("laserOptions"));
   readyNeuralSonic(api, rule("neuralAndSonic"));
   readyComputers(api, rule("computers"));

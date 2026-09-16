@@ -1,0 +1,19 @@
+{{!-- The warhead each ranged mode is loaded with (Ultra-Tech pp. 152-159). --}}
+<div class="isub" data-gcc-ut-warheads>
+  <div class="isub-head">{{localize "GCC.UT.Warheads.Title"}}</div>
+  {{#each modes as |m|}}
+    <div class="ifields" data-mode="{{m.index}}">
+      <label data-tooltip="{{localize 'GCC.UT.Warheads.LoadHint'}}">{{m.name}} · {{m.calibre}}
+        <select data-gcc-ut-warhead="kind" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+          {{#each m.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if m.variants.length}}
+        <select data-gcc-ut-warhead="variant" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+          {{#each m.variants as |v|}}<option value="{{v.value}}" {{#if v.selected}}selected{{/if}}>{{v.label}}</option>{{/each}}
+        </select>
+      {{/if}}
+    </div>
+    {{#if m.detail}}<p class="ihint">{{m.detail}}</p>{{/if}}
+  {{/each}}
+</div>
