@@ -1,5 +1,16 @@
 # Changelog
 
+## v0.10.1 — The last Martial Arts records get their text
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.12.0**, which this release requires (add-on API 1.45.0).
+
+- **Book text for the last twelve records (#262):** Back Strike, Spinning Strike
+  and Flying Lunge, which the book prints as one entry with the kick they share
+  their technique with, and the bladed hand, myrmex and sap glove, whose
+  descriptions sit under another name in the weapon list. Every Martial Arts
+  record carries its text now: 579 skills and techniques, 82 pieces of gear.
+
 ## v0.10.0 — The Martial Arts pack extracted again, and the last twofer
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
