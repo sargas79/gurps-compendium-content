@@ -7559,5 +7559,44 @@
       "meleeModes": [],
       "rangedModes": []
     }
+  },
+  {
+    "_id": "744b7dac38b175cd",
+    "name": "Pocket Laser Mike",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 105",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "1 hr.",
+              "raw": "A/1 hr."
+            }
+          }
+        }
+      }
+    }
   }
 ]

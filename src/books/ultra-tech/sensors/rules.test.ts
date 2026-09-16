@@ -1,8 +1,16 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  QUANTUM_CHANNEL,
   VISUAL_SENSORS,
   activeByName,
+  canHaveQuantumChannel,
+  chemsnifferWorks,
+  homingBeaconRange,
+  isTargetingSoftware,
+  laserMicrophoneRange,
+  radioRangeFactor,
+  sensorTasks,
   activeRangePenalty,
   chemsnifferBonuses,
   commByName,
@@ -101,5 +109,49 @@ describe("active sensors (Ultra-Tech pp. 63-66)", () => {
   it("is detected at twice its range, or 1.5 times the halved range with LPI", () => {
     expect(emissionDetectionRange(1000)).toBe(2000);
     expect(emissionDetectionRange(1000, true)).toBe(750);
+  });
+});
+
+describe("comm ranges and sensing tasks (#299)", () => {
+  it("cuts radio range in cities and for audio-visual signals (p. 44)", () => {
+    expect(radioRangeFactor({})).toBe(1);
+    expect(radioRangeFactor({ urban: true })).toBeCloseTo(0.1);
+    expect(radioRangeFactor({ urban: true, audioVisual: true })).toBeCloseTo(0.01);
+  });
+
+  it("gives laser and neutrino comms a quantum channel at a tenth the range (p. 47)", () => {
+    expect(canHaveQuantumChannel("laser")).toBe(true);
+    expect(canHaveQuantumChannel("neutrino")).toBe(true);
+    expect(canHaveQuantumChannel("radio")).toBe(false);
+    expect(QUANTUM_CHANNEL).toEqual({ range: 0.1, cost: 10 });
+  });
+
+  it("ranges homing beacons and laser microphones by TL (p. 105)", () => {
+    expect(homingBeaconRange(9)).toBe(10 * MILE);
+    expect(homingBeaconRange(11)).toBe(200 * MILE);
+    expect(homingBeaconRange(12)).toBe(1000 * MILE);
+    expect(laserMicrophoneRange("Laser Microphone", 9)).toBe(3000);
+    expect(laserMicrophoneRange("Pocket Laser Mike", 10)).toBe(600);
+    expect(laserMicrophoneRange("Laser Microphone", 12)).toBe(30000);
+    expect(laserMicrophoneRange("Radio", 9)).toBeNull();
+  });
+
+  it("lists a chemsniffer's and sound detector's tasks (pp. 61-62)", () => {
+    expect(sensorTasks("Personal Chemsniffer", 9)).toEqual([{ key: "detect", bonus: 4 }, { key: "analyze", bonus: 8 }]);
+    expect(sensorTasks("Tactical Chemsniffer", 11)).toEqual([{ key: "detect", bonus: 6 }, { key: "analyze", bonus: 8 }]);
+    expect(sensorTasks("Personal Sound Detector", 9)).toEqual([{ key: "identify", bonus: 8 }]);
+    expect(sensorTasks("Medium Radar", 9)).toBeNull();
+  });
+
+  it("keeps a chemsniffer out of water, vacuum and sealed places (p. 61)", () => {
+    expect(chemsnifferWorks({ underwater: false, atmospheres: 1 })).toBe(true);
+    expect(chemsnifferWorks({ underwater: true, atmospheres: 1 })).toBe(false);
+    expect(chemsnifferWorks({ underwater: false, atmospheres: 0 })).toBe(false);
+    expect(chemsnifferWorks({ underwater: false, atmospheres: 1 }, true)).toBe(false);
+  });
+
+  it("knows targeting software by name (p. 150)", () => {
+    expect(isTargetingSoftware("Targeting Program (+2)")).toBe(true);
+    expect(isTargetingSoftware("Compact Targeting Scope")).toBe(false);
   });
 });

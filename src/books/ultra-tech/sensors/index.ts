@@ -3,14 +3,18 @@
  * through the add-on API (pp. 42-46, 60-67).
  *
  *   - **Communicators:** a comm's range by size and TL on its sheet, receive-
- *     and transmit-only comms priced, and a GM tool for whether two comms
- *     reach each other and what stretching the range takes.
+ *     and transmit-only comms and quantum channels priced, and a GM tool for
+ *     whether two comms reach each other (radio cut in cities and for
+ *     audio-visual signals) and what stretching the range takes, or whether a
+ *     laser microphone or homing beacon reaches.
  *   - **Sensors:** worn optics grant Night Vision, Infravision, Hyperspectral
  *     Vision and Telescopic Vision; sound detectors, chemsniffers and sensor
  *     gloves their bonuses; tactical sensors priced; an active sensor's range,
  *     LPI and emissions on its sheet; a row action to lock a sensor on the
- *     target for +3 to hit, which an ESM warns of with +1 to Dodge; and a GM
- *     tool for a sensor sweep at a distance.
+ *     target for +3 to hit with targeting software, which an ESM warns of
+ *     with +1 to Dodge; a row action for a chemsniffer's or sound detector's
+ *     Electronics Operation (Sensors) task; and a GM tool for a sensor sweep
+ *     at a distance.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -32,7 +36,15 @@ import {
   activeTlFactor,
   airSonarRange,
   CELL_DETECTION,
+  QUANTUM_CHANNEL,
+  canHaveQuantumChannel,
+  chemsnifferWorks,
   gravscannerDetection,
+  homingBeaconRange,
+  isTargetingSoftware,
+  laserMicrophoneRange,
+  radioRangeFactor,
+  sensorTasks,
   hydrophoneDetection,
   radscannerDetection,
   slowedRangeFactor,
@@ -67,6 +79,7 @@ interface SensorData {
   commMode: CommMode;
   tactical: boolean;
   lpi: boolean;
+  quantum: boolean;
 }
 
 export function initSensors(): void {
@@ -76,13 +89,14 @@ export function initSensors(): void {
       commMode: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...MODES] }),
       tactical: new f.BooleanField({ initial: false }),
       lpi: new f.BooleanField({ initial: false }),
+      quantum: new f.BooleanField({ initial: false }),
     }),
   });
 }
 
 function sensorData(item: any): SensorData {
   const data = item?.system?.extensions?.[MODULE_ID]?.[FIELD] ?? {};
-  return { commMode: MODES.includes(data.commMode) ? data.commMode : "", tactical: Boolean(data.tactical), lpi: Boolean(data.lpi) };
+  return { commMode: MODES.includes(data.commMode) ? data.commMode : "", tactical: Boolean(data.tactical), lpi: Boolean(data.lpi), quantum: Boolean(data.quantum) };
 }
 
 const isGear = (item: any) => item?.type === "equipment" || item?.type === "armor";
@@ -113,6 +127,11 @@ function passiveLine(item: any): string {
   if (grav) return F("Gravscanner", { bonus: gravscannerDetection((grav === "very large" ? "veryLarge" : grav) as any, tl), tl });
   const rad = /^(Large|Medium|Small) Radscanner$/i.exec(name)?.[1]?.toLowerCase();
   if (rad) return F("Radscanner", { bonus: radscannerDetection(rad as any, tl), tl, cells: Object.entries(CELL_DETECTION).map(([cell, mod]) => `${cell} ${mod >= 0 ? "+" : ""}${mod}`).join(", ") });
+  if (/^homing beacon$/i.test(name)) return F("BeaconRange", { range: distanceText(homingBeaconRange(tl)), tl });
+  const mike = laserMicrophoneRange(name, tl);
+  if (mike !== null) return F("MikeRange", { range: distanceText(mike), tl });
+  const tasks = sensorTasks(name, itemTl(item));
+  if (tasks) return tasks.map((task) => F(`Task.${task.key}`, { bonus: task.bonus })).join(" ");
   return "";
 }
 
@@ -124,7 +143,10 @@ function itemContext(item: any, on: SensorSwitches): Record<string, unknown> {
   const comm = on.communicators() ? commByName(String(item.name)) : null;
   if (comm) {
     const range = commRange(comm.family, comm.size, tl);
-    if (range !== null) lines.push(F("CommRange", { range: distanceText(range), tl }));
+    const quantum = data.quantum && canHaveQuantumChannel(comm.family);
+    if (range !== null) lines.push(F("CommRange", { range: distanceText(range * (quantum ? QUANTUM_CHANNEL.range : 1)), tl }));
+    if (quantum) lines.push(L("QuantumLine"));
+    if (comm.family === "radio") lines.push(L("RadioCuts"));
     if (data.commMode) lines.push(L(`CommMode.${data.commMode}`));
   }
   const active = on.sensors() ? activeByName(String(item.name)) : null;
@@ -158,6 +180,7 @@ function itemContext(item: any, on: SensorSwitches): Record<string, unknown> {
   return {
     lines,
     comm: Boolean(comm),
+    quantumAllowed: Boolean(comm && canHaveQuantumChannel(comm.family)),
     active: Boolean(active),
     modes: MODES.map((value) => ({ value, label: L(`CommMode.${value || "both"}`), selected: value === data.commMode })),
     data,
@@ -199,7 +222,18 @@ async function ask<T>(title: string, fields: string, read: (form: HTMLElement) =
 }
 const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
 
-/** Whether the selected character's comm reaches the targeted character's (p. 43). */
+/** Posts lines to chat as the tool's card. */
+async function card(actor: any, title: string, lines: string[]): Promise<void> {
+  await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }), content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>` });
+}
+
+/**
+ * Whether the selected character's comm reaches the targeted character's
+ * (p. 43), with radio's cuts in cities and for audio-visual signals (p. 44)
+ * and a quantum channel's tenth (p. 47). With no pair of comms: a laser
+ * microphone the selected character aims at the target, or a homing beacon
+ * the target carries (p. 105).
+ */
 async function commCheck(api: GWorldApi): Promise<void> {
   const { selected, target } = picked();
   if (!selected || !target) return void ui.notifications?.warn(L("CommPick"));
@@ -207,22 +241,83 @@ async function commCheck(api: GWorldApi): Promise<void> {
   const mine = comms(selected);
   const theirs = comms(target);
   const pair = mine.flatMap((a) => theirs.filter((b) => b.comm!.family === a.comm!.family).map((b) => [a, b] as const))[0];
-  if (!pair) return void ui.notifications?.warn(L("NoPair"));
-  const [a, b] = pair;
-  const tl = Math.min(itemTl(a.item), itemTl(b.item));
-  const range = mixedRange(a.comm!.family, a.comm!.size, b.comm!.size, tl) ?? 0;
+  const mike = [...(selected.items ?? [])].filter(carried).find((i: any) => laserMicrophoneRange(String(i.name), itemTl(i)) !== null);
+  const beacon = [...(target.items ?? [])].find((i: any) => carried(i) && /^homing beacon$/i.test(String(i.name)));
+  if (!pair && !mike && !beacon) return void ui.notifications?.warn(L("NoPair"));
+  const radio = pair?.[0].comm!.family === "radio";
   const measured = yardsBetween(selected, target);
-  const yards = measured ?? await ask(L("CommTitle"), row(L("Distance"), `<input type="number" name="yards" value="1000" min="0" style="width:90px" />`), (form) => Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0);
-  if (yards === null) return;
-  const modifier = rangeExtensionModifier(yards, range);
-  const lines = [F("CommPair", { a: a.item.name, b: b.item.name, range: distanceText(range), distance: distanceText(yards) })];
-  if (modifier === 0) lines.push(L("InRange"));
-  else if (modifier === null) lines.push(L("OutOfRange"));
-  else {
-    lines.push(F("Stretch", { modifier }));
-    await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, "Electronics Operation (Communications)") ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill: "Electronics Operation (Communications)", label: L("StretchLabel"), modifiers: [{ label: L("StretchLine"), value: modifier }] } as any);
+  const answer = await ask(L("CommTitle"),
+    row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 1000)}" min="0" style="width:90px" />`)
+    + (radio ? row(L("Urban"), `<input type="checkbox" name="urban" />`) + row(L("AudioVisual"), `<input type="checkbox" name="av" />`) : ""),
+    (form) => ({
+      yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
+      urban: Boolean(form.querySelector<HTMLInputElement>("[name=urban]")?.checked),
+      audioVisual: Boolean(form.querySelector<HTMLInputElement>("[name=av]")?.checked),
+    }));
+  if (!answer) return;
+  const yards = answer.yards;
+  const lines: string[] = [];
+
+  if (pair) {
+    const [a, b] = pair;
+    const tl = Math.min(itemTl(a.item), itemTl(b.item));
+    let range = mixedRange(a.comm!.family, a.comm!.size, b.comm!.size, tl) ?? 0;
+    if (radio) range *= radioRangeFactor(answer);
+    const quantum = canHaveQuantumChannel(a.comm!.family) && (sensorData(a.item).quantum || sensorData(b.item).quantum);
+    if (quantum) range *= QUANTUM_CHANNEL.range;
+    lines.push(F("CommPair", { a: a.item.name, b: b.item.name, range: distanceText(range), distance: distanceText(yards) }));
+    if (radio && answer.urban) lines.push(L("UrbanLine"));
+    if (radio && answer.audioVisual) lines.push(L("AudioVisualLine"));
+    if (quantum) lines.push(L("QuantumLine"));
+    const modifier = rangeExtensionModifier(yards, range);
+    if (modifier === 0) lines.push(L("InRange"));
+    else if (modifier === null) lines.push(L("OutOfRange"));
+    else {
+      lines.push(F("Stretch", { modifier }));
+      await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, "Electronics Operation (Communications)") ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill: "Electronics Operation (Communications)", label: L("StretchLabel"), modifiers: [{ label: L("StretchLine"), value: modifier }] } as any);
+    }
   }
-  await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor: selected }), content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(L("CommTitle"))}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>` });
+
+  if (beacon) {
+    const range = homingBeaconRange(itemTl(beacon));
+    lines.push(F(yards <= range ? "BeaconHeard" : "BeaconLost", { name: beacon.name, range: distanceText(range) }));
+  }
+
+  if (mike) {
+    const range = laserMicrophoneRange(String(mike.name), itemTl(mike))!;
+    if (yards > range) lines.push(F("MikeOut", { name: mike.name, range: distanceText(range) }));
+    else {
+      lines.push(F("MikeIn", { name: mike.name, range: distanceText(range) }));
+      const skill = "Electronics Operation (Surveillance)";
+      await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("MikeLabel", { name: mike.name }) } as any);
+    }
+  }
+
+  await card(selected, L("CommTitle"), lines);
+}
+
+/** A chemsniffer's or sound detector's Electronics Operation (Sensors) roll for a task it helps (pp. 61-62). */
+async function senseTask(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const tasks = sensorTasks(String(item?.name ?? ""), itemTl(item));
+  if (!tasks || !actor) return;
+  const chemsniffer = /chemsniffer$/i.test(String(item.name));
+  const answer = await ask(L("TaskTitle"),
+    row(L("TaskLabel"), `<select name="task">${tasks.map((t, i) => `<option value="${i}">${esc(F(`Task.${t.key}`, { bonus: t.bonus }))}</option>`).join("")}</select>`)
+    + (chemsniffer ? row(L("Sealed"), `<input type="checkbox" name="sealed" />`) : ""),
+    (form) => ({
+      index: Number(form.querySelector<HTMLSelectElement>("[name=task]")?.value) || 0,
+      sealed: Boolean(form.querySelector<HTMLInputElement>("[name=sealed]")?.checked),
+    }));
+  if (!answer) return;
+  if (chemsniffer && !chemsnifferWorks(beamEnvironment(), answer.sealed)) return void card(actor, L("TaskTitle"), [F("NoScent", { name: item.name })]);
+  const task = tasks[answer.index] ?? tasks[0]!;
+  const skill = "Electronics Operation (Sensors)";
+  await api.roll.success({ actor, base: api.actors.skillLevel(actor, skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5, skill, label: F("TaskRoll", { name: item.name }), modifiers: [{ label: F(`Task.${task.key}`, { bonus: task.bonus }), value: task.bonus }] } as any);
+}
+
+/** Whether a character carries targeting software, which a lock's +3 needs (p. 63). */
+function hasTargetingSoftware(actor: any): boolean {
+  return [...(actor?.items ?? [])].some((i: any) => i?.system?.carried !== false && isTargetingSoftware(String(i?.name ?? "")));
 }
 
 /** A sweep with an active sensor at a distance (pp. 63-66). */
@@ -279,7 +374,7 @@ async function lockOn(api: GWorldApi, item: any, actor: any): Promise<void> {
   const target = [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
   if (!target) return void ui.notifications?.warn(L("LockPick"));
   await api.combat.setCombatState(actor, MODULE_ID, LOCK, { targetUuid: String(target.uuid), itemId: String(item.id) }, "combat");
-  await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(F("Locked", { sensor: item.name, target: target.name }))}</div></div>` });
+  await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(F(hasTargetingSoftware(actor) ? "Locked" : "LockedNoSoftware", { sensor: item.name, target: target.name }))}</div></div>` });
 }
 
 /**
@@ -313,6 +408,7 @@ export function readySensors(api: GWorldApi, on: SensorSwitches): void {
       }
       const active = on.sensors() ? activeByName(String(item.name)) : null;
       if (active && data.tactical) cost *= tacticalFactor(active.kind);
+      if (comm && data.quantum && canHaveQuantumChannel(comm.family)) cost *= QUANTUM_CHANNEL.cost;
       if (cost === price.cost && weight === price.weight) return null;
       return { cost: Math.round(cost * 100) / 100, weight: Math.round(weight * 1000) / 1000, label: L("Title") };
     },
@@ -330,6 +426,16 @@ export function readySensors(api: GWorldApi, on: SensorSwitches): void {
 
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-comm-range", label: L("CommTitle"), icon: "fa-solid fa-tower-broadcast", visible: on.communicators, open: () => commCheck(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-sensor-sweep", label: L("SweepTitle"), icon: "fa-solid fa-satellite-dish", visible: on.sensors, open: () => sensorSweep(api) });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-sensor-task",
+    itemTypes: ["equipment"],
+    label: L("TaskTitle"),
+    icon: "fa-solid fa-magnifying-glass",
+    visible: (item) => on.sensors() && Boolean(sensorTasks(String(item?.name ?? ""), itemTl(item))),
+    run: (item, actor) => senseTask(api, item, actor),
+  });
 
   api.sheets.registerRowAction({
     module: MODULE_ID,
@@ -427,7 +533,7 @@ export function readySensors(api: GWorldApi, on: SensorSwitches): void {
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     if (!on.sensors() || !context?.actor || context?.mode?.ranged !== true || context[ACTIVE_TARGETING]) return;
     const locked = lockedSensor(api, context.actor, context.targets ?? []);
-    if (locked) context.modifiers.push({ label: F("LockLine", { sensor: locked.item.name ?? "" }), value: TARGETING_LOCK });
+    if (locked && hasTargetingSoftware(context.actor)) context.modifiers.push({ label: F("LockLine", { sensor: locked.item.name ?? "" }), value: TARGETING_LOCK });
   });
 
   // An ESM warns of an attack aimed with an active targeting sensor: +1 to Dodge (p. 62).
