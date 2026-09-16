@@ -1975,6 +1975,10 @@
         "sensors": {
           "Name": "Sensors",
           "Hint": "Worn night vision optics, infrared, hyperspectral and PESA goggles, glasses, contacts and binoculars give Night Vision, Infravision, Hyperspectral Vision and Telescopic Vision (a level per doubling of magnification, growing by TL). Sound detectors add to Hearing and Shadowing, chemsniffers to Tracking and Smell, sensor gloves to touch, and imaging and terahertz radar to Search for concealed weapons. Active sensors show their range, LPI and emissions, and tactical ones are priced. A row action locks a sensor on the target for +3 to aimed ranged attacks, which an ESM detector warns of for +1 to Dodge. A GM tool runs a sweep at -2 per doubling of range past the sensor's."
+        },
+        "neuralInterfaces": {
+          "Name": "Interfaces, VR and sensies",
+          "Hint": "A worn HUD or neural interface gives +1 to Driving, Piloting and Free Fall, and a visual enhancement program +1 to Vision. Row actions experience a sensie (surface mode is -3 to other tasks and +4 to Fright Checks), use a virtual tutor at skill 12, and take a dose of instaskill nano: a point in a skill with a point or less, with an IQ roll against Phantom Voices when doses stack. Items explain VR levels and managers, translators, dreamgames, dream teachers and neural interfaces."
         }
       },
       "Gadget": {
@@ -2719,6 +2723,55 @@
         "HeatTrail": "{name} (a heat trail under an hour old)",
         "NoisyTarget": "{name} (a noisy target)",
         "ConcealedWeapons": "{name} (concealed weapons)"
+      },
+      "Interface": {
+        "Title": "Interfaces and media",
+        "HudLine": "HUD ({source})",
+        "Sensie": {
+          "Title": "Experience a sensie",
+          "Mode": "Mode",
+          "surface": "Sensie (surface mode)",
+          "immersion": "Sensie (immersion mode)",
+          "off": "Stop",
+          "Ended": "{name} leaves the sensie.",
+          "SurfaceLine": "{name} feels the sensie muted: -3 to other tasks, half its shock penalties, and +4 to HT, Will and Fright Checks it calls for.",
+          "ImmersionLine": "{name} is immersed and can't use their own senses; any pain in the sensie brings shock but no injury."
+        },
+        "Tutor": {
+          "Title": "Use virtual tutor",
+          "Task": "Skill for the task",
+          "Label": "{tutor}: {task}",
+          "TheTask": "the task"
+        },
+        "Instaskill": {
+          "Title": "Take instaskill",
+          "None": "No skill or technique with a point or less for the nano to teach.",
+          "Skill": "Skill",
+          "Unassimilated": "An earlier dose isn't assimilated yet",
+          "Superscience": "Superscience nano (an hour)",
+          "Overdose": "IQ: doses before assimilation",
+          "Voices": "{name} hears Phantom Voices for {days} days, and can't use instaskill until they stop.",
+          "VoicesForever": "{name} hears Phantom Voices permanently.",
+          "Point": "{name} gains a point in {skill} in {hours} hours."
+        },
+        "Vr": {
+          "Interface": "{level}: needs a Complexity {complexity}+ computer.",
+          "Manager": "Supports up to {level}, for about 10 users each.",
+          "Lower": "The reality experienced is the lower of the VR interface and the VR manager.",
+          "gloves": "VR gloves",
+          "basic": "basic VR",
+          "full": "full VR",
+          "total": "total VR"
+        },
+        "Dreamgame": "Addictive: a cheap, legal, incapacitating non-chemical addiction [{points}].",
+        "Translator": "Its comprehension never exceeds its input. -1 Complexity per artificial language, +1 between species that think differently or across senses. Unusual pairs cost twice as much, obscure ones five times; two in series lose a grade and add a second's delay.",
+        "UniversalTranslator": "Broken comprehension of a new language after an hour's exposure, Accented after six, Native after a day, never beyond the speakers'.",
+        "DreamTeacher": "Intensive Training while asleep in IQ-based skills and languages; DX- and HT-based skills learn at the Education rate.",
+        "NeuralInterface": "Switching to or from neural control takes familiarity penalties. A brainlock accepts only listed brainwave patterns, at no extra cost.",
+        "CosmeticFilter": "Raises video Appearance a level, to Very Handsome at most; above Attractive it is Off-the-Shelf Looks.",
+        "Console": "+{bonus} Complexity running games, VR and sensies.",
+        "Holoprojection": "{penalty} to control through anything but a neural interface.",
+        "SensiePlayer": "Needs a direct neural interface; real-time sensies need 1 GB/s immersed, 0.1 GB/s on the surface."
       }
     }
   },
