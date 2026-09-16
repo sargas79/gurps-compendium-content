@@ -1923,6 +1923,7 @@
       "title": "Beam Weapons",
       "chapter": "Weaponry",
       "pages": "UT113",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 113",
       "file": "beam-weapons.md",
       "status": "reviewed"
@@ -1932,6 +1933,7 @@
       "title": "Lasers",
       "chapter": "Weaponry",
       "pages": "UT113",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 113",
       "file": "lasers.md",
       "status": "reviewed"
@@ -1950,6 +1952,7 @@
       "title": "Electrolasers",
       "chapter": "Weaponry",
       "pages": "UT119",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 119",
       "file": "electrolasers.md",
       "status": "reviewed"
@@ -1959,6 +1962,7 @@
       "title": "Microwave Weapons",
       "chapter": "Weaponry",
       "pages": "UT120",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 120",
       "file": "microwave-weapons.md",
       "status": "reviewed"
@@ -1977,6 +1981,7 @@
       "title": "Particle Accelerators",
       "chapter": "Weaponry",
       "pages": "UT122",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 122",
       "file": "particle-accelerators.md",
       "status": "reviewed"
@@ -1986,6 +1991,7 @@
       "title": "Omni-Blasters",
       "chapter": "Weaponry",
       "pages": "UT124",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 124",
       "file": "omni-blasters.md",
       "status": "reviewed"
@@ -2004,6 +2010,7 @@
       "title": "Plasma Weapons",
       "chapter": "Weaponry",
       "pages": "UT127",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 127",
       "file": "plasma-weapons.md",
       "status": "reviewed"
@@ -2013,6 +2020,7 @@
       "title": "Nucleonic Beams",
       "chapter": "Weaponry",
       "pages": "UT130",
+      "rule": "gurps-compendium-content.beamWeapons",
       "reference": "Ultra-Tech p. 130",
       "file": "nucleonic-beams.md",
       "status": "reviewed"
