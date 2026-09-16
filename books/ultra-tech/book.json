@@ -910,6 +910,15 @@
   "patch": [
     {
       "pack": "equipment",
+      "pattern": "^(Heavy )?Ghost Particle Cannon$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "the beam's burning damage has the cosmic, radiation and surge modifiers; the table gives only explosive (p. 131)"
+    },
+    {
+      "pack": "equipment",
       "pattern": "^Tiny Computer$",
       "set": {
         "system.complexity": 3

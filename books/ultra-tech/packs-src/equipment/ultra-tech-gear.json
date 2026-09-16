@@ -12802,7 +12802,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 1,
           "ignoresDr": true,
           "accuracy": 15,
@@ -12823,7 +12823,8 @@
           "mount": "mounted",
           "bulk": -10,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -12877,7 +12878,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 1,
           "ignoresDr": true,
           "accuracy": 15,
@@ -12898,7 +12899,8 @@
           "mount": "mounted",
           "bulk": -10,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
