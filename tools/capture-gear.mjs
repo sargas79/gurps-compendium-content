@@ -75,7 +75,13 @@ function pagesOf(pdf, stored = false) {
 }
 
 /** A tech level as the book prints it in a label: "TL9", "TL10^", "TL9-12". */
-const TECH_LEVEL = String.raw`TL\s?\d+(?:-\d+)?\^?`;
+const TECH_LEVEL = String.raw`TL\s?\d+\^?(?:[-/]\d+\^?)?`;
+
+/** A tech level alone on a line, the rest of a heading the column broke. */
+const TECH_LEVEL_ALONE = new RegExp(String.raw`^\(${TECH_LEVEL}\)$`);
+
+/** A size label that names nothing without its family: "Large", "Very Large". */
+const SIZE = /^(Very Large|Large|Medium|Small|Tiny|Micro|Mini)$/;
 
 /**
  * A gadget's label: a capitalised name, any parentheticals, and its tech level
@@ -178,23 +184,40 @@ function skillNames() {
 function entriesOn(pages, from, to, offset) {
   const entries = [];
   let current = null;
+  let family = null;
   for (let page = from; page <= to; page++) {
     const lines = (pages[page + offset - 1] ?? "")
       .split("\n")
       .map(normalise)
       .filter((line) => line && !FURNITURE.test(line))
-      .flatMap((line) => line.split(LABEL_INSIDE));
+      .flatMap((line) => line.split(LABEL_INSIDE))
+      // A heading too long for its column puts its tech level on a line of its
+      // own: "Gravity-Ripple Communicators" / "(TL10^/11^)".
+      .reduce((out, line) => {
+        const previous = out[out.length - 1];
+        if (previous && TECH_LEVEL_ALONE.test(line) && previous.length < 60 && !/[.!?:;,]$/.test(previous)) {
+          out[out.length - 1] = `${previous} ${line}`;
+        } else {
+          out.push(line);
+        }
+        return out;
+      }, []);
     for (const line of lines) {
       const m = LABEL.exec(line);
       if (m && !/points\)/.test(m[1])) {
         if (current) entries.push(current);
+        let name = normalise(m[1].replace(/^LC\d\.\s+/, ""));
+        // Sizes listed under a family heading -- "Radio Communicators" then
+        // "Large (TL9): ..." -- are named for the family.
+        if (SIZE.test(name) && family) name = `${family.replace(/(?<!s)s$/, "")} (${name})`;
         current = {
-          name: normalise(m[1].replace(/^LC\d\.\s+/, "")),
+          name,
           tl: m[2].replace(/^TL\s?/, ""),
           page,
           heading: m[3] === "",
           text: line.slice(m[0].length),
         };
+        if (current.heading && !SIZE.test(name)) family = name;
         continue;
       }
       // Stored order breaks lines where the page does: "sepa-" / "rating".
@@ -223,7 +246,10 @@ function recordOf(entry, bk, skills) {
   const text = entry.text.slice(0, close.index + close[0].length);
 
   // A multi-level TL ("TL9-12") is the first level the gadget exists at.
-  const tl = entry.tl.replace(/-\d+/, "");
+  // "TL10/11^" is TL10, superscience from TL11: the first level stands. In a
+  // range, "TL11-12^", the mark is the whole range's.
+  const range = /^(\d+)\^?-\d+\^$/.exec(entry.tl);
+  const tl = range ? `${range[1]}^` : entry.tl.replace(/[-/]\d+\^*$/, "").replace(/\^+/, "^");
   if (close[1].startsWith("+")) notes.push("price is an addition to something else");
   if (/^\s*(?:per|\/)/i.test(after)) notes.push(`price is per unit: "${after.trim().split(/[,.]/)[0]}"`);
   if (!weight) notes.push("no weight read");
@@ -342,7 +368,11 @@ function main() {
       skipped++;
       console.log(`  -  p.${entry.page} ${entry.name} (TL${entry.tl}): ${out.skip}`);
       // --why shows what the entry holds, to tell a gadget priced in a table from a mis-read.
-      if (process.argv.includes("--why")) console.log(`       ${entry.text.slice(0, 400)}`);
+      // Any price in it is shown too, since a table's price is often far down.
+      if (process.argv.includes("--why")) {
+        const prices = [...entry.text.matchAll(/.{0,80}\$[\d,]+.{0,60}/g)].map((m) => ` [${m[0]}]`).join("");
+        console.log(`       ${entry.text.slice(0, 400)}${prices}`);
+      }
       continue;
     }
     seen.add(key(entry.name));

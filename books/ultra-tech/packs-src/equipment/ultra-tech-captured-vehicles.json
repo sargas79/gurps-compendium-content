@@ -1,0 +1,149 @@
+[
+  {
+    "_id": "3c8eff1b2fa8a127",
+    "name": "Matter Transmission Booths",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 233",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1e6564b0efd547d1",
+    "name": "Cheap Matter Transmission Booths",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 200,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 233",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "0af58be311878c62",
+    "name": "Minigates",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 234",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "30 minutes.",
+              "raw": "E/30 minutes."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d7090d841f6f54f4",
+    "name": "Teleport Projector",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 5000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 234",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f8c3f91e69a042af",
+    "name": "Teleport Beacons",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 235",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  }
+]

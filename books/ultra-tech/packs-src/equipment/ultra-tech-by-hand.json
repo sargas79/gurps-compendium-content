@@ -3305,5 +3305,1224 @@
       "meleeModes": [],
       "rangedModes": []
     }
+  },
+  {
+    "_id": "bedb2ba41d379eb5",
+    "name": "Heavy Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 800,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 800,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "4d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 2,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 7,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "D",
+            "cells": 1,
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "D/15 min."
+            },
+            "backpack": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "63f9e923d38691e8",
+    "name": "Heavy Plasma Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "4d+1",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 5,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 8,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "D",
+            "cells": 1,
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "D/15 min."
+            },
+            "backpack": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0a56b533b718e964",
+    "name": "Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "2d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 2,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 5,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "C",
+            "cells": 1,
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "C/15 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "717f2a5227a17a3a",
+    "name": "Mini Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 2,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 1,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "B",
+            "cells": 1,
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "3 min.",
+              "raw": "B/3 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "90c45d35a5add7cb",
+    "name": "Mini Plasma Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d+2",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 5,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 3,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "B",
+            "cells": 1,
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "3 min.",
+              "raw": "B/3 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "56f6b1e87e27972a",
+    "name": "Plasma Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "2d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 5,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "C",
+            "cells": 1,
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "C/15 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "612ce725f1d4d3c0",
+    "name": "Fusion Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 80",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "8d+2",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 5,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 8,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": false
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "D",
+            "cells": 1,
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "D/15 min."
+            },
+            "backpack": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1b7893fbc2429c61",
+    "name": "Backpack X-Ray Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 1600,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1600,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "4d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 5,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 7,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "D",
+            "cells": 1,
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "D/15 min."
+            },
+            "backpack": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a4da1b83a82d68d6",
+    "name": "Pocket X-Ray Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 5,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 1,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "B",
+            "cells": 1,
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "3 min.",
+              "raw": "B/3 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "792212f6e5c7e894",
+    "name": "X-Ray Laser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "2d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 5,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 5,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "C",
+            "cells": 1,
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "C/15 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "40ea3fcb5cf46f17",
+    "name": "Heavy Graser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 2400,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2400,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "4d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 10,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 7,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "D",
+            "cells": 1,
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "D/15 min."
+            },
+            "backpack": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "bcd955023308239c",
+    "name": "Pocket Graser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "1d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 10,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 1,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "B",
+            "cells": 1,
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "3 min.",
+              "raw": "B/3 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "bb0a09e0eb2f030a",
+    "name": "Graser Torch",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 85",
+      "category": "weapon",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 300,
+      "hpLost": 0,
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Beam Weapons (Projector)",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "2d",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": true,
+          "armorDivisor": 10,
+          "reach": "C,1",
+          "parryModifier": 0,
+          "canParry": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 5,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "radiation": true
+        }
+      ],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "cell": "C",
+            "cells": 1,
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "C/15 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3de92c0493f35163",
+    "name": "Optical Cable (per yard)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.01,
+      "cost": 0.1,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 43",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0.1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "222410fbde98e04c",
+    "name": "Video Wall (per square foot)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.05,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 51",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3cccd819c8461672",
+    "name": "Multi-Media Wall (per square foot)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.05,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 51",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2f10432db906e7ce",
+    "name": "Domestic Nanocleanser (bottle)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 69",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1f209b57ecf59e4b",
+    "name": "Spider Cage",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 76",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7fa640ebd7d08e0d",
+    "name": "Gecko Adhesive (per square inch)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0.1,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 83",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0.1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5832020bb1514b37",
+    "name": "Construction Foam (per gallon)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 83",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "78f3933f95e4fcfc",
+    "name": "Vatfac",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 400000,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 91",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "4ab5876ed1828536",
+    "name": "Nanobug",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 105",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "AA",
+              "cells": 1,
+              "endurance": "1 year",
+              "raw": "AA/1 year"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "78b6d19336da0f42",
+    "name": "Computer Pill",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 105",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "8f36d8ea20daabd0",
+    "name": "Utility Fog",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 70",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "swarm": {
+            "squareYards": 1,
+            "pricePerSquareYard": 10000
+          }
+        }
+      }
+    }
   }
 ]
