@@ -64,21 +64,21 @@
       "status": "reviewed"
     },
     {
+      "id": "tl-progression-start-dates",
+      "title": "TL Progression Start Dates",
+      "chapter": "Ultra-Technology",
+      "pages": "UT8",
+      "reference": "Ultra-Tech p. 8",
+      "file": "tl-progression-start-dates.md",
+      "status": "reviewed"
+    },
+    {
       "id": "technology-paths",
       "title": "Technology Paths",
       "chapter": "Ultra-Technology",
       "pages": "UT8",
       "reference": "Ultra-Tech p. 8",
       "file": "technology-paths.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "unlimited-technology",
-      "title": "Unlimited Technology",
-      "chapter": "Ultra-Technology",
-      "pages": "UT9",
-      "reference": "Ultra-Tech p. 9",
-      "file": "unlimited-technology.md",
       "status": "reviewed"
     },
     {
@@ -112,9 +112,18 @@
       "id": "nanotech-revolution",
       "title": "Nanotech Revolution",
       "chapter": "Ultra-Technology",
+      "pages": "UT9",
+      "reference": "Ultra-Tech p. 9",
+      "file": "nanotech-revolution.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "unlimited-technology",
+      "title": "Unlimited Technology",
+      "chapter": "Ultra-Technology",
       "pages": "UT9-10",
       "reference": "Ultra-Tech pp. 9-10",
-      "file": "nanotech-revolution.md",
+      "file": "unlimited-technology.md",
       "status": "reviewed"
     },
     {
@@ -154,6 +163,15 @@
       "status": "reviewed"
     },
     {
+      "id": "psi-tech",
+      "title": "Psi-Tech",
+      "chapter": "Ultra-Technology",
+      "pages": "UT11",
+      "reference": "Ultra-Tech p. 11",
+      "file": "psi-tech.md",
+      "status": "reviewed"
+    },
+    {
       "id": "gadget-control",
       "title": "Gadget Control",
       "chapter": "Ultra-Technology",
@@ -178,15 +196,6 @@
       "pages": "UT11",
       "reference": "Ultra-Tech p. 11",
       "file": "tech-level-ut11.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "psi-tech",
-      "title": "Psi-Tech",
-      "chapter": "Ultra-Technology",
-      "pages": "UT11",
-      "reference": "Ultra-Tech p. 11",
-      "file": "psi-tech.md",
       "status": "reviewed"
     },
     {
@@ -343,6 +352,15 @@
       "status": "reviewed"
     },
     {
+      "id": "prices",
+      "title": "Prices",
+      "chapter": "Ultra-Technology",
+      "pages": "UT14",
+      "reference": "Ultra-Tech p. 14",
+      "file": "prices.md",
+      "status": "reviewed"
+    },
+    {
       "id": "legality-and-antiques",
       "title": "Legality and Antiques",
       "chapter": "Ultra-Technology",
@@ -370,21 +388,21 @@
       "status": "reviewed"
     },
     {
-      "id": "prices",
-      "title": "Prices",
-      "chapter": "Ultra-Technology",
-      "pages": "UT14",
-      "reference": "Ultra-Tech p. 14",
-      "file": "prices.md",
-      "status": "reviewed"
-    },
-    {
       "id": "repairing-gadgets",
       "title": "Repairing Gadgets",
       "chapter": "Ultra-Technology",
       "pages": "UT14-15",
       "reference": "Ultra-Tech pp. 14-15",
       "file": "repairing-gadgets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "powering-gadgets",
+      "title": "Powering Gadgets",
+      "chapter": "Ultra-Technology",
+      "pages": "UT15",
+      "reference": "Ultra-Tech p. 15",
+      "file": "powering-gadgets.md",
       "status": "reviewed"
     },
     {
@@ -406,24 +424,6 @@
       "status": "reviewed"
     },
     {
-      "id": "styling",
-      "title": "Styling",
-      "chapter": "Ultra-Technology",
-      "pages": "UT15",
-      "reference": "Ultra-Tech p. 15",
-      "file": "styling.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "powering-gadgets",
-      "title": "Powering Gadgets",
-      "chapter": "Ultra-Technology",
-      "pages": "UT15",
-      "reference": "Ultra-Tech p. 15",
-      "file": "powering-gadgets.md",
-      "status": "reviewed"
-    },
-    {
       "id": "rugged",
       "title": "Rugged",
       "chapter": "Ultra-Technology",
@@ -442,30 +442,21 @@
       "status": "reviewed"
     },
     {
+      "id": "styling",
+      "title": "Styling",
+      "chapter": "Ultra-Technology",
+      "pages": "UT15",
+      "reference": "Ultra-Tech p. 15",
+      "file": "styling.md",
+      "status": "reviewed"
+    },
+    {
       "id": "plug-in-gadgets",
       "title": "Plug-In Gadgets",
       "chapter": "Ultra-Technology",
       "pages": "UT15-16",
       "reference": "Ultra-Tech pp. 15-16",
       "file": "plug-in-gadgets.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "adjusting-for-sm",
-      "title": "Adjusting for SM",
-      "chapter": "Ultra-Technology",
-      "pages": "UT16",
-      "reference": "Ultra-Tech p. 16",
-      "file": "adjusting-for-sm.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "equipment-statistics-tl",
-      "title": "Equipment Statistics: Tl",
-      "chapter": "Ultra-Technology",
-      "pages": "UT16",
-      "reference": "Ultra-Tech p. 16",
-      "file": "equipment-statistics-tl.md",
       "status": "reviewed"
     },
     {
@@ -484,6 +475,24 @@
       "pages": "UT16",
       "reference": "Ultra-Tech p. 16",
       "file": "gear-for-nonhumans.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "adjusting-for-sm",
+      "title": "Adjusting for SM",
+      "chapter": "Ultra-Technology",
+      "pages": "UT16",
+      "reference": "Ultra-Tech p. 16",
+      "file": "adjusting-for-sm.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "equipment-statistics-tl",
+      "title": "Equipment Statistics: TL",
+      "chapter": "Ultra-Technology",
+      "pages": "UT16",
+      "reference": "Ultra-Tech p. 16",
+      "file": "equipment-statistics-tl.md",
       "status": "reviewed"
     },
     {
@@ -515,7 +524,7 @@
     },
     {
       "id": "hp-ht-dr",
-      "title": "Hp, Ht, Dr",
+      "title": "HP, HT, DR",
       "chapter": "Ultra-Technology",
       "pages": "UT17",
       "reference": "Ultra-Tech p. 17",
@@ -622,6 +631,15 @@
       "status": "reviewed"
     },
     {
+      "id": "beamed-and-broadcast-power",
+      "title": "Beamed and Broadcast Power",
+      "chapter": "Core Technologies",
+      "pages": "UT21",
+      "reference": "Ultra-Tech p. 21",
+      "file": "beamed-and-broadcast-power.md",
+      "status": "reviewed"
+    },
+    {
       "id": "civilization-and-power",
       "title": "Civilization and Power",
       "chapter": "Core Technologies",
@@ -640,12 +658,12 @@
       "status": "reviewed"
     },
     {
-      "id": "beamed-and-broadcast-power",
-      "title": "Beamed and Broadcast Power",
+      "id": "hardware",
+      "title": "Hardware",
       "chapter": "Core Technologies",
-      "pages": "UT21",
-      "reference": "Ultra-Tech p. 21",
-      "file": "beamed-and-broadcast-power.md",
+      "pages": "UT21-22",
+      "reference": "Ultra-Tech pp. 21-22",
+      "file": "hardware.md",
       "status": "reviewed"
     },
     {
@@ -658,30 +676,21 @@
       "status": "reviewed"
     },
     {
-      "id": "ai-hardware-or-software",
-      "title": "AI: Hardware or Software?",
-      "chapter": "Core Technologies",
-      "pages": "UT23",
-      "reference": "Ultra-Tech p. 23",
-      "file": "ai-hardware-or-software.md",
-      "status": "reviewed"
-    },
-    {
       "id": "terminals",
       "title": "Terminals",
       "chapter": "Core Technologies",
-      "pages": "UT23-24",
-      "reference": "Ultra-Tech pp. 23-24",
+      "pages": "UT23",
+      "reference": "Ultra-Tech p. 23",
       "file": "terminals.md",
       "status": "reviewed"
     },
     {
-      "id": "using-a-hud",
-      "title": "Using A HUD",
+      "id": "ai-hardware-or-software",
+      "title": "AI: Hardware or Software?",
       "chapter": "Core Technologies",
-      "pages": "UT24",
-      "reference": "Ultra-Tech p. 24",
-      "file": "using-a-hud.md",
+      "pages": "UT23-24",
+      "reference": "Ultra-Tech pp. 23-24",
+      "file": "ai-hardware-or-software.md",
       "status": "reviewed"
     },
     {
@@ -700,6 +709,15 @@
       "pages": "UT24",
       "reference": "Ultra-Tech p. 24",
       "file": "programs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-a-hud",
+      "title": "Using A HUD",
+      "chapter": "Core Technologies",
+      "pages": "UT24",
+      "reference": "Ultra-Tech p. 24",
+      "file": "using-a-hud.md",
       "status": "reviewed"
     },
     {
@@ -748,15 +766,6 @@
       "status": "reviewed"
     },
     {
-      "id": "superhuman-minds-and-the-singularity",
-      "title": "Superhuman Minds and the Singularity",
-      "chapter": "Core Technologies",
-      "pages": "UT26",
-      "reference": "Ultra-Tech p. 26",
-      "file": "superhuman-minds-and-the-singularity.md",
-      "status": "reviewed"
-    },
-    {
       "id": "digital-intelligences",
       "title": "Digital Intelligences",
       "chapter": "Core Technologies",
@@ -766,21 +775,30 @@
       "status": "reviewed"
     },
     {
-      "id": "renting-robots",
-      "title": "Renting Robots",
-      "chapter": "Core Technologies",
-      "pages": "UT26",
-      "reference": "Ultra-Tech p. 26",
-      "file": "renting-robots.md",
-      "status": "reviewed"
-    },
-    {
       "id": "drones",
       "title": "Drones",
       "chapter": "Core Technologies",
+      "pages": "UT26",
+      "reference": "Ultra-Tech p. 26",
+      "file": "drones.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "superhuman-minds-and-the-singularity",
+      "title": "Superhuman Minds and the Singularity",
+      "chapter": "Core Technologies",
+      "pages": "UT26",
+      "reference": "Ultra-Tech p. 26",
+      "file": "superhuman-minds-and-the-singularity.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "renting-robots",
+      "title": "Renting Robots",
+      "chapter": "Core Technologies",
       "pages": "UT26-27",
       "reference": "Ultra-Tech pp. 26-27",
-      "file": "drones.md",
+      "file": "renting-robots.md",
       "status": "reviewed"
     },
     {
@@ -874,15 +892,6 @@
       "status": "reviewed"
     },
     {
-      "id": "purchasing-machines",
-      "title": "Purchasing Machines",
-      "chapter": "Core Technologies",
-      "pages": "UT29",
-      "reference": "Ultra-Tech p. 29",
-      "file": "purchasing-machines.md",
-      "status": "reviewed"
-    },
-    {
       "id": "discriminatory-senses",
       "title": "Discriminatory Senses",
       "chapter": "Core Technologies",
@@ -892,12 +901,21 @@
       "status": "reviewed"
     },
     {
-      "id": "extra-life",
-      "title": "Extra Life",
+      "id": "purchasing-machines",
+      "title": "Purchasing Machines",
+      "chapter": "Core Technologies",
+      "pages": "UT29",
+      "reference": "Ultra-Tech p. 29",
+      "file": "purchasing-machines.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "extra-life-patrons",
+      "title": "Extra Life Patrons",
       "chapter": "Core Technologies",
       "pages": "UT30",
       "reference": "Ultra-Tech p. 30",
-      "file": "extra-life.md",
+      "file": "extra-life-patrons.md",
       "status": "reviewed"
     },
     {
@@ -925,15 +943,6 @@
       "pages": "UT30",
       "reference": "Ultra-Tech p. 30",
       "file": "modular-abilities.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "patrons",
-      "title": "Patrons",
-      "chapter": "Core Technologies",
-      "pages": "UT30",
-      "reference": "Ultra-Tech p. 30",
-      "file": "patrons.md",
       "status": "reviewed"
     },
     {
@@ -1027,15 +1036,6 @@
       "status": "reviewed"
     },
     {
-      "id": "no-sense-of-humor",
-      "title": "No Sense of Humor",
-      "chapter": "Core Technologies",
-      "pages": "UT32",
-      "reference": "Ultra-Tech p. 32",
-      "file": "no-sense-of-humor.md",
-      "status": "reviewed"
-    },
-    {
       "id": "pacifism",
       "title": "Pacifism",
       "chapter": "Core Technologies",
@@ -1063,12 +1063,12 @@
       "status": "reviewed"
     },
     {
-      "id": "social-stigma",
-      "title": "Social Stigma",
+      "id": "no-sense-of-humor",
+      "title": "No Sense of Humor",
       "chapter": "Core Technologies",
       "pages": "UT32",
       "reference": "Ultra-Tech p. 32",
-      "file": "social-stigma.md",
+      "file": "no-sense-of-humor.md",
       "status": "reviewed"
     },
     {
@@ -1270,6 +1270,15 @@
       "status": "reviewed"
     },
     {
+      "id": "communications-sensors-and-media",
+      "title": "Communications, Sensors, and Media",
+      "chapter": "Communications, Sensors, and Media",
+      "pages": "UT42",
+      "reference": "Ultra-Tech p. 42",
+      "file": "communications-sensors-and-media.md",
+      "status": "reviewed"
+    },
+    {
       "id": "communicators",
       "title": "Communicators",
       "chapter": "Communications, Sensors, and Media",
@@ -1279,21 +1288,21 @@
       "status": "reviewed"
     },
     {
-      "id": "receive-only-or-transmit-only-comms",
-      "title": "Receive-Only or Transmit-Only Comms",
-      "chapter": "Communications, Sensors, and Media",
-      "pages": "UT46",
-      "reference": "Ultra-Tech p. 46",
-      "file": "receive-only-or-transmit-only-comms.md",
-      "status": "reviewed"
-    },
-    {
       "id": "encryption",
       "title": "Encryption",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT46",
       "reference": "Ultra-Tech p. 46",
       "file": "encryption.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "receive-only-or-transmit-only-comms",
+      "title": "Receive-Only or Transmit-Only Comms",
+      "chapter": "Communications, Sensors, and Media",
+      "pages": "UT46-47",
+      "reference": "Ultra-Tech pp. 46-47",
+      "file": "receive-only-or-transmit-only-comms.md",
       "status": "reviewed"
     },
     {
@@ -1531,6 +1540,15 @@
       "status": "reviewed"
     },
     {
+      "id": "housing-tools-and-survival-gear",
+      "title": "Housing, Tools, and Survival Gear",
+      "chapter": "Housing, Tools, and Survival Gear",
+      "pages": "UT68",
+      "reference": "Ultra-Tech p. 68",
+      "file": "housing-tools-and-survival-gear.md",
+      "status": "reviewed"
+    },
+    {
       "id": "housing-and-food",
       "title": "Housing and Food",
       "chapter": "Housing, Tools, and Survival Gear",
@@ -1585,15 +1603,6 @@
       "status": "reviewed"
     },
     {
-      "id": "crossing-a-gravity-gradient",
-      "title": "Crossing a Gravity Gradient",
-      "chapter": "Housing, Tools, and Survival Gear",
-      "pages": "UT79",
-      "reference": "Ultra-Tech p. 79",
-      "file": "crossing-a-gravity-gradient.md",
-      "status": "reviewed"
-    },
-    {
       "id": "industrial-megaprojects-tl-10-12",
       "title": "Industrial Megaprojects (TL 10-12)",
       "chapter": "Housing, Tools, and Survival Gear",
@@ -1612,21 +1621,21 @@
       "status": "reviewed"
     },
     {
+      "id": "crossing-a-gravity-gradient",
+      "title": "Crossing a Gravity Gradient",
+      "chapter": "Housing, Tools, and Survival Gear",
+      "pages": "UT79-80",
+      "reference": "Ultra-Tech pp. 79-80",
+      "file": "crossing-a-gravity-gradient.md",
+      "status": "reviewed"
+    },
+    {
       "id": "tools-and-construction-materials",
       "title": "Tools and Construction Materials",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT80",
       "reference": "Ultra-Tech p. 80",
       "file": "tools-and-construction-materials.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "tools-and-tool-kits",
-      "title": "Tools and Tool Kits",
-      "chapter": "Housing, Tools, and Survival Gear",
-      "pages": "UT80",
-      "reference": "Ultra-Tech p. 80",
-      "file": "tools-and-tool-kits.md",
       "status": "reviewed"
     },
     {
@@ -1738,6 +1747,15 @@
       "status": "reviewed"
     },
     {
+      "id": "future-crime",
+      "title": "Future Crime",
+      "chapter": "Covert Ops and Security",
+      "pages": "UT101",
+      "reference": "Ultra-Tech p. 101",
+      "file": "future-crime.md",
+      "status": "reviewed"
+    },
+    {
       "id": "security-and-surveillance",
       "title": "Security and Surveillance",
       "chapter": "Covert Ops and Security",
@@ -1753,15 +1771,6 @@
       "pages": "UT101",
       "reference": "Ultra-Tech p. 101",
       "file": "barriers-mines-and-traps.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "future-crime",
-      "title": "Future Crime",
-      "chapter": "Covert Ops and Security",
-      "pages": "UT101",
-      "reference": "Ultra-Tech p. 101",
-      "file": "future-crime.md",
       "status": "reviewed"
     },
     {
@@ -1864,15 +1873,6 @@
       "status": "reviewed"
     },
     {
-      "id": "dazzle-laser-weapons-tables",
-      "title": "Dazzle Laser Weapons Tables",
-      "chapter": "Weaponry",
-      "pages": "UT113",
-      "reference": "Ultra-Tech p. 113",
-      "file": "dazzle-laser-weapons-tables.md",
-      "status": "reviewed"
-    },
-    {
       "id": "electrolasers",
       "title": "Electrolasers",
       "chapter": "Weaponry",
@@ -1897,6 +1897,15 @@
       "pages": "UT121",
       "reference": "Ultra-Tech p. 121",
       "file": "neural-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "particle-accelerators",
+      "title": "Particle Accelerators",
+      "chapter": "Weaponry",
+      "pages": "UT122",
+      "reference": "Ultra-Tech p. 122",
+      "file": "particle-accelerators.md",
       "status": "reviewed"
     },
     {
@@ -1957,8 +1966,8 @@
       "id": "hotshots-and-overheating",
       "title": "Hotshots and Overheating",
       "chapter": "Weaponry",
-      "pages": "UT133-134",
-      "reference": "Ultra-Tech pp. 133-134",
+      "pages": "UT133",
+      "reference": "Ultra-Tech p. 133",
       "file": "hotshots-and-overheating.md",
       "status": "reviewed"
     },
@@ -1978,15 +1987,6 @@
       "pages": "UT134",
       "reference": "Ultra-Tech p. 134",
       "file": "vortex-ring-projectors.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "fluid-projectors",
-      "title": "Fluid Projectors",
-      "chapter": "Weaponry",
-      "pages": "UT134",
-      "reference": "Ultra-Tech p. 134",
-      "file": "fluid-projectors.md",
       "status": "reviewed"
     },
     {
@@ -2134,21 +2134,21 @@
       "status": "reviewed"
     },
     {
-      "id": "smartgun-electronics",
-      "title": "Smartgun Electronics",
-      "chapter": "Weaponry",
-      "pages": "UT149",
-      "reference": "Ultra-Tech p. 149",
-      "file": "smartgun-electronics.md",
-      "status": "reviewed"
-    },
-    {
       "id": "tactical-programs",
       "title": "Tactical Programs",
       "chapter": "Weaponry",
+      "pages": "UT149",
+      "reference": "Ultra-Tech p. 149",
+      "file": "tactical-programs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "smartgun-electronics",
+      "title": "Smartgun Electronics",
+      "chapter": "Weaponry",
       "pages": "UT149-150",
       "reference": "Ultra-Tech pp. 149-150",
-      "file": "tactical-programs.md",
+      "file": "smartgun-electronics.md",
       "status": "reviewed"
     },
     {
@@ -2215,15 +2215,6 @@
       "status": "reviewed"
     },
     {
-      "id": "melee-and-thrown-weapons",
-      "title": "Melee and Thrown Weapons",
-      "chapter": "Weaponry",
-      "pages": "UT162",
-      "reference": "Ultra-Tech p. 162",
-      "file": "melee-and-thrown-weapons.md",
-      "status": "reviewed"
-    },
-    {
       "id": "physical-weapons",
       "title": "Physical Weapons",
       "chapter": "Weaponry",
@@ -2233,12 +2224,12 @@
       "status": "reviewed"
     },
     {
-      "id": "energy-weapons",
-      "title": "Energy Weapons",
+      "id": "combat-robots",
+      "title": "Combat Robots",
       "chapter": "Weaponry",
-      "pages": "UT164",
-      "reference": "Ultra-Tech p. 164",
-      "file": "energy-weapons.md",
+      "pages": "UT167",
+      "reference": "Ultra-Tech p. 167",
+      "file": "combat-robots.md",
       "status": "reviewed"
     },
     {
@@ -2248,15 +2239,6 @@
       "pages": "UT167",
       "reference": "Ultra-Tech p. 167",
       "file": "warbots-and-combat-androids.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "robot-weapons",
-      "title": "Robot Weapons",
-      "chapter": "Weaponry",
-      "pages": "UT168",
-      "reference": "Ultra-Tech p. 168",
-      "file": "robot-weapons.md",
       "status": "reviewed"
     },
     {
@@ -2305,6 +2287,15 @@
       "status": "reviewed"
     },
     {
+      "id": "tailoring-armor",
+      "title": "Tailoring Armor",
+      "chapter": "Defenses",
+      "pages": "UT174",
+      "reference": "Ultra-Tech p. 174",
+      "file": "tailoring-armor.md",
+      "status": "reviewed"
+    },
+    {
       "id": "armor-type",
       "title": "Armor Type",
       "chapter": "Defenses",
@@ -2338,6 +2329,15 @@
       "pages": "UT175",
       "reference": "Ultra-Tech p. 175",
       "file": "tailoring-armor-cut.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "accessories",
+      "title": "Accessories",
+      "chapter": "Defenses",
+      "pages": "UT175",
+      "reference": "Ultra-Tech p. 175",
+      "file": "accessories.md",
       "status": "reviewed"
     },
     {
@@ -2458,6 +2458,15 @@
       "status": "reviewed"
     },
     {
+      "id": "bodyguards",
+      "title": "Bodyguards",
+      "chapter": "Defenses",
+      "pages": "UT190",
+      "reference": "Ultra-Tech p. 190",
+      "file": "bodyguards.md",
+      "status": "reviewed"
+    },
+    {
       "id": "force-fields",
       "title": "Force Fields",
       "chapter": "Defenses",
@@ -2470,18 +2479,9 @@
       "id": "force-screens",
       "title": "Force Screens",
       "chapter": "Defenses",
-      "pages": "UT190",
-      "reference": "Ultra-Tech p. 190",
-      "file": "force-screens.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "bodyguards",
-      "title": "Bodyguards",
-      "chapter": "Defenses",
       "pages": "UT190-191",
       "reference": "Ultra-Tech pp. 190-191",
-      "file": "bodyguards.md",
+      "file": "force-screens.md",
       "status": "reviewed"
     },
     {
@@ -2527,6 +2527,15 @@
       "pages": "UT193-194",
       "reference": "Ultra-Tech pp. 193-194",
       "file": "stasis-webs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "medical-and-biotech",
+      "title": "Medical and Biotech",
+      "chapter": "Medical and Biotech",
+      "pages": "UT196",
+      "reference": "Ultra-Tech p. 196",
+      "file": "medical-and-biotech.md",
       "status": "reviewed"
     },
     {
@@ -2578,9 +2587,18 @@
       "id": "biotech-techniques",
       "title": "Biotech Techniques",
       "chapter": "Medical and Biotech",
-      "pages": "UT206-207",
-      "reference": "Ultra-Tech pp. 206-207",
+      "pages": "UT206",
+      "reference": "Ultra-Tech p. 206",
       "file": "biotech-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cybernetics-and-uploading",
+      "title": "Cybernetics and Uploading",
+      "chapter": "Medical and Biotech",
+      "pages": "UT207",
+      "reference": "Ultra-Tech p. 207",
+      "file": "cybernetics-and-uploading.md",
       "status": "reviewed"
     },
     {
@@ -2614,8 +2632,8 @@
       "id": "procedure",
       "title": "Procedure",
       "chapter": "Medical and Biotech",
-      "pages": "UT207-208",
-      "reference": "Ultra-Tech pp. 207-208",
+      "pages": "UT207",
+      "reference": "Ultra-Tech p. 207",
       "file": "procedure.md",
       "status": "reviewed"
     },
@@ -2677,18 +2695,9 @@
       "id": "remote-controlled-cybernetics",
       "title": "Remote-Controlled Cybernetics",
       "chapter": "Medical and Biotech",
-      "pages": "UT215",
-      "reference": "Ultra-Tech p. 215",
+      "pages": "UT215-216",
+      "reference": "Ultra-Tech pp. 215-216",
       "file": "remote-controlled-cybernetics.md",
-      "status": "reviewed"
-    },
-    {
-      "id": "implanted-digital-mind",
-      "title": "Implanted Digital Mind",
-      "chapter": "Medical and Biotech",
-      "pages": "UT216",
-      "reference": "Ultra-Tech p. 216",
-      "file": "implanted-digital-mind.md",
       "status": "reviewed"
     },
     {
@@ -2698,6 +2707,15 @@
       "pages": "UT216",
       "reference": "Ultra-Tech p. 216",
       "file": "computer-implant-template.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "implanted-digital-mind",
+      "title": "Implanted Digital Mind",
+      "chapter": "Medical and Biotech",
+      "pages": "UT216",
+      "reference": "Ultra-Tech p. 216",
+      "file": "implanted-digital-mind.md",
       "status": "reviewed"
     },
     {
@@ -2728,15 +2746,6 @@
       "status": "reviewed"
     },
     {
-      "id": "low-and-very-low-res-copies",
-      "title": "Low-and Very-Low-Res Copies",
-      "chapter": "Medical and Biotech",
-      "pages": "UT220",
-      "reference": "Ultra-Tech p. 220",
-      "file": "low-and-very-low-res-copies.md",
-      "status": "reviewed"
-    },
-    {
       "id": "mind-emulation-templates",
       "title": "Mind Emulation Templates",
       "chapter": "Medical and Biotech",
@@ -2764,12 +2773,12 @@
       "status": "reviewed"
     },
     {
-      "id": "campaign-effects-of-uploading",
-      "title": "Campaign Effects of Uploading",
+      "id": "low-and-very-low-res-copies",
+      "title": "Low-and Very-Low-Res Copies",
       "chapter": "Medical and Biotech",
-      "pages": "UT221",
-      "reference": "Ultra-Tech p. 221",
-      "file": "campaign-effects-of-uploading.md",
+      "pages": "UT220-221",
+      "reference": "Ultra-Tech pp. 220-221",
+      "file": "low-and-very-low-res-copies.md",
       "status": "reviewed"
     },
     {
@@ -2788,6 +2797,15 @@
       "pages": "UT221",
       "reference": "Ultra-Tech p. 221",
       "file": "incarnation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "campaign-effects-of-uploading",
+      "title": "Campaign Effects of Uploading",
+      "chapter": "Medical and Biotech",
+      "pages": "UT221",
+      "reference": "Ultra-Tech p. 221",
+      "file": "campaign-effects-of-uploading.md",
       "status": "reviewed"
     },
     {
@@ -2908,6 +2926,15 @@
       "status": "reviewed"
     },
     {
+      "id": "grav-bikes-and-platforms",
+      "title": "Grav Bikes and Platforms",
+      "chapter": "Vehicles",
+      "pages": "UT229",
+      "reference": "Ultra-Tech p. 229",
+      "file": "grav-bikes-and-platforms.md",
+      "status": "reviewed"
+    },
+    {
       "id": "flight-packs",
       "title": "Flight Packs",
       "chapter": "Vehicles",
@@ -2956,8 +2983,8 @@
       "id": "dimension-and-time-travel",
       "title": "Dimension and Time Travel",
       "chapter": "Vehicles",
-      "pages": "UT234",
-      "reference": "Ultra-Tech p. 234",
+      "pages": "UT234-235",
+      "reference": "Ultra-Tech pp. 234-235",
       "file": "dimension-and-time-travel.md",
       "status": "reviewed"
     },

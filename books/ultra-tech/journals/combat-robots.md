@@ -1,0 +1,1 @@
+Combat robots may not be as flexible or versatile as human soldiers, and sophisticated machines may be individually more expensive. But they obey orders, they can survive where people can’t, and they have no mothers to weep for them.

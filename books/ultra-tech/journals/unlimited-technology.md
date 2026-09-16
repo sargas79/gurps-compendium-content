@@ -1,3 +1,5 @@
 This is the “default” technology path – simply use every technology available at the assigned TL, whether it is radical tech, baseline, or superscience! In recent years, this has actually emerged as a dynamic science fiction sub-genre, sometimes called “the New Space Opera.”
 
 Unrestricted tech can be challenging for the GM, especially at TL11 and TL12, due to the enormous range of possibilities and the array of resources it provides to adventurers. However, it allows for future worldbuilding on a grand scale, in which space opera and superscience meld with self-replication machines and nanotechnology to create baroque wonders and marvels.
+
+A Nanotech Revolution is often a Radical Hard SF path – thus, a revolution in nanotech won’t quickly produce things like contragravity, force fields, or hand-held plasma guns. Just as often, however, the super-sapient entities produced may discover new physics that lead directly to the invention of superscience technologies at TL11+. For some notes on this, also see Superhuman Minds and the Singularity (p. 26).

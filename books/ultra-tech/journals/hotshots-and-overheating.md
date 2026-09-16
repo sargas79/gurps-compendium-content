@@ -7,5 +7,3 @@ Some beam weapons are “Gatlings.” They do not overheat, but they may not fir
 Effects of Overheating: If a beam weapon has overheated, it can still be fired, but will malfunction on a 14 or more (12 or more if firing hotshots while overheated) until it has been allowed to cool for at least a minute.
 
 If a beam malfunctions, roll on the table on p. B407.
-
-These weapons project streams of liquid or gas. They are fired using Liquid Projector skill (p. B205).

@@ -1,1 +1,7 @@
 The stereotypical robot tends to be rather humorless, although a simulation of humor may be programmed into any robot designed to interact with people. No Sense of Humor is included in the Automaton meta-trait, but many robots without this trait will have this disadvantage. However, it’s also possible for an Automaton robot to be reprogrammed with a rules-based understanding of human humor and a library of jokes. If so, give it Automaton (Has Sense of Humor) [-75] (p. 29).
+
+In many societies, artificial beings do not enjoy the same respect or rights as other beings. A being that can pass as a human need only take this stigma if its true nature is known by many people (otherwise, take a Secret).
+
+The usual form is Subjugated [-20]. The being is assumed to be owned by someone, and is treated as a thing rather than as a person. Except for the expense entailed by its loss, few will mourn if it is damaged or destroyed (“it was only a machine”) and people don’t really care what it feels or wants. Runaway robots are treated as threats, to be hunted down and recaptured or destroyed.
+
+In societies where artificial beings are not equal to their creators but have achieved some civil rights, a robot may be Valuable Property, a Second-Class Citizen, part of a Minority Group, or even a Minor. If artificial beings are so rare that no specific discrimination exists (for instance, a robot visiting a time or place where the very concept of robots is unknown), it may be treated as part of a Minority Group, a Monster, or Valuable Property.

@@ -5,5 +5,3 @@ However, the major development of psi-tech is not a gadget but a technique: the 
 Societies may possess psychotronic superscience without following a psi-tech technology path, due to deliberate secrecy, the rarity of psi abilities, or popular distrust or fear of psionics. In such cases, psi-tech may be secretly controlled by private or government institutes, or defensive gadgets such as shield helmets and psionics might be the only available psionic technology.
 
 Psi-tech paths may have any technology progression, but slow or retarded is common. A society that focuses on developing the mind may neglect other technologies.
-
-(p. B511) and in the Technology Path guidelines discussed in this chapter.

@@ -1,5 +1,3 @@
-A planetary network provider requires computer systems on which the data and user-access programs operate, as well as the enough bandwidth to handle the number of users. If the service provider is also the telecommunication company, it has to worry about
-
-maintaining the communication channels and setting up new ones if they become overloaded.
+A planetary network provider requires computer systems on which the data and user-access programs operate, as well as the enough bandwidth to handle the number of users. If the service provider is also the telecommunication company, it has to worry about maintaining the communication channels and setting up new ones if they become overloaded.
 
 Rental costs for lines capable of high-speed access to a global network depend on the state and sophistication of the net. Continuing costs may vary from $5 to 30 per line per month. If the number of regular users is more than 20 times the number of lines, the system is likely to become clogged.

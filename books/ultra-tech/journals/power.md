@@ -1,5 +1,1 @@
-Equipment is useful . . . when it works. But a laser pistol without power may not even be a good club. Many ultra-tech devices need a power supply, as specified in the equipment description. Personal equipment uses power cells (see
-
-This chapter presents rules for three core technologies: power supplies, computer systems, and robots.
-
-below). Larger devices typically use external power – plugging them into an building or vehicle power supply. Other options for powering gadgets are described on pp. 20-21.
+Equipment is useful . . . when it works. But a laser pistol without power may not even be a good club. Many ultra-tech devices need a power supply, as specified in the equipment description. Personal equipment uses power cells (see below). Larger devices typically use external power – plugging them into an building or vehicle power supply. Other options for powering gadgets are described on pp. 20-21.

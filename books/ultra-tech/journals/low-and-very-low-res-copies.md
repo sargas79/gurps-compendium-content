@@ -4,28 +4,20 @@ Low-Res: This is an imperfect copy. It can be deliberately made at +2 to skill a
 
 Very-Low-Res: This is a badly degraded copy. If a mind emulation or download is made from it, the copy has -1 IQ [-20] and Total Amnesia [-25]. It has a personality, but only one-quarter its normal points in skills (round down). Advantages based on emotional sensitivity – e.g., Charisma, Empathy, Fashion Sense, Rapier Wit – are lost. The subject has a 50% chance of gaining Flashbacks (Mild) [-5] as above.
 
-### Backup Storage
+For ethical (and possibly technical) reasons, downloading is normally performed on a “blank mind” – for example, a clone that was developed in a coma, with no memories or personality of its own. However, downloading into another person’s brain may also be possible.
 
-A mind emulation can simply be stored, unconscious, as data; if non-destructive uploading is possible, old backups may be regularly deleted and replaced by newer updates. A mind emulation requires about 100 TB. The location and security of one’s backups may be a paramount concern, with specialized facilities that are devoted to protecting them. Insurance agencies, organizations, or governments might maintain “memory vaults” that store backup copies of members or citizens. Backups could be awakened, interrogated, enslaved, or worse if they fell into the wrong hands, and entire adventures could revolve around recovering one.
+Downloading requires an Electronics Operation (Medical) roll. Success means the mind emulation replaces the original’s memories and personality (if it had any). Failure means that the transfer process fails and destroys the brain of the body that was going to receive the download. Critical failure, or any failure by 5 or more, means the transfer seems to work, but there’s a hidden flaw. The subject may suffer Partial Amnesia or a Split Personality, or the wrong emulation may have been transferred!
 
-Treat an accessible backup as the Extra Life (Copy) advantage.
+The difficulty of downloading depends on how different the new body’s brain structure is from the mind emulation’s original body. This allows someone to become a person of a different sex, age, or species. Such downloads are useful for spies or students of alien cultures, or as punishment or torture (“work off your bad karma as a dog”). However, the GM is free to rule that two species are too dissimilar for a transformation to be possible.
 
-### Robot Bodies
+If downloading to the brain of another person of the same species, roll at -1 to skill. For transfer to a different species, apply physiology modifiers (p. B181).
 
-A mind emulation can be run in a computer brain in a robot body. A person might want to return to a body that resembled his original form, a younger and healthier version, or a completely new shape.
+The effects of successful downloading are covered under Mind Transfer (p. B296). That is, the old racial template is replaced by that of the new body. The Mind vs. Brain (p. B296) rule should apply except in science-fantasy settings; downloading an emulated human mind into a cat’s brain would result in a drop in IQ, for example.
 
-### Ghost Comps and Communities
+A failed download will result in a low-res copy (p. 220). A critical failure results in a very-low-res copy. It may take some time to realize this, however; the GM should roll secretly.
 
-A mind emulation might reside in a computer rather than a robot. Mind emulations may travel by copying themselves, or move through expansive virtual realities. Entire communities of emulations and AIs may exist on a computer network, or a single gigantic computer system.
+Clinical Mind Transference Equipment (TL10^): The host body must be placed inside this coffin-sized unit. $500,000, 250 lbs., E/200 hr. LC3.
 
-### Computers in Biological Shells
+Portable Mind Transference Equipment (TL11^): This mind transference unit is suitcase-sized. It need only be attached to the host’s head. $50,000, 25 lbs., D/20 hr. LC2.
 
-A computer brain running a mind emulation may be implanted in a biological body – perhaps even the original body, or a clone of it, depending on its condition after the emulation was created. Use the rules for living flesh androids (p. 28). The body may wear out, but the computer can always be removed or the data copied to a brain in a new body.
-
-### Multiple Bodies, Multiple Possibilities
-
-It’s possible to copy a mind emulation many times over. Mind emulations may take advantage of this by existing in many different forms at the same time!
-
-### Downloading Minds
-
-Superscience may allow an uploaded mind to be imprinted on a living brain. See Downloading Minds (below).
+Downloading Nanosurgery (TL12): The new host body’s brain is restructured via surgical nanomachines, using the mind emulation data as a template. This requires a chrysalis machine plus $100,000 worth of nanobots. LC2.

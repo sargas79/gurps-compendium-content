@@ -7,3 +7,9 @@ Falling: Roll vs. DX to avoid falling down if the gravity shifts up or down by 1
 High Acceleration: If the gravity suddenly increases, use the rules for high acceleration on p. B434 to see if a HT roll or falling damage applies.
 
 Nausea: Sudden exposure to zero gravity may trigger space adaptation syndrome (p. B434).
+
+ST 20; DX 10*; IQ 6*; HT 12. Will 10; Per 10; Speed 6; Dodge 9; Move 6. SM -2; $3,000, 150 lbs., D/8 hr. LC4.
+
+Traits: Absolute Direction; Accessories (Small computer);
+
+A.I.; Automaton; DR 10; Electrical; Ground Vehicle; Machine; No Legs (Wheeled); Payload 2 (16 lbs.). Skills: Area Knowledge-10. * May be teleoperated.

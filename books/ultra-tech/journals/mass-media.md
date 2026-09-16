@@ -4,9 +4,7 @@ Major new media may include:
 
 Augmented Reality (pp. 56-57): Traditional text, video, audio, and other media may be delivered at all times as an overlay on daily life.
 
-Total VR (p. 54) and Sensies (above): Fully-interactive sensory experiences offer high levels of realism and excitement, and create new frontiers for artistic effects. Their
-
-main limitations are high bandwidth requirements (which make laser or cable the most practical delivery systems), and the need for expensive and invasive neural interfaces. They might be too addictive or disorienting, although a generation that grew up with them may have no problems!
+Total VR (p. 54) and Sensies (above): Fully-interactive sensory experiences offer high levels of realism and excitement, and create new frontiers for artistic effects. Their main limitations are high bandwidth requirements (which make laser or cable the most practical delivery systems), and the need for expensive and invasive neural interfaces. They might be too addictive or disorienting, although a generation that grew up with them may have no problems!
 
 Media Walls (pp. 51-52): Cheap audio-video walls may create a renaissance in billboard technology or (with spray-on or paint-on screens) video graffiti.
 

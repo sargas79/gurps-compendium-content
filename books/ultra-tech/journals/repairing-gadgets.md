@@ -9,3 +9,5 @@ If a gadget breaks down, it requires either a minor or a major repair. Performin
 • Sewing (p. B219) for fabric (other than body armor).
 
 Some complex systems may require more than one skill, depending on what broke down. Except for software repairs, appropriate tools are needed – see Tool Kits (p. 82).
+
+Major repairs also require a substantial investment in parts; if these are lacking, Machinist skill (p. B206) may be used to fabricate them. For detailed rules for repairs, see pp. B484-485.

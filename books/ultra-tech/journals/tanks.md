@@ -1,1 +1,3 @@
-It is operated by a driver who uses Driving (Tracked) and Electronics Operation (Sensors) and a commander/gunner with Artillery (Guided Missiles), Gunner (Beams, Cannon, Machine Gun), and Electronics Operation (Comm, ECM, Sensors).
+In the future, tanks may be obsolete . . . or may still be a battle-winning combination of protection, mobility, and firepower. Ultra-tech tanks improve all these areas, but their greatest advantage is better situational awareness, thanks to virtual-reality sensors and their own miniature air forces of drones or swarms. Even so, friendly infantry are still vital to avoid ambush in cities or rough terrain! Adventurers may see tanks as dragons that require cunning and courage to slay, or the cavalry that charges to the rescue.
+
+The tanks described below are all designed to be easily transported by aircraft or spacecraft. Larger ones are possible!

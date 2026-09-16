@@ -14,6 +14,72 @@ Paint Pistol, 15mm (TL9): A large-caliber, low-velocity air gun used to fire pla
 
 Tangler, 25mm (TL9): A compressed gas gun about the size of a shotgun, with a folding stock. It fires a 25mm projectile at a very low velocity. It usually fires tangler (p. 155) ammunition, but can also fire other 25mm warhead rounds or solid metal slugs.
 
+LC 7.5mmCLP
+
+0.006
+
+$0.12 10mmCLP
+
+0.014
+
+$0.28 15mmCLP
+
+0.060
+
+$1.2
+
+LC 5.7mmCL
+
+0.013
+
+$0.26 7mmCL
+
+0.027
+
+$0.54 10mmCL
+
+0.04
+
+$0.8 10mmCLR
+
+0.06
+
+$1.2 15mmCL
+
+0.2
+
+$4
+
+LC 18.5mmPC
+
+0.092
+
+$1.8
+
+LC 25mmCL
+
+$20 100mmCL
+
+$400
+
+LC 15mmPLB
+
+0.27
+
+$7
+
+LC 25mmPC
+
+0.22
+
+$4.4 40mmPLB
+
+0.4
+
+$10 64mmPLB
+
+$40
+
 Tangler Pistol, 25mm (TL9): A pistol-sized tangler that uses a less powerful compressed air charge.
 
 Wrist Needler, 3mm (TL9): A needler designed to be strapped to the wrist and concealed up a sleeve. It incorporates a simple neural input sensor reading muscle signals. A trained shooter can fire it with no more effort than pointing a finger, but it’s tricky to use without practice. Double penalties for lack of familiarity.

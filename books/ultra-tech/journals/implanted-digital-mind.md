@@ -7,9 +7,3 @@ The computer implant is simply an entity that happens to reside inside the user.
 The implant’s consciousness is not affected by the host’s own loss of consciousness.
 
 An implanted digital mind should pay points for any of the body’s cybernetics that it controls – see Remote-Controlled Cybernetics (p. 215). Cybernetics can be jointly controlled; in this case, the host and the implant both pay points for it.
-
-an easy skill at attribute+2, an average skill at attribute+1, a hard skill at attribute+0, or a very hard skill at attribute-1. It can also add +1 to any existing skill level.
-
-Statistics: Chip Slots 1 (4) (Temporary Disadvantage, Electrical, -20%) [14].
-
-Availability: Major procedure (minor at TL10-12). $17,000. LC3.

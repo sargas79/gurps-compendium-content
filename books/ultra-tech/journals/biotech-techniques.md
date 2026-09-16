@@ -11,15 +11,3 @@ Variant Races (TL9): Genetically-engineered sub-races of humanity or other speci
 Biogenesis (TL10): Functional biological beings or devices can be assembled using bio-nanotechnology or nanomachines. These are “living robots” patterned on biological models.
 
 Metamorphosis (TL11-12): A chrysalis machine or similar nanotechnology can make radical physical alterations, changing a person’s racial template. At TL12, an injection or aerosol of nanomachines can trigger these changes.
-
-Aegis confers immunity against all known types of intruding nanomachines, whether biological or not. The nanobots are programmed to recognize benign nanomachines and will not attack them. They do not confer immunity against new types unless updated (see below). However, if an unknown nanomachine allows a HT roll to resist, they give a +8 bonus to the resistance roll.
-
-Against invading nano that do not give a HT roll to resist, Aegis nano engage in a contest of their skill against the intruder’s skill to destroy it. Aegis nanobots have a skill of 15 vs. known nano and skill of 12 vs. unknown nano. See the description of Splatter and Shrike (p. 162) invasive nanomachines for examples of how this may work. If creating new nano, the GM should decide what effect Aegis will have on it.
-
-Aegis nano can receive updates if the user has a neural interface. The cost is minimal: 1% per year for a subscription. Organizations such as police or military forces may provide this for free.
-
-Aegis nano permanently grants Immunity to Known Nanomachines (Requires updates, -10%) [9] and Resistant to Unknown Nanomachines (+8) [5]. $5,000. LC3.
-
-The earliest cybernetic systems were prostheses such as hearing-aid implants and pacemakers. Late in TL8, cybernetics that linked the user’s nervous system with electronics were developed, allowing paralyzed individuals to control computers. This set the stage for bionic eyes and advanced limb replacements. In some settings, cybernetic limbs and organs may be unnecessary, thanks to easy-to-grow transplants. In others, cybernetic replacement may be much more common.
-
-Cybernetics that enhance a person’s abilities are a different matter. Many simple cybernetic implants are for convenience. An implanted, voice-activated communicator is easier to use than a pocket phone. Neural interfaces (p. 48) allow hands-free use of many gadgets, sometimes with greater efficiency. Combat implants can also provide a crucial edge. An opponent with a laser in his forearm, a battle computer in his brain, and armor under his skin is trouble.
