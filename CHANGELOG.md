@@ -1,5 +1,33 @@
 # Changelog
 
+## v0.11.0 — GURPS Ultra-Tech: the records, the robots and the rules journal
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
+against **gworld v1.16.0**, which this release requires (add-on API 1.54.0). On
+an older system the add-on registers no rules, and says so in the console.
+
+- **Ultra-Tech's statistics (#226, #227):** six new packs.
+  - 58 advantages, 6 disadvantages and 12 modifiers.
+  - 615 pieces of gear and armour. Split DR is read by the book's own conventions: by location for sealed suits and helmets, and against lasers only for ablative and reflective armour.
+  - Power cells on every record the data file gives one.
+  - Kept by hand, because no data file has them: T-Ray Vision and the robots' five Telecommunication variants; the hand, mini, thimble and saucer grenades and the limpet mine; 24 swarm types; 36 vehicles.
+- **Robots (#228):**
+  - 12 robot bodies and the computer implant as racial templates, each with its TL, configuration and optional lenses.
+  - The machine intelligence and biomorphic lenses, and the two meta-trait variants.
+  - A creatures pack: the robot mule, the hunter, striker and floater missiles, and the smart shuriken.
+  - A model lens carries the body's price, weight, power cells and LC.
+- **The book's text (#230, #232):** chapters 1-2, every robot, and all of chapter 6's weapons. Each was read after drafting.
+- **The rules journal (#234, #266):** 333 pages in nine chapter folders, read band by band so text no longer runs across columns.
+- **The first Ultra-Tech rules**, in their own group, all off by default:
+  - **Gadget options** (#236, pp. 15, 17): disguised, styling, rugged, cheap and expensive reprice the item. The item also shows the HP, HT and DR the book assumes for a gadget.
+  - **Adjusting for SM** (#236, p. 16): gear marked "adjust for SM" is priced and weighed by the carrier's Size Modifier.
+  - **Legality and antiques** (#236, p. 14): an obsolete gadget is carried at a higher LC, and a gadget below the maintenance threshold for its TL needs none.
+  - **Power cells** (#237, pp. 18-20, 133):
+    - Shots depend on the kind of cell: non-rechargeable ×2, superscience ×5, cosmic without count.
+    - A Power cells section on the Gear tab tracks endurance and changes cells.
+    - The item's Power section prices a cell, shows what exploding cells do, and jury-rigs smaller cells with an Electrician-2 roll.
+- **Fixes (#273, #275):** the records' extension data (armour, warheads, swarms, switchblades, vehicles, and the robot lenses' body data) now survives import.
+
 ## v0.10.1 — The last Martial Arts records get their text
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
