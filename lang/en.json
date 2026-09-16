@@ -1913,6 +1913,64 @@
         "Fought": "Seconds fought in this flurry",
         "FoughtLog": "{seconds} s of the flurry fought"
       }
+    },
+    "UT": {
+      "Rules": {
+        "gadgetOptions": {
+          "Name": "Gadget options and statistics",
+          "Hint": "Disguised, styling, rugged, cheap and expensive as options on an item that reprice it from the table's figures, and the hit points, HT and DR the book assumes for a gadget that states none. A rugged gadget is HT 12 with twice the DR, a fifth heavier and twice the price."
+        },
+        "adjustingForSm": {
+          "Name": "Adjusting for SM",
+          "Hint": "Gear marked \"adjust for SM\" weighs, costs and draws power by the size of whoever carries it: half as much for SM -1, twice for SM +1, and on up to x2,000 at SM +10."
+        },
+        "legalityAndAntiques": {
+          "Name": "Legality and antiques",
+          "Hint": "An obsolete gadget may be carried at a higher Legality Class: one step for every two full tech levels it is behind the campaign, at most two steps and no higher than LC4. Also the price below which a gadget is too simple to need maintenance checks."
+        }
+      },
+      "Gadget": {
+        "Title": "Ultra-Tech",
+        "RuggedLabel": "Rugged",
+        "RuggedHint": "Built to withstand abuse: +2 HT, twice the DR, a fifth more weight and twice the price (Ultra-Tech p. 15).",
+        "DisguiseLabel": "Disguised as",
+        "DisguiseHint": "Built into something else of a similar shape: twice the price mass-produced, five times custom-built (Ultra-Tech p. 15).",
+        "StylingLabel": "Styling (x cost)",
+        "StylingHint": "Made as fashionable as possible: 2 to 10 times the price, by how elaborate it is and the reaction bonus it brings (Ultra-Tech p. 15). Zero for a gadget with no styling.",
+        "GradeLabel": "Built",
+        "GradeHint": "Cheap: half the price, half again the weight. Expensive: twice the price, two thirds the weight. Power cells are left out of the weight either way (Ultra-Tech p. 15).",
+        "CellWeightLabel": "Power cells (lbs.)",
+        "CellWeightHint": "What the cells in the gadget weigh, which cheap and expensive leave out of their weight (Ultra-Tech p. 15).",
+        "BuildLabel": "Made of",
+        "BuildHint": "What the gadget is built from, for the DR the book assumes: plastic DR 2, a weapon DR 4, a solid metal melee weapon DR 6, and armour or a vehicle its own (Ultra-Tech p. 17).",
+        "HealthLabel": "Stated HT",
+        "HealthHint": "The HT the gadget's own entry gives; zero to assume HT 10 (Ultra-Tech p. 17).",
+        "AdjustForSmLabel": "Adjust for SM",
+        "AdjustForSmHint": "The note the tables print after a gadget's weight, cost and power: all three go by the size of whoever carries it (Ultra-Tech p. 16).",
+        "Disguise": {
+          "none": "Not disguised",
+          "massProduced": "Mass-produced (x2)",
+          "custom": "Custom-built (x5)"
+        },
+        "Grade": {
+          "none": "As listed",
+          "cheap": "Cheap (x1/2 cost)",
+          "expensive": "Expensive (x2 cost)"
+        },
+        "Build": {
+          "plastic": "Plastic (DR 2)",
+          "weapon": "A weapon (DR 4)",
+          "solidMelee": "Solid metal melee (DR 6)",
+          "own": "Its own DR"
+        },
+        "PricedAt": "Built: ${cost} and {weight} lbs. (x{factor} the listed price).",
+        "Sized": "Adjusted for SM {sm}: weight, cost and power cells x{factor}.",
+        "Statistics": "HP {hp}, HT {ht}, DR {dr}.",
+        "Antique": "Obsolete at TL{campaign}: carried as LC{lc} rather than LC{was}.",
+        "Maintained": "Worth maintenance checks at TL{campaign}: it costs more than ${threshold}.",
+        "Simple": "Too simple to maintain at TL{campaign}: under ${threshold}, assume it works indefinitely.",
+        "Rugged": "Rugged"
+      }
     }
   },
   "TYPES": {
