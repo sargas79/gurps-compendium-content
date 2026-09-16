@@ -58,7 +58,10 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 3,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -131,7 +134,10 @@
           "mount": "",
           "bulk": 0,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -204,7 +210,10 @@
           "mount": "",
           "bulk": -1,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -277,7 +286,10 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -350,7 +362,10 @@
           "mount": "",
           "bulk": -5,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 2,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6303,7 +6318,10 @@
           "mount": "",
           "bulk": -5,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6377,7 +6395,10 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 3,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6451,7 +6472,10 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6524,7 +6548,10 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6597,7 +6624,10 @@
           "mount": "",
           "bulk": -1,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6670,7 +6700,10 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 3,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6744,7 +6777,10 @@
           "mount": "",
           "bulk": -1,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6817,7 +6853,10 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6890,7 +6929,10 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -6963,7 +7005,10 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -7036,7 +7081,10 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 3,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -7110,7 +7158,10 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -8810,7 +8861,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 5,
           "scopeBonus": 0,
@@ -8830,7 +8881,8 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -8883,7 +8935,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 3,
           "scopeBonus": 0,
@@ -8903,7 +8955,8 @@
           "mount": "",
           "bulk": -1,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -8956,7 +9009,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 5,
           "scopeBonus": 0,
@@ -8976,7 +9029,8 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9029,7 +9083,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 10,
           "scopeBonus": 4,
@@ -9049,7 +9103,8 @@
           "mount": "",
           "bulk": -6,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9103,7 +9158,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 10,
           "scopeBonus": 1,
@@ -9123,7 +9178,8 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9176,7 +9232,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 10,
           "scopeBonus": 2,
@@ -9196,7 +9252,8 @@
           "mount": "",
           "bulk": -4,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9249,7 +9306,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 15,
           "scopeBonus": 0,
@@ -9269,7 +9326,8 @@
           "mount": "mounted",
           "bulk": -10,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9323,7 +9381,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 15,
           "scopeBonus": 0,
@@ -9343,7 +9401,8 @@
           "mount": "mounted",
           "bulk": -10,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9397,7 +9456,7 @@
           "afflictionModifier": 0,
           "damageExtraDice": 0,
           "damageSpecial": false,
-          "surge": false,
+          "surge": true,
           "armorDivisor": 3,
           "accuracy": 15,
           "scopeBonus": 0,
@@ -9417,7 +9476,8 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radiation": true
         }
       ],
       "extensions": {
@@ -9710,7 +9770,10 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -9783,7 +9846,10 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 1,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -9857,8 +9923,9 @@
           "bulk": -3,
           "recoil": 1,
           "malfunction": null,
-          "radius": 1,
-          "areaAttack": true
+          "radius": 0,
+          "areaAttack": true,
+          "coneMaxWidth": 1
         }
       ],
       "extensions": {
@@ -9932,8 +9999,9 @@
           "bulk": -2,
           "recoil": 1,
           "malfunction": null,
-          "radius": 1,
-          "areaAttack": true
+          "radius": 0,
+          "areaAttack": true,
+          "coneMaxWidth": 1
         }
       ],
       "extensions": {
@@ -10153,7 +10221,10 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "areaAttack": true,
+          "coneMaxWidth": 3,
+          "radius": 0
         }
       ],
       "extensions": {
@@ -10228,8 +10299,9 @@
           "bulk": -8,
           "recoil": 1,
           "malfunction": null,
-          "radius": 3,
-          "areaAttack": true
+          "radius": 0,
+          "areaAttack": true,
+          "coneMaxWidth": 3
         }
       ],
       "extensions": {
