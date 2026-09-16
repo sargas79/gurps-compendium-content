@@ -7598,5 +7598,32 @@
         }
       }
     }
+  },
+  {
+    "_id": "cd3cb4e143cabf4c",
+    "name": "Defense Globe (per lb. of weapon)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 101",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
   }
 ]

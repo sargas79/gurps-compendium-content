@@ -204,3 +204,27 @@ export function fastProbeTarget(ht: number, operatorSkill: number): number {
 export function interceptorOpponent(operatorSkill: number | null, systemTl: number): number {
   return operatorSkill ?? systemTl;
 }
+
+/** Remote-controlled weapons: "Roll vs. Traps-9 to spot them first" (p. 101). */
+export const REMOTE_WEAPON_SPOT = -9;
+
+/** A multispectral bug sweeper scans on its own at TL+5 (p. 105). */
+export function sweeperSkill(tl: number): number {
+  return tl + 5;
+}
+
+/** The Size and Speed/Range Table's rows from 3 up (Campaigns p. 550): the distance and its penalty. */
+const SPEED_RANGE_ROWS: ReadonlyArray<[number, number]> = [
+  [3, -1], [5, -2], [7, -3], [10, -4], [15, -5], [20, -6], [30, -7], [50, -8], [70, -9], [100, -10],
+  [150, -11], [200, -12], [300, -13], [500, -14], [700, -15], [1000, -16],
+];
+
+/**
+ * A sensory deprivation tank's Fright Checks (p. 108): the Size and Speed/Range
+ * Table read in hours, a roll "every time an interval passes at the listed
+ * penalty". The penalties for the intervals passed after `fromHours` up to
+ * `toHours`.
+ */
+export function tankFrightChecks(fromHours: number, toHours: number): number[] {
+  return SPEED_RANGE_ROWS.filter(([hours]) => hours > fromHours && hours <= toHours).map(([, penalty]) => penalty);
+}

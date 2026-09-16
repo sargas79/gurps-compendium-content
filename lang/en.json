@@ -2629,7 +2629,30 @@
         },
         "ScentMaskingLine": "{name} (covering your trail)",
         "InvisibleMoving": "{name} (shimmering while moving)",
-        "JammerScale": "{name}: protects a human-sized area; a vehicle's jammer costs and weighs the square of its longest dimension in yards (x{factor} for one yard)."
+        "JammerScale": "{name}: protects a human-sized area; a vehicle's jammer costs and weighs the square of its longest dimension in yards (x{factor} for one yard).",
+        "AutograpnelLine": "Fires a grapnel up to {range} yards: Climbing or Guns (Grenade Launcher) to hit, {unfamiliar} if unfamiliar. The winch lifts {lift} lbs. at {speed} yards a second.",
+        "GeckoLine": "Clings to walls and ceilings at half Basic Move, with no Climbing roll; 50 lbs. per limb in contact.",
+        "GeckoLimbs": "At {weight} lbs. with gear: {limbs} limb(s) in contact.",
+        "GeckoCrawling": "At {weight} lbs. with gear: {limbs} limbs in contact, so the wearer can only crawl.",
+        "GeckoTooHeavy": "At {weight} lbs. with gear: too heavy for four limbs to hold.",
+        "ExophaseLine": "Insubstantial while on: only gravity and gravitic attacks affect the user, who harms no one outside the field. Blind, deaf and invisible to active and sonic sensors.",
+        "ExophaseTitle": "Exophase",
+        "ExophaseCondition": "Exophase",
+        "ExophaseOn": "{name} phases out: only gravitic attacks can reach them.",
+        "ExophaseOff": "{name} rematerializes.",
+        "Forgery": {
+          "Title": "Forge a document",
+          "Skill": "Skill",
+          "DocumentTl": "The document's TL",
+          "Label": "{skill} with the {name}",
+          "LowerTl": "{name}: +TL/2 for a lower-TL document",
+          "walletModifier": "At its own TL (-5)",
+          "holoPaperModifier": "HoloPaper",
+          "HoloFails": "HoloPaper won't defeat examination at TL{tl}: its own TL or higher.",
+          "docFabLine": "Its grade at its own TL; +TL/2 for lower-TL documents.",
+          "walletLine": "Forges ID at its own Forgery and Counterfeiting-15: -5 at its own TL, basic for lower-TL documents.",
+          "holoPaperLine": "Forgery-15 against a visual search, and only for documents below its TL."
+        }
       },
       "Security": {
         "Title": "Security",
@@ -2687,7 +2710,11 @@
           "Brainwipe": "Gives the subject Amnesia, erasing their memories of their personal life; skills and personality stay.",
           "Fence": "${open} a post open, ${tight} tight; emitters 10 lbs. each, up to 10 yards apart.",
           "Monowire": "Vision or Traps at {unaware} to see a strand, {looking} when looking for it.",
-          "Verifier": "Has Detect Lies-{skill} of its own, using passive visual sensors."
+          "Verifier": "Has Detect Lies-{skill} of its own, using passive visual sensors.",
+          "RemoteWeapon": "Traps{modifier} to spot it first.",
+          "RfDetector": "Sweeps a yard at a time: a Quick Contest of Electronics Operation (Surveillance) against whoever hid the bug.",
+          "Sweeper": "+2 (quality) sweeping for bugs, or scans on its own at skill {skill}.",
+          "Tank": "{hours} hour(s) in the tank: Interrogation +3 after the first hour; Fright Checks as the hours pass."
         },
         "Break": {
           "Title": "Break free",
@@ -2758,6 +2785,21 @@
           "Risk": "HT (or the operator's skill): the fast probe's risk",
           "BrainDamage": "{name} suffers brain damage: -1 IQ.",
           "Coma": "{name} falls into a coma and can't be interrogated until they recover."
+        },
+        "Sweep": {
+          "Title": "Sweep for bugs",
+          "Hider": "Hider's Electronics Operation (Surveillance)",
+          "Automatic": "Let it scan with its own skill",
+          "Label": "Sweeping with the {name}",
+          "HiderNote": "Whoever hid the bug",
+          "Found": "The bug is found.",
+          "Missed": "The sweep finds nothing."
+        },
+        "Tank": {
+          "Title": "Time in the tank",
+          "Hours": "Hours in the tank so far",
+          "Now": "{name} has been in the tank {hours} hour(s).",
+          "Checks": "{count} Fright Check(s) for the intervals passed."
         }
       },
       "Upload": {
@@ -4495,7 +4537,12 @@
           "none": "Even",
           "front": "Front reinforced",
           "back": "Back reinforced"
-        }
+        },
+        "CollapseTitle": "Collapse stasis",
+        "CollapsePick": "Target whoever is in the stasis web.",
+        "CollapseOutOfRange": "{name} is beyond the {range}-yard range.",
+        "CollapseNothing": "{name} isn't in stasis.",
+        "Collapsed": "The stasis web around {name} collapses."
       },
       "Cyber": {
         "Title": "Cybernetics",

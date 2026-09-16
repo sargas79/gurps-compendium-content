@@ -35,6 +35,7 @@ import {
   isLifeSupportBelt,
   isReflectiveShield,
   isStasisDevice,
+  stasisCollapseRange,
   regenerationPerSecond,
   screenCostFactor,
   screenOf,
@@ -108,6 +109,16 @@ async function say(actor: any, title: string, lines: string[], rolls: any[] = []
     content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>`
       + lines.map((line) => `<div class="gc-result">${esc(line)}</div>`).join("") + `</div>`,
   });
+}
+
+/** Yards between two actors' tokens, or null where the map can't say. */
+function yardsBetween(a: any, b: any): number | null {
+  const stage = (globalThis as any).canvas;
+  const ta = a?.getActiveTokens?.()?.[0];
+  const tb = b?.getActiveTokens?.()?.[0];
+  if (!ta?.center || !tb?.center || !stage?.grid?.measurePath) return null;
+  const distance = Number(stage.grid.measurePath([ta.center, tb.center])?.distance);
+  return Number.isFinite(distance) ? distance : null;
 }
 
 async function askNumber(title: string, label: string, value: number, min: number): Promise<number | null> {
@@ -323,6 +334,31 @@ export function readyForceFields(api: GWorldApi, on: ForceSwitches): void {
       await say(actor, String(item.name), [F(tau ? "TauInfinity" : "StasisOn", { name: actor.name, seconds, minutes: TAU.infinityMinutes })]);
     },
   });
+  // A stasis key or disruptor collapses a stasis web around its targets (p. 96).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-stasis-collapse",
+    itemTypes: ["equipment"],
+    label: L("CollapseTitle"),
+    icon: "fa-solid fa-burst",
+    visible: (item) => on.stasis() && stasisCollapseRange(String(item?.name ?? "")) !== null,
+    run: async (item, actor) => {
+      const range = stasisCollapseRange(String(item?.name ?? "")) ?? 1;
+      const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
+      if (!targets.length) return void ui.notifications?.warn(L("CollapsePick"));
+      const lines: string[] = [];
+      for (const target of targets) {
+        const distance = yardsBetween(actor, target);
+        if (distance !== null && distance > range) { lines.push(F("CollapseOutOfRange", { name: target.name, range })); continue; }
+        const stasis = (api.actors.conditions(target) ?? []).find((c: any) => String(c?.id ?? "").endsWith(STASIS_KEY));
+        if (!stasis) { lines.push(F("CollapseNothing", { name: target.name })); continue; }
+        await api.actors.removeCondition(target, String(stasis.id));
+        lines.push(F("Collapsed", { name: target.name }));
+      }
+      await say(actor, String(item.name), lines);
+    },
+  });
+
   // Nothing gets through a stasis web (p. 193).
   Hooks.on(api.combat.hooks.injury, (context: any) => {
     if (!on.stasis() || !context?.actor || !context.damage) return;

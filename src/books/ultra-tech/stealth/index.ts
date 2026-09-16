@@ -10,11 +10,15 @@
  *     Stealth, Camouflage, Tracking and Disguise bonuses on their rolls; -1 to
  *     hit a holobelt's wearer and -6 a moving invisible one; tools' stated
  *     bonuses; and the price of a cloak, a net and a shape-memory disguise.
+ *     Also an exophase field that only gravitic attacks get through; forging
+ *     with a doc-fab, programmable wallet or HoloPaper by the document's TL;
+ *     and the autograpnel's and gecko gear's figures.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import {
+  AUTOGRAPNEL,
   CAMOUFLAGE_TERRAIN,
   CHAMELEON,
   FLESH_MASK,
@@ -24,8 +28,14 @@ import {
   SCENT_MASKING,
   SENSES,
   STEALTH_KINDS,
+  autograpnelSpeed,
   camouflageResetSeconds,
   chameleonBonus,
+  exophaseAllows,
+  forgeryRoll,
+  forgeryToolByName,
+  geckoLimbs,
+  isGravitic,
   invisibilityBonus,
   jammerPenalties,
   shapeMemoryCell,
@@ -49,6 +59,25 @@ const ACTOR_FLAG = "utStealth";
 const FORMS: readonly StealthForm[] = ["surface", "cloak", "net"];
 const SHAPE_MEMORY: readonly ShapeMemory[] = ["", "single", "multi"];
 const TERRAINS = Object.keys(CAMOUFLAGE_TERRAIN) as Terrain[];
+const EXOPHASE = "ut-exophase";
+const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
+
+async function say(actor: any, title: string, lines: string[]): Promise<void> {
+  await ChatMessage.implementation.create({
+    speaker: actor ? ChatMessage.implementation.getSpeaker({ actor }) : undefined,
+    content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
+  });
+}
+
+async function ask<T>(title: string, fields: string, read: (form: HTMLElement) => T): Promise<T | null> {
+  return foundry.applications.api.DialogV2.prompt({
+    window: { title },
+    content: `<div class="gworld" style="display:grid;gap:6px">${fields}</div>`,
+    ok: { label: title, callback: (_event: Event, button: HTMLElement) => read(button.closest<HTMLElement>(".application")!) },
+    rejectClose: false,
+  }) as Promise<T | null>;
+}
+const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
 
 interface StealthData {
   kind: string;
@@ -197,11 +226,40 @@ function gearListeners(element: HTMLElement, actor: any): void {
   });
 }
 
+/** What a character weighs with what they carry, where their sheet gives a weight. */
+function loadedWeight(actor: any): number | null {
+  const body = Number(/[\d.]+/.exec(String(actor?.system?.details?.weight ?? ""))?.[0]);
+  if (!Number.isFinite(body) || body <= 0) return null;
+  const gear = [...(actor?.items ?? [])].filter((i: any) => isGear(i) && i.system?.carried !== false)
+    .reduce((sum: number, i: any) => sum + (Number(i.system?.weight) || 0) * (Number(i.system?.quantity) || 1), 0);
+  return body + gear;
+}
+
+/** The book's figures for covert gear that has no field of its own (p. 96). */
+function gearLines(item: any): string[] {
+  const name = String(item?.name ?? "");
+  const lines: string[] = [];
+  if (/^electromagnetic autograpnel$/i.test(name)) lines.push(F("AutograpnelLine", { range: AUTOGRAPNEL.range, lift: AUTOGRAPNEL.lift, speed: autograpnelSpeed(tlOf(item)), unfamiliar: AUTOGRAPNEL.unfamiliar }));
+  if (/^gecko gear$/i.test(name)) {
+    lines.push(L("GeckoLine"));
+    const weight = loadedWeight(item?.actor);
+    if (weight !== null) {
+      const limbs = geckoLimbs(weight);
+      lines.push(F(limbs.tooHeavy ? "GeckoTooHeavy" : limbs.crawling ? "GeckoCrawling" : "GeckoLimbs", { weight: Math.round(weight), limbs: limbs.limbs }));
+    }
+  }
+  if (/^exophase field generator$/i.test(name)) lines.push(L("ExophaseLine"));
+  const tool = forgeryToolByName(name);
+  if (tool) lines.push(L(`Forgery.${tool}Line`));
+  return lines;
+}
+
 function itemContext(item: any): Record<string, unknown> {
   const data = stealthData(item);
   const system = systemOf(item);
   const lc = typeof item.system?.lc === "number" ? item.system.lc : null;
   return {
+    lines: gearLines(item),
     data,
     kinds: [{ value: "", label: L("Kind.none"), selected: !data.kind }, ...STEALTH_KINDS.map((value) => ({ value, label: L(`Kind.${value}`), selected: value === data.kind }))],
     forms: [{ value: "", label: L("Form.named"), selected: !data.form }, ...FORMS.map((value) => ({ value, label: L(`Form.${value}`), selected: value === data.form }))],
@@ -260,6 +318,52 @@ function addStatedBonus(api: GWorldApi, actor: any, skill: string, context: any)
   if (!stated) return;
   const extra = stated.value - systemGrade(api, actor, skill);
   if (extra > 0) context.modifiers.push({ label: stated.label, value: extra });
+}
+
+/** Whether a character is in an exophase field. */
+function phased(api: GWorldApi, actor: any): boolean {
+  return (api.actors.conditions(actor) ?? []).some((c: any) => String(c?.id ?? "").endsWith(EXOPHASE));
+}
+
+/** Switches an exophase field on or off (p. 96). */
+async function toggleExophase(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const current = (api.actors.conditions(actor) ?? []).find((c: any) => String(c?.id ?? "").endsWith(EXOPHASE));
+  if (current) {
+    await api.actors.removeCondition(actor, String(current.id));
+    return void say(actor, String(item.name), [F("ExophaseOff", { name: actor.name })]);
+  }
+  await api.actors.applyCondition(actor, { module: MODULE_ID, key: EXOPHASE, label: L("ExophaseCondition") } as any);
+  await say(actor, String(item.name), [F("ExophaseOn", { name: actor.name })]);
+}
+
+/** Forges a document with a doc-fab, a programmable wallet or HoloPaper (p. 97). */
+async function forge(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const tool = forgeryToolByName(String(item?.name ?? ""));
+  if (!tool || !actor) return;
+  const toolTl = tlOf(item);
+  const skills = tool === "holoPaper" ? ["Forgery"] : ["Forgery", "Counterfeiting"];
+  const answer = await ask(L("Forgery.Title"),
+    row(L("Forgery.Skill"), `<select name="skill">${skills.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("")}</select>`)
+    + row(L("Forgery.DocumentTl"), `<input type="number" name="tl" value="${toolTl}" min="0" max="12" style="width:70px" />`),
+    (form) => ({
+      skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value ?? "Forgery",
+      tl: Number(form.querySelector<HTMLInputElement>("[name=tl]")?.value) || 0,
+    }));
+  if (!answer) return;
+  const grade = systemGrade(api, actor, answer.skill);
+  const roll = forgeryRoll(tool, toolTl, answer.tl, grade);
+  if (roll.fails) return void say(actor, String(item.name), [F("Forgery.HoloFails", { tl: answer.tl })]);
+  const label = F("Forgery.Label", { name: item.name, skill: answer.skill });
+  if (roll.ownSkill !== null) {
+    const modifiers = roll.bonus ? [{ label: L(`Forgery.${tool}Modifier`), value: roll.bonus }] : [];
+    await api.roll.success({ actor, base: roll.ownSkill, label, modifiers } as any);
+    return;
+  }
+  // The skill level already carries the doc-fab's grade; only what lower-TL documents add is new.
+  const extra = roll.bonus - grade;
+  const base = api.actors.skillLevel(actor, answer.skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
+  await api.roll.success({ actor, base, skill: answer.skill, label, modifiers: extra ? [{ label: F("Forgery.LowerTl", { name: item.name }), value: extra }] : [] } as any);
 }
 
 export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boolean = on): void {
@@ -330,6 +434,36 @@ export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boo
       const mask = worn.find((w) => w.kind === "fleshMask");
       if (mask) context.modifiers.push({ label: mask.item.name, value: FLESH_MASK });
     }
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-exophase",
+    itemTypes: ["equipment"],
+    label: L("ExophaseTitle"),
+    icon: "fa-solid fa-ghost",
+    visible: (item) => on() && /^exophase field generator$/i.test(String(item?.name ?? "")),
+    run: (item, actor) => toggleExophase(api, item, actor),
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-forge",
+    itemTypes: ["equipment"],
+    label: L("Forgery.Title"),
+    icon: "fa-solid fa-id-card",
+    visible: (item) => tools() && forgeryToolByName(String(item?.name ?? "")) !== null,
+    run: (item, actor) => forge(api, item, actor),
+  });
+
+  // Only gravitic attacks reach someone in exophase, and they harm no one outside it (p. 96).
+  Hooks.on(api.combat.hooks.injury, (context: any) => {
+    if (!on() || !context?.actor || !context.damage) return;
+    const attacker = context.item?.actor ?? null;
+    const targetPhased = phased(api, context.actor);
+    const attackerPhased = attacker ? phased(api, attacker) : false;
+    if (!targetPhased && !attackerPhased) return;
+    if (!exophaseAllows(attackerPhased, targetPhased, isGravitic(String(context.item?.name ?? "")))) context.damage.basicDamage = 0;
   });
 
   // Attacks on a holobelt's wearer are at -1; a moving invisible target at -6 (pp. 98, 100).

@@ -17,6 +17,7 @@ import {
   tauMinutes,
   tauRatio,
   throughStasis,
+  stasisCollapseRange,
 } from "./rules.js";
 
 const options = (patch = {}) => ({ ...NO_SCREEN_OPTIONS, ...patch });
@@ -98,5 +99,13 @@ describe("force shields, stasis and time (pp. 192-195)", () => {
     expect(tauMinutes(20)).toBe(20);
     expect(tauRatio(1)).toBe(2);
     expect(tauRatio(3)).toBe(4);
+  });
+});
+
+describe("stasis keys (#299, p. 96)", () => {
+  it("collapses a stasis web at contact or 10 yards", () => {
+    expect(stasisCollapseRange("Stasis Key")).toBe(1);
+    expect(stasisCollapseRange("Stasis Disruptor")).toBe(10);
+    expect(stasisCollapseRange("Stasis Belt")).toBeNull();
   });
 });

@@ -162,3 +162,11 @@ export function tauMinutes(levels: number): number {
 export function tauRatio(levels: number): number {
   return Math.max(1, Math.min(TAU.maxLevels, Math.floor(levels))) + 1;
 }
+
+/** A stasis key collapses a stasis web at contact range, a stasis disruptor at 10 yards (p. 96). */
+export function stasisCollapseRange(name: string): number | null {
+  const text = String(name ?? "").trim();
+  if (/^stasis key$/i.test(text)) return 1;
+  if (/^stasis disruptor$/i.test(text)) return 10;
+  return null;
+}

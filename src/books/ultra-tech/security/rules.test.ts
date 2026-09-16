@@ -23,6 +23,9 @@ import {
   sensoryRestraintBonus,
   struggleSeconds,
   veridicatorBonus,
+  REMOTE_WEAPON_SPOT,
+  sweeperSkill,
+  tankFrightChecks,
 } from "./rules.js";
 
 describe("barriers (Ultra-Tech pp. 101-104)", () => {
@@ -106,5 +109,22 @@ describe("interrogation (Ultra-Tech pp. 107-110)", () => {
     expect(mindProbeResult({ success: true, criticalSuccess: false, criticalFailure: false })).toBe("mixed");
     expect(mindProbeResult({ success: false, criticalSuccess: false, criticalFailure: true })).toBe("falseMemories");
     expect(fastProbeTarget(12, 14)).toBe(12);
+  });
+});
+
+describe("security details (#299)", () => {
+  it("spots remote weapons at Traps-9 (p. 101)", () => {
+    expect(REMOTE_WEAPON_SPOT).toBe(-9);
+  });
+
+  it("sweeps for bugs at TL+5 (p. 105)", () => {
+    expect(sweeperSkill(9)).toBe(14);
+  });
+
+  it("reads the tank's Fright Checks off the table in hours (p. 108)", () => {
+    expect(tankFrightChecks(0, 2)).toEqual([]);
+    expect(tankFrightChecks(0, 5)).toEqual([-1, -2]);
+    expect(tankFrightChecks(5, 12)).toEqual([-3, -4]);
+    expect(tankFrightChecks(24, 30)).toEqual([-7]);
   });
 });
