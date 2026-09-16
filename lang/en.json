@@ -2103,6 +2103,10 @@
         "stasisAndTime": {
           "Name": "Stasis and time",
           "Hint": "A stasis belt, cube, chamber or grid, or a tau-shield set to infinity, puts its user in stasis for the time set (row action), and no damage gets through. A worn, powered life support belt gives DR 5 against energy attacks, divides radiation by 10, adds 60°F to the hot side of the comfort zone and seals the wearer unless set to breathe. The tau-shield's sheet shows its time rate and power by level. Reality stabilizers and hypertime fields are noted for the GM."
+        },
+        "cybernetics": {
+          "Name": "Cybernetics",
+          "Hint": "Each implant's trait and equipment record shows its procedure at its TL. A GM tool runs the Surgical Procedures Table for the targeted patient: install, remove or salvage an implant with the Surgery roll (Mechanic (Robotics) for salvage), the time, the injury on a failure, the recovery (halved on a critical success, doubled without robotic instruments), the fee, and the critical failures. The implant's trait is out of play until its recovery ends, and electrical implants go out of play after an EMP or microwave surge. Another GM tool finds implants. Second-hand and salvaged parts, chip slots, cognitive enhancement, weapon mounts, uplift and neurotherapy or psych implants are priced by their fields, and a psych implant's removal rolls Will against its lasting."
         }
       },
       "Gadget": {
@@ -4465,6 +4469,90 @@
           "none": "Even",
           "front": "Front reinforced",
           "back": "Back reinforced"
+        }
+      },
+      "Cyber": {
+        "Title": "Cybernetics",
+        "ProcedureLine": "{count} × {procedure} {kind}procedure at TL{tl}: {modifier} to Surgery, {minutes} min., {injury} HP injury on a failure, recovery {recovery} {unit}, ${fee} at a clinic.",
+        "Brain": "brain ",
+        "Eye": "eye ",
+        "BrainRisk": "A critical failure on major or radical brain surgery may cost a point of IQ or leave a disadvantage such as Epilepsy.",
+        "Procedure": {
+          "simple": "simple",
+          "minor": "minor",
+          "major": "major",
+          "radical": "radical"
+        },
+        "Unit": {
+          "hours": "hours",
+          "days": "days",
+          "weeks": "weeks"
+        },
+        "ChipCaps": "At TL{tl}: at most {slots} slots and {points} points a chip; skill chips ${perPoint} a point.",
+        "CognitiveCap": "At TL{tl}: at most {points} points an operation, ${price} a point.",
+        "PsychLine": "The disadvantage waits for the recovery to end. Worn three months or more, it may stay after removal.",
+        "ConditionLabel": "Condition",
+        "ConditionHint": "Second-hand parts are 20-70% of the price, salvaged ones 10-35% (Ultra-Tech p. 208).",
+        "Condition": {
+          "new": "New",
+          "secondHand": "Second-hand",
+          "salvaged": "Salvaged"
+        },
+        "UsedPercent": "% of price",
+        "RollUsed": "Roll",
+        "UsedRolled": "{condition}: {percent}% of the price.",
+        "Slots": "Slots",
+        "PointsPerChip": "Points a chip",
+        "Points": "Points",
+        "WeaponWeight": "Weapon weight (lbs.)",
+        "RacialIq": "Racial IQ",
+        "DisadvantagePoints": "Disadvantage points",
+        "Recovering": "recovering from surgery",
+        "SurgeDown": "knocked out by a surge",
+        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {minutes} minutes.",
+        "PsychTitle": "Implant removed",
+        "PsychMonths": "Months it was worn",
+        "PsychTooSoon": "Worn less than three months: the disadvantage ends with the implant.",
+        "PsychLabel": "Shake off {item}",
+        "PsychModifier": "Worn {months} months",
+        "PsychFreed": "The implant's effect ends with it.",
+        "PsychStays": "The disadvantage stays: the implant's effect has become permanent.",
+        "Operation": {
+          "install": "Install",
+          "remove": "Remove intact",
+          "removeScrap": "Remove, not intact",
+          "salvage": "Salvage from a corpse"
+        },
+        "Tool": {
+          "Title": "Cybernetic surgery",
+          "Patient": "Patient (targeted)",
+          "Surgeon": "Surgeon (selected)",
+          "NoPatient": "none",
+          "NoSurgeon": "none",
+          "Implant": "Implant",
+          "Operation": "Operation",
+          "Tl": "TL",
+          "Skill": "Skill level",
+          "Mechanic": "Mechanic (Robotics) instead (salvage)",
+          "Robotic": "Robotic instruments",
+          "Roll": "Operate",
+          "RollLabel": "{operation} {implant} ({n}/{count})",
+          "ProcedureModifier": "{procedure} procedure",
+          "Summary": "{operation}: {done} of {count} {procedure} procedures succeeded; {minutes} minutes, ${fee} at a clinic.",
+          "Recovery": "{name}'s new implant works after {value} {unit}.",
+          "CriticalSuccess": "A critical success: the recovery is halved.",
+          "InjuryLabel": "Failed surgery ({implant})",
+          "Injury": "{name} takes {injury} HP of injury where the surgery was.",
+          "Defective": "A critical failure: double injury, or defective cybernetics that break down at the worst moment or bring a disadvantage (GM's choice).",
+          "BrainInjury": "Brain surgery gone wrong: the patient may lose a point of IQ, or gain a disadvantage such as Epilepsy or Phantom Voices.",
+          "SalvageDamaged": "The parts come out needing major repairs.",
+          "SalvageDestroyed": "The parts are destroyed.",
+          "DetectTitle": "Detect implants",
+          "DetectLabel": "Scan {name} for implants",
+          "PickBoth": "Select the examiner's token and target the patient.",
+          "Found": "Implants found: {list}.",
+          "NoneFound": "No implants found.",
+          "DetectFailed": "The scan finds nothing."
         }
       }
     }

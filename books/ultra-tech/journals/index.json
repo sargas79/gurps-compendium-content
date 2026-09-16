@@ -2738,6 +2738,7 @@
       "title": "Social Effect of Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT207",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 207",
       "file": "social-effect-of-cybernetics.md",
       "status": "reviewed"
@@ -2747,6 +2748,7 @@
       "title": "Statistics",
       "chapter": "Medical and Biotech",
       "pages": "UT207",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 207",
       "file": "statistics.md",
       "status": "reviewed"
@@ -2756,6 +2758,7 @@
       "title": "Availability",
       "chapter": "Medical and Biotech",
       "pages": "UT207",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 207",
       "file": "availability-ut207.md",
       "status": "reviewed"
@@ -2765,6 +2768,7 @@
       "title": "Procedure",
       "chapter": "Medical and Biotech",
       "pages": "UT207",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 207",
       "file": "procedure.md",
       "status": "reviewed"
@@ -2774,6 +2778,7 @@
       "title": "Detecting and Removing Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT208",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 208",
       "file": "detecting-and-removing-cybernetics.md",
       "status": "reviewed"
@@ -2783,6 +2788,7 @@
       "title": "Second-Hand Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT208",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 208",
       "file": "second-hand-cybernetics.md",
       "status": "reviewed"
@@ -2792,6 +2798,7 @@
       "title": "Galactic Patrol",
       "chapter": "Medical and Biotech",
       "pages": "UT208",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 208",
       "file": "galactic-patrol.md",
       "status": "reviewed"
@@ -2801,6 +2808,7 @@
       "title": "Repairing Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT208",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 208",
       "file": "repairing-cybernetics.md",
       "status": "reviewed"
@@ -2810,6 +2818,7 @@
       "title": "Powering Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT208",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 208",
       "file": "powering-cybernetics.md",
       "status": "reviewed"
@@ -2819,6 +2828,7 @@
       "title": "Brain Implants",
       "chapter": "Medical and Biotech",
       "pages": "UT215",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 215",
       "file": "brain-implants.md",
       "status": "reviewed"
@@ -2828,6 +2838,7 @@
       "title": "Remote-Controlled Cybernetics",
       "chapter": "Medical and Biotech",
       "pages": "UT215-216",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech pp. 215-216",
       "file": "remote-controlled-cybernetics.md",
       "status": "reviewed"
@@ -2837,6 +2848,7 @@
       "title": "Computer Implant Template",
       "chapter": "Medical and Biotech",
       "pages": "UT216",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 216",
       "file": "computer-implant-template.md",
       "status": "reviewed"
@@ -2846,6 +2858,7 @@
       "title": "Implanted Digital Mind",
       "chapter": "Medical and Biotech",
       "pages": "UT216",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 216",
       "file": "implanted-digital-mind.md",
       "status": "reviewed"
@@ -2855,6 +2868,7 @@
       "title": "Total Cyborg Brain Transplants",
       "chapter": "Medical and Biotech",
       "pages": "UT219",
+      "rule": "gurps-compendium-content.cybernetics",
       "reference": "Ultra-Tech p. 219",
       "file": "total-cyborg-brain-transplants.md",
       "status": "reviewed"

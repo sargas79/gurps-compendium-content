@@ -1,0 +1,36 @@
+{{!-- An implant's procedure, sizing and condition (Ultra-Tech pp. 207-219). --}}
+<div class="isub" data-gcc-ut-implant-section>
+  <div class="isub-head">{{localize "GCC.UT.Cyber.Title"}}</div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+  {{#if equipment}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Cyber.ConditionHint'}}">{{localize "GCC.UT.Cyber.ConditionLabel"}}
+        <select data-gcc-ut-implant="condition" {{#unless editable}}disabled{{/unless}}>
+          {{#each conditions as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if used}}
+        <label>{{localize "GCC.UT.Cyber.UsedPercent"}}
+          <input type="number" data-gcc-ut-implant="usedPercent" value="{{fields.usedPercent}}" min="0" max="100" step="5" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <button type="button" class="ibtn tiny" data-gcc-ut-implant-roll {{#unless editable}}disabled{{/unless}}>{{localize "GCC.UT.Cyber.RollUsed"}}</button>
+      {{/if}}
+      {{#if chips}}
+        <label>{{localize "GCC.UT.Cyber.Slots"}}<input type="number" data-gcc-ut-implant="slots" value="{{fields.slots}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+        <label>{{localize "GCC.UT.Cyber.PointsPerChip"}}<input type="number" data-gcc-ut-implant="pointsPerChip" value="{{fields.pointsPerChip}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      {{/if}}
+      {{#if cognitive}}
+        <label>{{localize "GCC.UT.Cyber.Points"}}<input type="number" data-gcc-ut-implant="points" value="{{fields.points}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      {{/if}}
+      {{#if mount}}
+        <label>{{localize "GCC.UT.Cyber.WeaponWeight"}}<input type="number" data-gcc-ut-implant="weaponWeight" value="{{fields.weaponWeight}}" min="0" step="0.1" {{#unless editable}}disabled{{/unless}} /></label>
+      {{/if}}
+      {{#if uplift}}
+        <label>{{localize "GCC.UT.Cyber.RacialIq"}}<input type="number" data-gcc-ut-implant="racialIq" value="{{fields.racialIq}}" min="0" max="5" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      {{/if}}
+      {{#if disadvantage}}
+        <label>{{localize "GCC.UT.Cyber.DisadvantagePoints"}}<input type="number" data-gcc-ut-implant="disadvantagePoints" value="{{fields.disadvantagePoints}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      {{/if}}
+    </div>
+  {{/if}}
+</div>
