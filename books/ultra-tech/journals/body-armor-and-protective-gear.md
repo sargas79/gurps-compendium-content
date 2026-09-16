@@ -1,0 +1,1 @@
+The armor tables follow the same format as those in the GURPS Basic Set; see p. B282 for an explanation of abbreviations and location coverage. Some items have special features or restrictions; these are detailed in the item’s description.

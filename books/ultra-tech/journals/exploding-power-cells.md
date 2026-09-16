@@ -1,0 +1,1 @@
+At the GM’s option, power cells may contain volatile chemicals or energy storage systems that can explode if destroyed. Treat them as an explosive of the same weight as the cell but with a REF that depends on TL: 1/8 at TL9, 1/2 at TL10, 2 at TL11, or 4 at TL12.

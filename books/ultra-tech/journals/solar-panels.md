@@ -1,0 +1,1 @@
+Solar panels convert light into electricity. They work in any environment where strong light (such as sunlight) is available. The primary development at ultra-tech TLs is in inexpensive production of thin-film solar cells.

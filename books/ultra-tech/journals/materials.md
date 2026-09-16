@@ -1,0 +1,1 @@
+Ultra-tech armor may be made of tough synthetic fibers, ceramics, plastics, or alloys similar to lower-TL armor. All of these technologies improve at higher TLs due to ongoing advances in material technology, but two materials are worthy of special mention.

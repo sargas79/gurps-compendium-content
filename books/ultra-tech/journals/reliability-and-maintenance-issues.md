@@ -1,0 +1,1 @@
+The GM may decide a technology is new, and that the equipment using it is difficult to maintain or unreliable. The Gadget Bugs Table (p. B476) offers suggestions for flaws that might plague new hardware.

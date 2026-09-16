@@ -1,0 +1,1 @@
+A tilt-rotor pilot uses Piloting (Light Airplane) when in fixed-wing flight (required for speeds over 150 mph) and Piloting (Helicopter) when in a helicopter mode. Electronics Operation (Comm, Sensors) and Navigation (Air) skills are useful. A co-pilot is not required, but can share the workload.

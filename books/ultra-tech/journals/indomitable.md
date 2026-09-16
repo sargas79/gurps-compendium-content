@@ -1,0 +1,1 @@
+Non-Volitional AIs have Indomitable because they are programmed to obey only their masters, and will ignore commands or Influence rolls from anyone else! Service robots in utopian societies may be an exception to this.

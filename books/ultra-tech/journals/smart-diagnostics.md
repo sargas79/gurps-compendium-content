@@ -1,0 +1,1 @@
+Many TL9+ objects incorporate built-in sensors to monitor their own status. This could be a milk carton checking to see if the milk is spoiled, or a precision machine measuring microstresses in its components. The data from these sensors can be continuously uploaded to local (or planetary) networks, and accessed by looking at the object.

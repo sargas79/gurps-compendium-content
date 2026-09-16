@@ -1,0 +1,3 @@
+The simplest way to kill or injure at a distance is with a projectile. Guns and launchers can carry inert slugs, explosives, or chemical weapon. The difference between them is that a launcher fires a self-propelled projectile, such as a rocket, that continues to accelerate after it has left the weapon.
+
+Guns and launchers are described with the name of the weapon followed by a designation for the ammunition it fires. The designation is a projectile diameter in millimeters and a letter code used to differentiate it from others of the same diameter. The damage on the weapon tables assumes a solid projectile, but all guns and launchers (except ice guns) may also fire weapons with more exotic warheads. See Warheads and Ammunition, pp. 152-159.

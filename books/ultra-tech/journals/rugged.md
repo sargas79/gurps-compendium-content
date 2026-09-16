@@ -1,0 +1,1 @@
+Rugged gadgets are built to withstand abuse, harsh weather, and physical damage. Rugged systems incorporate modifications such as shock-mounted brackets, heavy-duty heat sinks, and redundant power supplies. A rugged gadget gets a +2 HT bonus and has twice its normal DR. Add 20% to weight and double the cost.

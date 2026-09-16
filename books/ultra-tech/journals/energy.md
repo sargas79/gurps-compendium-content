@@ -1,0 +1,1 @@
+Energy warheads contain a disposable power cell or explosive power cartridge and some form of energy emitter. Some energy warheads destroy themselves while emitting energy. Others activate for several seconds, and can be picked up or attacked.

@@ -1,0 +1,1 @@
+These are attached to the body and limbs. They provide a bonus to Lifting ST and Striking ST. Battlesuit skill limits DX and DX-based skills; see p. B192. With the power on, a full-body exoskeleton’s weight is not counted toward encumbrance.

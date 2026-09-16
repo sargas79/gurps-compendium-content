@@ -1,0 +1,1 @@
+Ultra-tech data storage and retrieval is usually digital. Many people do not bother with dedicated recorder or playback systems – computers can store digital recordings, and wearable displays or terminals play back audio and video. However, various specialized equipment is also available.

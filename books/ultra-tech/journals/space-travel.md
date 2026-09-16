@@ -1,0 +1,3 @@
+Space travel is covered in detail in other GURPS books. The key issue is whether superscience technologies exist or not. Without superscience, space flight is usually expensive and slow; interplanetary travel takes months, and interstellar flight takes decades, centuries, or millennia. With superscience – specifically reactionless or faster-than-light drives – interstellar travel may take only a few days, and interplanetary travel may be a matter of hours.
+
+The first step into space – getting into orbit – is often the most difficult, especially from a world like Earth. A variety of technologies for getting into space are possible, including space shuttles, contragravity (p. 223), and space elevators.

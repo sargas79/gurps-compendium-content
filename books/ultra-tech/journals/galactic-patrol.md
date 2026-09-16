@@ -1,0 +1,1 @@
+Salvaging cybernetics from a corpse is much faster than installing them in a living person. It takes only one-third the procedure time and, if paying someone, costs 1/10th as much. A Mechanic (Robotics) skill roll can be substituted for surgery. Failing the roll means the parts require major repairs; critical failure destroys them.

@@ -1,0 +1,1 @@
+These hardware devices retrieve data from computers or their interfaces. For online intrusion, use software tools (p. 25) for Computer Hacking or Computer Programming. For hacking encryption, see Quantum Computers (pp. 23, 47).

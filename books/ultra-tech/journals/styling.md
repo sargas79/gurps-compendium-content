@@ -1,0 +1,1 @@
+Styling alters the device’s appearance in as “fashionable” a manner as possible. All sorts of options are possible, including airbrushing, sculpted curves and designs, embedded Major repairs also require a substantial investment in parts; if these are lacking, Machinist skill (p. B206) may be used to fabricate them. For detailed rules for repairs, see pp. B484-485.

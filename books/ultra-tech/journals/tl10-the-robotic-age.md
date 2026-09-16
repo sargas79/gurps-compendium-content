@@ -1,0 +1,11 @@
+Artificial intelligence becomes smarter and cheaper, and the first volitional AIs – machines that can think like people – appear. Inexpensive sapient machines are commonplace. Swarms of tiny microbots can be built, and biomechanical nanomachines can perform prodigious feats of medicine and genetic engineering.
+
+People who can afford to take full advantage of TL10 medicine may live for centuries or more. As science gains a greater understanding of the human mind, more complex neuro-tech and cybernetics become available . . . it’s possible to cybernetically possess bodies, control minds, and record sensory information.
+
+Molecular nanotechnology is routinely used in manufacturing. Many products can be self-assembled “from the bottom up” using methods analogous to the way biological organisms grow. The tools used are biomechanical in nature, combining proteins and engineered viruses with metals and other inorganic materials. Bio-nanomachines construct most biotech products and are used in medicine and genetic engineering, but molecular manufacturing is still limited to making specialized components and products that can be assembled in “wet” environments. Macro-scale products using metals, semiconductors, diamond-hard materials, and ceramics still rely on “top down” manufacturing techniques.
+
+One example of the new bio-nanotech products is pseudo-alive polymers that are capable of self-repair. These “living bio-plastics” make a range of tough, lightweight, and self-maintaining equipment possible.
+
+Material and power generation technology continues to improve. Super-strong composite materials are relatively inexpensive. Weapons technology takes a quantum leap with the development of power cells that can power effective man-portable electromagnetic guns and high-energy lasers, although conventional weapons may remain in use with smarter ammunition. Nuclear fusion reactors are small enough to power battle tanks and fighter-sized spacecraft.
+
+Superscience: Gravity control technology leads to artificial gravity and contragravity being used in personal vehicles, houses, and weapons, as well as reactionless space drives. Nuclear dampers can neutralize the threat of nuclear weapons. New superscience weaponry becomes available, notably plasma guns and exotic sonic beams.

@@ -1,0 +1,1 @@
+Electrolasers use a pair of low-power far-ultraviolet laser beams to create an ionized path through the air, then transmit an electrical discharge that follows this to the target. In effect, they’re an electric stun gun that uses a laser beam instead of a wire. They’re also called “zap guns” or “stat guns.”

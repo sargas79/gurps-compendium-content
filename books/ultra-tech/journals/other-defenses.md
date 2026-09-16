@@ -1,0 +1,1 @@
+These are miscellaneous protective systems, designed to deal with specific hazards rather than general damage. If the system is included in a suit as a standard feature, there is no extra cost or weight, and the system runs off the suit’s power supply.

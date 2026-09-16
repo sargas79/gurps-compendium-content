@@ -1,0 +1,3 @@
+Devices may operate on power “beamed” or “broadcast” from a central station, as long as they remain within line of sight. Buildings may have receivers on the roof to turn beamed power into “wall power.” There may be many beam stations on a civilized ultra-tech planet; a colony may have only a few, or just one. A satellite or spaceship can beam power to ground units in line of sight below it. This means that nobody has to worry about powering vehicles or devices . . . until something happens to the power station.
+
+A power company may send its customers a monthly bill. A customer’s bill is typically 1% of the cost of his power receivers (see below).

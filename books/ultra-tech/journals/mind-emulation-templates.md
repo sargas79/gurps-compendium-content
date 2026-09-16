@@ -1,0 +1,1 @@
+Any computer with sufficient Complexity (see below) can run a sapient mind emulation. A mind emulation differs from an AI in lacking the Automaton meta-trait and possessing other metatraits. This creates a sub-race (p. B454) version of the template.

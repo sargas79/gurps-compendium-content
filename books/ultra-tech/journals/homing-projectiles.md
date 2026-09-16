@@ -1,0 +1,3 @@
+Ultra-tech projectile weapons may contain sensors and steering systems that enable the projectile to home in on a target by itself.
+
+Gyroc, missile, and rocket launchers often fire homing projectiles. Guns may fire homing projectiles if the homing system can fit in the bullet or shell – this requires high TLs for small caliber rounds. Homing projectiles use the Homing Weapon rules (p. B413). The firer rolls against Artillery (Guided Missile) to aim. On a success, the missile gets its Acc bonus. The weapon’s “1/2D” range is its speed in yards/second. The missile’s skill and type of homing attack depends on the type of homing systems installed:

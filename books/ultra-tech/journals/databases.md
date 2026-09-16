@@ -1,0 +1,1 @@
+A database is a collection of information in computerreadable form. Any database has its own built-in search and indexing programs. For any database of a given size, the wider the subject it covers, the fewer details it has. The cost of a database can range from free information bundled

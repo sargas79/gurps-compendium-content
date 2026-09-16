@@ -1,0 +1,1 @@
+Robots are often built to protect people. A robot’s Dependent can be its owner, its inventor, a friend, or even a lover. A robot bodyguard, nanny, or nurse could easily have a less-capable human as a Dependent – machines that can act as caregivers for the elderly are one of the most commonly-cited applications for TL9 robots.

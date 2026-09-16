@@ -1,0 +1,1 @@
+Powered suits enhance the wearer’s strength and mobility. They come in two styles: open exoskeletons and enclosed battlesuits. Most powered suits provide a bonus to Lifting ST (p. B65) and Striking ST (p. B88).

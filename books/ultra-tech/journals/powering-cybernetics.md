@@ -1,0 +1,1 @@
+Cybernetic devices are assumed to be powered by body heat and motion. Exceptions are noted in the descriptions. Bionic limbs require cell replacement or recharging on a monthly basis (this is part of the maintenance requirement subsumed in their Mitigator limitation).

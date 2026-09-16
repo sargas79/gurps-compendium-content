@@ -1,0 +1,1 @@
+A machine may have its own enemies, or its owner’s enemies may also be hunting it. An escaped robot could be hunted by the former owner who wants it back. A sapient robot can be a relentless Enemy . . . but if captured, can perhaps be reprogrammed and turned into an Ally.

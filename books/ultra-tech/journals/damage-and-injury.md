@@ -1,0 +1,1 @@
+All robots have the Machine meta-trait, which includes Injury Tolerance (Unliving). See Injury to Unliving, Homogenous and Diffuse Targets (p. B380). This reduces the damage of some attacks, notably piercing damage inflicted by bullets.

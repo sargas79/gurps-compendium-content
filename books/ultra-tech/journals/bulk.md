@@ -1,0 +1,1 @@
+Bulk: A general measure of size and handiness. The larger the penalty, the more bulky the item. Bulk modifies weapon skill when you take a Move and Attack maneuver with a ranged weapon, and serves as a penalty to Holdout skill when you attempt to conceal the gadget.

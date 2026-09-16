@@ -1,0 +1,1 @@
+Memories are encoded within the physical structure of the brain. Uploading is the process of copying this into a digital form. Uploads can create a mind emulation – a computer program that emulates the workings of the original person’s mind. A mind emulation is not just a recording, but a working model of the way a particular brain functions.

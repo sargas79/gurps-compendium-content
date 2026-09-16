@@ -1,0 +1,1 @@
+Reprogrammable AIs who have an owner will usually be programmed with a Sense of Duty to him. Some AIs that are programmed for specific purposes may have a Sense of Duty to a larger group, cause, etc. A classic science fiction trope involves machines programmed with a Sense of Duty to All Mankind taking over the world in our own best interests!

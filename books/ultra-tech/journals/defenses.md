@@ -1,0 +1,3 @@
+Defenses and weapons compete in a constant arms race. As weapons become more deadly, stronger and more effective defenses are developed to protect against them . . . leading to more powerful weapons. This chapter covers both general defenses, such as armor and force screens, and specific defenses, such as protective fields that shield against particular weapons, or electronic countermeasures designed to warn against or defeat attack.
+
+Enemy action is not the only danger. Filter masks, vacc suits, and powered exoskeletons are just some of the gear that can protect the wearer in hostile environments and on the battlefield.

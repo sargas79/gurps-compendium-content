@@ -1,0 +1,3 @@
+A force screen is a general-purpose defensive field that can stop both solid objects and energy beams. Force screens may be related to gravitic or space-warp technology. They allow individuals, vehicles, or habitats to look unprotected while resisting enemy fire or hostile environments. A discreet shield belt is more elegant than a bulky armored suit, but may offer the same protection. Similarly, a Tudor mansion, complete with gardens, could sit on the Moon or the hellish surface of Venus.
+
+A force screen provides DR that protects the user (or vehicle’s) entire body, including the eyes. Its effects are

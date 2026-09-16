@@ -1,0 +1,1 @@
+Some commercial computer networks will allow users to construct (or rent) private VRs on the network that only they are allowed to access. See Planetary Network (p. 49) for a price per terabyte per month.

@@ -1,0 +1,1 @@
+Second-hand parts may be available, usually at 20-70% (1d+1 × 10%) of the cost of the cybernetics. This may or may not be a bargain, and there may be damage that is not immediately evident. Because of their value, bionics are rarely discarded until they are totally destroyed, giving new

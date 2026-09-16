@@ -1,0 +1,1 @@
+In some ultra-tech societies, construction remains much as it has been since TL6, with the only changes being electronics and appliances. Other possibilities are more exotic, including buildings composed entirely of nanomachines or force fields.

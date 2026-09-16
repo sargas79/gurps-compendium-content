@@ -1,0 +1,9 @@
+TL11 and TL12 offer the potential of vast increases in wealth, thanks to molecular nanotechnology, inexpensive artificial intelligences, and total conversion of matter. However, GURPS prescribes conservative levels of starting wealth at these TLs. What’s going on?
+
+The assumption is that GMs and players will be more comfortable with a setting in which the PCs have a familiar level of wealth. If everyone is unimaginably wealthy, what are their motivations? But if a “reasonable” justification for more modest wealth is required, it’s available.
+
+In space operas, a higher power, such as the galactic emperor and his bureaucracy, or the benevolent space patrol, or the military, usually has control of the majority of this wealth. It is squandered on building vast planet destroyers, mobile star-traveling planets, enormous battle fleets, ringworlds, or massive terraforming and resettlement projects. The average standard of living doesn’t improve that much, it’s just that the very rich have more levels of Multimillionaire.
+
+In transhumanist settings, the vast increase in wealth may result in the dominant race in a society (which may or may not be humans) all being Filthy Rich or better. However, the working proletariat – in this case, usually vast numbers of low-sapient computers – controls Average (or less) wealth.
+
+In more socialist settings, the wealth is spread evenly among everyone, regardless of race . . . but thanks to the ability of digital intelligences to rapidly replicate, the ability to create wealth with nanotechnology and transmutation is matched or exceeded by the ability of free beings to reproduce themselves. While such beings also do work and create wealth (and require little in the way of living space), the net result is a modest improvement in average wealth, even as populations skyrocket.
