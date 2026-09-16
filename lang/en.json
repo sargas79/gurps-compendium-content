@@ -1487,7 +1487,15 @@
         "Homogenous": "{name} is homogenous: the lock tears nothing to injure",
         "OneArm": "One hand: half ST",
         "OneArmFoe": "One hand against two",
-        "Spines": "{foe} has spines: {name} takes damage for holding on."
+        "Spines": "{foe} has spines: {name} takes damage for holding on.",
+        "RamTogether": {
+          "DualWeapon": "A second grapple this turn (Dual-Weapon Attack)",
+          "Ram": "Ram them together",
+          "RamLabel": "{first} and {second} are rammed together",
+          "RamNote": "{first} and {second} may each defend. If both fail, each takes the blow.",
+          "RamDamage": "Rammed together: {foe}",
+          "Skulls": "Two skulls"
+        }
       },
       "Injury": {
         "CarryTitle": "Carry through",

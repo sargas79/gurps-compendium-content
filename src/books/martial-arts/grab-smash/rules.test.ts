@@ -98,3 +98,13 @@ describe("bodies in close combat (pp. 115, 119-120)", () => {
     expect([clumsyGrappling("Arm Lock"), clumsyGrappling("Scissors Hold"), clumsyGrappling("Wrench Limb (Teeth)"), clumsyGrappling("Punch")]).toEqual([true, false, false, false]);
   });
 });
+
+describe("All-Out Grapple and Strike (p. 114)", () => {
+  it("adds a point only for two skulls knocked together", async () => {
+    const { ramDamageBonus, TWOFER_PENALTY } = await import("./rules.js");
+    expect(ramDamageBonus(["skull", "skull"])).toBe(1);
+    expect(ramDamageBonus(["skull", "torso"])).toBe(0);
+    expect(ramDamageBonus(["skull"])).toBe(0);
+    expect(TWOFER_PENALTY).toBe(-4);
+  });
+});
