@@ -12,6 +12,7 @@ import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initComputers, readyComputers } from "./computers/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
+import { readyInterfaces } from "./interfaces/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
@@ -41,6 +42,7 @@ const RULES = [
   { key: "uploading", pages: "pp. 219-221", implemented: true },
   { key: "communicators", pages: "pp. 42-46", implemented: true },
   { key: "sensors", pages: "pp. 60-67", implemented: true },
+  { key: "neuralInterfaces", pages: "pp. 24, 47-59", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -84,6 +86,7 @@ function ready(api: GWorldApi): void {
   readySecurity(api, { security: rule("securitySystems"), restraints: rule("restraints"), interrogation: rule("interrogation") });
   readyUploading(api, rule("uploading"));
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
+  readyInterfaces(api, rule("neuralInterfaces"));
 }
 
 export const book: BookRules = {

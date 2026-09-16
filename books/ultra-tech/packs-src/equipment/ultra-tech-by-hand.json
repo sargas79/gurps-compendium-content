@@ -4823,5 +4823,798 @@
         }
       }
     }
+  },
+  {
+    "_id": "49dfaf95ab825dda",
+    "name": "Translator Program (Broken)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 48",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 3
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "fb8492459f208808",
+    "name": "Translator Program (Accented)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 48",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "af1a4ee4d18c8de3",
+    "name": "Translator Program (Native)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 48",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 5
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ce15987b3d6a3de3",
+    "name": "Universal Translator Program",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 48",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 9
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1db01f91718231f3",
+    "name": "Voice Processor",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 51",
+      "category": "misc",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Writing"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 5,
+            "massMarket": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "7ace6c3e54cb5d93",
+    "name": "Thought Processor",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 51",
+      "category": "misc",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Poetry",
+        "Writing"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 9
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "2efda1b5f07f9791",
+    "name": "Holotech Editing Program",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 52",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "7fa40dac67859c69",
+    "name": "Interactive Holoprojection",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 53",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "27b32023c4b1ec74",
+    "name": "Basic Neural VR",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "4dd4ab5df4462179",
+    "name": "Full Neural VR",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 5
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "aff52e19af6e6563",
+    "name": "Total VR",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "08221d6af470f20f",
+    "name": "VR Manager (Basic VR)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8bfb4a12b60f21a6",
+    "name": "VR Manager (Full VR)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 5
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "211ddf8410115af6",
+    "name": "VR Manager (Total VR)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 54",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "57c4f1b3b8191619",
+    "name": "Dreamgame",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 55",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6,
+            "massMarket": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "83c9473d6524026f",
+    "name": "Sensie Player",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 58",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "058c3e11e3e54ae0",
+    "name": "Sensie Uplink",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 58",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 7
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "17c09744f633dffe",
+    "name": "Virtual Tutor (Easy Skill)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 57",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 3,
+            "difficulty": "E"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "de1eda5d5ef35b34",
+    "name": "Virtual Tutor (Other Skills)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 57",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "575a4ecec5856a98",
+    "name": "Dream Teacher (Easy Skill)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 59",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6,
+            "difficulty": "E"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "cd0fbf41b41dce80",
+    "name": "Dream Teacher (Average Skill)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 59",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 7
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f1f878c6a0d9d7ad",
+    "name": "Dream Teacher (Hard Skill or Language)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 59",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 8,
+            "difficulty": "H"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3dc5f2c40ce96498",
+    "name": "Dream Teacher (Very Hard Skill)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 59",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 9,
+            "difficulty": "VH"
+          }
+        }
+      }
+    }
   }
 ]

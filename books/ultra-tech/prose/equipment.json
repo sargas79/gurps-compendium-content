@@ -8998,5 +8998,189 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This allows someone to use Brainwashing skill on a mind emulation.</p>"
+  },
+  {
+    "_id": "49dfaf95ab825dda",
+    "name": "Translator Program (Broken)",
+    "pages": "UT48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This translates speech at the Broken comprehension level (p. B24). Each language requires at least a 10GB database.</p>"
+  },
+  {
+    "_id": "fb8492459f208808",
+    "name": "Translator Program (Accented)",
+    "pages": "UT48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This translates speech at the Accented comprehension level (p. B24). Each language requires at least a 30GB database.</p>"
+  },
+  {
+    "_id": "af1a4ee4d18c8de3",
+    "name": "Translator Program (Native)",
+    "pages": "UT48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This translates speech at the Native comprehension level (p. B24). Each language requires at least a 100GB database.</p>"
+  },
+  {
+    "_id": "ce15987b3d6a3de3",
+    "name": "Universal Translator Program",
+    "pages": "UT48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This dedicated AI program can analyze and translate entirely new languages with as little as an hour of exposure, provided that it has access to someone who is actually attempting to teach it, or it can listen in on multiple varied conversations such as the ones on media channels.</p>"
+  },
+  {
+    "_id": "1db01f91718231f3",
+    "name": "Voice Processor",
+    "pages": "UT51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smart voice-interactive word processing suite, with dedicated AI editing capabilities. It converts ordinary speech to text, giving +1 (quality) to Writing skill for composition, and +2 for editing.</p>"
+  },
+  {
+    "_id": "7ace6c3e54cb5d93",
+    "name": "Thought Processor",
+    "pages": "UT51",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Requires a neural interface (pp. 48-49). It interprets the user's thoughts and translates them into text.</p>"
+  },
+  {
+    "_id": "2efda1b5f07f9791",
+    "name": "Holotech Editing Program",
+    "pages": "UT52",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Software for creating or editing holotech and 3D camera images. It can be used to produce computerized holographic animation, special effects, etc. Use Electronics Operation (Media) skill.</p>"
+  },
+  {
+    "_id": "7fa40dac67859c69",
+    "name": "Interactive Holoprojection",
+    "pages": "UT53",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This artificial intelligence software lets a holoprojector-user control projections \"on the fly,\" usually via a neural input device or direct neural interface.</p>"
+  },
+  {
+    "_id": "27b32023c4b1ec74",
+    "name": "Basic Neural VR",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Someone with a direct neural interface (pp. 48-49) can omit the suit and run the equivalent of basic VR through this program.</p>"
+  },
+  {
+    "_id": "4dd4ab5df4462179",
+    "name": "Full Neural VR",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Someone with a direct neural interface (pp. 48-49) can omit the suit and run full VR through this program.</p>"
+  },
+  {
+    "_id": "aff52e19af6e6563",
+    "name": "Total VR",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is only available as a computer program accessed through direct neural interface (pp. 48-49). It provides the same effects as a full VR suit, with the difference that all the user's senses are engaged.</p>"
+  },
+  {
+    "_id": "08221d6af470f20f",
+    "name": "VR Manager (Basic VR)",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This program manages the interactions of multiple users within a shared virtual reality. Each program can handle about 10 users. This one supports VR gloves or basic VR.</p>"
+  },
+  {
+    "_id": "8bfb4a12b60f21a6",
+    "name": "VR Manager (Full VR)",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This program manages the interactions of multiple users within a shared virtual reality. Each program can handle about 10 users. This one supports up to full VR.</p>"
+  },
+  {
+    "_id": "211ddf8410115af6",
+    "name": "VR Manager (Total VR)",
+    "pages": "UT54",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This program manages the interactions of multiple users within a shared virtual reality. Each program can handle about 10 users. This one supports up to total VR.</p>"
+  },
+  {
+    "_id": "57c4f1b3b8191619",
+    "name": "Dreamgame",
+    "pages": "UT55",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These are interactive total VR games and simulations. The user connects and is plunged into the setting and fiction genre of his choice.</p>"
+  },
+  {
+    "_id": "83c9473d6524026f",
+    "name": "Sensie Player",
+    "pages": "UT58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This software lets someone experience sensie media. They must use a direct neural interface (pp. 48-49) to connect their mind to a computer running this program.</p>"
+  },
+  {
+    "_id": "058c3e11e3e54ae0",
+    "name": "Sensie Uplink",
+    "pages": "UT58",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This software lets someone transmit or record his sensory experiences as sensie media.</p>"
+  },
+  {
+    "_id": "17c09744f633dffe",
+    "name": "Virtual Tutor (Easy Skill)",
+    "pages": "UT57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This augmented reality program coaches the user in a specific task, such as assembling electronics or fixing a car engine. The user has an effective skill of 12.</p>"
+  },
+  {
+    "_id": "de1eda5d5ef35b34",
+    "name": "Virtual Tutor (Other Skills)",
+    "pages": "UT57",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This augmented reality program coaches the user in a specific task that uses a harder skill, or several skills in concert (such as building a house). The user has an effective skill of 12.</p>"
+  },
+  {
+    "_id": "575a4ecec5856a98",
+    "name": "Dream Teacher (Easy Skill)",
+    "pages": "UT59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an advanced form of total virtual reality. It transforms the user's dream-state into a teaching environment via direct neural interface; it is sometimes known as a \"dream sensei.\"</p>"
+  },
+  {
+    "_id": "cd0fbf41b41dce80",
+    "name": "Dream Teacher (Average Skill)",
+    "pages": "UT59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an advanced form of total virtual reality. It transforms the user's dream-state into a teaching environment via direct neural interface; it is sometimes known as a \"dream sensei.\"</p>"
+  },
+  {
+    "_id": "f1f878c6a0d9d7ad",
+    "name": "Dream Teacher (Hard Skill or Language)",
+    "pages": "UT59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an advanced form of total virtual reality. It transforms the user's dream-state into a teaching environment via direct neural interface; it is sometimes known as a \"dream sensei.\"</p>"
+  },
+  {
+    "_id": "3dc5f2c40ce96498",
+    "name": "Dream Teacher (Very Hard Skill)",
+    "pages": "UT59",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an advanced form of total virtual reality. It transforms the user's dream-state into a teaching environment via direct neural interface; it is sometimes known as a \"dream sensei.\"</p>"
   }
 ]
