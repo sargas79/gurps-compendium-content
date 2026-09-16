@@ -21,6 +21,9 @@ import {
   shortestReach,
   stunnerDrBonus,
   vibroSeconds,
+  ADDED_NEUROLASH,
+  neurogloveWrecked,
+  vibroDrained,
 } from "./rules.js";
 
 const sword = { blade: "" as const, vibro: false, damageTypes: ["cut", "imp"], monowireWeapon: false };
@@ -141,5 +144,22 @@ describe("limpet mines and force swords (Ultra-Tech pp. 163, 166)", () => {
     expect(forceBladeHarms({ otherIsForceOrSonic: false, criticalDefense: true, parriedByTheForceBlade: false })).toBe(false);
     expect(forceBladeHarms({ otherIsForceOrSonic: false, criticalDefense: true, parriedByTheForceBlade: true })).toBe(true);
     expect(forceBladeHarms({ otherIsForceOrSonic: true, criticalDefense: false, parriedByTheForceBlade: true })).toBe(false);
+  });
+});
+
+describe("energy melee in play (#299)", () => {
+  it("runs a vibroblade's cell down by the second (p. 164)", () => {
+    expect(vibroDrained(99, 3)).toBe(false);
+    expect(vibroDrained(100, 3)).toBe(true);
+    expect(vibroDrained(10, 0)).toBe(false);
+  });
+
+  it("wrecks a neuroglove on a 1 (p. 165)", () => {
+    expect(neurogloveWrecked(1)).toBe(true);
+    expect(neurogloveWrecked(2)).toBe(false);
+  });
+
+  it("strikes with an added neurolash's HT-5 (2) (p. 165)", () => {
+    expect(ADDED_NEUROLASH).toEqual({ attribute: "HT", modifier: -5, armorDivisor: 2 });
   });
 });

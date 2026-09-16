@@ -53,6 +53,9 @@ import {
   vibroSeconds,
   type Blade,
   type Charged,
+  ADDED_NEUROLASH,
+  neurogloveWrecked,
+  vibroDrained,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Melee.${key}`);
@@ -61,6 +64,14 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "melee";
 const ROCKET_OPTION = "ut-rocket-striker";
+const ROCKET_THROWN_OPTION = "ut-rocket-striker-thrown";
+const worldNow = () => Number((game as any).time?.worldTime) || 0;
+
+/** Seconds a vibroblade has run on its cell, counting the stretch it's on now. */
+function vibroSecondsUsed(state: MeleeState): number {
+  const running = state.vibroOn && typeof state.vibroSince === "number" ? Math.max(0, worldNow() - state.vibroSince) : 0;
+  return (state.vibroUsed ?? 0) + running;
+}
 
 export interface MeleeSwitches {
   blades: () => boolean;
@@ -84,6 +95,11 @@ interface MeleeData {
 
 interface MeleeState {
   vibroOn?: boolean;
+  /** World time the vibroblade was last switched on, and seconds it ran before that (p. 164). */
+  vibroSince?: number;
+  vibroUsed?: number;
+  /** A neuroglove wrecked by damage to the hand (p. 165). */
+  wrecked?: boolean;
   switchMode?: "blade" | "whip";
   spent?: number;
   rocketUsed?: number;
@@ -395,7 +411,10 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
       const row = entry.row;
       const mode = entry.mode ?? {};
       if (on.blades()) {
-        const blow = bladeBlow({ damageType: String(row.damageType ?? ""), armorDivisor: Number(row.armorDivisor) || 1 }, data.blade, Boolean(data.vibro && state.vibroOn), tl);
+        // A vibroblade's cell runs down by the second (p. 164).
+        const drained = Boolean(data.vibro && state.vibroOn) && vibroDrained(vibroSecondsUsed(state), Number(item.system?.weight) || 0);
+        if (drained && /^(cut|imp)$/.test(String(row.damageType ?? ""))) row.notes.push({ label: L("VibroDrained"), hint: L("VibroDrainedHint") });
+        const blow = bladeBlow({ damageType: String(row.damageType ?? ""), armorDivisor: Number(row.armorDivisor) || 1 }, data.blade, Boolean(data.vibro && state.vibroOn) && !drained, tl);
         const changed = blow.dice || blow.adds || blow.damageType !== row.damageType || blow.armorDivisor !== (Number(row.armorDivisor) || 1);
         if (blow.dice || blow.adds) row.damage = withDamage(api, row.damage, blow.dice, blow.adds);
         if (changed) {
@@ -420,6 +439,11 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
       if (on.force() && data.variableLength && /^force sword$/i.test(nameOf(item))) {
         row.reach = reachText(clampReach(data.reach ?? 2, VARIABLE_FORCE_SWORD.reach), false);
       }
+      // A neurolash added to another weapon strikes with its affliction (p. 165).
+      if (on.energy() && data.neurolash && !/neurolash|neuroglove/i.test(nameOf(item)) && !row.followUp && !row.affliction) {
+        row.followUp = { damage: `${ADDED_NEUROLASH.attribute}${ADDED_NEUROLASH.modifier}`, damageType: "cr", explosive: false, armorDivisor: ADDED_NEUROLASH.armorDivisor, affliction: true, afflictionAttribute: ADDED_NEUROLASH.attribute, afflictionModifier: ADDED_NEUROLASH.modifier, label: L("NeurolashAdded") };
+      }
+      if (on.energy() && stateOf(api, item).wrecked) row.notes.push({ label: L("Wrecked"), hint: L("WreckedHint") });
       if (on.energy() && isNeuralContact(item) && (row.affliction || row.followUp)) row.notes.push({ label: L(`Setting.${neuralSetting(item)}`), hint: L("NeuralHint") });
     }
   });
@@ -440,10 +464,32 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
     },
   } as any);
 
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: ROCKET_THROWN_OPTION,
+    label: L("RocketLabel"),
+    attack: "ranged",
+    available: (context: any) => on.blades() && meleeData(context?.item).rocketStriker && context?.item?.system?.rangedModes?.[Number(context?.mode?.index) || 0]?.thrown === true,
+    refuse: (context: any) => (stateOf(api, context.item).rocketUsed ?? 0) >= rocketStrikerUses(tlOf(context.item)) ? L("RocketEmpty") : null,
+    // "This drawback does not apply to thrown spears."
+    apply: () => ({ notes: [F("RocketNote", { st: ROCKET_STRIKER.strikingSt })] }),
+  } as any);
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const item = context?.item;
+    if (!item || !context.ranged || !item.isOwner || !on.blades()) return;
+    if (context.options?.[`${MODULE_ID}.${ROCKET_THROWN_OPTION}`] !== true) return;
+    const state = stateOf(api, item);
+    void api.combat.setWeaponState(item, MODULE_ID, { rocketUsed: (state.rocketUsed ?? 0) + 1, rocketArmed: true });
+  });
+
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
     if (!item || context.ranged || !item.isOwner) return;
     const state = stateOf(api, item);
+    if (on.energy() && state.wrecked) {
+      context.refusal = F("WreckedRefusal", { name: nameOf(item) });
+      return;
+    }
     const patch: MeleeState = {};
     if (on.blades() && context.options?.[`${MODULE_ID}.${ROCKET_OPTION}`] === true) {
       patch.rocketUsed = (state.rocketUsed ?? 0) + 1;
@@ -467,7 +513,8 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
   Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
     const item = context?.item;
     if (!on.blades() || !item || !stateOf(api, item).rocketArmed) return;
-    const mode = item.system?.meleeModes?.[Number(context.mode?.index) || 0];
+    const modes = context.mode?.ranged ? item.system?.rangedModes : item.system?.meleeModes;
+    const mode = modes?.[Number(context.mode?.index) || 0];
     const delta = mode ? rocketDelta(api, context.actor, String(mode.damageBase ?? "")) : null;
     if (delta && typeof context.formula === "string") context.formula = withDamage(api, context.formula, delta.dice, delta.adds);
     if (item.isOwner) void api.combat.setWeaponState(item, MODULE_ID, { rocketArmed: false });
@@ -509,14 +556,48 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
     void say(actor, String(context.label ?? ""), outcomes.map((o) => game.i18n.format(`GCC.UT.${o.note}`, { name, minutes: Math.max(1, margin), seconds: o.seconds ?? 0 })));
   });
 
+  // A zap glove's DR 5 and a neuroglove's DR 2 on the hand (p. 165).
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on.energy() || !context?.actor || context.hitLocation !== "hand" || !Array.isArray(context.lines)) return;
+    for (const glove of [...(context.actor.items ?? [])].filter((i: any) => i.type === "equipment" && i.system?.equipped === true)) {
+      const dr = /zap glove/i.test(nameOf(glove)) ? ZAP_GLOVE.dr : /neuroglove/i.test(nameOf(glove)) ? NEUROGLOVE.dr : 0;
+      if (dr) context.lines.push({ label: nameOf(glove), dr, applies: true, forceField: false, flexible: true, hardened: 0 });
+    }
+  });
+
+  // Damage to the hand through a neuroglove wrecks it as a weapon on a 1 in 6 (p. 165).
+  Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
+    const actor = context?.actor;
+    if (!on.energy() || !actor?.isOwner || !game.user?.isGM) return;
+    if (String(context.damage?.hitLocation ?? "") !== "hand" || !(Number(context.result?.injury) > 0)) return;
+    const glove = [...(actor.items ?? [])].find((i: any) => i.type === "equipment" && i.system?.equipped === true && /neuroglove/i.test(nameOf(i)) && !stateOf(api, i).wrecked);
+    if (!glove) return;
+    void (async () => {
+      const roll = await new Roll("1d6").evaluate();
+      const wrecked = neurogloveWrecked(Number(roll.total) || 0);
+      if (wrecked) await api.combat.setWeaponState(glove, MODULE_ID, { wrecked: true });
+      await say(actor, nameOf(glove), [F(wrecked ? "GloveWrecked" : "GloveSurvives", { roll: roll.total })]);
+    })();
+  });
+
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-stunner-hold", itemTypes: ["equipment"], label: L("HoldTitle"), icon: "fa-solid fa-hand", visible: (item) => on.energy() && isStunner(item), run: async (item, actor) => {
+    // "The user may take a Concentrate maneuver to hold the baton in contact. This prevents recovery ... but drains a charge each second" (p. 165).
+    const charged = chargedOf(item);
+    const state = stateOf(api, item);
+    if (charged && (state.spent ?? 0) + 1 > CHARGES[charged]) return void say(actor, nameOf(item), [F("Drained", { name: nameOf(item) })]);
+    await api.combat.setWeaponState(item, MODULE_ID, { spent: (state.spent ?? 0) + 1 });
+    await say(actor, nameOf(item), [F("HoldLine", { left: charged ? CHARGES[charged] - (state.spent ?? 0) - 1 : 0 })]);
+  } });
+
   // Force blades and a stasis switchblade can't break (pp. 164, 166).
   Hooks.on(api.combat.hooks.breakageOdds, (context: any) => {
     if (on.force() && forceWeaponByName(nameOf(context?.item))) context.weight = Number.MAX_SAFE_INTEGER;
   });
 
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-vibro", itemTypes: ["equipment"], label: L("VibroToggle"), icon: "fa-solid fa-wave-square", visible: (item) => on.blades() && meleeData(item).vibro, run: async (item, actor) => {
-    const next = !stateOf(api, item).vibroOn;
-    await api.combat.setWeaponState(item, MODULE_ID, { vibroOn: next });
+    const state = stateOf(api, item);
+    const next = !state.vibroOn;
+    await api.combat.setWeaponState(item, MODULE_ID, next ? { vibroOn: true, vibroSince: worldNow() } : { vibroOn: false, vibroUsed: vibroSecondsUsed(state), vibroSince: undefined });
     await say(actor, nameOf(item), [L(next ? "VibroOn" : "VibroOff")]);
   } });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-switch-mode", itemTypes: ["equipment"], label: L("SwitchToggle"), icon: "fa-solid fa-arrows-left-right", visible: (item) => on.blades() && isSwitchblade(item), run: async (item, actor) => {
@@ -525,8 +606,9 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
     await say(actor, nameOf(item), [F("Switched", { setting: L(`Switch.${next}`) })]);
   } });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-snare", itemTypes: ["equipment"], label: L("SnareTitle"), icon: "fa-solid fa-link", visible: (item) => on.blades() && (isMonowireWhip(item) || isSwitchblade(item)), run: (item, actor) => snare(api, item, actor) });
-  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-recharge", itemTypes: ["equipment"], label: L("Recharge"), icon: "fa-solid fa-battery-full", visible: (item) => on.energy() && chargedOf(item) !== null, run: async (item, actor) => {
-    await api.combat.setWeaponState(item, MODULE_ID, { spent: 0 });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-recharge", itemTypes: ["equipment"], label: L("Recharge"), icon: "fa-solid fa-battery-full", visible: (item) => (on.energy() && chargedOf(item) !== null) || (on.blades() && meleeData(item).vibro), run: async (item, actor) => {
+    const state = stateOf(api, item);
+    await api.combat.setWeaponState(item, MODULE_ID, { spent: 0, vibroUsed: 0, ...(state.vibroOn ? { vibroSince: worldNow() } : {}) });
     await say(actor, nameOf(item), [L("Recharged")]);
   } });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-rocket-refuel", itemTypes: ["equipment"], label: L("RocketRefuel"), icon: "fa-solid fa-gas-pump", visible: (item) => on.blades() && meleeData(item).rocketStriker, run: async (item, actor) => {

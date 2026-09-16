@@ -219,3 +219,20 @@ export const NANOTRACER_TRACKING = 5;
 export function muskDays(hoursWashed: number): number {
   return Math.max(0, 14 - Math.max(0, Math.floor(hoursWashed)));
 }
+
+/** Musk's Bad Smell lasts two weeks (p. 160); pheromone spray's Lecherousness (9) the margin's minutes after the cloud (p. 160). */
+export const MUSK_SECONDS = 14 * 24 * 3600;
+export const PHEROMONE_TRAIT = "Lecherousness (9)";
+
+/**
+ * The Neurological Disorder a nerve agent leaves, by the HP lost (p. 160): Mild
+ * from 1/3, Severe from 1/2, Crippling from 2/3; none below 1/3.
+ */
+export function nerveDisorderAt(hpLost: number, hpMax: number): "Mild" | "Severe" | "Crippling" | null {
+  if (!(hpMax > 0)) return null;
+  const part = Math.max(0, hpLost) / hpMax;
+  if (part >= 2 / 3) return "Crippling";
+  if (part >= 1 / 2) return "Severe";
+  if (part >= 1 / 3) return "Mild";
+  return null;
+}

@@ -301,7 +301,7 @@ export function readyTransport(api: GWorldApi, on: TransportSwitches): void {
   Hooks.on(api.combat.hooks.injury, (context: any) => {
     const victim = context?.actor;
     if (!on.vehicles() || !victim || !context.damage) return;
-    if (String(context.damage.damageType ?? "") !== "cr") return;
+    if (String(context.damage.type ?? context.damage.damageType ?? "") !== "cr") return;
     if (!(api.actors.conditions(victim) ?? []).some((c: any) => String(c?.id ?? "").endsWith("ut-crashweb"))) return;
     const left = Number(victim.getFlag?.(MODULE_ID, CRASHWEB_FLAG)) || 0;
     if (left <= 0) return;

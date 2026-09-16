@@ -3914,7 +3914,17 @@
           "hyperdense": "+2 cutting and impaling, armour divisor (5); ST 1.5 times (Ultra-Tech p. 164).",
           "nanothorn": "Corrosion instead of cutting, armour divisor (10) (Ultra-Tech p. 164).",
           "vibro": "The vibro field is on: +1d cutting and a better armour divisor (Ultra-Tech p. 164)."
-        }
+        },
+        "VibroDrained": "Cell spent",
+        "VibroDrainedHint": "The vibroblade has run 300 seconds divided by its weight on its cell; it cuts as a plain blade until the cell is replaced.",
+        "NeurolashAdded": "Neurolash",
+        "Wrecked": "Wrecked",
+        "WreckedHint": "Damage to the hand wrecked this neuroglove as a weapon.",
+        "WreckedRefusal": "The {name} is wrecked as a weapon.",
+        "GloveWrecked": "Damage through the neuroglove (rolled {roll}): it's wrecked as a weapon.",
+        "GloveSurvives": "Damage through the neuroglove (rolled {roll}): it still works.",
+        "HoldTitle": "Hold in contact",
+        "HoldLine": "Held in contact (Concentrate): the victim can't roll to recover this second. {left} charge(s) left."
       },
       "Armor": {
         "Title": "Ultra-tech armour",
@@ -4255,7 +4265,11 @@
           "Sm": "Object's SM",
           "Hours": "Hours",
           "Result": "{total} corrosion over {hours} hour(s) (x{multiplier})."
-        }
+        },
+        "HasteTitle": "Apply in haste",
+        "HasteLabel": "Applying the {name} in haste",
+        "HasteDone": "Applied without an accident.",
+        "HasteAccident": "An accident: {name} gets a dose."
       },
       "Guns": {
         "Title": "Guns, launchers and grenades",

@@ -398,6 +398,8 @@ async function takeDose(api: GWorldApi, item: any, owner: any): Promise<void> {
     case "torpine":
       await api.actors.applyCondition(patient, { key: "unconscious", duration: { seconds: TORPINE.hours * 3600 } });
       await setCare(patient, { torpineUntil: now() + TORPINE.hours * 3600 });
+      // "The drug Torpine ... stops the damage once taken" from nanoburn (p. 161).
+      for (const dose of api.actors.activePoisons(patient)) if (dose.source === `${MODULE_ID}.nanoburnDamage`) await api.actors.clearPoison(patient, dose.id);
       lines.push(F("Drug.torpine", { name }));
       break;
     case "tailoredImmune":
