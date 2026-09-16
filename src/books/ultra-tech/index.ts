@@ -14,6 +14,7 @@ import { initComputers, readyComputers } from "./computers/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
+import { readyRobots } from "./robots/index.js";
 import { initSwarms, readySwarms } from "./swarms/index.js";
 
 const SLUG = "ultra-tech";
@@ -27,6 +28,8 @@ const RULES = [
   { key: "powerCells", pages: "pp. 18-20, 133", implemented: true },
   { key: "computers", pages: "pp. 21-25, 46-47", implemented: true },
   { key: "swarmbots", pages: "pp. 35-37, 92, 164, 169", implemented: true },
+  { key: "robots", pages: "pp. 26-35", implemented: true },
+  { key: "cinematicRobots", pages: "p. 34", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -63,6 +66,7 @@ function ready(api: GWorldApi): void {
   readyPower(api, rule("powerCells"));
   readyComputers(api, rule("computers"));
   readySwarms(api, rule("swarmbots"));
+  readyRobots(api, { robots: rule("robots"), cinematic: rule("cinematicRobots") });
 }
 
 export const book: BookRules = {
