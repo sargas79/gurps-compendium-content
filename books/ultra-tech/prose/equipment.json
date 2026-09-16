@@ -9622,5 +9622,13 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>The brain case (brain and life support) that makes someone a total cyborg in a robot body, which is bought separately. The body takes a computer one size smaller than it was built for; at TL9 it must have been built for a microframe or larger, at TL10+ a personal computer. The character takes the body's template with the Cyborg lens. Radical operation (major at TL10-12).</p>"
+  },
+  {
+    "_id": "744b7dac38b175cd",
+    "name": "Pocket Laser Mike",
+    "pages": "UT105",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket-sized laser microphone: it bounces an invisible beam off a window or faceplate and picks up the speech behind it with an Electronics Operation (Surveillance) roll. Range 300 yards, doubled at TL10, x5 at TL11 and x10 at TL12.</p>"
   }
 ]

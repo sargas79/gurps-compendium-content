@@ -10,6 +10,11 @@
         </select>
       </label>
     </div>
+    {{#if quantumAllowed}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.UT.Sensor.QuantumHint'}}"><input type="checkbox" data-gcc-ut-sensor="quantum" {{#if data.quantum}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Sensor.QuantumLabel"}}</label>
+      </div>
+    {{/if}}
   {{/if}}
   {{#if active}}
     <div class="ichecks">

@@ -285,3 +285,63 @@ export const CONCEALED_WEAPONS = Object.freeze({ imagingRadar: 3, terahertz: 4 }
 export function airSonarRange(range: number, atmospheres: number): number {
   return (range / 10) * Math.max(0, atmospheres);
 }
+
+/**
+ * What cuts a radio's range (p. 44): it "may drop by a factor of 10 in urban
+ * environments or underground", and "divide by 10" again for real-time
+ * audio-visual signals.
+ */
+export function radioRangeFactor(options: { urban?: boolean; audioVisual?: boolean }): number {
+  return (options.urban ? 0.1 : 1) * (options.audioVisual ? 0.1 : 1);
+}
+
+/** A quantum channel (p. 47): laser and neutrino comms only, at 10% of normal range and 10 times the cost. */
+export const QUANTUM_CHANNEL = Object.freeze({ range: 0.1, cost: 10 });
+export function canHaveQuantumChannel(family: CommFamily | null | undefined): boolean {
+  return family === "laser" || family === "neutrino";
+}
+
+/** Homing beacons are picked up 10 miles away, x5 at TL10, x20 at TL11, x100 at TL12 (p. 105). */
+export function homingBeaconRange(tl: number): number {
+  return 10 * MILE * (tl >= 12 ? 100 : tl >= 11 ? 20 : tl >= 10 ? 5 : 1);
+}
+
+/** A laser microphone's range: 3,000 yards, 300 for the pocket model, x2 at TL10, x5 at TL11, x10 at TL12 (p. 105). */
+export function laserMicrophoneRange(name: string, tl: number): number | null {
+  const text = String(name ?? "").trim();
+  const base = /^pocket laser mike$/i.test(text) ? 300 : /^laser microphone$/i.test(text) ? 3000 : null;
+  if (base === null) return null;
+  return base * (tl >= 12 ? 10 : tl >= 11 ? 5 : tl >= 10 ? 2 : 1);
+}
+
+/** A sensing task an Electronics Operation (Sensors) roll makes with a gadget's help. */
+export interface SensorTask {
+  key: "detect" | "analyze" | "identify";
+  bonus: number;
+}
+
+/**
+ * The Electronics Operation (Sensors) tasks a chemsniffer or sound detector
+ * helps (pp. 61-62): a chemsniffer's +4 to detect (plus its TL's) and +8 to
+ * analyze or recognize by scent; a sound detector's +8 to analyze and
+ * identify a sound. Null for anything else.
+ */
+export function sensorTasks(name: string, tl: number): SensorTask[] | null {
+  const text = String(name ?? "");
+  if (/chemsniffer$/i.test(text)) {
+    const bonuses = chemsnifferBonuses(tl);
+    return [{ key: "detect", bonus: bonuses.detect }, { key: "analyze", bonus: bonuses.analyze }];
+  }
+  if (/sound detector$/i.test(text)) return [{ key: "identify", bonus: SOUND_DETECTOR.identify }];
+  return null;
+}
+
+/** A chemsniffer "can't detect anything in a sealed environment, underwater, or in vacuum" (p. 61). */
+export function chemsnifferWorks(environment: { underwater: boolean; atmospheres: number }, sealed = false): boolean {
+  return !sealed && !environment.underwater && environment.atmospheres > 0.01;
+}
+
+/** Targeting software, which a lock's +3 is "used in conjunction with" (p. 63): the targeting programs (p. 150). */
+export function isTargetingSoftware(name: string): boolean {
+  return /^targeting program\b/i.test(String(name ?? "").trim());
+}
