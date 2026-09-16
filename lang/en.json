@@ -1967,6 +1967,14 @@
         "uploading": {
           "Name": "Uploading and downloading minds",
           "Hint": "GM tools upload and download minds. A destructive upload rolls Physician-5 and Electronics Operation (Medical)-5 (Surgery for a bush robot): failing by 1 leaves a low-res copy, by 2 a very-low-res one, by 3 or more nothing. A non-destructive scan takes an hour: low-res only at TL10, full at TL11, or low-res in 10 minutes at +2. A critical failure quietly drops a step. Dead brains are at -2, -1 an hour, and -3 frozen. Downloading rolls Electronics Operation (Medical): a failure destroys the host's brain, and a critical failure or failure by 5+ hides a flaw. A low- or very-low-res copy can be applied to the host (skill points halved or quartered, amnesia, -1 IQ, 50% Flashbacks)."
+        },
+        "communicators": {
+          "Name": "Communicators",
+          "Hint": "A comm's sheet shows its range by size and TL. Receive-only comms are 10% of the cost and 20% of the weight, transmit-only 90% and 80% (half each for gravity-ripple, neutrino and FTL comms). A GM tool checks whether the selected and targeted characters' comms reach each other: the smaller comm's range, times 3, 10, 30 ... for the larger one's sizes. Stretching it takes Electronics Operation (Communications) at -1 per 10%, to double."
+        },
+        "sensors": {
+          "Name": "Sensors",
+          "Hint": "Worn night vision optics, infrared, hyperspectral and PESA goggles, glasses, contacts and binoculars give Night Vision, Infravision, Hyperspectral Vision and Telescopic Vision (a level per doubling of magnification, growing by TL). Sound detectors add to Hearing and Shadowing, chemsniffers to Tracking and Smell, sensor gloves to touch, and imaging and terahertz radar to Search for concealed weapons. Active sensors show their range, LPI and emissions, and tactical ones are priced. A row action locks a sensor on the target for +3 to aimed ranged attacks, which an ESM detector warns of for +1 to Dodge. A GM tool runs a sweep at -2 per doubling of range past the sensor's."
         }
       },
       "Gadget": {
@@ -2657,6 +2665,60 @@
         "AppliedTraits": "Added {traits}.",
         "AppliedLost": "Lost {traits}.",
         "MindTransfer": "The host keeps its racial template, with the Mind vs. Brain rule (Characters p. 296)."
+      },
+      "Sensor": {
+        "Title": "Comms and sensors",
+        "Yards": "{value} yards",
+        "Miles": "{value} miles",
+        "Parsecs": "{value} parsecs",
+        "CommRange": "Range {range} at TL{tl}, to a comm of the same size.",
+        "CommModeLabel": "Built as",
+        "CommModeHint": "Receive-only comms are 10% of the cost and 20% of the weight with cells a size smaller; transmit-only 90% and 80%. Gravity-ripple, neutrino and FTL comms are half each (Ultra-Tech p. 46).",
+        "CommMode": {
+          "both": "Two-way",
+          "receiver": "Receive-only",
+          "transmitter": "Transmit-only"
+        },
+        "ActiveRange": "Range {range} at TL{tl}; -2 per doubling beyond.",
+        "ImagingRange": "Imaging range {range}.",
+        "Emissions": "Its emissions can be detected out to {range}.",
+        "Tactical": "Tactical: tracks 10 targets and gives +3 to hit them with aimed attacks; x{factor} the cost.",
+        "TacticalLabel": "Tactical",
+        "TacticalHint": "A military model: tracks up to 10 targets, identifies them at 1/10 range, and gives +3 to hit with aimed attacks. Five times the cost, ten for sonar (Ultra-Tech pp. 64-66).",
+        "LpiLabel": "Low-probability intercept",
+        "LpiHint": "Halves range, and the halved range is detected at 1.5 times rather than twice (Ultra-Tech p. 63).",
+        "Visual": {
+          "nightVision": "Night Vision {nightVision}, x{magnification} magnification while worn.",
+          "infrared": "Infravision, x{magnification} magnification while worn; +3 to Tracking a heat trail under an hour old.",
+          "hyperspectral": "Hyperspectral Vision, x{magnification} magnification while worn.",
+          "pesa": "Hyperspectral Vision (Extended Low Band), x{magnification} magnification while worn."
+        },
+        "CommTitle": "Communicator range",
+        "CommPick": "Select one character's token and target the other's.",
+        "NoPair": "They carry no communicators of the same kind.",
+        "Distance": "Distance (yards)",
+        "CommPair": "{a} to {b}: range {range}, at {distance}.",
+        "InRange": "In range: no roll needed.",
+        "OutOfRange": "Beyond double the range: they can't reach each other.",
+        "Stretch": "Stretching the range: Electronics Operation (Communications) at {modifier}.",
+        "StretchLabel": "Stretching communicator range",
+        "StretchLine": "-1 per 10% added range",
+        "SweepTitle": "Sensor sweep",
+        "SweepPick": "Select the character with the sensor; target what they're scanning.",
+        "NoSensor": "They carry no active sensor.",
+        "Sensor": "Sensor",
+        "Imaging": "Imaging mode",
+        "LadarUnknown": "Ladar spotting an unknown target (-4)",
+        "LadarIdentify": "Ladar identifying a known target (+4)",
+        "RangeLine": "Beyond {range}",
+        "SweepLabel": "Sweeping with the {sensor}",
+        "LockTitle": "Lock on",
+        "LockPick": "Target what the sensor locks onto.",
+        "Locked": "The {sensor} locks onto {target}: +3 to aimed ranged attacks at it with targeting software.",
+        "LockLine": "Targeting lock ({sensor})",
+        "HeatTrail": "{name} (a heat trail under an hour old)",
+        "NoisyTarget": "{name} (a noisy target)",
+        "ConcealedWeapons": "{name} (concealed weapons)"
       }
     }
   },

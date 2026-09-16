@@ -829,6 +829,15 @@
           ]
         },
         "reason": "+1 (quality) to the operator at later TLs (pp. 109-110; #245)"
+      },
+      {
+        "pattern": "^Tactical ESM Detector$",
+        "set": {
+          "system.forSkills": [
+            "Electronics Operation (EW)"
+          ]
+        },
+        "reason": "+1 (quality) to Electronics Operation (EW) (p. 62; #241)"
       }
     ]
   },

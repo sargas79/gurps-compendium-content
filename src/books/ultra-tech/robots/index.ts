@@ -254,6 +254,19 @@ function surges(item: any, mode: any): boolean {
   return modes?.[Number(mode.index)]?.surge === true;
 }
 
+/**
+ * Knocks out anything Electrical (Characters p. 134): the short circuit a
+ * surge critical causes, for any rule that shorts one out. Returns whether it
+ * did -- false for an actor without Electrical, or one this user can't change.
+ */
+export async function knockOutElectrical(api: GWorldApi, actor: any): Promise<boolean> {
+  if (!actor?.isOwner || !traitNames(actor).some((n) => /^electrical\b/i.test(n))) return false;
+  const applied = await api.actors.applyCondition(actor, { key: "unconscious" } as any);
+  if (!applied) return false;
+  await say(actor, L("Surge.Title"), [F("Surge.ShortCircuit", { name: actor.name })]);
+  return true;
+}
+
 export function readyRobots(api: GWorldApi, on: RobotSwitches): void {
   api.sheets.registerSheetSection({
     module: MODULE_ID,
@@ -276,9 +289,7 @@ export function readyRobots(api: GWorldApi, on: RobotSwitches): void {
     if (!actor?.isOwner || !game.user?.isGM) return;
     // "A critical hit from an electrical attack causes you to 'short-circuit'" (Characters p. 134),
     // which is what a surge attack does to anything Electrical (p. 112).
-    if (on.robots() && context.damage?.critical && surges(context.item, context.mode) && traitNames(actor).some((n) => /^electrical\b/i.test(n))) {
-      void api.actors.applyCondition(actor, { key: "unconscious" } as any).then(() => say(actor, L("Surge.Title"), [F("Surge.ShortCircuit", { name: actor.name })]));
-    }
+    if (on.robots() && context.damage?.critical && surges(context.item, context.mode)) void knockOutElectrical(api, actor);
     // A robot knocked back rolls IQ at -2 a yard or is mentally stunned for a turn (p. 34).
     const yards = Number(context.result?.knockback?.yards) || 0;
     if (on.cinematic() && yards > 0 && isRobot(actor)) {
