@@ -10,6 +10,7 @@
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { initComputers, readyComputers } from "./computers/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
@@ -23,6 +24,7 @@ const RULES = [
   { key: "adjustingForSm", pages: "p. 16", implemented: true },
   { key: "legalityAndAntiques", pages: "p. 14", implemented: true },
   { key: "powerCells", pages: "pp. 18-20, 133", implemented: true },
+  { key: "computers", pages: "pp. 21-25, 46-47", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -48,6 +50,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initGadgets();
   initPower();
+  initComputers();
   registerRecordData();
 }
 
@@ -55,6 +58,7 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyGadgets(api, { options: rule("gadgetOptions"), sm: rule("adjustingForSm"), legality: rule("legalityAndAntiques") });
   readyPower(api, rule("powerCells"));
+  readyComputers(api, rule("computers"));
 }
 
 export const book: BookRules = {

@@ -1738,7 +1738,14 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 2
+          }
+        }
+      }
     }
   },
   {
@@ -2780,7 +2787,14 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
     }
   },
   {
@@ -2807,7 +2821,14 @@
       "listCost": 400,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
     }
   },
   {
@@ -2834,7 +2855,14 @@
       "listCost": 800,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 5
+          }
+        }
+      }
     }
   },
   {
@@ -2861,7 +2889,14 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
     }
   },
   {

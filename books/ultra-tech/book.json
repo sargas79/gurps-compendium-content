@@ -655,6 +655,48 @@
           "system.weight": 3000
         },
         "reason": "the section's title set in capitals; a typical projector is $15,000,000 and 3,000 lbs., plus $5 million and 1,000 lbs. per extra platform (p. 235)"
+      },
+      {
+        "pattern": "^Decryption Program$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 2
+        },
+        "reason": "a program: Complexity 2 (#238)"
+      },
+      {
+        "pattern": "^Visual Enhancement$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 4
+        },
+        "reason": "a program: Complexity 4 (#238)"
+      },
+      {
+        "pattern": "^Cosmetic Filter$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 4
+        },
+        "reason": "a program: Complexity 4 (#238)"
+      },
+      {
+        "pattern": "^Video Masking$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 5
+        },
+        "reason": "a program: Complexity 5 (#238)"
+      },
+      {
+        "pattern": "^Sensie Editor$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 6
+        },
+        "reason": "a program: Complexity 6 (#238)"
+      },
+      {
+        "pattern": "^IFF Comm$",
+        "set": {
+          "system.extensions.gurps-compendium-content.computer.complexity": 2
+        },
+        "reason": "a program: Complexity 2 (#238)"
       }
     ]
   },

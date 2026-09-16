@@ -4519,5 +4519,77 @@
         }
       }
     }
+  },
+  {
+    "_id": "1751854f00612b8b",
+    "name": "Verifier Software",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 106",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Detect Lies"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b52527e6a57ae2f0",
+    "name": "Veridicator Program",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 107",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Detect Lies"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "computer": {
+            "complexity": 6
+          }
+        }
+      }
+    }
   }
 ]
