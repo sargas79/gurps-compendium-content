@@ -14,7 +14,9 @@
  *   - `swarm`: a swarm's area and price (#240).
  *   - `switchblade`: a switchblade's blade mode and damage per yard of reach (#252).
  *   - `vehicle`: what the Basic Set's vehicle fields don't say (#259).
- *   - `robotBody`: a robot lens's body price, weight and power (#239).
+ *   - `robotBody`: a robot lens's body price, weight and power (#239), on the
+ *     template items the lenses are -- the only key there, so gear doesn't
+ *     carry it and templates carry nothing else.
  *
  * The cells gear runs on are `power`, registered with the power cell rules.
  */
@@ -24,7 +26,10 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../shared/extension
 /** The keys this registers, for anything that needs to know them. */
 export const RECORD_KEYS = ["armor", "warhead", "swarm", "switchblade", "vehicle", "robotBody"] as const;
 
-/** Adds the record fields to this module's data on equipment and armour. */
+/** The item type the robot lenses are. */
+const TEMPLATE_TYPES = ["template"] as const;
+
+/** Adds the record fields to this module's data on equipment and armour, and the robot lenses' on templates. */
 export function registerRecordData(): void {
   const f = foundry.data.fields as any;
   const text = () => new f.StringField({ required: true, nullable: false, blank: true, initial: "" });
@@ -50,6 +55,8 @@ export function registerRecordData(): void {
       accelerationG: optional(),
       skills: new f.ArrayField(new f.StringField({ required: true, nullable: false, blank: false }), { required: true, initial: [] }),
     }),
+  });
+  addExtensionFields("Item", TEMPLATE_TYPES, {
     robotBody: new f.SchemaField({
       cost: amount(),
       /** A range as the book prints it: "150-250 lbs.". */
