@@ -15,6 +15,7 @@ import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
+import { readySecurity } from "./security/index.js";
 import { initStealth, readyStealth } from "./stealth/index.js";
 import { initSwarms, readySwarms } from "./swarms/index.js";
 
@@ -32,6 +33,9 @@ const RULES = [
   { key: "robots", pages: "pp. 26-35", implemented: true },
   { key: "cinematicRobots", pages: "p. 34", implemented: true },
   { key: "stealthSystems", pages: "pp. 95-100", implemented: true },
+  { key: "securitySystems", pages: "pp. 101-106", implemented: true },
+  { key: "restraints", pages: "pp. 107-108", implemented: true },
+  { key: "interrogation", pages: "pp. 106-110", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -70,7 +74,8 @@ function ready(api: GWorldApi): void {
   readyComputers(api, rule("computers"));
   readySwarms(api, rule("swarmbots"));
   readyRobots(api, { robots: rule("robots"), cinematic: rule("cinematicRobots") });
-  readyStealth(api, rule("stealthSystems"));
+  readyStealth(api, rule("stealthSystems"), () => rule("stealthSystems")() || rule("securitySystems")());
+  readySecurity(api, { security: rule("securitySystems"), restraints: rule("restraints"), interrogation: rule("interrogation") });
 }
 
 export const book: BookRules = {

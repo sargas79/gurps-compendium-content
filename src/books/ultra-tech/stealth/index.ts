@@ -223,7 +223,22 @@ const sameSkill = (a: string, b: string) => {
   return norm(a) === norm(b) || norm(b).startsWith(`${norm(a)} (`);
 };
 
-export function readyStealth(api: GWorldApi, on: () => boolean): void {
+/** `tools` is whether a tool's stated bonus counts: this book's stealth or security switch. */
+/** A tool whose bonus the book states outright, beyond what its grade gives. */
+function addStatedBonus(api: GWorldApi, actor: any, skill: string, context: any): void {
+  let stated: { value: number; label: string } | null = null;
+  for (const item of actor.items ?? []) {
+    if (!isGear(item) || item.system?.carried === false) continue;
+    const data = stealthData(item);
+    if (!data.statedBonus || !data.statedSkills.some((s) => sameSkill(s, skill))) continue;
+    if (data.statedBonus > (stated?.value ?? 0)) stated = { value: data.statedBonus, label: String(item.name) };
+  }
+  if (!stated) return;
+  const extra = stated.value - systemGrade(api, actor, skill);
+  if (extra > 0) context.modifiers.push({ label: stated.label, value: extra });
+}
+
+export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boolean = on): void {
   api.data.registerPriceModifier({
     module: MODULE_ID,
     key: "ut-stealth",
@@ -271,7 +286,9 @@ export function readyStealth(api: GWorldApi, on: () => boolean): void {
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;
     const skill = String(context?.skill ?? "");
-    if (!on() || !actor || !skill) return;
+    if (!actor || !skill) return;
+    if (tools()) addStatedBonus(api, actor, skill, context);
+    if (!on()) return;
     const worn = wornSystems(actor);
     if (sameSkill("Stealth", skill)) {
       const bonus = stealthBonus(actor, hidingState(actor));
@@ -288,18 +305,6 @@ export function readyStealth(api: GWorldApi, on: () => boolean): void {
     if (sameSkill("Disguise", skill)) {
       const mask = worn.find((w) => w.kind === "fleshMask");
       if (mask) context.modifiers.push({ label: mask.item.name, value: FLESH_MASK });
-    }
-    // A tool whose bonus the book states outright, beyond what its grade gives.
-    let stated: { value: number; label: string } | null = null;
-    for (const item of actor.items ?? []) {
-      if (!isGear(item) || item.system?.carried === false) continue;
-      const data = stealthData(item);
-      if (!data.statedBonus || !data.statedSkills.some((s) => sameSkill(s, skill))) continue;
-      if (data.statedBonus > (stated?.value ?? 0)) stated = { value: data.statedBonus, label: String(item.name) };
-    }
-    if (stated) {
-      const extra = stated.value - systemGrade(api, actor, skill);
-      if (extra > 0) context.modifiers.push({ label: stated.label, value: extra });
     }
   });
 

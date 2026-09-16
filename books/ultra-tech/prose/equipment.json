@@ -5440,14 +5440,6 @@
     "description": "<p>A flexible robotic snake only 0.1\" wide and 2\" long. These devices replace lower-TL endoscopes for examinations of body cavities or small cracks. Its light source illuminates a two-yard cone, and TL10+ worms also have Infravision. The user can see whatever the worm is looking at, but has No Depth Perception (p. B145).</p><p>The worm uses myoelectric muscles to flex and bend. It can be controlled via fiber-optic cable (to avoid emitting any signals), or it can operate using its built-in microcommunicator. A series of surveillance worms can also relay signals to each other.</p><p>Surveillance worms provide +3 on Search attempts. A Vision-5 roll is required to spot the worm.</p>"
   },
   {
-    "_id": "be517f8a3f06b276",
-    "name": "Surveillance Swarm (\"Surveillance Dust\")",
-    "pages": "UT106",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>This microbot swarm (p. 35) mounts tiny video cameras and audio sensors, collectively equivalent to a nanobug (see p. 105). The swarm is programmed to remain in a particular place, observe for a period of time, and then return; it can also transmit information or be ordered to go to a different location. Its base cost is per square yard; modify this for Swarm Chassis (pp. 35-36).</p>"
-  },
-  {
     "_id": "8e0662d126821a64",
     "name": "RF Bug Detector",
     "pages": "UT106",
@@ -8974,5 +8966,21 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Lets a user command and control microbot swarms using a radio, laser, or infrared communicator. The GM can make a secret Electronics Operation (Robots) roll to see if the swarm understands the orders (apply penalties for confusing instructions). Failure means the swarm does not do exactly what was intended. A separate program is needed for each swarm type.</p>"
+  },
+  {
+    "_id": "f07e2e5ac3747cd8",
+    "name": "Small Safe",
+    "pages": "UT102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A high-security safe; five cubic feet, DR 300, 80 HP.</p>"
+  },
+  {
+    "_id": "3e0c83338c747b3d",
+    "name": "Armored Vault",
+    "pages": "UT102",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small walk-in vault. 50 cubic feet, DR 400, 100 HP.</p>"
   }
 ]

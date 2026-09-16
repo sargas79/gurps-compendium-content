@@ -514,6 +514,10 @@
       {
         "pattern": "^Weather Control Satellites$",
         "reason": "planetary infrastructure priced in billions, not gear (p. 79)"
+      },
+      {
+        "pattern": "^Surveillance Swarm \\(\"Surveillance Dust\"\\)$",
+        "reason": "the Surveillance Swarm kept by hand with its swarm data (#227); the same gadget (p. 106)"
       }
     ],
     "set": [
@@ -756,6 +760,75 @@
           "name": "Attaché Case"
         },
         "reason": "the accent is lost in the PDF text (p. 97)"
+      },
+      {
+        "pattern": "^X-ray Scanner$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 4,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Explosives (EOD)",
+            "Search"
+          ]
+        },
+        "reason": "+4 to Explosives (EOD) defusing a bomb and to Search examining a package (p. 104; #245)"
+      },
+      {
+        "pattern": "^T-Ray Portal Scanner$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 4,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Search"
+          ]
+        },
+        "reason": "+4 to Search for non-living objects (p. 104; #245)"
+      },
+      {
+        "pattern": "^Explosives Scanner$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 4,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Search"
+          ]
+        },
+        "reason": "+4 to Search for chemical explosives (p. 104; #245)"
+      },
+      {
+        "pattern": "^Surveillance Worm$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 3,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Search"
+          ]
+        },
+        "reason": "+3 on Search attempts (p. 105; #245)"
+      },
+      {
+        "pattern": "^Multispectral Bug Sweeper$",
+        "set": {
+          "system.forSkills": [
+            "Electronics Operation (Surveillance)"
+          ]
+        },
+        "reason": "+2 (quality) to Electronics Operation (Surveillance) sweeping for bugs (p. 106; #245)"
+      },
+      {
+        "pattern": "^Sensory Deprivation Tank$",
+        "set": {
+          "system.equipmentQuality": "fine",
+          "system.forSkills": [
+            "Interrogation"
+          ]
+        },
+        "reason": "treated as a restraint mask, +2 (quality) to Interrogation, rising to +3 after an hour (p. 108; #245)"
+      },
+      {
+        "pattern": "^Clinical (Brainwipe Machine|Mind Probe)$",
+        "set": {
+          "system.forSkills": [
+            "Electronics Operation (Medical)"
+          ]
+        },
+        "reason": "+1 (quality) to the operator at later TLs (pp. 109-110; #245)"
       }
     ]
   },
