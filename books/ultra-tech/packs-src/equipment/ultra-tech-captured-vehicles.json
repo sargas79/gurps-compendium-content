@@ -98,8 +98,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 1000,
-      "cost": 5000000,
+      "weight": 3000,
+      "cost": 15000000,
       "carried": true,
       "equipped": false,
       "tl": "12^",
@@ -113,7 +113,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 5000000,
+      "listCost": 15000000,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []

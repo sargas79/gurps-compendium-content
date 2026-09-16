@@ -267,4 +267,18 @@ wonder:
   billions), and fabricator blueprints and production lines (priced by what
   they make).
 
+## What #231 found
+
+- **The text of all 1,082 equipment records is read.** Running heads set inside
+  paragraphs, × and ° signs lost in extraction, and price lines left in a
+  paragraph are removed; a paragraph the price left unfinished is cut to its
+  last sentence.
+- **Families share their opening.** A size or model under a heading ("Large",
+  "One-Man", "Heavy Plasma") takes the heading's text and then its own line;
+  the family rules in book.json say which.
+- **Torches share one text**, the seven laser and plasma torches the paragraph
+  on p. 80 and the tables their statistics.
+- **Teleport projectors are split by a sidebar** (pp. 234-235); the two halves
+  are joined. A teleport beacon's closing sentence is only its price.
+
 The plan these came from: https://claude.ai/artifact/Gua2htvv1cQcD2TvQRwgvJ

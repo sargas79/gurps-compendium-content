@@ -136,6 +136,7 @@ export function book(slug) {
         replace: String(rule.replace ?? ""),
         heading: rule.heading ? String(rule.heading) : null,
         headingOnly: rule.headingOnly === true,
+        scoped: rule.scoped === true,
       })),
     },
     // For tools/capture-gear.mjs: gadget names it should not record, each a

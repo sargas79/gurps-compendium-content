@@ -446,7 +446,7 @@ function gadgetNames(name) {
 
 /** A heading's tech level, which the data file's name leaves off: "Android (TL9-12)". */
 function withoutTechLevel(line) {
-  return line.replace(/\s*\(TL[\d\s^-]+\)$/, "");
+  return line.replace(/\s*\(TL[\d\s^/-]+\)$/, "");
 }
 
 /**
@@ -541,7 +541,15 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
     // A rule with no model -- "Heavy Mind Disruptor", which no neural disruptor
     // matches -- takes the family's text alone.
     let own = { paragraphs: [] };
-    if (!rule.headingOnly) {
+    if (rule.scoped) {
+      // Members named only by size -- "Large (TL9): 25-mile range." -- repeat
+      // under every family on the page, so the member is looked for under its
+      // family's heading and nowhere else.
+      const member = entry.name.replace(rule.pattern, rule.replace).replace(/\s+/g, " ").trim();
+      const found = scopedMember(pages, cited + offset - 1, rule.heading, member);
+      if (!found) continue;
+      own = { paragraphs: [found] };
+    } else if (!rule.headingOnly) {
       // The model is usually a record of its own; where it is only a name the
       // book prints ("Reflex (TL9):" for the Reflex Vest), it is looked for
       // where the entry itself is cited.
@@ -567,12 +575,49 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
         if (FURNITURE.test(line) || (line.length < 60 && /[^.!?:)"]$/.test(line))) break;
         if (line.length < 70 && withoutTechLevel(line) !== line) break;
         // Or a member run into the text, "Reflex (TL9): ...", whose own text follows.
-        if (/^[^:]{0,80}\(TL[\d\s^-]+\):/.test(line)) break;
+        if (/^[^:]{0,80}\(TL[\d\s^/-]+\):/.test(line)) break;
+        // Or the skill line over a weapon table.
+        if (GADGET_STOP.test(line)) break;
         opening.push(line);
       }
       if (!opening.length) continue;
       return { kind: "family", paragraphs: [...rejoin(opening), ...own.paragraphs], page: cited + delta };
     }
+  }
+  return null;
+}
+
+/** A labelled member of a gadget family, split out of a line holding several. */
+const MEMBER_SPLIT = /(?<=[.!?)]\s)(?=[A-Z][^:()]{0,40}\(TL[\d\s^/-]+\):\s)/;
+
+/**
+ * The text of one member under its family's heading: from the heading on the
+ * cited page (or the one before or after) to the next heading.
+ */
+function scopedMember(pages, cited, heading, member) {
+  for (const index of [cited, cited - 1, cited + 1]) {
+    if (index < 0 || index >= pages.length) continue;
+    const lines = usefulLines(pages[index]);
+    const at = lines.findIndex((line) => withoutTechLevel(line) === heading);
+    if (at === -1) continue;
+    const after = [...lines.slice(at + 1), ...usefulLines(pages[index + 1] ?? "")];
+    const pieces = [];
+    for (const line of after) {
+      if (FURNITURE.test(line)) continue;
+      // The next family's heading ends the search.
+      if (line.length < 70 && withoutTechLevel(line) !== line) break;
+      pieces.push(...line.split(MEMBER_SPLIT));
+    }
+    const label = new RegExp(`^${escapeRegExp(member)}\\s*\\(TL[\\d\\s^/-]+\\):\\s*(.*)$`);
+    const at2 = pieces.findIndex((piece) => label.test(piece));
+    if (at2 === -1) continue;
+    let text = label.exec(pieces[at2])[1];
+    for (const next of pieces.slice(at2 + 1)) {
+      if (/[.!?"')]$/.test(text) || MEMBER_SPLIT.test(` . ${next}`) || /^[A-Z][^:()]{0,40}\(TL/.test(next)) break;
+      text = `${text} ${next}`;
+    }
+    const own = withoutTrailingCost(stripPrice(text)).trim();
+    return own.length ? own : null;
   }
   return null;
 }
@@ -741,7 +786,7 @@ function capture(entry, pages, offset, names, bk) {
     // A weapon may also print its calibre there: "Wrist Needler, 3mm (TL9):".
     for (const candidate of inlineNames) {
       const inline = new RegExp(
-        `^${escapeRegExp(candidate)}((?:\\s*\\([^)]*\\)|,\\s*[^,:()]{1,12}(?=\\s*[(:]))*)\\*?\\s*[.:]\\s*(.+)$`,
+        `^${escapeRegExp(candidate)}((?:\\s*\\([^)]*\\)|,\\s*[^,:()]{1,12}(?=\\s*[(:]))*)\\*?\\s*[.:]\\s*(.*)$`,
         "i",
       );
       for (const [at, whole] of scoped.entries()) {
@@ -756,15 +801,17 @@ function capture(entry, pages, offset, names, bk) {
             if (own.length < 15) return { kind: "statistics", paragraphs: [], page: cited + delta };
             return { kind: "inline", paragraphs: [own], page: cited + delta };
           }
-          if (text.length < 15) continue;
+          // A gadget labelled with its tech level may say little: "Nausea Pistol
+          // (TL9): A handy pistol-sized version.", "Infrared Binoculars (TL9):
+          // 16× magnification." The label is proof enough that it is an entry.
+          const labelled = /\(TL[\d\s^/-]+\)/.test(match[1]);
+          if (text.length < (labelled ? 8 : 15)) continue;
           // A weapon table row reads as an inline entry and is not one: "Pistol
           // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
           // figure of which the system already holds. Prose is sentences.
           if (/\b(thr|sw)\s*[+-]?\d*\s+(imp|cut|cr|pi\+*|pi-|burn|tox|fat|cor)\b/i.test(text)) continue;
-          // A gadget labelled with its tech level may say little: "Nausea Pistol
-          // (TL9): A handy pistol-sized version."
           const words = (text.match(/\b[a-z]{3,}\b/gi) ?? []).length;
-          if (words < (/\(TL[\d\s^-]+\)/.test(match[1]) ? 3 : 5)) continue;
+          if (words < (labelled ? 1 : 5)) continue;
           return { kind: "inline", paragraphs: [text], page: cited + delta };
         }
       }
