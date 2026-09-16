@@ -2003,6 +2003,10 @@
         "beamWeapons": {
           "Name": "Beam weapons",
           "Hint": "The GM sets a scene's air pressure, water and humidity from a tool, and beam weapons follow it. X-ray lasers, grasers, ultraviolet lasers and pulsars reach only so far through air, and rainbow lasers and blasters lose range in vacuum. Lasers barely work underwater, and sonic weapons carry by the pressure. An electrolaser is only its burn in vacuum and is harder to aim in the wet; it stuns, and its kill setting spends two shots and can stop a heart. DR resists an electrolaser or an omni-blaster's stun, a microwave disruptor only reaches the Electrical, and force fields stop graviton beams at a hundredth of their DR and disintegrators at a tenth."
+        },
+        "laserOptions": {
+          "Name": "Laser options",
+          "Hint": "High-energy lasers can be built with dazzle and blinding modes (+10% each) and as pulse or pulse-beam lasers (+100%), and switched between settings on the item. Dazzle is a HT-5 affliction that blinds for minutes equal to the margin; blinding is HT-10 and blinds for good; Protected Vision and a Nictitating Membrane help resist both. A pulse is crushing and explosive, a step less divisor, at twice the range. The attacker can say the beam crosses weather, which adds DR equal to the vision penalty along its path, or strikes glass, which gives a (10) divisor. An eye a laser cripples is crippled for good."
         }
       },
       "Gadget": {
@@ -3144,6 +3148,49 @@
         },
         "ForceField": "Against this beam at {part} of its DR",
         "Disintegrated": "{name} is reduced to -10×HP or less: disintegrated (Ultra-Tech p. 130)."
+      },
+      "Lasers": {
+        "Title": "Laser",
+        "Dazzle": "Dazzle mode",
+        "DazzleHint": "A low-power setting that dazzles, like a dazzler but aimed at the face or eyes: resisted at HT-5. +10% to cost (Ultra-Tech p. 113).",
+        "Blinding": "Blinding mode",
+        "BlindingHint": "A medium-power setting that blinds for good: resisted at HT-10. +10% to cost; each shot is a tenth of a shot (Ultra-Tech p. 114).",
+        "Pulse": "Pulse",
+        "PulseHint": "A pulse laser's hit is crushing and explosive, with a step less armor divisor and twice the range; a pulse-beam laser fires either, at +100% to cost. Not for chemical or rainbow lasers (Ultra-Tech p. 118).",
+        "PulseNone": "Beam",
+        "PulseOnly": "Pulse laser",
+        "PulseBeam": "Pulse-beam laser (+100%)",
+        "SettingLabel": "Setting",
+        "SettingHint": {
+          "beam": "",
+          "dazzle": "Dazzle: must strike the face or eyes; resisted at HT-5, +3 past 1/2D (Ultra-Tech p. 113).",
+          "blinding": "Blinding: anyone looking toward the laser; resisted at HT-10, +3 past 1/2D (Ultra-Tech p. 114).",
+          "pulse": "Pulse: crushing, explosive, a step less divisor, twice the range (Ultra-Tech p. 118)."
+        },
+        "Setting": {
+          "beam": "Beam",
+          "dazzle": "Dazzle",
+          "blinding": "Blinding",
+          "pulse": "Pulse"
+        },
+        "Cost": "Options: ×{factor} the price.",
+        "Switched": "Switched to {setting}: a Ready maneuver.",
+        "Weather": {
+          "Label": "Weather on the path (vision penalty)",
+          "Note": "Weather: DR {dr} against the beam",
+          "Line": "Weather",
+          "Hint": "Rain, fog, smoke and snow add DR equal to their vision penalty along the beam's path (Ultra-Tech pp. 114, 119)."
+        },
+        "Glass": {
+          "Label": "Striking glass, a visor or a window",
+          "Note": "Glass: armor divisor (10) unless laser-resistant (Ultra-Tech p. 114)"
+        },
+        "VisionProtection": "Eye protection",
+        "Dazzled": "Dazzled",
+        "Blinded": "Blinded by a laser",
+        "DazzledLine": "{name} is blind for {minutes} minute(s) (Ultra-Tech p. 113; Characters p. 124).",
+        "BlindedLine": "{name}'s eyes are crippled: Blindness until healed (Ultra-Tech p. 114; Characters p. 124).",
+        "EyeLost": "A laser crippled {name}'s eye: the crippling is permanent (One Eye, or Blindness with only one eye) (Ultra-Tech p. 114)."
       }
     }
   },

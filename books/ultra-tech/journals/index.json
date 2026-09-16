@@ -1943,6 +1943,7 @@
       "title": "Laser Dazzler",
       "chapter": "Weaponry",
       "pages": "UT113",
+      "rule": "gurps-compendium-content.laserOptions",
       "reference": "Ultra-Tech p. 113",
       "file": "laser-dazzler.md",
       "status": "reviewed"
