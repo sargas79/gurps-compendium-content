@@ -4377,7 +4377,7 @@
   },
   {
     "_id": "2449c71461978862",
-    "name": "Rescue Bubble",
+    "name": "Rescue Bubble (TL9)",
     "pages": "UT77",
     "status": "reviewed",
     "notes": "",
@@ -4385,7 +4385,7 @@
   },
   {
     "_id": "490ec866cd2399f3",
-    "name": "Survival Cocoon",
+    "name": "Survival Cocoon (TL11)",
     "pages": "UT78",
     "status": "reviewed",
     "notes": "",
@@ -8180,8 +8180,8 @@
     "name": "Boosted Reflexes",
     "pages": "UT210",
     "status": "reviewed",
-    "notes": "",
-    "description": "<p>These implanted glands release chemicals on mental command, triggering a controlled adrenaline-like response.</p><p><em>Statistics:</em> Basic Speed +2 (Costs Fatigue, 2 FP, -10%) [18]. 18 points.</p>"
+    "notes": "Basic Speed +1, per the errata; the book prints +2 at the same 18 points.",
+    "description": "<p>These implanted glands release chemicals on mental command, triggering a controlled adrenaline-like response.</p><p><em>Statistics:</em> Basic Speed +1 (Costs Fatigue, 2 FP, -10%) [18]. 18 points.</p>"
   },
   {
     "_id": "5c327080dc361e60",
@@ -9558,5 +9558,69 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>An apple-seed capsule that, injected or swallowed, turns its host into a bioplas nanomorph. Each hour, HT-4: a success kills the seed, a failure takes 3 HT. At HT 0 the host dies and the body becomes a nanomorph, with the seed's own AI, which may keep the host's mind as a ghost program. $10,000 a dose, or $100,000 for a mind-trapping seed.</p>"
+  },
+  {
+    "_id": "6f8f4e41e16f33cb",
+    "name": "Rescue Bubble (TL10)",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The TL10 rescue bubble: a man-sized self-sealing bag that inflates into an airtight bubble with 15 minutes of air once disconnected from a vehicle's life support. Four seconds to don and inflate (a Survival or Vacc Suit roll halves it); Move 1 inside; it floats. DR 1.</p>"
+  },
+  {
+    "_id": "a8b8e1f4762eba96",
+    "name": "Rescue Bubble (TL11)",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The TL11 rescue bubble: a man-sized self-sealing bag that inflates into an airtight bubble with 15 minutes of air once disconnected from a vehicle's life support. Four seconds to don and inflate (a Survival or Vacc Suit roll halves it); Move 1 inside; it floats. DR 1.</p>"
+  },
+  {
+    "_id": "1a6ffd1eab9a0d89",
+    "name": "Rescue Bubble (TL12)",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The TL12 rescue bubble: a man-sized self-sealing bag that inflates into an airtight bubble with 15 minutes of air once disconnected from a vehicle's life support. Four seconds to don and inflate (a Survival or Vacc Suit roll halves it); Move 1 inside; it floats. DR 1.</p>"
+  },
+  {
+    "_id": "9e5d9749867d69ab",
+    "name": "Survival Cocoon (TL12)",
+    "pages": "UT78",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The TL12 survival cocoon: a rescue bubble that floods with life-support gel and puts its user into hibernation, safe for a week and losing 1 HP a week after that. The gel makes it show on radar at 10 times normal range.</p>"
+  },
+  {
+    "_id": "25d4cb160efea863",
+    "name": "Bioplas One-Man Tent",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pressure tent of living bioplas with regenerative life support: effective for six weeks on its cells, then (occupancy) man-hours of air from its tank. It seals punctures up to an inch across and slowly repairs worse damage.</p>"
+  },
+  {
+    "_id": "38b049d20e4868a9",
+    "name": "Bioplas Three-Man Tent",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A three-person pressure tent of living bioplas with regenerative life support: effective for six weeks on its cells, then (occupancy) man-hours of air from its tank. It seals punctures up to an inch across and slowly repairs worse damage.</p>"
+  },
+  {
+    "_id": "a1eb82841b957402",
+    "name": "Bioplas Eight-Man Tent",
+    "pages": "UT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An eight-person pressure tent of living bioplas with regenerative life support: effective for eight weeks on its cell, then (occupancy) man-hours of air from its tank. It seals punctures up to an inch across and slowly repairs worse damage.</p>"
+  },
+  {
+    "_id": "d924709baab6d64f",
+    "name": "Total Cyborg Brain Transplant",
+    "pages": "UT219",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The brain case (brain and life support) that makes someone a total cyborg in a robot body, which is bought separately. The body takes a computer one size smaller than it was built for; at TL9 it must have been built for a microframe or larger, at TL10+ a personal computer. The character takes the body's template with the Cyborg lens. Radical operation (major at TL10-12).</p>"
   }
 ]

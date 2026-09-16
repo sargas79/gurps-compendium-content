@@ -518,6 +518,10 @@
       {
         "pattern": "^Surveillance Swarm \\(\"Surveillance Dust\"\\)$",
         "reason": "the Surveillance Swarm kept by hand with its swarm data (#227); the same gadget (p. 106)"
+      },
+      {
+        "pattern": "^Riot Shield$",
+        "reason": "a shield, kept by hand with its DB and DR (p. 188)"
       }
     ],
     "set": [
@@ -883,6 +887,148 @@
           "system.weight": 2
         },
         "reason": "$40, 2 lbs.; the $1 and 0.5 lb. read are a reload (p. 76; #243)"
+      },
+      {
+        "pattern": "^Grav Hammer$",
+        "set": {
+          "system.category": "weapon",
+          "system.rangedModes": [
+            {
+              "name": "attack",
+              "skill": "Beam Weapons (Pistol)",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "2d",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "doubleKnockback": true,
+              "accuracy": 0,
+              "scopeBonus": 0,
+              "halfDamageRange": 0,
+              "maxRange": 1,
+              "rangeIsStMultiple": false,
+              "rateOfFire": 1,
+              "projectiles": 1,
+              "shots": "",
+              "loaded": 0,
+              "reloadWeight": 0,
+              "ammunition": "",
+              "minSt": 0,
+              "twoHanded": false,
+              "weaponSt": null,
+              "thrown": false,
+              "mount": "",
+              "bulk": -2,
+              "recoil": 1,
+              "malfunction": null
+            }
+          ],
+          "system.weaponClass": "firearm"
+        },
+        "reason": "Beam Weapons (Pistol) or DX-4, 2d cr with Acc 0, Range C/1, RoF 1, Bulk -2, Rcl 1, and double knockback (p. 84); 3d at TL12 is the GM's"
+      },
+      {
+        "pattern": "^Grav Ram$",
+        "set": {
+          "system.category": "weapon",
+          "system.rangedModes": [
+            {
+              "name": "attack",
+              "skill": "Beam Weapons (Rifle)",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "4d",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "doubleKnockback": true,
+              "accuracy": 0,
+              "scopeBonus": 0,
+              "halfDamageRange": 0,
+              "maxRange": 1,
+              "rangeIsStMultiple": false,
+              "rateOfFire": 1,
+              "projectiles": 1,
+              "shots": "",
+              "loaded": 0,
+              "reloadWeight": 0,
+              "ammunition": "",
+              "minSt": 0,
+              "twoHanded": false,
+              "weaponSt": null,
+              "thrown": false,
+              "mount": "",
+              "bulk": -4,
+              "recoil": 1,
+              "malfunction": null
+            }
+          ],
+          "system.weaponClass": "firearm"
+        },
+        "reason": "Beam Weapons (Rifle) or DX-4, 4d cr with Acc 0, Range C/1, RoF 1, Bulk -4, Rcl 1, and double knockback (p. 84); 6d at TL12 is the GM's"
+      },
+      {
+        "pattern": "^Portable Tool Kit$",
+        "set": {
+          "system.cost": 600,
+          "system.listCost": 600,
+          "system.weight": 20,
+          "system.forSkills": [
+            "Armoury",
+            "Electrician",
+            "Mechanic",
+            "Machinist"
+          ],
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "B",
+                  "cells": 10,
+                  "endurance": "10 hr.",
+                  "raw": "10B/10 hr."
+                }
+              }
+            }
+          }
+        },
+        "reason": "most kits (Armoury, Electrician, Mechanic, Machinist) are $600, 20 lbs., 10B/10 hr. and are the basic equipment for their skill; the $1,200 read is the electronics kit's (p. 82)"
+      },
+      {
+        "pattern": "^Mini-Toolkit$",
+        "set": {
+          "system.cost": 200,
+          "system.listCost": 200,
+          "system.weight": 4,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "B",
+                  "cells": 5,
+                  "endurance": "10 hr.",
+                  "raw": "5B/10 hr."
+                }
+              }
+            }
+          }
+        },
+        "reason": "most mini-toolkits are $200, 4 lbs., 5B/10 hr.; the $400 read is the electronics kit's (p. 82). Its -2 (quality) has no grade, so it names no skill"
       }
     ]
   },
@@ -2407,6 +2553,32 @@
         "system.rangedModes.0.surge": true
       },
       "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy Battlesuit( Helmet)?$",
+      "set": {
+        "system.extensions.gurps-compendium-content.utArmor.ema": "standard",
+        "system.extensions.gurps-compendium-content.utArmor.emaUses": 10
+      },
+      "reason": "integral electromagnetic armour doubling DR against shaped-charge warheads and plasma bolts, off a D cell good for 10 uses (p. 184)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dreadnought Battlesuit( Helmet)?$",
+      "set": {
+        "system.extensions.gurps-compendium-content.utArmor.ema": "laminate",
+        "system.extensions.gurps-compendium-content.utArmor.emaUses": 20
+      },
+      "reason": "laminated armour with electromagnetic armour, triple DR against shaped-charge warheads and plasma bolts, off a D cell good for 20 uses (p. 185)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Warsuit$",
+      "set": {
+        "system.hardened": 1
+      },
+      "reason": "\"Its armor is Hardened\" (p. 186); its three levels against shaped charges and plasma bolts are the armour rule's"
     }
   ]
 }

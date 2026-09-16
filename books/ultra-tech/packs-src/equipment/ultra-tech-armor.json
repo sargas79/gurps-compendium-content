@@ -4776,7 +4776,15 @@
           ],
           "dr": 150
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "utArmor": {
+            "ema": "standard",
+            "emaUses": 10
+          }
+        }
+      }
     }
   },
   {
@@ -4813,7 +4821,15 @@
           ],
           "dr": 150
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "utArmor": {
+            "ema": "standard",
+            "emaUses": 10
+          }
+        }
+      }
     }
   },
   {
@@ -4961,7 +4977,15 @@
           ],
           "dr": 200
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "utArmor": {
+            "ema": "laminate",
+            "emaUses": 20
+          }
+        }
+      }
     }
   },
   {
@@ -4998,7 +5022,15 @@
           ],
           "dr": 200
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "utArmor": {
+            "ema": "laminate",
+            "emaUses": 20
+          }
+        }
+      }
     }
   },
   {
@@ -5074,7 +5106,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": null
+      "soleDr": null,
+      "hardened": 1
     }
   }
 ]

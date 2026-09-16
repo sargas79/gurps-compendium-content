@@ -105,6 +105,8 @@ export const IMPLANTS: Readonly<Record<string, ImplantProcedure>> = {
   // Uplift (pp. 218-219).
   "Finger Paws": { procedure: "major", count: 2, eased: at(11, "minor") },
   "Neural Uplift": { procedure: "radical", ...BRAIN, eased: at(10, "major") },
+  // Total cyborgs (p. 219).
+  "Total Cyborg Brain Transplant": { procedure: "radical", ...BRAIN, eased: at(10, "major") },
 };
 
 /** An implant's procedure entry by name, or null. */

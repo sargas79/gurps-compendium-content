@@ -94,5 +94,21 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>The robot is a pacifist toward certain species, usually its creator's species and other friendly species. However, its Pacifism does not apply to anything else. This is a -80% limitation on Pacifism. The species must be very common (like humans).</p>"
+  },
+  {
+    "_id": "5c11652a27049c3a",
+    "name": "Planetary",
+    "pages": "UT30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Flight that pushes off a planet's gravitational or magnetic field, useless away from a planet. Incompatible with Space Flight. -5%.</p>"
+  },
+  {
+    "_id": "511cabf7ffde4244",
+    "name": "Burst",
+    "pages": "UT31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Not for Directional Sound or Sonar Comm. Transmits a high-speed burst: +30% for 10 times normal speed, +60% for 100 times, +90% for 1,000 times, and so on; each factor of 10 gives -1 to intercept it.</p>"
   }
 ]
