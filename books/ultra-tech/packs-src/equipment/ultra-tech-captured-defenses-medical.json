@@ -1,0 +1,3893 @@
+[
+  {
+    "_id": "df408aa8ffa0ed66",
+    "name": "Second Skin",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 181",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "03a2ea342f6dc04a",
+    "name": "Magnetized Plates",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5d83377518ff5267",
+    "name": "Provisions Dispenser",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "70fd9e9c3b8f4508",
+    "name": "Waste-Relief System",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e1992994e5ae133d",
+    "name": "Ablative Foam",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "887332eb0c586a84",
+    "name": "Biomedical Sensors",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.2,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 187",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "24 hr.",
+              "raw": "A/24 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "fb940fbdbce2cbc9",
+    "name": "IFF Comm",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ef6245589839882a",
+    "name": "Life Jacket",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1006b3c83206218b",
+    "name": "Nasal Filter Plugs",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "8d3b3383f226aec3",
+    "name": "Near Miss Indicator",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "24 hr.",
+              "raw": "A/24 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "914baaeb9fe0db1e",
+    "name": "Personal Radar/Laser Detector",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "10 days.",
+              "raw": "A/10 days."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "199eefb9432e8255",
+    "name": "Mind Shield Helmet",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 2,
+              "endurance": "100 hr.",
+              "raw": "2B/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c8830298c032ecf7",
+    "name": "Mind Shield Circuitry",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 2,
+              "endurance": "100 hr.",
+              "raw": "2B/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6b813228e4ea50d4",
+    "name": "Telepathic Barrier",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9^",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "610c1b16c19a5f48",
+    "name": "Mind Shield Headband",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "B/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "416f0762dcda874b",
+    "name": "Radiation Badge",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "AA",
+              "cells": 1,
+              "endurance": "1 month.",
+              "raw": "AA/1 month."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "feb368a332e7c582",
+    "name": "Riot Shield",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "bfeb88d17a6df995",
+    "name": "Suit Patches",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a623a83215aabb78",
+    "name": "Trauma Maintenance",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "1 year.",
+              "raw": "A/1 year."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f4cb320b3578c29f",
+    "name": "Desert Environment System",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "bc70c848579e943c",
+    "name": "Microbot Arteries",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2559a354710430ae",
+    "name": "Reactive Armor Paste",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d852146369c1d916",
+    "name": "Interphase",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "83ef9dd6c7c77103",
+    "name": "Rainbow",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "767ff6b677746c15",
+    "name": "Smartcloak",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 189",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "815edd7d562564a0",
+    "name": "Force Shield Bracelet",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 192",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "30 min.",
+              "raw": "B/30 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "01e073acaa10db12",
+    "name": "Reflective Force Shield",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 3000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 192",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "30 min.",
+              "raw": "B/30 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "9eb90f24728a9f98",
+    "name": "Force Ward",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 193",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "24 hr.",
+              "raw": "D/24 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "65ac6045b4cd7ac3",
+    "name": "Nuclear Damper Projector",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 10000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 193",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "98e6c3d4f84b8509",
+    "name": "Portable Nuclear Damper Projector",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 193",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 2,
+              "endurance": "24 hours.",
+              "raw": "2D/24 hours."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0f47d6e7d78ef3b9",
+    "name": "Nuclear Damper Field",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4000,
+      "cost": 20000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 193",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "9e6d5323553ac43a",
+    "name": "Stasis Cube",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 40000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "10 uses.",
+              "raw": "C/10 uses."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "77d37576dd3a2420",
+    "name": "Stasis Chamber",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 2,
+              "endurance": "10 uses.",
+              "raw": "2D/10 uses."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "78473ef8d9d0b1c4",
+    "name": "Stasis Grid",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 14,
+      "cost": 144000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 144000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2da0737180342385",
+    "name": "Stasis Belt",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3.5,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "10 uses.",
+              "raw": "C/10 uses."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "fa0691fee939cb63",
+    "name": "Life-Support Belt",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "12 hr.",
+              "raw": "B/12 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "9aef30a30146f925",
+    "name": "Umbrella Field",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "24 hr.",
+              "raw": "D/24 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "645d1ff947b94ff6",
+    "name": "Umbrella Shield",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 194",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "24 hr.",
+              "raw": "B/24 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "13a195d975bb2ad5",
+    "name": "Local Reality Stabilizer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 400,
+      "cost": 2000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2f2687d1977e6a90",
+    "name": "Portable Reality Stabilizer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "12 hr.",
+              "raw": "D/12 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ffe94be9e7448dbf",
+    "name": "Individual Reality Stabilizer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "12 hr.",
+              "raw": "C/12 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "fd9d4b627eca1497",
+    "name": "Local Hypertime Field Generator",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 100,
+      "cost": 1000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "bf793efc1e0a3e35",
+    "name": "Personal Hypertime Field Generator",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 400000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 1,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 400000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 2,
+              "endurance": "8 hr.",
+              "raw": "2D/8 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e5c4af493b87991a",
+    "name": "Tau-Shield",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 195",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "180 min.",
+              "raw": "C/180 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "519e87309c30e018",
+    "name": "Anti-Toxin Kit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 196",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "086679891bc04971",
+    "name": "Automed",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 196",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "200 hr.",
+              "raw": "E/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "893f5756e216595c",
+    "name": "One-Use Bandage Spray",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 3,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 3,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7143b2c4a1619d18",
+    "name": "Bandage Spray Can",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 15,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "8b9715452f59ca66",
+    "name": "Biomonitor Bracelet",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "A/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "482b47fcf92c7c1b",
+    "name": "Biomonitor Autoinjector",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.15,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "A/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0d5254c09d4ef4e6",
+    "name": "Diagnostic Sensors",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 2,
+              "endurance": "1,000 hr.",
+              "raw": "2B/1,000 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e1386174d38f49b7",
+    "name": "Diagnostic Bed",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "E/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "4b38ea5127cfd117",
+    "name": "Diagnostic Web",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 150,
+      "cost": 30000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "E/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "105358be4b2eef11",
+    "name": "Diagnostic Probes",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "consumable",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1a2828fb35849f15",
+    "name": "Disposable Hypo",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.01,
+      "cost": 0.5,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0.5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "883120db43f68730",
+    "name": "Disposable Test Kit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 5,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 197",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5a49d121864938a4",
+    "name": "Hospital ESU",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 120,
+      "cost": 15000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Physician"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 4,
+              "endurance": "200 hr.",
+              "raw": "4D/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "60510e40a3970507",
+    "name": "Transport ESU",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 60,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Physician"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 2,
+              "endurance": "100 hr.",
+              "raw": "2D/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "51023b863188b0ee",
+    "name": "Wearable Life Support Unit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 4,
+              "endurance": "100 hr.",
+              "raw": "4C/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d11b2342b4b012d0",
+    "name": "Suitcase ESU",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "50 hr.",
+              "raw": "D/50 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "dadddcea1f602e36",
+    "name": "First Aid Kit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "First Aid"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2eeb1a0858c2675d",
+    "name": "Crash Kit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "First Aid"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "719d9dc1e54d599f",
+    "name": "Hibernation Chamber",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 200,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "65de25c6789e7b54",
+    "name": "Suspended Animation Tube",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 750,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 5,
+              "endurance": "10 years",
+              "raw": "5E/10 years"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b0d22326fbeea4f1",
+    "name": "Hibernation Case",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 125,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 5,
+              "endurance": "1 month.",
+              "raw": "5D/1 month."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "785680998b0eee98",
+    "name": "Hospital HyMRI",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 500,
+      "cost": 250000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 2,
+              "endurance": "10 hr",
+              "raw": "2E/10 hr"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "83811302847eec23",
+    "name": "Portable HyMRI",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 2,
+              "endurance": "1 hr.",
+              "raw": "2D/1 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "406f452554a86536",
+    "name": "Plasti-Skin",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.125,
+      "cost": 2,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 198",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "29d6331f942eaf8a",
+    "name": "Pneumohypo",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d2fe2962d7fa3f7f",
+    "name": "Medical Supplies",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Physician"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "41ae59952d0e4b05",
+    "name": "Medical Bed",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 100,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Physician"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "D/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "aadbc1ae755a6ff5",
+    "name": "Suit Doc",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 1,
+              "endurance": "100 hr.",
+              "raw": "C/100 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d7befb927e881829",
+    "name": "Diagnostic Smart Bandage",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.4,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ad75a2c0edf85b71",
+    "name": "Diagnostic Smart Bandage Spray",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 5,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "98304dfbec0579e3",
+    "name": "Surgical Instruments",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 199",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 300,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 5,
+              "endurance": "20 hr.",
+              "raw": "5B/20 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ef2c220838ef9369",
+    "name": "Operating Theater",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Surgery"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 20,
+              "endurance": "40 hr.",
+              "raw": "20C/40 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "2a219b35c320a639",
+    "name": "Portable Surgery",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Surgery"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 5,
+              "endurance": "40 hr.",
+              "raw": "5C/40 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c53e4abae6e9be03",
+    "name": "Specialized Operating Theater",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 1000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "tool",
+      "equipmentQuality": "best",
+      "forSkills": [
+        "Surgery"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 20,
+              "endurance": "40 hr.",
+              "raw": "20C/40 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0f3f376d6b262331",
+    "name": "Specialized Portable Surgery",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Surgery"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 5,
+              "endurance": "40 hr.",
+              "raw": "5C/40 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "009e305b7020d429",
+    "name": "Pocket Medic",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "10 hr.",
+              "raw": "B/10 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e3d2bdf686a90585",
+    "name": "Medscanner",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "10 hr.",
+              "raw": "B/10 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "16743277b8ece1fc",
+    "name": "Nanostasis Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 300000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 200",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 300000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "200 hours.",
+              "raw": "E/200 hours."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "614f60b2d3d2ea70",
+    "name": "Nanostasis Pod",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 500,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "200 hours",
+              "raw": "E/200 hours"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "ee50b039786c9e6a",
+    "name": "Neural Inhibitor",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "First Aid"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "A",
+              "cells": 1,
+              "endurance": "10 hr.",
+              "raw": "A/10 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6e89541826b82c47",
+    "name": "Regeneration Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 600,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 2,
+              "endurance": "200 hr.",
+              "raw": "2E/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "729fa2aaeab38c4c",
+    "name": "Rejuvenation Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 600,
+      "cost": 300000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 300000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 2,
+              "endurance": "200 hr.",
+              "raw": "2E/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a58152383ea34344",
+    "name": "Suitcase Doc",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "C",
+              "cells": 2,
+              "endurance": "10 hr.",
+              "raw": "2C/10 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "2c5b7262ad92d2d6",
+    "name": "Chrysalis Machine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 600,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 2,
+              "endurance": "200 hr.",
+              "raw": "2E/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "08dd574d3b2e1910",
+    "name": "Pocket Regenerator",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 202",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "B",
+              "cells": 1,
+              "endurance": "15 min.",
+              "raw": "B/15 min."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "21c926d24ace6e11",
+    "name": "Regeneration Ray",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2000,
+      "cost": 1000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 202",
+      "category": "tool",
+      "equipmentQuality": "best",
+      "forSkills": [
+        "Physician"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "20 hr.",
+              "raw": "E/20 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "df489fe5ce23ae02",
+    "name": "Scanning Net",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 6000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 204",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 6000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "b564f4362eb06fff",
+    "name": "Incubator Growth Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 204",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a6d2a7e2cfda0378",
+    "name": "Adult Growth Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 200,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 204",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7baec000c45be86b",
+    "name": "Incubator Biofab",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 50,
+      "cost": 200000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 204",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "20 hr.",
+              "raw": "D/20 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c263ab605a24103a",
+    "name": "Adult Biofab",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1000,
+      "cost": 4000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 204",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 4000000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "20 hr.",
+              "raw": "E/20 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b801a849cf220da7",
+    "name": "Analgine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5de1c2fb14ab91a4",
+    "name": "Antirad",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ede5d82b8bd7102b",
+    "name": "Hyperstim",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "554c3878a813624c",
+    "name": "Morphazine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5a28e061d38f2549",
+    "name": "Soothe",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 15,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f18dc4ab4ac4ee48",
+    "name": "Crediline",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 240,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 240,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "700166bf22246a7e",
+    "name": "Ascepaline",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "23ee67ae24dc78eb",
+    "name": "Purge",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "cbe4ddfa5cb77c00",
+    "name": "Memory-Beta",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "8ed076317877a9f4",
+    "name": "Tailored Immune Machines",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "10",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "bedb090f7623a73d",
+    "name": "Programmable Immune Machines",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 205",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "644c7e1b034b6f79",
+    "name": "Quickheal",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 206",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f4de68c6ce67b6f9",
+    "name": "Critical Repair Nano",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 206",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "bb275d5497761848",
+    "name": "Respirocytes",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 206",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "fc22b9512757e9f0",
+    "name": "Torpine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 206",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "93cd0ef0a84424fa",
+    "name": "Fast Regeneration Nano",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 206",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3bdf6f79b12b86cc",
+    "name": "Backup Brain",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 218",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "435ee34e92e80873",
+    "name": "Finger Paws",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 218",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "79380e76b4d0cd29",
+    "name": "Neural Uplift",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "9",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 218",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "953d91f6f7a085e4",
+    "name": "Clinical Mind Transference Equipment",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 250,
+      "cost": 500000,
+      "carried": true,
+      "equipped": false,
+      "tl": "10^",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 221",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "E",
+              "cells": 1,
+              "endurance": "200 hr.",
+              "raw": "E/200 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "09063e020f069204",
+    "name": "Portable Mind Transference Equipment",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 50000,
+      "carried": true,
+      "equipped": false,
+      "tl": "11^",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 221",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "D",
+              "cells": 1,
+              "endurance": "20 hr.",
+              "raw": "D/20 hr."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b584c9b43b514979",
+    "name": "Downloading Nanosurgery",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100000,
+      "carried": true,
+      "equipped": false,
+      "tl": "12",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "Ultra-Tech p. 221",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  }
+]

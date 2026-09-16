@@ -67,6 +67,27 @@
       { "pattern": "^(Heavy )?Ghost Particle Cannon$", "heading": "Ghost Particle Beam", "headingOnly": true }
     ]
   },
+  "capture": {
+    "skip": [
+      { "pattern": "^Transparent Bioplas$", "reason": "an option that doubles a bioplas outfit's price, not a gadget; its price is a table row read into the text (p. 174)" },
+      { "pattern": "^Energy Cloth$", "reason": "the armour family, whose pieces are the data file's records (p. 174)" },
+      { "pattern": "^Air Tanks$", "reason": "four tank sizes, each kept by hand (p. 177)" },
+      { "pattern": "^Metamorphosis$", "reason": "a technique; the price read under it is the Aegis nanobots', which are kept by hand (p. 206)" },
+      { "pattern": "^Biomonitor$", "reason": "the biomonitor bracelet (p. 197) again, under physician's equipment" },
+      { "pattern": "^(One|Two) Bionic (Arm|Eye)s?$", "reason": "the data file's Bionic Arm (One)/(Two) and Bionic Eye (One)/(Two)" },
+      { "pattern": "^Advanced Bionic Ears$", "reason": "the data file's Bionic Ears (Advanced)" },
+      { "pattern": "^Bionic Leg$", "reason": "the data file's Bionic Leg (One)/(Two)" },
+      { "pattern": "^Bionic Organ Transplants$", "reason": "the data file's Bionic Organ Transplant" },
+      { "pattern": "Cyberhair$", "reason": "the data file's Cyberhair (Shoulder-Length) and the rest" },
+      { "pattern": "^Skip Slot$", "reason": "the data file's Skip Slots" },
+      { "pattern": "^Neural Jack$", "reason": "the data file's Neural Interface Jack" },
+      { "pattern": "^Sensie Transceiver Jack$", "reason": "the data file's Sensie Transeiver Jack" }
+    ],
+    "set": [
+      { "pattern": "^Medical Supplies$", "set": { "system.forSkills": ["Physician"] }, "reason": "the +1 (quality) is to Physician treatment, named in the sentence before (p. 199)" },
+      { "pattern": "^Regeneration Ray$", "set": { "system.equipmentQuality": "best", "system.forSkills": ["Physician"] }, "reason": "+6 (quality) to Physician, which is best at TL12; the +2 is its use as a pocket regenerator (p. 202)" }
+    ]
+  },
   "types": {
     "creatures": "Actor"
   },

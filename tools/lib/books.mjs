@@ -138,6 +138,9 @@ export function book(slug) {
         headingOnly: rule.headingOnly === true,
       })),
     },
+    // For tools/capture-gear.mjs: gadget names it should not record, each a
+    // pattern and the reason.
+    capture: { skip: raw.capture?.skip ?? [], set: raw.capture?.set ?? [] },
     dir: join(booksRoot, slug),
   };
 }
