@@ -1,0 +1,73 @@
+{
+  "slug": "ultra-tech",
+  "title": "GURPS Ultra-Tech",
+  "label": "GURPS Ultra-Tech",
+  "prefix": "UT",
+  "reference": "Ultra-Tech",
+  "gdf": "GURPS Ultra-Tech 4e.gdf",
+  "modifiers": {
+    "from": 29,
+    "to": 32
+  },
+  "transcription": {
+    "pdfOffset": 1,
+    "pageLabel": "UT"
+  },
+  "notes": "GCA cites this book as UT113, the plain prefix. PDF page = book page + 1. The data file's header says it holds weapons and armour; it also holds the cybernetics twice (as advantages with point costs and as equipment with dollar costs), the power items and the computers. Chapters 3, 4, 5, 8 (medical gear and drugs) and 9 (vehicles) are not in it at all, so about 600 gadgets are captured from the PDF instead (#229). The parsers do not read the file's 35 templates, so the robot bodies and their lenses are kept by hand (#228). Six records also cite a Basic Set page and are left to the system's packs; none of the six is in the Basic Set pack, so all six are added by hand (#227). See TRIAGE.md.",
+  "exclude": [
+    {
+      "pack": "armor",
+      "pattern": "%",
+      "reason": "build-your-own armour whose DR, cost and weight are GCA sheet formulas over choice lists; the tailored armour builder covers them (#253)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Dazzle Laser Mode|Blinding Mode)$",
+      "reason": "settings every high-energy laser can have, not weapons of their own; derived rows on the laser (#246)"
+    }
+  ],
+  "patch": [
+    {
+      "pack": "equipment",
+      "pattern": "^Tiny Computer$",
+      "set": { "system.complexity": 3 },
+      "reason": "Complexity is only in the record's description, which the reader drops on purpose (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Small Computer$",
+      "set": { "system.complexity": 4 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Personal Computer$",
+      "set": { "system.complexity": 5 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Microframe$",
+      "set": { "system.complexity": 6 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Mainframe$",
+      "set": { "system.complexity": 7 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Macroframe$",
+      "set": { "system.complexity": 8 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Megacomputer$",
+      "set": { "system.complexity": 9 },
+      "reason": "Complexity is only in the record's description (p. 22)"
+    }
+  ]
+}
