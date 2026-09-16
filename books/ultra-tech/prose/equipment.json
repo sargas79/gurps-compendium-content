@@ -7792,7 +7792,7 @@
     "description": "<p>These contact neural disruptor weapons use neural induction technology to stimulate paralysis, pain, or orgasmic pleasure in the brain and nervous system. Neurolash weapons are used for covert operations, pranks, as selfdefense or dueling weapons, or by slavers, prison guards, and police of oppressive regimes.</p><p>Neurolash effects are affliction attacks identical in effect to a strike from a neural disruptor (pp. 121-122). Neurolash weapons come in all standard neural disruptor versions.</p><p>A neurolash is usually integrated into a baton or whip, but it may be added to any melee weapon. It delivers a HT5 (2) affliction attack. A neurolash generator is not compatible with force blade, sonic, vibro, or monowire weapons.</p>"
   },
   {
-    "_id": "a0f149e93a7ec14a",
+    "_id": "2152a3014f3f64c6",
     "name": "Sonic Shuriken",
     "pages": "UT166",
     "status": "reviewed",
@@ -9302,5 +9302,29 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>A pulse-coded laser, usually part of the weapon's laser sight, that challenges a target. A target wearing an IFF system answers, and the shooter's HUD marks it friendly, unknown or hostile. Its range is 500 yards at TL9, doubling each TL; beyond that the GM may ask for Electronics Operation (Sensors).</p>"
+  },
+  {
+    "_id": "cbf02a628447dd5e",
+    "name": "Karatands",
+    "pages": "UT163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Memory-plastic gloves that stay flexible until a blow lands, then stiffen into an edge. They hit like brass knuckles without looking like them, and can be built into flexible armour. $100 each, negligible weight.</p>"
+  },
+  {
+    "_id": "1afe01a228360df6",
+    "name": "Limpet Mine Dispenser",
+    "pages": "UT163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A sleeve worn on a battlesuit's or robot's arm that slaps sticky limpet mines onto a target with Brawling or DX. A hit does no damage itself: it sticks a mine on, set to go off from the end of the turn to 100 seconds later. Pulling one off takes a Ready and a ST roll at minus a tenth of the DR it's stuck to (at most -20), and 1 HP if it was on flesh; one somewhere the victim can't reach needs help. A magazine holds 10 mines, each a 25mm shaped-charge limpet grenade, and they can be left as booby traps but not thrown.</p>"
+  },
+  {
+    "_id": "a0f149e93a7ec14a",
+    "name": "Force Blade",
+    "pages": "UT166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A powered hilt that projects a knife-length blade of annihilating energy, up to about 18 inches, held in shape by a force field: a street weapon for where a full force sword would draw attention. Like every force sword it forms in a second after a Ready or a successful Fast-Draw, does burning damage with a (5) armour divisor and cauterizes what it cuts, can't break, and harms any weapon or limb it parries or that parries or blocks it short of a critical success. C/300 seconds.</p>"
   }
 ]

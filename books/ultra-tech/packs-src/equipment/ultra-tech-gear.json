@@ -19441,7 +19441,7 @@
       "carried": true,
       "equipped": false,
       "tl": "9",
-      "lc": 4,
+      "lc": 3,
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "Ultra-Tech p. 165",
@@ -19521,7 +19521,7 @@
       "carried": true,
       "equipped": false,
       "tl": "9",
-      "lc": 3,
+      "lc": 4,
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "Ultra-Tech p. 165",
@@ -19558,7 +19558,16 @@
           "isFlail": false,
           "minSt": 5,
           "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 0.5,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         },
         {
           "name": "Thrust",
@@ -19701,7 +19710,16 @@
           "isFlail": false,
           "minSt": 6,
           "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 2,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         },
         {
           "name": "Thrust",
@@ -19807,7 +19825,7 @@
   },
   {
     "_id": "a0f149e93a7ec14a",
-    "name": "Sonic Shuriken",
+    "name": "Force Blade",
     "type": "equipment",
     "system": {
       "quantity": 1,

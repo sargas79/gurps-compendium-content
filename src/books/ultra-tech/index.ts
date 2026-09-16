@@ -20,6 +20,7 @@ import { initComputers, readyComputers } from "./computers/index.js";
 import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { readyInterfaces } from "./interfaces/index.js";
+import { initMelee, readyMelee } from "./melee/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
@@ -63,6 +64,9 @@ const RULES = [
   { key: "hotshots", pages: "p. 133", implemented: true },
   { key: "firearmAccessories", pages: "pp. 149-152", implemented: true },
   { key: "warheads", pages: "pp. 152-159", implemented: true },
+  { key: "bladeTech", pages: "pp. 162-164", implemented: true },
+  { key: "energyMelee", pages: "pp. 164-166", implemented: true },
+  { key: "forceSwords", pages: "pp. 164, 166", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -99,6 +103,7 @@ function init(): void {
   initFabrication();
   initTransport();
   initAccessories();
+  initMelee();
   registerRecordData();
 }
 
@@ -120,6 +125,7 @@ function ready(api: GWorldApi): void {
   readyUploading(api, rule("uploading"));
   // After the computers (a program's table price) and before the sensors (a lock replaced by active-sensor targeting).
   readyAccessories(api, rule("firearmAccessories"));
+  readyMelee(api, { blades: rule("bladeTech"), energy: rule("energyMelee"), force: rule("forceSwords") });
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });

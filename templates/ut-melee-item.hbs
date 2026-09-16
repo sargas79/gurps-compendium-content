@@ -1,0 +1,43 @@
+{{!-- A melee weapon's ultra-tech blade, vibro field, rocket striker, neurolash or length (Ultra-Tech pp. 162-166). --}}
+<div class="isub" data-gcc-ut-melee-section>
+  <div class="isub-head">{{localize "GCC.UT.Melee.Title"}}</div>
+  <div class="ifields">
+    {{#if blades}}
+      {{#if edged}}
+        <label data-tooltip="{{localize 'GCC.UT.Melee.BladeTooltip'}}">{{localize "GCC.UT.Melee.BladeLabel"}}
+          <select data-gcc-ut-melee="blade" {{#unless editable}}disabled{{/unless}}>
+            {{#each bladeChoices as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+      <label data-tooltip="{{localize 'GCC.UT.Melee.ReachHint'}}">{{localize "GCC.UT.Melee.Reach"}}
+        <input type="number" data-gcc-ut-melee="reach" value="{{data.reach}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+  </div>
+  <div class="ichecks">
+    {{#if blades}}
+      {{#if edged}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.VibroHint'}}"><input type="checkbox" data-gcc-ut-melee="vibro" {{#if data.vibro}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.Vibro"}}</label>{{/if}}
+      {{#if rocketFits}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.RocketHint'}}"><input type="checkbox" data-gcc-ut-melee="rocketStriker" {{#if data.rocketStriker}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.RocketLabel"}}</label>{{/if}}
+    {{/if}}
+    {{#if energy}}
+      {{#if neurolashFits}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.NeurolashHint'}}"><input type="checkbox" data-gcc-ut-melee="neurolash" {{#if data.neurolash}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.Neurolash"}}</label>{{/if}}
+      {{#if neural}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.HighPowerHint'}}"><input type="checkbox" data-gcc-ut-melee="highPower" {{#if data.highPower}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.HighPower"}}</label>{{/if}}
+      {{#if shuriken}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.SprayerHint'}}"><input type="checkbox" data-gcc-ut-melee="sprayer" {{#if data.sprayer}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.Sprayer"}}</label>{{/if}}
+    {{/if}}
+    {{#if force}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Melee.VariableHint'}}"><input type="checkbox" data-gcc-ut-melee="variableLength" {{#if data.variableLength}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Melee.Variable"}}</label>{{/if}}
+  </div>
+  {{#if neural}}
+    <div class="ichecks">
+      {{#if tunable}}{{#each settingChoices as |s|}}<label class="icheck"><input type="checkbox" data-gcc-ut-melee-built="{{s.value}}" {{#if s.built}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{s.label}}</label>{{/each}}{{/if}}
+    </div>
+    <div class="ifields">
+      <label>{{localize "GCC.UT.Melee.SettingLabel"}}
+        <select data-gcc-ut-melee-setting {{#unless editable}}disabled{{/unless}}>
+          {{#each settingChoices as |s|}}<option value="{{s.value}}" {{#if s.active}}selected{{/if}}>{{s.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>
