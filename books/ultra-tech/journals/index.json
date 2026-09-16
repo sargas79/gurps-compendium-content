@@ -2042,6 +2042,7 @@
       "title": "Options",
       "chapter": "Weaponry",
       "pages": "UT132",
+      "rule": "gurps-compendium-content.beamOptions",
       "reference": "Ultra-Tech p. 132",
       "file": "options.md",
       "status": "reviewed"
@@ -2051,6 +2052,7 @@
       "title": "Hotshots and Overheating",
       "chapter": "Weaponry",
       "pages": "UT133",
+      "rule": "gurps-compendium-content.hotshots",
       "reference": "Ultra-Tech p. 133",
       "file": "hotshots-and-overheating.md",
       "status": "reviewed"
