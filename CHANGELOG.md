@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.10.0 — The Martial Arts pack extracted again, and the last twofer
+
+Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
+**gworld v1.12.0**, which this release requires (add-on API 1.45.0).
+
+- **The Martial Arts pack, extracted again (#220):** the system's parser reads
+  the forms it used to reject, so the book's techniques come in whole.
+  - 564 technique records, up from 312: those bought for any skill of a kind —
+    Disarming, Wrist Lock, Dual-Weapon Defense and the rest — now carry the
+    skills the book allows them, and those bought off a Parry, Block, Dodge or
+    an attribute are in too.
+  - Nothing already in the pack changed, ids included, so characters stay linked.
+  - Three weapons whose only attacks add the unarmed damage bonus (Bladed Hand,
+    Myrmex, Sap Glove) come in, and seven others gain modes of that kind.
+  - Each new record carries the book's text for its technique. Nine records of
+    three techniques the journal has no page for, and the three new weapons, have
+    none.
+- **All-Out Grapple and Strike (#222):** grabbing a second foe in the same turn
+  takes the Dual-Weapon Attack's -4, and a fighter holding two foes can ram them
+  together — each defends, and each takes thrust-1 crushing where he was held,
+  +1 only for two skulls.
+
 ## v0.9.0 — Grappling, biting and bodies in close combat
 
 Built from the Basic Set, Monster Hunters 1, Magic and Martial Arts against
