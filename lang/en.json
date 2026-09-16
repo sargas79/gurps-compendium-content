@@ -2201,7 +2201,8 @@
         "ReloadOnCombat": "Reload on the Combat tab",
         "WeaponHint": "A weapon's cells are changed with its Reload button, which offers Fast-Draw (Ammo) to take a second off (Ultra-Tech p. 19).",
         "Supplies": "{cells} {size} cells",
-        "SupplyPacks": "{cells} {size} cells, worn as a pack"
+        "SupplyPacks": "{cells} {size} cells, worn as a pack",
+        "EnduranceScaled": "lasts {endurance}, x{factor} for this build"
       },
       "Computer": {
         "Title": "Computer",
@@ -2309,7 +2310,8 @@
           "TimeSpent": "Time spent",
           "NoSkill": "{name} has no Cryptography skill.",
           "RollLabel": "Cryptography: breaking {standard} encryption"
-        }
+        },
+        "HardenedLine": "{name} (hardened)"
       },
       "Swarm": {
         "Title": "Swarm",
@@ -2457,7 +2459,10 @@
         "Malfunction": "{name} malfunctions on {number} or more.",
         "Corrosion": "{name}'s DR there drops by {dr} (1 per 5 points of corrosion).",
         "SolarRecharge": "Recharges {hours} hours of running for each hour dormant in full sunlight.",
-        "Replicating": "Doubles every hour or so while it has something to eat: {squareYards} sq. yd. become {after} in six hours."
+        "Replicating": "Doubles every hour or so while it has something to eat: {squareYards} sq. yd. become {after} in six hours.",
+        "ChameleonLabel": "Chameleon system",
+        "ChameleonHint": "A chameleon surface over the swarm, priced and weighed as a suit for each square yard; the deployed swarm gets its Stealth bonus (Ultra-Tech pp. 98-99).",
+        "NoChameleon": "None"
       },
       "Robot": {
         "Title": "Robot",
@@ -2530,7 +2535,8 @@
           "Condition": "Sensors painted over",
           "Panic": "IQ: not panicking while blinded",
           "Panicked": "{name} panics, spinning out of control or firing wildly for {turns} turns.",
-          "Calm": "{name} keeps its head: it retreats, or relies on other sensors."
+          "Calm": "{name} keeps its head: it retreats, or relies on other sensors.",
+          "Scanning": "{name} still has radar or scanners: no penalty to hit."
         },
         "Paradox": {
           "Title": "Logical paradox",
@@ -2858,7 +2864,8 @@
         "Destroyed": "Died of a blow to the skull or eye",
         "Rads": "Rads absorbed",
         "Unuploadable": "{name}'s brain can't be uploaded: destroyed, irradiated past 5,000 rads, or killed by a blow to the skull or eye.",
-        "Overlay": "Overdubbing a conscious mind may blend the two: Split Personality with {least} to {most} points of other mental disadvantages each."
+        "Overlay": "Overdubbing a conscious mind may blend the two: Split Personality with {least} to {most} points of other mental disadvantages each.",
+        "Housing": "A total cyborg brain case is ${brainCase} plus the robot body; a mind emulation takes about {terabytes} TB, run on a computer or kept as a backup."
       },
       "Sensor": {
         "Title": "Comms and sensors",

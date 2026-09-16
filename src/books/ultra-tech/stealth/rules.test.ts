@@ -20,6 +20,8 @@ import {
   forgeryToolByName,
   geckoLimbs,
   isGravitic,
+  CHAMELEON_SUIT,
+  CHAMELEON,
 } from "./rules.js";
 
 describe("chameleon surfaces (Ultra-Tech pp. 98-99)", () => {
@@ -127,5 +129,12 @@ describe("covert gear with numbers (#299, pp. 96-97)", () => {
     expect(forgeryRoll("wallet", 11, 8)).toEqual({ ownSkill: 15, bonus: 0, fails: false });
     expect(forgeryRoll("holoPaper", 11, 11).fails).toBe(true);
     expect(forgeryRoll("holoPaper", 11, 9).fails).toBe(false);
+  });
+});
+
+describe("chameleon systems on a swarm (#299)", () => {
+  it("prices a surface as a suit (pp. 98-99)", () => {
+    expect(CHAMELEON_SUIT.thermoOptic).toEqual({ cost: 4000, weight: 4 });
+    expect(Object.keys(CHAMELEON_SUIT)).toEqual(Object.keys(CHAMELEON));
   });
 });

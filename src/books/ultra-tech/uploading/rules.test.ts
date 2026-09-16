@@ -10,6 +10,8 @@ import {
   emulationComplexity,
   lowerResolution,
   nonDestructiveResult,
+  CYBORG_BRAIN_CASE,
+  EMULATION_TERABYTES,
 } from "./rules.js";
 
 const ok = { success: true, criticalFailure: false, margin: 2 };
@@ -63,5 +65,12 @@ describe("mind emulations and downloading (Ultra-Tech pp. 220-221)", () => {
     expect(copyEffects("veryLowRes")).toMatchObject({ skillPoints: 0.25, iq: -1 });
     expect(copyEffects("full")).toBeNull();
     expect(copiedSkillPoints(7, 0.25)).toBe(1);
+  });
+});
+
+describe("what an upload goes into (#299)", () => {
+  it("prices a brain case and sizes a mind emulation (pp. 219-220)", () => {
+    expect(CYBORG_BRAIN_CASE).toBe(40000);
+    expect(EMULATION_TERABYTES).toBe(100);
   });
 });

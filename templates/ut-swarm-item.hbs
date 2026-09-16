@@ -21,6 +21,11 @@
         {{#each powers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
       </select>
     </label>
+    <label data-tooltip="{{localize 'GCC.UT.Swarm.ChameleonHint'}}">{{localize "GCC.UT.Swarm.ChameleonLabel"}}
+      <select data-gcc-ut-swarm="chameleon" {{#unless editable}}disabled{{/unless}}>
+        {{#each chameleons as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
     {{#unless typeFromName}}
       <label data-tooltip="{{localize 'GCC.UT.Swarm.TypeHint'}}">{{localize "GCC.UT.Swarm.TypeLabel"}}
         <select data-gcc-ut-swarm="type" {{#unless editable}}disabled{{/unless}}>

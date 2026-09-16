@@ -137,3 +137,7 @@ export function copiedSkillPoints(points: number, fraction: number): number {
 
 /** A personality overlay's blend: Split Personality with -10 to -30 points of other mental disadvantages each (p. 221). */
 export const OVERLAY_DISADVANTAGES = Object.freeze({ least: -10, most: -30 });
+
+/** A total cyborg's brain case is $40,000 plus the robot body (p. 219); a mind emulation takes about 100 TB (p. 220). */
+export const CYBORG_BRAIN_CASE = 40000;
+export const EMULATION_TERABYTES = 100;

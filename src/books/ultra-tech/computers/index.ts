@@ -11,6 +11,9 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { beamFamily } from "../beams/rules.js";
+import { registerPowerAdjuster } from "../power/data.js";
+import { loadsOf } from "../warheads/index.js";
 import { DIFFICULTIES, computerData, isProgram, modelOf, registerComputerData, storeComputer, type ComputerData } from "./data.js";
 import {
   AI_KINDS,
@@ -265,6 +268,24 @@ async function breakEncryption(api: GWorldApi): Promise<void> {
 
 /** Registers the table-side parts. */
 export function readyComputers(api: GWorldApi, on: () => boolean): void {
+  // A compact computer uses half the power cells for half the time (p. 23).
+  registerPowerAdjuster((item) => {
+    if (!on()) return null;
+    const computer = computerOf(item);
+    return computer && computer.cellFactor !== 1 ? { cells: computer.cellFactor, endurance: computer.cellFactor } : null;
+  });
+
+  // A hardened computer's +3 HT against an attack on electrical gadgets: an EMP warhead or a microwave beam (p. 23).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on() || !context?.tags?.includes?.("resist") || !context.attack?.item) return;
+    const item = context.attack.item;
+    const index = Math.max(0, Math.floor(Number(context.attack.mode?.index) || 0));
+    const emp = loadsOf(item).some((l) => l.mode === index && l.kind === "emp") || beamFamily(String(item.name ?? "")) === "microwave";
+    if (!emp) return;
+    const hardened = computersOf(context.actor).filter((row) => row.computer.hardening > 0).sort((a, b) => b.computer.hardening - a.computer.hardening)[0];
+    if (hardened) context.modifiers.push({ label: F("HardenedLine", { name: hardened.item.name }), value: hardened.computer.hardening });
+  });
+
   // Options reprice the computer from the model's figures, and extra storage
   // adds to it (p. 23); a program with no price of its own takes the table's (p. 25).
   api.data.registerPriceModifier({

@@ -30,6 +30,8 @@ import {
   emulationComplexity,
   nonDestructiveResult,
   type Resolution,
+  CYBORG_BRAIN_CASE,
+  EMULATION_TERABYTES,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Upload.${key}`);
@@ -189,6 +191,7 @@ async function download(api: GWorldApi): Promise<void> {
     if (answer.apply) lines.push(...await applyCopy(host, resolution));
   }
   if (result.outcome !== "brainDestroyed") lines.push(L("MindTransfer"));
+  lines.push(F("Housing", { brainCase: CYBORG_BRAIN_CASE.toLocaleString(), terabytes: EMULATION_TERABYTES }));
   await whisper(L("DownloadTitle"), lines);
 }
 

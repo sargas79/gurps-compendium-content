@@ -65,7 +65,7 @@ export function enduranceLeft(data: PowerData): { total: number; left: number } 
   if (hours === null) return null;
   const multiplier = enduranceMultiplier(data);
   if (multiplier === null) return "unlimited";
-  const total = hours * multiplier;
+  const total = hours * multiplier * (data.enduranceFactor ?? 1);
   return { total, left: Math.max(0, total - data.hoursUsed) };
 }
 
@@ -130,7 +130,7 @@ function itemContext(item: any): Record<string, unknown> {
     supply: supplyText(data),
     ranged,
     price: cell ? F("CellPrice", { size: cell.size, cost: cellCost(cell.size, data), lc: lc === null ? L("NoLc") : `LC${lc}` }) : "",
-    endurance: data.draw?.endurance ? F("Endurance", { endurance: data.draw.endurance }) : "",
+    endurance: data.draw?.endurance ? F(data.enduranceFactor !== 1 ? "EnduranceScaled" : "Endurance", { endurance: data.draw.endurance, factor: data.enduranceFactor }) : "",
     shots: ranged ? (shots === null ? L("ShotsUnlimited") : shots !== 1 ? F("ShotsTimes", { times: shots }) : "") : "",
     blast: blast ? F("Blast", { dice: blast.dice, ref: blast.ref, tl }) : "",
     smaller: cell ? CELL_SIZES.slice(0, CELL_SIZES.indexOf(cell.size)).reverse().map((size) => ({ size, cells: (substituteCells(cell.size, size) ?? 0) * cell.cells })) : [],
