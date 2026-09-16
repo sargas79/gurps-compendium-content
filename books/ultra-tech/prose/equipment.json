@@ -1,5 +1,45 @@
 [
   {
+    "_id": "50ec3cfe41517d76",
+    "name": "Hand Grenade",
+    "pages": "UT146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the standard grenade, about the size of a baseball. It has the same effect as a 64mm warhead.</p>"
+  },
+  {
+    "_id": "5e559e104a6c6309",
+    "name": "Mini Hand Grenade",
+    "pages": "UT146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An easy-to-conceal grenade the size of a golf ball. It has the effect of a 40mm warhead.</p>"
+  },
+  {
+    "_id": "64c92762c038013a",
+    "name": "Thimble Grenade",
+    "pages": "UT146",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny grenade one inch in diameter. It has the same effect as a 25mm warhead.</p>"
+  },
+  {
+    "_id": "60770f1468ef09a2",
+    "name": "Saucer Grenade",
+    "pages": "UT147",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These grenades come in a aerodynamic disk shape, and are sheathed in a flexible rubberized plastic. They are armed the same way as other grenades, and come in both ordinary and smart versions. Their effect is the same as a mini-grenade, but they're bulkier due to their shape; only one can fit in a large pocket.</p><p>Use Throwing skill to hurl them, but instead of using the throwing rules, treat them as a thrown weapon with the statistics shown below. The rubberized sheath allows them to be bounced around corners: roll at -3 to get the grenade to do this. If a saucer grenade misses and scatters (p. B414), and an obstacle blocks it before it travels the full scatter distance, the grenade will bounce back the remaining yards in the opposite direction.</p>"
+  },
+  {
+    "_id": "782184e71bbd9010",
+    "name": "Limpet Mine",
+    "pages": "UT147",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Limpets are similar to hand grenades, but are not balanced for throwing. Instead, they can stick (or unstick) to almost any surface upon receiving the correct communicator pulse. They can also be used as handheld weapons (with any preset delay) by slapping them on a target, from a human to a starship.</p><p>Limpets may be worn on armor as defensive decoys: e.g., limpets filled with prismatic smoke can be set to trigger instantly if laser sensors detect a laser beam. To remove a limpet without the proper code, roll vs. ST-5, one try per second. Pulling one off of flesh does one point of damage. Otherwise, limpet mines have the same statistics as smart grenades.</p>"
+  },
+  {
     "_id": "a554ad9cc16ace7f",
     "name": "Massage Swarm",
     "pages": "UT41",
@@ -14,6 +54,2462 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>These swarmbots are equipped to play and interact with one another in an amusing fashion. For example, a \"farm in a box\" might contain `bots that look and act like tiny animals, agricultural robots, human farmers, and so on.</p>"
+  },
+  {
+    "_id": "435f206f1149c80e",
+    "name": "Devourer Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These swarmbots have small diamond jaws; a swarm can chew through almost any barrier or armor, given time. They inflict 1d(2) corrosion damage per second to anyone caught within the swarm. This is considered an area-effect attack, and only sealed DR will protect against it. High-density swarms are most effective!</p>"
+  },
+  {
+    "_id": "00f71779abd67eaf",
+    "name": "Gremlin Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The swarm is equipped with tiny drills and cutters. It is programmed to crawl inside electronic or mechanical devices , then jam up the works by slicing through wires, eating circuits, and so on. Only sealed machinery or electronics, or devices lacking small moving parts, will be safe. The sabotage is not immediately obvious.</p><p>Each square yard of swarm does one point of damage per turn to unsealed machinery, ignoring armor DR. The machinery acquires a malfunction number (p. B407) of 17, with an extra -1 each time it loses 10% of its HP. Check nonweapon devices for malfunction when they are turned on and each minute they are in use Damage caused by gremlins doesn't physically destroy an object, but is treated like other damage for repair purposes.</p>"
+  },
+  {
+    "_id": "a7f5f3a82d48959d",
+    "name": "Stinger Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These tiny robots have stinging needles with soporific venom. The swarm does one point of Fatigue damage per turn to living beings (only) in contact with it unless they have Sealed protection.</p>"
+  },
+  {
+    "_id": "32ade7cb50e35456",
+    "name": "Terminator Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These microbots have tiny jaws or poison needles. The swarm does one point of toxic damage per turn to living beings (only) in contact with it, unless they have Sealed protection.</p>"
+  },
+  {
+    "_id": "432466c1f73ad4ef",
+    "name": "Disassembler Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This cloud of nanomachines is programmed to break down matter; the nanobots stick to anything in the area of effect and begin to eat, reducing the target to powder or goo. A disassembler swarm inflicts 1d-2(10) corrosion damage per second to anyone caught within the swarm. This is considered an area-effect attack, and only sealed DR will protect against it.</p><p>Used as a digging tool, disassemblers can turn packed earth or stone into fine powder, digging two inches within the radius of the cloud every second.</p><p>Specialized disassembler nano can be manufactured not to eat certain chemical compounds, or to only eat certain compounds, or to last for shorter or longer times than the standard 30 seconds. It's possible to design disassemblers that won't touch organic materials, that will only eat organics (\"kill the people but leave the buildings standing\"), or that will eat anything except a certain complex polymer or alloy being used to line the container in which they are stored.</p><p>Disassembler costs $10,000 per square yard for standard types, possibly more for custom models. It is not available as a microbot swarm. LC1 (for most types).</p>"
+  },
+  {
+    "_id": "c06c62e8665144ab",
+    "name": "Cannibal Swarm",
+    "pages": "UT169",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This swarm is programmed to cannibalize other objects to build a single, specific gadget. It must first find an object that contains raw materials suitable for the task. Creating mechanical devices such as guns and engines requires objects made of metal. Plastics can be broken down to make gas and propellants. Creating electronic devices requires cannibalizing other electronic systems; any such device in the area takes damage as per a disassembler swarm (above). Whatever is cannibalized is destroyed - or, more accurately, transformed.</p><p>Each cannibal swarm is specific to one gadget or weapon. However, a swarm may build several closely related gadgets that are put together into one object. For example, a swarm may build a gun with a laser sight, a helmet with built-in infrared goggles, or a robot. The maximum weight of the gadget is 10 pounds per square yard of the swarm.</p><p>Assembly takes one minute per pound of gadget weight, divided by the size of the swarm in square yards. The process produces residual heat, so it is best to employ it on a nonflammable surface (such as a concrete floor) and turn off the smoke detectors. A cannibal swarm's cost is 15 times that of the intended gadget or $15,000 per square yard, whichever is greater. Cannibal swarms are LC1 or the LC of whatever they build, whichever is lower.</p>"
+  },
+  {
+    "_id": "db9b472b0ec3e412",
+    "name": "Dazzler Carbine",
+    "pages": "UT113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A long-range dazzler weapon, most often used for police or covert operations (disrupting crowds, blinding suspects, causing vehicle accidents).</p>"
+  },
+  {
+    "_id": "a1b6289f851b55d7",
+    "name": "Laser Penlight",
+    "pages": "UT113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ultra-tech flashlights have a \"laser dazzle\" setting; see Flashlights (p. 74) for descriptions. The combat statistics are presented below.</p>"
+  },
+  {
+    "_id": "3ef3f3db2933608e",
+    "name": "Mini Laser Flashlight",
+    "pages": "UT113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ultra-tech flashlights have a \"laser dazzle\" setting; see Flashlights (p. 74) for descriptions. The combat statistics are presented below.</p>"
+  },
+  {
+    "_id": "8a9ff1cafa5380a9",
+    "name": "Heavy Laser Flashlight",
+    "pages": "UT113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ultra-tech flashlights have a \"laser dazzle\" setting; see Flashlights (p. 74) for descriptions. The combat statistics are presented below.</p>"
+  },
+  {
+    "_id": "0acb3eb90f3b383e",
+    "name": "Laser Searchlight",
+    "pages": "UT113",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Ultra-tech flashlights have a \"laser dazzle\" setting; see Flashlights (p. 74) for descriptions. The combat statistics are presented below.</p>"
+  },
+  {
+    "_id": "8e91230af0db7294",
+    "name": "Heavy Laser Pistol",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "f992fa62b74b570d",
+    "name": "Holdout Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "4f90e2d62d5a2fc2",
+    "name": "Laser Pistol",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "3333aefc2d9caa17",
+    "name": "Laser Crystal",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An 1/8-inch-diameter solid-state laser projector with an integral one-shot power cell. It is surgically inserted just under the skin; this takes only a minute in an automed (p. 196). Firing is triggered by a specific nerve impulse - if implanted in a finger, it might be fired by clenching the fist while pointing at the target. When fired, it burns through the skin (a thin enough layer that no damage is taken). It's possible to equip multiple fingers and fire them simultaneously; treat this as a single attack with a RoF equal to the number of laser crystals.</p>"
+  },
+  {
+    "_id": "27ad377e453a67bd",
+    "name": "Assault Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an early-TL9 chemicalpumped laser. It is most often used for microgravity combat. If its chemical power pack is attacked, it has SM-4, DR 10, HP 7; if disabled, it inflicts 1d corrosion damage in a 1yard radius.</p>"
+  },
+  {
+    "_id": "1ce0a78cb3b500d5",
+    "name": "Laser Sniper Rifle",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky but accurate chemical laser rifle, used as a battlefield sniping weapon. Its backpack chemical tank has the same vulnerability as the chemical laser carbine.</p>"
+  },
+  {
+    "_id": "97aeeb90d83044c2",
+    "name": "Dinosaur Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "e3a8dfeeb0d4ef07",
+    "name": "Laser Carbine",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "4393727fa3454782",
+    "name": "Laser Rifle",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "f134d576d9dc2912",
+    "name": "Survival Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A carbine version of the heavy laser pistol. Survival lasers are designed to be broken down into four pocket-sized components, which take one minute to assemble or disassemble. Although the survival laser is not very powerful, it is a good choice as a survival weapon due to its excellent accuracy (useful when shooting small game) and the modest drain it imposes on power cells. It is also a favorite weapon of assassins.</p>"
+  },
+  {
+    "_id": "49e61a36ca59cf0b",
+    "name": "Area Defense Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is built to engage lightly armored targets, such as TL9 spacecraft and ballistic missiles, at a range of a few hundred miles.</p>"
+  },
+  {
+    "_id": "b39b31a302ba1677",
+    "name": "Point Defense Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a vehicle-mounted system. It is designed to destroy soft targets like missiles, aircraft, and personnel at a range of several miles, with minimal collateral damage.</p>"
+  },
+  {
+    "_id": "59d4a4041be5e934",
+    "name": "Semi-Portable Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This continuous-beam chemical-powered weapon is the size of a heavy machine gun. Its chemical tank is separate, and has SM-2, DR 10, HP 12. If disabled, the chemical splash inflicts 2d corrosion damage over a 2-yard radius.</p>"
+  },
+  {
+    "_id": "3b9aa5464f050c0f",
+    "name": "Gatling Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rapid-fire laser weapon. Infantry use these on a tripod; they're also often vehicle mounted or used as \"small arms\" by powered troopers.</p>"
+  },
+  {
+    "_id": "94f2aadf1704fb90",
+    "name": "Laser Cannon",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "cba6aa260149734b",
+    "name": "Strike Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "f85269f2e56cb0ce",
+    "name": "Heavy Blue-Green Laser Pistol",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "46324364ebea162d",
+    "name": "Holdout Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "7b76e0a28bbe562a",
+    "name": "Blue-Green Laser Pistol",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "8abc8b9bd28f7b13",
+    "name": "Blue-Green Laser Crystal",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>An 1/8-inch-diameter solid-state laser projector with an integral one-shot power cell. It is surgically inserted just under the skin; this takes only a minute in an automed (p. 196). Firing is triggered by a specific nerve impulse - if implanted in a finger, it might be fired by clenching the fist while pointing at the target. When fired, it burns through the skin (a thin enough layer that no damage is taken). It's possible to equip multiple fingers and fire them simultaneously; treat this as a single attack with a RoF equal to the number of laser crystals.</p>"
+  },
+  {
+    "_id": "a1112757afb598bf",
+    "name": "Dinosaur Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "53aac144862b8bb7",
+    "name": "Blue-Green Laser Carbine",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "df32d9921c3e4c30",
+    "name": "Blue-Green Laser Rifle",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "1bbe369f9a79c1bb",
+    "name": "Survival Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A carbine version of the heavy laser pistol. Survival lasers are designed to be broken down into four pocket-sized components, which take one minute to assemble or disassemble. Although the survival laser is not very powerful, it is a good choice as a survival weapon due to its excellent accuracy (useful when shooting small game) and the modest drain it imposes on power cells. It is also a favorite weapon of assassins.</p>"
+  },
+  {
+    "_id": "e08d74caa8af35df",
+    "name": "Area Defense Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>This is built to engage lightly armored targets, such as TL9 spacecraft and ballistic missiles, at a range of a few hundred miles.</p>"
+  },
+  {
+    "_id": "a38e2dba09fcfdb4",
+    "name": "Point Defense Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>This is a vehicle-mounted system. It is designed to destroy soft targets like missiles, aircraft, and personnel at a range of several miles, with minimal collateral damage.</p>"
+  },
+  {
+    "_id": "4a6d61ac60ee4c65",
+    "name": "Gatling Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A rapid-fire laser weapon. Infantry use these on a tripod; they're also often vehicle mounted or used as \"small arms\" by powered troopers.</p>"
+  },
+  {
+    "_id": "4a7d6e79ef49ce4e",
+    "name": "Blue-Green Laser Cannon",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "453b6551fd47cbfb",
+    "name": "Strike Blue-Green Laser",
+    "pages": "UT114",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard laser light frequency for high-energy laser weapons shown on the weapon table is red or near-infrared light, but there are other alternatives. One of the most popular is the shorter blue-green wavelengths. Blue-green lasers require more power to generate, but permit greater ranges, and can also propagate underwater.</p><p>Any high-energy laser except a chemical laser can be designed to use a blue-green wavelength. Blue-green lasers inflict the usual tight-beam burn damage with the (2) armor divisor. Double the Range, but halve the RoF; treat each shot as consuming two shots for purpose of power drain. Blue-green lasers can fire underwater.</p><p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "d7caf0308debc3f1",
+    "name": "Heavy Ultraviolet Laser Pistol",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "485c0fff53cd7fc2",
+    "name": "Holdout Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "96d278d4a1d9df38",
+    "name": "Ultraviolet Laser Pistol",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "14996f3bf97535e9",
+    "name": "Ultraviolet Laser Crystal",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>An 1/8-inch-diameter solid-state laser projector with an integral one-shot power cell. It is surgically inserted just under the skin; this takes only a minute in an automed (p. 196). Firing is triggered by a specific nerve impulse - if implanted in a finger, it might be fired by clenching the fist while pointing at the target. When fired, it burns through the skin (a thin enough layer that no damage is taken). It's possible to equip multiple fingers and fire them simultaneously; treat this as a single attack with a RoF equal to the number of laser crystals.</p>"
+  },
+  {
+    "_id": "4d9cccef9be59103",
+    "name": "Assault Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>This is an early-TL9 chemicalpumped laser. It is most often used for microgravity combat. If its chemical power pack is attacked, it has SM-4, DR 10, HP 7; if disabled, it inflicts 1d corrosion damage in a 1yard radius.</p>"
+  },
+  {
+    "_id": "52ca23b0f652318c",
+    "name": "Ultraviolet Laser Sniper Rifle",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A bulky but accurate chemical laser rifle, used as a battlefield sniping weapon. Its backpack chemical tank has the same vulnerability as the chemical laser carbine.</p>"
+  },
+  {
+    "_id": "7d27c2590614be04",
+    "name": "Dinosaur Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "64d26fc62ad82e99",
+    "name": "Ultraviolet Laser Carbine",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "537ac818984fb55c",
+    "name": "Ultraviolet Laser Rifle",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "e27d3847845f0b03",
+    "name": "Survival Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A carbine version of the heavy laser pistol. Survival lasers are designed to be broken down into four pocket-sized components, which take one minute to assemble or disassemble. Although the survival laser is not very powerful, it is a good choice as a survival weapon due to its excellent accuracy (useful when shooting small game) and the modest drain it imposes on power cells. It is also a favorite weapon of assassins.</p>"
+  },
+  {
+    "_id": "f5513a258f795e2b",
+    "name": "Area Defense Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>This is built to engage lightly armored targets, such as TL9 spacecraft and ballistic missiles, at a range of a few hundred miles.</p>"
+  },
+  {
+    "_id": "9807d3deceec5d87",
+    "name": "Point Defense Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>This is a vehicle-mounted system. It is designed to destroy soft targets like missiles, aircraft, and personnel at a range of several miles, with minimal collateral damage.</p>"
+  },
+  {
+    "_id": "98137e51cce2c621",
+    "name": "Semi-Portable Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>This continuous-beam chemical-powered weapon is the size of a heavy machine gun. Its chemical tank is separate, and has SM-2, DR 10, HP 12. If disabled, the chemical splash inflicts 2d corrosion damage over a 2-yard radius.</p>"
+  },
+  {
+    "_id": "3882282407911ee6",
+    "name": "Gatling Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A rapid-fire laser weapon. Infantry use these on a tripod; they're also often vehicle mounted or used as \"small arms\" by powered troopers.</p>"
+  },
+  {
+    "_id": "0b46d9c8ce5a86fc",
+    "name": "Ultraviolet Laser Cannon",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "2af61c093c1396cb",
+    "name": "Strike Ultraviolet Laser",
+    "pages": "UT115",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Some high-energy lasers fire a beam in the near-ultraviolet wavelength. An ultraviolet laser has superior range (in vacuum) compared to infrared or blue-green lasers, but its beam is rapidly absorbed by atmosphere. The beam is invisible, but it ionizes air molecules when fired in atmosphere of greater than trace density, producing a visible green glow along its path.</p><p>An ultraviolet laser has triple the usual Range, but due to its lower efficiency, its Damage is halved. Treat half-dice as a +2 modifier, e.g., 5d(2) becomes 2d+2(2). UV lasers are mainly used for space combat and on airless worlds. In atmosphere, the Range cannot exceed 500 yards divided by atmospheric pressure.</p><p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "6d61ce8d141aa9dd",
+    "name": "Heavy Rainbow Laser Pistol",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "4a89f816d24a5938",
+    "name": "Holdout Rainbow Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "7a2379159e4bc587",
+    "name": "Rainbow Laser Pistol",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "07b04e3908834d7c",
+    "name": "Rainbow Laser Crystal",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>An 1/8-inch-diameter solid-state laser projector with an integral one-shot power cell. It is surgically inserted just under the skin; this takes only a minute in an automed (p. 196). Firing is triggered by a specific nerve impulse - if implanted in a finger, it might be fired by clenching the fist while pointing at the target. When fired, it burns through the skin (a thin enough layer that no damage is taken). It's possible to equip multiple fingers and fire them simultaneously; treat this as a single attack with a RoF equal to the number of laser crystals.</p>"
+  },
+  {
+    "_id": "2f1f989b91c91133",
+    "name": "Dinosaur Rainbow Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "cbd12715685169c8",
+    "name": "Rainbow Laser Rifle",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "21265605d9b59dda",
+    "name": "Rainbow Laser Carbine",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "5375804128b5edf8",
+    "name": "Rainbow Survival Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A carbine version of the heavy laser pistol. Survival lasers are designed to be broken down into four pocket-sized components, which take one minute to assemble or disassemble. Although the survival laser is not very powerful, it is a good choice as a survival weapon due to its excellent accuracy (useful when shooting small game) and the modest drain it imposes on power cells. It is also a favorite weapon of assassins.</p>"
+  },
+  {
+    "_id": "1b80d57f8ef9208e",
+    "name": "Rainbow Gatling Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A rapid-fire laser weapon. Infantry use these on a tripod; they're also often vehicle mounted or used as \"small arms\" by powered troopers.</p>"
+  },
+  {
+    "_id": "ccb10c091a3ae3b6",
+    "name": "Rainbow Laser Cannon",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "e6e51535e4295b1e",
+    "name": "Rainbow Strike Laser",
+    "pages": "UT116",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons fire powerful nanosecond pulses of laser light. The light's interaction with the atmosphere does most of the work of focusing the beam, so that laser needs only a small lens. A rainbow laser beam is polychromatic, appearing as a needle-thin line of blue-white light.</p><p>A rainbow laser inflicts burning damage with a (3) armor divisor. It is effective in atmospheres with a density ranging from very thin through superdense. In vacuum or trace atmospheres, the laser defocuses. Its range is divided by 10, and its damage loses its armor divisor. Rainbow lasers have an underwater range of only two yards.</p><p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "8b44c7899d692d3c",
+    "name": "Heavy X-Ray Laser Pistol",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "53f42accf157af06",
+    "name": "Holdout X-Ray Laser",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "463c81e7c2123250",
+    "name": "X-Ray Laser Pistol",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "13c504859e119499",
+    "name": "X-Ray Dino Laser",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "0816d2a15680c930",
+    "name": "X-Ray Laser Carbine",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "cd42c4e7b36024f0",
+    "name": "X-Ray Laser Rifle",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "452506729dce8f79",
+    "name": "Semi-Portable X-Ray Laser",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>This continuous-beam chemical-powered weapon is the size of a heavy machine gun. Its chemical tank is separate, and has SM-2, DR 10, HP 12. If disabled, the chemical splash inflicts 2d corrosion damage over a 2-yard radius.</p>"
+  },
+  {
+    "_id": "4f872434672d8fbc",
+    "name": "X-Ray Laser Cannon",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "efc8393f0ed5c1e2",
+    "name": "X-Ray Strike Laser",
+    "pages": "UT117",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These free-electron laser weapons use a particle accelerator to generate a beam of coherent, deep-penetrating Xrays. They inflict tight-beam burning damage with a (5) armor divisor and the surge damage modifier.</p><p>If an X-ray laser had the same diameter lens as an ordinary laser, its range would be thousands of times greater! But it's difficult to build large X-ray lenses, so practical weapons have tiny focal arrays. The range is still great . . . in vacuum. X-rays are quickly absorbed by atmosphere; Range drops to 7/20 yards in a standard atmosphere. (For thinner or thicker atmospheres, divide this range by the relative air pressure.) X-ray lasers have no range underwater.</p><p>This minimal atmospheric range means X-ray lasers are best used as space combat weapons, or for boarding actions and close-range assassinations. To mitigate this, superscience X-ray lasers are often field-jacketed (p. 133). A field-jacketed X-ray laser is a terrifying weapon, with tremendous range and penetration in all environments.</p><p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "dfd40e22c4c647bf",
+    "name": "Graser Pistol",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>The basic laser sidearm. On some worlds, it may be as ubiquitous as six-guns in the Old West.</p>"
+  },
+  {
+    "_id": "ebe28cf3080b88e4",
+    "name": "Heavy Graser Pistol",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A bulky but rapid-firing military-style laser sidearm, often used as an alternative to a machine pistol.</p>"
+  },
+  {
+    "_id": "3742770ad07de8d7",
+    "name": "Holdout Graser",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A favorite of spies and assassins, this is a tiny weapon disguised as an innocuous object, such as a wrist communicator or pen. Its mechanism uses nonmetallic ceramics and exotic composites, so with the power cell removed, an ordinary scanner cannot distinguish it from a civilian electronic device.</p>"
+  },
+  {
+    "_id": "39350a36d3798f9e",
+    "name": "Dinosaur Graser",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A big laser sniper rifle, capable of stopping a battlesuit or a dinosaur (hence its nickname). Also called a \"heavy laser.\" These are mostly military weapons, but are sometimes used as an \"elephant guns\" for big game.</p>"
+  },
+  {
+    "_id": "98363a97a1876d22",
+    "name": "Graser Carbine",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A compact \"assault\" version of the laser rifle, favored by vehicle crews and special ops teams. Its low bulk makes up for its lack of range.</p>"
+  },
+  {
+    "_id": "d977834672ddd85f",
+    "name": "Graser Rifle",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>The standard infantry combat laser, capable of full automatic fire. In some settings, it may be as ubiquitous as the flintlock rifle was in its day.</p>"
+  },
+  {
+    "_id": "b5e46200a584e692",
+    "name": "Graser Cannon",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A large vehicle-mounted weapon. It is a standard spacecraft and air defense system.</p>"
+  },
+  {
+    "_id": "570cec9fa51cf08c",
+    "name": "Semi-Portable Graser",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>This continuous-beam chemical-powered weapon is the size of a heavy machine gun. Its chemical tank is separate, and has SM-2, DR 10, HP 12. If disabled, the chemical splash inflicts 2d corrosion damage over a 2-yard radius.</p>"
+  },
+  {
+    "_id": "a5344cc9c45867aa",
+    "name": "Strike Graser",
+    "pages": "UT118",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The gamma-ray laser is the ultimate high-energy laser. Its effect is similar to an X-ray laser, but with superior penetration and even greater range. A graser inflicts burning damage with a (10) armor divisor and the surge damage modifier.</p><p>Graser beams are rapidly absorbed by air, but have better propagation than an X-ray laser. The maximum range in air cannot exceed 70/200 yards in a standard atmosphere (for thinner or thicker atmospheres, divide this range by the relative air pressure). They have no range underwater. As with X-ray lasers, superscience weapons can be fieldjacketed (p. 133).</p><p>Grasers replace X-ray and visible-light lasers for space combat, or in all roles if field-jacketed. Even if not fieldjacketed, they may be useful as close-assault weapons.</p><p>A smaller version of the laser cannon, often used by fighter aircraft, and as a defensive weapon for armored vehicles or spacecraft.</p>"
+  },
+  {
+    "_id": "4f8392090c0d5ede",
+    "name": "Electrolaser Pistol",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wireless successor to dart-firing electric stun guns. It is popular as a police and prison guard weapon.</p>"
+  },
+  {
+    "_id": "63e850ec8671058e",
+    "name": "Holdout Electrolaser",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A palm-sized zap gun popular for covert ops, kidnappings, and self-defense. Its electroshock capabilities also endear it to slavers and torturers.</p>"
+  },
+  {
+    "_id": "c14c1209b8a8831d",
+    "name": "Electrolaser Carbine",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This compact rifle is one of the most common ultra-tech stun weapons. At TL9-10, police on patrol may carry one of these in their vehicle, for use in long-range suspect takedowns.</p>"
+  },
+  {
+    "_id": "6ab6ca203f8105c2",
+    "name": "Heavy Electrolaser",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy-duty electrolaser used against armored foes or large animals. Its ultraviolet carrier beam causes a more severe burn than lower-powered weapons, so it's best used on targets that have some protection (heavy clothes, fur, etc.).</p>"
+  },
+  {
+    "_id": "32728ed42682e1a8",
+    "name": "Underbarrel Electrolaser",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This electrolaser is designed to be attached under the barrel of any weapon with Bulk -3 or more, providing a backup stun capability. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "707f14c9a081c6ae",
+    "name": "Semi-Portable Electrolaser",
+    "pages": "UT119",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called a \"tripod zapper,\" this powerful long-range electrolaser is usually mounted on a vehicle or tripod. Like the heavy electrolaser, its carrier beam can inflict nasty burns.</p>"
+  },
+  {
+    "_id": "32c77ac1e951368d",
+    "name": "Portable MAD",
+    "pages": "UT120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A weapon the size of a light machine gun, used as a portable anti-riot device. It's sometimes built into vehicles as a secondary weapon.</p>"
+  },
+  {
+    "_id": "f2cd374d2d463de7",
+    "name": "Tactical MAD",
+    "pages": "UT120",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large semi-portable projector capable of breaking up a crowd at a thousand yards. It's usually tripod-mounted or built into a vehicle.</p>"
+  },
+  {
+    "_id": "f67eb24fa6c42cf5",
+    "name": "EMP Gun",
+    "pages": "UT121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The basic portable microwave weapon, capable of stopping a robot or vehicle, or frying a room full of electronics.</p>"
+  },
+  {
+    "_id": "705bf7129e7b2e96",
+    "name": "Pulse Carbine",
+    "pages": "UT121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A more compact version of the EMP Gun, primarily used as an anti-robot weapon.</p>"
+  },
+  {
+    "_id": "0d2c14179a5063ef",
+    "name": "Scrambler",
+    "pages": "UT121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket holdout microwave pulse weapon, useful for disabling a small security robot or performing sabotage on computers or other electronics.</p>"
+  },
+  {
+    "_id": "7928b890cafce122",
+    "name": "Tactical Disruptor",
+    "pages": "UT121",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A semi-portable microwave cannon, usually tripod-mounted or installed in a vehicle or robot. It requires Gunner (Beams) skill to use.</p>"
+  },
+  {
+    "_id": "32f1914d02193e0c",
+    "name": "Holdout Nerve Disruptor",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An easily-concealed pocket-sized nerve gun with no handgrip. Depending on the weapon setting, it may be popular as an interrogation device or recreational toy.</p>"
+  },
+  {
+    "_id": "0754a9d56973b30e",
+    "name": "Nerve Pistol",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The most popular neural weapon. In some cultures, these may be the standard weapons of police and security forces, supplanting sonic stunners. Also called a neural disruptor pistol.</p>"
+  },
+  {
+    "_id": "f44318534c81991f",
+    "name": "Nerve Rifle",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A powerful neural disruptor sometimes used as a police sniper weapon.</p>"
+  },
+  {
+    "_id": "f0c236327043463d",
+    "name": "Short-Range Mindripper",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky pistol-type weapon.</p>"
+  },
+  {
+    "_id": "d9ab45aa9d074761",
+    "name": "Tactical Neural Disruptor",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large semi-portable weapon, usually vehicle- or tripod-mounted. It is often deployed in prison guard towers or police vehicles. It requires Gunner (Beams) skill to use.</p>"
+  },
+  {
+    "_id": "060700d5e2568fa6",
+    "name": "Long-Range Mindripper",
+    "pages": "UT122",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A semi-portable weapon, sometimes built into vehicles or robots, or tripodmounted.</p>"
+  },
+  {
+    "_id": "bc43e8dc0f23b050",
+    "name": "Blaster Pistol",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A long-barreled particle beam pistol. It is sometimes known as an \"electron pistol.\" It is most often used as a military sidearm by combat-armored troops - especially if fighting robots, where its surge effects are useful.</p>"
+  },
+  {
+    "_id": "1c219416d1414581",
+    "name": "Heavy Blaster Pistol",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large and powerful \"magnum\" blaster pistol, this is a favorite sidearm for Space Patrol officers, swaggering space pirates, and powered armor troopers. Its bulk makes it hard to conceal, but it will (barely) fit into a standard holster.</p>"
+  },
+  {
+    "_id": "9a55ad86cfc1754e",
+    "name": "Holdout Blaster",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A palm-sized blaster similar to the holdout laser (p. 115).</p>"
+  },
+  {
+    "_id": "91f5955b8003483e",
+    "name": "Blaster Carbine",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Compact assault weapons with the same power as a blaster rifle, but reduced range. Popular with vehicle crews and special ops teams.</p>"
+  },
+  {
+    "_id": "e5a40c9634f66e68",
+    "name": "Blaster Rifle",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A standard military weapon of TL11 troops. It's also called an electron rifle.</p>"
+  },
+  {
+    "_id": "0f6c58f74db0fdc5",
+    "name": "Heavy Blaster",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An oversized blaster rifle with a backpack power supply, often used by powered troopers or as a squad support weapon.</p>"
+  },
+  {
+    "_id": "8fe956c554e98560",
+    "name": "Blaster Cannon (TL10)",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "9822afab2e6cb337",
+    "name": "Blaster Cannon (TL11)",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "892cba7f7d68516a",
+    "name": "Semi-Portable Blaster",
+    "pages": "UT123",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This infantry support weapon can fire a bolt capable of burning through three inches of steel. It is usually carried by heavy powered troopers, or installed on a vehicle or tripod mount.</p>"
+  },
+  {
+    "_id": "843cda37e844f87a",
+    "name": "Omni-Blaster Pistol",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A long-barreled particle beam pistol. It is sometimes known as an \"electron pistol.\" It is most often used as a military sidearm by combat-armored troops - especially if fighting robots, where its surge effects are useful.</p>"
+  },
+  {
+    "_id": "138b0918c3e08448",
+    "name": "Heavy Omni-Blaster Pistol",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A large and powerful \"magnum\" blaster pistol, this is a favorite sidearm for Space Patrol officers, swaggering space pirates, and powered armor troopers. Its bulk makes it hard to conceal, but it will (barely) fit into a standard holster.</p>"
+  },
+  {
+    "_id": "177bff2fe62948bc",
+    "name": "Holdout Omni-Blaster",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A palm-sized blaster similar to the holdout laser (p. 115).</p>"
+  },
+  {
+    "_id": "9b9b9d8c415c0bc3",
+    "name": "Omni-Blaster Carbine",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>Compact assault weapons with the same power as a blaster rifle, but reduced range. Popular with vehicle crews and special ops teams.</p>"
+  },
+  {
+    "_id": "bc2a676d9ce2ee34",
+    "name": "Omni-Blaster Rifle",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A standard military weapon of TL11 troops. It's also called an electron rifle.</p>"
+  },
+  {
+    "_id": "554d3fa952385f3e",
+    "name": "Heavy Omni-Blaster",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>An oversized blaster rifle with a backpack power supply, often used by powered troopers or as a squad support weapon.</p>"
+  },
+  {
+    "_id": "ad3440521865bdf1",
+    "name": "Omni-Blaster Cannon (TL10)",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "6287918aada1d476",
+    "name": "Omni-Blaster Cannon (TL11)",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "6f48c20d9c7e7e48",
+    "name": "Semi-Portable Omni-Blaster",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster's stun bolt works in any environment. It takes one turn to \"switch to stun.\"</p><p>When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT - that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.</p><p>This infantry support weapon can fire a bolt capable of burning through three inches of steel. It is usually carried by heavy powered troopers, or installed on a vehicle or tripod mount.</p>"
+  },
+  {
+    "_id": "5d8b84bbce329106",
+    "name": "Heavy Pulsar Pistol",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A large and powerful \"magnum\" blaster pistol, this is a favorite sidearm for Space Patrol officers, swaggering space pirates, and powered armor troopers. Its bulk makes it hard to conceal, but it will (barely) fit into a standard holster.</p>"
+  },
+  {
+    "_id": "932c99bd07883528",
+    "name": "Holdout Pulsar",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A palm-sized blaster similar to the holdout laser (p. 115).</p>"
+  },
+  {
+    "_id": "e3ea3f7e8c2759ab",
+    "name": "Pulsar Pistol",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A long-barreled particle beam pistol. It is sometimes known as an \"electron pistol.\" It is most often used as a military sidearm by combat-armored troops - especially if fighting robots, where its surge effects are useful.</p>"
+  },
+  {
+    "_id": "816236a004d83368",
+    "name": "Heavy Pulsar",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>An oversized blaster rifle with a backpack power supply, often used by powered troopers or as a squad support weapon.</p>"
+  },
+  {
+    "_id": "54368e1d47daddc3",
+    "name": "Pulsar Carbine",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>Compact assault weapons with the same power as a blaster rifle, but reduced range. Popular with vehicle crews and special ops teams.</p>"
+  },
+  {
+    "_id": "204f9d9fec040ca1",
+    "name": "Pulsar Rifle",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A standard military weapon of TL11 troops. It's also called an electron rifle.</p>"
+  },
+  {
+    "_id": "4921a2df1cd9af07",
+    "name": "Antiparticle Cannon (TL11)",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "6b5f8e786de301b4",
+    "name": "Antiparticle Cannon (TL12)",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>A multi-ton weapon installed in the turret or hull of a spacecraft or tank.</p>"
+  },
+  {
+    "_id": "fc331f16478bd4f6",
+    "name": "Semi-Portable Pulsar",
+    "pages": "UT124",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons accelerate a beam of antimatter particles, usually positrons or anti-hydrogen atoms. Their interaction with normal matter results in an explosion when they strike the target. They require a trapped store of antiparticles as \"ammunition,\" but the amount is negligible and is included in the weapon's cost.</p><p>Antiparticle beams inflict crushing damage with a (3) armor divisor and the explosive, radiation, and surge damage modifiers. Their armor penetration is slightly less than a charged particle beam, but the overall energy delivered is greater.</p><p>Antiparticle beam range in atmosphere cannot exceed 1,000 yards divided by atmospheric pressure unless the beam is field-jacketed (p. 133).</p><p>This infantry support weapon can fire a bolt capable of burning through three inches of steel. It is usually carried by heavy powered troopers, or installed on a vehicle or tripod mount.</p>"
+  },
+  {
+    "_id": "5c6f257ccad90a28",
+    "name": "Sonic Stinger",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A nonlethal alternative to the holdout laser, the stinger is a tiny sonic stunner that can be disguised as an everyday item or strapped to the wrist.</p>"
+  },
+  {
+    "_id": "98c43ed6e7bb7c84",
+    "name": "Sonic Stunner",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An effective palm-sized stunner, this self-defense weapon is also popular for covert operations. It has no grip and is held like a small flashlight or attached to the wrist.</p>"
+  },
+  {
+    "_id": "8bc946a995a746ee",
+    "name": "Sonic Stun Pistol",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handgun-sized sonic stunner. It is effective enough that it can be issued as the standard sidearm for police or security guards.</p>"
+  },
+  {
+    "_id": "840facb53341fcbd",
+    "name": "Nausea Carbine",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A short rifle-sized weapon. It is often used by police or troops assigned to riot squads.</p>"
+  },
+  {
+    "_id": "076bd192ef172c52",
+    "name": "Nausea Pistol",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handy pistol-sized version.</p>"
+  },
+  {
+    "_id": "22382dfb65d063fb",
+    "name": "Screamer Carbine",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A short, stubby weapon with a large, bell-shaped aperture; this is the most common screamer. Its short range limits its military utility. Like a shotgun, it is used for close-range hunting, home defense, and house-to-house combat.</p>"
+  },
+  {
+    "_id": "96eacd0101237452",
+    "name": "Screamer Pistol",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pistol-sized version, also called a \"sonic disruptor pistol.\"</p>"
+  },
+  {
+    "_id": "6025df0ad5ad9cb3",
+    "name": "Dinosaur Stunner",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A powerful stunner capable of stopping an elephant. Hunters use it to capture big game.</p>"
+  },
+  {
+    "_id": "cc583c86eed39115",
+    "name": "Sonic Stun Rifle",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A basic stun rifle. Like its electrolaser equivalents, it may be general issue to security and police.</p>"
+  },
+  {
+    "_id": "505dd2e29969ca47",
+    "name": "Tactical Nauseator",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tripod or vehicle-mounted riot-control weapon. It's often installed in specialized antiriot vehicles, or set up to defend embassies and similar buildings that may be threatened by mobs of civilian attackers.</p>"
+  },
+  {
+    "_id": "ae5d3d34c57d4c9d",
+    "name": "Tactical Screamer",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy semi-portable weapon used by powered troopers, or mounted on a tripod or vehicle. It's also called a \"tripod screamer.\"</p>"
+  },
+  {
+    "_id": "fd55ef493abfabd5",
+    "name": "Sonic Stun Cannon",
+    "pages": "UT125",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A semi-portable weapon, usually tripod- or vehicle-mounted. Like the tactical nauseator, it's used by anti-riot vehicles and for nonlethal perimeter defense.</p>"
+  },
+  {
+    "_id": "a28dd975dcbec21a",
+    "name": "Assault Flamer",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This rifle-sized plasma weapon is often used by armored infantry involved in spaceship boarding actions and house-to-house fighting.</p>"
+  },
+  {
+    "_id": "ea20132e8daeb05a",
+    "name": "Hand Flamer",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This large pistol is used as a military sidearm or a terror weapon.</p>"
+  },
+  {
+    "_id": "d53f28be0d97e9ec",
+    "name": "Heavy Flamer",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An energy-based flamethrower with a backpack power supply.</p>"
+  },
+  {
+    "_id": "d0763029dfdb2aba",
+    "name": "Semi-Portable Flamer",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called a tripod flamer, this heavy, semi-portable infantry weapon can be terrifying even to a fighter in heavy armor. A heavy flamer can be mounted on a tripod or carried by a soldier in powered battlesuit. They are also popular in combat engineering and urban assault vehicles.</p>"
+  },
+  {
+    "_id": "39d146d91e2ebdf5",
+    "name": "Heavy Plasma Pistol",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A big plasma handgun that can blast a basketball-sized hole in a man's torso. It is almost too deadly for regular issue, and is usually found only in the wildest frontier regions.</p>"
+  },
+  {
+    "_id": "11e4a639722a37a5",
+    "name": "Plasma Pistol",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The smallest plasma gun, equivalent in size to a blaster pistol. It has a shorter range than a blaster, but delivers more destructive energy. An unarmored human struck by a plasma pistol bolt is usually nothing but charred bones.</p>"
+  },
+  {
+    "_id": "d9420a0458b30677",
+    "name": "Heavy Plasma Gun",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Favored by powered troopers as an assault rifle, or as a squad support weapon, this is one of the most devastating portable TL10 beam weapons.</p>"
+  },
+  {
+    "_id": "efedb75ca160a145",
+    "name": "Heavy Fusion Gun",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An even more powerful version of the heavy plasma gun.</p>"
+  },
+  {
+    "_id": "d4a2d2bde1c6d411",
+    "name": "Plasma Battle Rifle",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An rifle-sized plasma gun with a backpack power supply. It is capable of semi-automatic fire.</p>"
+  },
+  {
+    "_id": "1bac2a5a06f6043a",
+    "name": "Plasma Cannon",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This heavy vehicle-mounted weapon is a short-ranged but effective alternative to particle beams and lasers. It's usually mounted on tanks, although some spacecraft may use it for close combat.</p>"
+  },
+  {
+    "_id": "8ab8fee62e3254ba",
+    "name": "Plasma Gatling Gun",
+    "pages": "UT127",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A light-weight multibarrel plasma cannon with a high rate of fire. An effective anti-missile and anti-aircraft weapon, devastating against infantry or lightly-armored vehicles.</p>"
+  },
+  {
+    "_id": "f22132863ad968b3",
+    "name": "Semi-Portable Plasma Gun",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A powerful weapon designed for use on a tripod mount or by heavy battlesuits.</p>"
+  },
+  {
+    "_id": "0e138a7f6b6a3d27",
+    "name": "Fusion Cannon",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These advanced versions fire hotter and higher-velocity plasma bolts.</p>"
+  },
+  {
+    "_id": "ce715f5f775b7e5d",
+    "name": "Fusion Gatling Gun",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These advanced versions fire hotter and higher-velocity plasma bolts.</p>"
+  },
+  {
+    "_id": "13366648adf49e1d",
+    "name": "Semi-Portable Fusion Gun",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These advanced versions fire hotter and higher-velocity plasma bolts.</p>"
+  },
+  {
+    "_id": "0f8d1f1101e90ce5",
+    "name": "Force Beamer",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The ranged equivalent of brass knuckles. The impact of this palm-sized weapon's force beam feels like the kick of a mule.</p>"
+  },
+  {
+    "_id": "a8c62f76efa9d425",
+    "name": "Force Pistol",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky gravity-beam handgun, favored for its impressive \"stopping power.\" Its beam can hammer a man back 12 feet.</p>"
+  },
+  {
+    "_id": "be531c4535df3f1e",
+    "name": "Force Rifle",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon can stun an elephant or smash someone through a brick wall. This is a lethal weapon against foes without armor.</p>"
+  },
+  {
+    "_id": "b70a033f1abfcbaf",
+    "name": "Force Cannon",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A vehicle-mounted cannon intended to crack open vehicular armor. It's especially useful against unbalanced vehicles such as mecha.</p>"
+  },
+  {
+    "_id": "5a9d7091459c9d92",
+    "name": "Heavy Force Cannon",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A force cannon suitable for mounting on ships.</p>"
+  },
+  {
+    "_id": "8631f3d420c1311a",
+    "name": "Semi-Portable Force Beam",
+    "pages": "UT128",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This assault cannon is usually tripod- or vehicle-mounted, or carried by powered troopers. A human struck by its beam may be thrown back 50 feet, breaking every bone in his body.</p>"
+  },
+  {
+    "_id": "0419a4cd7bd0f3e4",
+    "name": "Graviton Beamer",
+    "pages": "UT129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket-sized holdout weapon. It has limited lethality, but can reach through the heaviest armor to grind bones and squeeze organs. It is sometimes used as a torture device.</p>"
+  },
+  {
+    "_id": "5c82339dccab2591",
+    "name": "Graviton Pistol",
+    "pages": "UT129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A basic gravity-beam pistol, somewhat more powerful than a beamer. One shot will usually cause enough shock to stop an average person.</p>"
+  },
+  {
+    "_id": "4fa3096d07a23394",
+    "name": "Graviton Rifle",
+    "pages": "UT129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called an assault gravbeamer. It crushes a fist-sized area, inflicting enough damage to leave a man unconscious!</p>"
+  },
+  {
+    "_id": "7ff91b69d90817d5",
+    "name": "Graviton Cannon",
+    "pages": "UT129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called an \"implosion beam.\" A single shot can reduce a man to a walnut-sized sphere, or crush a spaceship's insides one compartment at a time!</p>"
+  },
+  {
+    "_id": "0321ef03425e977a",
+    "name": "Semi-Portable Graviton Beam",
+    "pages": "UT129",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy personal weapon with a foot-wide area of effect. Its beam can reduce bones and organs to jelly.</p>"
+  },
+  {
+    "_id": "2e8725e96e2c34d9",
+    "name": "Disintegrator Pistol",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Perhaps the ultimate handgun, this weapon fires a beam that can obliterate a man.</p>"
+  },
+  {
+    "_id": "65a69a33acc9fa76",
+    "name": "Holdout Disintegrator",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small, easily concealed weapon of unmatched destructive power for its class.</p>"
+  },
+  {
+    "_id": "dd38365a09f931db",
+    "name": "Disintegrator Rifle",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This rifle can destroy a light armored vehicle in a single shot, or completely disintegrate smaller targets such as people.</p>"
+  },
+  {
+    "_id": "9d1bbfb2d07f3ab9",
+    "name": "Heavy Disintegrator Cannon",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This terrifying weapon may be the main armament of TL12^ military starships and main battle tanks. Almost any target will be annihilated unless protected by force screens; a barrage can lay waste to a city.</p>"
+  },
+  {
+    "_id": "89b83cda62ce00eb",
+    "name": "Light Disintegrator Cannon",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller version of the heavy disintegrator cannon. It is still capable of disintegrating a tank-sized target in a single shot.</p>"
+  },
+  {
+    "_id": "c3161fd89d757ab1",
+    "name": "Semi-Portable Disintegrator",
+    "pages": "UT130",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An oversized weapon carried by powered troopers, or mounted on a tripod or vehicle. It can disintegrate a car-sized vehicle, or drill a hole several feet across through a larger target.</p>"
+  },
+  {
+    "_id": "96262f6a08ef49d6",
+    "name": "Ghost Particle Cannon",
+    "pages": "UT131",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This fires a beam of exotic particles that passes through solid material as if it wasn't there. After a fraction of a second, the particles decay into an explosive combination of high-energy particle-antiparticle pairs and gamma rays. Probability field manipulation ensures the particles decay nearly simultaneously at a desired point in space and time . . . inside the target.</p><p>These are indirect-fire weapons operated using Artillery skill. A ghost particle beam is not affected by atmosphere and ignores intervening cover. It is also invisible and intangible - the only visible effect is a brilliant explosion inflicting burning damage with the cosmic, radiation, and surge modifiers. The cosmic modifier means that if the beam hits the desired target, ignore the target's DR; it is an internal explosion, doing three times normal damage (see p. B415). This only applies on a direct hit. Do not ignore DR for the collateral damage from the explosion. Reality-stabilized force screens (pp. 190-192) protect against ghost particle beams with one-fifth of the screen's normal DR.</p>"
+  },
+  {
+    "_id": "d590bc3bd6a61e18",
+    "name": "Heavy Ghost Particle Cannon",
+    "pages": "UT131",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This fires a beam of exotic particles that passes through solid material as if it wasn't there. After a fraction of a second, the particles decay into an explosive combination of high-energy particle-antiparticle pairs and gamma rays. Probability field manipulation ensures the particles decay nearly simultaneously at a desired point in space and time . . . inside the target.</p><p>These are indirect-fire weapons operated using Artillery skill. A ghost particle beam is not affected by atmosphere and ignores intervening cover. It is also invisible and intangible - the only visible effect is a brilliant explosion inflicting burning damage with the cosmic, radiation, and surge modifiers. The cosmic modifier means that if the beam hits the desired target, ignore the target's DR; it is an internal explosion, doing three times normal damage (see p. B415). This only applies on a direct hit. Do not ignore DR for the collateral damage from the explosion. Reality-stabilized force screens (pp. 190-192) protect against ghost particle beams with one-fifth of the screen's normal DR.</p>"
+  },
+  {
+    "_id": "5f1618bf427ef22e",
+    "name": "Portable Displacer",
+    "pages": "UT131",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This bulky, barely manportable weapon tears open a two-yard radius wormhole. It's sometimes nicknamed a \"tachyon shotgun.\"</p>"
+  },
+  {
+    "_id": "c32a5cd75906b489",
+    "name": "Displacer Cannon",
+    "pages": "UT131",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy displacer cannon, capable of creating a warp large enough to spirit away a small house or a tank-sized vehicle!</p>"
+  },
+  {
+    "_id": "7bf60657aedb6cdb",
+    "name": "Heavy Mind Disruptor",
+    "pages": "UT132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons are similar to neural disruptors (p. 121), but instead of emitting electromagnetic fields, they are psionic in nature. They are very effective against opponents who lack psionic shielding, but do not affect anyone with IQ 0 or the Digital Mind advantage.</p><p>Different versions of mind disruptor are available. All require a Will roll to resist (at +3 beyond 1/2D range). Mind Shields add to the roll to resist. Normal DR is ineffective against them. The options are:</p><p>Hypnogogic Beam (\"Eraser\"): The standard mind disruptor fires a beam of telepathic noise. It's sometimes called a dazer or eraser. If the victim fails to resist, he suffers the Daze incapacitating condition (p. B428). He is unable to act until struck or shaken, or until a number of minutes pass equal to the margin of failure. If he fails by 5 or more, he falls unconscious (p. B429), and then will be dazed as above after recovery. The dazer also disrupts short-term memory: victims never remember what happened to them during the second they were shot, or the second before that. This can be useful for covert operations!</p><p>Death Beam: This beam carries a hypnotic compulsion to die. If the resistance roll fails, the victim suffers the Choking incapacitating condition (p. B429) for seconds equal to twice the margin of failure. There's nothing lodged in his throat, but he will lose 1 FP per second unless he doesn't need to breathe. If he fails by 5 or more, he suffers the heart attack mortal condition.</p><p>Insanity Beam: This beam unleashes bizarre and terrifying visions from the victim's subconscious mind. He suffers the hallucinating incapacitating condition (p. B429) for one minute times the margin of failure. If he fails by 5 or more, the result is a coma (p. B429) in which he is tormented by horrific dreams. If the subject survives the coma, he gains the Nightmares (12) disadvantage for 1d weeks after.</p>"
+  },
+  {
+    "_id": "0584d3994c3db9b3",
+    "name": "Holdout Mind Disruptor",
+    "pages": "UT132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons are similar to neural disruptors (p. 121), but instead of emitting electromagnetic fields, they are psionic in nature. They are very effective against opponents who lack psionic shielding, but do not affect anyone with IQ 0 or the Digital Mind advantage.</p><p>Different versions of mind disruptor are available. All require a Will roll to resist (at +3 beyond 1/2D range). Mind Shields add to the roll to resist. Normal DR is ineffective against them. The options are:</p><p>Hypnogogic Beam (\"Eraser\"): The standard mind disruptor fires a beam of telepathic noise. It's sometimes called a dazer or eraser. If the victim fails to resist, he suffers the Daze incapacitating condition (p. B428). He is unable to act until struck or shaken, or until a number of minutes pass equal to the margin of failure. If he fails by 5 or more, he falls unconscious (p. B429), and then will be dazed as above after recovery. The dazer also disrupts short-term memory: victims never remember what happened to them during the second they were shot, or the second before that. This can be useful for covert operations!</p><p>Death Beam: This beam carries a hypnotic compulsion to die. If the resistance roll fails, the victim suffers the Choking incapacitating condition (p. B429) for seconds equal to twice the margin of failure. There's nothing lodged in his throat, but he will lose 1 FP per second unless he doesn't need to breathe. If he fails by 5 or more, he suffers the heart attack mortal condition.</p><p>Insanity Beam: This beam unleashes bizarre and terrifying visions from the victim's subconscious mind. He suffers the hallucinating incapacitating condition (p. B429) for one minute times the margin of failure. If he fails by 5 or more, the result is a coma (p. B429) in which he is tormented by horrific dreams. If the subject survives the coma, he gains the Nightmares (12) disadvantage for 1d weeks after.</p><p>An easily-concealed pocket-sized nerve gun with no handgrip. Depending on the weapon setting, it may be popular as an interrogation device or recreational toy.</p>"
+  },
+  {
+    "_id": "d6a93292b1246f26",
+    "name": "Mind Disruptor Pistol",
+    "pages": "UT132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons are similar to neural disruptors (p. 121), but instead of emitting electromagnetic fields, they are psionic in nature. They are very effective against opponents who lack psionic shielding, but do not affect anyone with IQ 0 or the Digital Mind advantage.</p><p>Different versions of mind disruptor are available. All require a Will roll to resist (at +3 beyond 1/2D range). Mind Shields add to the roll to resist. Normal DR is ineffective against them. The options are:</p><p>Hypnogogic Beam (\"Eraser\"): The standard mind disruptor fires a beam of telepathic noise. It's sometimes called a dazer or eraser. If the victim fails to resist, he suffers the Daze incapacitating condition (p. B428). He is unable to act until struck or shaken, or until a number of minutes pass equal to the margin of failure. If he fails by 5 or more, he falls unconscious (p. B429), and then will be dazed as above after recovery. The dazer also disrupts short-term memory: victims never remember what happened to them during the second they were shot, or the second before that. This can be useful for covert operations!</p><p>Death Beam: This beam carries a hypnotic compulsion to die. If the resistance roll fails, the victim suffers the Choking incapacitating condition (p. B429) for seconds equal to twice the margin of failure. There's nothing lodged in his throat, but he will lose 1 FP per second unless he doesn't need to breathe. If he fails by 5 or more, he suffers the heart attack mortal condition.</p><p>Insanity Beam: This beam unleashes bizarre and terrifying visions from the victim's subconscious mind. He suffers the hallucinating incapacitating condition (p. B429) for one minute times the margin of failure. If he fails by 5 or more, the result is a coma (p. B429) in which he is tormented by horrific dreams. If the subject survives the coma, he gains the Nightmares (12) disadvantage for 1d weeks after.</p><p>The most popular neural weapon. In some cultures, these may be the standard weapons of police and security forces, supplanting sonic stunners. Also called a neural disruptor pistol.</p>"
+  },
+  {
+    "_id": "b7a5aa6371eaf319",
+    "name": "Mind Disruptor Rifle",
+    "pages": "UT132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons are similar to neural disruptors (p. 121), but instead of emitting electromagnetic fields, they are psionic in nature. They are very effective against opponents who lack psionic shielding, but do not affect anyone with IQ 0 or the Digital Mind advantage.</p><p>Different versions of mind disruptor are available. All require a Will roll to resist (at +3 beyond 1/2D range). Mind Shields add to the roll to resist. Normal DR is ineffective against them. The options are:</p><p>Hypnogogic Beam (\"Eraser\"): The standard mind disruptor fires a beam of telepathic noise. It's sometimes called a dazer or eraser. If the victim fails to resist, he suffers the Daze incapacitating condition (p. B428). He is unable to act until struck or shaken, or until a number of minutes pass equal to the margin of failure. If he fails by 5 or more, he falls unconscious (p. B429), and then will be dazed as above after recovery. The dazer also disrupts short-term memory: victims never remember what happened to them during the second they were shot, or the second before that. This can be useful for covert operations!</p><p>Death Beam: This beam carries a hypnotic compulsion to die. If the resistance roll fails, the victim suffers the Choking incapacitating condition (p. B429) for seconds equal to twice the margin of failure. There's nothing lodged in his throat, but he will lose 1 FP per second unless he doesn't need to breathe. If he fails by 5 or more, he suffers the heart attack mortal condition.</p><p>Insanity Beam: This beam unleashes bizarre and terrifying visions from the victim's subconscious mind. He suffers the hallucinating incapacitating condition (p. B429) for one minute times the margin of failure. If he fails by 5 or more, the result is a coma (p. B429) in which he is tormented by horrific dreams. If the subject survives the coma, he gains the Nightmares (12) disadvantage for 1d weeks after.</p><p>A powerful neural disruptor sometimes used as a police sniper weapon.</p>"
+  },
+  {
+    "_id": "2fed89ebdaf0152e",
+    "name": "Tactical Mind Disruptor",
+    "pages": "UT132",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These weapons are similar to neural disruptors (p. 121), but instead of emitting electromagnetic fields, they are psionic in nature. They are very effective against opponents who lack psionic shielding, but do not affect anyone with IQ 0 or the Digital Mind advantage.</p><p>Different versions of mind disruptor are available. All require a Will roll to resist (at +3 beyond 1/2D range). Mind Shields add to the roll to resist. Normal DR is ineffective against them. The options are:</p><p>Hypnogogic Beam (\"Eraser\"): The standard mind disruptor fires a beam of telepathic noise. It's sometimes called a dazer or eraser. If the victim fails to resist, he suffers the Daze incapacitating condition (p. B428). He is unable to act until struck or shaken, or until a number of minutes pass equal to the margin of failure. If he fails by 5 or more, he falls unconscious (p. B429), and then will be dazed as above after recovery. The dazer also disrupts short-term memory: victims never remember what happened to them during the second they were shot, or the second before that. This can be useful for covert operations!</p><p>Death Beam: This beam carries a hypnotic compulsion to die. If the resistance roll fails, the victim suffers the Choking incapacitating condition (p. B429) for seconds equal to twice the margin of failure. There's nothing lodged in his throat, but he will lose 1 FP per second unless he doesn't need to breathe. If he fails by 5 or more, he suffers the heart attack mortal condition.</p><p>Insanity Beam: This beam unleashes bizarre and terrifying visions from the victim's subconscious mind. He suffers the hallucinating incapacitating condition (p. B429) for one minute times the margin of failure. If he fails by 5 or more, the result is a coma (p. B429) in which he is tormented by horrific dreams. If the subject survives the coma, he gains the Nightmares (12) disadvantage for 1d weeks after.</p><p>A large semi-portable weapon, usually vehicle- or tripod-mounted. It is often deployed in prison guard towers or police vehicles. It requires Gunner (Beams) skill to use.</p>"
+  },
+  {
+    "_id": "e5e2b7285cf8be77",
+    "name": "Backpack Vortex Projector",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy flamethrower-like device sometimes used by combat engineers or police for house-to-house fighting or riot control. It's also occasionally used for non-combat applications, such as projecting fire-extinguishing foam.</p>"
+  },
+  {
+    "_id": "e0f61e57d88755fd",
+    "name": "Pocket Aerosol",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A palm-sized disposable tank that sprays a single dose. It is used for black ops or self-defense. Respiratory agents must be sprayed into the face, but there's no location penalty to hit due to the size of the cloud. Contact agents can be sprayed onto the body.</p>"
+  },
+  {
+    "_id": "617f810100f9c04f",
+    "name": "Spray Can",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The size of a can of bug spray, it holds 10 doses of gas. It can spray up to three doses at once to fill a one-yard radius. The cloud lasts 10 seconds indoors, but dissipates quickly in a strong wind.</p>"
+  },
+  {
+    "_id": "8083a89f6e701800",
+    "name": "Spray Tank",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A spray gun attached by a short hose to a tank, which can be worn as a backpack. The tank has DR 10, but is under pressure: any penetrating damage can rupture it, releasing the entire store of chemicals. This has the same effect as a 100mm biochemical warhead (p. 153). Spray tanks are often integrated into buildings as part of their security systems.</p>"
+  },
+  {
+    "_id": "16b929a2925992a9",
+    "name": "Underbarrel Vortex Projector",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A vortex ring projector that can be clamped under the barrel of a rifle or other long arm in place of a grenade launcher. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "63efdae3280fd0be",
+    "name": "Vortex Pistol",
+    "pages": "UT134",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A vortex ring sidearm the size of an ordinary automatic pistol.</p>"
+  },
+  {
+    "_id": "2af57303fdb0d629",
+    "name": "Heavy Pistol, 10mmCLP",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This powerful pistol uses the same round as the machine pistol (below).</p>"
+  },
+  {
+    "_id": "568fadedabad8216",
+    "name": "Holdout Pistol, 7.5mmCLP",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a small, easily concealed semi-automatic pistol. It files rounds at a higher velocity than many TL7-8 pistols of the same caliber.</p>"
+  },
+  {
+    "_id": "764027c05007a4a1",
+    "name": "Magnum Pistol, 15mmCLP",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This semi-automatic pistol fires a powerful magnum round. Its size makes it hard to conceal, and only a strong person can shoot accurately with it.</p>"
+  },
+  {
+    "_id": "8f94ab8d293b984a",
+    "name": "Medium Pistol, 7.5mmCLP",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The standard TL9 semi-automatic pistol, with a sturdy plastic and alloy frame and a high-capacity magazine.</p>"
+  },
+  {
+    "_id": "f57d12b8225ec657",
+    "name": "Machine Pistol, 10mmCLP",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon fires the same medium-velocity pistol-caliber round as the 10mm pistol. Police SWAT teams like them - the gun has good stopping power, but errant rounds are unlikely to tear through walls (or targets) and hit bystanders.</p>"
+  },
+  {
+    "_id": "dd57e2ebbfaa819a",
+    "name": "Personal Defense Weapon, 5.7mmCL",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A PDW fires a small, high-velocity bullet that resembles a miniature rifle round, with better accuracy and range than the pistol ammo used in a submachine gun. This weapon has a big magazine that runs horizontally alongside the weapon. An ergonomic handgrip completely encloses the firing hand.</p>"
+  },
+  {
+    "_id": "020d1154693e4925",
+    "name": "Urban Assault Weapon",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A double-barrel weapon with a 10mm machine pistol and 18.5mm shotgun (use the underbarrel shotgun statistics). It's intended for use by SWAT teams and special operations soldiers, especially in buildings.</p>"
+  },
+  {
+    "_id": "a4be4f6d3d4cf44e",
+    "name": "Anti-Materiel Rifle, 15mmCL",
+    "pages": "UT135",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The 15mm AMR is a large-caliber sniper weapon powerful enough to cripple light vehicles more than a mile away. Special forces and recon units use them to pin down or neutralize high-value targets such as command posts, guided-missile teams and combat robots. This gun becomes especially fearsome when upgraded with electrothermal or liquid propellant! The rifle's Acc assumes an integral 8× telescopic sight (+3 bonus).</p>"
+  },
+  {
+    "_id": "0951f7e839b8981c",
+    "name": "Assault Carbine, 7mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This bullpup-configuration assault rifle is a basic but effective infantry weapon.</p>"
+  },
+  {
+    "_id": "ba40602484485bc4",
+    "name": "Gatling Carbine, 5.7mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This triple-barreled, electric-motor-driven chaingun boasts a carbine format no larger than an ordinary assault rifle. It fires the same 5.7mm round as the PDW (p. 135). Its long magazine slides and locks into the back of the weapon. A separately loaded B cell provides power for 19,500 shots.</p>"
+  },
+  {
+    "_id": "97f5d61f90591647",
+    "name": "Hunting Rifle, 7mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This plastic-and-alloy semi-automatic rifle fires the same high-velocity ammunition as the assault carbine.</p>"
+  },
+  {
+    "_id": "a7965305bd96dcac",
+    "name": "Payload Rifle, 25mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky semi-automatic rifle, similar to an anti-materiel rifle, that fires a mediumvelocity 25mm cannon shell. This provides a long-ranged alternative to a grenade launcher. It has a very effective muzzle brake.</p>"
+  },
+  {
+    "_id": "693c86fb5554b86f",
+    "name": "Storm Carbine, 10mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sometimes you need more punch than an assault carbine can provide. This weapon fires a more powerful 10mm caseless round, making it popular with troops who expect to face armored opponents. Its drawbacks include heavier ammunition and noticeably higher recoil.</p>"
+  },
+  {
+    "_id": "7caa305889b1316e",
+    "name": "Storm Rifle, 10mmCLR",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavier semi-automatic version of the storm carbine, this fires a higher-velocity, full-sized (\"10mm Caseless Long Rifle\") bullet. It's used as a sniper or hunting weapon.</p>"
+  },
+  {
+    "_id": "600ca431e7237fab",
+    "name": "Civilian Shotgun, 18.5mmPC",
+    "pages": "UT138",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "fe9575ce10fc245a",
+    "name": "Close Assault Weapon, 18.5mmPC",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A fullyautomatic assault shotgun favored for house-to-house fighting.</p>"
+  },
+  {
+    "_id": "f2b67f345011dab2",
+    "name": "Shotgun Pistol, 18.5mmPC",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wide-bore pistol that fires shotgun ammunition. It is ideal for house-to-house work or for firing from a vehicle. It's also a favorite police undercover weapon, despite its substantial recoil.</p>"
+  },
+  {
+    "_id": "9ee6cee44a4b71b0",
+    "name": "Underbarrel Shotgun, 18.5mmPC",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A modular pump-action shotgun that can be clamped under any weapon with Bulk -3 or more. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "08157443cb89599d",
+    "name": "Underbarrel Grenade Launcher, 25mmPC",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a tube-fed pump-action grenade launcher firing mediumvelocity plastic-cased shells. It may be clamped under the barrel of any weapon with Bulk -3 or more. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "9b8e3b094e9325c2",
+    "name": "Underbarrel Grenade Launcher, 40mmPLB",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a tube-fed pump-action grenade launcher firing mediumvelocity plastic-cased shells. It may be clamped under the barrel of any weapon with Bulk -3 or more. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "3253de4f1aa5b0f8",
+    "name": "Light Support Weapon, 7mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This light machine gun comes with a folding bipod for accurate prone firing. The LSW normally employs a belt feed, but it fires the same bullet as the assault carbine (above), and can use its magazines if necessary.</p>"
+  },
+  {
+    "_id": "5f62136f83ebfe10",
+    "name": "Storm Chaingun, 10mmCLR",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an electricmotor-driven, machine-gun version of the storm rifle (above). It uses a 100-shot belt contained within an ammo cassette. It can also use the same 30-shot 10mmCLR magazines as the storm rifle, but it cannot fire storm-carbine ammunition. The storm chaingun incorporates a folding bipod for accurate prone firing. A separately loaded B cell provides 15 minutes of power.</p>"
+  },
+  {
+    "_id": "c45a611eac33144b",
+    "name": "Splat Gun, 15mmPLB",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Designed to destroy light armored vehicles and battlesuit troopers, this is a favorite weapon of mercenaries fighting on low-tech worlds. It is a bulky, multi-barrel weapon resembling a short, thick bazooka, with a pistol grip, a padded shoulder stock, and a bipod. Nicknamed the \"splat gun,\" it has six preloaded barrels stacked with 15mm shells and propellant. Its electronic ignition can fire up to 30 shells before any recoil impulse is felt. The shooter can also fire a smaller number of shells by adjusting a selector switch (this is a Ready action).</p>"
+  },
+  {
+    "_id": "2421f53aa8e7a961",
+    "name": "Mortar Box, 40mmPLB",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A four-tube version of the 40mm UGL. Designed for remote control firing, it has a cable jack and its own short-range radio (p. 44).</p>"
+  },
+  {
+    "_id": "e580f8667154a07b",
+    "name": "Mortar Box, 64mmPLB",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A larger version of the 40mm mortar box, consisting of a pod holding six mortar barrels, each containing five stacked 64mm shells. This potent \"area denial weapon\" can deliver as many as 30 shots in a single salvo!</p>"
+  },
+  {
+    "_id": "0698a55e50243553",
+    "name": "Tank Cannon, 100mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A medium tank gun with an automatic loader. It is often upgraded with liquid propellant or electrothermal options, or loaded with APEP (p. 152) ammunition.</p>"
+  },
+  {
+    "_id": "3dcc4c0a67ba262b",
+    "name": "Assault Cannon, 25mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a tripod- or vehicle-mounted automatic cannon firing medium-velocity shells, similar to those of the payload rifle (above).</p>"
+  },
+  {
+    "_id": "49c3bbf905a8381f",
+    "name": "Heavy Chaingun, 15mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This electric-motordriven, single-barrel machine gun fires the same round as the anti-materiel rifle. It is used for perimeter defense or as a vehicular weapon. Normal humans can't handle its weight without a tripod, but powered troopers can use it as a handheld weapon. A separately loaded C cell provides 15 minutes of power.</p>"
+  },
+  {
+    "_id": "c525e0eff8a8f0f5",
+    "name": "Minigun, 7mmCL",
+    "pages": "UT136",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This portable, tripod-mounted Gatling gun boasts six rotating barrels and an electric action, firing up to 100 rounds per second. A separately loaded C cell powers it for up to 15 minutes.</p>"
+  },
+  {
+    "_id": "35eb9b95c70eb0e0",
+    "name": "Needler, 3mmN",
+    "pages": "UT139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small-caliber air gun that can fire a bullet, or a drugged dart holding one dose of any injectable biochemical poison. Also called a \"needle pistol.\"</p>"
+  },
+  {
+    "_id": "1546ee45bc2f4f34",
+    "name": "Paint Pistol, 15mm",
+    "pages": "UT139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large-caliber, low-velocity air gun used to fire plastic pellets containing paint or biochemical liquid ammunition (p. 153). Some models are designed as replicas of pistols.</p>"
+  },
+  {
+    "_id": "5c45849adadd460a",
+    "name": "Tangler Pistol, 25mmT",
+    "pages": "UT140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pistol-sized tangler that uses a less powerful compressed air charge.</p>"
+  },
+  {
+    "_id": "c7cc17a61896a96c",
+    "name": "Wrist Needler, 3mmN",
+    "pages": "UT140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A needler designed to be strapped to the wrist and concealed up a sleeve. It incorporates a simple neural input sensor reading muscle signals. A trained shooter can fire it with no more effort than pointing a finger, but it's tricky to use without practice. Double penalties for lack of familiarity.</p>"
+  },
+  {
+    "_id": "1d9b7ef277232bff",
+    "name": "Ice Gun, 3mm ice",
+    "pages": "UT140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These use compressed gas to fire needles of frozen liquid. The needles dissolve without a trace in the target's body. They are intended for survival or assassination. Each 20-shot magazine includes a self-contained refrigeration unit. Pour a cup of water into the magazine, activate the refrigeration unit, and in half an hour (five minutes at TL11, one minute at TL12), 20 new ice needles will be ready to fire. A single C cell can freeze 100 magazines' worth of ice needles.</p>"
+  },
+  {
+    "_id": "70ff96fcaca24334",
+    "name": "Needle Rifle, 3mmN",
+    "pages": "UT139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A higher-powered air rifle, otherwise similar to the needle pistol.</p>"
+  },
+  {
+    "_id": "5c94967b2004f12e",
+    "name": "Paint Carbine, 15mm",
+    "pages": "UT139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large-caliber, low-velocity air gun used to fire plastic pellets containing paint or biochemical liquid ammunition (p. 153). It is electrically powered (a B cell can fire 10 magazines of ammunition) and capable of automatic fire. It may be designed as a replica of an actual rifle or carbine.</p>"
+  },
+  {
+    "_id": "c0e2e1e6fcb60a44",
+    "name": "Tangler, 25mmT",
+    "pages": "UT139",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compressed gas gun about the size of a shotgun, with a folding stock. It fires a 25mm projectile at a very low velocity. It usually fires tangler (p. 155) ammunition, but can also fire other 25mm warhead rounds or solid metal slugs.</p>"
+  },
+  {
+    "_id": "ad01e870e06b2227",
+    "name": "Partisan Needler, 3mmN",
+    "pages": "UT140",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This spring-rifle weapon is designed for low-tech guerrilla fighters, or for use by people planning a long stay in cultures that can't produce sophisticated ammo. The solar-powered flywheel foundry in the stock makes its own ammunition. It can produce 140 needles in an hour using a 2×3×1-inch metal block, which can be made by any village blacksmith with access to ore. After that, it must recharge for 10 hours in the sun.</p>"
+  },
+  {
+    "_id": "2eaee8ed0d141484",
+    "name": "Electromag Mortar, 64mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This heavy basemounted tube is a standard semi-portable infantry artillery piece. It's also found mounted in vehicle turrets.</p>"
+  },
+  {
+    "_id": "5b4bd6351aa371ec",
+    "name": "Gauss Minineedler, 3mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>One of the smallest machine pistols available, this is an ultra-compact holdout version of the Gauss needler.</p>"
+  },
+  {
+    "_id": "f9e1f24af2d44362",
+    "name": "Gauss Pistol, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A long-barreled hypervelocity pistol with more kinetic energy than a 15mm magnum pistol, but only a fraction of the recoil.</p>"
+  },
+  {
+    "_id": "d709fb834a65d842",
+    "name": "Gauss Machine Pistol, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Gauss machine pistol's compactness, high rate of fire, and stopping power make it popular with military officers, special forces, and terrorists.</p>"
+  },
+  {
+    "_id": "123d026b2e35f5f6",
+    "name": "Gauss Needler, 3mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A short-ranged but rapidfiring machine pistol.</p>"
+  },
+  {
+    "_id": "d4216cdb531f3d13",
+    "name": "Gauss PDW, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact assault weapon that accelerates bullets to a velocity between that of the Gauss pistol and Gauss rifle.</p>"
+  },
+  {
+    "_id": "dc9bcd4279459a41",
+    "name": "Sniper Railgun, 7mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An early sniper railgun used by and against battlesuits and combat robots, or for shooting down aircraft. It fires a 7mm dart at 10,000 feet per second, with twice the power of a 15mm sniper rifle. It has a comparatively low recoil, and can be fired without a bipod.</p>"
+  },
+  {
+    "_id": "0dc76ff00c2d1bbc",
+    "name": "Gauss Needle Rifle, 3mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon fires 3mm darts at very high rate of fire.</p>"
+  },
+  {
+    "_id": "626eff53db0cf11e",
+    "name": "Gauss Rifle, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This may be a standard military rifle at TL10. It is an automatic weapon that accelerates a 4mm bullet to almost 5,000 feet per second.</p>"
+  },
+  {
+    "_id": "e8f8c981d31cf20e",
+    "name": "Portable Railgun, 10mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This long-barreled, semi-automatic Gauss rifle fires 10mm slugs at hypersonic velocities. Used as a heavy sniper rifle, its advantage over conventional weapons is its larger ammunition capacity and lighter weight, especially when loaded.</p>"
+  },
+  {
+    "_id": "25c21e836ad022f6",
+    "name": "Gauss CAW, 18.5mm",
+    "pages": "UT142",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "bf91c7f2f2ba01bd",
+    "name": "Gauss Shotgun Pistol, 18.5mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to the Gauss CAW (above), but in pistol format. This big-bore, snub-nosed semi-automatic is a favorite police sidearm, due to the many types of warheads it can fire.</p>"
+  },
+  {
+    "_id": "39ccb57f54565763",
+    "name": "EMGL, 40mmG",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An EMGL is a stubby, shotgun-like Gauss gun, similar in shape to 20th-century grenade launchers.</p>"
+  },
+  {
+    "_id": "b886d73cb3fbc63e",
+    "name": "Underbarrel EMGL, 25mmG",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a Gauss grenade launcher that can be attached under any weapon with Bulk -3 or more. It's also called a mini-GL. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "1665dab564f63e9e",
+    "name": "Gauss LSW, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy-barrel version of the Gauss rifle, used as a machine gun or battlesuit sidearm. It can fire 3,000 rounds per minute.</p>"
+  },
+  {
+    "_id": "ea7af2341bc448e0",
+    "name": "Auto EMGL, 40mmG",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky weapon firing the same round as the EMGL, but at higher velocities. It's used as a tripod-mounted infantry support weapon, or by powered troopers.</p>"
+  },
+  {
+    "_id": "c7b40775f183f792",
+    "name": "Railgun, 40mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electromagnetic cannon with a very long barrel, firing a projectile at hypersonic velocities. It's a suitable main gun for a tank or small warship.</p>"
+  },
+  {
+    "_id": "499120ba7509687d",
+    "name": "Gauss HMG, 7mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This tripod-mounted 4mm machine gun fires the same round as the Gauss rifle from a 4,000-round ammo cassette.</p>"
+  },
+  {
+    "_id": "8e83ff2d80ed80cd",
+    "name": "Gauss Minigun, 4mm",
+    "pages": "UT141",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon spits out highvelocity projectiles at up to 10,000 rounds per minute. It is used as a heavy machine gun and point-defense weapon. The cryogenic cooling jacket surrounding the barrel and the huge ammo cassette allow sustained automatic fire.</p>"
+  },
+  {
+    "_id": "f6b9bb7acbff228c",
+    "name": "Grav Minineedler",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small holdout pistol powered by two B cells.</p>"
+  },
+  {
+    "_id": "18590a06ea7cccf4",
+    "name": "Grav Needler",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A hypervelocity machine pistol with a rapid rate of fire. Powered by a C cell.</p>"
+  },
+  {
+    "_id": "e46a280a40821c1d",
+    "name": "Grav Needle Rifle",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A grav gun assault rifle, capable of turning a light armored vehicle into Swiss cheese with a single burst. Powered by a C cell.</p>"
+  },
+  {
+    "_id": "11ff772f553843c0",
+    "name": "Sniper Grav Gun",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A long-barrel sniper version of the grav needler rifle. Powered by two C cells.</p>"
+  },
+  {
+    "_id": "53ac785800955708",
+    "name": "Heavy Grav Needler",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rapid-fire machine gun powered by a D cell.</p>"
+  },
+  {
+    "_id": "fbd0ded0bfa3aeb1",
+    "name": "Gravitic Railgun",
+    "pages": "UT143",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tank-sized gravitic cannon firing darts at near-light speed. External power.</p>"
+  },
+  {
+    "_id": "4b2a5fa4988eae33",
+    "name": "Gyroc Carbine, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a popular infantry weapon, especially when loaded with armor-piercing explosive rockets (such as HEMP ammunition, p. 155).</p>"
+  },
+  {
+    "_id": "b5d398a93c57c32d",
+    "name": "Gyroc Launch Pistol, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A semi-automatic magazine-fed rocket pistol.</p>"
+  },
+  {
+    "_id": "dcc8b30bb60ae0e8",
+    "name": "Gyroc LSW, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electrically powered machine gun-sized gyroc with a large ammunition cassette and full automatic fire capability. A B cell provides up to 15 minutes continuous fire.</p>"
+  },
+  {
+    "_id": "c2b1ec5595ba2fda",
+    "name": "Gyroc Pistol, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A simple and compact weapon - basically a four-shot revolver. Different rockets can be loaded in each chamber.</p>"
+  },
+  {
+    "_id": "cd8188966489a664",
+    "name": "Holdout Gyroc, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called the \"sleeve gyroc,\" this is an single-shot rocket launcher. It's often worn attached above the wrist.</p>"
+  },
+  {
+    "_id": "557d51b16c353016",
+    "name": "Underbarrel Gyroc, 15mm",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An alternative to a grenade launcher, this compact weapon is designed to be clamped onto (or built into) an assault rifle for extra firepower. Use the Bulk, ST, and sighting bonuses of the weapon it is installed in.</p>"
+  },
+  {
+    "_id": "d6eec5cf272d86fc",
+    "name": "IML, 64mm (TL 9)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a single-shot launch tube with a pistol grip and an electronics system. It holds one mini-missile, but can be reloaded after each shot if extra missiles are carried. It is light enough (six pounds loaded) that every soldier could carry one.</p><p>The launcher fires a supersonic missile with a 64mm warhead. It produces a dangerous backblast when fired, doing 2d burning damage to everyone within a cone up to two yards behind the launcher.</p><p>Each missile costs $100 without a warhead; homing missiles (p. 146) cost more. The usual warhead is a solid \"kinetic kill\" projectile inflicting the listed piercing damage. The warhead costs $10; multiply this figure for the more expensive warheads listed under Warheads and Ammunition (pp. 152-159).</p>"
+  },
+  {
+    "_id": "f8b87914d1f464c4",
+    "name": "MLAWS, 64mm (TL 9)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The MLAWS is a six-tube launcher with a loaded weight of 35 pounds. It is quite hefty, but its lack of recoil allows an ordinary person to fire it. The MLAWS is used as a squad support weapon, although it's not uncommon to see them attached to post mounts on vehicles or hung under the pylons of attack aircraft. The MLAWS fires the same missile as an IML (see above), with the same options and backblast hazard.</p>"
+  },
+  {
+    "_id": "b8991580a7fd231a",
+    "name": "TML, 100mm (TL 9)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This bulky launch tube holds a single pre-packaged missile. An unguided rocket costs $400; missiles with guidance systems cost more. The basic warhead is a 100mm solid \"kinetic kill\" projectile that inflicts the listed piercing damage. This costs $40; multiply this figure for the more expensive warheads listed under Warheads and Ammunition (pp. 152-159). It has a potentially lethal backblast when fired, doing 4d burning damage to everyone within a cone up to three yards behind the launcher.</p>"
+  },
+  {
+    "_id": "9760f63a1c7300fb",
+    "name": "IML, 64mm (TL10)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a single-shot launch tube with a pistol grip and an electronics system. It holds one mini-missile, but can be reloaded after each shot if extra missiles are carried. It is light enough (six pounds loaded) that every soldier could carry one.</p><p>The launcher fires a supersonic missile with a 64mm warhead. It produces a dangerous backblast when fired, doing 2d burning damage to everyone within a cone up to two yards behind the launcher.</p><p>Each missile costs $100 without a warhead; homing missiles (p. 146) cost more. The usual warhead is a solid \"kinetic kill\" projectile inflicting the listed piercing damage. The warhead costs $10; multiply this figure for the more expensive warheads listed under Warheads and Ammunition (pp. 152-159).</p>"
+  },
+  {
+    "_id": "4e08098b16dd13bb",
+    "name": "MLAWS, 64mm (TL10)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The MLAWS is a six-tube launcher with a loaded weight of 35 pounds. It is quite hefty, but its lack of recoil allows an ordinary person to fire it. The MLAWS is used as a squad support weapon, although it's not uncommon to see them attached to post mounts on vehicles or hung under the pylons of attack aircraft. The MLAWS fires the same missile as an IML (see above), with the same options and backblast hazard.</p>"
+  },
+  {
+    "_id": "e74ac40bd3410405",
+    "name": "TML, 100mm (TL10)",
+    "pages": "UT145",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This bulky launch tube holds a single pre-packaged missile. An unguided rocket costs $400; missiles with guidance systems cost more. The basic warhead is a 100mm solid \"kinetic kill\" projectile that inflicts the listed piercing damage. This costs $40; multiply this figure for the more expensive warheads listed under Warheads and Ammunition (pp. 152-159). It has a potentially lethal backblast when fired, doing 4d burning damage to everyone within a cone up to three yards behind the launcher.</p>"
+  },
+  {
+    "_id": "8d8ec4bb9365e3e1",
+    "name": "Monowire Whip",
+    "pages": "UT163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a weighted length of monomolecular wire attached to a short handle. It is a dangerous weapon, especially in the hands of an unskilled user (who may lose control of the weapon and injure himself with it). A control allows the wielder to vary length from one to seven yards, changing both reach and ready time. Adjusting the length requires a Ready maneuver.</p><p>When used to snare an opponent or a weapon, the whip cuts into its target, inflicting thrust+1d(10) cutting damage every turn it is pulled taut until the victim escapes. A \"drop weapon\" critical miss indicates the wielder hit himself or a friend.</p>"
+  },
+  {
+    "_id": "4804545649c6fe9d",
+    "name": "Monowire Switchblade",
+    "pages": "UT163",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon combines elements of both a monowire blade and whip. It consists of a weighted monomolecular memory wire attached to a powered knife hilt. As long as the hilt feeds an electric current into the \"smart\" wire, the wire remains rigid like a sword. Toggle switches in the hilt allow the user to play out more wire to vary the blade length from 0 inches (retracting the blade into the hilt) to 15 feet, or to turn the current on or off. If the current is cut off, the wire becomes a flexible razor-sharp monowire whip. Changing length or switching the current on and off requires a ready action.</p>"
+  },
+  {
+    "_id": "f06c97dde397dd19",
+    "name": "Stasis Switchblade",
+    "pages": "UT164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A stasis blade consists of a monomolecular wire (p. 103) stiffened by a stasis web (pp. 193-194). Its effect is identical to a monowire switchblade, but the blade may extend out to reach 30. Due to the stasis web, the switchblade cannot be broken and can be used to parry a force blade or similar energy-based attack.</p>"
+  },
+  {
+    "_id": "a2f2e7b98c44b2a2",
+    "name": "Zap Glove",
+    "pages": "UT165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A zap glove looks like a heavy glove, but it contains electrical insulation (for the wearer) and a high-voltage generator. A person can attack with a zap glove by touching the victim. Boxing, Brawling or Karate allow the zap and normal damage simultaneously; Judo, Wrestling or a normal grapple apply the zap before any other effect. No attack roll is needed in social situations such as shaking hands. A zap glove has two settings: \"stun\" and \"kill.\" Changing settings takes a Ready maneuver. On \"stun,\" the effect is the same as an electric stun wand. On \"kill,\" the zap glove does 2d burning damage and uses the rules for lethal electrical damage (p. B432). A B cell in the lining of the glove provides sufficient power for 10 zaps (each zap on \"kill\" setting counts as two). The glove protects the hand with DR 5. It can also be built into existing armor or vacc suit gauntlets.</p>"
+  },
+  {
+    "_id": "1ec0cec06531b014",
+    "name": "Electric Stun Wand",
+    "pages": "UT164",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called shock clubs or stun sticks, these batons use low-powered electric currents to disorganize nerve function - an effect called electromuscular disruption.</p><p>They are often carried by police officers. Some are jointed, to prevent a victim taking damage even when struck by an adrenaline-charged riot policeman; others do damage as a baton.</p><p>The victim gets a HT-5 roll to resist. Nonmetallic armor gives a bonus equal to its DR, and the stun effect has a (0.5) armor divisor: add +2 to HT for every DR 1. On a failure, the victim's voluntary muscles convulse, and he is knocked down and paralyzed. He may roll vs. HT-5 each second to recover; however, the user may take a Concentrate maneuver to hold the baton in contact. This prevents recovery until it is removed, but drains a charge each second. DR does not add to HT on recovery rolls.</p><p>Stun wands are wielded using Shortsword skill. They use a B cell and strike 20 times before losing power.</p>"
+  },
+  {
+    "_id": "36ba17b2bf58693a",
+    "name": "Neuroglove",
+    "pages": "UT165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The neuroglove delivers a neural shock by touch. It functions like a neural lash, but the larger contact area of the glove makes it more effective: it delivers a HT-6 (2) affliction attack. It can be used to strike with, or to ambush unsuspecting victims by shaking hands with them. It is also a favorite interrogation tool. Pain neurogloves delivering an Agony affliction are the most common, but gloves delivering all neural disruptor effects are available.</p><p>A neuroglove resembles an ordinary winter glove, and has DR 2. Any damage to the hand that penetrates its DR has a one-in-six chance of wrecking it as a weapon.</p>"
+  },
+  {
+    "_id": "74c89ef0bfafe63b",
+    "name": "Neurolash Baton",
+    "pages": "UT165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These contact neural disruptor weapons use neural induction technology to stimulate paralysis, pain, or orgasmic pleasure in the brain and nervous system. Neurolash weapons are used for covert operations, pranks, as selfdefense or dueling weapons, or by slavers, prison guards, and police of oppressive regimes.</p><p>Neurolash effects are affliction attacks identical in effect to a strike from a neural disruptor (pp. 121-122). Neurolash weapons come in all standard neural disruptor versions.</p><p>A neurolash is usually integrated into a baton or whip, but it may be added to any melee weapon. It delivers a HT5 (2) affliction attack. A neurolash generator is not compatible with force blade, sonic, vibro, or monowire weapons.</p>"
+  },
+  {
+    "_id": "f692ab890b83beab",
+    "name": "Neurolash Whip",
+    "pages": "UT165",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These contact neural disruptor weapons use neural induction technology to stimulate paralysis, pain, or orgasmic pleasure in the brain and nervous system. Neurolash weapons are used for covert operations, pranks, as selfdefense or dueling weapons, or by slavers, prison guards, and police of oppressive regimes.</p><p>Neurolash effects are affliction attacks identical in effect to a strike from a neural disruptor (pp. 121-122). Neurolash weapons come in all standard neural disruptor versions.</p><p>A neurolash is usually integrated into a baton or whip, but it may be added to any melee weapon. It delivers a HT5 (2) affliction attack. A neurolash generator is not compatible with force blade, sonic, vibro, or monowire weapons.</p>"
+  },
+  {
+    "_id": "a0f149e93a7ec14a",
+    "name": "Sonic Shuriken",
+    "pages": "UT166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This throwing weapon is designed for use by assassins and commandos. A sonic shuriken appears to be a one-inch plastic disk. When activated and thrown it emits a disk of coherent sound twice its own diameter. Due to its small power source, the sonic blades only last for a second, but this is enough time for it to hit its target.</p><p>For an extra $50, a sonic shuriken may be fitted to spray a drug, poison or virus along the disk (two doses are required). This is a follow-up attack - if the shuriken penetrates armor, it delivers the drug or poison.</p><p>A sonic shuriken uses an A cell, which is completely drained after one use. It is reusable if its power cell is replaced. Because they use only A cells and are so easy to conceal (Bulk 0), these weapons are favorites with assassins.</p>"
+  },
+  {
+    "_id": "1d6efb6e3f75fae8",
+    "name": "Force Glaive",
+    "pages": "UT166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A suitable weapon for the guards of the galactic emperor. This collapsible staff contains a generator for an elongated force blade. When the blade is inactive, the weapon can be used as an ordinary baton or staff.</p>"
+  },
+  {
+    "_id": "c284b0d6a21dec58",
+    "name": "Force Sword",
+    "pages": "UT166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The basic force sword: a powered hilt that generates a brilliant beam of annihilating energy. This weapon is as elegant as it is deadly.</p>"
+  },
+  {
+    "_id": "ae39ecbba2115d97",
+    "name": "Force Whip",
+    "pages": "UT166",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a flexible field of matter-disrupting energy with a 25' reach. It is more clumsy and random than a force sword, but very difficult to counter!</p>"
+  },
+  {
+    "_id": "fa8cd3d5203e2b2e",
+    "name": "7.5mmCLP Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "46b69aacc1cac24c",
+    "name": "10mmCLP Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "66a4ac453057978f",
+    "name": "15mmCLP Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "b69ccf996fd57ad5",
+    "name": "5.7mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "c5e1645b0513865f",
+    "name": "7mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "a885b7c5e34d6b46",
+    "name": "10mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "b062b2836e474169",
+    "name": "10mmCLR Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "16bb749f0c9aa720",
+    "name": "15mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "967b6dc7de7fb950",
+    "name": "18.5mmPC Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "2de0cf4704ff4eae",
+    "name": "25mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "54f200c268ee38d2",
+    "name": "100mmCL Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "3573bc4a2c51e093",
+    "name": "15mmPLB Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "f5c880fed425d388",
+    "name": "25mmPC Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "02492459a7e2c234",
+    "name": "40mmPLB Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "72ac014c2d8ab46c",
+    "name": "64mmPLB Conventional Ammunition",
+    "pages": "UT139",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "7dfe92351dad4f06",
+    "name": "3mmN Airgun Ammunition",
+    "pages": "UT140",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "42a286ab055ba281",
+    "name": "15mm Airgun Ammunition",
+    "pages": "UT140",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "42b7d163a77ffd20",
+    "name": "25mmT Airgun Ammunition",
+    "pages": "UT140",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "3dc30237e168a19a",
+    "name": "3mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "dc7930e5136186e8",
+    "name": "4mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "206ccfd77ef9a1eb",
+    "name": "7mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "c021de23ff18a661",
+    "name": "10mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "c8c008809d186863",
+    "name": "18.5mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "4d5455397d0f5d12",
+    "name": "25mmG Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "e5f76bfcb4c79102",
+    "name": "40mmG Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "e1d68f0af7ebabd4",
+    "name": "40mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "14121461277b035c",
+    "name": "64mm Electromag Gun Ammunition",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "3f78d45153122e57",
+    "name": "Grav Needler Round",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "0fc77c5e6d440f36",
+    "name": "Grav Railgun Round",
+    "pages": "UT143",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "2484558b49c2e247",
+    "name": "15mm Gyroc",
+    "pages": "UT145",
+    "status": "no-entry",
+    "notes": "the book prints no entry of this name; the data file's own name for something it describes elsewhere, or a row of a table",
+    "description": ""
+  },
+  {
+    "_id": "b7f6ccde68b517af",
+    "name": "15mm Micromissile",
+    "pages": "UT144",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gyrocs are often equipped with homing projectiles (sometimes called \"micromissiles\" or \"viper gyrocs\") - see Homing Projectiles, p. 146. Micromissiles are quite expensive, so troops may not be issued full magazines of them, receiving a few as \"silver bullets\" in addition to the regular gyroc ammo load.</p>"
   },
   {
     "_id": "48913b167aacbf7e",
