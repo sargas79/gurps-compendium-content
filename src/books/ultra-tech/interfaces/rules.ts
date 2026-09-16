@@ -140,3 +140,52 @@ export const CONSOLE_GAME_BONUS = 1;
 
 /** Interactive holoprojection through anything but a neural interface is at -6 (p. 53). */
 export const HOLOPROJECTION_NO_INTERFACE = -6;
+
+/** Yanking off a neural interface helmet before disconnecting: 1d injury; donning or removing it takes four seconds (p. 49). */
+export const NEURAL_HELMET = Object.freeze({ yank: "1d", seconds: 4 });
+
+/** What a holoprojection tries (p. 53): fool someone, frighten them, or pass as someone they know. */
+export type HoloAim = "fool" | "fright" | "impersonate";
+
+/**
+ * The Quick Contest a holoprojection is (p. 53): the operator's skills, of which
+ * "impersonate" takes the lowest, and the victim's scores, of which the higher.
+ */
+export function holoContest(aim: HoloAim): { operator: string[]; lowest: boolean; victim: string[] } {
+  if (aim === "fool") return { operator: ["Electronics Operation (Media)"], lowest: false, victim: ["Per"] };
+  if (aim === "fright") return { operator: ["Artist (Holoprojection)"], lowest: false, victim: ["IQ", "Per"] };
+  return { operator: ["Acting", "Electronics Operation (Media)", "Artist (Holoprojection)"], lowest: true, victim: ["IQ", "Per"] };
+}
+
+/**
+ * The victim's modifiers against a holoprojection (p. 53): +4 if warned, +10 if
+ * it was made unsubtly or is examined with a sense it can't fool, +4 per fake
+ * person after the first, the GM's -5 to +10 for how believable it is, and
+ * -1 to the operator per -1 of darkness (a +1 to the victim).
+ */
+export function holoVictimModifier(options: { warned?: boolean; unsubtle?: boolean; people?: number; believability?: number; darkness?: number }): number {
+  const people = Math.max(0, Math.floor(Number(options.people) || 0));
+  const believability = Math.max(-5, Math.min(10, Math.floor(Number(options.believability) || 0)));
+  const darkness = Math.max(0, Math.floor(Math.abs(Number(options.darkness) || 0)));
+  return (options.warned ? 4 : 0) + (options.unsubtle ? 10 : 0) + 4 * Math.max(0, people - 1) + believability + darkness;
+}
+
+/** A scent synthesizer's masking odor: -5 on rolls to detect things by smell (p. 52); its nauseating odor is resisted at HT. */
+export const SCENT_SYNTH = Object.freeze({ mask: -5, nauseaResist: 0 });
+
+/** A sonic projector's range in yards: 200, 100 or 10, x1.5 at TL10, x2 at TL11, x3 at TL12 (p. 52). */
+export function sonicProjectorRange(size: "large" | "medium" | "small", tl: number): number {
+  const base = { large: 200, medium: 100, small: 10 }[size];
+  return base * (tl >= 12 ? 3 : tl >= 11 ? 2 : tl >= 10 ? 1.5 : 1);
+}
+
+/**
+ * The shock a sensie passes on (p. 57): the Basic Set's -1 per HP of injury, at
+ * most -4, per 10 HP for the large (Campaigns p. 419); halved in surface mode.
+ */
+export function sensieShock(injury: number, hp: number, mode: "immersion" | "surface"): number {
+  const per = Math.max(1, Math.floor(Math.max(0, Number(hp) || 0) / 10));
+  const shock = Math.min(4, Math.floor(Math.max(0, Number(injury) || 0) / per));
+  const passed = mode === "surface" ? Math.floor(shock / 2) : shock;
+  return passed ? -passed : 0;
+}

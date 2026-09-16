@@ -13,6 +13,12 @@ import {
   translatorComplexity,
   universalTranslatorLevel,
   virtualTutorComplexity,
+  NEURAL_HELMET,
+  SCENT_SYNTH,
+  holoContest,
+  holoVictimModifier,
+  sensieShock,
+  sonicProjectorRange,
 } from "./rules.js";
 
 describe("virtual reality (Ultra-Tech p. 54)", () => {
@@ -68,5 +74,42 @@ describe("augmented reality and teaching (Ultra-Tech pp. 56-59)", () => {
     expect(instaskillTakes(2)).toBe(false);
     expect(instaskillOverdose({ success: false, criticalFailure: false, margin: 3 })).toEqual({ phantomVoices: true, days: 3 });
     expect(instaskillOverdose({ success: false, criticalFailure: true, margin: 1 }).days).toBe("permanent");
+  });
+});
+
+describe("media and interfaces in play (#299)", () => {
+  it("costs 1d to yank a neural interface helmet off (p. 49)", () => {
+    expect(NEURAL_HELMET).toEqual({ yank: "1d", seconds: 4 });
+  });
+
+  it("names a holoprojection's contests (p. 53)", () => {
+    expect(holoContest("fool")).toEqual({ operator: ["Electronics Operation (Media)"], lowest: false, victim: ["Per"] });
+    expect(holoContest("fright").victim).toEqual(["IQ", "Per"]);
+    expect(holoContest("impersonate").lowest).toBe(true);
+  });
+
+  it("adds up a holoprojection victim's modifiers (p. 53)", () => {
+    expect(holoVictimModifier({})).toBe(0);
+    expect(holoVictimModifier({ warned: true, people: 3 })).toBe(12);
+    expect(holoVictimModifier({ unsubtle: true, believability: -5, darkness: -2 })).toBe(7);
+    expect(holoVictimModifier({ believability: 20 })).toBe(10);
+  });
+
+  it("masks scents at -5 (p. 52)", () => {
+    expect(SCENT_SYNTH.mask).toBe(-5);
+  });
+
+  it("ranges sonic projectors by size and TL (p. 52)", () => {
+    expect(sonicProjectorRange("large", 9)).toBe(200);
+    expect(sonicProjectorRange("medium", 10)).toBe(150);
+    expect(sonicProjectorRange("small", 12)).toBe(30);
+  });
+
+  it("passes a sensie's shock on, halved on the surface (p. 57)", () => {
+    expect(sensieShock(3, 10, "immersion")).toBe(-3);
+    expect(sensieShock(9, 10, "immersion")).toBe(-4);
+    expect(sensieShock(3, 10, "surface")).toBe(-1);
+    expect(sensieShock(15, 25, "immersion")).toBe(-4);
+    expect(sensieShock(0, 10, "surface")).toBe(0);
   });
 });
