@@ -9326,5 +9326,237 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>A powered hilt that projects a knife-length blade of annihilating energy, up to about 18 inches, held in shape by a force field: a street weapon for where a full force sword would draw attention. Like every force sword it forms in a second after a Ready or a successful Fast-Draw, does burning damage with a (5) armour divisor and cauterizes what it cuts, can't break, and harms any weapon or limb it parries or that parries or blocks it short of a critical success. C/300 seconds.</p>"
+  },
+  {
+    "_id": "c69713b4b3f9b3c1",
+    "name": "Riot Gas",
+    "pages": "UT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A non-lethal gas for crowd control. Anyone breathing it rolls HT-4 each second: a failure nauseates while in the cloud, and a failure by 5 or more leaves the victim retching there and nauseated for minutes equal to the margin after leaving. $2 a dose.</p>"
+  },
+  {
+    "_id": "685f6a1dfe7165b5",
+    "name": "Musk",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A skunk-like marking fluid police use on demonstrators and fleeing suspects, and a self-defence spray. Anyone sprayed has Bad Smell for two weeks; each hour of washing with high-tech detergent takes a day off. A sealed suit protects its wearer but not itself. $2 a dose.</p>"
+  },
+  {
+    "_id": "7eec7edc68cbe7a2",
+    "name": "Nerve Gas",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An aerosolized nerve agent: a contact agent with no delay, resisted at HT-6 (HT-3 for touching a contaminated area later). A failure does 1d toxic, repeated each minute for six cycles. A third of HP lost brings coughing and a mild Neurological Disorder, half nausea and a severe one, two-thirds a crippling one; the disorder eases as HP returns and goes below a third. $10 a dose.</p>"
+  },
+  {
+    "_id": "3ff99b8fc7b61b8c",
+    "name": "Sleep Gas",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A skin-penetrating sedative. A contact agent resisted at HT-6; a failure means unconsciousness for minutes equal to the margin, then ordinary sleep. $0.50 a dose.</p>"
+  },
+  {
+    "_id": "6e0ce56434b7686e",
+    "name": "Screening Smoke",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>White, grey or sand-coloured smoke: -10 to visually aimed attacks and to seeing through it, and it blocks ladar. It forms at a second per five yards of radius and lingers one to four minutes. The book gives no price for the plain version.</p>"
+  },
+  {
+    "_id": "361caf8479316d76",
+    "name": "Colored Smoke",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Marking smoke for targets and landing zones, still -7 to see through. $0.10 a dose.</p>"
+  },
+  {
+    "_id": "87b875ef479ecad2",
+    "name": "Hot Smoke",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As screening smoke, and it also penalizes Infravision, Hyperspectral Vision and Night Vision. $0.15 a dose.</p>"
+  },
+  {
+    "_id": "70ec427d0ab99670",
+    "name": "Prism Smoke",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As hot smoke, and it blocks most lasers, though not X-ray or gamma-ray ones. $0.20 a dose.</p>"
+  },
+  {
+    "_id": "6a9a2d8a9cb5e6a9",
+    "name": "Electromagnetic Smoke",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As hot smoke, and it works against radar and imaging radar. $0.30 a dose.</p>"
+  },
+  {
+    "_id": "3fcc30e1097a83d3",
+    "name": "Anti-Tangler Aerosol",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dissolves sticky-foam tangler bonds in a second. $1 a dose.</p>"
+  },
+  {
+    "_id": "bc58551f26383d1f",
+    "name": "Mask",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Neutralizes the chemical traces living beings leave: -6 to Forensics for those traces and to tracking by scent where a trail crosses a masked area. The agent itself is easy to identify and follow. $30 a dose.</p>"
+  },
+  {
+    "_id": "68dbdf9b7e37f9dd",
+    "name": "Paralysis Gas",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An advanced, non-lethal nerve agent delivered by warhead, spray or vortex ring. Each turn in the cloud, HT-6: failing by 1 or 2 drops the victim for the turn, by 3 or more paralyses for minutes equal to the margin, and a critical failure does 1d and causes a coma. $10 a dose.</p>"
+  },
+  {
+    "_id": "36ba1827112f1274",
+    "name": "Pheromone Spray",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A breathed agent that heightens attraction to the victim's own species; aliens are almost never affected. HT-2 to resist; a failure gives Lecherousness (9) while in the cloud and for minutes equal to the margin after. $20 a dose.</p>"
+  },
+  {
+    "_id": "d9a2537b6678e972",
+    "name": "Radiant Prism",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Prism and electromagnetic smoke together, lasting half as long, with -5 to infrared- and radar-aimed attacks and sighting as well. Breathed without a filter, it does a point of damage a second. $3 a dose.</p>"
+  },
+  {
+    "_id": "c6bd309d4c266d81",
+    "name": "Firefoam",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Fire retardant that puts out any fire of up to TL-8 dice in its area, and damps larger fires for 3d seconds. $1 a dose.</p>"
+  },
+  {
+    "_id": "765898cb13a86dd3",
+    "name": "Metal Embrittlement Agent",
+    "pages": "UT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A corrosive tailored to one alloy: 3d corrosion an hour to any object mostly made of it, or with exposed vital parts of it, for 12 hours or until decontaminated. An object of SM +2 or more entirely inside the area takes the damage times its SM. $5 a dose.</p>"
+  },
+  {
+    "_id": "d3368b17ce3fe19e",
+    "name": "Disassembler Nanoglop",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Disassembler nanomachines as a viscous slime, the ultra-tech napalm. Half a chemical round's burst radius, and double a disassembler cloud's damage to anyone covered, for 15 seconds; a miss eats into the ground. Priced as disassembler clouds (p. 169).</p>"
+  },
+  {
+    "_id": "deb57d7c26818975",
+    "name": "Replicator Nanoglop",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nanoglop that works as replicating disassemblers (p. 169).</p>"
+  },
+  {
+    "_id": "c160fcd6214526e9",
+    "name": "Nerve Poison",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The nerve agent as an injected dose: HT-7 to resist, then 1d toxic a minute for six cycles, with nerve gas's symptoms as HP is lost. $10 a dose.</p>"
+  },
+  {
+    "_id": "1a2c62fa79b0a4ca",
+    "name": "Sleep Poison",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A sleep dose for hypos and dart guns, resisted at HT-6: a failure leaves the victim drowsy, and a failure by 5 or more unconscious for minutes equal to the margin. $0.50 a dose.</p>"
+  },
+  {
+    "_id": "6aef0c87b7160238",
+    "name": "Contact Nerve Poison",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nerve poison to coat a blade (not a vibroblade) or a surface such as a doorknob: +2 to the HT roll, ten times the price. Applying it in haste may call for DX or Poisons to avoid an accident.</p>"
+  },
+  {
+    "_id": "1cb1015200ccb57f",
+    "name": "Contact Sleep Poison",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sleep poison to coat a blade (not a vibroblade) or a surface: +2 to the HT roll, ten times the price.</p>"
+  },
+  {
+    "_id": "05e8cb5822d9c9fb",
+    "name": "Nanoburn",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nanomachines that break down the body's functions in any carbon-based life. HT-6 or paralysed for three minutes times the margin; the paralysed then take 1d-1 toxic every three minutes for the next half hour. Ordinary nerve antidotes don't work, but Torpine stops the damage and Aegis nano is effective. $5 a dose, before the cost of its delivery form.</p>"
+  },
+  {
+    "_id": "001c5f297fecb052",
+    "name": "Nanotracers",
+    "pages": "UT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nanomachines that spread through the body in a minute and then act as a homing beacon by radio, or make it give off coded chemical cues that trained chemsniffers or Discriminatory Smell can follow for a day or more at +5. Hard to remove without blood filtration or Aegis or pharmophage nano; Aegis and diagnostic nano look for them at -2 (TL10), -4 (TL11) or -6 (TL12). $100 a dose.</p>"
+  },
+  {
+    "_id": "264fed2986b602cb",
+    "name": "Splatter Nano",
+    "pages": "UT162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A follow-up poison of cell-sized microbombs that circulate and then tear the arteries apart, on a timer or a coded radio pulse. After at least a minute it does 1d toxic, plus 1d for each further minute, to 30d; each extra dose adds as much again. Aegis nano contests it each minute (both skill 12 at TL11, 14 at TL12), taking a point off each die per win and wiping it out after six. $100 a dose.</p>"
+  },
+  {
+    "_id": "a5b608f598e6046c",
+    "name": "Shrike Nano",
+    "pages": "UT162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Hunts down Aegis nano to clear the way for other invaders. Each minute, a contest: shrike 12, 14 or 16 at TL10-12 (+1 per doubling of doses) against Aegis 10, 12 or 14. An Aegis win kills a dose of shrike; a shrike win kills the Aegis. $500 a dose.</p>"
+  },
+  {
+    "_id": "c154b32b83538541",
+    "name": "Dominator Nano",
+    "pages": "UT162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Rewrites the brain to instill or erase a mundane, non-self-imposed mental disadvantage, such as Cowardice, Paranoia or Slave Mentality. After six hours, HT-6 or the change takes hold, permanently until other nano or a psych implant undoes it; it does nothing if the victim already has (or lacks) the trait. $100 times the disadvantage's points, doubled for a version that reverses itself after a set time. Socially approved types are LC2.</p>"
+  },
+  {
+    "_id": "8eb9fa7bdcaaf016",
+    "name": "Dominator Nano (Superscience)",
+    "pages": "UT162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dominator nano that takes effect after a minute, at twice the price.</p>"
+  },
+  {
+    "_id": "27e4a2a1f21a6451",
+    "name": "Parasite Seed",
+    "pages": "UT162",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An apple-seed capsule that, injected or swallowed, turns its host into a bioplas nanomorph. Each hour, HT-4: a success kills the seed, a failure takes 3 HT. At HT 0 the host dies and the body becomes a nanomorph, with the seed's own AI, which may keep the host's mind as a ghost program. $10,000 a dose, or $100,000 for a mind-trapping seed.</p>"
   }
 ]

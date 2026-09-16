@@ -2285,6 +2285,7 @@
       "title": "Biochemical and Nanotech Weapons",
       "chapter": "Weaponry",
       "pages": "UT159",
+      "rule": "gurps-compendium-content.biochemicalAgents",
       "reference": "Ultra-Tech p. 159",
       "file": "biochemical-and-nanotech-weapons.md",
       "status": "reviewed"
@@ -2294,6 +2295,7 @@
       "title": "Gases and Clouds",
       "chapter": "Weaponry",
       "pages": "UT159",
+      "rule": "gurps-compendium-content.biochemicalAgents",
       "reference": "Ultra-Tech p. 159",
       "file": "gases-and-clouds.md",
       "status": "reviewed"
@@ -2303,6 +2305,7 @@
       "title": "Metabolic Nanoweapons",
       "chapter": "Weaponry",
       "pages": "UT161",
+      "rule": "gurps-compendium-content.nanoweapons",
       "reference": "Ultra-Tech p. 161",
       "file": "metabolic-nanoweapons.md",
       "status": "reviewed"

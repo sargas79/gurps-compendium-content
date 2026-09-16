@@ -11,6 +11,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initAccessories, readyAccessories } from "./accessories/index.js";
+import { initAgents, readyAgents } from "./agents/index.js";
 import { initArmor, readyArmor } from "./armor/index.js";
 import { beamIgnoresEnvironment, initBeamOptions, readyBeamOptions } from "./beams/beam-options.js";
 import { readyBeams } from "./beams/index.js";
@@ -72,6 +73,8 @@ const RULES = [
   { key: "laserResistantArmor", pages: "pp. 173-174", implemented: true },
   { key: "tailoredArmor", pages: "pp. 174-175", implemented: true },
   { key: "armorSystems", pages: "pp. 170-171, 187-190", implemented: true },
+  { key: "biochemicalAgents", pages: "pp. 159-161", implemented: true },
+  { key: "nanoweapons", pages: "pp. 161-162", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -110,6 +113,7 @@ function init(): void {
   initAccessories();
   initMelee();
   initArmor();
+  initAgents();
   registerRecordData();
 }
 
@@ -133,6 +137,7 @@ function ready(api: GWorldApi): void {
   readyAccessories(api, rule("firearmAccessories"));
   readyMelee(api, { blades: rule("bladeTech"), energy: rule("energyMelee"), force: rule("forceSwords") });
   readyArmor(api, { threat: rule("threatProtection"), laser: rule("laserResistantArmor"), tailored: rule("tailoredArmor"), systems: rule("armorSystems") });
+  readyAgents(api, { biochemical: rule("biochemicalAgents"), nano: rule("nanoweapons") });
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });

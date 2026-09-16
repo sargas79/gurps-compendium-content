@@ -1,0 +1,31 @@
+{{!-- A biochemical agent or nanoweapon: what it is, how it's delivered, and what it does (Ultra-Tech pp. 159-162). --}}
+<div class="isub" data-gcc-ut-agents-section>
+  <div class="isub-head">{{localize "GCC.UT.Agents.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.UT.Agents.KindHint'}}">{{localize "GCC.UT.Agents.KindLabel"}}
+      <select data-gcc-ut-agent="kind" {{#unless editable}}disabled{{/unless}}>
+        {{#each kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if nano}}
+      <label data-tooltip="{{localize 'GCC.UT.Agents.DeliveryHint'}}">{{localize "GCC.UT.Agents.DeliveryLabel"}}
+        <select data-gcc-ut-agent="delivery" {{#unless editable}}disabled{{/unless}}>
+          {{#each deliveries as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+    {{#if dominator}}
+      <label data-tooltip="{{localize 'GCC.UT.Agents.DisadvantageHint'}}">{{localize "GCC.UT.Agents.Disadvantage"}}
+        <input type="text" data-gcc-ut-agent="disadvantage" value="{{data.disadvantage}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Agents.PointsHint'}}">{{localize "GCC.UT.Agents.Points"}}
+        <input type="number" data-gcc-ut-agent="disadvantagePoints" value="{{data.disadvantagePoints}}" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+  </div>
+  <div class="ichecks">
+    {{#if dominator}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Agents.ReversibleHint'}}"><input type="checkbox" data-gcc-ut-agent="reversible" {{#if data.reversible}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Agents.Reversible"}}</label>{{/if}}
+    {{#if parasite}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Agents.MindTrappingHint'}}"><input type="checkbox" data-gcc-ut-agent="mindTrapping" {{#if data.mindTrapping}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Agents.MindTrapping"}}</label>{{/if}}
+  </div>
+  {{#each lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>
