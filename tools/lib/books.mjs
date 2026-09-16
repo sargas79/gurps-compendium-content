@@ -134,7 +134,7 @@ export function book(slug) {
       families: (raw.transcription?.families ?? []).map((rule) => ({
         pattern: new RegExp(rule.pattern),
         replace: String(rule.replace ?? ""),
-        heading: String(rule.heading),
+        heading: rule.heading ? String(rule.heading) : null,
         headingOnly: rule.headingOnly === true,
       })),
     },

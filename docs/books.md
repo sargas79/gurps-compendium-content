@@ -96,3 +96,12 @@ node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
    once for a whole family: its text is the family heading's opening followed by
    the text of the model the pattern and replacement name ("Heavy X-Ray Laser
    Pistol" takes "Heavy Laser Pistol"'s), or the opening alone with `headingOnly`.
+   A rule with no `heading` takes the model's text alone, and the model may be a
+   label the book prints rather than a record ("Reflex (TL9):" for the Reflex
+   Vest). Family rules are tried before the record's own name, since a
+   cybernetic's own heading holds only its statistics.
+
+   `tools/capture-gear.mjs` drafts equipment records from gadget entries that no
+   data file holds, reading each closing line ("$1,200, 1 lb., B/10 hr. LC4.")
+   in both text orders. `capture.skip` and `capture.set` in `book.json` hold
+   what reading the page settled, each with its reason.

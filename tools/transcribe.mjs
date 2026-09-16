@@ -542,10 +542,16 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
     // matches -- takes the family's text alone.
     let own = { paragraphs: [] };
     if (!rule.headingOnly) {
-      const model = byName.get(entry.name.replace(rule.pattern, rule.replace).replace(/\s+/g, " ").trim());
-      if (!model) continue;
+      // The model is usually a record of its own; where it is only a name the
+      // book prints ("Reflex (TL9):" for the Reflex Vest), it is looked for
+      // where the entry itself is cited.
+      const modelName = entry.name.replace(rule.pattern, rule.replace).replace(/\s+/g, " ").trim();
+      const model = byName.get(modelName) ?? { ...entry, _id: undefined, name: modelName };
       own = capture(model, pages, offset, names, bk);
       if (!own?.paragraphs.length) continue;
+      // A rule with no heading is a name the book prints differently, and the
+      // model's text is the whole of it.
+      if (!rule.heading) return { kind: "family", paragraphs: own.paragraphs, page: own.page };
     }
     for (const delta of [0, -1, 1, -2, 2]) {
       const index = cited + offset - 1 + delta;
@@ -557,7 +563,11 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
       const opening = [];
       for (const line of lines.slice(at + 1)) {
         // A capitalised section title ("SONIC WEAPONS") ends it as surely.
+        // So does the heading of the family's first member: "One Bionic Arm (TL9)".
         if (FURNITURE.test(line) || (line.length < 60 && /[^.!?:)"]$/.test(line))) break;
+        if (line.length < 70 && withoutTechLevel(line) !== line) break;
+        // Or a member run into the text, "Reflex (TL9): ...", whose own text follows.
+        if (/^[^:]{0,80}\(TL[\d\s^-]+\):/.test(line)) break;
         opening.push(line);
       }
       if (!opening.length) continue;
@@ -937,7 +947,9 @@ async function main() {
 
     const found = ACTOR_TYPES.has(entry.type)
       ? captureCreature(entry, pages, offset)
-      : (capture(entry, pages, offset, names, bk) ?? captureFamily(entry, pages, offset, names, bk, byName));
+      : // A family rule names a record the book prints under its family, so it
+        // goes first: a cybernetic's own heading holds only its statistics.
+        (captureFamily(entry, pages, offset, names, bk, byName) ?? capture(entry, pages, offset, names, bk));
     if (found?.kind === "statistics") {
       tally.statistics++;
       records.push({
