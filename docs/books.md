@@ -81,3 +81,18 @@ node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
    page format in text records, and `namePrefix` matches the part of a
    data-file name the book doesn't print. Entries it can't find get `no-entry`
    records, so check the dry run's counts.
+
+   Two more keys help a book whose names differ from its data file's:
+
+   ```json
+   "aliases": { "Sleve Display": "Sleeve Display" },
+   "families": [
+     { "pattern": "X-Ray ", "replace": "", "heading": "X-Ray Lasers" },
+     { "pattern": "^Heavy Mind Disruptor$", "heading": "Mind Disruptors", "headingOnly": true }
+   ]
+   ```
+
+   An alias names what the book prints. A family rule is for a weapon described
+   once for a whole family: its text is the family heading's opening followed by
+   the text of the model the pattern and replacement name ("Heavy X-Ray Laser
+   Pistol" takes "Heavy Laser Pistol"'s), or the opening alone with `headingOnly`.
