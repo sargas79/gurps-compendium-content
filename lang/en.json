@@ -2091,6 +2091,18 @@
         "regeneration": {
           "Name": "Regeneration and revival",
           "Hint": "Nanostasis and revival from it by the supervisor's Physician roll; regeneration tanks healing 1 HP per 12 hours (an hour in a chrysalis machine, twice as long on a failed roll); rejuvenation's outcomes; a chrysalis machine reviving the dead at -2 an hour dead; the pocket regenerator's bandaging and First Aid in a minute; and the regeneration ray healing everything at high power, or 3d toxic and no treatment for 1d weeks on a failure."
+        },
+        "forceScreens": {
+          "Name": "Force screens",
+          "Hint": "A force screen meets a blow before armour with semi-ablative DR (its record), which regenerates a point a second for every 10 DR as world time passes, on or off. While worn and powered it is sealed with pressure and vacuum support and radiation PF equal to its DR. The variants reprice it and change what it stops: energy and kinetic screens stop only their kind of attack, a velocity screen only ranged ones, an adjustable screen reinforces its front or back half, a permeable screen can let air through. A barrier screen's diameter reprices it and sets its SM."
+        },
+        "forceShields": {
+          "Name": "Force shields",
+          "Hint": "Force shield bracelets are shields used with Shield (Buckler): DB 3 and DR 100. A reflective force shield's row action rolls DX to return a blocked beam's damage to the attacker. Force wards are noted for the GM."
+        },
+        "stasisAndTime": {
+          "Name": "Stasis and time",
+          "Hint": "A stasis belt, cube, chamber or grid, or a tau-shield set to infinity, puts its user in stasis for the time set (row action), and no damage gets through. A worn, powered life support belt gives DR 5 against energy attacks, divides radiation by 10, adds 60°F to the hot side of the comfort zone and seals the wearer unless set to breathe. The tau-shield's sheet shows its time rate and power by level. Reality stabilizers and hypertime fields are noted for the GM."
         }
       },
       "Gadget": {
@@ -4378,6 +4390,82 @@
         "HyperstimOff": "Hyperstim wears off",
         "RespirocytesSpent": "Respirocytes used up",
         "RespirocytesGone": "{name}'s respirocytes are spent."
+      },
+      "Force": {
+        "Title": "Force field",
+        "RegenLine": "Spent DR regenerates {rate} a second, on or off.",
+        "SealedLine": "While on: sealed, with pressure and vacuum support and radiation PF {pf}. A Ready maneuver turns it on or off.",
+        "OpenLine": "While on: not sealed, radiation PF {pf}. A Ready maneuver turns it on or off.",
+        "BarrierLine": "Barrier screen, {diameter} yards across: SM +{sm}. A shot that misses its target by no more than the SM difference hits the screen, and what penetrates may hit another occupant.",
+        "ConformalLine": "Conformal screen: covers what the wearer carries, up to extra-heavy encumbrance; a Ready maneuver covers anything picked up.",
+        "CloakingLine": "Cloaking: invisible to sight and active sensors; the power lasts half as long.",
+        "OpaqueLine": "Opaque: nothing inside can be seen or detected by active sensors from outside.",
+        "StabilizedLine": "Reality-stabilized: blocks matter transmission and reality disruption coming in.",
+        "SafetyLine": "Safety switch: turns on at an incoming attack slower than light, and after a beam is fired at the wearer.",
+        "NoPower": "out of power",
+        "Reason": {
+          "energy": "an energy screen doesn't stop this attack",
+          "kinetic": "a kinetic screen doesn't stop energy attacks",
+          "velocity": "a velocity screen stops only fast attacks",
+          "reinforced": "the adjustable screen's reinforced half (×1.5)",
+          "weakened": "the adjustable screen's weakened half (×1/2)"
+        },
+        "Adjust": "Adjustable",
+        "AdjustHint": "+100% to cost. A Ready maneuver reinforces one half at ×1.5 DR and weakens the other to ×1/2 (Ultra-Tech p. 191).",
+        "Diameter": "Diameter (yards)",
+        "DiameterHint": "Cost and weight scale with the diameter; the SM follows it (Ultra-Tech p. 191).",
+        "Option": {
+          "cloaking": "Cloaking",
+          "cloakingHint": "+100% to cost; halves the operating time.",
+          "energy": "Energy",
+          "energyHint": "-50% to cost; stops only energy attacks and isn't sealed.",
+          "kinetic": "Kinetic",
+          "kineticHint": "-50% to cost; stops no energy attacks or radiation. Not with energy.",
+          "opaque": "Opaque",
+          "opaqueHint": "No extra cost; hides everything inside.",
+          "permeable": "Permeable",
+          "permeableHint": "+50% to cost; can let air through.",
+          "realityStabilized": "Reality-stabilized",
+          "realityStabilizedHint": "+100% to cost.",
+          "safetySwitch": "Safety switch",
+          "safetySwitchHint": "+10% to cost.",
+          "velocity": "Velocity",
+          "velocityHint": "-10% to cost; stops only fast attacks and isn't sealed."
+        },
+        "Breathing": "Letting air through",
+        "BreathingHint": "Lets gas through so the user can breathe, and isn't sealed; a Ready maneuver (a second for a life support field) changes it.",
+        "ReflectLine": "A successful block against a ranged beam lets the wielder roll DX to return the blocked damage to the attacker.",
+        "WardLine": "A stationary barrier two yards high and a yard wide with hardened DR 100; its generator is on one side.",
+        "ReflectTitle": "Return the beam",
+        "ReflectDamage": "Damage blocked",
+        "ReflectLabel": "Return the beam ({item})",
+        "Reflected": "The shield returns {damage} points of the beam's damage to the attacker.",
+        "NotReflected": "The beam is blocked but not returned.",
+        "StasisLine": "Setting the duration takes {set} s and switching it on {on} s; only a reality stabilizer ends it early.",
+        "StasisTitle": "Enter stasis",
+        "StasisSeconds": "Duration (seconds)",
+        "StasisCondition": "In stasis",
+        "StasisOn": "{name} is in stasis for {seconds} seconds: nothing can affect them, and they can do nothing.",
+        "TauInfinity": "{name}'s tau-shield freezes them for {seconds} seconds, using {minutes} minutes of power.",
+        "LifeSupportLine": "While on: DR {dr} against energy attacks, radiation divided by {divisor}, +{heat}°F on the hot side of the comfort zone, and sealed unless set to breathe; without air or breathing, the air goes bad in 15 minutes.",
+        "LifeSupportReason": "life support field against energy",
+        "TauLine": "Tactical: {ratio} subjective seconds a second, {extra} extra maneuvers a turn; the cell lasts {minutes} minutes. Infinity: stasis, {infinity} minutes of power a use.",
+        "Tau": {
+          "Setting": "Setting",
+          "off": "Off",
+          "tactical": "Tactical",
+          "infinity": "Infinity",
+          "Levels": "Altered Time Rate",
+          "LevelsHint": "Levels 1-9: each is one more maneuver a turn, and divides the cell's 180 minutes."
+        },
+        "StabilizerLine": "Blocks temporal, parachronic, FTL and teleportation superscience inside its radius and from outside into it.",
+        "HypertimeLine": "Everything outside seems frozen to those inside; nothing inside can affect the outside until it collapses.",
+        "AdjustChoice": {
+          "no": "Not adjustable",
+          "none": "Even",
+          "front": "Front reinforced",
+          "back": "Back reinforced"
+        }
       }
     }
   },

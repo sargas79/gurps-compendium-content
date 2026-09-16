@@ -1,0 +1,41 @@
+{{!-- A force field's options (Ultra-Tech pp. 190-195). --}}
+<div class="isub" data-gcc-ut-force>
+  <div class="isub-head">{{localize "GCC.UT.Force.Title"}}</div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+  {{#if screen}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Force.AdjustHint'}}">{{localize "GCC.UT.Force.Adjust"}}
+        <select data-gcc-ut-field="adjustable" {{#unless editable}}disabled{{/unless}}>
+          {{#each adjustables as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if barrier}}
+        <label data-tooltip="{{localize 'GCC.UT.Force.DiameterHint'}}">{{localize "GCC.UT.Force.Diameter"}}
+          <input type="number" data-gcc-ut-field="diameter" value="{{diameter}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+    <div class="ichecks">
+      {{#each checks as |c|}}
+        <label class="icheck" data-tooltip="{{c.hint}}"><input type="checkbox" data-gcc-ut-field="{{c.key}}" {{#if c.checked}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{c.label}}</label>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if breathing}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Force.BreathingHint'}}"><input type="checkbox" data-gcc-ut-field="breathing" {{#if options.breathing}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Force.Breathing"}}</label>
+    </div>
+  {{/if}}
+  {{#if tau}}
+    <div class="ifields">
+      <label>{{localize "GCC.UT.Force.Tau.Setting"}}
+        <select data-gcc-ut-field="tauSetting" {{#unless editable}}disabled{{/unless}}>
+          {{#each tauSettings as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.UT.Force.Tau.LevelsHint'}}">{{localize "GCC.UT.Force.Tau.Levels"}}
+        <input type="number" data-gcc-ut-field="tauLevels" value="{{tauLevels}}" min="1" max="9" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+</div>
