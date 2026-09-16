@@ -47,6 +47,8 @@
   {{#each problems as |p|}}<p class="ihint"><strong>{{p}}</strong></p>{{/each}}
   <p class="ihint">{{statistics}}</p>
   <p class="ihint">{{endurance}}</p>
+  {{#if solar}}<p class="ihint">{{solar}}</p>{{/if}}
+  {{#if replicating}}<p class="ihint">{{replicating}}</p>{{/if}}
   {{#if attack}}<p class="ihint">{{attack}}</p>{{/if}}
   <p class="ihint">{{controller}}</p>
   {{#if canDeploy}}<button type="button" class="ibtn tiny" data-gcc-ut-swarm-deploy data-tooltip="{{localize 'GCC.UT.Swarm.DeployHint'}}">{{localize "GCC.UT.Swarm.Deploy"}}</button>{{/if}}

@@ -17,6 +17,11 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   BARRIERS,
   CUFFTAPE_FAILURE_DAMAGE,
+  CUFFTAPE_SEVERED,
+  VERIFIER_SKILL,
+  dreamNetRemoval,
+  fenceCost,
+  monowireSpotting,
   LOCKS,
   SAFES,
   cuffEscapeModifier,
@@ -92,12 +97,13 @@ async function runBarrier(api: GWorldApi): Promise<void> {
   const { targets } = picked();
   if (!targets.length) return void ui.notifications?.warn(L("Barrier.Target"));
   const answer = await ask(L("Barrier.Title"),
-    row(L("Barrier.Kind"), select("kind", Object.keys(BARRIERS).map((k) => [k, L(`Barrier.${k}`)])))
+    row(L("Barrier.Kind"), select("kind", [...Object.keys(BARRIERS).map((k): [string, string] => [k, L(`Barrier.${k}`)]), ["dreamNetRemoval", L("Barrier.dreamNetRemoval")]]))
     + row(L("Barrier.Tight"), `<input type="checkbox" name="tight" />`)
     + row(L("Barrier.Speed"), select("speed", [["walking", L("Barrier.walking")], ["slow", L("Barrier.slow")], ["running", L("Barrier.running")]]))
     + row(L("Barrier.Effect"), select("effect", [["paralysis", L("Barrier.paralysis")], ["agony", L("Barrier.agony")], ["seizure", L("Barrier.seizure")], ["moderatePain", L("Barrier.moderatePain")]])),
     (form) => ({ kind: value(form, "kind")?.value ?? "laserFence", tight: Boolean(value(form, "tight")?.checked), speed: (value(form, "speed")?.value ?? "walking") as "walking" | "slow" | "running", effect: value(form, "effect")?.value ?? "paralysis" }));
   if (!answer) return;
+  if (answer.kind === "dreamNetRemoval") return void pullFromDreamNet(api, targets);
   const barrier = BARRIERS[answer.kind];
   if (!barrier) return;
   for (const victim of targets) {
@@ -153,6 +159,24 @@ async function runBarrier(api: GWorldApi): Promise<void> {
   }
 }
 
+/** Pulled out of a dream net without shutting it off (p. 103): a Will roll against stun or 1d hours out. */
+async function pullFromDreamNet(api: GWorldApi, targets: any[]): Promise<void> {
+  for (const victim of targets) {
+    const result: any = await api.roll.success({ actor: victim, base: api.actors.attribute(victim, "Will") ?? 10, kind: "attribute", label: L("Barrier.RemovalLabel") } as any);
+    if (!result) continue;
+    const outcome = dreamNetRemoval(result);
+    if (outcome.unconsciousDice) {
+      const roll = new Roll(outcome.unconsciousDice);
+      await roll.evaluate();
+      await api.actors.applyCondition(victim, { key: "unconscious", duration: { seconds: Number(roll.total) * 3600 } } as any);
+      await say(victim, L("Barrier.dreamNetRemoval"), [F("Barrier.RemovalOut", { name: victim.name, hours: roll.total })]);
+    } else if (outcome.stunnedSeconds) {
+      await api.actors.applyCondition(victim, { key: "stunned", duration: { seconds: outcome.stunnedSeconds } } as any);
+      await say(victim, L("Barrier.dreamNetRemoval"), [F("Barrier.RemovalStunned", { name: victim.name, seconds: outcome.stunnedSeconds })]);
+    } else await say(victim, L("Barrier.dreamNetRemoval"), [F("Barrier.RemovalFine", { name: victim.name })]);
+  }
+}
+
 function securityItemLines(item: any): string[] {
   const name = String(item?.name ?? "");
   const tl = tlOf(item?.actor?.system?.tl) ?? tlOf(item?.system?.tl) ?? 9;
@@ -164,9 +188,13 @@ function securityItemLines(item: any): string[] {
   const restraint = restraintByName(name);
   if (restraint) {
     const figures = restraintFigures(restraint, tlOf(item?.system?.tl) ?? 9);
-    lines.push(F(restraint === "cuffs" || restraint === "heavyCuffs" ? "Item.Cuffs" : "Item.Tape", figures));
+    lines.push(F(restraint === "cuffs" || restraint === "heavyCuffs" ? "Item.Cuffs" : "Item.Tape", { ...figures, severed: CUFFTAPE_SEVERED }));
   }
   if (/^explosive collar$/i.test(name)) lines.push(L("Item.Collar"));
+  const perPost = Number(item?.system?.listCost) || Number(item?.system?.cost) || 0;
+  if (/Fence$/i.test(name) && perPost) lines.push(F("Item.Fence", { open: fenceCost(perPost, 1, false), tight: fenceCost(perPost, 1, true) }));
+  if (/^Monowire/i.test(name)) lines.push(F("Item.Monowire", { unaware: monowireSpotting(false), looking: monowireSpotting(true) }));
+  if (/^Verifier Software$/i.test(name)) lines.push(F("Item.Verifier", { skill: VERIFIER_SKILL }));
   if (/brainwipe/i.test(name)) lines.push(L("Item.Brainwipe"));
   return lines;
 }

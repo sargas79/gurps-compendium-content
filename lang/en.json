@@ -2347,7 +2347,9 @@
           "none": "{name} takes nothing."
         },
         "Malfunction": "{name} malfunctions on {number} or more.",
-        "Corrosion": "{name}'s DR there drops by {dr} (1 per 5 points of corrosion)."
+        "Corrosion": "{name}'s DR there drops by {dr} (1 per 5 points of corrosion).",
+        "SolarRecharge": "Recharges {hours} hours of running for each hour dormant in full sunlight.",
+        "Replicating": "Doubles every hour or so while it has something to eat: {squareYards} sq. yd. become {after} in six hours."
       },
       "Robot": {
         "Title": "Robot",
@@ -2432,6 +2434,11 @@
           "Condition": "Caught in a paradox",
           "Won": "{name} struggles to resolve the paradox instead of attacking.",
           "Lost": "{name} shrugs the paradox off."
+        },
+        "Molten": {
+          "Title": "Vat of molten metal",
+          "Pick": "Target whoever is in the vat.",
+          "Label": "{name} in molten metal (10d corrosion a second)"
         }
       },
       "Stealth": {
@@ -2513,7 +2520,8 @@
           "active": "all active sensors"
         },
         "ScentMaskingLine": "{name} (covering your trail)",
-        "InvisibleMoving": "{name} (shimmering while moving)"
+        "InvisibleMoving": "{name} (shimmering while moving)",
+        "JammerScale": "{name}: protects a human-sized area; a vehicle's jammer costs and weighs the square of its longest dimension in yards (x{factor} for one yard)."
       },
       "Security": {
         "Title": "Security",
@@ -2554,16 +2562,24 @@
           "AfflictedMinutes": "{name} suffers {effect} while on the grid and {minutes} minutes after.",
           "DreamNetRemoval": "Pulling them out without shutting the simulation off calls for a Will roll: stunned for seconds equal to the margin of failure, or 1d hours unconscious on a critical failure.",
           "Resisted": "{name} resists.",
-          "DamageLabel": "{barrier}: {name}"
+          "DamageLabel": "{barrier}: {name}",
+          "dreamNetRemoval": "Pulled out of a dream net",
+          "RemovalLabel": "Will: pulled out of the dream net",
+          "RemovalOut": "{name} is unconscious for {hours} hours.",
+          "RemovalStunned": "{name} is stunned for {seconds} seconds.",
+          "RemovalFine": "{name} comes out of it disoriented but able to act."
         },
         "Item": {
           "Safe": "DR {dr}, HP {hp} at TL{tl}.",
           "Door": "An inch of armoured door is HP 50, DR {dr} at TL{tl}; $1,000 and 200 lbs. per 10 square feet.",
           "Lock": "{modifier} to Lockpicking.",
           "Cuffs": "ST {st}, DR {dr}.",
-          "Tape": "ST {st}, DR {dr}; six points of cutting, corrosion or burning damage sever it.",
+          "Tape": "ST {st}, DR {dr}; {severed} points of cutting, corrosion or burning damage sever it.",
           "Collar": "A 15mm HE warhead at the neck: DR 10, HP 2. Damaging it without removing it at once sets it off; disarming it takes Traps-4.",
-          "Brainwipe": "Gives the subject Amnesia, erasing their memories of their personal life; skills and personality stay."
+          "Brainwipe": "Gives the subject Amnesia, erasing their memories of their personal life; skills and personality stay.",
+          "Fence": "${open} a post open, ${tight} tight; emitters 10 lbs. each, up to 10 yards apart.",
+          "Monowire": "Vision or Traps at {unaware} to see a strand, {looking} when looking for it.",
+          "Verifier": "Has Detect Lies-{skill} of its own, using passive visual sensors."
         },
         "Break": {
           "Title": "Break free",
@@ -2688,7 +2704,11 @@
         "AppliedIq": "IQ {iq}.",
         "AppliedTraits": "Added {traits}.",
         "AppliedLost": "Lost {traits}.",
-        "MindTransfer": "The host keeps its racial template, with the Mind vs. Brain rule (Characters p. 296)."
+        "MindTransfer": "The host keeps its racial template, with the Mind vs. Brain rule (Characters p. 296).",
+        "Destroyed": "Died of a blow to the skull or eye",
+        "Rads": "Rads absorbed",
+        "Unuploadable": "{name}'s brain can't be uploaded: destroyed, irradiated past 5,000 rads, or killed by a blow to the skull or eye.",
+        "Overlay": "Overdubbing a conscious mind may blend the two: Split Personality with {least} to {most} points of other mental disadvantages each."
       },
       "Sensor": {
         "Title": "Comms and sensors",
@@ -2742,7 +2762,15 @@
         "LockLine": "Targeting lock ({sensor})",
         "HeatTrail": "{name} (a heat trail under an hour old)",
         "NoisyTarget": "{name} (a noisy target)",
-        "ConcealedWeapons": "{name} (concealed weapons)"
+        "ConcealedWeapons": "{name} (concealed weapons)",
+        "SlowedData": "Repeating data stretches range: x{quarter} at a quarter speed, x{hundredth} at 1/100, x{tenThousandth} at 1/10,000.",
+        "AirSonar": "In air: {range} at one atmosphere (a tenth the range times the pressure); useless in vacuum.",
+        "Hydrophone": "+{bonus} to detect with Electronics Operation (Sonar) at TL{tl}; +8 to identify, +4 to shadow, up to +3 to hit.",
+        "Gravscanner": "+{bonus} to detection at TL{tl}.",
+        "Radscanner": "+{bonus} to detection at TL{tl}; operating cells: {cells}.",
+        "Spoof": "The target's jammer spoofs rather than jams",
+        "Spoofed": "Spoofed: the operator detects something else.",
+        "SeesThrough": "The operator sees through the spoofing."
       },
       "Interface": {
         "Title": "Interfaces and media",
@@ -2777,21 +2805,35 @@
         "Vr": {
           "Interface": "{level}: needs a Complexity {complexity}+ computer.",
           "Manager": "Supports up to {level}, for about 10 users each.",
-          "Lower": "The reality experienced is the lower of the VR interface and the VR manager.",
+          "Lower": "The reality experienced is the lower of the VR interface and the VR manager: full VR through a Complexity 4 manager is {example}.",
           "gloves": "VR gloves",
           "basic": "basic VR",
           "full": "full VR",
           "total": "total VR"
         },
         "Dreamgame": "Addictive: a cheap, legal, incapacitating non-chemical addiction [{points}].",
-        "Translator": "Its comprehension never exceeds its input. -1 Complexity per artificial language, +1 between species that think differently or across senses. Unusual pairs cost twice as much, obscure ones five times; two in series lose a grade and add a second's delay.",
-        "UniversalTranslator": "Broken comprehension of a new language after an hour's exposure, Accented after six, Native after a day, never beyond the speakers'.",
-        "DreamTeacher": "Intensive Training while asleep in IQ-based skills and languages; DX- and HT-based skills learn at the Education rate.",
+        "Translator": "Complexity {complexity}, {interspecies} between species that think differently; -1 per artificial language. Unusual pairs x{unusual}, obscure x{obscure}; two in series come out {series}.",
+        "UniversalTranslator": "{hour} after an hour's exposure, {six} after six, {day} after a day.",
+        "DreamTeacher": "{iq} while asleep in IQ-based skills; {dx} in DX- and HT-based ones. Languages are Complexity {language}, behaviour modification {behaviour}+.",
         "NeuralInterface": "Switching to or from neural control takes familiarity penalties. A brainlock accepts only listed brainwave patterns, at no extra cost.",
-        "CosmeticFilter": "Raises video Appearance a level, to Very Handsome at most; above Attractive it is Off-the-Shelf Looks.",
+        "CosmeticFilter": "On video, {from} looks {to} (Very Handsome at most; Off-the-Shelf Looks above Attractive).",
         "Console": "+{bonus} Complexity running games, VR and sensies.",
         "Holoprojection": "{penalty} to control through anything but a neural interface.",
-        "SensiePlayer": "Needs a direct neural interface; real-time sensies need 1 GB/s immersed, 0.1 GB/s on the surface."
+        "SensiePlayer": "Needs a direct neural interface; real-time sensies need {immersion} GB/s immersed, {surface} GB/s on the surface.",
+        "VirtualTutor": "Effective skill 12: Complexity {easy} for an Easy skill, {other} otherwise.",
+        "AiTutor": "As a tutor, a non-volitional AI teaches at the {nonVolitional} rate, a volitional one as a {volitional}.",
+        "Comprehension": {
+          "none": "unintelligible",
+          "broken": "Broken",
+          "accented": "Accented",
+          "native": "Native"
+        },
+        "Rate": {
+          "selfStudy": "self-study",
+          "teacher": "teacher",
+          "intensive": "Intensive Training",
+          "education": "Education"
+        }
       },
       "Fab": {
         "Title": "Tools and fabrication",
@@ -2828,7 +2870,8 @@
           "Skill": "It works at Machinist-{skill} on its own.",
           "Blueprints": "Blueprint: Complexity {threeD} (3D) or {molecular} (molecular).",
           "Kit": "As an instructor kit: ${price}, {hours} man-hours, +{bonus} to the roll reading its tags.",
-          "FacilityHours": "{hours} hours."
+          "FacilityHours": "{hours} hours.",
+          "Template": "A replicator template: Complexity {complexity}+, up to ${cost}."
         },
         "Paste": {
           "Title": "Apply repair paste",
@@ -3008,7 +3051,13 @@
           "InterceptorLabel": "Diverting a matter transmission",
           "SystemTlNote": "System TL{tl}",
           "Diverted": "The transmission is diverted to the interceptor.",
-          "Escaped": "The transmission gets through."
+          "Escaped": "The transmission gets through.",
+          "telegate": "Telegate price",
+          "interstellar": "Interstellar jump cost",
+          "Radius": "Gate or platform radius (yards)",
+          "Paired": "Paired gates",
+          "TelegatePrice": "A gate costs and weighs {factor} times an MT booth.",
+          "JumpCost": "A {radius}-yard platform's interstellar jump costs ${cost}."
         },
         "Item": {
           "FlightPack": "{seconds} seconds to strap on; Piloting (Flight Pack).",

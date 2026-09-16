@@ -21,6 +21,7 @@ import {
   BIOMORPHIC_COST,
   INTELLIGENCE_LENSES,
   INVOLUNTARY,
+  MOLTEN_METAL,
   PAINT_PENALTY,
   PANIC_DICE,
   PARADOX_SKILLS,
@@ -247,6 +248,13 @@ async function paradox(api: GWorldApi): Promise<void> {
   } else await say(robot, L("Paradox.Title"), [F("Paradox.Lost", { name: robot.name })]);
 }
 
+/** The vat of molten metal (p. 34): 10d corrosion a second to whoever is in it. */
+async function moltenMetal(api: GWorldApi): Promise<void> {
+  const { target } = pickedActors();
+  if (!target) return void ui.notifications?.warn(L("Molten.Pick"));
+  await api.roll.damage({ actor: target, label: F("Molten.Label", { name: target.name }), formula: MOLTEN_METAL.replace("d6", "d"), damageType: "cor" } as any);
+}
+
 /** Whether a mode an item was rolled from has the Surge modifier. */
 function surges(item: any, mode: any): boolean {
   if (!item || !mode) return false;
@@ -283,6 +291,7 @@ export function readyRobots(api: GWorldApi, on: RobotSwitches): void {
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-reprogram", label: L("Reprogram.Title"), icon: "fa-solid fa-microchip", visible: on.robots, open: () => reprogram(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-paint-sensors", label: L("Paint.Title"), icon: "fa-solid fa-paint-roller", visible: on.cinematic, open: () => paintSensors(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-paradox", label: L("Paradox.Title"), icon: "fa-solid fa-infinity", visible: on.cinematic, open: () => paradox(api) });
+  api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-molten-metal", label: L("Molten.Title"), icon: "fa-solid fa-fire-flame-simple", visible: on.cinematic, open: () => moltenMetal(api) });
 
   Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
     const actor = context?.actor;

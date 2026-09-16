@@ -31,7 +31,9 @@ import {
   shapeMemoryCell,
   shapeMemoryCost,
   shapeMemoryLegality,
+  jammerScale,
   signaturePenalty,
+  spoofFools,
   stealthKindByName,
   type Sense,
   type ShapeMemory,
@@ -145,11 +147,31 @@ function detectionLines(actor: any): string[] {
     const jammer = worn.kind === "holoDistort" ? "distortionField" : worn.kind;
     const penalties = jammerPenalties(jammer, worn.tl);
     for (const [sensor, value] of Object.entries(penalties)) lines.push(F("JammerPenalty", { name: worn.item.name, sensor: L(`Sensor.${sensor}`), value }));
+    if (Object.keys(penalties).length && worn.kind !== "distortionChip") lines.push(F("JammerScale", { name: worn.item.name, factor: jammerScale(1) }));
     if (worn.kind === "holobelt" || worn.kind === "holoDistort") lines.push(F("HolobeltPenalty", { name: worn.item.name, value: HOLOBELT }));
     if (worn.kind === "programmableCamouflage") lines.push(F("CamouflageReset", { name: worn.item.name, seconds: camouflageResetSeconds(worn.tl) }));
   }
   return lines;
 }
+
+/**
+ * The jammers a character wears against a kind of sensor (p. 99): each
+ * one's penalty, for a sweep that meets them. `sensor` is radar, imagingRadar,
+ * sonar or any other active sensor.
+ */
+export function jammersAgainst(actor: any, sensor: string): Array<{ name: string; penalty: number }> {
+  const found: Array<{ name: string; penalty: number }> = [];
+  for (const worn of wornSystems(actor)) {
+    const jammer = worn.kind === "holoDistort" ? "distortionField" : worn.kind;
+    const penalties = jammerPenalties(jammer, worn.tl);
+    const penalty = penalties[sensor] ?? penalties.active;
+    if (penalty) found.push({ name: String(worn.item.name), penalty });
+  }
+  return found;
+}
+
+/** Whether a sensor operator is fooled by a spoofing jammer (p. 99). */
+export { spoofFools };
 
 function gearContext(actor: any): Record<string, unknown> {
   const state = hidingState(actor);

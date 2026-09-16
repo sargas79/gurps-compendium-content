@@ -20,6 +20,17 @@ import {
   VIRTUAL_TUTOR_SKILL,
   VISUAL_ENHANCEMENT,
   VR_COMPLEXITY,
+  PAIR_COST,
+  SENSIE_BANDWIDTH,
+  aiTutorRate,
+  dreamTeacherComplexity,
+  dreamTeacherRate,
+  experiencedLevel,
+  filteredAppearance,
+  seriesComprehension,
+  translatorComplexity,
+  universalTranslatorLevel,
+  virtualTutorComplexity,
   instaskillHours,
   instaskillOverdose,
   instaskillTakes,
@@ -130,16 +141,22 @@ function itemLines(item: any): string[] {
   if (/^Basic VR Suit$/i.test(name)) lines.push(F("Vr.Interface", { level: L("Vr.basic"), complexity: VR_COMPLEXITY.basic }));
   if (/^Full VR Suit$/i.test(name)) lines.push(F("Vr.Interface", { level: L("Vr.full"), complexity: VR_COMPLEXITY.full }));
   if (/^VR Manager/i.test(name) && complexity) lines.push(F("Vr.Manager", { level: L(`Vr.${managerSupports(complexity) ?? "gloves"}`) }));
-  if (/VR|Dreamgame|Sensie/i.test(name)) lines.push(L("Vr.Lower"));
+  if (/VR|Dreamgame|Sensie/i.test(name)) lines.push(F("Vr.Lower", { example: L(`Vr.${experiencedLevel("full", 4) ?? "basic"}`) }));
   if (/^Dreamgame/i.test(name)) lines.push(F("Dreamgame", { points: DREAMGAME_ADDICTION }));
-  if (/^Translator Program/i.test(name)) lines.push(L("Translator"));
-  if (/^Universal Translator/i.test(name)) lines.push(L("UniversalTranslator"));
-  if (/^Dream Teacher/i.test(name)) lines.push(L("DreamTeacher"));
+  const comprehension = /^Translator Program \((Broken|Accented|Native)\)$/i.exec(name)?.[1]?.toLowerCase() as "broken" | "accented" | "native" | undefined;
+  if (comprehension) lines.push(F("Translator", { complexity: translatorComplexity(comprehension), interspecies: translatorComplexity(comprehension, { interspecies: true }), unusual: PAIR_COST.unusual, obscure: PAIR_COST.obscure, series: L(`Comprehension.${seriesComprehension(comprehension, comprehension)}`) }));
+  if (/^Universal Translator/i.test(name)) lines.push(F("UniversalTranslator", { hour: L(`Comprehension.${universalTranslatorLevel(1)}`), six: L(`Comprehension.${universalTranslatorLevel(6)}`), day: L(`Comprehension.${universalTranslatorLevel(24)}`) }));
+  if (/^Dream Teacher/i.test(name)) lines.push(F("DreamTeacher", { iq: L(`Rate.${dreamTeacherRate("IQ")}`), dx: L(`Rate.${dreamTeacherRate("DX")}`), language: dreamTeacherComplexity({ language: true }), behaviour: dreamTeacherComplexity({ disadvantagePoints: -5 }) }));
+  if (/^Virtual Tutor/i.test(name)) lines.push(F("VirtualTutor", { easy: virtualTutorComplexity(true), other: virtualTutorComplexity(false) }));
+  if (/^AI Tutor/i.test(name) || /^Nursebot|^Android/i.test(name)) lines.push(F("AiTutor", { nonVolitional: L(`Rate.${aiTutorRate(false)}`), volitional: L(`Rate.${aiTutorRate(true)}`) }));
   if (/^Neural (Interface|Induction|Input)/i.test(name)) lines.push(L("NeuralInterface"));
-  if (/^Cosmetic Filter$/i.test(name)) lines.push(L("CosmeticFilter"));
+  if (/^Cosmetic Filter$/i.test(name)) {
+    const appearance = [...(item?.actor?.items ?? [])].find((i: any) => i.type === "trait" && /^(Hideous|Ugly|Unattractive|Attractive|Handsome|Beautiful|Very Handsome|Very Beautiful)/i.test(String(i.name)))?.name ?? "Average";
+    lines.push(F("CosmeticFilter", { from: appearance, to: filteredAppearance(String(appearance)) }));
+  }
   if (/^Entertainment Console$/i.test(name)) lines.push(F("Console", { bonus: CONSOLE_GAME_BONUS }));
   if (/^Interactive Holoprojection$/i.test(name)) lines.push(F("Holoprojection", { penalty: HOLOPROJECTION_NO_INTERFACE }));
-  if (/^Sensie Player$/i.test(name)) lines.push(L("SensiePlayer"));
+  if (/^Sensie Player$/i.test(name)) lines.push(F("SensiePlayer", { immersion: SENSIE_BANDWIDTH.immersion, surface: SENSIE_BANDWIDTH.surface }));
   return lines;
 }
 
