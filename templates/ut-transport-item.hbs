@@ -1,0 +1,23 @@
+{{!-- A vehicle system or matter transmitter: its options and what the book
+     says of it (Ultra-Tech pp. 222-235). --}}
+<div class="isub" data-gcc-ut-transport-section>
+  <div class="isub-head">{{localize "GCC.UT.Transport.Title"}}</div>
+  {{#if booth}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Transport.TierHint'}}">{{localize "GCC.UT.Transport.TierLabel"}}
+        <select data-gcc-ut-transport="rangeTier" {{#unless editable}}disabled{{/unless}}>
+          {{#each tiers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if projector}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Transport.PlatformsHint'}}">{{localize "GCC.UT.Transport.PlatformsLabel"}}
+        <input type="number" data-gcc-ut-transport="platforms" value="{{data.platforms}}" step="1" min="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label class="icheck"><input type="checkbox" data-gcc-ut-transport="sendOnly" {{#if data.sendOnly}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Transport.SendOnly"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

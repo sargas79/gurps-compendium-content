@@ -1991,6 +1991,14 @@
         "psiAmplifiers": {
           "Name": "Psi amplifiers",
           "Hint": "Row actions attune an amplifier (Electronics Operation (Psychotronics)) and set it to boost a power's Talent by up to its TL limit. Rolls naming that power get the boost. A critical failure, or any roll of 15+ through an amplifier that isn't attuned, burns it out and calls for HT+3 at -boost: a seizure on a failure, a coma on a failure by 5+."
+        },
+        "vehicleSystems": {
+          "Name": "Vehicle systems and personal flight",
+          "Hint": "A GM tool deploys crashwebs (ablative DR equal to TL; DX-2 each turn to get free), shares out limited life support, rolls DX+3 for running on a slidewalk, and lands a life pod or drop capsule (Navigation (Space)-12: within a mile, within 5dx100 miles less 200 per point of margin, anywhere, or a disaster). Row actions fire a zero-G thruster's bursts (Free Fall, counting down the cylinder) and strap on flight and thruster packs. The nuclear jetpack's plasma wash and +3 to be spotted, and the capsules' figures, are on their sheets."
+        },
+        "matterTransmission": {
+          "Name": "Matter transmission",
+          "Hint": "MT booths are priced by range (10 to 10,000 times for continental to interstellar) and teleport projectors by platforms and send-only. An equipped minigate is a shield of DB 4, and a blow its DB stopped (or one blocked with it) goes through the gate. A GM tool rolls a teleport projector (Electronics Operation (Matter Transmitters) at -1 per 1,000 miles, +4 between projectors) and an MT interceptor's Quick Contest."
         }
       },
       "Gadget": {
@@ -2920,6 +2928,97 @@
             "seizure": "{name} has a seizure for {seconds} seconds, then loses 1d FP.",
             "coma": "{name} falls into a coma."
           }
+        }
+      },
+      "Transport": {
+        "Title": "Transport",
+        "MinigateLine": "{name} (DB)",
+        "ThroughTheGate": "The blow goes through the minigate: make sure no one friendly is on the other side!",
+        "TierLabel": "Range",
+        "TierHint": "A booth's range, and what it costs: 20 miles standard, continental x10, planetary x100, interplanetary x1,000, interstellar x10,000 cost and weight (Ultra-Tech p. 233).",
+        "Tier": {
+          "standard": "20 miles",
+          "continental": "Continental (x10)",
+          "planetary": "Planetary (x100)",
+          "interplanetary": "Interplanetary (x1,000)",
+          "interstellar": "Interstellar (x10,000)"
+        },
+        "PlatformsLabel": "Platforms",
+        "PlatformsHint": "Each platform past the first adds $5 million and 1,000 lbs. (Ultra-Tech p. 235).",
+        "SendOnly": "Send only (half cost and weight)",
+        "Tool": {
+          "Title": "Vehicle systems",
+          "Kind": "What",
+          "crashweb": "Crashweb deploys",
+          "free": "Struggle out of a crashweb",
+          "lifeSupport": "Limited life support",
+          "slidewalk": "Running on a slidewalk",
+          "landing": "Capsule landing",
+          "Tl": "Vehicle's TL",
+          "ManDays": "Man-days of life support",
+          "Occupants": "Occupants",
+          "Belt": "Belt speed (mph)",
+          "Against": "Running against the belt",
+          "Days": "{manDays} man-days last {occupants} occupants {days} days.",
+          "PickLander": "Select the capsule's occupant (the computer uses Navigation (Space)-12 unless theirs is higher).",
+          "LandingLabel": "Navigation (Space): the landing",
+          "Landed": {
+            "pinpoint": "The capsule lands within a mile of the target.",
+            "near": "The capsule lands within {miles} miles of the target.",
+            "anywhere": "The capsule could be anywhere on the planet.",
+            "disaster": "Disaster: rough terrain, stuck in orbit, or too steep a reentry."
+          },
+          "Target": "Target the occupants.",
+          "Webbed": "Held by a crashweb (DR {dr})",
+          "WebbedLine": "{name}'s crashweb gives ablative DR {dr} against the crash, and holds them until they get free (DX-2 a turn).",
+          "FreeLabel": "DX: getting free of the crashweb",
+          "SlidewalkLabel": "DX+3: running on the slidewalk at {mph} mph"
+        },
+        "Thruster": {
+          "Title": "Thruster burst",
+          "Label": "Aiming {name}",
+          "Empty": "The cylinder is empty: change it.",
+          "Aimed": "A one-yard-per-second burst the way it was meant; {left} left in the cylinder.",
+          "Off": "The burst goes the wrong way; {left} left in the cylinder."
+        },
+        "Strap": {
+          "Title": "Strap on",
+          "Label": "Vacc Suit: strapping into {name}",
+          "Done": "Strapped in after {seconds} seconds.",
+          "Retry": "Not yet; try again in {retry} seconds.",
+          "On": "Strapped on ({seconds} seconds). Fly it with Piloting (Flight Pack).",
+          "Off": "Taken off."
+        },
+        "Mt": {
+          "Title": "Matter transmission",
+          "Pick": "Select the operator's token (and target the rival operator for an interception).",
+          "Kind": "What",
+          "projector": "Teleport projector",
+          "interceptor": "MT interceptor",
+          "Miles": "Distance (miles)",
+          "Cooperating": "Between two cooperating projectors (+4)",
+          "SystemTl": "Unmanned system's TL",
+          "ProjectorLabel": "Teleporting {miles} miles",
+          "Distance": "-1 per 1,000 miles",
+          "OutOfRange": "Beyond the projector's 10,000-mile range.",
+          "Arrived": "The teleport lands on target after 10 seconds.",
+          "NearMiss": "A near miss.",
+          "Disaster": "Disaster: above or below ground, off course, or the projector breaks.",
+          "Beacons": "If the campaign requires teleport beacons, the target must carry one.",
+          "InterceptorLabel": "Diverting a matter transmission",
+          "SystemTlNote": "System TL{tl}",
+          "Diverted": "The transmission is diverted to the interceptor.",
+          "Escaped": "The transmission gets through."
+        },
+        "Item": {
+          "FlightPack": "{seconds} seconds to strap on; Piloting (Flight Pack).",
+          "Jetpack": "Its plasma wash does {wash} burning damage with radiation to anyone within two yards below and behind; the user is +{spotted} to spot and stealth systems don't work.",
+          "Thruster": "{bursts} one-second bursts a cylinder ({used} used); Free Fall to aim.",
+          "Capsule": "Lands by Navigation (Space)-{skill} unless programmed; plasma blinds radio, radar and passive sensors on reentry.",
+          "StealthCapsule": "{modifier} to be struck by homing missiles, and {modifier} to a sensor operator's roll to keep contact.",
+          "Booth": "Booth to booth within {miles} miles, relayed for longer hops: {tier}. Two seconds to use; public booths are $1 a jump.",
+          "Projector": "10,000-mile range; a 10-second Electronics Operation (Matter Transmitters) roll at -1 per 1,000 miles.",
+          "Minigate": "A shield of DB {db}, wielded with Shield; a blow its DB stopped goes through the gate (two-mile range)."
         }
       }
     }

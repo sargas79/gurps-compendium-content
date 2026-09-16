@@ -124,6 +124,8 @@ function hidingState(actor: any): HidingState {
 
 /** The best Stealth bonus a character's worn systems give, and which gives it. */
 function stealthBonus(actor: any, state: HidingState): { value: number; label: string } | null {
+  // A nuclear jetpack in use makes the wearer a beacon on infrared: stealth systems don't work (p. 231).
+  if ([...(actor?.items ?? [])].some((item: any) => isGear(item) && item.system?.equipped === true && /^Nuclear Jetpack$/i.test(String(item.name)))) return null;
   let best: { value: number; label: string } | null = null;
   for (const worn of wornSystems(actor)) {
     let value = 0;
