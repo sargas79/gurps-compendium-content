@@ -1,0 +1,26 @@
+{{!-- A high-energy laser's options (Ultra-Tech pp. 113-118): the modes it was
+     built with, which reprice it, and the setting it is on. --}}
+<div class="isub" data-gcc-ut-laser-section>
+  <div class="isub-head">{{localize "GCC.UT.Lasers.Title"}}</div>
+  <div class="ichecks">
+    {{#if dazzleAllowed}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Lasers.DazzleHint'}}"><input type="checkbox" data-gcc-ut-laser="dazzle" {{#if options.dazzle}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Lasers.Dazzle"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Lasers.BlindingHint'}}"><input type="checkbox" data-gcc-ut-laser="blinding" {{#if options.blinding}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Lasers.Blinding"}}</label>
+    {{/if}}
+  </div>
+  <div class="ifields">
+    {{#if pulseAllowed}}
+      <label data-tooltip="{{localize 'GCC.UT.Lasers.PulseHint'}}">{{localize "GCC.UT.Lasers.Pulse"}}
+        <select data-gcc-ut-laser="pulse" {{#unless editable}}disabled{{/unless}}>
+          {{#each pulses as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+    <label data-tooltip="{{localize 'GCC.UT.Lasers.SettingHint'}}">{{localize "GCC.UT.Lasers.SettingLabel"}}
+      <select data-gcc-ut-laser="setting" {{#unless editable}}disabled{{/unless}}>
+        {{#each settings as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  <p class="ihint">{{cost}}</p>
+</div>
