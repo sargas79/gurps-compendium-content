@@ -2055,6 +2055,14 @@
         "armorSystems": {
           "Name": "Armour systems",
           "Hint": "Electromagnetic armour doubles DR, or triples it for laminate, against shaped charges and plasma, counting its uses. Beam-adaptive armour triples DR against the beam types it is set for and adapts to one that hurts it. Reactive paste adds DR against high-velocity attacks and detonates, with fewer chances to cover a spot hit again. Ablative foam gives DR 8 against burning, worn away point for point. Living metal doubles the price. Nasal filter plugs give +5 HT against gas, and biomedical sensors on a patient +1 to Diagnosis."
+        },
+        "biochemicalAgents": {
+          "Name": "Biochemical agents",
+          "Hint": "Riot, nerve, sleep and paralysis gas, pheromone spray, radiant prism, and nerve and sleep poisons (and their contact versions, +2 to resist) are poisons the system doses and cycles: offered in the sheet's Poison dialog, and dosed on targeted characters from the item or a GM tool, rolled at once where there's no delay. A failure does what the agent does: nausea or retching in riot gas, unconsciousness for the margin's minutes in sleep gas, a fall, paralysis or a coma in paralysis gas, drowsiness or sleep from sleep poison. The nerve agents bring coughing, nausea and Neurological Disorder as a third, half and two-thirds of HP go. A sealed suit keeps out contact and breathed agents, no breathing or filter lungs breathed ones, and Immunity to Metabolic Hazards all of them. Musk, smoke, mask, firefoam and metal embrittlement are on their items and the GM tool, with a cloud's duration by the wind."
+        },
+        "nanoweapons": {
+          "Name": "Metabolic nanoweapons",
+          "Hint": "Nanoburn paralyses for three minutes a point of failure and then does 1d-1 every three minutes for half an hour. Dominator nano rolls after six hours (a minute if superscience) and is priced at $100 a point of the disadvantage, doubled to reverse itself or for superscience. A parasite seed takes 3 HT each failed hour until a success kills it. The GM tool detonates splatter after Aegis has contested it a minute at a time, -1 a die per win and gone after six, and runs shrike against Aegis. Nanoweapons are priced by delivery: blood x2, contact gel x2, contact gas x10, respiratory x5."
         }
       },
       "Gadget": {
@@ -3846,6 +3854,200 @@
             "ema": "electromagnetic armour ×{times}",
             "adaptive": "beam-adaptive armour ×3"
           }
+        }
+      },
+      "Agents": {
+        "Title": "Biochemical and nano weapons",
+        "KindLabel": "Agent",
+        "KindHint": "What this is, where the name doesn't say (Ultra-Tech pp. 159-162).",
+        "DeliveryLabel": "Delivery",
+        "DeliveryHint": "How a metabolic nanoweapon reaches its victim, which sets its price (Ultra-Tech p. 161).",
+        "Disadvantage": "Disadvantage",
+        "DisadvantageHint": "The mental disadvantage it instills or erases (Ultra-Tech p. 162).",
+        "Points": "Points",
+        "PointsHint": "The disadvantage's value: $100 a point (Ultra-Tech p. 162).",
+        "Reversible": "Reverses itself",
+        "ReversibleHint": "Double cost: the change undoes itself after a set time (Ultra-Tech p. 162).",
+        "MindTrapping": "Traps the mind",
+        "MindTrappingHint": "$100,000: stores the host's mind as a ghost program (Ultra-Tech p. 162).",
+        "Agent": {
+          "riotGas": "Riot Gas",
+          "nerveGas": "Nerve Gas (Ultra-Tech)",
+          "nerveGasResidue": "Nerve Gas residue",
+          "sleepGas": "Sleep Gas",
+          "paralysisGas": "Paralysis Gas",
+          "pheromoneSpray": "Pheromone Spray",
+          "radiantPrism": "Radiant Prism (breathed)",
+          "nervePoison": "Nerve Poison",
+          "contactNervePoison": "Contact Nerve Poison",
+          "sleepPoison": "Sleep Poison",
+          "contactSleepPoison": "Contact Sleep Poison",
+          "nanoburn": "Nanoburn",
+          "nanoburnDamage": "Nanoburn (damage)",
+          "dominator": "Dominator Nano",
+          "dominatorSuperscience": "Dominator Nano (superscience)",
+          "parasiteSeed": "Parasite Seed"
+        },
+        "Kind": {
+          "none": "Not an agent",
+          "riotGas": "Riot gas",
+          "nerveGas": "Nerve gas",
+          "nerveGasResidue": "Nerve gas residue",
+          "sleepGas": "Sleep gas",
+          "paralysisGas": "Paralysis gas",
+          "pheromoneSpray": "Pheromone spray",
+          "radiantPrism": "Radiant prism",
+          "nervePoison": "Nerve poison",
+          "contactNervePoison": "Contact nerve poison",
+          "sleepPoison": "Sleep poison",
+          "contactSleepPoison": "Contact sleep poison",
+          "nanoburn": "Nanoburn",
+          "dominator": "Dominator nano",
+          "dominatorSuperscience": "Dominator nano (superscience)",
+          "parasiteSeed": "Parasite seed",
+          "smoke_screening": "Screening smoke",
+          "smoke_colored": "Colored smoke",
+          "smoke_hot": "Hot smoke",
+          "smoke_prism": "Prism smoke",
+          "smoke_electromagnetic": "Electromagnetic smoke",
+          "smoke_radiantPrism": "Radiant prism smoke",
+          "musk": "Musk",
+          "mask": "Mask",
+          "antiTangler": "Anti-tangler aerosol",
+          "firefoam": "Firefoam",
+          "embrittlement": "Metal embrittlement agent",
+          "splatter": "Splatter nano",
+          "shrike": "Shrike nano",
+          "nanotracers": "Nanotracers",
+          "disassemblerGlop": "Nanoglop"
+        },
+        "NanoDelivery": {
+          "followUp": "Follow-up or digestive (x1)",
+          "digestive": "Digestive (x1)",
+          "blood": "Blood agent (x2)",
+          "contactGel": "Contact gel (x2)",
+          "contactGas": "Contact gas (x10)",
+          "respiratory": "Respiratory (x5)"
+        },
+        "Delivery": {
+          "blood": "blood",
+          "contact": "contact",
+          "digestive": "digestive",
+          "followUp": "follow-up",
+          "respiratory": "respiratory"
+        },
+        "NoRoll": "no roll",
+        "PoisonLine": "Resisted with {resist}; {delivery}. Dosed from the row action on targeted characters, or the sheet's Poison button.",
+        "Effect": {
+          "riotGas": "Each second in the cloud: a failure nauseates while there, by 5 or more retching; nauseated minutes equal to the margin after leaving.",
+          "nerveGas": "1d toxic a minute for six cycles; coughing and Neurological Disorder as HP is lost.",
+          "nerveGasResidue": "Touching a contaminated area after the attack: HT-3.",
+          "sleepGas": "Unconscious for the margin's minutes, then ordinary sleep.",
+          "paralysisGas": "Each turn in the cloud: failing by 1-2 falls for the turn, by 3 or more paralysed for the margin's minutes; a critical failure is 1d and a coma.",
+          "pheromoneSpray": "Lecherousness (9) while in the cloud and the margin's minutes after; aliens are almost never affected.",
+          "radiantPrism": "Breathed without a filter: 1 point a second.",
+          "nervePoison": "1d toxic a minute for six cycles, with the nerve gas's symptoms.",
+          "contactNervePoison": "On a blade (not a vibroblade) or a surface: +2 to resist, ten times the cost.",
+          "sleepPoison": "Drowsy; by 5 or more unconscious for the margin's minutes.",
+          "contactSleepPoison": "On a blade (not a vibroblade) or a surface: +2 to resist, ten times the cost.",
+          "nanoburn": "Paralysed three minutes a point of failure, then 1d-1 every three minutes for half an hour. Torpine stops the damage; Aegis nano works.",
+          "nanoburnDamage": "Nanoburn's damage.",
+          "dominator": "Instills or erases the disadvantage on a failed HT-6 after six hours; permanent until undone.",
+          "dominatorSuperscience": "As dominator nano, after a minute.",
+          "parasiteSeed": "HT-4 each hour: a success kills the seed, a failure takes 3 HT; at 0 the host becomes a nanomorph.",
+          "splatter": "1d a dose per minute circulating (30d a dose at most), set off by timer or radio. Detonate it from the GM tool, with Aegis contests.",
+          "shrike": "Hunts Aegis nano a contest a minute; run it from the GM tool.",
+          "antiTangler": "Dissolves tangler bonds in one second.",
+          "disassemblerGlop": "Half a chemical round's burst radius; double a disassembler cloud's damage, for 15 seconds."
+        },
+        "SmokeLine": "{vision} to see or aim through; blocks {blocks}. {senses}",
+        "SmokeSenses": "Also penalizes Infravision, Hyperspectral Vision and Night Vision.",
+        "Blocks": {
+          "ladar": "ladar",
+          "lasers": "lasers (not X-ray or gamma-ray)",
+          "radar": "radar and imaging radar"
+        },
+        "SmokeFormLine": "Forms at a second per 5 yards of radius; lingers one to four minutes.",
+        "RadiantPrismLine": "{penalty} to infrared- and radar-aimed attacks and sighting; lasts half as long; breathed without a filter, 1 point a second.",
+        "MuskLine": "Bad Smell for {days} days, a day less per hour of washing; a sealed suit protects its wearer, not the suit.",
+        "MaskLine": "{penalty} to Forensics for chemical traces and to tracking by scent through the masked area; the mask itself is easy to track.",
+        "FirefoamLine": "Puts out fires of up to {dice}d; larger ones burn lower for 3d seconds.",
+        "EmbrittlementLine": "3d corrosion an hour to one metal for 12 hours, times SM for a large object inside the area; the GM tool rolls it.",
+        "NanotracerLine": "+{bonus} to track the victim for a day or more; Aegis and diagnostic nano look for them at {penalty}.",
+        "CloudLine": "The cloud lasts {seconds} seconds in a {wind} mph wind.",
+        "ExposeTitle": "Expose targets",
+        "MuskTitle": "Spray musk",
+        "MuskHit": "{name} reeks: Bad Smell for {days} days.",
+        "MuskSealed": "{name}'s sealed suit keeps the musk off them, but the suit reeks.",
+        "Protected": {
+          "sealed": "{name}'s sealed suit keeps it out.",
+          "breath": "{name} doesn't breathe it in.",
+          "metabolic": "{name} has no metabolism for it to act on."
+        },
+        "Failed": {
+          "riotGasNauseated": "{name} is nauseated while in the cloud.",
+          "riotGasRetching": "{name} is retching while in the cloud, and nauseated {minutes} minute(s) after leaving it.",
+          "sleepGas": "{name} is unconscious for {minutes} minute(s), then sleeps.",
+          "paralysisGasFalls": "{name} falls and can't move this turn.",
+          "paralysisGasParalysed": "{name} falls, paralysed for {minutes} minute(s).",
+          "paralysisGasCritical": "{name} takes 1d and falls into a coma.",
+          "pheromoneSpray": "{name} gains Lecherousness (9) while in the cloud and for {minutes} minute(s) after.",
+          "sleepPoisonDrowsy": "{name} is drowsy.",
+          "sleepPoisonOut": "{name} is unconscious for {minutes} minute(s).",
+          "nanoburn": "{name} is paralysed for {minutes} x3 minutes; the nanomachines start their damage.",
+          "dominator": "{name} gains or loses the programmed disadvantage.",
+          "parasiteSeed": "The seed takes hold of {name}.",
+          "parasiteSeedHt": "{name} has lost {lost} HT to the seed; {left} left.",
+          "parasiteSeedDone": "{name}'s HT is gone: they die, and the body becomes a nanomorph."
+        },
+        "Resisted": {
+          "parasiteSeed": "{name}'s body kills the parasite seed."
+        },
+        "Symptom": "{name}: Neurological Disorder ({disorder}).",
+        "Disorder": {
+          "Mild": "Mild",
+          "Severe": "Severe",
+          "Crippling": "Crippling"
+        },
+        "Tool": {
+          "Title": "Biochemical agents",
+          "What": "Action",
+          "Agent": "Agent",
+          "Wind": "Wind (mph)",
+          "expose": "Expose targeted characters",
+          "cloud": "How long a cloud lasts",
+          "embrittlement": "Metal embrittlement",
+          "splatter": "Detonate splatter",
+          "shrike": "Shrike against Aegis",
+          "PickVictims": "Target or select the characters first."
+        },
+        "Splatter": {
+          "Title": "Splatter nano",
+          "Doses": "Doses",
+          "Minutes": "Minutes circulating",
+          "SplatterTl": "Splatter TL",
+          "AegisTl": "Aegis TL (0 for none)",
+          "Contests": "Aegis won {wins} of the contests over {minutes} minute(s).",
+          "Exterminated": "Aegis exterminated the splatter before it went off.",
+          "Label": "Splatter detonates ({dice} dice)"
+        },
+        "Shrike": {
+          "Title": "Shrike nano",
+          "Minutes": "Minutes",
+          "ShrikeTl": "Shrike TL",
+          "Doublings": "Dose doublings",
+          "AegisTl": "Aegis TL",
+          "Minute": "Minute {minute}: {what}",
+          "AegisDead": "the shrike kills the Aegis nano.",
+          "DoseKilled": "Aegis kills a dose of shrike.",
+          "Fighting": "They are still fighting.",
+          "ShrikeDead": "The shrike nano are gone."
+        },
+        "Embrittlement": {
+          "Title": "Metal embrittlement",
+          "Sm": "Object's SM",
+          "Hours": "Hours",
+          "Result": "{total} corrosion over {hours} hour(s) (x{multiplier})."
         }
       }
     }
