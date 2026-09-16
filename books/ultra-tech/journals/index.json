@@ -2594,6 +2594,7 @@
       "title": "Force Fields",
       "chapter": "Defenses",
       "pages": "UT190",
+      "rule": "gurps-compendium-content.forceScreens",
       "reference": "Ultra-Tech p. 190",
       "file": "force-fields.md",
       "status": "reviewed"
@@ -2603,6 +2604,7 @@
       "title": "Force Screens",
       "chapter": "Defenses",
       "pages": "UT190-191",
+      "rule": "gurps-compendium-content.forceScreens",
       "reference": "Ultra-Tech pp. 190-191",
       "file": "force-screens.md",
       "status": "reviewed"
@@ -2612,6 +2614,7 @@
       "title": "Force Screen Variants",
       "chapter": "Defenses",
       "pages": "UT191-192",
+      "rule": "gurps-compendium-content.forceScreens",
       "reference": "Ultra-Tech pp. 191-192",
       "file": "force-screen-variants.md",
       "status": "reviewed"
@@ -2621,6 +2624,7 @@
       "title": "Force Screen Habitats",
       "chapter": "Defenses",
       "pages": "UT192",
+      "rule": "gurps-compendium-content.forceScreens",
       "reference": "Ultra-Tech p. 192",
       "file": "force-screen-habitats.md",
       "status": "reviewed"
@@ -2630,6 +2634,7 @@
       "title": "Force Shields",
       "chapter": "Defenses",
       "pages": "UT192",
+      "rule": "gurps-compendium-content.forceShields",
       "reference": "Ultra-Tech p. 192",
       "file": "force-shields.md",
       "status": "reviewed"
@@ -2648,6 +2653,7 @@
       "title": "Stasis Webs",
       "chapter": "Defenses",
       "pages": "UT193-194",
+      "rule": "gurps-compendium-content.stasisAndTime",
       "reference": "Ultra-Tech pp. 193-194",
       "file": "stasis-webs.md",
       "status": "reviewed"
