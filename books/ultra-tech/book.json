@@ -697,6 +697,65 @@
           "system.extensions.gurps-compendium-content.computer.complexity": 2
         },
         "reason": "a program: Complexity 2 (#238)"
+      },
+      {
+        "pattern": "^Electronic Lockpick$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 3,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Lockpicking",
+            "Electronics Operation (Security)"
+          ]
+        },
+        "reason": "+3 to Lockpicking and Electronics Operation (Security) against electronic and combination locks (p. 95; #244)"
+      },
+      {
+        "pattern": "^Biometric Cracker Tools$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 3,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Lockpicking",
+            "Electronics Operation (Security)"
+          ]
+        },
+        "reason": "+3 to Lockpicking and Electronics Operation (Security) against biometric scanners (p. 95; #244)"
+      },
+      {
+        "pattern": "^Variable Lockpick$",
+        "set": {
+          "system.extensions.gurps-compendium-content.stealth.statedBonus": 4,
+          "system.extensions.gurps-compendium-content.stealth.statedSkills": [
+            "Lockpicking"
+          ]
+        },
+        "reason": "+4 to Lockpicking on mechanical locks (p. 96; #244)"
+      },
+      {
+        "pattern": "^(Desktop|Suitcase) Doc-Fab$",
+        "set": {
+          "system.forSkills": [
+            "Forgery",
+            "Counterfeiting"
+          ]
+        },
+        "reason": "the quality bonus is for both Forgery and Counterfeiting (p. 97; #244)"
+      },
+      {
+        "pattern": "^(Attach. Case|Travel Bag|Trunk|Shipping Container)$",
+        "set": {
+          "system.equipmentQuality": "fine",
+          "system.forSkills": [
+            "Smuggling"
+          ]
+        },
+        "reason": "stealth luggage: +2 (quality) to Smuggling from the liner compartment (p. 97; #244)"
+      },
+      {
+        "pattern": "^Attach. Case$",
+        "set": {
+          "name": "Attaché Case"
+        },
+        "reason": "the accent is lost in the PDF text (p. 97)"
       }
     ]
   },

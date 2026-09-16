@@ -1947,6 +1947,10 @@
         "cinematicRobots": {
           "Name": "Cinematic robot combat",
           "Hint": "The movie ways of beating robots. A robot knocked back rolls IQ at -2 a yard or is stunned for a turn, even if nothing got through its DR. Automaton robots don't dodge. GM tools cover paint on the sensors (DX or Throwing at -10, then an IQ roll against panic) and a logical paradox (a Quick Contest of Psychology, Fast-Talk or Computer Programming (AI) against a sapient robot's IQ)."
+        },
+        "stealthSystems": {
+          "Name": "Stealth systems",
+          "Hint": "Worn chameleon and invisibility surfaces, cloaks and nets add to Stealth against whatever sense the character says they're hiding from, halved while moving as the book says. Programmable camouflage adds to Camouflage by terrain, scent masking gives +4 to Tracking to cover a trail, and an active flesh mask gives +3 to Disguise. Attacks on a holobelt's wearer are at -1, and on a moving invisible one at -6. The Gear tab lists the detection penalties from infrared cloaking, radar stealth and jammers. Cloaks and nets, shape-memory disguises (half the LC) and tools whose bonus the book states are priced and applied."
         }
       },
       "Gadget": {
@@ -2381,6 +2385,87 @@
           "Won": "{name} struggles to resolve the paradox instead of attacking.",
           "Lost": "{name} shrugs the paradox off."
         }
+      },
+      "Stealth": {
+        "Title": "Stealth",
+        "KindLabel": "System",
+        "KindHint": "What stealth system this is, where its name doesn't say (Ultra-Tech pp. 97-100).",
+        "Kind": {
+          "none": "As its name says",
+          "thermoOptic": "Thermo-optic chameleon (TL9)",
+          "multispectral": "Multispectral chameleon (TL10)",
+          "dynamicMultispectral": "Dynamic multispectral chameleon (TL11)",
+          "ultimate": "Ultimate chameleon (TL12)",
+          "invisibility": "Invisibility",
+          "infraredCloaking": "Infrared cloaking",
+          "radarStealth": "Radar stealth",
+          "programmableCamouflage": "Programmable camouflage",
+          "scentMasking": "Scent masking",
+          "radarJammer": "Deceptive radar jammer",
+          "sonarJammer": "Deceptive sonar jammer",
+          "distortionField": "Distortion field belt",
+          "holoDistort": "Holo-distort belt",
+          "distortionChip": "Distortion chip",
+          "holobelt": "Holobelt",
+          "fleshMask": "Active flesh mask"
+        },
+        "FormLabel": "Made as",
+        "FormHint": "A cloak works like the surface, halved again when moving, at half its price and weight; a net covers 25 square yards at ten times (Ultra-Tech p. 99).",
+        "Form": {
+          "named": "As its name says",
+          "surface": "Surface",
+          "cloak": "Cloak",
+          "net": "Net"
+        },
+        "ShapeMemoryLabel": "Shape-memory disguise",
+        "ShapeMemoryHint": "Disguised as something of the same shape: single-function at five times the price, or multi-function at twenty times both gadgets together. Either halves the LC, rounded up (Ultra-Tech p. 97).",
+        "ShapeMemory": {
+          "none": "None",
+          "single": "Single-function (x5)",
+          "multi": "Multi-function (x20 both)"
+        },
+        "DisguiseCost": "Disguise gadget's price",
+        "DisguiseCostHint": "What the gadget it is disguised as costs, which a multi-function disguise pays twenty times along with its own.",
+        "ShapeMemoryLine": "Carried as LC{lc}; its change runs on a {cell} cell (60 changes).",
+        "StatedBonus": "Stated bonus",
+        "StatedBonusHint": "A tool's bonus as the book states it (+3 for an electronic lockpick, +4 for a variable lockpick), for rolls with the skills below while carried. Only what the item's grade doesn't already give is added.",
+        "StatedSkills": "For skills",
+        "StatedSkillsHint": "The skills the stated bonus is for, separated by commas.",
+        "GearTitle": "Stealth",
+        "SenseLabel": "Hiding from",
+        "SenseHint": "The sense the character is hiding from, which decides what a chameleon or invisibility surface is worth.",
+        "Sense": {
+          "vision": "Ordinary vision",
+          "infrared": "Infrared",
+          "hyperspectral": "Hyperspectral",
+          "ultraviolet": "Ultraviolet",
+          "extendedHyperspectral": "Extended hyperspectral"
+        },
+        "Moving": "Moving",
+        "Silhouetted": "Silhouetted",
+        "SilhouettedHint": "Against the sun or a searchlight, an invisible character is a shadow: +3 instead of +9 (Ultra-Tech p. 100).",
+        "TerrainLabel": "Camouflage pattern",
+        "TerrainHint": "+2 to Camouflage in matching terrain, -1 in terrain that doesn't match, -2 in contrasting terrain (Ultra-Tech p. 99).",
+        "Terrain": {
+          "matching": "Matches the terrain",
+          "nonMatching": "Doesn't match",
+          "contrasting": "Contrasts"
+        },
+        "StealthBonus": "+{value} to Stealth from {name}.",
+        "NoStealthBonus": "No Stealth bonus against that sense.",
+        "InfraredPenalty": "{name}: {value} to detect by infrared.",
+        "RadarPenalty": "{name}: {value} to detect by radar, imaging radar or T-ray.",
+        "JammerPenalty": "{name}: {value} to {sensor}, or spoof it: the operator is fooled unless he succeeds by more than half that.",
+        "HolobeltPenalty": "{name}: {value} to hit, and no aimed shots at hit locations.",
+        "CamouflageReset": "{name}: {seconds} seconds to change its pattern.",
+        "Sensor": {
+          "radar": "radar",
+          "imagingRadar": "imaging radar",
+          "sonar": "sonar",
+          "active": "all active sensors"
+        },
+        "ScentMaskingLine": "{name} (covering your trail)",
+        "InvisibleMoving": "{name} (shimmering while moving)"
       }
     }
   },

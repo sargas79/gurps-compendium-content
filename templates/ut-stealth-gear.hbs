@@ -1,0 +1,25 @@
+{{!-- What the character is hiding from, and what their stealth systems give
+     (Ultra-Tech pp. 98-100). --}}
+<section class="card" data-gcc-ut-stealth-gear>
+  <div class="card-head"><h3>{{localize "GCC.UT.Stealth.GearTitle"}}</h3></div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.UT.Stealth.SenseHint'}}">{{localize "GCC.UT.Stealth.SenseLabel"}}
+      <select data-gcc-ut-hiding="sense" {{#unless editable}}disabled{{/unless}}>
+        {{#each senses as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label class="icheck"><input type="checkbox" data-gcc-ut-hiding="moving" {{#if state.moving}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Stealth.Moving"}}</label>
+    {{#if invisible}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Stealth.SilhouettedHint'}}"><input type="checkbox" data-gcc-ut-hiding="silhouetted" {{#if state.silhouetted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Stealth.Silhouetted"}}</label>
+    {{/if}}
+    {{#if camouflage}}
+      <label data-tooltip="{{localize 'GCC.UT.Stealth.TerrainHint'}}">{{localize "GCC.UT.Stealth.TerrainLabel"}}
+        <select data-gcc-ut-hiding="terrain" {{#unless editable}}disabled{{/unless}}>
+          {{#each terrains as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+  </div>
+  <p class="ihint">{{bonus}}</p>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</section>
