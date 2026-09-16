@@ -247,3 +247,17 @@ export function forceBladeHarms(options: { otherIsForceOrSonic: boolean; critica
   if (options.otherIsForceOrSonic) return false;
   return options.parriedByTheForceBlade || !options.criticalDefense;
 }
+
+/** Whether a vibroblade's cell is spent: its running seconds used against 300 / weight (p. 164). */
+export function vibroDrained(secondsUsed: number, weight: number): boolean {
+  const total = vibroSeconds(weight);
+  return total > 0 && secondsUsed >= total;
+}
+
+/** A neuroglove is wrecked on a 1 on 1d when damage to the hand gets through its DR (p. 165). */
+export function neurogloveWrecked(roll: number): boolean {
+  return Math.floor(Number(roll) || 0) <= NEUROGLOVE.wreckedOn;
+}
+
+/** A neurolash added to a weapon: an HT-5 (2) affliction with the blow (p. 165). */
+export const ADDED_NEUROLASH = Object.freeze({ attribute: "HT", modifier: -5, armorDivisor: 2 });

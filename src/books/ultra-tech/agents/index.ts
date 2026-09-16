@@ -46,6 +46,9 @@ import {
   type Agent,
   type NanoDelivery,
   type Smoke,
+  MUSK_SECONDS,
+  PHEROMONE_TRAIT,
+  nerveDisorderAt,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Agents.${key}`);
@@ -194,6 +197,49 @@ async function expose(api: GWorldApi, agent: Agent, victims: any[], doublings = 
     const dose = await api.actors.dosePoison(actor, poisonOf(agent), { doublings });
     if (dose && !dose.delaySeconds) await api.actors.advancePoison(actor, dose.id);
   }
+}
+
+const TIMED_TRAITS = "utTimedTraits";
+const DISORDER_FLAG = "utNerveDisorder";
+interface TimedTrait { itemId: string; until: number }
+const worldNow = () => Number((game as any).time?.worldTime) || 0;
+const timedTraits = (actor: any): TimedTrait[] => {
+  const stored = actor?.getFlag?.(MODULE_ID, TIMED_TRAITS);
+  return Array.isArray(stored) ? stored.filter((t: any) => t && typeof t.itemId === "string") : [];
+};
+
+/** Gives a character a trait until a world time, when it comes off again. */
+async function giveTraitFor(actor: any, name: string, points: number, seconds: number | null): Promise<string | null> {
+  if (!actor?.isOwner) return null;
+  const [trait] = await actor.createEmbeddedDocuments("Item", [{ name, type: "trait", system: { points } }]);
+  if (trait && seconds) await actor.setFlag(MODULE_ID, TIMED_TRAITS, [...timedTraits(actor), { itemId: trait.id, until: worldNow() + seconds }]);
+  return trait?.id ?? null;
+}
+
+/** Takes off the traits whose time is up. */
+async function expireTraits(actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const all = timedTraits(actor);
+  const done = all.filter((t) => t.until <= worldNow());
+  if (!done.length) return;
+  await actor.setFlag(MODULE_ID, TIMED_TRAITS, all.filter((t) => t.until > worldNow()));
+  const ids = done.map((t) => t.itemId).filter((id) => actor.items.get(id));
+  if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids);
+}
+
+/** The Neurological Disorder a nerve agent left, kept to the HP lost (p. 160). */
+async function setNerveDisorder(actor: any): Promise<void> {
+  if (!actor?.isOwner) return;
+  const stored = actor.getFlag?.(MODULE_ID, DISORDER_FLAG) as { itemId: string; severity: string } | undefined;
+  if (!stored) return;
+  const max = Number(actor.system?.hp?.max) || 0;
+  const lost = max - (Number(actor.system?.hp?.value) || 0);
+  const severity = nerveDisorderAt(lost, max);
+  if (severity === stored.severity) return;
+  if (actor.items.get(stored.itemId)) await actor.deleteEmbeddedDocuments("Item", [stored.itemId]);
+  if (!severity) return void actor.unsetFlag(MODULE_ID, DISORDER_FLAG);
+  const [trait] = await actor.createEmbeddedDocuments("Item", [{ name: `Neurological Disorder (${severity})`, type: "trait", system: { points: 0 } }]);
+  await actor.setFlag(MODULE_ID, DISORDER_FLAG, { itemId: trait.id, severity });
 }
 
 function targetedActors(): any[] {
@@ -422,6 +468,8 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
         lines.push(F(`Failed.${effect.note}`, { name, minutes: Math.max(1, Math.floor(context.margin)) }));
       }
       if (agent === "paralysisGas") void api.actors.setPosture(actor, "lying");
+      // Pheromone spray: Lecherousness (9) for the margin's minutes past the cloud (p. 160).
+      if (agent === "pheromoneSpray") void giveTraitFor(actor, PHEROMONE_TRAIT, -15, Math.max(1, Math.floor(context.margin)) * 60);
       if (agent === "paralysisGas" && context.criticalFailure) {
         void (async () => {
           const roll = new Roll("1d6");
@@ -448,6 +496,9 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
         const symptom = nerveSymptoms(String(threshold));
         if (!symptom) continue;
         if (symptom.condition) void api.actors.applyCondition(actor, { key: symptom.condition });
+        // "The victim suffers only one disorder ... increasing as he loses HP" (p. 160).
+        if (!actor.getFlag?.(MODULE_ID, DISORDER_FLAG)) void actor.setFlag(MODULE_ID, DISORDER_FLAG, { itemId: "", severity: "" }).then(() => setNerveDisorder(actor));
+        else void setNerveDisorder(actor);
         lines.push(F("Symptom", { name, disorder: L(`Disorder.${symptom.disorder}`) }));
       }
     }
@@ -482,8 +533,37 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
     run: async () => {
       for (const victim of targetedActors()) {
         const sealed = api.actors.derived(victim)?.traitEffects?.sealed === true;
+        if (!sealed) await giveTraitFor(victim, "Bad Smell", -10, MUSK_SECONDS);
         await say(victim, L("Kind.musk"), [F(sealed ? "MuskSealed" : "MuskHit", { name: victim.name, days: muskDays(0) })]);
       }
+    },
+  });
+
+  // Timed traits come off, and a nerve agent's disorder eases, as time and HP pass.
+  Hooks.on("updateWorldTime", () => {
+    if (!(game as any).user?.isGM) return;
+    for (const actor of (game as any).actors ?? []) if (timedTraits(actor).length) void expireTraits(actor);
+  });
+  Hooks.on("updateActor", (actor: any, change: any) => {
+    if (!(game as any).user?.isGM || change?.system?.hp === undefined) return;
+    if (actor.getFlag?.(MODULE_ID, DISORDER_FLAG)) void setNerveDisorder(actor);
+  });
+
+  // Applying a contact poison in haste: DX or Poisons, or an accident (p. 161).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-contact-haste",
+    itemTypes: ["equipment"],
+    label: L("HasteTitle"),
+    icon: "fa-solid fa-hand-dots",
+    visible: (item) => on.biochemical() && /^contact(NervePoison|SleepPoison)$/.test(agentData(item).kind),
+    run: async (item, actor) => {
+      const base = Math.max(api.actors.skillLevel(actor, "Poisons") ?? 0, api.actors.attribute(actor, "DX") ?? 10);
+      const result: any = await api.roll.success({ actor, base, label: F("HasteLabel", { name: item.name }) } as any);
+      if (!result) return;
+      if (result.success) return void say(actor, String(item.name), [L("HasteDone")]);
+      await say(actor, String(item.name), [F("HasteAccident", { name: actor.name })]);
+      await api.actors.dosePoison(actor, poisonOf(agentData(item).kind as Agent));
     },
   });
 

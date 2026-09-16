@@ -17,6 +17,8 @@ import {
   splatterDetonation,
   splatterFormula,
   splatterSkill,
+  MUSK_SECONDS,
+  nerveDisorderAt,
 } from "./rules.js";
 
 const open = { sealed: false, doesntBreathe: false, filterLungs: false, metabolicImmunity: false };
@@ -100,5 +102,18 @@ describe("metabolic nanoweapons (Ultra-Tech pp. 161-162)", () => {
     expect(splatterDetonation({ doses: 3, minutes: 50, aegisWins: 0 }).dice).toBe(90);
     expect(splatterDetonation({ doses: 1, minutes: 9, aegisWins: 6 }).exterminated).toBe(true);
     expect(splatterFormula(4, 0)).toBe("4d");
+  });
+});
+
+describe("agents' lasting effects (#299)", () => {
+  it("keeps musk on for two weeks (p. 160)", () => {
+    expect(MUSK_SECONDS).toBe(1209600);
+  });
+
+  it("sets a nerve agent's disorder by the HP lost, easing as HP returns (p. 160)", () => {
+    expect(nerveDisorderAt(2, 10)).toBeNull();
+    expect(nerveDisorderAt(4, 10)).toBe("Mild");
+    expect(nerveDisorderAt(5, 10)).toBe("Severe");
+    expect(nerveDisorderAt(7, 10)).toBe("Crippling");
   });
 });
