@@ -1,0 +1,1 @@
+As communications and computers get better at processing information, technology finds better ways to store, present, and disseminate it. This section covers devices for recording, playing back, and imparting information of all kinds, for all purposes – including education and entertainment.

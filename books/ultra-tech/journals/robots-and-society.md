@@ -1,0 +1,5 @@
+Masters: The machines may run things. There is usually some form of caste system. For example, volitional AIs may be on top, non-volitional AIs may be Valuable Property, and humans may have Social Stigmas such as Ignorant, Minor, Minority Group, Second-Class Citizen, Subjugated, Uneducated, or Valuable Property. Alternatively, humanity might revere its robot masters, in which case the robots would enjoy Social Regard (p. B86) instead of the humans having a Social Stigma.
+
+Exterminators: The machines are out to destroy all humans, or even all biological life! Robots will usually have Fanaticism or Intolerance, while their prey might have Social Stigma (Minority Group, Monster, or Subjugated). For example, humans kept in death camps would be Subjugated.
+
+Human or machine society may also be divided on the question of robot status, resulting in activist groups, safe havens, and organizations that help runaway machines (or people) escape to freedom. There may also be legal mechanisms allowing one to circumvent slavery. Even if machines have no rights, a robot could be emancipated by its owner through mechanisms such as a trust fund.

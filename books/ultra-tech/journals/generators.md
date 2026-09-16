@@ -1,0 +1,1 @@
+A generator can be used to provide external power to equipment. Explorers, military units, and other expeditions use them for base camps, and they may be the only power supplies available for isolated habitations or anyone living “off the grid” (e.g., in a abandoned building). They’re also used as emergency power supplies.

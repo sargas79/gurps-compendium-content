@@ -1,0 +1,1 @@
+A gadget or weapon may be disguised as something else of similar shape, such as a laser rifle built into an umbrella. Double the cost for a mass-produced disguised item; multiply cost by 5 for a custom-built one.

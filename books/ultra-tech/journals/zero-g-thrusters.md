@@ -1,0 +1,1 @@
+These are microgravity flight rigs used for short-range travel outside of spacecraft or space stations. They use cold-gas thrusters to provide maneuverability, and can be easily donned, doffed, and serviced by a single individual. Use Free Fall skill to operate them.

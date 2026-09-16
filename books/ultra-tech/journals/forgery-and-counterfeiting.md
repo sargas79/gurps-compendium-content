@@ -1,0 +1,1 @@
+Most ultra-tech forgery involves the gaining of passwords, personal information, or biometric data through computer hacking, the breaking of encryption, corruption, theft, coercion, or simple carelessness. However, some special tools are also available.

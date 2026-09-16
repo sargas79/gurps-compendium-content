@@ -1,0 +1,3 @@
+At +100% to cost, a blaster may incorporate a stun setting, firing a non-lethal energy bolt similar in nature to an electrolaser beam. A stun setting usually feels like a powerful electrical shock. Unlike an electrolaser, a blaster’s stun bolt works in any environment. It takes one turn to “switch to stun.”
+
+When set to stun, the victim takes no damage, but must make a HT roll to resist suffering an unconsciousness affliction. The penalty is -1 for every die of damage the blaster usually inflicts, up to a maximum of -10. The victim adds one-third of his DR to HT – that is, the blaster gets a (3) armor divisor instead of its usual (5). A failed roll results in the victim falling unconscious for minutes equal to the margin of failure.

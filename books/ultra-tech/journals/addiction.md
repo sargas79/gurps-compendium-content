@@ -1,0 +1,1 @@
+An ordinary robot can only be addicted to a non-physical substance, such as electricity or dream-game simulations – use the rules for Non-Chemical Addictions (p. B122). A total cyborg can be addicted to drugs that are added to its nutrient feed or injected directly into its brain.

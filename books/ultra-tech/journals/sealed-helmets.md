@@ -1,0 +1,1 @@
+These helmets protect the entire head. They take three seconds to attach or remove. Each helmet has a split DR: use its higher DR for attacks to the skull, and its lower DR for attacks to the face and the eyes.

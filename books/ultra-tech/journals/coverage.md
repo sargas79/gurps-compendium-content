@@ -1,0 +1,1 @@
+Choose the locations that are covered by the outfit. Each location has its own multiplier; add the multipliers for all locations covered. This will give the “coverage multiplier” of the entire outfit. The numbers add up to 1 (all locations covered).

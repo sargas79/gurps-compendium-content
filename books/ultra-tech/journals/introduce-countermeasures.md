@@ -1,0 +1,1 @@
+If one gadget is too powerful, invent another that nullifies or counters it, and make sure it is available to the PCs and their opposition. If a countermeasure already exists but is at too high a TL, it can also appear earlier. Be careful: this sort of arms race can result in competing gadgetry overshadowing the other abilities of the adventurers.

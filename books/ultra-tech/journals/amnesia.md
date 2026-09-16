@@ -1,0 +1,1 @@
+This can represent an artificial being that has been mind-wiped. A unique form of this disadvantage, for robots, is for a backup of your real memory to be intact on disk somewhere, perhaps in an enemy’s possession. You can buy off the disadvantage and determine who you are by finding the data!

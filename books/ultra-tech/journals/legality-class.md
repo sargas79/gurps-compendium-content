@@ -1,0 +1,1 @@
+In some campaigns, the GM may wish to restrict starting equipment by Legality Class, with any exceptions requiring an Unusual Background. For example, if the PCs are cyberpunk detectives at the local precinct, the GM might restrict them to LC2 and up, since police won’t normally have access to heavy weapons or cutting-edge spy gear.

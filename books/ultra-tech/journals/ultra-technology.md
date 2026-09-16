@@ -1,0 +1,1 @@
+GURPS Ultra-Tech is a catalog of technologies and equipment from TL9 (extrapolations of existing developments) to TL12 (devices that verge on the miraculous). This chapter provides general background and rules for ultra-technology, along with guidelines for adjusting the availability of equipment in a campaign.

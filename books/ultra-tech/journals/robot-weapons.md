@@ -1,0 +1,1 @@
+Robotic missiles are designed to destroy the target in a suicidal attacks. Robot mines are simple automated weapons that wait for targets to appear – sometimes for years or millennia – before making their attack.

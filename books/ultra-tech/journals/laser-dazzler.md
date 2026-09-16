@@ -1,0 +1,3 @@
+A laser dazzler is a low-energy laser that fires a wide beam of coherent light. Dazzlers temporarily blind eyes and optical sensors, and are designed for personal defense and riot control. They also have a more sinister use: if the beam blinds someone performing a dangerous activity such as operating a vehicle or climbing, the target could suffer an accident. If the accident is fatal, there will be no evidence of the assault . . . unless the victim had laser sensors and recorded the attack.
+
+A laser dazzler delivers a Vision-based affliction attack against anyone struck. To be affected, the target must be looking at the laser. The victim gets a HT roll to resist, at the

@@ -1,0 +1,1 @@
+A system can be programmed to do just about anything, but good programming is expensive at any TL. The GM should allow the creation of custom programs, but make them costly. Some programs are better than others, regardless of cost. A custom program is likely to have amusing or dangerous bugs when it is first used.

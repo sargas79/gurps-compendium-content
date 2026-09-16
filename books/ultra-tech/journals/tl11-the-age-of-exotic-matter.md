@@ -1,0 +1,11 @@
+Technology achieves precise control over the atomic structure of objects. A mature molecular nanotechnology is available, capable of inexpensively fabricating most products with atomic-level precision. Nanofactories (pp. 91-93) make products out of diamond-hard material (“diamondoid”).
+
+Not everything can be built in nanofactories, however. The most advanced TL11 products tinker with the subatomic structure of matter to create exotic materials. This may involve replacing electrons with super-massive particles (such as muons) to create hyperdense matter. Depending on its stability, this may be used as a catalyst for fusion reactions (resulting in more compact power plants), or as a component in computer hardware, armor, and other equipment.
+
+Antimatter is another exotic material that comes of age at TL11. As its price of manufacture drops, it begins to see use as a means of compact energy storage. Antimatter rocket engines are also available.
+
+A vast array of powerful beam weapons are now available, including portable particle beams (blasters) and X-ray lasers. In response, armor becomes stronger and smarter, and is usually made of diamondoid composites and exotic alloys. Most armor is powered, from skintight smartsuits to nuclear-powered dreadnought battlesuits.
+
+Nanotechnology dominates medicine. The standard way to heal someone is to take him apart (using the chrysalis machine) and put him back together again in perfect condition. Minds can be copied without destroying the original body.
+
+Superscience: Contragravity is miniaturized, resulting in personal flying belts and small, hyper-agile robot missiles. Force screen generators protect vehicles and installations, but are not yet suitable for personal use. Ranged gravity projectors are available, leading to tractor and pressor beams and gravitic weapons. Hypergravity technology can produce stabilized hyperdense armor and compact nuclear reactors. Matter transmission can teleport people from place to place, as long as there is hardware to send and receive. Superscience sensors can “scan” for just about anything, and even see through walls. Ranged neurotech devices such as dream nets and neural disruptors are introduced. Recorded minds can be played back into living bodies.

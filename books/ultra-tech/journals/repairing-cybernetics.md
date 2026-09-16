@@ -1,0 +1,1 @@
+Use Mechanic (Robotics) skill to repair physical damage or malfunctioning cybernetics, or to diagnose second-hand parts to see if they have any hidden flaws. Minor damage to bionic body parts can be repaired from the outside, without surgery. For implants and major damage, the part must be completely removed before any repairs can take place.

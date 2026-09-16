@@ -1,0 +1,1 @@
+Sometimes a simple change can have far-reaching effects. Are disintegrators fun, but too powerful compared to other weapons? Declare that the disintegration effect is harder to sustain over distance, and divide their range by 10. This tweaking is particularly easy to justify for superscience technologies.

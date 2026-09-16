@@ -1,0 +1,1 @@
+Many things can be done through networks and communicators, but sometimes a package has to be delivered in person. The possibilities depend on the available vehicle technology and the population density. Some examples:

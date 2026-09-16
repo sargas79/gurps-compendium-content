@@ -1,0 +1,1 @@
+These weapons use the expanding gases from a burning chemical propellant to push a projectile down a barrel. In many ultra-tech settings, ordinary TL7-8 slug throwers continue to be used even at high TLs; see GURPS High-Tech for a full range of suitable hardware.

@@ -1,0 +1,3 @@
+These rigid energy barriers feel like a solid wall, but exist only as long as the power is maintained. A force shield is normally transparent, but its outlines may be visible if struck by an attack. Gas or liquid will not pass through a force shield – if it encloses the subject, it’s effectively sealed. This may lead to suffocation if there is no air supply.
+
+Force shields are effective against all physical attacks: energy beams will be absorbed, melee attacks will hit an apparently solid wall, and any projectile failing to penetrate loses its kinetic energy and falls to the ground. An object or beam that strikes a force shield and inflicts enough damage to penetrate its DR will pass through it, but the field will reform as long as power remains.

@@ -1,0 +1,1 @@
+These include specialized recreational robots and general-purpose bodies useful for housing digital intelligences or cyborgs. Even when AI is common, this sort of robot may be popular as a teleoperated puppet.

@@ -1,0 +1,1 @@
+Most medical robots are static equipment or tiny microbots (both covered under Medical Equipment). However, the need for cheap nursing assistance for an aging population may lead to the development of mobile medical robots.

@@ -1,0 +1,1 @@
+Ultra-tech domestic technologies may just be background details, but they can also be pressed into service by adventurers. The heroes, or their foes, may reprogram a cleaning robot as a spy or saboteur, or use domestic nanocleanser to clean up telltale forensic evidence.

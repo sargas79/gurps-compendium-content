@@ -1,0 +1,1 @@
+This is the transfer of an uploaded mind into a living brain. It may use nanomachine or replicator technology to replicate every neural connection in the original brain, rebuilding the new brain into a copy of the desired mind. It could also be a highly sophisticated form of regeneration ray (p. 202) technology.

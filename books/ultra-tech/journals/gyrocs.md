@@ -1,0 +1,3 @@
+Gyrostabilized rocket launchers fire spin-stabilized rockets the size of bullets. Primitive TL7 rocket pistols such as the Gyrojet were notably inaccurate and slow to accelerate. TL9 developments in rocket fuels and microelectromechanical systems stabilize even unguided rockets, and allow miniaturized homing systems at extra cost. (Not all “gyrocs” actually use gyrostabilization –some have smart skins that steer them in flight via tiny aerodynamic bumps or fins.)
+
+Since they are propelled by a rocket motor, gyrocs have a flat trajectory with a maximum range similar to the 1/2D range. Gyroc launchers are also light compared to conventional guns – almost half a typical gyroc

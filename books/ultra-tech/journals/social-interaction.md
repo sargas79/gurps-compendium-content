@@ -1,0 +1,1 @@
+Robots with the Automaton meta-trait have Low Empathy and No Sense of Humor; be sure to play this up. They’re also usually Indomitable, ignoring anyone but their owner’s attempts to influence or order them around.

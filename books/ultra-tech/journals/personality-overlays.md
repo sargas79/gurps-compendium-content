@@ -1,0 +1,1 @@
+“Overdubbing” a conscious mind may either overwrite that mind (destroying it and creating the new person), or result in an unstable blend of both minds. If the latter, the effect is a Split Personality (p. B156) with -10 to -30 additional points of different mental disadvantages for each personality. Flashbacks, Manic-Depressive, On the Edge, and Paranoia are all appropriate.

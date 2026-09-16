@@ -1,0 +1,3 @@
+A mind emulation’s Complexity depends on the IQ of the being that was uploaded: Complexity 4 + (IQ/2), rounded up. Thus, someone with IQ 10 requires a Complexity 9 program. Lower Complexity by 1 for beings with the “Fixed IQ” taboo trait (as in the Domestic and Wild animal meta-traits); e.g., a dog with IQ 5 requires only a Complexity 6 emulation.
+
+A mind emulation has the advantage Digital Mind [5] and the taboo trait “Complexity-Limited IQ,” and optionally one or more of the lenses under Optional Intelligence Lenses (p. 28). For a nonhuman, also apply the race’s IQ, Perception, and Will modifiers, and all racial mental traits.

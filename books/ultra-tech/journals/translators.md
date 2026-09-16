@@ -1,0 +1,1 @@
+Fast, accurate language translation is important in any multilingual society, and may be vital if many different alien races co-exist. Advanced computers and artificial intelligence can put a skilled translator in everybody’s pocket.

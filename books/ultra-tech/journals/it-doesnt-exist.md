@@ -1,0 +1,1 @@
+The device was never invented, period – and maybe it can’t be invented. Instead of banning it outright, it’s also possible to increase its TL to well beyond the campaign’s standard TL. This lets the device appear as an alien artifact, or in the hands of a more advanced culture.

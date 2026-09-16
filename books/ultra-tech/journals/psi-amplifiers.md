@@ -1,0 +1,9 @@
+If psionic powers are scientifically understood, it may be possible to use technology to amplify them. Such devices are called psi amplifiers (“psi amps”).
+
+“Psi amps” boost a psi’s Talent level in a particular power, such as Psychokinesis. This boost can increase the psi’s Talent beyond the usual four-level limit. Optionally, each +1 bonus may instead add +1 level to any leveled psionic ability (e.g., Telekinesis or Innate Attack). The user can always choose to use less than the maximum boost, which reduces the danger should psychotronic feedback (below) occur.
+
+Replicator Templates (TL12^): Usable with replicators (p. 93). Most designs typically require at least one terabyte of storage space. They cost up to 10 times as much as a device (assume $50,000 for a template that can be used for replicating a particular person). Complexity 8+.
+
+A psi amp should be attuned to the user, and can only be attuned to one person at a time. This requires a successful roll against Electronic Operations (Psychotronics) skill. Failure wastes an hour; critical failure damages the device. It is possible to use a psi amplifier that is not properly attuned, or is attuned to someone else, but any roll of 15+ when using the device is treated as a critical failure.
+
+The power surge a psi experiences when using an amplifier can be dangerous. If the user ever suffers a critical failure while using an amplified ability, he suffers psychotronic feedback. This burns out the machine, which requires minor repairs. The user must also make a HT+3 roll, at a penalty equal to the boost. Failure means he suffers a seizure (p. B429) for seconds equal to the margin of failure (along with the usual 1d FP loss afterward); failure by 5+ results in psionic feedback that leaves the user unconscious, suffering the Coma mortal condition (p. B429).

@@ -1,0 +1,1 @@
+Computers are a vital part of most ultra-tech societies. It’s possible that general-purpose programmable computers will still be common. Alternatively, most computers may be simple terminals connecting to networks, or dedicated special-purpose systems.

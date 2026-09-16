@@ -1,0 +1,1 @@
+It is operated by a driver who uses Driving (Tracked) and Electronics Operation (Sensors) and a commander/gunner with Artillery (Guided Missiles), Gunner (Beams, Cannon, Machine Gun), and Electronics Operation (Comm, ECM, Sensors).

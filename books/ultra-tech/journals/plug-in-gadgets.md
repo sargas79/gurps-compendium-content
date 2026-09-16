@@ -1,0 +1,7 @@
+Electronic gadgets can plug into other gadgets, either directly or using data cables. This allows them to link their functions, or to turn multiple functions on or off with a single Ready maneuver. Most often, this permits a computer to talk to (and control) multiple devices as peripherals, but other combinations can exist.
+
+Linking devices usually takes between 10 seconds and a minute, assuming the gadgets are compatible. If they aren’t, or if a particular combination is very complex, the GM may require a toolkit and Electronics Operation roll. Useful devices for linking gadgets include optical cable (p. 43), cable jacks (p. 42), and microcommunicators (p. 43). A neural interface (pp. 48-49) is a device for mentally linking a person to one or more gadgets.
+
+Most electronics can be preprogrammed for a few simple remote functions. Almost all electronics have a simple “clock” function, so they can be set to turn features on or off or activate various functions at a specific time, or upon receiving particular input.
+
+For example, a recorder could be plugged into a communicator to play a message at a certain time, or upon receiving a specific signal, or to act as an answering machine. A detonator plugged into an inertial compass could go off when the subject reached a specific destination. Wireless connectivity is also possible: plug in a communicator set to a specific frequency, and you can talk to the device using a computer and communicator.

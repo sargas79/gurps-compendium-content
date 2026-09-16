@@ -1,0 +1,1 @@
+Computers may be inhabited by digital minds. If so, it may be popular to have a computer manifest through augmented reality as a virtual companion standing or sitting a few feet away from its owner. The “invisible friend” might truly only be visible to the user, or the image could be transmitted to anyone else sharing the same network who would be in a position to see the person.

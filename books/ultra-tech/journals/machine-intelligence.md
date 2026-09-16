@@ -1,0 +1,1 @@
+Robots with the Automaton meta-trait have Hidebound and Slave Mentality. They show little or no creativity and slavishly obey orders. GMs who wish to show the advantages of humans over “mere machines” should emphasize these elements.

@@ -1,0 +1,5 @@
+Matter transmission or force screens at TL9? Go ahead! Ultra-Tech assigns a default TL for most superscience technologies to give GMs a ready-to-use catalog and provide handy guidelines for gadgeteering. However, there is no reason superscience can’t appear earlier. Most such technologies require exotic breakthroughs (or breakdowns) in the laws of physics, but these breakthroughs can occur at any TL.
+
+The classic emergent superscience example is the invention of a faster-than-light drive, star gate, interdimensional travel, or time machine at TL9. This allows humans like ourselves (rather than what we may transform into) to spread through the universe.
+
+In a realistic setting, it might take at least a decade or two for a radical new theory to lead to real-world developments, but science fiction is full of instances where a theoretical breakthrough is quickly turned into functional hardware. By carefully adjusting the TL of superscience technologies, the GM can construct a society that resembles our own, then explore the changes a particular super-invention might bring.

@@ -1,0 +1,1 @@
+“Robot” was derived from the Czech word for “worker,” and that is what these machines are intended to do. These machines are useful for various tasks, including cargo-handling, salvage, working with hazardous materials, and exploration.

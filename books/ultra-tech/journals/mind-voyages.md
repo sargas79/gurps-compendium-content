@@ -1,0 +1,3 @@
+It is usually easier to transmit information than matter. If mind emulations (p. 220) or artificial intelligences (p. 25) exist, then it would be possible to effectively “travel” by transmitting copied minds encoded in digital form from place to place.
+
+In a civilization where travel is information-based, visiting another world involves your mind emulation being transmitted across space, only to be received and uploaded into a new body (robotic or living). Of course, if there is no form of FTL radio, a transmission might take years to arrive and conditions could be quite different than expected!

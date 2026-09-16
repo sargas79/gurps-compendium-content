@@ -1,0 +1,5 @@
+The term “black market” describes any businesses that operate illegally. Some sell proscribed services, while others circumvent tax or safety laws to undercut legitimate competitors. The GM may set up various niches within the “black market” that cater to specific customers, and that require specialized Contacts or skill penalties (see above) to deal with. Some examples of specialized black markets include:
+
+Electronics: This can include prototype or custom-made computers, pirated copies of brand-name goods, and banned software (“Guaranteed to break the intrusion countermeasures on that military mainframe . . . but owning it will get you a death sentence. You still want it?”). Failure means the product you bought doesn’t work as advertised or was fake. A critical failure means a knock on the door (or the head) by the legal owner or patent holder – who might have found you thanks to a tracking device in the gadget itself!
+
+Medical: This can include cut-rate surgical, unlicensed implant clinics, stolen bionics (perhaps with the previous

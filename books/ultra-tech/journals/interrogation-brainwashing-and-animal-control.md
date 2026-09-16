@@ -1,0 +1,1 @@
+Unlike passive lie detection gear, these systems are used to actively retrieve information, as well as to alter, erase, or enslave the minds of people or animals. See also Drugs and Nano, pp. 204-205.

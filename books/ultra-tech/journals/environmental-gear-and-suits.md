@@ -1,0 +1,1 @@
+These masks and suits are designed to protect the user from the environment as well as from injury. Environmental suit styles vary widely; civilians often paint suits in garish colors for easy recognition, but outfits worn for combat, stealth, or hunting are usually camouflaged.
