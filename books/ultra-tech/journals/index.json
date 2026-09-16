@@ -365,6 +365,7 @@
       "title": "Legality and Antiques",
       "chapter": "Ultra-Technology",
       "pages": "UT14",
+      "rule": "gurps-compendium-content.legalityAndAntiques",
       "reference": "Ultra-Tech p. 14",
       "file": "legality-and-antiques.md",
       "status": "reviewed"
@@ -419,6 +420,7 @@
       "title": "Disguised",
       "chapter": "Ultra-Technology",
       "pages": "UT15",
+      "rule": "gurps-compendium-content.gadgetOptions",
       "reference": "Ultra-Tech p. 15",
       "file": "disguised.md",
       "status": "reviewed"
@@ -428,6 +430,7 @@
       "title": "Rugged",
       "chapter": "Ultra-Technology",
       "pages": "UT15",
+      "rule": "gurps-compendium-content.gadgetOptions",
       "reference": "Ultra-Tech p. 15",
       "file": "rugged.md",
       "status": "reviewed"
@@ -437,6 +440,7 @@
       "title": "Cheap and Expensive Gadgets",
       "chapter": "Ultra-Technology",
       "pages": "UT15",
+      "rule": "gurps-compendium-content.gadgetOptions",
       "reference": "Ultra-Tech p. 15",
       "file": "cheap-and-expensive-gadgets.md",
       "status": "reviewed"
@@ -446,6 +450,7 @@
       "title": "Styling",
       "chapter": "Ultra-Technology",
       "pages": "UT15",
+      "rule": "gurps-compendium-content.gadgetOptions",
       "reference": "Ultra-Tech p. 15",
       "file": "styling.md",
       "status": "reviewed"
@@ -473,6 +478,7 @@
       "title": "Gear for Nonhumans",
       "chapter": "Ultra-Technology",
       "pages": "UT16",
+      "rule": "gurps-compendium-content.adjustingForSm",
       "reference": "Ultra-Tech p. 16",
       "file": "gear-for-nonhumans.md",
       "status": "reviewed"
@@ -482,6 +488,7 @@
       "title": "Adjusting for SM",
       "chapter": "Ultra-Technology",
       "pages": "UT16",
+      "rule": "gurps-compendium-content.adjustingForSm",
       "reference": "Ultra-Tech p. 16",
       "file": "adjusting-for-sm.md",
       "status": "reviewed"
@@ -518,6 +525,7 @@
       "title": "Equipment Bonuses",
       "chapter": "Ultra-Technology",
       "pages": "UT17",
+      "rule": "gurps-compendium-content.gadgetOptions",
       "reference": "Ultra-Tech p. 17",
       "file": "equipment-bonuses.md",
       "status": "reviewed"
@@ -554,6 +562,7 @@
       "title": "Power Cells",
       "chapter": "Core Technologies",
       "pages": "UT18",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 18",
       "file": "power-cells.md",
       "status": "reviewed"
@@ -563,6 +572,7 @@
       "title": "Sizes of Power Cells",
       "chapter": "Core Technologies",
       "pages": "UT19",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 19",
       "file": "sizes-of-power-cells.md",
       "status": "reviewed"
@@ -572,6 +582,7 @@
       "title": "Replacing Power Cells",
       "chapter": "Core Technologies",
       "pages": "UT19",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 19",
       "file": "replacing-power-cells.md",
       "status": "reviewed"
@@ -581,6 +592,7 @@
       "title": "Jury-Rigging Power Cells",
       "chapter": "Core Technologies",
       "pages": "UT19",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 19",
       "file": "jury-rigging-power-cells.md",
       "status": "reviewed"
@@ -590,6 +602,7 @@
       "title": "Exploding Power Cells",
       "chapter": "Core Technologies",
       "pages": "UT19",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 19",
       "file": "exploding-power-cells.md",
       "status": "reviewed"
@@ -599,6 +612,7 @@
       "title": "External Power",
       "chapter": "Core Technologies",
       "pages": "UT20",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 20",
       "file": "external-power.md",
       "status": "reviewed"
@@ -608,6 +622,7 @@
       "title": "Generators",
       "chapter": "Core Technologies",
       "pages": "UT20",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 20",
       "file": "generators.md",
       "status": "reviewed"
@@ -617,6 +632,7 @@
       "title": "Energy Collection",
       "chapter": "Core Technologies",
       "pages": "UT20",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 20",
       "file": "energy-collection.md",
       "status": "reviewed"
@@ -626,6 +642,7 @@
       "title": "Solar Panels",
       "chapter": "Core Technologies",
       "pages": "UT20",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 20",
       "file": "solar-panels.md",
       "status": "reviewed"
@@ -635,6 +652,7 @@
       "title": "Beamed and Broadcast Power",
       "chapter": "Core Technologies",
       "pages": "UT21",
+      "rule": "gurps-compendium-content.powerCells",
       "reference": "Ultra-Tech p. 21",
       "file": "beamed-and-broadcast-power.md",
       "status": "reviewed"
@@ -653,6 +671,7 @@
       "title": "Computers",
       "chapter": "Core Technologies",
       "pages": "UT21",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 21",
       "file": "computers.md",
       "status": "reviewed"
@@ -662,6 +681,7 @@
       "title": "Hardware",
       "chapter": "Core Technologies",
       "pages": "UT21-22",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech pp. 21-22",
       "file": "hardware.md",
       "status": "reviewed"
@@ -671,6 +691,7 @@
       "title": "Computer Models",
       "chapter": "Core Technologies",
       "pages": "UT22-23",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech pp. 22-23",
       "file": "computer-models.md",
       "status": "reviewed"
@@ -680,6 +701,7 @@
       "title": "Terminals",
       "chapter": "Core Technologies",
       "pages": "UT23",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 23",
       "file": "terminals.md",
       "status": "reviewed"
@@ -689,6 +711,7 @@
       "title": "AI: Hardware or Software?",
       "chapter": "Core Technologies",
       "pages": "UT23-24",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech pp. 23-24",
       "file": "ai-hardware-or-software.md",
       "status": "reviewed"
@@ -698,6 +721,7 @@
       "title": "Software",
       "chapter": "Core Technologies",
       "pages": "UT24",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 24",
       "file": "software.md",
       "status": "reviewed"
@@ -707,6 +731,7 @@
       "title": "Programs",
       "chapter": "Core Technologies",
       "pages": "UT24",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 24",
       "file": "programs.md",
       "status": "reviewed"
@@ -716,6 +741,7 @@
       "title": "Using A HUD",
       "chapter": "Core Technologies",
       "pages": "UT24",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 24",
       "file": "using-a-hud.md",
       "status": "reviewed"
@@ -725,6 +751,7 @@
       "title": "Software Tools",
       "chapter": "Core Technologies",
       "pages": "UT25",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 25",
       "file": "software-tools.md",
       "status": "reviewed"
@@ -734,6 +761,7 @@
       "title": "Artificial Intelligences",
       "chapter": "Core Technologies",
       "pages": "UT25",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 25",
       "file": "artificial-intelligences.md",
       "status": "reviewed"
@@ -761,6 +789,7 @@
       "title": "Robots and Total Cyborgs",
       "chapter": "Core Technologies",
       "pages": "UT26",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech p. 26",
       "file": "robots-and-total-cyborgs.md",
       "status": "reviewed"
@@ -815,6 +844,7 @@
       "title": "Machines as Characters",
       "chapter": "Core Technologies",
       "pages": "UT27",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech p. 27",
       "file": "machines-as-characters.md",
       "status": "reviewed"
@@ -824,6 +854,7 @@
       "title": "Machine Intelligence Lenses",
       "chapter": "Core Technologies",
       "pages": "UT27-28",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech pp. 27-28",
       "file": "machine-intelligence-lenses.md",
       "status": "reviewed"
@@ -833,6 +864,7 @@
       "title": "Biomorphic Lenses",
       "chapter": "Core Technologies",
       "pages": "UT28",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech p. 28",
       "file": "biomorphic-lenses.md",
       "status": "reviewed"
@@ -842,6 +874,7 @@
       "title": "Customizing the Template",
       "chapter": "Core Technologies",
       "pages": "UT28-29",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech pp. 28-29",
       "file": "customizing-the-template.md",
       "status": "reviewed"
@@ -1166,6 +1199,7 @@
       "title": "Cinematic Combat",
       "chapter": "Core Technologies",
       "pages": "UT34",
+      "rule": "gurps-compendium-content.cinematicRobots",
       "reference": "Ultra-Tech p. 34",
       "file": "cinematic-combat.md",
       "status": "reviewed"
@@ -1175,6 +1209,7 @@
       "title": "Damage and Injury",
       "chapter": "Core Technologies",
       "pages": "UT35",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech p. 35",
       "file": "damage-and-injury.md",
       "status": "reviewed"
@@ -1184,6 +1219,7 @@
       "title": "Controlling and Reprogramming Ais",
       "chapter": "Core Technologies",
       "pages": "UT35",
+      "rule": "gurps-compendium-content.robots",
       "reference": "Ultra-Tech p. 35",
       "file": "controlling-and-reprogramming-ais.md",
       "status": "reviewed"
@@ -1193,6 +1229,7 @@
       "title": "Swarmbots",
       "chapter": "Core Technologies",
       "pages": "UT35",
+      "rule": "gurps-compendium-content.swarmbots",
       "reference": "Ultra-Tech p. 35",
       "file": "swarmbots.md",
       "status": "reviewed"
@@ -1202,6 +1239,7 @@
       "title": "Microbot and Nanobot Swarms",
       "chapter": "Core Technologies",
       "pages": "UT35",
+      "rule": "gurps-compendium-content.swarmbots",
       "reference": "Ultra-Tech p. 35",
       "file": "microbot-and-nanobot-swarms.md",
       "status": "reviewed"
@@ -1211,6 +1249,7 @@
       "title": "Swarm Chassis",
       "chapter": "Core Technologies",
       "pages": "UT35-36",
+      "rule": "gurps-compendium-content.swarmbots",
       "reference": "Ultra-Tech pp. 35-36",
       "file": "swarm-chassis.md",
       "status": "reviewed"
@@ -1229,6 +1268,7 @@
       "title": "Swarm Types",
       "chapter": "Core Technologies",
       "pages": "UT37",
+      "rule": "gurps-compendium-content.swarmbots",
       "reference": "Ultra-Tech p. 37",
       "file": "swarm-types.md",
       "status": "reviewed"
@@ -1238,6 +1278,7 @@
       "title": "Swarmbot Operation",
       "chapter": "Core Technologies",
       "pages": "UT37",
+      "rule": "gurps-compendium-content.swarmbots",
       "reference": "Ultra-Tech p. 37",
       "file": "swarmbot-operation.md",
       "status": "reviewed"
@@ -1283,6 +1324,7 @@
       "title": "Communicators",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT43",
+      "rule": "gurps-compendium-content.communicators",
       "reference": "Ultra-Tech p. 43",
       "file": "communicators.md",
       "status": "reviewed"
@@ -1292,6 +1334,7 @@
       "title": "Encryption",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT46",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 46",
       "file": "encryption.md",
       "status": "reviewed"
@@ -1301,6 +1344,7 @@
       "title": "Receive-Only or Transmit-Only Comms",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT46-47",
+      "rule": "gurps-compendium-content.communicators",
       "reference": "Ultra-Tech pp. 46-47",
       "file": "receive-only-or-transmit-only-comms.md",
       "status": "reviewed"
@@ -1310,6 +1354,7 @@
       "title": "One-Time Pads",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT47",
+      "rule": "gurps-compendium-content.computers",
       "reference": "Ultra-Tech p. 47",
       "file": "one-time-pads.md",
       "status": "reviewed"
@@ -1319,6 +1364,7 @@
       "title": "Translators",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT47",
+      "rule": "gurps-compendium-content.communicators",
       "reference": "Ultra-Tech p. 47",
       "file": "translators.md",
       "status": "reviewed"
@@ -1328,6 +1374,7 @@
       "title": "Neural Interfaces",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT48",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 48",
       "file": "neural-interfaces.md",
       "status": "reviewed"
@@ -1400,6 +1447,7 @@
       "title": "Virtual Reality (vr)",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT53",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 53",
       "file": "virtual-reality-vr.md",
       "status": "reviewed"
@@ -1409,6 +1457,7 @@
       "title": "Multi-User VR",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT53-54",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech pp. 53-54",
       "file": "multi-user-vr.md",
       "status": "reviewed"
@@ -1427,6 +1476,7 @@
       "title": "Augmented Reality",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT56",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 56",
       "file": "augmented-reality.md",
       "status": "reviewed"
@@ -1454,6 +1504,7 @@
       "title": "Sensies",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT57",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 57",
       "file": "sensies.md",
       "status": "reviewed"
@@ -1481,6 +1532,7 @@
       "title": "Experiencing a Sensie",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT57-58",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech pp. 57-58",
       "file": "experiencing-a-sensie.md",
       "status": "reviewed"
@@ -1490,6 +1542,7 @@
       "title": "Sensie Equipment",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT58",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 58",
       "file": "sensie-equipment.md",
       "status": "reviewed"
@@ -1508,6 +1561,7 @@
       "title": "Teaching and Learning Aids",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT59",
+      "rule": "gurps-compendium-content.neuralInterfaces",
       "reference": "Ultra-Tech p. 59",
       "file": "teaching-and-learning-aids.md",
       "status": "reviewed"
@@ -1517,6 +1571,7 @@
       "title": "Passive Visual Sensors",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT60",
+      "rule": "gurps-compendium-content.sensors",
       "reference": "Ultra-Tech p. 60",
       "file": "passive-visual-sensors.md",
       "status": "reviewed"
@@ -1526,6 +1581,7 @@
       "title": "Passive Visual Sensor Configurations",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT60",
+      "rule": "gurps-compendium-content.sensors",
       "reference": "Ultra-Tech p. 60",
       "file": "passive-visual-sensor-configurations.md",
       "status": "reviewed"
@@ -1535,6 +1591,7 @@
       "title": "Active Sensors",
       "chapter": "Communications, Sensors, and Media",
       "pages": "UT63",
+      "rule": "gurps-compendium-content.sensors",
       "reference": "Ultra-Tech p. 63",
       "file": "active-sensors.md",
       "status": "reviewed"
@@ -1625,6 +1682,7 @@
       "title": "Crossing a Gravity Gradient",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT79-80",
+      "rule": "gurps-compendium-content.gravityControl",
       "reference": "Ultra-Tech pp. 79-80",
       "file": "crossing-a-gravity-gradient.md",
       "status": "reviewed"
@@ -1661,6 +1719,7 @@
       "title": "Manufacturing",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT89",
+      "rule": "gurps-compendium-content.fabrication",
       "reference": "Ultra-Tech p. 89",
       "file": "manufacturing.md",
       "status": "reviewed"
@@ -1679,6 +1738,7 @@
       "title": "Memory Materials",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT90",
+      "rule": "gurps-compendium-content.fabrication",
       "reference": "Ultra-Tech p. 90",
       "file": "memory-materials.md",
       "status": "reviewed"
@@ -1688,6 +1748,7 @@
       "title": "Von Neumann Machines",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT92",
+      "rule": "gurps-compendium-content.fabrication",
       "reference": "Ultra-Tech p. 92",
       "file": "von-neumann-machines.md",
       "status": "reviewed"
@@ -1697,6 +1758,7 @@
       "title": "Psi Amplifiers",
       "chapter": "Housing, Tools, and Survival Gear",
       "pages": "UT94",
+      "rule": "gurps-compendium-content.psiAmplifiers",
       "reference": "Ultra-Tech p. 94",
       "file": "psi-amplifiers.md",
       "status": "reviewed"
@@ -1715,6 +1777,7 @@
       "title": "Burglary, Infiltration, and Sabotage",
       "chapter": "Covert Ops and Security",
       "pages": "UT95",
+      "rule": "gurps-compendium-content.stealthSystems",
       "reference": "Ultra-Tech p. 95",
       "file": "burglary-infiltration-and-sabotage.md",
       "status": "reviewed"
@@ -1724,6 +1787,7 @@
       "title": "Forgery and Counterfeiting",
       "chapter": "Covert Ops and Security",
       "pages": "UT96",
+      "rule": "gurps-compendium-content.stealthSystems",
       "reference": "Ultra-Tech p. 96",
       "file": "forgery-and-counterfeiting.md",
       "status": "reviewed"
@@ -1733,6 +1797,7 @@
       "title": "Disguises and Smuggling",
       "chapter": "Covert Ops and Security",
       "pages": "UT97",
+      "rule": "gurps-compendium-content.stealthSystems",
       "reference": "Ultra-Tech p. 97",
       "file": "disguises-and-smuggling.md",
       "status": "reviewed"
@@ -1742,6 +1807,7 @@
       "title": "Computer Intrusion",
       "chapter": "Covert Ops and Security",
       "pages": "UT100",
+      "rule": "gurps-compendium-content.stealthSystems",
       "reference": "Ultra-Tech p. 100",
       "file": "computer-intrusion.md",
       "status": "reviewed"
@@ -1769,6 +1835,7 @@
       "title": "Barriers, Mines, and Traps",
       "chapter": "Covert Ops and Security",
       "pages": "UT101",
+      "rule": "gurps-compendium-content.securitySystems",
       "reference": "Ultra-Tech p. 101",
       "file": "barriers-mines-and-traps.md",
       "status": "reviewed"
@@ -1778,6 +1845,7 @@
       "title": "Surveillance and Tracking Devices",
       "chapter": "Covert Ops and Security",
       "pages": "UT105",
+      "rule": "gurps-compendium-content.securitySystems",
       "reference": "Ultra-Tech p. 105",
       "file": "surveillance-and-tracking-devices.md",
       "status": "reviewed"
@@ -1796,6 +1864,7 @@
       "title": "Forensics and Lie Detection",
       "chapter": "Covert Ops and Security",
       "pages": "UT106",
+      "rule": "gurps-compendium-content.interrogation",
       "reference": "Ultra-Tech p. 106",
       "file": "forensics-and-lie-detection.md",
       "status": "reviewed"
@@ -1805,6 +1874,7 @@
       "title": "Restraint and Riot Control Devices",
       "chapter": "Covert Ops and Security",
       "pages": "UT107",
+      "rule": "gurps-compendium-content.restraints",
       "reference": "Ultra-Tech p. 107",
       "file": "restraint-and-riot-control-devices.md",
       "status": "reviewed"
@@ -1814,6 +1884,7 @@
       "title": "Interrogation, Brainwashing, and Animal Control",
       "chapter": "Covert Ops and Security",
       "pages": "UT108",
+      "rule": "gurps-compendium-content.interrogation",
       "reference": "Ultra-Tech p. 108",
       "file": "interrogation-brainwashing-and-animal-control.md",
       "status": "reviewed"
@@ -2732,6 +2803,7 @@
       "title": "Uploading",
       "chapter": "Medical and Biotech",
       "pages": "UT219",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 219",
       "file": "uploading.md",
       "status": "reviewed"
@@ -2741,6 +2813,7 @@
       "title": "Uploading the Dead",
       "chapter": "Medical and Biotech",
       "pages": "UT219",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 219",
       "file": "uploading-the-dead.md",
       "status": "reviewed"
@@ -2750,6 +2823,7 @@
       "title": "Mind Emulation Templates",
       "chapter": "Medical and Biotech",
       "pages": "UT220",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 220",
       "file": "mind-emulation-templates.md",
       "status": "reviewed"
@@ -2759,6 +2833,7 @@
       "title": "Mind Emulation (“Ghost”) Programs",
       "chapter": "Medical and Biotech",
       "pages": "UT220",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 220",
       "file": "mind-emulation-ghost-programs.md",
       "status": "reviewed"
@@ -2768,6 +2843,7 @@
       "title": "Downloading Minds",
       "chapter": "Medical and Biotech",
       "pages": "UT220",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 220",
       "file": "downloading-minds.md",
       "status": "reviewed"
@@ -2777,6 +2853,7 @@
       "title": "Low-and Very-Low-Res Copies",
       "chapter": "Medical and Biotech",
       "pages": "UT220-221",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech pp. 220-221",
       "file": "low-and-very-low-res-copies.md",
       "status": "reviewed"
@@ -2786,6 +2863,7 @@
       "title": "Personality Overlays",
       "chapter": "Medical and Biotech",
       "pages": "UT221",
+      "rule": "gurps-compendium-content.uploading",
       "reference": "Ultra-Tech p. 221",
       "file": "personality-overlays.md",
       "status": "reviewed"
@@ -2849,6 +2927,7 @@
       "title": "Vehicle Systems",
       "chapter": "Vehicles",
       "pages": "UT224",
+      "rule": "gurps-compendium-content.vehicleSystems",
       "reference": "Ultra-Tech p. 224",
       "file": "vehicle-systems.md",
       "status": "reviewed"
@@ -2930,6 +3009,7 @@
       "title": "Grav Bikes and Platforms",
       "chapter": "Vehicles",
       "pages": "UT229",
+      "rule": "gurps-compendium-content.vehicleSystems",
       "reference": "Ultra-Tech p. 229",
       "file": "grav-bikes-and-platforms.md",
       "status": "reviewed"
@@ -2939,6 +3019,7 @@
       "title": "Flight Packs",
       "chapter": "Vehicles",
       "pages": "UT230",
+      "rule": "gurps-compendium-content.vehicleSystems",
       "reference": "Ultra-Tech p. 230",
       "file": "flight-packs.md",
       "status": "reviewed"
@@ -2948,6 +3029,7 @@
       "title": "Zero-G Thrusters",
       "chapter": "Vehicles",
       "pages": "UT231",
+      "rule": "gurps-compendium-content.vehicleSystems",
       "reference": "Ultra-Tech p. 231",
       "file": "zero-g-thrusters.md",
       "status": "reviewed"
@@ -2957,6 +3039,7 @@
       "title": "Drop Capsules",
       "chapter": "Vehicles",
       "pages": "UT232",
+      "rule": "gurps-compendium-content.vehicleSystems",
       "reference": "Ultra-Tech p. 232",
       "file": "drop-capsules.md",
       "status": "reviewed"
@@ -2966,6 +3049,7 @@
       "title": "Matter Transmission",
       "chapter": "Vehicles",
       "pages": "UT233",
+      "rule": "gurps-compendium-content.matterTransmission",
       "reference": "Ultra-Tech p. 233",
       "file": "matter-transmission.md",
       "status": "reviewed"
@@ -2975,6 +3059,7 @@
       "title": "Technologies",
       "chapter": "Vehicles",
       "pages": "UT233",
+      "rule": "gurps-compendium-content.matterTransmission",
       "reference": "Ultra-Tech p. 233",
       "file": "technologies.md",
       "status": "reviewed"
@@ -2984,6 +3069,7 @@
       "title": "Dimension and Time Travel",
       "chapter": "Vehicles",
       "pages": "UT234-235",
+      "rule": "gurps-compendium-content.matterTransmission",
       "reference": "Ultra-Tech pp. 234-235",
       "file": "dimension-and-time-travel.md",
       "status": "reviewed"
