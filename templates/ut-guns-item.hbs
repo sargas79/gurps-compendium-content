@@ -1,0 +1,31 @@
+{{!-- A gun's propellant, a missile's drive, a grenade's smarts and a round's homing seeker (Ultra-Tech pp. 134-147). --}}
+<div class="isub" data-gcc-ut-guns-section>
+  <div class="isub-head">{{localize "GCC.UT.Guns.Title"}}</div>
+  <div class="ichecks">
+    {{#if propellant}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Guns.EtcHint'}}"><input type="checkbox" data-gcc-ut-gun="etc" {{#if data.etc}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Guns.Etc"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Guns.LiquidHint'}}"><input type="checkbox" data-gcc-ut-gun="liquidPropellant" {{#if data.liquidPropellant}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Guns.Liquid"}}</label>
+    {{/if}}
+    {{#if airGun}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Guns.NonMetallicHint'}}"><input type="checkbox" data-gcc-ut-gun="nonMetallic" {{#if data.nonMetallic}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Guns.NonMetallic"}}</label>{{/if}}
+    {{#if reactionless}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Guns.ReactionlessHint'}}"><input type="checkbox" data-gcc-ut-gun="reactionless" {{#if data.reactionless}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Guns.Reactionless"}}</label>{{/if}}
+    {{#if smart}}<label class="icheck" data-tooltip="{{localize 'GCC.UT.Guns.SmartHint'}}"><input type="checkbox" data-gcc-ut-gun="smart" {{#if data.smart}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Guns.Smart"}}</label>{{/if}}
+  </div>
+  {{#each modes as |m|}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Guns.HomingTooltip'}}">{{localize "GCC.UT.Guns.HomingLabel"}} {{m.name}}
+        <select data-gcc-ut-homing="kind" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+          {{#each m.kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if m.multispectral}}
+        <label>{{localize "GCC.UT.Guns.SettingLabel"}}
+          <select data-gcc-ut-homing="setting" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.settings as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    </div>
+    {{#if m.detail}}<p class="ihint">{{m.detail}}</p>{{/if}}
+  {{/each}}
+  {{#each lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>

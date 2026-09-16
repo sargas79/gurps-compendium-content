@@ -2063,6 +2063,18 @@
         "nanoweapons": {
           "Name": "Metabolic nanoweapons",
           "Hint": "Nanoburn paralyses for three minutes a point of failure and then does 1d-1 every three minutes for half an hour. Dominator nano rolls after six hours (a minute if superscience) and is priced at $100 a point of the disadvantage, doubled to reverse itself or for superscience. A parasite seed takes 3 HT each failed hour until a success kills it. The GM tool detonates splatter after Aegis has contested it a minute at a time, -1 a die per win and gone after six, and runs shrike against Aegis. Nanoweapons are priced by delivery: blood x2, contact gel x2, contact gas x10, respiratory x5."
+        },
+        "propellantSettings": {
+          "Name": "ETC, liquid propellant and velocity",
+          "Hint": "A conventional slugthrower can be ETC (1.5 times piercing damage and range, twice the cost, a cell in the grip for 10 magazines) or liquid-propellant (1.5 times the shots a magazine holds and the cost, a bottle for three magazines). Liquid-propellant and electromagnetic guns choose a velocity when firing: boosted is +1 damage a die, low is half damage and -3 to hear it. Air guns can be made non-metallic for 1.5 times the cost."
+        },
+        "gyrocsAndLaunchers": {
+          "Name": "Gyrocs, missiles and grenades",
+          "Hint": "A gyroc's piercing damage is divided by 3 at one or two yards and by 2 out to 10, unless it fires another warhead. Firing an IML or MLAWS rolls 2d burning backblast for a 2-yard cone behind it, a TML 4d for 3 yards; a reactionless missile has none and five times the Max range. Smart grenades (+$100 at TL9, free after) are programmed with three Readies for a delay, radio command, impact or anti-tamper fuse. A saucer grenade bounces round a corner at -3, a vortex ring at -2 and -10% range a bounce, and a limpet mine is pulled off without its code at ST-5."
+        },
+        "homingProjectiles": {
+          "Name": "Homing projectiles",
+          "Hint": "A ranged mode can load infrared (skill 13, x4 cost), multispectral (14, x10; passive, anti-radiation or active) or superscience multiscanner (12, x10) homing rounds, +1 skill per TL after each was introduced, where the round is big enough for its TL. The row becomes a homing attack at the seeker's skill, homing by its sense."
         }
       },
       "Gadget": {
@@ -4049,6 +4061,90 @@
           "Hours": "Hours",
           "Result": "{total} corrosion over {hours} hour(s) (x{multiplier})."
         }
+      },
+      "Guns": {
+        "Title": "Guns, launchers and grenades",
+        "Etc": "ETC",
+        "EtcHint": "Electrothermal-chemical: 1.5 times piercing damage and range, twice the cost (Ultra-Tech p. 139).",
+        "Liquid": "Liquid propellant",
+        "LiquidHint": "1.5 times the shots a magazine holds and the cost, with boosted and low velocity (Ultra-Tech p. 139).",
+        "NonMetallic": "Non-metallic",
+        "NonMetallicHint": "1.5 times the cost; unloaded, it passes ordinary metal detectors (Ultra-Tech p. 140).",
+        "Reactionless": "Reactionless missiles",
+        "ReactionlessHint": "No backblast, five times the Max range; the missiles cost twice as much (Ultra-Tech p. 145).",
+        "Smart": "Smart grenade",
+        "SmartHint": "A chip and communicator for programmed fusing: +$100 at TL9, free from TL10 (Ultra-Tech p. 147).",
+        "HomingLabel": "Homing",
+        "HomingTooltip": "A homing seeker in the round this mode fires, where the round is big enough (Ultra-Tech p. 146).",
+        "Homing": {
+          "none": "None",
+          "infrared": "Infrared (viper)",
+          "multispectral": "Multispectral",
+          "multiscanner": "Multiscanner"
+        },
+        "SettingLabel": "Set for",
+        "Setting": {
+          "passive": "Passive",
+          "antiRadiation": "Anti-radiation",
+          "active": "Active"
+        },
+        "Sense": {
+          "infravision": "Infravision",
+          "hyperspectral": "Hyperspectral Vision",
+          "radarAndRadio": "Detect (Radar and Radio)",
+          "imagingRadar": "Imaging Radar",
+          "paraRadar": "Penetrating Para-Radar"
+        },
+        "Refusal": {
+          "tl": "That seeker isn't available at this weapon's TL.",
+          "tooSmall": "The round is too small for that seeker at this TL."
+        },
+        "HomingLine": "Homing skill {skill}, by {sense}; rounds cost x{cost}.",
+        "HomingNote": "Homing {skill}",
+        "HomingHint": "The projectile homes by {sense}; aim with Artillery (Guided Missile) for its Acc (Ultra-Tech p. 146).",
+        "EtcLine": "ETC: an {cell} cell in the grip fires {magazines} magazines.",
+        "LiquidLine": "Liquid propellant: a bottle fires {magazines} magazines and takes {seconds} seconds to change.",
+        "VelocityLine": "Choose boosted or low velocity in the attack dialog.",
+        "WristNeedlerLine": "Double penalties for unfamiliarity.",
+        "GyrocLine": "Damage divided by 3 at 1-2 yards and 2 at 3-10 with solid rockets; a Hearing roll to spot the firer by sound.",
+        "BackblastLine": "Backblast: {damage} burning to everyone in a {yards}-yard cone behind, rolled when it fires.",
+        "ReactionlessLine": "Reactionless: no backblast, x{range} Max range; missiles x{cost} cost.",
+        "GrenadeLine": "Goes off {seconds} seconds after it's released; a second to pull the pin. {smart}",
+        "SmartLine": "Smart: {readies} Readies to program, or pull the pin as an ordinary grenade.",
+        "SaucerLine": "Thrown with Throwing; bounced round a corner at {penalty}; a scattering saucer bounces back off what stops it.",
+        "LimpetLine": "Sticks and unsticks by radio; without its code, pulled off at ST{st}, a try a second.",
+        "VortexLine": "Can be bounced off glancing surfaces round corners; light winds don't disturb it.",
+        "SprayCanLine": "Up to {doses} doses at once fill a one-yard radius; the cloud lasts {seconds} seconds indoors.",
+        "VelocityLabel": "Velocity",
+        "Velocity": {
+          "standard": "Standard",
+          "boosted": "Boosted",
+          "low": "Low"
+        },
+        "VelocityNote": {
+          "boosted": "Boosted: +1 damage a die, x{range} range, {propellant} shots of propellant.",
+          "low": "Low: half damage, x{range} range, {hearing} to hear it, {propellant} shot of propellant."
+        },
+        "SaucerLabel": "Bounce round a corner",
+        "VortexLabel": "Bounces",
+        "VortexLine2": "{bounces} bounce(s)",
+        "VortexNote": "Path at most {range} yards.",
+        "BackblastLabel": "Backblast ({yards} yards behind)",
+        "GyrocShort": "Gyroc at short range (damage /{by})",
+        "ProgramTitle": "Program grenade",
+        "Fusing": "Fuse",
+        "Fuse": {
+          "timer": "Pulled pin (2 seconds)",
+          "delay": "Time delay",
+          "command": "Radio command",
+          "impact": "Impact",
+          "antiTamper": "Anti-tamper"
+        },
+        "DelaySeconds": "Delay (seconds)",
+        "Programmed": "Set for {fuse} ({delay} s where it counts); {readies} Readies to program.",
+        "LimpetTitle": "Pull off limpet mine",
+        "LimpetFlesh": "Is it stuck to flesh (a point of injury to pull off)?",
+        "LimpetNoCode": "Without its code"
       }
     }
   },
