@@ -346,6 +346,110 @@
         "pattern": "^Wireless Sensie Transceiver$",
         "replace": "Wireless Sensie Transceiver",
         "heading": "Sensie Transceiver Implant"
+      },
+      {
+        "pattern": "^IR Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "IR Communicators",
+        "scoped": true
+      },
+      {
+        "pattern": "^Laser Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Laser Communicators",
+        "scoped": true
+      },
+      {
+        "pattern": "^Radio Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Radio Communicators",
+        "scoped": true
+      },
+      {
+        "pattern": "^Sonar Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Sonar Communicator",
+        "scoped": true
+      },
+      {
+        "pattern": "^Gravity-Ripple Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Gravity-Ripple Communicators",
+        "scoped": true
+      },
+      {
+        "pattern": "^Neutrino Communicator \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Neutrino Communicators",
+        "scoped": true
+      },
+      {
+        "pattern": "^FTL Radio \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "FTL Radio",
+        "scoped": true
+      },
+      {
+        "pattern": "^Neural Communicator \\(\"Neurocomm\"\\) \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Neural Communicator (\"Neurocomm\")",
+        "scoped": true
+      },
+      {
+        "pattern": "^Sonic Projector \\((Very Large|Large|Medium|Small|Tiny|Micro)\\)$",
+        "replace": "$1",
+        "heading": "Sonic Projector",
+        "scoped": true
+      },
+      {
+        "pattern": "^(Heavy Laser|Heavy Plasma|Laser|Mini Laser|Mini Plasma|Plasma|Fusion) Torch$",
+        "heading": "Laser and Plasma Torches",
+        "headingOnly": true
+      },
+      {
+        "pattern": "^(Backpack X-Ray Laser|Pocket X-Ray Laser|X-Ray Laser|Heavy Graser|Pocket Graser|Graser) Torch$",
+        "heading": "Torches",
+        "headingOnly": true
+      },
+      {
+        "pattern": "^(.*) \\((per [^)]+|bottle)\\)$",
+        "replace": "$1"
+      },
+      {
+        "pattern": "^Rope \\((.+)\\)$",
+        "replace": "$1 diameter",
+        "heading": "Rope",
+        "scoped": true
+      },
+      {
+        "pattern": "^Infrared (Imaging Sensor Array|Binoculars|Surveillance Camera|Goggles or Visor|Video Glasses|Contacts)$",
+        "replace": "Infrared $1",
+        "heading": "Infrared Imaging Sensors",
+        "scoped": true
+      },
+      {
+        "pattern": "^Hyperspectral (Imaging Sensor Array|Binoculars|Surveillance Camera|Goggles or Visor|Video Glasses|Contacts)$",
+        "replace": "Hyperspectral $1",
+        "heading": "Hyperspectral Imaging Sensors",
+        "scoped": true
+      },
+      {
+        "pattern": "^(Very Large|Large|Medium|Small) Gravscanner$",
+        "replace": "$1 Gravscanner",
+        "heading": "Gravscanners",
+        "scoped": true
+      },
+      {
+        "pattern": "^(Large|Medium|Small|Tactical) Terahertz Radar$",
+        "replace": "$1 Terahertz Radar",
+        "heading": "Terahertz Radar",
+        "scoped": true
+      },
+      {
+        "pattern": "^(One-Man|Three-Man|Eight-Man) Tent$",
+        "replace": "$1 Tent",
+        "heading": "Pressure Tent (Personal)",
+        "scoped": true
       }
     ]
   },
@@ -545,9 +649,12 @@
       {
         "pattern": "^TELEPORT PROJECTORS$",
         "set": {
-          "name": "Teleport Projector"
+          "name": "Teleport Projector",
+          "system.cost": 15000000,
+          "system.listCost": 15000000,
+          "system.weight": 3000
         },
-        "reason": "the section's title set in capitals; $5 million and 1,000 lbs. per platform (p. 234)"
+        "reason": "the section's title set in capitals; a typical projector is $15,000,000 and 3,000 lbs., plus $5 million and 1,000 lbs. per extra platform (p. 235)"
       }
     ]
   },
