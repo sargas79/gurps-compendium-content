@@ -244,4 +244,27 @@ wonder:
 - **Force screens carry no DR here.** The DR is the force field rule's (#255),
   and a new extension key would be dropped on import until registered.
 
+## What #229 found in chapters 3, 4, 5 and 9
+
+- **345 gadgets from pp. 42-111 and 5 from pp. 222-240** are captured; the
+  vehicles themselves were kept by hand in #227, so chapter 9 adds only the
+  matter transmitters and teleport gear. 24 more are kept by hand.
+- **Sizes are named for their family.** "Large (TL9): 1,000-mile range ..." under
+  Radio Communicators is the Radio Communicator (Large); the book prints seven
+  communicator families and the sonic projectors this way. A heading too long
+  for its column puts its tech level on the next line, and is joined.
+- **"TL10/11^" is TL10.** The first level is the gadget's; "TL11-12^" keeps its
+  superscience mark.
+- **Torches are melee weapons.** The two torch tables (pp. 80, 85) give damage,
+  reach, cells and endurance but no LC, and no closing line, so the 13 torches
+  are kept by hand with a Beam Weapons (Projector) melee mode.
+- **Some gear is priced in its text by a unit**: optical cable per yard, video
+  and multi-media walls per square foot, gecko adhesive per square inch,
+  construction foam per gallon. Those records name their unit. Utility fog is a
+  swarm at $10,000 per square yard.
+- **Left out**: homing couriers and suborbital express mail (services priced by
+  delivery speed), weather control satellites (infrastructure priced in
+  billions), and fabricator blueprints and production lines (priced by what
+  they make).
+
 The plan these came from: https://claude.ai/artifact/Gua2htvv1cQcD2TvQRwgvJ
