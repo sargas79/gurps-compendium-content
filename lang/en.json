@@ -1999,6 +1999,10 @@
         "matterTransmission": {
           "Name": "Matter transmission",
           "Hint": "MT booths are priced by range (10 to 10,000 times for continental to interstellar) and teleport projectors by platforms and send-only. An equipped minigate is a shield of DB 4, and a blow its DB stopped (or one blocked with it) goes through the gate. A GM tool rolls a teleport projector (Electronics Operation (Matter Transmitters) at -1 per 1,000 miles, +4 between projectors) and an MT interceptor's Quick Contest."
+        },
+        "beamWeapons": {
+          "Name": "Beam weapons",
+          "Hint": "The GM sets a scene's air pressure, water and humidity from a tool, and beam weapons follow it. X-ray lasers, grasers, ultraviolet lasers and pulsars reach only so far through air, and rainbow lasers and blasters lose range in vacuum. Lasers barely work underwater, and sonic weapons carry by the pressure. An electrolaser is only its burn in vacuum and is harder to aim in the wet; it stuns, and its kill setting spends two shots and can stop a heart. DR resists an electrolaser or an omni-blaster's stun, a microwave disruptor only reaches the Electrical, and force fields stop graviton beams at a hundredth of their DR and disintegrators at a tenth."
         }
       },
       "Gadget": {
@@ -3069,6 +3073,76 @@
           "Projector": "10,000-mile range; a 10-second Electronics Operation (Matter Transmitters) roll at -1 per 1,000 miles.",
           "Minigate": "A shield of DB {db}, wielded with Shield; a blow its DB stopped goes through the gate (two-mile range)."
         }
+      },
+      "Beams": {
+        "NoScene": "Open a scene first: its air and water are kept on the scene.",
+        "Environment": {
+          "Title": "Beam environment",
+          "Hint": "What the beam weapons in this scene are fired through (Ultra-Tech pp. 114-127). A standard atmosphere is 1; vacuum or trace air is 0.01 or less.",
+          "Atmospheres": "Air pressure (atm.)",
+          "Humidity": "Humidity",
+          "dry": "Dry",
+          "humid": "Moist or humid",
+          "rain": "Rain, drizzle or heavy fog",
+          "Underwater": "Underwater",
+          "Clarity": "Water",
+          "clear": "Crystal-clear",
+          "average": "Average",
+          "murky": "Murky",
+          "Set": "Set",
+          "Done": "Beam weapons in this scene now fire through {atmospheres} atm."
+        },
+        "Notes": {
+          "underwaterInfrared": "Underwater",
+          "underwaterBlueGreen": "Underwater",
+          "ultravioletAir": "Air",
+          "noRangeUnderwater": "No range underwater",
+          "rainbowVacuum": "Vacuum",
+          "rainbowWater": "Underwater",
+          "xrayAir": "Air",
+          "graserAir": "Air",
+          "blasterVacuum": "Vacuum",
+          "pulsarAir": "Air",
+          "electrolaserVacuum": "No charge in vacuum",
+          "electrolaserHumid": "Humid",
+          "electrolaserRain": "Rain or fog",
+          "sonicVacuum": "No sound in vacuum",
+          "sonicPressure": "Air pressure"
+        },
+        "Hints": {
+          "underwaterInfrared": "An infrared laser can't get through more than a few inches of water: range 0/1 (Ultra-Tech p. 114).",
+          "underwaterBlueGreen": "A blue-green laser's range underwater is 150 yards in crystal-clear water, 60 in average water and 15 in murky water (Ultra-Tech p. 115).",
+          "ultravioletAir": "In atmosphere, an ultraviolet laser's range can't exceed 500 yards divided by the air pressure (Ultra-Tech p. 115).",
+          "noRangeUnderwater": "This beam has no range underwater (Ultra-Tech pp. 115-125).",
+          "rainbowVacuum": "In vacuum or trace air a rainbow laser defocuses: range divided by 10, and no armor divisor (Ultra-Tech p. 116).",
+          "rainbowWater": "A rainbow laser has an underwater range of two yards (Ultra-Tech p. 116).",
+          "xrayAir": "X-rays are absorbed by air: range 7/20 yards in a standard atmosphere, divided by the air pressure, unless field-jacketed (Ultra-Tech p. 117).",
+          "graserAir": "Gamma rays are absorbed by air: range 70/200 yards in a standard atmosphere, divided by the air pressure, unless field-jacketed (Ultra-Tech p. 118).",
+          "blasterVacuum": "In vacuum or trace air a blaster's Acc is halved (round up) and its range divided by 5 (Ultra-Tech p. 123).",
+          "pulsarAir": "In atmosphere an antiparticle beam's range can't exceed 1,000 yards divided by the air pressure, unless field-jacketed (Ultra-Tech p. 124).",
+          "electrolaserVacuum": "With no air to ionize, an electrolaser only inflicts its laser's burn (Ultra-Tech p. 119).",
+          "electrolaserHumid": "The bolt jumps off the laser path in moist air: -2 to hit (Ultra-Tech p. 119).",
+          "electrolaserRain": "The bolt jumps off the laser path in rain, drizzle or heavy fog: -6 to hit (Ultra-Tech p. 119).",
+          "sonicVacuum": "Sonic weapons don't work in vacuum or trace air unless touching the target (Ultra-Tech p. 124).",
+          "sonicPressure": "Sonic range is multiplied by the air pressure, to at most twice the listed range (Ultra-Tech p. 124)."
+        },
+        "Kill": {
+          "Label": "Kill setting",
+          "Note": "Kill setting: two shots",
+          "HeartAttack": "{name} failed by 5 or more against a lethal electrolaser: a heart attack (Ultra-Tech p. 119; Campaigns p. 429)."
+        },
+        "Electrolaser": {
+          "Recover": "{name} is stunned, and rolls HT every turn at the same penalty, without the DR bonus, to recover (Ultra-Tech p. 119)."
+        },
+        "Microwave": {
+          "Unaffected": "{name} isn't Electrical: a microwave disruptor has no effect (Ultra-Tech p. 121)."
+        },
+        "Resist": {
+          "Dr": "DR at the beam's divisor",
+          "Sm": "Size Modifier"
+        },
+        "ForceField": "Against this beam at {part} of its DR",
+        "Disintegrated": "{name} is reduced to -10×HP or less: disintegrated (Ultra-Tech p. 130)."
       }
     }
   },

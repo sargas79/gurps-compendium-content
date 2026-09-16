@@ -10,6 +10,7 @@
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { readyBeams } from "./beams/index.js";
 import { initComputers, readyComputers } from "./computers/index.js";
 import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
@@ -50,6 +51,7 @@ const RULES = [
   { key: "psiAmplifiers", pages: "p. 94", implemented: true },
   { key: "vehicleSystems", pages: "pp. 222-232", implemented: true },
   { key: "matterTransmission", pages: "pp. 104, 233-235", implemented: true },
+  { key: "beamWeapons", pages: "pp. 113-132", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -88,6 +90,7 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyGadgets(api, { options: rule("gadgetOptions"), sm: rule("adjustingForSm"), legality: rule("legalityAndAntiques") });
   readyPower(api, rule("powerCells"));
+  readyBeams(api, rule("beamWeapons"));
   readyComputers(api, rule("computers"));
   readySwarms(api, rule("swarmbots"));
   readyRobots(api, { robots: rule("robots"), cinematic: rule("cinematicRobots") });
