@@ -220,3 +220,11 @@ export function forgeryRoll(tool: ForgeryTool, toolTl: number, documentTl: numbe
   if (tool === "wallet") return { ownSkill: 15, bonus: lower ? 0 : -5, fails: false };
   return { ownSkill: 15, bonus: 0, fails: !lower };
 }
+
+/** A chameleon surface's price for a suit: $4,000 thermo-optic, $6,000 multispectral, $8,000 dynamic, $10,000 ultimate; 4 lbs. (pp. 98-99). */
+export const CHAMELEON_SUIT: Readonly<Record<string, { cost: number; weight: number }>> = Object.freeze({
+  thermoOptic: { cost: 4000, weight: 4 },
+  multispectral: { cost: 6000, weight: 4 },
+  dynamicMultispectral: { cost: 8000, weight: 4 },
+  ultimate: { cost: 10000, weight: 4 },
+});

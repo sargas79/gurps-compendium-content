@@ -206,6 +206,12 @@ async function reprogram(api: GWorldApi): Promise<void> {
 }
 
 /** Painting over a robot's sensors (p. 34): DX or Throwing at -10, then the robot's IQ roll against panic. */
+/** Radar or other scanners: a Scanning Sense, Para-Radar or Ultrasonic trait, or an active sensor carried (p. 34). */
+function hasScanners(actor: any): boolean {
+  if (traitNames(actor).some((n) => /^(scanning sense|para-radar|radar|sonar|ultrasonic)/i.test(n))) return true;
+  return [...(actor?.items ?? [])].some((i: any) => i.type === "equipment" && i.system?.carried !== false && /(ladar|radar|sonar|ultrascanner)$/i.test(String(i.name ?? "")));
+}
+
 async function paintSensors(api: GWorldApi): Promise<void> {
   const { selected: attacker, target: robot } = pickedActors();
   if (!attacker || !robot) return void ui.notifications?.warn(L("Paint.Pick"));
@@ -214,7 +220,10 @@ async function paintSensors(api: GWorldApi): Promise<void> {
   const base = Math.max(throwing ?? 0, dx);
   const hit: any = await api.roll.success({ actor: attacker, base, label: F("Paint.Label", { name: robot.name }), modifiers: [{ label: L("Paint.Penalty"), value: PAINT_PENALTY }] } as any);
   if (!hit?.success) return;
-  await api.actors.applyCondition(robot, { module: MODULE_ID, key: "ut-sensors-painted", label: L("Paint.Condition"), effects: { modifiers: [{ label: L("Paint.Condition"), value: PAINT_PENALTY, rolls: ["attack"] }] } } as any);
+  // "-10 to hit (unless it has radar or other scanners)" (p. 34).
+  const scanning = hasScanners(robot);
+  await api.actors.applyCondition(robot, { module: MODULE_ID, key: "ut-sensors-painted", label: L("Paint.Condition"), effects: { modifiers: scanning ? [] : [{ label: L("Paint.Condition"), value: PAINT_PENALTY, rolls: ["attack"] }] } } as any);
+  if (scanning) await say(robot, L("Paint.Title"), [F("Paint.Scanning", { name: robot.name })]);
   const panic: any = await api.roll.success({ actor: robot, base: api.actors.attribute(robot, "IQ") ?? 10, kind: "attribute", label: L("Paint.Panic") } as any);
   if (panic && !panic.success) {
     const roll = new Roll(PANIC_DICE);

@@ -11,6 +11,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { CHAMELEON_SUIT } from "../stealth/rules.js";
 import { BOT_SIZES, designOf, isSwarm, registerSwarmData, storeSwarm, swarmBuild, swarmRecord } from "./data.js";
 import {
   CHASSIS,
@@ -77,6 +78,7 @@ function itemContext(item: any): Record<string, unknown> {
     bots: BOT_SIZES.map((value) => ({ value, label: L(`Bots.${value}`), selected: value === design.bots })),
     chassis: CHASSIS.map((value) => ({ value, label: L(`Chassis.${value}`), selected: value === design.chassis })),
     powers: POWER_SUPPLIES.map((value) => ({ value, label: L(`Power.${value}`), selected: value === design.power })),
+    chameleons: ["", ...Object.keys(CHAMELEON_SUIT)].map((value) => ({ value, label: value ? game.i18n.localize(`GCC.UT.Stealth.Kind.${value}`) : L("NoChameleon"), selected: value === build.chameleon })),
     repair: design.type === "repair",
     maxModels: record.maxModels,
     price: F("Price", { total: cost.total.toLocaleString(), perSquareYard: cost.perSquareYard.toLocaleString(), squareYards: design.squareYards }),
@@ -128,6 +130,15 @@ async function deploySwarm(_api: GWorldApi, item: any): Promise<void> {
     },
     flags: { [MODULE_ID]: { [DEPLOYED]: { ...design, itemName: item.name } } },
   } as any);
+  // A chameleon surface goes with the swarm, for the stealth rules to read (pp. 98-99).
+  const chameleon = swarmBuild(item).chameleon;
+  if (actor && chameleon) {
+    await actor.createEmbeddedDocuments("Item", [{
+      name: game.i18n.localize(`GCC.UT.Stealth.Kind.${chameleon}`),
+      type: "equipment",
+      system: { carried: true, equipped: true, weight: 0, cost: 0, extensions: { [MODULE_ID]: { stealth: { kind: chameleon } } } },
+    }]);
+  }
   if (actor) ui.notifications?.info(F("Deployed", { name: actor.name, count }));
 }
 
@@ -218,12 +229,18 @@ export function readySwarms(api: GWorldApi, on: () => boolean): void {
     module: MODULE_ID,
     key: "ut-swarm",
     types: ["equipment"],
-    apply: (item) => {
+    apply: (item, price) => {
       if (!on() || !isSwarm(item)) return null;
       const design = designOf(item);
-      if (!isBuilt(item, design)) return null;
-      const cost = swarmCost(design);
-      return { cost: cost.total, weight: Math.round(design.squareYards * 2 * 100) / 100, label: L("Title") };
+      const built = isBuilt(item, design);
+      // A chameleon surface is a suit's price and weight for each square yard (pp. 98-99).
+      const chameleon = CHAMELEON_SUIT[swarmBuild(item).chameleon];
+      if (!built && !chameleon) return null;
+      const cost = built ? swarmCost(design).total : price.cost;
+      const weight = built ? design.squareYards * 2 : price.weight;
+      const extraCost = chameleon ? chameleon.cost * design.squareYards : 0;
+      const extraWeight = chameleon ? chameleon.weight * design.squareYards : 0;
+      return { cost: cost + extraCost, weight: Math.round((weight + extraWeight) * 100) / 100, label: L("Title") };
     },
   });
 

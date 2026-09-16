@@ -30,7 +30,34 @@ export interface PowerData extends Required<CellKind> {
   tl: number;
   /** Hours of the endurance used since the cells were last changed. */
   hoursUsed: number;
+  /** What another rule multiplies the endurance by: a compact computer's half (p. 23). */
+  enduranceFactor: number;
 }
+
+/** A rule that scales a gadget's cells and endurance, such as a compact computer's (p. 23). */
+export type PowerAdjuster = (item: any) => { cells?: number; endurance?: number } | null;
+const adjusters: PowerAdjuster[] = [];
+
+/** Registers a rule that scales a gadget's cells and endurance. */
+export function registerPowerAdjuster(adjuster: PowerAdjuster): void {
+  adjusters.push(adjuster);
+}
+
+/** The product of every registered rule's factors for an item. */
+function adjustment(item: any): { cells: number; endurance: number } {
+  let cells = 1;
+  let endurance = 1;
+  for (const adjuster of adjusters) {
+    const factors = adjuster(item);
+    if (!factors) continue;
+    if (Number.isFinite(factors.cells)) cells *= Number(factors.cells);
+    if (Number.isFinite(factors.endurance)) endurance *= Number(factors.endurance);
+  }
+  return { cells, endurance };
+}
+
+/** A cell count scaled, never below one cell where there were any. */
+const scaled = (count: number, factor: number) => (count > 0 ? Math.max(1, Math.ceil(count * factor)) : 0);
 
 /** Adds the power fields to this module's data on equipment and armour. */
 export function registerPowerData(): void {
@@ -64,15 +91,16 @@ export function powerData(item: any): PowerData {
   const d = item?.system?.extensions?.[MODULE_ID]?.power ?? {};
   const draw = d.draw ?? {};
   const drawCell = isCellSize(draw.cell) ? draw.cell : null;
+  const factor = adjustment(item);
   return {
     cell: isCellSize(d.cell) ? d.cell : null,
-    cells: Math.max(0, Math.floor(Number(d.cells) || 0)),
+    cells: scaled(Math.max(0, Math.floor(Number(d.cells) || 0)), factor.cells),
     backpack: Boolean(d.backpack),
     packWeight: Math.max(0, Number(d.packWeight) || 0),
     emptyWeight: Math.max(0, Number(d.emptyWeight) || 0),
     raw: String(d.raw ?? ""),
     draw: drawCell || String(draw.endurance ?? "").trim()
-      ? { cell: drawCell, cells: Math.max(0, Math.floor(Number(draw.cells) || 0)), endurance: String(draw.endurance ?? ""), raw: String(draw.raw ?? "") }
+      ? { cell: drawCell, cells: scaled(Math.max(0, Math.floor(Number(draw.cells) || 0)), factor.cells), endurance: String(draw.endurance ?? ""), raw: String(draw.raw ?? "") }
       : null,
     flexible: Boolean(d.flexible),
     nonRechargeable: Boolean(d.nonRechargeable),
@@ -80,6 +108,7 @@ export function powerData(item: any): PowerData {
     superscience: Boolean(d.superscience),
     tl: Math.max(0, Math.floor(Number(d.tl) || 0)),
     hoursUsed: Math.max(0, Number(d.hoursUsed) || 0),
+    enduranceFactor: factor.endurance,
   };
 }
 

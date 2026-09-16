@@ -6,6 +6,7 @@
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { CHAMELEON_SUIT } from "../stealth/rules.js";
 import { CHASSIS, POWER_SUPPLIES, SWARM_TYPES, typeByName, type BotSize, type Chassis, type PowerSupply, type SwarmDesign } from "./rules.js";
 
 const FIELD = "swarmBuild";
@@ -22,6 +23,8 @@ export interface SwarmBuild {
   disguised: boolean;
   selfReplicating: boolean;
   extraModels: number;
+  /** A chameleon surface over the swarm, priced as a suit a square yard (pp. 98-99); blank for none. */
+  chameleon: string;
 }
 
 export function registerSwarmData(): void {
@@ -37,6 +40,7 @@ export function registerSwarmData(): void {
       disguised: new f.BooleanField({ initial: false }),
       selfReplicating: new f.BooleanField({ initial: false }),
       extraModels: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+      chameleon: text(Object.keys(CHAMELEON_SUIT)),
     }),
   });
 }
@@ -53,6 +57,7 @@ export function swarmBuild(item: any): SwarmBuild {
     disguised: Boolean(data.disguised),
     selfReplicating: Boolean(data.selfReplicating),
     extraModels: Math.max(0, Math.floor(Number(data.extraModels) || 0)),
+    chameleon: typeof data.chameleon === "string" && data.chameleon in CHAMELEON_SUIT ? data.chameleon : "",
   };
 }
 
