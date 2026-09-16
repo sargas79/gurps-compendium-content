@@ -5827,43 +5827,13 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Beam Weapons (Pistol)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 4,
-          "scopeBonus": 0,
-          "halfDamageRange": 40,
-          "maxRange": 80,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 3,
-          "projectiles": 1,
-          "shots": "36(3)",
-          "loaded": 36,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 4,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -2,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -5936,43 +5906,13 @@
           "mount": "",
           "bulk": -1,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Beam Weapons (Pistol)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 2,
-          "scopeBonus": 0,
-          "halfDamageRange": 10,
-          "maxRange": 20,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "22(3)",
-          "loaded": 22,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 3,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -1,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -6045,43 +5985,13 @@
           "mount": "",
           "bulk": -4,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Beam Weapons (Rifle)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 8,
-          "scopeBonus": 0,
-          "halfDamageRange": 160,
-          "maxRange": 470,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 3,
-          "projectiles": 1,
-          "shots": "72(3)",
-          "loaded": 72,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 4,
-          "twoHanded": true,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -4,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -6154,43 +6064,13 @@
           "mount": "",
           "bulk": -5,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Beam Weapons (Rifle)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-2",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 8,
-          "scopeBonus": 0,
-          "halfDamageRange": 400,
-          "maxRange": 1100,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "83(3)",
-          "loaded": 83,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 10,
-          "twoHanded": true,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -5,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-2",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -6264,43 +6144,13 @@
           "mount": "",
           "bulk": 0,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Beam Weapons (Rifle)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 4,
-          "scopeBonus": 0,
-          "halfDamageRange": 90,
-          "maxRange": 270,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "66(3)",
-          "loaded": 66,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 4,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": 0,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -6373,43 +6223,13 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Gunner (Beams)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-1",
-          "damageType": "burn",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 1,
-          "accuracy": 12,
-          "scopeBonus": 0,
-          "halfDamageRange": 600,
-          "maxRange": 1900,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 10,
-          "projectiles": 1,
-          "shots": "100(5)",
-          "loaded": 100,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 18,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "mounted",
-          "bulk": -8,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "linked": {
+            "damage": "1d-1",
+            "damageType": "burn",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -10036,7 +9856,9 @@
           "mount": "",
           "bulk": -3,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true
         }
       ],
       "extensions": {
@@ -10109,7 +9931,9 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true
         }
       ],
       "extensions": {
@@ -10403,7 +10227,9 @@
           "mount": "mounted",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 3,
+          "areaAttack": true
         }
       ],
       "extensions": {
@@ -13074,7 +12900,9 @@
           "mount": "",
           "bulk": -8,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 2,
+          "areaAttack": true
         }
       ],
       "extensions": {
@@ -13148,7 +12976,9 @@
           "mount": "",
           "bulk": -10,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 10,
+          "areaAttack": true
         }
       ],
       "extensions": {
@@ -13588,44 +13418,15 @@
           "mount": "",
           "bulk": -4,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Liquid Projector (Sprayer)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "doubleKnockback": true,
-          "armorDivisor": 1,
-          "accuracy": 3,
-          "scopeBonus": 0,
-          "halfDamageRange": 30,
-          "maxRange": 30,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "10(5)",
-          "loaded": 10,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 10,
-          "twoHanded": true,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -4,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 2,
+          "areaAttack": true,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ],
       "extensions": {
@@ -13762,7 +13563,9 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true
         }
       ]
     }
@@ -13826,7 +13629,9 @@
           "mount": "",
           "bulk": -4,
           "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true
         }
       ]
     }
@@ -13890,44 +13695,15 @@
           "mount": "",
           "bulk": 0,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Liquid Projector (Sprayer)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "doubleKnockback": true,
-          "armorDivisor": 1,
-          "accuracy": 2,
-          "scopeBonus": 0,
-          "halfDamageRange": 20,
-          "maxRange": 40,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "10(3)",
-          "loaded": 10,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": null,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": 0,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ]
     }
@@ -13991,44 +13767,15 @@
           "mount": "",
           "bulk": -2,
           "recoil": 1,
-          "malfunction": null
-        },
-        {
-          "name": "Linked",
-          "skill": "Liquid Projector (Sprayer)",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "1d-3",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": false,
-          "afflictionAttribute": "",
-          "afflictionModifier": 0,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "doubleKnockback": true,
-          "armorDivisor": 1,
-          "accuracy": 2,
-          "scopeBonus": 0,
-          "halfDamageRange": 15,
-          "maxRange": 15,
-          "rangeIsStMultiple": false,
-          "rateOfFire": 1,
-          "projectiles": 1,
-          "shots": "5(3)",
-          "loaded": 5,
-          "reloadWeight": 0,
-          "ammunition": "",
-          "minSt": 7,
-          "twoHanded": false,
-          "weaponSt": null,
-          "thrown": false,
-          "mount": "",
-          "bulk": -2,
-          "recoil": 1,
-          "malfunction": null
+          "malfunction": null,
+          "radius": 1,
+          "areaAttack": true,
+          "linked": {
+            "damage": "1d-3",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "label": "Linked"
+          }
         }
       ]
     }
@@ -19695,33 +19442,16 @@
           "isFlail": false,
           "minSt": 5,
           "twoHanded": false,
-          "unreadyAfterAttack": false
-        },
-        {
-          "name": "Linked",
-          "skill": "Shortsword",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": true,
-          "afflictionAttribute": "HT",
-          "afflictionModifier": -5,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 0.5,
-          "reach": "1",
-          "parryModifier": 0,
-          "canParry": false,
-          "unbalanced": false,
-          "isFencing": false,
-          "isFlail": false,
-          "minSt": 5,
-          "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 0.5,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         }
       ],
       "rangedModes": []
@@ -19855,33 +19585,16 @@
           "isFlail": false,
           "minSt": 6,
           "twoHanded": false,
-          "unreadyAfterAttack": false
-        },
-        {
-          "name": "Linked",
-          "skill": "Shortsword",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": true,
-          "afflictionAttribute": "HT",
-          "afflictionModifier": -5,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 2,
-          "reach": "1",
-          "parryModifier": 0,
-          "canParry": false,
-          "unbalanced": false,
-          "isFencing": false,
-          "isFlail": false,
-          "minSt": 6,
-          "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 2,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         }
       ],
       "rangedModes": []
@@ -19935,33 +19648,16 @@
           "isFlail": false,
           "minSt": 8,
           "twoHanded": false,
-          "unreadyAfterAttack": false
-        },
-        {
-          "name": "Linked",
-          "skill": "Whip",
-          "damageBase": "fixed",
-          "damageModifier": 0,
-          "damageFormula": "",
-          "damageType": "cr",
-          "explosive": false,
-          "fragmentation": "",
-          "affliction": true,
-          "afflictionAttribute": "HT",
-          "afflictionModifier": -5,
-          "damageExtraDice": 0,
-          "damageSpecial": false,
-          "surge": false,
-          "armorDivisor": 2,
-          "reach": "1-3*",
-          "parryModifier": 0,
-          "canParry": false,
-          "unbalanced": false,
-          "isFencing": false,
-          "isFlail": false,
-          "minSt": 8,
-          "twoHanded": false,
-          "unreadyAfterAttack": false
+          "unreadyAfterAttack": false,
+          "linked": {
+            "damage": "HT-5",
+            "damageType": "cr",
+            "armorDivisor": 2,
+            "affliction": true,
+            "afflictionAttribute": "HT",
+            "afflictionModifier": -5,
+            "label": "Linked"
+          }
         }
       ],
       "rangedModes": []
