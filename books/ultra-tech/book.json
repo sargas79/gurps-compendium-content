@@ -1989,6 +1989,317 @@
         }
       },
       "reason": "the rigid blade does \"swing + 1d + R(10) cutting damage, where R is its current reach (treat C as 0)\" at reach C-30 (p. 164). The data file writes it sw+1d+R, which no damage formula can hold, so the reader rejects the mode: the blade is kept at its reach-C figure and the per-yard addition waits for the melee rule (#252)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dazzler\\ Carbine$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 113)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Laser\\ Penlight$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 113)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Mini\\ Laser\\ Flashlight$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 113)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy\\ Laser\\ Flashlight$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 113)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Laser\\ Searchlight$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 2,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 2 yd wide at max range: the table's \"(2 yd)\", which the data file drops (p. 113)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Portable\\ MAD$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 120)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tactical\\ MAD$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 120)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^EMP\\ Gun$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 121)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Pulse\\ Carbine$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 121)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Scrambler$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 121)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tactical\\ Disruptor$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 121)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Holdout\\ Nerve\\ Disruptor$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nerve\\ Pistol$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nerve\\ Rifle$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tactical\\ Neural\\ Disruptor$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Short\\-Range\\ Mindripper$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Long\\-Range\\ Mindripper$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 122)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nausea\\ Carbine$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nausea\\ Pistol$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tactical\\ Nauseator$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Screamer\\ Carbine$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Screamer\\ Pistol$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 1,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 1 yd wide at max range: the table's \"(1 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tactical\\ Screamer$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.coneMaxWidth": 3,
+        "system.rangedModes.0.radius": 0
+      },
+      "reason": "a cone 3 yd wide at max range: the table's \"(3 yd)\", which the data file drops (p. 126)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy\\ Pulsar\\ Pistol$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Holdout\\ Pulsar$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Pulsar\\ Pistol$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Heavy\\ Pulsar$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Pulsar\\ Carbine$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Pulsar\\ Rifle$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Antiparticle\\ Cannon\\ \\(TL11\\)$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Antiparticle\\ Cannon\\ \\(TL12\\)$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Semi\\-Portable\\ Pulsar$",
+      "set": {
+        "system.rangedModes.0.radiation": true,
+        "system.rangedModes.0.surge": true
+      },
+      "reason": "antiparticle beams have the explosive, radiation and surge modifiers; the data file gives only explosive (p. 124)"
     }
   ]
 }
