@@ -1,5 +1,34 @@
 # Changelog
 
+## v0.13.0 — GURPS Ultra-Tech: armour, powered suits, force fields, medicine and cybernetics
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
+against **gworld v1.21.0**, which this release requires (add-on API 1.61.0). On
+an older system the add-on registers no rules, and says so in the console.
+
+The Ultra-Tech plan's last release (#235): with it every one of the book's 48
+switches is in, each off by default in the "GURPS Ultra-Tech" group. What each
+can't do yet is listed in #299.
+
+- **Body armour (#253):**
+  - **Threat protection:** worn suits, helmets and masks give their sealing, vacuum and pressure support, radiation protection, climate, protected senses and air, a suit's only once its helmet is on. A suit can be patched.
+  - **Laser-resistant armour:** ablative, reflec and retro-reflective armour at full DR against the beams each resists, ablative DR worn away by lasers, and retro-reflective armour bouncing damage back.
+  - **Tailored armour:** coverage, style and cut, priced, and a blow to an uncovered part going through.
+  - **Armour systems:** electromagnetic and adaptive armour, reactive paste, living metal and ablative foam.
+- **Powered suits (#254):** a worn, powered exoskeleton or battlesuit's ST, Move and jumping; the suit carrying its own weight; DX-based skills held to Battlesuit; weightless loads; losing power; suiting up and refitting.
+- **Force fields (#255):**
+  - **Force screens:** variants priced; what each stops; spent DR regenerating with world time; sealing and PF while powered.
+  - **Force shields:** the bracelets as shields, and the reflective one returning a beam.
+  - **Stasis and time:** stasis as a condition that stops damage; life-support belts; tau-shields.
+- **Medical gear and drugs (#256):**
+  - **Medical gear:** automeds, suitcase docs and pocket medics treat with their own skills, through the system's healing procedures (API 1.60.0). Also bandage spray, plasti-skin and smart bandages; life support's bonus to daily mortal wound checks; a medical bed's and supplies' bonus to a physician's rounds; hibernation and neural inhibitors.
+  - **Drugs and nano:** morphazine, soothe and crediline dosed through the system's poison rules. The other drugs and nano are taken from their items, their forms priced, and Aegis nanobots keep out nanoweapons.
+  - **Regeneration:** nanostasis, regeneration and rejuvenation tanks, the chrysalis machine reviving the dead, the pocket regenerator and the regeneration ray.
+- **Cybernetics (#257):**
+  - **Procedures:** every implant's procedure at its TL, a surgery tool with its injuries, times, fees and recovery, and an implant out of play until it heals (API 1.61.0).
+  - **Other rules:** surges switching electrical implants off, detecting implants, second-hand and salvaged parts, chip slots, cognitive enhancement and psych implant removal.
+- **Records:** ablative armour's DR is its own again, the space biosuit's split DR is kept, and the force shield bracelets are shields.
+
 ## v0.12.0 — GURPS Ultra-Tech: the gadget, weapon and armour rules
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
