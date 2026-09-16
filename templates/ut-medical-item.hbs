@@ -1,0 +1,14 @@
+{{!-- Medical gear, a drug's form, and what they do (Ultra-Tech pp. 196-206). --}}
+<div class="isub" data-gcc-ut-medical-section>
+  <div class="isub-head">{{localize "GCC.UT.Medical.Title"}}</div>
+  {{#if drug}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Medical.FormHint'}}">{{localize "GCC.UT.Medical.FormLabel"}}
+        <select data-gcc-ut-drug="form" {{#unless editable}}disabled{{/unless}}>
+          {{#each forms as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>

@@ -24,6 +24,7 @@ import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGuns, readyGuns } from "./guns/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { readyInterfaces } from "./interfaces/index.js";
+import { initMedical, readyMedical } from "./medical/index.js";
 import { initMelee, readyMelee } from "./melee/index.js";
 import { initPower, readyPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
@@ -81,6 +82,9 @@ const RULES = [
   { key: "propellantSettings", pages: "pp. 135-141", implemented: true },
   { key: "gyrocsAndLaunchers", pages: "pp. 134, 144-147", implemented: true },
   { key: "homingProjectiles", pages: "p. 146", implemented: true },
+  { key: "medicalGear", pages: "pp. 196-201", implemented: true },
+  { key: "ultraTechDrugs", pages: "pp. 204-206", implemented: true },
+  { key: "regeneration", pages: "pp. 200-202", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -122,6 +126,7 @@ function init(): void {
   initPoweredSuits();
   initAgents();
   initGuns();
+  initMedical();
   registerRecordData();
 }
 
@@ -149,6 +154,7 @@ function ready(api: GWorldApi): void {
   readyArmor(api, { threat: rule("threatProtection"), laser: rule("laserResistantArmor"), tailored: rule("tailoredArmor"), systems: rule("armorSystems") });
   readyPoweredSuits(api, rule("poweredSuits"));
   readyAgents(api, { biochemical: rule("biochemicalAgents"), nano: rule("nanoweapons") });
+  readyMedical(api, { gear: rule("medicalGear"), drugs: rule("ultraTechDrugs"), regeneration: rule("regeneration") });
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });
