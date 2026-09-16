@@ -8982,5 +8982,21 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>A small walk-in vault. 50 cubic feet, DR 400, 100 HP.</p>"
+  },
+  {
+    "_id": "6c10202f675de552",
+    "name": "Ghost Compiler",
+    "pages": "UT220",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Required to allow someone with Computer Programming skill to create a ghost mind emulation.</p>"
+  },
+  {
+    "_id": "b66ac2336bfcb806",
+    "name": "Ghost-Editor Program",
+    "pages": "UT220",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This allows someone to use Brainwashing skill on a mind emulation.</p>"
   }
 ]
