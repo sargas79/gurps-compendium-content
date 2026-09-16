@@ -1,0 +1,2223 @@
+[
+ {
+  "_id": "98693c03963240d5",
+  "name": "Robot Mule",
+  "type": "npc",
+  "system": {
+   "attributes": {
+    "ST": 20,
+    "DX": 10,
+    "IQ": 6,
+    "HT": 12
+   },
+   "purchased": {
+    "hp": 0,
+    "fp": 0,
+    "will": 4,
+    "per": 4,
+    "basicSpeed": 0.5,
+    "basicMove": 0
+   },
+   "hp": {
+    "value": 20,
+    "max": 20
+   },
+   "fp": {
+    "value": 12,
+    "max": 12
+   },
+   "sm": -2,
+   "points": {
+    "starting": 0,
+    "disadvantageLimit": 0,
+    "awards": []
+   },
+   "groupSize": 1,
+   "tactics": "",
+   "details": {
+    "weight": "150 lbs.",
+    "notes": "Robots. $3,000, D/8 hr., LC4. May be teleoperated, using the operator's DX and IQ. Ultra-Tech p. 80"
+   }
+  },
+  "items": [
+   {
+    "_id": "02d55272e73dcd2f",
+    "name": "Absolute Direction",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 34"
+    }
+   },
+   {
+    "_id": "5dee3dd7c95fdb26",
+    "name": "Accessories (Small computer)",
+    "type": "trait",
+    "system": {
+     "category": "perk",
+     "points": 1,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 100"
+    }
+   },
+   {
+    "_id": "4f645e1ef2ba3438",
+    "name": "AI",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 32,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "ca8765b2f107dea3",
+    "name": "Automaton",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -85,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "7782e8fcbaa0647a",
+    "name": "Damage Resistance 10",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 46"
+    }
+   },
+   {
+    "_id": "c1cebeee3bfcebfa",
+    "name": "Electrical",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 134"
+    }
+   },
+   {
+    "_id": "d3c476acead68215",
+    "name": "Ground Vehicle",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -100,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "50e7aee08c6bd587",
+    "name": "Machine",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 262"
+    }
+   },
+   {
+    "_id": "cda4c76f2d903709",
+    "name": "No Legs (Wheeled)",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": 0,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 145"
+    }
+   },
+   {
+    "_id": "f95eba7b0378538e",
+    "name": "Payload 2 (16 lbs.)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 2,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 74"
+    }
+   },
+   {
+    "_id": "61fa5de7f01c36d8",
+    "name": "Area Knowledge",
+    "type": "skill",
+    "system": {
+     "attribute": "IQ",
+     "difficulty": "E",
+     "points": 12,
+     "bonus": 0,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "IQ",
+       "skill": "",
+       "modifier": -4
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 176"
+    }
+   }
+  ]
+ },
+ {
+  "_id": "b03466f747350769",
+  "name": "Hunter Missile",
+  "type": "npc",
+  "system": {
+   "attributes": {
+    "ST": 3,
+    "DX": 14,
+    "IQ": 5,
+    "HT": 12
+   },
+   "purchased": {
+    "hp": 3,
+    "fp": 0,
+    "will": 0,
+    "per": 7,
+    "basicSpeed": -0.5,
+    "basicMove": -6
+   },
+   "hp": {
+    "value": 6,
+    "max": 6
+   },
+   "fp": {
+    "value": 12,
+    "max": 12
+   },
+   "sm": -4,
+   "points": {
+    "starting": 0,
+    "disadvantageLimit": 0,
+    "awards": []
+   },
+   "groupSize": 1,
+   "tactics": "",
+   "details": {
+    "weight": "5 lbs.",
+    "notes": "Robots. $2,500 ($500 at TL10), LC2. Air Move 120, air speed 480. Ultra-Tech p. 168"
+   }
+  },
+  "items": [
+   {
+    "_id": "fd36824cd90b1827",
+    "name": "Absolute Direction",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 34"
+    }
+   },
+   {
+    "_id": "cb364512da2d5147",
+    "name": "Aerial",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 0,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": ""
+    }
+   },
+   {
+    "_id": "4f5f2538903f0807",
+    "name": "AI",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 32,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "d9a7a3372ec668a0",
+    "name": "Automaton",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -85,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "71c9eb82c2ffa6cb",
+    "name": "Blindness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 124"
+    }
+   },
+   {
+    "_id": "b69d39bfbbf2e3df",
+    "name": "Deafness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 129"
+    }
+   },
+   {
+    "_id": "1ac2d2f2d01ae8e5",
+    "name": "Detect (Lasers, Radio, and Radar; Signal Detection)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 48"
+    }
+   },
+   {
+    "_id": "e2231849ae279869",
+    "name": "Electrical",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 134"
+    }
+   },
+   {
+    "_id": "1b610dd1ed7e602b",
+    "name": "Enhanced Move 2 (Air)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 52"
+    }
+   },
+   {
+    "_id": "e30040ff8377dca5",
+    "name": "Flight (Cannot Hover; Limited Use, Fast Reload, 1 minute)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 56"
+    }
+   },
+   {
+    "_id": "8e4dfcbe7fbb02d5",
+    "name": "Injury Tolerance (No Head, No Neck)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 12,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 60"
+    }
+   },
+   {
+    "_id": "441e80d1f42ef9d3",
+    "name": "Mute",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 125"
+    }
+   },
+   {
+    "_id": "401db82ca217b0b0",
+    "name": "No Manipulators",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 145"
+    }
+   },
+   {
+    "_id": "3ab2843c9cd7cd03",
+    "name": "No Sense of Smell/Taste",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "32b8f14af99c0510",
+    "name": "Noisy 4",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -8,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "bd32b503a83a0cbc",
+    "name": "Numb",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "798bdcc9a2267930",
+    "name": "Payload 3",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 3,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 74"
+    }
+   },
+   {
+    "_id": "208ce0003ca38326",
+    "name": "Radar (LPI, Multi-Mode)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 81"
+    }
+   },
+   {
+    "_id": "80a4a752c6cdc80c",
+    "name": "Radio (Burst, Secure)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 10,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 91"
+    }
+   }
+  ]
+ },
+ {
+  "_id": "ba2f421ea318a4c8",
+  "name": "Striker Missile",
+  "type": "npc",
+  "system": {
+   "attributes": {
+    "ST": 6,
+    "DX": 14,
+    "IQ": 6,
+    "HT": 12
+   },
+   "purchased": {
+    "hp": 6,
+    "fp": 0,
+    "will": -1,
+    "per": 6,
+    "basicSpeed": -0.5,
+    "basicMove": -6
+   },
+   "hp": {
+    "value": 12,
+    "max": 12
+   },
+   "fp": {
+    "value": 12,
+    "max": 12
+   },
+   "sm": -2,
+   "points": {
+    "starting": 0,
+    "disadvantageLimit": 0,
+    "awards": []
+   },
+   "groupSize": 1,
+   "tactics": "",
+   "details": {
+    "weight": "17 lbs.",
+    "notes": "Robots. $17,000 ($3,400 at TL10), LC1. Air speed 480. Ultra-Tech p. 168"
+   }
+  },
+  "items": [
+   {
+    "_id": "b56401f1c78ada47",
+    "name": "Absolute Direction",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 34"
+    }
+   },
+   {
+    "_id": "5fa997e3ce5ff255",
+    "name": "Aerial",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 0,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": ""
+    }
+   },
+   {
+    "_id": "cfff8d10824d0a7e",
+    "name": "AI",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 32,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "d4e1095eb3f34d16",
+    "name": "Automaton",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -85,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "b5ad3ff5387df424",
+    "name": "Deafness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 129"
+    }
+   },
+   {
+    "_id": "86a64bbf2c255c2a",
+    "name": "Detect (Lasers, Radio, and Radar; Signal Detection)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 48"
+    }
+   },
+   {
+    "_id": "08fb60540eec7e40",
+    "name": "Electrical",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 134"
+    }
+   },
+   {
+    "_id": "a56b6d0edfb8624b",
+    "name": "Flight (Cannot Hover; Limited Use, Fast Reload, 1 minute)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 56"
+    }
+   },
+   {
+    "_id": "d2d7a838611ced00",
+    "name": "Injury Tolerance (No Head, No Neck)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 12,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 60"
+    }
+   },
+   {
+    "_id": "4c1494d08a96b8c8",
+    "name": "Mute",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 125"
+    }
+   },
+   {
+    "_id": "11b1d459233c002d",
+    "name": "No Manipulators",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 145"
+    }
+   },
+   {
+    "_id": "a0812d9f25255601",
+    "name": "No Sense of Smell/Taste",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "a290419fb8a783ce",
+    "name": "Noisy 4",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -8,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "9852952e30efb349",
+    "name": "Numb",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "2c4c1d24a2c5cf22",
+    "name": "Payload 3",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 3,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 74"
+    }
+   },
+   {
+    "_id": "b6cf65b9ef1de20c",
+    "name": "Radio (Burst, Secure)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 10,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 91"
+    }
+   },
+   {
+    "_id": "6498465b2c2d1f6c",
+    "name": "Hyperspectral Vision",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 60"
+    }
+   },
+   {
+    "_id": "986d6d6d40928c5f",
+    "name": "Enhanced Move 3 (Air)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 60,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 52"
+    }
+   },
+   {
+    "_id": "093517cf44490abc",
+    "name": "Radar (Increased Range x2; LPI, Multi-Mode)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 81"
+    }
+   },
+   {
+    "_id": "14c1b38150aa3f5a",
+    "name": "Aerobatics",
+    "type": "skill",
+    "system": {
+     "attribute": "DX",
+     "difficulty": "H",
+     "points": 1,
+     "bonus": -2,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "DX",
+       "skill": "",
+       "modifier": -6
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Acrobatics",
+       "modifier": -4
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Aquabatics",
+       "modifier": -4
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 174"
+    }
+   },
+   {
+    "_id": "962ec0e464bd6ef0",
+    "name": "Observation",
+    "type": "skill",
+    "system": {
+     "attribute": "Per",
+     "difficulty": "A",
+     "points": 1,
+     "bonus": 0,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "Per",
+       "skill": "",
+       "modifier": -5
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Shadowing",
+       "modifier": -5
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 211"
+    }
+   }
+  ]
+ },
+ {
+  "_id": "dad67b73b2baa0aa",
+  "name": "Floater Missile",
+  "type": "npc",
+  "system": {
+   "attributes": {
+    "ST": 3,
+    "DX": 14,
+    "IQ": 6,
+    "HT": 12
+   },
+   "purchased": {
+    "hp": 3,
+    "fp": 0,
+    "will": 0,
+    "per": 7,
+    "basicSpeed": 1.5,
+    "basicMove": -8
+   },
+   "hp": {
+    "value": 6,
+    "max": 6
+   },
+   "fp": {
+    "value": 12,
+    "max": 12
+   },
+   "sm": -4,
+   "points": {
+    "starting": 0,
+    "disadvantageLimit": 0,
+    "awards": []
+   },
+   "groupSize": 1,
+   "tactics": "",
+   "details": {
+    "weight": "5 lbs.",
+    "notes": "Robots. $5,000 ($1,000 at TL11), LC1. TL10^. Air Move 120, air speed 480. Ultra-Tech p. 168"
+   }
+  },
+  "items": [
+   {
+    "_id": "b05b6b35223d21a4",
+    "name": "Absolute Direction",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 34"
+    }
+   },
+   {
+    "_id": "bb5a37e6d8df3d95",
+    "name": "Aerial",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 0,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": ""
+    }
+   },
+   {
+    "_id": "f37f9730e6843d8b",
+    "name": "AI",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 32,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "18a050d90b0ff3a6",
+    "name": "Automaton",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -85,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "593c3035a84c1791",
+    "name": "Blindness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 124"
+    }
+   },
+   {
+    "_id": "340001779c67e609",
+    "name": "Deafness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 129"
+    }
+   },
+   {
+    "_id": "b250a683f2afec9a",
+    "name": "Detect (Lasers, Radio, and Radar; Signal Detection)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 48"
+    }
+   },
+   {
+    "_id": "f498399294095fd0",
+    "name": "Electrical",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 134"
+    }
+   },
+   {
+    "_id": "92bee1e8b9aea063",
+    "name": "Enhanced Move 2 (Air)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 52"
+    }
+   },
+   {
+    "_id": "7a3cead1947bcba3",
+    "name": "Flight (Limited Use, Fast Reload, 10 minutes)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 56"
+    }
+   },
+   {
+    "_id": "a434b428fb4ca261",
+    "name": "Injury Tolerance (No Head, No Neck)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 12,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 60"
+    }
+   },
+   {
+    "_id": "bdd6228fd48dd38a",
+    "name": "Mute",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 125"
+    }
+   },
+   {
+    "_id": "b7767822ad9660ef",
+    "name": "No Manipulators",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 145"
+    }
+   },
+   {
+    "_id": "68480a89362cdae5",
+    "name": "No Sense of Smell/Taste",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "67194371f9dd1839",
+    "name": "Noisy 4",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -8,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "a33ad98424d8006b",
+    "name": "Numb",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "1ef0becc91ebd86f",
+    "name": "Payload 3",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 3,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 74"
+    }
+   },
+   {
+    "_id": "3236ef92148d9fac",
+    "name": "Radar (LPI, Multi-Mode)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 81"
+    }
+   },
+   {
+    "_id": "708d1a0c0e792535",
+    "name": "Radio (Burst, Secure)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 10,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 91"
+    }
+   },
+   {
+    "_id": "97e31b3cdcae7ea2",
+    "name": "Aerobatics",
+    "type": "skill",
+    "system": {
+     "attribute": "DX",
+     "difficulty": "H",
+     "points": 1,
+     "bonus": 0,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "DX",
+       "skill": "",
+       "modifier": -6
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Acrobatics",
+       "modifier": -4
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Aquabatics",
+       "modifier": -4
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 174"
+    }
+   },
+   {
+    "_id": "125acbcc0ae6f212",
+    "name": "Observation",
+    "type": "skill",
+    "system": {
+     "attribute": "Per",
+     "difficulty": "A",
+     "points": 1,
+     "bonus": -1,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "Per",
+       "skill": "",
+       "modifier": -5
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Shadowing",
+       "modifier": -5
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 211"
+    }
+   }
+  ]
+ },
+ {
+  "_id": "1fcf5db5d1f890fa",
+  "name": "Smart Shuriken",
+  "type": "npc",
+  "system": {
+   "attributes": {
+    "ST": 1,
+    "DX": 14,
+    "IQ": 5,
+    "HT": 12
+   },
+   "purchased": {
+    "hp": 0,
+    "fp": 0,
+    "will": 0,
+    "per": 5,
+    "basicSpeed": -0.5,
+    "basicMove": -6
+   },
+   "hp": {
+    "value": 1,
+    "max": 1
+   },
+   "fp": {
+    "value": 12,
+    "max": 12
+   },
+   "sm": -10,
+   "points": {
+    "starting": 0,
+    "disadvantageLimit": 0,
+    "awards": []
+   },
+   "groupSize": 1,
+   "tactics": "",
+   "details": {
+    "weight": "0.1 lb.",
+    "notes": "Robots. $500, LC2. TL11^. Air Move 12, air speed 96. Ultra-Tech p. 169"
+   }
+  },
+  "items": [
+   {
+    "_id": "c8f8b3e69988f5a2",
+    "name": "Aerial",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 0,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": ""
+    }
+   },
+   {
+    "_id": "450fc54845ae85b5",
+    "name": "AI",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 32,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "18fecc903fbe9d11",
+    "name": "Automaton",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -85,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 263"
+    }
+   },
+   {
+    "_id": "a2811229c94355fd",
+    "name": "Blindness",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 124"
+    }
+   },
+   {
+    "_id": "1c4e0644d0e2d424",
+    "name": "Electrical",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 134"
+    }
+   },
+   {
+    "_id": "cff685fe9d0e43f1",
+    "name": "Enhanced Move 3 (Air)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 60,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 52"
+    }
+   },
+   {
+    "_id": "8ed001f26ac5f53f",
+    "name": "Flight (Limited Use, Fast Reload, 10 minutes)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 40,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 56"
+    }
+   },
+   {
+    "_id": "a7f771aca24f072b",
+    "name": "Injury Tolerance (No Head, No Neck)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 12,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 60"
+    }
+   },
+   {
+    "_id": "4fd4d56f9b5c3ee6",
+    "name": "Machine",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 262"
+    }
+   },
+   {
+    "_id": "0e3c264c9ff305f4",
+    "name": "Mute",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -25,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 125"
+    }
+   },
+   {
+    "_id": "313b3d1ea69db6b5",
+    "name": "No Manipulators",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -50,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 145"
+    }
+   },
+   {
+    "_id": "98f19017578c7348",
+    "name": "No Sense of Smell/Taste",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -5,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "3de98061dd960404",
+    "name": "Noisy 4",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -8,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "8bb3d8e6dd5b18cb",
+    "name": "Numb",
+    "type": "trait",
+    "system": {
+     "category": "disadvantage",
+     "points": -20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 146"
+    }
+   },
+   {
+    "_id": "749371c3788653ad",
+    "name": "Radar (LPI, Imaging)",
+    "type": "trait",
+    "system": {
+     "category": "advantage",
+     "points": 20,
+     "levels": 0,
+     "pointsPerLevel": 0,
+     "costTable": [],
+     "levelNames": [],
+     "maxLevels": 0,
+     "reactionModifier": 0,
+     "talentSkills": [],
+     "power": "",
+     "powerTalent": false,
+     "meleeModes": [],
+     "rangedModes": [],
+     "description": "",
+     "reference": "Basic Set: Characters p. 81"
+    }
+   },
+   {
+    "_id": "1ce5d00cb5a75038",
+    "name": "Brawling",
+    "type": "skill",
+    "system": {
+     "attribute": "DX",
+     "difficulty": "E",
+     "points": 1,
+     "bonus": -2,
+     "defaults": [
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Brawling Art",
+       "modifier": -3
+      },
+      {
+       "from": "skill",
+       "attribute": "DX",
+       "skill": "Brawling Sport",
+       "modifier": -3
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 182"
+    }
+   },
+   {
+    "_id": "d59ca3ea82b5e563",
+    "name": "Stealth",
+    "type": "skill",
+    "system": {
+     "attribute": "DX",
+     "difficulty": "A",
+     "points": 1,
+     "bonus": -3,
+     "defaults": [
+      {
+       "from": "attribute",
+       "attribute": "DX",
+       "skill": "",
+       "modifier": -5
+      },
+      {
+       "from": "attribute",
+       "attribute": "IQ",
+       "skill": "",
+       "modifier": -5
+      }
+     ],
+     "techLevel": "",
+     "description": "",
+     "reference": "Basic Set: Characters p. 222"
+    }
+   }
+  ]
+ }
+]
