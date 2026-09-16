@@ -12,6 +12,9 @@ import {
   slidewalkSpeed,
   telegateFactor,
   throughTheGate,
+  CYLINDER_CHANGE,
+  HELIPACK,
+  crashwebAbsorb,
 } from "./rules.js";
 
 describe("vehicle systems (Ultra-Tech pp. 222-232)", () => {
@@ -60,5 +63,19 @@ describe("matter transmission (Ultra-Tech pp. 104, 233-235)", () => {
     expect(interstellarJumpCost(1)).toBe(100000);
     expect(interstellarJumpCost(4)).toBe(10_000_000);
     expect(interceptorOpponent(null, 12)).toBe(12);
+  });
+});
+
+describe("crashwebs, packs and cylinders (#299)", () => {
+  it("spends a crashweb's ablative DR on a crash (p. 224)", () => {
+    expect(crashwebAbsorb(7, 10)).toEqual({ damage: 0, drLeft: 3 });
+    expect(crashwebAbsorb(14, 10)).toEqual({ damage: 4, drLeft: 0 });
+    expect(crashwebAbsorb(5, 0)).toEqual({ damage: 5, drLeft: 0 });
+  });
+
+  it("gives a helipack's range and cylinder change times (pp. 230-231)", () => {
+    expect(HELIPACK.miles).toBe(200);
+    expect(CYLINDER_CHANGE["Hand Thruster"]).toBe(3);
+    expect(CYLINDER_CHANGE["Thruster Pack"]).toBe(5);
   });
 });

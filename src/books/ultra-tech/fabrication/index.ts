@@ -18,6 +18,12 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import {
   ADHESIVE,
+  GECKO_ADHESIVE_LOAD,
+  MOLECULAR_BONDER,
+  NAIL_GUN_SAFETY,
+  SONIC_PROBE,
+  sonicProbePenalty,
+  vaporCanteenHours,
   ANTIMATTER_REF,
   FACILITIES,
   FOAM_POUNDS_PER_GALLON,
@@ -248,6 +254,11 @@ function fabricationLines(item: any): string[] {
     if (figures) lines.push(F("Item.Tractor", { ...figures, tl: campaign }));
   }
   if (/^Portable Antimatter Trap$/i.test(name)) lines.push(F("Item.Trap", { capacity: antimatterTrapCapacity(campaign), tl: campaign }));
+  if (/^Vapor Canteen$/i.test(name)) lines.push(F("Item.Canteen", { hours: vaporCanteenHours(campaign), tl: campaign }));
+  if (/^Gecko Adhesive/i.test(name)) lines.push(F("Item.Gecko", { load: GECKO_ADHESIVE_LOAD }));
+  if (/Nail Gun$/i.test(name)) lines.push(F("Item.NailGun", { skill: NAIL_GUN_SAFETY.skill, dr: NAIL_GUN_SAFETY.blindDr }));
+  if (/^Sonic Probe$/i.test(name)) lines.push(F("Item.SonicProbe", { inches: SONIC_PROBE.inches, lockpicking: SONIC_PROBE.lockpicking }));
+  if (/Molecular Bonder$/i.test(name)) lines.push(F("Item.Bonder", { torn: MOLECULAR_BONDER.torn }));
   const facility = Object.keys(FACILITIES).find((key) => L(`Facility.${key}`).toLowerCase() === name.toLowerCase());
   if (facility) {
     const rate = FACILITIES[facility]!;
@@ -295,6 +306,22 @@ const psiData = (item: any) => {
   return { attunedTo: String(data.attunedTo ?? ""), burntOut: Boolean(data.burntOut) };
 };
 
+/** A sonic probe's look inside something (p. 84): Electronics Operation (Sonar) at -1 per 10 DR. */
+async function probe(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const dr = await ask(L("Probe.Title"), row(L("Probe.Dr"), num("dr", 0, "1")), (form) => Math.max(0, Number(val(form, "dr")?.value) || 0));
+  if (dr === null) return;
+  const penalty = sonicProbePenalty(dr);
+  const base = api.actors.skillLevel(actor, SONIC_PROBE.skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
+  await api.roll.success({ actor, base, skill: SONIC_PROBE.skill, label: F("Probe.Label", { name: item.name }), modifiers: penalty ? [{ label: F("Probe.Through", { dr }), value: penalty }] : [] } as any);
+}
+
+/** Disables a nail gun's flesh safety (p. 82): Electronics Operation (Security), a minute an attempt. */
+async function disableSafety(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const base = api.actors.skillLevel(actor, NAIL_GUN_SAFETY.skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
+  const result: any = await api.roll.success({ actor, base, skill: NAIL_GUN_SAFETY.skill, label: F("NailGun.Label", { name: item.name }) } as any);
+  if (result) await say(actor, String(item.name), [F(result.success ? "NailGun.Disabled" : "NailGun.Failed", { minutes: NAIL_GUN_SAFETY.minutes })]);
+}
+
 async function attune(api: GWorldApi, item: any, actor: any): Promise<void> {
   const level = api.actors.skillLevel(actor, "Electronics Operation (Psychotronics)") ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
   const result: any = await api.roll.success({ actor, base: level, skill: "Electronics Operation (Psychotronics)", label: F("Psi.AttuneLabel", { name: item.name }) } as any);
@@ -337,6 +364,8 @@ export function readyFabrication(api: GWorldApi, on: FabricationSwitches): void 
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-hazards", label: L("Hazard.Title"), icon: "fa-solid fa-hand-sparkles", visible: on.fabrication, open: () => hazardsTool(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-gravity-shift", label: L("Gravity.Title"), icon: "fa-solid fa-arrows-down-to-line", visible: on.gravity, open: () => gravityShift(api) });
 
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-sonic-probe", itemTypes: ["equipment"], label: L("Probe.Title"), icon: "fa-solid fa-wave-square", visible: (item) => on.fabrication() && /^Sonic Probe$/i.test(String(item?.name)), run: (item, actor) => probe(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-nail-safety", itemTypes: ["equipment"], label: L("NailGun.Title"), icon: "fa-solid fa-unlock", visible: (item) => on.fabrication() && /Nail Gun$/i.test(String(item?.name)), run: (item, actor) => disableSafety(api, item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-repair-paste", itemTypes: ["equipment"], label: L("Paste.Title"), icon: "fa-solid fa-spray-can", visible: (item) => on.fabrication() && /Repair Paste$/i.test(String(item?.name)), run: (item, actor) => applyRepairPaste(api, item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-rope-stress", itemTypes: ["equipment"], label: L("Rope.Title"), icon: "fa-solid fa-link", visible: (item) => on.fabrication() && /^Rope \(/i.test(String(item?.name)), run: (item, actor) => stressRope(api, item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-antimatter-trap", itemTypes: ["equipment"], label: L("Trap.Title"), icon: "fa-solid fa-radiation", visible: (item) => on.fabrication() && /^Portable Antimatter/i.test(String(item?.name)), run: (item, actor) => detonateTrap(item, actor) });

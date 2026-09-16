@@ -105,3 +105,26 @@ export function interstellarJumpCost(radiusYards: number): number {
 export function interceptorOpponent(operatorSkill: number | null, systemTl: number): number {
   return operatorSkill ?? systemTl;
 }
+
+/**
+ * What a crashweb's ablative DR stops of a blow in a crash (p. 224): the
+ * damage left, and the DR left after it.
+ */
+export function crashwebAbsorb(damage: number, drLeft: number): { damage: number; drLeft: number } {
+  const dr = Math.max(0, Math.floor(Number(drLeft) || 0));
+  const hit = Math.max(0, Math.floor(Number(damage) || 0));
+  const stopped = Math.min(dr, hit);
+  return { damage: hit - stopped, drLeft: dr - stopped };
+}
+
+/** Disabling a civilian vehicle's crashweb: Electronics Repair (Security), a minute an attempt (p. 224). */
+export const CRASHWEB_DISABLE = Object.freeze({ skill: "Electronics Repair (Security)", minutes: 1 });
+
+/** A helipack: 200 miles' range, two yards' clearance each side, no use in trace atmosphere or vacuum (p. 230). */
+export const HELIPACK = Object.freeze({ miles: 200, clearance: 2 });
+
+/** A spare cylinder: three seconds for a hand thruster, five for a thruster pack (p. 231). */
+export const CYLINDER_CHANGE: Readonly<Record<string, number>> = Object.freeze({ "Hand Thruster": 3, "Thruster Pack": 5 });
+
+/** The nuclear jetpack's wash reaches two yards below and behind (p. 231). */
+export const JETPACK_WASH_YARDS = 2;

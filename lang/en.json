@@ -3159,7 +3159,12 @@
           "Plates": "${cost} and {weight} lbs. per cubic foot per +1G at TL{tl}; external power.",
           "Screen": "$1,000 and 0.5 lbs. per square foot of walls, floor and ceiling enclosed; adjusts gravity in a second.",
           "Mat": "Up to +1G over a 2 x 2 x 2.5-yard area, replacing the local gravity.",
-          "GravHammer": "{damage} crushing with double knockback; silent and invisible."
+          "GravHammer": "{damage} crushing with double knockback; silent and invisible.",
+          "Canteen": "Draws a quart of water in {hours} hour(s) at 50% humidity at TL{tl}.",
+          "Gecko": "A square inch holds {load} lbs. indefinitely, in vacuum and underwater too.",
+          "NailGun": "Won't fire at living flesh unless its safety is disabled ({skill}, a minute an attempt); it can't tell flesh under DR {dr} or better.",
+          "SonicProbe": "Electronics Operation (Sonar) to look {inches} inches into something, -1 per 10 DR; basic equipment for simple Diagnosis, Mechanic and Explosives; +{lockpicking} to Lockpicking a mechanical combination lock.",
+          "Bonder": "A second's beam, standing still, bonds things that touch. Flesh bonded to something tears free on a Will roll, taking {torn}."
         },
         "Gravity": {
           "Title": "Gravity shift",
@@ -3195,6 +3200,18 @@
             "seizure": "{name} has a seizure for {seconds} seconds, then loses 1d FP.",
             "coma": "{name} falls into a coma."
           }
+        },
+        "Probe": {
+          "Title": "Sonic probe",
+          "Dr": "DR it looks through",
+          "Label": "Probing with the {name}",
+          "Through": "Through DR {dr}"
+        },
+        "NailGun": {
+          "Title": "Disable the safety",
+          "Label": "Disabling the {name}'s safety",
+          "Disabled": "The safety is off: it will fire at living targets.",
+          "Failed": "Still locked; another attempt takes {minutes} minute(s)."
         }
       },
       "Transport": {
@@ -3239,14 +3256,20 @@
           "Webbed": "Held by a crashweb (DR {dr})",
           "WebbedLine": "{name}'s crashweb gives ablative DR {dr} against the crash, and holds them until they get free (DX-2 a turn).",
           "FreeLabel": "DX: getting free of the crashweb",
-          "SlidewalkLabel": "DX+3: running on the slidewalk at {mph} mph"
+          "SlidewalkLabel": "DX+3: running on the slidewalk at {mph} mph",
+          "disable": "Disable a crashweb",
+          "DisableLabel": "Disabling the crashweb",
+          "Disabled": "The crashweb is off.",
+          "NotDisabled": "Still armed; another attempt takes {minutes} minute(s)."
         },
         "Thruster": {
           "Title": "Thruster burst",
           "Label": "Aiming {name}",
           "Empty": "The cylinder is empty: change it.",
           "Aimed": "A one-yard-per-second burst the way it was meant; {left} left in the cylinder.",
-          "Off": "The burst goes the wrong way; {left} left in the cylinder."
+          "Off": "The burst goes the wrong way; {left} left in the cylinder.",
+          "Change": "Change cylinder",
+          "Changed": "A full cylinder is in ({seconds} seconds)."
         },
         "Strap": {
           "Title": "Strap on",
@@ -3291,7 +3314,10 @@
           "StealthCapsule": "{modifier} to be struck by homing missiles, and {modifier} to a sensor operator's roll to keep contact.",
           "Booth": "Booth to booth within {miles} miles, relayed for longer hops: {tier}. Two seconds to use; public booths are $1 a jump.",
           "Projector": "10,000-mile range; a 10-second Electronics Operation (Matter Transmitters) roll at -1 per 1,000 miles.",
-          "Minigate": "A shield of DB {db}, wielded with Shield; a blow its DB stopped goes through the gate (two-mile range)."
+          "Minigate": "A shield of DB {db}, wielded with Shield; a blow its DB stopped goes through the gate (two-mile range).",
+          "Helipack": "Range {miles} miles. It needs {clearance} yards of clearance each side and won't fly in trace atmosphere or vacuum.",
+          "WashTitle": "Plasma wash",
+          "WashLabel": "{name} plasma wash (within {yards} yards below and behind)"
         }
       },
       "Beams": {

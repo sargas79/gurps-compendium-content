@@ -15,6 +15,11 @@
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import {
+  CRASHWEB_DISABLE,
+  CYLINDER_CHANGE,
+  HELIPACK,
+  JETPACK_WASH_YARDS,
+  crashwebAbsorb,
   BOOTH_RANGES,
   BOOTH_RANGE_MILES,
   CAPSULE_NAVIGATION,
@@ -99,7 +104,7 @@ const val = (form: HTMLElement, name: string) => form.querySelector<HTMLInputEle
 async function vehicleTool(api: GWorldApi): Promise<void> {
   const { selected, targets } = picked();
   const answer = await ask(L("Tool.Title"),
-    row(L("Tool.Kind"), select("kind", [["crashweb", L("Tool.crashweb")], ["free", L("Tool.free")], ["lifeSupport", L("Tool.lifeSupport")], ["slidewalk", L("Tool.slidewalk")], ["landing", L("Tool.landing")]]))
+    row(L("Tool.Kind"), select("kind", [["crashweb", L("Tool.crashweb")], ["free", L("Tool.free")], ["disable", L("Tool.disable")], ["lifeSupport", L("Tool.lifeSupport")], ["slidewalk", L("Tool.slidewalk")], ["landing", L("Tool.landing")]]))
     + row(L("Tool.Tl"), num("tl", 10)) + row(L("Tool.ManDays"), num("manDays", 90)) + row(L("Tool.Occupants"), num("occupants", 4))
     + row(L("Tool.Belt"), num("belt", 20)) + row(L("Tool.Against"), `<input type="checkbox" name="against" />`),
     (form) => ({ kind: val(form, "kind")?.value ?? "crashweb", tl: Number(val(form, "tl")?.value) || 10, manDays: Number(val(form, "manDays")?.value) || 0, occupants: Number(val(form, "occupants")?.value) || 1, belt: Number(val(form, "belt")?.value) || 0, against: Boolean(val(form, "against")?.checked) }));
@@ -120,17 +125,37 @@ async function vehicleTool(api: GWorldApi): Promise<void> {
   for (const victim of targets) {
     if (answer.kind === "crashweb") {
       await api.actors.applyCondition(victim, { module: MODULE_ID, key: "ut-crashweb", label: F("Tool.Webbed", { dr: crashwebDr(answer.tl) }) } as any);
+      await victim.setFlag(MODULE_ID, CRASHWEB_FLAG, crashwebDr(answer.tl));
       await say(victim, L("Tool.crashweb"), [F("Tool.WebbedLine", { name: victim.name, dr: crashwebDr(answer.tl) })]);
     } else if (answer.kind === "free") {
       const result: any = await api.roll.success({ actor: victim, base: api.actors.attribute(victim, "DX") ?? 10, kind: "attribute", label: L("Tool.FreeLabel"), modifiers: [{ label: L("Tool.crashweb"), value: CRASHWEB_ESCAPE }] } as any);
       if (result?.success) {
         for (const c of api.actors.conditions(victim).filter((c) => c.id.includes("ut-crashweb"))) await api.actors.removeCondition(victim, c.id);
       }
+    } else if (answer.kind === "disable") {
+      const base = api.actors.skillLevel(victim, CRASHWEB_DISABLE.skill) ?? (api.actors.attribute(victim, "IQ") ?? 10) - 5;
+      const result: any = await api.roll.success({ actor: victim, base, skill: CRASHWEB_DISABLE.skill, label: L("Tool.DisableLabel") } as any);
+      if (result) await say(victim, L("Tool.disable"), [F(result.success ? "Tool.Disabled" : "Tool.NotDisabled", { minutes: CRASHWEB_DISABLE.minutes })]);
     } else if (answer.kind === "slidewalk") {
       const move = Number(api.actors.derived(victim)?.basicMove) || 5;
       await api.roll.success({ actor: victim, base: api.actors.attribute(victim, "DX") ?? 10, kind: "attribute", label: F("Tool.SlidewalkLabel", { mph: slidewalkSpeed(answer.belt, move, answer.against) }), modifiers: [{ label: L("Tool.slidewalk"), value: slidewalkModifier(answer.belt, answer.against) }] } as any);
     }
   }
+}
+
+const CRASHWEB_FLAG = "utCrashwebDr";
+
+/** Swaps in a full cylinder (p. 231). */
+async function changeCylinder(item: any, actor: any): Promise<void> {
+  const seconds = CYLINDER_CHANGE[String(item.name)];
+  if (seconds === undefined) return;
+  await store(item, { burstsUsed: 0 });
+  await say(actor, String(item.name), [F("Thruster.Changed", { seconds })]);
+}
+
+/** A nuclear jetpack's plasma wash on whoever is below and behind it (p. 231). */
+async function jetpackWash(api: GWorldApi, item: any, actor: any): Promise<void> {
+  await api.roll.damage({ actor, item, label: F("Item.WashLabel", { name: item.name, yards: JETPACK_WASH_YARDS }), formula: NUCLEAR_JETPACK.wash, damageType: "burn", radiation: true } as any);
 }
 
 async function thrusterBurst(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -197,6 +222,7 @@ function itemLines(item: any, on: TransportSwitches): string[] {
   const lines: string[] = [];
   if (on.vehicles()) {
     if (isFlightPack(name)) lines.push(F("Item.FlightPack", { seconds: STRAP_ON.flightPack }));
+    if (/^Helipack$/i.test(name)) lines.push(F("Item.Helipack", { miles: HELIPACK.miles, clearance: HELIPACK.clearance }));
     if (/^Nuclear Jetpack$/i.test(name)) lines.push(F("Item.Jetpack", { wash: NUCLEAR_JETPACK.wash, spotted: NUCLEAR_JETPACK.spotted }));
     if (THRUSTERS[name]) lines.push(F("Item.Thruster", { bursts: THRUSTERS[name]!.bursts, used: data(item).burstsUsed }));
     if (/^(Life Pod|Drop Capsule|Stealth Capsule)$/i.test(name)) lines.push(F("Item.Capsule", { skill: CAPSULE_NAVIGATION }));
@@ -268,6 +294,22 @@ export function readyTransport(api: GWorldApi, on: TransportSwitches): void {
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-vehicle-systems", label: L("Tool.Title"), icon: "fa-solid fa-shuttle-space", visible: on.vehicles, open: () => vehicleTool(api) });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ut-matter-transmission", label: L("Mt.Title"), icon: "fa-solid fa-person-through-window", visible: on.matterTransmission, open: () => mtTool(api) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-thruster-burst", itemTypes: ["equipment"], label: L("Thruster.Title"), icon: "fa-solid fa-wind", visible: (item) => on.vehicles() && Boolean(THRUSTERS[String(item?.name)]), run: (item, actor) => thrusterBurst(api, item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-thruster-cylinder", itemTypes: ["equipment"], label: L("Thruster.Change"), icon: "fa-solid fa-rotate", visible: (item) => on.vehicles() && CYLINDER_CHANGE[String(item?.name)] !== undefined, run: (item, actor) => changeCylinder(item, actor) });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-jetpack-wash", itemTypes: ["equipment"], label: L("Item.WashTitle"), icon: "fa-solid fa-fire", visible: (item) => on.vehicles() && /^Nuclear Jetpack$/i.test(String(item?.name)), run: (item, actor) => jetpackWash(api, item, actor) });
+
+  // A crashweb's ablative DR against the crash's crushing damage (p. 224).
+  Hooks.on(api.combat.hooks.injury, (context: any) => {
+    const victim = context?.actor;
+    if (!on.vehicles() || !victim || !context.damage) return;
+    if (String(context.damage.damageType ?? "") !== "cr") return;
+    if (!(api.actors.conditions(victim) ?? []).some((c: any) => String(c?.id ?? "").endsWith("ut-crashweb"))) return;
+    const left = Number(victim.getFlag?.(MODULE_ID, CRASHWEB_FLAG)) || 0;
+    if (left <= 0) return;
+    const absorbed = crashwebAbsorb(Number(context.damage.basicDamage) || 0, left);
+    context.damage.basicDamage = absorbed.damage;
+    void victim.setFlag(MODULE_ID, CRASHWEB_FLAG, absorbed.drLeft);
+  });
+
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-strap-on", itemTypes: ["equipment"], label: L("Strap.Title"), icon: "fa-solid fa-person-rays", visible: (item) => on.vehicles() && (isFlightPack(String(item?.name)) || /^Thruster Pack$/i.test(String(item?.name))), run: (item, actor) => strapOn(api, item, actor) });
 
   // A minigate is a shield of DB 4 (p. 234).
