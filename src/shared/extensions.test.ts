@@ -20,10 +20,22 @@ describe("this module's data on the system's documents", () => {
     ]);
   });
 
-  it("refuses a field added twice, and fields for different types of one document", async () => {
+  it("refuses a field added twice, and a set of types that overlaps another", async () => {
     const { addExtensionFields } = await load();
     addExtensionFields("Item", ["equipment"], { holy: 1 });
     expect(() => addExtensionFields("Item", ["equipment"], { holy: 2 })).toThrow(/added twice/);
-    expect(() => addExtensionFields("Item", ["armor"], { plating: 1 })).toThrow(/must all be for equipment/);
+    expect(() => addExtensionFields("Item", ["armor", "equipment"], { plating: 1 })).toThrow(/overlap/);
+  });
+
+  it("keeps fields for types that don't overlap as extensions of their own", async () => {
+    const { addExtensionFields, registerExtensionFields } = await load();
+    addExtensionFields("Item", ["equipment", "armor"], { power: "power field" });
+    addExtensionFields("Item", ["template"], { robotBody: "robot field" });
+    const registerDataExtension = vi.fn(() => "gurps-compendium-content");
+    registerExtensionFields({ data: { registerDataExtension } } as never);
+    expect(registerDataExtension.mock.calls).toEqual([
+      [{ module: "gurps-compendium-content", documentName: "Item", types: ["armor", "equipment"], schema: { power: "power field" } }],
+      [{ module: "gurps-compendium-content", documentName: "Item", types: ["template"], schema: { robotBody: "robot field" } }],
+    ]);
   });
 });
