@@ -2075,6 +2075,10 @@
         "homingProjectiles": {
           "Name": "Homing projectiles",
           "Hint": "A ranged mode can load infrared (skill 13, x4 cost), multispectral (14, x10; passive, anti-radiation or active) or superscience multiscanner (12, x10) homing rounds, +1 skill per TL after each was introduced, where the round is big enough for its TL. The row becomes a homing attack at the seeker's skill, homing by its sense."
+        },
+        "poweredSuits": {
+          "Name": "Powered suits",
+          "Hint": "A worn exoskeleton or battlesuit that is switched on and has power left adds its Lifting and Striking ST, Arm ST, Super Jump, Basic Move and Enhanced Move, and carries its own weight (except a lower-body exoskeleton, a power sleeve and an exofield belt). DX rolls and DX-based skills are held to Battlesuit skill while a suit that limits them is powered, -1 more in an unfitted TL9-10 suit. A switchable cybersuit can turn its augmentation off. A lower-body exoskeleton and a gravpack carry a load weightlessly, the gravpack at -1 DX per 40 lbs. until the wearer is used to it. An exofield belt gives no DR without power. Row actions suit up (a Battlesuit roll halves the checkout) and refit a suit."
         }
       },
       "Gadget": {
@@ -3746,7 +3750,8 @@
             "combatOrSpaceHelmet": "a combat infantry helmet or a space helmet",
             "maskOrHelmet": "an air mask or a combat infantry helmet",
             "maskOrGill": "an air mask or an artificial gill",
-            "airMask": "an air mask"
+            "airMask": "an air mask",
+            "suitHelmet": "its helmet"
           },
           "Don": "Takes {on} s to put on, {off} s to take off.",
           "DonSkill": "Takes {on} s to put on or take off; a {skill} roll halves it.",
@@ -4145,6 +4150,71 @@
         "LimpetTitle": "Pull off limpet mine",
         "LimpetFlesh": "Is it stuck to flesh (a point of injury to pull off)?",
         "LimpetNoCode": "Without its code"
+      },
+      "Suits": {
+        "Title": "Powered suit",
+        "On": "Switched on",
+        "OnHint": "Off, or out of power, the suit adds nothing and its weight counts (Ultra-Tech p. 182).",
+        "Augmentation": "Strength augmentation",
+        "AugmentationHint": "Off, the cybersuit adds no ST, Move or Super Jump and doesn't limit DX, but still carries its own weight (Ultra-Tech p. 184).",
+        "Fitted": "Fitted to its wearer",
+        "FittedHint": "An unfitted TL9-10 suit gives -1 to DX and DX-based skills (Ultra-Tech p. 182).",
+        "Accustomed": "Used to the load",
+        "AccustomedHint": "After a day carrying the same load, its mass no longer penalises DX (Ultra-Tech p. 75).",
+        "Load": "Weightless load (lbs.)",
+        "LoadHint": "The weight in the pack. It comes off the carried gear that isn't worn, heaviest first.",
+        "Gains": "While powered: {list}.",
+        "Gain": {
+          "liftingSt": "Lifting ST+{value}",
+          "strikingSt": "Striking ST+{value}",
+          "armSt": "Arm ST+{value} (one arm)",
+          "superJump": "Super Jump {value}",
+          "basicMove": "Basic Move+{value}",
+          "enhancedMove": "Enhanced Move (Ground) {value}"
+        },
+        "Scope": {
+          "all": "Battlesuit skill limits DX and DX-based skills.",
+          "lowerBody": "Battlesuit skill limits only tasks that need lower-body agility, such as melee attacks or jumping; the GM applies it.",
+          "arm": "Battlesuit skill limits only tasks with the sleeved arm; the GM applies it.",
+          "none": "It doesn't limit DX."
+        },
+        "SkillBonus": "+{value} to Battlesuit skill.",
+        "WeightPowered": "Its weight doesn't count toward encumbrance while powered.",
+        "WeightAlways": "Its weight doesn't count toward encumbrance, even with augmentation off, while powered.",
+        "WeightCounts": "Its weight counts toward encumbrance.",
+        "Payload": "Carries up to {lbs} lbs. weightlessly while powered.",
+        "Fitting": "Fitted to its wearer at TL9-10: refitting takes two hours and an Armoury (Body Armor)+2 roll.",
+        "Nanogel": "Nanogel fits it to any wearer within 10% of its size.",
+        "Checkout": "{stepIn} s to step in, {helmet} s for a helmet, {seconds} s to check out; a Battlesuit roll halves the checkout.",
+        "Note": {
+          "sm1": "The wearer is SM +1 in it.",
+          "sm2": "The wearer is SM +2 in it.",
+          "hamFisted": "The wearer is Ham-Fisted (-3 DX) for fine work.",
+          "badGrip": "The wearer has Bad Grip 2, and can't crawl, get up from prone, jump or swim.",
+          "noSmell": "No Sense of Smell/Taste outside the suit unless the hatch is open."
+        },
+        "Unpowered": {
+          "paralysed": "Without power the wearer is effectively paralysed until they leave the suit.",
+          "nothing": "Without power the field gives no DR and no enhancement.",
+          "carry": "Without power the wearer can still move, but carries the suit's weight on their own ST."
+        },
+        "PoweredDown": "{name}'s suit is powered down.",
+        "Gravpack": "Cancels the weight of up to {max} lbs. in the pack; -1 DX per {per} lbs. until used to the load.",
+        "WeightReason": "carried by the powered suit",
+        "LoadReason": "weightless in {item}",
+        "DxNote": "Suited up: {list}",
+        "Unfitted": "{item} unfitted",
+        "LoadPenalty": "the mass in {item}",
+        "CheckoutTitle": "Suit up",
+        "CheckoutLabel": "Check out {item}",
+        "CheckoutFast": "Suited up and checked out in {seconds} seconds.",
+        "CheckoutSlow": "Suited up and checked out in {seconds} seconds.",
+        "RefitTitle": "Refit the suit",
+        "RefitLabel": "Refit {item}",
+        "RefitBonus": "Refitting",
+        "RefitDone": "After {hours} hours the suit fits its new wearer.",
+        "RefitAgain": "After {hours} hours the suit still doesn't fit: another attempt is needed.",
+        "RefitBroken": "After {hours} hours the suit is damaged, or has a fault that won't show until it's used in action (GM's choice)."
       }
     }
   },

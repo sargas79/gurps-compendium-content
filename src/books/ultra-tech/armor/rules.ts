@@ -85,7 +85,28 @@ const GEAR: ReadonlyArray<[RegExp, ProtectiveGear]> = [
   [/^combat infantry helmet$/i, SEALED_HELMET({ hearing: true, filter: true })],
   [/^(space combat helmet|visored space helmet)$/i, SEALED_HELMET({ hearing: true })],
   [/^(bubble helmet|flexible space helmet)$/i, SEALED_HELMET()],
+  // Powered suits (pp. 182-185): a suit with a separate helmet is sealed only with it on.
+  [/^(infantry )?combat walker$/i, { alone: { sealed: true, filter: true, hearing: true, climate: [-20, 140], radiationPf: 10 } }],
+  [/^marine combat walker$/i, { alone: { sealed: true, hearing: true, climate: [-20, 150], pressureAtm: 10, radiationPf: 10, air: true } }],
+  [/^space combat walker$/i, { alone: { sealed: true, hearing: true, climate: [-459, 300], pressureAtm: 30, radiationPf: 10, vacuumSupport: true, air: true } }],
+  [/^zero-g worksuit$/i, { alone: { sealed: true, climate: [-459, 300], radiationPf: 10, vacuumSupport: true, air: true } }],
+  [/^powered combat armor$/i, battlesuit(/^powered combat armor helmet$/i, { climate: [-459, 250], pressureAtm: 10, radiationPf: 10 })],
+  [/^commando battlesuit$/i, battlesuit(/^commando battlesuit helmet$/i, { climate: [-459, 500], pressureAtm: 20, radiationPf: 10 })],
+  [/^heavy battlesuit$/i, battlesuit(/^heavy battlesuit helmet$/i, { climate: [-459, 500], pressureAtm: 10, radiationPf: 5 })],
+  [/^dreadnought battlesuit$/i, battlesuit(/^dreadnought battlesuit helmet$/i, { climate: [-459, 1000], pressureAtm: 100, radiationPf: 20 })],
+  [/^(powered combat armor|commando battlesuit|heavy battlesuit|dreadnought battlesuit) helmet$/i, SEALED_HELMET({ hearing: true, filter: true })],
+  [/^hex suit$/i, { alone: { sealed: true, climate: [-459, 800], pressureAtm: 50, radiationPf: 100, vacuumSupport: true, air: true }, don: { on: 60, off: 60 } }],
+  [/^cybersuit$/i, { alone: { sealed: true, vacuumSupport: true, filter: true, hearing: true, climate: [-459, 250], pressureAtm: 30, radiationPf: 5, air: true }, don: { on: 3, off: 1 } }],
+  [/^military cybersuit$/i, { alone: { sealed: true, vacuumSupport: true, filter: true, hearing: true, climate: [-459, 1000], pressureAtm: 100, radiationPf: 10, air: true }, don: { on: 3, off: 1 } }],
+  // No air of its own: it needs a tank in space (p. 185).
+  [/^nanosuit$/i, { alone: { sealed: true, vacuumSupport: true, filter: true, climate: [-400, 500], pressureAtm: 10, radiationPf: 10 } }],
+  [/^warsuit$/i, { alone: { sealed: true, vacuumSupport: true, filter: true, hearing: true, climate: [-459, 10000], pressureAtm: 1000, radiationPf: 100, air: true } }],
 ];
+
+/** A battlesuit sealed by its own helmet, with its air (pp. 183-185). */
+function battlesuit(helmet: RegExp, grants: Protection): ProtectiveGear {
+  return { completedBy: { pieces: helmet, key: "suitHelmet", grants: { sealed: true, vacuumSupport: true, air: true, ...grants } } };
+}
 
 /** A name without the TL the table adds to it: "Combat Hardsuit (TL10)" is "Combat Hardsuit". */
 export function baseName(name: string): string {
