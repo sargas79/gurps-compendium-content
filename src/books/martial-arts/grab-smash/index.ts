@@ -17,6 +17,8 @@ import { offerFrightCheck } from "../cinematic/index.js";
 import { attackKind } from "../posture.js";
 import {
   GRAPPLED_ATTACK,
+  RAM_SKILLS,
+  TWOFER_PENALTY,
   bittenOff,
   bittenPart,
   bornBiterTargeting,
@@ -25,6 +27,7 @@ import {
   horizontalHit,
   horizontalRefuses,
   lameCloseCombat,
+  ramDamageBonus,
   needsFingers,
   worryCap,
   PAINS,
@@ -57,6 +60,8 @@ const WORRIED = "ma-worried";
 const BITE_LOCATION = "ma-bite-location";
 /** The shock a fighter is feeling, for a break free attempted at once (p. 116). */
 const SHOCK = "ma-shock";
+/** True while a fighter has already grappled somebody this turn (p. 114). */
+const GRAPPLED_THIS_TURN = "ma-grappled-turn";
 const PAIN = "ma-cause-pain";
 const BITE_MODE = `${MODULE_ID}.ma-bite`;
 
@@ -199,6 +204,68 @@ export function readyGrabAndSmash(api: GWorldApi, smash: () => boolean, bodies: 
       await api.roll.damage({ actor, label: F("KissDamage", { foe: String(twofer.name ?? "") }), formula: thrust, damageType: "cr", ...(bonus ? { modifiers: [{ label: L("KissTheWall"), value: bonus }] } : {}), calledShot: { hitLocation: asked.loc } } as any);
     },
   });
+
+  // ── All-Out Grapple and Strike (p. 114) ──
+  // Taking hold of a second foe in the same turn is a Dual-Weapon Attack.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!smash() || !(context?.tags ?? []).includes("grapple") || !(context.tags ?? []).includes("attack")) return;
+    if (!api.combat.getCombatState(context.actor, MODULE_ID, GRAPPLED_THIS_TURN)) return;
+    context.modifiers.push({ label: L("RamTogether.DualWeapon"), value: TWOFER_PENALTY });
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    if (!smash() || !(context?.tags ?? []).includes("grapple") || !(context.tags ?? []).includes("attack")) return;
+    if (!context.actor?.isOwner) return;
+    void api.combat.setCombatState(context.actor, MODULE_ID, GRAPPLED_THIS_TURN, true, "turn");
+  });
+  /** The foes a fighter has hold of, as actors, oldest first. */
+  const heldBy = (actor: any) => ((api.combat as any).grapples?.(actor) ?? [])
+    .filter((grapple: any) => grapple.holding)
+    .map((grapple: any) => ({ grapple, foe: fromUuid(grapple.foe) }))
+    .filter((held: any) => held.foe);
+  api.combat.registerGrappleAction({
+    module: MODULE_ID,
+    key: "ma-ram-together",
+    label: L("RamTogether.Ram"),
+    applies: (grapple: any, actor: any) => smash() && grapple.holding && heldBy(actor).length >= 2,
+    run: async ({ actor }: { actor: any }) => {
+      const [first, second] = heldBy(actor);
+      if (!first || !second) return;
+      const skill = RAM_SKILLS
+        .map((name) => ({ name, level: name === "DX" ? api.actors.attribute(actor, "DX") : api.actors.skillLevel(actor, name) }))
+        .filter((option): option is { name: string; level: number } => typeof option.level === "number")
+        .sort((a, b) => b.level - a.level)[0];
+      if (!skill) return;
+      const outcome: any = await api.roll.success({
+        actor,
+        base: skill.level,
+        kind: "attack",
+        label: F("RamTogether.RamLabel", { first: String(first.foe.name ?? ""), second: String(second.foe.name ?? "") }),
+        ...(skill.name === "DX" ? {} : { skill: skill.name }),
+        unarmed: true,
+      } as any);
+      if (!outcome?.success) return;
+      // Each of them defends as usual; the blow lands only where both fail.
+      await ChatMessage.implementation.create({
+        speaker: ChatMessage.implementation.getSpeaker({ actor }),
+        content: `<div class="gworld gworld-chat"><div class="gc-result">${foundry.utils.escapeHTML(F("RamTogether.RamNote", { first: String(first.foe.name ?? ""), second: String(second.foe.name ?? "") }))}</div></div>`,
+      });
+      const thrust = String(api.actors.derived(actor)?.thrust ?? "1d-2");
+      const bonus = ramDamageBonus([first.grapple.hitLocation, second.grapple.hitLocation]);
+      for (const held of [first, second]) {
+        await api.roll.damage({
+          actor,
+          label: F("RamTogether.RamDamage", { foe: String(held.foe.name ?? "") }),
+          formula: thrust,
+          damageType: "cr",
+          modifiers: [
+            { label: L("RamTogether.Ram"), value: -1 },
+            ...(bonus ? [{ label: L("RamTogether.Skulls"), value: bonus }] : []),
+          ],
+          calledShot: { hitLocation: String(held.grapple.hitLocation ?? "torso") },
+        } as any);
+      }
+    },
+  } as any);
 
   // ── worrying (p. 115) ──
   const hpOf = (actor: any) => Number(actor?.system?.hp?.max) || 10;

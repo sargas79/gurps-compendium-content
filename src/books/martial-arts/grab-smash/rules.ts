@@ -165,3 +165,16 @@ export function clumsyGrappling(name: string): boolean {
   if (/scissors hold|leg grapple|leg lock|teeth|bite/.test(n)) return false;
   return /arm lock|backbreaker|choke hold|head lock|piledriver|judo throw|wrist lock|grapple/.test(n);
 }
+
+// ── All-Out Grapple and Strike (p. 114) ──
+
+/** Grabbing a second foe in the same turn is a Dual-Weapon Attack (p. 114). */
+export const TWOFER_PENALTY = -4;
+
+/** The skills that ram two grappled foes together (p. 114). */
+export const RAM_SKILLS: readonly string[] = ["DX", "Brawling", "Sumo Wrestling", "Wrestling"];
+
+/** Ramming two held foes together (p. 114): the only bonus is for two skulls. */
+export function ramDamageBonus(locations: readonly string[]): number {
+  return locations.length >= 2 && locations.every((location) => location === "skull") ? 1 : 0;
+}
