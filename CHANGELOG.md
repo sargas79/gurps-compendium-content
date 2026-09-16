@@ -1,5 +1,46 @@
 # Changelog
 
+## v0.12.0 — GURPS Ultra-Tech: the gadget, weapon and armour rules
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
+against **gworld v1.18.0**, which this release requires (add-on API 1.57.0). On
+an older system the add-on registers no rules, and says so in the console.
+
+The Ultra-Tech plan's Phase 3 release. Every new switch is in the "GURPS
+Ultra-Tech" group and starts off; what each can't do yet is listed in #299.
+
+- **The rest of the catalogue (#229, #231, #233, #255):**
+  - Chapters 3-5, 7, 8 and 9's gear, captured from the book's stat lines.
+  - The book's text for chapters 3-5 and 7-9.
+  - Force screens as armour: a force field with semi-ablative DR.
+- **Computers, robots and swarms:**
+  - **Computers and software (#238):** models built with options and priced; programs priced from Complexity and TL; software tools' quality; AI Complexity and legality; breaking encryption.
+  - **Robots (#239):** machine characters' lenses on the Traits tab; reprogramming, paint, paradoxes and molten metal as GM tools; surges and knockback on Electrical bodies.
+  - **Swarmbots (#240):** a swarm built by area, bots, chassis, power and type, priced, with its statistics, and deployed as a character.
+- **Senses, interfaces and fabrication:**
+  - **Communicators and sensors (#241):** comm ranges; worn optics and detectors as senses; lock-on; a sensor sweep that meets jammers; sonar in air by the scene's pressure.
+  - **Interfaces, VR and sensies (#242):** the HUD's bonuses; virtual tutors, instaskills and translators.
+  - **Tools, fabrication, gravity and psi amplifiers (#243):** fabrication times, hazards, gravity shifts; repair paste and rope; psi amplifiers attuned and burning out.
+  - **Vehicle systems and matter transmission (#259):** crashwebs, thrusters, flight packs and strap-on systems; minigates; telegates and interstellar jumps.
+- **Stealth, security and minds:**
+  - **Stealth systems (#244):** chameleon and invisibility bonuses by sense, jammers, shape-memory disguises, and tools' stated bonuses.
+  - **Security, restraints and interrogation (#245):** barriers and traps, breaking free, neural programming, mind probes.
+  - **Uploading and downloading (#258):** uploads, low-res copies and downloads.
+- **Beam weapons:**
+  - **Beam weapons (#246):** rows by the scene's air and water from a GM tool; electrolasers, omni-blasters and microwave disruptors resisted and applied; force fields against graviton beams and disintegrators.
+  - **Laser options (#246):** dazzle, blinding and pulse settings; weather and glass.
+  - **Neural, psionic and sonic beams (#246):** settings, and what each failure does.
+  - **Beam options and heat (#247):** field-jacketed, FTL and gravitic focus; overheating and hotshots.
+- **Guns and warheads:**
+  - **Guns, launchers and grenades (#248):** ETC and liquid-propellant slugthrowers with boosted and low velocity; gyrocs at short range; missile backblast and reactionless missiles; smart and saucer grenades and limpet mines; homing seekers as homing attacks.
+  - **Firearm accessories (#249):** scopes, harnesses, grips, compensators, tripods and access control as fields that reprice the weapon and change its rows and shots; targeting software; active-sensor targeting.
+  - **Warheads and ammunition (#250):** 34 warheads loaded per ranged mode, changing the row they fire, with their effects on a failed roll.
+  - **Biochemical and nano weapons (#251):** gases, poisons and metabolic nanoweapons dosed and cycled by the system's poison rules (API 1.57.0), with what each failure does; splatter and shrike against Aegis.
+  - **Ultra-tech melee (#252):** superfine, monowire, hyperdense, nanothorn and vibro blades; rocket strikers; switchblades and monowire whips; stunners and neurolashes; force swords.
+- **Armour (#253):** suits, helmets and masks granting their protection; ablative and reflec armour against lasers; tailored coverage and style.
+- **The rules journal (#298, #300):** pages name the switch that plays their rule.
+- **Fixes:** the ghost particle cannons have radiation and surge (#302); the Force Blade's statistics were under the Sonic Shuriken's name (#252).
+
 ## v0.11.0 — GURPS Ultra-Tech: the records, the robots and the rules journal
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
