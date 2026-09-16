@@ -1,0 +1,71 @@
+{{!-- An armour piece's protection, tailoring and systems (Ultra-Tech pp. 170-181, 187-190). --}}
+<div class="isub" data-gcc-ut-armor>
+  <div class="isub-head">{{localize "GCC.UT.Armor.Title"}}</div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+  {{#if transparentOn}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Armor.Laser.TransparentHint'}}"><input type="checkbox" data-gcc-ut-armor="transparent" {{#if build.transparent}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Armor.Laser.Transparent"}}</label>
+    </div>
+  {{/if}}
+  {{#if reflectiveOn}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Armor.Laser.ReflectiveHint'}}"><input type="checkbox" data-gcc-ut-armor="reflective" {{#if build.reflective}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Armor.Laser.Reflective"}}</label>
+    </div>
+  {{/if}}
+  {{#if tailoredOn}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Armor.Tailor.Hint'}}"><input type="checkbox" data-gcc-ut-armor="tailored" {{#if build.tailored}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Armor.Tailor.Title"}}</label>
+    </div>
+    {{#if build.tailored}}
+      <div class="ifields">
+        {{#each parts as |p|}}
+          <label>{{p.label}}
+            <select data-gcc-ut-armor="coverage.{{p.part}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each p.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
+        {{/each}}
+        <label>{{localize "GCC.UT.Armor.Tailor.StyleLabel"}}
+          <select data-gcc-ut-armor="style" {{#unless editable}}disabled{{/unless}}>
+            {{#each styles as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+        <label>{{localize "GCC.UT.Armor.Tailor.CutLabel"}}
+          <select data-gcc-ut-armor="cut" {{#unless editable}}disabled{{/unless}}>
+            {{#each cuts as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+      <p class="ihint">{{tailorSummary}}</p>
+    {{/if}}
+  {{/if}}
+  {{#if systemsOn}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Armor.Systems.EmaHint'}}">{{localize "GCC.UT.Armor.Systems.Ema"}}
+        <select data-gcc-ut-armor="ema" {{#unless editable}}disabled{{/unless}}>
+          {{#each emas as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if build.ema}}
+        <label data-tooltip="{{localize 'GCC.UT.Armor.Systems.EmaUsesHint'}}">{{localize "GCC.UT.Armor.Systems.EmaUses"}}
+          <input type="number" data-gcc-ut-armor="emaUses" value="{{build.emaUses}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+      <label data-tooltip="{{localize 'GCC.UT.Armor.Systems.AdaptiveHint'}}">{{localize "GCC.UT.Armor.Systems.Adaptive"}}
+        <input type="number" data-gcc-ut-armor="adaptive" value="{{build.adaptive}}" min="0" max="4" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      {{#if build.reactivePaste}}
+        <label>{{localize "GCC.UT.Armor.Systems.PasteTl"}}
+          <input type="number" data-gcc-ut-armor="pasteTl" value="{{build.pasteTl}}" min="10" max="12" step="1" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Armor.Systems.PasteHint'}}"><input type="checkbox" data-gcc-ut-armor="reactivePaste" {{#if build.reactivePaste}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Armor.Systems.Paste"}}</label>
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Armor.Systems.LivingMetalHint'}}"><input type="checkbox" data-gcc-ut-armor="livingMetal" {{#if build.livingMetal}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Armor.Systems.LivingMetal"}}</label>
+    </div>
+  {{/if}}
+  {{#if armor}}
+    <div class="ifields"><button type="button" class="ibtn tiny" data-gcc-ut-armor-reset {{#unless editable}}disabled{{/unless}}>{{localize "GCC.UT.Armor.Reset"}}</button></div>
+  {{/if}}
+</div>

@@ -1620,9 +1620,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1636,9 +1636,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1652,9 +1652,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1668,9 +1668,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1684,9 +1684,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1700,9 +1700,9 @@
           "fullDrAgainst": "laser",
           "reference": "Ultra-Tech p. 173"
         },
-        "system.ablative": "semiAblative"
+        "system.ablative": "none"
       },
-      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); and \"for every 10 points of basic laser damage rolled, remove one point of DR ... regardless of whether the attack penetrated or not\", which is semi-ablative DR"
+      "reason": "\"its full DR is used against the burning or crushing explosive damage inflicted by any type of laser ... its lower DR is used against all other attacks\" (p. 173); a split by what the attack is rather than by its damage type, so the lower figure is the piece's DR and the higher is raised by this module's armour rule through gworld.armorDr (#253); the full DR is semi-ablative against lasers and \"its lower DR ... is not ablative\", so the piece's own DR isn't, and the module wears the laser figure down"
     },
     {
       "pack": "equipment",
@@ -1886,7 +1886,7 @@
     },
     {
       "pack": "equipment",
-      "pattern": "^(Bioplas (Bodysuit|Gloves|Suit)|Space Biosuit)$",
+      "pattern": "^Bioplas (Bodysuit|Gloves|Suit)$",
       "set": {
         "system.drSplitAppliesTo": [
           "cr",
@@ -1898,6 +1898,18 @@
         ]
       },
       "reason": "bioplas \"provides its full DR against burning and piercing damage, but gets only one-third DR vs. other damage types\" (p. 174); the reader fills the list from the Basic Set's high-tech table, which is a different set"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Biosuit$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "cr",
+          "tox",
+          "cor"
+        ]
+      },
+      "reason": "the space biosuit uses \"its higher DR vs. most attacks, but its lower DR against corrosion, crushing, and toxic damage\" (p. 179), which is not bioplas armour's list"
     },
     {
       "pack": "equipment",

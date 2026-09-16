@@ -16,6 +16,7 @@
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { beamEnvironment } from "../beams/index.js";
+import { reflecAgainstRadar } from "../armor/index.js";
 import { jammersAgainst, spoofFools } from "../stealth/index.js";
 import {
   ACTIVE_RANGES,
@@ -262,6 +263,9 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
   const jammers = target ? jammersAgainst(target, sensorKind) : [];
   const spoofing = jammers.length > 0 && answer.spoof;
   if (!spoofing) for (const jammer of jammers) modifiers.push({ label: jammer.name, value: jammer.penalty });
+  // Reflec is an excellent radar reflector (p. 173).
+  const reflec = target && active.kind === "radar" ? reflecAgainstRadar(target) : null;
+  if (reflec) modifiers.push(reflec);
   const skill = active.kind === "sonar" ? "Electronics Operation (Sonar)" : "Electronics Operation (Sensors)";
   const result: any = await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("SweepLabel", { sensor: chosen.item.name }), modifiers } as any);
   if (result && spoofing) {

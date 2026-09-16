@@ -2039,6 +2039,22 @@
         "forceSwords": {
           "Name": "Force swords",
           "Hint": "Force blades, glaives, swords and whips and the stasis switchblade can't break. A variable force sword (+$500) sets its reach from C to 2. A force blade cuts the weapon it parries or that parries it short of a critical success, only another force blade or a sonic blade unharmed: a row action rolls its damage against the targeted character's weapon."
+        },
+        "threatProtection": {
+          "Name": "Threat protection",
+          "Hint": "Worn suits, helmets and masks give what they protect against as traits: a suit only once the helmet or mask that seals it is on. Sealed, Vacuum Support, Pressure Support, radiation PF, climate control as Temperature Tolerance, glare and hearing protection as Protected Vision and Hearing, a mask's Protected Vision and Smell, and an air supply as Doesn't Breathe, which a carried air tank gives a mask or sealed helmet. The item's sheet shows don times and a tank's hours at its TL, and a row action patches a suit with Vacc Suit rolls."
+        },
+        "laserResistantArmor": {
+          "Name": "Laser-resistant armour",
+          "Hint": "Ablative armour takes its full DR against any laser and loses a point of it at the spot struck for every 10 points of basic laser damage. Reflec and retro-reflective armour take theirs against lasers and microwaves but not X-ray or gamma-ray lasers, and retro-reflective armour bounces half of what it stopped back at the attacker. Transparent bioplas (twice the price) is no use against lasers, and a rigid helmet made reflective (+$50) gets +20 DR against lasers and microwaves. Reflec gives +1 to a radar sweep to find its wearer, +2 for a full suit."
+        },
+        "tailoredArmor": {
+          "Name": "Tailored armour",
+          "Hint": "Flexible armour can be tailored: choose the coverage of each part of the body (full, front or back, half, a front or back half, skimpy or none), a style (heavy, normal, light or diaphanous) and a cut (average, stylish or a fashion original). The outfit is priced from the suit, its DR follows the style, a blow to a part it doesn't cover, or from an arc it doesn't face, meets none of it, and half or skimpy coverage takes an activation roll."
+        },
+        "armorSystems": {
+          "Name": "Armour systems",
+          "Hint": "Electromagnetic armour doubles DR, or triples it for laminate, against shaped charges and plasma, counting its uses. Beam-adaptive armour triples DR against the beam types it is set for and adapts to one that hurts it. Reactive paste adds DR against high-velocity attacks and detonates, with fewer chances to cover a spot hit again. Ablative foam gives DR 8 against burning, worn away point for point. Living metal doubles the price. Nasal filter plugs give +5 HT against gas, and biomedical sensors on a patient +1 to Diagnosis."
         }
       },
       "Gadget": {
@@ -3685,6 +3701,151 @@
           "hyperdense": "+2 cutting and impaling, armour divisor (5); ST 1.5 times (Ultra-Tech p. 164).",
           "nanothorn": "Corrosion instead of cutting, armour divisor (10) (Ultra-Tech p. 164).",
           "vibro": "The vibro field is on: +1d cutting and a better armour divisor (Ultra-Tech p. 164)."
+        }
+      },
+      "Armor": {
+        "Title": "Ultra-tech armour",
+        "Reset": "Clear wear",
+        "Protection": {
+          "sealed": "Sealed",
+          "vacuumSupport": "Vacuum Support",
+          "pressure": "pressure support to {atm} atm.",
+          "radiationPf": "radiation PF {pf}",
+          "climate": "climate control ({low}°F to {high}°F)",
+          "glare": "glare-resistant",
+          "hearing": "hearing protection",
+          "mask": "Protected Vision and Smell",
+          "filter": "filters what is breathed",
+          "air": "its own air"
+        },
+        "Threat": {
+          "Alone": "Worn: {list} (Ultra-Tech p. 171).",
+          "With": "With {with}: {list}.",
+          "Completes": {
+            "spaceHelmet": "a space helmet",
+            "combatOrSpaceHelmet": "a combat infantry helmet or a space helmet",
+            "maskOrHelmet": "an air mask or a combat infantry helmet",
+            "maskOrGill": "an air mask or an artificial gill",
+            "airMask": "an air mask"
+          },
+          "Don": "Takes {on} s to put on, {off} s to take off.",
+          "DonSkill": "Takes {on} s to put on or take off; a {skill} roll halves it.",
+          "DonArmor": "Takes {seconds} s a piece to put on or take off.",
+          "TankHours": "Holds {hours} hours of air at TL{tl}. {hookUp} s to hook up, {jettison} s to jettison.",
+          "TankMinutes": "Holds {minutes} minutes of air at TL{tl}. {hookUp} s to hook up, {jettison} s to jettison.",
+          "Patches": "Patching a breach takes {seconds} s and a Vacc Suit roll, -1 for each failure; every attempt costs {minutes} minutes of air."
+        },
+        "Patch": {
+          "Title": "Patch the suit",
+          "Label": "Patch a breach ({item})",
+          "Failures": "Earlier failed attempts",
+          "Sealed": "The breach is sealed. The attempt cost {minutes} minutes of air.",
+          "Failed": "The patch doesn't hold: the next attempt is at a further -1. The attempt cost {minutes} minutes of air."
+        },
+        "Laser": {
+          "ablative": "Ablative: DR {dr} against any laser, a point lost at the spot struck for every 10 points of basic laser damage.",
+          "reflec": "Reflec: DR {dr} against lasers and microwaves, none against X-ray or gamma-ray lasers or anything else.",
+          "retroReflective": "Retro-reflective: DR {dr} against lasers and microwaves, and half of what it stops from a visible or near-infrared laser bounces back.",
+          "Lost": "Laser DR lost: {list}.",
+          "Reason": {
+            "ablative": "ablative armour's full DR against a laser",
+            "reflec": "reflec's full DR against a laser or microwave",
+            "retroReflective": "retro-reflective armour's full DR against a laser or microwave",
+            "transparent": "transparent bioplas is no use against lasers",
+            "reflective": "+20 DR for a reflective helmet"
+          },
+          "Bounced": "{item} bounces {damage} points of the beam's damage back at {attacker}, who gets no defence if they didn't expect it.",
+          "TheAttacker": "the attacker",
+          "RadarLine": "Reflec worn by the target",
+          "Transparent": "Transparent bioplas",
+          "TransparentHint": "Almost invisible when worn, and twice the price, but no protection against lasers (Ultra-Tech p. 174).",
+          "Reflective": "Reflective",
+          "ReflectiveHint": "A rigid helmet made reflective: +20 DR against lasers and microwaves, +$50 (Ultra-Tech p. 173)."
+        },
+        "Tailor": {
+          "Title": "Tailored",
+          "Hint": "Build this suit into an outfit of your own: coverage, style and cut (Ultra-Tech pp. 174-175).",
+          "StyleLabel": "Style",
+          "CutLabel": "Cut",
+          "Summary": "Coverage ×{multiplier}; DR {dr}; LC {lc}.",
+          "Part": {
+            "skull": "Skull",
+            "face": "Face and eyes",
+            "neck": "Neck",
+            "arms": "Arms",
+            "hands": "Hands",
+            "torso": "Torso",
+            "groin": "Groin",
+            "legs": "Legs",
+            "feet": "Feet"
+          },
+          "Coverage": {
+            "full": "Full",
+            "front": "Front",
+            "back": "Back",
+            "half": "Half",
+            "frontHalf": "Half, front",
+            "backHalf": "Half, back",
+            "skimpy": "Skimpy",
+            "none": "None"
+          },
+          "Style": {
+            "heavy": "Heavy (×1.5, LC-1)",
+            "normal": "Normal",
+            "light": "Light (×2/3, LC+1)",
+            "diaphanous": "Diaphanous (×1/2, LC+1)"
+          },
+          "Cut": {
+            "average": "Average",
+            "stylish": "Stylish (×4 cost)",
+            "original": "Fashion original (×20 cost)"
+          },
+          "Reason": {
+            "uncovered": "the outfit doesn't cover this spot",
+            "arc": "the outfit doesn't cover this spot from that side",
+            "missed": "rolled {roll} against {target}: the blow missed the covered part",
+            "struck": "rolled {roll} against {target}: the blow struck the covered part"
+          }
+        },
+        "Systems": {
+          "Ema": "Electromagnetic armour",
+          "EmaHint": "Doubles DR, or triples it for laminate armour, against shaped charges and plasma bolts (Ultra-Tech p. 187).",
+          "EmaNone": "None",
+          "EmaStandard": "EMA (×2)",
+          "EmaLaminate": "EMA on laminate (×3)",
+          "EmaUses": "Uses",
+          "EmaUsesHint": "How many uses the vehicle or suit's power gives it; 0 doesn't count them.",
+          "EmaUsesLine": "EMA uses spent: {used} of {uses}.",
+          "EmaSpent": "{item}'s EMA stopped the blow: {used} of {uses} uses spent.",
+          "Adaptive": "Beam-adaptive types",
+          "AdaptiveHint": "How many beam types it adapts to at once, 0 for none. $1,000 a pound for one, $4,000 for two, $9,000 for three, $16,000 for four (Ultra-Tech p. 190).",
+          "AdaptedLine": "Adapted to: {list}.",
+          "Adapted": "{item} adapts to {family} beams.",
+          "Paste": "Reactive armour paste",
+          "PasteHint": "Reactive paste: adds its DR against bullets, beams and explosions, and detonates (Ultra-Tech p. 189).",
+          "PasteTl": "Paste TL",
+          "PasteLine": "Reactive paste: DR {dr}, {shaped} against shaped charges, against high-velocity attacks.",
+          "PasteLabel": "Reactive paste on {item}",
+          "PasteDetonated": "The reactive paste on {item} detonates at the {location}: {name} takes 1d crushing explosive damage, which the armour protects against. A later hit there may find it spent.",
+          "LivingMetal": "Living metal",
+          "LivingMetalHint": "Made of living metal at twice the price: it seals holes in two seconds and repairs a point of DR or HP an hour (Ultra-Tech p. 190).",
+          "LivingMetalRepair": "Living metal: seals a hole in two seconds and repairs a point of DR or HP an hour.",
+          "BioplasRepair": "Bioplas heals its own damage, 1 HP every {hours} hours.",
+          "FoamToggle": "Apply or remove ablative foam",
+          "FoamOn": "{name} is coated in ablative foam: DR {dr} against burning damage. It takes {seconds} seconds a person to apply.",
+          "FoamOff": "{name}'s ablative foam is gone.",
+          "FoamLabel": "Ablative foam",
+          "FoamHint": "DR against burning, Hardened against lasers, a point lost for every point struck",
+          "FoamLine": "Ablative foam: DR {dr} against burning only, Hardened against lasers, a point lost at the spot for every point of damage. {radar} to radar. {seconds} s to apply.",
+          "PlugsLine": "Nasal filter plugs: +5 HT against breathed gas, while the mouth is closed. The bonus drops by 1 every two hours after four hours of use, and is gone after ten.",
+          "NearMissLine": "Near-miss indicator: +2 to Vision rolls to find where projectile fire came from, with a HUD, not in vacuum.",
+          "MindShieldLine": "Mind shield: +{bonus} to IQ or Will against telepathic abilities, and to Will against attempts to find the wearer's mind.",
+          "BiomedicalLine": "Biomedical sensors: +{inPerson} to Diagnosis on the wearer in person, or Diagnosis at {remote} from afar.",
+          "BiomedicalModifier": "Biomedical sensors ({item})",
+          "Reason": {
+            "ema": "electromagnetic armour ×{times}",
+            "adaptive": "beam-adaptive armour ×3"
+          }
         }
       }
     }
