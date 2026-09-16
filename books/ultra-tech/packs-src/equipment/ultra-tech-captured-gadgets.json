@@ -6363,8 +6363,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 0.5,
-      "cost": 1,
+      "weight": 2,
+      "cost": 40,
       "carried": true,
       "equipped": false,
       "tl": "9",
@@ -6378,7 +6378,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 1,
+      "listCost": 40,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []
@@ -8450,8 +8450,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 500,
-      "cost": 100000,
+      "weight": 1000,
+      "cost": 200000,
       "carried": true,
       "equipped": false,
       "tl": "9^",
@@ -8465,7 +8465,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 100000,
+      "listCost": 200000,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []
@@ -8477,8 +8477,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 10,
-      "cost": 20000,
+      "weight": 20,
+      "cost": 40000,
       "carried": true,
       "equipped": false,
       "tl": "9^",
@@ -8492,7 +8492,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 20000,
+      "listCost": 40000,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []
@@ -8504,8 +8504,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 2,
-      "cost": 10000,
+      "weight": 4,
+      "cost": 25000,
       "carried": true,
       "equipped": false,
       "tl": "10^",
@@ -8519,7 +8519,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 10000,
+      "listCost": 25000,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []
@@ -8531,8 +8531,8 @@
     "type": "equipment",
     "system": {
       "quantity": 1,
-      "weight": 0.25,
-      "cost": 3000,
+      "weight": 1,
+      "cost": 6000,
       "carried": true,
       "equipped": false,
       "tl": "11^",
@@ -8546,7 +8546,7 @@
       "quality": "good",
       "material": "",
       "weaponClass": "",
-      "listCost": 3000,
+      "listCost": 6000,
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": []
