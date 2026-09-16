@@ -910,15 +910,6 @@
   "patch": [
     {
       "pack": "equipment",
-      "pattern": "^Sonic Shuriken$",
-      "set": {
-        "name": "Force Blade",
-        "system.lc": 3
-      },
-      "reason": "the data file's #VALUE! line leaves the Force Blade's statistics under the Sonic Shuriken's name; the shuriken is kept by hand (p. 166)"
-    },
-    {
-      "pack": "equipment",
       "pattern": "^Electric Stun Wand$",
       "set": {
         "system.lc": 4,
