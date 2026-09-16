@@ -25,6 +25,7 @@ describe("the books' rule groups", () => {
       { module: MODULE_ID, id: "monster-hunters-1", label: "GURPS Monster Hunters 1" },
       { module: MODULE_ID, id: "magic", label: "GURPS Magic" },
       { module: MODULE_ID, id: "martial-arts", label: "GURPS Martial Arts" },
+      { module: MODULE_ID, id: "ultra-tech", label: "GURPS Ultra-Tech" },
     ]);
     // Monster Hunters 1's switches, all in its own group and off by default.
     const keys = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "monster-hunters-1");
