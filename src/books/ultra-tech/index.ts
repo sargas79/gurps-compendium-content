@@ -12,6 +12,7 @@ import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { initPower, readyPower } from "./power/index.js";
+import { registerRecordData } from "./records.js";
 
 const SLUG = "ultra-tech";
 const REFERENCE = "Ultra-Tech";
@@ -47,6 +48,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initGadgets();
   initPower();
+  registerRecordData();
 }
 
 function ready(api: GWorldApi): void {
