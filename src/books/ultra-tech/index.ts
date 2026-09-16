@@ -11,6 +11,7 @@
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initComputers, readyComputers } from "./computers/index.js";
+import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGadgets, readyGadgets } from "./gadgets/index.js";
 import { readyInterfaces } from "./interfaces/index.js";
 import { initPower, readyPower } from "./power/index.js";
@@ -43,6 +44,9 @@ const RULES = [
   { key: "communicators", pages: "pp. 42-46", implemented: true },
   { key: "sensors", pages: "pp. 60-67", implemented: true },
   { key: "neuralInterfaces", pages: "pp. 24, 47-59", implemented: true },
+  { key: "fabrication", pages: "pp. 76-93", implemented: true },
+  { key: "gravityControl", pages: "pp. 78-79, 84", implemented: true },
+  { key: "psiAmplifiers", pages: "p. 94", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -72,6 +76,7 @@ function init(): void {
   initSwarms();
   initStealth();
   initSensors();
+  initFabrication();
   registerRecordData();
 }
 
@@ -87,6 +92,7 @@ function ready(api: GWorldApi): void {
   readyUploading(api, rule("uploading"));
   readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
+  readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });
 }
 
 export const book: BookRules = {

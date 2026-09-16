@@ -1979,6 +1979,18 @@
         "neuralInterfaces": {
           "Name": "Interfaces, VR and sensies",
           "Hint": "A worn HUD or neural interface gives +1 to Driving, Piloting and Free Fall, and a visual enhancement program +1 to Vision. Row actions experience a sensie (surface mode is -3 to other tasks and +4 to Fright Checks), use a virtual tutor at skill 12, and take a dose of instaskill nano: a point in a skill with a point or less, with an IQ roll against Phantom Voices when doses stack. Items explain VR levels and managers, translators, dreamgames, dream teachers and neural interfaces."
+        },
+        "fabrication": {
+          "Name": "Tools and fabrication",
+          "Hint": "A GM tool works out how long an item takes to make, and what it costs, on a production line, fabricator, robofac, nanofac or replicator, with its blueprint's Complexity and its instructor kit. Row actions apply repair nanopaste (1d-2 HP, better with a repair roll), stress a rope past its load (HT 12 at -1 per multiple), and set off an antimatter trap. A GM tool runs slipspray (DX, +3 crawling, -3 sprinting), super adhesives (a Regular Contest of ST against 23) and tractor beams (a Quick Contest of ST against the beam's). Rope, foam, tractor beams and fabricators show their figures by TL."
+        },
+        "gravityControl": {
+          "Name": "Gravity control",
+          "Hint": "A GM tool rolls DX for everyone crossing a gravity gradient: a shift of 10% or more, at -2 per doubling or halving past the first. It notes high acceleration and zero-G nausea. Gravity plates, screens, mats and grav hammers show their figures by TL."
+        },
+        "psiAmplifiers": {
+          "Name": "Psi amplifiers",
+          "Hint": "Row actions attune an amplifier (Electronics Operation (Psychotronics)) and set it to boost a power's Talent by up to its TL limit. Rolls naming that power get the boost. A critical failure, or any roll of 15+ through an amplifier that isn't attuned, burns it out and calls for HT+3 at -boost: a seizure on a failure, a coma on a failure by 5+."
         }
       },
       "Gadget": {
@@ -2772,6 +2784,143 @@
         "Console": "+{bonus} Complexity running games, VR and sensies.",
         "Holoprojection": "{penalty} to control through anything but a neural interface.",
         "SensiePlayer": "Needs a direct neural interface; real-time sensies need 1 GB/s immersed, 0.1 GB/s on the surface."
+      },
+      "Fab": {
+        "Title": "Tools and fabrication",
+        "Facility": {
+          "productionLine": "Production line",
+          "roboticLine": "Robotic production line",
+          "fabricatorParts": "Fabricator, from new parts",
+          "fabricatorScrap": "Fabricator, from scrap",
+          "industrialFabricator": "Industrial Fabricator",
+          "minifac": "Minifac",
+          "suitcaseMinifac": "Suitcase Minifac",
+          "industrialRobofac": "Industrial Robofac",
+          "roboticMinifac": "Robotic Minifac",
+          "portableRobofac": "Portable Robofac",
+          "industrialNanofac": "Industrial Nanofac",
+          "nanofacWorkbench": "Nanofac Workbench",
+          "suitcaseNanofac": "Suitcase Nanofac",
+          "industrialReplicator": "Industrial Universal Replicator",
+          "workbenchReplicator": "Workbench Universal Replicator",
+          "suitcaseReplicator": "Suitcase Universal Replicator"
+        },
+        "Tool": {
+          "Title": "Fabrication",
+          "Facility": "Made on",
+          "Cost": "Item's price ($)",
+          "Weight": "Item's weight (lbs.)",
+          "Tl": "Facility's TL",
+          "Units": "Industrial units",
+          "Line": "{hours} hours an item at ${perItem} each; the line costs ${lineCost} and weighs {lineWeight} lbs.",
+          "Fabricator": "{hours} hours, at ${cost}.",
+          "NoMicrotech": "A TL9 fabricator can't make microtech items.",
+          "Replicator": "Replicated in 10 seconds (up to {capacity} lbs.).",
+          "TooHeavy": "Too heavy: this replicator makes up to {capacity} lbs.",
+          "Skill": "It works at Machinist-{skill} on its own.",
+          "Blueprints": "Blueprint: Complexity {threeD} (3D) or {molecular} (molecular).",
+          "Kit": "As an instructor kit: ${price}, {hours} man-hours, +{bonus} to the roll reading its tags.",
+          "FacilityHours": "{hours} hours."
+        },
+        "Paste": {
+          "Title": "Apply repair paste",
+          "Wrong": "The wrong paste for the item",
+          "Skill": "Repair skill used (optional)",
+          "RollLabel": "Applying {name}",
+          "Plus2": "Repair skill +2",
+          "WrongResult": "The paste attacks the item: {damage} HP of damage over an hour (none to sealed objects).",
+          "Repaired": "Repairs {hp} HP after {hours} hours.",
+          "Botched": "The nano botches the job: {damage} HP of damage after {hours} hours.",
+          "Healed": "{name} regains {hp} HP."
+        },
+        "Rope": {
+          "Title": "Stress the rope",
+          "Load": "Load (lbs.)",
+          "Safe": "{load} lbs. is within the {working}-lb. working load.",
+          "RollLabel": "HT 12: {name} under load",
+          "Multiple": "Per multiple of {working} lbs.",
+          "Holds": "The rope holds.",
+          "Snaps": "The rope snaps!"
+        },
+        "Trap": {
+          "Title": "Antimatter trap fails",
+          "Micrograms": "Antimatter (µg; holds {capacity})",
+          "Blast": "{micrograms} µg annihilate: 6dx{multiplier} crushing explosive damage = {damage}. The trap's capacitor gives 30 seconds' warning."
+        },
+        "Hazard": {
+          "Title": "Slipspray, adhesives, tractor beams",
+          "Target": "Target whoever is affected.",
+          "Kind": "Hazard",
+          "slipspray": "Slipspray",
+          "adhesive": "Super adhesive",
+          "tractor": "Tractor beam",
+          "Gait": "Moving",
+          "walking": "Walking or running",
+          "crawling": "Crawling (+3)",
+          "sprinting": "Sprinting (-3)",
+          "Flesh": "Flesh is glued",
+          "Beam": "Beam",
+          "utility": "Utility (ST 50)",
+          "light": "Light (ST 100)",
+          "heavy": "Heavy (ST 400)",
+          "Tl": "Beam's TL",
+          "SlipsprayLabel": "DX: crossing slipspray",
+          "Stays": "{name} keeps their feet. (Vehicles roll control at {vehicle}.)",
+          "Falls": "{name} goes down. (Vehicles roll control at {vehicle}.)",
+          "AdhesiveLabel": "ST against the adhesive's ST 23",
+          "PulledFree": "{name} pulls free.",
+          "Stuck": "{name} stays stuck.",
+          "Torn": "Flesh tears away: {damage} damage.",
+          "TractorLabel": "ST against the tractor beam",
+          "Breaks": "{name} moves against the ST {st} beam.",
+          "Held": "The ST {st} beam holds {name} (range {range} yards)."
+        },
+        "Item": {
+          "Rope": "Safe working load {load} lbs. at TL{tl}; breaks at five times that.",
+          "Foam": "DR {dr} per inch of thickness; HP as a homogenous object of its weight ({pounds} lbs. a gallon). 30 points of burning damage set it alight.",
+          "Tractor": "ST {st}, range {range} yards at TL{tl}. Moving against it takes a Quick Contest of ST.",
+          "Trap": "Holds {capacity} micrograms of antimatter at TL{tl}; a microgram does about 6dx9 cr ex if the power fails.",
+          "Rate": "Makes ${dollars} or {pounds} lbs. of goods an hour at TL{tl}, whichever takes longer.",
+          "Plates": "${cost} and {weight} lbs. per cubic foot per +1G at TL{tl}; external power.",
+          "Screen": "$1,000 and 0.5 lbs. per square foot of walls, floor and ceiling enclosed; adjusts gravity in a second.",
+          "Mat": "Up to +1G over a 2 x 2 x 2.5-yard area, replacing the local gravity.",
+          "GravHammer": "{damage} crushing with double knockback; silent and invisible."
+        },
+        "Gravity": {
+          "Title": "Gravity shift",
+          "Target": "Target whoever the gravity shift catches.",
+          "From": "From (G)",
+          "To": "To (G)",
+          "NoRoll": "A shift under 10%: no roll needed.",
+          "HighAcceleration": "A sudden increase may call for the high acceleration HT roll or falling damage (Campaigns p. 434).",
+          "ZeroG": "Sudden zero gravity may bring on space adaptation syndrome (Campaigns p. 434).",
+          "RollLabel": "DX: gravity shifts from {from}G to {to}G",
+          "Doublings": "Per doubling or halving"
+        },
+        "Psi": {
+          "AttuneTitle": "Attune amplifier",
+          "AttuneLabel": "Attuning {name}",
+          "Attuned": "The amplifier is attuned to {name}.",
+          "Wasted": "An hour wasted.",
+          "Damaged": "The attempt damages the amplifier.",
+          "AmplifyTitle": "Amplify a power",
+          "Power": "Power (as its rolls are named)",
+          "Boost": "Boost (up to {max})",
+          "BurntOut": "This amplifier is burnt out and needs minor repairs.",
+          "Off": "Amplification off.",
+          "On": "{name} amplifies {power} by +{boost}.{attuned}",
+          "NotAttuned": " It isn't attuned: any roll of 15+ is a critical failure.",
+          "Line": "Talent ({name})",
+          "FeedbackTitle": "Psychotronic feedback",
+          "FeedbackLabel": "HT+3: psychotronic feedback",
+          "BoostLine": "The boost",
+          "BurnsOut": "The amplifier burns out.",
+          "Feedback": {
+            "none": "{name} rides out the surge.",
+            "seizure": "{name} has a seizure for {seconds} seconds, then loses 1d FP.",
+            "coma": "{name} falls into a coma."
+          }
+        }
       }
     }
   },
