@@ -122,3 +122,12 @@ describe("seeds, bombs and traps (#299)", () => {
     expect(CYBER_TRAP).toEqual({ notice: -4, looking: 0 });
   });
 });
+
+describe("an implant healing in (#329)", () => {
+  it("puts back the limb or sense it replaces", async () => {
+    const { restoredWhileRecovering } = await import("./rules.js");
+    expect(restoredWhileRecovering("Bionic Eye (Two)")).toEqual([{ name: "Blindness", points: -50 }]);
+    expect(restoredWhileRecovering("Bionic Arm (One)")).toEqual([{ name: "One Arm", points: -20 }]);
+    expect(restoredWhileRecovering("Biomonitor Implant")).toEqual([]);
+  });
+});

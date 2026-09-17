@@ -34,6 +34,9 @@ import {
   STUNNER,
   VARIABLE_FORCE_SWORD,
   ZAP_GLOVE,
+  ZAP_KILL,
+  METALLIC_SHOCK_DR,
+  isMetallicArmor,
   bladeBlow,
   bladeMinSt,
   bladePrice,
@@ -520,10 +523,11 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
     if (item.isOwner) void api.combat.setWeaponState(item, MODULE_ID, { rocketArmed: false });
   });
 
-  // Nonmetallic armour against a stunner's contact: +2 a point of DR (p. 165).
+  // Nonmetallic armour against a stunner's contact: +2 a point of DR (p. 165); metallic armour counts as DR 1.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on.energy() || !context?.tags?.includes?.("resist") || !isStunner(context.attack?.item)) return;
-    const bonus = stunnerDrBonus(Number(context.attack.dr) || 0);
+    const dr = Number(context.attack.dr) || 0;
+    const bonus = stunnerDrBonus(wearsMetallicArmor(context.actor) ? Math.min(dr, METALLIC_SHOCK_DR) : dr);
     if (bonus) context.modifiers.push({ label: L("NonmetallicDr"), value: bonus });
   });
 
@@ -580,6 +584,20 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
     })();
   });
 
+  // A zap glove on "kill" is a lethal shock: its burning damage, and the HT roll for being shocked (p. 165).
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-zap-kill", itemTypes: ["equipment"], label: L("ZapKillTitle"), icon: "fa-solid fa-bolt", visible: (item) => on.energy() && /zap glove/i.test(nameOf(item)), run: async (item, actor) => {
+    const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
+    if (!targets.length) return void ui.notifications?.warn(L("ZapKillPick"));
+    const charged = chargedOf(item);
+    const state = stateOf(api, item);
+    const cost = charged ? chargesPerStrike(charged, true) : 0;
+    if (charged && (state.spent ?? 0) + cost > CHARGES[charged]) return void say(actor, nameOf(item), [F("Drained", { name: nameOf(item) })]);
+    if (charged) await api.combat.setWeaponState(item, MODULE_ID, { spent: (state.spent ?? 0) + cost });
+    for (const target of targets) {
+      await api.hazards.shock({ actor: target, kind: "lethal", modifier: ZAP_KILL.modifier, continuous: false, formula: ZAP_KILL.formula, metalArmor: wearsMetallicArmor(target) });
+    }
+  } });
+
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-stunner-hold", itemTypes: ["equipment"], label: L("HoldTitle"), icon: "fa-solid fa-hand", visible: (item) => on.energy() && isStunner(item), run: async (item, actor) => {
     // "The user may take a Concentrate maneuver to hold the baton in contact. This prevents recovery ... but drains a charge each second" (p. 165).
     const charged = chargedOf(item);
@@ -634,4 +652,9 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
       if (choice === "limpet") await pullLimpet(api);
     },
   });
+}
+
+/** Whether someone has metallic armour on. */
+function wearsMetallicArmor(actor: any): boolean {
+  return [...(actor?.items ?? [])].some((item: any) => item?.type === "armor" && item.system?.equipped === true && isMetallicArmor(String(item.name ?? "")));
 }

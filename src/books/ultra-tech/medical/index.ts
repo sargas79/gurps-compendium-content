@@ -43,6 +43,8 @@ import {
   fpAfterHibernation,
   immuneCureDice,
   isLifeSupport,
+  LIFE_SUPPORT_CHECK_MINUTES,
+  antiradDose,
   medicalBedRounds,
   medicalHelp,
   nanostasisRevival,
@@ -100,6 +102,8 @@ interface Care {
   analgineUntil?: number;
   /** World time fast regeneration nano stops working (p. 206). */
   fastRegenerationUntil?: number;
+  /** Antirad taken: the next exposure's rads are halved (p. 205). */
+  antirad?: boolean;
 }
 
 export function initMedical(): void {
@@ -455,6 +459,10 @@ async function takeDose(api: GWorldApi, item: any, owner: any): Promise<void> {
       lines.push(F("Drug.immune", { name, dice: immuneCureDice(tlOf(item)) }));
       break;
     }
+    case "antirad":
+      await setCare(patient, { antirad: true });
+      lines.push(F("Drug.antirad", { name }));
+      break;
     default:
       lines.push(F(`Drug.${drug}`, { name }));
   }
@@ -550,6 +558,23 @@ export function readyMedical(api: GWorldApi, on: MedicalSwitches): void {
         select.addEventListener("change", () => void item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.form`]: select.value }));
       });
     },
+  });
+
+  // Antirad halves the next exposure's rads, and is spent by it (p. 205).
+  Hooks.on(api.combat.hooks.radiationDose, (context: any) => {
+    if (!on.drugs() || !careOf(context?.actor).antirad) return;
+    context.rads = antiradDose(Number(context.rads) || 0);
+    context.sources?.push?.(L("AntiradLine"));
+    if (context.actor?.isOwner) void setCare(context.actor, { antirad: false });
+  });
+
+  // On life support, a mortal wound is checked daily (p. 197).
+  Hooks.on(api.combat.hooks.mortalWoundInterval, (context: any) => {
+    if (!on.gear()) return;
+    const unit = careOf(context?.actor).lifeSupport;
+    if (!context?.traumaMaintenance && !unit) return;
+    context.minutes = LIFE_SUPPORT_CHECK_MINUTES;
+    if (unit) context.label = unit;
   });
 
   // Care the rolls read: life support's bonus on the mortal wound check, a medical bed's and supplies' on the rounds (pp. 198-199).

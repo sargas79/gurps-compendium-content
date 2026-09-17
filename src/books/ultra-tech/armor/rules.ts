@@ -478,3 +478,9 @@ export function breathesUnderwater(name: string): boolean {
 export function reactorSpoilsInfrared(name: string): boolean {
   return /^dreadnought battlesuit$/i.test(String(name ?? "").trim());
 }
+
+/** Points of DR a self-repairing piece regains over some hours, a point each `hoursPerPoint` (pp. 171, 174). */
+export function selfRepairPoints(hours: number, hoursPerPoint: number): number {
+  if (!(hours > 0) || !(hoursPerPoint > 0)) return 0;
+  return Math.floor(hours / hoursPerPoint);
+}

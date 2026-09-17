@@ -52,11 +52,13 @@ export interface WarheadRow {
   incendiary: boolean;
   doubleKnockback: boolean;
   radiation: boolean;
+  /** Surge on the round's own line (since GWorld API 1.63.0 carried to the apply). */
+  surge?: boolean;
   fragmentation: string;
   affliction: boolean;
   afflictionAttribute: string;
   afflictionModifier: number;
-  followUp: null | { damage: string; damageType: string; explosive: boolean; armorDivisor: number; fragmentation?: string; followUp?: boolean; label: string };
+  followUp: null | { damage: string; damageType: string; explosive: boolean; armorDivisor: number; fragmentation?: string; followUp?: boolean; radiation?: boolean; surge?: boolean; label: string };
   /** Keys of notes to add: a special effect's size, or a rule the row can't carry. */
   notes: Array<{ key: string; data?: Record<string, unknown> }>;
 }
@@ -107,7 +109,8 @@ const times = (range: number, factor: number) => Math.round((Number(range) || 0)
 function entryFor(kind: WarheadKind, size: Size | null, variant: string) {
   const w = WARHEADS[kind];
   if (!w.table) return null;
-  if (w.variants) return w.table[variant || w.variants[0]!] ?? null;
+  // Yields and masses are the table's keys; a psi-bomb's message is chosen beside its size.
+  if (w.variants && w.variants.some((v) => v in w.table!)) return w.table[variant || w.variants[0]!] ?? null;
   return size === null ? null : (w.table[String(size)] ?? null);
 }
 
@@ -121,6 +124,7 @@ function withBlast(row: WarheadRow, blast: Blast, perDie: number): WarheadRow {
     incendiary: blast.incendiary === true,
     doubleKnockback: blast.doubleKnockback === true,
     radiation: blast.radiation === true,
+    surge: blast.surge === true,
     fragmentation: blast.fragmentation ?? "",
   };
 }
@@ -182,7 +186,7 @@ export function warheadRow(kind: WarheadKind, row: WarheadRow, launcher: Launche
   }
   if (w.delivery === "halfLinked") {
     const blast = entry.primary;
-    next = { ...next, damage: divideDamage(next.damage, 2), armorDivisor: w.roundDivisor ?? 1, followUp: { damage: blast.damage, damageType: blast.type, explosive: false, armorDivisor: 1, followUp: false, label: kind } };
+    next = { ...next, damage: divideDamage(next.damage, 2), armorDivisor: w.roundDivisor ?? 1, followUp: { damage: blast.damage, damageType: blast.type, explosive: false, armorDivisor: 1, followUp: false, surge: true, label: kind } };
     next.notes.push({ key: "surgeLinked" });
     return next;
   }
@@ -191,6 +195,8 @@ export function warheadRow(kind: WarheadKind, row: WarheadRow, launcher: Launche
   if (w.affliction) {
     const modifier = w.affliction.modifier[String(size)] ?? 0;
     next = { ...next, damage: "—", damageType: "cr", armorDivisor: w.affliction.divisor ?? 1, explosive: false, incendiary: false, radiation: false, doubleKnockback: false, fragmentation: "", affliction: true, afflictionAttribute: w.affliction.attribute, afflictionModifier: kind === "psiBomb" && options.variant === "message" ? -2 : modifier };
+    // A terror psi-bomb is a Fright Check at -5, not a Will roll (p. 159).
+    if (kind === "psiBomb" && options.variant === "terror") next.afflictionAttribute = "fright";
     if (entry.spec) next.notes.push({ key: "radius", data: { yards: entry.spec } });
     if (entry.primary.damage) next.followUp = { damage: entry.primary.damage, damageType: entry.primary.type, explosive: entry.primary.explosive === true, armorDivisor: 1, followUp: false, label: kind };
     return next;
@@ -203,7 +209,7 @@ export function warheadRow(kind: WarheadKind, row: WarheadRow, launcher: Launche
   next = withBlast(next, entry.primary, perDie);
   if (kind === "flare") next.notes.push({ key: "spec.flare", data: { value: entry.spec } });
   if (entry.second) {
-    next.followUp = { damage: entry.second.damage, damageType: entry.second.type, explosive: entry.second.explosive === true, armorDivisor: entry.second.divisor ?? 1, ...(entry.second.fragmentation ? { fragmentation: entry.second.fragmentation } : {}), followUp: false, label: kind };
+    next.followUp = { damage: entry.second.damage, damageType: entry.second.type, explosive: entry.second.explosive === true, armorDivisor: entry.second.divisor ?? 1, ...(entry.second.fragmentation ? { fragmentation: entry.second.fragmentation } : {}), followUp: false, ...(entry.second.radiation ? { radiation: true } : {}), ...(entry.second.surge ? { surge: true } : {}), label: kind };
     if (entry.second.radiation || entry.second.surge) next.notes.push({ key: "secondModifiers", data: { radiation: entry.second.radiation === true, surge: entry.second.surge === true } });
   }
   if (entry.primary.surge) next.notes.push({ key: "surge" });
@@ -217,4 +223,38 @@ export function warheadRow(kind: WarheadKind, row: WarheadRow, launcher: Launche
     }
   }
   return next;
+}
+
+/** Warheads whose energy effect fades by +1 to resist a yard from the centre (pp. 157-159). */
+export const FADING_WARHEADS: readonly string[] = ["strobe", "warbler", "psiBomb"];
+
+/** What resisting a fading warhead gains at a distance from its centre: +1 a whole yard. */
+export function fadingBonus(kind: string, distanceYards: number | null | undefined): number {
+  if (!FADING_WARHEADS.includes(kind)) return 0;
+  const yards = Number(distanceYards);
+  return Number.isFinite(yards) && yards > 0 ? Math.floor(yards) : 0;
+}
+
+/** Nuclear and antimatter blasts: damage divided by the distance, not three times it (p. 156). */
+export function blastDivisorPerYard(kind: string): number | null {
+  return kind === "mininuke" || kind === "antimatter" ? 1 : null;
+}
+
+/** A psi-bomb's stun: -5 to recover from it (p. 158). */
+export const PSI_STUN_RECOVERY = -5;
+
+/** How long a warbler shrieks (p. 157). */
+export const WARBLER_SECONDS = 10;
+
+/**
+ * A warbler's Hearing penalties as nested circles whose lines add up: -10
+ * within its radius, -5 within twice it, -2 within five times it (p. 157).
+ */
+export function warblerRings(radiusYards: number): Array<{ radius: number; value: number; total: number }> {
+  if (!(radiusYards > 0)) return [];
+  return [
+    { radius: radiusYards * 5, value: -2, total: -2 },
+    { radius: radiusYards * 2, value: -3, total: -5 },
+    { radius: radiusYards, value: -5, total: -10 },
+  ];
 }

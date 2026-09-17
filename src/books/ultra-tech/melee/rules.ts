@@ -261,3 +261,14 @@ export function neurogloveWrecked(roll: number): boolean {
 
 /** A neurolash added to a weapon: an HT-5 (2) affliction with the blow (p. 165). */
 export const ADDED_NEUROLASH = Object.freeze({ attribute: "HT", modifier: -5, armorDivisor: 2 });
+
+/** Armour a stunner's current runs through, by name: mail, plate, scale and the like (p. 165; Campaigns p. 432). */
+export function isMetallicArmor(name: string): boolean {
+  return /\b(mail|plate|scale|steel|iron|bronze|metal|brigandine|lamellar|segmented)\b/i.test(name);
+}
+
+/** Metallic armour "provides only DR 1" against electricity (Campaigns p. 432). */
+export const METALLIC_SHOCK_DR = 1;
+
+/** A zap glove on "kill": 2d burning, as a lethal shock (p. 165; Campaigns p. 432). */
+export const ZAP_KILL = Object.freeze({ formula: "2d", modifier: 0 });

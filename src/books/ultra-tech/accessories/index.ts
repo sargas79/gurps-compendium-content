@@ -394,8 +394,9 @@ export function readyAccessories(api: GWorldApi, on: () => boolean): void {
     const data = accessoryData(item);
     const mode = item.system.rangedModes[Number(context.mode.index) || 0] ?? {};
     const modifiers = context.modifiers as Array<{ label: string; value: number }>;
-    const lineOf = (key: string) => modifiers.find((m) => m.label === game.i18n.localize(`GWORLD.Ranged.${key}`));
-    const accuracy = lineOf("Accuracy");
+    // The system's lines by key (GWorld API 1.63.0), whatever language they're labelled in.
+    const lineOf = (key: string) => (modifiers as Array<{ label: string; value: number; key?: string; situation?: string }>).find((m) => m.key === key);
+    const accuracy = lineOf("accuracy");
     const aimed = Boolean(accuracy);
     const seconds = Math.max(1, Number(actor?.system?.aim?.turns) || 0);
     const targets = (context.targets ?? []) as any[];
@@ -430,9 +431,9 @@ export function readyAccessories(api: GWorldApi, on: () => boolean): void {
       }
     }
 
-    // A gyrostabilized harness or a servomount cancels Move and Attack's Bulk (pp. 150-151).
-    const bulk = lineOf("Bulk");
-    if (bulk && (data.harness === "gyrostabilized" || data.harness === "servomount") && (yards === null || yards > 1)) {
+    // A gyrostabilized harness or a servomount cancels Move and Attack's Bulk, not close combat's (pp. 150-151).
+    const bulk = lineOf("bulk");
+    if (bulk && bulk.situation === "moveAndAttack" && (data.harness === "gyrostabilized" || data.harness === "servomount")) {
       modifiers.push({ label: L(`Harness.${data.harness}`), value: -bulk.value });
     }
     // A servomount without a HUD: -2, and no Aim (p. 151).
@@ -441,7 +442,7 @@ export function readyAccessories(api: GWorldApi, on: () => boolean): void {
       if (accuracy) modifiers.push({ label: L("ServomountNoAim"), value: -accuracy.value });
     }
     // An articulated harness counts as braced (p. 151).
-    if (aimed && data.harness === "articulated" && !lineOf("Braced")) modifiers.push({ label: L("Harness.articulated"), value: 1 });
+    if (aimed && data.harness === "articulated" && !lineOf("braced")) modifiers.push({ label: L("Harness.articulated"), value: 1 });
   });
 
   // A sniper mirror: a visible-light laser fired at the target's image, at -4 (p. 151).

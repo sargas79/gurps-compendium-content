@@ -22,6 +22,7 @@
  *     plugs against gas; biomedical sensors for Diagnosis.
  */
 
+import { selfRepairPoints } from "./rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily, type BeamFamily } from "../beams/rules.js";
@@ -480,6 +481,34 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
   });
 
   // ── ablative foam on the skin (p. 187) ──
+  // Bioplas heals an HP every six hours, living metal a point an hour (pp. 171, 174): DR spent comes back.
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-self-repair",
+    itemTypes: ["armor"],
+    label: L("Systems.SelfRepair"),
+    icon: "fa-solid fa-rotate-left",
+    visible: (item) => on.systems() && selfRepairHours(item) !== null && (Number(item?.system?.drLost) || 0) > 0,
+    run: async (item, actor) => {
+      const perPoint = selfRepairHours(item);
+      if (perPoint === null || !item?.isOwner) return;
+      const hours: any = await foundry.applications.api.DialogV2.prompt({
+        window: { title: L("Systems.SelfRepair") },
+        content: `<div class="gworld"><label>${foundry.utils.escapeHTML(L("Systems.SelfRepairHours"))} <input type="number" name="hours" value="${perPoint}" min="0" step="1"></label></div>`,
+        ok: { label: L("Systems.SelfRepair"), callback: (_e: Event, button: HTMLElement) => Number(button.closest(".application")?.querySelector<HTMLInputElement>("[name=hours]")?.value) || 0 },
+        rejectClose: false,
+      });
+      const points = selfRepairPoints(Number(hours) || 0, perPoint);
+      if (!points) return;
+      const lost = await api.items.restoreDr(item, points);
+      if (lost === null) return;
+      await ChatMessage.implementation.create({
+        speaker: ChatMessage.implementation.getSpeaker({ actor }),
+        content: `<div class="gworld gworld-chat"><div class="gc-result">${foundry.utils.escapeHTML(F("Systems.SelfRepaired", { name: item.name, hours, lost }))}</div></div>`,
+      });
+    },
+  });
+
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ut-ablative-foam",
@@ -687,4 +716,12 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
       if (sensors) context.modifiers.push({ label: F("Systems.BiomedicalModifier", { item: sensors.name }), value: BIOMEDICAL.inPerson });
     }
   });
+}
+
+/** Hours a self-repairing piece takes to regain a point: living metal's hour, bioplas's six; null for anything else. */
+function selfRepairHours(item: any): number | null {
+  if (!isArmor(item)) return null;
+  if (armorBuildOf(item).livingMetal) return SELF_REPAIR.livingMetalHoursPerPoint;
+  if (/^bioplas\b|^space biosuit$/i.test(baseName(String(item?.name ?? "")))) return SELF_REPAIR.bioplasHoursPerHp;
+  return null;
 }

@@ -113,3 +113,41 @@ describe("rows with a warhead loaded", () => {
     expect(warheadRow("thermobaric", row(), gun({ calibreMm: 40, tl: 9 }), { atmospheres: 0 }).damage).toBe(divideDamage("8dx2", 4));
   });
 });
+
+describe("warheads through the GWorld API 1.63.0 (#329)", () => {
+  it("fades strobe, warbler and psi-bomb effects +1 a yard, and nothing else", async () => {
+    const { fadingBonus } = await import("./rules.js");
+    expect(fadingBonus("warbler", 4.6)).toBe(4);
+    expect(fadingBonus("psiBomb", 0)).toBe(0);
+    expect(fadingBonus("he", 5)).toBe(0);
+  });
+
+  it("divides nuclear and antimatter blasts by the distance", async () => {
+    const { blastDivisorPerYard } = await import("./rules.js");
+    expect(blastDivisorPerYard("mininuke")).toBe(1);
+    expect(blastDivisorPerYard("antimatter")).toBe(1);
+    expect(blastDivisorPerYard("he")).toBeNull();
+  });
+});
+
+describe("warhead rows the GWorld API 1.63.0 carries (#329)", () => {
+  it("makes a terror psi-bomb a Fright Check", () => {
+    expect(warheadRow("psiBomb", row(), gun({ calibreMm: 25, tl: 12, grenade: true }), { variant: "terror" })).toMatchObject({ afflictionAttribute: "fright", afflictionModifier: -5 });
+    expect(warheadRow("psiBomb", row(), gun({ calibreMm: 25, tl: 12, grenade: true }), { variant: "noise" })).toMatchObject({ afflictionAttribute: "Will" });
+  });
+
+  it("puts radiation and surge on a nuclear blast's linked line", () => {
+    expect(warheadRow("mininuke", row(), gun({ calibreMm: 100, tl: 9, grenade: true }), { variant: "0.01kt" }).followUp).toMatchObject({ radiation: true, surge: true });
+  });
+});
+
+describe("a warbler's Hearing penalties (#329)", () => {
+  it("nests circles that add to -10, -5 and -2", async () => {
+    const { warblerRings } = await import("./rules.js");
+    const rings = warblerRings(3);
+    expect(rings.map((r) => r.radius)).toEqual([15, 6, 3]);
+    expect(rings.reduce((sum, r) => sum + r.value, 0)).toBe(-10);
+    expect(rings[1]!.value + rings[0]!.value).toBe(-5);
+    expect(warblerRings(0)).toEqual([]);
+  });
+});

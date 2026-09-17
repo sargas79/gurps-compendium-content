@@ -25,6 +25,7 @@ import {
   DETECT_SKILLS,
   DISADVANTAGE_PRICE,
   IMPLANTS,
+  restoredWhileRecovering,
   MOUNT_PRICE_PER_LB,
   PROCEDURE_TABLE,
   UPLIFT_PRICE_PER_IQ,
@@ -388,6 +389,9 @@ export function readyCybernetics(api: GWorldApi, on: () => boolean): void {
       if (until && now < until) {
         entry.inPlay = false;
         entry.reason = L("Recovering");
+        // What the implant made up for is missing until it works (since GWorld API 1.63.0).
+        const restores = restoredWhileRecovering(String(entry.name ?? ""));
+        if (restores.length) entry.restores = restores;
       } else if (stored.surgeUntil && now < stored.surgeUntil && isElectricalImplant(entry.item)) {
         entry.inPlay = false;
         entry.reason = L("SurgeDown");

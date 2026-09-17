@@ -51,6 +51,8 @@ import {
   nerveDisorderAt,
 } from "./rules.js";
 
+import { placeArea, standsIn, type AreaLine } from "../areas.js";
+
 const L = (key: string) => game.i18n.localize(`GCC.UT.Agents.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Agents.${key}`, data);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
@@ -505,6 +507,34 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
     void say(actor, L(`Agent.${agent}`), lines);
   });
 
+  // Smoke, radiant prism and mask released where the user points: an area that changes rolls in and through it (p. 160).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ut-release-cloud",
+    itemTypes: ["equipment"],
+    label: L("Cloud.Title"),
+    icon: "fa-solid fa-smog",
+    visible: (item) => on.biochemical() && cloudLines(agentData(item).kind, L, F).length > 0,
+    run: async (item, actor) => {
+      const kind = agentData(item).kind;
+      const answer = await ask(L("Cloud.Title"),
+        row(L("Cloud.Radius"), `<input type="number" name="radius" value="5" min="1" style="width:70px" />`)
+        + row(L("Tool.Wind"), `<input type="number" name="wind" value="0" min="0" style="width:70px" />`),
+        (form) => ({ radius: numberField(form, "radius"), wind: numberField(form, "wind") }));
+      if (!answer) return;
+      const longevity = kind.startsWith("smoke:") ? SMOKES[kind.slice(6) as Smoke].longevity : 1;
+      const id = await placeArea(api, { key: `cloud-${kind.replace(":", "-")}`, label: String(item.name), actor, radiusYards: answer.radius, seconds: Math.round(cloudSeconds(answer.wind) * longevity), lines: cloudLines(kind, L, F) });
+      if (!id) return void ui.notifications?.warn(L("Cloud.NoPlace"));
+      await say(actor, String(item.name), [F("Cloud.Placed", { radius: answer.radius, seconds: Math.round(cloudSeconds(answer.wind) * longevity) })]);
+    },
+  });
+
+  // Mask: -6 to Tracking and Forensics for someone working in it (p. 160).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.biochemical() || !/^(tracking|forensics)\b/i.test(String(context?.skill ?? ""))) return;
+    if (standsIn(api, context.actor, "cloud-mask")) context.modifiers.push({ label: L("Kind.mask"), value: MASK });
+  });
+
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ut-agent-expose",
@@ -575,4 +605,18 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
     visible: () => on.biochemical() || on.nano(),
     open: () => agentsTool(api, on),
   });
+}
+
+/** What a cloud puts on rolls in and through it: smoke's vision, radiant prism's sensors, mask's smell (p. 160). */
+function cloudLines(kind: string, l: (key: string) => string, f: (key: string, data: Record<string, unknown>) => string): AreaLine[] {
+  const lines: AreaLine[] = [];
+  if (kind.startsWith("smoke:")) {
+    const smoke = SMOKES[kind.slice(6) as Smoke];
+    if (!smoke) return lines;
+    lines.push({ label: f("Cloud.Vision", { value: smoke.vision }), value: smoke.vision, rolls: ["vision", "attack"], applies: "both" });
+    if (smoke.senses.length) lines.push({ label: l("Cloud.Sensors"), value: smoke.vision, rolls: ["infrared", "hyperspectral"], applies: "both" });
+  }
+  if (kind === "smoke:radiantPrism" || kind === "radiantPrism") lines.push({ label: l("Kind.radiantPrism"), value: RADIANT_PRISM_SENSOR, rolls: ["infrared", "radar", "imagingRadar"], applies: "both" });
+  if (kind === "mask") lines.push({ label: l("Kind.mask"), value: MASK, rolls: ["tasteSmell"], applies: "both" });
+  return lines;
 }

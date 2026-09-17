@@ -365,7 +365,7 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
   const reflec = target && active.kind === "radar" ? reflecAgainstRadar(target) : null;
   if (reflec) modifiers.push(reflec);
   const skill = active.kind === "sonar" ? "Electronics Operation (Sonar)" : "Electronics Operation (Sensors)";
-  const result: any = await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("SweepLabel", { sensor: chosen.item.name }), modifiers } as any);
+  const result: any = await api.roll.success({ actor: selected, base: api.actors.skillLevel(selected, skill) ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5, skill, label: F("SweepLabel", { sensor: chosen.item.name }), modifiers, tags: ["detection", sensorKind], ...(target ? { subject: target } : {}) } as any);
   if (result && spoofing) {
     const worst = Math.min(...jammers.map((j) => j.penalty));
     await ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor: selected }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(L(spoofFools(result.margin, result.success, worst) ? "Spoofed" : "SeesThrough"))}</div></div>` });

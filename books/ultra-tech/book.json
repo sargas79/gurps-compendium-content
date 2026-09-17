@@ -2972,6 +2972,14 @@
         "system.hardened": 1
       },
       "reason": "\"Its armor is Hardened\" (p. 186); its three levels against shaped charges and plasma bolts are the armour rule's"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Mini-Toolkit$",
+      "set": {
+        "system.equipmentModifier": -2
+      },
+      "reason": "a -2 (quality) equipment modifier for the skill it is made for (p. 82)"
     }
   ]
 }
