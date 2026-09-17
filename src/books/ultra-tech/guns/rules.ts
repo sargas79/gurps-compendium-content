@@ -179,3 +179,12 @@ export const SPRAY_CAN = Object.freeze({ doses: 3, radius: 1, indoorSeconds: 10 
 
 /** The skill a homing projectile's firer aims with before it attacks at its own (p. 146). */
 export const HOMING_AIMING_SKILL = "Artillery (Guided Missile)";
+
+/** The roll tags a seeker's sense gives its attack: what an area or condition naming that sense reads. */
+export function seekerTags(sense: string): string[] {
+  if (sense === "infravision") return ["infrared"];
+  if (sense === "hyperspectral") return ["hyperspectral"];
+  if (sense === "imagingRadar") return ["radar", "imagingRadar"];
+  if (sense === "radarAndRadio" || sense === "paraRadar") return ["radar"];
+  return [];
+}

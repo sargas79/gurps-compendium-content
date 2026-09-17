@@ -41,6 +41,7 @@ import {
   homingCost,
   homingRefusal,
   homingSense,
+  seekerTags,
   homingSkill,
   HOMING_AIMING_SKILL,
   isAirGun,
@@ -323,6 +324,14 @@ export function readyGuns(api: GWorldApi, on: GunSwitches): void {
         row.notes.push({ label: F("HomingNote", { skill: homingSkill(load.kind, tl) }), hint: F("HomingHint", { sense: L(`Sense.${homingSense(load.kind, load.setting)}`) }) });
       }
     }
+  });
+
+  // A homing round's attack is aimed by its seeker: tag the roll with that sense, so smoke,
+  // radiant prism and jammers that blind it apply (pp. 146, 160; GWorld API 1.65.0).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.homing() || !context?.ranged || !Array.isArray(context.tags) || context.mode?.derived) return;
+    const load = homingFor(context.item, Number(context.mode?.index) || 0);
+    if (load?.kind) context.tags.push(...seekerTags(homingSense(load.kind, load.setting)));
   });
 
   // Boosted or low velocity changes the range as well: the speed/range penalty is read at the range it reaches (pp. 139, 141).
