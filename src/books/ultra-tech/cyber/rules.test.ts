@@ -15,6 +15,12 @@ import {
   recoveryText,
   skillChipPricePerPoint,
   usedPercent,
+  BOMB_CALIBRES,
+  CYBER_TRAP,
+  IMPLANT_SEED,
+  bombImplantCost,
+  seedGrows,
+  seedHours,
 } from "./rules.js";
 
 describe("the Surgical Procedures Table (Ultra-Tech p. 207)", () => {
@@ -94,5 +100,25 @@ describe("parts and prices (pp. 208, 216-219)", () => {
     expect(psychPermanenceModifier(12)).toBe(2);
     expect(psychPermanenceModifier(24)).toBe(1);
     expect(psychPermanenceModifier(9)).toBe(3);
+  });
+});
+
+describe("seeds, bombs and traps (#299)", () => {
+  it("grows only minor and simple implants from a seed, at twice the price (p. 202)", () => {
+    expect(IMPLANT_SEED.costFactor).toBe(2);
+    expect(seedGrows(implantOf("Implant Radio")!)).toBe(true);
+    expect(seedGrows(implantOf("Bionic Arm (One)")!)).toBe(false);
+    expect(seedHours(1000)).toBe(20);
+  });
+
+  it("prices a bomb implant as a smart grenade (pp. 146-147, 210)", () => {
+    expect(BOMB_CALIBRES).toEqual(["40", "25", "15", "10"]);
+    expect(bombImplantCost("40", 9)).toBe(110);
+    expect(bombImplantCost("25", 10)).toBe(2.5);
+    expect(bombImplantCost("15", 9)).toBeNull();
+  });
+
+  it("notices a cyber-trap at Traps-4 (p. 208)", () => {
+    expect(CYBER_TRAP).toEqual({ notice: -4, looking: 0 });
   });
 });

@@ -2202,7 +2202,10 @@
         "WeaponHint": "A weapon's cells are changed with its Reload button, which offers Fast-Draw (Ammo) to take a second off (Ultra-Tech p. 19).",
         "Supplies": "{cells} {size} cells",
         "SupplyPacks": "{cells} {size} cells, worn as a pack",
-        "EnduranceScaled": "lasts {endurance}, x{factor} for this build"
+        "EnduranceScaled": "lasts {endurance}, x{factor} for this build",
+        "UsesLeft": "{left} of {total} uses",
+        "UsesUsed": "Used",
+        "UsesHint": "Uses spent since the cells were changed."
       },
       "Computer": {
         "Title": "Computer",
@@ -4669,7 +4672,8 @@
         "ShieldVanishes": "The force shield's power is spent: it vanishes.",
         "SquareFeet": "Square feet enclosed",
         "SquareFeetHint": "A stasis grid is $2,000 and 0.2 lbs. for each square foot it covers; a coffin-sized box is 72 square feet (Ultra-Tech p. 193).",
-        "StasisGridLine": "{squareFeet} square feet: ${cost}, {weight} lbs., on vehicle or building power."
+        "StasisGridLine": "{squareFeet} square feet: ${cost}, {weight} lbs., on vehicle or building power.",
+        "NoUsesLeft": "Its cell has no uses left: change the cells."
       },
       "Cyber": {
         "Title": "Cybernetics",
@@ -4752,8 +4756,23 @@
           "PickBoth": "Select the examiner's token and target the patient.",
           "Found": "Implants found: {list}.",
           "NoneFound": "No implants found.",
-          "DetectFailed": "The scan finds nothing."
-        }
+          "DetectFailed": "The scan finds nothing.",
+          "Trapped": "Rigged with a cyber-trap",
+          "Looking": "Looking for a trap",
+          "TrapUnlooked": "Not looking",
+          "TrapNotice": "Noticing a cyber-trap",
+          "TrapDisarm": "Disarming the cyber-trap",
+          "TrapGoesOff": "The cyber-trap goes off: its effect is the GM's (a bomb implant, a poison, a wiped chip)."
+        },
+        "Seed": "Implant seed",
+        "SeedHint": "A pill-sized seed that grows the implant inside the body: twice the price, only for implants that take a minor or simple operation at TL11 (Ultra-Tech p. 202).",
+        "SeedLine": "An implant seed: it grows in {hours} hour(s), and shows on a diagnostic bed or medscanner halfway through.",
+        "SeedCantGrow": "An implant seed can't grow this: it takes more than a minor operation at TL11.",
+        "BombCalibre": "Grenade",
+        "BombHint": "Priced as a smart grenade: 40mm or 25mm in the torso, 15mm in a limb, 10mm elsewhere (Ultra-Tech pp. 146-147, 210).",
+        "BombNone": "Not chosen",
+        "BombLine": "A {calibre}mm smart grenade: 6d cr ex for an ounce; vitals x3, skull x4; an exploding skull throws 1d-3 cut fragments.",
+        "BombUnpriced": "The book prices no {calibre}mm hand grenade: the GM sets the cost."
       }
     }
   },

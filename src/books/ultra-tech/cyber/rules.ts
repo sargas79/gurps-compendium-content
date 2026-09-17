@@ -260,3 +260,32 @@ export function psychPermanenceModifier(months: number): number | null {
 
 /** Finding implants: Electronics Operation (Medical) or Diagnosis with a scanner (p. 208). */
 export const DETECT_SKILLS = ["Electronics Operation (Medical)", "Diagnosis"] as const;
+
+/**
+ * An implant seed (p. 202): twice the implant's price, it grows only implants
+ * that take a minor or simple operation at TL11, an hour for each $50 of cost.
+ */
+export const IMPLANT_SEED = Object.freeze({ costFactor: 2, tl: 11, dollarsPerHour: 50 });
+export function seedGrows(entry: ImplantProcedure): boolean {
+  const procedure = procedureAt(entry, IMPLANT_SEED.tl);
+  return procedure === "minor" || procedure === "simple";
+}
+export function seedHours(cost: number): number {
+  return Math.ceil(Math.max(0, Number(cost) || 0) / IMPLANT_SEED.dollarsPerHour);
+}
+
+/**
+ * A bomb implant uses a smart grenade's cost (p. 210): a 40mm (mini) grenade is
+ * $10 and a 25mm (thimble) $2.50 (p. 146), and a smart grenade adds $100 at TL9,
+ * nothing at TL10+ (p. 147). The book prices no 15mm or 10mm hand grenade.
+ */
+export const BOMB_CALIBRES = ["40", "25", "15", "10"] as const;
+export type BombCalibre = (typeof BOMB_CALIBRES)[number];
+export function bombImplantCost(calibre: BombCalibre, tl: number): number | null {
+  const grenade = calibre === "40" ? 10 : calibre === "25" ? 2.5 : null;
+  if (grenade === null) return null;
+  return grenade + (tl <= 9 ? 100 : 0);
+}
+
+/** A cyber-trap: Traps-4 to notice it before it goes off, no penalty looking for it; a Traps roll to disarm (p. 208). */
+export const CYBER_TRAP = Object.freeze({ notice: -4, looking: 0 });
