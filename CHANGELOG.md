@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.15.0 — GURPS Ultra-Tech: zooming in, and seekers that smoke can blind
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
+against **gworld v1.25.0**, which this release requires (add-on API 1.65.0). On
+an older system the add-on registers no rules, and says so in the console.
+
+- **Binoculars and other optics zoom in (#333):** worn optics already give Telescopic Vision. A Vision roll at the one token you target now takes the range penalty, and the optics ignore twice as much of it while your Aim is on that token.
+- **Homing rounds (#333):** the attack roll carries the seeker's sense (infrared, hyperspectral or radar). Smoke and radiant prism clouds that blind that sense now penalize the shot.
+- **From the system:** environment suits hold DX and DX-based skills to the suit's skill while worn.
+
 ## v0.14.0 — GURPS Ultra-Tech: the book's remaining rules
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
