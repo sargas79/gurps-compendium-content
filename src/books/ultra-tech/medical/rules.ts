@@ -236,3 +236,14 @@ export const QUICKHEAL = Object.freeze({ dice: 1, hours: 1 });
 
 /** Respirocytes: +2 FP and Doesn't Breathe (Oxygen Storage x25) (p. 206). */
 export const RESPIROCYTES = Object.freeze({ fp: 2 });
+
+/** Fast regeneration nano: Regeneration (Fast) for an hour, at 1 FP for each HP regenerated (p. 206). */
+export const FAST_REGENERATION = Object.freeze({ level: 3, hours: 1, fpPerHp: 1 });
+
+/** What healing costs a patient on fast regeneration nano: the FP after `gained` HP come back, never below 0 (p. 206). */
+export function fastRegenerationFp(fp: number, gained: number): number {
+  return Math.max(0, Math.floor(Number(fp) || 0) - FAST_REGENERATION.fpPerHp * Math.max(0, Math.floor(Number(gained) || 0)));
+}
+
+/** Analgine masks pain like High Pain Threshold: no shock, +3 to knockdown (p. 205; Characters p. 59). */
+export const ANALGINE_EFFECTS = Object.freeze({ noShock: true, knockdown: 3 });

@@ -59,6 +59,9 @@ import {
   type DeviceSkill,
   type DrugForm,
   type ResistedDrug,
+  ANALGINE_EFFECTS,
+  FAST_REGENERATION,
+  fastRegenerationFp,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Medical.${key}`);
@@ -93,6 +96,10 @@ interface Care {
   respirocytes?: boolean;
   /** World time before which the regeneration ray can't be used again. */
   regenerationBarredUntil?: number;
+  /** World time analgine's pain masking ends (p. 205). */
+  analgineUntil?: number;
+  /** World time fast regeneration nano stops working (p. 206). */
+  fastRegenerationUntil?: number;
 }
 
 export function initMedical(): void {
@@ -187,6 +194,17 @@ async function deviceTreats(api: GWorldApi, item: any, owner: any): Promise<void
   } else {
     await api.actors.operate({ surgeon: owner, patient, skill, techLevel: tl, label });
   }
+}
+
+/** A device's own Diagnosis roll on its patient (pp. 198, 200). */
+async function deviceDiagnoses(api: GWorldApi, item: any, owner: any): Promise<void> {
+  const device = deviceByName(nameOf(item));
+  const skill = device ? deviceSkill(device, "diagnosis", tlOf(item)) : null;
+  if (skill === null) return;
+  const patient = patientFor(owner);
+  const result: any = await api.roll.success({ actor: owner, base: skill, label: F("DiagnoseLabel", { name: nameOf(item), patient: patient.name, skill }) } as any);
+  // "New diseases or strange problems may stump it - in which case it does its best to sustain the patient and call for help."
+  if (result && !result.success) await say(patient, nameOf(item), [F("Stumped", { name: nameOf(item) })]);
 }
 
 /** Bandage spray and plasti-skin: bleeding stopped, and a point back for the spray (pp. 197-198). */
@@ -332,7 +350,9 @@ async function pocketRegenerator(api: GWorldApi, item: any, owner: any): Promise
   const patient = patientFor(owner);
   await api.actors.stopBleeding(patient);
   const skills = [api.actors.skillLevel(owner, "First Aid"), api.actors.skillLevel(owner, "Electronics Operation (Medical)")].filter((s): s is number => s !== null);
-  await api.actors.firstAid({ healer: owner, patient, techLevel: Math.max(12, tlOf(item)), label: nameOf(item), ...(skills.length ? { skill: Math.max(...skills) } : {}) });
+  // The regeneration ray gives +2 used this way (p. 202).
+  const modifier = /^regeneration ray$/i.test(nameOf(item)) ? REGENERATION_RAY.pocketBonus : 0;
+  await api.actors.firstAid({ healer: owner, patient, techLevel: Math.max(12, tlOf(item)), label: nameOf(item), ...(skills.length ? { skill: Math.max(...skills) } : {}), ...(modifier ? { modifier } : {}) });
 }
 
 /** Taking a dose of one of the drugs a roll doesn't resist (pp. 205-206). */
@@ -353,7 +373,28 @@ async function takeDose(api: GWorldApi, item: any, owner: any): Promise<void> {
       return;
     }
     case "analgine":
+      await setCare(patient, { analgineUntil: now() + analgineHours(ht) * 3600 });
       lines.push(F("Drug.analgine", { name, hours: analgineHours(ht) }));
+      break;
+    case "memoryBeta": {
+      // "An IQ roll is required to focus on something specific" (p. 205).
+      const result: any = await api.roll.success({ actor: patient, base: api.actors.attribute(patient, "IQ") ?? 10, kind: "attribute", tags: ["IQ"], label: F("MemoryBetaLabel", { name }) } as any);
+      if (!result) return;
+      lines.push(F(result.success ? "MemoryBeta.recalls" : result.criticalFailure ? "MemoryBeta.captured" : "MemoryBeta.lost", { name }));
+      break;
+    }
+    case "criticalRepair": {
+      // "Remove the Wounded disadvantage or regain the point of HT lost on a failed roll to recover from a mortal wound" (p. 206).
+      const wounded = [...(patient.items ?? [])].find((i: any) => i.type === "trait" && /^wounded\b/i.test(String(i.name ?? "")));
+      if (wounded && patient.isOwner) {
+        await patient.deleteEmbeddedDocuments("Item", [wounded.id]);
+        lines.push(F("CriticalRepair.wounded", { name }));
+      } else lines.push(F("Drug.criticalRepair", { name }));
+      break;
+    }
+    case "fastRegeneration":
+      await setCare(patient, { fastRegenerationUntil: now() + FAST_REGENERATION.hours * 3600 });
+      lines.push(F("Drug.fastRegeneration", { name }));
       break;
     case "hyperstim":
       await clearCondition(api, patient, /unconscious/i);
@@ -532,9 +573,30 @@ export function readyMedical(api: GWorldApi, on: MedicalSwitches): void {
     }
   });
 
-  // Respirocytes: breathing isn't needed while they last (p. 206).
+  // Respirocytes: breathing isn't needed while they last (p. 206). Analgine masks pain; fast regeneration nano regenerates (pp. 205-206).
   Hooks.on("gworld.traitEffects", (context: any) => {
-    if (on.drugs() && careOf(context?.actor).respirocytes && context.effects) context.effects.doesntBreathe = true;
+    if (!on.drugs() || !context?.effects) return;
+    const care = careOf(context.actor);
+    if (care.respirocytes) context.effects.doesntBreathe = true;
+    if ((care.analgineUntil ?? 0) > now()) {
+      context.effects.noShock = ANALGINE_EFFECTS.noShock;
+      context.effects.knockdown = (Number(context.effects.knockdown) || 0) + ANALGINE_EFFECTS.knockdown;
+      context.sources?.push?.({ effect: "noShock", label: L("DrugName.analgine") });
+    }
+    if ((care.fastRegenerationUntil ?? 0) > now() && (Number(context.effects.regeneration) || 0) < FAST_REGENERATION.level) {
+      context.effects.regeneration = FAST_REGENERATION.level;
+      context.sources?.push?.({ effect: "regeneration", label: L("DrugName.fastRegeneration"), value: FAST_REGENERATION.level });
+    }
+  });
+
+  // Each HP fast regeneration nano heals costs a FP, in the same update (p. 206).
+  Hooks.on("preUpdateActor", (actor: any, change: any) => {
+    if (!on.drugs() || (careOf(actor).fastRegenerationUntil ?? 0) <= now()) return;
+    const next = foundry.utils.getProperty(change, "system.hp.value");
+    if (typeof next !== "number") return;
+    const gained = next - (Number(actor.system?.hp?.value) || 0);
+    if (gained <= 0 || foundry.utils.getProperty(change, "system.fp.value") !== undefined) return;
+    foundry.utils.setProperty(change, "system.fp.value", fastRegenerationFp(Number(actor.system?.fp?.value) || 0, gained));
   });
 
   const action = (key: string, label: string, icon: string, visible: (item: any) => boolean, run: (item: any, actor: any) => Promise<void>) =>
@@ -555,7 +617,8 @@ export function readyMedical(api: GWorldApi, on: MedicalSwitches): void {
   action("ut-neural-inhibitor", "InhibitorTitle", "fa-solid fa-circle-minus", (item) => on.gear() && /^neural inhibitor$/i.test(nameOf(item)), (item, actor) => neuralInhibitor(api, item, actor));
   action("ut-tank", "TankTitle", "fa-solid fa-flask", (item) => on.regeneration() && /^(regeneration tank|rejuvenation tank|chrysalis machine)$/i.test(nameOf(item)), (item, actor) => tank(api, item, actor));
   action("ut-regeneration-ray", "RayTitle", "fa-solid fa-sun", (item) => on.regeneration() && /^regeneration ray$/i.test(nameOf(item)), (item, actor) => regenerationRay(api, item, actor));
-  action("ut-pocket-regenerator", "PocketTitle", "fa-solid fa-wand-magic-sparkles", (item) => on.regeneration() && /^pocket regenerator$/i.test(nameOf(item)), (item, actor) => pocketRegenerator(api, item, actor));
+  action("ut-pocket-regenerator", "PocketTitle", "fa-solid fa-wand-magic-sparkles", (item) => on.regeneration() && /^(pocket regenerator|regeneration ray)$/i.test(nameOf(item)), (item, actor) => pocketRegenerator(api, item, actor));
+  action("ut-device-diagnoses", "DiagnoseTitle", "fa-solid fa-stethoscope", (item) => on.gear() && deviceByName(nameOf(item))?.skills.diagnosis !== undefined, (item, actor) => deviceDiagnoses(api, item, actor));
   action("ut-take-dose", "DoseTitle", "fa-solid fa-syringe", (item) => on.drugs() && drugByName(nameOf(item)) !== null && drugByName(nameOf(item)) !== "aegis", (item, actor) => takeDose(api, item, actor));
   action("ut-torpine-wakes", "TorpineWakesTitle", "fa-solid fa-sun", (item) => on.drugs() && drugByName(nameOf(item)) === "torpine", (_item, actor) => torpineWakes(api, actor));
   action("ut-hyperstim-off", "HyperstimOff", "fa-solid fa-heart-crack", (item) => on.drugs() && drugByName(nameOf(item)) === "hyperstim", (_item, actor) => hyperstimWearsOff(api, actor));

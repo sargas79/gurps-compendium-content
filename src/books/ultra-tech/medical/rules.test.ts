@@ -26,6 +26,9 @@ import {
   smartBandageHp,
   suitDocDays,
   suppliesPatientDays,
+  ANALGINE_EFFECTS,
+  FAST_REGENERATION,
+  fastRegenerationFp,
 } from "./rules.js";
 
 describe("devices that treat on their own (Ultra-Tech pp. 196-202)", () => {
@@ -135,5 +138,17 @@ describe("drugs and nano (Ultra-Tech pp. 205-206)", () => {
     expect(immuneCureDice(10)).toBe(3);
     expect(immuneCureDice(11)).toBe(1);
     expect(programmingPenalty("unknown")).toBe(-4);
+  });
+});
+
+describe("drugs in play (#299)", () => {
+  it("costs a FP for each HP fast regeneration heals (p. 206)", () => {
+    expect(FAST_REGENERATION.level).toBe(3);
+    expect(fastRegenerationFp(10, 3)).toBe(7);
+    expect(fastRegenerationFp(2, 5)).toBe(0);
+  });
+
+  it("masks pain as High Pain Threshold does (p. 205)", () => {
+    expect(ANALGINE_EFFECTS).toEqual({ noShock: true, knockdown: 3 });
   });
 });
