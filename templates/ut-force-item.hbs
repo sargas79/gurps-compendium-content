@@ -26,6 +26,13 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.UT.Force.BreathingHint'}}"><input type="checkbox" data-gcc-ut-field="breathing" {{#if options.breathing}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Force.Breathing"}}</label>
     </div>
   {{/if}}
+  {{#if grid}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.UT.Force.SquareFeetHint'}}">{{localize "GCC.UT.Force.SquareFeet"}}
+        <input type="number" data-gcc-ut-field="squareFeet" value="{{squareFeet}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
   {{#if tau}}
     <div class="ifields">
       <label>{{localize "GCC.UT.Force.Tau.Setting"}}

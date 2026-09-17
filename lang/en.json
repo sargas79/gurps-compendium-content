@@ -2954,7 +2954,8 @@
         "TaskRoll": "Using the {name}",
         "Sealed": "A sealed environment",
         "NoScent": "{name}: it can't detect anything sealed, underwater or in vacuum.",
-        "LockedNoSoftware": "The {sensor} locks onto {target}. Without targeting software it gives no bonus to hit."
+        "LockedNoSoftware": "The {sensor} locks onto {target}. Without targeting software it gives no bonus to hit.",
+        "ScreenHides": "{name}'s {screen} is invisible to active sensors: the sweep finds nothing."
       },
       "Interface": {
         "Title": "Interfaces and media",
@@ -3311,7 +3312,8 @@
           "Radius": "Gate or platform radius (yards)",
           "Paired": "Paired gates",
           "TelegatePrice": "A gate costs and weighs {factor} times an MT booth.",
-          "JumpCost": "A {radius}-yard platform's interstellar jump costs ${cost}."
+          "JumpCost": "A {radius}-yard platform's interstellar jump costs ${cost}.",
+          "Stabilized": "{name}'s reality-stabilized screen blocks matter transmission."
         },
         "Item": {
           "FlightPack": "{seconds} seconds to strap on; Piloting (Flight Pack).",
@@ -4068,7 +4070,8 @@
           "BiomedicalModifier": "Biomedical sensors ({item})",
           "Reason": {
             "ema": "electromagnetic armour ×{times}",
-            "adaptive": "beam-adaptive armour ×3"
+            "adaptive": "beam-adaptive armour ×3",
+            "warsuit": "Warsuit: Hardened 3 against shaped charges and plasma"
           }
         }
       },
@@ -4661,7 +4664,12 @@
         "CollapsePick": "Target whoever is in the stasis web.",
         "CollapseOutOfRange": "{name} is beyond the {range}-yard range.",
         "CollapseNothing": "{name} isn't in stasis.",
-        "Collapsed": "The stasis web around {name} collapses."
+        "Collapsed": "The stasis web around {name} collapses.",
+        "StasisGrid": "Stasis grid",
+        "ShieldVanishes": "The force shield's power is spent: it vanishes.",
+        "SquareFeet": "Square feet enclosed",
+        "SquareFeetHint": "A stasis grid is $2,000 and 0.2 lbs. for each square foot it covers; a coffin-sized box is 72 square feet (Ultra-Tech p. 193).",
+        "StasisGridLine": "{squareFeet} square feet: ${cost}, {weight} lbs., on vehicle or building power."
       },
       "Cyber": {
         "Title": "Cybernetics",

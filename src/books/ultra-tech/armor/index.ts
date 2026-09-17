@@ -25,6 +25,9 @@
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily, type BeamFamily } from "../beams/rules.js";
+import { beamEnvironment } from "../beams/index.js";
+import { powerData } from "../power/data.js";
+import { enduranceLeft } from "../power/index.js";
 import { loadsOf } from "../warheads/index.js";
 import {
   ABLATIVE_FOAM,
@@ -81,6 +84,8 @@ import {
   type TailoredCut,
   type TailoredStyle,
   type Tailoring,
+  WARSUIT_HARDENED,
+  breathesUnderwater,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Armor.${key}`);
@@ -448,6 +453,14 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
       context.effects.radiationTolerance = Math.max(1, Number(context.effects.radiationTolerance) || 1) * pf;
       context.sources.push({ effect: "radiationTolerance", label: pfLabel, value: pf });
     }
+    // An artificial gill or gill suit breathes for its wearer underwater while its cell lasts (pp. 177-178).
+    if (beamEnvironment().underwater && !context.effects.doesntBreathe) {
+      const gill = wornItems.find((i: any) => breathesUnderwater(String(i.name)) && (() => { const left = enduranceLeft(powerData(i)); return !(left && left !== "unlimited" && left.left <= 0); })());
+      if (gill) {
+        context.effects.doesntBreathe = true;
+        context.sources.push({ effect: "doesntBreathe", label: String(gill.name) });
+      }
+    }
     // An air tank feeds a mask or a sealed helmet (p. 176).
     const tank = [...(context.actor.items ?? [])].find((i: any) => carried(i) && airTankSize(String(i.name)));
     if (breathesThrough && tank && !context.effects.doesntBreathe) {
@@ -499,6 +512,11 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
       if (!isArmor(item)) continue;
       const build = armorBuildOf(item);
       const reasons: string[] = [];
+      // "Three levels of Hardened against shaped-charge warheads and plasma bolts" (p. 186).
+      if (on.systems() && /^warsuit$/i.test(String(item.name)) && (charge.shaped || charge.plasma) && (Number(line.hardened) || 0) < WARSUIT_HARDENED.shapedOrPlasma) {
+        line.hardened = WARSUIT_HARDENED.shapedOrPlasma;
+        reasons.push(L("Systems.Reason.warsuit"));
+      }
 
       if (on.laser()) {
         const record = recordArmor(item);

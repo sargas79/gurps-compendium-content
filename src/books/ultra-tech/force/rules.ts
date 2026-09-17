@@ -170,3 +170,10 @@ export function stasisCollapseRange(name: string): number | null {
   if (/^stasis disruptor$/i.test(text)) return 10;
   return null;
 }
+
+/** A stasis grid is $2,000 and 0.2 lbs. a square foot of what it encloses (p. 193). */
+export const STASIS_GRID = Object.freeze({ costPerSquareFoot: 2000, weightPerSquareFoot: 0.2 });
+export function stasisGridPrice(squareFeet: number): { cost: number; weight: number } {
+  const area = Math.max(0, Number(squareFeet) || 0);
+  return { cost: STASIS_GRID.costPerSquareFoot * area, weight: Math.round(STASIS_GRID.weightPerSquareFoot * area * 100) / 100 };
+}

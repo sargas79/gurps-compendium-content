@@ -465,3 +465,16 @@ export function hasBiomedicalSensors(name: string): boolean {
 
 /** Near-miss indicator: +2 to Vision rolls to find where fire came from (p. 188). */
 export const NEAR_MISS_BONUS = 2;
+
+/** A warsuit is Hardened, with three levels against shaped-charge warheads and plasma bolts (p. 186). */
+export const WARSUIT_HARDENED = Object.freeze({ all: 1, shapedOrPlasma: 3 });
+
+/** An artificial gill or gill suit lets its wearer breathe underwater while powered (pp. 177-178). */
+export function breathesUnderwater(name: string): boolean {
+  return /^(artificial gill|gill suit)$/i.test(String(name ?? "").trim());
+}
+
+/** A reactor that nullifies the suit's infrared cloaking while it runs: the dreadnought battlesuit's (p. 185). */
+export function reactorSpoilsInfrared(name: string): boolean {
+  return /^dreadnought battlesuit$/i.test(String(name ?? "").trim());
+}

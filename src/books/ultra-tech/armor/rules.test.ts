@@ -33,6 +33,9 @@ import {
   tailoredDr,
   tailoredLc,
   tailoredPrice,
+  WARSUIT_HARDENED,
+  breathesUnderwater,
+  reactorSpoilsInfrared,
 } from "./rules.js";
 
 describe("threat protection (Ultra-Tech pp. 171, 176-181)", () => {
@@ -215,5 +218,18 @@ describe("armour systems (pp. 187-190)", () => {
     expect(hasBiomedicalSensors("Nanoweave Tacsuit")).toBe(true);
     expect(hasBiomedicalSensors("Space Armor (TL11)")).toBe(true);
     expect(hasBiomedicalSensors("Skinsuit")).toBe(false);
+  });
+});
+
+describe("suits' own details (#299)", () => {
+  it("hardens a warsuit more against shaped charges and plasma (p. 186)", () => {
+    expect(WARSUIT_HARDENED).toEqual({ all: 1, shapedOrPlasma: 3 });
+  });
+
+  it("knows the gills and the dreadnought's reactor (pp. 177-178, 185)", () => {
+    expect(breathesUnderwater("Gill Suit")).toBe(true);
+    expect(breathesUnderwater("Air Mask")).toBe(false);
+    expect(reactorSpoilsInfrared("Dreadnought Battlesuit")).toBe(true);
+    expect(reactorSpoilsInfrared("Heavy Battlesuit")).toBe(false);
   });
 });

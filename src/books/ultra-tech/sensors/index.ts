@@ -353,6 +353,9 @@ async function sensorSweep(api: GWorldApi): Promise<void> {
   const penalty = activeRangePenalty(answer.yards, base, data.lpi);
   if (penalty) modifiers.push({ label: F("RangeLine", { range: distanceText(data.lpi ? base / 2 : base) }), value: penalty });
   if (active.kind === "ladar") modifiers.push({ label: L(answer.unknown ? "LadarUnknown" : "LadarIdentify"), value: answer.unknown ? LADAR.unknown : LADAR.identify });
+  // An opaque or cloaking force screen is invisible to active sensors (p. 192).
+  const screened = target ? [...(target.items ?? [])].find((i: any) => i?.type === "armor" && i.system?.equipped === true && (i.system?.extensions?.[MODULE_ID]?.utField?.opaque === true || i.system?.extensions?.[MODULE_ID]?.utField?.cloaking === true)) : null;
+  if (screened) return void ChatMessage.implementation.create({ speaker: ChatMessage.implementation.getSpeaker({ actor: selected }), content: `<div class="gworld gworld-chat"><div class="gc-result">${esc(F("ScreenHides", { name: target.name, screen: screened.name }))}</div></div>` });
   // Jammers on the target (p. 99): their penalty, or, spoofing, a roll to see through them.
   const sensorKind = active.kind === "radar" ? (answer.imaging ? "imagingRadar" : "radar") : active.kind === "sonar" ? "sonar" : "active";
   const jammers = target ? jammersAgainst(target, sensorKind) : [];

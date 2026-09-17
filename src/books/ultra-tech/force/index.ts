@@ -36,6 +36,7 @@ import {
   isReflectiveShield,
   isStasisDevice,
   stasisCollapseRange,
+  stasisGridPrice,
   regenerationPerSecond,
   screenCostFactor,
   screenOf,
@@ -69,6 +70,7 @@ export function initForceFields(): void {
       adjustable: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", "none", "front", "back"] }),
       ...Object.fromEntries(BOOLEAN_OPTIONS.map((key) => [key, new f.BooleanField({ initial: false })])),
       diameter: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+      squareFeet: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
       tauSetting: new f.StringField({ required: true, nullable: false, blank: false, initial: "off", choices: ["off", "tactical", "infinity"] }),
       tauLevels: new f.NumberField({ required: true, nullable: false, initial: 1, min: 1, max: TAU.maxLevels, integer: true }),
     }),
@@ -164,6 +166,8 @@ function itemContext(api: GWorldApi, item: any, on: ForceSwitches): Record<strin
   const tau = on.stasis() && /^tau-shield$/i.test(name);
   if (tau) lines.push(F("TauLine", { ratio: tauRatio(Number(d.tauLevels) || 1), extra: Math.max(1, Number(d.tauLevels) || 1), minutes: Math.round(tauMinutes(Number(d.tauLevels) || 1) * 10) / 10, infinity: TAU.infinityMinutes }));
   if (on.stasis() && /reality stabilizer$/i.test(name)) lines.push(L("StabilizerLine"));
+  const grid = on.stasis() && /^stasis grid$/i.test(name);
+  if (grid) lines.push(F("StasisGridLine", { ...stasisGridPrice(Number(d.squareFeet) || 0), squareFeet: Number(d.squareFeet) || 0 }));
   if (on.stasis() && /hypertime field generator$/i.test(name)) lines.push(L("HypertimeLine"));
   return {
     lines,
@@ -175,6 +179,8 @@ function itemContext(api: GWorldApi, item: any, on: ForceSwitches): Record<strin
     checks: BOOLEAN_OPTIONS.filter((k) => k !== "breathing").map((key) => ({ key, label: L(`Option.${key}`), hint: L(`Option.${key}Hint`), checked: options[key] })),
     breathing: (screen && options.permeable) || lifeSupport,
     tau,
+    grid,
+    squareFeet: Number(d.squareFeet) || 0,
     tauSettings: ["off", "tactical", "infinity"].map((value) => ({ value, label: L(`Tau.${value}`), selected: (d.tauSetting ?? "off") === value })),
     tauLevels: Math.max(1, Number(d.tauLevels) || 1),
   };
@@ -198,6 +204,27 @@ export function readyForceFields(api: GWorldApi, on: ForceSwitches): void {
   const anyOn = () => on.screens() || on.shields() || on.stasis();
 
   // A screen's variants, and a barrier screen's size (pp. 191-192).
+  // A stasis grid by the square feet it encloses (p. 193).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ut-stasis-grid",
+    types: ["equipment"],
+    apply: (item) => {
+      if (!on.stasis() || !/^stasis grid$/i.test(String(item?.name ?? ""))) return null;
+      const area = Number(fieldOf(item).squareFeet) || 0;
+      if (!area) return null;
+      return { ...stasisGridPrice(area), label: L("StasisGrid") };
+    },
+  });
+
+  // "The shield vanishes when the generator is turned off": a force shield out of power stops being ready (p. 192).
+  Hooks.on("updateItem", (item: any, change: any) => {
+    if (!on.shields() || !item?.isOwner || item.type !== "shield" || item.system?.equipped !== true) return;
+    if (foundry.utils.getProperty(change, `system.extensions.${MODULE_ID}.power.hoursUsed`) === undefined) return;
+    if (!/force shield/i.test(String(item.name ?? "")) || !outOfPower(item)) return;
+    void item.update({ "system.equipped": false }).then(() => say(item.actor, String(item.name), [L("ShieldVanishes")]));
+  });
+
   api.data.registerPriceModifier({
     module: MODULE_ID,
     key: "ut-force-screen",
