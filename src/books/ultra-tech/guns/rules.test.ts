@@ -110,3 +110,12 @@ describe("grenades and vortex rings (Ultra-Tech pp. 134, 146-147)", () => {
     expect(vortexBounce(0, 30)).toEqual({ penalty: 0, range: 30 });
   });
 });
+
+describe("a seeker's roll tags (#329)", () => {
+  it("names the sense the round homes with", async () => {
+    const { homingSense, seekerTags } = await import("./rules.js");
+    expect(seekerTags(homingSense("infrared"))).toEqual(["infrared"]);
+    expect(seekerTags(homingSense("multispectral", "active"))).toEqual(["radar", "imagingRadar"]);
+    expect(seekerTags(homingSense("multispectral"))).toEqual(["hyperspectral"]);
+  });
+});
