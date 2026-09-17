@@ -3,7 +3,7 @@
 ## v0.14.0 — GURPS Ultra-Tech: the book's remaining rules
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
-against **gworld v1.24.0**, which this release requires (add-on API 1.64.0). On
+against **gworld v1.24.1**, which this release requires (add-on API 1.64.0). On
 an older system the add-on registers no rules, and says so in the console.
 
 This release finishes #299 (the rules the Ultra-Tech switches still lacked) and
