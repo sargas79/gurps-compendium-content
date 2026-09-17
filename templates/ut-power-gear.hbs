@@ -23,6 +23,11 @@
                 <input type="number" data-gcc-ut-used value="{{r.hoursUsed}}" step="0.5" min="0" style="width:60px" {{#unless ../editable}}disabled{{/unless}} />
               </label>
             {{/if}}
+            {{#if r.tracksUses}}
+              <label data-tooltip="{{localize 'GCC.UT.Power.UsesHint'}}">{{localize "GCC.UT.Power.UsesUsed"}}
+                <input type="number" data-gcc-ut-uses value="{{r.usesUsed}}" step="1" min="0" style="width:50px" {{#unless ../editable}}disabled{{/unless}} />
+              </label>
+            {{/if}}
           </td>
           <td>
             {{#if r.cosmic}}

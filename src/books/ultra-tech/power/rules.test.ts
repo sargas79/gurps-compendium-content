@@ -12,6 +12,7 @@ import {
   replacementSeconds,
   shotsMultiplier,
   substituteCells,
+  enduranceUses,
 } from "./rules.js";
 
 describe("power cells (Ultra-Tech pp. 18-19)", () => {
@@ -104,5 +105,13 @@ describe("exploding cells (Ultra-Tech pp. 19-20)", () => {
   it("makes a TL12 D cell a 5-lb. REF 4 charge", () => {
     // sqrt(5 x 4 x 4) = 8.9, so 53.4 dice.
     expect(explodingCell({ size: "D", tl: 12 })).toEqual({ dice: 53.4, ref: 4, weight: 5 });
+  });
+});
+
+describe("endurance in uses (#299)", () => {
+  it("reads uses where the table counts them (p. 194)", () => {
+    expect(enduranceUses("10 uses.")).toBe(10);
+    expect(enduranceUses("1 use")).toBe(1);
+    expect(enduranceUses("10 hr.")).toBeNull();
   });
 });

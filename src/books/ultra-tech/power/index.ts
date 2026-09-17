@@ -12,7 +12,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { cellOf, isPowered, powerData, registerPowerData, storePower, type PowerData } from "./data.js";
+import { cellOf, isPowered, powerData, registerPowerData, storePower, usesLeft, type PowerData } from "./data.js";
 import {
   CELL_SIZES,
   JURY_RIG,
@@ -60,6 +60,16 @@ function supplyText(data: PowerData): string {
 }
 
 /** What is left of a gadget's endurance, or null where it has none to track. */
+/** Spends a use of a gadget counted in uses; false when none are left. */
+export async function spendUse(item: any): Promise<boolean> {
+  const data = powerData(item);
+  const uses = usesLeft(data);
+  if (!uses || data.cosmic) return true;
+  if (uses.left <= 0) return false;
+  await storePower(item, { usesUsed: data.usesUsed + 1 });
+  return true;
+}
+
 export function enduranceLeft(data: PowerData): { total: number; left: number } | null | "unlimited" {
   const hours = enduranceHours(data.draw?.endurance);
   if (hours === null) return null;
@@ -83,7 +93,7 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 async function changeCells(item: any): Promise<void> {
   const data = powerData(item);
   const cell = cellOf(data);
-  await storePower(item, { hoursUsed: 0 });
+  await storePower(item, { hoursUsed: 0, usesUsed: 0 });
   const seconds = cell ? replacementSeconds(cell.size) : null;
   await say(item.actor, item.name, [seconds ? F("Changed", { supply: supplyText(data), seconds }) : F("ChangedNoTime", { supply: supplyText(data) })]);
 }
@@ -161,7 +171,11 @@ function gearContext(actor: any): Record<string, unknown> {
       const ranged = (actor.system?.derived?.ranged ?? []).filter((row: any) => row.itemId === item.id && row.shotsCapacity > 0);
       let charge = "";
       let fraction: number | null = null;
-      if (left === "unlimited" || data.cosmic) charge = L("Unlimited");
+      const uses = usesLeft(data);
+      if (uses && !data.cosmic) {
+        charge = F("UsesLeft", { left: uses.left, total: uses.total });
+        fraction = uses.total ? uses.left / uses.total : 0;
+      } else if (left === "unlimited" || data.cosmic) charge = L("Unlimited");
       else if (left) {
         const shown = hoursText(left.left);
         charge = F("Left", { value: shown.value, unit: L(`Unit.${shown.unit}`), endurance: data.draw?.endurance ?? "" });
@@ -175,7 +189,9 @@ function gearContext(actor: any): Record<string, unknown> {
         supply: supplyText(data),
         charge,
         percent: fraction === null ? null : Math.round(fraction * 100),
-        tracksHours: Boolean(left && left !== "unlimited"),
+        tracksHours: Boolean(left && left !== "unlimited") && !uses,
+        tracksUses: Boolean(uses) && !data.cosmic,
+        usesUsed: data.usesUsed,
         hoursUsed: Math.round(data.hoursUsed * 10) / 10,
         weapon,
         cosmic: data.cosmic,
@@ -190,6 +206,12 @@ function gearListeners(element: HTMLElement, actor: any): void {
     input.addEventListener("change", async () => {
       const item = itemOf(input);
       if (item) await storePower(item, { hoursUsed: Math.max(0, Number(input.value) || 0) });
+    });
+  });
+  element.querySelectorAll<HTMLInputElement>("[data-gcc-ut-uses]").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const item = itemOf(input);
+      if (item) await storePower(item, { usesUsed: Math.max(0, Math.floor(Number(input.value) || 0)) });
     });
   });
   element.querySelectorAll<HTMLButtonElement>("[data-gcc-ut-change]").forEach((button) => {

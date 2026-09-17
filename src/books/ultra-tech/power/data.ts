@@ -12,7 +12,7 @@
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { CELL_SIZES, isCellSize, type CellKind, type CellSize } from "./rules.js";
+import { CELL_SIZES, enduranceUses as enduranceUsesOf, isCellSize, type CellKind, type CellSize } from "./rules.js";
 
 /** What this module keeps on a powered item. */
 export interface PowerData extends Required<CellKind> {
@@ -30,6 +30,8 @@ export interface PowerData extends Required<CellKind> {
   tl: number;
   /** Hours of the endurance used since the cells were last changed. */
   hoursUsed: number;
+  /** Uses spent since the cells were last changed, for an endurance counted in uses. */
+  usesUsed: number;
   /** What another rule multiplies the endurance by: a compact computer's half (p. 23). */
   enduranceFactor: number;
 }
@@ -82,6 +84,7 @@ export function registerPowerData(): void {
       superscience: flag(),
       tl: count(),
       hoursUsed: amount(),
+      usesUsed: count(),
     }),
   });
 }
@@ -108,6 +111,7 @@ export function powerData(item: any): PowerData {
     superscience: Boolean(d.superscience),
     tl: Math.max(0, Math.floor(Number(d.tl) || 0)),
     hoursUsed: Math.max(0, Number(d.hoursUsed) || 0),
+    usesUsed: Math.max(0, Math.floor(Number(d.usesUsed) || 0)),
     enduranceFactor: factor.endurance,
   };
 }
@@ -131,4 +135,10 @@ export function cellOf(data: PowerData): { size: CellSize; cells: number } | nul
 /** Writes part of this module's power data. */
 export function storePower(item: any, patch: Partial<Record<keyof PowerData, unknown>>): Promise<unknown> {
   return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.power.${key}`, value])));
+}
+
+/** Uses left for a gadget whose endurance is counted in uses, or null. */
+export function usesLeft(data: PowerData): { total: number; left: number } | null {
+  const total = enduranceUsesOf(data.draw?.endurance);
+  return total === null ? null : { total, left: Math.max(0, total - data.usesUsed) };
 }

@@ -23,7 +23,7 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily } from "../beams/rules.js";
 import { powerData } from "../power/data.js";
-import { enduranceLeft } from "../power/index.js";
+import { enduranceLeft, spendUse } from "../power/index.js";
 import {
   LIFE_SUPPORT,
   NO_SCREEN_OPTIONS,
@@ -357,6 +357,8 @@ export function readyForceFields(api: GWorldApi, on: ForceSwitches): void {
       const tau = /^tau-shield$/i.test(String(item.name));
       const seconds = await askNumber(L("StasisTitle"), L("StasisSeconds"), tau ? 60 : STASIS.minimumSeconds, tau ? 1 : STASIS.minimumSeconds);
       if (seconds === null) return;
+      // Stasis gear runs on a cell good for so many uses (p. 194).
+      if (!tau && !(await spendUse(item))) return void say(actor, String(item.name), [L("NoUsesLeft")]);
       await api.actors.applyCondition(actor, { module: MODULE_ID, key: STASIS_KEY, label: L("StasisCondition"), duration: { seconds } });
       await say(actor, String(item.name), [F(tau ? "TauInfinity" : "StasisOn", { name: actor.name, seconds, minutes: TAU.infinityMinutes })]);
     },

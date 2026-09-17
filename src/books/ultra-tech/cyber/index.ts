@@ -41,6 +41,12 @@ import {
   skillChipPricePerPoint,
   usedPercent,
   type Operation,
+  BOMB_CALIBRES,
+  CYBER_TRAP,
+  IMPLANT_SEED,
+  bombImplantCost,
+  seedGrows,
+  seedHours,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Cyber.${key}`);
@@ -65,6 +71,8 @@ export function initCybernetics(): void {
       weaponWeight: count(),
       racialIq: count(),
       disadvantagePoints: count(),
+      seed: new f.BooleanField({ initial: false }),
+      bombCalibre: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...BOMB_CALIBRES] }),
     }),
   });
 }
@@ -107,6 +115,7 @@ function sizedCost(item: any): number | null {
   if (/weapon (arm )?mount$/i.test(name) && d.weaponWeight) return MOUNT_PRICE_PER_LB * d.weaponWeight;
   if (/^neural uplift$/i.test(name) && d.racialIq) return UPLIFT_PRICE_PER_IQ * d.racialIq;
   if (/^neurotherapy implant$/i.test(name) && d.disadvantagePoints) return DISADVANTAGE_PRICE.neurotherapy * d.disadvantagePoints;
+  if (/^bomb implant$/i.test(name) && d.bombCalibre) return bombImplantCost(d.bombCalibre, tlOf(item?.system?.tl) || 9);
   if (/^psych implant$/i.test(name) && d.disadvantagePoints) return DISADVANTAGE_PRICE.psych * d.disadvantagePoints;
   return null;
 }
@@ -138,6 +147,8 @@ function itemContext(item: any): Record<string, unknown> {
   }
   if (/^cognitive enhancement$/i.test(name)) lines.push(F("CognitiveCap", { points: cognitiveCap(tl), tl, price: COGNITIVE_PRICE_PER_POINT }));
   if (/^psych implant$/i.test(name)) lines.push(L("PsychLine"));
+  if (entry && d.seed === true) lines.push(F(seedGrows(entry) ? "SeedLine" : "SeedCantGrow", { hours: seedHours(Number(item?.system?.cost) || 0) }));
+  if (/^bomb implant$/i.test(name)) lines.push(F(d.bombCalibre && bombImplantCost(d.bombCalibre, tlOf(item?.system?.tl) || 9) === null ? "BombUnpriced" : "BombLine", { calibre: d.bombCalibre || "-" }));
   const equipment = item?.type === "equipment" && Boolean(entry);
   return {
     lines,
@@ -150,6 +161,8 @@ function itemContext(item: any): Record<string, unknown> {
     mount: equipment && /weapon (arm )?mount$/i.test(name),
     uplift: equipment && /^neural uplift$/i.test(name),
     disadvantage: equipment && /^(neurotherapy|psych) implant$/i.test(name),
+    bomb: equipment && /^bomb implant$/i.test(name),
+    calibres: ["", ...BOMB_CALIBRES].map((value) => ({ value, label: value ? `${value}mm` : L("BombNone"), selected: (d.bombCalibre ?? "") === value })),
   };
 }
 
@@ -161,6 +174,7 @@ function itemListeners(element: HTMLElement, item: any): void {
     input.addEventListener("change", async () => {
       const field = String(input.dataset.gccUtImplant);
       if (input instanceof HTMLInputElement && input.type === "number") return void item.update({ [`${path}.${field}`]: Math.max(0, Number(input.value) || 0) });
+      if (input instanceof HTMLInputElement && input.type === "checkbox") return void item.update({ [`${path}.${field}`]: input.checked });
       const patch: Record<string, unknown> = { [`${path}.${field}`]: input.value };
       if (field === "condition") patch[`${path}.usedPercent`] = 0;
       await item.update(patch);
@@ -182,7 +196,7 @@ function itemListeners(element: HTMLElement, item: any): void {
 
 // ── the surgery tool ─────────────────────────────────────────────────────────
 
-interface SurgeryAnswer { implant: string; operation: Operation; tl: number; robotic: boolean; skill: number; mechanic: boolean; count: number }
+interface SurgeryAnswer { implant: string; operation: Operation; tl: number; robotic: boolean; skill: number; mechanic: boolean; count: number; trapped: boolean; looking: boolean }
 
 async function askSurgery(api: GWorldApi, surgeon: any, patient: any): Promise<SurgeryAnswer | null> {
   const names = Object.keys(IMPLANTS).sort();
@@ -199,6 +213,8 @@ async function askSurgery(api: GWorldApi, surgeon: any, patient: any): Promise<S
     + row(L("Tool.Skill"), `<input type="number" name="skill" value="${surgery ?? 10}" step="1" style="width:70px">`)
     + row(L("Tool.Mechanic"), `<input type="checkbox" name="mechanic">`)
     + row(L("Tool.Robotic"), `<input type="checkbox" name="robotic" checked>`)
+    + row(L("Tool.Trapped"), `<input type="checkbox" name="trapped">`)
+    + row(L("Tool.Looking"), `<input type="checkbox" name="looking">`)
     + `</div>`;
   const answer = await (foundry.applications.api as any).DialogV2.prompt({
     window: { title: L("Tool.Title") },
@@ -217,6 +233,8 @@ async function askSurgery(api: GWorldApi, surgeon: any, patient: any): Promise<S
           robotic: (value("robotic") as HTMLInputElement)?.checked !== false,
           mechanic: (value("mechanic") as HTMLInputElement)?.checked === true,
           count: IMPLANTS[implant]?.count ?? 1,
+          trapped: (value("trapped") as HTMLInputElement)?.checked === true,
+          looking: (value("looking") as HTMLInputElement)?.checked === true,
         };
       },
     },
@@ -239,6 +257,16 @@ async function performSurgery(api: GWorldApi): Promise<void> {
   let recoverySeconds = 0;
   let installed = 0;
   const skill = answer.mechanic && terms.mechanicAllowed ? "Mechanic (Robotics)" : "Surgery";
+  // A cyber-trap on removal: Traps-4 to notice it (no penalty looking), a Traps roll to disarm it first (p. 208).
+  if (answer.trapped && answer.operation !== "install") {
+    const traps = (surgeon ?? patient) ? api.actors.skillLevel(surgeon ?? patient, "Traps") ?? (api.actors.attribute(surgeon ?? patient, "IQ") ?? 10) - 5 : 5;
+    const notice: any = await api.roll.success({ actor: surgeon ?? patient, base: traps, skill: "Traps", label: L("Tool.TrapNotice"), modifiers: [{ label: L(answer.looking ? "Tool.Looking" : "Tool.TrapUnlooked"), value: answer.looking ? CYBER_TRAP.looking : CYBER_TRAP.notice }] } as any);
+    if (!notice) return;
+    if (!notice.success) return void say(patient ?? surgeon, L("Tool.Title"), [L("Tool.TrapGoesOff")]);
+    const disarm: any = await api.roll.success({ actor: surgeon ?? patient, base: traps, skill: "Traps", label: L("Tool.TrapDisarm") } as any);
+    if (!disarm) return;
+    if (!disarm.success) return void say(patient ?? surgeon, L("Tool.Title"), [L("Tool.TrapGoesOff")]);
+  }
   for (let i = 0; i < answer.count; i++) {
     const result: any = await api.roll.success({
       actor: surgeon ?? patient,
@@ -306,8 +334,9 @@ export function readyCybernetics(api: GWorldApi, on: () => boolean): void {
       const d = fieldOf(item);
       const sized = sizedCost(item);
       const percent = d.condition && d.condition !== "new" && d.usedPercent > 0 ? d.usedPercent / 100 : 1;
-      if (sized === null && percent === 1) return null;
-      return { cost: Math.round((sized ?? price.cost) * percent * 100) / 100, label: L("Title") };
+      const seed = d.seed === true ? IMPLANT_SEED.costFactor : 1;
+      if (sized === null && percent === 1 && seed === 1) return null;
+      return { cost: Math.round((sized ?? price.cost) * percent * seed * 100) / 100, label: L("Title") };
     },
   });
 

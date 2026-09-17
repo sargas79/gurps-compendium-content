@@ -154,3 +154,11 @@ export function explodingCell(options: { size: CellSize; cells?: number; tl: num
   const multiple = explosionMultiple(weight, ref);
   return { dice: Math.round(6 * multiple * 10) / 10, ref, weight };
 }
+
+/** An endurance counted in uses, as stasis gear's "C/10 uses" (p. 194): the number of uses, or null. */
+export function enduranceUses(text: string | null | undefined): number | null {
+  const m = /^\s*([\d,]+)\s*uses?\.?\s*$/i.exec(String(text ?? ""));
+  if (!m) return null;
+  const uses = Number(m[1]!.replace(/,/g, ""));
+  return Number.isFinite(uses) && uses > 0 ? uses : null;
+}

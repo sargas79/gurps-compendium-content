@@ -28,9 +28,19 @@
       {{#if uplift}}
         <label>{{localize "GCC.UT.Cyber.RacialIq"}}<input type="number" data-gcc-ut-implant="racialIq" value="{{fields.racialIq}}" min="0" max="5" step="1" {{#unless editable}}disabled{{/unless}} /></label>
       {{/if}}
+      {{#if bomb}}
+        <label data-tooltip="{{localize 'GCC.UT.Cyber.BombHint'}}">{{localize "GCC.UT.Cyber.BombCalibre"}}
+          <select data-gcc-ut-implant="bombCalibre" {{#unless editable}}disabled{{/unless}}>
+            {{#each calibres as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
       {{#if disadvantage}}
         <label>{{localize "GCC.UT.Cyber.DisadvantagePoints"}}<input type="number" data-gcc-ut-implant="disadvantagePoints" value="{{fields.disadvantagePoints}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
       {{/if}}
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.UT.Cyber.SeedHint'}}"><input type="checkbox" data-gcc-ut-implant="seed" {{#if fields.seed}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.UT.Cyber.Seed"}}</label>
     </div>
   {{/if}}
 </div>
