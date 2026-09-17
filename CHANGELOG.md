@@ -1,5 +1,45 @@
 # Changelog
 
+## v0.14.0 — GURPS Ultra-Tech: the book's remaining rules
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
+against **gworld v1.24.0**, which this release requires (add-on API 1.64.0). On
+an older system the add-on registers no rules, and says so in the console.
+
+This release finishes #299 (the rules the Ultra-Tech switches still lacked) and
+#329 (the halves that waited on the system's API).
+
+- **From #299 (#318-#328):**
+  - **Records:** grav hammers, the riot shield, battlesuit EMA, tool kits, shelters and modifiers.
+  - **Comms and sensors:** radio range cuts, quantum channels, homing beacons, laser microphones, sensor tasks and targeting software.
+  - **Stealth and security:** exophase, stasis keys, forgery tools, gecko gear, bug sweeps and the sensory deprivation tank's hours.
+  - **Interfaces and media:** more of the neural interface and media rules.
+  - **Fabrication and vehicles:** nail guns, the morph axe, bonders, the sonic probe, crashwebs, cylinders and jetpack wash.
+  - **Computers, robots and swarms:** compact power, hardened computers, scanning robots, swarm chameleon systems and upload housing.
+  - **Beams and accessories:** following conditions, blinding shots, stabilized screens, the kill setting, the hotshot radius, sensor range and D-tags.
+  - **Melee and agents:** vibro cells, the added neurolash, gloves, rocket spears, timed traits, nerve disorders, torpine and hasty contact poison.
+  - **Medical:** device diagnosis, the regeneration ray as a pocket regenerator, analgine, memory-beta, critical repair and fast regeneration.
+  - **Armour, suits and force fields:** gills underwater, warsuit hardening, a reactor against infrared, cloaking and opaque screens, stabilized screens against matter transmission, stasis grids by area, and shields vanishing.
+  - **Cybernetics and power cells:** implant seeds, bomb implants as smart grenades, cyber-traps and endurance in uses.
+- **Through the system's new API (#330):**
+  - **Detection:** infrared cloaking and radar stealth penalize the observer's roll, and a masking odor gives -5 to detecting its wearer by smell.
+  - **Areas:** smoke, radiant prism and mask become clouds on the scene, and a warbler leaves Hearing penalties round it.
+  - **Ranged attacks:** FTL beams take half the speed/range penalty, and a velocity setting reads that penalty at the range the round reaches. Harnesses find their lines in any language.
+  - **Warheads:** strobe, warbler and psi-bomb effects fade by the yard, nuclear and antimatter blasts fall off with the distance, and linked lines carry radiation and surge. A psi-bomb's stun is -5 to recover from, and a terror psi-bomb is a Fright Check.
+  - **Weapons:**
+    - A force beam's kinetic stun row.
+    - The zap glove's kill as a lethal shock, with metallic armour at DR 1.
+    - Homing rounds aimed with Artillery (Guided Missile) before they attack at their own skill.
+  - **Armour and equipment:**
+    - Bioplas and living metal repair their DR.
+    - The force shield bracelets are Hardened with no composition.
+    - The mini-toolkit's -2.
+  - **Medicine:**
+    - Antirad halves the next dose.
+    - Life support makes mortal wound checks daily.
+    - A healing bionic limb or sense brings back what it replaced.
+- **Fixed:** a psi-bomb with its message chosen fired unchanged.
+
 ## v0.13.0 — GURPS Ultra-Tech: armour, powered suits, force fields, medicine and cybernetics
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
