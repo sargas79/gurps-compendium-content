@@ -152,3 +152,11 @@ describe("drugs in play (#299)", () => {
     expect(ANALGINE_EFFECTS).toEqual({ noShock: true, knockdown: 3 });
   });
 });
+
+describe("antirad and life support through the GWorld API 1.63.0 (#329)", () => {
+  it("halves a dose, and checks a mortal wound daily", async () => {
+    const { antiradDose, LIFE_SUPPORT_CHECK_MINUTES } = await import("./rules.js");
+    expect(antiradDose(150)).toBe(75);
+    expect(LIFE_SUPPORT_CHECK_MINUTES).toBe(24 * 60);
+  });
+});

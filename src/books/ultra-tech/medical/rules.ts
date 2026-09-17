@@ -247,3 +247,11 @@ export function fastRegenerationFp(fp: number, gained: number): number {
 
 /** Analgine masks pain like High Pain Threshold: no shock, +3 to knockdown (p. 205; Characters p. 59). */
 export const ANALGINE_EFFECTS = Object.freeze({ noShock: true, knockdown: 3 });
+
+/** Antirad: the next exposure's rads halved (p. 205). */
+export function antiradDose(rads: number): number {
+  return Math.max(0, rads) / 2;
+}
+
+/** Under trauma maintenance a mortal wound is checked once a day (p. 197). */
+export const LIFE_SUPPORT_CHECK_MINUTES = 1440;

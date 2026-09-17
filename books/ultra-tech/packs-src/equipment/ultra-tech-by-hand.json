@@ -7173,7 +7173,7 @@
       "db": 3,
       "dr": 100,
       "hp": null,
-      "composition": "iron",
+      "composition": "none",
       "listCost": 1500,
       "listWeight": 0.5,
       "skill": "Shield (Buckler)",
@@ -7189,7 +7189,8 @@
             }
           }
         }
-      }
+      },
+      "hardened": 1
     }
   },
   {
@@ -7210,7 +7211,7 @@
       "db": 3,
       "dr": 100,
       "hp": null,
-      "composition": "iron",
+      "composition": "none",
       "listCost": 3000,
       "listWeight": 0.5,
       "skill": "Shield (Buckler)",
@@ -7226,7 +7227,8 @@
             }
           }
         }
-      }
+      },
+      "hardened": 1
     }
   },
   {

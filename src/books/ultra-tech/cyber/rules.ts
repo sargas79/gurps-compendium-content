@@ -289,3 +289,21 @@ export function bombImplantCost(calibre: BombCalibre, tl: number): number | null
 
 /** A cyber-trap: Traps-4 to notice it before it goes off, no penalty looking for it; a Traps roll to disarm (p. 208). */
 export const CYBER_TRAP = Object.freeze({ notice: -4, looking: 0 });
+
+/** The disadvantage a replacement implant makes up for, suffered again while it heals in (Characters pp. 147, 149, 151, 142). */
+const REPLACES: ReadonlyArray<[RegExp, { name: string; points: number }]> = [
+  [/^bionic arm \(one\)/i, { name: "One Arm", points: -20 }],
+  [/^bionic arm \(two\)/i, { name: "No Manipulators", points: -50 }],
+  [/^bionic hand/i, { name: "One Hand", points: -15 }],
+  [/^bionic eye \(one\)/i, { name: "One Eye", points: -15 }],
+  [/^bionic eye \(two\)/i, { name: "Blindness", points: -50 }],
+  [/^bionic ears/i, { name: "Deafness", points: -20 }],
+  [/^bionic leg \(one\)/i, { name: "Lame (Missing Legs)", points: -20 }],
+  [/^bionic leg \(two\)/i, { name: "Lame (Legless)", points: -30 }],
+];
+
+/** What a character suffers again while an implant recovers: the limb or sense it replaces. */
+export function restoredWhileRecovering(implant: string): Array<{ name: string; points: number }> {
+  const found = REPLACES.find(([pattern]) => pattern.test(implant.trim()));
+  return found ? [{ ...found[1] }] : [];
+}

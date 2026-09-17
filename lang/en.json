@@ -3406,7 +3406,9 @@
         "ForceField": "Against this beam at {part} of its DR",
         "Disintegrated": "{name} is reduced to -10×HP or less: disintegrated (Ultra-Tech p. 130).",
         "Stabilized": "Reality-stabilized: {part} of its DR",
-        "NotStabilized": "Not reality-stabilized: no protection"
+        "NotStabilized": "Not reality-stabilized: no protection",
+        "KineticStun": "Kinetic stun",
+        "KineticStunHint": "The beam spread wide: double knockback and blunt trauma, but no wounding (Ultra-Tech p. 128)."
       },
       "Lasers": {
         "Title": "Laser",
@@ -3555,7 +3557,8 @@
           "Damage": "Hotshot (+1 per die)",
           "Resist": "Hotshot",
           "Radius": "Hotshot radius {radius} yards"
-        }
+        },
+        "FtlHalf": "FTL: half the speed/range penalty"
       },
       "Accessories": {
         "Title": "Firearm accessories",
@@ -3809,17 +3812,21 @@
           "strobeSeizure": "{name} has a seizure for {minutes} minute(s) (Ultra-Tech p. 157).",
           "warbler": "{name} is deafened and in moderate pain for {minutes} minute(s) (Ultra-Tech p. 157).",
           "warblerWorse": "{name} is deafened and in moderate pain for {minutes} minute(s), with lingering hearing loss that heals like a crippling injury (Ultra-Tech p. 157).",
-          "psi": "{name} is stunned, rolls at -5 to recover, and loses the last two seconds of memory (Ultra-Tech p. 158).",
+          "psi": "{name} is stunned, at -5 to recover, and loses the last two seconds of memory (Ultra-Tech p. 158).",
           "psiWorse": "{name} is unconscious for {minutes} minute(s), and loses the last two seconds of memory (Ultra-Tech p. 158).",
           "psiMessage": "{name} is stunned by the message (Ultra-Tech p. 159).",
           "psiMessageWorse": "{name} hears the message echo for {minutes} minute(s), as moderate pain (Ultra-Tech p. 159).",
-          "psiImmune": "{name} has no mind for a psi-bomb to reach: no effect (Ultra-Tech p. 158)."
+          "psiImmune": "{name} has no mind for a psi-bomb to reach: no effect (Ultra-Tech p. 158).",
+          "psiTerror": "{name} fails the Fright Check: {effect} (Ultra-Tech p. 159)."
         },
         "Proximity": {
           "Label": "Proximity detonation",
           "Note": "Proximity-fused: attack an area at +4; fragments only (Ultra-Tech p. 154; Campaigns p. 414)"
         },
-        "EmpDr": "DR at the warhead's (2)"
+        "EmpDr": "DR at the warhead's (2)",
+        "Fading": "Fading ({yards} yd from the centre)",
+        "PsiStun": "Psi-bomb stun",
+        "WarblerHearing": "Warbler: Hearing ({total} here)"
       },
       "Melee": {
         "Title": "Ultra-tech melee",
@@ -3929,7 +3936,9 @@
         "GloveWrecked": "Damage through the neuroglove (rolled {roll}): it's wrecked as a weapon.",
         "GloveSurvives": "Damage through the neuroglove (rolled {roll}): it still works.",
         "HoldTitle": "Hold in contact",
-        "HoldLine": "Held in contact (Concentrate): the victim can't roll to recover this second. {left} charge(s) left."
+        "HoldLine": "Held in contact (Concentrate): the victim can't roll to recover this second. {left} charge(s) left.",
+        "ZapKillTitle": "Zap glove: kill",
+        "ZapKillPick": "Target whoever the glove touches."
       },
       "Armor": {
         "Title": "Ultra-tech armour",
@@ -4075,7 +4084,10 @@
             "ema": "electromagnetic armour ×{times}",
             "adaptive": "beam-adaptive armour ×3",
             "warsuit": "Warsuit: Hardened 3 against shaped charges and plasma"
-          }
+          },
+          "SelfRepair": "Self-repair",
+          "SelfRepairHours": "Hours since it was damaged",
+          "SelfRepaired": "{name} repairs itself over {hours} hour(s): {lost} DR still to regain."
         }
       },
       "Agents": {
@@ -4275,7 +4287,15 @@
         "HasteTitle": "Apply in haste",
         "HasteLabel": "Applying the {name} in haste",
         "HasteDone": "Applied without an accident.",
-        "HasteAccident": "An accident: {name} gets a dose."
+        "HasteAccident": "An accident: {name} gets a dose.",
+        "Cloud": {
+          "Title": "Release the cloud",
+          "Radius": "Radius (yards)",
+          "Vision": "Smoke ({value} to see)",
+          "Sensors": "Smoke against infrared and hyperspectral",
+          "NoPlace": "No scene or place for the cloud: target a token or place a template.",
+          "Placed": "A {radius}-yard cloud, lasting {seconds} seconds."
+        }
       },
       "Guns": {
         "Title": "Guns, launchers and grenades",
@@ -4586,7 +4606,8 @@
         },
         "CriticalRepair": {
           "wounded": "The nano repairs {name}'s scarring: Wounded is gone."
-        }
+        },
+        "AntiradLine": "Antirad"
       },
       "Force": {
         "Title": "Force field",

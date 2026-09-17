@@ -30,6 +30,7 @@ import {
   isGatling,
   isOverheated,
   maxGravFocus,
+  ftlSpeedRange,
   type BeamOptions,
   type Heat,
 } from "./options.js";
@@ -203,6 +204,15 @@ export function readyBeamOptions(api: GWorldApi, switches: { options: () => bool
     if (!fired) return;
     const heat = afterFiring(heatOf(item), fired, heatLimit(rateOfFire(item)), now());
     foundry.utils.setProperty(changes, `flags.${MODULE_ID}.${HEAT_FLAG}`, heat);
+  });
+
+  // An FTL beam takes half the usual speed/range penalty (p. 133).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on() || !context?.ranged || !familyOf(context.item) || !beamOptionsOf(context.item).ftl) return;
+    const line = (context.modifiers ?? []).find((m: any) => m?.key === "speedRange");
+    if (!line || !(Number(line.value) < 0)) return;
+    const halved = ftlSpeedRange(Number(line.value));
+    context.modifiers.push({ label: L("FtlHalf"), value: halved - Number(line.value) });
   });
 
   // A hotshot: two shots, a point more damage per die (or a deeper resistance penalty), Malf. 14 -- 12 overheated (p. 133).

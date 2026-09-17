@@ -176,3 +176,6 @@ export function vortexBounce(bounces: number, range: number): { penalty: number;
 
 /** A spray can fills a one-yard radius with up to three doses; the cloud lasts 10 seconds indoors (p. 134). */
 export const SPRAY_CAN = Object.freeze({ doses: 3, radius: 1, indoorSeconds: 10 });
+
+/** The skill a homing projectile's firer aims with before it attacks at its own (p. 146). */
+export const HOMING_AIMING_SKILL = "Artillery (Guided Missile)";

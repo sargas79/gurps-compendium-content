@@ -88,3 +88,12 @@ describe("heat (Ultra-Tech p. 133)", () => {
     expect(hotshotResistPenalty(0)).toBe(0);
   });
 });
+
+describe("an FTL beam's speed/range penalty (#329)", () => {
+  it("is half the usual, rounded toward none", async () => {
+    const { ftlSpeedRange } = await import("./options.js");
+    expect(ftlSpeedRange(-7)).toBe(-3);
+    expect(ftlSpeedRange(-6)).toBe(-3);
+    expect(ftlSpeedRange(0)).toBe(0);
+  });
+});

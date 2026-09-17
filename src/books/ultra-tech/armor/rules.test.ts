@@ -233,3 +233,12 @@ describe("suits' own details (#299)", () => {
     expect(reactorSpoilsInfrared("Heavy Battlesuit")).toBe(false);
   });
 });
+
+describe("self-repairing armour (#329)", () => {
+  it("regains a point each period", async () => {
+    const { SELF_REPAIR, selfRepairPoints } = await import("./rules.js");
+    expect(selfRepairPoints(13, SELF_REPAIR.bioplasHoursPerHp)).toBe(2);
+    expect(selfRepairPoints(3, SELF_REPAIR.livingMetalHoursPerPoint)).toBe(3);
+    expect(selfRepairPoints(0, 1)).toBe(0);
+  });
+});

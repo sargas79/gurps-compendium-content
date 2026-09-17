@@ -314,6 +314,15 @@ function itemLines(item: any): string[] {
 }
 
 export function readyInterfaces(api: GWorldApi, on: () => boolean): void {
+  // A masking odor: -5 to detect its wearer by smell, or to track them by scent (p. 52).
+  Hooks.on(api.combat.hooks.detectionModifiers, (context: any) => {
+    if (!on() || !context?.subject) return;
+    const bySmell = context.sense === "tasteSmell" || /^tracking\b/i.test(String(context.skill ?? ""));
+    if (!bySmell) return;
+    const synth = [...(context.subject.items ?? [])].find((i: any) => i?.type === "equipment" && i.system?.carried !== false && SCENT_SYNTHESIZERS.test(String(i.name ?? "")));
+    if (synth) context.modifiers.push({ label: String(synth.name), value: SCENT_SYNTH.mask });
+  });
+
   // A HUD's +1 when reacting quickly matters (p. 24).
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;

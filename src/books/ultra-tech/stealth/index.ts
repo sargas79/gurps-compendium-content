@@ -478,6 +478,18 @@ export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boo
     if (!exophaseAllows(attackerPhased, targetPhased, isGravitic(String(context.item?.name ?? "")))) context.damage.basicDamage = 0;
   });
 
+  // Infrared cloaking and radar stealth: the penalty is on the roll to detect their wearer (pp. 99-100).
+  Hooks.on(api.combat.hooks.detectionModifiers, (context: any) => {
+    if (!on() || !context?.subject) return;
+    const tags = (context.tags ?? []) as string[];
+    const infrared = tags.includes("infrared") || (context.sense === "vision" && hidingState(context.subject).sense === "infrared");
+    const radar = tags.includes("radar") || tags.includes("imagingRadar");
+    for (const worn of wornSystems(context.subject)) {
+      if (infrared && worn.kind === "infraredCloaking") context.modifiers.push({ label: String(worn.item.name), value: signaturePenalty(worn.tl) });
+      if (radar && worn.kind === "radarStealth") context.modifiers.push({ label: String(worn.item.name), value: signaturePenalty(worn.tl) });
+    }
+  });
+
   // Attacks on a holobelt's wearer are at -1; a moving invisible target at -6 (pp. 98, 100).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     if (!on()) return;

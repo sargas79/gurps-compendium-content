@@ -163,3 +163,12 @@ describe("energy melee in play (#299)", () => {
     expect(ADDED_NEUROLASH).toEqual({ attribute: "HT", modifier: -5, armorDivisor: 2 });
   });
 });
+
+describe("stunners and metal (#329)", () => {
+  it("knows metallic armour by name", async () => {
+    const { isMetallicArmor } = await import("./rules.js");
+    expect(isMetallicArmor("Light Plate")).toBe(true);
+    expect(isMetallicArmor("Mail Shirt")).toBe(true);
+    expect(isMetallicArmor("Reflex Tactical Vest")).toBe(false);
+  });
+});

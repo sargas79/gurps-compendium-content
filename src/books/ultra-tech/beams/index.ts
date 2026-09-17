@@ -207,6 +207,22 @@ export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment
     void api.combat.setWeaponState(context.item, MODULE_ID, { kill });
   });
 
+  // A force beam's kinetic stun setting: knockback and blunt trauma, no wounding (p. 128).
+  api.combat.registerDerivedAttackMode({
+    module: MODULE_ID,
+    key: "ut-kinetic-stun",
+    label: L("KineticStun"),
+    kind: "ranged",
+    applies: (item: any) => on() && familyOf(item) === "forceBeam",
+    mode: (item: any, _actor: unknown, helpers: any) => {
+      const row = ((helpers.rows?.(item)?.ranged ?? []) as any[]).find((r) => !r.derivedMode);
+      if (!row) return null;
+      const rest: Record<string, any> = { ...row };
+      for (const key of ["itemId", "modeIndex", "name", "mode"]) delete rest[key];
+      return { ...rest, kineticOnly: true, notes: [...(rest.notes ?? []), { label: L("KineticStun"), hint: L("KineticStunHint") }] };
+    },
+  } as any);
+
   // DR at the row's divisor, and a target's SM against a microwave disruptor.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on() || !context?.tags?.includes?.("resist") || !context.attack) return;

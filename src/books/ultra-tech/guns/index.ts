@@ -42,6 +42,7 @@ import {
   homingRefusal,
   homingSense,
   homingSkill,
+  HOMING_AIMING_SKILL,
   isAirGun,
   isConventional,
   isElectromagnetic,
@@ -316,9 +317,25 @@ export function readyGuns(api: GWorldApi, on: GunSwitches): void {
       if (load?.kind) {
         row.guidance = "homing";
         if (typeof row.skillLevel === "number") row.skillLevel = homingSkill(load.kind, tl);
+        // "The firer rolls against Artillery (Guided Missile) to aim"; on a success the projectile attacks at its own skill (p. 146).
+        row.aimingSkill = HOMING_AIMING_SKILL;
+        row.guidedSkillLevel = homingSkill(load.kind, tl);
         row.notes.push({ label: F("HomingNote", { skill: homingSkill(load.kind, tl) }), hint: F("HomingHint", { sense: L(`Sense.${homingSense(load.kind, load.setting)}`) }) });
       }
     }
+  });
+
+  // Boosted or low velocity changes the range as well: the speed/range penalty is read at the range it reaches (pp. 139, 141).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.propellant() || !context?.ranged || !velocityCapable(context.item)) return;
+    const velocity = context.options?.[`${MODULE_ID}.${VELOCITY_OPTION}`];
+    if (velocity !== "boosted" && velocity !== "low") return;
+    const line = (context.modifiers ?? []).find((m: any) => m?.key === "speedRange");
+    const yards = yardsToTarget(context.actor);
+    if (!line || yards === null) return;
+    const factor = velocityEffect(velocity).rangeFactor;
+    const delta = api.rules.speedRangeModifier(yards / factor) - api.rules.speedRangeModifier(yards);
+    if (delta) context.modifiers.push({ label: L(`Velocity.${velocity}`), value: delta });
   });
 
   // Boosted or low velocity (pp. 139, 141).

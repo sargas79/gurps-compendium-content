@@ -129,3 +129,8 @@ export function hotshotResistPenalty(modifier: number): number {
   const base = Math.min(0, Math.floor(Number(modifier) || 0));
   return Math.round(base * 1.3) - base;
 }
+
+/** An FTL beam's speed/range penalty: half the usual, rounded toward none (p. 133). */
+export function ftlSpeedRange(penalty: number): number {
+  return penalty < 0 ? -Math.floor(-penalty / 2) : penalty;
+}

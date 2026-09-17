@@ -13,8 +13,9 @@
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamEnvironment } from "../beams/index.js";
-import { WARHEADS, WARHEAD_KINDS, type WarheadKind } from "./catalogue.js";
-import { loadable, refusal, warheadRow, type Launcher, type WarheadRow } from "./rules.js";
+import { WARHEADS, WARHEAD_KINDS, sizeClass, type WarheadKind } from "./catalogue.js";
+import { placeArea } from "../areas.js";
+import { PSI_STUN_RECOVERY, WARBLER_SECONDS, warblerRings, blastDivisorPerYard, fadingBonus, loadable, refusal, warheadRow, type Launcher, type WarheadRow } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Warheads.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Warheads.${key}`, data);
@@ -22,6 +23,7 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "utLoads";
 const PROXIMITY_OPTION = "ut-proximity";
+const PSI_STUN_FLAG = "utPsiStun";
 
 /** A mode's load. */
 export interface WarheadLoad {
@@ -173,7 +175,7 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
       const before: WarheadRow = {
         damage: String(row.damage ?? ""), damageType: String(row.damageType ?? ""), armorDivisor: Number(row.armorDivisor) || 1,
         halfDamageRange: Number(row.halfDamageRange) || 0, maxRange: Number(row.maxRange) || 0, projectiles: Number(row.projectiles) || 1, skillBonus: 0,
-        explosive: row.explosive === true, incendiary: row.incendiary === true, doubleKnockback: row.doubleKnockback === true, radiation: row.radiation === true,
+        explosive: row.explosive === true, incendiary: row.incendiary === true, doubleKnockback: row.doubleKnockback === true, radiation: row.radiation === true, surge: row.surge === true,
         fragmentation: String(row.fragmentation ?? ""), affliction: row.affliction === true, afflictionAttribute: String(row.afflictionAttribute ?? ""),
         afflictionModifier: Number(row.afflictionModifier) || 0, followUp: row.followUp ?? null, notes: [],
       };
@@ -181,7 +183,7 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
       Object.assign(row, {
         damage: after.damage, damageType: after.damageType, armorDivisor: after.armorDivisor,
         halfDamageRange: after.halfDamageRange, maxRange: after.maxRange, projectiles: after.projectiles,
-        explosive: after.explosive, incendiary: after.incendiary, doubleKnockback: after.doubleKnockback, radiation: after.radiation,
+        explosive: after.explosive, incendiary: after.incendiary, doubleKnockback: after.doubleKnockback, radiation: after.radiation, surge: after.surge === true,
         fragmentation: after.fragmentation, affliction: after.affliction, afflictionAttribute: after.afflictionAttribute,
         afflictionModifier: after.afflictionModifier, followUp: after.followUp ? { ...after.followUp, label: L(`Kind.${after.followUp.label}`) } : null,
       });
@@ -232,12 +234,17 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
           lines.push(F("Effect.psiImmune", { name }));
           break;
         }
-        if (load.variant === "message") {
+        if (load.variant === "terror") {
+          // Resisted with a Fright Check: the table's result is the effect (p. 159).
+          if (context.frightEffect) lines.push(F("Effect.psiTerror", { name, effect: String(context.frightEffect) }));
+        } else if (load.variant === "message") {
           context.effects.push({ key: "stunned" });
           if (margin >= 5) context.effects.push({ key: "moderatePain", duration: { seconds: margin * 60 } });
           lines.push(F(margin >= 5 ? "Effect.psiMessageWorse" : "Effect.psiMessage", { name, minutes: margin }));
         } else {
           context.effects.push({ key: margin >= 5 ? "unconscious" : "stunned", ...(margin >= 5 ? { duration: { seconds: margin * 60 } } : {}) });
+          // -5 to recover from this stun, until they do (p. 158).
+          if (margin < 5 && actor?.isOwner) void actor.setFlag(MODULE_ID, PSI_STUN_FLAG, true);
           lines.push(F(margin >= 5 ? "Effect.psiWorse" : "Effect.psi", { name, minutes: margin }));
         }
         break;
@@ -256,9 +263,45 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
       if (bonus) context.modifiers.push({ label: L("EmpDr"), value: bonus });
       return;
     }
+    // Strobe, warbler and psi-bomb effects fade: +1 to resist a yard from the centre (pp. 157-159).
+    const fade = fadingBonus(String(load?.kind ?? ""), context.attack.distance);
+    if (fade) context.modifiers.push({ label: F("Fading", { yards: fade }), value: fade });
     if (load?.kind !== "psiBomb") return;
     const shield = traitNames(context.actor).map((n) => /^mind shield\b\D*(\d+)?/i.exec(n)).find(Boolean);
     if (shield) context.modifiers.push({ label: L("MindShield"), value: Math.max(1, Number(shield[1]) || 1) });
+  });
+
+  // A warbler: -10 to Hearing in its radius, -5 within twice it, -2 within five times, for 10 seconds (p. 157).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on() || !context?.ranged || !isRanged(context.item) || context.mode?.derived) return;
+    const index = Number(context.mode?.index) || 0;
+    const load = loadFor(context.item, index);
+    if (load?.kind !== "warbler") return;
+    const size = sizeClass(launcherOf(api, context.item, index).calibreMm);
+    const radius = Number(size === null ? 0 : WARHEADS.warbler.table?.[String(size)]?.spec) || 0;
+    for (const ring of warblerRings(radius)) {
+      void placeArea(api, { key: "warbler", label: L("Kind.warbler"), actor: context.actor, radiusYards: ring.radius, seconds: WARBLER_SECONDS, lines: [{ label: F("WarblerHearing", { total: ring.total }), value: ring.value, rolls: ["hearing"], applies: "inside" }] });
+    }
+  });
+
+  // A psi-bomb's stun is at -5 to recover from (p. 158); the mark goes when the stun does.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on() || !context?.tags?.includes?.("stunRecovery") || !context.actor?.getFlag?.(MODULE_ID, PSI_STUN_FLAG)) return;
+    context.modifiers.push({ label: L("PsiStun"), value: PSI_STUN_RECOVERY });
+  });
+  Hooks.on("updateActor", (actor: any, changes: any, _options: unknown, userId: string) => {
+    if (userId !== game.user?.id || changes?.system?.conditions?.stunned !== false) return;
+    if (actor?.getFlag?.(MODULE_ID, PSI_STUN_FLAG)) void actor.unsetFlag(MODULE_ID, PSI_STUN_FLAG);
+  });
+
+  // Nuclear and antimatter blasts fall off with the distance, not three times it (p. 156).
+  Hooks.on(api.combat.hooks.explosionFalloff, (context: any) => {
+    if (!on() || !context?.itemUuid) return;
+    const item: any = fromUuidSync(String(context.itemUuid));
+    if (!isRanged(item)) return;
+    const load = loadFor(item, Number(context.flag?.mode?.index) || 0);
+    const perYard = blastDivisorPerYard(String(load?.kind ?? ""));
+    if (perYard !== null) context.divisorPerYard = perYard;
   });
 
   // Proximity detonation: Attacking an Area at +4, fragments only (pp. 153-154; Campaigns p. 414).
