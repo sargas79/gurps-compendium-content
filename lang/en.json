@@ -4568,7 +4568,19 @@
         "TorpineWakes": "{name} wakes fully healed, famished, at 1 FP.",
         "HyperstimOff": "Hyperstim wears off",
         "RespirocytesSpent": "Respirocytes used up",
-        "RespirocytesGone": "{name}'s respirocytes are spent."
+        "RespirocytesGone": "{name}'s respirocytes are spent.",
+        "DiagnoseTitle": "Diagnose",
+        "DiagnoseLabel": "{name} diagnosing {patient} (Diagnosis-{skill})",
+        "Stumped": "The {name} is stumped: it sustains the patient and calls for help.",
+        "MemoryBetaLabel": "{name} focusing on a memory",
+        "MemoryBeta": {
+          "recalls": "{name} recalls it clearly.",
+          "lost": "{name} gets lost in their memories, reliving pieces of their life.",
+          "captured": "{name} is captured by an especially strong memory; it may trigger buried phobias or trauma."
+        },
+        "CriticalRepair": {
+          "wounded": "The nano repairs {name}'s scarring: Wounded is gone."
+        }
       },
       "Force": {
         "Title": "Force field",
