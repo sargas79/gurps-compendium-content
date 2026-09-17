@@ -17,6 +17,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { reactorSpoilsInfrared } from "../armor/rules.js";
 import {
   AUTOGRAPNEL,
   CAMOUFLAGE_TERRAIN,
@@ -136,6 +137,14 @@ function systemOf(item: any): { kind: string; form: StealthForm; namedForm: Stea
 
 /** The stealth systems a character has on: equipped, or carried for the belts and chips. */
 function wornSystems(actor: any): Array<{ item: any; kind: string; form: StealthForm; tl: number }> {
+  // A cloaking force screen is a TL12 invisibility surface while it's on (p. 192).
+  const screens = [...(actor?.items ?? [])]
+    .filter((item: any) => item?.type === "armor" && item.system?.equipped === true && item.system?.extensions?.[MODULE_ID]?.utField?.cloaking === true)
+    .map((item: any) => ({ item, kind: "invisibility", form: "surface" as StealthForm, tl: 12 }));
+  return [...screens, ...wornSystemItems(actor)];
+}
+
+function wornSystemItems(actor: any): Array<{ item: any; kind: string; form: StealthForm; tl: number }> {
   return [...(actor?.items ?? [])]
     .filter((item: any) => isGear(item) && (item.system?.equipped === true || (item.system?.carried !== false && /belt|chip/i.test(String(item.name)))))
     .map((item: any) => ({ item, system: systemOf(item) }))
@@ -157,6 +166,9 @@ function hidingState(actor: any): HidingState {
 function stealthBonus(actor: any, state: HidingState): { value: number; label: string } | null {
   // A nuclear jetpack in use makes the wearer a beacon on infrared: stealth systems don't work (p. 231).
   if ([...(actor?.items ?? [])].some((item: any) => isGear(item) && item.system?.equipped === true && /^Nuclear Jetpack$/i.test(String(item.name)))) return null;
+  // A dreadnought battlesuit's reactor spoils any chameleon system against infrared and hyperspectral vision (p. 185).
+  const reactor = [...(actor?.items ?? [])].some((item: any) => isGear(item) && item.system?.equipped === true && reactorSpoilsInfrared(String(item.name)));
+  if (reactor && state.sense !== "vision" && state.sense !== "ultraviolet") return null;
   let best: { value: number; label: string } | null = null;
   for (const worn of wornSystems(actor)) {
     let value = 0;

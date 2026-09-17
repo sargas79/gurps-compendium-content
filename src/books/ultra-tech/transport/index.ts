@@ -199,6 +199,9 @@ async function mtTool(api: GWorldApi): Promise<void> {
   if (answer.kind === "interstellar") return void say(selected, L("Mt.interstellar"), [F("Mt.JumpCost", { radius: answer.radius, cost: interstellarJumpCost(answer.radius).toLocaleString() })]);
   const skill = "Electronics Operation (Matter Transmitters)";
   const level = api.actors.skillLevel(selected, skill) ?? api.actors.skillLevel(selected, "Electronics Operation (Matter Transmission)") ?? (api.actors.attribute(selected, "IQ") ?? 10) - 5;
+  // A reality-stabilized force screen blocks matter transmission (p. 192).
+  const stabilized = [selected, ...targets].find((a: any) => [...(a?.items ?? [])].some((i: any) => i?.type === "armor" && i.system?.equipped === true && i.system?.extensions?.[MODULE_ID]?.utField?.realityStabilized === true));
+  if (stabilized && (answer.kind === "projector" || answer.kind === "interceptor")) return void say(selected, L(`Mt.${answer.kind}`), [F("Mt.Stabilized", { name: stabilized.name })]);
   if (answer.kind === "projector") {
     const modifier = projectorModifier(answer.miles, answer.coop);
     if (modifier === null) return void say(selected, L("Mt.projector"), [L("Mt.OutOfRange")]);

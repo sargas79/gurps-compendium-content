@@ -18,6 +18,7 @@ import {
   tauRatio,
   throughStasis,
   stasisCollapseRange,
+  stasisGridPrice,
 } from "./rules.js";
 
 const options = (patch = {}) => ({ ...NO_SCREEN_OPTIONS, ...patch });
@@ -107,5 +108,11 @@ describe("stasis keys (#299, p. 96)", () => {
     expect(stasisCollapseRange("Stasis Key")).toBe(1);
     expect(stasisCollapseRange("Stasis Disruptor")).toBe(10);
     expect(stasisCollapseRange("Stasis Belt")).toBeNull();
+  });
+});
+
+describe("stasis grids by area (#299, p. 193)", () => {
+  it("prices a coffin-sized grid at $144,000 and 14 lbs.", () => {
+    expect(stasisGridPrice(72)).toEqual({ cost: 144000, weight: 14.4 });
   });
 });
