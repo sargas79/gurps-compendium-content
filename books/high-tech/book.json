@@ -1,0 +1,319 @@
+{
+  "slug": "high-tech",
+  "title": "GURPS High-Tech",
+  "label": "GURPS High-Tech",
+  "prefix": "HT",
+  "reference": "High-Tech",
+  "gdf": "GURPS High-Tech 4e.gdf",
+  "modifiers": {
+    "from": 9,
+    "to": 201
+  },
+  "transcription": {
+    "pdfOffset": 1,
+    "pageLabel": "HT"
+  },
+  "notes": "GCA cites this book as HT120, the plain prefix, and no record also cites a Basic Set page, so overlap.txt is empty. PDF page = book page + 1. The data file (Eric B. Smith, October 2023, marked incomplete) holds the gun perks and techniques of the appendix, armour and weapons only: no general gear, accessories, explosives, mines, melee weapons, covert-ops or medical gear, drugs or vehicles, which are captured from the PDF (#347) or kept by hand (#346). Its [MODIFIERS] are equipment options, weapon quality and ammunition, every one a calculated field or a load rather than a modifier item (#357, #364, #374), so none is written. Fragmentation before the damage type, follow-up and linked modes shared by sibling modes, rate-of-fire marks and placeholder modes parse since sargas79/GWorldVTT#591, and a missile's minimum range since #592 (gworld 1.35.0); the dry runs against the pinned 1.25.0 and against GWorldVTT main are in TRIAGE.md. Four shields and three split-DR armours the parser rejects are kept by hand (#346). Folded-stock and bipod pairs stay modes until #372 decides on states. See TRIAGE.md.",
+  "exclude": [
+    {
+      "pack": "modifiers",
+      "pattern": "^Weapon Quality: ",
+      "reason": "fine and very fine (accurate or reliable) are a gun's quality, a calculated field that reprices the gun (p. 79), not a modifier item (#364)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Fragmentation Vest Trauma Plates \\(TL 7\\)$",
+      "reason": "the book prints trauma plates for the TL7 improved fragmentation vest only, not the TL7 fragmentation vest (p. 66); the file carries the plates twice"
+    }
+  ],
+  "patch": [
+    {
+      "pack": "equipment",
+      "pattern": "^Mills Number 36M MK II$",
+      "set": {
+        "name": "AMC MK II"
+      },
+      "reason": "the second row under the Mills bomb is the American MK II, not a Mills mark (pp. 191-192)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Mills Number 36M MK III$",
+      "set": {
+        "name": "AMC MK III"
+      },
+      "reason": "the third row under the Mills bomb is the American MK III concussion grenade, not a Mills mark (pp. 191-192)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^OTZ LPO-50$",
+      "set": {
+        "name": "TOZ LPO-50"
+      },
+      "reason": "the maker is TOZ (table p. 179, description p. 180)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^\\{?Webley-Fosbery +Mk +I, \\.455 +Webley\\}?$",
+      "set": {
+        "name": "Webley-Fosbery Mk I, .455 Webley"
+      },
+      "reason": "the file's name has doubled spaces (p. 94)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Diehl DM51 \\(w/Frag Sleeve\\)$",
+      "set": {
+        "name": "Diehl DM51",
+        "system.rangedModes.0.name": "attack",
+        "system.rangedModes.0.bulk": -2
+      },
+      "reason": "the table's row is the grenade with its fragmentation sleeve, Bulk -2 (p. 192)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Diehl DM51 \\(w/o Frag Sleeve\\)$",
+      "set": {
+        "name": "Diehl DM51 (Without Sleeve)",
+        "system.rangedModes.0.name": "attack",
+        "system.rangedModes.0.bulk": -2
+      },
+      "reason": "the same grenade with the sleeve taken off, a concussion grenade (p. 192 note 6, p. 193)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^M452 Stingball$",
+      "set": {
+        "system.rangedModes.0.bulk": -1,
+        "system.rangedModes.0.linked": {
+          "damage": "HT-5",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "affliction": true,
+          "afflictionAttribute": "HT",
+          "afflictionModifier": -5,
+          "label": "Linked"
+        }
+      },
+      "reason": "Bulk -1, and the linked HT-5 stun the table prints under the blast, which the file leaves out (p. 192)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Grenade à Main|\\{?Collier, \\.50 Flintlock\\}?)$",
+      "set": {
+        "system.rangedModes.0.malfunction": 14
+      },
+      "reason": "Malf. 14, from the record's own note (\"Unreliable\", or the grenade's fuse); the file has no Malf. field (p. B407)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Charleville Mle 1777, 17\\.5mm Flintlock\\}?|\\{?Gatling M1874, \\.45-70\\}?)$",
+      "set": {
+        "system.rangedModes.0.malfunction": 15
+      },
+      "reason": "Malf. 15, from the record's own note (\"Unreliable\", or the grenade's fuse); the file has no Malf. field (p. B407)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Wogdon Dueller, \\.45 Flintlock\\}?|\\{?Tower Sea Service P/1796, \\.56 Flintlock\\}?|\\{?MAS Pistolet AN IX, 17\\.1mm Flintlock\\}?|\\{?Rigby Traveling Pistol, \\.75 Flintlock\\}?|\\{?Elgin Cutlass Pistol, \\.54 Caplock\\}?|\\{?Deringer, \\.44 Caplock\\}?|\\{?Allen Pepperbox, \\.31 Caplock\\}?|\\{?Colt Number 5, \\.36 Caplock\\}?|\\{?Colt M1848 Dragoon, \\.44 Caplock\\}?|\\{?Colt M1851 Navy, \\.36 Caplock\\}?|\\{?Beaumont-Adams Mk I, \\.442 Caplock\\}?|\\{?Girard LeMat, \\.42 Caplock\\}?|\\{?Remington New Model Army, \\.44 Caplock\\}?|\\{?Webley-Fosbery +Mk +I, \\.455 +Webley\\}?|\\{?MBA Gyrojet Mk I, 13x36mm\\}?|\\{?Luger P08, 9x19mm\\}?|\\{?Intratec TEC-9, 9x19mm\\}?|\\{?Lorcin L-25, \\.25 ACP\\}?|\\{?Tower Blunderbuss, 11G Flintlock\\}?|\\{?Manton Double, 16G Flintlock\\}?|\\{?Colt Model 1855, 20G Caplock\\}?|\\{?Brown Bess, \\.75 Flintlock\\}?|\\{?North West Gun, \\.50 Flintlock\\}?|\\{?Kentucky Rifle, \\.45 Flintlock\\}?|\\{?Baker Rifle, \\.625 Flintlock\\}?|\\{?Hall M1819, \\.54 Flintlock\\}?|\\{?Dreyse M\\.1841, 15\\.43x54mm\\}?|\\{?Enfield P/1853, \\.577 Caplock\\}?|\\{?Volcanic, \\.38 Volcanic\\}?|\\{?Enfield L85A1, 5\\.56x45mm\\}?|\\{?Bergmann MP18/I, 9x19mm\\}?|\\{?ZiD PPSh-41, 7\\.62x25mm\\}?|\\{?Enfield Sten Mk II, 9x19mm\\}?|\\{?Hotchkiss 1-pdr, 37x94mmR\\}?|\\{?Nordenfelt Single-Barrel, \\.450 MH\\}?|\\{?Maxim Mk I, \\.450 MH\\}?|\\{?Electric Gatling M1893, \\.30-40\\}?|\\{?Colt Model 1895, 6x60mmR\\}?|\\{?HASAG Panzerfaust 30, 44mm\\}?|\\{?Hale 9-pr Mk I, 2\\.5''\\}?)$",
+      "set": {
+        "system.rangedModes.0.malfunction": 16
+      },
+      "reason": "Malf. 16, from the record's own note (\"Unreliable\", or the grenade's fuse); the file has no Malf. field (p. B407)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Euromissile MILAN, 103mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 30
+      },
+      "reason": "minimum range 30 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Hughes BGM-71A TOW, 127mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 70
+      },
+      "reason": "minimum range 70 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?McDonnell FGM-77A Dragon, 127mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 70,
+        "system.rangedModes.1.minRange": 70
+      },
+      "reason": "minimum range 70 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?RLM FGM-148A Javelin, 127mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 70,
+        "system.rangedModes.1.minRange": 70
+      },
+      "reason": "minimum range 70 yards (p. 152 note 1); 70 is direct attack, top attack is 165 and not a mode of its own"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?GD FIM-92A Stinger, 70mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 220
+      },
+      "reason": "minimum range 220 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Aérospatiale SS\\.11, 164mm\\}?|\\{?Kolomna 9M14M Malyutka-M, 125mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 550
+      },
+      "reason": "minimum range 550 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(\\{?Ford AIM-9L Sidewinder, 127mm\\}?)$",
+      "set": {
+        "system.rangedModes.0.minRange": 1100
+      },
+      "reason": "minimum range 1100 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Hard Hat|Motorcycle Helmet|Football Helmet|Hockey Helmet|Shoulder Pads)$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "burn",
+          "cor",
+          "cut",
+          "fat",
+          "imp",
+          "pi-",
+          "pi",
+          "pi+",
+          "pi++",
+          "tox"
+        ]
+      },
+      "reason": "the higher DR is against crushing only (helmets p. 70 note 2; shoulder pads p. 66 note 4)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Sharp-Protective Armor Sleeves|Sharp-Protective Armor Leggings|Sharp-Protective Gloves)$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "burn",
+          "cor",
+          "cr",
+          "fat",
+          "pi-",
+          "pi",
+          "pi+",
+          "pi++",
+          "tox"
+        ]
+      },
+      "reason": "the higher DR is against impaling and cutting (p. 68 note 2, p. 69 note 2)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Advanced Body Armor$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "cr"
+        ]
+      },
+      "reason": "the lower DR is against crushing only (p. 66 note 5)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Fireproof Suit|Turnout Gear)$",
+      "set": {
+        "system.drSplitAppliesTo": [
+          "cor",
+          "cr",
+          "cut",
+          "fat",
+          "imp",
+          "pi-",
+          "pi",
+          "pi+",
+          "pi++",
+          "tox"
+        ]
+      },
+      "reason": "the higher DR is against burning only (p. 75 note 4)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Biohazard Suit|NBC Suit|Space Suit|Space Suit, EVA)$",
+      "set": {
+        "system.drSplit": 0,
+        "system.drSplitAppliesTo": [
+          "cr",
+          "cut",
+          "fat",
+          "imp",
+          "pi-",
+          "pi",
+          "pi+",
+          "pi++",
+          "tox"
+        ]
+      },
+      "reason": "the suit's DR is against burning and corrosion only (p. 75 note 2)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Boots, Jungle$",
+      "set": {
+        "system.dr": 2,
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.soleDr": 3
+      },
+      "reason": "the higher DR is the sole's, against an attack from beneath (p. 68 note 5)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Boots, Blast$",
+      "set": {
+        "system.dr": 2,
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.soleDr": 15
+      },
+      "reason": "the higher DR is the sole's, against an attack from beneath (p. 68 note 5)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Boots, Firefighter$",
+      "set": {
+        "system.dr": 3,
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.soleDr": 6
+      },
+      "reason": "the higher DR is the sole's and the steel toe box's (p. 68 notes 4 and 5); the toe box is not modelled"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hard-Hat Suit$",
+      "set": {
+        "system.dr": 2,
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull",
+              "face"
+            ],
+            "dr": 6
+          }
+        ]
+      },
+      "reason": "DR 6 for the head and 2 everywhere else, not a split by damage type (p. 74 note 1)"
+    }
+  ]
+}
