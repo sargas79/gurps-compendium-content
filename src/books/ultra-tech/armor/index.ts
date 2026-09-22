@@ -27,8 +27,8 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily, type BeamFamily } from "../beams/rules.js";
 import { beamEnvironment } from "../beams/index.js";
-import { powerData } from "../power/data.js";
-import { enduranceLeft } from "../power/index.js";
+import { powerData } from "../../../shared/power/data.js";
+import { enduranceLeft } from "../../../shared/power/index.js";
 import { loadsOf } from "../warheads/index.js";
 import {
   ABLATIVE_FOAM,

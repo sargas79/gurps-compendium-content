@@ -1,8 +1,8 @@
 /**
- * What powers a piece of gear (pp. 18-20), kept in this module's own fields on
- * the system's items.
+ * What powers a piece of gear, kept in this module's own fields on the
+ * system's items, whichever book's cell table prices it.
  *
- * The book's records arrive with the cell their table line gives -- its size,
+ * A book's records arrive with the cell their table line gives -- its size,
  * how many, whether it is worn as a pack, and the draw and endurance where the
  * line prints one -- written by the extraction step in `tools/lib/power-cells.mjs`.
  * This schema holds that shape as it is, so an imported record keeps it, and
@@ -10,14 +10,37 @@
  * and how much of its endurance has been used.
  */
 
-import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
-import { MODULE_ID } from "../../../shared/module.js";
-import { CELL_SIZES, enduranceUses as enduranceUsesOf, isCellSize, type CellKind, type CellSize } from "./rules.js";
+import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
+import { MODULE_ID } from "../module.js";
+import { enduranceUses as enduranceUsesOf, type CellFigures, type CellKind } from "./rules.js";
+
+/** One book's cell table. */
+export interface CellTable extends BookTable {
+  figures: CellFigures;
+  /** The full key of the book's switch for its cells. */
+  rule: string;
+  /** Where the book's text for the sheets sits: "GCC.UT" reads "GCC.UT.Power.Title". */
+  i18n: string;
+}
+
+/** Every book's cell table. */
+export const CELL_TABLES = new BookTables<CellTable>();
+
+/** The cell table whose rule applies to an item, where its book's switch is on. */
+export function cellTableOf(item: any, on: (key: string) => boolean = isRuleOn): CellTable | null {
+  return CELL_TABLES.forItem(item, (t) => on(t.rule));
+}
+
+/** Every size any book's table lists. */
+function allSizes(): string[] {
+  return [...new Set(CELL_TABLES.all.flatMap((t) => t.figures.sizes))];
+}
 
 /** What this module keeps on a powered item. */
 export interface PowerData extends Required<CellKind> {
   /** The cell the table gives, or null where it gives a pack's weight or nothing. */
-  cell: CellSize | null;
+  cell: string | null;
   cells: number;
   backpack: boolean;
   /** A power pack's weight in pounds, where the table prints one instead of a cell. */
@@ -25,18 +48,20 @@ export interface PowerData extends Required<CellKind> {
   emptyWeight: number;
   raw: string;
   /** The draw and endurance the table prints, where it prints one. */
-  draw: { cell: CellSize | null; cells: number; endurance: string; raw: string } | null;
+  draw: { cell: string | null; cells: number; endurance: string; raw: string } | null;
   /** The cells' own TL, where it isn't the gadget's; zero for the gadget's. */
   tl: number;
   /** Hours of the endurance used since the cells were last changed. */
   hoursUsed: number;
   /** Uses spent since the cells were last changed, for an endurance counted in uses. */
   usesUsed: number;
-  /** What another rule multiplies the endurance by: a compact computer's half (p. 23). */
+  /** What another rule multiplies the endurance by: a compact computer's half (Ultra-Tech p. 23). */
   enduranceFactor: number;
+  /** The figures of the book whose cells these are, or null where no book has registered a table. */
+  figures: CellFigures | null;
 }
 
-/** A rule that scales a gadget's cells and endurance, such as a compact computer's (p. 23). */
+/** A rule that scales a gadget's cells and endurance, such as a compact computer's (Ultra-Tech p. 23). */
 export type PowerAdjuster = (item: any) => { cells?: number; endurance?: number } | null;
 const adjusters: PowerAdjuster[] = [];
 
@@ -61,10 +86,15 @@ function adjustment(item: any): { cells: number; endurance: number } {
 /** A cell count scaled, never below one cell where there were any. */
 const scaled = (count: number, factor: number) => (count > 0 ? Math.max(1, Math.ceil(count * factor)) : 0);
 
-/** Adds the power fields to this module's data on equipment and armour. */
+let registered = false;
+
+/** Adds the power fields to this module's data on equipment and armour, once whichever books ask. */
 export function registerPowerData(): void {
+  if (registered) return;
+  registered = true;
   const f = foundry.data.fields as any;
-  const size = () => new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...CELL_SIZES] });
+  // Read when a value is checked, so a book that registers its table later still has its sizes allowed.
+  const size = () => new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: () => ["", ...allSizes()] });
   const count = () => new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 });
   const amount = () => new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
   const text = () => new f.StringField({ required: true, nullable: false, blank: true, initial: "" });
@@ -93,10 +123,12 @@ export function registerPowerData(): void {
 export function powerData(item: any): PowerData {
   const d = item?.system?.extensions?.[MODULE_ID]?.power ?? {};
   const draw = d.draw ?? {};
-  const drawCell = isCellSize(draw.cell) ? draw.cell : null;
+  const figures = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule))?.figures ?? null;
+  const isSize = (value: unknown): value is string => typeof value === "string" && Boolean(figures?.sizes.includes(value));
+  const drawCell = isSize(draw.cell) ? draw.cell : null;
   const factor = adjustment(item);
   return {
-    cell: isCellSize(d.cell) ? d.cell : null,
+    cell: isSize(d.cell) ? d.cell : null,
     cells: scaled(Math.max(0, Math.floor(Number(d.cells) || 0)), factor.cells),
     backpack: Boolean(d.backpack),
     packWeight: Math.max(0, Number(d.packWeight) || 0),
@@ -113,6 +145,7 @@ export function powerData(item: any): PowerData {
     hoursUsed: Math.max(0, Number(d.hoursUsed) || 0),
     usesUsed: Math.max(0, Math.floor(Number(d.usesUsed) || 0)),
     enduranceFactor: factor.endurance,
+    figures,
   };
 }
 
@@ -126,7 +159,7 @@ export function isPowered(data: PowerData): boolean {
 }
 
 /** The cell the item takes: the table's cell, or the draw's where only that says. */
-export function cellOf(data: PowerData): { size: CellSize; cells: number } | null {
+export function cellOf(data: PowerData): { size: string; cells: number } | null {
   if (data.cell) return { size: data.cell, cells: Math.max(1, data.cells) };
   if (data.draw?.cell) return { size: data.draw.cell, cells: Math.max(1, data.draw.cells) };
   return null;

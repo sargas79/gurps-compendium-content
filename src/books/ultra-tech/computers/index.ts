@@ -12,7 +12,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily } from "../beams/rules.js";
-import { registerPowerAdjuster } from "../power/data.js";
+import { registerPowerAdjuster } from "../../../shared/power/data.js";
 import { loadsOf } from "../warheads/index.js";
 import { DIFFICULTIES, computerData, isProgram, modelOf, registerComputerData, storeComputer, type ComputerData } from "./data.js";
 import {

@@ -24,11 +24,11 @@ import { initNeuralSonic, readyNeuralSonic } from "./beams/neural-sonic.js";
 import { initComputers, readyComputers } from "./computers/index.js";
 import { initFabrication, readyFabrication } from "./fabrication/index.js";
 import { initGuns, readyGuns } from "./guns/index.js";
-import { initGadgets, readyGadgets } from "./gadgets/index.js";
+import { initUltraTechGadgets, readyUltraTechGadgets } from "./gadgets/index.js";
 import { readyInterfaces } from "./interfaces/index.js";
 import { initMedical, readyMedical } from "./medical/index.js";
 import { initMelee, readyMelee } from "./melee/index.js";
-import { initPower, readyPower } from "./power/index.js";
+import { initUltraTechPower, readyUltraTechPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
 import { readySecurity } from "./security/index.js";
@@ -114,8 +114,9 @@ function registerRules(registry: RuleRegistry, group: string): void {
 }
 
 function init(): void {
-  initGadgets();
-  initPower();
+  // The gadget and cell rules are shared engines other books print too; this book registers its tables.
+  initUltraTechGadgets({ options: ruleKey("gadgetOptions"), sm: ruleKey("adjustingForSm"), legality: ruleKey("legalityAndAntiques") });
+  initUltraTechPower(ruleKey("powerCells"));
   initBeams();
   initLaserOptions();
   initNeuralSonic();
@@ -141,8 +142,8 @@ function init(): void {
 
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
-  readyGadgets(api, { options: rule("gadgetOptions"), sm: rule("adjustingForSm"), legality: rule("legalityAndAntiques") });
-  readyPower(api, rule("powerCells"));
+  readyUltraTechGadgets(api);
+  readyUltraTechPower(api);
   // Gravitic focus lengthens a beam before the air or water limits it, so the options go first.
   readyBeamOptions(api, { options: rule("beamOptions"), hotshots: rule("hotshots") });
   readyBeams(api, rule("beamWeapons"), beamIgnoresEnvironment(rule("beamOptions")));

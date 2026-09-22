@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import { BOOKS } from "./books/index.js";
+import { RESERVED_KEYS } from "./books/high-tech/index.js";
 import { readyBooks, registerBookRules, type BookRules } from "./shared/book.js";
 import { MODULE_ID } from "./shared/module.js";
 
@@ -26,6 +27,7 @@ describe("the books' rule groups", () => {
       { module: MODULE_ID, id: "magic", label: "GURPS Magic" },
       { module: MODULE_ID, id: "martial-arts", label: "GURPS Martial Arts" },
       { module: MODULE_ID, id: "ultra-tech", label: "GURPS Ultra-Tech" },
+      { module: MODULE_ID, id: "high-tech", label: "GURPS High-Tech" },
     ]);
     // Monster Hunters 1's switches, all in its own group and off by default.
     const keys = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "monster-hunters-1");
@@ -36,6 +38,20 @@ describe("the books' rule groups", () => {
     expect(magic.map((rule: any) => [rule.key, rule.default, rule.reference])).toEqual([["powerstones", false, "GURPS Magic pp. 20, 69-70"], ["spellAttacks", false, "GURPS Magic pp. 73-76, 187-198"]]);
     const martialArts = r.registerRule.mock.calls.map((c: any[]) => c[0]).filter((rule: any) => rule.group === "martial-arts");
     expect(martialArts.map((rule: any) => [rule.key, rule.default, rule.reference])).toEqual([["committedDefensiveAttack", false, "Martial Arts pp. 99-100"], ["allOutAttackOptions", false, "Martial Arts pp. 97-98"], ["moveAndAttack", false, "Martial Arts p. 107"], ["acrobatics", false, "Martial Arts pp. 98, 105-107"], ["postures", false, "Martial Arts pp. 98-99"], ["feints", false, "Martial Arts pp. 49, 100-101"], ["readying", false, "Martial Arts pp. 101-104"], ["meleeOptions", false, "Martial Arts pp. 109-113"], ["styles", false, "Martial Arts pp. 49, 141-148"], ["training", false, "Martial Arts pp. 147, 232-233"], ["weaponBuilding", false, "Martial Arts pp. 214, 216-218, 221"], ["finerHitLocations", false, "Martial Arts p. 137"], ["multipleAttacks", false, "Martial Arts pp. 126-128"], ["cinematicRapidStrike", false, "Martial Arts p. 127"], ["defenseOptions", false, "Martial Arts pp. 121-125"], ["limitedDefenses", false, "Martial Arts pp. 122-123"], ["targetedAttacks", false, "Martial Arts pp. 64, 68, 80"], ["extraEffort", false, "Martial Arts p. 131"], ["rangedOptions", false, "Martial Arts pp. 97, 119-121"], ["cinematicRangedOptions", false, "Martial Arts p. 120"], ["unfamiliarWeapons", false, "Martial Arts p. 212"], ["unorthodoxWeapons", false, "Martial Arts pp. 220, 224"], ["shovesAndShields", false, "Martial Arts pp. 112-113"], ["untrainedFighters", false, "Martial Arts p. 113"], ["harshRealism", false, "Martial Arts p. 124"], ["grapplingOptions", false, "Martial Arts pp. 114, 116-119, 121-122"], ["longWeaponsInClose", false, "Martial Arts p. 117"], ["grabAndSmash", false, "Martial Arts pp. 118-119"], ["bodiesInClose", false, "Martial Arts pp. 114-117"], ["partialInjuries", false, "Martial Arts p. 136"], ["extremeDismemberment", false, "Martial Arts p. 136"], ["severeBleeding", false, "Martial Arts p. 138"], ["lastingInjuries", false, "Martial Arts pp. 138-139"], ["whoDrawsFirst", false, "Martial Arts p. 103"], ["chargingFoes", false, "Martial Arts p. 106"], ["stopHits", false, "Martial Arts p. 108"], ["cascadingWaits", false, "Martial Arts p. 108"], ["matterOfInches", false, "Martial Arts p. 110"], ["chambara", false, "Martial Arts pp. 128-130"], ["contestOfWills", false, "Martial Arts p. 130"], ["concentration", false, "Martial Arts p. 130"], ["fear", false, "Martial Arts p. 130"], ["fakingIt", false, "Martial Arts p. 130"], ["unarmedEtiquette", false, "Martial Arts p. 132"], ["shakingItOff", false, "Martial Arts p. 132"], ["shoutItOut", false, "Martial Arts p. 132"], ["proxyFighting", false, "Martial Arts pp. 132-133"], ["bulletTime", false, "Martial Arts p. 133"], ["tournaments", false, "Martial Arts pp. 134-135"]]);
+  });
+
+  it("gives no two books' switches the same key, High-Tech's reserved ones included", () => {
+    const r = registry();
+    registerBookRules(BOOKS, r as never);
+    const rules = r.registerRule.mock.calls.map((c: any[]) => c[0] as { group: string; key: string });
+    const keys = rules.map((rule) => rule.key);
+    expect(new Set(keys).size).toBe(keys.length);
+    // High-Tech's switches take their own keys where Ultra-Tech's would clash (#343).
+    const others = rules.filter((rule) => rule.group !== "high-tech").map((rule) => rule.key);
+    for (const [own, clashing] of Object.entries(RESERVED_KEYS)) {
+      expect(others).not.toContain(own);
+      expect(others).toContain(clashing);
+    }
   });
 
   it("lets a book register its switches in its own group, and keeps going past one that fails", () => {

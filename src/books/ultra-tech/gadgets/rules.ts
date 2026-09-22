@@ -3,24 +3,15 @@
  * is assumed to have, what it costs a character of another size, and how old
  * age makes it legal (pp. 14-17).
  *
- * The options are fields that reprice the item, as the book prices them, and
- * never a second item attached to it.
+ * The rule is the shared gadget engine's (`src/shared/gadgets/`), which other
+ * books print too; this is Ultra-Tech's table for it, and the engine's
+ * functions with this book's figures.
  */
 
-/** How a gadget is disguised as something else (p. 15). */
-export type Disguise = "" | "massProduced" | "custom";
+import * as engine from "../../../shared/gadgets/rules.js";
+import type { Build, Disguise, GadgetFigures, GadgetOptions, Grade } from "../../../shared/gadgets/rules.js";
 
-/** A gadget built down to a price or up to a weight (p. 15). */
-export type Grade = "" | "cheap" | "expensive";
-
-/** What a gadget was built with. */
-export interface GadgetOptions {
-  disguise: Disguise;
-  /** Styling's multiplier on the price, 2 to 10; 0 or 1 for a gadget with none (p. 15). */
-  styling: number;
-  rugged: boolean;
-  grade: Grade;
-}
+export { NO_OPTIONS, type Build, type Disguise, type GadgetOptions, type Grade } from "../../../shared/gadgets/rules.js";
 
 /** "Double the cost for a mass-produced disguised item; multiply cost by 5 for a custom-built one" (p. 15). */
 export const DISGUISE_COST: Readonly<Record<Disguise, number>> = { "": 1, massProduced: 2, custom: 5 };
@@ -34,47 +25,6 @@ export const RUGGED = Object.freeze({ cost: 2, weight: 1.2, health: 2, dr: 2 });
 /** Cheap is half price at 1.5 times the weight, expensive twice the price at 2/3 (p. 15). */
 export const GRADE_COST: Readonly<Record<Grade, number>> = { "": 1, cheap: 0.5, expensive: 2 };
 export const GRADE_WEIGHT: Readonly<Record<Grade, number>> = { "": 1, cheap: 1.5, expensive: 2 / 3 };
-
-/** A gadget with nothing chosen. */
-export const NO_OPTIONS: GadgetOptions = Object.freeze({ disguise: "", styling: 0, rugged: false, grade: "" });
-
-/** Styling's multiplier, which is 1 until it is at least the least the book charges. */
-export function stylingCost(styling: number): number {
-  const asked = Number(styling) || 0;
-  if (asked < STYLING_RANGE.least) return 1;
-  return Math.min(STYLING_RANGE.most, asked);
-}
-
-/** What the options multiply the price by. */
-export function costFactor(options: GadgetOptions): number {
-  return (DISGUISE_COST[options.disguise] ?? 1) * stylingCost(options.styling) * (options.rugged ? RUGGED.cost : 1) * (GRADE_COST[options.grade] ?? 1);
-}
-
-/**
- * An option-built gadget's price and weight from its list figures.
- *
- * Cheap and expensive are weighed "excluding the weight of any power cells"
- * (p. 15), so the cells are set aside for that factor and put back; rugged's
- * 20% is on the gadget as it stands.
- */
-export function gadgetPrice(figures: {
-  listCost: number;
-  listWeight: number;
-  cellWeight?: number;
-  options: GadgetOptions;
-}): { cost: number; weight: number; costFactor: number } {
-  const listCost = Math.max(0, Number(figures.listCost) || 0);
-  const listWeight = Math.max(0, Number(figures.listWeight) || 0);
-  const cells = Math.min(listWeight, Math.max(0, Number(figures.cellWeight) || 0));
-  const factor = costFactor(figures.options);
-  const graded = (listWeight - cells) * (GRADE_WEIGHT[figures.options.grade] ?? 1) + cells;
-  const weight = graded * (figures.options.rugged ? RUGGED.weight : 1);
-  return {
-    cost: Math.round(listCost * factor * 100) / 100,
-    weight: Math.round(weight * 100) / 100,
-    costFactor: factor,
-  };
-}
 
 /**
  * What a gadget's weight, cost and power cells are multiplied by for a user of
@@ -102,73 +52,59 @@ export const SM_FACTORS: Readonly<Record<number, number>> = Object.freeze({
   10: 2000,
 });
 
-/** The factor for a Size Modifier, held at the ends of the table. */
-export function smFactor(sm: number): number {
-  const size = Math.round(Number(sm) || 0);
-  if (size <= -4) return SM_FACTORS[-4]!;
-  if (size >= 10) return SM_FACTORS[10]!;
-  return SM_FACTORS[size] ?? 1;
-}
-
-/** What a gadget is made of, which sets the DR the book assumes (p. 17). */
-export type Build = "plastic" | "weapon" | "solidMelee" | "own";
-
 /** "Most gadgets are made of plastic with DR 2. Weapons are normally DR 4, or DR 6 for solid metal melee weapons" (p. 17). */
 export const TYPICAL_DR: Readonly<Record<Exclude<Build, "own">, number>> = { plastic: 2, weapon: 4, solidMelee: 6 };
 
 /** "A gadget is assumed to have HT 10 unless otherwise noted. Rugged gadgets are HT 12" (p. 17). */
 export const ASSUMED_HEALTH = 10;
 
-export function gadgetHealth(options: { rugged?: boolean; own?: number | null }): number {
-  const base = typeof options.own === "number" && options.own > 0 ? options.own : ASSUMED_HEALTH;
-  return base + (options.rugged ? RUGGED.health : 0);
-}
-
-/**
- * The DR the book assumes for a gadget: the piece's own where it has one --
- * "Armor, suits, vehicles, etc. have their specified DR" -- and the typical
- * figure for what it is otherwise, doubled where the gadget is rugged (p. 17).
- */
-export function gadgetDr(options: { build: Build; rugged?: boolean; own?: number | null }): number {
-  const own = typeof options.own === "number" && options.own > 0 ? options.own : null;
-  const base = options.build === "own" ? (own ?? TYPICAL_DR.plastic) : (own ?? TYPICAL_DR[options.build]);
-  return base * (options.rugged ? RUGGED.dr : 1);
-}
-
 /** Below this much, "the GM may assume it's so simple that it will work indefinitely" (p. 14). */
 export const MAINTENANCE_THRESHOLDS: Readonly<Record<number, number>> = Object.freeze({ 9: 30, 10: 50, 11: 75, 12: 100 });
-
-/** The threshold at a campaign's TL, held at the ends of the book's list. */
-export function maintenanceThreshold(tl: number): number {
-  const level = Math.round(Number(tl) || 0);
-  if (level <= 9) return MAINTENANCE_THRESHOLDS[9]!;
-  if (level >= 12) return MAINTENANCE_THRESHOLDS[12]!;
-  return MAINTENANCE_THRESHOLDS[level]!;
-}
-
-/** Whether a gadget is worth keeping maintenance checks for at this TL (p. 14). */
-export function needsMaintenanceChecks(options: { cost: number; tl: number }): boolean {
-  return (Number(options.cost) || 0) >= maintenanceThreshold(options.tl);
-}
 
 /** How far an antique's Legality Class may rise: "to a maximum of 2 beyond its starting LC (up to LC4)" (p. 14). */
 export const MOST_ANTIQUE_STEPS = 2;
 export const HIGHEST_LC = 4;
 
+/** Ultra-Tech's figures, as the shared gadget engine takes them. */
+export const GADGETS: GadgetFigures = Object.freeze({
+  disguiseCost: DISGUISE_COST,
+  styling: STYLING_RANGE,
+  rugged: RUGGED,
+  gradeCost: GRADE_COST,
+  gradeWeight: GRADE_WEIGHT,
+  smFactors: SM_FACTORS,
+  typicalDr: TYPICAL_DR,
+  assumedHealth: ASSUMED_HEALTH,
+  maintenance: MAINTENANCE_THRESHOLDS,
+  antique: Object.freeze({ steps: MOST_ANTIQUE_STEPS, highestLc: HIGHEST_LC }),
+});
+
+/** Styling's multiplier, which is 1 until it is at least the least the book charges. */
+export const stylingCost = (styling: number): number => engine.stylingCost(GADGETS, styling);
+
+/** What the options multiply the price by. */
+export const costFactor = (options: GadgetOptions): number => engine.costFactor(GADGETS, options);
+
+/** An option-built gadget's price and weight from its list figures; cheap and expensive leave the cells out (p. 15). */
+export const gadgetPrice = (figures: Parameters<typeof engine.gadgetPrice>[1]) => engine.gadgetPrice(GADGETS, figures);
+
+/** The factor for a Size Modifier, held at the ends of the table (p. 16). */
+export const smFactor = (sm: number): number => engine.smFactor(GADGETS, sm);
+
+export const gadgetHealth = (options: { rugged?: boolean; own?: number | null }): number => engine.gadgetHealth(GADGETS, options);
+
+/** The DR the book assumes for a gadget (p. 17). */
+export const gadgetDr = (options: { build: Build; rugged?: boolean; own?: number | null }): number => engine.gadgetDr(GADGETS, options);
+
+/** The threshold at a campaign's TL, held at the ends of the book's list (p. 14). */
+export const maintenanceThreshold = (tl: number): number => engine.maintenanceThreshold(GADGETS, tl)!;
+
+/** Whether a gadget is worth keeping maintenance checks for at this TL (p. 14). */
+export const needsMaintenanceChecks = (options: { cost: number; tl: number }): boolean => engine.needsMaintenanceChecks(GADGETS, options);
+
 /**
  * An obsolete gadget's Legality Class (p. 14): "For every two full TLs by
  * which a device is obsolete, its LC can increase by 1, to a maximum of 2
- * beyond its starting LC (up to LC4)", counted from the TL of the gadget
- * itself rather than the TL it was introduced at.
+ * beyond its starting LC (up to LC4)".
  */
-export function antiqueLegality(options: { lc: number | null; tl: number | null; campaignTl: number | null }): { lc: number | null; steps: number } {
-  const lc = options.lc;
-  const tl = options.tl;
-  const campaign = options.campaignTl;
-  if (lc === null || tl === null || campaign === null || !Number.isFinite(tl) || !Number.isFinite(campaign)) return { lc, steps: 0 };
-  const obsolete = Math.floor(campaign) - Math.floor(tl);
-  if (obsolete < 2) return { lc, steps: 0 };
-  const steps = Math.min(MOST_ANTIQUE_STEPS, Math.floor(obsolete / 2));
-  const raised = Math.min(HIGHEST_LC, lc + steps);
-  return { lc: raised, steps: raised - lc };
-}
+export const antiqueLegality = (options: { lc: number | null; tl: number | null; campaignTl: number | null }) => engine.antiqueLegality(GADGETS, options);

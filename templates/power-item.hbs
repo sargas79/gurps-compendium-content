@@ -1,0 +1,34 @@
+{{!-- What powers the item, in the words of the book whose cell table applies
+     (`ns`; Ultra-Tech pp. 18-20, 133): the cell its table line gives, the kind
+     loaded, rigging it to smaller cells, and what the cells do if they explode. --}}
+<div class="isub" data-gcc-power-section>
+  <div class="isub-head">{{localize (concat ns ".Power.Title")}}</div>
+  <p class="ihint">{{supply}}{{#if endurance}} · {{endurance}}{{/if}}</p>
+
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize (concat ns ".Power.FlexibleHint")}}"><input type="checkbox" data-gcc-power="flexible" {{#if data.flexible}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Power.Flexible")}}</label>
+    <label class="icheck" data-tooltip="{{localize (concat ns ".Power.NonRechargeableHint")}}"><input type="checkbox" data-gcc-power="nonRechargeable" {{#if data.nonRechargeable}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Power.NonRechargeable")}}</label>
+    <label class="icheck" data-tooltip="{{localize (concat ns ".Power.CosmicHint")}}"><input type="checkbox" data-gcc-power="cosmic" {{#if data.cosmic}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Power.Cosmic")}}</label>
+    {{#if ranged}}
+      <label class="icheck" data-tooltip="{{localize (concat ns ".Power.SuperscienceHint")}}"><input type="checkbox" data-gcc-power="superscience" {{#if data.superscience}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Power.Superscience")}}</label>
+    {{/if}}
+  </div>
+  <div class="ifields">
+    <label data-tooltip="{{localize (concat ns ".Power.TlHint")}}">{{localize (concat ns ".Power.Tl")}}
+      <input type="number" data-gcc-power="tl" value="{{data.tl}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+    </label>
+  </div>
+
+  {{#if price}}<p class="ihint">{{price}}</p>{{/if}}
+  {{#if shots}}<p class="ihint">{{shots}}</p>{{/if}}
+  {{#if blast}}<p class="ihint" data-tooltip="{{localize (concat ns ".Power.BlastHint")}}">{{blast}}</p>{{/if}}
+
+  {{#if smaller.length}}
+    <div class="ifields" data-tooltip="{{localize (concat ns ".Power.RigHint")}}">
+      <span>{{localize (concat ns ".Power.Rig")}}</span>
+      {{#each smaller as |s|}}
+        <button type="button" class="ibtn tiny" data-gcc-power-rig="{{s.size}}" {{#unless ../editable}}disabled{{/unless}}>{{s.cells}} × {{s.size}}</button>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
