@@ -16,8 +16,8 @@
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { powerData } from "../power/data.js";
-import { enduranceLeft } from "../power/index.js";
+import { powerData } from "../../../shared/power/data.js";
+import { enduranceLeft } from "../../../shared/power/index.js";
 import {
   GRAVPACK,
   REFIT,

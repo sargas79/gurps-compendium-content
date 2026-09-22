@@ -22,8 +22,8 @@
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily } from "../beams/rules.js";
-import { powerData } from "../power/data.js";
-import { enduranceLeft, spendUse } from "../power/index.js";
+import { powerData } from "../../../shared/power/data.js";
+import { enduranceLeft, spendUse } from "../../../shared/power/index.js";
 import {
   LIFE_SUPPORT,
   NO_SCREEN_OPTIONS,

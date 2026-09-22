@@ -1,6 +1,16 @@
 import js from "@eslint/js";
 import tseslint from "typescript-eslint";
 
+/**
+ * What a shared engine importing a book's folder is told. Every build carries
+ * the shared engines whichever books it holds, and a GM may use one book that
+ * prints a rule without another that prints it too (#335, D1).
+ */
+const BOOK_SOURCE = {
+  group: ["**/books/**"],
+  message: "src/shared/ is every book's: a shared engine takes each book's table by registration, never by importing the book.",
+};
+
 /** What a runtime import of the GWorld system's source is told. */
 const SYSTEM_SOURCE = {
   group: ["**/system/src/**", "**/system/tools/**"],
@@ -39,6 +49,22 @@ export default tseslint.config(
     rules: {
       "no-restricted-imports": ["error", {
         patterns: [{ ...SYSTEM_SOURCE, group: ["**/system/src/system/**", "**/system/src/gworld*", "**/system/tools/**"] }],
+      }],
+    },
+  },
+  {
+    // Nothing shared imports from a book, tests included.
+    files: ["src/shared/**/*.ts"],
+    ignores: ["src/shared/**/*.test.ts"],
+    rules: {
+      "no-restricted-imports": ["error", { patterns: [SYSTEM_SOURCE, BOOK_SOURCE] }],
+    },
+  },
+  {
+    files: ["src/shared/**/*.test.ts"],
+    rules: {
+      "no-restricted-imports": ["error", {
+        patterns: [{ ...SYSTEM_SOURCE, group: ["**/system/src/system/**", "**/system/src/gworld*", "**/system/tools/**"] }, BOOK_SOURCE],
       }],
     },
   },

@@ -6,6 +6,7 @@
  * a table turns on the books it owns.
  */
 
+import { setRuleReader } from "./book-tables.js";
 import { registerExtensionFields } from "./extensions.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "./module.js";
 
@@ -37,6 +38,8 @@ export function registerBookRules(books: readonly BookRules[], registry: RuleReg
 
 /** Lets each book register what must exist before the world's data is read. */
 export function initBooks(books: readonly BookRules[], api: GWorldApi): void {
+  // The shared engines read each book's switch through here.
+  setRuleReader((key) => api.registry.isRuleOn(key));
   for (const book of books) {
     try {
       book.init?.(api);

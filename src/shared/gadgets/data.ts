@@ -1,51 +1,59 @@
 /**
- * Where GURPS Ultra-Tech keeps what it knows about a piece of gear
- * (pp. 15-17), under this module's own fields on the system's items.
+ * What the gadget engine keeps about a piece of gear, under this module's own
+ * fields on the system's items, whichever book's table prices it.
  *
  * The options are fields that reprice the item, never items of their own,
  * and the book's list figures stay the system's: what is kept here is what
  * the gadget was built with.
  */
 
-import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
-import { MODULE_ID } from "../../../shared/module.js";
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
+import { MODULE_ID } from "../module.js";
 import { NO_OPTIONS, type Build, type Disguise, type GadgetOptions, type Grade } from "./rules.js";
 
-/** The item types this book keeps data on. */
+/** The item types the engine keeps data on. */
 export const ITEM_TYPES = ITEM_EXTENSION_TYPES;
 
-/** The key this book's fields sit under, inside this module's own extension. */
+/**
+ * The key the fields sit under, inside this module's own extension. It is
+ * Ultra-Tech's name because that book's gadgets came first, and worlds hold
+ * data under it; every book's gadgets share it, since an item comes from one.
+ */
 const FIELD = "ultraTech";
 
 export const DISGUISES: readonly Disguise[] = ["", "massProduced", "custom"];
 export const GRADES: readonly Grade[] = ["", "cheap", "expensive"];
 export const BUILDS: readonly Build[] = ["plastic", "weapon", "solidMelee", "own"];
 
-/** What this book keeps on a gadget. */
-export interface UltraTechItem {
+/** What the engine keeps on a gadget. */
+export interface GadgetItem {
   options: GadgetOptions;
-  /** The weight of the power cells in the piece, which cheap and expensive leave out (p. 15). */
+  /** The weight of the power cells in the piece, which cheap and expensive leave out. */
   cellWeight: number;
-  /** The "adjust for SM" the tables print after a gadget's weight, cost and power (p. 16). */
+  /** The "adjust for SM" the tables print after a gadget's weight, cost and power. */
   adjustForSm: boolean;
-  /** What the gadget is made of, for the DR the book assumes (p. 17). */
+  /** What the gadget is made of, for the DR the book assumes. */
   build: Build;
-  /** The gadget's own HT, where the book states one; zero to assume HT 10 (p. 17). */
+  /** The gadget's own HT, where the book states one; zero to assume the book's. */
   health: number;
 }
 
-/** Adds this book's fields to the module's data on equipment and armour. */
-export function registerUltraTechData(): void {
+let registered = false;
+
+/** Adds the gadget fields to the module's data on equipment and armour, once whichever books ask. */
+export function registerGadgetData(): void {
+  if (registered) return;
+  registered = true;
   const f = foundry.data.fields as any;
   addExtensionFields("Item", ITEM_TYPES, {
     [FIELD]: new f.SchemaField({
-      /** Disguised as something else of similar shape (p. 15). */
+      /** Disguised as something else of similar shape. */
       disguise: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...DISGUISES] }),
-      /** Styling's multiplier on the price, 2 to 10; zero for a gadget with none (p. 15). */
+      /** Styling's multiplier on the price, 2 to 10; zero for a gadget with none. */
       styling: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 10 }),
-      /** Built to withstand abuse (p. 15). */
+      /** Built to withstand abuse. */
       rugged: new f.BooleanField({ initial: false }),
-      /** Built down to a price or up to a weight (p. 15). */
+      /** Built down to a price or up to a weight. */
       grade: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...GRADES] }),
       cellWeight: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
       adjustForSm: new f.BooleanField({ initial: false }),
@@ -55,8 +63,8 @@ export function registerUltraTechData(): void {
   });
 }
 
-/** This book's data on an item, with nothing missing. */
-export function ultraTechItem(item: any): UltraTechItem {
+/** The gadget data on an item, with nothing missing. */
+export function gadgetItem(item: any): GadgetItem {
   const data = item?.system?.extensions?.[MODULE_ID]?.[FIELD] ?? {};
   const disguise = DISGUISES.includes(data.disguise) ? (data.disguise as Disguise) : NO_OPTIONS.disguise;
   const grade = GRADES.includes(data.grade) ? (data.grade as Grade) : NO_OPTIONS.grade;
@@ -76,11 +84,11 @@ export function ultraTechItem(item: any): UltraTechItem {
 }
 
 /** Whether anything has been chosen on the item at all. */
-export function isBuilt(data: UltraTechItem): boolean {
+export function isBuilt(data: GadgetItem): boolean {
   return Boolean(data.options.disguise || data.options.styling >= 2 || data.options.rugged || data.options.grade || data.adjustForSm);
 }
 
-/** Writes part of this book's data on an item. */
-export function storeUltraTech(item: any, patch: Record<string, unknown>): Promise<unknown> {
+/** Writes part of the gadget data on an item. */
+export function storeGadget(item: any, patch: Record<string, unknown>): Promise<unknown> {
   return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.${FIELD}.${key}`, value])));
 }
