@@ -34,7 +34,11 @@
       </label>
       {{/if}}
       <label data-tooltip="{{localize (concat ns ".Gadget.CellWeightHint")}}">{{localize (concat ns ".Gadget.CellWeightLabel")}}
-        <input type="number" data-gcc-gadget="cellWeight" value="{{data.cellWeight}}" step="0.1" min="0" {{#unless editable}}disabled{{/unless}} />
+        {{#if listedCells}}
+          <input type="number" value="{{listedCells.weight}}" disabled />
+        {{else}}
+          <input type="number" data-gcc-gadget="cellWeight" value="{{data.cellWeight}}" step="0.1" min="0" {{#unless editable}}disabled{{/unless}} />
+        {{/if}}
       </label>
       <label data-tooltip="{{localize (concat ns ".Gadget.BuildHint")}}">{{localize (concat ns ".Gadget.BuildLabel")}}
         <select data-gcc-gadget="build" {{#unless editable}}disabled{{/unless}}>

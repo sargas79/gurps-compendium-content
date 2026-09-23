@@ -1,0 +1,37 @@
+{{!-- The generators and energy collectors the character carries (High-Tech
+     pp. 14-15): what each runs on, a tank's fuel left and a refill, cranking
+     a muscle-powered one, and a solar recharger. --}}
+<section class="card" data-gcc-generators>
+  <div class="card-head"><h3>{{localize "GCC.HT.Power.GeneratorsTitle"}}</h3></div>
+  <table class="gtable">
+    <thead>
+      <tr>
+        <th>{{localize "GCC.HT.Power.Item"}}</th>
+        <th>{{localize "GCC.HT.Power.RunsOn"}}</th>
+        <th>{{localize "GCC.HT.Power.Charge"}}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows as |r|}}
+        <tr data-item-id="{{r.id}}">
+          <td>{{r.name}}</td>
+          <td>{{r.does}}</td>
+          <td>
+            {{#if r.tank}}
+              {{r.left}}
+              <label data-tooltip="{{localize "GCC.HT.Power.RunHint"}}">{{localize "GCC.HT.Power.Run"}}
+                <input type="number" data-gcc-generator-run value="{{r.run}}" step="0.5" min="0" style="width:60px" {{#unless ../editable}}disabled{{/unless}} />
+              </label>
+            {{/if}}
+          </td>
+          <td>
+            {{#if r.tank}}<button type="button" class="ibtn tiny" data-gcc-generator-refuel {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Refuel"}}</button>{{/if}}
+            {{#if r.crank}}<button type="button" class="ibtn tiny" data-gcc-generator-crank {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Crank"}}</button>{{/if}}
+            {{#if r.recharger}}<button type="button" class="ibtn tiny" data-gcc-generator-solar {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Recharge"}}</button>{{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</section>

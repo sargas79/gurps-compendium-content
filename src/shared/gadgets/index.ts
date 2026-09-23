@@ -21,7 +21,7 @@
 
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
-import { registerPowerAdjuster } from "../power/data.js";
+import { listedCellWeight, registerPowerAdjuster } from "../power/data.js";
 import { BUILDS, DISGUISES, gadgetItem, isBuilt, registerGadgetData, storeGadget, type GadgetItem } from "./data.js";
 import {
   allowedOptions,
@@ -115,6 +115,18 @@ function itemTl(item: any): number | null {
   return match ? Number(match[0]) : null;
 }
 
+/**
+ * What the gadget's power cells weigh, which cheap and expensive leave out of
+ * their weight: the cells its record lists where the book says the cell
+ * engine knows them and its switch is on, else the gadget's own field. The
+ * list weight holds the listed cells, so cells swapped in are the cell
+ * engine's to weigh, as the difference, after this (High-Tech p. 10).
+ */
+export function gadgetCellWeight(item: any, data: GadgetItem, figures: GadgetFigures | null): number {
+  const listed = figures?.cellsFromPower ? listedCellWeight(item) : null;
+  return listed ?? data.cellWeight;
+}
+
 /** The options a gadget counts as built with under a table: what that book allows on this kind of gear. */
 function optionsUnder(table: GadgetTable, item: any, data: GadgetItem): GadgetItem {
   return { ...data, options: allowedOptions(table.figures, data.options, gearKinds(item)) };
@@ -134,7 +146,7 @@ export function gadgetPriceOf(item: any, data: GadgetItem, on: (key: string) => 
   if (!built && size === 1) return null;
   const list = listOf(item);
   const priced = built
-    ? gadgetPrice(tables.options!.figures, { listCost: list.cost, listWeight: list.weight, cellWeight: data.cellWeight, options: allowed.options })
+    ? gadgetPrice(tables.options!.figures, { listCost: list.cost, listWeight: list.weight, cellWeight: gadgetCellWeight(item, data, tables.options!.figures), options: allowed.options })
     : { cost: list.cost, weight: list.weight, costFactor: 1 };
   return {
     cost: Math.round(priced.cost * size * 100) / 100,
@@ -204,9 +216,12 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
   const threshold = campaign ? maintenanceThreshold(table.figures, campaign, wealthAt) : null;
   const tiers = figures.stylingTiers ?? null;
   const reaction = tiers ? stylingReaction(figures, data.options.styling) : 0;
+  // Where the cell engine weighs the record's batteries, the field shows its figure and can't be changed.
+  const listedCells = figures.cellsFromPower ? listedCellWeight(item) : null;
   return {
     ns,
     data,
+    listedCells: listedCells === null ? null : { weight: Math.round(listedCells * 100) / 100 },
     options: tables.options !== null,
     buildOptions: takesBuildOptions(figures, gearKinds(item)),
     sizeAdjusted: tables.sm !== null,

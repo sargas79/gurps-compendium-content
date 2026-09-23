@@ -73,6 +73,12 @@ export interface GadgetFigures {
   smFactors: Readonly<Record<number, number>>;
   /** Whether the Size Modifier also scales how many power cells the gadget takes. */
   smScalesCells?: boolean;
+  /**
+   * Whether the cells' weight cheap and expensive leave out comes from the
+   * cell engine, where it knows the record's cells, rather than the gadget's
+   * own field.
+   */
+  cellsFromPower?: boolean;
   /** The DR the book assumes by what the gadget is made of. */
   typicalDr: Readonly<Record<Exclude<Build, "own">, number>>;
   /** The HT a gadget is assumed to have where it states none. */

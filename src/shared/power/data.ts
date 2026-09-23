@@ -7,13 +7,15 @@
  * line prints one -- written by the extraction step in `tools/lib/power-cells.mjs`.
  * This schema holds that shape as it is, so an imported record keeps it, and
  * adds what the table leaves to the owner: the kind of cell loaded, its TL,
- * and how much of its endurance has been used.
+ * and how much of its endurance has been used; and, for a book that allows
+ * them, cells of another size swapped in, a power adapter or inverter, and
+ * whether the gadget is running on external power.
  */
 
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
 import { MODULE_ID } from "../module.js";
-import { enduranceUses as enduranceUsesOf, type CellFigures, type CellKind } from "./rules.js";
+import { cellsWeight, enduranceUses as enduranceUsesOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
 
 /** One book's cell table. */
 export interface CellTable extends BookTable {
@@ -59,6 +61,14 @@ export interface PowerData extends Required<CellKind> {
   enduranceFactor: number;
   /** The figures of the book whose cells these are, or null where no book has registered a table. */
   figures: CellFigures | null;
+  /** Cells of another size or number swapped in for the table's, where the book allows it; their weight scales the endurance. */
+  swap: { cell: string; cells: number } | null;
+  /** A power adapter, so a gadget built for cells can run on external power. */
+  adapter: boolean;
+  /** An inverter, so a gadget built for external power runs on cells. */
+  inverter: boolean;
+  /** Whether a gadget with an adapter or inverter is plugged into external power right now. */
+  external: boolean;
 }
 
 /** A rule that scales a gadget's cells and endurance, such as a compact computer's (Ultra-Tech p. 23). */
@@ -115,6 +125,12 @@ export function registerPowerData(): void {
       tl: count(),
       hoursUsed: amount(),
       usesUsed: count(),
+      rechargeable: flag(),
+      swapCell: size(),
+      swapCells: count(),
+      adapter: flag(),
+      inverter: flag(),
+      external: flag(),
     }),
   });
 }
@@ -127,15 +143,25 @@ export function powerData(item: any): PowerData {
   const isSize = (value: unknown): value is string => typeof value === "string" && Boolean(figures?.sizes.includes(value));
   const drawCell = isSize(draw.cell) ? draw.cell : null;
   const factor = adjustment(item);
+  const cell = isSize(d.cell) ? d.cell : null;
+  const cells = scaled(Math.max(0, Math.floor(Number(d.cells) || 0)), factor.cells);
+  const drawCells = scaled(Math.max(0, Math.floor(Number(draw.cells) || 0)), factor.cells);
+  // Cells swapped in for the table's, where the book allows it: the endurance goes with their weight.
+  const table = cell ? { size: cell, cells: Math.max(1, cells) } : drawCell ? { size: drawCell, cells: Math.max(1, drawCells) } : null;
+  const swapCells = Math.max(0, Math.floor(Number(d.swapCells) || 0));
+  const swapRatio = figures?.swapByWeight && table && isSize(d.swapCell) && swapCells > 0
+    ? swappedEndurance(figures, table, { size: d.swapCell, cells: swapCells })
+    : null;
+  const swap = swapRatio !== null ? { cell: String(d.swapCell), cells: swapCells } : null;
   return {
-    cell: isSize(d.cell) ? d.cell : null,
-    cells: scaled(Math.max(0, Math.floor(Number(d.cells) || 0)), factor.cells),
+    cell,
+    cells,
     backpack: Boolean(d.backpack),
     packWeight: Math.max(0, Number(d.packWeight) || 0),
     emptyWeight: Math.max(0, Number(d.emptyWeight) || 0),
     raw: String(d.raw ?? ""),
     draw: drawCell || String(draw.endurance ?? "").trim()
-      ? { cell: drawCell, cells: scaled(Math.max(0, Math.floor(Number(draw.cells) || 0)), factor.cells), endurance: String(draw.endurance ?? ""), raw: String(draw.raw ?? "") }
+      ? { cell: drawCell, cells: drawCells, endurance: String(draw.endurance ?? ""), raw: String(draw.raw ?? "") }
       : null,
     flexible: Boolean(d.flexible),
     nonRechargeable: Boolean(d.nonRechargeable),
@@ -144,8 +170,13 @@ export function powerData(item: any): PowerData {
     tl: Math.max(0, Math.floor(Number(d.tl) || 0)),
     hoursUsed: Math.max(0, Number(d.hoursUsed) || 0),
     usesUsed: Math.max(0, Math.floor(Number(d.usesUsed) || 0)),
-    enduranceFactor: factor.endurance,
+    enduranceFactor: factor.endurance * (swapRatio ?? 1),
     figures,
+    rechargeable: Boolean(d.rechargeable),
+    swap,
+    adapter: Boolean(figures?.adapters && d.adapter),
+    inverter: Boolean(figures?.adapters && d.inverter),
+    external: Boolean(figures?.adapters && (d.adapter || d.inverter) && d.external),
   };
 }
 
@@ -158,11 +189,44 @@ export function isPowered(data: PowerData): boolean {
   return Boolean(data.cell || data.packWeight || data.draw?.cell);
 }
 
-/** The cell the item takes: the table's cell, or the draw's where only that says. */
+/** The cells the item runs on: any swapped in, else the table's cell, or the draw's where only that says. */
 export function cellOf(data: PowerData): { size: string; cells: number } | null {
+  if (data.swap) return { size: data.swap.cell, cells: data.swap.cells };
+  return tableCellOf(data);
+}
+
+/** The cells the item's table gives, whatever is swapped in. */
+export function tableCellOf(data: PowerData): { size: string; cells: number } | null {
   if (data.cell) return { size: data.cell, cells: Math.max(1, data.cells) };
   if (data.draw?.cell) return { size: data.draw.cell, cells: Math.max(1, data.draw.cells) };
   return null;
+}
+
+/**
+ * What the batteries a gadget's record lists weigh, as the list weight counts
+ * them: the table's cells, before any size adjustment or swap. Null where the
+ * item's book's cell switch is off or the record lists none (an inverter's
+ * batteries are added to the gadget, not listed in it).
+ */
+export function listedCellWeight(item: any): number | null {
+  const table = cellTableOf(item);
+  const d = item?.system?.extensions?.[MODULE_ID]?.power ?? {};
+  if (!table || d.inverter) return null;
+  const sizes = table.figures.sizes;
+  const count = (value: unknown) => Math.max(1, Math.floor(Number(value) || 0));
+  if (sizes.includes(d.cell)) return cellsWeight(table.figures, d.cell, count(d.cells));
+  if (sizes.includes(d.draw?.cell)) return cellsWeight(table.figures, d.draw.cell, count(d.draw.cells));
+  return null;
+}
+
+/**
+ * What the batteries in a gadget weigh as it is now: any swapped in, and as
+ * many as its size takes. Null where the cell switch is off or it has none.
+ */
+export function loadedCellWeight(item: any): number | null {
+  const table = cellTableOf(item);
+  const cell = table ? cellOf(powerData(item)) : null;
+  return table && cell ? cellsWeight(table.figures, cell.size, cell.cells) : null;
 }
 
 /** Writes part of this module's power data. */

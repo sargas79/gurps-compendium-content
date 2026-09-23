@@ -64,6 +64,7 @@ export const POWER_CELLS: CellFigures = Object.freeze({
   substitutePerStep: 10,
   juryRig: JURY_RIG,
   ref: CELL_REF,
+  kinds: ["flexible", "nonRechargeable", "cosmic", "superscience"] as const,
 });
 
 /** One cell's price, by its size and kind. */
@@ -73,7 +74,7 @@ export const cellCost = (size: CellSize, kind: CellKind = {}): number => engine.
 export const cellLegality = (size: CellSize, kind: CellKind = {}): number | null => engine.cellLegality(POWER_CELLS, size, kind);
 
 /** Seconds to change a cell (p. 19). */
-export const replacementSeconds = (size: CellSize): number => engine.replacementSeconds(POWER_CELLS, size);
+export const replacementSeconds = (size: CellSize): number | null => engine.replacementSeconds(POWER_CELLS, size);
 
 /** How much longer a kind of cell lasts, or null for as long as it's wanted. */
 export const enduranceMultiplier = (kind: CellKind = {}): number | null => engine.enduranceMultiplier(POWER_CELLS, kind);

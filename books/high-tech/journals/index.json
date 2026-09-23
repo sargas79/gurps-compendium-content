@@ -152,6 +152,7 @@
       "title": "Power",
       "chapter": "2. Core Technologies",
       "pages": "HT13",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 13",
       "file": "power.md",
       "status": "reviewed"
@@ -161,6 +162,7 @@
       "title": "Batteries",
       "chapter": "2. Core Technologies",
       "pages": "HT13-14",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech pp. 13-14",
       "file": "batteries.md",
       "status": "reviewed"
@@ -170,6 +172,7 @@
       "title": "Dirty Tech: Batteries",
       "chapter": "2. Core Technologies",
       "pages": "HT13",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 13",
       "file": "dirty-tech-batteries.md",
       "status": "reviewed"
@@ -179,6 +182,7 @@
       "title": "Generators",
       "chapter": "2. Core Technologies",
       "pages": "HT14",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 14",
       "file": "generators.md",
       "status": "reviewed"
@@ -188,6 +192,7 @@
       "title": "Energy Collectors",
       "chapter": "2. Core Technologies",
       "pages": "HT15",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 15",
       "file": "energy-collectors.md",
       "status": "reviewed"
@@ -197,6 +202,7 @@
       "title": "Alcohol Still",
       "chapter": "2. Core Technologies",
       "pages": "HT15",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 15",
       "file": "alcohol-still.md",
       "status": "reviewed"
@@ -206,6 +212,7 @@
       "title": "Dirty Tech: Oil Refining",
       "chapter": "2. Core Technologies",
       "pages": "HT16",
+      "rule": "gurps-compendium-content.batteries",
       "reference": "High-Tech p. 16",
       "file": "dirty-tech-oil-refining.md",
       "status": "reviewed"

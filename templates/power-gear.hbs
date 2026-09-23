@@ -1,5 +1,5 @@
 {{!-- The character's gear that runs on cells, and what is left in each
-     (Ultra-Tech pp. 18-19), in the words of the first book whose cell table
+     (Ultra-Tech pp. 18-19; High-Tech pp. 13-14), in the words of the first book whose cell table
      applies (`ns`). --}}
 <section class="card" data-gcc-power-gear>
   <div class="card-head"><h3>{{localize (concat @root.ns ".Power.GearTitle")}}</h3></div>
@@ -19,6 +19,9 @@
           <td>{{r.supply}}</td>
           <td>
             {{r.charge}}
+            {{#if r.pluggable}}
+              <label data-tooltip="{{localize (concat @root.ns ".Power.ExternalHint")}}"><input type="checkbox" data-gcc-power-external {{#if r.external}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{localize (concat @root.ns ".Power.External")}}</label>
+            {{/if}}
             {{#if r.tracksHours}}
               <label data-tooltip="{{localize (concat @root.ns ".Power.UsedHint")}}">{{localize (concat @root.ns ".Power.Used")}}
                 <input type="number" data-gcc-power-used value="{{r.hoursUsed}}" step="0.5" min="0" style="width:60px" {{#unless ../editable}}disabled{{/unless}} />
@@ -35,7 +38,7 @@
             {{else if r.weapon}}
               <span class="ihint" data-tooltip="{{localize (concat @root.ns ".Power.WeaponHint")}}">{{localize (concat @root.ns ".Power.ReloadOnCombat")}}</span>
             {{else}}
-              <button type="button" class="ibtn tiny" data-gcc-power-change {{#unless ../editable}}disabled{{/unless}}>{{localize (concat @root.ns ".Power.Change")}}</button>
+              <button type="button" class="ibtn tiny" data-gcc-power-change {{#unless ../editable}}disabled{{/unless}}>{{#if r.recharge}}{{localize (concat @root.ns ".Power.Recharge")}}{{else}}{{localize (concat @root.ns ".Power.Change")}}{{/if}}</button>
             {{/if}}
           </td>
         </tr>

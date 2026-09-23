@@ -20,6 +20,7 @@
  */
 
 import type { GadgetFigures } from "../../../shared/gadgets/rules.js";
+import { enduranceByWeight } from "../../../shared/power/rules.js";
 
 // ── equipment options (pp. 9-11) ─────────────────────────────────────────────
 
@@ -115,6 +116,8 @@ export const HIGH_TECH_GADGETS: GadgetFigures = Object.freeze({
   smFactors: SM_FACTORS,
   // The power requirement is multiplied with the rest (p. 10), so the battery count goes too.
   smScalesCells: true,
+  // The batteries a record lists, where the batteries rule knows them, are what cheap and expensive leave out.
+  cellsFromPower: true,
   typicalDr: TYPICAL_DR,
   assumedHealth: ASSUMED_HEALTH,
   maintenance: null,
@@ -187,9 +190,10 @@ export function combineGadgets(parts: readonly CombinationPart[], allAtOnce: boo
  * heavy runs it 3.3 times as long.
  */
 export function sharedBatteryEndurance(endurance: number, fromWeight: number, toWeight: number): number {
-  const from = Number(fromWeight) || 0;
-  if (from <= 0) return Math.max(0, Number(endurance) || 0);
-  return Math.round((Math.max(0, Number(endurance) || 0) * Math.max(0, Number(toWeight) || 0) / from) * 100) / 100;
+  const hours = Math.max(0, Number(endurance) || 0);
+  // The battery engine's sum; a part that had no battery keeps its endurance, and no battery at all gives none.
+  if (!((Number(fromWeight) || 0) > 0)) return hours;
+  return Math.round(hours * (enduranceByWeight(fromWeight, toWeight) ?? 0) * 100) / 100;
 }
 
 // ── equipment bonuses (pp. 7, 11) ────────────────────────────────────────────
