@@ -6,18 +6,10 @@
  * (pp. 101-111).
  */
 
-/** What a barrier does to someone who crosses it (pp. 101-104). */
-export interface Barrier {
-  /** A roll that avoids it: an open fence's Acrobatics-3 or Escape-3, cutting wire's DX-5 a yard. */
-  avoid?: { skills: readonly string[]; attribute?: "DX"; modifier: number };
-  damage?: { formula: string; type: "burn" | "cut" | "cor"; divisor: number; radiation?: boolean; surge?: boolean; ignoresDr?: boolean; multiplier?: number };
-  /** An affliction resisted by HT or Will. */
-  affliction?: { attribute: "HT" | "Will"; modifier: number; effect: string; divisor?: number };
-  /** Only an open fence can be avoided; a tight one can't. */
-  fence?: boolean;
-  /** Who it can't affect. */
-  sealedImmune?: boolean;
-}
+import type { Barrier } from "../../../shared/security/index.js";
+
+/** What a barrier does to someone who crosses it (pp. 101-104): the shared engine's shape. */
+export type { Barrier };
 
 export const BARRIERS: Readonly<Record<string, Barrier>> = Object.freeze({
   laserFence: { fence: true, avoid: { skills: ["Acrobatics", "Escape"], modifier: -3 }, damage: { formula: "6d", type: "burn", divisor: 2 } },

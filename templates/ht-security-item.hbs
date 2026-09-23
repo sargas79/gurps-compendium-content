@@ -1,0 +1,14 @@
+{{!-- Locks, safes, traps and barriers (High-Tech pp. 202-205, 213). --}}
+<div class="isub" data-gcc-ht-security-section>
+  <div class="isub-head">{{localize "GCC.HT.Security.Title"}}</div>
+  {{#if quality}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Security.QualityHint'}}">{{localize "GCC.HT.Security.QualityLabel"}}
+        <select data-gcc-ht-lock-quality {{#unless quality.editable}}disabled{{/unless}}>
+          {{#each quality.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

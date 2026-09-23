@@ -15,6 +15,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { SECURITY_TABLES, crossBarrier, figureLines, type SecurityTable } from "../../../shared/security/index.js";
 import {
   BARRIERS,
   CUFFTAPE_FAILURE_DAMAGE,
@@ -49,9 +50,32 @@ import {
   veridicatorBonus,
 } from "./rules.js";
 
-const L = (key: string) => game.i18n.localize(`GCC.UT.Security.${key}`);
-const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Security.${key}`, data);
+const NS = "GCC.UT.Security";
+const L = (key: string) => game.i18n.localize(`${NS}.${key}`);
+const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`${NS}.${key}`, data);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
+
+/**
+ * This book's table in the shared security engine (src/shared/security): its
+ * barriers, and its safes, armoured doors and locks by TL (pp. 101-104).
+ */
+export const SECURITY_TABLE: SecurityTable = Object.freeze({
+  book: "ultra-tech",
+  tls: { min: 9, max: 12 },
+  ns: NS,
+  switch: `${MODULE_ID}.securitySystems`,
+  barriers: BARRIERS,
+  safes: SAFES,
+  safeDr,
+  locks: LOCKS,
+  door: { pattern: /^armored doors?$/i, dr: doorDr },
+  defaultTl: 9,
+});
+
+/** Registers this book's table with the shared security engine. */
+export function initSecurity(): void {
+  SECURITY_TABLES.register(SECURITY_TABLE);
+}
 
 export interface SecuritySwitches {
   security: () => boolean;
@@ -111,55 +135,25 @@ async function runBarrier(api: GWorldApi): Promise<void> {
   const barrier = BARRIERS[answer.kind];
   if (!barrier) return;
   for (const victim of targets) {
-    const lines: string[] = [];
-    const name = String(victim.name ?? "");
     const derived = api.actors.derived(victim) ?? {};
     const sealed = derived.traitEffects?.sealed === true;
-    // An open fence or cutting wire can be got past with a roll (pp. 101-102).
-    if (barrier.avoid && !(barrier.fence && answer.tight)) {
-      const best = barrier.avoid.attribute
-        ? api.actors.attribute(victim, barrier.avoid.attribute) ?? 10
-        : Math.max(...barrier.avoid.skills.map((skill) => level(api, victim, skill, { attribute: "DX", modifier: -5 })));
-      const result: any = await api.roll.success({ actor: victim, base: best, label: F("Barrier.Avoid", { barrier: L(`Barrier.${answer.kind}`) }), modifiers: [{ label: L(`Barrier.${answer.kind}`), value: barrier.avoid.modifier }] } as any);
-      if (result?.success) {
-        await say(victim, L(`Barrier.${answer.kind}`), [F("Barrier.Avoided", { name })]);
-        continue;
-      }
+    const afflictionModifiers: Array<{ label: string; value: number }> = [];
+    if (answer.kind === "neuralDisruptorField" && sealed && barrier.affliction) {
+      const dr = Number(derived.drByLocation?.torso) || 0;
+      const bonus = neuralFieldModifier(dr) - barrier.affliction.modifier;
+      if (bonus) afflictionModifiers.push({ label: L("Barrier.SealedArmor"), value: bonus });
     }
-    if (barrier.sealedImmune && (sealed || traitNames(victim).some((n) => /^digital mind\b/i.test(n)))) {
-      await say(victim, L(`Barrier.${answer.kind}`), [F("Barrier.Immune", { name })]);
-      continue;
-    }
-    if (barrier.affliction) {
-      const base = api.actors.attribute(victim, barrier.affliction.attribute) ?? 10;
-      const modifiers = [{ label: L(`Barrier.${answer.kind}`), value: barrier.affliction.modifier }];
-      if (answer.kind === "neuralDisruptorField" && sealed) {
-        const dr = Number(derived.drByLocation?.torso) || 0;
-        const bonus = neuralFieldModifier(dr) - barrier.affliction.modifier;
-        if (bonus) modifiers.push({ label: L("Barrier.SealedArmor"), value: bonus });
-      }
-      const result: any = await api.roll.success({ actor: victim, base, kind: "attribute", label: F("Barrier.Resist", { barrier: L(`Barrier.${answer.kind}`) }), modifiers, tags: ["resist", "affliction"] } as any);
-      if (result && !result.success) {
-        const effect = answer.kind === "electrolaserFence" ? "stunned" : answer.kind === "neuralDisruptorField" ? answer.effect : barrier.affliction.effect;
-        await api.actors.applyCondition(victim, { key: effect } as any);
-        lines.push(F(answer.kind === "neuralDisruptorField" ? "Barrier.AfflictedMinutes" : "Barrier.Afflicted", { name, effect: L(`Barrier.${effect}`), minutes: result.margin }));
-        if (answer.kind === "dreamNet") lines.push(L("Barrier.DreamNetRemoval"));
-      } else if (result) lines.push(F("Barrier.Resisted", { name }));
-    }
-    if (barrier.damage) {
-      const formula = answer.kind === "monowire" ? monowireDice(answer.speed) : barrier.damage.formula;
-      await api.roll.damage({
-        actor: victim,
-        label: F("Barrier.DamageLabel", { barrier: L(`Barrier.${answer.kind}`), name }),
-        formula,
-        damageType: barrier.damage.type,
-        armorDivisor: barrier.damage.divisor,
-        radiation: barrier.damage.radiation,
-        ignoresDr: barrier.damage.ignoresDr,
-        massMultiplier: barrier.damage.multiplier,
-      } as any);
-    }
-    if (lines.length) await say(victim, L(`Barrier.${answer.kind}`), lines);
+    // The shared engine rolls it (src/shared/security): an open fence or cutting wire can be got past with a roll (pp. 101-102).
+    await crossBarrier(api, NS, victim, barrier, {
+      name: L(`Barrier.${answer.kind}`),
+      avoidable: !(barrier.fence && answer.tight),
+      immune: Boolean(barrier.sealedImmune && (sealed || traitNames(victim).some((n) => /^digital mind\b/i.test(n)))),
+      afflictionModifiers,
+      effect: answer.kind === "electrolaserFence" ? "stunned" : answer.kind === "neuralDisruptorField" ? answer.effect : undefined,
+      afflictedKey: answer.kind === "neuralDisruptorField" ? "AfflictedMinutes" : undefined,
+      afflictedLines: answer.kind === "dreamNet" ? [L("Barrier.DreamNetRemoval")] : [],
+      formula: answer.kind === "monowire" ? monowireDice(answer.speed) : undefined,
+    });
   }
 }
 
@@ -183,12 +177,8 @@ async function pullFromDreamNet(api: GWorldApi, targets: any[]): Promise<void> {
 
 function securityItemLines(item: any): string[] {
   const name = String(item?.name ?? "");
-  const tl = tlOf(item?.actor?.system?.tl) ?? tlOf(item?.system?.tl) ?? 9;
-  const lines: string[] = [];
-  const safe = SAFES[name];
-  if (safe) lines.push(F("Item.Safe", { dr: safeDr(safe.dr, tl), hp: safe.hp, tl }));
-  if (/^armored doors?$/i.test(name)) lines.push(F("Item.Door", { dr: doorDr(tl), tl }));
-  if (name in LOCKS) lines.push(F("Item.Lock", { modifier: LOCKS[name] }));
+  // Safes, doors and locks by TL, from this book's table in the shared engine.
+  const lines: string[] = figureLines(item, SECURITY_TABLE);
   const restraint = restraintByName(name);
   if (restraint) {
     const figures = restraintFigures(restraint, tlOf(item?.system?.tl) ?? 9);
