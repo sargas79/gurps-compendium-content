@@ -19,13 +19,16 @@
  * weapon families: air guns and ranged stunners, unsafe revolvers and pistol
  * whipping, mechanical machine guns, and backblast, indirect fire with
  * forward observers, and firearm accessories: magazines, sights,
- * suppressors (and cinematic silencers), stocks, bipods and shooting sticks
- * (pp. 79-93, 127-141, 147-160, 249-252).
+ * suppressors (and cinematic silencers), stocks, bipods and shooting sticks,
+ * and ammunition: calibres priced from the Ammunition Tables, the ammunition
+ * upgrades, cartridge conversions, handloading and misloading
+ * (pp. 79-93, 127-141, 147-165, 174-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initDrawing, readyDrawing } from "./drawing/index.js";
+import { ammunitionGunFields, ammunitionHearing, firesPaperCartridges, initAmmunition, readyAmmunition } from "./ammunition/index.js";
 import { accessoryGunFields, initAccessories, readyAccessories } from "./accessories/index.js";
 import { readyAftermath } from "./aftermath/index.js";
 import { readyEnvironments } from "./environments/index.js";
@@ -91,6 +94,9 @@ const RULES = [
   { key: "gunSights", pages: "pp. 155-157", implemented: true },
   { key: "suppressors", pages: "pp. 158-159", implemented: true },
   { key: "stocksAndMounts", pages: "p. 160", implemented: true },
+  { key: "ammunitionUpgrades", pages: "pp. 161-165, 175-177", implemented: true },
+  { key: "handloading", pages: "p. 174", implemented: true },
+  { key: "misloading", pages: "p. 178", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -127,7 +133,8 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f) }));
+  initAmmunition();
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
@@ -137,20 +144,22 @@ function ready(api: GWorldApi): void {
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
   const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
+  const ammunition = { upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading") };
   const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded"), zenMarksmanship: rule("zenMarksmanship") };
   readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
     noFanning: (item) => (shooting.pistolero() && inPistoleroStance(api, item) ? game.i18n.localize("GCC.HT.Shooting.StanceNoFanning") : null),
     techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),
   });
   // Before the shooting options, whose Pistolero stance starts from the Bulk the accessories leave.
-  readyAccessories(api, accessories);
+  readyAccessories(api, accessories, { hearing: (item) => ammunitionHearing(item, ammunition) });
   readyShooting(api, shooting, accessories);
   readyEnvironments(api, rule("shootingEnvironments"));
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));
-  readyReloading(api, { loading: rule("firearmLoading"), careful: rule("carefulLoading"), fouling: rule("blackPowderFouling") });
+  readyReloading(api, { loading: rule("firearmLoading"), careful: rule("carefulLoading"), fouling: rule("blackPowderFouling"), paperCartridges: (item, modeIndex) => firesPaperCartridges(item, modeIndex, ammunition) });
   readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
   readyIndirectFire(api, rule("indirectFire"));
+  readyAmmunition(api, ammunition);
 }
 
 export const book: BookRules = {

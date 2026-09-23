@@ -1,0 +1,67 @@
+{{!-- A gun's ammunition by mode, or a box's rounds: calibre, upgrades, handloading, misloading (High-Tech pp. 161-165, 174-178). --}}
+<div class="isub" data-gcc-ht-ammunition>
+  <div class="isub-head">{{localize "GCC.HT.Ammunition.Title"}}</div>
+  {{#if box}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Ammunition.BoxCalibreHint'}}">{{localize "GCC.HT.Ammunition.BoxCalibre"}}
+        <input type="text" list="gcc-ht-calibres" data-gcc-ht-ammo="calibre" data-mode="0" value="{{calibreValue}}" placeholder="{{calibrePlaceholder}}" {{#unless editable}}disabled{{/unless}} />
+        <datalist id="gcc-ht-calibres">{{#each calibreList as |n|}}<option value="{{n}}"></option>{{/each}}</datalist>
+      </label>
+    </div>
+  {{else}}
+    <p class="ihint">{{calibre}}</p>
+    {{#if conversion}}
+      <div class="ifields">
+        <label data-tooltip="{{conversion.hint}}">{{localize "GCC.HT.Ammunition.ConvertedTo"}}
+          <select data-gcc-ht-ammo="convertedTo" {{#unless editable}}disabled{{/unless}}>
+            {{#each conversion.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#each modes as |m|}}
+    {{#if m.name}}<div class="isub-head">{{m.name}}</div>{{/if}}
+    {{#if m.boxed}}<p class="ihint">{{m.boxed}}</p>{{/if}}
+    {{#if m.upgrades.length}}
+      <div class="ichecks">
+        {{#each m.upgrades as |u|}}
+          <label class="icheck" data-tooltip="{{#if u.refused}}{{u.refused}}{{else}}{{u.hint}}{{/if}}"><input type="checkbox" data-gcc-ht-ammo="upgrade" data-upgrade="{{u.key}}" data-mode="{{m.index}}" {{#if u.checked}}checked{{/if}} {{#if u.refused}}{{#unless u.checked}}disabled{{/unless}}{{/if}} {{#unless ../../editable}}disabled{{/unless}} /> {{u.label}}</label>
+        {{/each}}
+      </div>
+    {{/if}}
+    {{#if m.handloading}}
+      <div class="ifields">
+        <label data-tooltip="{{localize 'GCC.HT.Ammunition.SourceHint'}}">{{localize "GCC.HT.Ammunition.SourceLabel"}}
+          <select data-gcc-ht-ammo="source" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.sources as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+      <p class="ihint">
+        <button type="button" class="ibtn tiny" data-gcc-ht-ammo-action="batch" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Ammunition.BatchHint'}}">{{localize "GCC.HT.Ammunition.BatchTitle"}}</button>
+        {{#if m.canMatch}}<button type="button" class="ibtn tiny" data-gcc-ht-ammo-action="match" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Ammunition.MatchHint'}}">{{localize "GCC.HT.Ammunition.Match"}}</button>{{/if}}
+        {{m.matched}} {{m.batchMalfunction}}
+      </p>
+    {{else}}
+      {{#if m.batchMalfunction}}<p class="ihint">{{m.batchMalfunction}}</p>{{/if}}
+    {{/if}}
+    {{#if m.misloading}}
+      <div class="ifields">
+        <label data-tooltip="{{localize 'GCC.HT.Ammunition.RoundHint'}}">{{localize "GCC.HT.Ammunition.RoundLabel"}}
+          <select data-gcc-ht-ammo="calibre" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.rounds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
+    {{#if m.misload}}<p class="ihint">{{m.misload}}</p>{{/if}}
+    {{#if m.price}}<p class="ihint">{{m.price}}</p>{{/if}}
+    {{#if m.shop}}
+      <p class="ihint">
+        <button type="button" class="ibtn tiny" data-gcc-ht-ammo-action="shop" data-mode="0" {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Ammunition.ShopHint'}}">{{localize "GCC.HT.Ammunition.Shop"}}</button>
+        {{m.discount}}
+      </p>
+    {{/if}}
+  {{/each}}
+</div>

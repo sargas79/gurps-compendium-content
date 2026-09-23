@@ -9,7 +9,8 @@
  *     `gworld.shotsEntry` then gives the Reload button the book's time for
  *     that procedure, what Fast-Draw (Ammo) saves on it, and the aids that
  *     help as ticks: a powder flask or paper cartridges (one or the other;
- *     the cartridges halve the time), a greased patch, a speedloader the
+ *     the cartridges halve the time, and start ticked where the mode's load
+ *     is paper cartridges), a greased patch, a speedloader the
  *     character carries, clamped magazines, an assistant gunner. A gun
  *     loaded a round at a time -- a breechloader, a revolver, an internal
  *     magazine through a gate -- is timed for the rounds the Reload button
@@ -137,6 +138,8 @@ export interface ReloadingSwitches {
   loading: () => boolean;
   careful: () => boolean;
   fouling: () => boolean;
+  /** Whether a mode is loaded with paper cartridges, which start the aid ticked (the ammunition upgrades, p. 163). */
+  paperCartridges?: (item: any, modeIndex: number) => boolean;
 }
 
 /** Whether a gun can be loaded carefully: a muzzle-loading musket or rifle (p. 86). */
@@ -222,7 +225,9 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
     entry.reloadSeconds = load.seconds;
     entry.fastDrawSeconds = load.seconds - load.fastDraw;
     entry.fastDrawPer = entry.perShot ? "round" : "reload";
-    const flask = carries(actor, /powder flask/i);
+    // Rounds loaded as paper cartridges tick that aid, and so not the flask it excludes.
+    const paper = on.paperCartridges?.(item, modeIndex) === true && load.aids.some((a) => a.key === "paperCartridges");
+    const flask = !paper && carries(actor, /powder flask/i);
     for (const aid of load.aids) {
       aids.push({
         id: aidId(aid.key),
@@ -231,7 +236,7 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
         ...(aid.multiplier !== undefined ? { multiplier: aid.multiplier } : {}),
         ...(aid.exclusiveGroup ? { exclusiveGroup: aidId(aid.exclusiveGroup) } : {}),
         ...(aid.fastDrawSeconds !== undefined ? { fastDrawSeconds: Math.max(0, aid.fastDrawSeconds) } : {}),
-        checked: aid.key === "flask" && flask,
+        checked: (aid.key === "flask" && flask) || (aid.key === "paperCartridges" && paper),
       });
     }
     return;

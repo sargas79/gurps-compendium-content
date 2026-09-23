@@ -424,6 +424,8 @@ function sightDarkness(item: any, on: AccessorySwitches, aimed: boolean, laserOn
 
 /** The line of the Hearing Distance Table the gun's report is on: its own, or worked out (p. 158). */
 export function reportOfGun(item: any): Report {
+  // Silent rounds are heard on the 16-yard line, whatever the gun (p. 165).
+  if (loadedHearing(item)?.silent) return "airGun";
   const own = gunData(item).report;
   if (own) return own;
   const mode = rangedModes(item)[0] ?? {};
@@ -472,12 +474,14 @@ function hearingOf(api: GWorldApi, actor: any): number {
 const knowsGuns = (actor: any) => [...(actor?.items ?? [])].some((i: any) => i?.type === "skill" && /^guns\b/i.test(String(i.name ?? "")));
 
 /** The lines of a Hearing roll against a shot (p. 158). */
-export function hearingLines(options: { report: Report; yards: number; suppressor: number; sealedBreech: boolean; outsideCone: boolean; unfamiliar: boolean; cinematic: number; other: number }): Array<{ label: string; value: number }> {
+export function hearingLines(options: { report: Report; yards: number; suppressor: number; sealedBreech: boolean; outsideCone: boolean; unfamiliar: boolean; cinematic: number; other: number; ammunition?: number }): Array<{ label: string; value: number }> {
   const lines = [{ label: F("HearDistance", { yards: options.yards, heard: HEARD_AT[options.report] }), value: hearingDistanceModifier(HEARD_AT[options.report], options.yards) }];
   if (options.suppressor) {
     const penalty = options.suppressor + (options.sealedBreech ? SEALED_BREECH : 0);
     lines.push({ label: options.cinematic > 1 ? F("HearCinematic", { times: options.cinematic }) : L("HearSuppressor"), value: cinematicHearing(penalty, options.cinematic) });
   }
+  // Subsonic rounds: -1 to hear a pistol's, -2 a PDW's or rifle's (p. 165).
+  if (options.ammunition) lines.push({ label: L("HearSubsonic"), value: options.ammunition });
   if (options.outsideCone) lines.push({ label: L("HearOutsideCone"), value: OUTSIDE_CONE });
   if (options.unfamiliar) lines.push({ label: L("HearUnfamiliar"), value: UNFAMILIAR_LISTENER });
   if (options.other) lines.push({ label: L("HearOther"), value: options.other });
@@ -525,6 +529,7 @@ async function hearTheShot(api: GWorldApi, item: any, actor: any, on: AccessoryS
     unfamiliar: asked.unfamiliar,
     cinematic: cinematic ? asked.cinematic : 1,
     other: asked.other,
+    ammunition: loadedHearing(item)?.penalty ?? 0,
   });
   await api.roll.success({ actor: listener, base: hearingOf(api, listener), skill: "Hearing", tags: ["hearing", "detection"], label: F("HearRoll", { name: listener.name, gun: item.name }), modifiers } as any);
 }
@@ -711,7 +716,15 @@ function listeners(element: HTMLElement, item: any): void {
 
 // ── registration ──
 
-export function readyAccessories(api: GWorldApi, on: AccessorySwitches): void {
+/** How the ammunition a gun is loaded with is heard, where the ammunition upgrades say (pp. 158, 165). */
+export interface AmmunitionHearing {
+  hearing: (item: any) => { silent: boolean; penalty: number } | null;
+}
+
+let loadedHearing: AmmunitionHearing["hearing"] = () => null;
+
+export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammunition?: AmmunitionHearing): void {
+  loadedHearing = ammunition?.hearing ?? (() => null);
   ACCESSORY_TABLES.register({
     book: "high-tech",
     tls: { min: 0, max: 8 },
