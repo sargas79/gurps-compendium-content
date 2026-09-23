@@ -1,0 +1,20 @@
+{{!-- A spring trap's catch and the roll to break free, or a parachute jump and its landing (High-Tech pp. 58, 61). --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+{{#each lines as |line|}}<div class="gc-result">{{line}}</div>{{/each}}
+{{#if trap}}
+  {{#if trap.freed}}
+    <div class="gc-note">{{trap.freed}}</div>
+  {{else}}
+    <div class="gc-apply">
+      <button type="button" class="gc-apply-button" data-addon-card-action="breakFree">{{localize "GCC.HT.Survival.BreakFree"}}</button>
+    </div>
+  {{/if}}
+{{/if}}
+{{#if landing}}
+  {{#unless landing.rolled}}
+    <div class="gc-note">{{localize "GCC.HT.Survival.LandingHint"}}</div>
+    <div class="gc-apply">
+      <button type="button" class="gc-apply-button" data-addon-card-action="landing">{{landing.label}} ({{landing.formula}} cr)</button>
+    </div>
+  {{/unless}}
+{{/if}}

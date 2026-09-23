@@ -3136,6 +3136,201 @@
           }
         },
         "reason": "1d-3 burn (p. 32) (#360)"
+      },
+      {
+        "pattern": "^Blanket$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": -2
+        },
+        "reason": "survival modifier -2 (p. 56) (#363)"
+      },
+      {
+        "pattern": "^Sleeping Bag$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": 0,
+          "system.extensions.gurps-compendium-content.survival.valueAtTl8": 1
+        },
+        "reason": "survival modifier 0 at TL5-7, +1 at TL8 (p. 56) (#363)"
+      },
+      {
+        "pattern": "^(?:Tarp|Tent, Shelter Half|Tent, Wall|Tent, Personal)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": 1
+        },
+        "reason": "survival modifier +1 (pp. 56-57) (#363)"
+      },
+      {
+        "pattern": "^Sleeping Bag, Heavy$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": 3
+        },
+        "reason": "survival modifier +3 (p. 57) (#363)"
+      },
+      {
+        "pattern": "^Blanket, Emergency$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": -1
+        },
+        "reason": "survival modifier -1 (p. 57) (#363)"
+      },
+      {
+        "pattern": "^Tent, Dome$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "shelter",
+          "system.extensions.gurps-compendium-content.survival.value": 2
+        },
+        "reason": "survival modifier +2 (p. 57) (#363)"
+      },
+      {
+        "pattern": "^(?:Flint and Steel|Magnifying Glass|Matches|Cigarette Lighter|Fire-Starter Paste|Solar Reflector)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "fireStarter"
+        },
+        "reason": "a fire starter: +5 to +10 to the DX-based Survival roll (p. 57) (#363)"
+      },
+      {
+        "pattern": "^(?:Fishing Kit|Fishing Outfit|Snare)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "fishing"
+        },
+        "reason": "up to five foraging rolls a day (p. 58) (#363)"
+      },
+      {
+        "pattern": "^Traps$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "trap",
+          "system.extensions.gurps-compendium-content.survival.value": 15
+        },
+        "reason": "a spring trap of ST 15 (p. 58) (#363)"
+      },
+      {
+        "pattern": "^Covert Survival Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "survivalKit",
+          "system.forSkills": [
+            "Survival (Woodlands)"
+          ]
+        },
+        "reason": "basic woodland survival gear (p. 59) (#363)"
+      },
+      {
+        "pattern": "^Pilot's Survival Vest$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "survivalKit",
+          "system.forSkills": [
+            "Survival (Jungle)"
+          ]
+        },
+        "reason": "a jungle survival kit, +1 (quality) to Survival (Jungle) (p. 59) (#363)"
+      },
+      {
+        "pattern": "^Water Filter$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "waterFilter"
+        },
+        "reason": "+(TL-2) to HT against bacteria in the water (p. 59) (#363)"
+      },
+      {
+        "pattern": "^Hand-Pumped Desalinator$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "desalinator"
+        },
+        "reason": "a cup of water per 10 minutes' pumping, 1 FP (p. 59) (#363)"
+      },
+      {
+        "pattern": "^Solar Water Still$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "solarStill"
+        },
+        "reason": "up to a quart a day on a Survival roll (p. 59) (#363)"
+      },
+      {
+        "pattern": "^(?:Hand Flare|Signal Mirror|Pen Flare|Strobe Marker|Laser Rescue Flare)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "signal"
+        },
+        "reason": "+2 to a rescuer's Vision roll (p. 58) (#363)"
+      },
+      {
+        "pattern": "^(?:Life Jacket|Flotation Belt|Flotation Vest)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "lifeJacket"
+        },
+        "reason": "a life jacket: +6 against drowning, -3 in a race (p. 59) (#363)"
+      },
+      {
+        "pattern": "^Swim Fins$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "swimFins"
+        },
+        "reason": "Move 2 on land (p. 60) (#363)"
+      },
+      {
+        "pattern": "^Dye Marker$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "dyeMarker"
+        },
+        "reason": "+2 to Vision rolls for half an hour (p. 60) (#363)"
+      },
+      {
+        "pattern": "^Parachute \\(TL5\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "parachute",
+          "system.extensions.gurps-compendium-content.survival.maxLbs": 150,
+          "system.extensions.gurps-compendium-content.survival.openingYards": 80,
+          "system.extensions.gurps-compendium-content.survival.descent": 5,
+          "system.extensions.gurps-compendium-content.survival.nausea": -4
+        },
+        "reason": "150 lbs., opens after 80 yards, 5 yards a second, HT-4 against nausea (p. 61) (#363)"
+      },
+      {
+        "pattern": "^Parachute \\(TL6\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "parachute",
+          "system.extensions.gurps-compendium-content.survival.maxLbs": 150,
+          "system.extensions.gurps-compendium-content.survival.maxLbsTl7": 200,
+          "system.extensions.gurps-compendium-content.survival.maxLbsTl8": 250,
+          "system.extensions.gurps-compendium-content.survival.openingYards": 80,
+          "system.extensions.gurps-compendium-content.survival.descent": 5
+        },
+        "reason": "150 lbs. (200 at TL7, 250 at TL8), opens after 80 yards, 5 yards a second (p. 61) (#363)"
+      },
+      {
+        "pattern": "^Mini-Parachute$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "parachute",
+          "system.extensions.gurps-compendium-content.survival.openingYards": 40,
+          "system.extensions.gurps-compendium-content.survival.descent": 5
+        },
+        "reason": "opens in half the distance; no rated weight printed (p. 61) (#363)"
+      },
+      {
+        "pattern": "^Parachute Container$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "cargoChute",
+          "system.extensions.gurps-compendium-content.survival.maxLbs": 250,
+          "system.extensions.gurps-compendium-content.survival.descent": 6
+        },
+        "reason": "250 lbs., 6 yards a second (p. 61) (#363)"
+      },
+      {
+        "pattern": "^Snack$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "snack"
+        },
+        "reason": "a decent meal when resting (p. 35) (#363)"
+      },
+      {
+        "pattern": "^Sports Drink$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "sportsDrink"
+        },
+        "reason": "a snack, and a quart of water (p. 35) (#363)"
       }
     ]
   },

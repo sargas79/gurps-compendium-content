@@ -1571,6 +1571,15 @@
         "roadBound": false,
         "draft": 0,
         "stall": 3
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "parachute",
+            "maxLbs": 400,
+            "openingYards": 80
+          }
+        }
       }
     }
   },
@@ -4370,7 +4379,15 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "trap",
+            "value": 8
+          }
+        }
+      }
     }
   },
   {
@@ -4399,7 +4416,14 @@
       "listCost": 0,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "survivalKit"
+          }
+        }
+      }
     }
   },
   {

@@ -573,6 +573,7 @@
       "title": "Survival and Camping Gear",
       "chapter": "3. General Equipment",
       "pages": "HT56-59",
+      "rule": "gurps-compendium-content.survivalGear",
       "reference": "High-Tech pp. 56-59",
       "file": "survival-and-camping-gear.md",
       "status": "reviewed"
@@ -582,6 +583,7 @@
       "title": "Maritime Gear",
       "chapter": "3. General Equipment",
       "pages": "HT59-60",
+      "rule": "gurps-compendium-content.maritimeGear",
       "reference": "High-Tech pp. 59-60",
       "file": "maritime-gear.md",
       "status": "reviewed"
@@ -591,6 +593,7 @@
       "title": "Parachuting Gear",
       "chapter": "3. General Equipment",
       "pages": "HT60-61",
+      "rule": "gurps-compendium-content.parachuting",
       "reference": "High-Tech pp. 60-61",
       "file": "parachuting-gear.md",
       "status": "reviewed"
@@ -600,6 +603,7 @@
       "title": "Death from Above",
       "chapter": "3. General Equipment",
       "pages": "HT61",
+      "rule": "gurps-compendium-content.parachuting",
       "reference": "High-Tech p. 61",
       "file": "death-from-above.md",
       "status": "reviewed"
