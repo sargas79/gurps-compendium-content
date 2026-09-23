@@ -73,6 +73,26 @@
       {
         "pattern": "^Ceramic$",
         "reason": "a blade material, which triples cost and halves weight (#380); the closing line read is the glove pistol's (pp. 198-199)"
+      },
+      {
+        "pattern": "^Medical Imaging$",
+        "reason": "a family heading with no price; the closing line read is the stretcher isolator's (p. 222)"
+      },
+      {
+        "pattern": "^Removing Fingerprints$",
+        "reason": "a cosmetic operation, a service rather than gear (p. 225)"
+      },
+      {
+        "pattern": "^Changing Body$",
+        "reason": "a cosmetic operation, a service rather than gear (p. 225)"
+      },
+      {
+        "pattern": "^Improving Appearance$",
+        "reason": "a cosmetic operation, a service rather than gear (p. 225)"
+      },
+      {
+        "pattern": "^Improving Vision$",
+        "reason": "a cosmetic operation, a service rather than gear (p. 225)"
       }
     ],
     "set": [
@@ -1387,6 +1407,1231 @@
           }
         },
         "reason": "four S batteries for 14 days; the sentence's period is not the endurance's (p. 187)"
+      },
+      {
+        "pattern": "^Locks$",
+        "set": {
+          "name": "Lock, Weak",
+          "system.lc": 4
+        },
+        "reason": "the first of three locks, the weak one; every lock is LC4 (p. 203); the standard and tough locks are kept by hand"
+      },
+      {
+        "pattern": "^Caltrops$",
+        "set": {
+          "name": "Caltrops (one hex)",
+          "system.meleeModes": [
+            {
+              "name": "caltrop",
+              "skill": "Traps",
+              "damageBase": "thr",
+              "damageModifier": -3,
+              "damageFormula": "",
+              "damageType": "imp",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "enough to cover a hex; each caltrop stepped on does thrust-3 impaling on the foot, by the victim's ST (p. 203)"
+      },
+      {
+        "pattern": "^Spike Strip$",
+        "set": {
+          "name": "Spike Strip (per yard)"
+        },
+        "reason": "priced per yard (p. 204)"
+      },
+      {
+        "pattern": "^Electronic Locks$",
+        "set": {
+          "name": "Electronic Lock"
+        },
+        "reason": "the basic lock's price; its grades reprice it as a lock's do (p. 204)"
+      },
+      {
+        "pattern": "^Barbed Wire$",
+        "set": {
+          "name": "Barbed Wire (15-yard coil)"
+        },
+        "reason": "priced per 15-yard coil; it snags as a Binding (ST 8) and harms no one itself (p. 204)"
+      },
+      {
+        "pattern": "^Razor Wire$",
+        "set": {
+          "name": "Razor Wire (15-yard coil)",
+          "system.meleeModes": [
+            {
+              "name": "razor",
+              "skill": "Traps",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "1d-3",
+              "damageType": "cut",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "priced per 15-yard coil; a failed DX-5 roll to pass it also does 1d-3 cutting (p. 204)"
+      },
+      {
+        "pattern": "^Cattle Fence$",
+        "set": {
+          "name": "Cattle Fence (control box and 1/4 mile)",
+          "system.meleeModes": [
+            {
+              "name": "zap",
+              "skill": "Traps",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": true,
+              "afflictionAttribute": "HT",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "a control box and a quarter-mile of fence; each second of contact a HT roll or be stunned (p. 204)"
+      },
+      {
+        "pattern": "^Lethal Fence$",
+        "set": {
+          "name": "Lethal Fence (control box and 1/4 mile)",
+          "system.meleeModes": [
+            {
+              "name": "shock",
+              "skill": "Traps",
+              "damageBase": "fixed",
+              "damageModifier": 0,
+              "damageFormula": "3d",
+              "damageType": "burn",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "a control box and a quarter-mile of fence; 3d burning a second (p. 204)"
+      },
+      {
+        "pattern": "^Laser Fence \\(TL7\\)$",
+        "set": {
+          "name": "Laser Fence (TL7, per yard)"
+        },
+        "reason": "priced per yard (p. 204)"
+      },
+      {
+        "pattern": "^Proximity Fence$",
+        "set": {
+          "name": "Proximity Fence (per foot)"
+        },
+        "reason": "priced per foot (p. 205)"
+      },
+      {
+        "pattern": "^Smart Fence$",
+        "set": {
+          "name": "Smart Fence (10-yard section)"
+        },
+        "reason": "a package of sensors for 10 yards of fence (p. 205)"
+      },
+      {
+        "pattern": "^Electric Alarms$",
+        "set": {
+          "name": "Electric Alarm (per portal)"
+        },
+        "reason": "priced per door or window (p. 206)"
+      },
+      {
+        "pattern": "^Proximity Detector$",
+        "set": {
+          "name": "Proximity Detector (per item)"
+        },
+        "reason": "priced per item rigged (p. 206)"
+      },
+      {
+        "pattern": "^CT Scanner$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Search"
+          ],
+          "system.equipmentModifier": 4
+        },
+        "reason": "+4 (quality) to every search, recorded as the stated modifier; the +6 to find explosives stays in the text (p. 207)"
+      },
+      {
+        "pattern": "^Audio Bug \\(TL7\\)$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/week, the endurance a week or a month the battery reading misses (p. 208)"
+      },
+      {
+        "pattern": "^Audio Bug \\(TL8\\)$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 month",
+                  "raw": "T/month"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/month, the endurance a week or a month the battery reading misses (p. 208)"
+      },
+      {
+        "pattern": "^Contact Mike$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/week, the endurance a week or a month the battery reading misses (p. 208)"
+      },
+      {
+        "pattern": "^Miniature Video Bug$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/week, the endurance a week or a month the battery reading misses (p. 209)"
+      },
+      {
+        "pattern": "^Video Bug$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/week, the endurance a week or a month the battery reading misses (p. 210)"
+      },
+      {
+        "pattern": "^Radio Beacon \\(TL7\\)$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 1,
+                  "endurance": "1 month",
+                  "raw": "S/month"
+                }
+              }
+            }
+          }
+        },
+        "reason": "S/month, the endurance a week or a month the battery reading misses (p. 210)"
+      },
+      {
+        "pattern": "^Radio Beacon \\(TL8\\)$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 1,
+                  "endurance": "1 month",
+                  "raw": "XS/month"
+                }
+              }
+            }
+          }
+        },
+        "reason": "XS/month, the endurance a week or a month the battery reading misses (p. 210)"
+      },
+      {
+        "pattern": "^Cellular Beacon$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "S/week, the endurance a week or a month the battery reading misses (p. 210)"
+      },
+      {
+        "pattern": "^Personal Cellular Beacon$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 month",
+                  "raw": "T/month"
+                }
+              }
+            }
+          }
+        },
+        "reason": "T/month, the endurance a week or a month the battery reading misses (p. 210)"
+      },
+      {
+        "pattern": "^Bug Detector$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 2,
+                  "endurance": "1 week",
+                  "raw": "2×S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "2×S/week, the endurance a week or a month the battery reading misses (p. 212)"
+      },
+      {
+        "pattern": "^Voice Modulator$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 3,
+                  "endurance": "1 week",
+                  "raw": "3×S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "3×S/week, the endurance a week or a month the battery reading misses (p. 212)"
+      },
+      {
+        "pattern": "^Electronic Stethoscope$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 4,
+                  "endurance": "1 week",
+                  "raw": "4×T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "4×T/week, the endurance a week or a month the battery reading misses (p. 213)"
+      },
+      {
+        "pattern": "^Search Endoscope$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 2,
+                  "endurance": "1 week",
+                  "raw": "2×S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "2×S/week, the endurance the battery reading misses (p. 209)"
+      },
+      {
+        "pattern": "^Surveillance Endoscope$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 2,
+                  "endurance": "1 week",
+                  "raw": "2×S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "2×S/week, the endurance the battery reading misses (p. 209)"
+      },
+      {
+        "pattern": "^Mail-Security Spray$",
+        "set": {
+          "name": "Mail-Security Spray (can)"
+        },
+        "reason": "a can good for dozens of uses (p. 209)"
+      },
+      {
+        "pattern": "^Basic Code-Breaking Program \\(TL7\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Cryptography/TL"
+          ]
+        },
+        "reason": "basic equipment for breaking TL7 ciphers (p. 211)"
+      },
+      {
+        "pattern": "^Basic Code-Breaking Program \\(TL8\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Cryptography/TL"
+          ]
+        },
+        "reason": "basic equipment for breaking TL8 ciphers (p. 211)"
+      },
+      {
+        "pattern": "^Good Code-Breaking Program$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "good",
+          "system.forSkills": [
+            "Cryptography/TL"
+          ]
+        },
+        "reason": "+1 to Cryptography (p. 211)"
+      },
+      {
+        "pattern": "^Fine Code-Breaking Program$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "fine",
+          "system.forSkills": [
+            "Cryptography/TL"
+          ]
+        },
+        "reason": "+2 to Cryptography (p. 211)"
+      },
+      {
+        "pattern": "^Invisible Ink$",
+        "set": {
+          "name": "Invisible Ink (Printer Cartridge)",
+          "system.tl": "8"
+        },
+        "reason": "the closing line is the printer cartridge's, a TL8 refill; a bottle of ink or a few sheets of carbon ($10) is kept by hand (p. 212)"
+      },
+      {
+        "pattern": "^Special Writing Papers$",
+        "set": {
+          "name": "Special Writing Papers (10 sheets)"
+        },
+        "reason": "priced for 10 sheets (p. 212)"
+      },
+      {
+        "pattern": "^Shielded Room$",
+        "set": {
+          "name": "Shielded Room (per square foot)"
+        },
+        "reason": "priced per square foot of wall, ceiling and floor (p. 212)"
+      },
+      {
+        "pattern": "^Lockpicks$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Lockpicking/TL"
+          ]
+        },
+        "reason": "basic equipment for Lockpicking; better picks use the Equipment Modifiers (p. 213)"
+      },
+      {
+        "pattern": "^Electronic Lockpicking Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Electronics Operation/TL (Security)"
+          ],
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 3,
+                  "endurance": "1 week",
+                  "raw": "3×S/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "basic equipment for Electronics Operation (Security) against electronic locks; 3×S/week (p. 213)"
+      },
+      {
+        "pattern": "^Counterfeiting Tools$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Counterfeiting/TL"
+          ]
+        },
+        "reason": "basic counterfeiting tools; the forgery tools, priced alike, are kept by hand (pp. 213-214)"
+      },
+      {
+        "pattern": "^Basic Disguise Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Disguise/TL"
+          ]
+        },
+        "reason": "a disguise kit, basic equipment for Disguise (p. 215)"
+      },
+      {
+        "pattern": "^Advanced Disguise Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "fine",
+          "system.forSkills": [
+            "Disguise/TL"
+          ]
+        },
+        "reason": "+2 to Disguise (p. 215)"
+      },
+      {
+        "pattern": "^Handcuffs \\(TL6\\)$",
+        "set": {
+          "name": "Handcuffs"
+        },
+        "reason": "the key-locking cuffs; the TL5 heading's shackles are their own entry (p. 217)"
+      },
+      {
+        "pattern": "^Flex Cuffs$",
+        "set": {
+          "name": "Flex Cuffs (pack of 10)"
+        },
+        "reason": "priced for a pack of 10 (p. 217)"
+      },
+      {
+        "pattern": "^Tracheotomy Kit$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "a single-use kit (p. 219)"
+      },
+      {
+        "pattern": "^Intubation Kit$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "a single-use kit (p. 219)"
+      },
+      {
+        "pattern": "^IV Stand$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "improvised",
+              "skill": "Two-Handed Axe/Mace",
+              "damageBase": "sw",
+              "damageModifier": 1,
+              "damageFormula": "",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "1,2*",
+              "parryModifier": 0,
+              "canParry": true,
+              "unbalanced": true,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": 13,
+              "twoHanded": true,
+              "unreadyAfterAttack": true,
+              "skillModifier": -2
+            }
+          ]
+        },
+        "reason": "a clumsy maul at -2 to skill and -3 to damage, if a patient swings it (p. 220)"
+      },
+      {
+        "pattern": "^Plasma$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Plasma (pint)"
+        },
+        "reason": "priced per pint; LC3-4 recorded as 3, where a prescription is needed (p. 220)"
+      },
+      {
+        "pattern": "^Whole Blood$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Whole Blood (pint)"
+        },
+        "reason": "priced per pint; LC3-4 recorded as 3 (p. 220)"
+      },
+      {
+        "pattern": "^Dextrose$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "a bag of IV fluid; LC3-4 recorded as 3; saline, the next line, is kept by hand (p. 220)"
+      },
+      {
+        "pattern": "^Doctor's Bag$",
+        "set": {
+          "system.cost": 200,
+          "system.listCost": 200,
+          "system.weight": 10,
+          "system.lc": 3
+        },
+        "reason": "the closing line read is the first aid kit's; the bag's is $200, 10 lbs., LC3, after the sidebar (pp. 220-221)"
+      },
+      {
+        "pattern": "^First Aid Kit$",
+        "set": {
+          "system.cost": 50,
+          "system.listCost": 50,
+          "system.weight": 2,
+          "system.lc": 4
+        },
+        "reason": "the closing line read is the body bag's; the kit's is $50, 2 lbs., LC4, after the list of contents (p. 221)"
+      },
+      {
+        "pattern": "^Small First Aid Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "First Aid/TL"
+          ]
+        },
+        "reason": "basic equipment for First Aid (p. 221)"
+      },
+      {
+        "pattern": "^Soap$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Soap (month's supply)"
+        },
+        "reason": "priced for a month's supply (p. 221)"
+      },
+      {
+        "pattern": "^Foot Powder$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Foot Powder (week's supply)"
+        },
+        "reason": "priced for a week's supply (p. 221)"
+      },
+      {
+        "pattern": "^Insect Repellant$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Insect Repellant (10-use bottle)"
+        },
+        "reason": "priced for a 10-use bottle (p. 221)"
+      },
+      {
+        "pattern": "^Salt Tablets$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Salt Tablets (bottle of 50)"
+        },
+        "reason": "priced for a bottle of 50 (p. 221)"
+      },
+      {
+        "pattern": "^Sunscreen$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Sunscreen (four-use bottle)"
+        },
+        "reason": "priced for a four-use bottle (p. 221)"
+      },
+      {
+        "pattern": "^Vitamin Pills$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Vitamin Pills (month's supply)"
+        },
+        "reason": "priced for a month's supply (p. 221)"
+      },
+      {
+        "pattern": "^Hand Sanitizer Gel$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Hand Sanitizer Gel (week's supply)"
+        },
+        "reason": "priced for a week's supply (p. 221)"
+      },
+      {
+        "pattern": "^Bandages$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "enough for one wound (p. 221)"
+      },
+      {
+        "pattern": "^Hemostatic Bandages$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per treatment (p. 221)"
+      },
+      {
+        "pattern": "^Decontamination Shower$",
+        "set": {
+          "system.cost": 600,
+          "system.listCost": 600,
+          "system.weight": 150,
+          "system.lc": 3
+        },
+        "reason": "the closing line read is the sphygmomanometer's, a column over; the shower's is $600, 150 lbs., LC3 (p. 222)"
+      },
+      {
+        "pattern": "^Iron Lung$",
+        "set": {
+          "system.cost": 5000,
+          "system.listCost": 5000,
+          "system.weight": 700,
+          "system.lc": 4
+        },
+        "reason": "the closing line read is the decontamination sprayer's; the iron lung's is $5,000, 700 lbs., external power, LC4 (p. 222)"
+      },
+      {
+        "pattern": "^Stretcher Isolator$",
+        "set": {
+          "system.cost": 500,
+          "system.listCost": 500,
+          "system.weight": 500,
+          "system.lc": 3,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "L",
+                  "cells": 1,
+                  "endurance": "10 hrs.",
+                  "raw": "L/10 hrs."
+                }
+              }
+            }
+          }
+        },
+        "reason": "the closing line read is the iron lung's; the isolator's is $500, 500 lbs., L/10 hrs., LC3 (p. 222)"
+      },
+      {
+        "pattern": "^Electronic Thermometer$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 2,
+                  "endurance": "1,000 readings",
+                  "raw": "2×T/1,000 readings"
+                }
+              }
+            }
+          }
+        },
+        "reason": "2×T/1,000 readings, which the battery reading misses (p. 222)"
+      },
+      {
+        "pattern": "^X-Ray Machine$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^Portable X-Ray Machine \\(TL7\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^Compact X-Ray Machine$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^Semi-Portable Ultrasound$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^Portable Ultrasound$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^CT and MRI Scanners$",
+        "set": {
+          "name": "CT or MRI Scanner",
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "a basic scanner of either kind; a medical-imaging instrument: +TL/2 (quality) to Diagnosis on a successful Electronics Operation (Medical) roll (p. 222)"
+      },
+      {
+        "pattern": "^Medical Supplies$",
+        "set": {
+          "name": "Medical Supplies (20 patient-days)"
+        },
+        "reason": "enough for 20 patient-days of treatment (p. 223)"
+      },
+      {
+        "pattern": "^Portable Clinical Analyzer$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 2,
+                  "endurance": "300 tests",
+                  "raw": "2×XS/300 tests"
+                }
+              }
+            }
+          }
+        },
+        "reason": "2×XS/300 tests, which the battery reading misses; the $5 test strips are left out (p. 223)"
+      },
+      {
+        "pattern": "^Surgical Kit \\(TL5\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Surgery/TL"
+          ],
+          "system.equipmentModifier": -2
+        },
+        "reason": "basic equipment for Surgery, -2 to skill (p. 223)"
+      },
+      {
+        "pattern": "^Surgical Kit \\(TL6\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "basic equipment for Surgery (p. 224)"
+      },
+      {
+        "pattern": "^Surgical Kit \\(TL7\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Surgery/TL"
+          ],
+          "system.equipmentModifier": 1
+        },
+        "reason": "basic equipment for Surgery, +1 to skill (p. 224)"
+      },
+      {
+        "pattern": "^Surgical Kit \\(TL8\\)$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Surgery/TL"
+          ],
+          "system.equipmentModifier": 2
+        },
+        "reason": "basic equipment for Surgery, +2 to skill (p. 224)"
+      },
+      {
+        "pattern": "^Specialized Operating Theater$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "best",
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "+TL/2 (quality) to its one specialty of Surgery; basic equipment otherwise (p. 224)"
+      },
+      {
+        "pattern": "^Suturing Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "basic",
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "basic equipment for simple Surgery, improvised for the rest (p. 224)"
+      },
+      {
+        "pattern": "^Surgical Laser$",
+        "set": {
+          "system.category": "tool",
+          "system.equipmentQuality": "fine",
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "fine-quality Surgery equipment (p. 224)"
+      },
+      {
+        "pattern": "^Antiseptic$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Antiseptic (10 uses)"
+        },
+        "reason": "a 10-use container (p. 225)"
+      },
+      {
+        "pattern": "^Ammonia Inhalants$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Ammonia Inhalants (vial)"
+        },
+        "reason": "a vial good for 20 uses (p. 226)"
+      },
+      {
+        "pattern": "^Castor Oil$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Castor Oil (10 doses)"
+        },
+        "reason": "priced for 10 doses (p. 226)"
+      },
+      {
+        "pattern": "^Analgesics$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Analgesics (100 doses)"
+        },
+        "reason": "priced for 100 doses (p. 226)"
+      },
+      {
+        "pattern": "^Antimalarial Pills$",
+        "set": {
+          "system.category": "consumable",
+          "name": "Antimalarial Pills (30 doses)"
+        },
+        "reason": "priced for 30 doses (p. 226)"
+      },
+      {
+        "pattern": "^Antibiotics$",
+        "set": {
+          "system.category": "consumable",
+          "system.cost": 0.5,
+          "system.listCost": 0.5
+        },
+        "reason": "a dose to treat a wound; the two-week course for an illness is kept by hand (p. 226)"
+      },
+      {
+        "pattern": "^Activated Charcoal$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Morphine$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Antitoxin Kit$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Chelating Agents$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Truth Serum$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^DMSO$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Curare$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Ricin$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Strychnine$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Botulin Toxins$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Irradiated Thallium$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "priced per dose or treatment (pp. 226-227)"
+      },
+      {
+        "pattern": "^Doctor's Bag$",
+        "set": {
+          "system.forSkills": [
+            "First Aid/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^First Aid Kit$",
+        "set": {
+          "system.forSkills": [
+            "First Aid/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Crash Kit$",
+        "set": {
+          "system.forSkills": [
+            "First Aid/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Hemostatic Bandages$",
+        "set": {
+          "system.forSkills": [
+            "First Aid/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Medical Supplies$",
+        "set": {
+          "system.forSkills": [
+            "Physician/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Operating Theater$",
+        "set": {
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Portable Surgery$",
+        "set": {
+          "system.forSkills": [
+            "Surgery/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Portable Clinical Analyzer$",
+        "set": {
+          "system.forSkills": [
+            "Diagnosis/TL"
+          ]
+        },
+        "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
       }
     ]
   },
