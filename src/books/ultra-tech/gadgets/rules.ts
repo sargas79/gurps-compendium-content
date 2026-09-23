@@ -23,8 +23,8 @@ export const STYLING_RANGE = Object.freeze({ least: 2, most: 10 });
 export const RUGGED = Object.freeze({ cost: 2, weight: 1.2, health: 2, dr: 2 });
 
 /** Cheap is half price at 1.5 times the weight, expensive twice the price at 2/3 (p. 15). */
-export const GRADE_COST: Readonly<Record<Grade, number>> = { "": 1, cheap: 0.5, expensive: 2 };
-export const GRADE_WEIGHT: Readonly<Record<Grade, number>> = { "": 1, cheap: 1.5, expensive: 2 / 3 };
+export const GRADE_COST: Readonly<Partial<Record<Grade, number>>> = { "": 1, cheap: 0.5, expensive: 2 };
+export const GRADE_WEIGHT: Readonly<Partial<Record<Grade, number>>> = { "": 1, cheap: 1.5, expensive: 2 / 3 };
 
 /**
  * What a gadget's weight, cost and power cells are multiplied by for a user of

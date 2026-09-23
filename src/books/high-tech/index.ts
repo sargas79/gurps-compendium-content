@@ -7,7 +7,9 @@
  * are Martial Arts'. Those live once, as shared engines under `src/shared/`,
  * and this book registers its own table for each and its own switch, so a GM
  * can use High-Tech without either of the other books. So far this registers
- * a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * the equipment options, combination gadgets, gear for other sizes, the
+ * Legality Class of antiques, the black market, Equipment Bond and intrinsic
+ * bonuses, and TL penalties as unfamiliarity (pp. 7-11), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -23,7 +25,7 @@
  * and ammunition: calibres priced from the Ammunition Tables, the ammunition
  * upgrades, cartridge conversions, handloading and misloading, and the
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
- * and projectile upgrades (pp. 79-93, 109, 127-141, 147-178, 249-252).
+ * and projectile upgrades (pp. 7-11, 79-93, 109, 127-141, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -32,6 +34,8 @@ import { initDrawing, readyDrawing } from "./drawing/index.js";
 import { ammunitionGunFields, ammunitionHearing, firesMinieBalls, firesPaperCartridges, initAmmunition, projectileUnderwaterFactor, readyAmmunition } from "./ammunition/index.js";
 import { accessoryGunFields, initAccessories, readyAccessories } from "./accessories/index.js";
 import { readyAftermath } from "./aftermath/index.js";
+import { readyBlackMarket } from "./black-market/index.js";
+import { initHighTechEquipment, readyHighTechEquipment } from "./equipment/index.js";
 import { readyEnvironments } from "./environments/index.js";
 import { readyIndirectFire } from "./indirect-fire/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
@@ -49,8 +53,9 @@ const REFERENCE = "High-Tech";
 /**
  * Switch keys are one namespace across this module's books, so where High-Tech
  * prints a rule Ultra-Tech has a switch for, it takes its own key. These are
- * reserved for the rule issues that register them, beside the Ultra-Tech key
- * each would have clashed with.
+ * those keys (the first three registered by #357, the rest reserved for the
+ * rule issues that register them), beside the Ultra-Tech key each would have
+ * clashed with.
  */
 export const RESERVED_KEYS = Object.freeze({
   /** Gadget options and statistics (Ultra-Tech: gadgetOptions). */
@@ -67,6 +72,14 @@ export const RESERVED_KEYS = Object.freeze({
 
 /** The book's switches. */
 const RULES = [
+  // The equipment age: options, combinations, sizes, legality, the black market, bonuses, TL.
+  { key: "equipmentOptions", pages: "pp. 9-11", implemented: true },
+  { key: "combinationGadgets", pages: "p. 10", implemented: true },
+  { key: "gearForSm", pages: "p. 10", implemented: true },
+  { key: "antiqueLegality", pages: "p. 8", implemented: true },
+  { key: "blackMarket", pages: "pp. 7-10", implemented: true },
+  { key: "equipmentBonuses", pages: "pp. 7, 11", implemented: true },
+  { key: "tlFamiliarity", pages: "p. 11", implemented: true },
   { key: "firearmQuality", pages: "p. 79", implemented: true },
   { key: "gunCare", pages: "pp. 80-81, 129", implemented: true },
   { key: "immediateAction", pages: "pp. 81, 249-251", implemented: true },
@@ -137,6 +150,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
  */
 function init(): void {
   initHighTechPower();
+  initHighTechEquipment({ options: ruleKey("equipmentOptions"), sm: ruleKey("gearForSm"), legality: ruleKey("antiqueLegality") });
   registerHighTechRecordData();
   initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f) }));
   initAmmunition();
@@ -146,6 +160,8 @@ function init(): void {
 
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
+  readyHighTechEquipment(api, { combination: rule("combinationGadgets"), bonuses: rule("equipmentBonuses"), familiarity: rule("tlFamiliarity") });
+  readyBlackMarket(api, rule("blackMarket"));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
   const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
