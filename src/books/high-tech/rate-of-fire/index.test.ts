@@ -274,3 +274,21 @@ describe("fanning and thumbing", () => {
     expect(attack(tied, { "ht-thumbing": true }).refusal).toBeNull();
   });
 });
+
+describe("with the book's other shooting rules (pp. 84, 249)", () => {
+  it("refuses fanning and thumbing where another rule says so, and takes a changed default", () => {
+    hooks = new Map();
+    options = new Map();
+    readyRateOfFire(fakeApi() as never, switches, {
+      noFanning: (item) => (item.id === "Colt M1873 SAA" ? "two-handed" : null),
+      techniqueDefault: (_actor, technique, penalty) => (technique === "Fast-Firing" ? penalty / 2 : null),
+    });
+    on.fanning = true;
+    on.fastFiring = true;
+    expect(opt("ht-fanning").refuse(context(peacemaker()))).toBe("two-handed");
+    expect(opt("ht-thumbing").refuse(context(peacemaker()))).toBe("two-handed");
+    // Without the technique, the default the other rule gives; with it, the technique's own level.
+    expect(opt("ht-fast-firing").apply(context(colt1911()), "4")).toMatchObject({ modifiers: [{ value: -2 }] });
+    expect(opt("ht-fanning").apply(context(gun("Remington 1858", { rateOfFire: 1, shots: "6(5i)" })), "2")).toMatchObject({ modifiers: [{ value: -4 }] });
+  });
+});

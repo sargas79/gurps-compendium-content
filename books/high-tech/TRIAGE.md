@@ -180,7 +180,7 @@ same list.
 | Precision Aiming | rejected: IQ-based default formula | by hand (#346) |
 | Zen Marksmanship (%Gun Skills%) | rejected: placeholder name | by hand (#346), already listed there |
 | Mounted Shooting (two forms) | rejected: placeholder name | by hand (#346): a technique specialised by weapon skill and mount, one record per pair a campaign needs |
-| Targeted Attack (two forms) | rejected: placeholder name | the rule is Martial Arts' too (D1); #367 decides whether it is records or a rule |
+| Targeted Attack (two forms) | rejected: placeholder name | a rule (#367): a technique of the gun-TA kind, named "TA (Specialty/Target)", on the shared Targeted Attack engine; by hand, the book's two examples, TA (Pistol/Weapon) and TA (SMG/Head) (p. 252) |
 
 Sure-Footed is written both unspecialised and as its three specialties (p. 250), as in
 Martial Arts' pack.
