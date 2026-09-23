@@ -1,0 +1,5 @@
+To you, it is *daisho* . . . a bow of yew . . . a victory-bright blade. It is an extension of body and spirit with which you sow devastation unknown in simpler times. It is your *gun* – the modern embodiment of martial spirit. *Kung fu* is Chinese for “exemplary effort.” Gun Fu applies this concept to mastery of the gun, according the weapon the same reverence that the samurai has for his sword or the English archer shows his bow.
+
+Shootists in such movies as *Hard Boiled, The Matrix, Léon,* and *Equilibrium* take gunplay to a new level. Like other martial artists, Gun Fu stylists are a diverse lot. Cinema often portrays them in contemporary settings, but *Last Man Standing* is set during Prohibition, and the spaghetti Westerns – notably those starring Clint Eastwood – started it all. Where there are guns (or blasters!), there may be Gun Fu. Below is a typical style; many more are possible.
+
+*Note for those without GURPS Martial Arts:* A fighting style requires a one-point investment in each skill (excluding skills under *Optional Traits*) plus a point for “Style Familiarity” – a perk that gives access to the style’s techniques and other perks.

@@ -1,0 +1,1 @@
+A wide array of armor and protective equipment appears at TL5-8. These items are listed in approximate order of appearance within their TL, to make it easier for the GM to decide whether they exist yet in a campaign set at that TL. See Armor Tables (p. B282) for an explanation of the notation and abbreviations used in this section’s tables.

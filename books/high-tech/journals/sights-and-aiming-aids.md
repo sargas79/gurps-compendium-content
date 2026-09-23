@@ -1,0 +1,1 @@
+Guns are often given targeting systems – sights, scopes, even computers. The combined bonus from all such gadgetry can’t exceed the weapon’s base Accuracy (but see Precision Aiming, p. 84). For instance, a telescopic sight that gives up to +4 Acc gives only +2 Acc on an Acc 2 pistol.

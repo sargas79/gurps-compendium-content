@@ -1,0 +1,5 @@
+By the 1860s, the metallic cartridge was rapidly rendering cap-and-ball weapons obsolete. It was cheaper to convert these old guns to fire the new cartridges than to replace them. Some conversions were done “officially,” at factories and government arsenals; others were the work of gunsmiths or frontier blacksmiths. Conversions were popular in the 1870s and 1880s, the most common examples being nearly every revolver of the American Civil War era (pp. 92-94) and the British Snider Pattern I rifle (see Enfield P/1853, pp. 108-109).
+
+Note that on a revolver, only the cylinder is modified. The new cartridge can’t exceed the cylinder’s length. As well, the bullet must fit the bore: .44-caliber caplocks can be converted to fire .44 or .45 cartridges, .36-caliber caplocks to take .38 cartridges, and .31-caliber caplocks to accept .32 cartridges. Converted black-powder weapons can’t fire Magnum rounds, however!
+
+A cartridge conversion requires an Armoury (Small Arms) roll at -4 and three days’ work.

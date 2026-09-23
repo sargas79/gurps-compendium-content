@@ -1,0 +1,1 @@
+These weapons squirt liquids and gases, typically in less-than-lethal personal-defense and riot-control applications. Most must hit the face (-5) to be effective, but the wide jet grants the same +2 to hit accorded to blowpipe-delivered powders (p. B180).

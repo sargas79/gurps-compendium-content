@@ -1,0 +1,3 @@
+During the Age of Sail, the telescope was a symbol of authority for military officers – especially naval officers. The “spyglass” was a near-constant feature in portraits of such men. Around 1830, binoculars came into use. They replaced the telescope in the field, except for special applications, and were de rigueur among officers in both World Wars.
+
+One danger of optics is lens shine. On a bright day, the telltale glint of field glasses can be seen on a Vision roll. To avoid this, the user must make a Stealth roll. From mid-TL5, hoods that partially obscure the lens are available, granting +4 to Stealth for this purpose.

@@ -1,0 +1,1 @@
+Body armor is heavy, and stifling even in temperate conditions. In hot weather, it increases FP costs (see Fighting a Battle, p. B426) and can contribute to heatstroke (see Heat, p. B434). To mitigate heat problems, use a climate-control system (p. 74) or wear a wicking undergarment (p. 64).

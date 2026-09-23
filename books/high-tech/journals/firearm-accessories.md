@@ -1,0 +1,1 @@
+Shooters love gizmos! Below are dozens of accompaniments and add-ons for guns. Should statistics for such a device appear in a firearm description, they take precedence over these generic rules. The GM may make similar gadgets available for crossbows, liquid projectors, etc., where logical.

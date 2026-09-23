@@ -1,0 +1,1 @@
+These notes elaborate on the Clothing rules on p. B266. Weights assume TL7 garments; to adjust weight for other TLs, see Clothing Materials and Technology (pp. 64-65). The complete outfits below include the cost of appropriate footwear but not its weight; see Footwear (pp. 68-69) for that.

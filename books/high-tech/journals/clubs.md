@@ -1,0 +1,1 @@
+Clubs are common at TL5-8. Policemen are issued nightsticks and riot-control batons, criminals and security forces carry blackjacks, and anybody might brandish the proverbial “blunt instrument” – tire iron, baseball bat, fence plank, fireplace poker, etc. Both improvised and industrially made clubs, maces, and morningstars were used on a large scale in WWI trench fighting.

@@ -1,0 +1,5 @@
+High-tech travelers stranded in a low-tech area can cobble together a useful battery with a little ingenuity. Every grade-school kid has built a primitive battery out of his favorite fruit or vegetable. A voltaic pile, one of the earliest batteries, can be made by stacking dissimilar metal coins or discs together, separated by brine-soaked cloth. Such a simple pile can produce enough voltage to power a small crystal-radio receiver.
+
+Batteries with more kick take more effort. Vinegar or citrus juice can be used as the acid. Nearly any two metals can serve as electrodes – iron or lead sheeting, discarded aluminum foil, etc. A small jar of acid with metal electrodes can produce a useful amount of electricity. Several jars wired in series can power a small electronic device.
+
+Dead or damaged batteries can be useful for raw materials. A standard automobile battery contains around 20 lbs. of lead (useful for bullet-making, p. 163) and 5 lbs. of sulfuric acid (just the thing for home-made explosives, p. 186).

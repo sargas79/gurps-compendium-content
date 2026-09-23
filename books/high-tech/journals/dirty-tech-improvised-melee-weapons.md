@@ -1,0 +1,1 @@
+Most people – even adventurers – aren’t armed all the time. Ambushed in their kitchen, at a cocktail party, or at the grocery store, they might have to rely on whatever is at hand. See Improvised Weapons (p. B404) for rules, Chapter 3 for tools useful as weapons, and GURPS Martial Arts for more of both.

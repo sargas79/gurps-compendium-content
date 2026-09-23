@@ -1,0 +1,3 @@
+Clothing is often the only barrier between an adventurer and frostbite, sunburn, heat stroke, or even death . . . not to mention social calamities. The clothes in this section are described generically, to make them useful in any setting. Specific styles are intentionally given short shrift – even a brief survey would fill the entire book! Such concerns are left to the GM. Any good reference work on historical fashions will offer a wealth of inspirational descriptions and illustrations.
+
+Note that Styling (p. 10) often applies to clothing, and that clothes come in all the usual quality levels (p. B345). Assume LC4 except where noted.

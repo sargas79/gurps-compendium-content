@@ -1,0 +1,11 @@
+Improvements to firearm quality typically affect either accuracy or reliability. The two options can be combined. It’s also possible to add Styling (p. 10), alone or with other improvements, to create “presentation” weapons. These rules expand on the standard examples on p. B280 (which are both “accurate” and “reliable”).
+
+**Fine (Accurate).** The shooter’s quest for accuracy commonly lands guns on the gunsmith’s bench. By improving the fit of individual parts and installing expensive precision-manufactured components, set triggers, custom-made target grips, etc., a gunsmith can improve quality to fine (accurate). This only benefits weapons with a base Acc of at least 2, and gives +1 Acc. The necessary modifications require an Armoury (Small Arms) roll and five hours’ work. Cost is 75% of the gun’s cost.
+
+**Very Fine (Accurate).** If the weapon has a base Acc of at least 4, further work can improve quality to very fine (accurate). This grants +2 Acc. This is very rare, and typically confined to the best target rifles available! The modifications require an Armoury (Small Arms) roll and 25 hours’ work. Cost is five times that of basic accurizing; that is, 375% of the gun’s cost.
+
+Fine (Reliable).\* By polishing and re-angling the feed ramp in self-loading weapons, installing new springs, custom-fitting all components, etc., a gunsmith can improve quality to fine (reliable). This increases the malfunction number (p. B407) by a step; e.g., from 16 to 17. Improving a weapon with Malf. 17 leaves Malf. at 17 – but roll again whenever a malfunction would occur. Unless this roll also indicates a malfunction, no malfunction occurs. The modifications require an Armoury (Small Arms) roll and two hours’ work. Cost is 25% of the gun’s cost.
+
+Very Fine (Reliable).\* Further work can improve Malf. by two steps. This is exceedingly rare except on the best target and sporting weapons available. The modifications require an Armoury (Small Arms) roll and 10 hours’ work. Cost is five times that of increasing reliability to fine; that is, 125% of the gun’s cost.
+
+\* Full-automatic weapons can’t be improved to fine or very fine (reliable), but some start out more reliable than usual, as noted on the weapon tables.

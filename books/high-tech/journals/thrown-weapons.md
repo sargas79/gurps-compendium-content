@@ -1,0 +1,1 @@
+The only thrown weapons likely to be encountered at TL5-8 are knives (see p. B276) and hatchets. These are considered fine at TL7-8 (p. B274) and have the same materials options as melee weapons (see Blade Composition, p. 198).

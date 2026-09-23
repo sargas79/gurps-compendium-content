@@ -1,0 +1,3 @@
+After 1850, anesthesia for surgery was commonly available in Europe and the U.S. – including at most American Civil War field hospitals, contrary to popular myth. Inhalant anesthetics are volatile, and require storage in airtight containers until shortly before use. It takes about a minute to put a cooperative patient under, or three to five minutes for an uncooperative one. If the roll to administer anesthetic fails, Surgery skill is at -2, just as for no anesthetic (see Surgery, p. B424).
+
+These rules cover general anesthesia. Local anesthetics for minor surgery are available after 1885, and are included in medical kits that need them.

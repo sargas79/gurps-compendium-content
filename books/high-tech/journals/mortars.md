@@ -1,0 +1,3 @@
+Mortars are short-barreled cannon used for high-trajectory indirect fire. The earliest versions, at TL4, were massive bombardment pieces intended mainly for sieges. At TL6, the mortar becomes an entirely different weapon.
+
+The defining feature of the TL6-8 mortar remains its indirect-fire capability, but it’s a much lighter piece, often man-portable. The bombs it hurls are more effective than gun artillery shells of similar caliber. It’s typically fired by dropping rounds down the tube, allowing high rates of fire for short periods – again, outperforming equivalent gun artillery. However, mortars can’t match the range and precision of gun artillery.

@@ -1,0 +1,3 @@
+Whatever you call it, marching cross-country under full kit is exhausting. The hiking rules in the Basic Set are intentionally simplistic – they assume fine weather, ideal terrain, and a grueling 16-hour day spent doing nothing but putting one foot in front of the other. Hikers often march for less than a full day, which can make it useful to know hourly movement rates.
+
+Assume that speed in miles per hour equals Move/2. Adjust the pace as usual for terrain, weather, and roads; see p. B351. Note the FP costs for an hour of hiking given on p. B426 – good FP scores and the Fit advantage (p. B55) give a significant edge here! Extra effort works as usual (see p. B357). Each foraging attempt (p. B427) takes an hour, during which no progress is made.

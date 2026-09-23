@@ -1,0 +1,1 @@
+Bows and crossbows at TL5-6 are largely identical to those of lower TLs. By TL7, improved materials and accessories make archery an increasingly popular pastime. Bowhunting enjoys a revival on land, while the speargun takes the sport beneath the waves.

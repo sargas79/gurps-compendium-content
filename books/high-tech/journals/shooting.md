@@ -1,0 +1,1 @@
+Resolve attacks with firearms as explained in Ranged Attacks (pp. B372-374). See Special Ranged Combat Rules (pp. B407-414) for situations unique to guns and gunfights. The following rules add further optional detail.

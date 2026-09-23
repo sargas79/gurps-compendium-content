@@ -1,0 +1,1 @@
+Several innovations exist to increase ammo capacity and/or cut reloading time for cartridge-firing repeaters. For the costs and weights of standard magazines, spare cylinders, and so on, see the weapon tables and descriptions.
