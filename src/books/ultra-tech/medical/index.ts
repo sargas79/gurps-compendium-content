@@ -21,7 +21,9 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { MEDICAL_TABLES, bestLine } from "../../../shared/medical/rules.js";
 import {
+  DEVICES,
   BANDAGE_SPRAY_HP,
   DRUG_FORMS,
   MEDICAL_BED,
@@ -512,6 +514,9 @@ function itemContext(item: any, on: MedicalSwitches): Record<string, unknown> {
 }
 
 export function readyMedical(api: GWorldApi, on: MedicalSwitches): void {
+  // The devices that treat on their own skill, Ultra-Tech's table in the shared engine.
+  MEDICAL_TABLES.register({ book: "ultra-tech", tls: { min: 9, max: 12 }, on: on.gear, devices: DEVICES });
+
   // The drugs a HT roll resists, dosed and resisted by the system (API 1.57.0).
   for (const drug of Object.keys(RESISTED_DRUGS) as ResistedDrug[]) {
     api.data.registerPoison({
@@ -593,7 +598,7 @@ export function readyMedical(api: GWorldApi, on: MedicalSwitches): void {
       const supplies = [...(context.actor?.items ?? [])].find((i: any) => i.type === "equipment" && i.system?.carried !== false && /^medical supplies$/i.test(nameOf(i)));
       if (supplies) quality.push({ label: nameOf(supplies), value: 1 });
       // Equipment bonuses don't add up: the best of them counts.
-      const best = quality.sort((a, b) => b.value - a.value)[0];
+      const best = bestLine(quality);
       if (best) context.modifiers.push(best);
     }
   });

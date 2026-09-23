@@ -1,0 +1,399 @@
+/**
+ * Emergency medicine and medical facilities as the system meets them: the
+ * resuscitation, First Aid, surgery and infection rolls through
+ * `gworld.successRollModifiers`, the treating skills' equipment lines through
+ * `gworld.skillBonuses`, and the row actions -- with only High-Tech's
+ * switches on (decision D1).
+ */
+
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+import * as rules from "../../../../system/src/rules/index.js";
+import { MEDICAL_TABLES, deviceFor } from "../../../shared/medical/rules.js";
+import { MODULE_ID } from "../../../shared/module.js";
+import { readyMedicine } from "./index.js";
+
+type Listener = (...args: any[]) => void;
+
+const HOOKS = { successRollModifiers: "gworld.successRollModifiers" };
+
+let hooks: Map<string, Listener[]>;
+let actions: Map<string, any>;
+let tools: Map<string, any>;
+let successes: any[];
+let resuscitations: any[];
+let injuries: any[];
+let rads: any[];
+let chat: string[];
+let on: Record<string, boolean>;
+let successResults: any[];
+let dialogAnswer: any;
+let targets: any[];
+let controlled: any[];
+let worldTime: number;
+let systemRules: Set<string>;
+
+function fire(hook: string, ...args: any[]): any {
+  for (const listener of hooks.get(hook) ?? []) listener(...args);
+  return args[0];
+}
+
+function fakeApi() {
+  return {
+    rules,
+    registry: { isRuleOn: (key: string) => systemRules.has(key) },
+    data: { hooks: { skillBonuses: "gworld.skillBonuses" } },
+    combat: { hooks: HOOKS },
+    sheets: {
+      registerSheetSection: () => undefined,
+      registerRowAction: (a: any) => actions.set(a.key, a),
+      registerGmTool: (t: any) => tools.set(t.key, t),
+    },
+    actors: {
+      attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
+      skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
+      applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
+      // As the system does: the healer's roll passes through the modifiers hook.
+      resuscitate: async (o: any) => {
+        const context = fire(HOOKS.successRollModifiers, { actor: o.healer, tags: ["resuscitation", o.cause ?? "heartAttack"], modifiers: [], opponent: o.patient });
+        resuscitations.push({ ...o, lines: context.modifiers });
+      },
+    },
+    hazards: { irradiate: async (o: any) => { rads.push(o); } },
+    roll: { success: async (o: any) => { successes.push(o); return successResults.shift() ?? { success: true }; } },
+  };
+}
+
+function setPath(target: any, path: string, value: unknown): void {
+  const keys = path.split(".");
+  let node = target;
+  for (const key of keys.slice(0, -1)) node = node[key] ??= {};
+  node[keys.at(-1)!] = value;
+}
+
+function gear(name: string, medical: Record<string, unknown> | null, more: Record<string, any> = {}, book: string | null = "high-tech"): any {
+  const item: any = {
+    id: name,
+    name,
+    type: "equipment",
+    isOwner: true,
+    flags: book ? { [MODULE_ID]: { book } } : {},
+    system: { tl: "8", carried: true, quantity: 1, equipmentQuality: "basic", equipmentModifier: null, forSkills: [], extensions: medical ? { [MODULE_ID]: { medical } } : {}, ...more },
+  };
+  item.update = async (changes: Record<string, unknown>) => {
+    for (const [path, value] of Object.entries(changes)) setPath(item, path, value);
+  };
+  return item;
+}
+
+function person(name: string, items: any[] = [], more: Record<string, any> = {}): any {
+  const flags: Record<string, unknown> = { ...(more.flags ?? {}) };
+  return {
+    name,
+    uuid: `Actor.${name}`,
+    isOwner: true,
+    items,
+    attributes: { IQ: 11, HT: 10 },
+    skills: {},
+    statuses: new Set<string>(more.statuses ?? []),
+    system: { tl: 8, ...(more.system ?? {}) },
+    getFlag: (_scope: string, key: string) => flags[key],
+    setFlag: async (_scope: string, key: string, value: unknown) => { flags[key] = value; },
+    unsetFlag: async (_scope: string, key: string) => { delete flags[key]; },
+    ...Object.fromEntries(Object.entries(more).filter(([k]) => !["flags", "statuses", "system"].includes(k))),
+  };
+}
+
+const flush = async () => { for (let i = 0; i < 20; i += 1) await Promise.resolve(); };
+
+function ready(): void {
+  readyMedicine(fakeApi() as never, { emergency: () => on.emergencyMedicine === true, facilities: () => on.medicalFacilities === true });
+}
+
+function skillLines(actor: any, name: string, lines: Array<{ key: string; value: number }>, skill: Record<string, any> = { attribute: "IQ" }): any[] {
+  const context = { actor, name, item: { system: skill }, lines: lines.map((l) => ({ ...l, label: l.key, source: "system" })) };
+  fire("gworld.skillBonuses", context);
+  return context.lines;
+}
+
+const toolLine = (lines: any[]) => lines.find((l) => l.key === "tools");
+
+function roll(actor: any, tags: string[], more: Record<string, unknown> = {}): any[] {
+  return fire(HOOKS.successRollModifiers, { actor, tags, modifiers: [], ...more }).modifiers;
+}
+
+async function run(key: string, item: any, actor: any): Promise<void> {
+  actions.get(key).run(item, actor);
+  await flush();
+}
+
+beforeEach(() => {
+  hooks = new Map();
+  actions = new Map();
+  tools = new Map();
+  successes = [];
+  resuscitations = [];
+  injuries = [];
+  rads = [];
+  chat = [];
+  on = {};
+  successResults = [];
+  dialogAnswer = null;
+  targets = [];
+  controlled = [];
+  worldTime = 1000;
+  systemRules = new Set(["equipmentModifiers"]);
+  MEDICAL_TABLES.clear();
+  vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
+  vi.stubGlobal("game", {
+    i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
+    user: { get targets() { return new Set(targets.map((actor) => ({ actor }))); } },
+    get time() { return { worldTime }; },
+  });
+  vi.stubGlobal("canvas", { get tokens() { return { controlled: controlled.map((actor) => ({ actor })) }; } });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
+  vi.stubGlobal("ui", { notifications: { warn: vi.fn(), info: vi.fn() } });
+  vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
+  vi.stubGlobal("Roll", class { total = 4; async evaluate() { return this; } });
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+});
+
+describe("with both switches off", () => {
+  it("changes nothing", () => {
+    ready();
+    const medic = person("Medic", [gear("First Aid Kit", { kind: "firstAidKit", depleted: true }, { equipmentQuality: "fine", forSkills: ["First Aid/TL"] })]);
+    expect(toolLine(skillLines(medic, "First Aid/TL8", [{ key: "tools", value: 2 }])).value).toBe(2);
+    const patient = person("Patient", [], { statuses: ["bleeding"], flags: { htAntiseptic: 1000, htAnesthesia: { ok: false, at: 1000 } } });
+    expect(roll(medic, ["firstAid"], { opponent: patient })).toEqual([]);
+    expect(roll(patient, ["disease", "infection", "HT"])).toEqual([]);
+    for (const [key, item] of [["ht-defibrillate", gear("Manual Defibrillator (TL8)", { kind: "defibrillator", value: 3 })], ["ht-aed", gear("Automatic External Defibrillator (AED)", { kind: "aed" })], ["ht-scan", gear("X-Ray Machine", { kind: "imaging", value: 1 })], ["ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" })]] as const) {
+      expect(actions.get(key).visible(item), key).toBe(false);
+    }
+    expect(tools.get("ht-cpr").visible()).toBe(false);
+  });
+});
+
+describe("resuscitation (High-Tech p. 220)", () => {
+  beforeEach(() => { on = { emergencyMedicine: true }; ready(); });
+
+  it("puts a manual defibrillator's +3 on the resuscitation roll once Electronics Operation (Medical) succeeds", async () => {
+    const medic = person("Medic", [], { skills: { "Electronics Operation (Medical)": 12 } });
+    const patient = person("Patient");
+    targets = [patient];
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
+    const defibrillator = gear("Manual Defibrillator (TL8)", { kind: "defibrillator", value: 3 });
+    await run("ht-defibrillate", defibrillator, medic);
+    expect(successes[0]).toMatchObject({ actor: medic, base: 12, skill: "Electronics Operation (Medical)", item: defibrillator });
+    expect(resuscitations).toHaveLength(1);
+    expect(resuscitations[0]).toMatchObject({ healer: medic, patient, cause: "heartAttack", cpr: false });
+    expect(resuscitations[0].lines).toEqual([{ label: "Manual Defibrillator (TL8)", value: 3 }]);
+    // The line is for that roll alone.
+    expect(roll(medic, ["resuscitation", "heartAttack"])).toEqual([]);
+  });
+
+  it("gives the TL7 model +2, and no roll at all without the shock unless CPR goes on", async () => {
+    const medic = person("Medic");
+    targets = [person("Patient")];
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    // Electronics Operation at IQ-5 unlearned.
+    expect(successes[0].base).toBe(6);
+    expect(resuscitations[0].lines).toEqual([{ label: "Manual Defibrillator (TL7)", value: 2 }]);
+    successResults = [{ success: false }];
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    expect(resuscitations).toHaveLength(1);
+    successResults = [{ success: false }];
+    dialogAnswer = { cause: "drowning", cpr: true, modifier: 0 };
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    expect(resuscitations[1]).toMatchObject({ cause: "drowning", cpr: true, lines: [] });
+  });
+
+  it("hooks an AED up at IQ+4, then resuscitates at its own skill 12", async () => {
+    const operator = person("Bystander");
+    const patient = person("Patient");
+    targets = [patient];
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
+    const aed = gear("Automatic External Defibrillator (AED)", { kind: "aed" });
+    await run("ht-aed", aed, operator);
+    expect(successes[0]).toMatchObject({ base: 11, kind: "attribute", modifiers: [{ label: "GCC.HT.Medicine.AedInstructions", value: 4 }], item: aed });
+    expect(resuscitations[0]).toMatchObject({ healer: operator, patient, skill: 12, skillKind: "physician", techLevel: 8, lines: [] });
+    // Not hooked up: nothing.
+    successResults = [{ success: false }];
+    await run("ht-aed", aed, operator);
+    expect(resuscitations).toHaveLength(1);
+  });
+
+  it("needs only High-Tech's switch for the AED, whatever Ultra-Tech's table says (D1)", () => {
+    MEDICAL_TABLES.register({ book: "ultra-tech", tls: { min: 9, max: 12 }, on: () => false, devices: [[/^automed$/i, { tl: 9, skills: { firstAid: 13 }, perTl: 2 }]] });
+    expect(deviceFor(gear("Automatic External Defibrillator (AED)", { kind: "aed" }))).toMatchObject({ skills: { resuscitation: 12 } });
+    // Ultra-Tech's automed is Ultra-Tech's, and off with its switch.
+    expect(deviceFor(gear("Automed", null, { tl: "9" }, "ultra-tech"))).toBeNull();
+    on = {};
+    expect(deviceFor(gear("Automatic External Defibrillator (AED)", { kind: "aed" }))).toBeNull();
+  });
+
+  it("charges the rescuer 1 FP for each five minutes of CPR on one patient", async () => {
+    const medic = person("Medic");
+    const patient = person("Patient");
+    targets = [patient];
+    controlled = [medic];
+    dialogAnswer = { cause: "drowning", cpr: false, modifier: 0 };
+    for (let minute = 1; minute <= 4; minute += 1) { tools.get("ht-cpr").open(); await flush(); }
+    expect(resuscitations.every((r) => r.cpr === true)).toBe(true);
+    expect(injuries).toEqual([]);
+    tools.get("ht-cpr").open();
+    await flush();
+    expect(injuries).toEqual([expect.objectContaining({ actor: medic, amount: 1, fatigue: true })]);
+    // Another patient starts the count again.
+    targets = [person("Other")];
+    tools.get("ht-cpr").open();
+    await flush();
+    expect(medic.getFlag(MODULE_ID, "htCpr")).toEqual({ patient: "Actor.Other", minutes: 1 });
+  });
+});
+
+describe("first aid gear (High-Tech pp. 220-221)", () => {
+  beforeEach(() => { on = { emergencyMedicine: true }; ready(); });
+
+  const kit = (quality: string, more: Record<string, unknown> = {}, name = "First Aid Kit") => gear(name, { kind: "firstAidKit", ...more }, { equipmentQuality: quality, forSkills: ["First Aid/TL"] });
+
+  it("holds fine first aid gear to +1 without blood or IV fluids", () => {
+    const medic = person("Medic", [kit("fine")]);
+    const line = toolLine(skillLines(medic, "First Aid/TL8", [{ key: "tools", value: 2 }]));
+    expect(line).toMatchObject({ value: 1, reason: "GCC.HT.Medicine.NoFluidsReason" });
+    // Fluids and an IV kit to give them with: the +2 stands.
+    const supplied = person("Medic", [kit("fine"), gear("IV Kit", { kind: "ivKit" }), gear("Saline", { kind: "ivFluid" })]);
+    expect(toolLine(skillLines(supplied, "First Aid/TL8", [{ key: "tools", value: 2 }])).value).toBe(2);
+    // A bag gone is no fluid.
+    const empty = person("Medic", [kit("fine"), gear("IV Kit", { kind: "ivKit" }), gear("Saline", { kind: "ivFluid" }, { quantity: 0 })]);
+    expect(toolLine(skillLines(empty, "First Aid/TL8", [{ key: "tools", value: 2 }])).value).toBe(1);
+    // Not First Aid: nothing.
+    expect(toolLine(skillLines(medic, "Physician/TL8", [{ key: "tools", value: 2 }])).value).toBe(2);
+  });
+
+  it("lets a crash kit give +2 from its own fluids until it is depleted, and a depleted kit work a grade lower", () => {
+    const crash = kit("fine", { fluids: true }, "Crash Kit");
+    expect(toolLine(skillLines(person("Medic", [crash]), "First Aid/TL8", [{ key: "tools", value: 2 }])).value).toBe(2);
+    const depleted = kit("fine", { fluids: true, depleted: true }, "Crash Kit");
+    const line = toolLine(skillLines(person("Medic", [depleted]), "First Aid/TL8", [{ key: "tools", value: 2 }]));
+    expect(line.value).toBe(1);
+    expect(line.reason).toContain("DepletedReason");
+    // A good kit depleted is basic; a second, whole kit wins.
+    expect(toolLine(skillLines(person("Medic", [kit("good", { depleted: true })]), "First Aid/TL8", [{ key: "tools", value: 1 }])).value).toBe(0);
+    expect(toolLine(skillLines(person("Medic", [kit("good", { depleted: true }), kit("good", {}, "Doctor's Bag")]), "First Aid/TL8", [{ key: "tools", value: 1 }])).value).toBe(1);
+  });
+
+  it("keeps hemostatic bandages for bleeding wounds: +1 where they beat the kit, a bandage used", async () => {
+    const bandages = gear("Hemostatic Bandages", { kind: "hemostatic" }, { equipmentQuality: "good", forSkills: ["First Aid/TL"], quantity: 3 });
+    const medic = person("Medic", [bandages, { type: "skill", name: "First Aid/TL8", system: { derived: { toolBonus: 0 } } }]);
+    // Not the skill's tools: the system took them as +1 for every First Aid roll.
+    expect(toolLine(skillLines(medic, "First Aid/TL8", [{ key: "tools", value: 1 }])).value).toBe(0);
+    const bleeding = person("Patient", [], { statuses: ["bleeding"] });
+    expect(roll(medic, ["firstAid"], { opponent: bleeding })).toEqual([{ label: expect.stringContaining("Hemostatic Bandages"), value: 1 }]);
+    await flush();
+    expect(bandages.system.quantity).toBe(2);
+    expect(roll(medic, ["firstAid"], { opponent: person("Patient") })).toEqual([]);
+    // A good kit already gives +1: they add nothing, and none is used.
+    const kitted = person("Medic", [bandages, { type: "skill", name: "First Aid/TL8", system: { derived: { toolBonus: 1 } } }]);
+    expect(roll(kitted, ["firstAid"], { opponent: bleeding })).toEqual([]);
+    expect(bandages.system.quantity).toBe(2);
+  });
+
+  it("starts an IV from a bag, an IV kit needed: a quart of water, dextrose a meal", async () => {
+    const dextrose = gear("Dextrose", { kind: "ivFluid", meal: true }, { quantity: 2 });
+    await run("ht-start-iv", dextrose, person("Medic", [dextrose]));
+    expect(dextrose.system.quantity).toBe(2);
+    await run("ht-start-iv", dextrose, person("Medic", [dextrose, gear("IV Kit", { kind: "ivKit" })]));
+    expect(dextrose.system.quantity).toBe(1);
+    expect(chat.at(-1)).toContain("IvWater");
+    expect(chat.at(-1)).toContain("IvMeal");
+  });
+});
+
+describe("medical facilities (High-Tech pp. 222-225)", () => {
+  beforeEach(() => { on = { medicalFacilities: true }; ready(); });
+
+  const skill = (name: string, derived: Record<string, unknown>) => ({ type: "skill", name, system: { derived } });
+
+  it("gives portable surgery's +2 to First Aid", () => {
+    const setup = gear("Portable Surgery", { kind: "portableSurgery" }, { equipmentQuality: "good", forSkills: ["Surgery/TL"], tl: "7" });
+    const lines = skillLines(person("Medic", [setup]), "First Aid/TL8", [{ key: "tools", value: 0 }, { key: "techLevel", value: 0 }]);
+    expect(toolLine(lines).value).toBe(2);
+    // With the tech-level rule, its TL7 against the skill's TL8.
+    systemRules.add("techLevelModifiers");
+    const weighed = skillLines(person("Medic", [setup]), "First Aid/TL8", [{ key: "tools", value: 0 }, { key: "techLevel", value: 0 }]);
+    expect(weighed.find((l) => l.key === "techLevel").value).toBe(-1);
+  });
+
+  it("puts a surgical kit's own TL modifier in place of the table's by the surgeon's TL", () => {
+    const tl5 = gear("Surgical Kit (TL5)", { kind: "surgicalKit" }, { tl: "5", forSkills: ["Surgery/TL"], equipmentModifier: -2 });
+    const surgeon = person("Surgeon", [tl5, skill("Surgery/TL8", { toolItemId: "Surgical Kit (TL5)" })], { skills: { Surgery: 13 } });
+    // The skill's 13 already has the kit's -2; the system adds the TL8 table's +2, which comes off.
+    expect(roll(surgeon, ["surgery"], { base: 13, opponent: person("Patient") })).toEqual([{ label: expect.stringContaining("Surgical Kit (TL5)"), value: -2 }]);
+    const tl6 = gear("Surgical Kit (TL6)", { kind: "surgicalKit" }, { tl: "6", forSkills: ["Surgery/TL"] });
+    const tl6Surgeon = person("Surgeon", [tl6, skill("Surgery/TL8", { toolItemId: "Surgical Kit (TL6)" })], { skills: { Surgery: 13 } });
+    expect(roll(tl6Surgeon, ["surgery"], { base: 13 })).toEqual([{ label: expect.stringContaining("Surgical Kit (TL6)"), value: -2 }]);
+    // A TL6 surgeon's table is 0: nothing to take off.
+    const early = person("Surgeon", [tl6, skill("Surgery/TL6", { toolItemId: "Surgical Kit (TL6)" })], { skills: { Surgery: 13 }, system: { tl: 6 } });
+    expect(roll(early, ["surgery"], { base: 13 })).toEqual([]);
+    // A device's own skill standing in: not the surgeon's kit.
+    expect(roll(surgeon, ["surgery"], { base: 15 })).toEqual([]);
+  });
+
+  it("makes a suturing kit improvised for an operation", () => {
+    const suturing = gear("Suturing Kit", { kind: "suturingKit" }, { forSkills: ["Surgery/TL"] });
+    const surgeon = person("Surgeon", [suturing, skill("Surgery/TL8", { toolItemId: "Suturing Kit" })], { skills: { Surgery: 12 } });
+    expect(roll(surgeon, ["surgery"], { base: 12 })).toEqual([{ label: expect.stringContaining("Suturing Kit"), value: -5 }]);
+  });
+
+  it("puts the targeted patient under with a Physician roll, and a failure costs the operation -2", async () => {
+    const doctor = person("Doctor", [], { skills: { Physician: 12 } });
+    const patient = person("Patient");
+    targets = [patient];
+    const machine = gear("Portable Anesthesia Machine", { kind: "anesthesia", value: 2 });
+    successResults = [{ success: false }];
+    await run("ht-anesthetize", machine, doctor);
+    expect(successes[0]).toMatchObject({ base: 12, skill: "Physician", modifiers: [{ label: "Portable Anesthesia Machine", value: 2 }] });
+    const surgeon = person("Surgeon");
+    expect(roll(surgeon, ["surgery"], { opponent: patient })).toEqual([{ label: "GCC.HT.Medicine.AnesthesiaFailed", value: -2 }]);
+    // Four hours on, it no longer counts.
+    worldTime += 4 * 3600 + 1;
+    expect(roll(surgeon, ["surgery"], { opponent: patient })).toEqual([]);
+    // Under properly: nothing.
+    await run("ht-anesthetize", gear("Chloroform or Ether Mask", { kind: "anesthesia" }), doctor);
+    expect(successes[1].modifiers).toEqual([]);
+    expect(roll(surgeon, ["surgery"], { opponent: patient })).toEqual([]);
+  });
+
+  it("takes -2 off the infection roll for a wound cleaned with antiseptic, once", async () => {
+    const patient = person("Patient");
+    targets = [patient];
+    await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
+    expect(roll(patient, ["disease", "infection", "HT"])).toEqual([{ label: "GCC.HT.Medicine.AntisepticLine", value: 2 }]);
+    await flush();
+    expect(roll(patient, ["disease", "infection", "HT"])).toEqual([]);
+    // Contagion is another roll.
+    await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
+    expect(roll(patient, ["disease", "contagion", "HT"])).toEqual([]);
+  });
+
+  it("scans with Electronics Operation (Medical), then Diagnosis; the early X-ray irradiates both", async () => {
+    const operator = person("Operator", [], { skills: { Diagnosis: 13 } });
+    const patient = person("Patient");
+    targets = [patient];
+    const xray = gear("X-Ray Machine", { kind: "imaging", value: 1 }, { tl: "6" });
+    await run("ht-scan", xray, operator);
+    expect(rads.map((r) => [r.actor.name, r.rads])).toEqual([["Patient", 4], ["Operator", 4]]);
+    expect(successes.map((s) => s.skill)).toEqual(["Electronics Operation (Medical)", "Diagnosis"]);
+    expect(successes[1]).toMatchObject({ base: 13, item: xray });
+    // An ultrasound irradiates nobody; a failed operation, no diagnosis.
+    rads = [];
+    successResults = [{ success: false }];
+    await run("ht-scan", gear("Portable Ultrasound", { kind: "imaging" }), operator);
+    expect(rads).toEqual([]);
+    expect(successes).toHaveLength(3);
+  });
+});

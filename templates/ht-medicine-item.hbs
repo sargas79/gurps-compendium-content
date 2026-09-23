@@ -1,0 +1,10 @@
+{{!-- Emergency medicine and medical facilities (High-Tech pp. 219-225). --}}
+<div class="isub" data-gcc-ht-medicine-section>
+  <div class="isub-head">{{localize "GCC.HT.Medicine.Title"}}</div>
+  {{#if kit}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Medicine.DepletedHint'}}"><input type="checkbox" data-gcc-ht-medical="depleted" {{#if kit.depleted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Medicine.Depleted"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

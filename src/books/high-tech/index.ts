@@ -46,8 +46,11 @@
  * bayonets and rifle butts, sheaths, blade composition, electric stun
  * weapons and high-tech bows, and the breathing gear and environment
  * suits: masks, diving rigs, air tanks and rebreathers, and the suits that
- * seal their wearers, and the locks, safes, traps and barriers (pp. 7-11,
- * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 213, 249-252).
+ * seal their wearers, and the locks, safes, traps and barriers, and
+ * emergency medicine and medical facilities: defibrillators, CPR, first aid
+ * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic (pp. 7-11,
+ * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 213, 219-225,
+ * 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -82,6 +85,7 @@ import { initExpedition, readyExpedition } from "./expedition/index.js";
 import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/index.js";
 import { readyBreathing } from "./breathing/index.js";
 import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js";
+import { initMedicine, readyMedicine } from "./medicine/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -213,6 +217,9 @@ const RULES = [
   // Covert ops and security: locks, safes, traps and barriers.
   { key: "locksAndSafes", pages: "pp. 202-205, 213", implemented: true },
   { key: "trapsAndBarriers", pages: "pp. 203-205", implemented: true },
+  // Emergency medicine and medical facilities.
+  { key: "emergencyMedicine", pages: "pp. 219-221", implemented: true },
+  { key: "medicalFacilities", pages: "pp. 222-225", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -263,6 +270,7 @@ function init(): void {
   initHighTechMelee();
   initHighTechCamouflage(ruleKey("camouflageGear"));
   initHighTechSecurity();
+  initMedicine();
 }
 
 function ready(api: GWorldApi): void {
@@ -314,6 +322,7 @@ function ready(api: GWorldApi): void {
   readyHighTechCamouflage(api);
   readyBreathing(api, { breathing: rule("breathingGear"), suits: rule("environmentSuits") });
   readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
+  readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
 }
 
 export const book: BookRules = {

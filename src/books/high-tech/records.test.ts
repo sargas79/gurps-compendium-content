@@ -528,6 +528,31 @@ describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
     const held = new Set(others.map((d) => d.name.toLowerCase()));
     expect(captured.filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
   });
+
+  it("says what each piece of emergency and facility gear is for the medical rules (#390)", () => {
+    const medical = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.medical;
+    // pp. 219-221.
+    expect(medical("Tracheotomy Kit")).toEqual({ kind: "airway" });
+    expect(medical("Manual Defibrillator (TL7)")).toEqual({ kind: "defibrillator", value: 2 });
+    expect(medical("Manual Defibrillator (TL8)")).toEqual({ kind: "defibrillator", value: 3 });
+    expect(draw("Manual Defibrillator (TL8)")).toMatchObject({ cell: "L", cells: 1 });
+    expect(medical("Automatic External Defibrillator (AED)")).toEqual({ kind: "aed" });
+    expect(medical("IV Kit")).toEqual({ kind: "ivKit" });
+    for (const name of ["Plasma (pint)", "Whole Blood (pint)", "Saline"]) expect(medical(name), name).toEqual({ kind: "ivFluid" });
+    expect(medical("Dextrose")).toEqual({ kind: "ivFluid", meal: true });
+    for (const name of ["Doctor's Bag", "Small First Aid Kit", "First Aid Kit"]) expect(medical(name), name).toEqual({ kind: "firstAidKit" });
+    expect(medical("Crash Kit")).toEqual({ kind: "firstAidKit", fluids: true });
+    expect(medical("Hemostatic Bandages")).toEqual({ kind: "hemostatic" });
+    // pp. 222-225.
+    expect(medical("X-Ray Machine")).toEqual({ kind: "imaging", value: 1 });
+    for (const name of ["Portable X-Ray Machine (TL7)", "Compact X-Ray Machine", "CT or MRI Scanner", "Semi-Portable Ultrasound", "Portable Ultrasound"]) expect(medical(name), name).toEqual({ kind: "imaging" });
+    expect(medical("Portable Surgery")).toEqual({ kind: "portableSurgery" });
+    for (const tl of [5, 6, 7, 8]) expect(medical(`Surgical Kit (TL${tl})`)).toEqual({ kind: "surgicalKit" });
+    expect(medical("Suturing Kit")).toEqual({ kind: "suturingKit" });
+    expect(medical("Chloroform or Ether Mask")).toEqual({ kind: "anesthesia" });
+    expect(medical("Portable Anesthesia Machine")).toEqual({ kind: "anesthesia", value: 2 });
+    expect(medical("Antiseptic (10 uses)")).toEqual({ kind: "antiseptic" });
+  });
 });
 
 describe("High-Tech's guns built for sustained fire and underwater (#368)", () => {
