@@ -258,6 +258,30 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
     expect(survival("Snack")?.kind).toBe("snack");
     expect(survival("Sports Drink")?.kind).toBe("sportsDrink");
   });
+
+  it("says what each piece of expedition gear is for the expedition rules (#362)", () => {
+    const exp = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.expedition;
+    // pp. 51-52: a radius, a beam, or both; the tactical lights also punch and club.
+    expect(exp("Kerosene Lantern").light).toEqual({ kind: "kerosene", radius: 5, beam: 0 });
+    expect(exp("Carbide Lamp").light).toEqual({ kind: "lantern", radius: 5, beam: 10 });
+    expect(exp("Floodlight").light).toEqual({ kind: "electric", radius: 0, beam: 200 });
+    expect(exp("Large Tactical Light (TL8)").light).toEqual({ kind: "tactical", radius: 0, beam: 100 });
+    expect(draw("Large Tactical Light (TL8)")).toMatchObject({ cell: "XS", cells: 4 });
+    expect(sys("Small Tactical Light (TL7)").meleeModes.map((m: any) => m.skill)).toEqual(["Boxing", "Brawling", "Karate"]);
+    expect(sys("Large Tactical Light (TL7)").meleeModes[0]).toMatchObject({ skill: "Shortsword", damageBase: "sw", damageType: "cr" });
+    // pp. 52-53: instruments and maps.
+    expect(exp("Global Positioning System Receiver").navigation).toBe("gps");
+    expect(exp("Ship's Chronometer").navigation).toBe("chronometer");
+    expect(sys("Topographic Map")).toMatchObject({ cost: 30, weight: 0.1, reference: "High-Tech p. 53" });
+    expect(exp("Road Atlas").navigation).toBe("map");
+    // pp. 54-56: load-bearing gear, packs and climbing gear.
+    expect(exp("Web Gear").carry).toBe("lbe");
+    expect(exp("Backpack, Small").carry).toBe("backpack");
+    expect(exp("Mini-Rappel Kit").climbing).toBe("rappelKit");
+    expect(sys("Climbing Kit").forSkills).toEqual(["Climbing"]);
+    expect(exp("Suction Cup").climbing).toBe("suctionCup");
+    expect(sys("Ice Axe").meleeModes[0]).toMatchObject({ skill: "Axe/Mace", damageBase: "sw", damageModifier: 1, damageType: "imp" });
+  });
 });
 
 describe("High-Tech's defences and firearm accessories (#349)", () => {

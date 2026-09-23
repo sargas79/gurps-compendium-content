@@ -1,0 +1,11 @@
+{{!-- A tactical light shone in the eyes (High-Tech p. 52): the roll to resist blindness. --}}
+<div class="gc-head"><span class="gc-label">{{localize "GCC.HT.Expedition.EyesTitle"}}</span></div>
+<div class="gc-result">{{light}} &rarr; {{victim}}</div>
+<div class="gc-note">{{localize "GCC.HT.Expedition.EyesSurprise"}}</div>
+{{#if result}}
+  <div class="gc-note">{{result}}</div>
+{{else}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="resist">{{localize "GCC.HT.Expedition.EyesResist"}}</button>
+  </div>
+{{/if}}

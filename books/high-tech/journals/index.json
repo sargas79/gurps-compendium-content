@@ -528,6 +528,7 @@
       "title": "Lights",
       "chapter": "3. General Equipment",
       "pages": "HT51-52",
+      "rule": "gurps-compendium-content.lightSources",
       "reference": "High-Tech pp. 51-52",
       "file": "lights.md",
       "status": "reviewed"
@@ -537,6 +538,7 @@
       "title": "Navigation Instruments",
       "chapter": "3. General Equipment",
       "pages": "HT52-53",
+      "rule": "gurps-compendium-content.navigationGear",
       "reference": "High-Tech pp. 52-53",
       "file": "navigation-instruments.md",
       "status": "reviewed"
@@ -546,6 +548,7 @@
       "title": "Load-Bearing Gear",
       "chapter": "3. General Equipment",
       "pages": "HT53-54",
+      "rule": "gurps-compendium-content.loadBearingEquipment",
       "reference": "High-Tech pp. 53-54",
       "file": "load-bearing-gear.md",
       "status": "reviewed"
@@ -555,6 +558,7 @@
       "title": "Humping, Tramping, and Yomping",
       "chapter": "3. General Equipment",
       "pages": "HT55",
+      "rule": "gurps-compendium-content.loadBearingEquipment",
       "reference": "High-Tech p. 55",
       "file": "humping-tramping-and-yomping.md",
       "status": "reviewed"
@@ -564,6 +568,7 @@
       "title": "Climbing and Mountaineering Gear",
       "chapter": "3. General Equipment",
       "pages": "HT55-56",
+      "rule": "gurps-compendium-content.climbingGear",
       "reference": "High-Tech pp. 55-56",
       "file": "climbing-and-mountaineering-gear.md",
       "status": "reviewed"

@@ -37,7 +37,10 @@
       "Iron Spike": "Fasteners",
       "Steel Pitons (10)": "Fasteners",
       "Trap, Beaver": "Traps",
-      "Hip Flask": "Hip Flask"
+      "Hip Flask": "Hip Flask",
+      "Road Atlas": "Maps",
+      "Topographic Map": "Maps",
+      "Topographic Maps, Continent (CD)": "Maps"
     },
     "families": [
       { "pattern": "^(?:Diesel Fuel|Gasoline|Kerosene) \\(per gallon\\)$", "heading": "Hydrocarbon Fuels", "headingOnly": true },
@@ -3331,6 +3334,469 @@
           "system.extensions.gurps-compendium-content.survival.kind": "sportsDrink"
         },
         "reason": "a snack, and a quart of water (p. 35) (#363)"
+      },
+      {
+        "pattern": "^(?:Tallow|Wax) Candles$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "flame",
+            "radius": 2,
+            "beam": 0
+          }
+        },
+        "reason": "a candle lights a 2-yard radius (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Candle-Lantern$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "flame",
+            "radius": 2,
+            "beam": 0
+          }
+        },
+        "reason": "a candle in a lantern, its 2-yard radius (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Bull's-Eye Lantern$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "lantern",
+            "radius": 0,
+            "beam": 10
+          }
+        },
+        "reason": "a lantern with a 10-yard beam, breaking if dropped (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Glass Lantern$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "glassLantern",
+            "radius": 5,
+            "beam": 0
+          }
+        },
+        "reason": "5-yard radius; breaks into a 1-yard fire if dropped (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Carbide Lamp$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "lantern",
+            "radius": 5,
+            "beam": 10
+          }
+        },
+        "reason": "5-yard radius or a 10-yard beam; a lantern (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Kerosene Lantern$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "kerosene",
+            "radius": 5,
+            "beam": 0
+          }
+        },
+        "reason": "5-yard radius; self-dousing if dropped (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Electric Lantern, Small",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 3,
+            "beam": 0
+          }
+        },
+        "reason": "3-yard radius (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Electric Lantern, Large$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 5,
+            "beam": 0
+          }
+        },
+        "reason": "5-yard radius (p. 51) (#362)"
+      },
+      {
+        "pattern": "^Flashlight$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 0,
+            "beam": 10
+          }
+        },
+        "reason": "10-yard beam (p. 52) (#362)"
+      },
+      {
+        "pattern": "^(?:Micro-Flashlight|Survival Flashlight)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 0,
+            "beam": 1
+          }
+        },
+        "reason": "1-yard beam (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Mini-Flashlight$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 0,
+            "beam": 5
+          }
+        },
+        "reason": "5-yard beam (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Floodlight$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 0,
+            "beam": 200
+          }
+        },
+        "reason": "200-yard beam (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Smart Flashlight$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "electric",
+            "radius": 0,
+            "beam": 50
+          }
+        },
+        "reason": "a 50-yard beam, or 5 yards on its long setting (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Chemlight$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "chemical",
+            "radius": 2,
+            "beam": 0
+          }
+        },
+        "reason": "2-yard radius (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Large Tactical Light",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "tactical",
+            "radius": 0,
+            "beam": 100
+          }
+        },
+        "reason": "100-yard beam; blinds and stuns (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Small Tactical Light",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.light": {
+            "kind": "tactical",
+            "radius": 0,
+            "beam": 25
+          }
+        },
+        "reason": "25-yard beam; blinds and stuns (p. 52) (#362)"
+      },
+      {
+        "pattern": "^Small Tactical Light",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "thrust (Boxing)",
+              "skill": "Boxing",
+              "damageBase": "thr",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": true,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "unreadyAfterAttack": false,
+              "unarmedBonus": true
+            },
+            {
+              "name": "thrust (Brawling)",
+              "skill": "Brawling",
+              "damageBase": "thr",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": true,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "unreadyAfterAttack": false,
+              "unarmedBonus": true
+            },
+            {
+              "name": "thrust (Karate)",
+              "skill": "Karate",
+              "damageBase": "thr",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "armorDivisor": 1,
+              "reach": "C",
+              "parryModifier": 0,
+              "canParry": true,
+              "isFlail": false,
+              "minSt": null,
+              "twoHanded": false,
+              "unbalanced": false,
+              "isFencing": false,
+              "unreadyAfterAttack": false,
+              "unarmedBonus": true
+            }
+          ]
+        },
+        "reason": "held in the fist, it punches as brass knuckles (p. 52; Characters p. 271) (#362)"
+      },
+      {
+        "pattern": "^Large Tactical Light",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Swing",
+              "skill": "Shortsword",
+              "damageBase": "sw",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "1",
+              "parryModifier": 0,
+              "canParry": true,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": 6,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            },
+            {
+              "name": "Thrust",
+              "skill": "Shortsword",
+              "damageBase": "thr",
+              "damageModifier": 0,
+              "damageFormula": "",
+              "damageType": "cr",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "1",
+              "parryModifier": 0,
+              "canParry": true,
+              "unbalanced": false,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": 6,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "a baton in melee (p. 52; Characters p. 273) (#362)"
+      },
+      {
+        "pattern": "^Compass$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.navigation": "compass"
+        },
+        "reason": "+1 to Navigation (Air, Land, or Sea) (p. 52) (#362)"
+      },
+      {
+        "pattern": "^(?:Pocket|Ship's) Chronometer$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.navigation": "chronometer"
+        },
+        "reason": "+1 to Navigation (Sea), +3 with navigating instruments (p. 53) (#362)"
+      },
+      {
+        "pattern": "^Navigating Instruments$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.navigation": "instruments"
+        },
+        "reason": "+2 to Navigation (Sea) at TL5, +3 at TL6+ (p. 53) (#362)"
+      },
+      {
+        "pattern": "^Surveying Instruments$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.navigation": "surveying"
+        },
+        "reason": "+2 to Mathematics (Surveying) or Navigation (Land) (p. 53) (#362)"
+      },
+      {
+        "pattern": "^Global Positioning System Receiver$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.navigation": "gps"
+        },
+        "reason": "+3 to Navigation (Air, Land, or Sea) in sight of the satellites (p. 53) (#362)"
+      },
+      {
+        "pattern": "^(?:Cartridge Bandoleer|Cross-Belts and Cartridge Pouch|Web Gear|Load-Bearing Vest)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.carry": "lbe"
+        },
+        "reason": "load-bearing equipment (p. 54) (#362)"
+      },
+      {
+        "pattern": "^Backpack, (?:Small|Large)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.carry": "backpack"
+        },
+        "reason": "a backpack: double cost and half weight at TL8 (pp. 54-55) (#362)"
+      },
+      {
+        "pattern": "^(?:Travel Bag|Waist Pack)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.carry": "bag"
+        },
+        "reason": "a pack: half weight at TL8 (p. 54) (#362)"
+      },
+      {
+        "pattern": "^Harness$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "harness"
+        },
+        "reason": "a climbing and rappelling harness (p. 55) (#362)"
+      },
+      {
+        "pattern": "^(?:Climbing Kit|Mini-Rappel Kit)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "rappelKit"
+        },
+        "reason": "a kit holding a harness and descender (p. 55) (#362)"
+      },
+      {
+        "pattern": "^Climbing Kit$",
+        "set": {
+          "system.forSkills": [
+            "Climbing"
+          ]
+        },
+        "reason": "a high-quality kit gives its bonus to Climbing (p. 55) (#362)"
+      },
+      {
+        "pattern": "^Ascender$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "ascender"
+        },
+        "reason": "cancels the -2 for climbing up a rope (p. 55) (#362)"
+      },
+      {
+        "pattern": "^Descender$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "descender"
+        },
+        "reason": "cancels the -1 for climbing down a rope (p. 55) (#362)"
+      },
+      {
+        "pattern": "^Grappling Hook$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "grapnel"
+        },
+        "reason": "thrown at DX-3 or Throwing (p. 55) (#362)"
+      },
+      {
+        "pattern": "^Crampons$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "crampons"
+        },
+        "reason": "ice gear (p. 56) (#362)"
+      },
+      {
+        "pattern": "^Ice Axe$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "attack",
+              "skill": "Axe/Mace",
+              "damageBase": "sw",
+              "damageModifier": 1,
+              "damageFormula": "",
+              "damageType": "imp",
+              "explosive": false,
+              "fragmentation": "",
+              "affliction": false,
+              "afflictionAttribute": "",
+              "afflictionModifier": 0,
+              "damageExtraDice": 0,
+              "damageSpecial": false,
+              "surge": false,
+              "armorDivisor": 1,
+              "reach": "1",
+              "parryModifier": 0,
+              "canParry": true,
+              "unbalanced": true,
+              "isFencing": false,
+              "isFlail": false,
+              "minSt": 10,
+              "twoHanded": false,
+              "unreadyAfterAttack": false
+            }
+          ]
+        },
+        "reason": "treated as a pick in combat (p. 56; Characters p. 271) (#362)"
+      },
+      {
+        "pattern": "^Skis$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "skis"
+        },
+        "reason": "snow as good terrain (p. 56) (#362)"
+      },
+      {
+        "pattern": "^Snowshoes$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "snowshoes"
+        },
+        "reason": "-1 Move (p. 56) (#362)"
+      },
+      {
+        "pattern": "^Suction Cups$",
+        "set": {
+          "system.extensions.gurps-compendium-content.expedition.climbing": "suctionCup"
+        },
+        "reason": "cancels the -3 for a modern building (p. 56) (#362)"
       }
     ]
   },

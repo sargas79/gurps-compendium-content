@@ -31,15 +31,17 @@
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
  * guns, and household hazards, the communications and sensors: radios,
  * telegraphy, active sensors, optics, night vision and thermographs,
- * hydrophones and sound detectors, the survival and camping gear, life
+ * hydrophones and sound detectors, the expedition gear: lights,
+ * navigation instruments and maps, load-bearing gear and packs, and climbing
+ * gear, the survival and camping gear, life
  * jackets, swim fins and dye markers, parachutes and Death from Above, and
  * snacks and sports drinks, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
  * the eyes, and the explosives and incendiaries: an explosion's side
  * effects, demolition charges, unstable and home-made explosives, thermite
  * and napalm, and the grenades, land mines, rifle grenades, bombs and
- * nuclear weapons (pp. 7-11, 13-16, 17-22, 24-50, 56-61, 71, 79-93, 109,
- * 127-141, 143, 147-196, 249-252).
+ * nuclear weapons (pp. 7-11, 13-16, 17-61, 71, 79-93, 109, 127-141, 143,
+ * 147-196, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -68,6 +70,7 @@ import { readyExplosives } from "./explosives/index.js";
 import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
 import { initSurvival, readySurvival } from "./survival/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
+import { initExpedition, readyExpedition } from "./expedition/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -176,6 +179,11 @@ const RULES = [
   { key: "landMines", pages: "pp. 189-190", implemented: true },
   { key: "rifleGrenades", pages: "pp. 193-194", implemented: true },
   { key: "nuclearEffects", pages: "pp. 195-196", implemented: true },
+  // Expedition gear: lights, navigation, load-bearing gear, climbing.
+  { key: "lightSources", pages: "pp. 51-52", implemented: true },
+  { key: "navigationGear", pages: "pp. 52-53", implemented: true },
+  { key: "loadBearingEquipment", pages: "pp. 53-55", implemented: true },
+  { key: "climbingGear", pages: "pp. 55-56", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -221,6 +229,7 @@ function init(): void {
   initTools();
   initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors") });
   initSurvival();
+  initExpedition();
 }
 
 function ready(api: GWorldApi): void {
@@ -265,6 +274,7 @@ function ready(api: GWorldApi): void {
   readyOrdnance(api, ordnance);
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
+  readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
 }
 
 export const book: BookRules = {
