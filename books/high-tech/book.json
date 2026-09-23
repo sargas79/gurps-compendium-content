@@ -3330,6 +3330,118 @@
         ]
       },
       "reason": "a combination weapon: in melee it is a baton used with Shortsword (p. 199, p. B273) (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Maxim Mk I, \\.450 MH$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.waterPints": 7.5
+      },
+      "reason": "water-cooled, its jacket holding 7.5 pints (p. 129) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Maxim MG08, 7\\.92x57mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.waterPints": 7
+      },
+      "reason": "its water jacket held 7 pints (p. 130) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Vickers Mk I, \\.303$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.waterPints": 9
+      },
+      "reason": "its water jacket held 9 pints (p. 131) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Browning M1917, \\.30-06$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.waterPints": 8
+      },
+      "reason": "its water jacket held 8 pints (p. 131) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hotchkiss Mle 1914, 8x50mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrel": "extraHeavy"
+      },
+      "reason": "its barrel counts as extra-heavy for sustained fire (p. 131) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Browning M1919A4, \\.30-06$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrel": "extraHeavy"
+      },
+      "reason": "its barrel counts as extra-heavy for sustained fire (p. 132) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Enfield Bren Mk I, \\.303$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrel": "extraHeavy"
+      },
+      "reason": "its barrel counts as extra-heavy for sustained fire (p. 133) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Browning M2HB, \\.50 Browning$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrel": "extraHeavy"
+      },
+      "reason": "its barrel counts as extra-heavy for sustained fire (p. 133) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^KPZ DShK-38, 12\\.7x108mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrel": "extraHeavy"
+      },
+      "reason": "its barrel counts as extra-heavy for sustained fire (p. 133) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Rheinmetall MG34, 7\\.92x57mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrelChangeSeconds": 6
+      },
+      "reason": "its barrels change in six seconds (p. 132) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Rheinmetall MG42, 7\\.92x57mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrelChangeSeconds": 3
+      },
+      "reason": "its barrel changes in three seconds (p. 134) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^H&K HK21A1, 7\\.62x51mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.barrelChangeSeconds": 3
+      },
+      "reason": "its barrel changes in three seconds (p. 136) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^H&K P11, 7\\.62x36mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 25
+      },
+      "reason": "an underwater pistol: distance underwater x25, not x1,000 (p. 92) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^TsNIITochMash APS, 5\\.66x39mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 25
+      },
+      "reason": "an underwater rifle: distance underwater x25, not x1,000 (p. 117) (#368)"
     }
   ]
 }

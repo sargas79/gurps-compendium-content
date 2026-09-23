@@ -1,0 +1,45 @@
+{{!-- A gun's heat from sustained fire, its water jacket and a barrel change (High-Tech pp. 85-86, 129). --}}
+<div class="isub" data-gcc-ht-sustained-section>
+  <div class="isub-head">{{localize "GCC.HT.Sustained.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.HT.Sustained.BarrelTooltip'}}">{{localize "GCC.HT.Sustained.BarrelLabel"}}
+      <select data-gcc-ht-sustained="barrel" {{#unless editable}}disabled{{/unless}}>
+        {{#each barrels as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if machineGun}}
+      <label data-tooltip="{{localize 'GCC.HT.Sustained.DisciplineTooltip'}}">{{localize "GCC.HT.Sustained.DisciplineLabel"}}
+        <select data-gcc-ht-sustained="discipline" {{#unless editable}}disabled{{/unless}}>
+          {{#each disciplines as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Sustained.WaterTooltip'}}">{{localize "GCC.HT.Sustained.WaterLabel"}}
+        <input type="number" min="0" step="0.5" data-gcc-ht-sustained="waterPints" value="{{build.waterPints}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Sustained.BarrelSecondsTooltip'}}">{{localize "GCC.HT.Sustained.BarrelSecondsLabel"}}
+        <input type="number" min="0" step="1" data-gcc-ht-sustained="barrelChangeSeconds" value="{{build.barrelChangeSeconds}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+    {{#if showAccuracyLost}}
+      <label data-tooltip="{{localize 'GCC.HT.Sustained.AccuracyLostTooltip'}}">{{localize "GCC.HT.Firearm.AccuracyLost"}}
+        <input type="number" min="0" max="10" step="1" data-gcc-ht-sustained="accuracyLost" value="{{accuracyLost}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+  </div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Sustained.MaintainedHint'}}"><input type="checkbox" data-gcc-ht-sustained="maintained" {{#if data.maintained}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Sustained.Maintained"}}</label>
+    {{#if machineGun}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Sustained.CondenserHint'}}"><input type="checkbox" data-gcc-ht-sustained="condenser" {{#if build.condenser}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Sustained.Condenser"}}</label>{{/if}}
+  </div>
+  <p class="ihint">{{safe}}</p>
+  <p class="ihint">{{heat}}
+    <button type="button" class="ibtn tiny" data-gcc-ht-cool {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Sustained.CoolHint'}}">{{localize "GCC.HT.Sustained.Cool"}}</button>
+  </p>
+  {{#if water}}
+    <p class="ihint">{{water}}
+      <button type="button" class="ibtn tiny" data-gcc-ht-refill {{#unless editable}}disabled{{/unless}}>{{localize "GCC.HT.Sustained.Refill"}}</button>
+    </p>
+  {{/if}}
+  {{#if canChangeBarrel}}
+    <button type="button" class="ibtn" data-gcc-ht-barrel {{#unless editable}}disabled{{/unless}} {{#unless hasActor}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Sustained.BarrelHint'}}">{{localize "GCC.HT.Sustained.ChangeBarrel"}} ({{barrelSeconds}} s)</button>
+  {{/if}}
+</div>

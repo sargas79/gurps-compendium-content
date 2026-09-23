@@ -919,6 +919,7 @@
       "title": "Special Shooting Situations",
       "chapter": "5. Weaponry",
       "pages": "HT85",
+      "rule": "gurps-compendium-content.shootingEnvironments",
       "reference": "High-Tech p. 85",
       "file": "special-shooting-situations.md",
       "status": "reviewed"
@@ -928,6 +929,7 @@
       "title": "Sustained Fire",
       "chapter": "5. Weaponry",
       "pages": "HT85-86",
+      "rule": "gurps-compendium-content.sustainedFire",
       "reference": "High-Tech pp. 85-86",
       "file": "sustained-fire.md",
       "status": "reviewed"
@@ -937,6 +939,7 @@
       "title": "After the Firefight",
       "chapter": "5. Weaponry",
       "pages": "HT87",
+      "rule": "gurps-compendium-content.firefightAftermath",
       "reference": "High-Tech p. 87",
       "file": "after-the-firefight.md",
       "status": "reviewed"
@@ -1126,6 +1129,7 @@
       "title": "Machine Guns and Autocannon",
       "chapter": "5. Weaponry",
       "pages": "HT129",
+      "rule": "gurps-compendium-content.sustainedFire",
       "reference": "High-Tech p. 129",
       "file": "machine-guns-and-autocannon.md",
       "status": "reviewed"
@@ -1135,6 +1139,7 @@
       "title": "Water-Cooled Machine Guns",
       "chapter": "5. Weaponry",
       "pages": "HT129",
+      "rule": "gurps-compendium-content.sustainedFire",
       "reference": "High-Tech p. 129",
       "file": "water-cooled-machine-guns.md",
       "status": "reviewed"

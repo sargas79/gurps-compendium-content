@@ -22,12 +22,12 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { ENVIRONMENT_FLAG, environmentScene, sceneEnvironment } from "../../../shared/environment/index.js";
 import {
   FORCE_FIELD_PART,
   LETHAL_ELECTROLASER_LC,
   stabilizedScreenPart,
   KILL_SETTING,
-  STANDARD_ENVIRONMENT,
   beamFamily,
   drResistBonus,
   inEnvironment,
@@ -40,8 +40,6 @@ const L = (key: string) => game.i18n.localize(`GCC.UT.Beams.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Beams.${key}`, data);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
-/** The scene flag the environment is kept in. */
-const ENVIRONMENT_FLAG = "beamEnvironment";
 /** The attack option for an electrolaser's kill setting, and the weapon state it leaves. */
 const KILL_OPTION = "ut-electrolaser-kill";
 const BUILD_FIELD = "beamBuild";
@@ -58,21 +56,11 @@ export function initBeams(): void {
 const hasKillSetting = (item: any) => item?.system?.extensions?.[MODULE_ID]?.[BUILD_FIELD]?.killSetting === true;
 
 /** The scene whose air the beams are fired through: the one being viewed, or the active one. */
-function beamScene(): any {
-  const scenes = (globalThis as any).game?.scenes;
-  return scenes?.viewed ?? scenes?.active ?? null;
-}
+const beamScene = environmentScene;
 
-/** The environment of the scene being viewed, or a standard one. */
+/** The environment of the scene being viewed, or a standard one (kept for every book that fires through it). */
 export function beamEnvironment(): BeamEnvironment {
-  const stored = beamScene()?.getFlag?.(MODULE_ID, ENVIRONMENT_FLAG) ?? {};
-  const atmospheres = Number(stored.atmospheres);
-  return {
-    atmospheres: Number.isFinite(atmospheres) && atmospheres >= 0 ? atmospheres : STANDARD_ENVIRONMENT.atmospheres,
-    underwater: stored.underwater === true,
-    waterClarity: ["clear", "average", "murky"].includes(stored.waterClarity) ? stored.waterClarity : STANDARD_ENVIRONMENT.waterClarity,
-    humidity: ["dry", "humid", "rain"].includes(stored.humidity) ? stored.humidity : STANDARD_ENVIRONMENT.humidity,
-  };
+  return sceneEnvironment();
 }
 
 /** The family of the item an attack was made with. */
