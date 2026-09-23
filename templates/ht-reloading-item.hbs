@@ -1,0 +1,33 @@
+{{!-- How a gun loads, careful loading and black-powder fouling (High-Tech pp. 86-88, 251). --}}
+<div class="isub" data-gcc-ht-reloading-section>
+  <div class="isub-head">{{localize "GCC.HT.Reloading.Title"}}</div>
+  <div class="ifields">
+    {{#if loading}}
+      <label data-tooltip="{{localize 'GCC.HT.Reloading.TypeTooltip'}}">{{localize "GCC.HT.Reloading.TypeLabel"}}
+        <select data-gcc-ht-reloading="loadingType" {{#unless editable}}disabled{{/unless}}>
+          {{#each types as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+    {{#if fouling}}
+      <label data-tooltip="{{localize 'GCC.HT.Reloading.PowderTooltip'}}">{{localize "GCC.HT.Reloading.PowderLabel"}}
+        <select data-gcc-ht-reloading="powder" {{#unless editable}}disabled{{/unless}}>
+          {{#each powders as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+  </div>
+  {{#if careful}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Reloading.CarefulHint'}}"><input type="checkbox" data-gcc-ht-reloading="loadCarefully" {{#if loadCarefully}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Reloading.LoadCarefully"}}</label>
+    </div>
+  {{/if}}
+  {{#if time}}<p class="ihint">{{time}}</p>{{/if}}
+  {{#if doubleLoadingShort}}<p class="ihint">{{doubleLoadingShort}}</p>{{/if}}
+  {{#if carefulLine}}<p class="ihint">{{carefulLine}}</p>{{/if}}
+  {{#if foulingLine}}
+    <p class="ihint">{{foulingLine}}
+      {{#if canClean}}<button type="button" class="ibtn tiny" data-gcc-ht-clean {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Reloading.CleanHint'}}">{{localize "GCC.HT.Reloading.Clean"}} ({{cleanMinutes}} min)</button>{{/if}}
+    </p>
+  {{/if}}
+</div>

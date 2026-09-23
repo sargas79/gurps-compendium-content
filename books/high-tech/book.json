@@ -3442,6 +3442,102 @@
         "system.extensions.gurps-compendium-content.firearmBuild.underwaterFactor": 25
       },
       "reason": "an underwater rifle: distance underwater x25, not x1,000 (p. 117) (#368)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Lefaucheux Mle 1854, 12x16mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "gate"
+      },
+      "reason": "a side-gate loading revolver (p. 93) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Webley RIC Number 1, \\.442 RIC$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "gate"
+      },
+      "reason": "a loading-gate revolver (p. 94) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Colt M1873 SAA, \\.45 Long Colt$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "gate"
+      },
+      "reason": "a loading-gate revolver (p. 95; its reload is the example of p. 87) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nagant R-1895, 7\\.62x39mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "gate"
+      },
+      "reason": "side-gate loading and rod-ejecting (p. 95) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^S&W Number 3, \\.44 Russian$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "breakOpen"
+      },
+      "reason": "a top-break, simultaneously extracting revolver (p. 95) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^S&W Safety Hammerless, \\.38 S&W$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "breakOpen"
+      },
+      "reason": "a top-break, simultaneously extracting revolver (p. 95) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Webley Mk VI, \\.455 Webley$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "breakOpen"
+      },
+      "reason": "a break-open revolver (p. 96) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Webley-Fosbery Mk I, \\.455 Webley$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "breakOpen"
+      },
+      "reason": "a break-open revolver (p. 97) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^S&W Number 1, \\.22 Short$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "other"
+      },
+      "reason": "its cylinder comes out to reload: 15 seconds and 5 a round, as its table has it (p. 94) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Winchester Model 70, \\.30-06$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "internal"
+      },
+      "reason": "a bolt-action rifle loaded with loose rounds: the example of p. 87 (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Remington Model 700, 7\\.62x51mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "internal"
+      },
+      "reason": "a bolt-action rifle, whose internal magazine takes rounds through the open action (p. 87) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Mauser T-Gew18, 13x92mmSR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.loadingType": "internal"
+      },
+      "reason": "a single-shot bolt action: open, load and close the action (p. 87) (#369)"
     }
   ]
 }

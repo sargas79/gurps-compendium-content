@@ -3285,7 +3285,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "gate"
+          }
+        }
+      }
     }
   },
   {
@@ -3349,7 +3356,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "other"
+          }
+        }
+      }
     }
   },
   {
@@ -3541,7 +3555,14 @@
           "recoil": 3,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "gate"
+          }
+        }
+      }
     }
   },
   {
@@ -3605,7 +3626,14 @@
           "recoil": 3,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "breakOpen"
+          }
+        }
+      }
     }
   },
   {
@@ -3669,7 +3697,14 @@
           "recoil": 4,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "gate"
+          }
+        }
+      }
     }
   },
   {
@@ -3733,7 +3768,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "breakOpen"
+          }
+        }
+      }
     }
   },
   {
@@ -3797,7 +3839,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "gate"
+          }
+        }
+      }
     }
   },
   {
@@ -3861,7 +3910,14 @@
           "recoil": 2,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "breakOpen"
+          }
+        }
+      }
     }
   },
   {
@@ -4053,7 +4109,14 @@
           "recoil": 3,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "breakOpen"
+          }
+        }
+      }
     }
   },
   {
@@ -9465,7 +9528,14 @@
           "recoil": 6,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "internal"
+          }
+        }
+      }
     }
   },
   {
@@ -9657,7 +9727,14 @@
           "recoil": 4,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "internal"
+          }
+        }
+      }
     }
   },
   {
@@ -10369,7 +10446,14 @@
           "recoil": 4,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "loadingType": "internal"
+          }
+        }
+      }
     }
   },
   {
