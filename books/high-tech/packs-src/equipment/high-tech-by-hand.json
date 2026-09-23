@@ -5334,6 +5334,42 @@
     }
   },
   {
+    "_id": "3cc78a0954d482ef",
+    "name": "Knee or Elbow Pads (pair)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 2
+          }
+        }
+      }
+    }
+  },
+  {
     "_id": "e5ef42bc6b70eb83",
     "name": "Homemade Armor, Paper and Tape",
     "type": "armor",
