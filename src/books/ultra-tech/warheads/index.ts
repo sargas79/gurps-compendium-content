@@ -17,7 +17,7 @@ import { registerLoadRows } from "../../../shared/loads/rows.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamEnvironment } from "../beams/index.js";
 import { WARHEADS, WARHEAD_KINDS, sizeClass, type WarheadKind } from "./catalogue.js";
-import { placeArea } from "../areas.js";
+import { placeArea } from "../../../shared/areas.js";
 import { PSI_STUN_RECOVERY, WARBLER_SECONDS, warblerRings, blastDivisorPerYard, fadingBonus, loadable, refusal, warheadRow, type Launcher } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Warheads.${key}`);

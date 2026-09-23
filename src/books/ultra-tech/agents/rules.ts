@@ -148,10 +148,8 @@ export const SMOKES: Readonly<Record<Smoke, { vision: number; senses: readonly s
   radiantPrism: { vision: -10, senses: ["infravision", "hyperspectral", "nightVision"], blocks: ["ladar", "lasers", "radar"], longevity: 0.5 },
 });
 
-/** Smoke takes a second per 5 yards of radius to form (p. 160). */
-export function smokeFormSeconds(radiusYards: number): number {
-  return Math.max(1, Math.ceil(Math.max(0, radiusYards) / 5));
-}
+/** Smoke takes a second per 5 yards of radius to form (p. 160); High-Tech's smoke too, so the engine is shared. */
+export { smokeFormSeconds } from "../../../shared/smoke/rules.js";
 
 /** Radiant prism penalizes infrared- and radar-aimed attacks and sighting by -5 (p. 160). */
 export const RADIANT_PRISM_SENSOR = -5;

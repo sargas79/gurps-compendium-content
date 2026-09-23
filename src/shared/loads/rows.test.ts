@@ -64,4 +64,13 @@ describe("the load engine", () => {
     expect("accuracy" in row && row.accuracy !== undefined).toBe(false);
     expect(row.malfunction).toBeUndefined();
   });
+
+  it("writes a blast's fragment type, divisor and lingering only where the load changed them", () => {
+    registerLoadRows(api, { ...catalogue(() => true, null), apply: (_load, row) => ({ ...row, fragmentationType: "burn", fragmentationDivisor: 0.2, fragmentationLingerEvery: 10, fragmentationLingerFor: 60 }) });
+    expect(rowOf(gun(), { fragmentation: "1d" })).toMatchObject({ fragmentationType: "burn", fragmentationDivisor: 0.2, fragmentationLingerEvery: 10, fragmentationLingerFor: 60 });
+    hooks = new Map();
+    registerLoadRows(api, { ...catalogue(() => true, null), apply: (_load, row) => ({ ...row, damage: "3d" }) });
+    const untouched = rowOf(gun());
+    expect("fragmentationType" in untouched || "blastPlacement" in untouched).toBe(false);
+  });
 });

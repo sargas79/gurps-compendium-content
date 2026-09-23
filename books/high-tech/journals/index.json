@@ -1199,6 +1199,7 @@
       "title": "Grenade Launcher Ammo",
       "chapter": "5. Weaponry",
       "pages": "HT143",
+      "rule": "gurps-compendium-content.cargoProjectiles",
       "reference": "High-Tech p. 143",
       "file": "grenade-launcher-ammo.md",
       "status": "reviewed"
@@ -1435,6 +1436,7 @@
       "title": "Explosive-Energy Projectiles",
       "chapter": "5. Weaponry",
       "pages": "HT169-170",
+      "rule": "gurps-compendium-content.explosiveProjectiles",
       "reference": "High-Tech pp. 169-170",
       "file": "explosive-energy-projectiles.md",
       "status": "reviewed"
@@ -1444,6 +1446,7 @@
       "title": "Ejecting-Cargo Projectiles",
       "chapter": "5. Weaponry",
       "pages": "HT171-172",
+      "rule": "gurps-compendium-content.cargoProjectiles",
       "reference": "High-Tech pp. 171-172",
       "file": "ejecting-cargo-projectiles.md",
       "status": "reviewed"
@@ -1453,6 +1456,7 @@
       "title": "Bursting-Cargo Projectiles",
       "chapter": "5. Weaponry",
       "pages": "HT172",
+      "rule": "gurps-compendium-content.cargoProjectiles",
       "reference": "High-Tech p. 172",
       "file": "bursting-cargo-projectiles.md",
       "status": "reviewed"

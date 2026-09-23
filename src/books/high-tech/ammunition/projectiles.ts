@@ -19,9 +19,18 @@
  *     annular blast fragmentation. Every gun counts Rcl 1 with them.
  *   - **Projectile upgrades (pp. 174-175).** Airburst, incendiary, self-
  *     destruct and tracer.
+ *   - **Explosive-energy projectiles (pp. 169-170).** LE, SAPLE, APEX, HE,
+ *     SAPHE, SAPHEC, APHEX, EFP, HEAT, HEDP, HESH, MS-HEAT and thermobaric.
+ *     The book gives no formula for their explosions: the blast is the one
+ *     the gun's record prints (decision D5, #335), and the projectile adds
+ *     the rules around it (`explosive.ts`) and the solid shot's changes here.
+ *   - **Cargo projectiles (pp. 171-172).** Illumination, smoke, tear gas,
+ *     liquid, poison gas and white phosphorus: the round's own hit here, what
+ *     its cargo does in `explosive.ts`.
  */
 
 import { stepPiercing } from "../../../shared/loads/dice.js";
+import { LIQUID_LC, type Liquid } from "./explosive.js";
 import type { CalibreRow } from "./calibres.js";
 
 // ── the catalogue ──
@@ -33,8 +42,12 @@ export const KINETIC_PROJECTILES = [
 ] as const;
 /** The multiple-projectile loads (pp. 172-174). */
 export const MULTIPLE_PROJECTILES = ["canister", "shotshell", "buckAndBall", "shrapnel", "duplex", "triplex", "beehive", "multiFlechette", "rubberShot", "abf"] as const;
+/** The explosive-energy projectiles (pp. 169-170). */
+export const EXPLOSIVE_PROJECTILES = ["le", "saple", "apex", "he", "saphe", "saphec", "aphex", "efp", "heat", "hedp", "hesh", "msheat", "thermobaric"] as const;
+/** The ejecting- and bursting-cargo projectiles (pp. 171-172). */
+export const CARGO_PROJECTILES = ["illumination", "smoke", "tearGas", "liquid", "poisonGas", "whitePhosphorus"] as const;
 /** Every projectile a load may name; blank for the solid bullet the gun's statistics assume. */
-export const PROJECTILES = ["", ...KINETIC_PROJECTILES, ...MULTIPLE_PROJECTILES] as const;
+export const PROJECTILES = ["", ...KINETIC_PROJECTILES, ...MULTIPLE_PROJECTILES, ...EXPLOSIVE_PROJECTILES, ...CARGO_PROJECTILES] as const;
 export type Projectile = (typeof PROJECTILES)[number];
 
 /** What an exotic bullet is made of (p. 168): lead or the like, silver, another dense metal, a light or a very light stuff. */
@@ -47,6 +60,10 @@ export type ProjectileUpgrade = (typeof PROJECTILE_UPGRADES)[number];
 
 export const isMultiple = (p: string): boolean => (MULTIPLE_PROJECTILES as readonly string[]).includes(p);
 export const isKinetic = (p: string): boolean => (KINETIC_PROJECTILES as readonly string[]).includes(p);
+export const isExplosiveProjectile = (p: string): p is ExplosiveProjectile => (EXPLOSIVE_PROJECTILES as readonly string[]).includes(p);
+export const isCargo = (p: string): p is CargoProjectile => (CARGO_PROJECTILES as readonly string[]).includes(p);
+export type ExplosiveProjectile = (typeof EXPLOSIVE_PROJECTILES)[number];
+export type CargoProjectile = (typeof CARGO_PROJECTILES)[number];
 
 interface ProjectileFigures {
   tl: number;
@@ -87,6 +104,27 @@ export const PROJECTILE_FIGURES: Readonly<Record<Exclude<Projectile, "">, Projec
   multiFlechette: { tl: 7, cps: 4, lc: 3, minMm: 10 },
   rubberShot: { tl: 7, cps: 2, lc: 3, minMm: 10 },
   abf: { tl: 8, cps: 5, lc: 1 },
+  // Explosive-energy projectiles (pp. 169-170).
+  le: { tl: 4, cps: 2, lc: 1 },
+  saple: { tl: 5, cps: 2, lc: 1 },
+  apex: { tl: 6, cps: 3, lc: 1 },
+  he: { tl: 6, cps: 2, lc: 1 },
+  saphe: { tl: 6, cps: 2, lc: 1 },
+  saphec: { tl: 6, cps: 2, lc: 1 },
+  aphex: { tl: 7, cps: 4, lc: 1 },
+  efp: { tl: 7, cps: 8, lc: 1, minMm: 50 },
+  heat: { tl: 7, cps: 3, lc: 1, minMm: 20 },
+  hedp: { tl: 7, cps: 4, lc: 1, minMm: 20 },
+  hesh: { tl: 7, cps: 3, lc: 1, minMm: 50 },
+  msheat: { tl: 8, cps: 8, lc: 1, minMm: 50 },
+  thermobaric: { tl: 8, cps: 8, lc: 1, minMm: 20 },
+  // Cargo projectiles (pp. 171-172). Poison gas's cost is its filler's, and a liquid round's LC its filler's.
+  illumination: { tl: 5, cps: 5, lc: 4, minMm: 10 },
+  smoke: { tl: 6, cps: 3, lc: 3, minMm: 10 },
+  tearGas: { tl: 6, cps: 3, lc: 3, minMm: 10 },
+  liquid: { tl: 7, cps: 1, lc: null },
+  poisonGas: { tl: 6, cps: 1, lc: 0, minMm: 20 },
+  whitePhosphorus: { tl: 6, cps: 2, lc: 1, minMm: 20 },
 });
 
 /** Shells that burst in the air already, and so carry airburst at no cost (p. 175). */
@@ -145,6 +183,14 @@ export interface ProjectileLoad {
   projectileUpgrades: ProjectileUpgrade[];
   /** A dose of poison's cost, added to CPS (p. 167). */
   poisonCost: number;
+  /**
+   * A cargo round's own dice where the gun's description prints them (the
+   * 40mm smoke round's 1d+1, p. 143), for a mode whose row is the blast of
+   * another round; blank for the mode's own dice.
+   */
+  hitDamage?: string;
+  /** What a liquid round carries, which sets its LC (p. 172). */
+  liquid?: string;
 }
 
 /** What the projectile rules need to know of a gun's mode. */
@@ -162,11 +208,20 @@ export interface ProjectileGun {
   underwater: boolean;
   /** The mode fires an explosive round (shrapnel, beehive and ABF shells, airburst, self-destruct). */
   explosive: boolean;
+  /**
+   * The mode's own line is the blast (a grenade launcher's, a rocket's, a
+   * mortar's), rather than a solid shot with the blast linked to it.
+   */
+  burstPrimary?: boolean;
+  /** A lower-velocity round than a cannon's: a grenade launcher's, a shotgun's, a mortar's (p. 171). */
+  lowVelocity?: boolean;
+  /** A low-powered smoothbore: a grenade launcher or an air gun, which alone fire liquid rounds (p. 172). */
+  lowPowered?: boolean;
   /** The projectiles the mode's RoF lists (9 for "3x9"). */
   projectiles: number;
 }
 
-export type ProjectileRefusal = "tl" | "calibreSmall" | "calibreLarge" | "shotgunOnly" | "notPistol" | "muzzleRifle" | "underwater" | "shell" | "lowPowered";
+export type ProjectileRefusal = "tl" | "calibreSmall" | "calibreLarge" | "shotgunOnly" | "notPistol" | "muzzleRifle" | "underwater" | "shell" | "lowPowered" | "record" | "liquid";
 
 /** Why a gun can't fire a projectile; null where it can. */
 export function projectileRefusal(projectile: Projectile, gun: ProjectileGun): ProjectileRefusal | null {
@@ -196,7 +251,13 @@ export function projectileRefusal(projectile: Projectile, gun: ProjectileGun): P
     // For low-powered, large-bore weapons: shotguns and grenade launchers (p. 174).
     case "multiFlechette":
       return gun.shotgun || gun.calibre?.class === "grenadeLauncher" ? null : "lowPowered";
+    // Only low-powered smoothbores fire liquid rounds; a gun's would burst them (p. 172).
+    case "liquid":
+      return gun.lowPowered ? null : "liquid";
     default:
+      // No formula gives an explosion's damage (p. 169): an explosive round, or a bursting
+      // cargo round, is fired from a mode whose record prints its blast.
+      if ((isExplosiveProjectile(projectile) || projectile === "poisonGas" || projectile === "whitePhosphorus") && !gun.explosive) return "record";
       return null;
   }
 }
@@ -285,7 +346,8 @@ export interface ProjectileRow {
 
 export type ProjectileNote =
   | "slug" | "hpExpansion" | "noDr" | "poison" | "depletedUranium" | "underwaterDart" | "minie"
-  | "ballRange" | "shell" | "beehive" | "silver" | "airburst" | "airburstFuse" | "selfDestruct" | "tracer" | "replacesBasic";
+  | "ballRange" | "shell" | "beehive" | "silver" | "airburst" | "airburstFuse" | "selfDestruct" | "tracer" | "replacesBasic"
+  | "cargoHit";
 
 export interface ProjectileEffect {
   /** The row, its damage still to be multiplied by `damageFactor` (with the ammunition upgrades' own). */
@@ -347,7 +409,7 @@ export function projectileRow(row: ProjectileRow, load: ProjectileLoad, gun: Pro
     r.maxRange = times(r.maxRange, 1.5);
     r.projectiles = 1;
   };
-  if (gun.shotgun && p && !multiple && p !== "minie") {
+  if (gun.shotgun && p && !multiple && p !== "minie" && !isExplosiveProjectile(p) && p !== "poisonGas" && p !== "whitePhosphorus") {
     slug();
     out.notes.push({ key: "slug" });
   }
@@ -445,6 +507,8 @@ export function projectileRow(row: ProjectileRow, load: ProjectileLoad, gun: Pro
       out.notes.push({ key: "minie" });
       break;
     default:
+      if (isExplosiveProjectile(p)) explosiveShot(out, p, gun);
+      else if (isCargo(p)) cargoHit(out, load, gun);
       break;
   }
   if (p === "apdu" || p === "apdsdu" || p === "apfsdsdu") out.notes.push({ key: "depletedUranium" });
@@ -490,6 +554,90 @@ export function projectileRow(row: ProjectileRow, load: ProjectileLoad, gun: Pro
   }
   if (upgrades.includes("selfDestruct")) out.notes.push({ key: "selfDestruct", data: { range: r.halfDamageRange || r.maxRange } });
   return out;
+}
+
+/**
+ * What an explosive round does to the shot itself (pp. 169-170), against the
+ * solid shot's figures: its armour divisor, and AP's damage and type for APEX
+ * and APHEX. Where the mode's own line is the blast, that line is the round's
+ * already, and only a shaped charge's (10) is set on it. The blast is the
+ * record's (`explosive.ts`).
+ */
+function explosiveShot(out: ProjectileEffect, p: ExplosiveProjectile, gun: ProjectileGun): void {
+  const r = out.row;
+  const figures = EXPLOSIVE_SHOT[p];
+  if (gun.burstPrimary) {
+    if (figures.jet) r.armorDivisor = 10;
+    return;
+  }
+  r.armorDivisor = figures.divisor;
+  if (figures.factor !== 1) out.damageFactor *= figures.factor;
+  if (figures.type) r.damageType = figures.type;
+  if (figures.stepDownBelow && smallerThan(gun, figures.stepDownBelow)) r.damageType = stepPiercing(r.damageType, -1);
+}
+
+/**
+ * The shot an explosive round fires beside its blast, against the solid
+ * shot's (pp. 169-170): the armour divisor, a damage multiple, a damage type,
+ * a step down the piercing ladder below a calibre, and whether the round is a
+ * shaped charge whose jet has (10).
+ */
+const EXPLOSIVE_SHOT: Readonly<Record<ExplosiveProjectile, { divisor: number; factor: number; type?: string; stepDownBelow?: number; jet?: boolean }>> = Object.freeze({
+  le: { divisor: 0.5, factor: 1 },
+  saple: { divisor: 1, factor: 1 },
+  // APEX is AP with a small bursting charge; APHEX, APHC with one (pp. 167, 169-170).
+  apex: { divisor: 2, factor: 0.7, stepDownBelow: 20 },
+  he: { divisor: 0.5, factor: 1 },
+  saphe: { divisor: 1, factor: 1 },
+  saphec: { divisor: 1, factor: 1 },
+  aphex: { divisor: 2, factor: 1, stepDownBelow: 20 },
+  efp: { divisor: 2, factor: 1, type: "pi++" },
+  heat: { divisor: 10, factor: 1, jet: true },
+  hedp: { divisor: 10, factor: 1, jet: true },
+  hesh: { divisor: 0.5, factor: 1 },
+  msheat: { divisor: 10, factor: 1, jet: true },
+  thermobaric: { divisor: 0.5, factor: 1 },
+});
+
+/**
+ * A cargo round's own hit (pp. 171-172), against the solid shot's figures or
+ * the dice the gun's description prints for it. Smoke and tear gas get (0.5),
+ * and from a lower-velocity gun (a grenade launcher, a shotgun) crush, with
+ * double knockback over 35mm; a liquid round (0.2), half damage, crushing,
+ * Range /4; poison gas and white phosphorus (0.5) on the shot that carries
+ * their burst. Illumination leaves the hit as it is.
+ */
+function cargoHit(out: ProjectileEffect, load: ProjectileLoad, gun: ProjectileGun): void {
+  const r = out.row;
+  const p = load.projectile as CargoProjectile;
+  const hit = String(load.hitDamage ?? "").trim();
+  // Poison gas and white phosphorus burst: their blast is the record's, and so is its line.
+  const bursting = p === "poisonGas" || p === "whitePhosphorus";
+  if (hit && !bursting) r.damage = hit;
+  else if (gun.burstPrimary && !bursting) out.notes.push({ key: "cargoHit" });
+  switch (p) {
+    case "smoke":
+    case "tearGas":
+      r.armorDivisor = 0.5;
+      if (gun.lowVelocity) {
+        r.damageType = "cr";
+        out.doubleKnockback = gun.boreMm !== null && gun.boreMm > 35;
+      }
+      break;
+    case "liquid":
+      r.armorDivisor = 0.2;
+      out.damageFactor *= 0.5;
+      r.damageType = "cr";
+      r.halfDamageRange = times(r.halfDamageRange, 1 / 4);
+      r.maxRange = times(r.maxRange, 1 / 4);
+      break;
+    case "poisonGas":
+    case "whitePhosphorus":
+      if (!gun.burstPrimary) r.armorDivisor = 0.5;
+      break;
+    default:
+      break;
+  }
 }
 
 /** A multiple-projectile load's row (pp. 172-174). Every one counts Rcl 1. */
@@ -592,6 +740,8 @@ export function projectileMultiples(load: ProjectileLoad): { cps: number; add: n
   if (load.projectile) {
     cps *= PROJECTILE_FIGURES[load.projectile].cps;
     stricter(PROJECTILE_FIGURES[load.projectile].lc);
+    // A liquid round's LC is its filler's (p. 172).
+    if (load.projectile === "liquid") stricter(LIQUID_LC[load.liquid as Liquid] ?? null);
   }
   if (load.material === "silver") cps *= SILVER_CPS;
   for (const upgrade of load.projectileUpgrades) {

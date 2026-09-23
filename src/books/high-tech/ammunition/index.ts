@@ -31,6 +31,13 @@
  *     bullet is made of, and its upgrades, in `projectiles.ts`. A projectile
  *     takes the place of the Basic Set round chosen on the mode (its figures
  *     are taken back off the row first); it never stacks with it.
+ *   - **Explosive and cargo rounds (explosiveProjectiles, cargoProjectiles;
+ *     pp. 169-172):** the same slot names an explosive round (whose blast is
+ *     the record's, decision D5) or a cargo round, with the cargo's own
+ *     choices (the kind of smoke or flare, a vomiting agent, a liquid or
+ *     poison filler, the cloud's radius and time, the round's printed hit).
+ *     `explosive.ts` has the rules around the blast; `cargo.ts` what the
+ *     cargo does once fired.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -39,6 +46,7 @@ import { formatDice, parseDice } from "../../../shared/loads/dice.js";
 import { registerLoadRows, type LoadPlace, type LoadRow } from "../../../shared/loads/rows.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { isAutomatic } from "../environments/index.js";
+import { isAirGun } from "../weapon-families/index.js";
 import { isFirearm } from "../firearms/index.js";
 import { firearmBuild } from "../records.js";
 import { CALIBRES, calibreRowOf, gunCalibreRows, type CalibreRow } from "./calibres.js";
@@ -77,6 +85,8 @@ import {
 import {
   MATERIALS,
   PROJECTILES,
+  isCargo,
+  isExplosiveProjectile,
   PROJECTILE_UPGRADES,
   SHOT_SIZES,
   SILVER_ARMOURY,
@@ -93,6 +103,19 @@ import {
   type ProjectileLoad,
   type ProjectileUpgrade,
 } from "./projectiles.js";
+import {
+  HT_SMOKES,
+  HT_SMOKE_TABLE,
+  ILLUMINATIONS,
+  LIQUIDS,
+  airburstFragments,
+  cargoRow,
+  explosiveRow,
+  type HighTechSmoke,
+  type Illumination,
+  type Liquid,
+} from "./explosive.js";
+import { readyCargo, type CargoLoad } from "./cargo.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Ammunition.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Ammunition.${key}`, data);
@@ -114,10 +137,14 @@ export interface AmmunitionSwitches {
   multiple?: () => boolean;
   /** Projectile upgrades (pp. 174-175). */
   projectileUpgrades?: () => boolean;
+  /** Explosive-energy projectiles (pp. 169-170, 175). */
+  explosive?: () => boolean;
+  /** Ejecting- and bursting-cargo projectiles (pp. 171-172). */
+  cargo?: () => boolean;
 }
 
 /** Whether any of the projectile switches is on. */
-const anyProjectiles = (on: AmmunitionSwitches): boolean => Boolean(on.projectiles?.() || on.exotic?.() || on.multiple?.() || on.projectileUpgrades?.());
+const anyProjectiles = (on: AmmunitionSwitches): boolean => Boolean(on.projectiles?.() || on.exotic?.() || on.multiple?.() || on.projectileUpgrades?.() || on.explosive?.() || on.cargo?.());
 
 /**
  * A mode's load, or a box's: the round (blank for the gun's own, or what the
@@ -142,6 +169,17 @@ export interface HighTechLoad {
   shotCount: number;
   projectileUpgrades: ProjectileUpgrade[];
   poisonCost: number;
+  /** A cargo round's choices (pp. 171-172): the kind of smoke or flare, a vomiting agent, a liquid, a poison gas's filler. */
+  smoke: HighTechSmoke;
+  illumination: Illumination;
+  vomiting: boolean;
+  liquid: Liquid;
+  poisonFiller: string;
+  /** The cloud's or light's radius in yards and how long it lasts, as the gun's description prints them; 0 to be asked. */
+  radius: number;
+  seconds: number;
+  /** A cargo round's own dice where the description prints them; blank for the mode's. */
+  hitDamage: string;
 }
 
 /** Registers the loads and the conversion field before the world's data is read. */
@@ -163,6 +201,14 @@ export function initAmmunition(): void {
         shotCount: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
         projectileUpgrades: new f.ArrayField(new f.StringField({ required: true, nullable: false, blank: false, choices: [...PROJECTILE_UPGRADES] }), { required: true, initial: [] }),
         poisonCost: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+        smoke: new f.StringField({ required: true, nullable: false, blank: false, initial: "screening", choices: [...HT_SMOKES] }),
+        illumination: new f.StringField({ required: true, nullable: false, blank: false, initial: "parachute", choices: [...ILLUMINATIONS] }),
+        vomiting: new f.BooleanField({ initial: false }),
+        liquid: new f.StringField({ required: true, nullable: false, blank: false, initial: "paint", choices: [...LIQUIDS] }),
+        poisonFiller: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
+        radius: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+        seconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+        hitDamage: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
       }),
       { required: true, initial: [] },
     ),
@@ -194,6 +240,14 @@ function cleanLoad(raw: any, mode: number): HighTechLoad {
     shotCount: Math.max(0, Math.floor(Number(raw?.shotCount) || 0)),
     projectileUpgrades: PROJECTILE_UPGRADES.filter((u) => Array.isArray(raw?.projectileUpgrades) && raw.projectileUpgrades.includes(u)),
     poisonCost: Math.max(0, Number(raw?.poisonCost) || 0),
+    smoke: (HT_SMOKES as readonly string[]).includes(raw?.smoke) ? raw.smoke : "screening",
+    illumination: (ILLUMINATIONS as readonly string[]).includes(raw?.illumination) ? raw.illumination : "parachute",
+    vomiting: raw?.vomiting === true,
+    liquid: (LIQUIDS as readonly string[]).includes(raw?.liquid) ? raw.liquid : "paint",
+    poisonFiller: String(raw?.poisonFiller ?? ""),
+    radius: Math.max(0, Number(raw?.radius) || 0),
+    seconds: Math.max(0, Math.floor(Number(raw?.seconds) || 0)),
+    hitDamage: String(raw?.hitDamage ?? "").trim(),
   };
 }
 
@@ -283,6 +337,7 @@ export function projectileGun(item: any, modeIndex: number): ProjectileGun {
   const mode = rangedModes(item)[modeIndex] ?? {};
   const calibre = gunCalibre(item);
   const skill = String(mode.skill ?? "");
+  const cls = String(calibre?.class ?? "");
   return {
     calibre,
     boreMm: boreOf(calibre, String(item?.name ?? "")),
@@ -292,6 +347,11 @@ export function projectileGun(item: any, modeIndex: number): ProjectileGun {
     muzzleLoadingRifle: /\(rifle\)/i.test(skill) && (calibre ? calibre.notes.includes("powderAndShot") : false),
     underwater: Boolean(calibre?.notes.includes("underwaterDart")) || firearmBuild(item).underwaterFactor > 0,
     explosive: mode.explosive === true || Boolean(mode.linked?.explosive),
+    burstPrimary: mode.explosive === true,
+    // A cannon's round against a grenade launcher's, a shotgun's or a mortar's (p. 171).
+    lowVelocity: ["shotgun", "grenadeLauncher", "mortar"].includes(cls) || /grenade launcher|shotgun/i.test(skill),
+    // Only low-powered smoothbores fire liquid rounds (p. 172).
+    lowPowered: cls === "grenadeLauncher" || /grenade launcher/i.test(skill) || isAirGun(item),
     projectiles: Math.max(1, Math.floor(Number(mode.projectiles) || 1)),
   };
 }
@@ -313,9 +373,11 @@ function boxProjectileGun(box: any, load: HighTechLoad): ProjectileGun {
   };
 }
 
-/** Whether a projectile's switch is on: the options' or the multiple loads'. */
+/** Whether a projectile's switch is on: the options', the multiple loads', the explosive or the cargo rounds'. */
 function projectileOn(projectile: string, on: AmmunitionSwitches): boolean {
   if (isKinetic(projectile)) return on.projectiles?.() === true;
+  if (isExplosiveProjectile(projectile)) return on.explosive?.() === true;
+  if (isCargo(projectile)) return on.cargo?.() === true;
   return isMultiple(projectile) ? on.multiple?.() === true : false;
 }
 
@@ -334,6 +396,8 @@ export function firedProjectile(load: HighTechLoad, gun: ProjectileGun, on: Ammu
     material: on.exotic?.() ? load.material : "",
     projectileUpgrades: on.projectileUpgrades?.() ? load.projectileUpgrades.filter((u) => !projectileUpgradeRefusal(u, projectile, gun)) : [],
     poisonCost: load.poisonCost,
+    hitDamage: load.hitDamage,
+    liquid: load.liquid,
   };
 }
 
@@ -621,13 +685,39 @@ function projectileChoices(load: HighTechLoad, gun: ProjectileGun, on: Ammunitio
     .map(({ p, why }) => ({ value: p, label: L(`Projectile.${p || "solid"}`) + (why ? ` (${L(`ProjectileRefusal.${why}`)})` : ""), selected: p === load.projectile }));
 }
 
+/** The Basic Set's named poisons a poison-gas round may carry: those breathed in or taking effect on the skin; set once the API is ready. */
+let gasFillers: () => string[] = () => [];
+
+/** A cargo round's own choices on the sheet (pp. 171-172), or null for any other projectile. */
+function cargoContext(load: HighTechLoad, fired: ProjectileLoad, gun: ProjectileGun): Record<string, unknown> | null {
+  const p = fired.projectile;
+  if (!isCargo(p)) return null;
+  const option = (value: string, label: string, selected: boolean) => ({ value, label, selected });
+  return {
+    smokes: p === "smoke"
+      ? HT_SMOKES.filter((k) => HT_SMOKE_TABLE[k].tl <= gun.tl || k === load.smoke).map((k) => option(k, L(`Smoke.${k}`), k === load.smoke))
+      : null,
+    illuminations: p === "illumination"
+      ? ILLUMINATIONS.filter((k) => k !== "infrared" || gun.tl >= 8 || k === load.illumination).map((k) => option(k, L(`Illumination.${k}`), k === load.illumination))
+      : null,
+    vomiting: p === "tearGas" ? { checked: load.vomiting } : null,
+    liquids: p === "liquid" ? LIQUIDS.map((k) => option(k, L(`Liquid.${k}`), k === load.liquid)) : null,
+    fillers: p === "poisonGas" ? [option("", L("NoFiller"), !load.poisonFiller), ...gasFillers().map((n) => option(n, n, n === load.poisonFiller))] : null,
+    // Where the cloud or light goes, and for how long; white phosphorus's smoke lasts its minute.
+    area: p === "liquid" ? null : { radius: load.radius || "", seconds: load.seconds || "", showSeconds: p !== "whitePhosphorus" },
+    // The round's own dice, where the gun's description prints them (p. 143).
+    hit: p === "poisonGas" || p === "whitePhosphorus" ? null : { value: load.hitDamage, placeholder: gun.burstPrimary ? L("HitPrinted") : L("HitOwn") },
+  };
+}
+
 /** The sheet's projectile fields for a load: the projectile, a multiple load's size and count, poison, material, upgrades. */
 function projectileContext(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): Record<string, unknown> {
   const fired = firedProjectile(load, gun, on);
   const sized = ["shotshell", "canister", "multiFlechette", "rubberShot", "buckAndBall"].includes(fired.projectile);
   const filled = sized ? multipleLoad(fired, gun) : null;
   return {
-    projectiles: on.projectiles?.() || on.multiple?.() ? projectileChoices(load, gun, on) : [],
+    projectiles: on.projectiles?.() || on.multiple?.() || on.explosive?.() || on.cargo?.() ? projectileChoices(load, gun, on) : [],
+    cargo: cargoContext(load, fired, gun),
     projectileHint: L(`ProjectileHint.${fired.projectile || "solid"}`),
     shot: filled ? { mm: load.shotMm || "", count: load.shotCount || "", mmPlaceholder: filled.mm, countPlaceholder: filled.count, sizes: SHOT_SIZES } : null,
     poison: fired.projectile === "poison" ? { cost: load.poisonCost || "" } : null,
@@ -758,9 +848,13 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any, on: Ammuniti
       else if (field === "calibre") await storeLoad(item, { ...load, calibre: input.value.trim() });
       else if (field === "projectile") await storeLoad(item, { ...load, projectile: input.value as Projectile, shotMm: 0, shotCount: 0 });
       else if (field === "material") await storeLoad(item, { ...load, material: input.value as BulletMaterial });
-      else if (field === "shotMm" || field === "shotCount" || field === "poisonCost") {
+      else if (field === "shotMm" || field === "shotCount" || field === "poisonCost" || field === "radius" || field === "seconds") {
         const value = Math.max(0, Number(input.value) || 0);
-        await storeLoad(item, { ...load, [field]: field === "shotCount" ? Math.floor(value) : value });
+        await storeLoad(item, { ...load, [field]: field === "shotCount" || field === "seconds" ? Math.floor(value) : value });
+      } else if (field === "smoke" || field === "illumination" || field === "liquid" || field === "poisonFiller" || field === "hitDamage") {
+        await storeLoad(item, { ...load, [field]: input.value.trim() });
+      } else if (field === "vomiting") {
+        await storeLoad(item, { ...load, vomiting: (input as HTMLInputElement).checked });
       } else if (field === "projectileUpgrade") {
         const upgrade = String(input.dataset.upgrade) as ProjectileUpgrade;
         const checked = (input as HTMLInputElement).checked;
@@ -793,9 +887,14 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any, on: Ammuniti
 /** A mode's load as it is fired: the stored load with the projectile the switches and the gun let through. */
 type FiredLoad = HighTechLoad & { fired: ProjectileLoad };
 
-/** A projectile's tag: its name, and a multiple load's size and count. */
-function projectileLabel(fired: ProjectileLoad, gun: ProjectileGun): string {
+/** A projectile's tag: its name, a multiple load's size and count, a cargo round's kind. */
+function projectileLabel(fired: ProjectileLoad, gun: ProjectileGun, load?: HighTechLoad): string {
   const name = L(`Projectile.${fired.projectile}`);
+  if (load && fired.projectile === "smoke") return F("CargoKind", { name, kind: L(`Smoke.${load.smoke}`) });
+  if (load && fired.projectile === "illumination") return F("CargoKind", { name, kind: L(`Illumination.${load.illumination}`) });
+  if (load && fired.projectile === "liquid") return F("CargoKind", { name, kind: L(`Liquid.${load.liquid}`) });
+  if (load && fired.projectile === "tearGas" && load.vomiting) return F("CargoKind", { name, kind: L("Vomiting") });
+  if (load && fired.projectile === "poisonGas" && load.poisonFiller) return F("CargoKind", { name, kind: load.poisonFiller });
   if (!["shotshell", "canister", "multiFlechette", "rubberShot", "buckAndBall"].includes(fired.projectile)) return name;
   const { mm, count } = multipleLoad(fired, gun);
   return F("ProjectileSized", { name, mm, count });
@@ -821,9 +920,64 @@ function withoutBasicRound(api: GWorldApi, row: LoadRow, place: LoadPlace): Load
   return { ...row, damage, damageType, armorDivisor, halfDamageRange: Math.round(row.halfDamageRange / stretch), maxRange: Math.round(row.maxRange / stretch) };
 }
 
+/**
+ * What an explosive or cargo round makes of the row (pp. 169-172, 175), once
+ * the shot itself is done: the blast linked or following, bursting inside,
+ * its fragments, the cargo's lack of a blast. An airburst HE round does only
+ * its fragments' damage (p. 175).
+ */
+function blastOf(after: LoadRow, load: FiredLoad, gun: ProjectileGun, on: AmmunitionSwitches): LoadRow {
+  const p = load.fired.projectile;
+  let row = after;
+  const notes = [...after.notes];
+  if (isExplosiveProjectile(p)) {
+    const made = explosiveRow(row, p, { tl: gun.tl, burstPrimary: gun.burstPrimary === true });
+    row = made.row;
+    notes.push(...made.notes);
+  } else if (isCargo(p)) {
+    const made = cargoRow(row, p);
+    row = made.row;
+    notes.push(...made.notes);
+  }
+  // HE-AB: fragments only, in a cone along the line of fire (p. 175). The round is the
+  // mode's own explosive one, or an explosive projectile that throws fragments.
+  if (on.explosive?.() && load.fired.projectileUpgrades.includes("airburst") && gun.explosive && (!p || isExplosiveProjectile(p))) {
+    const fragments = airburstFragments(row);
+    if (fragments) {
+      row = fragments;
+      notes.push({ key: "airburstFragments" });
+    }
+  }
+  return { ...row, notes };
+}
+
+/** The cargo a mode fires, as the switches let it: its round, its choices, and the gun's TL; null for none. */
+function cargoLoadIn(item: any, modeIndex: number, on: AmmunitionSwitches): CargoLoad | null {
+  if (!isFirearmItem(item)) return null;
+  const load = loadIn(item, modeIndex).load;
+  const gun = projectileGun(item, modeIndex);
+  const fired = firedProjectile(load, gun, on);
+  if (!fired.projectile || !(isCargo(fired.projectile) || isExplosiveProjectile(fired.projectile))) return null;
+  return {
+    projectile: fired.projectile,
+    smoke: load.smoke,
+    illumination: load.illumination,
+    vomiting: load.vomiting,
+    liquid: load.liquid,
+    poisonFiller: load.poisonFiller,
+    radius: load.radius,
+    seconds: load.seconds,
+    tl: gun.tl,
+  };
+}
+
 export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
   const any = () => on.upgrades() || on.handloading() || on.misloading() || anyProjectiles(on);
   calibreOfName = (name) => api.rules.calibreOf?.(name) ?? null;
+  gasFillers = () => ((api.rules as any).POISON_EXAMPLES ?? [])
+    .filter((p: any) => (p.delivery ?? []).some((d: string) => d === "respiratory" || d === "contact"))
+    .map((p: any) => String(p.name));
+  readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-ammunition-item",
@@ -912,10 +1066,10 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
         const first = effectOf.firstHit;
         if (first) after.firstHit = { damage: adjustDamage(first.damage, first.factor * effect.damageFactor), damageType: first.damageType, armorDivisor: first.armorDivisor, label: L("FirstHitBall") };
       }
-      return after;
+      return blastOf(after, load, gun, on);
     },
     tags: (load, after, place) => [
-      ...(load.fired.projectile ? [{ label: projectileLabel(load.fired, projectileGun(place.item, place.modeIndex)), hint: L(`ProjectileHint.${load.fired.projectile}`) }] : []),
+      ...(load.fired.projectile ? [{ label: projectileLabel(load.fired, projectileGun(place.item, place.modeIndex), load), hint: L(`ProjectileHint.${load.fired.projectile}`) }] : []),
       ...(load.fired.material ? [{ label: L(`Material.${load.fired.material}`), hint: L(`MaterialHint.${load.fired.material}`) }] : []),
       ...load.fired.projectileUpgrades.map((u) => ({ label: L(`ProjectileUpgrade.${u}`), hint: L(`ProjectileUpgradeHint.${u}`) })),
       ...load.upgrades.map((u) => ({ label: L(`Upgrade.${u}`), hint: L(`UpgradeHint.${u}`) })),

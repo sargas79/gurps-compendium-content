@@ -51,7 +51,8 @@ import {
   nerveDisorderAt,
 } from "./rules.js";
 
-import { placeArea, standsIn, type AreaLine } from "../areas.js";
+import { placeArea, standsIn, type AreaLine } from "../../../shared/areas.js";
+import { smokeAreaLines } from "../../../shared/smoke/rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Agents.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Agents.${key}`, data);
@@ -613,8 +614,7 @@ function cloudLines(kind: string, l: (key: string) => string, f: (key: string, d
   if (kind.startsWith("smoke:")) {
     const smoke = SMOKES[kind.slice(6) as Smoke];
     if (!smoke) return lines;
-    lines.push({ label: f("Cloud.Vision", { value: smoke.vision }), value: smoke.vision, rolls: ["vision", "attack"], applies: "both" });
-    if (smoke.senses.length) lines.push({ label: l("Cloud.Sensors"), value: smoke.vision, rolls: ["infrared", "hyperspectral"], applies: "both" });
+    lines.push(...smokeAreaLines(smoke, { vision: (value) => f("Cloud.Vision", { value }), sensors: l("Cloud.Sensors") }));
   }
   if (kind === "smoke:radiantPrism" || kind === "radiantPrism") lines.push({ label: l("Kind.radiantPrism"), value: RADIANT_PRISM_SENSOR, rolls: ["infrared", "radar", "imagingRadar"], applies: "both" });
   if (kind === "mask") lines.push({ label: l("Kind.mask"), value: MASK, rolls: ["tasteSmell"], applies: "both" });

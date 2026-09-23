@@ -4977,6 +4977,14 @@
         "projectileUpgrades": {
           "Name": "Projectile Upgrades",
           "Hint": "Airburst (a miss scatters by the margin squared; +3 or +4 to hit an area), incendiary, self-destruct and tracer (incendiary out to 1/2D), each x1.5 cost (High-Tech pp. 174-175)."
+        },
+        "explosiveProjectiles": {
+          "Name": "Explosive Rounds",
+          "Hint": "LE, SAPLE, APEX, HE, SAPHE, SAPHEC, APHEX, EFP, HEAT, HEDP, HESH, MS-HEAT and thermobaric rounds on a mode whose record prints the blast: the shot's divisor, the blast linked or following, bursting inside, fragments or none, incendiary; early SAPLE duds, HESH spall, MS-HEAT against reactive armour, thermobaric blasts divided by twice the distance, and airburst HE doing only its fragments (High-Tech pp. 169-170, 175)."
+        },
+        "cargoProjectiles": {
+          "Name": "Cargo Rounds",
+          "Hint": "Illumination and signal flares that lift the darkness penalty under them, five kinds of smoke, tear gas (with or without a vomiting agent) and its resistance rolls, liquid rounds and scent markers, poison gas dosing a Basic Set poison, and white phosphorus's burning fragments and smoke; the cloud or light is left where the round lands (High-Tech pp. 143, 171-172)."
         }
       },
       "Gadget": {
@@ -5951,7 +5959,19 @@
           "airburstFuse": "Time fuse: +3 at an area (+1 at a flier)",
           "selfDestruct": "Self-destructs at {range} yards",
           "tracer": "Burns out at {range} yards",
-          "replacesBasic": "Replaces {round}"
+          "replacesBasic": "Replaces {round}",
+          "cargoHit": "Hit: type the dice the description prints",
+          "sapleDud": "Dud unless 1d <= {roll}",
+          "heshSpall": "Spall {damage} cut vs DR/100",
+          "msheat": "Defeats reactive armour",
+          "thermobaric": "Blast / (2 x yards)",
+          "internal": "Bursts inside",
+          "flareBurn": "Flare: {dice} burn a second for {seconds} s",
+          "liquid": "Filler's effect on a hit",
+          "poisonGas": "Gas over the burst radius",
+          "wpLinger": "Burning fragments linger (GM)",
+          "wpBrush": "DX to brush a fragment away",
+          "airburstFragments": "Airburst: fragments only"
         },
         "NoteHint": {
           "extraPowerfulAuto": "Automatic weapons are often sensitive to a change of propellant: they may suffer Malf. penalties, and their RoF is likely to rise, as the GM rules (p. 165).",
@@ -5975,7 +5995,19 @@
           "airburstFuse": "A TL5-6 time fuse gives +3 rather than +4 to hit an area, or only +1 against a flying target (High-Tech p. 174).",
           "selfDestruct": "The round destroys itself once it passes this distance, usually 1/2D (High-Tech p. 175).",
           "tracer": "Incendiary within this range. On the turn after a long burst the shooter may add +1 to skill; firing tracers gives away his position (High-Tech p. 175).",
-          "replacesBasic": "A High-Tech projectile takes the place of the Basic Set round chosen on the mode; that round's effects are taken off the row (High-Tech p. 166)."
+          "replacesBasic": "A High-Tech projectile takes the place of the Basic Set round chosen on the mode; that round's effects are taken off the row (High-Tech p. 166).",
+          "cargoHit": "The mode's line is another round's blast; the gun's description prints this round's own dice, which go in the Hit field (High-Tech pp. 143, 171).",
+          "sapleDud": "Early SAPLE rounds are unreliable: at TL5-6 the round explodes only on a roll of TL-2 or less on 1d, rolled as it is fired (High-Tech p. 169).",
+          "heshSpall": "Where neither the hit nor the blast gets through DR, the blast knocks spall off the inside: a tenth of its most damage, cutting, against a hundredth of the DR, both rounded up. Not through laminated armour (High-Tech p. 170).",
+          "msheat": "The precursor charge blows a path through explosive reactive armour for the main charge; without such armour the charges work as one (High-Tech p. 170).",
+          "thermobaric": "The blast reaches further: divide its damage by twice the distance in yards from the centre, not three times (High-Tech p. 170; Campaigns p. 104).",
+          "internal": "The blast follows the round through the armour and bursts inside: an internal explosion (High-Tech pp. 169-170; Campaigns p. 415).",
+          "flareBurn": "Every flare gets hot: it burns what it touches, though a flare fired at someone doesn't stay in contact (High-Tech p. 171).",
+          "liquid": "Paint blinds someone with goggles or a visor, and half a dozen hits cover a windshield; a scent marker makes its victim reek for an hour (High-Tech pp. 171-172).",
+          "poisonGas": "The round spreads its filler over the burst radius: those in it are dosed as the round lands (High-Tech p. 172; Campaigns p. 439).",
+          "wpLinger": "The follow-up line keeps its fragments' type but not how long they linger; they burn 1d(0.2) every 10 seconds for a minute (High-Tech p. 172).",
+          "wpBrush": "The victim or an ally makes a DX roll to brush a burning fragment away (High-Tech p. 172).",
+          "airburstFragments": "An airburst HE round does only its fragments' damage, typically in a cone along the line of fire (High-Tech p. 175)."
         },
         "PerShot": "Per round: {cps}, {wps} lb. (the table's {table} x{multiple}).",
         "SourceLine": {
@@ -6093,7 +6125,26 @@
           "beehive": "Beehive",
           "multiFlechette": "Multi-flechette",
           "rubberShot": "Rubber shot",
-          "abf": "ABF"
+          "abf": "ABF",
+          "le": "LE",
+          "saple": "SAPLE",
+          "apex": "APEX",
+          "he": "HE",
+          "saphe": "SAPHE",
+          "saphec": "SAPHEC",
+          "aphex": "APHEX",
+          "efp": "EFP",
+          "heat": "HEAT",
+          "hedp": "HEDP",
+          "hesh": "HESH",
+          "msheat": "MS-HEAT",
+          "thermobaric": "Thermobaric",
+          "illumination": "Illumination",
+          "smoke": "Smoke",
+          "tearGas": "Tear gas",
+          "liquid": "Liquid",
+          "poisonGas": "Poison gas",
+          "whitePhosphorus": "White phosphorus"
         },
         "ProjectileHint": {
           "solid": "The solid bullet the gun's statistics assume (High-Tech p. 166). A shotgun's are for 00 buckshot.",
@@ -6122,7 +6173,26 @@
           "beehive": "A shell of flechettes; the weapon's own figures, no 1/2D, airburst included. CPS x5, LC1 (High-Tech p. 173).",
           "multiFlechette": "Low-powered large bores, from 10mm: damage x NS, pi-, 1/2D size x50, Max size x600, xNP after RoF, Rcl 1. CPS x4, LC3 (High-Tech p. 174).",
           "rubberShot": "From 10mm: damage x NS crushing (0.2), 1/2D size x2, Max size x10, xNP after RoF, Rcl 1. CPS x2, LC3 (High-Tech p. 174).",
-          "abf": "Annular blast fragmentation; the weapon's own figures, airburst included. CPS x5, LC1 (High-Tech p. 174)."
+          "abf": "Annular blast fragmentation; the weapon's own figures, airburst included. CPS x5, LC1 (High-Tech p. 174).",
+          "le": "A black-powder shell: (0.5) on the shot and a linked blast with fragments, the blast the record's. CPS x2, LC1 (High-Tech p. 169).",
+          "saple": "A small charge fused to burst inside: a follow-up internal blast with fragments. At TL5-6 it bursts only on 1d <= TL-2. CPS x2, LC1 (High-Tech p. 169).",
+          "apex": "AP with a small charge in the base: (2), damage x0.7, a step down below 20mm, and a follow-up internal blast with fragments. CPS x3, LC1 (High-Tech p. 169).",
+          "he": "High explosive: (0.5) on the shot and a linked blast with fragments, the blast the record's. CPS x2, LC1 (High-Tech p. 169).",
+          "saphe": "A follow-up blast with fragments. CPS x2, LC1 (High-Tech p. 169).",
+          "saphec": "Thin walls, a larger charge: a follow-up internal blast without fragments. CPS x2, LC1 (High-Tech p. 169).",
+          "aphex": "APHC with a charge: (2), a step down below 20mm, a follow-up internal blast with fragments. CPS x4, LC1 (High-Tech p. 170).",
+          "efp": "From 50mm: an explosively formed penetrator, pi++ (2), and a linked blast without fragments. CPS x8, LC1 (High-Tech p. 170).",
+          "heat": "From 20mm: a shaped charge, (10), with a linked blast without fragments. CPS x3, LC1 (High-Tech p. 170).",
+          "hedp": "From 20mm: HEAT with fragments. CPS x4, LC1 (High-Tech p. 170).",
+          "hesh": "From 50mm: (0.5) and a linked blast; where neither gets through, the blast spalls the inside of the armour. CPS x3, LC1 (High-Tech p. 170).",
+          "msheat": "From 50mm: tandem shaped charges, (10), a linked blast; the precursor defeats explosive reactive armour. CPS x8, LC1 (High-Tech p. 170).",
+          "thermobaric": "From 20mm: (0.5) and a linked blast divided by twice the distance, not three times. CPS x8, LC1 (High-Tech p. 170).",
+          "illumination": "From 10mm: a flare lighting its radius (darkness no worse than -3, a signal flare's -5); it burns 1d a second on contact. CPS x5, LC4 (High-Tech p. 171).",
+          "smoke": "From 10mm: (0.5) on the hit, crushing with double knockback over 35mm from a low-velocity gun; a cloud of smoke where it lands. CPS x3, LC3 (High-Tech p. 171).",
+          "tearGas": "From 10mm: as smoke, with a cloud of tear gas: HT-2 against coughing and against blindness (and retching with a vomiting agent), -3 a yard to Vision. CPS x3, LC3 (High-Tech p. 171).",
+          "liquid": "Low-powered smoothbores only: (0.2), half damage, crushing, Range /4, and its filler's effect. LC by filler (High-Tech pp. 171-172).",
+          "poisonGas": "From 20mm: (0.5) on the shot, a follow-up crushing blast, and its filler's gas over the burst radius. Cost by filler, LC0 (High-Tech p. 172).",
+          "whitePhosphorus": "From 20mm: (0.5) on the shot, a follow-up burning blast whose burning fragments go on burning every 10 seconds for a minute, and smoke. CPS x2, LC1 (High-Tech p. 172)."
         },
         "ProjectileRefusal": {
           "tl": "not yet at this TL",
@@ -6133,7 +6203,9 @@
           "muzzleRifle": "muzzle-loading rifles only",
           "underwater": "only guns built for underwater",
           "shell": "only explosive shells",
-          "lowPowered": "only shotguns and grenade launchers"
+          "lowPowered": "only shotguns and grenade launchers",
+          "record": "only a mode whose record prints the blast",
+          "liquid": "only low-powered smoothbores"
         },
         "Material": {
           "lead": "Lead or steel",
@@ -6173,7 +6245,77 @@
           "apds": "APDS",
           "bodkin": "bodkin",
           "silver": "silver"
-        }
+        },
+        "Smoke": {
+          "screening": "Screening",
+          "colored": "Coloured",
+          "hot": "Hot",
+          "prism": "Prism",
+          "electromagnetic": "Electromagnetic"
+        },
+        "Illumination": {
+          "parachute": "Parachute flare",
+          "signal": "Signal flare",
+          "infrared": "Infrared flare"
+        },
+        "Liquid": {
+          "paint": "Paint",
+          "scent": "Scent marker",
+          "other": "Other filler"
+        },
+        "Gas": {
+          "tearGasCoughing": "Tear gas (coughing)",
+          "tearGasBlinding": "Tear gas (blindness)",
+          "vomitingAgent": "Vomiting agent"
+        },
+        "GasEffect": {
+          "coughing": "coughing",
+          "blinded": "blinded",
+          "retching": "retching"
+        },
+        "Cloud": {
+          "Vision": "{value} to sight",
+          "Sensors": "Hot smoke: infrared and hyperspectral",
+          "Radar": "Electromagnetic smoke: radar",
+          "TearGas": "{value} to sight, -3 a yard"
+        },
+        "Vomiting": "Vomiting agent",
+        "VomitingHint": "Mixed with a vomiting agent: HT-2 against retching too, for the time in the cloud plus five minutes a point of margin (High-Tech p. 171).",
+        "NoFiller": "Choose a filler",
+        "HitPrinted": "as printed",
+        "HitOwn": "the mode's",
+        "CargoKind": "{name} ({kind})",
+        "SmokeLabel": "Smoke",
+        "SmokeHint": "Screening -10 to sight and visually aimed attacks, coloured -7; hot smoke (TL8) also hides from infrared and hyperspectral vision, prism smoke also blocks lasers, electromagnetic smoke also radar (High-Tech p. 171).",
+        "IlluminationLabel": "Flare",
+        "IlluminationHint": "Under a parachute flare the darkness penalty is no worse than -3; under a signal flare, -5; an infrared flare (TL8) lights only for those who see infrared (High-Tech p. 171).",
+        "LiquidLabel": "Filler",
+        "LiquidHint": "Paint is LC4, a scent marker LC2 (High-Tech pp. 171-172).",
+        "FillerLabel": "Gas",
+        "FillerHint": "The Basic Set poison the round spreads over its burst radius (High-Tech p. 172; Campaigns p. 439).",
+        "AreaRadius": "Radius (yd)",
+        "AreaRadiusHint": "The cloud's or light's radius, as the gun's description prints it; left blank, it is asked as the round is fired.",
+        "AreaSeconds": "Lasts (s)",
+        "AreaSecondsHint": "How long the cloud or light lasts, as the description prints it; a cloud typically lingers 1-4 minutes (High-Tech p. 171).",
+        "HitLabel": "Hit",
+        "HitHint": "The round's own dice where the gun's description prints them (a 40mm smoke round's 1d+1, p. 143); blank for the mode's own.",
+        "AreaAsk": "Where the round lands: the latest template you placed, or the one token targeted.",
+        "AreaPlace": "Place",
+        "AreaNoPlace": "No place for the cloud: place a template or target one token (the GM places areas).",
+        "CloudPlaced": "A cloud of {radius} yards' radius, for {seconds} seconds.",
+        "LightPlaced": "A flare lights {radius} yards round it for {seconds} seconds.",
+        "CloudForms": "It takes {seconds} s to form.",
+        "PrismLasers": "Prism smoke blocks lasers through it.",
+        "GasKeptOut": "{name} keeps out the {gas}.",
+        "GasNoDose": "{name}: no dose written (the GM doses those they don't own).",
+        "NoFillerChosen": "The round has no filler chosen.",
+        "PoisonDelayed": "{name} is dosed; it takes effect in {seconds} s.",
+        "SapleBursts": "The round bursts (1d: {roll}, needs {need} or less).",
+        "SapleDud": "A dud: no blast (1d: {roll}, needed {need} or less).",
+        "Blinded": "Blinded (tear gas)",
+        "GasFailed": "{name} is {what} for {minutes} minutes.",
+        "UnderFlare": "under a flare",
+        "ScentMarked": "{name} reeks of the scent marker for an hour."
       }
     },
     "Backblast": {
