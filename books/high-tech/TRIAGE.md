@@ -233,10 +233,11 @@ than 270 names. Checked against the file's own notes: all 52 agree.
 **Guided and homing.** The missiles' first Range figure is speed, not 1/2D (p. 152), which
 the system reads from a mode's `guidance`: guided for the SS.11, 9M14M, TOW, MILAN and
 Dragon (note 3), homing for the Sidewinder, Stinger and Javelin (note 5), aimed with
-Artillery (Guided Missile) and attacking at the missile's own 10 (p. B413). **Patched.**
-The Javelin prints a follow-up and a linked blast; a mode holds one second line and the
-parser gave its second mode the blast, so both modes keep the follow-up (patched;
-sargas79/GWorldVTT#628).
+Artillery (Guided Missile) and attacking at the missile's own 10 (p. B413). **Patched**
+in #345; since sargas79/GWorldVTT#632 (API 1.80.0) the parser reads the guidance and the
+aiming skill from the notes itself, so #346 dropped those patches and keeps only the
+homing missiles' skill of 10. The Javelin prints a follow-up and a linked blast; #632 lets
+a mode keep both (`linked` and `linkedAlso`), so its patch went too.
 
 **Ids.** Quick-Swap, Sure-Footed (three) and Weapon Bond are also Martial Arts' or Monster
 Hunters 1's records, and Shoes, Climbing Monster Hunters 1's; the parser only steps aside
@@ -249,7 +250,7 @@ except:
 
 | What | Records | |
 |---|---|---|
-| A scope's Acc (`scopeacc()`) is never read | 40 modes on 27 weapons: SVD 5+2, Barrett 6+3, the cannon, recoilless rifles, AGS-17, M29, TOW 3+3 ... | parser, sargas79/GWorldVTT#628; re-extract when it lands |
+| A scope's Acc (`scopeacc()`) is never read | 40 modes on 27 weapons: SVD 5+2, Barrett 6+3, the cannon, recoilless rifles, AGS-17, M29, TOW 3+3 ... | read into `scopeBonus` since sargas79/GWorldVTT#632; re-extracted in #346, all 40 agree with the tables |
 | Second Rcl figure (slugs) of a shotgun with no Slug mode | Condor AM-402, Tower Blunderbuss, Manton Double, Colt Model 1855, Remington Hammer Lifter | a load, #374 |
 | RoF 1/8, Shots 22 read as RoF 1, Shots 22(8) | Motovilikha D-81TM | the autoloader's cycle; left |
 | A single Range figure written as 1/2D = Max | Tasertron TE-76, TASER M26, MBA Gyrojet | no halving either way; left |
@@ -259,4 +260,38 @@ except:
 (Hard Hat, Motorcycle, Football and Hockey Helmet, Shoulder Pads) validate as packs but
 the system's armour data model refuses them, so they can't be put on a character until
 sargas79/GWorldVTT#629 (which Monster Hunters 1's Cup, Athletic and Helmet, Motorcycle
-share). The data is right; nothing to change here.
+share). The data is right; nothing to change here. **Unblocked** by sargas79/GWorldVTT#630,
+which the pin carries since #346.
+
+## Kept by hand in #346
+
+The pin moved to GWorldVTT main at 8d98c6c (API 1.80.0: #630's split DR without
+crushing, #632's `scopeBonus`, `linkedAlso` and guidance from notes); gworld v1.36.0
+(release PR sargas79/GWorldVTT#625) is that commit plus the version bump. Re-extracted: the
+same 13 perks, 9 techniques, 94 armour and 280 weapons, now with 40 scope bonuses, and the
+missile patches the parser made redundant removed (each checked by extracting without it).
+
+Records, in `packs-src/<pack>/high-tech-by-hand.json`:
+
+| Pack | Records | Pages |
+|---|---|---|
+| equipment | the four shields (DB 2, 2, 2, 3; DR/HP 10/80, 7/40, 12/40, 12/60) | 72 |
+| equipment | Silk Vest (4/2*, the ordinary split, at TL6), Boots, Steel-Toed (DR 2; the toe box is #383), Closed-Dress Suit (DR 2, skull and face 6) | 66, 68, 74 |
+| equipment | the Zip-Gun (Malf. 12) | 92 |
+| equipment | Jam-Tin Grenade, with and without fragments, and the geballte Ladung; the book prints no Bulk or price, so Bulk 0 and $0 | 191 |
+| equipment | four rifle grenades, the first Range figure as `minRange` (note 2) | 194 |
+| equipment | the Sedgley Glove Pistol: a punch with Brawling, Boxing or Karate, the shot linked | 199 |
+| skills | Zen Marksmanship (IQ/VH, no default) for Gyroc, Musket, Pistol, Rifle, Shotgun and SMG; the grenade launcher, LAW and LMG left out, as the text allows | 250 |
+| skills | Guns Sport/TL (Musket) and (Pistol), the sport skills the air guns use (DX-4, Guns-3; p. B182) | 88 |
+| skills | Precision Aiming (Guns-6) and Mounted Shooting (ranged skill-4; the mount named on the sheet) | 251 |
+| advantages | Equipment Bond; Style Familiarity (Way of the Pistol), so the style needs no other book | 7, 252 |
+| templates | the Way of the Pistol, 4 points, every entry pointing at this book's or the Basic Set's record; Targeted Attack, Whirlwind Attack and Guns Art have none | 252 |
+
+Patched onto the extracted weapons (book.json, marked #346): the Dan-Inject's drug and the
+SplatMaster's paint as follow-up lines with no damage; the AN-M8 as a thrown smoke grenade
+(Special, 7-yard radius) and the AN-M14 as a thrown Special burn; the melee modes of the
+Elgin Cutlass Pistol (large knife at -1), the NRS-2 (large knife) and the Condor AM-402
+(baton with Shortsword).
+
+Not done: the AM-402T variant (p. 199), the Sedgley glove's DR 1 and its one cartridge,
+the rifle grenades' 1d+1 cr dud (note 2), and Targeted Attack, which is #367's.

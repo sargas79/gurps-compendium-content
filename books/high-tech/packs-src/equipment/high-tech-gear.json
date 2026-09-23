@@ -398,7 +398,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 192",
-      "category": "misc",
+      "category": "weapon",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -407,7 +407,46 @@
       "listCost": 45,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [
+        {
+          "name": "smoke",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": true,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -2,
+          "recoil": 0,
+          "malfunction": 17,
+          "radius": 7,
+          "areaAttack": true
+        }
+      ]
     }
   },
   {
@@ -425,7 +464,7 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 192",
-      "category": "misc",
+      "category": "weapon",
       "equipmentQuality": "basic",
       "forSkills": [],
       "quality": "good",
@@ -434,7 +473,44 @@
       "listCost": 45,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [
+        {
+          "name": "attack",
+          "skill": "Throwing",
+          "damageBase": "fixed",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "burn",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": true,
+          "surge": false,
+          "armorDivisor": 1,
+          "accuracy": 0,
+          "scopeBonus": 0,
+          "halfDamageRange": 0,
+          "maxRange": 0,
+          "rangeIsStMultiple": false,
+          "rateOfFire": 1,
+          "projectiles": 1,
+          "shots": "T(1)",
+          "loaded": 1,
+          "reloadWeight": 0,
+          "ammunition": "",
+          "minSt": 5,
+          "twoHanded": false,
+          "weaponSt": null,
+          "thrown": true,
+          "mount": "",
+          "bulk": -2,
+          "recoil": 0,
+          "malfunction": 17
+        }
+      ]
     }
   },
   {
@@ -1386,7 +1462,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 45,
           "maxRange": 150,
           "rangeIsStMultiple": false,
@@ -1403,7 +1479,15 @@
           "mount": "",
           "bulk": -5,
           "recoil": 2,
-          "malfunction": 17
+          "malfunction": 17,
+          "linked": {
+            "damage": "",
+            "damageType": "tox",
+            "armorDivisor": 1,
+            "explosive": false,
+            "label": "drug effect",
+            "followUp": true
+          }
         }
       ]
     }
@@ -1659,7 +1743,15 @@
           "mount": "",
           "bulk": -2,
           "recoil": 2,
-          "malfunction": 17
+          "malfunction": 17,
+          "linked": {
+            "damage": "",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "explosive": false,
+            "label": "paint splat",
+            "followUp": true
+          }
         }
       ]
     }
@@ -2091,7 +2183,62 @@
       "weaponClass": "firearm",
       "listCost": 300,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Knife",
+          "damageBase": "sw",
+          "damageModifier": -2,
+          "damageFormula": "",
+          "damageType": "cut",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "C,1",
+          "parryModifier": -1,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "skillModifier": -1
+        },
+        {
+          "name": "Thrust",
+          "skill": "Knife",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "imp",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": -1,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false,
+          "skillModifier": -1
+        }
+      ],
       "rangedModes": [
         {
           "name": "attack",
@@ -2475,7 +2622,60 @@
       "weaponClass": "firearm",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Knife",
+          "damageBase": "sw",
+          "damageModifier": -2,
+          "damageFormula": "",
+          "damageType": "cut",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "C,1",
+          "parryModifier": -1,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        },
+        {
+          "name": "Thrust",
+          "skill": "Knife",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "imp",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": -1,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        }
+      ],
       "rangedModes": [
         {
           "name": "attack",
@@ -2539,7 +2739,60 @@
       "weaponClass": "firearm",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Shortsword",
+          "damageBase": "sw",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        },
+        {
+          "name": "Thrust",
+          "skill": "Shortsword",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        }
+      ],
       "rangedModes": [
         {
           "name": "attack",
@@ -9442,7 +9695,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2100,
           "maxRange": 8000,
           "rangeIsStMultiple": false,
@@ -9478,7 +9731,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2100,
           "maxRange": 8000,
           "rangeIsStMultiple": false,
@@ -10154,7 +10407,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 1000,
           "maxRange": 4200,
           "rangeIsStMultiple": false,
@@ -10932,7 +11185,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 800,
           "maxRange": 3500,
           "rangeIsStMultiple": false,
@@ -10996,7 +11249,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 1700,
           "maxRange": 6500,
           "rangeIsStMultiple": false,
@@ -11032,7 +11285,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 7,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 1700,
           "maxRange": 6500,
           "rangeIsStMultiple": false,
@@ -11196,7 +11449,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 1000,
           "maxRange": 4200,
           "rangeIsStMultiple": false,
@@ -11232,7 +11485,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 7,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 1000,
           "maxRange": 4200,
           "rangeIsStMultiple": false,
@@ -11490,7 +11743,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 800,
           "maxRange": 3500,
           "rangeIsStMultiple": false,
@@ -11526,7 +11779,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 4,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 800,
           "maxRange": 3500,
           "rangeIsStMultiple": false,
@@ -14748,7 +15001,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 1800,
           "maxRange": 7700,
           "rangeIsStMultiple": false,
@@ -14813,7 +15066,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 2400,
           "maxRange": 3300,
           "rangeIsStMultiple": false,
@@ -16932,7 +17185,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 1600,
           "maxRange": 7700,
           "rangeIsStMultiple": false,
@@ -16977,7 +17230,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 1600,
           "maxRange": 7700,
           "rangeIsStMultiple": false,
@@ -17050,7 +17303,7 @@
           "surge": false,
           "armorDivisor": 0.5,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 4100,
           "maxRange": 12200,
           "rangeIsStMultiple": false,
@@ -17095,7 +17348,7 @@
           "surge": false,
           "armorDivisor": 0.5,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 4100,
           "maxRange": 12200,
           "rangeIsStMultiple": false,
@@ -17168,7 +17421,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2700,
           "maxRange": 8900,
           "rangeIsStMultiple": false,
@@ -17213,7 +17466,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 6,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2700,
           "maxRange": 8900,
           "rangeIsStMultiple": false,
@@ -17286,7 +17539,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 4900,
           "maxRange": 16100,
           "rangeIsStMultiple": false,
@@ -17331,7 +17584,7 @@
           "surge": false,
           "armorDivisor": 2,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 4900,
           "maxRange": 16100,
           "rangeIsStMultiple": false,
@@ -17404,7 +17657,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2900,
           "maxRange": 8500,
           "rangeIsStMultiple": false,
@@ -17447,7 +17700,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 2900,
           "maxRange": 8500,
           "rangeIsStMultiple": false,
@@ -17518,7 +17771,7 @@
           "surge": false,
           "armorDivisor": 0.5,
           "accuracy": 2,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 260,
           "maxRange": 2900,
           "rangeIsStMultiple": false,
@@ -17563,7 +17816,7 @@
           "surge": false,
           "armorDivisor": 0.5,
           "accuracy": 2,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 260,
           "maxRange": 2900,
           "rangeIsStMultiple": false,
@@ -17636,7 +17889,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 3500,
           "maxRange": 10300,
           "rangeIsStMultiple": false,
@@ -17679,7 +17932,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 3500,
           "maxRange": 10300,
           "rangeIsStMultiple": false,
@@ -17750,7 +18003,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 2,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 1900,
           "rangeIsStMultiple": false,
@@ -17888,7 +18141,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 0,
           "maxRange": 2200,
           "rangeIsStMultiple": false,
@@ -18686,7 +18939,7 @@
           "surge": false,
           "armorDivisor": 1,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 0,
           "maxRange": 2200,
           "rangeIsStMultiple": false,
@@ -19350,7 +19603,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 4,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 4800,
           "rangeIsStMultiple": false,
@@ -19394,7 +19647,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 5,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 4800,
           "rangeIsStMultiple": false,
@@ -19466,7 +19719,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 4,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 1100,
           "rangeIsStMultiple": false,
@@ -19610,7 +19863,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 2,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 1000,
           "rangeIsStMultiple": false,
@@ -19963,7 +20216,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 2,
-          "scopeBonus": 0,
+          "scopeBonus": 1,
           "halfDamageRange": 0,
           "maxRange": 1200,
           "rangeIsStMultiple": false,
@@ -20295,7 +20548,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 1,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 165,
           "maxRange": 3300,
           "rangeIsStMultiple": false,
@@ -20313,6 +20566,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "6dx6",
             "damageType": "cr",
@@ -20320,8 +20574,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 550,
-          "guidance": "guided"
+          "minRange": 550
         }
       ]
     }
@@ -20386,6 +20639,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "7dx5",
             "damageType": "cr",
@@ -20393,8 +20647,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 550,
-          "guidance": "guided"
+          "minRange": 550
         }
       ]
     }
@@ -20441,7 +20694,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 3,
           "halfDamageRange": 330,
           "maxRange": 3300,
           "rangeIsStMultiple": false,
@@ -20459,6 +20712,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "7dx5",
             "damageType": "cr",
@@ -20466,8 +20720,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 70,
-          "guidance": "guided"
+          "minRange": 70
         }
       ]
     }
@@ -20514,7 +20767,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 220,
           "maxRange": 2200,
           "rangeIsStMultiple": false,
@@ -20532,6 +20785,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "6dx4",
             "damageType": "cr",
@@ -20539,8 +20793,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 30,
-          "guidance": "guided"
+          "minRange": 30
         }
       ]
     }
@@ -20587,7 +20840,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 3,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 220,
           "maxRange": 1100,
           "rangeIsStMultiple": false,
@@ -20605,6 +20858,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "7dx4",
             "damageType": "cr",
@@ -20612,8 +20866,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 70,
-          "guidance": "guided"
+          "minRange": 70
         },
         {
           "name": "w/ Bipod",
@@ -20632,7 +20885,7 @@
           "surge": false,
           "armorDivisor": 10,
           "accuracy": 4,
-          "scopeBonus": 0,
+          "scopeBonus": 2,
           "halfDamageRange": 220,
           "maxRange": 1100,
           "rangeIsStMultiple": false,
@@ -20650,6 +20903,7 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "guided",
           "linked": {
             "damage": "7dx4",
             "damageType": "cr",
@@ -20657,8 +20911,7 @@
             "explosive": true,
             "label": "Linked"
           },
-          "minRange": 70,
-          "guidance": "guided"
+          "minRange": 70
         }
       ]
     }
@@ -20723,9 +20976,9 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
-          "minRange": 1100,
           "guidance": "homing",
           "aimingSkill": "Artillery (Guided Missile)",
+          "minRange": 1100,
           "guidedSkillLevel": 10
         }
       ]
@@ -20791,9 +21044,9 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
-          "minRange": 220,
           "guidance": "homing",
           "aimingSkill": "Artillery (Guided Missile)",
+          "minRange": 220,
           "guidedSkillLevel": 10
         }
       ]
@@ -20859,6 +21112,8 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "homing",
+          "aimingSkill": "Artillery (Guided Missile)",
           "linked": {
             "damage": "6dx11",
             "damageType": "cr",
@@ -20867,9 +21122,14 @@
             "followUp": true,
             "label": "Follow-up"
           },
+          "linkedAlso": {
+            "damage": "7dx4",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "explosive": true,
+            "label": "Linked"
+          },
           "minRange": 70,
-          "guidance": "homing",
-          "aimingSkill": "Artillery (Guided Missile)",
           "guidedSkillLevel": 10
         },
         {
@@ -20907,6 +21167,8 @@
           "bulk": 0,
           "recoil": 0,
           "malfunction": 17,
+          "guidance": "homing",
+          "aimingSkill": "Artillery (Guided Missile)",
           "linked": {
             "damage": "6dx11",
             "damageType": "cr",
@@ -20915,9 +21177,14 @@
             "followUp": true,
             "label": "Follow-up"
           },
+          "linkedAlso": {
+            "damage": "7dx4",
+            "damageType": "cr",
+            "armorDivisor": 1,
+            "explosive": true,
+            "label": "Linked"
+          },
           "minRange": 70,
-          "guidance": "homing",
-          "aimingSkill": "Artillery (Guided Missile)",
           "guidedSkillLevel": 10
         }
       ]

@@ -13,7 +13,7 @@
     "pdfOffset": 1,
     "pageLabel": "HT"
   },
-  "notes": "GCA cites this book as HT120, the plain prefix, and no record also cites a Basic Set page, so overlap.txt is empty. PDF page = book page + 1. The data file (Eric B. Smith, October 2023, marked incomplete) holds the gun perks and techniques of the appendix, armour and weapons only: no general gear, accessories, explosives, mines, melee weapons, covert-ops or medical gear, drugs or vehicles, which are captured from the PDF (#347) or kept by hand (#346). Its [MODIFIERS] are equipment options, weapon quality and ammunition, every one a calculated field or a load rather than a modifier item (#357, #364, #374), so none is written. Fragmentation before the damage type, follow-up and linked modes shared by sibling modes, rate-of-fire marks and placeholder modes parse since sargas79/GWorldVTT#591, and a missile's minimum range since #592 (gworld 1.35.0); the dry runs against the pinned 1.25.0 and against GWorldVTT main are in TRIAGE.md. Four shields and three split-DR armours the parser rejects are kept by hand (#346). Folded-stock and bipod pairs stay modes until #372 decides on states. See TRIAGE.md.",
+  "notes": "GCA cites this book as HT120, the plain prefix, and no record also cites a Basic Set page, so overlap.txt is empty. PDF page = book page + 1. The data file (Eric B. Smith, October 2023, marked incomplete) holds the gun perks and techniques of the appendix, armour and weapons only: no general gear, accessories, explosives, mines, melee weapons, covert-ops or medical gear, drugs or vehicles, which are captured from the PDF (#347) or kept by hand (#346). Its [MODIFIERS] are equipment options, weapon quality and ammunition, every one a calculated field or a load rather than a modifier item (#357, #364, #374), so none is written. Fragmentation before the damage type, follow-up and linked modes shared by sibling modes, rate-of-fire marks and placeholder modes parse since sargas79/GWorldVTT#591, and a missile's minimum range since #592 (gworld 1.35.0); the dry runs against the pinned 1.25.0 and against GWorldVTT main are in TRIAGE.md. Four shields and three split-DR armours the parser rejects are kept by hand (#346), with the records the file lacks; the rules marked #346 give the extracted weapons the modes the file can't carry. Scope bonuses, missile guidance and a mode's second follow-up or linked line parse since sargas79/GWorldVTT#632 (API 1.80.0). Folded-stock and bipod pairs stay modes until #372 decides on states. See TRIAGE.md.",
   "exclude": [
     {
       "pack": "modifiers",
@@ -210,36 +210,11 @@
     },
     {
       "pack": "equipment",
-      "pattern": "^(Aérospatiale SS\\.11, 164mm|Kolomna 9M14M Malyutka-M, 125mm|Hughes BGM-71A TOW, 127mm|Euromissile MILAN, 103mm|McDonnell FGM-77A Dragon, 127mm)$",
-      "set": {
-        "system.rangedModes.*.guidance": "guided"
-      },
-      "reason": "a guided attack (p. 152 note 3, p. B412), so the first Range figure is the missile's speed in yards a second, not 1/2D (p. 152)"
-    },
-    {
-      "pack": "equipment",
       "pattern": "^(Ford AIM-9L Sidewinder, 127mm|GD FIM-92A Stinger, 70mm|RLM FGM-148A Javelin, 127mm)$",
       "set": {
-        "system.rangedModes.*.guidance": "homing",
-        "system.rangedModes.*.aimingSkill": "Artillery (Guided Missile)",
         "system.rangedModes.*.guidedSkillLevel": 10
       },
-      "reason": "a homing attack: the gunner aims with Artillery (Guided Missile) and the missile attacks at its own skill of 10 (p. 152 note 5, p. B413); the first Range figure is its speed, not 1/2D (p. 152)"
-    },
-    {
-      "pack": "equipment",
-      "pattern": "^RLM FGM-148A Javelin, 127mm$",
-      "set": {
-        "system.rangedModes.1.linked": {
-          "damage": "6dx11",
-          "damageType": "cr",
-          "armorDivisor": 10,
-          "explosive": true,
-          "followUp": true,
-          "label": "Follow-up"
-        }
-      },
-      "reason": "the table prints a 6dx11(10) follow-up and a 7dx4 linked blast under both modes (p. 152); a mode holds one second line, and the parser gave the second mode the blast, so both keep the follow-up"
+      "reason": "a homing missile attacks at its own skill of 10 (p. 152 note 5, p. B413); the parser reads the homing guidance and the Artillery (Guided Missile) aiming skill from the note since sargas79/GWorldVTT#632, but not the missile's skill"
     },
     {
       "pack": "equipment",
@@ -377,6 +352,315 @@
         ]
       },
       "reason": "DR 6 for the head and 2 everywhere else, not a split by damage type (p. 74 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dan-Inject JM Standard, 11mm$",
+      "set": {
+        "system.rangedModes.0.linked": {
+          "damage": "",
+          "damageType": "tox",
+          "armorDivisor": 1,
+          "explosive": false,
+          "label": "drug effect",
+          "followUp": true
+        }
+      },
+      "reason": "the follow-up the table prints is the loaded drug's effect, whatever the dart carries (p. 88); kept as a follow-up line with no damage of its own, which the parser skips (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^NSG SplatMaster, \\.68 Paintball$",
+      "set": {
+        "system.rangedModes.0.linked": {
+          "damage": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "explosive": false,
+          "label": "paint splat",
+          "followUp": true
+        }
+      },
+      "reason": "the follow-up the table prints is a paint splat that marks the target, not damage (pp. 88-89); kept as a follow-up line with no damage, which the parser skips (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^AN-M8$",
+      "set": {
+        "system.category": "weapon",
+        "system.rangedModes": [
+          {
+            "name": "smoke",
+            "skill": "Throwing",
+            "damageBase": "fixed",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "cr",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": true,
+            "surge": false,
+            "armorDivisor": 1,
+            "accuracy": 0,
+            "scopeBonus": 0,
+            "halfDamageRange": 0,
+            "maxRange": 0,
+            "rangeIsStMultiple": false,
+            "rateOfFire": 1,
+            "projectiles": 1,
+            "shots": "T(1)",
+            "loaded": 1,
+            "reloadWeight": 0,
+            "ammunition": "",
+            "minSt": 5,
+            "twoHanded": false,
+            "weaponSt": null,
+            "thrown": true,
+            "mount": "",
+            "bulk": -2,
+            "recoil": 0,
+            "malfunction": 17,
+            "radius": 7,
+            "areaAttack": true
+          }
+        ]
+      },
+      "reason": "a thrown smoke grenade: no damage, a 7-yard-radius cloud (p. 192 note 4, p. B439); the parser skips the placeholder damage and leaves it with no mode (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^AN-M14$",
+      "set": {
+        "system.category": "weapon",
+        "system.rangedModes": [
+          {
+            "name": "attack",
+            "skill": "Throwing",
+            "damageBase": "fixed",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "burn",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": true,
+            "surge": false,
+            "armorDivisor": 1,
+            "accuracy": 0,
+            "scopeBonus": 0,
+            "halfDamageRange": 0,
+            "maxRange": 0,
+            "rangeIsStMultiple": false,
+            "rateOfFire": 1,
+            "projectiles": 1,
+            "shots": "T(1)",
+            "loaded": 1,
+            "reloadWeight": 0,
+            "ammunition": "",
+            "minSt": 5,
+            "twoHanded": false,
+            "weaponSt": null,
+            "thrown": true,
+            "mount": "",
+            "bulk": -2,
+            "recoil": 0,
+            "malfunction": 17
+          }
+        ]
+      },
+      "reason": "a thrown thermite grenade whose Damage is Special: it burns whatever it touches each second (pp. 192-193); the parser skips the placeholder and leaves it with no mode (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Elgin Cutlass Pistol, \\.54 Caplock$",
+      "set": {
+        "system.meleeModes": [
+          {
+            "name": "Swing",
+            "skill": "Knife",
+            "damageBase": "sw",
+            "damageModifier": -2,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "C,1",
+            "parryModifier": -1,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false,
+            "skillModifier": -1
+          },
+          {
+            "name": "Thrust",
+            "skill": "Knife",
+            "damageBase": "thr",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "imp",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "C",
+            "parryModifier": -1,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false,
+            "skillModifier": -1
+          }
+        ]
+      },
+      "reason": "a combination weapon: its blade is a large knife used at -1 to Knife (p. 199, p. B272) (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^TsNIITochMash NRS-2, 7\\.62x42mm$",
+      "set": {
+        "system.meleeModes": [
+          {
+            "name": "Swing",
+            "skill": "Knife",
+            "damageBase": "sw",
+            "damageModifier": -2,
+            "damageFormula": "",
+            "damageType": "cut",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "C,1",
+            "parryModifier": -1,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          },
+          {
+            "name": "Thrust",
+            "skill": "Knife",
+            "damageBase": "thr",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "imp",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "C",
+            "parryModifier": -1,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          }
+        ]
+      },
+      "reason": "a combination weapon: the knife is a large knife in melee (p. 199, p. B272) (#346)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Condor AM-402, 12G 2\\.75''$",
+      "set": {
+        "system.meleeModes": [
+          {
+            "name": "Swing",
+            "skill": "Shortsword",
+            "damageBase": "sw",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "cr",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "1",
+            "parryModifier": 0,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          },
+          {
+            "name": "Thrust",
+            "skill": "Shortsword",
+            "damageBase": "thr",
+            "damageModifier": 0,
+            "damageFormula": "",
+            "damageType": "cr",
+            "explosive": false,
+            "fragmentation": "",
+            "affliction": false,
+            "afflictionAttribute": "",
+            "afflictionModifier": 0,
+            "damageExtraDice": 0,
+            "damageSpecial": false,
+            "surge": false,
+            "armorDivisor": 1,
+            "reach": "1",
+            "parryModifier": 0,
+            "canParry": true,
+            "unbalanced": false,
+            "isFencing": false,
+            "isFlail": false,
+            "minSt": 6,
+            "twoHanded": false,
+            "unreadyAfterAttack": false
+          }
+        ]
+      },
+      "reason": "a combination weapon: in melee it is a baton used with Shortsword (p. 199, p. B273) (#346)"
     }
   ]
 }

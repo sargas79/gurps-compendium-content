@@ -1,0 +1,522 @@
+[
+  {
+    "_id": "9da88c7abca04905",
+    "name": "Way of the Pistol",
+    "type": "template",
+    "system": {
+      "description": "",
+      "reference": "High-Tech p. 252",
+      "kind": "character",
+      "statedCost": 4,
+      "attributes": {},
+      "secondary": {
+        "hp": 0,
+        "will": 0,
+        "per": 0,
+        "fp": 0,
+        "basicSpeed": 0,
+        "basicMove": 0
+      },
+      "sizeModifier": 0,
+      "attributeCost": 0,
+      "entries": [
+        {
+          "name": "Style Familiarity (Way of the Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.4004d8e0ab8127e8",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fast-Draw (Ammo)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.8247f83b887783be",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Fast-Draw (Pistol)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.4e33a5ae82e5aafd",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Guns (Pistol)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.78a13fc3ebb03407",
+          "group": "",
+          "note": ""
+        },
+        {
+          "name": "Close-Quarters Battle (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.b88352bd5c71eed1",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Fast-Firing (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.63116dd7060e68f8",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Immediate Action (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.1127083df8b78578",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Mounted Shooting (Pistol/Any Driving)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.40543d1c67617896",
+          "group": "techniques",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Off-Hand Weapon Training (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.4ea725f533d5761c",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Precision Aiming (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.2f50486fee55fd81",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Quick-Shot (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.976671cce87da389",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Retain Weapon (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.62425579c5b8e371",
+          "group": "techniques",
+          "note": ""
+        },
+        {
+          "name": "Targeted Attack (Pistol/Any)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "",
+          "group": "techniques",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Blind Fighting",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.6f30c975457b9c42",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Body Control",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.5746fd2b89a62681",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Flying Leap",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.5f0f333a6b07306b",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Invisibility Art",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.ab9ef1f9a5fe3b88",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Light Walk",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.da42bc98f797a22e",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Mental Strength",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.28142adcbd9742d9",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Zen Marksmanship (Pistol)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.a36ab75cd2ee6174",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Dual-Weapon Attack (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.cdb1f7e35e06ac05",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Instant Arsenal Disarm (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-skills.Item.6594f6c354622f13",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Whirlwind Attack (Pistol)",
+          "itemType": "technique",
+          "points": 1,
+          "levels": 0,
+          "uuid": "",
+          "group": "cinematic",
+          "note": ""
+        },
+        {
+          "name": "Akimbo (Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.a21948298e542ccd",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Armorer's Gift (Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.682b55c60986ebb2",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Cross-Trained (Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.421d7e3997e7da47",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Pants-Positive Safety",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.8581cc9b8b953b18",
+          "group": "perks",
+          "note": ""
+        },
+        {
+          "name": "Quick-Sheathe (Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.ccec41565c9aeeff",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Quick-Swap (Pistol)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.a2358a1005452c01",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Shtick",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.0df8539adc349138",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Sure-Footed (Any)",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.6931972c9d9ac1b7",
+          "group": "perks",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Extra Basic Speed",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gworld.advantages.Item.f723db9c08551595",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Extra Perception",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 1,
+          "uuid": "Compendium.gworld.advantages.Item.c53ddb3cc40ecd69",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Acute Vision",
+          "itemType": "trait",
+          "points": 2,
+          "levels": 1,
+          "uuid": "Compendium.gworld.advantages.Item.15c6dba121ef7202",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Ambidexterity",
+          "itemType": "trait",
+          "points": 5,
+          "levels": 0,
+          "uuid": "Compendium.gworld.advantages.Item.4f01fcff86293bec",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Combat Reflexes",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 0,
+          "uuid": "Compendium.gworld.advantages.Item.7e0b5b4a89b6987c",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Enhanced Dodge",
+          "itemType": "trait",
+          "points": 15,
+          "levels": 1,
+          "uuid": "Compendium.gworld.advantages.Item.1f30068061ff822a",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Gunslinger",
+          "itemType": "trait",
+          "points": 25,
+          "levels": 0,
+          "uuid": "Compendium.gworld.advantages.Item.6c1258634746ef1d",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Signature Gear",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 1,
+          "uuid": "Compendium.gworld.advantages.Item.9b99026b1becc57d",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Trained By A Master",
+          "itemType": "trait",
+          "points": 30,
+          "levels": 0,
+          "uuid": "Compendium.gworld.advantages.Item.54f8ed29a4efb850",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Acrobatics",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.7540371fbe32dbc7",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Armoury (Small Arms)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.05c1dac8fd177291",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Brawling",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.edd7f10bf0ba186f",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Breath Control",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.e916727944043bd0",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Connoisseur (Guns)",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.9c0bdd093b07b32f",
+          "group": "optional",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Guns Art",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "",
+          "group": "optional",
+          "note": "specialty named on the sheet"
+        },
+        {
+          "name": "Judo",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.adcd23e692943c76",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Karate",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.0fbe3afcc2bfdc41",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Meditation",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.1bd53b560b07b7d2",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Observation",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.569f20daf69ffd4a",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Stealth",
+          "itemType": "skill",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gworld.skills.Item.a4795ae613e011f7",
+          "group": "optional",
+          "note": ""
+        },
+        {
+          "name": "Weapon Bond",
+          "itemType": "trait",
+          "points": 1,
+          "levels": 0,
+          "uuid": "Compendium.gurps-compendium-content.high-tech-advantages.Item.4f7ee60a8e022f60",
+          "group": "optional",
+          "note": "specialty named on the sheet"
+        }
+      ],
+      "choices": [
+        {
+          "id": "techniques",
+          "label": "Techniques",
+          "kind": "count",
+          "required": 0
+        },
+        {
+          "id": "cinematic",
+          "label": "Cinematic skills and techniques",
+          "kind": "count",
+          "required": 0
+        },
+        {
+          "id": "perks",
+          "label": "Perks",
+          "kind": "count",
+          "required": 0
+        },
+        {
+          "id": "optional",
+          "label": "Optional traits",
+          "kind": "count",
+          "required": 0
+        }
+      ],
+      "features": [],
+      "tabooTraits": []
+    }
+  }
+]

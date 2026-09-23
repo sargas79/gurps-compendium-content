@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "21a6e53cd24771ab",
+    "name": "Equipment Bond",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "specialty": "",
+      "needsSpecialty": false,
+      "selfControl": null,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "High-Tech p. 7"
+    }
+  },
+  {
+    "_id": "4004d8e0ab8127e8",
+    "name": "Style Familiarity (Way of the Pistol)",
+    "type": "trait",
+    "system": {
+      "category": "perk",
+      "points": 1,
+      "levels": 0,
+      "pointsPerLevel": 0,
+      "costTable": [],
+      "levelNames": [],
+      "maxLevels": 0,
+      "specialty": "",
+      "needsSpecialty": false,
+      "selfControl": null,
+      "reactionModifier": 0,
+      "talentSkills": [],
+      "power": "",
+      "powerTalent": false,
+      "meleeModes": [],
+      "rangedModes": [],
+      "description": "",
+      "reference": "High-Tech p. 252"
+    }
+  }
+]
