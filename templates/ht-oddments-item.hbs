@@ -1,0 +1,15 @@
+{{!-- Protective oddments and portable cover (High-Tech pp. 68-72, 225). --}}
+<div class="isub" data-gcc-ht-oddments-section>
+  <div class="isub-head">{{localize "GCC.HT.Oddments.Title"}}</div>
+  {{#if brokenIn}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Oddments.BrokenInHint'}}"><input type="checkbox" data-gcc-ht-oddment="htBrokenIn" {{#if brokenIn.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Oddments.BrokenInLabel"}}</label>
+    </div>
+  {{/if}}
+  {{#if broken}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Oddments.BrokenHint'}}"><input type="checkbox" data-gcc-ht-oddment="htBroken" {{#if broken.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Oddments.BrokenLabel"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

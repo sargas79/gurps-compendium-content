@@ -5213,6 +5213,14 @@
         "jamming": {
           "Name": "Electronic signals jamming",
           "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cell phones and cellular beacons within 15 yards outright (High-Tech pp. 212-213)."
+        },
+        "protectiveOddments": {
+          "Name": "Protective oddments",
+          "Hint": "Worn footwear on Stealth: moccasins, sneakers and climbing shoes +1, arctic, blast and firefighter boots -1. New footwear has a Break in action: the best of HT, Hiking or HT-based Soldier (+1 or +2 for a good or fine custom-made pair); failure is moderate pain for 2d days, critical failure terrible pain (or a crippled foot, at the GM's word). While worn: a hockey glove gives Ham-Fisted 1; earmuffs and earplugs Protected Hearing and Hard of Hearing, the electronic ones Protected Hearing alone; a dive mask or goggles Nictitating Membrane 1, anti-laser goggles 4 and Protected Vision, tactical goggles 5; TL6+ sunglasses and ballistic sunglasses Protected Vision; a cup +2 to knockdown rolls for groin hits and a mouthguard +1 for face hits, the mouthguard's speech -2 on Diplomacy, Fast-Talk, Performance, Public Speaking, Sex Appeal and Singing as Disturbing Voice; eyeglasses and contact lenses correct Bad Sight, eyeglasses give the eyes DR 1, and a head hit breaks them on a 1 on 1d or knocks them off on 2-3. Homemade armour has a Make action: Armoury (Body Armor)+5 for paper and tape, +3 for a plastic bucket (High-Tech pp. 68-71, 225)."
+        },
+        "portableCover": {
+          "Name": "Portable cover",
+          "Hint": "An explosives or radiation blanket has a Smother action: a charge set off beneath it, the blanket's DR 25 coming off the damage roll. A radiation blanket in use (equipped) gives PF 3 against a radiation dose (High-Tech p. 72)."
         }
       },
       "Codes": {
@@ -7824,6 +7832,70 @@
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",
         "GrapnelRoll": "Throwing the grapnel ({skill})"
+      },
+      "Oddments": {
+        "Title": "Protective gear and cover",
+        "CorrectedSource": "{name} (corrects Bad Sight)",
+        "BreakIn": "Break in",
+        "BreakInHint": "New footwear worn into danger: roll HT, Hiking or HT-based Soldier, whichever is best. Failure is moderate pain for 2d days; critical failure terrible pain, or a crippled foot at the GM's word (High-Tech p. 69).",
+        "Custom": "Custom-made",
+        "CustomQuality": {
+          "none": "Off the shelf",
+          "good": "Custom-made, good quality (+1)",
+          "fine": "Custom-made, fine quality (+2)"
+        },
+        "BreakInRoll": "Breaking in {name} ({skill})",
+        "BreakInSkill": {
+          "HT": "HT",
+          "Hiking": "Hiking",
+          "Soldier": "HT-based Soldier"
+        },
+        "BrokenIn": "{name} break in quickly, with little discomfort.",
+        "BreakInPain": "{name} is in moderate pain for {days} days while the new footwear breaks in.",
+        "BreakInTerrible": "{name} is in terrible pain for {days} days while the new footwear breaks in; the GM may rule a crippled foot instead.",
+        "BrokenInLabel": "Broken in",
+        "BrokenInHint": "Footwear already broken in needs no roll (High-Tech p. 69).",
+        "NotBrokenInItem": "Not yet broken in: use Break in on the row before trekking off in it.",
+        "Make": "Make",
+        "MakeRoll": "Making {name}",
+        "MakeBonus": "Homemade armour",
+        "Made": "{name} is made after {minutes} minutes' work.",
+        "NotMade": "{minutes} minutes' work, and {name} isn't fit to wear: try again.",
+        "PaperSoaks": "It won't stand water: it comes apart in damp weather.",
+        "HomemadeItem": "Made with Armoury (Body Armor)+{bonus} (IQ-5+{bonus} at default) and {minutes} minutes' work.",
+        "StealthLine": "Footwear ({name})",
+        "StealthItem": "{value} to Stealth when moving silently.",
+        "VoiceLine": "Disturbing Voice ({name})",
+        "VoiceItem": "Speech is difficult: Disturbing Voice, {penalty} on Diplomacy, Fast-Talk, Performance, Public Speaking, Sex Appeal and Singing while worn.",
+        "KnockdownLine": "{name}",
+        "KnockdownItem": "+{bonus} to knockdown rolls for {location} hits.",
+        "Location": {
+          "groin": "groin",
+          "face": "face"
+        },
+        "HamFistedItem": "Ham-Fisted 1 for fine work with the gloved hand, while worn.",
+        "EarsItem": "Protected Hearing while worn.",
+        "EarsBlockedItem": "Protected Hearing, and Hard of Hearing, while worn.",
+        "MembraneItem": "Nictitating Membrane {levels} while worn.",
+        "MembraneReason": "its DR is the Nictitating Membrane it gives",
+        "ProtectedVisionItem": "Protected Vision against bright ordinary light while worn.",
+        "EyeglassesItem": "Corrects Bad Sight and gives the eyes DR 1 while worn; a head hit breaks them on a 1 on 1d, knocks them off on 2-3.",
+        "EyeglassesBrokenItem": "Broken: they neither correct Bad Sight nor protect until replaced.",
+        "BrokenLabel": "Broken",
+        "BrokenHint": "Broken eyeglasses neither correct nor protect; untick once replaced (High-Tech p. 225).",
+        "ContactsItem": "Corrects Bad Sight while worn, and can't be knocked off or broken; no eye protection.",
+        "GlassesBroken": "{name}'s eyeglasses break ({die} on 1d).",
+        "GlassesKnockedOff": "{name}'s eyeglasses are knocked off ({die} on 1d).",
+        "GlassesStay": "{name}'s eyeglasses stay on ({die} on 1d).",
+        "Smother": "Smother a charge",
+        "SmotherHint": "A charge set off beneath the blanket: its DR {dr} comes off the damage roll (High-Tech p. 72).",
+        "Explosive": "Explosive",
+        "Pounds": "Pounds",
+        "SmotheredLabel": "{pounds} lbs. of {explosive} under {name}",
+        "BlanketLine": "{name} (DR {dr})",
+        "BlanketItem": "Smothers a charge: DR {dr} off its damage roll.",
+        "RadiationBlanketItem": "Smothers a charge: DR {dr} off its damage roll. In use (equipped), PF {pf} against radiation.",
+        "RadiationLine": "{name} (PF {pf})"
       },
       "Clothing": {
         "Title": "Clothing against the weather",

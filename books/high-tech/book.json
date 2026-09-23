@@ -85,6 +85,10 @@
         "reason": "telegram rates, a service priced per word (p. 36)"
       },
       {
+        "pattern": "^Knee or Elbow Pads$",
+        "reason": "kept by hand as armour: DR 3 on the knee joints (or, relocated, the elbows), 2 in 6 of the limb, which is partial coverage (p. 71)"
+      },
+      {
         "pattern": "^Anti-Stab Plate$",
         "reason": "kept by hand as armour, with the DR and location the text gives (p. 67)"
       },
@@ -1109,13 +1113,6 @@
           "system.lc": 4
         },
         "reason": "clothing is LC4 where the chapter doesn't say otherwise (p. 62); the leather coat is kept by hand as armour (p. 64)"
-      },
-      {
-        "pattern": "^Knee or Elbow Pads$",
-        "set": {
-          "name": "Knee or Elbow Pads (pair)"
-        },
-        "reason": "priced per pair (p. 71)"
       },
       {
         "pattern": "^Gas Masks$",

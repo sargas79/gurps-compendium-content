@@ -267,33 +267,6 @@
     }
   },
   {
-    "_id": "3cc78a0954d482ef",
-    "name": "Knee or Elbow Pads (pair)",
-    "type": "equipment",
-    "system": {
-      "quantity": 1,
-      "weight": 0.5,
-      "cost": 20,
-      "carried": true,
-      "equipped": false,
-      "tl": "8",
-      "lc": 4,
-      "costOfLivingPercent": 0,
-      "description": "",
-      "reference": "High-Tech p. 71",
-      "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
-      "quality": "good",
-      "material": "",
-      "weaponClass": "",
-      "listCost": 20,
-      "hpLost": 0,
-      "meleeModes": [],
-      "rangedModes": []
-    }
-  },
-  {
     "_id": "34667ffda7cc20d6",
     "name": "Explosives Blanket",
     "type": "equipment",

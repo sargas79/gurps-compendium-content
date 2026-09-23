@@ -50,9 +50,11 @@
  * seal their wearers, and the locks, safes, traps and barriers, and
  * emergency medicine and medical facilities: defibrillators, CPR, first aid
  * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic, and
- * armour: partial coverage, concealing it and its materials, and security
- * screening, surveillance gear and jamming (pp. 7-11, 13-16, 17-77, 79-93,
- * 109, 127-141, 143, 147-217, 219-225, 249-252).
+ * armour: partial coverage, concealing it and its materials, security
+ * screening, surveillance gear and jamming, and the protective oddments and
+ * portable cover: footwear, gloves, ear and eye protection, cups and
+ * mouthguards, eyeglasses, homemade armour and blankets over bombs (pp.
+ * 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143, 147-217, 219-225, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -91,6 +93,7 @@ import { initMedicine, readyMedicine } from "./medicine/index.js";
 import { readyHighTechCodes } from "./codes/index.js";
 import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 import { initSurveillance, readySurveillance } from "./surveillance/index.js";
+import { readyOddments } from "./oddments/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -236,6 +239,9 @@ const RULES = [
   { key: "securityScreening", pages: "pp. 205-207, 217", implemented: true },
   { key: "surveillanceGear", pages: "pp. 208-212", implemented: true },
   { key: "jamming", pages: "pp. 212-213", implemented: true },
+  // Protective oddments and portable cover.
+  { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
+  { key: "portableCover", pages: "p. 72", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -344,6 +350,7 @@ function ready(api: GWorldApi): void {
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming") });
+  readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
 }
 
 export const book: BookRules = {
