@@ -5229,6 +5229,10 @@
         "restraintDevices": {
           "Name": "Restraints",
           "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10) and Acrobatics or Escape to bring cuffed wrists to the front (High-Tech p. 217)."
+        },
+        "prosthetics": {
+          "Name": "Prosthetics and elective surgery",
+          "Hint": "Worn eyeglasses and contact lenses mitigate Bad Sight, a hearing aid (while its battery lasts) Hard of Hearing, an arm prosthetic One Arm (the basic one leaving Ham-Fisted 2) and a leg prosthetic Lame (Missing Legs), with a point of reduced Basic Move back for the basic leg and all of it for the advanced; a GM tool for elective surgery rolls the operation and records a step of build or Appearance, or laser eye surgery curing Bad Sight (High-Tech pp. 225-226)."
         }
       },
       "Codes": {
@@ -8656,6 +8660,58 @@
         "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves and no slipping the arms round to the front.",
         "LegIrons": "Crippled Legs: Move is half Basic Speed, -3 on skills that need the legs; kicking is impossible. TL5 leg irons don't ratchet (Escape unmodified); TL6-8 ones do (Escape-5).",
         "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance."
+      },
+      "Prosthetics": {
+        "Mitigated": "Mitigated by {item} (High-Tech pp. 225-226)",
+        "Cured": "Cured by laser eye surgery (High-Tech p. 225)",
+        "MoveRegained": "{item}: reduced Basic Move mitigated (High-Tech p. 226)",
+        "Title": "Elective surgery",
+        "Hint": "The surgeon's Surgery roll is the system's operation. Once it is in, say on the card how it went: a success is recorded on the patient. The GM may charge points for a beneficial change (High-Tech p. 225).",
+        "Patient": "Patient",
+        "Surgeon": "Surgeon",
+        "ProcedureLabel": "Procedure",
+        "TechLevel": "TL",
+        "SurgeonTl": "the surgeon's",
+        "Direction": "Build (Changing Body)",
+        "Lighter": "A step lighter",
+        "Heavier": "A step heavier",
+        "Eyes": "Eyes (Improving Vision)",
+        "Hands": "Hands (Removing Fingerprints)",
+        "Modifier": "Modifier",
+        "Operate": "Operate",
+        "NoPatient": "There is no character to operate on.",
+        "Procedure": {
+          "build": "Changing Body (TL7)",
+          "appearance": "Improving Appearance (TL7-8)",
+          "vision": "Improving Vision (TL8)",
+          "fingerprints": "Removing Fingerprints (TL6, cinematic)"
+        },
+        "OperationLabel": "{procedure}, by {surgeon}",
+        "Plan": {
+          "build": "{name}: build from {from} to {to}. $5,000; a week to recover.",
+          "appearance": "{name}: Appearance from {from} to {to}. ${cost}; a week to recover.",
+          "vision": "{name}: laser surgery on {eyes} eye(s) against Bad Sight. ${cost}; a couple of days to recover.",
+          "fingerprints": "{name}: fingerprints removed, a cinematic operation. ${cost}."
+        },
+        "Worked": "It worked: record it",
+        "Failed": "It failed",
+        "SetBuild": "Recorded. Set {name}'s build to {to} on the sheet and adjust the weight to match.",
+        "SetAppearance": "Recorded. Set {name}'s Appearance to {to} on the sheet.",
+        "SightCured": "Recorded: {name}'s Bad Sight is cured and out of play. Remove the trait when the points are settled.",
+        "OneEyeDone": "Recorded: one eye done. Bad Sight stays until the other eye is operated on too.",
+        "FingerprintsGone": "Recorded: {name} has no fingerprints.",
+        "FailedNote": {
+          "build": "Nothing changed. What a failure costs the patient is the GM's.",
+          "appearance": "Nothing improved. Cosmetic surgery can go wrong: infection, nerve damage, or a lower Appearance, at the GM's word (High-Tech p. 225).",
+          "vision": "Nothing changed. What a failure costs the patient is the GM's.",
+          "fingerprints": "Nothing changed. What a failure costs the patient is the GM's."
+        },
+        "Refusal": {
+          "NotABuildStep": "{name}'s build can't go a step further that way: surgery works between Very Fat and Skinny (High-Tech p. 225).",
+          "NoAppearanceStep": "Surgery can only improve Appearance to Attractive, Handsome/Beautiful or Very Handsome/Very Beautiful, a step at a time (High-Tech p. 225).",
+          "NoBadSight": "{name} has no Bad Sight to cure.",
+          "TooLowTl": "This operation needs TL{tl} (High-Tech p. 225)."
+        }
       }
     },
     "Backblast": {

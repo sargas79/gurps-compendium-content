@@ -2200,6 +2200,7 @@
       "title": "Elective Surgery",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT225",
+      "rule": "gurps-compendium-content.prosthetics",
       "reference": "High-Tech p. 225",
       "file": "elective-surgery.md",
       "status": "reviewed"
@@ -2209,6 +2210,7 @@
       "title": "Prosthetics",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT225",
+      "rule": "gurps-compendium-content.prosthetics",
       "reference": "High-Tech p. 225",
       "file": "prosthetics.md",
       "status": "reviewed"

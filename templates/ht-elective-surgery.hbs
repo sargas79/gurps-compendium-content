@@ -1,0 +1,5 @@
+{{!-- High-Tech's elective surgery (p. 225): the operation, and what the GM records once the roll is in. --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+<div class="gc-result">{{text}}</div>
+{{#each lines}}<div class="gc-result">{{this}}</div>{{/each}}
+{{#if buttons.length}}<div class="gc-apply">{{#each buttons}}<button type="button" class="gc-apply-button" data-addon-card-action="{{action}}">{{label}}</button>{{/each}}</div>{{/if}}

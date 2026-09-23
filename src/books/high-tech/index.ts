@@ -55,8 +55,9 @@
  * portable cover: footwear, gloves, ear and eye protection, cups and
  * mouthguards, eyeglasses, homemade armour and blankets over bombs, and
  * lie detection and restraints: polygraphs and voice stress analysers on
- * Interrogation, and cuffs, leg irons and straitjackets (pp. 7-11, 13-16,
- * 17-77, 79-93, 109, 127-141, 143, 147-217, 219-225, 249-252).
+ * Interrogation, cuffs, leg irons and straitjackets, and prosthetics and
+ * elective surgery (pp. 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143,
+ * 147-217, 219-226, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -97,6 +98,7 @@ import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 import { initSurveillance, readySurveillance } from "./surveillance/index.js";
 import { readyOddments } from "./oddments/index.js";
 import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
+import { readyProsthetics } from "./prosthetics/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -248,6 +250,8 @@ const RULES = [
   // Lie detection and restraints.
   { key: "lieDetection", pages: "pp. 215-216", implemented: true },
   { key: "restraintDevices", pages: "p. 217", implemented: true },
+  // Medical: prosthetics as Mitigators, and elective surgery.
+  { key: "prosthetics", pages: "pp. 225-226", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -359,6 +363,7 @@ function ready(api: GWorldApi): void {
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming") });
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
+  readyProsthetics(api, rule("prosthetics"));
 }
 
 export const book: BookRules = {
