@@ -159,13 +159,8 @@ export function pressureSupportLevel(atmospheres: number): number {
   return 3;
 }
 
-/** The system's comfort zone edges, in °F: below the one it's cold, above the other it's hot. */
-export const COMFORT_ZONE = { coldF: 35, heatF: 80 } as const;
-
-/** Degrees a climate control range adds to each side of the comfort zone. */
-export function climateTolerance(climate: readonly [number, number]): { coldF: number; heatF: number } {
-  return { coldF: Math.max(0, COMFORT_ZONE.coldF - climate[0]), heatF: Math.max(0, climate[1] - COMFORT_ZONE.heatF) };
-}
+// A suit's climate range as degrees added to the comfort zone: the engine High-Tech's climate control shares.
+export { COMFORT_ZONE, climateTolerance } from "../../../shared/climate/rules.js";
 
 /** The air tanks, and the hours each holds at TL9-12 (p. 176). */
 export const AIR_TANK_HOURS: Readonly<Record<string, readonly [number, number, number, number]>> = {
