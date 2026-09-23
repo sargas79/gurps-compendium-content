@@ -7,9 +7,10 @@
  * are Martial Arts'. Those live once, as shared engines under `src/shared/`,
  * and this book registers its own table for each and its own switch, so a GM
  * can use High-Tech without either of the other books. So far this registers
- * a gun's quality, its care, clearing a stoppage by Immediate Action, and
- * drawing guns, holsters and Who Draws First? with guns (pp. 79-82, 129,
- * 153-154, 249-251).
+ * a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * drawing guns, holsters and Who Draws First? with guns, and how fast a gun
+ * fires: triggers, fire selectors and bursts, fast-firing, fanning and
+ * thumbing (pp. 79-84, 129, 153-154, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -17,6 +18,7 @@ import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/modul
 import { initDrawing, readyDrawing } from "./drawing/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower } from "./power/index.js";
+import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { registerHighTechRecordData } from "./records.js";
 
 const SLUG = "high-tech";
@@ -48,6 +50,10 @@ const RULES = [
   { key: "immediateAction", pages: "pp. 81, 249-251", implemented: true },
   { key: "gunDrawing", pages: "pp. 81-82, 153-154, 249", implemented: true },
   { key: "gunfightStandoff", pages: "p. 82", implemented: true },
+  { key: "triggerMechanisms", pages: "p. 82", implemented: true },
+  { key: "burstFire", pages: "pp. 82-83", implemented: true },
+  { key: "fastFiring", pages: "pp. 84, 251-252", implemented: true },
+  { key: "fanningAndThumbing", pages: "pp. 83-84, 251-252", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -79,7 +85,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms();
+  initFirearms(rateOfFireFields);
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
@@ -87,6 +93,7 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
+  readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") });
 }
 
 export const book: BookRules = {

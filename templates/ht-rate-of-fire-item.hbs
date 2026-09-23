@@ -1,0 +1,35 @@
+{{!-- A gun's trigger, fire selector and bursts, and a tied-back trigger (High-Tech pp. 82-84). --}}
+<div class="isub" data-gcc-ht-rof-section>
+  <div class="isub-head">{{localize "GCC.HT.RateOfFire.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.HT.RateOfFire.TriggerTooltip'}}">{{localize "GCC.HT.RateOfFire.TriggerLabel"}}
+      <select data-gcc-ht-rof="trigger" {{#unless editable}}disabled{{/unless}}>
+        {{#each trigger.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{localize 'GCC.HT.RateOfFire.RevolverTooltip'}}">{{localize "GCC.HT.RateOfFire.RevolverLabel"}}
+      <select data-gcc-ht-rof="revolver" {{#unless editable}}disabled{{/unless}}>
+        {{#each trigger.revolver as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if bursts}}
+      <label data-tooltip="{{localize 'GCC.HT.RateOfFire.BurstLimitTooltip'}}">{{localize "GCC.HT.RateOfFire.BurstLimitLabel"}}
+        <input type="number" min="0" max="10" step="1" data-gcc-ht-rof="burstLimit" value="{{bursts.burstLimit}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+    {{#if tie}}
+      <label data-tooltip="{{localize 'GCC.HT.RateOfFire.TieHint'}}">{{localize "GCC.HT.RateOfFire.TieLabel"}}
+        <select data-gcc-ht-rof="triggerTie" {{#unless editable}}disabled{{/unless}}>
+          {{#each tie.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    {{/if}}
+  </div>
+  {{#if bursts.selector}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.RateOfFire.InstantSelectorHint'}}"><input type="checkbox" data-gcc-ht-rof="instantSelector" {{#if bursts.instantSelector}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.RateOfFire.InstantSelector"}}</label>
+    </div>
+  {{/if}}
+  {{#each trigger.lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+  {{#each bursts.lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+</div>

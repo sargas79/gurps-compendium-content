@@ -4817,6 +4817,22 @@
         "gunfightStandoff": {
           "Name": "Who draws first (guns)",
           "Hint": "A GM tool for a standoff between two gunfighters outside combat: a ready gun fires first against a foe without Fast-Draw, or wins a Quick Contest of weapon skill against Fast-Draw at -10 (+1 for Combat Reflexes, and ties); otherwise Fast-Draw or weapon skill decides, with +4 for a hand on the gun, -1 for the worse Bulk, and the odd positions (High-Tech p. 82)."
+        },
+        "triggerMechanisms": {
+          "Name": "Trigger mechanisms",
+          "Hint": "A gun's trigger as a field on it: single-action, double-action, double-action-only or safe-action. Left blank, a revolver at RoF 1 is single-action, one at RoF 2 or more double-action, and anything else single-action. An aimed shot from a double-action gun takes -1 unless the hammer was cocked first (a cocked revolver fires that one shot); a double-action-only gun is a point of Acc lower; DAO and safe-action guns are almost impossible to fire by accident (High-Tech p. 82)."
+        },
+        "burstFire": {
+          "Name": "Fire selectors and bursts",
+          "Hint": "A gun with a fire selector changes setting from its row: the listed RoF, a second RoF after a slash, or single shots at RoF 3 for any setting of RoF 4+ without a \"!\". Changing takes a Ready maneuver in combat, unless the gun has a double or progressive trigger. A limited-burst gun fires one to three whole bursts per attack and can't use Spraying Fire; a high-cyclic gun (\"#\") is limited to bursts too, counts its hits at Rcl 1 and can't use Suppression Fire (High-Tech pp. 82-83)."
+        },
+        "fastFiring": {
+          "Name": "Fast-firing",
+          "Hint": "A semiautomatic or double-action gun of RoF 2 or 3 pulled faster, up to RoF 6, at -4 to skill (bought off by the Fast-Firing technique) and +2 Rcl at RoF 5, +4 at RoF 6; it still can't use Spraying Fire. A single-action revolver held in two hands is cocked with the off thumb: RoF 2 at no penalty, or up to RoF 4 at -2, bought off by Two-Handed Thumbing. Not for a limited-burst gun (High-Tech pp. 84, 251-252)."
+        },
+        "fanningAndThumbing": {
+          "Name": "Fanning and thumbing",
+          "Hint": "A single-action revolver of RoF 1 fanned at RoF 2 for -4 (bought off by the Fanning technique), with another -2 for each RoF above 2 up to 5 and +2 Rcl at RoF 5, none of which a technique buys off, and never aimed; a critical failure fires nothing and drops the gun (1-3 on 1d) or bruises the hand, moderate pain for minutes equal to the margin of failure. Thumbing fires RoF 2 at -2 (bought off by the Thumbing technique); a failure fires nothing that turn, a critical failure drops the gun or fires it wild. A revolver whose trigger is tied back or removed can only be fanned or thumbed (High-Tech pp. 83-84, 251-252)."
         }
       },
       "Firearm": {
@@ -5000,6 +5016,91 @@
             "againstReady": "Against a ready gun"
           }
         }
+      },
+      "RateOfFire": {
+        "Title": "Trigger and rate of fire",
+        "TriggerLabel": "Trigger",
+        "TriggerTooltip": "The weapon tables don't give a gun's trigger type: set it from the gun's description, or leave it to be worked out (High-Tech p. 82).",
+        "Trigger": {
+          "auto": "From its statistics ({trigger})",
+          "sa": "Single-action",
+          "da": "Double-action",
+          "dao": "Double-action-only",
+          "safe": "Safe-action"
+        },
+        "TriggerLine": {
+          "sa": "Single-action: cocked before the first shot; a revolver has to be cocked for every shot.",
+          "da": "Double-action: RoF 3 without cocking, but an aimed shot takes -1 unless the hammer was cocked first.",
+          "dao": "Double-action-only: RoF 3, and a point of Acc lower for the heavy pull.",
+          "safe": "Safe-action: RoF 3 with no penalty to an aimed shot."
+        },
+        "SafeLine": "Almost impossible to fire by accident through unsafe handling.",
+        "RevolverLabel": "Revolver",
+        "RevolverTooltip": "Whether the gun is a revolver, which decides its trigger when that is left blank and whether it can be fanned or thumbed. Left blank, a pistol loaded a round at a time into five chambers or more counts as one.",
+        "Revolver": {
+          "auto": "From its statistics ({answer})",
+          "yes": "Yes",
+          "no": "No"
+        },
+        "BurstLimitLabel": "Limited bursts",
+        "BurstLimitTooltip": "Rounds per burst for a gun with a burst limiter, fired one to three bursts per attack at its listed RoF. 0 for none, or the high-cyclic mark's own: a RoF 9# gun fires three-round bursts (High-Tech p. 83).",
+        "InstantSelector": "Double or progressive trigger",
+        "InstantSelectorHint": "Changes between settings at once, with no Ready maneuver (High-Tech pp. 82-83).",
+        "TieLabel": "Trigger",
+        "Tie": {
+          "none": "In place",
+          "tied": "Tied back",
+          "removed": "Removed"
+        },
+        "TieHint": "A revolver with its trigger tied back or taken off can only be fanned or thumbed until it is untied (High-Tech p. 84).",
+        "TiedRefusal": "Trigger {tie}: this revolver can only be fanned or thumbed.",
+        "Setting": {
+          "primary": "listed RoF",
+          "second": "second RoF",
+          "semi": "single shots"
+        },
+        "Selector": "Fire selector",
+        "SelectorHint": "The row's fire selector button changes setting; in combat that takes a Ready maneuver unless the gun has a double or progressive trigger (High-Tech p. 82).",
+        "SelectorNeedsReady": "Changing the fire selector on {gun} takes a Ready maneuver.",
+        "SelectorSet": "Fire selector set to {setting} (RoF {rof}).",
+        "SelectorReady": "That took a Ready maneuver.",
+        "SelectorInstant": "A double or progressive trigger: no Ready needed.",
+        "SettingsLine": "Fire selector: {settings}. Now on {current}.",
+        "SettingNote": "Selector: {setting}",
+        "BurstLine": "Limited bursts of {limit}: {shots} shots an attack, and no Spraying Fire.",
+        "BurstNote": "Bursts of {limit}",
+        "HighCyclicLine": "High-cyclic controlled bursts: hits counted at Rcl 1, and no Suppression Fire.",
+        "DaoNote": "DAO: -1 Acc",
+        "DoubleActionLine": "Double-action pull (aimed)",
+        "Cocked": "Hammer cocked first (single-action)",
+        "CockedNotFast": "A cocked shot isn't fast-fired.",
+        "CockedRevolverNote": "Cocked for one single-action shot.",
+        "Bursts": "Limited bursts",
+        "BurstsChoice": "{bursts} burst(s)",
+        "BurstsNote": "{bursts} burst(s) of {limit}: {shots} shots are fired (a limited burst fires whole bursts only).",
+        "NotUsed": "No",
+        "RofChoice": "RoF {rof}",
+        "FastFiring": "Fast-firing",
+        "FastFiringLine": "Fast-firing",
+        "FastFiringNote": "Fast-fired: no Spraying Fire.",
+        "FastFiringRefusal": "This gun can't be fast-fired at RoF {rof} (it can at: {rates}).",
+        "TwoHandedLine": "Two-handed fast-firing",
+        "TwoHandedNote": "Held in two hands, cocked with the off thumb.",
+        "NotWithFanning": "Fast-firing, fanning and thumbing don't combine.",
+        "Fanning": "Fanning",
+        "FanningLine": "Fanning",
+        "FanningRofLine": "Fanning at RoF {rof}",
+        "FanningNote": "Fanned: the other hand works the hammer.",
+        "FanningNoAim": "A fanned revolver can't be aimed.",
+        "FanningNoShots": "Critical failure: no shots are fired.",
+        "FanningDropped": "1d = {die}: the shooter drops the gun.",
+        "FanningBruised": "1d = {die}: a bruised hand, moderate pain for {minutes} minute(s).",
+        "Thumbing": "Thumbing",
+        "ThumbingLine": "Thumbing",
+        "ThumbingNote": "Thumbed: the thumb slips the hammer.",
+        "ThumbingFailed": "Thumbing failed: the gun doesn't fire this turn.",
+        "ThumbingFumble": "Critical failure: the gun is dropped or goes off early and wild (the GM decides what it hits).",
+        "NeedsSingleAction": "Fanning and thumbing are for a single-action revolver of RoF 1."
       }
     }
   },
