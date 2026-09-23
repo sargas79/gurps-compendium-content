@@ -10675,7 +10675,18 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "lantern",
+              "radius": 0,
+              "beam": 10
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10702,7 +10713,18 @@
       "listCost": 15,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "glassLantern",
+              "radius": 5,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10729,7 +10751,18 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "lantern",
+              "radius": 5,
+              "beam": 10
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10756,7 +10789,18 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "kerosene",
+              "radius": 5,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10783,7 +10827,18 @@
       "listCost": 0.03,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "flame",
+              "radius": 2,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10810,7 +10865,18 @@
       "listCost": 0.3,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "flame",
+              "radius": 2,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10837,7 +10903,18 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "flame",
+              "radius": 2,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -10873,6 +10950,13 @@
               "cells": 1,
               "endurance": "4 hrs.",
               "raw": "M/4 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 3,
+              "beam": 0
             }
           }
         }
@@ -10913,6 +10997,13 @@
               "endurance": "4 hrs.",
               "raw": "3×S/4 hrs."
             }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 3,
+              "beam": 0
+            }
           }
         }
       }
@@ -10951,6 +11042,13 @@
               "cells": 4,
               "endurance": "20 hrs.",
               "raw": "4×S/20 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 5,
+              "beam": 0
             }
           }
         }
@@ -10991,6 +11089,13 @@
               "endurance": "5 hrs.",
               "raw": "2×S/5 hrs."
             }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 10
+            }
           }
         }
       }
@@ -11029,6 +11134,13 @@
               "cells": 1,
               "endurance": "2 hrs.",
               "raw": "T/2 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 1
             }
           }
         }
@@ -11069,6 +11181,13 @@
               "endurance": "1 hr.",
               "raw": "2×XS/1 hr."
             }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 5
+            }
           }
         }
       }
@@ -11098,7 +11217,18 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 1
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -11134,6 +11264,13 @@
               "cells": 1,
               "endurance": "4 hrs.",
               "raw": "M/4 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 200
             }
           }
         }
@@ -11173,6 +11310,13 @@
               "cells": 2,
               "endurance": "2 hrs.",
               "raw": "2×XS"
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "electric",
+              "radius": 0,
+              "beam": 50
             }
           }
         }
@@ -11230,7 +11374,18 @@
       "listCost": 2,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "light": {
+              "kind": "chemical",
+              "radius": 2,
+              "beam": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -11256,7 +11411,60 @@
       "weaponClass": "",
       "listCost": 200,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Shortsword",
+          "damageBase": "sw",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        },
+        {
+          "name": "Thrust",
+          "skill": "Shortsword",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        }
+      ],
       "rangedModes": [],
       "extensions": {
         "gurps-compendium-content": {
@@ -11266,6 +11474,13 @@
               "cells": 4,
               "endurance": "1 hr.",
               "raw": "4×S/1 hr."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "tactical",
+              "radius": 0,
+              "beam": 100
             }
           }
         }
@@ -11295,7 +11510,65 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "thrust (Boxing)",
+          "skill": "Boxing",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        },
+        {
+          "name": "thrust (Brawling)",
+          "skill": "Brawling",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        },
+        {
+          "name": "thrust (Karate)",
+          "skill": "Karate",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        }
+      ],
       "rangedModes": [],
       "extensions": {
         "gurps-compendium-content": {
@@ -11305,6 +11578,13 @@
               "cells": 2,
               "endurance": "2 hrs.",
               "raw": "2×S/2 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "tactical",
+              "radius": 0,
+              "beam": 25
             }
           }
         }
@@ -11334,7 +11614,60 @@
       "weaponClass": "",
       "listCost": 200,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "Swing",
+          "skill": "Shortsword",
+          "damageBase": "sw",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        },
+        {
+          "name": "Thrust",
+          "skill": "Shortsword",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": false,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 6,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        }
+      ],
       "rangedModes": [],
       "extensions": {
         "gurps-compendium-content": {
@@ -11344,6 +11677,13 @@
               "cells": 4,
               "endurance": "2 hrs.",
               "raw": "4×XS/2 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "tactical",
+              "radius": 0,
+              "beam": 100
             }
           }
         }
@@ -11373,7 +11713,65 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "thrust (Boxing)",
+          "skill": "Boxing",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        },
+        {
+          "name": "thrust (Brawling)",
+          "skill": "Brawling",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        },
+        {
+          "name": "thrust (Karate)",
+          "skill": "Karate",
+          "damageBase": "thr",
+          "damageModifier": 0,
+          "damageFormula": "",
+          "damageType": "cr",
+          "armorDivisor": 1,
+          "reach": "C",
+          "parryModifier": 0,
+          "canParry": true,
+          "isFlail": false,
+          "minSt": null,
+          "twoHanded": false,
+          "unbalanced": false,
+          "isFencing": false,
+          "unreadyAfterAttack": false,
+          "unarmedBonus": true
+        }
+      ],
       "rangedModes": [],
       "extensions": {
         "gurps-compendium-content": {
@@ -11383,6 +11781,13 @@
               "cells": 2,
               "endurance": "2 hrs.",
               "raw": "2×XS/2 hrs."
+            }
+          },
+          "expedition": {
+            "light": {
+              "kind": "tactical",
+              "radius": 0,
+              "beam": 25
             }
           }
         }
@@ -11413,7 +11818,14 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "compass"
+          }
+        }
+      }
     }
   },
   {
@@ -11440,7 +11852,14 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "chronometer"
+          }
+        }
+      }
     }
   },
   {
@@ -11467,7 +11886,14 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "chronometer"
+          }
+        }
+      }
     }
   },
   {
@@ -11494,7 +11920,14 @@
       "listCost": 3000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "instruments"
+          }
+        }
+      }
     }
   },
   {
@@ -11521,7 +11954,14 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "surveying"
+          }
+        }
+      }
     }
   },
   {
@@ -11558,6 +11998,9 @@
               "endurance": "40 hrs.",
               "raw": "2×S/40 hrs."
             }
+          },
+          "expedition": {
+            "navigation": "gps"
           }
         }
       }
@@ -11884,7 +12327,14 @@
       "listCost": 15,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "lbe"
+          }
+        }
+      }
     }
   },
   {
@@ -11911,7 +12361,14 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "lbe"
+          }
+        }
+      }
     }
   },
   {
@@ -11938,7 +12395,14 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "lbe"
+          }
+        }
+      }
     }
   },
   {
@@ -11965,7 +12429,14 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "lbe"
+          }
+        }
+      }
     }
   },
   {
@@ -11992,7 +12463,14 @@
       "listCost": 60,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "backpack"
+          }
+        }
+      }
     }
   },
   {
@@ -12019,7 +12497,14 @@
       "listCost": 60,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "bag"
+          }
+        }
+      }
     }
   },
   {
@@ -12046,7 +12531,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "bag"
+          }
+        }
+      }
     }
   },
   {
@@ -12073,7 +12565,14 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "carry": "backpack"
+          }
+        }
+      }
     }
   },
   {
@@ -12127,7 +12626,14 @@
       "listCost": 75,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "harness"
+          }
+        }
+      }
     }
   },
   {
@@ -12154,7 +12660,14 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "ascender"
+          }
+        }
+      }
     }
   },
   {
@@ -12181,7 +12694,14 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "descender"
+          }
+        }
+      }
     }
   },
   {
@@ -12228,14 +12748,23 @@
       "reference": "High-Tech p. 55",
       "category": "misc",
       "equipmentQuality": "basic",
-      "forSkills": [],
+      "forSkills": [
+        "Climbing"
+      ],
       "quality": "good",
       "material": "",
       "weaponClass": "",
       "listCost": 400,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "rappelKit"
+          }
+        }
+      }
     }
   },
   {
@@ -12262,7 +12791,14 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "rappelKit"
+          }
+        }
+      }
     }
   },
   {
@@ -12289,7 +12825,14 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "grapnel"
+          }
+        }
+      }
     }
   },
   {
@@ -12316,7 +12859,14 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "crampons"
+          }
+        }
+      }
     }
   },
   {
@@ -12342,7 +12892,34 @@
       "weaponClass": "",
       "listCost": 100,
       "hpLost": 0,
-      "meleeModes": [],
+      "meleeModes": [
+        {
+          "name": "attack",
+          "skill": "Axe/Mace",
+          "damageBase": "sw",
+          "damageModifier": 1,
+          "damageFormula": "",
+          "damageType": "imp",
+          "explosive": false,
+          "fragmentation": "",
+          "affliction": false,
+          "afflictionAttribute": "",
+          "afflictionModifier": 0,
+          "damageExtraDice": 0,
+          "damageSpecial": false,
+          "surge": false,
+          "armorDivisor": 1,
+          "reach": "1",
+          "parryModifier": 0,
+          "canParry": true,
+          "unbalanced": true,
+          "isFencing": false,
+          "isFlail": false,
+          "minSt": 10,
+          "twoHanded": false,
+          "unreadyAfterAttack": false
+        }
+      ],
       "rangedModes": []
     }
   },
@@ -12370,7 +12947,14 @@
       "listCost": 175,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "skis"
+          }
+        }
+      }
     }
   },
   {
@@ -12397,7 +12981,14 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "snowshoes"
+          }
+        }
+      }
     }
   },
   {
@@ -12667,7 +13258,14 @@
       "listCost": 80,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "climbing": "suctionCup"
+          }
+        }
+      }
     }
   },
   {

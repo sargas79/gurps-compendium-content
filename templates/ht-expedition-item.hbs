@@ -1,0 +1,17 @@
+{{!-- Lights, navigation instruments, load-bearing gear and climbing gear (High-Tech pp. 51-56). --}}
+<div class="isub" data-gcc-ht-expedition-section>
+  <div class="isub-head">{{localize "GCC.HT.Expedition.Title"}}</div>
+  {{#if map}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Expedition.MapPenaltyHint'}}">{{localize "GCC.HT.Expedition.MapPenalty"}}
+        <input type="number" min="-5" max="0" step="1" data-gcc-ht-map value="{{map.penalty}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#if gps}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Expedition.NoSignalHint'}}"><input type="checkbox" data-gcc-ht-gps {{#if gps.noSignal}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Expedition.NoSignal"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

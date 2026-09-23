@@ -1,0 +1,653 @@
+/**
+ * High-Tech's expedition gear (pp. 51-56), registered with the system through
+ * the add-on API under four switches. The rules are in `rules.ts`; what each
+ * record is (a light and how far it reaches, an instrument or a map, LBE or a
+ * pack, a piece of climbing gear) is its `expedition` data, written on the
+ * records from book.json. What the character did with it -- a light lit or
+ * set down, LBE set up, a pack fitted, a GPS out of sight of its satellites --
+ * is kept in this module's flags on the item.
+ *
+ *   - **Light sources (lightSources):** a row action lights a light or puts
+ *     it out, and another sets a lit lantern or candle down as an area on the
+ *     map (dropped, a fuel lantern rolls HT 6 on hard ground and breaks, the
+ *     glass one starting a fire). An attack on a target a light reaches -- one
+ *     set down round it, one carried within its radius, or the attacker's own
+ *     beam out to its length -- takes its darkness down to that of a lit spot
+ *     (Campaigns p. 394's -3; the keyed `darkness` line). A tactical light
+ *     shone in the eyes asks each target for HT-4 against 10 seconds'
+ *     blindness per point of failure.
+ *   - **Navigation gear (navigationGear):** the best bonus of a compass,
+ *     chronometer, navigating or surveying instruments or a GPS receiver as a
+ *     line on Navigation and Mathematics (Surveying), and the map line on
+ *     Navigation and Forward Observer: -10 with none, an inaccurate map's -1
+ *     to -5.
+ *   - **Load-bearing equipment (loadBearingEquipment):** a Soldier or
+ *     IQ-based Hiking roll sets LBE up (its quality, or -2 set up badly, then
+ *     goes on Fast-Draw from pouches and on a row action's DX roll to reach
+ *     gear) and fits a pack (a good or fine one's quality on Hiking; a badly
+ *     fitted one's moderate pain after a day's hiking); TL8 packs weigh half
+ *     and backpacks cost double; the hourly march.
+ *   - **Climbing gear (climbingGear):** the fall to twice the distance past
+ *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
+ *     throwing a grapnel, and snowshoes' -1 Move.
+ */
+
+import { placeArea } from "../../../shared/areas.js";
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import {
+  BLINDED_PENALTY,
+  CARRY_KINDS,
+  CLIMBING_KINDS,
+  FITS,
+  GLASS_LANTERN_FIRE_YARDS,
+  LIGHT_KINDS,
+  NAVIGATION_KINDS,
+  RELIGHT_SECONDS,
+  ROPE_GEAR,
+  TACTICAL_BLINDING_HT,
+  anchoredFall,
+  blindedSeconds,
+  breaksWhenDropped,
+  drawsFromLbe,
+  fittingRoll,
+  grapnelLoad,
+  grapnelRange,
+  grapnelRoll,
+  lanternSurvives,
+  lbeBonus,
+  litPenalty,
+  mapModifier,
+  marchMph,
+  navSkillOf,
+  navigationBonus,
+  packPrice,
+  qualityBonus,
+  rappelPenalty,
+  reaches,
+  snowshoeMove,
+  type CarryKind,
+  type ClimbingKind,
+  type Fit,
+  type Instrument,
+  type Light,
+  type NavigationKind,
+} from "./rules.js";
+
+const L = (key: string) => game.i18n.localize(`GCC.HT.Expedition.${key}`);
+const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Expedition.${key}`, data);
+const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
+
+const FIELD = "expedition";
+const LIGHT_AREA = "ht-light";
+const EYES_CARD = "ht-light-eyes";
+const RAPPEL_OPTION = "ht-rappelling";
+const BLINDED = "htLightBlinded";
+
+export interface ExpeditionSwitches {
+  lights: () => boolean;
+  navigation: () => boolean;
+  loadBearing: () => boolean;
+  climbing: () => boolean;
+}
+
+/** What this module keeps on a piece of expedition gear. */
+export interface ExpeditionData {
+  light: Light | null;
+  navigation: NavigationKind;
+  /** An inaccurate map's penalty, -1 to -5; 0 for an accurate one. */
+  mapPenalty: number;
+  carry: CarryKind;
+  climbing: ClimbingKind;
+}
+
+/** What the character did with it, kept in this module's flags. */
+export interface ExpeditionState {
+  lit: boolean;
+  broken: boolean;
+  placed: boolean;
+  fit: Fit;
+  noSignal: boolean;
+}
+
+/** Registers the fields this module keeps on expedition gear. */
+export function initExpedition(): void {
+  const f = foundry.data.fields as any;
+  const choice = (choices: readonly string[]) => new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...choices] });
+  const yards = () => new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 });
+  addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
+    [FIELD]: new f.SchemaField({
+      light: new f.SchemaField({ kind: choice(LIGHT_KINDS), radius: yards(), beam: yards() }),
+      navigation: choice(NAVIGATION_KINDS),
+      mapPenalty: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: -5, max: 0 }),
+      carry: choice(CARRY_KINDS),
+      climbing: choice(CLIMBING_KINDS),
+    }),
+  });
+}
+
+/** A piece of gear's data, with nothing missing. */
+export function expeditionData(item: any): ExpeditionData {
+  const d = item?.system?.extensions?.[MODULE_ID]?.[FIELD] ?? {};
+  const l = d.light ?? {};
+  const kind = LIGHT_KINDS.includes(l.kind) ? l.kind : "";
+  const yards = (v: unknown) => Math.max(0, Number(v) || 0);
+  return {
+    light: kind ? { kind, radius: yards(l.radius), beam: yards(l.beam) } : null,
+    navigation: NAVIGATION_KINDS.includes(d.navigation) ? d.navigation : "",
+    mapPenalty: Math.max(-5, Math.min(0, Math.trunc(Number(d.mapPenalty) || 0))),
+    carry: CARRY_KINDS.includes(d.carry) ? d.carry : "",
+    climbing: CLIMBING_KINDS.includes(d.climbing) ? d.climbing : "",
+  };
+}
+
+/** What the character did with a piece of gear. */
+export function expeditionState(item: any): ExpeditionState {
+  const s = item?.flags?.[MODULE_ID]?.[FIELD] ?? {};
+  return {
+    lit: s.lit === true,
+    broken: s.broken === true,
+    placed: s.placed === true,
+    fit: FITS.includes(s.fit) ? s.fit : "",
+    noSignal: s.noSignal === true,
+  };
+}
+
+async function setState(item: any, patch: Partial<ExpeditionState>): Promise<void> {
+  await item.update(Object.fromEntries(Object.entries(patch).map(([k, v]) => [`flags.${MODULE_ID}.${FIELD}.${k}`, v])));
+}
+
+const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
+const carried = (item: any) => item?.type === "equipment" && item.system?.carried !== false;
+const gearOf = (actor: any): any[] => [...(actor?.items ?? [])].filter(carried);
+
+async function say(actor: any, title: string, lines: string[], rolls: any[] = []): Promise<void> {
+  await ChatMessage.implementation.create({
+    speaker: ChatMessage.implementation.getSpeaker({ actor }),
+    content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
+    ...(rolls.length ? { rolls } : {}),
+  });
+}
+
+// ── where things are on the map ──
+
+const stage = () => (globalThis as any).canvas;
+const centreOf = (token: any): { x: number; y: number } | null => {
+  const c = token?.center ?? token?.object?.center;
+  return c && Number.isFinite(c.x) && Number.isFinite(c.y) ? { x: c.x, y: c.y } : null;
+};
+
+function yardsBetween(a: any, b: any): number | null {
+  const from = centreOf(a);
+  const to = centreOf(b);
+  const grid = stage()?.grid;
+  if (!from || !to || !grid?.measurePath) return null;
+  const distance = Number(grid.measurePath([from, to])?.distance);
+  return Number.isFinite(distance) ? distance : null;
+}
+
+// ── light sources (pp. 51-52) ──
+
+/** The lit lights a character carries: not one they have set down, which lights where it lies. */
+function litLights(actor: any): Array<{ item: any; light: Light }> {
+  return gearOf(actor)
+    .map((item) => ({ item, light: expeditionData(item).light, state: expeditionState(item) }))
+    .filter((l): l is { item: any; light: Light; state: ExpeditionState } => l.light !== null && l.state.lit && !l.state.broken && !l.state.placed);
+}
+
+/**
+ * The light a target stands in, by name, or null: a light set down round it,
+ * a light somebody on the map carries within its radius (the target's own
+ * included), or the attacker's own beam, aimed at the target, out to its
+ * length.
+ */
+export function lightOver(api: GWorldApi, attacker: any, target: any): string | null {
+  const scene = stage()?.scene;
+  if (scene) {
+    for (const area of (api.areas.list(scene) as any[]) ?? []) {
+      if (!String(area?.id ?? "").startsWith(`${MODULE_ID}-${LIGHT_AREA}-`)) continue;
+      const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
+      if (inside.some((t) => t?.id === target?.id)) return String(area.label ?? "");
+    }
+  }
+  for (const token of (stage()?.tokens?.placeables ?? []) as any[]) {
+    for (const { item, light } of litLights(token?.actor)) {
+      const yards = token?.document?.id === target?.id ? 0 : yardsBetween(token, target);
+      if (yards !== null && reaches(light, yards, false)) return String(item.name ?? "");
+    }
+  }
+  const own = attacker?.getActiveTokens?.()?.[0];
+  for (const { item, light } of litLights(attacker)) {
+    const yards = own ? yardsBetween(own, target) : null;
+    if (yards !== null && reaches(light, yards, true)) return String(item.name ?? "");
+  }
+  return null;
+}
+
+async function switchLight(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const data = expeditionData(item);
+  if (!data.light) return;
+  const lit = !expeditionState(item).lit;
+  await setState(item, { lit });
+  if (!lit) await pickUp(api, item);
+  const kind = data.light.kind;
+  const how = !lit ? "PutOut"
+    : kind === "electric" || kind === "tactical" ? "SwitchedOnReady"
+      : kind === "chemical" ? "SnappedOn"
+        : breaksWhenDropped(kind) ? "LitLantern" : "LitFlame";
+  await say(actor, String(item.name ?? ""), [F(how, { name: String(item.name ?? ""), min: RELIGHT_SECONDS.min, max: RELIGHT_SECONDS.max })]);
+}
+
+/** Sets a lit light down (or drops it) where its bearer stands, or where their template lies. */
+async function setDown(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const data = expeditionData(item);
+  if (!data.light) return;
+  const name = String(item.name ?? "");
+  let dropped = false;
+  if (breaksWhenDropped(data.light.kind)) {
+    const asked: any = await foundry.applications.api.DialogV2.prompt({
+      window: { title: name },
+      content: `<div class="gworld"><p class="ihint">${esc(L("DropHint"))}</p>
+        <div class="ichecks"><label class="icheck"><input type="checkbox" name="dropped"> ${esc(L("DroppedHard"))}</label></div></div>`,
+      ok: {
+        label: L("SetDown"),
+        callback: (_event: Event, button: HTMLElement) => ({ dropped: Boolean(button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="dropped"]')?.checked) }),
+      },
+      rejectClose: false,
+    });
+    if (!asked) return;
+    dropped = asked.dropped === true;
+  }
+  if (dropped) {
+    const roll = new Roll("3d6");
+    await roll.evaluate();
+    if (!lanternSurvives(Number(roll.total))) {
+      await setState(item, { lit: false, broken: true, placed: false });
+      const lines = [F("LanternBreaks", { name, roll: roll.total })];
+      if (data.light.kind === "glassLantern") lines.push(F("GlassFire", { yards: GLASS_LANTERN_FIRE_YARDS }));
+      if (data.light.kind === "kerosene") lines.push(L("KeroseneDouses"));
+      await say(actor, name, lines, [roll]);
+      return;
+    }
+    await say(actor, name, [F("LanternSurvives", { name, roll: roll.total })], [roll]);
+  }
+  if (!expeditionState(item).lit || !(data.light.radius > 0)) return;
+  const id = await placeArea(api, { key: `${LIGHT_AREA}-${item.id}`, label: name, actor, radiusYards: data.light.radius, lines: [], seconds: null, bare: true });
+  if (!id) return void ui.notifications?.warn(L("NoPlace"));
+  await setState(item, { placed: true });
+  await say(actor, name, [F("SetDownLine", { name, yards: data.light.radius })]);
+}
+
+/** Takes a light's areas off the map. */
+async function pickUp(api: GWorldApi, item: any): Promise<void> {
+  const scene = stage()?.scene;
+  if (scene) {
+    const prefix = `${MODULE_ID}-${LIGHT_AREA}-${item.id}-`;
+    for (const area of (api.areas.list(scene) as any[]) ?? []) {
+      if (String(area?.id ?? "").startsWith(prefix)) await api.areas.remove(scene, area.id);
+    }
+  }
+  if (expeditionState(item).placed) await setState(item, { placed: false });
+}
+
+type EyesData = { victimUuid: string; victim: string; light: string; result: string };
+
+/** Shines a tactical light in the eyes of each targeted token within its beam (p. 52). */
+async function shineInEyes(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const light = expeditionData(item).light;
+  if (!light) return;
+  const targets = [...((game as any).user?.targets ?? [])];
+  if (!targets.length) return void ui.notifications?.warn(L("EyesTarget"));
+  const own = actor?.getActiveTokens?.()?.[0];
+  for (const token of targets) {
+    const yards = own ? yardsBetween(own, token) : null;
+    if (yards !== null && !reaches(light, yards, true)) continue;
+    const victim = token?.actor;
+    if (!victim) continue;
+    const data: EyesData = { victimUuid: String(victim.uuid ?? ""), victim: String(victim.name ?? ""), light: String(item.name ?? ""), result: "" };
+    await api.chat.post(`${MODULE_ID}.${EYES_CARD}`, data, { actor: victim } as any);
+  }
+}
+
+async function resistLight(api: GWorldApi, message: any, data: EyesData): Promise<void> {
+  const victim: any = data.victimUuid ? await fromUuid(data.victimUuid) : null;
+  if (!victim || data.result) return;
+  const ht = Number(api.actors.attribute(victim, "HT")) || 10;
+  const outcome: any = await api.roll.success({
+    actor: victim, base: ht, label: F("EyesRoll", { name: victim.name }), skill: "HT", kind: "attribute",
+    modifiers: [{ label: L("TacticalLight"), value: TACTICAL_BLINDING_HT }], tags: ["resist", "vision", "tacticalLight"],
+  } as any);
+  if (!outcome) return;
+  if (outcome.success) return void api.chat.update(message, { ...data, result: F("EyesResisted", { name: victim.name }) });
+  const seconds = blindedSeconds(Number(outcome.margin) || 1);
+  await api.actors.applyCondition(victim, {
+    module: MODULE_ID, key: BLINDED, label: L("Blinded"),
+    effects: { modifiers: [{ label: L("Blinded"), value: BLINDED_PENALTY, rolls: ["vision", "attack"] }] },
+    duration: { seconds },
+  } as any);
+  await api.chat.update(message, { ...data, result: F("EyesBlinded", { name: victim.name, seconds }) });
+}
+
+// ── navigation (pp. 52-53) ──
+
+function instrumentsOf(actor: any): Instrument[] {
+  return gearOf(actor)
+    .map((item) => ({ item, kind: expeditionData(item).navigation }))
+    .filter((i) => i.kind && i.kind !== "map")
+    .map(({ item, kind }) => ({ kind, name: String(item.name ?? ""), tl: tlOf(item), noSignal: expeditionState(item).noSignal }));
+}
+
+/** The navigation lines on a skill: the instruments' bonus and the map's. */
+export function navigationLines(actor: any, skillName: string): Array<{ label: string; value: number }> {
+  const skill = navSkillOf(skillName);
+  if (!skill) return [];
+  const instruments = instrumentsOf(actor);
+  const lines: Array<{ label: string; value: number }> = [];
+  const bonus = navigationBonus(skill, instruments);
+  if (bonus) lines.push({ label: F("InstrumentLine", { name: bonus.name }), value: bonus.value });
+  const maps = gearOf(actor).filter((i) => expeditionData(i).navigation === "map").map((i) => expeditionData(i).mapPenalty);
+  const map = mapModifier(skill, maps, instruments);
+  if (map !== null && map !== 0) lines.push({ label: L(maps.length ? "InaccurateMap" : "NoMap"), value: map });
+  return lines;
+}
+
+// ── load-bearing gear (pp. 53-55) ──
+
+/** The best bonus of the LBE a character has set up, with its name; null with none set up. */
+export function lbeOf(actor: any): { value: number; name: string } | null {
+  let best: { value: number; name: string } | null = null;
+  for (const item of gearOf(actor)) {
+    if (expeditionData(item).carry !== "lbe") continue;
+    const value = lbeBonus(expeditionState(item).fit, String(item.system?.equipmentQuality ?? "basic"), tlOf(item));
+    if (value !== null && (!best || value > best.value)) best = { value, name: String(item.name ?? "") };
+  }
+  return best;
+}
+
+async function fitGear(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const data = expeditionData(item);
+  const attr = (key: "IQ" | "HT") => Number(api.actors.attribute(actor, key)) || 10;
+  const use = fittingRoll({ iq: attr("IQ"), ht: attr("HT"), soldier: api.actors.skillLevel(actor, "Soldier"), hiking: api.actors.skillLevel(actor, "Hiking") });
+  const lbe = data.carry === "lbe";
+  const outcome: any = await api.roll.success({
+    actor, base: use.level, label: F(lbe ? "SetUpRoll" : "FitRoll", { name: item.name, skill: use.skill === "Hiking" ? L("IqHiking") : use.skill }),
+    skill: use.skill, kind: "skill", tags: [lbe ? "lbeSetUp" : "packFit"],
+  } as any);
+  if (!outcome) return;
+  await setState(item, { fit: outcome.success ? "ok" : "failed" });
+  const key = lbe ? (outcome.success ? "SetUpDone" : "SetUpFailed") : (outcome.success ? "FitDone" : "FitFailed");
+  await say(actor, String(item.name ?? ""), [F(key, { name: item.name, bonus: qualityBonus(String(item.system?.equipmentQuality ?? "basic"), tlOf(item)) })]);
+}
+
+async function reachGear(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const value = lbeBonus(expeditionState(item).fit, String(item.system?.equipmentQuality ?? "basic"), tlOf(item));
+  if (value === null) return;
+  const dx = Number(api.actors.attribute(actor, "DX")) || 10;
+  await api.roll.success({
+    actor, base: dx, label: F("ReachRoll", { name: item.name }), skill: "DX", kind: "attribute",
+    modifiers: value ? [{ label: String(item.name ?? ""), value }] : [], tags: ["lbe", "ready"],
+  } as any);
+}
+
+// ── the item sheet ──
+
+function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<string, unknown> {
+  const data = expeditionData(item);
+  const state = expeditionState(item);
+  const lines: string[] = [];
+  const context: Record<string, unknown> = { editable: item.isOwner };
+  if (on.lights() && data.light) {
+    const reach = [data.light.radius ? F("RadiusLine", { yards: data.light.radius }) : "", data.light.beam ? F("BeamLine", { yards: data.light.beam }) : ""].filter(Boolean).join(L("Or"));
+    if (reach) lines.push(F("ReachLine", { reach }));
+    lines.push(L(state.broken ? "BrokenLine" : state.lit ? (state.placed ? "PlacedLine" : "LitLine") : "UnlitLine"));
+    if (breaksWhenDropped(data.light.kind)) lines.push(L(`KindLine.${data.light.kind}`));
+    if (data.light.kind === "electric" || data.light.kind === "tactical") lines.push(L("ReadyLine"));
+    if (data.light.kind === "tactical") lines.push(F("TacticalLine", { ht: TACTICAL_BLINDING_HT }));
+  }
+  if (on.navigation() && data.navigation) {
+    lines.push(L(`NavLine.${data.navigation}`));
+    if (data.navigation === "map") context.map = { penalty: data.mapPenalty };
+    if (data.navigation === "gps") context.gps = { noSignal: state.noSignal };
+  }
+  if (on.loadBearing() && data.carry) {
+    const bonus = lbeBonus(state.fit, String(item.system?.equipmentQuality ?? "basic"), tlOf(item));
+    if (data.carry === "lbe") lines.push(state.fit ? F(state.fit === "ok" ? "LbeLine" : "LbeBadLine", { bonus: bonus! >= 0 ? `+${bonus}` : String(bonus) }) : L("LbeNotSetUp"));
+    else lines.push(L(state.fit === "ok" ? "PackFitted" : state.fit === "failed" ? "PackBadlyFitted" : "PackNotFitted"));
+    const move = Number((api.actors.derived(item.actor) as any)?.move);
+    if (item.actor && Number.isFinite(move)) lines.push(F("MarchLine", { move, mph: marchMph(move) }));
+  }
+  if (on.climbing() && data.climbing) {
+    lines.push(L(`ClimbLine.${data.climbing}`));
+    if (data.climbing === "grapnel") lines.push(F("GrapnelLoad", { lbs: grapnelLoad(tlOf(item)) }));
+    if (data.climbing === "snowshoes") lines.push(L(snowshoeMove(tlOf(item)) ? "SnowshoeMove" : "SnowshoeFast"));
+  }
+  context.lines = lines;
+  return context;
+}
+
+function itemListeners(element: HTMLElement, item: any): void {
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-map]")?.addEventListener("change", async (event) => {
+    const value = Math.max(-5, Math.min(0, Math.trunc(Number((event.currentTarget as HTMLInputElement).value) || 0)));
+    await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.mapPenalty`]: value });
+  });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-gps]")?.addEventListener("change", async (event) => {
+    await setState(item, { noSignal: (event.currentTarget as HTMLInputElement).checked });
+  });
+}
+
+export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
+  api.sheets.registerSheetSection({
+    module: MODULE_ID,
+    key: "ht-expedition-item",
+    sheet: "item",
+    template: `modules/${MODULE_ID}/templates/ht-expedition-item.hbs`,
+    visible: (item) => item?.type === "equipment" && (itemContext(api, item, on).lines as string[]).length > 0,
+    context: (item) => itemContext(api, item, on),
+    listeners: (element, item) => itemListeners(element, item),
+  });
+
+  // ── light sources (pp. 51-52) ──
+  const lightOf = (item: any) => expeditionData(item).light;
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-light-switch",
+    itemTypes: ["equipment"],
+    label: L("SwitchAction"),
+    icon: "fa-solid fa-lightbulb",
+    visible: (item) => on.lights() && lightOf(item) !== null && !expeditionState(item).broken,
+    run: (item, actor) => { void switchLight(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-light-set-down",
+    itemTypes: ["equipment"],
+    label: L("SetDown"),
+    icon: "fa-solid fa-location-dot",
+    visible: (item) => {
+      const light = lightOf(item);
+      const state = expeditionState(item);
+      return on.lights() && light !== null && !state.broken && !state.placed && (state.lit ? light.radius > 0 : breaksWhenDropped(light.kind));
+    },
+    run: (item, actor) => { void setDown(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-light-pick-up",
+    itemTypes: ["equipment"],
+    label: L("PickUp"),
+    icon: "fa-solid fa-hand",
+    visible: (item) => on.lights() && expeditionState(item).placed,
+    run: (item, actor) => {
+      void (async () => {
+        await pickUp(api, item);
+        await say(actor, String(item.name ?? ""), [F("PickedUp", { name: item.name })]);
+      })();
+    },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-light-eyes",
+    itemTypes: ["equipment"],
+    label: L("EyesAction"),
+    icon: "fa-solid fa-eye-slash",
+    visible: (item) => on.lights() && lightOf(item)?.kind === "tactical" && !expeditionState(item).broken,
+    run: (item, actor) => { void shineInEyes(api, item, actor); },
+  });
+  api.chat.registerChatCard({
+    module: MODULE_ID,
+    key: EYES_CARD,
+    template: `modules/${MODULE_ID}/templates/ht-expedition-card.hbs`,
+    actions: {
+      resist: async ({ message, data }: any) => { if (on.lights()) await resistLight(api, message, data as EyesData); },
+    },
+  } as any);
+
+  // A target a light reaches is no darker than a lit spot (pp. 51-52; Campaigns p. 394).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.lights()) return;
+    const line = (context?.modifiers ?? []).find((m: any) => m?.key === "darkness");
+    const target = context?.targetTokens?.[0];
+    if (!line || !target) return;
+    const value = litPenalty(Number(line.darkness) || 0, Number(line.value) || 0);
+    if (value <= (Number(line.value) || 0)) return;
+    const light = lightOver(api, context.actor, target);
+    if (!light) return;
+    line.value = value;
+    line.label = F("LitDarkness", { label: line.label, light });
+  });
+
+  // ── navigation (pp. 52-53) ──
+  Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
+    const actor = context?.actor;
+    const name = String(context?.name ?? "");
+    if (!actor || !name) return;
+    if (on.navigation()) {
+      for (const line of navigationLines(actor, name)) context.lines?.push?.({ ...line, source: MODULE_ID });
+    }
+    // A pack of quality, fitted, helps Hiking (p. 54).
+    if (on.loadBearing() && /^hiking\b/i.test(name)) {
+      const packs = gearOf(actor).filter((i) => ["backpack", "bag"].includes(expeditionData(i).carry) && expeditionState(i).fit === "ok");
+      const best = packs.map((i) => ({ name: String(i.name ?? ""), value: qualityBonus(String(i.system?.equipmentQuality ?? "basic"), tlOf(i)) })).sort((a, b) => b.value - a.value)[0];
+      if (best && best.value > 0) context.lines?.push?.({ label: F("PackHiking", { name: best.name }), value: best.value, source: MODULE_ID });
+    }
+  });
+
+  // ── load-bearing gear (pp. 53-55) ──
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-lbe-fit",
+    itemTypes: ["equipment"],
+    label: L("FitAction"),
+    icon: "fa-solid fa-person-hiking",
+    visible: (item) => on.loadBearing() && expeditionData(item).carry !== "",
+    run: (item, actor) => { void fitGear(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-lbe-reach",
+    itemTypes: ["equipment"],
+    label: L("ReachAction"),
+    icon: "fa-solid fa-hand-back-fist",
+    visible: (item) => on.loadBearing() && expeditionData(item).carry === "lbe" && expeditionState(item).fit !== "",
+    run: (item, actor) => { void reachGear(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-pack-pain",
+    itemTypes: ["equipment"],
+    label: L("DayHikedAction"),
+    icon: "fa-solid fa-person-walking",
+    visible: (item) => on.loadBearing() && ["backpack", "bag"].includes(expeditionData(item).carry) && expeditionState(item).fit === "failed",
+    run: (item, actor) => {
+      void (async () => {
+        await api.actors.applyCondition(actor, { key: "moderatePain" } as any);
+        await say(actor, String(item.name ?? ""), [F("PackPain", { name: actor?.name ?? "" })]);
+      })();
+    },
+  });
+
+  // Fast-Draw from set-up LBE takes its quality (p. 54).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.loadBearing() || !drawsFromLbe(String(context?.skill ?? ""))) return;
+    const lbe = lbeOf(context.actor);
+    if (lbe && lbe.value) context.modifiers?.push?.({ label: F("LbeFastDraw", { name: lbe.name }), value: lbe.value });
+  });
+
+  // TL8 packs weigh half; backpacks cost double (p. 54).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-pack-price",
+    types: ["equipment"],
+    apply: (item, price) => {
+      if (!on.loadBearing()) return null;
+      const m = packPrice(expeditionData(item).carry, tlOf(item));
+      if (!m) return null;
+      return { cost: Math.round(price.cost * m.cost * 100) / 100, weight: Math.round(price.weight * m.weight * 1000) / 1000, label: L("Tl8Pack") };
+    },
+  });
+
+  // ── climbing gear (pp. 55-56) ──
+  const ropeGear = (actor: any) => gearOf(actor).some((i) => ROPE_GEAR.includes(expeditionData(i).climbing));
+  const sureFooted = (actor: any) => [...(actor?.items ?? [])].some((i: any) => i?.type === "trait" && /^sure-footed\b/i.test(String(i.name ?? "")));
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: RAPPEL_OPTION,
+    label: L("Rappelling"),
+    attack: "ranged",
+    available: (context: any) => on.climbing() && ropeGear(context?.actor),
+    apply: (context: any, value: unknown) => {
+      if (!value) return null;
+      const sure = sureFooted(context?.actor);
+      return { modifiers: [{ label: L(sure ? "RappellingSure" : "Rappelling"), value: rappelPenalty(sure) }] };
+    },
+  } as any);
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-climb-fall",
+    itemTypes: ["equipment"],
+    label: L("FallAction"),
+    icon: "fa-solid fa-person-falling",
+    visible: (item) => on.climbing() && ["harness", "rappelKit"].includes(expeditionData(item).climbing),
+    run: (item, actor) => {
+      void (async () => {
+        const asked: any = await foundry.applications.api.DialogV2.prompt({
+          window: { title: String(item.name ?? "") },
+          content: `<div class="gworld"><p class="ihint">${esc(L("FallHint"))}</p>
+            <div class="ifields"><label>${esc(L("FallYards"))} <input type="number" min="0" step="1" name="yards" value="3"></label></div></div>`,
+          ok: {
+            label: L("FallAction"),
+            callback: (_event: Event, button: HTMLElement) => ({ yards: Number(button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="yards"]')?.value) || 0 }),
+          },
+          rejectClose: false,
+        });
+        if (!asked) return;
+        await say(actor, String(item.name ?? ""), [F("FallLine", { name: actor?.name ?? "", above: asked.yards, yards: anchoredFall(asked.yards) })]);
+      })();
+    },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-grapnel",
+    itemTypes: ["equipment"],
+    label: L("GrapnelAction"),
+    icon: "fa-solid fa-anchor",
+    visible: (item) => on.climbing() && expeditionData(item).climbing === "grapnel",
+    run: (item, actor) => {
+      void (async () => {
+        const use = grapnelRoll(Number(api.actors.attribute(actor, "DX")) || 10, api.actors.skillLevel(actor, "Throwing"));
+        const st = Number(api.actors.attribute(actor, "ST")) || 10;
+        await say(actor, String(item.name ?? ""), [F("GrapnelLine", { yards: grapnelRange(st), lbs: grapnelLoad(tlOf(item)) }), L("GrapnelRing")]);
+        await api.roll.success({ actor, base: use.level, label: F("GrapnelRoll", { skill: use.skill === "DX" ? "DX-3" : "Throwing" }), skill: use.skill, kind: use.skill === "DX" ? "attribute" : "skill", tags: ["grapnel"] } as any);
+      })();
+    },
+  });
+
+  // Snowshoes' bulk: -1 Move while worn, but for TL8 ones (p. 56).
+  Hooks.on(api.data.hooks.moveModifiers, (context: any) => {
+    if (!on.climbing()) return;
+    const shoes = gearOf(context?.actor).find((i) => expeditionData(i).climbing === "snowshoes" && i.system?.equipped === true && snowshoeMove(tlOf(i)) !== 0);
+    if (shoes) context.lines?.push?.({ label: String(shoes.name ?? ""), value: snowshoeMove(tlOf(shoes)) });
+  });
+}

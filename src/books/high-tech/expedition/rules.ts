@@ -1,0 +1,249 @@
+/**
+ * High-Tech's expedition gear (pp. 51-56): lights, navigation instruments,
+ * load-bearing gear and packs, and climbing gear. Pure rules; `index.ts`
+ * registers them with the system.
+ */
+
+// ── lights (pp. 51-52) ──
+
+/**
+ * What kind of light a record is, for what the book says of it: a naked
+ * flame (candles), a fuel lantern that breaks when dropped (the glass one
+ * starting a fire, the kerosene one dousing itself), an electric light, a
+ * chemlight, or a tactical light that blinds and stuns.
+ */
+export const LIGHT_KINDS = ["", "flame", "lantern", "glassLantern", "kerosene", "electric", "chemical", "tactical"] as const;
+export type LightKind = (typeof LIGHT_KINDS)[number];
+
+/** What a light throws: a radius round it, a beam ahead of it, or both (a carbide lamp), in yards. */
+export interface Light {
+  kind: LightKind;
+  radius: number;
+  beam: number;
+}
+
+/**
+ * The darkness a light leaves where it reaches, at worst (Campaigns p. 394,
+ * which pp. 51-52 send the reader to): a light in sight takes total darkness
+ * down to -3, and the system reads a Foundry light the same way. A tactical
+ * light's beam is held to the same -3 (p. 156).
+ */
+export const LIT_DARKNESS = 3;
+
+/**
+ * An attack's darkness penalty once the target stands in a light. `darkness`
+ * is the darkness before the attacker's eyes (1-9) and `penalty` what their
+ * eyes left of it (never above 0); the light takes the darkness down to 3,
+ * and the eyes take off what they took before.
+ */
+export function litPenalty(darkness: number, penalty: number): number {
+  const dark = Math.max(0, Math.floor(Number(darkness) || 0));
+  const now = Math.min(0, Math.trunc(Number(penalty) || 0));
+  if (dark <= LIT_DARKNESS) return now;
+  const eyes = Math.max(0, dark + now);
+  return Math.max(now, Math.min(0, -LIT_DARKNESS + eyes));
+}
+
+/** Whether a lantern is the kind that breaks when dropped on hard ground (p. 51). */
+export const breaksWhenDropped = (kind: LightKind): boolean => kind === "lantern" || kind === "glassLantern" || kind === "kerosene";
+
+/** A dropped lantern survives on a roll against HT 6 (p. 51). */
+export const LANTERN_HT = 6;
+
+/** Whether a dropped lantern survives the fall: 3d against its HT 6. */
+export function lanternSurvives(roll: number): boolean {
+  return Math.trunc(Number(roll) || 0) <= LANTERN_HT;
+}
+
+/** The radius of the fire a broken glass lantern starts, in yards (p. 51). */
+export const GLASS_LANTERN_FIRE_YARDS = 1;
+
+/** Relighting a lantern takes 30-60 seconds (p. 51); a flashlight is switched with a Ready maneuver (p. 52). */
+export const RELIGHT_SECONDS = Object.freeze({ min: 30, max: 60 });
+
+/** Whether a light reaches a target this far away: within its radius, or its beam where it is aimed. */
+export function reaches(light: Light, yards: number, aimed: boolean): boolean {
+  const d = Number(yards);
+  if (!Number.isFinite(d) || d < 0) return false;
+  if (light.radius > 0 && d <= light.radius) return true;
+  return aimed && light.beam > 0 && d <= light.beam;
+}
+
+/** Looking into a tactical light: HT-4 or blinded (p. 52). */
+export const TACTICAL_BLINDING_HT = -4;
+
+/** Seconds of blindness a failed roll leaves: 10 times the margin of failure (p. 52). */
+export function blindedSeconds(margin: number): number {
+  return 10 * Math.max(1, Math.abs(Math.trunc(Number(margin) || 0)));
+}
+
+/** The penalty blindness gives sight and attacks (Characters p. 124), as the other blinding rules here use it. */
+export const BLINDED_PENALTY = -10;
+
+// ── navigation instruments (pp. 52-53) ──
+
+/** What a record is to navigation: an instrument, a map, or nothing. */
+export const NAVIGATION_KINDS = ["", "compass", "chronometer", "instruments", "surveying", "gps", "map"] as const;
+export type NavigationKind = (typeof NAVIGATION_KINDS)[number];
+
+/** A skill the navigation rules read, by specialty. */
+export type NavSkill = "air" | "land" | "sea" | "surveying" | "forwardObserver";
+
+/** The navigation rules' name for a skill, or null for one they don't reach. */
+export function navSkillOf(name: string): NavSkill | null {
+  const text = String(name ?? "").trim();
+  if (/^forward observer\b/i.test(text)) return "forwardObserver";
+  if (/^mathematics\b/i.test(text) && /\(surveying\)/i.test(text)) return "surveying";
+  const nav = /^navigation\b.*\((air|land|sea)\)/i.exec(text);
+  return nav ? (nav[1]!.toLowerCase() as NavSkill) : null;
+}
+
+/** An instrument carried, as the bonus reads it. */
+export interface Instrument {
+  kind: NavigationKind;
+  name: string;
+  tl: number;
+  /** A GPS receiver out of sight of its satellites. */
+  noSignal?: boolean;
+}
+
+/**
+ * The best bonus the instruments carried give a skill, with the one that
+ * gives it; the bonuses don't add (pp. 52-53), except that a chronometer and
+ * navigating instruments together give +3 to Navigation (Sea).
+ *
+ *   - Compass: +1 to Navigation (Air, Land or Sea).
+ *   - Marine chronometer: +1 to Navigation (Sea).
+ *   - Navigating instruments: +2 to Navigation (Sea) at TL5, +3 at TL6+.
+ *   - Surveying instruments: +2 to Mathematics (Surveying) or Navigation (Land).
+ *   - GPS receiver: +3 to Navigation (Air, Land or Sea) while it sees its satellites.
+ */
+export function navigationBonus(skill: NavSkill, instruments: readonly Instrument[]): { value: number; name: string } | null {
+  let best: { value: number; name: string } | null = null;
+  const offer = (value: number, name: string) => {
+    if (value > 0 && (!best || value > best.value)) best = { value, name };
+  };
+  const nav = skill === "air" || skill === "land" || skill === "sea";
+  for (const i of instruments) {
+    if (i.kind === "compass" && nav) offer(1, i.name);
+    if (i.kind === "gps" && nav && !i.noSignal) offer(3, i.name);
+    if (i.kind === "chronometer" && skill === "sea") offer(1, i.name);
+    if (i.kind === "instruments" && skill === "sea") offer(i.tl >= 6 ? 3 : 2, i.name);
+    if (i.kind === "surveying" && (skill === "surveying" || skill === "land")) offer(2, i.name);
+  }
+  if (skill === "sea") {
+    const chronometer = instruments.find((i) => i.kind === "chronometer");
+    const kit = instruments.find((i) => i.kind === "instruments");
+    if (chronometer && kit) offer(3, `${chronometer.name} + ${kit.name}`);
+  }
+  return best;
+}
+
+/** Having no map at all (p. 52). */
+export const NO_MAP = -10;
+
+/**
+ * The map line for a skill a map is basic equipment for (Navigation and
+ * Forward Observer, p. 52): 0 with an accurate map, an inaccurate map's -1 to
+ * -5, -10 with none. Navigating instruments carry their chart books (p. 53),
+ * a map for Navigation (Sea). Null for a skill that needs no map.
+ */
+export function mapModifier(skill: NavSkill, maps: readonly number[], instruments: readonly Instrument[]): number | null {
+  if (skill === "surveying") return null;
+  if (skill === "sea" && instruments.some((i) => i.kind === "instruments")) return 0;
+  if (!maps.length) return NO_MAP;
+  return Math.max(...maps.map((m) => Math.max(-5, Math.min(0, Math.trunc(Number(m) || 0)))));
+}
+
+// ── load-bearing gear and packs (pp. 53-55) ──
+
+/** What a record is to the load-bearing rules. */
+export const CARRY_KINDS = ["", "lbe", "backpack", "bag"] as const;
+export type CarryKind = (typeof CARRY_KINDS)[number];
+
+/** The Soldier or IQ-based Hiking roll that set it up or fitted it (pp. 54): not made, made, failed. */
+export const FITS = ["", "ok", "failed"] as const;
+export type Fit = (typeof FITS)[number];
+
+/** LBE set up badly counts as improvised at best (p. 54). */
+export const BADLY_SET_UP = -2;
+
+/** The quality grades' bonus (Campaigns p. 345): good +1, fine +2, the best at a TL +TL/2 (at least +2). */
+export function qualityBonus(quality: string, tl = 0): number {
+  if (quality === "best") return Math.max(2, Math.floor(Math.max(0, tl) / 2));
+  return quality === "good" ? 1 : quality === "fine" ? 2 : 0;
+}
+
+/** What set-up LBE adds to reaching gear and Fast-Draw from it (p. 54): its quality, or -2 set up badly. */
+export function lbeBonus(fit: Fit, quality: string, tl = 0): number | null {
+  if (fit === "ok") return qualityBonus(quality, tl);
+  if (fit === "failed") return BADLY_SET_UP;
+  return null;
+}
+
+/** The roll that sets up LBE or fits a pack: the better of Soldier and IQ-based Hiking (p. 54). */
+export function fittingRoll(options: { iq: number; ht: number; soldier: number | null; hiking: number | null }): { skill: "Soldier" | "Hiking"; level: number } {
+  const soldier = options.soldier ?? options.iq - 5;
+  // Hiking is HT-based; based on IQ it is the same skill against IQ. Its default is HT-5, so IQ-5.
+  const hiking = options.hiking !== null ? options.hiking - options.ht + options.iq : options.iq - 5;
+  return hiking > soldier ? { skill: "Hiking", level: hiking } : { skill: "Soldier", level: soldier };
+}
+
+/**
+ * The Fast-Draw specialties drawn from pouches rather than a holster or
+ * scabbard, which set-up LBE helps (p. 54): all but the gun and sword ones.
+ */
+export function drawsFromLbe(skill: string): boolean {
+  const m = /^fast-draw\s*\(([^)]*)\)/i.exec(String(skill ?? "").trim());
+  if (!m) return false;
+  return !/^(pistol|long arm|longarm|sword|two-handed sword|force sword)$/i.test(m[1]!.trim());
+}
+
+/** At TL8 packs weigh half, and backpacks cost double (p. 54). */
+export function packPrice(kind: CarryKind, tl: number): { cost: number; weight: number } | null {
+  if (tl < 8 || (kind !== "backpack" && kind !== "bag")) return null;
+  return { cost: kind === "backpack" ? 2 : 1, weight: 0.5 };
+}
+
+/** An hour's march: Move/2 miles an hour, before terrain and weather (p. 55). */
+export function marchMph(move: number): number {
+  return Math.max(0, Number(move) || 0) / 2;
+}
+
+// ── climbing gear (pp. 55-56) ──
+
+/** What a record is to the climbing rules. */
+export const CLIMBING_KINDS = ["", "harness", "rappelKit", "ascender", "descender", "grapnel", "crampons", "skis", "snowshoes", "suctionCup"] as const;
+export type ClimbingKind = (typeof CLIMBING_KINDS)[number];
+
+/** Gear a climber rappels on: a harness, or a kit that holds one. */
+export const ROPE_GEAR: readonly ClimbingKind[] = ["harness", "rappelKit", "descender"];
+
+/** The farthest a roped climber falls: twice the distance to the last fastener (p. 55). */
+export function anchoredFall(yardsAboveFastener: number): number {
+  return 2 * Math.max(0, Number(yardsAboveFastener) || 0);
+}
+
+/**
+ * Shooting while rappelling face-down: bad footing and a minor distraction,
+ * -4 (p. 55). Sure-Footed (p. 250) ignores the bad footing's -2.
+ */
+export function rappelPenalty(sureFooted: boolean): number {
+  return sureFooted ? -2 : -4;
+}
+
+/** Throwing a grapnel: DX-3 or Throwing, to at most ST x 2 yards (p. 55). */
+export function grapnelRoll(dx: number, throwing: number | null): { skill: "DX" | "Throwing"; level: number } {
+  const fromDx = dx - 3;
+  return throwing !== null && throwing > fromDx ? { skill: "Throwing", level: throwing } : { skill: "DX", level: fromDx };
+}
+
+export const grapnelRange = (st: number): number => 2 * Math.max(0, Number(st) || 0);
+
+/** A grapnel holds 300 lbs., doubled at TL7 (p. 55). */
+export const grapnelLoad = (tl: number): number => (tl >= 7 ? 600 : 300);
+
+/** Snowshoes' -1 Move, which TL8 high-performance ones don't take (p. 56). */
+export function snowshoeMove(tl: number): number {
+  return tl >= 8 ? 0 : -1;
+}

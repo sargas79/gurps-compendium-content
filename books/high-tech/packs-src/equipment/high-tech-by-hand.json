@@ -10826,5 +10826,107 @@
       "meleeModes": [],
       "rangedModes": []
     }
+  },
+  {
+    "_id": "3532cba775f07b44",
+    "name": "Road Atlas",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 15,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 53",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "map"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "5d73dce73c16765d",
+    "name": "Topographic Map",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 53",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "map"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8e9a87c1afa28349",
+    "name": "Topographic Maps, Continent (CD)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 53",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "expedition": {
+            "navigation": "map"
+          }
+        }
+      }
+    }
   }
 ]
