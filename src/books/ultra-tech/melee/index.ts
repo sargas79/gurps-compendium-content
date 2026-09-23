@@ -20,6 +20,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { STUNNER_TABLES, readyStunners, wearsMetallicArmor } from "../../../shared/stunners/index.js";
 import { NEURAL_SETTINGS, immunity, neuralOutcome, type BeamSetting } from "../beams/neural.js";
 import {
   BLADES,
@@ -35,8 +36,6 @@ import {
   VARIABLE_FORCE_SWORD,
   ZAP_GLOVE,
   ZAP_KILL,
-  METALLIC_SHOCK_DR,
-  isMetallicArmor,
   bladeBlow,
   bladeMinSt,
   bladePrice,
@@ -52,7 +51,6 @@ import {
   reachText,
   rocketStrikerFits,
   rocketStrikerUses,
-  stunnerDrBonus,
   vibroSeconds,
   type Blade,
   type Charged,
@@ -524,12 +522,9 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
   });
 
   // Nonmetallic armour against a stunner's contact: +2 a point of DR (p. 165); metallic armour counts as DR 1.
-  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
-    if (!on.energy() || !context?.tags?.includes?.("resist") || !isStunner(context.attack?.item)) return;
-    const dr = Number(context.attack.dr) || 0;
-    const bonus = stunnerDrBonus(wearsMetallicArmor(context.actor) ? Math.min(dr, METALLIC_SHOCK_DR) : dr);
-    if (bonus) context.modifiers.push({ label: L("NonmetallicDr"), value: bonus });
-  });
+  // The shared contact-stunner engine puts it on the roll, with this book's table.
+  STUNNER_TABLES.register({ book: "ultra-tech", tls: { min: 9, max: 12 }, on: on.energy, applies: isStunner, armorDivisor: 1 / STUNNER.drBonus, label: () => L("NonmetallicDr") });
+  readyStunners(api);
 
   Hooks.on(api.combat.hooks.afflictionEffect, (context: any) => {
     const item = context?.item;
@@ -652,9 +647,4 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
       if (choice === "limpet") await pullLimpet(api);
     },
   });
-}
-
-/** Whether someone has metallic armour on. */
-function wearsMetallicArmor(actor: any): boolean {
-  return [...(actor?.items ?? [])].some((item: any) => item?.type === "armor" && item.system?.equipped === true && isMetallicArmor(String(item.name ?? "")));
 }

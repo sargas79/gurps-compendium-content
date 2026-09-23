@@ -5133,6 +5133,26 @@
         "climateControl": {
           "Name": "Climate-controlled clothing",
           "Hint": "Worn heated clothing adds 60 degrees to the cold end of the comfort zone, a climate-control system 60 to both ends, a cooling vest 30 to the hot end, as Temperature Tolerance the cold and heat rolls read; the powered ones only while their cells last. Heated clothing counts as winter clothes with or without power. While gear that widens the hot end is worn, a hike in the heat costs no extra FP an hour (High-Tech p. 74)."
+        },
+        "bayonets": {
+          "Name": "Bayonets, rifle butts and combination weapons",
+          "Hint": "A gun that carries a bayonet adds its weight and price. Fixing it takes four Ready maneuvers, counted by the gun's row button (three after a successful Fast-Draw (Knife) on the first). Fixed, the gun gets a melee row -- Spear, thrust+3 impaling, Reach 1, 2* at TL4-6 and 1 at TL7-8 on a shoulder arm; a large knife's rows with Knife on a sidearm -- -1 on its Guns rows and a muzzleloader's reload a tenth longer; an unfamiliar gun and bayonet is -2 as an attack option. Every shoulder arm without melee rows gets its butt (Staff, thrust+2 crushing) and a swing by the barrel (Two-Handed Axe/Mace, swing+3 crushing), the swing noted where the gun isn't a TL4-5 single-shot built for it. The spiked tomahawk's spike is noted as a pick; the NRS-2 scout knife is turned round by a row button to shoot, and can't stab while it is (High-Tech pp. 196-199)."
+        },
+        "sheaths": {
+          "Name": "Sheaths apart from their blades",
+          "Hint": "A knife or sword's item sheet picks its sheath: rigid (the table's weight, a third of it the sheath), flexible or none (the blade alone, two thirds of the weight; -1 or -2 on HT rolls against corrosion and incidental damage). A rigid sheath of a pound or more is a baton, as two derived Shortsword rows at cheap quality for breakage. The sheet shows what a replacement sheath costs (High-Tech p. 198)."
+        },
+        "bladeComposition": {
+          "Name": "Blade composition and sword canes",
+          "Hint": "A knife, sword or axe (thrown ones too) can be stainless, ceramic or titanium, a field on its item sheet that reprices it: ceramic triple cost and half weight, breaking as cheap; titanium double cost and three quarters of the weight, breaking as very fine; stainless at no extra cost, but a stainless sword is priced from list by its grade -- list buys cheap at TL6 and good at TL7-8, and each of the two grades above costs 8 and 40 times list. A sword cane's thin blade is a grade lower than paid for, in its damage and its breakage (High-Tech pp. 196-198, 201)."
+        },
+        "stunWeapons": {
+          "Name": "Electric stun weapons",
+          "Hint": "The stun gun, stun baton and cattle prod: the seconds the weapon is held in contact are an attack option, and a victim who fails the HT-3 roll is stunned with no recovery roll for those seconds and (20 - HT) more (at least one), then rolls HT-3 each second to recover. The victim's armour is on the roll to resist, +2 a point of DR, metallic armour counting as DR 1 (High-Tech p. 199; Campaigns p. 432)."
+        },
+        "highTechBows": {
+          "Name": "High-tech bows, slingshots and spearguns",
+          "Hint": "A bow or crossbow (not a composite bow) can be built compound on its item sheet: double cost, damage and range as if two ST stronger. A bow can take sights and stabilizers (+$100, +1 Acc for a user who knows the skill; -1 as an attack option for one unfamiliar with them) and string silencers ($1, -2 to hear it). A slingshot fires stones or lead and steel shot (+1 damage, double range). A speargun's range is a tenth in a scene set underwater, and its spear is on 10 yards of line (High-Tech p. 201)."
         }
       },
       "Gadget": {
@@ -7717,6 +7737,115 @@
           "hand": "hand",
           "foot": "foot"
         }
+      },
+      "Melee": {
+        "Title": "Melee and muscle-powered weapons (High-Tech)",
+        "BayonetLabel": "Carries a bayonet",
+        "BayonetTooltip": "The gun has a bayonet to fix: its weight and price are added to the gun's, and its row button fixes it (High-Tech p. 197).",
+        "BayonetWeight": "Bayonet weight (lbs.)",
+        "BayonetWeightHint": "The bayonet's weight, from the description of the gun that mounts it (High-Tech p. 197).",
+        "BayonetCost": "Bayonet cost ($)",
+        "BayonetCostHint": "The bayonet's price, where the gun's description gives one.",
+        "BayonetLine": "Fixing the bayonet takes {readies} Ready maneuvers ({fastDraw} with a successful Fast-Draw (Knife)).",
+        "BayonetFixedLine": "Bayonet fixed: a melee row, -1 to Guns, and a muzzleloader reloads a tenth slower.",
+        "FixAction": "Fix or unfix the bayonet",
+        "FastDrawLabel": "Fast-Draw (Knife): drawing {name}'s bayonet",
+        "BayonetReady": "Fixing the bayonet: Ready {done} of {needed}.",
+        "BayonetFixed": "Bayonet fixed ({done} Ready maneuvers).",
+        "BayonetOff": "Bayonet unfixed.",
+        "BayonetMode": "Bayonet",
+        "BayonetSwingMode": "Bayonet (swing)",
+        "BayonetNote": "Bayonet",
+        "BayonetHint": "A fixed bayonet: Spear on a shoulder arm, a large knife's figures with Knife on a sidearm (High-Tech p. 197).",
+        "BayonetGunsNote": "Bayonet fixed ({penalty})",
+        "BayonetGunsHint": "A fixed bayonet upsets the gun's balance: -1 to Guns (High-Tech p. 197).",
+        "UnfamiliarLabel": "Unfamiliar gun and bayonet ({penalty})",
+        "UnfamiliarLine": "Unfamiliar gun and bayonet",
+        "ButtMode": "Rifle butt",
+        "ClubMode": "Swung by the barrel",
+        "ClubNote": "Not built for it",
+        "ClubHint": "Only TL4-5 single-shot muskets and rifles are built to be swung by the barrel; the GM may call for a HT roll against breakage (High-Tech p. 198).",
+        "PickNote": "Pick",
+        "PickHint": "The spike is impaling, and the rules for picks apply: it may get stuck (High-Tech p. 196; Characters p. 405).",
+        "ReverseAction": "Reverse the knife",
+        "Reversed": "Turned round to shoot: the trigger bar is ready.",
+        "Unreversed": "Turned back to use as a knife.",
+        "NotReversed": "{name} must be turned round (a Ready) before it can shoot.",
+        "IsReversed": "{name} is turned round to shoot; turn it back (a Ready) to use it as a knife.",
+        "SheathLabel": "Sheath",
+        "SheathTooltip": "Rigid: the table's weight, a third of it the sheath. Flexible or none: the blade alone, with -1 or -2 on HT rolls against corrosion and incidental damage (High-Tech p. 198).",
+        "SheathWeight": "Sheath weight (lbs.)",
+        "SheathWeightHint": "The sheath's own weight where the book gives one; blank for a third of the table weight (High-Tech p. 198).",
+        "Sheath": {
+          "rigid": "Rigid",
+          "flexible": "Flexible",
+          "none": "None"
+        },
+        "FlexibleLine": "Flexible sheath: {modifier} on HT rolls against corrosion and incidental damage.",
+        "NoSheathLine": "No sheath: {modifier} on HT rolls against corrosion and incidental damage; the GM may call for DX rolls to avoid cutting yourself.",
+        "BatonLine": "The {weight}-lb. rigid sheath can be used as a baton.",
+        "ReplacementLine": "A replacement sheath: ${flexible} flexible, ${rigid} rigid (double or triple reinforced or with tools, GM's option).",
+        "SheathSwingMode": "Sheath (swing)",
+        "SheathThrustMode": "Sheath (thrust)",
+        "SheathNote": "Sheath as baton",
+        "SheathHint": "A hollow rigid sheath used as a baton: cheap quality for breakage (High-Tech p. 198).",
+        "BladeLabel": "Blade",
+        "BladeTooltip": "Stainless (TL6), ceramic or titanium (TL7) (High-Tech p. 198).",
+        "Blade": {
+          "steel": "Steel",
+          "stainless": "Stainless steel",
+          "ceramic": "Ceramic",
+          "titanium": "Titanium"
+        },
+        "BladeLine": {
+          "stainless": "Stainless (TL{tl}): corrosion-resistant, no extra cost; a stainless sword's list price buys one grade lower, and the two grades above cost 8 and 40 times list.",
+          "ceramic": "Ceramic (TL{tl}): missed by a metal detector but plain on an X-ray; breaks as cheap; triple cost, half weight.",
+          "titanium": "Titanium (TL{tl}): nonmagnetic and corrosion-resistant; breaks as very fine; double cost, three quarters of the weight."
+        },
+        "StainlessTooFine": "A stainless sword can only be improved two grades above what list buys.",
+        "Grade": {
+          "cheap": "cheap",
+          "good": "good",
+          "fine": "fine",
+          "veryFine": "very fine"
+        },
+        "SwordCaneLine": "A thin blade: it fights and breaks as {grade}, a grade lower than paid for (High-Tech p. 197).",
+        "SwordCaneNote": "Thin blade",
+        "SwordCaneHint": "A sword cane is a grade lower than paid for (High-Tech p. 197).",
+        "StunLine": "Electric stun weapon: on a failed roll the victim is stunned while it is held in contact and (20 - HT) seconds after, then rolls HT{recovery} each second to recover.",
+        "StunNote": "Held in contact: HT{recovery} to recover",
+        "StunHint": "The seconds held in contact are an attack option. A current may set flammable liquids alight (High-Tech p. 199).",
+        "ProdHint": "The burn is only against an unprotected location. The seconds held in contact are an attack option. A current may set flammable liquids alight (High-Tech p. 199).",
+        "HoldLabel": "Held in contact (seconds)",
+        "HoldNote": "Held in contact for {seconds} s.",
+        "StunDr": "Armour against the shock",
+        "ShockLabel": "{weapon}: recovery at {penalty}",
+        "ShockLine": "{weapon}'s shock",
+        "Stunned": "{name} is stunned: {held} s in contact, {seconds} s in all before the first roll to recover at HT{recovery}.",
+        "CompoundLabel": "Compound",
+        "CompoundTooltip": "Pulleys and cables: double cost, damage and range as if two ST stronger, drawn at the same ST (High-Tech p. 201).",
+        "CompoundNote": "Compound (+{st} ST)",
+        "CompoundHint": "Damage and range as if two ST stronger (High-Tech p. 201).",
+        "SightsLabel": "Sights and stabilizers",
+        "SightsTooltip": "+$100: +1 Acc for an archer who knows the skill, -1 for one unfamiliar with them (High-Tech p. 201).",
+        "SightsNote": "Sights +{accuracy} Acc",
+        "SightsHint": "Bow sights, wind gauges and stabilizers help a skilled archer (High-Tech p. 201).",
+        "SightsUnfamiliarLabel": "Unfamiliar with bow sights ({penalty})",
+        "SightsUnfamiliarLine": "Unfamiliar with bow sights",
+        "SilencersLabel": "String silencers",
+        "SilencersTooltip": "$1 the pair: -2 to Hearing rolls to hear the string (High-Tech p. 201).",
+        "SilencerLine": "String silencers: {hearing} to Hearing rolls to hear the shot.",
+        "ShotLabel": "Shot",
+        "ShotTooltip": "Stones are free; lead or steel shot is +1 damage and double range (High-Tech p. 201).",
+        "Shot": {
+          "stone": "Stones",
+          "metal": "Lead or steel shot"
+        },
+        "MetalShotNote": "Metal shot",
+        "MetalShotHint": "Lead or steel shot: +1 damage, double range (High-Tech p. 201).",
+        "SpeargunLine": "Range a tenth ({divisor}) under water; the spear is on {line} yards of line.",
+        "LineNote": "{yards}-yd. line",
+        "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201)."
       }
     },
     "Backblast": {
