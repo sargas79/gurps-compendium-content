@@ -60,6 +60,15 @@ describe("readPower", () => {
   it("says nothing for a blank column", () => {
     expect(readPower("")).toBeNull();
   });
+
+  it("reads another book's sizes where given them: High-Tech's T to VL (p. 13)", () => {
+    const sizes = ["T", "XS", "S", "M", "L", "VL"];
+    expect(readPower("3×XS/10 hrs.", sizes)).toEqual({ cell: "XS", cells: 3, endurance: "10 hrs.", raw: "3×XS/10 hrs." });
+    expect(readPower("VL/10 hrs.", sizes)).toMatchObject({ cell: "VL", cells: 1 });
+    expect(readPower("2S/5 hrs.", sizes)).toMatchObject({ cell: "S", cells: 2 });
+    // Ultra-Tech's sizes aren't High-Tech's.
+    expect(readPower("B/10 hr.", sizes)).toEqual({ raw: "B/10 hr." });
+  });
 });
 
 describe("powerOf", () => {

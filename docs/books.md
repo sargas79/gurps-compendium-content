@@ -104,4 +104,7 @@ node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
    `tools/capture-gear.mjs` drafts equipment records from gadget entries that no
    data file holds, reading each closing line ("$1,200, 1 lb., B/10 hr. LC4.")
    in both text orders. `capture.skip` and `capture.set` in `book.json` hold
-   what reading the page settled, each with its reason.
+   what reading the page settled, each with its reason. A book printing its
+   gear differently from Ultra-Tech says so in `capture` too: `labelEnd` (what
+   ends a label, ":" by default), `cellSizes` (its cell or battery sizes),
+   `runInHeadings` and `repeatsByTl` (see `tools/lib/capture.mjs`).

@@ -44,11 +44,23 @@ export function readBattery(text) {
   };
 }
 
-/** One `power(...)` column: a draw and how long it lasts. */
-export function readPower(text) {
+/**
+ * A pattern matching any of a book's cell sizes, longest first so "XS" is not
+ * read as "S" and "AA" not as "A".
+ */
+export function sizePattern(sizes = CELL_SIZES) {
+  return [...sizes].sort((a, b) => b.length - a.length).join("|");
+}
+
+/**
+ * One `power(...)` column: a draw and how long it lasts. `sizes` are the
+ * book's cell sizes, Ultra-Tech's unless another book's are given: High-Tech
+ * prints T, XS, S, M, L and VL (p. 13), and "3×S" for three cells.
+ */
+export function readPower(text, sizes = CELL_SIZES) {
   const raw = (text ?? "").trim();
   if (!raw) return null;
-  const m = /^(\d+)?\s*(AA|[A-F])\s*\/\s*(.+)$/i.exec(raw);
+  const m = new RegExp(String.raw`^(?:(\d+)\s*×?)?\s*(${sizePattern(sizes)})\s*\/\s*(.+)$`, "i").exec(raw);
   if (!m) return { raw };
   return {
     cell: m[2].toUpperCase(),
