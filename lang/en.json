@@ -4893,6 +4893,10 @@
         "backblast": {
           "Name": "Backblast",
           "Hint": "Firing a light antitank weapon, recoilless rifle or missile throws its backblast into a 60-degree cone behind it: burning damage in full to 2 yards a die and half to 6 yards a die, or a countermass weapon's crushing damage to 2 yards a die. Fired indoors, a burning backblast reflects at the firer, and a firer without hearing protection rolls HT-4 or is stunned (High-Tech pp. 141, 147-153)."
+        },
+        "indirectFire": {
+          "Name": "Indirect fire and forward observers",
+          "Hint": "A gun's row runs a fire mission: observed fire, where the forward observer's Navigation roll (+1 compass, +3 GPS, -10 without a map) and Forward Observer roll (-3 per 500 yards after magnification and a rangefinder, Vision modifiers, a fire-control computer) set the first shot's -10, each correction after a shot is another roll and 2d+5 seconds, and the gun attacks without Acc; or predicted fire on an area off a map. The card gives the time of flight and the scatter of a miss, squared for a target the gunner can't see (High-Tech pp. 139-141)."
         }
       },
       "Firearm": {
@@ -5425,6 +5429,82 @@
           "DeafeningRoll": "Deafening report indoors",
           "Deafening": "No hearing protection"
         }
+      },
+      "IndirectFire": {
+        "Action": "Fire mission",
+        "DialogTitle": "Fire mission: {weapon}",
+        "DialogHint": "Target the token to be shelled first to measure the distances; the forward observer's own figures follow whoever is picked. Any figure can be changed.",
+        "Mission": "Mission",
+        "Missions": {
+          "observed": "Observed fire (forward observer)",
+          "predicted": "Predicted fire (an area off a map)"
+        },
+        "Mode": "Gun",
+        "GunYards": "Gun to target (yards)",
+        "TrajectoryLabel": "Trajectory",
+        "Trajectory": {
+          "low": "Low-angle",
+          "high": "High-angle"
+        },
+        "GunnerModifier": "Other modifiers to the gunner",
+        "ObserverLegend": "Forward observer",
+        "Observer": "Forward observer",
+        "FoSkill": "Forward Observer skill",
+        "NavigationSkill": "Navigation skill",
+        "Aid": "Navigating with",
+        "Aids": {
+          "none": "Nothing more",
+          "compass": "A compass (+1)",
+          "gps": "GPS (+3)"
+        },
+        "AidCounted": "{item} is carried as a Navigation tool, already in the skill.",
+        "AidFound": "Carries {item}.",
+        "AidAsk": "No compass or GPS on the sheet: pick what the observer has.",
+        "Map": "Has a map (-10 without one)",
+        "FoYards": "Observer to target (yards)",
+        "Magnification": "Vision aid magnification",
+        "Rangefinder": "Rangefinder's reach (yards, 0 for none)",
+        "FireControl": "Fire-control computer bonus",
+        "Vision": "Other Vision modifiers",
+        "Start": "Start the mission",
+        "NoMode": "This weapon has no mode that fires indirectly.",
+        "NoGun": "The gun or its attack row is gone.",
+        "CardTitle": "Fire mission: {weapon}",
+        "ObservedSummary": "Observed fire, directed by {fo}. The target is {yards} yards from the gun: {trajectory}, {seconds} seconds of flight.",
+        "PredictedSummary": "Predicted fire on an area {yards} yards away: {trajectory}, {seconds} seconds of flight. No -10, but the fire can't follow a target that moves.",
+        "Standing": "The next shot is at {penalty}; the observer has spent {seconds} seconds spotting.",
+        "Navigate": "Navigation roll",
+        "Locate": "Locate the target",
+        "Fire": "Fire",
+        "Correct": "Correction",
+        "Damage": "Damage",
+        "NavigationRoll": "{fo}: Navigation, to place himself and the gun",
+        "NavigationLines": {
+          "compass": "Compass",
+          "gps": "GPS",
+          "noMap": "No map"
+        },
+        "Navigated": "{fo} knows where he and the gun are.",
+        "Lost": "{fo} can't place himself and the gun yet; he may try again.",
+        "LocateRoll": "{fo}: Forward Observer, locating the target",
+        "CorrectionRoll": "{fo}: Forward Observer, correcting the fire",
+        "RangeLine": "Range {yards} yards (as {effective})",
+        "FireControlLine": "Fire-control computer",
+        "VisionLine": "Vision modifiers",
+        "Located": "{fo} calls in the target in {seconds} seconds: the first shot is at {penalty}.",
+        "Corrected": "{fo} corrects in {seconds} seconds: the next shot is at {penalty}.",
+        "CriticalSuccess": "Critical success: no penalty from here on.",
+        "FriendlyFire": "Critical failure: the rounds come down somewhere the GM picks, perhaps on friends or on the observer himself.",
+        "FireRoll": "Indirect fire: {weapon}",
+        "BlindLine": "Indirect fire (unseen target, no Acc)",
+        "AdjustmentLine": "{fo}'s adjustment",
+        "AreaLine": "Attacking an area",
+        "GunnerModifierLine": "Other modifiers",
+        "Arrives": "It lands {seconds} seconds after firing.",
+        "Hit": "Shot {shot} hits. {arrives}",
+        "Missed": "Shot {shot} misses by {margin}: it comes down {yards} yards off, direction {direction} ({bearing} degrees clockwise from the line of fire). {arrives}",
+        "DamageLabel": "{weapon}",
+        "FollowUpLabel": "{weapon}: follow-up"
       }
     },
     "Backblast": {

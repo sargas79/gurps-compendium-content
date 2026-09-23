@@ -1,0 +1,12 @@
+{{!-- A fire mission (High-Tech pp. 139-141): the forward observer's rolls, the gun's shots and where they land. --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+<div class="gc-note">{{summary}}</div>
+{{#each log}}<div class="gc-result">{{text}}</div>{{#if note}}<div class="gc-note">{{note}}</div>{{/if}}{{/each}}
+{{#if standing}}<div class="gc-note">{{standing}}</div>{{/if}}
+<div class="gc-apply">
+  {{#if navigate}}<button type="button" class="gc-apply-button" data-addon-card-action="navigate">{{localize "GCC.HT.IndirectFire.Navigate"}}</button>{{/if}}
+  {{#if locate}}<button type="button" class="gc-apply-button" data-addon-card-action="locate">{{localize "GCC.HT.IndirectFire.Locate"}}</button>{{/if}}
+  {{#if fire}}<button type="button" class="gc-apply-button" data-addon-card-action="fire">{{localize "GCC.HT.IndirectFire.Fire"}}</button>{{/if}}
+  {{#if correct}}<button type="button" class="gc-apply-button" data-addon-card-action="correct">{{localize "GCC.HT.IndirectFire.Correct"}}</button>{{/if}}
+  {{#if canDamage}}<button type="button" class="gc-apply-button" data-addon-card-action="damage">{{localize "GCC.HT.IndirectFire.Damage"}}</button>{{/if}}
+</div>
