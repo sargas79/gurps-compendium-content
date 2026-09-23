@@ -213,3 +213,64 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
     expect(sys("Personal Basics")).toMatchObject({ cost: 0, costOfLivingPercent: 1, weight: 1 });
   });
 });
+
+describe("High-Tech's defences and firearm accessories (#349)", () => {
+  const defences = read(join(PACKS, "equipment/high-tech-captured-defenses.json"));
+  const accessories = read(join(PACKS, "equipment/high-tech-captured-accessories.json"));
+  const gear = [...defences, ...accessories, ...byHand("equipment")];
+  const sys = (name: string) => named(gear, name).system;
+  const draw = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.power?.draw;
+
+  it("cites a page of its own range on every captured record, with no book prose", () => {
+    for (const [docs, from, to] of [[defences, 62, 77], [accessories, 153, 161]] as const) {
+      for (const doc of docs) {
+        const page = Number(/^High-Tech p\. (\d+)$/.exec(doc.system.reference)?.[1]);
+        expect(page, doc.name).toBeGreaterThanOrEqual(from);
+        expect(page, doc.name).toBeLessThanOrEqual(to);
+        expect(doc.system.description, doc.name).toBe("");
+      }
+    }
+  });
+
+  it("prices outfits as a share of the cost of living (pp. 63-64)", () => {
+    expect(sys("Ordinary Clothes")).toMatchObject({ cost: 0, costOfLivingPercent: 20, weight: 2, lc: 4 });
+    expect(sys("Arctic Clothes")).toMatchObject({ costOfLivingPercent: 50, weight: 15 });
+    expect(sys("High-Fashion Attire")).toMatchObject({ costOfLivingPercent: 100 });
+    expect(sys("Undercover Clothing (Ordinary Clothes, +2)")).toMatchObject({ costOfLivingPercent: 400, equipmentQuality: "fine", forSkills: ["Holdout"] });
+    expect(sys("Long Coat")).toMatchObject({ cost: 50, weight: 5, lc: 4 });
+  });
+
+  it("keeps the plates and the eye and groin protection as armour (pp. 67, 71)", () => {
+    expect(named(gear, "Trauma Plate")).toMatchObject({ type: "armor", system: { dr: 25, frontOnly: true, cost: 500, weight: 4, lc: 3 } });
+    expect(named(gear, "Anti-Stab Plate").system).toMatchObject({ dr: 4, locations: ["vitals"], frontOnly: true });
+    expect(named(gear, "Ballistic Sunglasses")).toMatchObject({ type: "armor", system: { dr: 4, locations: ["eye"] } });
+    // DR 2 against crushing, 1 against the rest, from the front.
+    expect(named(gear, "Cup").system).toMatchObject({ dr: 2, drSplit: 1, frontOnly: true, locations: ["groin"] });
+    expect(named(gear, "Cup").system.drSplitAppliesTo).not.toContain("cr");
+    expect(named(gear, "Interim Small Arms Protective Overvest (ISAPO)").system).toMatchObject({ dr: 30, cost: 700, weight: 25 });
+  });
+
+  it("prices camouflage on ordinary clothes, with its quality to Camouflage (pp. 76-77)", () => {
+    expect(sys("Basic Camouflage (Ordinary Clothes)")).toMatchObject({ costOfLivingPercent: 40, equipmentQuality: "fine", forSkills: ["Camouflage"] });
+    expect(sys("Ghillie Suit")).toMatchObject({ cost: 500, weight: 12, forSkills: ["Camouflage"] });
+    expect(sys("IR Camouflage Net")).toMatchObject({ cost: 800, weight: 100, lc: 4 });
+  });
+
+  it("keeps holsters, sights and suppressors with their batteries (pp. 153-161)", () => {
+    expect(sys("Belt Holster")).toMatchObject({ tl: "5", cost: 25, weight: 0.5, lc: 4 });
+    expect(sys("Sleeve Holster")).toMatchObject({ tl: "6", cost: 500, weight: 0.5 });
+    // "3-4 lbs.": the lower is recorded, not the 34 the text reads.
+    expect(sys("Fixed-Power Scope (TL5, per +1 Acc)")).toMatchObject({ cost: 100, weight: 3 });
+    expect(draw("Night Sight")).toMatchObject({ cell: "S", cells: 4, endurance: "30 hrs." });
+    expect(draw("Integral Targeting Laser (Sidearm)")).toMatchObject({ cell: "T", cells: 4, endurance: "2 hrs." });
+    expect(sys("Computer Sight (Night Vision)")).toMatchObject({ cost: 22500, lc: 2 });
+    expect(sys("Computer Sight (Infravision)")).toMatchObject({ cost: 30000, lc: 2 });
+    expect(sys("Detachable Baffle Suppressor, .22-caliber (per -1 Hearing)")).toMatchObject({ cost: 100, weight: 0.25, lc: 3 });
+  });
+
+  it("captures nothing the data file or the hand-kept records already hold", () => {
+    const others = [...read(join(PACKS, "equipment/high-tech-armor.json")), ...read(join(PACKS, "equipment/high-tech-gear.json")), ...byHand("equipment")];
+    const held = new Set(others.map((d) => d.name.toLowerCase()));
+    expect([...defences, ...accessories].filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
+  });
+});
