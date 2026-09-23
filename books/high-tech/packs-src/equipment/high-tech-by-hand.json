@@ -162,7 +162,14 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "toeDr": 6
+          }
+        }
+      }
     }
   },
   {
@@ -4869,7 +4876,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "semiAblative": true
+          }
+        }
+      }
     }
   },
   {
@@ -4899,7 +4913,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "semiAblative": true
+          }
+        }
+      }
     }
   },
   {

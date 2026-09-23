@@ -4307,7 +4307,7 @@
         "system.drSplitAppliesTo": [],
         "system.soleDr": 6
       },
-      "reason": "the higher DR is the sole's and the steel toe box's (p. 68 notes 4 and 5); the toe box is not modelled"
+      "reason": "the higher DR is the sole's and the steel toe box's (p. 68 notes 4 and 5); the toe box is #383's toeDr"
     },
     {
       "pack": "equipment",
@@ -4327,6 +4327,168 @@
         ]
       },
       "reason": "DR 6 for the head and 2 everywhere else, not a split by damage type (p. 74 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Shin Guards$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "coverage": 2
+            }
+          }
+        }
+      },
+      "reason": "the lower leg only, 2 in 6, from the front (p. 67); partial coverage is #383's (p. 69)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Light Body Armor (Sleeves|Leggings)$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "coverage": 5
+            }
+          }
+        }
+      },
+      "reason": "most of the limb, 5 in 6 (p. 67); partial coverage is #383's (p. 69)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Aircrew Leg Armor$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "coverage": 3
+            }
+          }
+        }
+      },
+      "reason": "the front of the lower leg, knee to ankle, 3 in 6 (p. 67); partial coverage is #383's (p. 69)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^DAP$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "coverage": 2
+            }
+          }
+        }
+      },
+      "reason": "elbow to shoulder, 2 in 6 (p. 67); partial coverage is #383's (p. 69)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Shoulder Pads$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "coverage": 1
+            }
+          }
+        }
+      },
+      "reason": "1 in 6 of the torso and of the arms (p. 66 note 4); partial coverage is #383's (p. 69)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Fragmentation Vest \\(TL 7\\)$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "frontDr": 8,
+              "frontLocations": [
+                "vitals"
+              ]
+            }
+          }
+        }
+      },
+      "reason": "DR 8 to the vitals from the front (p. 66 note 3), raised by #383's partial coverage switch"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Bomb Disposal Suit$",
+      "set": {
+        "system.dr": 5,
+        "system.drSplit": null,
+        "system.drSplitAppliesTo": [],
+        "system.drByLocation": [
+          {
+            "locations": [
+              "skull",
+              "face",
+              "eye"
+            ],
+            "dr": 7
+          }
+        ],
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "frontDr": 20,
+              "frontLocations": [
+                "neck",
+                "torso",
+                "vitals",
+                "groin"
+              ]
+            }
+          }
+        }
+      },
+      "reason": "20 from the front and 5 from elsewhere is torso DR, the head DR 7 and the limbs 5 (p. 75 note 10), not a split by damage type; the 20 is raised from the front by #383's partial coverage switch"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Boots, Firefighter$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "toeDr": 6
+            }
+          }
+        }
+      },
+      "reason": "the steel toe box's DR 6 on 2 in 6 hits to the foot (p. 68 note 4), by #383's partial coverage switch"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Advanced Body Armor$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "concealment": 4
+            }
+          }
+        }
+      },
+      "reason": "+4 (quality) to Holdout to conceal it (p. 67), by #383's concealing armour switch"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Improved Fragmentation Vest Trauma Plates \\(TL 7\\)|Fragmentation Vest Trauma Plates \\(TL 8\\)|Assault Vest Trauma Plates)$",
+      "set": {
+        "system.extensions": {
+          "gurps-compendium-content": {
+            "htArmor": {
+              "semiAblative": true
+            }
+          }
+        }
+      },
+      "reason": "ceramic trauma plates, semi-ablative at the GM's option (p. 67), by #383's armour materials switch"
     },
     {
       "pack": "equipment",

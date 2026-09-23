@@ -101,7 +101,7 @@ overview, or a rule no switch implements.
 | `limb-armor` | Limb Armor | 67 | #383 armour: partial coverage, concealment, materials |
 | `footwear` | Footwear | 68 | #384 protective oddments and portable cover |
 | `my-sore-aching-feet` | My Sore, Aching Feet! | 69 | #384 protective oddments and portable cover |
-| `hitting-em-where-it-hurts` | Hitting ’Em Where It Hurts | 69 | #384 protective oddments and portable cover |
+| `hitting-em-where-it-hurts` | Hitting ’Em Where It Hurts | 69 | #383 armour: partial coverage, concealment, materials |
 | `ear-protection` | Ear Protection | 70 | #384 protective oddments and portable cover |
 | `eye-protection` (by hand) | Eye Protection | 70 | #384 protective oddments and portable cover |
 | `shields` | Shields | 71 | #384 protective oddments and portable cover |

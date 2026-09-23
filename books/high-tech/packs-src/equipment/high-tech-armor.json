@@ -270,7 +270,17 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "frontDr": 8,
+            "frontLocations": [
+              "vitals"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -337,7 +347,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "semiAblative": true
+          }
+        }
+      }
     }
   },
   {
@@ -409,7 +426,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 1
+          }
+        }
+      }
     }
   },
   {
@@ -477,7 +501,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "semiAblative": true
+          }
+        }
+      }
     }
   },
   {
@@ -619,7 +650,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "semiAblative": true
+          }
+        }
+      }
     }
   },
   {
@@ -681,7 +719,14 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "concealment": 4
+          }
+        }
+      }
     }
   },
   {
@@ -739,7 +784,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 2
+          }
+        }
+      }
     }
   },
   {
@@ -768,7 +820,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 5
+          }
+        }
+      }
     }
   },
   {
@@ -797,7 +856,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 5
+          }
+        }
+      }
     }
   },
   {
@@ -826,7 +892,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 3
+          }
+        }
+      }
     }
   },
   {
@@ -1034,7 +1107,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "coverage": 2
+          }
+        }
+      }
     }
   },
   {
@@ -1295,7 +1375,14 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": 6,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "toeDr": 6
+          }
+        }
+      }
     }
   },
   {
@@ -2828,23 +2915,39 @@
       "costOfLivingPercent": 0,
       "description": "",
       "reference": "High-Tech p. 75",
-      "dr": 20,
-      "drSplit": 5,
-      "drSplitAppliesTo": [
-        "cr",
-        "imp",
-        "burn",
-        "tox",
-        "cor",
-        "fat"
-      ],
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
       "locations": [],
       "flexible": true,
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "drByLocation": [
+        {
+          "locations": [
+            "skull",
+            "face",
+            "eye"
+          ],
+          "dr": 7
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htArmor": {
+            "frontDr": 20,
+            "frontLocations": [
+              "neck",
+              "torso",
+              "vitals",
+              "groin"
+            ]
+          }
+        }
+      }
     }
   },
   {

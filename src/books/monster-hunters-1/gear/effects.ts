@@ -8,7 +8,8 @@
 import type { GWorldApi } from "../../../shared/module.js";
 import { isHoly } from "../holy.js";
 import { gearData, loadFor, type GearData } from "./data.js";
-import { gadgetCostFactor, gadgetWeightFactor, holdoutBonus, improvedGadget, SCENT_MASKING_PENALTY, signatureGearPointCost } from "./gadgets.js";
+import { bestConcealment, wornArticle } from "../../../shared/concealment/rules.js";
+import { gadgetCostFactor, gadgetWeightFactor, improvedGadget, SCENT_MASKING_PENALTY, signatureGearPointCost } from "./gadgets.js";
 import { isShotgun, specialAmmunitionEffect } from "./special-ammunition.js";
 import {
   allowedWeapon,
@@ -197,17 +198,13 @@ export function bookBreakage(api: GWorldApi, context: any): void {
  * Scent-Masking's -4 to Smell rolls to find them.
  */
 export function concealmentOf(actor: any): { holdout: number; smell: number; source: string } {
-  const out = { holdout: 0, smell: 0, source: "" };
-  for (const item of [...(actor?.items ?? [])]) {
-    if (item.type !== "armor" && item.type !== "equipment") continue;
-    const worn = item.type === "armor" ? Boolean(item.system?.equipped) : item.system?.carried !== false;
-    if (!worn) continue;
+  const items = [...(actor?.items ?? [])];
+  const best = bestConcealment(items, (item) => {
     const data = gearData(item);
-    const bonus = holdoutBonus({ own: data.holdout, undercover: data.gadget.undercover });
-    if (bonus > out.holdout) Object.assign(out, { holdout: bonus, source: String(item.name ?? "") });
-    if (data.gadget.scentMasking && item.type === "armor") out.smell = SCENT_MASKING_PENALTY;
-  }
-  return out;
+    return { own: data.holdout, undercover: data.gadget.undercover };
+  });
+  const smell = items.some((item) => item.type === "armor" && wornArticle(item) && gearData(item).gadget.scentMasking) ? SCENT_MASKING_PENALTY : 0;
+  return { holdout: best.holdout, smell, source: best.source };
 }
 
 /**
