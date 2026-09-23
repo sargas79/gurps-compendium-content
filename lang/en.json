@@ -5189,6 +5189,18 @@
         "disguiseAndSmuggling": {
           "Name": "Forgery, disguise and smuggling",
           "Hint": "Forgery and counterfeiting tools forge from their row: a TL7+ document needs a computer and printer too (-5 without, as improvised equipment), fake credit cards a card printer and magnetic strip decoder/encoder, and a TL8 counterfeiter must avoid a printer that marks its pages. The Disguise skill's row rolls an improvised disguise at -5 in place of any kit; a disguise kit's row rolls Disguise with it, the advanced kit (+2) needing a day to prepare and two to six hours of fitting. Smuggler's luggage (+2) rolls Smuggling for what its secret area holds, a tenth of its capacity. A mule's row rolls HT at -1 per 50 pellets carried: failure is an incident, a critical failure bursts a packet, a dose of the Basic Set's overdose. The GM's token controls screen the targeted character: a Quick Contest of Search or Observation against Acting, or an X-ray machine's Electronics Operation roll and then Search (High-Tech pp. 213-215)."
+        },
+        "partialCoverage": {
+          "Name": "Partial armour coverage",
+          "Hint": "A piece that covers n in 6 of a location (shin guards, limb armour, a DAP, shoulder pads) protects when 1d comes up n or less, the n of several pieces there added up. An attacker may strike around it at -(n-1), never better than -1, and the blow passes it. A steel toe box gives its DR on 2 in 6 hits to the foot, high boots with the tops turned up cover 3 in 6 of the legs, and the TL7 fragmentation vest's vitals and the bomb disposal suit's torso are better armoured from the front (High-Tech pp. 66-69, 75)."
+        },
+        "concealedArmor": {
+          "Name": "Concealing armour",
+          "Hint": "Hiding worn armour from someone looking for it is a Quick Contest of Holdout against their Search at the range penalty: Holdout is at -DR for rigid armour and -DR/3 (rounded up) for flexible, with up to +4 back for a design made to be concealed. A worn long coat or poncho gives +4 to Holdout and undercover clothing +1 or +2 (High-Tech pp. 64, 66)."
+        },
+        "armorMaterials": {
+          "Name": "Armour materials",
+          "Hint": "Low-tech armour and shields remade in TL5+ steel have twice the DR, or keep it at half the cost and weight; smart foam is cloth armour at ten times the cost, DR 4 against crushing and 1 against the rest; titanium keeps the DR at a third of the weight and five times the cost. Trauma plates are semi-ablative: every 10 points of basic damage rolled take a point of their DR until the plate is replaced (High-Tech pp. 65, 67)."
         }
       },
       "Codes": {
@@ -8282,6 +8294,81 @@
         "AntisepticAction": "Clean a wound",
         "Depleted": "Depleted",
         "DepletedHint": "Used for several treatments: the reusable tools left work a grade lower (High-Tech p. 221)."
+      },
+      "Armor": {
+        "Title": "High-Tech armour",
+        "Coverage": "Covers",
+        "CoverageHint": "How much of each location the piece covers. A piece covering n in 6 protects when 1d comes up n or less, and an attacker can strike around it (High-Tech p. 69).",
+        "CoverageWhole": "The whole location",
+        "CoverageSixths": "{n} in 6",
+        "CoverageItem": "Covers {n} in 6 of each location: 1d at or under the sixths of every partial piece there protects. Striking around it: {penalty}.",
+        "FrontItem": "DR {dr} against blows from the front on the {locations}.",
+        "ToeItem": "Steel toe box: DR {dr} on {n} in 6 hits to the foot.",
+        "TopsUp": "Tops turned up",
+        "TopsUpHint": "With the tops turned up, high boots cover 3 in 6 of the legs (High-Tech p. 68).",
+        "TopsUpItem": "Tops up: covers {n} in 6 of the legs.",
+        "TopsUpLabel": "{name} (tops up)",
+        "Location": {
+          "skull": "skull",
+          "face": "face",
+          "eye": "eyes",
+          "neck": "neck",
+          "torso": "torso",
+          "vitals": "vitals",
+          "groin": "groin",
+          "arm": "arms",
+          "hand": "hands",
+          "leg": "legs",
+          "foot": "feet"
+        },
+        "StrikeAround": "Strike around partial armour",
+        "StrikeAroundLine": "Striking around armour covering {n} in 6",
+        "StrikeAroundNothing": "Nothing partial to strike around ({location})",
+        "StruckAround": "struck around",
+        "PartialStood": "partial: 1d rolled {roll} against {n} in 6, protects",
+        "PartialMissed": "partial: 1d rolled {roll} against {n} in 6, missed",
+        "FrontReason": "DR {dr} from the front",
+        "ToeHit": "toe box: 1d rolled {roll} against {n} in 6",
+        "ToeMissed": "toe box missed: 1d rolled {roll} against {n} in 6",
+        "Design": "Made to be concealed",
+        "DesignHint": "Armour designed to be concealed takes +1 to +4 off the Holdout penalty to hide it, never beyond it (High-Tech p. 66).",
+        "DesignNone": "No",
+        "ConcealItem": "Holdout to hide it from a search: {modifier} ({rule}).",
+        "ConcealRigidRule": "rigid: -DR",
+        "ConcealFlexibleRule": "flexible: -DR/3",
+        "ClothesItem": "+{bonus} to Holdout while worn.",
+        "ClothesLine": "{name}",
+        "ConcealTitle": "Hide from a search",
+        "ConcealPick": "Target the character searching you first.",
+        "ConcealLabel": "Hiding {item}",
+        "ConcealRigid": "Rigid armour, DR {dr}",
+        "ConcealFlexible": "Flexible armour, DR {dr}",
+        "ConcealDesign": "Made to be concealed",
+        "RangeLine": "Range ({yards} yd.)",
+        "ConcealHidden": "{searcher} doesn't notice {item}.",
+        "ConcealSeen": "{searcher} spots {item}.",
+        "MaterialLabel": "Material",
+        "MaterialHint": "Low-tech metal armour and shields in TL5+ steel or TL8 titanium, or cloth armour in TL8 smart foam (High-Tech p. 65).",
+        "Material": {
+          "none": "As made",
+          "steel": "Steel (x2 DR)",
+          "steelLight": "Steel (half cost and weight)",
+          "smartFoam": "Smart foam",
+          "titanium": "Titanium"
+        },
+        "MaterialItem": {
+          "steel": "TL5+ steel: twice the DR at the same cost and weight.",
+          "steelLight": "TL5+ steel: the same DR at half the cost and weight.",
+          "smartFoam": "Smart foam: DR 4 against crushing and 1 against everything else, concealable under ordinary clothes; ten times the cost.",
+          "titanium": "Titanium: the same DR at a third of the weight and five times the cost."
+        },
+        "SemiAblative": "Semi-ablative plate",
+        "SemiAblativeHint": "A ceramic trauma plate cracks as it stops bullets: every 10 points of basic damage rolled take a point of its DR, whether or not the blow got through (High-Tech p. 67).",
+        "PlateItem": "Semi-ablative: DR lost so far {lost}.",
+        "PlateReason": "plate cracked, -{lost}",
+        "PlateWorn": "{item} loses {lost} DR ({total} in all).",
+        "PlateReplace": "Replace the plate",
+        "PlateReplaced": "{item} is replaced: its DR is whole again."
       }
     },
     "Backblast": {

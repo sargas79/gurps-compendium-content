@@ -258,12 +258,8 @@ export function coverageActivation(coverage: Coverage): number | null {
   return coverage === "half" || coverage === "frontHalf" || coverage === "backHalf" ? 11 : coverage === "skimpy" ? 8 : null;
 }
 
-/** Whether a front- or back-only part stands against a blow from this arc; an unknown arc counts. */
-export function coversArc(coverage: Coverage, arc: string | null | undefined): boolean {
-  if (coverage === "front" || coverage === "frontHalf") return !arc || arc === "front";
-  if (coverage === "back" || coverage === "backHalf") return !arc || arc === "back";
-  return coverage !== "none";
-}
+// Whether a front- or back-only part stands against a blow from this arc: the engine High-Tech's armour shares.
+export { coversArc } from "../../../shared/coverage/rules.js";
 
 /** The outfit's style: DR, cost and weight multiplied, and LC shifted (p. 175). */
 export type TailoredStyle = "heavy" | "normal" | "light" | "diaphanous";

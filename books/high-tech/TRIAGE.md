@@ -78,7 +78,7 @@ kind of split from the one it would have read:
 | Record | Book | What it needs |
 |---|---|---|
 | Silk Vest (TL6) | 4/2*, the piercing-and-cutting split (p. 66 note 2) at TL6 | the ordinary split; the parser's rule that this footnote is TL7+ does not hold for this book |
-| Boots, Steel-Toed | 6/2, the higher DR where the toe box protects (p. 68 note 4) | DR 2; the toe box is not modelled (#383) |
+| Boots, Steel-Toed | 6/2, the higher DR where the toe box protects (p. 68 note 4) | DR 2; the toe box's 6 on 2 in 6 foot hits is `htArmor.toeDr` (#383) |
 | Closed-Dress Suit | 6/2, DR 6 for the head and 2 elsewhere (p. 74 note 1) | DR 2 with `drByLocation` skull and face 6 |
 
 The parser says "patch whichever is wrong", but `patch` runs on the records the parser
@@ -125,10 +125,15 @@ as the system's own names spell it.
 | Boots, Jungle; Boots, Blast; Boots, Firefighter | higher DR when struck from beneath (p. 68 note 5) | the higher figure as `soleDr`; the Firefighter's toe box (note 4) is not modelled |
 | Hard-Hat Suit | DR 6 for the head, 2 elsewhere (p. 74 note 1) | DR 2 with `drByLocation` skull and face 6 |
 
-Not patched, for #383: the TL7 Fragmentation Vest's DR 8 to the vitals from the front
-(p. 66 note 3), and the Bomb Disposal Suit's 20 from the front and 5 from elsewhere,
-with DR 7 on the head and 5 on the limbs (p. 75 note 10). The system has no split by
-direction.
+**Patched in #383:** the TL7 Fragmentation Vest's DR 8 to the vitals from the front
+(p. 66 note 3) and the Bomb Disposal Suit's 20 from the front are `htArmor.frontDr` and
+`frontLocations`, which the partial coverage switch raises the line to against a blow from
+the front (the system has no split by direction); the suit itself is DR 5 with the head's
+7 as `drByLocation` (p. 75 note 10). The steel-toed and firefighter boots' toe box is
+`htArmor.toeDr`; the pieces covering part of a location (shin guards, the light body
+armour's limbs, the aircrew leg armour, the DAP, the shoulder pads) carry their sixths as
+`htArmor.coverage`, the Advanced Body Armor its +4 to conceal as `htArmor.concealment`,
+and the trauma plates `htArmor.semiAblative`.
 
 **Minimum ranges.** The guided-missile table's shared note (p. 152 note 1) gives each
 missile's minimum range, which the parser cannot tie to one record: **patched** into
@@ -276,7 +281,7 @@ Records, in `packs-src/<pack>/high-tech-by-hand.json`:
 | Pack | Records | Pages |
 |---|---|---|
 | equipment | the four shields (DB 2, 2, 2, 3; DR/HP 10/80, 7/40, 12/40, 12/60) | 72 |
-| equipment | Silk Vest (4/2*, the ordinary split, at TL6), Boots, Steel-Toed (DR 2; the toe box is #383), Closed-Dress Suit (DR 2, skull and face 6) | 66, 68, 74 |
+| equipment | Silk Vest (4/2*, the ordinary split, at TL6), Boots, Steel-Toed (DR 2; the toe box is `htArmor.toeDr`, #383), Closed-Dress Suit (DR 2, skull and face 6) | 66, 68, 74 |
 | equipment | the Zip-Gun (Malf. 12) | 92 |
 | equipment | Jam-Tin Grenade, with and without fragments, and the geballte Ladung; the book prints no Bulk or price, so Bulk 0 and $0 | 191 |
 | equipment | four rifle grenades, the first Range figure as `minRange` (note 2) | 194 |

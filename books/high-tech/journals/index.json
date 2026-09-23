@@ -658,6 +658,7 @@
       "title": "High-Tech Low-Tech",
       "chapter": "4. Defenses",
       "pages": "HT65",
+      "rule": "gurps-compendium-content.armorMaterials",
       "reference": "High-Tech p. 65",
       "file": "high-tech-low-tech.md",
       "status": "reviewed"
@@ -676,6 +677,7 @@
       "title": "Body Armor",
       "chapter": "4. Defenses",
       "pages": "HT65",
+      "rule": "gurps-compendium-content.armorMaterials",
       "reference": "High-Tech p. 65",
       "file": "body-armor.md",
       "status": "reviewed"
@@ -685,6 +687,7 @@
       "title": "Concealing Armor",
       "chapter": "4. Defenses",
       "pages": "HT66",
+      "rule": "gurps-compendium-content.concealedArmor",
       "reference": "High-Tech p. 66",
       "file": "concealing-armor.md",
       "status": "reviewed"
@@ -694,6 +697,7 @@
       "title": "Limb Armor",
       "chapter": "4. Defenses",
       "pages": "HT67",
+      "rule": "gurps-compendium-content.partialCoverage",
       "reference": "High-Tech p. 67",
       "file": "limb-armor.md",
       "status": "reviewed"
@@ -721,6 +725,7 @@
       "title": "Hitting ’Em Where It Hurts",
       "chapter": "4. Defenses",
       "pages": "HT69",
+      "rule": "gurps-compendium-content.partialCoverage",
       "reference": "High-Tech p. 69",
       "file": "hitting-em-where-it-hurts.md",
       "status": "reviewed"

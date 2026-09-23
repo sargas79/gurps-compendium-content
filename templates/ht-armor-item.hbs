@@ -1,0 +1,42 @@
+{{!-- Partial coverage, concealing armour and armour materials (High-Tech pp. 64-69). --}}
+<div class="isub" data-gcc-ht-armor-section>
+  <div class="isub-head">{{localize "GCC.HT.Armor.Title"}}</div>
+  {{#if coverage}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Armor.CoverageHint'}}">{{localize "GCC.HT.Armor.Coverage"}}
+        <select data-gcc-ht-armor="htArmor.coverage" {{#unless editable}}disabled{{/unless}}>
+          {{#each coverage as |option|}}<option value="{{option.value}}" {{#if option.selected}}selected{{/if}}>{{option.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if topsUp}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Armor.TopsUpHint'}}"><input type="checkbox" data-gcc-ht-armor="htArmor.topsUp" {{#if topsUp.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Armor.TopsUp"}}</label>
+    </div>
+  {{/if}}
+  {{#if concealment}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Armor.DesignHint'}}">{{localize "GCC.HT.Armor.Design"}}
+        <select data-gcc-ht-armor="htArmor.concealment" {{#unless editable}}disabled{{/unless}}>
+          {{#each concealment as |option|}}<option value="{{option.value}}" {{#if option.selected}}selected{{/if}}>{{option.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if materials}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Armor.MaterialHint'}}">{{localize "GCC.HT.Armor.MaterialLabel"}}
+        <select data-gcc-ht-armor="{{materialPath}}" {{#unless editable}}disabled{{/unless}}>
+          {{#each materials as |option|}}<option value="{{option.value}}" {{#if option.selected}}selected{{/if}}>{{option.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if semiAblative}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Armor.SemiAblativeHint'}}"><input type="checkbox" data-gcc-ht-armor="htArmor.semiAblative" {{#if semiAblative.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Armor.SemiAblative"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

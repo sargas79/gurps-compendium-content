@@ -49,8 +49,9 @@
  * suits: masks, diving rigs, air tanks and rebreathers, and the suits that
  * seal their wearers, and the locks, safes, traps and barriers, and
  * emergency medicine and medical facilities: defibrillators, CPR, first aid
- * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic (pp. 7-11,
- * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 210-215, 219-225,
+ * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic, and
+ * armour: partial coverage, concealing it and its materials (pp. 7-11,
+ * 13-16, 17-77, 79-93, 109, 127-141, 143, 147-205, 210-215, 219-225,
  * 249-252).
  */
 
@@ -88,6 +89,7 @@ import { readyBreathing } from "./breathing/index.js";
 import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js";
 import { initMedicine, readyMedicine } from "./medicine/index.js";
 import { readyHighTechCodes } from "./codes/index.js";
+import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -225,6 +227,10 @@ const RULES = [
   // Encryption and code-breaking; forgery, disguise, smuggling and mule pills.
   { key: "encryption", pages: "pp. 210-211", implemented: true },
   { key: "disguiseAndSmuggling", pages: "pp. 213-215", implemented: true },
+  // Armour: partial coverage and the direction a piece protects from, concealing it, and its materials.
+  { key: "partialCoverage", pages: "pp. 66-69, 75", implemented: true },
+  { key: "concealedArmor", pages: "pp. 64, 66", implemented: true },
+  { key: "armorMaterials", pages: "pp. 65, 67", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -276,6 +282,7 @@ function init(): void {
   initHighTechCamouflage(ruleKey("camouflageGear"));
   initHighTechSecurity();
   initMedicine();
+  initHighTechArmor();
 }
 
 function ready(api: GWorldApi): void {
@@ -329,6 +336,7 @@ function ready(api: GWorldApi): void {
   readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
+  readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
 }
 
 export const book: BookRules = {

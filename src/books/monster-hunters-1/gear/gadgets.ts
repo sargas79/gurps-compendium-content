@@ -8,6 +8,8 @@
  * rugged flashlight is three times its price and 0.8 times its weight.
  */
 
+import { undercoverLevel } from "../../../shared/concealment/rules.js";
+
 /** The improvements a gadget or an article of clothing can be made with. */
 export interface GadgetImprovements {
   /** "Made of the latest materials. Multiply weight by 2/3. +1 CF." */
@@ -27,12 +29,6 @@ export type GadgetQuality = "basic" | "good" | "fine";
 
 /** "Fine-Quality ... +19 CF. Good-Quality ... +4 CF", mutually exclusive. */
 export const GADGET_QUALITY_CF: Readonly<Record<GadgetQuality, number>> = { basic: 0, good: 4, fine: 19 };
-
-/** Undercover's Holdout bonus, from none to +2. */
-function undercoverLevel(level: number | undefined): 0 | 1 | 2 {
-  const n = Math.floor(Number(level) || 0);
-  return n >= 2 ? 2 : n === 1 ? 1 : 0;
-}
 
 /**
  * The total cost factor of an item's improvements and grade. A grade other
@@ -85,11 +81,9 @@ export const SCENT_MASKING_PENALTY = -4;
 /**
  * An article's Holdout bonus: its own, as the table gives it -- a long coat
  * "Gives +4 to Holdout. Can be made undercover for a larger bonus!" -- with
- * Undercover's added.
+ * Undercover's added. The engine High-Tech's clothing shares.
  */
-export function holdoutBonus(options: { own: number; undercover?: number }): number {
-  return Math.max(0, Math.floor(Number(options.own) || 0)) + undercoverLevel(options.undercover);
-}
+export { holdoutBonus } from "../../../shared/concealment/rules.js";
 
 /**
  * Signature Gear's price (p. 53): "1 point for every $10,000 or fraction
