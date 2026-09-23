@@ -625,7 +625,15 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "camouflage": {
+            "pattern": "simple",
+            "net": true
+          }
+        }
+      }
     }
   },
   {
@@ -654,7 +662,14 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "camouflage": {
+            "pattern": "ghillie"
+          }
+        }
+      }
     }
   },
   {
@@ -683,7 +698,15 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "camouflage": {
+            "pattern": "simple",
+            "infrared": true
+          }
+        }
+      }
     }
   },
   {
@@ -710,7 +733,16 @@
       "listCost": 800,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "camouflage": {
+            "pattern": "simple",
+            "infrared": true,
+            "net": true
+          }
+        }
+      }
     }
   }
 ]

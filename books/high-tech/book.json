@@ -3797,6 +3797,38 @@
           "system.extensions.gurps-compendium-content.expedition.climbing": "suctionCup"
         },
         "reason": "cancels the -3 for a modern building (p. 56) (#362)"
+      },
+      {
+        "pattern": "^Camouflage Net$",
+        "set": {
+          "system.extensions.gurps-compendium-content.camouflage.pattern": "simple",
+          "system.extensions.gurps-compendium-content.camouflage.net": true
+        },
+        "reason": "a net in a simple pattern, hiding gear on the deployer's Camouflage (pp. 76-77) (#385)"
+      },
+      {
+        "pattern": "^Ghillie Suit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.camouflage.pattern": "ghillie"
+        },
+        "reason": "+3 in similar terrain, -1 and -2 elsewhere, customised to +8 (p. 77) (#385)"
+      },
+      {
+        "pattern": "^Infrared-Suppressing Poncho$",
+        "set": {
+          "system.extensions.gurps-compendium-content.camouflage.pattern": "simple",
+          "system.extensions.gurps-compendium-content.camouflage.infrared": true
+        },
+        "reason": "a simple pattern, +2 against infravision (p. 77) (#385)"
+      },
+      {
+        "pattern": "^IR Camouflage Net$",
+        "set": {
+          "system.extensions.gurps-compendium-content.camouflage.pattern": "simple",
+          "system.extensions.gurps-compendium-content.camouflage.infrared": true,
+          "system.extensions.gurps-compendium-content.camouflage.net": true
+        },
+        "reason": "the poncho's +2 against infravision, as a net (p. 77) (#385)"
       }
     ]
   },

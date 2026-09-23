@@ -17,6 +17,8 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { CAMOUFLAGE_TABLES, hidingState as camouflageState, initCamouflage, readyCamouflage, setHiding } from "../../../shared/stealth/index.js";
+import type { CamouflageFigures } from "../../../shared/stealth/data.js";
 import { reactorSpoilsInfrared } from "../armor/rules.js";
 import {
   AUTOGRAPNEL,
@@ -96,7 +98,28 @@ interface HidingState {
   terrain: Terrain;
 }
 
-export function initStealth(): void {
+/**
+ * The book's table for the shared camouflage engine: programmable camouflage
+ * by terrain as a line of its own on the Camouflage roll, and scent masking's
+ * +4 on the wearer's Tracking roll to cover a trail (pp. 99-100).
+ */
+const CAMOUFLAGE_FIGURES: CamouflageFigures = {
+  patterns: [],
+  gear: (item) => (isGear(item) && systemOf(item)?.kind === "programmableCamouflage" ? { counts: "modifier", pattern: CAMOUFLAGE_TERRAIN } : null),
+  label: (item, state) => `${item.name} (${L(`Terrain.${state.terrain}`)})`,
+  scent: (item) => (isGear(item) && systemOf(item)?.kind === "scentMasking" ? { own: SCENT_MASKING } : null),
+  scentLabel: (item) => F("ScentMaskingLine", { name: item.name }),
+  // Worlds kept the terrain in this book's own flag before the engine was shared.
+  storedTerrain: (actor) => {
+    const terrain = actor?.getFlag?.(MODULE_ID, ACTOR_FLAG)?.terrain;
+    return TERRAINS.includes(terrain) ? terrain : null;
+  },
+};
+
+/** `switchKey` is the full key of the stealth systems switch, which the camouflage table needs. */
+export function initStealth(switchKey: string): void {
+  CAMOUFLAGE_TABLES.register({ book: "ultra-tech", tls: { min: 9, max: 12 }, switch: switchKey, i18n: "GCC.UT", sections: false, figures: CAMOUFLAGE_FIGURES });
+  initCamouflage();
   const f = foundry.data.fields as any;
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
     [FIELD]: new f.SchemaField({
@@ -158,7 +181,8 @@ function hidingState(actor: any): HidingState {
     sense: SENSES.includes(stored.sense) ? stored.sense : "vision",
     moving: Boolean(stored.moving),
     silhouetted: Boolean(stored.silhouetted),
-    terrain: TERRAINS.includes(stored.terrain) ? stored.terrain : "matching",
+    // The terrain is the shared camouflage engine's, which every book's camouflage reads.
+    terrain: camouflageState(actor).terrain,
   };
 }
 
@@ -233,6 +257,7 @@ function gearListeners(element: HTMLElement, actor: any): void {
     input.addEventListener("change", () => {
       const field = String(input.dataset.gccUtHiding);
       const value = input instanceof HTMLInputElement && input.type === "checkbox" ? input.checked : input.value;
+      if (field === "terrain") return void setHiding(actor, { terrain: value as Terrain });
       void actor.setFlag(MODULE_ID, ACTOR_FLAG, { ...hidingState(actor), [field]: value });
     });
   });
@@ -379,6 +404,9 @@ async function forge(api: GWorldApi, item: any, actor: any): Promise<void> {
 }
 
 export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boolean = on): void {
+  // Programmable camouflage and scent masking are the shared engine's, with this book's table.
+  readyCamouflage(api);
+
   api.data.registerPriceModifier({
     module: MODULE_ID,
     key: "ut-stealth",
@@ -433,14 +461,6 @@ export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boo
     if (sameSkill("Stealth", skill)) {
       const bonus = stealthBonus(actor, hidingState(actor));
       if (bonus?.value) context.modifiers.push({ label: bonus.label, value: bonus.value });
-    }
-    if (sameSkill("Camouflage", skill)) {
-      const camo = worn.find((w) => w.kind === "programmableCamouflage");
-      if (camo) context.modifiers.push({ label: `${camo.item.name} (${L(`Terrain.${hidingState(actor).terrain}`)})`, value: CAMOUFLAGE_TERRAIN[hidingState(actor).terrain] });
-    }
-    if (sameSkill("Tracking", skill)) {
-      const mask = worn.find((w) => w.kind === "scentMasking");
-      if (mask) context.modifiers.push({ label: F("ScentMaskingLine", { name: mask.item.name }), value: SCENT_MASKING });
     }
     if (sameSkill("Disguise", skill)) {
       const mask = worn.find((w) => w.kind === "fleshMask");

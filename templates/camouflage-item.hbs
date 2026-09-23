@@ -1,0 +1,29 @@
+{{!-- The camouflage on a piece of gear: its pattern, the pattern on its other
+     side, its options, and what it gives (High-Tech pp. 76-77), in the words
+     of the book whose table applies. --}}
+<div class="isub" data-gcc-camouflage-section>
+  <div class="isub-head">{{title}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{patternHint}}">{{patternLabel}}
+      <select data-gcc-camouflage="pattern" {{#unless editable}}disabled{{/unless}}>
+        {{#each patterns as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{secondHint}}">{{secondLabel}}
+      <select data-gcc-camouflage="second" {{#unless editable}}disabled{{/unless}}>
+        {{#each seconds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if customise}}
+      <label data-tooltip="{{customise.hint}}">{{customise.label}}
+        <input type="number" data-gcc-camouflage="custom" value="{{customise.value}}" min="0" max="{{customise.max}}" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    {{/if}}
+  </div>
+  <div class="ichecks">
+    {{#each options as |o|}}
+      <label class="icheck" data-tooltip="{{o.hint}}"><input type="checkbox" data-gcc-camouflage="{{o.key}}" {{#if o.checked}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} /> {{o.label}}</label>
+    {{/each}}
+  </div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

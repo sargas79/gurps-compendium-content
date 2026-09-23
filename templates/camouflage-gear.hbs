@@ -1,0 +1,18 @@
+{{!-- Where the character is hiding and who from, and what their camouflage
+     gives there (High-Tech pp. 76-77). --}}
+<section class="card" data-gcc-camouflage-gear>
+  <div class="card-head"><h3>{{title}}</h3></div>
+  <div class="ifields">
+    <label data-tooltip="{{terrainHint}}">{{terrainLabel}}
+      <select data-gcc-hiding="terrain" {{#unless editable}}disabled{{/unless}}>
+        {{#each terrains as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    <label data-tooltip="{{observerHint}}">{{observerLabel}}
+      <select data-gcc-hiding="observer" {{#unless editable}}disabled{{/unless}}>
+        {{#each observers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</section>
