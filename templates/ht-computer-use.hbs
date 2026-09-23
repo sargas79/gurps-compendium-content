@@ -1,0 +1,15 @@
+{{!-- A High-Tech computer's operating system and terminal, for the familiarity and terminal penalties (High-Tech pp. 20-21). --}}
+<div class="isub" data-ht-computer-use-section>
+  <div class="isub-head">{{localize "GCC.HT.ComputerUse.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.HT.ComputerUse.OperatingSystemHint'}}">{{localize "GCC.HT.ComputerUse.OperatingSystem"}}
+      <input type="text" data-ht-computer="operatingSystem" value="{{setup.operatingSystem}}" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label data-tooltip="{{localize 'GCC.HT.ComputerUse.TerminalHint'}}">{{localize "GCC.HT.ComputerUse.TerminalLabel"}}
+      <select data-ht-computer="terminal" {{#unless editable}}disabled{{/unless}}>
+        {{#each terminals as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  <p class="ihint">{{localize "GCC.HT.ComputerUse.Familiarity"}}</p>
+</div>

@@ -16,7 +16,8 @@
  * This file adds what only High-Tech prints: a Gear tab section for the
  * generators and collectors a character carries -- a tank's fuel, refilled
  * from the fuel carried; cranking a muscle-powered generator at 1 FP an hour
- * to recharge batteries; a solar recharger that gives nothing in the dark --
+ * to recharge batteries; a solar recharger that gives nothing in the dark,
+ * read from the scene's lighting where the character's token stands --
  * and the price and weight adapters, inverters and swapped batteries come to.
  */
 
@@ -217,17 +218,37 @@ async function crank(api: GWorldApi, item: any, figures: GeneratorFigures): Prom
   await say(actor, item.name, lines);
 }
 
-/** Recharges batteries with a solar recharger (p. 15): nothing at all in the dark. */
-async function solarRecharge(item: any): Promise<void> {
+/**
+ * The darkness penalty where the character's token stands, from the scene's
+ * lighting (API 1.96.0; Campaigns p. 394), or null where it has no token on
+ * a scene. It is the light at the panel that counts, not anyone's eyes.
+ */
+export function darknessAtCarrier(api: GWorldApi, actor: any): number | null {
+  const token = actor?.getActiveTokens?.()?.[0];
+  if (!token) return null;
+  const reading = api.areas.darknessAt(null, token);
+  return reading ? Number(reading.penalty) || 0 : null;
+}
+
+/**
+ * Recharges batteries with a solar recharger (p. 15): nothing at all in the
+ * dark. The darkness is read at the character's token; without one on a
+ * scene, the dialog asks for it.
+ */
+async function solarRecharge(api: GWorldApi, item: any): Promise<void> {
   const actor = item.actor;
   if (!actor) return;
   const targets = rechargeableGear(actor);
+  const read = darknessAtCarrier(api, actor);
   const darkness = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10].map((v) => `<option value="${v}">${v === 0 ? esc(L("GoodLight")) : v}</option>`).join("");
-  const field = `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(L("Darkness"))}</span><select name="amount">${darkness}</select></label>`;
+  const field = read === null
+    ? `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(L("Darkness"))}</span><select name="amount">${darkness}</select></label>`
+    : `<p class="ihint">${esc(read ? F("DarknessRead", { darkness: read }) : L("LightRead"))}</p>`;
   const asked = await ask(F("SolarTitle", { name: item.name }), targets, field);
   if (!asked) return;
-  if (!solarPowered(asked.amount)) {
-    await say(actor, item.name, [F("SolarDark", { darkness: asked.amount })]);
+  const penalty = read ?? asked.amount;
+  if (!solarPowered(penalty)) {
+    await say(actor, item.name, [F("SolarDark", { darkness: penalty })]);
     return;
   }
   const target = targets.find((t) => t.item.id === asked.target) ?? null;
@@ -254,7 +275,7 @@ function generatorListeners(api: GWorldApi, element: HTMLElement, actor: any): v
     }));
   on("[data-gcc-generator-refuel]", ({ item, figures }) => refuel(item, figures));
   on("[data-gcc-generator-crank]", ({ item, figures }) => crank(api, item, figures));
-  on("[data-gcc-generator-solar]", ({ item }) => solarRecharge(item));
+  on("[data-gcc-generator-solar]", ({ item }) => solarRecharge(api, item));
 }
 
 /**

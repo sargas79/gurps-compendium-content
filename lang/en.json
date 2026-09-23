@@ -5183,6 +5183,7 @@
         "Copied": "Easily copied media or textiles",
         "HardToGet": "Hard to get legally",
         "Roll": "Roll in secret",
+        "RollLabel": "Black market search for {sought}: {who}",
         "Buyer": "{name}'s Streetwise",
         "Contact": "The Contact's Streetwise",
         "Rolled": "{who} {skill}, effective {effective}: rolled {roll}.",
@@ -6526,6 +6527,8 @@
         "Minutes": "Minutes",
         "Darkness": "Vision penalty for darkness",
         "GoodLight": "None (good sunlight)",
+        "DarknessRead": "The light where the character stands: {darkness} to Vision (the scene's lighting).",
+        "LightRead": "The light where the character stands is good (the scene's lighting).",
         "Go": "Go",
         "PriceLabel": "Batteries, adapters and inverters",
         "ExternalOutput": "external power",
@@ -6611,6 +6614,28 @@
         "TooComplex": "Too complex for this computer to run.",
         "Overloaded": "Over capacity",
         "OverloadedHint": "More programs than the computer runs at once: two of its own Complexity, ten times as many per level below."
+      },
+      "ComputerUse": {
+        "Title": "Using the computer",
+        "OperatingSystem": "Operating system",
+        "OperatingSystemHint": "The operating system it runs. A user unfamiliar with it takes -2 to skill with the computer (High-Tech p. 20).",
+        "TerminalLabel": "Terminal",
+        "TerminalHint": "The terminal it is used through. A portable terminal costs -1 and a datapad -2 on demanding work, at the GM's option (High-Tech p. 21); the penalty goes on every roll made with the computer while it is set here.",
+        "TerminalOption": "{terminal} ({penalty}, GM's option)",
+        "TerminalLine": "Terminal: {terminal}",
+        "Terminal": {
+          "none": "None named",
+          "primitive": "Primitive terminal",
+          "workstation": "Workstation terminal",
+          "portable": "Portable terminal",
+          "datapad": "Datapad"
+        },
+        "Unfamiliar": {
+          "operatingSystem": "Unfamiliar operating system: {name}",
+          "computerType": "Unfamiliar computer type: {name}",
+          "program": "Unfamiliar program: {name}"
+        },
+        "Familiarity": "Under the familiarity rule, a roll made with this computer or a program on it takes -2 for each of its operating system, its type (the computer's name) and the program the character's familiarities don't list (High-Tech p. 20)."
       },
       "Books": {
         "Title": "Reference work",

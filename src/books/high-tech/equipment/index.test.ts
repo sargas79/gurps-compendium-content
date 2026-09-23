@@ -14,7 +14,7 @@ import { GADGET_TABLES, failureLines, gadgetPriceOf, gadgetTables, sizedCells, s
 import { gadgetItem } from "../../../shared/gadgets/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechGadgets } from "../../ultra-tech/gadgets/index.js";
-import { combinationSource, familiarityLine, highTechGadgets, readyHighTechEquipment, type EquipmentSwitches } from "./index.js";
+import { combinationSource, familiarityLine, highTechGadgets, isMerchantInfluence, readyHighTechEquipment, successRollFamiliarity, type EquipmentSwitches } from "./index.js";
 
 type Listener = (context: any) => void;
 
@@ -36,7 +36,7 @@ function fakeApi() {
   return {
     rules,
     combat: { hooks: HOOKS },
-    data: { hooks: { skillBonuses: "gworld.skillBonuses" }, registerPriceModifier: vi.fn() },
+    data: { hooks: { skillBonuses: "gworld.skillBonuses", legalityClass: "gworld.legalityClass" }, registerPriceModifier: vi.fn() },
     sheets: { registerSheetSection: vi.fn(), registerRowAction: (r: any) => rowActions.push(r) },
   };
 }
@@ -245,5 +245,96 @@ describe("TL penalties as unfamiliarity (p. 11)", () => {
     const actor = { items: [canoe], system: { familiarities: ["Dugout Canoe"] } };
     const context = fire("gworld.skillBonuses", { actor, item: { system: { attribute: "DX" } }, name: "Boating/TL6 (Unpowered)", lines: [{ key: "techLevel", value: -6 }] });
     expect(context.lines.at(-1)).toMatchObject({ value: 6, source: MODULE_ID });
+  });
+});
+
+describe("styling on Merchant used as an Influence roll (p. 10; API 1.95.0)", () => {
+  const influence = (patch: Record<string, unknown> = {}) => ({
+    kind: "contest", skill: "Merchant", tags: ["contest", "quickContest", "influence"], modifiers: [] as any[], ...patch,
+  });
+
+  it("adds the shown piece's reaction bonus to the influencer's Merchant roll", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    only(key("equipmentOptions"));
+    const actor = { items: [gear({ name: "Pistol", gadget: { styling: 10, shown: true } })] };
+    expect(fire(HOOKS.successRollModifiers, influence({ actor })).modifiers.map((l: any) => l.value)).toEqual([3]);
+  });
+
+  it("leaves the subject's Will, another Influence skill, hidden gear and the switch off alone", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    only(key("equipmentOptions"));
+    const actor = { items: [gear({ name: "Pistol", gadget: { styling: 10, shown: true } })] };
+    expect(fire(HOOKS.successRollModifiers, influence({ actor, skill: "", tags: ["contest", "quickContest", "influence", "will"] })).modifiers).toEqual([]);
+    expect(fire(HOOKS.successRollModifiers, influence({ actor, skill: "Diplomacy" })).modifiers).toEqual([]);
+    expect(fire(HOOKS.successRollModifiers, influence({ actor: { items: [gear({ gadget: { styling: 10 } })] } })).modifiers).toEqual([]);
+    only();
+    expect(fire(HOOKS.successRollModifiers, influence({ actor })).modifiers).toEqual([]);
+  });
+
+  it("reads the influencer's side by its tags and skill", () => {
+    expect(isMerchantInfluence(influence())).toBe(true);
+    expect(isMerchantInfluence(influence({ skill: "Merchant (Weapons)" }))).toBe(true);
+    expect(isMerchantInfluence(influence({ tags: ["contest", "quickContest"] }))).toBe(false);
+  });
+});
+
+describe("TL penalties as unfamiliarity on rolls made with an item (p. 11; API 1.95.0)", () => {
+  const boating = { type: "skill", name: "Boating/TL6 (Unpowered)", system: { attribute: "DX" } };
+  const canoe = { name: "Dugout Canoe", system: { tl: "0" } };
+  const control = (actor: any, modifiers: any[], patch: Record<string, unknown> = {}) => ({
+    actor, item: canoe, kind: "skill", skill: "Boating (Unpowered)", tags: ["vehicleControl", "techLevel"], modifiers, ...patch,
+  });
+
+  it("lifts a vehicle control roll's TL penalty once the operator knows the canoe (the book's example)", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    on.familiarity = true;
+    const actor = { items: [boating], system: { familiarities: ["Dugout Canoe"] } };
+    const context = fire(HOOKS.successRollModifiers, control(actor, [{ key: "techLevel", label: "TL0 equipment, TL6 skill", value: -6 }]));
+    expect(context.modifiers.reduce((sum: number, l: any) => sum + l.value, 0)).toBe(0);
+  });
+
+  it("keeps it as one unfamiliarity penalty, the larger, until then", () => {
+    const actor = { items: [boating], system: { familiarities: [] } };
+    const line = successRollFamiliarity(fakeApi() as never, control(actor, [{ key: "techLevel", value: -6 }, { key: "unfamiliar", value: -2 }]));
+    expect(line).toMatchObject({ value: 2 });
+  });
+
+  it("leaves an attack, an IQ-based roll, a roll with no item or no TL line, and the switch off alone", () => {
+    const api = fakeApi();
+    const actor = { items: [boating], system: { familiarities: ["Dugout Canoe"] } };
+    const lines = [{ key: "techLevel", value: -6 }];
+    expect(successRollFamiliarity(api as never, control(actor, lines, { kind: "attack" }))).toBeNull();
+    expect(successRollFamiliarity(api as never, control(actor, lines, { tags: ["IQ", "techLevel"] }))).toBeNull();
+    expect(successRollFamiliarity(api as never, control(actor, lines, { item: null }))).toBeNull();
+    expect(successRollFamiliarity(api as never, control(actor, []))).toBeNull();
+    readyHighTechEquipment(api as never, switches);
+    expect(fire(HOOKS.successRollModifiers, control(actor, [{ key: "techLevel", value: -6 }])).modifiers).toHaveLength(1);
+  });
+});
+
+describe("an antique's Legality Class wherever the system reads it (p. 8; API 1.95.0)", () => {
+  const gatling = (book: string, patch: Record<string, unknown> = {}) => gear({
+    name: "Gatling Gun", book, actor: { system: { tl: 8 } }, system: { tl: "5", lc: 2, category: "weapon" }, ...patch,
+  });
+
+  it("raises a High-Tech antique's class for the Gear tab and the license cost", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    only(key("antiqueLegality"));
+    const item = gatling("high-tech");
+    expect(fire("gworld.legalityClass", { item, actor: item.actor, lc: 2 }).lc).toBe(3);
+  });
+
+  it("keeps an always-controlled weapon's class, and leaves the switch off and Ultra-Tech's gear alone", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    only(key("antiqueLegality"));
+    const nbc = gatling("high-tech", { gadget: { controlled: true } });
+    expect(fire("gworld.legalityClass", { item: nbc, actor: nbc.actor, lc: 2 }).lc).toBe(2);
+    only(key("legalityAndAntiques"));
+    const ut = gatling("ultra-tech", { system: { tl: "9", lc: 2 } });
+    ut.actor = { system: { tl: 12 } };
+    expect(fire("gworld.legalityClass", { item: ut, actor: ut.actor, lc: 2 }).lc).toBe(2);
+    only();
+    const item = gatling("high-tech");
+    expect(fire("gworld.legalityClass", { item, actor: item.actor, lc: 2 }).lc).toBe(2);
   });
 });

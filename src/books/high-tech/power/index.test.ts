@@ -13,7 +13,7 @@ import { cellCost, replacementSeconds, swappedEndurance } from "../../../shared/
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechCells } from "../../ultra-tech/power/index.js";
 import { POWER_CELLS } from "../../ultra-tech/power/rules.js";
-import { BATTERIES_RULE, BATTERY_SIZES, HIGH_TECH_BATTERIES, generatorFor, highTechBatteries, highTechPowerPrice } from "./index.js";
+import { BATTERIES_RULE, BATTERY_SIZES, HIGH_TECH_BATTERIES, darknessAtCarrier, generatorFor, highTechBatteries, highTechPowerPrice } from "./index.js";
 import { CRANKED, FUELS, GENERATORS, crankFatigue, crankedShare, fuelOf, palmCrankMinutes, solarPowered, tankLeft } from "./generators.js";
 
 const UT_RULE = `${MODULE_ID}.powerCells`;
@@ -205,5 +205,23 @@ describe("generators, collectors and fuel (pp. 14-16)", () => {
     expect(highTechPowerPrice(item, { cost: 600, weight: 50 }, () => true)).toEqual({ cost: 600, weight: 33.333 });
     expect(highTechPowerPrice(item, { cost: 600, weight: 50 }, () => false)).toBeNull();
     expect(highTechPowerPrice({ ...item, system: { ...item.system, tl: "7" } }, { cost: 600, weight: 50 }, () => true)).toBeNull();
+  });
+});
+
+describe("the solar recharger's light (p. 15; API 1.96.0)", () => {
+  const api = (reading: { penalty: number } | null) => ({ areas: { darknessAt: vi.fn(() => reading) } });
+
+  it("reads the darkness penalty at the character's token, with nobody's eyes", () => {
+    const token = { id: "t1" };
+    const a = api({ penalty: -2 });
+    expect(darknessAtCarrier(a as never, { getActiveTokens: () => [token] })).toBe(-2);
+    expect(a.areas.darknessAt).toHaveBeenCalledWith(null, token);
+    expect(solarPowered(darknessAtCarrier(a as never, { getActiveTokens: () => [token] })!)).toBe(false);
+    expect(solarPowered(darknessAtCarrier(api({ penalty: 0 }) as never, { getActiveTokens: () => [token] })!)).toBe(true);
+  });
+
+  it("leaves it to the dialog where the character has no token, or the spot can't be read", () => {
+    expect(darknessAtCarrier(api({ penalty: -3 }) as never, { getActiveTokens: () => [] })).toBeNull();
+    expect(darknessAtCarrier(api(null) as never, { getActiveTokens: () => [{}] })).toBeNull();
   });
 });

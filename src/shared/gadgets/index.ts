@@ -182,6 +182,15 @@ export function failureLines(table: GadgetTable, item: any): Array<{ label: stri
   return lines;
 }
 
+/**
+ * An antique's Legality Class under a book's table: its class (the stored one
+ * unless given), raised for every two full TLs it trails the campaign's (the
+ * carrier's sheet).
+ */
+export function antiqueClassOf(item: any, table: GadgetTable, lc: number | null = typeof item?.system?.lc === "number" ? Number(item.system.lc) : null): { lc: number | null; steps: number } {
+  return antiqueLegality(table.figures, { lc, tl: itemTl(item), campaignTl: campaignTl(item), controlled: gadgetItem(item).controlled });
+}
+
 /** The best reaction bonus the gear a character is showing buys them, where its book prints styling tiers. */
 export function stylingLine(actor: any, on: (key: string) => boolean = isRuleOn): { label: string; value: number } | null {
   let best: { label: string; value: number } | null = null;
@@ -207,10 +216,9 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
   const priced = gadgetPriceOf(item, data);
   const weight = priced?.weight ?? listOf(item).weight;
   const statistics = gadgetStatistics(api, figures, item, data, weight);
-  const tl = itemTl(item);
   const campaign = campaignTl(item);
   const lc = typeof item?.system?.lc === "number" ? Number(item.system.lc) : null;
-  const antique = tables.legality ? antiqueLegality(tables.legality.figures, { lc, tl, campaignTl: campaign, controlled: data.controlled }) : { lc, steps: 0 };
+  const antique = tables.legality ? antiqueClassOf(item, tables.legality) : { lc, steps: 0 };
   const cost = priced?.cost ?? listOf(item).cost;
   const wealthAt = (at: number) => api.rules.averageStartingWealth(at);
   const threshold = campaign ? maintenanceThreshold(table.figures, campaign, wealthAt) : null;

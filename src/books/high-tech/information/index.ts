@@ -7,7 +7,10 @@
  *     section and the Gear tab section: the TL8 models, the options, the
  *     early technologies of a TL6-7 computer, and software priced from the
  *     Program Cost Table. Here too, a worn head-up display's +1 to Driving
- *     and Piloting (p. 21).
+ *     and Piloting (p. 21), and on a roll made with a High-Tech computer or
+ *     program (the item the system names for it, API 1.95.0) the -2 for each
+ *     of an unfamiliar operating system, computer type and program, under
+ *     the system's familiarity rule, and the terminal's penalty (pp. 20-21).
  *   - **booksAndLibraries:** a manual or reference work, marked on its item
  *     sheet with the skill it covers, that a row button follows: the skill
  *     at its attribute default, with a time-spent bonus that can at most win
@@ -19,20 +22,41 @@
 
 import { bookOf } from "../../../shared/book-tables.js";
 import { COMPUTER_TABLES, computerTableOf, initComputers, readyComputers, type ComputerTable } from "../../../shared/computers/index.js";
-import { DIFFICULTIES, isProgram, modelOf } from "../../../shared/computers/data.js";
+import { DIFFICULTIES, computerData, isProgram, modelOf } from "../../../shared/computers/data.js";
 import type { SkillDifficulty } from "../../../shared/computers/rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
-import { COMPUTERS, HUD_BONUS, LIBRARY_RESEARCH, MANUAL_DEFAULT, OCCULT_LIBRARY_COST, TIME_MULTIPLES, hudHelps, isHud, libraryGrade, manualRoll, type LibraryGrade } from "./rules.js";
+import {
+  COMPUTERS,
+  HUD_BONUS,
+  LIBRARY_RESEARCH,
+  MANUAL_DEFAULT,
+  OCCULT_LIBRARY_COST,
+  TERMINALS,
+  TERMINAL_PENALTY,
+  TIME_MULTIPLES,
+  computerUseLines,
+  hudHelps,
+  isHud,
+  libraryGrade,
+  manualRoll,
+  type ComputerUse,
+  type LibraryGrade,
+  type Terminal,
+} from "./rules.js";
 
 const FIELD = "htReference";
+/** What this module keeps on a High-Tech computer: its operating system and terminal (pp. 20-21). */
+const COMPUTER_FIELD = "htComputer";
 const ATTRIBUTES = ["IQ", "DX", "HT", "ST", "Will", "Per"] as const;
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Books.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Books.${key}`, data);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 const signed = (value: number) => (value > 0 ? `+${value}` : String(value));
+const C = (key: string) => game.i18n.localize(`GCC.HT.ComputerUse.${key}`);
+const CF = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.ComputerUse.${key}`, data);
 
 /** High-Tech's computer table, behind the book's own switch (its full key). */
 export function highTechComputers(rule: string): ComputerTable {
@@ -68,7 +92,61 @@ export function initInformation(computerRule: string): void {
       occult: flag(),
       extendsToSkill: flag(),
     }),
+    [COMPUTER_FIELD]: new f.SchemaField({
+      operatingSystem: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
+      terminal: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...TERMINALS] }),
+    }),
   });
+}
+
+/** A High-Tech computer's operating system and terminal, with nothing missing. */
+export function computerSetup(item: any): { operatingSystem: string; terminal: Terminal } {
+  const data = item?.system?.extensions?.[MODULE_ID]?.[COMPUTER_FIELD] ?? {};
+  return {
+    operatingSystem: String(data.operatingSystem ?? "").trim(),
+    terminal: (TERMINALS as readonly string[]).includes(data.terminal) ? data.terminal : "",
+  };
+}
+
+/** A High-Tech computer, where the item is one and the switch is on. */
+function highTechComputer(item: any): boolean {
+  const table = computerTableOf(item);
+  return table?.book === "high-tech" && Boolean(modelOf(item, table));
+}
+
+/**
+ * What a roll made with this item is made with, as the familiarity rule
+ * reads it: a High-Tech computer, or a High-Tech program and the computer it
+ * runs on. The computer type goes by the computer's name, as the system's
+ * familiarities go by names. Null for anything else.
+ */
+export function computerUseOf(item: any): ComputerUse | null {
+  const table = computerTableOf(item);
+  if (table?.book !== "high-tech" || item?.type !== "equipment") return null;
+  const program = isProgram(item, table) ? item : null;
+  const computer = program ? (item.actor?.items?.get?.(computerData(item).runsOn) ?? null) : modelOf(item, table) ? item : null;
+  if (!program && !computer) return null;
+  const known = computer && highTechComputer(computer) ? computer : null;
+  const setup = computerSetup(known);
+  return {
+    program: program ? String(program.name ?? "") : null,
+    computerType: known ? String(known.name ?? "") : null,
+    operatingSystem: setup.operatingSystem || null,
+    terminal: setup.terminal,
+  };
+}
+
+/** The lines a roll with a High-Tech computer or program takes, labelled. */
+export function computerRollLines(api: GWorldApi, actor: any, item: any): Array<{ label: string; value: number }> {
+  const use = computerUseOf(item);
+  if (!use) return [];
+  // The familiarity rule is the system's, and a character without a list (an NPC) takes none of it.
+  const list = actor?.system?.familiarities;
+  const familiar = api.registry.isRuleOn("familiarity") && Array.isArray(list) ? (name: string) => api.rules.isFamiliar(list.map(String), name) : null;
+  return computerUseLines(use, familiar).map((line) => ({
+    label: line.key === "terminal" ? CF("TerminalLine", { terminal: C(`Terminal.${line.name}`) }) : CF(`Unfamiliar.${line.key}`, { name: line.name }),
+    value: line.value,
+  }));
 }
 
 /** This module's reference data on an item, with nothing missing. */
@@ -196,6 +274,13 @@ export function readyInformation(api: GWorldApi, on: { computers: () => boolean;
     }
   });
 
+  // An unfamiliar operating system, computer type or program, and a cramped
+  // terminal, on a roll made with a High-Tech computer or program (pp. 20-21).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.computers() || !context?.item) return;
+    context.modifiers.push(...computerRollLines(api, context.actor, context.item));
+  });
+
   // A library on an occult subject costs a hundred times as much (p. 18).
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -215,6 +300,32 @@ export function readyInformation(api: GWorldApi, on: { computers: () => boolean;
     visible: (item) => on.books() && item?.type === "equipment" && !(item.system?.meleeModes?.length || item.system?.rangedModes?.length) && !isComputing(item),
     context: (item) => itemContext(item),
     listeners: (element, item) => itemListeners(element, item),
+  });
+
+  api.sheets.registerSheetSection({
+    module: MODULE_ID,
+    key: "ht-computer-use",
+    sheet: "item",
+    template: `modules/${MODULE_ID}/templates/ht-computer-use.hbs`,
+    visible: (item) => on.computers() && highTechComputer(item),
+    context: (item) => {
+      const setup = computerSetup(item);
+      return {
+        setup,
+        terminals: TERMINALS.map((value) => ({
+          value,
+          selected: value === setup.terminal,
+          label: TERMINAL_PENALTY[value] ? CF("TerminalOption", { terminal: C(`Terminal.${value}`), penalty: TERMINAL_PENALTY[value] }) : C(`Terminal.${value || "none"}`),
+        })),
+      };
+    },
+    listeners: (element, item) => {
+      element.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-ht-computer]").forEach((input) => {
+        input.addEventListener("change", async () => {
+          await item.update({ [`system.extensions.${MODULE_ID}.${COMPUTER_FIELD}.${input.dataset.htComputer}`]: String(input.value ?? "").trim() });
+        });
+      });
+    },
   });
 
   api.sheets.registerRowAction({
