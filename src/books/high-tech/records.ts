@@ -24,7 +24,22 @@ import { MODULE_ID } from "../../shared/module.js";
 import { explosive, type ExplosiveRow } from "./explosives/ref.js";
 
 /** The keys this registers, for anything that needs to know them. */
-export const RECORD_KEYS = ["explosive"] as const;
+export const RECORD_KEYS = ["explosive", "firearmBuild"] as const;
+
+/** A barrel heavier or lighter than usual (p. 86). */
+export const BARRELS = ["", "light", "extraHeavy"] as const;
+export type Barrel = (typeof BARRELS)[number];
+
+/** How a gun is built, as its record says. */
+export interface FirearmBuild {
+  waterPints: number;
+  condenser: boolean;
+  barrel: Barrel;
+  /** 0 for the usual time. */
+  barrelChangeSeconds: number;
+  /** 0 for an ordinary gun. */
+  underwaterFactor: number;
+}
 
 /** Adds the record fields to this module's data on equipment and armour. */
 export function registerHighTechRecordData(): void {
@@ -34,7 +49,27 @@ export function registerHighTechRecordData(): void {
       type: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
       pounds: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
     }),
+    firearmBuild: new f.SchemaField({
+      waterPints: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+      condenser: new f.BooleanField({ initial: false }),
+      barrel: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...BARRELS] }),
+      barrelChangeSeconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+      underwaterFactor: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+    }),
   });
+}
+
+/** How a gun is built, with nothing missing. */
+export function firearmBuild(item: any): FirearmBuild {
+  const d = item?.system?.extensions?.[MODULE_ID]?.firearmBuild ?? {};
+  const count = (v: unknown) => Math.max(0, Number(v) || 0);
+  return {
+    waterPints: count(d.waterPints),
+    condenser: d.condenser === true,
+    barrel: BARRELS.includes(d.barrel) ? d.barrel : "",
+    barrelChangeSeconds: Math.floor(count(d.barrelChangeSeconds)),
+    underwaterFactor: count(d.underwaterFactor),
+  };
 }
 
 /** An item's charge: its row of the REF table and the pounds of it, or null for an item that is none. */

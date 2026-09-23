@@ -9,7 +9,7 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { EXPLOSIVES } from "./explosives/ref.js";
-import { chargeOf } from "./records.js";
+import { chargeOf, firearmBuild } from "./records.js";
 
 const ROOT = join(import.meta.dirname, "../../..");
 const PACKS = join(ROOT, "books/high-tech/packs-src");
@@ -448,5 +448,32 @@ describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
     const others = [...read(join(PACKS, "equipment/high-tech-armor.json")), ...read(join(PACKS, "equipment/high-tech-gear.json")), ...byHand("equipment")];
     const held = new Set(others.map((d) => d.name.toLowerCase()));
     expect(captured.filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
+  });
+});
+
+describe("High-Tech's guns built for sustained fire and underwater (#368)", () => {
+  const gear = read(join(PACKS, "equipment/high-tech-gear.json"));
+  const build = (name: string) => firearmBuild(named(gear, name));
+
+  it("gives the water-cooled machine guns their jackets (pp. 129-131)", () => {
+    expect(build("Maxim Mk I, .450 MH").waterPints).toBe(7.5);
+    expect(build("Maxim MG08, 7.92x57mm").waterPints).toBe(7);
+    expect(build("Vickers Mk I, .303").waterPints).toBe(9);
+    expect(build("Browning M1917, .30-06").waterPints).toBe(8);
+  });
+
+  it("marks the barrels the book says to treat as extra-heavy, and the quick barrel changes (pp. 131-136)", () => {
+    for (const name of ["Hotchkiss Mle 1914, 8x50mmR", "Browning M1919A4, .30-06", "Enfield Bren Mk I, .303", "Browning M2HB, .50 Browning", "KPZ DShK-38, 12.7x108mm"]) {
+      expect(build(name).barrel, name).toBe("extraHeavy");
+    }
+    expect(build("Rheinmetall MG34, 7.92x57mm").barrelChangeSeconds).toBe(6);
+    expect(build("Rheinmetall MG42, 7.92x57mm").barrelChangeSeconds).toBe(3);
+    expect(build("H&K HK21A1, 7.62x51mm").barrelChangeSeconds).toBe(3);
+    expect(build("Saco M60, 7.62x51mm")).toEqual({ waterPints: 0, condenser: false, barrel: "", barrelChangeSeconds: 0, underwaterFactor: 0 });
+  });
+
+  it("counts distance underwater x25 for the two guns built for it (pp. 92, 117)", () => {
+    expect(build("H&K P11, 7.62x36mm").underwaterFactor).toBe(25);
+    expect(build("TsNIITochMash APS, 5.66x39mm").underwaterFactor).toBe(25);
   });
 });

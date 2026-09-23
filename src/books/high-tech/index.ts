@@ -13,17 +13,22 @@
  * thumbing, and the shooting options and gun techniques: the two-handed
  * stance, Precision Aiming, the Ranged Rapid Strike, Close-Quarters Battle,
  * Targeted Attacks with guns, Instant Arsenal Disarm and the expanded
- * Gunslinger (pp. 79-85, 129, 153-154, 249-252).
+ * Gunslinger, the special shooting situations (underwater, into water,
+ * steeply into the air, in space), sustained fire and the aftermath of a
+ * firefight (pp. 79-87, 129-137, 153-154, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initDrawing, readyDrawing } from "./drawing/index.js";
+import { readyAftermath } from "./aftermath/index.js";
+import { readyEnvironments } from "./environments/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower } from "./power/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
+import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -62,6 +67,9 @@ const RULES = [
   { key: "precisionAiming", pages: "pp. 84, 250-251", implemented: true },
   { key: "rangedRapidStrike", pages: "pp. 85, 252", implemented: true },
   { key: "gunTechniques", pages: "pp. 250-252", implemented: true },
+  { key: "shootingEnvironments", pages: "pp. 85, 92, 117", implemented: true },
+  { key: "sustainedFire", pages: "pp. 85-86, 129-137", implemented: true },
+  { key: "firefightAftermath", pages: "p. 87", implemented: true },
   // Cinematic: the optional additions to Gunslinger.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
 ] as const;
@@ -95,13 +103,13 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms(rateOfFireFields);
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f) }));
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
-  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction") });
+  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
   const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded") };
   readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
@@ -109,6 +117,9 @@ function ready(api: GWorldApi): void {
     techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),
   });
   readyShooting(api, shooting);
+  readyEnvironments(api, rule("shootingEnvironments"));
+  readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
+  readyAftermath(api, rule("firefightAftermath"));
 }
 
 export const book: BookRules = {

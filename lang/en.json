@@ -4853,6 +4853,18 @@
         "gunslingerExpanded": {
           "Name": "Expanded Gunslinger (cinematic)",
           "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant, and the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved (High-Tech p. 249)."
+        },
+        "shootingEnvironments": {
+          "Name": "Special shooting situations",
+          "Hint": "A scene the GM marks underwater: a TL6-8 gun's ranges divided by 1,000 (by 25 for a gun built to fire underwater, such as the H&K P11 and the APS), Malf. 1 less, 2 less for an automatic. A scene in space: an automatic TL6-8 gun malfunctions on 14 (not revolvers or manual repeaters). Shots into water at -4, with the water's depth counted a thousand times over against the gun's ranges; shots at 50-90 degrees into the air at 80% of the range (High-Tech pp. 85, 92, 117)."
+        },
+        "sustainedFire": {
+          "Name": "Sustained fire",
+          "Hint": "Every round fired heats the gun: past its safe number (100 for most small arms, 50 if unreliable, 150-200 if reliable; a machine gun's 800, 400 or 200 by how it is fired; changed by TL, barrel and maintenance) Acc and Malf. drop by 1, at three times it by 2 for a machine gun, and the Acc lost becomes permanent. A minute's pause lets a gun short of it start again; 15 minutes cools one past it. Water jackets take the heat until the water is gone (500 rounds a pint, 5,000 with a condenser); a barrel change takes 10 seconds and a Guns or Gunner roll, a burned hand on a critical failure (High-Tech pp. 85-86, 129-137)."
+        },
+        "firefightAftermath": {
+          "Name": "After the firefight",
+          "Hint": "A GM tool: everyone present (the selected tokens, or the fight's combatants) is at -4 to Hearing, -5 if the shooting was indoors, and at night -2 to Vision in the dark, for (20 - HT) minutes and then until an HT roll each second succeeds. Protected Hearing and Protected Vision prevent each (High-Tech p. 87)."
         }
       },
       "Firearm": {
@@ -5180,6 +5192,90 @@
           "intact": "The gun stays in the foe's hands, intact and ready.",
           "shotAtHand": "Critical failure: the foe keeps the gun and may shoot the disarmer in the hand at full skill."
         }
+      },
+      "Sustained": {
+        "Title": "Sustained fire",
+        "BarrelLabel": "Barrel",
+        "BarrelTooltip": "A light barrel halves a machine gun's safe number, an extra-heavy one adds half. An automatic rifle the book says to treat as a machine gun with a light barrel is marked light here (High-Tech p. 86).",
+        "Barrel": {
+          "standard": "Standard",
+          "light": "Light",
+          "extraHeavy": "Extra-heavy"
+        },
+        "DisciplineLabel": "Fired",
+        "DisciplineTooltip": "Sustained: bursts shorter than its RoF with 4-5 second pauses (800 safe rounds). Rapid: 2-3 second pauses (400). Assault: long bursts or no pauses (200). Worked out from the pauses and bursts unless set (High-Tech p. 86).",
+        "Discipline": {
+          "auto": "As the pauses show",
+          "sustained": "Sustained",
+          "rapid": "Rapid",
+          "assault": "Assault"
+        },
+        "WaterLabel": "Water jacket (pints)",
+        "WaterTooltip": "A water-cooled gun fires without heating until the water is gone: a pint every 500 rounds (High-Tech p. 129).",
+        "BarrelSecondsLabel": "Barrel change (seconds)",
+        "BarrelSecondsTooltip": "Blank or 0 for the usual 10 seconds; some guns change faster (High-Tech pp. 129-136).",
+        "AccuracyLostTooltip": "Acc lost for good, as when a barrel was fired to three times its safe number (High-Tech p. 86).",
+        "Maintained": "Well-maintained",
+        "MaintainedHint": "A well-maintained gun and feed device: its safe number x1.25 (High-Tech pp. 80, 85-86).",
+        "Condenser": "Condenser",
+        "CondenserHint": "A condenser canister recovers the steam: ten times the rounds per pint (High-Tech p. 129).",
+        "SafeSmallArms": "Safe: {safe} rounds in under a minute.",
+        "SafeMachineGun": "Safe: {sustained} rounds of sustained fire, {rapid} rapid, {assault} assault.",
+        "Heat": "Heat: {shots} of {limit}.",
+        "HeatOver": "Heat: {shots} of {limit}: Acc -{accuracy}, Malf. -{malfunction} until it cools (15 minutes).",
+        "Cool": "Cooled",
+        "CoolHint": "The gun has rested 15 minutes, or had its barrel changed: its heat is gone.",
+        "WaterLine": "Water jacket: {pints} pints, {rounds} rounds of cooling left ({per} a pint).",
+        "Refill": "Refill",
+        "ChangeBarrel": "Change barrel",
+        "BarrelHint": "A Guns or Gunner roll: on a success the fresh barrel is cool; a critical failure burns the hand, 1d minutes of moderate pain (High-Tech p. 129).",
+        "BarrelRoll": "Changing the barrel of {gun} ({seconds} s)",
+        "BarrelChanged": "Barrel changed in {seconds} seconds: the gun is cool.",
+        "BarrelFailed": "The barrel isn't changed: {seconds} seconds spent.",
+        "BarrelBurned": "Burned hand: {minutes} minutes of moderate pain (rolled {die}).",
+        "NoActor": "Only a gun someone carries can have its barrel changed.",
+        "NoSkill": "No level in {skill} to change the barrel with.",
+        "Overheated": "Overheated: Acc -{accuracy}, Malf. -{malfunction} until it cools.",
+        "Warped": "Fired to three times its safe number: Acc -{accuracy} for good.",
+        "WaterGone": "The water jacket has boiled dry: the barrel heats from now on.",
+        "HotNote": "Hot: Acc -{accuracy}, Malf. -{malfunction}",
+        "HotHint": "{shots} rounds against a safe {limit} (High-Tech pp. 85-86)."
+      },
+      "Environment": {
+        "Title": "Shooting environment",
+        "Hint": "Where the scene's guns are fired. The same facts the beam weapons' air and water use.",
+        "Underwater": "Underwater",
+        "Space": "In space (vacuum)",
+        "Set": "Set",
+        "NoScene": "There is no scene to set.",
+        "DoneUnderwater": "The scene is underwater.",
+        "DoneSpace": "The scene is in space.",
+        "DoneStandard": "The scene is in air.",
+        "UnderwaterNote": "Underwater: range /{factor}, Malf. -{malf}",
+        "UnderwaterBuiltNote": "Underwater gun: range /{factor}",
+        "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points do nothing (High-Tech p. 85).",
+        "SpaceNote": "In space: Malf. {malf}",
+        "SpaceHint": "Vacuum and temperature extremes: an automatic TL6-8 gun malfunctions on 14 (High-Tech p. 85).",
+        "IntoWater": "Into water (feet deep)",
+        "IntoWaterLine": "Into water",
+        "IntoWaterNote": "{feet} feet of water count as {yards} yards more.",
+        "SteepAngle": "Steeply up (50-90 degrees)",
+        "SteepAngleNote": "Range at 80% (High-Tech p. 85).",
+        "OutOfRange": "Out of range: the shot counts {yards} yards against a Max of {max}.",
+        "PastHalfDamage": "Past 1/2D ({yards} yards against {half}): half damage"
+      },
+      "Aftermath": {
+        "Title": "After the firefight",
+        "Hint": "Hard of hearing, and at night half-blind in the dark, for (20 - HT) minutes: {names}.",
+        "Indoors": "The shooting was inside a building or vehicle (-5 to Hearing, not -4)",
+        "Night": "At night (-2 to Vision in the dark)",
+        "Apply": "Apply",
+        "NoOne": "Select the tokens who were there, or view the fight's combat.",
+        "Condition": "Deafened by gunfire",
+        "HearingLine": "After the firefight: Hearing",
+        "VisionLine": "After the firefight: Vision in the dark",
+        "Line": "{name}: Hearing {hearing}, Vision {vision}, for {minutes} minutes {seconds} seconds.",
+        "Spared": "{name}: protected, no effect."
       }
     }
   },

@@ -60,6 +60,8 @@ export interface FirearmSwitches {
   quality: () => boolean;
   care: () => boolean;
   immediateAction: () => boolean;
+  /** Sustained fire, whose warped barrels keep their Acc lost in the same field (pp. 85-86). */
+  sustainedFire?: () => boolean;
 }
 
 /** What this module keeps on a gun. */
@@ -329,7 +331,8 @@ export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
   // The rows: Acc and Malf. from quality work in place of the Basic Set grade's, less what wear costs.
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
     const item = context?.item;
-    if (!(on.quality() || on.care()) || !isFirearm(api, item)) return;
+    const accuracyLostOn = on.care() || (on.sustainedFire?.() ?? false);
+    if (!(on.quality() || accuracyLostOn) || !isFirearm(api, item)) return;
     const data = firearmData(item);
     const quality = qualityOf(item);
     const grade = basicGrade(api, item);
@@ -341,7 +344,7 @@ export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
         row.accuracy = (Number(row.accuracy) || 0) - api.rules.qualityAccuracyBonus("firearm", grade as never, false) + bonus;
         if (bonus) row.notes?.push?.({ label: F("AccurateNote", { bonus }), hint: L("AccurateHint") });
       }
-      if (on.care() && data.accuracyLost) {
+      if (accuracyLostOn && data.accuracyLost) {
         row.accuracy = Math.max(0, (Number(row.accuracy) || 0) - data.accuracyLost);
         row.notes?.push?.({ label: F("AccuracyLostNote", { lost: data.accuracyLost }), hint: L("AccuracyLostHint") });
       }

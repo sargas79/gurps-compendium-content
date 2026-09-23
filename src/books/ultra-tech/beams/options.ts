@@ -3,6 +3,7 @@
  * gravitic focus and FTL beams; overheating from sustained fire, and hotshots.
  */
 
+import { afterFiring as sharedAfterFiring, isOverheated as sharedIsOverheated, type Heat, type HeatTable } from "../../../shared/heat/rules.js";
 import type { BeamFamily } from "./rules.js";
 
 /** How a beam weapon was built. */
@@ -83,19 +84,18 @@ export function heatLimit(rateOfFire: number): number {
 }
 
 /** A weapon's heat: shots fired since it last cooled, and when it last fired. */
-export interface Heat {
-  shots: number;
-  lastShot: number | null;
-}
+export type { Heat };
 
 /** A pause this long between attacks keeps a beam from building heat, and a minute cools it (p. 133). */
 export const PAUSE_SECONDS = 10;
 export const COOL_SECONDS = 60;
 
+/** Ultra-Tech's timings for the shared heat engine. */
+export const BEAM_HEAT: HeatTable = Object.freeze({ pauseSeconds: PAUSE_SECONDS, coolSeconds: COOL_SECONDS });
+
 /** Whether the weapon is overheated now. */
 export function isOverheated(heat: Heat, limit: number, now: number): boolean {
-  if (heat.lastShot !== null && now - heat.lastShot >= COOL_SECONDS) return false;
-  return heat.shots > limit;
+  return sharedIsOverheated(heat, limit, now, BEAM_HEAT);
 }
 
 /**
@@ -104,11 +104,7 @@ export function isOverheated(heat: Heat, limit: number, now: number): boolean {
  * again; otherwise the shots add up.
  */
 export function afterFiring(heat: Heat, shots: number, limit: number, now: number): Heat {
-  const gap = heat.lastShot === null ? Number.POSITIVE_INFINITY : now - heat.lastShot;
-  let count = heat.shots;
-  if (gap >= COOL_SECONDS) count = 0;
-  else if (count <= limit && gap >= PAUSE_SECONDS) count = 0;
-  return { shots: count + Math.max(0, Math.floor(shots)), lastShot: now };
+  return sharedAfterFiring(heat, Math.max(0, Math.floor(shots)), limit, now, BEAM_HEAT);
 }
 
 /** An overheated beam malfunctions on 14, a hotshot on 14, a hotshot while overheated on 12 (p. 133). */
