@@ -1,0 +1,14 @@
+{{!-- A restraint: whether it is on its wearer, and where cuffed wrists are
+     held, and what it does (High-Tech p. 217), in the words of the book whose
+     table applies. --}}
+<div class="isub" data-gcc-restraint-section>
+  <div class="isub-head">{{title}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{stateHint}}">{{stateLabel}}
+      <select data-gcc-restraint="state" {{#unless editable}}disabled{{/unless}}>
+        {{#each states as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

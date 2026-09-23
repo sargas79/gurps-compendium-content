@@ -2026,6 +2026,7 @@
       "title": "Lie Detection",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT215-216",
+      "rule": "gurps-compendium-content.lieDetection",
       "reference": "High-Tech pp. 215-216",
       "file": "lie-detection.md",
       "status": "reviewed"
@@ -2044,6 +2045,7 @@
       "title": "Restraints",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT217",
+      "rule": "gurps-compendium-content.restraintDevices",
       "reference": "High-Tech p. 217",
       "file": "restraints.md",
       "status": "reviewed"
