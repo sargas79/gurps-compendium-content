@@ -36,7 +36,8 @@
  * gear, the survival and camping gear, life
  * jackets, swim fins and dye markers, parachutes and Death from Above, and
  * snacks and sports drinks, camouflage patterns, ghillie suits, nets and
- * scent masking, and the liquid projectors and laser
+ * scent masking, encryption and code-breaking, forgery, disguise,
+ * smuggling and mule pills, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
  * the eyes, and the explosives and incendiaries: an explosion's side
  * effects, demolition charges, unstable and home-made explosives, thermite
@@ -49,7 +50,7 @@
  * seal their wearers, and the locks, safes, traps and barriers, and
  * emergency medicine and medical facilities: defibrillators, CPR, first aid
  * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic (pp. 7-11,
- * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 213, 219-225,
+ * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 210-215, 219-225,
  * 249-252).
  */
 
@@ -86,6 +87,7 @@ import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/in
 import { readyBreathing } from "./breathing/index.js";
 import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js";
 import { initMedicine, readyMedicine } from "./medicine/index.js";
+import { readyHighTechCodes } from "./codes/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -220,6 +222,9 @@ const RULES = [
   // Emergency medicine and medical facilities.
   { key: "emergencyMedicine", pages: "pp. 219-221", implemented: true },
   { key: "medicalFacilities", pages: "pp. 222-225", implemented: true },
+  // Encryption and code-breaking; forgery, disguise, smuggling and mule pills.
+  { key: "encryption", pages: "pp. 210-211", implemented: true },
+  { key: "disguiseAndSmuggling", pages: "pp. 213-215", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -323,6 +328,7 @@ function ready(api: GWorldApi): void {
   readyBreathing(api, { breathing: rule("breathingGear"), suits: rule("environmentSuits") });
   readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
+  readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
 }
 
 export const book: BookRules = {
