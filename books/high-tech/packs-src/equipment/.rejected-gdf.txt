@@ -1,10 +1,10 @@
 split DR footnote and TL6 disagree: Silk Vest (TL6) has dr(4/2*), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Silk Vest (TL6)
-split DR footnote and TL6 disagree: Boots, Steel-Toed has dr(6/2), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Boots, Steel-Toed
-split DR footnote and TL5 disagree: Closed-Dress Suit has dr(6/2), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(5); patch whichever is wrong	Closed-Dress Suit
-split DR footnote and TL6 disagree: Bulletproof Shield has dr(10/80), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Bulletproof Shield
-no location	Riot Shield
-no location	Medium Entry Shield
-no location	Large Entry Shield
+duplicate name	Boots, Steel-Toed
+duplicate name	Closed-Dress Suit
+duplicate name	Bulletproof Shield
+duplicate name	Riot Shield
+duplicate name	Medium Entry Shield
+duplicate name	Large Entry Shield
 not modelled	Immediate Action: the default rebases it on + IQ - DX, which the model has no field for; the skill and its penalty are kept
 not modelled	Precision Aiming: the default rebases it on + IQ, which the model has no field for; the skill and its penalty are kept
 not modelled	Grenade à Main: range comes from the Throwing Distance table, not the weapon

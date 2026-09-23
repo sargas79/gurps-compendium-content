@@ -1,0 +1,217 @@
+[
+  {
+    "_id": "1e8a472c9e5cda3a",
+    "name": "Zen Marksmanship (Gyroc)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "eeb771ed7b1f43d9",
+    "name": "Zen Marksmanship (Musket)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "a36ab75cd2ee6174",
+    "name": "Zen Marksmanship (Pistol)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "b5a0b79534757522",
+    "name": "Zen Marksmanship (Rifle)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "08528ac99e61a965",
+    "name": "Zen Marksmanship (Shotgun)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "a432fef2be47ca03",
+    "name": "Zen Marksmanship (Submachine Gun)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "VH",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "2302992a9fee22ab",
+    "name": "Guns Sport/TL (Musket)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Guns (Musket)",
+          "modifier": -3
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 88"
+    }
+  },
+  {
+    "_id": "7d566089401aee6f",
+    "name": "Guns Sport/TL (Pistol)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Guns (Pistol)",
+          "modifier": -3
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 88"
+    }
+  },
+  {
+    "_id": "2f50486fee55fd81",
+    "name": "Precision Aiming",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "40543d1c67617896",
+    "name": "Mounted Shooting",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)",
+        "Beam Weapons (Pistol)",
+        "Beam Weapons (Projector)",
+        "Beam Weapons (Rifle)",
+        "Blowpipe",
+        "Bolas",
+        "Bow",
+        "Crossbow",
+        "Lasso",
+        "Net",
+        "Sling",
+        "Spear Thrower",
+        "Throwing",
+        "Thrown Weapon (Axe/Mace)",
+        "Thrown Weapon (Dart)",
+        "Thrown Weapon (Harpoon)",
+        "Thrown Weapon (Knife)",
+        "Thrown Weapon (Shuriken)",
+        "Thrown Weapon (Spear)",
+        "Thrown Weapon (Stick)"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  }
+]
