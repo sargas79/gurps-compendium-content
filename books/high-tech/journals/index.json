@@ -2047,6 +2047,7 @@
       "title": "Emergency Equipment",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT219",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech p. 219",
       "file": "emergency-equipment.md",
       "status": "reviewed"
@@ -2056,6 +2057,7 @@
       "title": "Airway",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT219",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech p. 219",
       "file": "airway.md",
       "status": "reviewed"
@@ -2065,6 +2067,7 @@
       "title": "Breathing",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT219",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech p. 219",
       "file": "breathing.md",
       "status": "reviewed"
@@ -2074,6 +2077,7 @@
       "title": "Circulation",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT220",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech p. 220",
       "file": "circulation.md",
       "status": "reviewed"
@@ -2083,6 +2087,7 @@
       "title": "First Aid Kits and Doctor’s Bags",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT220-221",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech pp. 220-221",
       "file": "first-aid-kits-and-doctors-bags.md",
       "status": "reviewed"
@@ -2092,6 +2097,7 @@
       "title": "Miscellaneous Emergency Equipment",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT221",
+      "rule": "gurps-compendium-content.emergencyMedicine",
       "reference": "High-Tech p. 221",
       "file": "miscellaneous-emergency-equipment.md",
       "status": "reviewed"
@@ -2110,6 +2116,7 @@
       "title": "Medical Equipment",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT221-223",
+      "rule": "gurps-compendium-content.medicalFacilities",
       "reference": "High-Tech pp. 221-223",
       "file": "medical-equipment.md",
       "status": "reviewed"
@@ -2128,6 +2135,7 @@
       "title": "Surgery",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT223-224",
+      "rule": "gurps-compendium-content.medicalFacilities",
       "reference": "High-Tech pp. 223-224",
       "file": "surgery.md",
       "status": "reviewed"
@@ -2137,6 +2145,7 @@
       "title": "Anesthesia",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT224",
+      "rule": "gurps-compendium-content.medicalFacilities",
       "reference": "High-Tech p. 224",
       "file": "anesthesia.md",
       "status": "reviewed"
@@ -2146,6 +2155,7 @@
       "title": "Antisepsis",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT225",
+      "rule": "gurps-compendium-content.medicalFacilities",
       "reference": "High-Tech p. 225",
       "file": "antisepsis.md",
       "status": "reviewed"

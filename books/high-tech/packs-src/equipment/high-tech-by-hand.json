@@ -10636,7 +10636,14 @@
       "listCost": 3,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "ivFluid"
+          }
+        }
+      }
     }
   },
   {

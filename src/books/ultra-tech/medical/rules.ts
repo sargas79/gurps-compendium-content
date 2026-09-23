@@ -6,15 +6,10 @@
  * and the regeneration ray, and the drugs' effects.
  */
 
-export type DeviceSkill = "firstAid" | "physician" | "surgery" | "diagnosis";
+import { deviceIn, deviceSkill, type Device, type DeviceSkill } from "../../../shared/medical/rules.js";
 
-export interface Device {
-  /** The TL its skills are given at. */
-  tl: number;
-  skills: Partial<Record<DeviceSkill, number>>;
-  /** Skill added per TL after `tl`. */
-  perTl: number;
-}
+// The devices' engine is shared with High-Tech's (src/shared/medical); this is Ultra-Tech's table.
+export { deviceSkill, type Device, type DeviceSkill };
 
 /** The devices that treat patients on their own skills (pp. 196-202). */
 export const DEVICES: ReadonlyArray<[RegExp, Device]> = [
@@ -28,14 +23,7 @@ export const DEVICES: ReadonlyArray<[RegExp, Device]> = [
 ];
 
 export function deviceByName(name: string): Device | null {
-  return DEVICES.find(([pattern]) => pattern.test(String(name ?? "").trim()))?.[1] ?? null;
-}
-
-/** A device's skill at the TL it was made, or null where it has none. */
-export function deviceSkill(device: Device, skill: DeviceSkill, tl: number): number | null {
-  const base = device.skills[skill];
-  if (base === undefined) return null;
-  return base + device.perTl * Math.max(0, Math.floor(tl) - device.tl);
+  return deviceIn(DEVICES, name);
 }
 
 /** Bandage spray stops bleeding and restores 1 HP in 10 seconds at TL9, 5 at TL10, 3 at TL11, 2 at TL12 (p. 197). */

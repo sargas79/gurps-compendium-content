@@ -3578,7 +3578,14 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "airway"
+          }
+        }
+      }
     }
   },
   {
@@ -3686,7 +3693,14 @@
       "listCost": 15,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "ivKit"
+          }
+        }
+      }
     }
   },
   {
@@ -3768,7 +3782,14 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "ivFluid"
+          }
+        }
+      }
     }
   },
   {
@@ -3795,7 +3816,14 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "ivFluid"
+          }
+        }
+      }
     }
   },
   {
@@ -3822,7 +3850,15 @@
       "listCost": 4,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "ivFluid",
+            "meal": true
+          }
+        }
+      }
     }
   },
   {
@@ -3859,6 +3895,10 @@
               "endurance": "20 uses.",
               "raw": "L/20 uses."
             }
+          },
+          "medical": {
+            "kind": "defibrillator",
+            "value": 2
           }
         }
       }
@@ -3898,6 +3938,10 @@
               "endurance": "20 uses.",
               "raw": "L/20 uses."
             }
+          },
+          "medical": {
+            "kind": "defibrillator",
+            "value": 3
           }
         }
       }
@@ -3927,7 +3971,14 @@
       "listCost": 1200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "aed"
+          }
+        }
+      }
     }
   },
   {
@@ -3956,7 +4007,14 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "firstAidKit"
+          }
+        }
+      }
     }
   },
   {
@@ -4147,7 +4205,15 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "firstAidKit",
+            "fluids": true
+          }
+        }
+      }
     }
   },
   {
@@ -4257,7 +4323,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "firstAidKit"
+          }
+        }
+      }
     }
   },
   {
@@ -4286,7 +4359,14 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "firstAidKit"
+          }
+        }
+      }
     }
   },
   {
@@ -4315,7 +4395,14 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "hemostatic"
+          }
+        }
+      }
     }
   },
   {
@@ -4743,7 +4830,15 @@
       "listCost": 15000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "imaging",
+            "value": 1
+          }
+        }
+      }
     }
   },
   {
@@ -4772,7 +4867,14 @@
       "listCost": 30000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "imaging"
+          }
+        }
+      }
     }
   },
   {
@@ -4801,7 +4903,14 @@
       "listCost": 12000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "imaging"
+          }
+        }
+      }
     }
   },
   {
@@ -4830,7 +4939,14 @@
       "listCost": 500000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "imaging"
+          }
+        }
+      }
     }
   },
   {
@@ -4859,7 +4975,14 @@
       "listCost": 150000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "imaging"
+          }
+        }
+      }
     }
   },
   {
@@ -4898,6 +5021,9 @@
               "endurance": "2 hrs.",
               "raw": "S/2 hrs."
             }
+          },
+          "medical": {
+            "kind": "imaging"
           }
         }
       }
@@ -5039,7 +5165,14 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "equipmentModifier": -2
+      "equipmentModifier": -2,
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "surgicalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -5097,7 +5230,14 @@
       "listCost": 50000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "portableSurgery"
+          }
+        }
+      }
     }
   },
   {
@@ -5155,7 +5295,14 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "suturingKit"
+          }
+        }
+      }
     }
   },
   {
@@ -5184,7 +5331,14 @@
       "listCost": 300,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "surgicalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -5214,7 +5368,14 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "equipmentModifier": 1
+      "equipmentModifier": 1,
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "surgicalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -5244,7 +5405,14 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "equipmentModifier": 2
+      "equipmentModifier": 2,
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "surgicalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -5300,7 +5468,14 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "anesthesia"
+          }
+        }
+      }
     }
   },
   {
@@ -5327,7 +5502,15 @@
       "listCost": 2000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "anesthesia",
+            "value": 2
+          }
+        }
+      }
     }
   },
   {
@@ -5354,7 +5537,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "antiseptic"
+          }
+        }
+      }
     }
   },
   {

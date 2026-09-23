@@ -3829,6 +3829,138 @@
           "system.extensions.gurps-compendium-content.camouflage.net": true
         },
         "reason": "the poncho's +2 against infravision, as a net (p. 77) (#385)"
+      },
+      {
+        "pattern": "^Tracheotomy Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "airway"
+        },
+        "reason": "a tracheotomy without it is -5 for improvised equipment (p. 219) (#390)"
+      },
+      {
+        "pattern": "^Manual Defibrillator \\(TL7\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "defibrillator",
+          "system.extensions.gurps-compendium-content.medical.value": 2
+        },
+        "reason": "+2 to resuscitation on an Electronics Operation (Medical) roll (p. 220) (#390)"
+      },
+      {
+        "pattern": "^Manual Defibrillator \\(TL8\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "defibrillator",
+          "system.extensions.gurps-compendium-content.medical.value": 3
+        },
+        "reason": "+3 to resuscitation on an Electronics Operation (Medical) roll (p. 220) (#390)"
+      },
+      {
+        "pattern": "^Automatic External Defibrillator \\(AED\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "aed"
+        },
+        "reason": "IQ+4 to hook up, then resuscitation at skill 12 (p. 220) (#390)"
+      },
+      {
+        "pattern": "^IV Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "ivKit"
+        },
+        "reason": "what an IV solution is given through (p. 220) (#390)"
+      },
+      {
+        "pattern": "^(?:Plasma|Whole Blood)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "ivFluid"
+        },
+        "reason": "blood for an IV, which first aid gear needs for its +2 (p. 220) (#390)"
+      },
+      {
+        "pattern": "^Dextrose$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "ivFluid",
+          "system.extensions.gurps-compendium-content.medical.meal": true
+        },
+        "reason": "IV fluid that counts as a meal (p. 220) (#390)"
+      },
+      {
+        "pattern": "^(?:Doctor's Bag|Small First Aid Kit|First Aid Kit)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "firstAidKit"
+        },
+        "reason": "a first aid kit, which grows depleted (pp. 220-221) (#390)"
+      },
+      {
+        "pattern": "^Crash Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "firstAidKit",
+          "system.extensions.gurps-compendium-content.medical.fluids": true
+        },
+        "reason": "a first aid kit carrying an IV kit and a unit of fluids (p. 221) (#390)"
+      },
+      {
+        "pattern": "^Hemostatic Bandages$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "hemostatic"
+        },
+        "reason": "+1 (quality) to First Aid on a bleeding wound, in 30 seconds (p. 221) (#390)"
+      },
+      {
+        "pattern": "^X-Ray Machine$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "imaging",
+          "system.extensions.gurps-compendium-content.medical.value": 1
+        },
+        "reason": "an imaging instrument giving patient and operator 1d rads a photograph (pp. 222-223) (#390)"
+      },
+      {
+        "pattern": "^(?:Portable X-Ray Machine \\(TL7\\)|Compact X-Ray Machine|CT and MRI Scanners|Semi-Portable Ultrasound|Portable Ultrasound)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "imaging"
+        },
+        "reason": "an imaging instrument: Electronics Operation (Medical), then Diagnosis (pp. 222-223) (#390)"
+      },
+      {
+        "pattern": "^Portable Surgery$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "portableSurgery"
+        },
+        "reason": "+2 (quality) to First Aid as well (p. 224) (#390)"
+      },
+      {
+        "pattern": "^Surgical Kit \\(TL[5-8]\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "surgicalKit"
+        },
+        "reason": "its own TL modifier in place of the Basic Set table's (pp. 223-224) (#390)"
+      },
+      {
+        "pattern": "^Suturing Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "suturingKit"
+        },
+        "reason": "improvised for an operation (p. 224) (#390)"
+      },
+      {
+        "pattern": "^Chloroform or Ether Mask$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "anesthesia"
+        },
+        "reason": "a Physician roll to put the patient under (p. 224) (#390)"
+      },
+      {
+        "pattern": "^Portable Anesthesia Machine$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "anesthesia",
+          "system.extensions.gurps-compendium-content.medical.value": 2
+        },
+        "reason": "a Physician roll at +2 to put the patient under (p. 225) (#390)"
+      },
+      {
+        "pattern": "^Antiseptic$",
+        "set": {
+          "system.extensions.gurps-compendium-content.medical.kind": "antiseptic"
+        },
+        "reason": "removes -2 from the roll against infection (p. 225) (#390)"
       }
     ]
   },
