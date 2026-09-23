@@ -34,7 +34,7 @@ function fakeApi() {
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
     sheets: { registerSheetSection: () => undefined },
-    data: { registerPriceModifier: (m: any) => prices.push(m) },
+    data: { registerPriceModifier: (m: any) => prices.push(m), registerPoison: () => undefined },
     items: { setMalfunction: async (item: any, malfunction: any) => { malfunctions.push({ item: item.name, ...malfunction }); } },
     actors: { skillLevel: () => null, attribute: () => 10 },
   };

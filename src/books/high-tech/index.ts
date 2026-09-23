@@ -25,7 +25,8 @@
  * and ammunition: calibres priced from the Ammunition Tables, the ammunition
  * upgrades, cartridge conversions, handloading and misloading, and the
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
- * and projectile upgrades (pp. 7-11, 79-93, 109, 127-141, 147-178, 249-252).
+ * and projectile upgrades, and the explosive and cargo rounds (pp. 7-11,
+ * 79-93, 109, 127-141, 143, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -115,6 +116,8 @@ const RULES = [
   { key: "exoticBullets", pages: "p. 168", implemented: true },
   { key: "multipleProjectileLoads", pages: "pp. 172-174", implemented: true },
   { key: "projectileUpgrades", pages: "pp. 174-175", implemented: true },
+  { key: "explosiveProjectiles", pages: "pp. 169-170, 175", implemented: true },
+  { key: "cargoProjectiles", pages: "pp. 143, 171-172", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -168,6 +171,7 @@ function ready(api: GWorldApi): void {
   const ammunition = {
     upgrades: rule("ammunitionUpgrades"), handloading: rule("handloading"), misloading: rule("misloading"),
     projectiles: rule("projectileOptions"), exotic: rule("exoticBullets"), multiple: rule("multipleProjectileLoads"), projectileUpgrades: rule("projectileUpgrades"),
+    explosive: rule("explosiveProjectiles"), cargo: rule("cargoProjectiles"),
   };
   // The loads first: what the gun fires is its own row before the setting (underwater, sights, bursts) changes it.
   readyAmmunition(api, ammunition);

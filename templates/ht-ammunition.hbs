@@ -1,4 +1,4 @@
-{{!-- A gun's ammunition by mode, or a box's rounds: calibre, upgrades, projectiles, handloading, misloading (High-Tech pp. 161-178). --}}
+{{!-- A gun's ammunition by mode, or a box's rounds: calibre, upgrades, projectiles, explosive and cargo rounds, handloading, misloading (High-Tech pp. 143, 161-178). --}}
 <div class="isub" data-gcc-ht-ammunition>
   <div class="isub-head">{{localize "GCC.HT.Ammunition.Title"}}</div>
   {{#if box}}
@@ -49,6 +49,56 @@
         {{#if m.poison}}
           <label data-tooltip="{{localize 'GCC.HT.Ammunition.PoisonCostHint'}}">{{localize "GCC.HT.Ammunition.PoisonCost"}}
             <input type="number" min="0" step="0.01" data-gcc-ht-ammo="poisonCost" data-mode="{{m.index}}" value="{{m.poison.cost}}" style="width:80px" {{#unless ../editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if m.cargo}}
+      <div class="ifields">
+        {{#if m.cargo.smokes}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.SmokeHint'}}">{{localize "GCC.HT.Ammunition.SmokeLabel"}}
+            <select data-gcc-ht-ammo="smoke" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each m.cargo.smokes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
+        {{/if}}
+        {{#if m.cargo.illuminations}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.IlluminationHint'}}">{{localize "GCC.HT.Ammunition.IlluminationLabel"}}
+            <select data-gcc-ht-ammo="illumination" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each m.cargo.illuminations as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
+        {{/if}}
+        {{#if m.cargo.vomiting}}
+          <label class="icheck" data-tooltip="{{localize 'GCC.HT.Ammunition.VomitingHint'}}"><input type="checkbox" data-gcc-ht-ammo="vomiting" data-mode="{{m.index}}" {{#if m.cargo.vomiting.checked}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{localize "GCC.HT.Ammunition.Vomiting"}}</label>
+        {{/if}}
+        {{#if m.cargo.liquids}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.LiquidHint'}}">{{localize "GCC.HT.Ammunition.LiquidLabel"}}
+            <select data-gcc-ht-ammo="liquid" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each m.cargo.liquids as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
+        {{/if}}
+        {{#if m.cargo.fillers}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.FillerHint'}}">{{localize "GCC.HT.Ammunition.FillerLabel"}}
+            <select data-gcc-ht-ammo="poisonFiller" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each m.cargo.fillers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
+        {{/if}}
+        {{#if m.cargo.area}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.AreaRadiusHint'}}">{{localize "GCC.HT.Ammunition.AreaRadius"}}
+            <input type="number" min="0" step="1" data-gcc-ht-ammo="radius" data-mode="{{m.index}}" value="{{m.cargo.area.radius}}" style="width:70px" {{#unless ../editable}}disabled{{/unless}} />
+          </label>
+          {{#if m.cargo.area.showSeconds}}
+            <label data-tooltip="{{localize 'GCC.HT.Ammunition.AreaSecondsHint'}}">{{localize "GCC.HT.Ammunition.AreaSeconds"}}
+              <input type="number" min="0" step="1" data-gcc-ht-ammo="seconds" data-mode="{{m.index}}" value="{{m.cargo.area.seconds}}" style="width:70px" {{#unless ../editable}}disabled{{/unless}} />
+            </label>
+          {{/if}}
+        {{/if}}
+        {{#if m.cargo.hit}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.HitHint'}}">{{localize "GCC.HT.Ammunition.HitLabel"}}
+            <input type="text" data-gcc-ht-ammo="hitDamage" data-mode="{{m.index}}" value="{{m.cargo.hit.value}}" placeholder="{{m.cargo.hit.placeholder}}" style="width:80px" {{#unless ../editable}}disabled{{/unless}} />
           </label>
         {{/if}}
       </div>

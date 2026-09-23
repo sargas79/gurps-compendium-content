@@ -28,7 +28,11 @@ export interface LoadRow {
   affliction: boolean;
   afflictionAttribute: string;
   afflictionModifier: number;
-  followUp: null | { damage: string; damageType: string; explosive: boolean; armorDivisor: number; fragmentation?: string; followUp?: boolean; radiation?: boolean; surge?: boolean; label: string };
+  followUp: null | {
+    damage: string; damageType: string; explosive: boolean; armorDivisor: number; fragmentation?: string; followUp?: boolean; radiation?: boolean; surge?: boolean; label: string;
+    /** The blast's fragments and where it goes off (GWorld API 1.72.0). */
+    fragmentationType?: string; fragmentationDivisor?: number; blastPlacement?: string;
+  };
   /** Keys of notes to add: a special effect's size, or a rule the row can't carry. */
   notes: Array<{ key: string; data?: Record<string, unknown> }>;
   /** Acc, Malf. and ST, where a load changes them (High-Tech's ammunition does). */
@@ -44,6 +48,16 @@ export interface LoadRow {
   firstHit?: null | { damage: string; damageType?: string; armorDivisor?: number; label?: string };
   noOverpenetration?: boolean;
   scatterSquared?: boolean;
+  /**
+   * The blast's fragments and where it goes off (GWorld API 1.72.0): their
+   * damage type (blank for cutting) and divisor, how often and how long hot
+   * fragments go on burning, and a contact or internal blast.
+   */
+  fragmentationType?: string;
+  fragmentationDivisor?: number;
+  fragmentationLingerEvery?: number;
+  fragmentationLingerFor?: number;
+  blastPlacement?: string;
 }
 
 /** The figures of a row as a load starts from them. */
@@ -61,13 +75,18 @@ export function rowIn(row: any): LoadRow {
     firstHit: row.firstHit ?? null,
     noOverpenetration: row.noOverpenetration === true,
     scatterSquared: row.scatterSquared === true,
+    fragmentationType: String(row.fragmentationType ?? ""),
+    fragmentationDivisor: Number(row.fragmentationDivisor) || 1,
+    fragmentationLingerEvery: Number(row.fragmentationLingerEvery) || 0,
+    fragmentationLingerFor: Number(row.fragmentationLingerFor) || 0,
+    blastPlacement: String(row.blastPlacement ?? ""),
   };
 }
 
 /**
  * Writes what a load made of a row back onto it. Acc, Malf., ST, Rcl, the
- * first hit, overpenetration and scatter are only written where the load
- * changed them, so a load that never touches them leaves the row's own as
+ * first hit, overpenetration, scatter and the fragments' type, divisor and
+ * lingering are only written where the load changed them, so a load that never touches them leaves the row's own as
  * they were.
  */
 export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel: (label: string) => string = (label) => label): void {
@@ -85,6 +104,9 @@ export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel:
   if (after.firstHit !== undefined && after.firstHit !== before.firstHit) row.firstHit = after.firstHit;
   if (after.noOverpenetration !== undefined && after.noOverpenetration !== before.noOverpenetration) row.noOverpenetration = after.noOverpenetration;
   if (after.scatterSquared !== undefined && after.scatterSquared !== before.scatterSquared) row.scatterSquared = after.scatterSquared;
+  for (const key of ["fragmentationType", "fragmentationDivisor", "fragmentationLingerEvery", "fragmentationLingerFor", "blastPlacement"] as const) {
+    if (after[key] !== undefined && after[key] !== before[key]) row[key] = after[key];
+  }
   if (after.skillBonus && typeof row.skillLevel === "number") row.skillLevel += after.skillBonus;
 }
 

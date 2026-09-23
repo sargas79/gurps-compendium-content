@@ -1,9 +1,10 @@
 /**
- * Clouds, noise and fields the book's gear leaves on the map, kept as the
- * system's modifier areas (GWorld API 1.63.0).
+ * Clouds, noise, light and fields the books' gear leaves on the map, kept as
+ * the system's modifier areas (GWorld API 1.63.0). Ultra-Tech's clouds and
+ * warblers and High-Tech's smoke, gas and flares place them alike.
  */
 
-import { MODULE_ID, type GWorldApi } from "../../shared/module.js";
+import { MODULE_ID, type GWorldApi } from "./module.js";
 
 /** A line an area puts on rolls, as the system's `areas.add` takes it. */
 export interface AreaLine {
@@ -30,11 +31,15 @@ export function areaCentre(actor: any): { x: number; y: number } | null {
   return c && Number.isFinite(c.x) && Number.isFinite(c.y) ? { x: c.x, y: c.y } : null;
 }
 
-/** Places an area of `radiusYards` round the centre for `seconds`; the key names what it is. Returns its id or null. */
-export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null }): Promise<string | null> {
+/**
+ * Places an area of `radiusYards` round the centre for `seconds`; the key names
+ * what it is. An area with no lines is refused unless `bare` says it is kept
+ * only to be found again (a flare's light). Returns its id or null.
+ */
+export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean }): Promise<string | null> {
   const scene = sceneNow();
   const center = areaCentre(options.actor);
-  if (!scene || !center || !(options.radiusYards > 0) || !options.lines.length) return null;
+  if (!scene || !center || !(options.radiusYards > 0) || (!options.lines.length && !options.bare)) return null;
   const now = Number((game as any).time?.worldTime) || 0;
   return api.areas.add(scene, {
     id: `${MODULE_ID}-${options.key}-${foundry.utils.randomID(8)}`,
