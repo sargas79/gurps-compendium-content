@@ -8,6 +8,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
+import { EXPLOSIVES } from "./explosives/ref.js";
+import { chargeOf } from "./records.js";
+
 const ROOT = join(import.meta.dirname, "../../..");
 const PACKS = join(ROOT, "books/high-tech/packs-src");
 
@@ -168,7 +171,9 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
     const powered = gear.filter((d) => d.system.extensions?.["gurps-compendium-content"]?.power);
     expect(powered.length).toBeGreaterThan(60);
     for (const doc of powered) {
-      const cell = doc.system.extensions["gurps-compendium-content"].power.draw.cell;
+      // Gear draws on its batteries; a weapon (#349) is loaded with them.
+      const power = doc.system.extensions["gurps-compendium-content"].power;
+      const cell = power.draw?.cell ?? power.cell;
       if (cell !== undefined) expect(sizes, doc.name).toContain(cell);
     }
     // p. 21: 4×S/4 hrs.; p. 38: 3×XS/10 hrs.
@@ -272,5 +277,85 @@ describe("High-Tech's defences and firearm accessories (#349)", () => {
     const others = [...read(join(PACKS, "equipment/high-tech-armor.json")), ...read(join(PACKS, "equipment/high-tech-gear.json")), ...byHand("equipment")];
     const held = new Set(others.map((d) => d.name.toLowerCase()));
     expect([...defences, ...accessories].filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
+  });
+});
+
+describe("High-Tech's explosives, mines, bombs and melee weapons (#349)", () => {
+  const captured = read(join(PACKS, "equipment/high-tech-captured-weaponry.json"));
+  const gear = [...captured, ...byHand("equipment")];
+  const sys = (name: string) => named(gear, name).system;
+  const ranged = (name: string, i = 0) => sys(name).rangedModes[i];
+  const melee = (name: string, i = 0) => sys(name).meleeModes[i];
+
+  it("cites a page of pp. 180-201 on every captured record, with no book prose", () => {
+    for (const doc of captured) {
+      const page = Number(/^High-Tech p\. (\d+)$/.exec(doc.system.reference)?.[1]);
+      expect(page, doc.name).toBeGreaterThanOrEqual(180);
+      expect(page, doc.name).toBeLessThanOrEqual(201);
+      expect(doc.system.description, doc.name).toBe("");
+    }
+  });
+
+  it("links every explosive to its row of the REF table (p. 183), with the pounds it holds", () => {
+    const charges = gear.filter((d) => d.system.extensions?.["gurps-compendium-content"]?.explosive);
+    expect(charges.length).toBe(11);
+    for (const doc of charges) expect(chargeOf(doc), doc.name).not.toBeNull();
+    expect(chargeOf(named(gear, "TNT (per pound)"))).toEqual({ row: EXPLOSIVES.find((r) => r.type === "TNT"), pounds: 1 });
+    expect(chargeOf(named(gear, "Plastic Explosive (per pound)"))?.row.ref).toBe(1.4);
+    expect(chargeOf(named(gear, "Foam Explosive (Aerosol Can)"))).toMatchObject({ row: { ref: 1.1 }, pounds: 0.9 });
+    expect(sys("Improved Black Powder (per pound)")).toMatchObject({ tl: "5", cost: 5, weight: 1, lc: 3 });
+    expect(chargeOf({ system: {} })).toBeNull();
+  });
+
+  it("gives land mines their explosion and fragments (p. 189)", () => {
+    expect(ranged("TMi35")).toMatchObject({ damageFormula: "5dx8", explosive: true, blastPlacement: "contact", skill: "Explosives (Demolition)" });
+    expect(ranged("OZM-3")).toMatchObject({ damageFormula: "5d", fragmentation: "4d", explosive: true });
+    expect(sys("M18A1 Claymore")).toMatchObject({ cost: 50, weight: 3.5, lc: 1 });
+    // Note 1: 700 pellets, 2d(0.5) pi-, Range 55/270, Rcl 1.
+    expect(ranged("M18A1 Claymore", 1)).toMatchObject({ damageFormula: "2d", damageType: "pi-", armorDivisor: 0.5, halfDamageRange: 55, maxRange: 270, projectiles: 700, recoil: 1 });
+    expect(ranged("M5 Modular Crowd Control Munition", 1)).toMatchObject({ damageFormula: "1d-2", damageType: "cr", armorDivisor: 0.2, projectiles: 600 });
+  });
+
+  it("reads the bombs table by position (p. 194)", () => {
+    expect(sys("SC250, 370mm")).toMatchObject({ cost: 3500, weight: 548, lc: 1 });
+    expect(ranged("SC250, 370mm")).toMatchObject({ skill: "Artillery (Bombs)", damageFormula: "6dx35", fragmentation: "6dx3" });
+    expect(ranged("500-lb. CBU-55/B, 256mm")).toMatchObject({ damageFormula: "6dx65", fragmentation: "" });
+    expect(ranged("Little Boy (12.5 kt)").linked).toMatchObject({ damage: "6dx6500", damageType: "burn", radiation: true, surge: true, explosive: true });
+  });
+
+  it("gives sprays and lasers their afflictions, the dazzler a cone (pp. 180-181)", () => {
+    expect(melee("Pepper Spray")).toMatchObject({ reach: "1,2", affliction: true, afflictionAttribute: "HT", afflictionModifier: -4 });
+    expect(ranged("NORINCO QXJ04")).toMatchObject({ afflictionModifier: -5, accuracy: 6, scopeBonus: 1, areaAttack: true, coneMaxWidth: 3, shots: "100(3)" });
+    expect(ranged("NORINCO ZM87")).toMatchObject({ skill: "Gunner (Beams)", afflictionModifier: -10, minSt: 17, mount: "mounted" });
+  });
+
+  it("reads the melee weapon table's rows (p. 200)", () => {
+    expect(sys("Katana")).toMatchObject({ tl: "6", cost: 550, weight: 3.75 });
+    expect(melee("Katana")).toMatchObject({ skill: "Broadsword", damageBase: "sw", damageModifier: 1, damageType: "cut", reach: "1", minSt: 10 });
+    expect(melee("Trench Knife", 2)).toMatchObject({ skill: "Brawling", damageBase: "thr", unarmedBonus: true });
+    expect(melee("Switchblade")).toMatchObject({ canParry: false, minSt: 5 });
+    expect(melee("Sword Cane")).toMatchObject({ skill: "Smallsword", parryModifier: -2, isFencing: true, reach: "C,1" });
+    // HT-3(0.5) aff, linked to the prod's 1d-3 burn.
+    expect(melee("Cattle Prod")).toMatchObject({ damageFormula: "1d-3", damageType: "burn", linked: { affliction: true, afflictionModifier: -3, armorDivisor: 0.5 } });
+    expect(melee("Stun Gun")).toMatchObject({ affliction: true, armorDivisor: 0.5, canParry: false });
+    expect(melee("Bayonet (TL4-6 Long Arm)")).toMatchObject({ skill: "Spear", damageModifier: 3, damageType: "imp", reach: "1,2*" });
+    expect(melee("Spiked Tomahawk", 1)).toMatchObject({ damageModifier: -1, damageType: "imp" });
+    expect(sys("Spiked Tomahawk").quality).toBe("fine");
+  });
+
+  it("builds compound bows at double cost, shooting two ST higher than they draw (p. 201)", () => {
+    const longbow = sys("Compound Longbow");
+    expect(longbow).toMatchObject({ tl: "7", cost: 400 });
+    expect(longbow.rangedModes[0]).toMatchObject({ minSt: 11, weaponSt: 13 });
+    expect(ranged("Speargun")).toMatchObject({ skill: "Crossbow (Speargun)", damageFormula: "1d", accuracy: 2, halfDamageRange: 100, maxRange: 150, bulk: -6 });
+    const skills = byHand("skills").map((d) => d.name);
+    expect(skills).toEqual(expect.arrayContaining(["Bow (Slingshot)", "Crossbow (Speargun)"]));
+  });
+
+  it("gives a text variant its parent's figures but for what the text changes (pp. 190-193)", () => {
+    expect(sys("StiHGr24 (Fragmentation Sleeve)")).toMatchObject({ weight: 1.7, cost: 20 });
+    expect(ranged("StiHGr24 (Fragmentation Sleeve)")).toMatchObject({ damageFormula: "5d", fragmentation: "2d", thrown: true });
+    expect(ranged("Grenade à Main Mle 1882").malfunction).toBe(16);
+    expect(ranged("HASAG GGPzgr40, 40mm")).toMatchObject({ armorDivisor: 10, minRange: 10, maxRange: 150, linked: { damage: "6d", explosive: true } });
   });
 });
