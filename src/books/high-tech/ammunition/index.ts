@@ -26,14 +26,21 @@
  *   - **Misloading (misloading):** a round that isn't the gun's, nor one down
  *     its chain of interchangeable calibres, rolls the Misloading Table when
  *     it is fired.
+ *   - **Projectiles (projectileOptions, exoticBullets, multipleProjectileLoads,
+ *     projectileUpgrades; pp. 109, 166-175):** the load's projectile, what the
+ *     bullet is made of, and its upgrades, in `projectiles.ts`. A projectile
+ *     takes the place of the Basic Set round chosen on the mode (its figures
+ *     are taken back off the row first); it never stacks with it.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { tlOf } from "../../../shared/loads/launcher.js";
-import { registerLoadRows } from "../../../shared/loads/rows.js";
+import { formatDice, parseDice } from "../../../shared/loads/dice.js";
+import { registerLoadRows, type LoadPlace, type LoadRow } from "../../../shared/loads/rows.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { isAutomatic } from "../environments/index.js";
 import { isFirearm } from "../firearms/index.js";
+import { firearmBuild } from "../records.js";
 import { CALIBRES, calibreRowOf, gunCalibreRows, type CalibreRow } from "./calibres.js";
 import {
   AMMUNITION_UPGRADES,
@@ -44,6 +51,7 @@ import {
   RELOADING_BONUS,
   SOURCES,
   TOOLS,
+  adjustDamage,
   ammunitionClass,
   areaKnowledgeDiscount,
   allowedUpgrades,
@@ -64,7 +72,27 @@ import {
   type GunFacts,
   type HandloadingTool,
   type MisloadResult,
+  boreMm,
 } from "./rules.js";
+import {
+  MATERIALS,
+  PROJECTILES,
+  PROJECTILE_UPGRADES,
+  SHOT_SIZES,
+  SILVER_ARMOURY,
+  isKinetic,
+  isMultiple,
+  multipleLoad,
+  projectileMultiples,
+  projectileRefusal,
+  projectileRow,
+  projectileUpgradeRefusal,
+  type BulletMaterial,
+  type Projectile,
+  type ProjectileGun,
+  type ProjectileLoad,
+  type ProjectileUpgrade,
+} from "./projectiles.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Ammunition.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Ammunition.${key}`, data);
@@ -78,7 +106,18 @@ export interface AmmunitionSwitches {
   upgrades: () => boolean;
   handloading: () => boolean;
   misloading: () => boolean;
+  /** The projectile options (pp. 109, 166-169). */
+  projectiles?: () => boolean;
+  /** Exotic bullets (p. 168). */
+  exotic?: () => boolean;
+  /** Multiple-projectile loads (pp. 172-174). */
+  multiple?: () => boolean;
+  /** Projectile upgrades (pp. 174-175). */
+  projectileUpgrades?: () => boolean;
 }
+
+/** Whether any of the projectile switches is on. */
+const anyProjectiles = (on: AmmunitionSwitches): boolean => Boolean(on.projectiles?.() || on.exotic?.() || on.multiple?.() || on.projectileUpgrades?.());
 
 /**
  * A mode's load, or a box's: the round (blank for the gun's own, or what the
@@ -96,6 +135,13 @@ export interface HighTechLoad {
   batchMalfunction: number;
   /** Percent off found with an Area Knowledge roll (p. 175). */
   discount: number;
+  /** The projectile, what it is made of, a multiple load's size and count, its upgrades (pp. 166-175). */
+  projectile: Projectile;
+  material: BulletMaterial;
+  shotMm: number;
+  shotCount: number;
+  projectileUpgrades: ProjectileUpgrade[];
+  poisonCost: number;
 }
 
 /** Registers the loads and the conversion field before the world's data is read. */
@@ -111,6 +157,12 @@ export function initAmmunition(): void {
         matched: new f.BooleanField({ initial: false }),
         batchMalfunction: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, max: 0 }),
         discount: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 15 }),
+        projectile: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...PROJECTILES] }),
+        material: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...MATERIALS] }),
+        shotMm: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+        shotCount: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+        projectileUpgrades: new f.ArrayField(new f.StringField({ required: true, nullable: false, blank: false, choices: [...PROJECTILE_UPGRADES] }), { required: true, initial: [] }),
+        poisonCost: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
       }),
       { required: true, initial: [] },
     ),
@@ -136,6 +188,12 @@ function cleanLoad(raw: any, mode: number): HighTechLoad {
     matched: raw?.matched === true,
     batchMalfunction: Math.min(0, Math.trunc(Number(raw?.batchMalfunction) || 0)),
     discount: [0, 5, 15].includes(Number(raw?.discount)) ? Number(raw.discount) : 0,
+    projectile: (PROJECTILES as readonly string[]).includes(raw?.projectile) ? raw.projectile : "",
+    material: (MATERIALS as readonly string[]).includes(raw?.material) ? raw.material : "",
+    shotMm: Math.max(0, Number(raw?.shotMm) || 0),
+    shotCount: Math.max(0, Math.floor(Number(raw?.shotCount) || 0)),
+    projectileUpgrades: PROJECTILE_UPGRADES.filter((u) => Array.isArray(raw?.projectileUpgrades) && raw.projectileUpgrades.includes(u)),
+    poisonCost: Math.max(0, Number(raw?.poisonCost) || 0),
   };
 }
 
@@ -194,8 +252,8 @@ export function boxCalibre(box: any, load: HighTechLoad = ownLoad(box, 0)): Cali
   return calibreRowOf(String(box?.system?.ammunition?.fits ?? "")) ?? calibreRowOf(String(box?.name ?? ""));
 }
 
-/** What the upgrade rules need of a gun's mode. */
-export function gunFacts(item: any, modeIndex: number): GunFacts {
+/** What the upgrade rules need of a gun's mode; `projectile` the load's, as fired. */
+export function gunFacts(item: any, modeIndex: number, projectile = ""): GunFacts {
   const mode = rangedModes(item)[modeIndex] ?? {};
   return {
     calibre: gunCalibre(item),
@@ -204,24 +262,112 @@ export function gunFacts(item: any, modeIndex: number): GunFacts {
     cheap: item?.system?.quality === "cheap",
     skill: String(mode.skill ?? ""),
     ammunition: String(mode.ammunition ?? ""),
+    projectile,
   };
 }
 
-/** What the upgrade rules need of a box: its round, and its own TL where it states one. */
-function boxFacts(box: any, load: HighTechLoad): GunFacts {
-  const tl = tlOf(box);
-  return { calibre: boxCalibre(box, load), tl: tl || 12, automatic: false, cheap: false, skill: "", ammunition: String(box?.system?.ammunition?.kind ?? "") };
+/**
+ * The system's reading of a calibre from a weapon's name (`rules.calibreOf`,
+ * which knows gauges), for a gun whose round the table doesn't list; set once
+ * the API is ready.
+ */
+let calibreOfName: (name: string) => number | null = () => null;
+
+/** A round's bore in millimetres: the table's row, else what the name says. */
+function boreOf(row: CalibreRow | null, name: string): number | null {
+  return (row ? boreMm(row) : null) ?? calibreOfName(name);
 }
 
-/** The upgrades a mode's load fires with: those the gun takes. */
-function firedUpgrades(item: any, modeIndex: number, load: HighTechLoad): AmmunitionUpgrade[] {
-  return allowedUpgrades(load.upgrades, gunFacts(item, modeIndex));
+/** What the projectile rules need of a gun's mode. */
+export function projectileGun(item: any, modeIndex: number): ProjectileGun {
+  const mode = rangedModes(item)[modeIndex] ?? {};
+  const calibre = gunCalibre(item);
+  const skill = String(mode.skill ?? "");
+  return {
+    calibre,
+    boreMm: boreOf(calibre, String(item?.name ?? "")),
+    tl: tlOf(item),
+    automatic: isAutomatic(item, mode),
+    shotgun: calibre ? calibre.class === "shotgun" : /\(shotgun\)/i.test(skill),
+    muzzleLoadingRifle: /\(rifle\)/i.test(skill) && (calibre ? calibre.notes.includes("powderAndShot") : false),
+    underwater: Boolean(calibre?.notes.includes("underwaterDart")) || firearmBuild(item).underwaterFactor > 0,
+    explosive: mode.explosive === true || Boolean(mode.linked?.explosive),
+    projectiles: Math.max(1, Math.floor(Number(mode.projectiles) || 1)),
+  };
+}
+
+/** What the projectile rules need of a box: its round, and its own TL where it states one. */
+function boxProjectileGun(box: any, load: HighTechLoad): ProjectileGun {
+  const calibre = boxCalibre(box, load);
+  const tl = tlOf(box);
+  return {
+    calibre,
+    boreMm: boreOf(calibre, String(box?.system?.ammunition?.fits || box?.name || "")),
+    tl: tl || 12,
+    automatic: false,
+    shotgun: calibre?.class === "shotgun",
+    muzzleLoadingRifle: false,
+    underwater: Boolean(calibre?.notes.includes("underwaterDart")),
+    explosive: false,
+    projectiles: 1,
+  };
+}
+
+/** Whether a projectile's switch is on: the options' or the multiple loads'. */
+function projectileOn(projectile: string, on: AmmunitionSwitches): boolean {
+  if (isKinetic(projectile)) return on.projectiles?.() === true;
+  return isMultiple(projectile) ? on.multiple?.() === true : false;
+}
+
+/**
+ * The projectile a load fires, as the switches and the gun let it: a
+ * projectile whose switch is off, or which the gun can't fire, is the solid
+ * bullet; a material needs exotic bullets on; an upgrade its switch and the
+ * gun's leave.
+ */
+export function firedProjectile(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): ProjectileLoad {
+  const projectile: Projectile = load.projectile && projectileOn(load.projectile, on) && !projectileRefusal(load.projectile, gun) ? load.projectile : "";
+  return {
+    projectile,
+    shotMm: load.shotMm,
+    shotCount: load.shotCount,
+    material: on.exotic?.() ? load.material : "",
+    projectileUpgrades: on.projectileUpgrades?.() ? load.projectileUpgrades.filter((u) => !projectileUpgradeRefusal(u, projectile, gun)) : [],
+    poisonCost: load.poisonCost,
+  };
+}
+
+/** Whether a fired projectile changes anything. */
+const hasProjectile = (p: ProjectileLoad): boolean => Boolean(p.projectile || p.material || p.projectileUpgrades.length);
+
+/** The factor distances underwater are multiplied by for a mode's projectile (p. 169), or 0 for the gun's own. */
+export function projectileUnderwaterFactor(item: any, modeIndex: number, on: AmmunitionSwitches): number {
+  if (!on.projectiles?.() || !isFirearmItem(item)) return 0;
+  return firedProjectile(loadIn(item, modeIndex).load, projectileGun(item, modeIndex), on).projectile === "underwaterDart" ? 25 : 0;
+}
+
+/** Whether a mode fires Minié balls, which load a muzzle-loading rifle as a musket (pp. 86, 109). */
+export function firesMinieBalls(item: any, modeIndex: number, on: AmmunitionSwitches): boolean {
+  if (!on.projectiles?.() || !isFirearmItem(item)) return false;
+  return firedProjectile(loadIn(item, modeIndex).load, projectileGun(item, modeIndex), on).projectile === "minie";
+}
+
+/** What the upgrade rules need of a box: its round, and its own TL where it states one. */
+function boxFacts(box: any, load: HighTechLoad, projectile = ""): GunFacts {
+  const tl = tlOf(box);
+  return { calibre: boxCalibre(box, load), tl: tl || 12, automatic: false, cheap: false, skill: "", ammunition: String(box?.system?.ammunition?.kind ?? ""), projectile };
+}
+
+/** The upgrades a mode's load fires with: those the gun takes, with the projectile it fires. */
+function firedUpgrades(item: any, modeIndex: number, load: HighTechLoad, on: AmmunitionSwitches): AmmunitionUpgrade[] {
+  const projectile = firedProjectile(load, projectileGun(item, modeIndex), on).projectile;
+  return allowedUpgrades(load.upgrades, gunFacts(item, modeIndex, projectile));
 }
 
 /** Whether a mode fires paper cartridges, which halve a muzzle-loader's loading time (p. 163). */
 export function firesPaperCartridges(item: any, modeIndex: number, on: AmmunitionSwitches): boolean {
   if (!on.upgrades() || !isFirearmItem(item)) return false;
-  return firedUpgrades(item, modeIndex, loadIn(item, modeIndex).load).includes("paperCartridge");
+  return firedUpgrades(item, modeIndex, loadIn(item, modeIndex).load, on).includes("paperCartridge");
 }
 
 /**
@@ -232,7 +378,7 @@ export function firesPaperCartridges(item: any, modeIndex: number, on: Ammunitio
 export function ammunitionHearing(item: any, on: AmmunitionSwitches, modeIndex = 0): { silent: boolean; penalty: number } | null {
   if (!on.upgrades() || !isFirearmItem(item)) return null;
   const load = loadIn(item, modeIndex).load;
-  const upgrades = firedUpgrades(item, modeIndex, load);
+  const upgrades = firedUpgrades(item, modeIndex, load, on);
   if (!upgrades.length) return null;
   const mode = rangedModes(item)[modeIndex] ?? {};
   const effect = upgradedRow({ damage: "1d", halfDamageRange: 0, maxRange: 0, accuracy: 0, malfunction: null, minSt: 0 }, upgrades, gunFacts(item, modeIndex), { baseAccuracy: Number(mode.accuracy) || 0 });
@@ -364,9 +510,10 @@ async function developMatch(api: GWorldApi, item: any, modeIndex: number): Promi
  * Loads a batch (p. 174): the tools set the pace, and an Armoury (Small Arms)
  * roll comes every hour or half-hour (+2 for reloading fired cases). For
  * reloads a critical success takes a quarter off the time and a critical
- * failure a point off the batch's Malf.
+ * failure a point off the batch's Malf. Jacketed silver bullets are at -3
+ * (p. 168).
  */
-async function loadBatch(api: GWorldApi, item: any, modeIndex: number): Promise<void> {
+async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on: AmmunitionSwitches): Promise<void> {
   const actor = item?.actor ?? null;
   const load = isBox(item) ? ownLoad(item, 0) : loadIn(item, modeIndex).load;
   const row = isBox(item) ? boxCalibre(item, load) : gunCalibre(item);
@@ -392,6 +539,7 @@ async function loadBatch(api: GWorldApi, item: any, modeIndex: number): Promise<
   const level = armoury(api, actor);
   if (level === null) return void ui.notifications?.warn(L("NoSkills"));
   const reloads = asked.source === "reloaded";
+  const silver = on.exotic?.() === true && load.material === "silver" ? SILVER_ARMOURY : 0;
   const matched = !isBox(item) && load.upgrades.includes("matchGrade");
   const time = batchTime(asked.tool, asked.rounds, matched);
   const rolls: any[] = [];
@@ -402,14 +550,16 @@ async function loadBatch(api: GWorldApi, item: any, modeIndex: number): Promise<
     const roll = new Roll("3d6");
     await roll.evaluate();
     rolls.push(roll);
-    const outcome: any = api.rules.resolveSuccess(Number(roll.total), level + (reloads ? RELOADING_BONUS : 0));
+    const outcome: any = api.rules.resolveSuccess(Number(roll.total), level + (reloads ? RELOADING_BONUS : 0) + silver);
     if (!outcome.success) failures += 1;
     if (outcome.criticalSuccess) criticalSuccess = true;
     if (outcome.criticalFailure) criticalFailure = true;
   }
   const minutes = reloads && criticalSuccess ? Math.ceil(time.minutes * (1 - CRITICAL_TIME_SAVED)) : time.minutes;
-  const lines = [F("BatchLine", { rounds: asked.rounds, tool: L(`ToolName.${asked.tool}`), minutes, rolls: time.rolls, failures, level: level + (reloads ? RELOADING_BONUS : 0) })];
-  if (row) lines.push(F("BatchMaterials", { cost: Math.round(perShot(row, [], asked.source).cps * asked.rounds * 100) / 100 }));
+  const lines = [F("BatchLine", { rounds: asked.rounds, tool: L(`ToolName.${asked.tool}`), minutes, rolls: time.rolls, failures, level: level + (reloads ? RELOADING_BONUS : 0) + silver })];
+  if (silver) lines.push(F("BatchSilver", { modifier: silver }));
+  const fired = firedProjectile(load, isBox(item) ? boxProjectileGun(item, load) : projectileGun(item, modeIndex), on);
+  if (row) lines.push(F("BatchMaterials", { cost: Math.round(perShot(row, [], asked.source, projectileMultiples(fired)).cps * asked.rounds * 100) / 100 }));
   if (reloads && criticalSuccess) lines.push(L("BatchFaster"));
   const next: HighTechLoad = { ...load, mode: isBox(item) ? 0 : modeIndex, source: asked.source };
   if (reloads && criticalFailure) {
@@ -446,18 +596,50 @@ async function convert(api: GWorldApi, item: any, to: string): Promise<boolean> 
 
 const money = (n: number) => `$${Math.round(n * 100) / 100}`;
 
-/** The line naming a round's cost and weight with a load's upgrades. */
-function priceLine(row: CalibreRow, load: HighTechLoad, upgrades: AmmunitionUpgrade[], on: AmmunitionSwitches, rounds?: number): string {
+/** The line naming a round's cost and weight with a load's upgrades and projectile. */
+function priceLine(row: CalibreRow, load: HighTechLoad, upgrades: AmmunitionUpgrade[], on: AmmunitionSwitches, projectile: ProjectileLoad, rounds?: number): string {
   const source = on.handloading() ? load.source : "";
-  const shot = perShot(row, upgrades, source);
+  const extra = projectileMultiples(projectile);
+  const shot = perShot(row, upgrades, source, extra);
   const multiples = upgradeMultiples(upgrades);
   const off = [rounds === undefined ? 0 : bulkDiscount(rounds), load.discount].filter(Boolean);
   const cps = discounted(shot.cps, ...off);
-  const parts = [F("PerShot", { cps: money(cps), wps: shot.wps, table: money(row.cps), multiple: Math.round(multiples.cps * 1000) / 1000 })];
+  const parts = [F("PerShot", { cps: money(cps), wps: shot.wps, table: money(row.cps), multiple: Math.round(multiples.cps * extra.cps * 1000) / 1000 })];
+  if (extra.add) parts.push(F("PoisonLine", { cost: money(extra.add) }));
   if (source) parts.push(L(`SourceLine.${source}`));
   if (off.length) parts.push(F("Discounts", { percents: off.map((p) => `${p}%`).join(", ") }));
-  if (multiples.lc !== null) parts.push(F("Lc", { lc: multiples.lc }));
+  const lc = [multiples.lc, extra.lc].filter((n): n is number => n !== null);
+  if (lc.length) parts.push(F("Lc", { lc: Math.min(...lc) }));
   return parts.join(" ");
+}
+
+/** The projectiles the sheet offers a load: the solid bullet, then each whose switch is on and the gun fires, or the one chosen. */
+function projectileChoices(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): Array<Record<string, unknown>> {
+  return PROJECTILES.filter((p) => !p || projectileOn(p, on))
+    .map((p) => ({ p, why: p ? projectileRefusal(p, gun) : null }))
+    .filter(({ p, why }) => !why || p === load.projectile)
+    .map(({ p, why }) => ({ value: p, label: L(`Projectile.${p || "solid"}`) + (why ? ` (${L(`ProjectileRefusal.${why}`)})` : ""), selected: p === load.projectile }));
+}
+
+/** The sheet's projectile fields for a load: the projectile, a multiple load's size and count, poison, material, upgrades. */
+function projectileContext(load: HighTechLoad, gun: ProjectileGun, on: AmmunitionSwitches): Record<string, unknown> {
+  const fired = firedProjectile(load, gun, on);
+  const sized = ["shotshell", "canister", "multiFlechette", "rubberShot", "buckAndBall"].includes(fired.projectile);
+  const filled = sized ? multipleLoad(fired, gun) : null;
+  return {
+    projectiles: on.projectiles?.() || on.multiple?.() ? projectileChoices(load, gun, on) : [],
+    projectileHint: L(`ProjectileHint.${fired.projectile || "solid"}`),
+    shot: filled ? { mm: load.shotMm || "", count: load.shotCount || "", mmPlaceholder: filled.mm, countPlaceholder: filled.count, sizes: SHOT_SIZES } : null,
+    poison: fired.projectile === "poison" ? { cost: load.poisonCost || "" } : null,
+    materials: on.exotic?.() ? MATERIALS.map((m) => ({ value: m, label: L(`Material.${m || "lead"}`), selected: m === load.material })) : [],
+    materialHint: L(`MaterialHint.${load.material || "lead"}`),
+    projectileUpgrades: on.projectileUpgrades?.()
+      ? PROJECTILE_UPGRADES.map((u) => {
+        const why = projectileUpgradeRefusal(u, fired.projectile, gun);
+        return { key: u, label: L(`ProjectileUpgrade.${u}`), checked: load.projectileUpgrades.includes(u) && !why, refused: why ? L(`ProjectileUpgradeRefusal.${why}`) : "", hint: L(`ProjectileUpgradeHint.${u}`) };
+      })
+      : [],
+  };
 }
 
 function upgradeChoices(load: HighTechLoad, facts: GunFacts): Array<Record<string, unknown>> {
@@ -472,7 +654,9 @@ function gunContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
   const calibre = gunCalibre(item);
   const modes = rangedModes(item).map((m, index) => {
     const { load, box } = loadIn(item, index);
-    const facts = gunFacts(item, index);
+    const gun = projectileGun(item, index);
+    const fired = firedProjectile(load, gun, on);
+    const facts = gunFacts(item, index, fired.projectile);
     const upgrades = allowedUpgrades(load.upgrades, facts);
     const boxed = box && storedLoads(box).some((l) => l.mode === 0);
     const round = on.misloading() && !boxed ? load.calibre : "";
@@ -483,8 +667,9 @@ function gunContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
       name: String(m.name || F("Mode", { index: index + 1 })),
       boxed: boxed ? F("FromBox", { box: box.name }) : "",
       upgrades: on.upgrades() && !boxed ? upgradeChoices(load, facts) : [],
+      ...(boxed ? {} : projectileContext(load, gun, on)),
       // The rounds in the gun: its own calibre's, or the other round loaded.
-      price: on.upgrades() && (roundIn(item, index) ?? calibre) ? priceLine((roundIn(item, index) ?? calibre)!, load, upgrades, on) : "",
+      price: (on.upgrades() || anyProjectiles(on)) && (roundIn(item, index) ?? calibre) ? priceLine((roundIn(item, index) ?? calibre)!, load, on.upgrades() ? upgrades : [], on, fired) : "",
       handloading: on.handloading() && !boxed && canHandload(calibre),
       sources: SOURCES.map((s) => ({ value: s, label: L(`Source.${s || "factory"}`), selected: load.source === s })),
       canMatch: on.handloading() && canHandload(calibre) && load.upgrades.includes("matchGrade"),
@@ -510,9 +695,12 @@ function gunContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
 function boxContext(item: any, on: AmmunitionSwitches): Record<string, unknown> {
   const load = ownLoad(item, 0);
   const row = boxCalibre(item, load);
-  const facts = boxFacts(item, load);
+  const gun = boxProjectileGun(item, load);
+  const fired = firedProjectile(load, gun, on);
+  const facts = boxFacts(item, load, fired.projectile);
   const upgrades = allowedUpgrades(load.upgrades, facts);
   const quantity = Math.max(0, Math.floor(Number(item.system?.quantity) || 0));
+  const priced = on.upgrades() || anyProjectiles(on);
   return {
     editable: item.isOwner,
     box: true,
@@ -523,7 +711,8 @@ function boxContext(item: any, on: AmmunitionSwitches): Record<string, unknown> 
       index: 0,
       name: "",
       upgrades: on.upgrades() ? upgradeChoices(load, facts) : [],
-      price: on.upgrades() && row ? priceLine(row, load, upgrades, on, quantity) : on.upgrades() ? L("NoCalibre") : "",
+      ...projectileContext(load, gun, on),
+      price: priced && row ? priceLine(row, load, on.upgrades() ? upgrades : [], on, fired, quantity) : priced ? L("NoCalibre") : "",
       handloading: on.handloading() && canHandload(row),
       sources: SOURCES.map((s) => ({ value: s, label: L(`Source.${s || "factory"}`), selected: load.source === s })),
       batchMalfunction: load.batchMalfunction ? F("BatchMalfunction", { malf: load.batchMalfunction }) : "",
@@ -544,7 +733,7 @@ async function shop(api: GWorldApi, box: any): Promise<void> {
   await say(actor, String(box.name ?? ""), [discount ? F("Found", { percent: discount }) : L("FoundNone")]);
 }
 
-function listeners(api: GWorldApi, element: HTMLElement, item: any): void {
+function listeners(api: GWorldApi, element: HTMLElement, item: any, on: AmmunitionSwitches): void {
   const box = isBox(item);
   element.querySelectorAll<HTMLInputElement | HTMLSelectElement>("[data-gcc-ht-ammo]").forEach((input) => {
     input.addEventListener("change", async () => {
@@ -554,7 +743,9 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any): void {
       if (field === "upgrade") {
         const upgrade = String(input.dataset.upgrade) as AmmunitionUpgrade;
         const checked = (input as HTMLInputElement).checked;
-        const facts = box ? boxFacts(item, load) : gunFacts(item, mode);
+        const gun = box ? boxProjectileGun(item, load) : projectileGun(item, mode);
+        const projectile = firedProjectile(load, gun, on).projectile;
+        const facts = box ? boxFacts(item, load, projectile) : gunFacts(item, mode, projectile);
         const others = load.upgrades.filter((u) => u !== upgrade);
         const why = checked ? upgradeRefusal(upgrade, facts, others) : null;
         if (why) {
@@ -565,6 +756,24 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any): void {
         await storeLoad(item, { ...load, upgrades: checked ? [...others, upgrade] : others });
       } else if (field === "source") await storeLoad(item, { ...load, source: input.value as AmmunitionSource });
       else if (field === "calibre") await storeLoad(item, { ...load, calibre: input.value.trim() });
+      else if (field === "projectile") await storeLoad(item, { ...load, projectile: input.value as Projectile, shotMm: 0, shotCount: 0 });
+      else if (field === "material") await storeLoad(item, { ...load, material: input.value as BulletMaterial });
+      else if (field === "shotMm" || field === "shotCount" || field === "poisonCost") {
+        const value = Math.max(0, Number(input.value) || 0);
+        await storeLoad(item, { ...load, [field]: field === "shotCount" ? Math.floor(value) : value });
+      } else if (field === "projectileUpgrade") {
+        const upgrade = String(input.dataset.upgrade) as ProjectileUpgrade;
+        const checked = (input as HTMLInputElement).checked;
+        const gun = box ? boxProjectileGun(item, load) : projectileGun(item, mode);
+        const why = checked ? projectileUpgradeRefusal(upgrade, firedProjectile(load, gun, on).projectile, gun) : null;
+        if (why) {
+          ui.notifications?.warn(L(`ProjectileUpgradeRefusal.${why}`));
+          (input as HTMLInputElement).checked = false;
+          return;
+        }
+        const others = load.projectileUpgrades.filter((u) => u !== upgrade);
+        await storeLoad(item, { ...load, projectileUpgrades: checked ? [...others, upgrade] : others });
+      }
       else if (field === "convertedTo") {
         if (!(await convert(api, item, input.value))) (input as HTMLSelectElement).value = String(item?.system?.extensions?.[MODULE_ID]?.firearm?.convertedTo ?? "");
       }
@@ -575,22 +784,54 @@ function listeners(api: GWorldApi, element: HTMLElement, item: any): void {
       const mode = Number(button.dataset.mode) || 0;
       const action = String(button.dataset.gccHtAmmoAction);
       if (action === "match") void developMatch(api, item, mode);
-      else if (action === "batch") void loadBatch(api, item, mode);
+      else if (action === "batch") void loadBatch(api, item, mode, on);
       else if (action === "shop") void shop(api, item);
     });
   });
 }
 
+/** A mode's load as it is fired: the stored load with the projectile the switches and the gun let through. */
+type FiredLoad = HighTechLoad & { fired: ProjectileLoad };
+
+/** A projectile's tag: its name, and a multiple load's size and count. */
+function projectileLabel(fired: ProjectileLoad, gun: ProjectileGun): string {
+  const name = L(`Projectile.${fired.projectile}`);
+  if (!["shotshell", "canister", "multiFlechette", "rubberShot", "buckAndBall"].includes(fired.projectile)) return name;
+  const { mm, count } = multipleLoad(fired, gun);
+  return F("ProjectileSized", { name, mm, count });
+}
+
+/**
+ * The row with the Basic Set round chosen on the mode taken back off it
+ * (Characters pp. 276, 279), for a High-Tech projectile to take its place:
+ * the damage type and divisor the mode lists, APDS's range and +1 a die
+ * gone. Null where the system's switch is off or the round did nothing.
+ */
+function withoutBasicRound(api: GWorldApi, row: LoadRow, place: LoadPlace): LoadRow | null {
+  const kind = String(place.mode?.ammunition ?? "");
+  if (!kind || !api.registry.isRuleOn("ammunitionTypes")) return null;
+  const basis = place.basis ?? {};
+  const damageType = String(basis.damageType ?? row.damageType);
+  const armorDivisor = Number(basis.armorDivisor) || 1;
+  const round: any = api.rules.ammunitionEffect?.(kind as any, { damageType: damageType as any, armorDivisor, calibreMm: api.rules.calibreOf?.(String(place.item?.name ?? "")) ?? null, tl: tlOf(place.item), bow: false });
+  if (!round?.available) return null;
+  const stretch = Number(round.rangeMultiplier) || 1;
+  const dice = parseDice(row.damage);
+  const damage = round.perDieBonus && dice ? formatDice({ ...dice, adds: dice.adds - dice.dice * round.perDieBonus }) : row.damage;
+  return { ...row, damage, damageType, armorDivisor, halfDamageRange: Math.round(row.halfDamageRange / stretch), maxRange: Math.round(row.maxRange / stretch) };
+}
+
 export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
-  const any = () => on.upgrades() || on.handloading() || on.misloading();
+  const any = () => on.upgrades() || on.handloading() || on.misloading() || anyProjectiles(on);
+  calibreOfName = (name) => api.rules.calibreOf?.(name) ?? null;
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-ammunition-item",
     sheet: "item",
     template: `modules/${MODULE_ID}/templates/ht-ammunition.hbs`,
-    visible: (item) => any() && (isBox(item) ? on.upgrades() || on.handloading() : isFirearm(api, item)),
+    visible: (item) => any() && (isBox(item) ? on.upgrades() || on.handloading() || anyProjectiles(on) : isFirearm(api, item)),
     context: (item) => (isBox(item) ? boxContext(item, on) : gunContext(item, on)),
-    listeners: (element, item) => listeners(api, element, item),
+    listeners: (element, item) => listeners(api, element, item, on),
   });
 
   // A box's cost and weight per round: the calibre's CPS and WPS times the upgrades, less what was found (pp. 175-177).
@@ -599,45 +840,84 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
     key: "ht-ammunition",
     types: ["equipment"],
     apply: (item: any) => {
-      if (!on.upgrades() || !isBox(item)) return null;
+      if (!isBox(item)) return null;
       const load = ownLoad(item, 0);
       const row = boxCalibre(item, load);
       if (!row) return null;
-      const upgrades = allowedUpgrades(load.upgrades, boxFacts(item, load));
-      const shot = perShot(row, upgrades, on.handloading() ? load.source : "");
+      const fired = firedProjectile(load, boxProjectileGun(item, load), on);
+      // Rounds are priced from the table with the upgrades on, or where the box's projectile changes them.
+      if (!on.upgrades() && !hasProjectile(fired)) return null;
+      const upgrades = on.upgrades() ? allowedUpgrades(load.upgrades, boxFacts(item, load, fired.projectile)) : [];
+      const shot = perShot(row, upgrades, on.handloading() ? load.source : "", projectileMultiples(fired));
       const quantity = Math.max(0, Math.floor(Number(item.system?.quantity) || 0));
       return { cost: discounted(shot.cps, bulkDiscount(quantity), load.discount), weight: shot.wps, label: F("PriceLabel", { round: row.name }) };
     },
   } as any);
 
-  // Each mode fires its load: Acc, Dmg, Range, ST and Malf. as the upgrades leave them (pp. 163-166, 174).
-  registerLoadRows<HighTechLoad>(api, {
-    on: () => on.upgrades() || on.handloading(),
+  // Each mode fires its load: its projectile in place of the solid bullet (pp. 166-175), then
+  // Acc, Dmg, Range, ST and Malf. as the upgrades leave them (pp. 163-166, 174).
+  registerLoadRows<FiredLoad>(api, {
+    on: () => on.upgrades() || on.handloading() || anyProjectiles(on),
     loadFor: (item, index) => {
       if (!isFirearm(api, item)) return null;
       const load = loadIn(item, index).load;
-      const upgrades = on.upgrades() ? firedUpgrades(item, index, load) : [];
+      const fired = firedProjectile(load, projectileGun(item, index), on);
+      const upgrades = on.upgrades() ? firedUpgrades(item, index, load, on) : [];
       const worse = on.handloading() ? load.batchMalfunction : 0;
-      return upgrades.length || worse ? { ...load, upgrades, batchMalfunction: worse } : null;
+      return upgrades.length || worse || hasProjectile(fired) ? { ...load, upgrades, batchMalfunction: worse, fired } : null;
     },
-    // An upgrade improves the whole round, whatever projectile the Basic Set's choice put in it.
+    // An upgrade improves the whole round, whatever projectile the Basic Set's choice put in it;
+    // a High-Tech projectile takes the Basic Set round's place (`withoutBasicRound`).
     basicAmmunition: null,
-    apply: (load, before, place) => {
-      const facts = gunFacts(place.item, place.modeIndex);
+    apply: (load, start, place) => {
+      const gun = projectileGun(place.item, place.modeIndex);
+      const facts = gunFacts(place.item, place.modeIndex, load.fired.projectile);
+      const notes: Array<{ key: string; data?: Record<string, unknown> }> = [];
+      let before = start;
+      let factor = 1;
+      let effectOf: ReturnType<typeof projectileRow> | null = null;
+      if (hasProjectile(load.fired)) {
+        if (load.fired.projectile) {
+          const plain = withoutBasicRound(api, start, place);
+          if (plain) {
+            before = plain;
+            notes.push({ key: "replacesBasic", data: { round: L(`BasicRound.${place.mode?.ammunition}`) } });
+          }
+        }
+        effectOf = projectileRow(
+          { damage: before.damage, damageType: before.damageType, armorDivisor: before.armorDivisor, halfDamageRange: before.halfDamageRange, maxRange: before.maxRange, accuracy: before.accuracy ?? 0, malfunction: before.malfunction ?? null, projectiles: before.projectiles, recoil: before.recoil ?? 0 },
+          load.fired, gun,
+        );
+        factor = effectOf.damageFactor;
+        before = { ...before, ...effectOf.row };
+      }
       const matched = on.handloading() && load.matched && load.source === "handloaded";
       const baseAccuracy = Number(place.basis?.accuracy ?? place.mode?.accuracy) || 0;
       const effect = upgradedRow(
         { damage: before.damage, halfDamageRange: before.halfDamageRange, maxRange: before.maxRange, accuracy: before.accuracy ?? 0, malfunction: before.malfunction ?? null, minSt: before.minSt ?? 0 },
-        load.upgrades, facts, { baseAccuracy, matched, batchMalfunction: load.batchMalfunction },
+        load.upgrades, facts, { baseAccuracy, matched, batchMalfunction: load.batchMalfunction, damageFactor: factor },
       );
-      const notes: Array<{ key: string; data?: Record<string, unknown> }> = effect.notes.map((key) => ({ key }));
+      notes.push(...effect.notes.map((key) => ({ key })));
       if (effect.silent) notes.push({ key: "silent" });
       if (effect.hearing) notes.push({ key: "hearing", data: { value: effect.hearing } });
       if (load.batchMalfunction) notes.push({ key: "batch", data: { malf: load.batchMalfunction } });
       if (matched && load.upgrades.includes("matchGrade")) notes.push({ key: "matched" });
-      return { ...before, ...effect.row, notes };
+      const after: LoadRow = { ...before, ...effect.row, notes };
+      if (effectOf) {
+        notes.push(...effectOf.notes);
+        if (effectOf.noOverpenetration) after.noOverpenetration = true;
+        if (effectOf.doubleKnockback) after.doubleKnockback = true;
+        if (effectOf.incendiary) after.incendiary = true;
+        if (effectOf.scatterSquared) after.scatterSquared = true;
+        const first = effectOf.firstHit;
+        if (first) after.firstHit = { damage: adjustDamage(first.damage, first.factor * effect.damageFactor), damageType: first.damageType, armorDivisor: first.armorDivisor, label: L("FirstHitBall") };
+      }
+      return after;
     },
-    tags: (load, after) => [
+    tags: (load, after, place) => [
+      ...(load.fired.projectile ? [{ label: projectileLabel(load.fired, projectileGun(place.item, place.modeIndex)), hint: L(`ProjectileHint.${load.fired.projectile}`) }] : []),
+      ...(load.fired.material ? [{ label: L(`Material.${load.fired.material}`), hint: L(`MaterialHint.${load.fired.material}`) }] : []),
+      ...load.fired.projectileUpgrades.map((u) => ({ label: L(`ProjectileUpgrade.${u}`), hint: L(`ProjectileUpgradeHint.${u}`) })),
       ...load.upgrades.map((u) => ({ label: L(`Upgrade.${u}`), hint: L(`UpgradeHint.${u}`) })),
       ...after.notes.map((note) => ({ label: F(`Note.${note.key}`, note.data ?? {}), hint: L(`NoteHint.${note.key}`) })),
     ],

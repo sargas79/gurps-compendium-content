@@ -4933,6 +4933,22 @@
         "misloading": {
           "Name": "Misloading",
           "Hint": "A round that isn't the gun's own, nor a shorter one down its chain of interchangeable calibres (for a revolver or manual repeater), rolls the Misloading Table when fired: it may fire at Acc 0, jam, misfire, damage the gun or burst it (High-Tech p. 178)."
+        },
+        "projectileOptions": {
+          "Name": "Projectile Options",
+          "Hint": "Each ranged mode (and each box of rounds) can load a projectile in place of the solid bullet: rifled slugs, hollow-points, poison, AP, APHC, frangible, APDS, APFSDS, baton, beanbag, SAPFSDS, underwater darts, the depleted-uranium rounds and Minié balls. The row's damage, type, divisor, range, Acc and Malf. follow, a shotgun working from its slug's figures, and the price takes the projectile's multiple. It replaces the Basic Set round chosen on the mode (High-Tech pp. 86, 109, 166-169)."
+        },
+        "exoticBullets": {
+          "Name": "Exotic Bullets",
+          "Hint": "A load's bullets can be silver (x50 cost; -1 Acc and Malf. in a rifled gun unless jacketed hollow-points; -3 to handload), another dense metal, a light material (half damage and range) or a very light one (a tenth) (High-Tech p. 168)."
+        },
+        "multipleProjectileLoads": {
+          "Name": "Multiple-Projectile Loads",
+          "Hint": "Canister, shotshells by shot size, buck-and-ball (its first hit is the ball), shrapnel, duplex and triplex, beehive, multi-flechette, rubber shot and ABF: the count of projectiles sets the damage by the NS table and the RoF multiple, their size the range and shot's damage type, and every gun fires them at Rcl 1 (High-Tech pp. 172-174)."
+        },
+        "projectileUpgrades": {
+          "Name": "Projectile Upgrades",
+          "Hint": "Airburst (a miss scatters by the margin squared; +3 or +4 to hit an area), incendiary, self-destruct and tracer (incendiary out to 1/2D), each x1.5 cost (High-Tech pp. 174-175)."
         }
       },
       "Firearm": {
@@ -5739,7 +5755,23 @@
           "silent": "Heard at 16 yards",
           "hearing": "{value} to Hearing",
           "batch": "Batch: {malf} Malf.",
-          "matched": "Perfect match"
+          "matched": "Perfect match",
+          "slug": "From the slug's figures",
+          "hpExpansion": "May not expand: 1d <= {roll} (GM)",
+          "noDr": "No DR counts as DR 1",
+          "poison": "Poison dose as a follow-up",
+          "depletedUranium": "Incendiary through rigid DR 10+",
+          "underwaterDart": "Underwater: distance x25",
+          "minie": "Loads as a musket",
+          "ballRange": "Ball: Range {half}/{max}",
+          "shell": "Weapon's own figures",
+          "beehive": "No 1/2D; weapon's own figures",
+          "silver": "Silver in rifling: -1 Acc, -1 Malf. (GM)",
+          "airburst": "Airburst: +4 at an area",
+          "airburstFuse": "Time fuse: +3 at an area (+1 at a flier)",
+          "selfDestruct": "Self-destructs at {range} yards",
+          "tracer": "Burns out at {range} yards",
+          "replacesBasic": "Replaces {round}"
         },
         "NoteHint": {
           "extraPowerfulAuto": "Automatic weapons are often sensitive to a change of propellant: they may suffer Malf. penalties, and their RoF is likely to rise, as the GM rules (p. 165).",
@@ -5747,7 +5779,23 @@
           "silent": "The shot is heard on the Hearing Distance Table's 16-yard line (pp. 158, 165).",
           "hearing": "Subsonic ammunition is harder to hear (p. 165).",
           "batch": "A critical failure while reloading lowered this batch's Malf. (p. 174).",
-          "matched": "Match-grade rounds handloaded for this gun: Acc x1.5, at most +2 (p. 174)."
+          "matched": "Match-grade rounds handloaded for this gun: Acc x1.5, at most +2 (p. 174).",
+          "slug": "A shotgun fires this projectile from a rifled slug's figures: four times the buckshot's damage, +1 Acc, 1/2D x2.5, Max x1.5 (High-Tech pp. 166, 168).",
+          "hpExpansion": "At the GM's option a low-velocity hollow-point only expands, and gets its better damage type, on a roll of TL-3 or less on 1d (High-Tech p. 167).",
+          "noDr": "An object with no DR gets DR 1 against it (High-Tech pp. 166-167, 173).",
+          "poison": "A hit that penetrates delivers one dose of the poison as a follow-up attack; the GM applies it (High-Tech p. 167).",
+          "depletedUranium": "Treat as an incendiary attack when it penetrates non-flexible armour with DR 10 or more (High-Tech p. 169).",
+          "underwaterDart": "Underwater, distance to the target is multiplied by 25 rather than 1,000 (High-Tech p. 169).",
+          "minie": "A muzzle-loading rifle firing Minié balls takes a musket's time to load (High-Tech pp. 86, 109).",
+          "ballRange": "The full-calibre ball has 0.9 of the gun's range; the row's range is the buckshot's (High-Tech p. 173).",
+          "shell": "Its figures are in the weapon's description; the load prices the shell and bursts in the air (High-Tech pp. 173-174).",
+          "beehive": "Beehive explodes at its Maximum Range and has no 1/2D; its figures are the weapon's (High-Tech p. 173).",
+          "silver": "Soft silver fouls a rifled barrel: -1 Acc and Malf. at the GM's discretion; jacketed hollow-points avoid it (High-Tech p. 168).",
+          "airburst": "Attacking an Area (Campaigns p. 414): a proximity fuse gives the full +4. When fired indirectly the fragments rain down, ignoring posture and any cover that isn't overhead (High-Tech pp. 174-175).",
+          "airburstFuse": "A TL5-6 time fuse gives +3 rather than +4 to hit an area, or only +1 against a flying target (High-Tech p. 174).",
+          "selfDestruct": "The round destroys itself once it passes this distance, usually 1/2D (High-Tech p. 175).",
+          "tracer": "Incendiary within this range. On the turn after a long burst the shooter may add +1 to skill; firing tracers gives away his position (High-Tech p. 175).",
+          "replacesBasic": "A High-Tech projectile takes the place of the Basic Set round chosen on the mode; that round's effects are taken off the row (High-Tech p. 166)."
         },
         "PerShot": "Per round: {cps}, {wps} lb. (the table's {table} x{multiple}).",
         "SourceLine": {
@@ -5825,7 +5873,127 @@
         "ShopRoll": "Area Knowledge: shopping for {box}",
         "Found": "Found {percent}% off.",
         "FoundNone": "No discount found.",
-        "NoAreaKnowledge": "The character has no Area Knowledge to roll."
+        "NoAreaKnowledge": "The character has no Area Knowledge to roll.",
+        "ProjectileLabel": "Projectile",
+        "ShotMm": "Size (mm)",
+        "ShotMmHint": "Diameter of each projectile in millimetres. Blank for the load's usual size (00 Buck, 8.38mm, for shot; 2mm flechettes; 12.7mm canister balls). Shot of 8mm and up is buckshot (pi), from 2mm birdshot (pi-, 0.5), below that smallshot (pi-, 0.2) (High-Tech p. 173).",
+        "ShotCount": "Count",
+        "ShotCountHint": "Number of projectiles (NP). Blank for the most the bore holds, (calibre / diameter) cubed, a fortieth of it for flechettes; a shotgun's own buckshot keeps its listed count (High-Tech p. 172).",
+        "PoisonCost": "Dose ($)",
+        "PoisonCostHint": "The cost of one dose of the poison, added to the cost per shot (High-Tech p. 167).",
+        "PoisonLine": "(+{cost} poison)",
+        "MaterialLabel": "Bullet material",
+        "BatchSilver": "Jacketed silver bullets: {modifier} to Armoury.",
+        "FirstHitBall": "Ball",
+        "ProjectileSized": "{name} ({mm}mm x{count})",
+        "Projectile": {
+          "solid": "Solid (the gun's own)",
+          "minie": "Minié ball",
+          "rifledSlug": "Rifled slug",
+          "hollowPoint": "Hollow-point",
+          "poison": "Poison",
+          "ap": "AP",
+          "aphc": "APHC",
+          "frangible": "Frangible",
+          "apds": "APDS",
+          "apfsds": "APFSDS",
+          "baton": "Baton",
+          "beanbag": "Beanbag",
+          "sapfsds": "SAPFSDS",
+          "underwaterDart": "Underwater dart",
+          "apdu": "APDU",
+          "apdsdu": "APDSDU",
+          "apfsdsdu": "APFSDSDU",
+          "canister": "Canister",
+          "shotshell": "Shotshell",
+          "buckAndBall": "Buck-and-ball",
+          "shrapnel": "Shrapnel",
+          "duplex": "Duplex",
+          "triplex": "Triplex",
+          "beehive": "Beehive",
+          "multiFlechette": "Multi-flechette",
+          "rubberShot": "Rubber shot",
+          "abf": "ABF"
+        },
+        "ProjectileHint": {
+          "solid": "The solid bullet the gun's statistics assume (High-Tech p. 166). A shotgun's are for 00 buckshot.",
+          "minie": "A hollow-based conoidal bullet: a muzzle-loading rifle loads as fast as a musket (High-Tech pp. 86, 109).",
+          "rifledSlug": "Shotguns only: four times the buckshot's damage, pi++ from 20-gauge up (pi+ below), +1 Acc, 1/2D x2.5, Max x1.5, one projectile (High-Tech p. 166).",
+          "hollowPoint": "(0.5), damage type a step up; -1 Malf. in a TL5-7 self-loader. LC3 (High-Tech pp. 166-167).",
+          "poison": "A hollow-point with a dose of poison as a follow-up; must be handloaded. Cost per shot plus the dose. LC1 (High-Tech p. 167).",
+          "ap": "(2), damage x0.7, a step down below 20mm. CPS x1.5, LC2 (High-Tech p. 167).",
+          "aphc": "(2), a step down below 20mm. CPS x2, LC2 (High-Tech p. 167).",
+          "frangible": "(0.5), a step up, never overpenetrates, Range x0.9. CPS x1.5, LC3 (High-Tech p. 167).",
+          "apds": "Rifle and larger rounds: (2), damage x1.3, a step down below 30mm, Range x1.5. CPS x3, LC1 (High-Tech p. 167).",
+          "apfsds": "From .50 calibre: (2), damage x1.5, below 40mm pi++ to pi and pi+ or pi to pi-, Range x2. CPS x4, LC1 (High-Tech p. 167).",
+          "baton": "From 10mm: (0.5), damage /5 crushing (double knockback over 35mm), -1 Acc, Range /5. CPS x2, LC3 (High-Tech p. 168).",
+          "beanbag": "From 9mm: (0.2), damage /5 crushing (double knockback from 15mm), Acc 0, Range /8. CPS x3, LC3 (High-Tech p. 168).",
+          "sapfsds": "Up to 10mm: (2), pi-, Range x1.5. CPS x2, LC2 (High-Tech p. 168).",
+          "underwaterDart": "Guns built to fire underwater: impaling, and distance underwater counts x25, not x1,000. CPS x2, LC2 (High-Tech p. 169).",
+          "apdu": "(2), damage x1.2, a step down below 20mm; incendiary through rigid DR 10+. CPS x3, LC1 (High-Tech p. 169).",
+          "apdsdu": "(2), damage x1.5, a step down below 30mm, Range x1.5; incendiary through rigid DR 10+. CPS x4, LC1 (High-Tech p. 169).",
+          "apfsdsdu": "From 10mm: (2), damage x1.7, below 40mm pi++ to pi+ and pi+ to pi, Range x2; incendiary through rigid DR 10+. CPS x5, LC1 (High-Tech p. 169).",
+          "canister": "From 20mm: damage x NS, pi+ (pi++ for balls of 15mm and up), 1/2D size x5, Max size x50, RoF times NP, Rcl 1. LC3 (High-Tech pp. 172-173).",
+          "shotshell": "From 5mm: damage x NS, type and divisor by shot size, 1/2D size x5, Max size x100, xNP after RoF, Rcl 1. LC3 (High-Tech p. 173).",
+          "buckAndBall": "From 10mm: the first hit is the full-calibre ball (Range x0.9), the rest 1d+1 pi buckshot, 1/2D size x5, Max size x100. LC3 (High-Tech p. 173).",
+          "shrapnel": "A shell of balls with a small bursting charge; the weapon's own figures, airburst included. CPS x2, LC1 (High-Tech p. 173).",
+          "duplex": "Two bullets: damage x0.85, Range /2, x2 after RoF, Rcl 1. CPS x1.5, LC3 (High-Tech p. 173).",
+          "triplex": "Three bullets: damage x0.7, Range /3, x3 after RoF, Rcl 1. CPS x1.5, LC3 (High-Tech p. 173).",
+          "beehive": "A shell of flechettes; the weapon's own figures, no 1/2D, airburst included. CPS x5, LC1 (High-Tech p. 173).",
+          "multiFlechette": "Low-powered large bores, from 10mm: damage x NS, pi-, 1/2D size x50, Max size x600, xNP after RoF, Rcl 1. CPS x4, LC3 (High-Tech p. 174).",
+          "rubberShot": "From 10mm: damage x NS crushing (0.2), 1/2D size x2, Max size x10, xNP after RoF, Rcl 1. CPS x2, LC3 (High-Tech p. 174).",
+          "abf": "Annular blast fragmentation; the weapon's own figures, airburst included. CPS x5, LC1 (High-Tech p. 174)."
+        },
+        "ProjectileRefusal": {
+          "tl": "not yet at this TL",
+          "calibreSmall": "calibre too small",
+          "calibreLarge": "calibre too large",
+          "shotgunOnly": "shotguns only",
+          "notPistol": "not in pistol calibres",
+          "muzzleRifle": "muzzle-loading rifles only",
+          "underwater": "only guns built for underwater",
+          "shell": "only explosive shells",
+          "lowPowered": "only shotguns and grenade launchers"
+        },
+        "Material": {
+          "lead": "Lead or steel",
+          "silver": "Silver",
+          "dense": "Other dense metal",
+          "light": "Light (stone, jacketed wood)",
+          "veryLight": "Very light (hardwood, plastic)"
+        },
+        "MaterialHint": {
+          "lead": "The ordinary bullet.",
+          "silver": "Normal damage; cost per shot x50. In a rifled gun -1 Acc and Malf. unless a jacketed hollow-point; -3 to Armoury to handload (High-Tech p. 168).",
+          "dense": "Gold and other dense metals do normal damage; the GM prices them (High-Tech p. 168).",
+          "light": "Half damage and range (High-Tech p. 168).",
+          "veryLight": "A tenth of the damage and range (High-Tech p. 168)."
+        },
+        "ProjectileUpgrade": {
+          "airburst": "Airburst",
+          "incendiary": "Incendiary",
+          "selfDestruct": "Self-destruct",
+          "tracer": "Tracer"
+        },
+        "ProjectileUpgradeHint": {
+          "airburst": "Bursts over the target area: a miss scatters by the margin squared. CPS x1.5; free with shrapnel, beehive and ABF (High-Tech pp. 174-175).",
+          "incendiary": "A solid bullet (or AP, APHC from late TL6) with the incendiary modifier; not for handguns. CPS x1.5 (High-Tech p. 175).",
+          "selfDestruct": "An explosive round that destroys itself past 1/2D. CPS x1.5 (High-Tech p. 175).",
+          "tracer": "Incendiary out to 1/2D, where it burns out; +1 to skill on the turn after a long burst; gives the shooter away. CPS x1.5 (High-Tech p. 175)."
+        },
+        "ProjectileUpgradeRefusal": {
+          "tl": "Not yet at this TL.",
+          "explosiveOnly": "Only for explosive rounds.",
+          "solidOnly": "Only for solid, AP or APHC bullets.",
+          "handgun": "Not normally made for handguns."
+        },
+        "BasicRound": {
+          "hp": "hollow-point",
+          "aphc": "APHC",
+          "apds": "APDS",
+          "bodkin": "bodkin",
+          "silver": "silver"
+        }
       }
     },
     "Backblast": {

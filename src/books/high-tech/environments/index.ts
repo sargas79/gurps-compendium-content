@@ -86,7 +86,7 @@ async function setEnvironment(): Promise<void> {
   ui.notifications?.info(L(result.space ? "DoneSpace" : result.underwater ? "DoneUnderwater" : "DoneStandard"));
 }
 
-export function readyEnvironments(api: GWorldApi, on: () => boolean): void {
+export function readyEnvironments(api: GWorldApi, on: () => boolean, options: { underwaterFactor?: (item: any, modeIndex: number) => number } = {}): void {
   api.sheets.registerGmTool({
     module: MODULE_ID,
     key: "ht-shooting-environment",
@@ -103,12 +103,14 @@ export function readyEnvironments(api: GWorldApi, on: () => boolean): void {
     const environment = sceneEnvironment();
     const vacuum = isVacuum(environment);
     if (!environment.underwater && !vacuum) return;
-    const factor = firearmBuild(item).underwaterFactor;
-    const built = factor > 0;
-    // The rule is for ordinary TL6-8 guns; one built to fire underwater has its own factor at any TL.
-    if (!modernGun(tlOf(item)) && !built) return;
+    const own = firearmBuild(item).underwaterFactor;
     for (const entry of context.rows ?? []) {
       if (entry.kind !== "ranged") continue;
+      // An underwater dart loaded carries its own factor, as a gun built for the water does (p. 169).
+      const factor = options.underwaterFactor?.(item, (item.system?.rangedModes ?? []).indexOf(entry.mode)) || own;
+      const built = factor > 0;
+      // The rule is for ordinary TL6-8 guns; one built to fire underwater has its own factor at any TL.
+      if (!modernGun(tlOf(item)) && !built) continue;
       const row = entry.row;
       const automatic = isAutomatic(item, entry.mode);
       if (environment.underwater) {

@@ -339,6 +339,8 @@ export interface BlackPowderLoad {
   careful: boolean;
   /** Fouling's tenths added to the time (p. 86). */
   foulingSteps: number;
+  /** Firing Minié balls, which load a rifle as a musket (pp. 86, 109). */
+  minie?: boolean;
 }
 
 /**
@@ -362,16 +364,20 @@ export interface BlackPowderLoad {
  * group with the flask.
  */
 export function blackPowderLoad(load: BlackPowderLoad): { seconds: number; fastDraw: number; aids: AidEffect[]; cls: BlackPowderClass } {
-  const cls = blackPowderClass(load.type, load.skill, load.tableSeconds);
+  const own = blackPowderClass(load.type, load.skill, load.tableSeconds);
+  // A muzzle-loading rifle firing Minié balls loads as a musket (p. 86): the table's time in the musket's proportion, 60 seconds to 40.
+  const minie = load.minie === true && own === "rifle" && load.type === "muzzleloader";
+  const cls: BlackPowderClass = minie ? "musket" : own;
+  const tableSeconds = minie ? Math.ceil((load.tableSeconds * BLACK_POWDER_CLASSES.musket.seconds) / BLACK_POWDER_CLASSES.rifle.seconds) : load.tableSeconds;
   const table = BLACK_POWDER_CLASSES[cls];
   const longArm = load.type === "muzzleloader" && isLongArm(cls);
-  let seconds = Math.max(0, Math.floor(load.tableSeconds));
+  let seconds = Math.max(0, Math.floor(tableSeconds));
   if (longArm && load.lowPosture) seconds = Math.ceil(seconds * LOW_POSTURE_FACTOR);
   if (longArm && load.careful) seconds *= CAREFUL_LOADING_FACTOR;
   seconds = fouledSeconds(seconds, load.foulingSteps);
   const fastDraw = Math.ceil((seconds * table.fastDraw) / table.seconds);
   const aids: AidEffect[] = [];
-  if (loadsLoose(cls, load.tableSeconds)) {
+  if (loadsLoose(cls, tableSeconds)) {
     aids.push({ key: "flask", seconds: -FLASK_SECONDS, exclusiveGroup: POWDER_GROUP });
     if (cls === "rifle" && load.type === "muzzleloader") {
       const patched = Math.ceil(seconds * GREASED_PATCH_FACTOR);

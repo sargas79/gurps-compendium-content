@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyReloading } from "../reloading/index.js";
-import { ammunitionHearing, firesPaperCartridges, readyAmmunition, type AmmunitionSwitches } from "./index.js";
+import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -51,10 +51,14 @@ const switches: AmmunitionSwitches = {
   upgrades: () => on.ammunitionUpgrades === true,
   handloading: () => on.handloading === true,
   misloading: () => on.misloading === true,
+  projectiles: () => on.projectileOptions === true,
+  exotic: () => on.exoticBullets === true,
+  multiple: () => on.multipleProjectileLoads === true,
+  projectileUpgrades: () => on.projectileUpgrades === true,
 };
 
 /** A gun as the pack has it, with its loads, held by a character carrying `items`. */
-function gun(patch: { name?: string; tl?: string; skill?: string; accuracy?: number; damage?: string; range?: [number, number]; malfunction?: number; rof?: number; shots?: string; minSt?: number; loads?: any[]; loadedFrom?: string; items?: any[] } = {}): any {
+function gun(patch: { name?: string; tl?: string; skill?: string; accuracy?: number; damage?: string; range?: [number, number]; malfunction?: number; rof?: number; shots?: string; minSt?: number; loads?: any[]; loadedFrom?: string; items?: any[]; projectiles?: number; ammunition?: string; explosive?: boolean } = {}): any {
   const items = patch.items ?? [];
   const actor = { name: "Shooter", system: { posture: "standing" }, items: Object.assign([...items], { get: (id: string) => items.find((i) => i.id === id) }) };
   const item: any = {
@@ -72,7 +76,8 @@ function gun(patch: { name?: string; tl?: string; skill?: string; accuracy?: num
       meleeModes: [],
       rangedModes: [{
         skill: patch.skill ?? "Guns (Rifle)", accuracy: patch.accuracy ?? 6, damageFormula: patch.damage ?? "9d+1", malfunction: patch.malfunction ?? 17,
-        rateOfFire: patch.rof ?? 1, shots: patch.shots ?? "5(3)", loaded: 5, loadedFrom: patch.loadedFrom ?? "", minSt: patch.minSt ?? 11, ammunition: "",
+        rateOfFire: patch.rof ?? 1, shots: patch.shots ?? "5(3)", loaded: 5, loadedFrom: patch.loadedFrom ?? "", minSt: patch.minSt ?? 11, ammunition: patch.ammunition ?? "",
+        projectiles: patch.projectiles ?? 1, explosive: patch.explosive === true,
       }],
       extensions: { [MODULE_ID]: { htLoads: patch.loads ?? [], firearm: {} } },
     },
@@ -94,18 +99,18 @@ const box = (patch: { fits?: string; quantity?: number; loads?: any[] } = {}): a
   system: { category: "ammunition", quantity: patch.quantity ?? 50, cost: 9, weight: 1, tl: "", ammunition: { kind: "", fits: patch.fits ?? "9x19mm" }, extensions: { [MODULE_ID]: { htLoads: patch.loads ?? [] } } },
 });
 
-const load = (patch: Record<string, unknown>) => ({ mode: 0, calibre: "", upgrades: [], source: "", matched: false, batchMalfunction: 0, discount: 0, ...patch });
+const load = (patch: Record<string, unknown>) => ({ mode: 0, calibre: "", upgrades: [], source: "", matched: false, batchMalfunction: 0, discount: 0, projectile: "", material: "", shotMm: 0, shotCount: 0, projectileUpgrades: [], poisonCost: 0, ...patch });
 
 function fire(hook: string, context: any): any {
   for (const listener of hooks.get(hook) ?? []) listener(context);
   return context;
 }
 
-/** The row the sheet shows for the gun's first mode. */
-function row(item: any): any {
+/** The row the sheet shows for the gun's first mode; `patch` what the system's own rules made of it. */
+function row(item: any, patch: Record<string, unknown> = {}, basisPatch: Record<string, unknown> = {}): any {
   const mode = item.system.rangedModes[0];
-  const figures = { damage: mode.damageFormula, damageType: "pi", armorDivisor: 1, halfDamageRange: 1000, maxRange: 4000, accuracy: mode.accuracy, malfunction: mode.malfunction, minSt: mode.minSt, projectiles: 1 };
-  return fire(HOOKS.weaponAttacks, { actor: item.actor, item, rows: [{ kind: "ranged", mode, basis: { ...figures }, row: { ...figures, notes: [] } }] }).rows[0].row;
+  const figures = { damage: mode.damageFormula, damageType: "pi", armorDivisor: 1, halfDamageRange: 1000, maxRange: 4000, accuracy: mode.accuracy, malfunction: mode.malfunction, minSt: mode.minSt, projectiles: mode.projectiles ?? 1, recoil: 2, firstHit: null, noOverpenetration: false, scatterSquared: false };
+  return fire(HOOKS.weaponAttacks, { actor: item.actor, item, rows: [{ kind: "ranged", mode, basis: { ...figures, ...basisPatch }, row: { ...figures, ...basisPatch, ...patch, notes: [] } }] }).rows[0].row;
 }
 
 const flush = async () => { for (let i = 0; i < 5; i += 1) await Promise.resolve(); };
@@ -229,5 +234,90 @@ describe("misloading (p. 178)", () => {
     on.misloading = false;
     dice = [3, 3, 4];
     expect(attack(revolver(".44 Special", ".44 Magnum (10.9×33mmR)")).refusal).toBeNull();
+  });
+});
+
+describe("projectiles (pp. 166-175)", () => {
+  const labels = (shown: any): string[] => shown.notes.map((n: any) => n.label);
+
+  it("loads a pistol with hollow-points: (0.5), a step up the piercing ladder, only with the switch on", () => {
+    const glock = gun({ name: "Glock 17, 9x19mm", skill: "Guns (Pistol)", accuracy: 2, damage: "2d+2", rof: 3, shots: "17+1(3)", loads: [load({ projectile: "hollowPoint" })] });
+    expect(row(glock)).toMatchObject({ damage: "2d+2", damageType: "pi", armorDivisor: 1 });
+    on.projectileOptions = true;
+    const shown = row(glock);
+    expect(shown).toMatchObject({ damage: "2d+2", damageType: "pi+", armorDivisor: 0.5, malfunction: 17 });
+    expect(labels(shown)).toContain("GCC.HT.Ammunition.Projectile.hollowPoint");
+  });
+
+  it("replaces the Basic Set round chosen on the mode, never stacking with it", () => {
+    on.projectileOptions = true;
+    hooks = new Map();
+    const api = { ...fakeApi(), registry: { isRuleOn: (key: string) => key === "ammunitionTypes" } };
+    readyAmmunition(api as never, switches);
+    // The system loaded Basic Set APDS in the rifle (Characters p. 279): (2), a step down, +1 a die, Range x1.5.
+    const m16 = gun({ name: "Colt M16A2, 5.56x45mm", tl: "9", damage: "5d", ammunition: "apds", loads: [load({ projectile: "hollowPoint" })] });
+    const shown = row(m16, { damage: "5d+5", damageType: "pi-", armorDivisor: 2, halfDamageRange: 1500, maxRange: 6000 });
+    expect(shown).toMatchObject({ damage: "5d", damageType: "pi+", armorDivisor: 0.5, halfDamageRange: 1000, maxRange: 4000 });
+    expect(labels(shown).some((l) => l.startsWith("GCC.HT.Ammunition.Note.replacesBasic"))).toBe(true);
+    // High-Tech's APDS from the rifle's own figures: 5d x1.3, (2), pi-, Range x1.5.
+    m16.system.extensions[MODULE_ID].htLoads = [load({ projectile: "apds" })];
+    expect(row(m16, { damage: "5d+5", damageType: "pi-", armorDivisor: 2, halfDamageRange: 1500, maxRange: 6000 })).toMatchObject({ damage: "6d+2", damageType: "pi-", armorDivisor: 2, halfDamageRange: 1500, maxRange: 6000 });
+  });
+
+  it("fires a 12-gauge's buckshot, birdshot and a rifled slug", () => {
+    on.projectileOptions = true;
+    on.multipleProjectileLoads = true;
+    const shotgun = (l: any) => gun({ name: "Remington Model 870, 12G 2.75''", tl: "7", skill: "Guns (Shotgun)", accuracy: 3, damage: "1d+1", rof: 2, projectiles: 9, shots: "5+1(2i)", loads: [l] });
+    const buck = row(shotgun(load({ projectile: "shotshell" })), { halfDamageRange: 40, maxRange: 800, recoil: 1 });
+    expect(buck).toMatchObject({ damage: "1d+1", damageType: "pi", projectiles: 9, recoil: 1 });
+    const bird = row(shotgun(load({ projectile: "shotshell", shotMm: 2.79, shotCount: 223 })), { halfDamageRange: 40, maxRange: 800, recoil: 1 });
+    expect(bird).toMatchObject({ damage: "1d-5", damageType: "pi-", armorDivisor: 0.5, halfDamageRange: 14, maxRange: 279, projectiles: 223 });
+    const slug = row(shotgun(load({ projectile: "rifledSlug" })), { halfDamageRange: 40, maxRange: 800, recoil: 1 });
+    expect(slug).toMatchObject({ damage: "5d", damageType: "pi++", accuracy: 4, halfDamageRange: 100, maxRange: 1200, projectiles: 1 });
+  });
+
+  it("gives buck-and-ball's ball the first hit, and a tracer the incendiary modifier", () => {
+    on.multipleProjectileLoads = true;
+    on.projectileUpgrades = true;
+    const bess = gun({ name: "Brown Bess, .75 Flintlock (Brown Bess)", tl: "5", skill: "Guns (Musket)", accuracy: 1, damage: "4d+1", shots: "1(40)", loads: [load({ projectile: "buckAndBall" })] });
+    const shown = row(bess, { damageType: "pi++", halfDamageRange: 100, maxRange: 1500 });
+    expect(shown).toMatchObject({ damage: "1d+1", damageType: "pi", projectiles: 4, recoil: 1 });
+    expect(shown.firstHit).toEqual({ damage: "4d+1", damageType: "pi++", armorDivisor: 1, label: "GCC.HT.Ammunition.FirstHitBall" });
+    const m16 = gun({ name: "Colt M16A2, 5.56x45mm", tl: "8", damage: "5d", loads: [load({ projectileUpgrades: ["tracer"] })] });
+    const traced = row(m16);
+    expect(traced.incendiary).toBe(true);
+    expect(labels(traced)).toContain("GCC.HT.Ammunition.ProjectileUpgrade.tracer");
+  });
+
+  it("bursts a grenade launcher's airburst round, a miss scattering by the margin squared", () => {
+    on.projectileUpgrades = true;
+    const m79 = gun({ name: "M79, 40x46mmSR", tl: "7", skill: "Guns (Grenade Launcher)", damage: "4d", explosive: true, loads: [load({ projectileUpgrades: ["airburst"] })] });
+    expect(row(m79).scatterSquared).toBe(true);
+    // Not on a bullet.
+    const glock = gun({ name: "Glock 17, 9x19mm", skill: "Guns (Pistol)", damage: "2d+2", loads: [load({ projectileUpgrades: ["airburst"] })] });
+    expect(row(glock).scatterSquared).toBe(false);
+  });
+
+  it("prices a box of hollow-point APDS-free rounds from the projectile, and silver x50", () => {
+    on.projectileOptions = true;
+    on.exoticBullets = true;
+    const rounds = box({ fits: ".40 S&W", quantity: 50, loads: [load({ projectile: "hollowPoint", material: "silver" })] });
+    expect(prices[0].apply(rounds, { cost: 9, weight: 1 })).toMatchObject({ cost: 15, weight: 0.035 });
+    // With every switch off it keeps its own price.
+    on.projectileOptions = false;
+    on.exoticBullets = false;
+    on.ammunitionUpgrades = false;
+    expect(prices[0].apply(rounds, { cost: 9, weight: 1 })).toBeNull();
+  });
+
+  it("loads a muzzle-loading rifle firing Minié balls in a musket's time", () => {
+    on.projectileOptions = true;
+    const api = fakeApi();
+    readyReloading(api as never, { loading: () => true, careful: () => false, fouling: () => false, minieBalls: (item, modeIndex) => firesMinieBalls(item, modeIndex, switches) });
+    const enfield = gun({ name: "Enfield P/1853, .577 Caplock (Enfield)", tl: "5", skill: "Guns (Rifle)", shots: "1(60)", loads: [load({ projectile: "minie" })] });
+    const mode = enfield.system.rangedModes[0];
+    const entry = fire(HOOKS.shotsEntry, { actor: enfield.actor, item: enfield, modeIndex: 0, mode, entry: { ...rules.parseShots(mode.shots) } }).entry;
+    expect(entry.reloadSeconds).toBe(40);
+    expect(entry.aids.some((a: any) => a.id.endsWith("greasedPatch"))).toBe(false);
   });
 });

@@ -108,6 +108,14 @@ describe("the scene's rows", () => {
     expect(rowFor(gun({ tl: "5" }))).toMatchObject({ maxRange: 1800 });
   });
 
+  it("underwater: an underwater dart loaded counts distance x25, as a gun built for the water does (p. 169)", () => {
+    flag = { underwater: true };
+    hooks = new Map();
+    readyEnvironments(fakeApi() as never, () => on, { underwaterFactor: (item, modeIndex) => (item.name === "dart gun" && modeIndex === 0 ? 25 : 0) });
+    expect(rowFor({ ...gun(), name: "dart gun" }, { halfDamageRange: 50, maxRange: 500 })).toMatchObject({ halfDamageRange: 2, maxRange: 20, malfunction: 17 });
+    expect(rowFor(gun(), { halfDamageRange: 1000, maxRange: 4000 })).toMatchObject({ halfDamageRange: 1, maxRange: 4, malfunction: 15 });
+  });
+
   it("in space: an automatic TL6-8 gun malfunctions on 14, a bolt action doesn't", () => {
     flag = { atmospheres: 0 };
     expect(rowFor(gun())).toMatchObject({ malfunction: 14 });
