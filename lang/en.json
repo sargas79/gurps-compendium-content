@@ -5221,6 +5221,14 @@
         "portableCover": {
           "Name": "Portable cover",
           "Hint": "An explosives or radiation blanket has a Smother action: a charge set off beneath it, the blanket's DR 25 coming off the damage roll. A radiation blanket in use (equipped) gives PF 3 against a radiation dose (High-Tech p. 72)."
+        },
+        "lieDetection": {
+          "Name": "Lie detection",
+          "Hint": "A polygraph's row button tests the one token targeted: a Quick Contest of the operator's Electronics Operation (Medical) against the subject's Will. The margin, won or lost, goes on Interrogation rolls against that subject, by whoever makes them; the VSA and CVSA software give half of it. A subject with Compulsive Lying reads as truthful: -5 on machine-aided Interrogation instead (High-Tech pp. 215-216)."
+        },
+        "restraintDevices": {
+          "Name": "Restraints",
+          "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10) and Acrobatics or Escape to bring cuffed wrists to the front (High-Tech p. 217)."
         }
       },
       "Codes": {
@@ -8605,6 +8613,49 @@
         "Blocked": "{jammer} blocks it.",
         "Jammed": "Jammed by {jammer}.",
         "GetsThrough": "It gets through."
+      },
+      "LieDetection": {
+        "Title": "Lie detector",
+        "Test": "Lie detector test",
+        "Clear": "Clear the reading",
+        "PickSubject": "Target the one subject to be tested.",
+        "TestLabel": "{name}: {subject}",
+        "Kept": "Reading of {subject} kept: {value} to Interrogation.",
+        "Holds": "Holds a reading of {subject}: {value} to Interrogation.",
+        "ReadingLine": "{name} reading",
+        "Contest": "Row button: a Quick Contest of {skill} against the subject's Will; the margin, won or lost, is the interrogators' modifier to Interrogation. The operator and the questioner may be different people (High-Tech p. 216).",
+        "Half": "A voice stress analyser: half a polygraph's effect on Interrogation (High-Tech p. 216).",
+        "Compulsive": "A subject with Compulsive Lying reads as truthful: {value} on machine-aided Interrogation (High-Tech p. 216)."
+      },
+      "Restraints": {
+        "Title": "Restraint",
+        "State": "On the wearer",
+        "StateHint": "Whether this restraint is on the character whose sheet it is on, and for cuffs, whether the wrists are cuffed behind the back or in front (High-Tech p. 217).",
+        "States": {
+          "off": "Off",
+          "on": "On",
+          "behind": "Cuffed behind",
+          "front": "Cuffed in front"
+        },
+        "Escape": "Escape",
+        "Slip": "Slip cuffs to the front",
+        "EscapeLabel": "Escape from {name}",
+        "SlipLabel": "{skill}: slip {name} to the front",
+        "Freed": "{name} gets out of {restraint}.",
+        "Held": "{name} is still held by {restraint}.",
+        "Slipped": "{name} brings the cuffed wrists round to the front.",
+        "NotSlipped": "{name} can't get the cuffed wrists round to the front.",
+        "DxLine": "{name}: cuffed",
+        "HandsLine": "{name}: hands only",
+        "NoWeapons": "Restrained by {name}: no weapon can be used (High-Tech p. 217).",
+        "NoOneHanded": "Cuffed in front by {name}: no one-handed blow; two-handed weapons and guns only (High-Tech p. 217).",
+        "EscapeLine": "Escape {modifier} to get free (High-Tech p. 217).",
+        "Toughness": "DR {dr}, HP {hp}.",
+        "Behind": "Cuffed behind: {dx} DX, {hands} on tasks done with the hands alone (worked blind behind the back), and nothing that needs the arms free. Acrobatics or Escape brings the wrists to the front.",
+        "Front": "Cuffed in front: {hands} on hands-only tasks; one-handed blows are impossible, two-handed weapons and guns unhindered, other weapons -1 to -4 (the GM's call).",
+        "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves and no slipping the arms round to the front.",
+        "LegIrons": "Crippled Legs: Move is half Basic Speed, -3 on skills that need the legs; kicking is impossible. TL5 leg irons don't ratchet (Escape unmodified); TL6-8 ones do (Escape-5).",
+        "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance."
       }
     },
     "Backblast": {
