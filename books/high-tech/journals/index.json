@@ -840,6 +840,7 @@
       "title": "Trigger Mechanisms",
       "chapter": "5. Weaponry",
       "pages": "HT82",
+      "rule": "gurps-compendium-content.triggerMechanisms",
       "reference": "High-Tech p. 82",
       "file": "trigger-mechanisms.md",
       "status": "reviewed"
@@ -849,6 +850,7 @@
       "title": "Automatic Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT82-83",
+      "rule": "gurps-compendium-content.burstFire",
       "reference": "High-Tech pp. 82-83",
       "file": "automatic-weapons.md",
       "status": "reviewed"
@@ -858,6 +860,7 @@
       "title": "Fanning and Thumbing",
       "chapter": "5. Weaponry",
       "pages": "HT83-84",
+      "rule": "gurps-compendium-content.fanningAndThumbing",
       "reference": "High-Tech pp. 83-84",
       "file": "fanning-and-thumbing.md",
       "status": "reviewed"
@@ -867,6 +870,7 @@
       "title": "Fast-Firing",
       "chapter": "5. Weaponry",
       "pages": "HT84",
+      "rule": "gurps-compendium-content.fastFiring",
       "reference": "High-Tech p. 84",
       "file": "fast-firing.md",
       "status": "reviewed"

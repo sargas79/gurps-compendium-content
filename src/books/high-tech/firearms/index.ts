@@ -75,7 +75,12 @@ export interface FirearmData extends FirearmQuality {
   feed: Feed | "";
 }
 
-export function initFirearms(): void {
+/**
+ * Registers the fields this module keeps on a gun. `more` adds another rule's
+ * fields to the same `firearm` object, so every gun rule of the book reads one
+ * place (the rate-of-fire rules add theirs).
+ */
+export function initFirearms(more?: (fields: any) => Record<string, unknown>): void {
   const f = foundry.data.fields as any;
   const whole = (max: number) => new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
@@ -88,6 +93,7 @@ export function initFirearms(): void {
       precision: new f.BooleanField({ initial: false }),
       rugged: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...RUGGEDNESS] }),
       feed: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...FEEDS] }),
+      ...(more?.(f) ?? {}),
     }),
   });
 }
@@ -261,19 +267,23 @@ function traitsNamed(actor: any, name: RegExp): string[] {
 }
 
 /**
- * The level of the character's Immediate Action technique for this skill,
- * relative to the skill, or null where they don't know it (p. 251).
+ * The level of the character's technique of this name for this skill,
+ * relative to the skill, or null where they don't know it (pp. 250-252). The
+ * technique names the skill as its prerequisite or in its name, "Fanning
+ * (Guns (Pistol))" or "Immediate Action (Pistol)". `penalty` is its default,
+ * which the technique's own levels are counted up from where no level is
+ * worked out.
  */
-function techniqueRelative(api: GWorldApi, actor: any, skill: string): number | null {
+export function techniqueRelative(api: GWorldApi, actor: any, skill: string, name: RegExp = /^immediate action\b/i, penalty = IMMEDIATE_ACTION_PENALTY): number | null {
   const technique = [...(actor?.items ?? [])].find((i: any) => i?.type === "technique"
-    && /^immediate action\b/i.test(String(i.name ?? ""))
-    && (specialtyCovers(String(i.system?.prerequisite ?? ""), skill) || specialtyCovers(/\(([^)]*)\)\s*$/.exec(String(i.name ?? ""))?.[1] ?? "", skill)));
+    && name.test(String(i.name ?? ""))
+    && (specialtyCovers(String(i.system?.prerequisite ?? ""), skill) || specialtyCovers(/^[^(]*\((.*)\)\s*$/.exec(String(i.name ?? ""))?.[1] ?? "", skill)));
   if (!technique) return null;
   const level = technique.system?.derived?.level;
   const base = api.actors.skillLevel(actor, skill);
   if (typeof level === "number" && typeof base === "number") return level - base;
   const levels = Number(technique.system?.derived?.levels);
-  return Number.isFinite(levels) ? IMMEDIATE_ACTION_PENALTY + levels : null;
+  return Number.isFinite(levels) ? penalty + levels : null;
 }
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {
