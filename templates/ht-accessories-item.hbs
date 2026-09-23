@@ -1,0 +1,74 @@
+{{!-- A firearm accessory fitted to a gun, or a gun's magazine and report (High-Tech pp. 155-160). --}}
+<div class="isub" data-gcc-ht-accessories-section>
+  <div class="isub-head">{{localize "GCC.HT.Accessories.Title"}}</div>
+  {{#if accessory}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Accessories.FittedToHint'}}">{{localize "GCC.HT.Accessories.FittedTo"}}
+        <select data-gcc-ht-accessory="gun" {{#unless editable}}disabled{{/unless}}>
+          {{#each guns as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if levels}}
+        <label>{{levels.label}}
+          <input type="number" min="{{levels.min}}" max="{{levels.max}}" step="1" data-gcc-ht-accessory="level" value="{{levels.value}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+      {{#if colours}}
+        <label>{{localize "GCC.HT.Accessories.ColourLabel"}}
+          <select data-gcc-ht-accessory="colour" {{#unless editable}}disabled{{/unless}}>
+            {{#each colours as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+      {{#if grades}}
+        <label data-tooltip="{{localize 'GCC.HT.Accessories.GradeHint'}}">{{localize "GCC.HT.Accessories.GradeLabel"}}
+          <select data-gcc-ht-accessory="grade" {{#unless editable}}disabled{{/unless}}>
+            {{#each grades as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    </div>
+    {{#if nightVisionChoice}}
+      <div class="ichecks">
+        <label class="icheck"><input type="checkbox" data-gcc-ht-accessory="nightVision" {{#if data.nightVision}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.NightVisionChoice"}}</label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if magazine}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Accessories.MagazineTooltip'}}">{{localize "GCC.HT.Accessories.MagazineLabel"}}
+        <select data-gcc-ht-gun="magazine" {{#unless editable}}disabled{{/unless}}>
+          {{#each magazine.kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if magazine.chosen}}
+        <label>{{localize "GCC.HT.Accessories.MaterialLabel"}}
+          <select data-gcc-ht-gun="magazineMaterial" {{#unless editable}}disabled{{/unless}}>
+            {{#each magazine.materials as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+        <label>{{localize "GCC.HT.Accessories.RoundsLabel"}}
+          <input type="number" min="1" max="1000" step="1" data-gcc-ht-gun="magazineRounds" value="{{magazine.rounds}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+    {{#if magazine.chosen}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.UnreliableHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineUnreliable" {{#if magazine.unreliable}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Unreliable"}}</label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if report}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Accessories.ReportTooltip'}}">{{localize "GCC.HT.Accessories.ReportLabel"}}
+        <select data-gcc-ht-gun="report" {{#unless editable}}disabled{{/unless}}>
+          {{#each report.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.SealedBreechHint'}}"><input type="checkbox" data-gcc-ht-gun="sealedBreech" {{#if report.sealedBreech}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.SealedBreech"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

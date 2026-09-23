@@ -3,7 +3,12 @@
  * a scope, a HUD link, targeting software, a harness, a grip or a gravitic
  * compensator is worth to a shot, and what each adds to a weapon's price and
  * weight.
+ *
+ * The scope after aiming, the targeting program and the ST penalty a new ST
+ * requirement leaves are the shared accessory rules, which High-Tech reads too.
  */
+
+export { minStPenaltyAfter, scopeAfterAiming, targetingProgramBonus } from "../../../shared/accessories/rules.js";
 
 export type ScopeKind = "cts" | "ets";
 export type HarnessKind = "gyrostabilized" | "articulated" | "servomount";
@@ -38,14 +43,6 @@ export function scopeVision(kind: ScopeKind, tl: number): "infravision" | "hyper
   return kind === "cts" && tl <= 9 ? "infravision" : "hyperspectral";
 }
 
-/**
- * What a scope is worth for the seconds aimed: the Basic Set's variable-power
- * scope gives up a point for each second short of its bonus (Campaigns p. 411).
- */
-export function scopeAfterAiming(bonus: number, secondsAimed: number): number {
-  return Math.max(0, Math.min(bonus, Math.floor(secondsAimed)));
-}
-
 /** A HUD link: +1 Acc within 300 yards, not with another targeting system's Acc bonus (p. 149). */
 export const HUD_LINK = Object.freeze({ accuracy: 1, yards: 300 });
 
@@ -59,11 +56,6 @@ export function hudLinkBonus(yards: number | null, otherTargeting: number): numb
 /** Every TL9+ firearm has a laser sight, a HUD link, a grip or ring and a diagnostic computer for free (p. 149). */
 export function hasSmartgunElectronics(tl: number, firearm: boolean): boolean {
   return firearm && tl >= 9;
-}
-
-/** The targeting program: +1 to one Guns or Gunner specialization at Complexity 3, +2 at 4, with a HUD link (p. 150). */
-export function targetingProgramBonus(complexity: number): number {
-  return complexity >= 4 ? 2 : complexity >= 3 ? 1 : 0;
 }
 
 /** TacNet: +1 Tactics at Complexity 5, +2 at 6, with everyone in communication (p. 149). */
@@ -185,12 +177,6 @@ export const SMARTGRIP = Object.freeze({ cost: 500, st: -1, lc: 4 });
 export function graviticCompensator(loadedWeight: number): { cost: number; weight: number; cells: number } {
   const tens = Math.max(1, Math.ceil(Math.max(0, loadedWeight) / 10));
   return { cost: 100 * tens, weight: tens, cells: tens };
-}
-
-/** The ST penalty a row carries at a new ST requirement, never worse than the one it had (Characters p. 270). */
-export function minStPenaltyAfter(st: number, minSt: number | null, had: number): number {
-  const now = minSt === null || minSt <= st ? 0 : st - minSt;
-  return Math.max(had, now);
 }
 
 /** The Armoury specialization a weapon's skill is repaired with. */

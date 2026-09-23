@@ -17,14 +17,16 @@
  * steeply into the air, in space), sustained fire, the aftermath of a
  * firefight, reloading, careful loading and black-powder fouling, and the
  * weapon families: air guns and ranged stunners, unsafe revolvers and pistol
- * whipping, mechanical machine guns, and backblast, and indirect fire with
- * forward observers (pp. 79-93, 127-141,
- * 147-154, 159, 249-252).
+ * whipping, mechanical machine guns, and backblast, indirect fire with
+ * forward observers, and firearm accessories: magazines, sights,
+ * suppressors (and cinematic silencers), stocks, bipods and shooting sticks
+ * (pp. 79-93, 127-141, 147-160, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
 import { initDrawing, readyDrawing } from "./drawing/index.js";
+import { accessoryGunFields, initAccessories, readyAccessories } from "./accessories/index.js";
 import { readyAftermath } from "./aftermath/index.js";
 import { readyEnvironments } from "./environments/index.js";
 import { readyIndirectFire } from "./indirect-fire/index.js";
@@ -85,8 +87,13 @@ const RULES = [
   { key: "mechanicalMachineGuns", pages: "p. 127", implemented: true },
   { key: "backblast", pages: "pp. 141, 147-153", implemented: true },
   { key: "indirectFire", pages: "pp. 139-141", implemented: true },
-  // Cinematic: the optional additions to Gunslinger.
+  { key: "gunMagazines", pages: "p. 155", implemented: true },
+  { key: "gunSights", pages: "pp. 155-157", implemented: true },
+  { key: "suppressors", pages: "pp. 158-159", implemented: true },
+  { key: "stocksAndMounts", pages: "p. 160", implemented: true },
+  // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
+  { key: "cinematicSilencers", pages: "p. 159", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -118,7 +125,8 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f) }));
+  initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
@@ -126,12 +134,15 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
+  const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
   const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded") };
   readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
     noFanning: (item) => (shooting.pistolero() && inPistoleroStance(api, item) ? game.i18n.localize("GCC.HT.Shooting.StanceNoFanning") : null),
     techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),
   });
-  readyShooting(api, shooting);
+  // Before the shooting options, whose Pistolero stance starts from the Bulk the accessories leave.
+  readyAccessories(api, accessories);
+  readyShooting(api, shooting, accessories);
   readyEnvironments(api, rule("shootingEnvironments"));
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));

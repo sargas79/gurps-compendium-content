@@ -27,26 +27,8 @@ export function isGyroc(name: string): boolean {
   return /\bgyroc\b/i.test(String(name ?? ""));
 }
 
-interface Dice { dice: number; adds: number }
-
-function parse(formula: string): Dice | null {
-  const m = /^(\d*)d([+-]\d+)?$/i.exec(String(formula ?? "").replace(/\s+/g, ""));
-  if (!m) return null;
-  return { dice: m[1] ? Number(m[1]) : 1, adds: m[2] ? Number(m[2]) : 0 };
-}
-
-function format(d: Dice): string {
-  return `${d.dice}d${d.adds > 0 ? `+${d.adds}` : d.adds < 0 ? `${d.adds}` : ""}`;
-}
-
-/** Damage multiplied by a factor, by its average: 3d x1.5 is 4d+2. */
-export function multiplyDamage(formula: string, factor: number): string {
-  const d = parse(formula);
-  if (!d || factor === 1) return formula;
-  const total = (d.dice * 3.5 + d.adds) * factor;
-  const dice = Math.max(1, Math.floor(total / 3.5));
-  return format({ dice, adds: Math.round(total - dice * 3.5) });
-}
+/** Damage multiplied by a factor, by its average: 3d x1.5 is 4d+2 (the shared accessory rule, which High-Tech reads too). */
+export { multiplyDamage } from "../../../shared/accessories/rules.js";
 
 export const PIERCING: readonly string[] = ["pi-", "pi", "pi+", "pi++"];
 

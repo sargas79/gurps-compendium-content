@@ -24,6 +24,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { accessoryBulk, fittedScopeBonus, type AccessorySwitches } from "../accessories/index.js";
 import { isFirearm, techniqueRelative } from "../firearms/index.js";
 import {
   GUNSLINGER_HALVES,
@@ -129,6 +130,12 @@ async function askModifier(title: string, label: string): Promise<number | null>
   return value === null || value === undefined ? null : Math.floor(Number(value) || 0);
 }
 
+/** The accessory switches, where the accessories are registered: a fitted scope counts for Precision Aiming, and the stance starts from their Bulk. */
+let accessories: AccessorySwitches | null = null;
+
+/** The scope a gun has for Precision Aiming: its own, or the best fitted one (pp. 84, 155-157). */
+const scopeOf = (row: any, item: any): number => Math.max(Number(row?.scopeBonus) || 0, accessories ? fittedScopeBonus(item, accessories) : 0);
+
 /** The +1s of precision the aim holds so far. */
 const precisionClaimed = (actor: any): number => ((actor?.system?.aim?.bonuses ?? []) as any[])
   .filter((b) => b?.key === PRECISION_KEY).reduce((sum, b) => sum + (Number(b.value) || 0), 0);
@@ -143,8 +150,9 @@ export async function precisionAim(api: GWorldApi, item: any, actor: any): Promi
     return null;
   }
   const row = rangedRow(api, actor, item);
-  const cap = precisionCap(Number(row?.accuracy) || 0, Number(row?.scopeBonus) || 0);
-  if (!(Number(row?.scopeBonus) > 0)) {
+  const scope = scopeOf(row, item);
+  const cap = precisionCap(Number(row?.accuracy) || 0, scope);
+  if (!(scope > 0)) {
     ui.notifications?.warn(L("PrecisionNoScope"));
     return null;
   }
@@ -208,7 +216,8 @@ function rapidPenalty(api: GWorldApi, on: ShootingSwitches, actor: any, item: an
 /** A gun TA technique's parts, from its name. */
 const gunTa = (technique: any): GunTargetedAttack | null => readGunTargetedAttack(technique?.name);
 
-export function readyShooting(api: GWorldApi, on: ShootingSwitches): void {
+export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: AccessorySwitches): void {
+  accessories = fitted ?? null;
   const state = <T>(actor: any, key: string) => api.combat.getCombatState(actor, MODULE_ID, key) as T | undefined;
 
   // ── Pistolero (p. 84) ──
@@ -311,7 +320,9 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches): void {
     if (stance) {
       // Bulk a step better (p. 84).
       if (bulk && (bulk.situation === "moveAndAttack" || bulk.situation === "closeCombat")) {
-        bulk.value = api.rules.bulkPenalty(pistoleroBulk(Number(mode.bulk) || 0), bulk.situation);
+        const aimed = lines.some((l) => l?.key === "accuracy");
+        const own = accessories ? accessoryBulk(api, item, mode, aimed, accessories) : Number(mode.bulk) || 0;
+        bulk.value = api.rules.bulkPenalty(pistoleroBulk(own), bulk.situation);
         bulk.label = F("StanceBulk", { label: bulk.label });
       }
       // Every aimed shot braced.
