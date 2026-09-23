@@ -2679,6 +2679,463 @@
           ]
         },
         "reason": "the quality's skill by the Basic Set record's name, which a carried tool is matched to"
+      },
+      {
+        "pattern": "^Mini-Tool Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.kit": "mini"
+        },
+        "reason": "a mini-tool kit (p. 24) (#360)"
+      },
+      {
+        "pattern": "^Portable Tool Kit$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.kit": "portable"
+        },
+        "reason": "a portable tool kit (p. 24) (#360)"
+      },
+      {
+        "pattern": "^Workshop$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.kit": "workshop"
+        },
+        "reason": "a workshop (p. 24) (#360)"
+      },
+      {
+        "pattern": "^Suitcase Lab$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.setupSeconds": 10
+        },
+        "reason": "at least 10 seconds to set up or pack (p. 50) (#360)"
+      },
+      {
+        "pattern": "^Field Lab$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.setupSeconds": 60
+        },
+        "reason": "at least a minute to set up or pack (p. 50) (#360)"
+      },
+      {
+        "pattern": "^Mobile Lab$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.setupSeconds": 900
+        },
+        "reason": "at least 15 minutes to set up or pack (p. 50) (#360)"
+      },
+      {
+        "pattern": "^Workshop CNC$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.partsPerHour": 10
+        },
+        "reason": "10 lbs. of parts an hour (p. 29) (#360)"
+      },
+      {
+        "pattern": "^Desktop CNC$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.partsPerHour": 0.5
+        },
+        "reason": "0.5 lb. of parts an hour (p. 29) (#360)"
+      },
+      {
+        "pattern": "^Workshop RP$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.partsPerHour": 1
+        },
+        "reason": "1 lb. of parts an hour (p. 29) (#360)"
+      },
+      {
+        "pattern": "^Desktop RP$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.partsPerHour": 0.1
+        },
+        "reason": "0.1 lb. of parts an hour (p. 29) (#360)"
+      },
+      {
+        "pattern": "^Bit and Brace$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw-2",
+            "type": "pi++",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "wood",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "sw-2(2) pi++ a second, drilling wood (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Crosscut Saw$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw-3",
+            "type": "cut",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "wood",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "sw-3(2) cut a second to wood; the two sawyers' ST add, which the row leaves to the table (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Hacksaw$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw-3",
+            "type": "cut",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "metalBars",
+            "stRoll": null,
+            "carbideBonus": 1
+          }
+        },
+        "reason": "sw-3(2) cut a second to bars, chains and cables; +1 with carbide or diamond teeth (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Saw$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw-2",
+            "type": "cut",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "wood",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "sw-2(2) cut a second to wood (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Wire Cutters$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "2d",
+            "type": "cut",
+            "divisor": 2,
+            "every": 0,
+            "multiplier": 1,
+            "against": "rope",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "2d(2) cut to rope, barbed wire and thin cable (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Bolt Cutters, Heavy$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "12d",
+            "type": "cut",
+            "divisor": 2,
+            "every": 0,
+            "multiplier": 1,
+            "against": "metalBars",
+            "stRoll": 4,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "12d(2) cut to chains, bars and cables on an ST+4 roll (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Bolt Cutters, Light$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "8d",
+            "type": "cut",
+            "divisor": 2,
+            "every": 0,
+            "multiplier": 1,
+            "against": "metalBars",
+            "stRoll": 4,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "8d(2) cut, otherwise as the heavy ones (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Wire Saw$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "1",
+            "type": "cut",
+            "divisor": 1,
+            "every": 4,
+            "multiplier": 1,
+            "against": "",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "a point of cutting every four seconds (p. 25) (#360)"
+      },
+      {
+        "pattern": "^Rock Drill$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw+4",
+            "type": "pi++",
+            "divisor": 2,
+            "every": 0,
+            "multiplier": 1,
+            "against": "rock",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "(2) pi++ equal to the crushing blow struck on it, a sledgehammer being a maul's sw+4 (pp. 25-26, maul p. B274) (#360)"
+      },
+      {
+        "pattern": "^Glass Cutter$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.use": "glassCutter"
+        },
+        "reason": "a DX or Forced Entry roll, -6 in a realistic game (p. 26) (#360)"
+      },
+      {
+        "pattern": "^Duct Tape$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.use": "ductTape"
+        },
+        "reason": "a restraint broken with ST-3 or Escape (p. 26) (#360)"
+      },
+      {
+        "pattern": "^Drill$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "6d",
+            "type": "pi++",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "concreteRock",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "the steam drill's 6d(2) pi++ a second to concrete or rock (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Circular Saw$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw+3",
+            "type": "cut",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "sw+3(2) cut a second (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Cutting Torch$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "1d+3",
+            "type": "burn",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "1d+3(2) burn a second (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Jackhammer$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "7d",
+            "type": "pi++",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "concreteRock",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "7d(2) pi++ a second to concrete, stone and asphalt (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Power Drill$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "1d+2",
+            "type": "pi++",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "woodPlasticMetal",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "1d+2(2) pi++ a second to wood, plastic or metal (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Pocket Torch$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "1d-2",
+            "type": "burn",
+            "divisor": 1,
+            "every": 1,
+            "multiplier": 1,
+            "against": "",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "1d-2 burn a second (p. 27) (#360)"
+      },
+      {
+        "pattern": "^Plasma Torch$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "3d+6",
+            "type": "burn",
+            "divisor": 2,
+            "every": 1,
+            "multiplier": 1,
+            "against": "",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "3d+6(2) burn a second (p. 27) (#360)"
+      },
+      {
+        "pattern": "^(?:Pneumatic|Powder-Actuated|Combustion) Nail Gun$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.use": "nailGun"
+        },
+        "reason": "fired at DX-4 or Guns (Pistol)-4 (p. 28) (#360)"
+      },
+      {
+        "pattern": "^Hand Ram$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.readies": 2,
+          "system.extensions.gurps-compendium-content.tool.readiesWaivedAtSt": 20
+        },
+        "reason": "ST 20, or two Ready maneuvers between strikes (p. 29) (#360)"
+      },
+      {
+        "pattern": "^Hydraulic Door Opener$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.readies": 3
+        },
+        "reason": "three Ready maneuvers pumping before it does its damage (p. 30) (#360)"
+      },
+      {
+        "pattern": "^Rescue Spreader/Cutter \\(TL[78]\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.readies": 4
+        },
+        "reason": "four Ready maneuvers to open the jaws before each bite (p. 30) (#360)"
+      },
+      {
+        "pattern": "^Lock Buster$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.work": {
+            "damage": "sw+4",
+            "type": "cr",
+            "divisor": 1,
+            "every": 0,
+            "multiplier": 2,
+            "against": "padlock",
+            "stRoll": null,
+            "carbideBonus": 0
+          }
+        },
+        "reason": "doubles the sledgehammer's blow (a maul's sw+4) against the padlock (p. 30, maul p. B274) (#360)"
+      },
+      {
+        "pattern": "^Small Cylinder$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "explosion",
+            "damage": "4dx2",
+            "upTo": "",
+            "perSecond": false
+          }
+        },
+        "reason": "ruptured near a flame: 4d×2 burn ex, 1d cutting fragments (p. 31) (#360)"
+      },
+      {
+        "pattern": "^Large Cylinder$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "explosion",
+            "damage": "6dx5",
+            "upTo": "",
+            "perSecond": false
+          }
+        },
+        "reason": "ruptured near a flame: 6d×5 burn ex, 1d cutting fragments (p. 31) (#360)"
+      },
+      {
+        "pattern": "^(?:Cast-Iron Cook Stove|Electric Range|Gas Range)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "burn",
+            "damage": "1d-1",
+            "upTo": "2d",
+            "perSecond": true
+          }
+        },
+        "reason": "a hot stove, burner or element burns for 1d-1 to 2d a second (p. 32) (#360)"
+      },
+      {
+        "pattern": "^Microwave$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "injury",
+            "damage": "1",
+            "upTo": "",
+            "perSecond": true
+          }
+        },
+        "reason": "1 HP a second to what is put inside (p. 32) (#360)"
+      },
+      {
+        "pattern": "^Blender$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "cut",
+            "damage": "1d-3",
+            "upTo": "",
+            "perSecond": true
+          }
+        },
+        "reason": "1d-3 cut a second (p. 32) (#360)"
+      },
+      {
+        "pattern": "^(?:Coffee Maker|Hotplate|Toaster|Waffle Iron)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.tool.hazard": {
+            "kind": "burn",
+            "damage": "1d-3",
+            "upTo": "",
+            "perSecond": false
+          }
+        },
+        "reason": "1d-3 burn (p. 32) (#360)"
       }
     ]
   },

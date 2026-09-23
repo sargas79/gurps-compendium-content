@@ -3788,7 +3788,14 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "equipmentModifier": -2
+      "equipmentModifier": -2,
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "mini"
+          }
+        }
+      }
     }
   },
   {
@@ -3815,7 +3822,14 @@
       "listCost": 600,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "portable"
+          }
+        }
+      }
     }
   },
   {
@@ -3842,7 +3856,14 @@
       "listCost": 15000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "workshop"
+          }
+        }
+      }
     }
   },
   {
@@ -3885,7 +3906,14 @@
           "twoHanded": true
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "chainsaw"
+          }
+        }
+      }
     }
   },
   {
@@ -3928,7 +3956,14 @@
           "twoHanded": true
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "chainsaw"
+          }
+        }
+      }
     }
   },
   {

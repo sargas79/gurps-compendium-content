@@ -1,0 +1,10 @@
+{{!-- A prisoner held with duct tape (High-Tech p. 26): the roll to break free. --}}
+<div class="gc-head"><span class="gc-label">{{localize "GCC.HT.Tools.TapeTitle"}}</span></div>
+<div class="gc-result">{{line}}</div>
+{{#if freed}}
+  <div class="gc-note">{{freed}}</div>
+{{else}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="breakFree">{{localize "GCC.HT.Tools.BreakFree"}}</button>
+  </div>
+{{/if}}

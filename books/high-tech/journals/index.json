@@ -321,6 +321,7 @@
       "title": "Tool Kits",
       "chapter": "3. General Equipment",
       "pages": "HT24",
+      "rule": "gurps-compendium-content.toolKits",
       "reference": "High-Tech p. 24",
       "file": "tool-kits.md",
       "status": "reviewed"
@@ -330,6 +331,7 @@
       "title": "Tools for All Trades",
       "chapter": "3. General Equipment",
       "pages": "HT24",
+      "rule": "gurps-compendium-content.toolKits",
       "reference": "High-Tech p. 24",
       "file": "tools-for-all-trades.md",
       "status": "reviewed"
@@ -339,6 +341,7 @@
       "title": "Power Tools",
       "chapter": "3. General Equipment",
       "pages": "HT26-28",
+      "rule": "gurps-compendium-content.chainsaws",
       "reference": "High-Tech pp. 26-28",
       "file": "power-tools.md",
       "status": "reviewed"
@@ -348,6 +351,7 @@
       "title": "Rescue Tools",
       "chapter": "3. General Equipment",
       "pages": "HT29",
+      "rule": "gurps-compendium-content.forcedEntryTools",
       "reference": "High-Tech p. 29",
       "file": "rescue-tools.md",
       "status": "reviewed"
@@ -357,6 +361,7 @@
       "title": "Propane",
       "chapter": "3. General Equipment",
       "pages": "HT31",
+      "rule": "gurps-compendium-content.householdHazards",
       "reference": "High-Tech p. 31",
       "file": "propane.md",
       "status": "reviewed"
@@ -366,6 +371,7 @@
       "title": "Lead Poisoning",
       "chapter": "3. General Equipment",
       "pages": "HT33",
+      "rule": "gurps-compendium-content.householdHazards",
       "reference": "High-Tech p. 33",
       "file": "lead-poisoning.md",
       "status": "reviewed"

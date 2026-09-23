@@ -1,0 +1,37 @@
+{{!-- Tool kits, forced-entry tools, chainsaws and household hazards (High-Tech pp. 24-33, 50). --}}
+<div class="isub" data-gcc-ht-tools-section>
+  <div class="isub-head">{{localize "GCC.HT.Tools.Title"}}</div>
+  {{#if kit}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Tools.KitTooltip'}}">{{localize "GCC.HT.Tools.KitLabel"}}
+        <select data-gcc-ht-tool="kit" {{#unless editable}}disabled{{/unless}}>
+          {{#each kit.sizes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if kit.isKit}}
+        <label data-tooltip="{{localize 'GCC.HT.Tools.VehicleTonsHint'}}">{{localize "GCC.HT.Tools.VehicleTons"}}
+          <input type="number" min="0" step="1" data-gcc-ht-tool="vehicleTons" value="{{kit.vehicleTons}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+      {{#if kit.workshop}}
+        <label data-tooltip="{{localize 'GCC.HT.Tools.CloseCraftsHint'}}">{{localize "GCC.HT.Tools.CloseCrafts"}}
+          <input type="text" data-gcc-ht-tool="closeCrafts" value="{{kit.closeCrafts}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.HT.Tools.DistantCraftsHint'}}">{{localize "GCC.HT.Tools.DistantCrafts"}}
+          <input type="text" data-gcc-ht-tool="distantCrafts" value="{{kit.distantCrafts}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    </div>
+    {{#if kit.isKit}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Tools.LightCraftHint'}}"><input type="checkbox" data-gcc-ht-tool="lightCraft" {{#if kit.lightCraft}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Tools.LightCraft"}}</label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if carbide}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{carbide.hint}}"><input type="checkbox" data-gcc-ht-tool="carbide" {{#if carbide.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{carbide.label}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

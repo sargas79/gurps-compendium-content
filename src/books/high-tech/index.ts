@@ -27,8 +27,10 @@
  * upgrades, cartridge conversions, handloading and misloading, the
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
  * and projectile upgrades, the explosive and cargo rounds, power:
- * batteries, generators and fuel, and the optional wounding rules
- * (pp. 7-11, 13-16, 17-22, 79-93, 109, 127-141, 143, 147-178, 249-252).
+ * batteries, generators and fuel, the optional wounding rules, and the
+ * general equipment: tool kits, forced-entry tools, chainsaws and nail
+ * guns, and household hazards (pp. 7-11, 13-16, 17-22, 24-33, 50,
+ * 79-93, 109, 127-141, 143, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -49,6 +51,7 @@ import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/
 import { registerHighTechRecordData } from "./records.js";
 import { readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
+import { initTools, readyTools } from "./tools/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
 import { readyWounding } from "./wounding/index.js";
 
@@ -130,6 +133,11 @@ const RULES = [
   { key: "woundFrightChecks", pages: "p. 162", implemented: true },
   { key: "booksAndLibraries", pages: "pp. 17-18", implemented: true },
   { key: "computerSystems", pages: "pp. 19-22", implemented: true },
+  // General equipment: tool kits, forced entry, chainsaws and nail guns, household hazards.
+  { key: "toolKits", pages: "pp. 24, 29, 50", implemented: true },
+  { key: "forcedEntryTools", pages: "pp. 25-30", implemented: true },
+  { key: "chainsaws", pages: "pp. 27-28", implemented: true },
+  { key: "householdHazards", pages: "pp. 31-33", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -172,6 +180,7 @@ function init(): void {
   initAmmunition();
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
+  initTools();
 }
 
 function ready(api: GWorldApi): void {
@@ -209,6 +218,7 @@ function ready(api: GWorldApi): void {
   readyHighTechPower(api, rule("batteries"));
   readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
+  readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
 }
 
 export const book: BookRules = {
