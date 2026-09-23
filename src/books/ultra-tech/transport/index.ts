@@ -14,12 +14,12 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { RESTRAINT_TABLES, ask, freeFrom, num, picked, readyRestraints, restrain, row, say, select, val, type RestraintTable } from "../../../shared/vehicles/index.js";
 import {
   CRASHWEB_DISABLE,
   CYLINDER_CHANGE,
   HELIPACK,
   JETPACK_WASH_YARDS,
-  crashwebAbsorb,
   BOOTH_RANGES,
   BOOTH_RANGE_MILES,
   CAPSULE_NAVIGATION,
@@ -44,7 +44,6 @@ import {
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Transport.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Transport.${key}`, data);
-const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "transport";
 const TIERS = Object.keys(BOOTH_RANGES);
@@ -54,7 +53,19 @@ export interface TransportSwitches {
   matterTransmission: () => boolean;
 }
 
+/**
+ * The crashweb as Ultra-Tech's occupant restraint in the shared engine: DR
+ * equal to TL, ablative, and DX-2 to get free (p. 224).
+ */
+const CRASHWEB_FLAG = "utCrashwebDr";
+export const UT_RESTRAINTS: RestraintTable = Object.freeze({
+  book: "ultra-tech",
+  switch: `${MODULE_ID}.vehicleSystems`,
+  restraints: Object.freeze({ crashweb: { condition: "ut-crashweb", escape: CRASHWEB_ESCAPE, ablative: true, flag: CRASHWEB_FLAG } }),
+});
+
 export function initTransport(): void {
+  RESTRAINT_TABLES.register(UT_RESTRAINTS);
   const f = foundry.data.fields as any;
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
     [FIELD]: new f.SchemaField({
@@ -75,30 +86,6 @@ const isGear = (item: any) => item?.type === "equipment" || item?.type === "armo
 const isBooth = (name: string) => /Matter Transmission Booths?$/i.test(name);
 const isProjector = (name: string) => /^Teleport Projectors?$/i.test(name);
 const isFlightPack = (name: string) => /^(Helipack|Contragravity Belt|Nuclear Jetpack|Grav Cloak)$/i.test(name);
-const picked = () => ({
-  selected: (globalThis as any).canvas?.tokens?.controlled?.[0]?.actor ?? null,
-  targets: [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean),
-});
-
-async function say(actor: any, title: string, lines: string[]): Promise<void> {
-  await ChatMessage.implementation.create({
-    speaker: actor ? ChatMessage.implementation.getSpeaker({ actor }) : undefined,
-    content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
-  });
-}
-async function ask<T>(title: string, fields: string, read: (form: HTMLElement) => T): Promise<T | null> {
-  return foundry.applications.api.DialogV2.prompt({
-    window: { title },
-    content: `<div class="gworld" style="display:grid;gap:6px">${fields}</div>`,
-    ok: { label: title, callback: (_event: Event, button: HTMLElement) => read(button.closest<HTMLElement>(".application")!) },
-    rejectClose: false,
-  }) as Promise<T | null>;
-}
-const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
-const select = (name: string, options: Array<[string, string]>) => `<select name="${name}">${options.map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join("")}</select>`;
-const num = (name: string, value: number) => `<input type="number" name="${name}" value="${value}" step="any" style="width:90px" />`;
-const val = (form: HTMLElement, name: string) => form.querySelector<HTMLInputElement>(`[name="${name}"]`);
-
 // ── vehicle systems ──
 
 async function vehicleTool(api: GWorldApi): Promise<void> {
@@ -124,14 +111,10 @@ async function vehicleTool(api: GWorldApi): Promise<void> {
   if (!targets.length) return void ui.notifications?.warn(L("Tool.Target"));
   for (const victim of targets) {
     if (answer.kind === "crashweb") {
-      await api.actors.applyCondition(victim, { module: MODULE_ID, key: "ut-crashweb", label: F("Tool.Webbed", { dr: crashwebDr(answer.tl) }) } as any);
-      await victim.setFlag(MODULE_ID, CRASHWEB_FLAG, crashwebDr(answer.tl));
+      await restrain(api, victim, UT_RESTRAINTS.restraints.crashweb!, crashwebDr(answer.tl), F("Tool.Webbed", { dr: crashwebDr(answer.tl) }));
       await say(victim, L("Tool.crashweb"), [F("Tool.WebbedLine", { name: victim.name, dr: crashwebDr(answer.tl) })]);
     } else if (answer.kind === "free") {
-      const result: any = await api.roll.success({ actor: victim, base: api.actors.attribute(victim, "DX") ?? 10, kind: "attribute", label: L("Tool.FreeLabel"), modifiers: [{ label: L("Tool.crashweb"), value: CRASHWEB_ESCAPE }] } as any);
-      if (result?.success) {
-        for (const c of api.actors.conditions(victim).filter((c) => c.id.includes("ut-crashweb"))) await api.actors.removeCondition(victim, c.id);
-      }
+      await freeFrom(api, victim, UT_RESTRAINTS, "crashweb", { roll: L("Tool.FreeLabel"), line: L("Tool.crashweb") });
     } else if (answer.kind === "disable") {
       const base = api.actors.skillLevel(victim, CRASHWEB_DISABLE.skill) ?? (api.actors.attribute(victim, "IQ") ?? 10) - 5;
       const result: any = await api.roll.success({ actor: victim, base, skill: CRASHWEB_DISABLE.skill, label: L("Tool.DisableLabel") } as any);
@@ -142,8 +125,6 @@ async function vehicleTool(api: GWorldApi): Promise<void> {
     }
   }
 }
-
-const CRASHWEB_FLAG = "utCrashwebDr";
 
 /** Swaps in a full cylinder (p. 231). */
 async function changeCylinder(item: any, actor: any): Promise<void> {
@@ -300,18 +281,8 @@ export function readyTransport(api: GWorldApi, on: TransportSwitches): void {
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-thruster-cylinder", itemTypes: ["equipment"], label: L("Thruster.Change"), icon: "fa-solid fa-rotate", visible: (item) => on.vehicles() && CYLINDER_CHANGE[String(item?.name)] !== undefined, run: (item, actor) => changeCylinder(item, actor) });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-jetpack-wash", itemTypes: ["equipment"], label: L("Item.WashTitle"), icon: "fa-solid fa-fire", visible: (item) => on.vehicles() && /^Nuclear Jetpack$/i.test(String(item?.name)), run: (item, actor) => jetpackWash(api, item, actor) });
 
-  // A crashweb's ablative DR against the crash's crushing damage (p. 224).
-  Hooks.on(api.combat.hooks.injury, (context: any) => {
-    const victim = context?.actor;
-    if (!on.vehicles() || !victim || !context.damage) return;
-    if (String(context.damage.type ?? context.damage.damageType ?? "") !== "cr") return;
-    if (!(api.actors.conditions(victim) ?? []).some((c: any) => String(c?.id ?? "").endsWith("ut-crashweb"))) return;
-    const left = Number(victim.getFlag?.(MODULE_ID, CRASHWEB_FLAG)) || 0;
-    if (left <= 0) return;
-    const absorbed = crashwebAbsorb(Number(context.damage.basicDamage) || 0, left);
-    context.damage.basicDamage = absorbed.damage;
-    void victim.setFlag(MODULE_ID, CRASHWEB_FLAG, absorbed.drLeft);
-  });
+  // A crashweb's ablative DR against the crash's crushing damage (p. 224), in the shared restraint engine.
+  readyRestraints(api);
 
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ut-strap-on", itemTypes: ["equipment"], label: L("Strap.Title"), icon: "fa-solid fa-person-rays", visible: (item) => on.vehicles() && (isFlightPack(String(item?.name)) || /^Thruster Pack$/i.test(String(item?.name))), run: (item, actor) => strapOn(api, item, actor) });
 

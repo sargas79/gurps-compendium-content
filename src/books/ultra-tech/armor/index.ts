@@ -85,8 +85,10 @@ import {
   type TailoredStyle,
   type Tailoring,
   WARSUIT_HARDENED,
+  UT_SHAPED_ARMOUR,
   breathesUnderwater,
 } from "./rules.js";
+import { SHAPED_ARMOUR_TABLES } from "../../../shared/vehicles/index.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Armor.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Armor.${key}`, data);
@@ -134,6 +136,7 @@ interface ArmorWear {
 
 /** Registers the armour fields. */
 export function initArmor(): void {
+  SHAPED_ARMOUR_TABLES.register(UT_SHAPED_ARMOUR);
   const f = foundry.data.fields as any;
   const coverage = () => new f.StringField({ required: true, nullable: false, blank: false, initial: "full", choices: [...COVERAGES] });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {

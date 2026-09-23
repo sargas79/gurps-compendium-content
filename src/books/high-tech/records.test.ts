@@ -7,6 +7,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import * as rules from "../../../system/src/rules/index.js";
 
 import { EXPLOSIVES } from "./explosives/ref.js";
 import { chargeOf, firearmBuild } from "./records.js";
@@ -148,6 +149,25 @@ describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
     // p. 233 note 1: thinner top armour.
     expect(vehicle("Junkers J.I")).toMatchObject({ dr: 15, drTop: 5 });
     expect(vehicle("Ford V-8").drOther).toBeUndefined();
+  });
+
+  it("gives a turret its faces, a canopy its arc, an amphibian its water Move and fx its two codes (gworld 1.92-1.93, #393)", () => {
+    // Turrets by face: pp. 239, 244, 240.
+    expect(vehicle("Krupp Panzer IV Ausf H")).toMatchObject({ drByLocation: { mainTurret: 175 }, drByLocationOther: { mainTurret: 155 }, drByLocationTop: { mainTurret: 55 } });
+    expect(vehicle("Pressed Steel M4A1(76)W Sherman IIA")).toMatchObject({ drByLocation: { mainTurret: 210 }, drByLocationOther: { mainTurret: 140 }, drByLocationTop: { mainTurret: 70 } });
+    expect(vehicle("Uralvagonzavod T-72A")).toMatchObject({ drByLocation: { mainTurret: 1375 }, drByLocationOther: { mainTurret: 420 }, drByLocationTop: { mainTurret: 180 } });
+    expect(vehicle("Panhard AML60-7")).toMatchObject({ drByLocation: { mainTurret: 35 }, drByLocationTop: { mainTurret: 20 } });
+    expect(vehicle("GAZ BRDM-2")).toMatchObject({ drByLocation: { independentTurret: 40 }, drByLocationTop: { independentTurret: 20 } });
+    // The fighters' canopies are armoured against the front only (pp. 237-238).
+    expect(vehicle("NAA P-51D Mustang IV")).toMatchObject({ drByLocation: { smallWindow: 30 }, drByLocationArcs: { smallWindow: ["front"] } });
+    expect(vehicle("Focke-Wulf Fw 190A-6 Würger")).toMatchObject({ drByLocation: { smallWindow: 25 }, drByLocationArcs: { smallWindow: ["front"] } });
+    // Water Move 1/3 (pp. 237, 240).
+    for (const name of ["Ford GPA", "GAZ BRDM-2"]) expect(vehicle(name), name).toMatchObject({ locomotion: "wheels", secondLocomotion: "water", secondAcceleration: 1, secondTopSpeed: 3 });
+    // "fx" is kept whole (pp. 234, 238, 240).
+    for (const name of ["Renault FT17", "Krupp Panzer IV Ausf H", "Panhard AML60-7"]) expect(vehicle(name).fragility, name).toBe("fx");
+    expect(rules.fragilityCodes(vehicle("Renault FT17").fragility)).toEqual(["f", "x"]);
+    expect(rules.vehicleDrAt(vehicle("Uralvagonzavod T-72A"), "mainTurret", "side").dr).toBe(420);
+    expect(rules.vehicleDrAt(vehicle("NAA P-51D Mustang IV"), "smallWindow", "rear").dr).toBe(3);
   });
 });
 

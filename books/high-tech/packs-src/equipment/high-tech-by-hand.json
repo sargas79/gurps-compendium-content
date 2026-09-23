@@ -2189,7 +2189,7 @@
         "handling": -3,
         "stability": 5,
         "ht": 8,
-        "fragility": "x",
+        "fragility": "fx",
         "acceleration": 1,
         "topSpeed": 3,
         "loadedWeight": 7.2,
@@ -2209,6 +2209,9 @@
         "drUnderbody": 15,
         "drByLocation": {
           "mainTurret": 60
+        },
+        "drByLocationTop": {
+          "mainTurret": 20
         }
       }
     }
@@ -2645,7 +2648,10 @@
         "locomotion": "wheels",
         "roadBound": false,
         "draft": 0,
-        "stall": 0
+        "stall": 0,
+        "secondLocomotion": "water",
+        "secondAcceleration": 1,
+        "secondTopSpeed": 3
       }
     }
   },
@@ -2789,7 +2795,15 @@
         "locomotion": "air",
         "roadBound": false,
         "draft": 0,
-        "stall": 110
+        "stall": 110,
+        "drByLocation": {
+          "smallWindow": 25
+        },
+        "drByLocationArcs": {
+          "smallWindow": [
+            "front"
+          ]
+        }
       }
     }
   },
@@ -2837,7 +2851,15 @@
         "locomotion": "air",
         "roadBound": false,
         "draft": 0,
-        "stall": 84
+        "stall": 84,
+        "drByLocation": {
+          "smallWindow": 30
+        },
+        "drByLocationArcs": {
+          "smallWindow": [
+            "front"
+          ]
+        }
       }
     }
   },
@@ -2871,7 +2893,7 @@
         "handling": -3,
         "stability": 5,
         "ht": 10,
-        "fragility": "x",
+        "fragility": "fx",
         "acceleration": 2,
         "topSpeed": 12,
         "loadedWeight": 27.5,
@@ -2891,6 +2913,12 @@
         "drUnderbody": 30,
         "drByLocation": {
           "mainTurret": 175
+        },
+        "drByLocationOther": {
+          "mainTurret": 155
+        },
+        "drByLocationTop": {
+          "mainTurret": 55
         }
       }
     }
@@ -2945,6 +2973,12 @@
         "drUnderbody": 50,
         "drByLocation": {
           "mainTurret": 210
+        },
+        "drByLocationOther": {
+          "mainTurret": 140
+        },
+        "drByLocationTop": {
+          "mainTurret": 70
         }
       }
     }
@@ -3123,7 +3157,7 @@
         "handling": -1,
         "stability": 4,
         "ht": 10,
-        "fragility": "x",
+        "fragility": "fx",
         "acceleration": 1,
         "topSpeed": 28,
         "loadedWeight": 6.1,
@@ -3143,6 +3177,9 @@
         "drUnderbody": 20,
         "drByLocation": {
           "mainTurret": 35
+        },
+        "drByLocationTop": {
+          "mainTurret": 20
         }
       }
     }
@@ -3197,7 +3234,13 @@
         "drUnderbody": 7,
         "drByLocation": {
           "independentTurret": 40
-        }
+        },
+        "drByLocationTop": {
+          "independentTurret": 20
+        },
+        "secondLocomotion": "water",
+        "secondAcceleration": 1,
+        "secondTopSpeed": 3
       }
     }
   },
@@ -3392,6 +3435,9 @@
         "stall": 0,
         "drByLocation": {
           "independentTurret": 35
+        },
+        "drByLocationTop": {
+          "independentTurret": 0
         }
       }
     }
@@ -3792,6 +3838,12 @@
         "drUnderbody": 70,
         "drByLocation": {
           "mainTurret": 1375
+        },
+        "drByLocationOther": {
+          "mainTurret": 420
+        },
+        "drByLocationTop": {
+          "mainTurret": 180
         }
       }
     }
