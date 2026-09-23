@@ -11,14 +11,13 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { whoDrawsFirst, type Fighter } from "../../../shared/standoff/index.js";
 import { CARRIES, carryModifier, situationModifiers, specialtyOf, type Carry } from "../readying/rules.js";
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
 import {
   WEAPON_LENGTHS,
   absoluteWeight,
-  drawCase,
   drawModifiers,
-  drawWinner,
   lengthOf,
   longestReach,
   multipleParryPenalty,
@@ -125,121 +124,50 @@ export function readyTiming(api: GWorldApi, draws: () => boolean, stopHits: () =
     label: L("Draw.Title"),
     icon: "fa-solid fa-hand-back-fist",
     visible: draws,
-    open: () => whoDrawsFirst(),
-  });
-
-  async function whoDrawsFirst(): Promise<void> {
-    const fighters = tokensPicked();
-    if (fighters.length !== 2) return void ui.notifications?.warn(L("Draw.Pick"));
-    const column = (actor: any, i: number) => {
-      const rows = rowsOf(actor).map((r, n) => `<option value="${n}">${esc(r.name)}${r.mode ? ` (${esc(r.mode)})` : ""}: ${r.skillLevel}</option>`).join("");
-      const fastDraws = [...(actor.items ?? [])].filter((s: any) => s.type === "skill" && /^fast-draw/i.test(String(s.name ?? "")))
-        .map((s: any) => `<option value="${esc(s.name)}">${esc(s.name)}: ${api.actors.skillLevel(actor, String(s.name)) ?? "-"}</option>`).join("");
-      return `<fieldset style="flex:1"><legend>${esc(actor.name)}</legend>
-        <label>${L("Draw.Weapon")} <select name="row${i}">${rows}</select></label>
-        <label><input type="checkbox" name="ready${i}"> ${L("Draw.Ready")}</label>
-        <label>${L("Draw.FastDraw")} <select name="fastDraw${i}"><option value="">${L("Draw.None")}</option>${fastDraws}</select></label>
-        <label><input type="checkbox" name="greased${i}"> ${L("Lines.greased")}</label>
-        <label><input type="checkbox" name="hand${i}"> ${L("Lines.handOnWeapon")}</label>
-        <label>${L("Draw.Other")} <input type="number" name="other${i}" value="0" step="1"></label>
-      </fieldset>`;
-    };
-    const form = await foundry.applications.api.DialogV2.prompt({
-      window: { title: L("Draw.Title") },
-      content: `<div class="gworld" style="display:flex;gap:8px">${fighters.map(column).join("")}</div><p class="ihint">${L("Draw.OtherHint")}</p>`,
-      ok: { label: L("Draw.Resolve"), callback: (_e: Event, button: any) => new (foundry.applications as any).ux.FormDataExtended(button.form).object },
-      rejectClose: false,
-    }) as Record<string, any> | null;
-    if (!form) return;
-    const sides = fighters.map((actor: any, i: number) => {
-      const row = rowsOf(actor)[Number(form[`row${i}`]) || 0] ?? null;
-      const fastDrawSkill = String(form[`fastDraw${i}`] ?? "");
-      const side: DrawSide = {
-        greased: Boolean(form[`greased${i}`]),
-        handOnWeapon: Boolean(form[`hand${i}`]),
+    open: () => whoDrawsFirst<DrawSide>(api, {
+      i18n: "GCC.MA.Timing",
+      rows: rowsOf,
+      checks: [{ name: "greased", line: "greased" }, { name: "hand", line: "handOnWeapon" }],
+      side: (actor, row, checked) => ({
+        greased: checked.greased === true,
+        handOnWeapon: checked.hand === true,
         swing: row?.damageBase === "sw",
         st: stOf(actor),
         weapon: { ...timed(actor, row), weaponSt: row?.minSt ?? null, bareHands: bare(row), unbalanced: row?.unbalanced === true },
-      };
-      return {
-        actor,
-        row,
-        side,
-        other: Number(form[`other${i}`]) || 0,
-        ready: Boolean(form[`ready${i}`]),
-        fastDrawSkill,
-        fastDraw: fastDrawSkill ? api.actors.skillLevel(actor, fastDrawSkill) : null,
-      };
+      }),
+      drawLines: (self, foe) => drawModifiers(self.side, foe.side, inches()),
+      readyLines: (self) => readyModifiers(self.side, combatReflexes(self.actor), inches()),
+      oddPositions,
+      after: greasy,
+    }),
+  });
+
+  // Fast-Draw from Odd Positions applies whatever skill is rolled (p. 103).
+  function oddPositions(s: Fighter<DrawSide>) {
+    const item = s.row?.itemId ? s.actor.items?.get?.(s.row.itemId) : null;
+    const stored = item?.system?.extensions?.[MODULE_ID]?.carry;
+    const carry = CARRIES.includes(stored as Carry) ? (stored as Carry) : null;
+    const maneuver = String(s.actor.system?.maneuver ?? "");
+    const lines = situationModifiers({
+      posture: String(s.actor.system?.posture ?? "standing"),
+      grappled: Boolean(api.combat.grapple(s.actor)) && !api.combat.grapple(s.actor)?.holding,
+      upsideDown: false,
+      moving: maneuver === "move" || maneuver === "moveAndAttack",
+      hand: "master",
+      carry,
     });
-    const [a, b] = sides as [typeof sides[number], typeof sides[number]];
-    if (!a.row || !b.row) return void ui.notifications?.warn(L("Draw.NoWeapon"));
-    const on = inches();
-    // Fast-Draw from Odd Positions applies whatever skill is rolled (p. 103).
-    const oddPositions = (s: typeof a) => {
-      const item = s.row?.itemId ? s.actor.items?.get?.(s.row.itemId) : null;
-      const stored = item?.system?.extensions?.[MODULE_ID]?.carry;
-      const carry = CARRIES.includes(stored as Carry) ? (stored as Carry) : null;
-      const maneuver = String(s.actor.system?.maneuver ?? "");
-      const lines = situationModifiers({
-        posture: String(s.actor.system?.posture ?? "standing"),
-        grappled: Boolean(api.combat.grapple(s.actor)) && !api.combat.grapple(s.actor)?.holding,
-        upsideDown: false,
-        moving: maneuver === "move" || maneuver === "moveAndAttack",
-        hand: "master",
-        carry,
-      });
-      const located = carry ? carryModifier(specialtyOf(s.fastDrawSkill), carry) : null;
-      if (located) lines.push({ key: "carry", value: located });
-      return lines.filter((l) => l.value).map((l) => ({ label: game.i18n.localize(`GCC.MA.Readying.Line.${l.key}`), value: l.value }));
-    };
-    const drawing = (s: typeof a, foe: typeof a, extra: ModifierKey[] = []) => [
-      ...lineLabels([...drawModifiers(s.side, foe.side, on), ...extra]),
-      ...oddPositions(s),
-      ...(s.other ? [{ label: L("Draw.Other"), value: s.other }] : []),
-    ];
-    const label = F("Draw.Label", { a: a.actor.name, b: b.actor.name });
-    const standoff = drawCase({ ready: a.ready, fastDraw: a.fastDraw }, { ready: b.ready, fastDraw: b.fastDraw });
-    let result = "";
-    const first = (s: typeof a) => F("Draw.First", { name: s.actor.name });
-    const simultaneous = L("Draw.Simultaneous");
-    const contest = async (useFastDraw: boolean) => {
-      const outcome: any = await api.roll.quickContest({
-        label,
-        first: { actor: a.actor, base: useFastDraw ? Number(a.fastDraw) : a.row.skillLevel, note: useFastDraw ? a.fastDrawSkill : a.row.name, modifiers: drawing(a, b) },
-        second: { actor: b.actor, base: useFastDraw ? Number(b.fastDraw) : b.row.skillLevel, note: useFastDraw ? b.fastDrawSkill : b.row.name, modifiers: drawing(b, a) },
-        tags: ["whoDrawsFirst"],
-      } as any);
-      const winner = drawWinner("contest", outcome?.outcome ?? "tie", true);
-      return winner === "simultaneous" ? simultaneous : first(winner === "first" ? a : b);
-    };
-    if (standoff.kind === "bothReady") result = L("Draw.BothReady");
-    else if (standoff.kind === "readyStrikes") result = first(standoff.side === "a" ? a : b);
-    else if (standoff.kind === "readyVsFastDraw") {
-      const ready = standoff.side === "a" ? a : b;
-      const drawer = standoff.side === "a" ? b : a;
-      const outcome: any = await api.roll.quickContest({
-        label,
-        first: { actor: ready.actor, base: ready.row.skillLevel, note: ready.row.name, modifiers: lineLabels(readyModifiers(ready.side, combatReflexes(ready.actor), on)) },
-        second: { actor: drawer.actor, base: Number(drawer.fastDraw), note: drawer.fastDrawSkill, modifiers: drawing(drawer, ready, [{ key: "againstReady", value: -10 }]) },
-        tags: ["whoDrawsFirst"],
-      } as any);
-      const winner = drawWinner("readyVsFastDraw", outcome?.outcome ?? "tie", true);
-      result = first(winner === "second" ? drawer : ready);
-    } else if (standoff.kind === "fastDrawRoll") {
-      const drawer = standoff.side === "a" ? a : b;
-      const foe = standoff.side === "a" ? b : a;
-      const outcome: any = await api.roll.success({ actor: drawer.actor, base: Number(drawer.fastDraw), label, skill: drawer.fastDrawSkill, modifiers: drawing(drawer, foe) } as any);
-      if (outcome?.criticalFailure) result = F("Draw.ThrowsAway", { name: drawer.actor.name, foe: foe.actor.name });
-      else if (outcome?.success) result = first(drawer);
-      else result = await contest(false);
-    } else result = await contest(standoff.fastDraw);
-    // A greased scabbard leaves the weapon greasy (p. 103).
+    const located = carry ? carryModifier(specialtyOf(s.fastDrawSkill), carry) : null;
+    if (located) lines.push({ key: "carry", value: located });
+    return lines.filter((l) => l.value).map((l) => ({ label: game.i18n.localize(`GCC.MA.Readying.Line.${l.key}`), value: l.value }));
+  }
+
+  // A greased scabbard leaves the weapon greasy (p. 103).
+  async function greasy(sides: ReadonlyArray<Fighter<DrawSide>>): Promise<void> {
     for (const s of sides) {
       if (s.side.greased && s.actor.isOwner) {
         await api.actors.applyCondition(s.actor, { module: MODULE_ID, key: "ma-greasy-weapon", label: L("Draw.Greasy"), effects: { modifiers: [{ label: L("Draw.Greasy"), value: -1, rolls: ["attack", "parry"] }] } } as any);
       }
     }
-    await chat(`<div class="gc-head"><span class="gc-label">${L("Draw.Title")}</span></div><div class="gc-result">${esc(result)}</div>`);
   }
 
   // ── Stop Hits (p. 108) ──

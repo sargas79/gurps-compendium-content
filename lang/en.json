@@ -4809,6 +4809,14 @@
         "immediateAction": {
           "Name": "Immediate Action",
           "Hint": "Clearing a stoppage takes -4 on the Armoury or IQ-based weapon skill roll, bought off by the Immediate Action technique for the weapon skill, plus the gun's TL and familiarity penalties. It takes two Ready maneuvers for a magazine-fed self-loader, four for a belt-fed gun (three with an assistant gunner) and three otherwise; Armorer's Gift and Weapon Bond help (High-Tech pp. 81, 249-251)."
+        },
+        "gunDrawing": {
+          "Name": "Drawing guns",
+          "Hint": "Fast-Draw one gun per hand each turn, the off hand at -4; a failure ends the turn's drawing and a critical failure drops the gun, or both. The odd positions apply, with where the gun is carried: a pistol +0 in the belt or at the hip, -1 at the small of the back or in a shoulder holster, -2 in an ankle holster or boot, -3 in a pocket or concealed; a long arm +0 on a patrol sling, -2 slung over the shoulder, -4 on the back. Holsters and slings by name: a military holster -2 (none with its flap tucked away), an undercover holster -1, a Fast-Draw rig +2, a patrol sling +1; a pistol takes a Ready in or out of its holster, a slung long arm two (three from the back), and a successful Fast-Draw saves one. A sleeve holster fails or breaks on its own terms, a retention holster gives +2 to Retain Weapon, a lanyard lets you recover a dropped gun with a DX roll, and Quick-Sheathe stows a gun as fast as Fast-Draw draws it (High-Tech pp. 81-82, 153-154, 249)."
+        },
+        "gunfightStandoff": {
+          "Name": "Who draws first (guns)",
+          "Hint": "A GM tool for a standoff between two gunfighters outside combat: a ready gun fires first against a foe without Fast-Draw, or wins a Quick Contest of weapon skill against Fast-Draw at -10 (+1 for Combat Reflexes, and ties); otherwise Fast-Draw or weapon skill decides, with +4 for a hand on the gun, -1 for the worse Bulk, and the odd positions (High-Tech p. 82)."
         }
       },
       "Firearm": {
@@ -4873,6 +4881,125 @@
         "AssistantGunner": "An assistant gunner ({ready} Ready maneuvers)",
         "ArmorersGift": "Armorer's Gift (+{bonus})",
         "WeaponBond": "Weapon Bond (+{bonus})"
+      },
+      "Drawing": {
+        "Title": "Drawing guns",
+        "ItemTitle": "Holster and drawing",
+        "Carry": "Carried",
+        "Carries": {
+          "belt": "Tucked into the belt",
+          "hip": "Holstered at the hip",
+          "smallOfBack": "Holstered at the small of the back",
+          "shoulderHolster": "Shoulder holster",
+          "ankle": "Ankle holster",
+          "boot": "In a boot",
+          "concealed": "Pocket or concealed",
+          "patrolSling": "Patrol sling",
+          "shoulder": "Slung over the shoulder",
+          "backSling": "Slung on the back"
+        },
+        "Counts": "Guns drawn this turn (master / off):",
+        "Failed": "a draw failed",
+        "Gun": "Gun",
+        "Holster": "Holster or sling",
+        "NoHolster": "None",
+        "HolsterOwned": "A holster or sling is chosen from the character's own gear, once the gun is on a character.",
+        "Place": "Carried",
+        "Modifier": "Fast-Draw",
+        "ModifierHint": "The place's and the holster's modifiers, and the situation's, for the master hand",
+        "ReadiesShort": "Readies",
+        "ReadiesHint": "Ready maneuvers to draw or stow it without Fast-Draw; a success saves one",
+        "Readies": "Drawing or stowing takes {readies} Ready maneuver(s); a successful Fast-Draw saves one.",
+        "InHand": "In hand",
+        "MasterHand": "Master hand",
+        "OffHand": "Off hand (-4)",
+        "Grappled": "Grappled",
+        "UpsideDown": "Upside down",
+        "Draw": "Fast-Draw",
+        "DrawHint": "One gun per hand each turn; the master hand's is rolled first",
+        "Stow": "Holster",
+        "StowHint": "A Ready (two or three to sling a long arm), or a Fast-Draw roll with Quick-Sheathe",
+        "FreeLoop": "Free the loop",
+        "Retrieve": "Retrieve",
+        "PickGun": "Pick a gun for at least one hand",
+        "SameGun": "One gun can't be drawn with both hands",
+        "HandUsed": "That hand has drawn its gun this turn",
+        "TurnOver": "The draw failed: no more Fast-Draw this turn",
+        "AlreadyDrawn": "{gun} is already in hand",
+        "LoopFirst": "{gun}'s hammer loop takes a Ready to free before Fast-Draw",
+        "LoopFreed": "{gun}'s hammer loop is free",
+        "NoSkill": "No Fast-Draw skill for {gun}",
+        "DrawnFree": "{gun} is drawn, as a free action.",
+        "DrawnAfter": "{gun} comes free a second sooner: {readies} Ready maneuver(s) still to go.",
+        "Dropped": "Critical failure: {gun} is dropped.",
+        "DroppedBoth": "Critical failure: both guns are dropped ({gun}).",
+        "OnLanyard": "{gun} hangs on its lanyard: a DX roll, one Ready per attempt, gets it back.",
+        "SleeveFailed": "The sleeve holster doesn't deliver the gun: the free hand and another Ready get it out.",
+        "SleeveBroken": "Critical failure: the sleeve holster breaks, and prying the gun out takes 2d seconds with the free hand.",
+        "QuickSheatheLabel": "Quick-Sheathe ({gun})",
+        "StowedFree": "{gun} is stowed, as a free action.",
+        "StowedAfter": "{gun}: stowing takes {readies} Ready maneuver(s).",
+        "RetrieveLabel": "Retrieve {gun} by its lanyard",
+        "TooBulky": "{holster} takes a gun of Bulk -1 or less",
+        "FlapTucked": "Flap tucked away",
+        "FlapTuckedHint": "No -2 to Fast-Draw, but no protection from the elements either",
+        "HammerLoop": "Hammer loop",
+        "HammerLoopHint": "An early belt holster's loop over the hammer: a Ready frees it before Fast-Draw",
+        "Lanyard": "On a lanyard",
+        "LanyardHint": "Retrieve a dropped gun with a DX roll, one Ready per attempt",
+        "LanyardRecord": "Tie it to a gun on the gun's sheet: a dropped gun is retrieved with a DX roll, one Ready per attempt. It can be cut: -6 to hit, DR 2, HP 2.",
+        "HolsterFor": "For Fast-Draw ({specialty}).",
+        "HolsterFastDraw": "{value} to Fast-Draw ({specialty}).",
+        "HolsterPlace": "Carries the gun: {place}.",
+        "Specialty": {
+          "pistol": "Pistol",
+          "longarm": "Long Arm"
+        },
+        "Holsters": {
+          "belt": "A Ready in or out. An early one's hammer loop takes a Ready to free before Fast-Draw.",
+          "military": "The flap keeps out dirt; tucked away, it gives no -2 and no protection.",
+          "shoulder": "Worn under the off-hand arm: the shoulder holster's -1 is its place's.",
+          "sleeve": "Delivers a gun of Bulk -1 or less on a Fast-Draw roll; a failure needs the free hand and a Ready, a critical failure breaks it.",
+          "fastDrawRig": "A Ready in or out, and fast.",
+          "undercover": "Worn inside the waistband or at the ankle.",
+          "retention": "+2 to Retain Weapon while the gun is in it.",
+          "rifleSling": "Unslinging or slinging takes two Ready maneuvers, three from the back.",
+          "patrolSling": "Raising the gun takes one Ready.",
+          "scabbard": "Keeps the elements off a long arm."
+        },
+        "Line": {
+          "posture": "Posture",
+          "grappled": "Grappled",
+          "upsideDown": "Upside down",
+          "moving": "Moving",
+          "offHand": "Off hand",
+          "carry": "Where it's carried"
+        },
+        "Standoff": {
+          "Draw": {
+            "Title": "Who draws first (guns)",
+            "Pick": "Select one gunfighter's token and target the other, or target both",
+            "NoWeapon": "Each gunfighter needs a gun",
+            "Weapon": "Gun",
+            "Ready": "Gun ready",
+            "FastDraw": "Fast-Draw",
+            "None": "None",
+            "Other": "Other modifiers",
+            "OtherHint": "Posture, a grapple, moving, where the gun is carried and its holster are applied for you; add anything else here.",
+            "Resolve": "Resolve",
+            "Label": "Who draws first: {a} and {b}",
+            "First": "{name} shoots first.",
+            "BothReady": "Both guns are ready: the turn sequence decides.",
+            "Simultaneous": "They fire at the same moment.",
+            "ThrowsAway": "{name} drops the gun or shoots himself, and {foe} fires first!"
+          },
+          "Lines": {
+            "handOnWeapon": "Hand on the gun",
+            "bulk": "Worse Bulk",
+            "combatReflexes": "Combat Reflexes",
+            "againstReady": "Against a ready gun"
+          }
+        }
       }
     }
   },

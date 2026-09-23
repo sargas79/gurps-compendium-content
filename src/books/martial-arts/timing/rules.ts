@@ -1,9 +1,15 @@
 /**
  * Who acts first (GURPS Martial Arts pp. 103, 108, 110): Who Draws First?,
  * Stop Hits, Cascading Waits, and A Matter of Inches. The pure rules.
+ *
+ * Which standoff it is and who wins its tie are High-Tech's too, so they live
+ * in the shared standoff engine (`src/shared/standoff/`); this keeps Martial
+ * Arts' own modifiers for it.
  */
 
-export interface ModifierKey { key: string; value: number }
+import type { ModifierKey } from "../../../shared/standoff/rules.js";
+
+export { drawCase, drawWinner, type DrawCase, type Drawer, type ModifierKey } from "../../../shared/standoff/rules.js";
 
 // ── A Matter of Inches (p. 110) ──
 
@@ -99,36 +105,6 @@ export function multipleParryPenalty(previous: number, weight: number, trained: 
 
 // ── Who Draws First? (p. 103) ──
 
-export interface Drawer {
-  ready: boolean;
-  /** Fast-Draw skill for the weapon, or null for none. */
-  fastDraw: number | null;
-}
-
-export type DrawCase =
-  /** Both have weapons out: the turn sequence or Cascading Waits settles it. */
-  | "bothReady"
-  /** One has a weapon out and the other can't Fast-Draw: the ready fighter strikes first. */
-  | "readyStrikes"
-  /** One has a weapon out and the other can Fast-Draw: weapon skill against Fast-Draw at -10. */
-  | "readyVsFastDraw"
-  /** Neither ready, one knows Fast-Draw: he rolls it, and on a failure it's a contest of weapon skill. */
-  | "fastDrawRoll"
-  /** Neither ready, both or neither know Fast-Draw: a Quick Contest of Fast-Draw or weapon skill. */
-  | "contest";
-
-/** Which standoff this is, and the side it turns on ("a" or "b"). */
-export function drawCase(a: Drawer, b: Drawer): { kind: DrawCase; side: "a" | "b" | null; fastDraw: boolean } {
-  if (a.ready && b.ready) return { kind: "bothReady", side: null, fastDraw: false };
-  if (a.ready || b.ready) {
-    const ready = a.ready ? "a" : "b";
-    const other = a.ready ? b : a;
-    return other.fastDraw !== null ? { kind: "readyVsFastDraw", side: ready, fastDraw: true } : { kind: "readyStrikes", side: ready, fastDraw: false };
-  }
-  if ((a.fastDraw === null) !== (b.fastDraw === null)) return { kind: "fastDrawRoll", side: a.fastDraw !== null ? "a" : "b", fastDraw: true };
-  return { kind: "contest", side: null, fastDraw: a.fastDraw !== null && b.fastDraw !== null };
-}
-
 /** One side of a standoff, for its modifiers. */
 export interface DrawSide {
   greased: boolean;
@@ -170,13 +146,6 @@ export function readyModifiers(self: DrawSide, combatReflexes: boolean, inches: 
     if (self.swing) lines.push({ key: "swing", value: -1 });
   }
   return lines;
-}
-
-/** Who strikes first from a Quick Contest's outcome: a tie goes to the ready fighter, or is simultaneous. */
-export function drawWinner(kind: DrawCase, outcome: "first" | "second" | "tie", readyIsFirst: boolean): "first" | "second" | "simultaneous" {
-  if (outcome !== "tie") return outcome;
-  if (kind === "readyVsFastDraw") return readyIsFirst ? "first" : "second";
-  return "simultaneous";
 }
 
 // ── Stop Hits (p. 108) ──

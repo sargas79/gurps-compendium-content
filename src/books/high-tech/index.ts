@@ -7,12 +7,14 @@
  * are Martial Arts'. Those live once, as shared engines under `src/shared/`,
  * and this book registers its own table for each and its own switch, so a GM
  * can use High-Tech without either of the other books. So far this registers
- * a gun's quality, its care, and clearing a stoppage by Immediate Action
- * (pp. 79-81, 129, 249-251).
+ * a gun's quality, its care, clearing a stoppage by Immediate Action, and
+ * drawing guns, holsters and Who Draws First? with guns (pp. 79-82, 129,
+ * 153-154, 249-251).
  */
 
 import type { BookRules } from "../../shared/book.js";
 import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/module.js";
+import { initDrawing, readyDrawing } from "./drawing/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower } from "./power/index.js";
 import { registerHighTechRecordData } from "./records.js";
@@ -44,6 +46,8 @@ const RULES = [
   { key: "firearmQuality", pages: "p. 79", implemented: true },
   { key: "gunCare", pages: "pp. 80-81, 129", implemented: true },
   { key: "immediateAction", pages: "pp. 81, 249-251", implemented: true },
+  { key: "gunDrawing", pages: "pp. 81-82, 153-154, 249", implemented: true },
+  { key: "gunfightStandoff", pages: "p. 82", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -76,11 +80,13 @@ function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
   initFirearms();
+  initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction") });
+  readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
 }
 
 export const book: BookRules = {

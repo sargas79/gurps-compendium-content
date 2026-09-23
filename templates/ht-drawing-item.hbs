@@ -1,0 +1,27 @@
+{{!-- A gun's holster or sling and lanyard, or a holster record's effect (High-Tech pp. 81-82, 153-154). --}}
+<div class="isub" data-gcc-ht-drawing-section>
+  <div class="isub-head">{{localize "GCC.HT.Drawing.ItemTitle"}}</div>
+  {{#if holsterRecord}}
+    {{#each holsterRecord.lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+  {{/if}}
+  {{#if gun}}
+    {{#if gun.owned}}
+      <div class="ifields">
+        <label>{{localize "GCC.HT.Drawing.Holster"}}
+          <select data-ht-holster="item" {{#unless editable}}disabled{{/unless}}>
+            <option value="">{{localize "GCC.HT.Drawing.NoHolster"}}</option>
+            {{#each gun.holsters as |h|}}<option value="{{h.value}}" {{#if h.selected}}selected{{/if}} {{#if h.disabled}}disabled{{/if}}>{{h.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{else}}
+      <p class="ihint">{{localize "GCC.HT.Drawing.HolsterOwned"}}</p>
+    {{/if}}
+    <div class="ichecks">
+      {{#if gun.military}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Drawing.FlapTuckedHint'}}"><input type="checkbox" data-ht-holster="flapTucked" {{#if gun.data.flapTucked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Drawing.FlapTucked"}}</label>{{/if}}
+      {{#if gun.belt}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Drawing.HammerLoopHint'}}"><input type="checkbox" data-ht-holster="hammerLoop" {{#if gun.data.hammerLoop}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Drawing.HammerLoop"}}</label>{{/if}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Drawing.LanyardHint'}}"><input type="checkbox" data-ht-holster="lanyard" {{#if gun.data.lanyard}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Drawing.Lanyard"}}</label>
+    </div>
+    <p class="ihint">{{gun.readies}}</p>
+  {{/if}}
+</div>
