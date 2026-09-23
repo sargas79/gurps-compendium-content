@@ -147,3 +147,69 @@ describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
     expect(vehicle("Ford V-8").drOther).toBeUndefined();
   });
 });
+
+describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
+  const captured = read(join(PACKS, "equipment/high-tech-captured-core-general.json"));
+  const gear = [...captured, ...byHand("equipment")];
+  const sys = (name: string) => named(gear, name).system;
+  const draw = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.power?.draw;
+
+  it("cites a page of chapters 2 and 3 on every captured record, with no book prose", () => {
+    for (const doc of captured) {
+      const page = Number(/^High-Tech p\. (\d+)$/.exec(doc.system.reference)?.[1]);
+      expect(page, doc.name).toBeGreaterThanOrEqual(13);
+      expect(page, doc.name).toBeLessThanOrEqual(61);
+      expect(doc.system.description, doc.name).toBe("");
+    }
+  });
+
+  it("writes every battery in the book's own sizes (p. 13)", () => {
+    const sizes = ["T", "XS", "S", "M", "L", "VL"];
+    const powered = gear.filter((d) => d.system.extensions?.["gurps-compendium-content"]?.power);
+    expect(powered.length).toBeGreaterThan(60);
+    for (const doc of powered) {
+      const cell = doc.system.extensions["gurps-compendium-content"].power.draw.cell;
+      if (cell !== undefined) expect(sizes, doc.name).toContain(cell);
+    }
+    // p. 21: 4×S/4 hrs.; p. 38: 3×XS/10 hrs.
+    expect(draw("Head-Up Display (HUD)")).toEqual({ cell: "S", cells: 4, endurance: "4 hrs.", raw: "4×S/4 hrs." });
+    expect(draw("Small Radio (TL8)")).toMatchObject({ cell: "XS", cells: 3, endurance: "10 hrs." });
+  });
+
+  it("names an item printed at two TLs for each, and a unit where the price is one", () => {
+    expect(sys("Magnetic Tape (TL7)")).toMatchObject({ tl: "7", cost: 100, weight: 7 });
+    expect(sys("Magnetic Tape (TL8)")).toMatchObject({ tl: "8", cost: 50, weight: 0.5 });
+    expect(sys("Gasoline (per gallon)")).toMatchObject({ cost: 1.5, weight: 6, lc: 4 });
+    expect(sys('Rope, 1/2", Manila (10 yards)')).toMatchObject({ tl: "6", cost: 10, weight: 2.2 });
+  });
+
+  it("keeps the tool kits' quality and the skills they're for (p. 24)", () => {
+    expect(sys("Mini-Tool Kit (Electronics Repair)")).toMatchObject({ cost: 400, weight: 2, equipmentModifier: -2, forSkills: ["Electronics Repair"] });
+    expect(sys("Mini-Tool Kit")).toMatchObject({ cost: 200, weight: 4, equipmentModifier: -2 });
+    expect(sys("Workshop (Electronics Repair)")).toMatchObject({ cost: 30000, equipmentQuality: "fine", forSkills: ["Electronics Repair"] });
+    expect(sys("Workshop CNC")).toMatchObject({ equipmentQuality: "fine", forSkills: ["Machinist"] });
+    expect(sys("Fishing Outfit")).toMatchObject({ equipmentQuality: "fine", forSkills: ["Fishing"] });
+  });
+
+  it("gives the tools that attack their modes (pp. 27-30)", () => {
+    // p. 27: sw+1d cut, Reach 1, Parry 0U, ST 11 at TL7 and 10 at TL8.
+    expect(sys("Chainsaw (TL7)").meleeModes[0]).toMatchObject({ skill: "Two-Handed Axe/Mace", damageBase: "sw", damageExtraDice: 1, damageType: "cut", reach: "1", unbalanced: true, minSt: 11 });
+    expect(sys("Chainsaw (TL8)")).toMatchObject({ weight: 13 });
+    // p. 28: 2d-1 pi-, Acc 0, Range 5/25, RoF 1, Shots 50(3), ST 11, Bulk -4, Rcl 2.
+    expect(sys("Pneumatic Nail Gun").rangedModes[0]).toMatchObject({ damageFormula: "2d-1", damageType: "pi-", accuracy: 0, halfDamageRange: 5, maxRange: 25, shots: "50(3)", bulk: -4, recoil: 2 });
+    // pp. 29-30: the hand ram, the doorbuster and the spreader/cutter.
+    expect(sys("Hand Ram").meleeModes[0]).toMatchObject({ skill: "Forced Entry", damageBase: "sw", damageExtraDice: 3, damageModifier: 1, minSt: 20 });
+    expect(sys("Doorbuster").meleeModes[0]).toMatchObject({ damageFormula: "4d", damageType: "pi++", armorDivisor: 2 });
+    expect(sys("Rescue Spreader/Cutter (TL8)").meleeModes[0]).toMatchObject({ damageFormula: "6dx5", armorDivisor: 2, minSt: 14 });
+  });
+
+  it("settles what reading order got wrong beside a sidebar (p. 31)", () => {
+    expect(sys("Wristwatch")).toMatchObject({ cost: 25, weight: 0, lc: 4 });
+    expect(sys("Grooming Kit")).toMatchObject({ cost: 25, weight: 0.5 });
+    expect(sys("Hip Flask")).toMatchObject({ tl: "5", cost: 10, weight: 1 });
+  });
+
+  it("prices personal basics as a share of the cost of living (p. 59)", () => {
+    expect(sys("Personal Basics")).toMatchObject({ cost: 0, costOfLivingPercent: 1, weight: 1 });
+  });
+});

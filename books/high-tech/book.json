@@ -13,6 +13,988 @@
     "pdfOffset": 1,
     "pageLabel": "HT"
   },
+  "capture": {
+    "labelEnd": ".",
+    "cellSizes": [
+      "T",
+      "XS",
+      "S",
+      "M",
+      "L",
+      "VL"
+    ],
+    "runInHeadings": true,
+    "repeatsByTl": true,
+    "skip": [
+      {
+        "pattern": "^Libraries$",
+        "reason": "four library sizes priced per skill with no TL of their own, kept by hand (p. 18)"
+      },
+      {
+        "pattern": "^Telegraphs$",
+        "reason": "telegram rates, a service priced per word (p. 36)"
+      }
+    ],
+    "set": [
+      {
+        "pattern": "^Windmills$",
+        "set": {
+          "name": "Windmill"
+        },
+        "reason": "the heading names the family; one windmill or wind turbine is priced (p. 15)"
+      },
+      {
+        "pattern": "^Hydroelectricity$",
+        "set": {
+          "name": "Hydroelectric Turbine",
+          "system.tl": "8"
+        },
+        "reason": "the price is a small turbine's, which the text dates to TL8 (p. 15)"
+      },
+      {
+        "pattern": "^Alcohol$",
+        "set": {
+          "name": "Alcohol (per gallon)"
+        },
+        "reason": "priced per gallon (pp. 15-16)"
+      },
+      {
+        "pattern": "^Diesel Fuel$",
+        "set": {
+          "name": "Diesel Fuel (per gallon)"
+        },
+        "reason": "priced per gallon (pp. 15-16)"
+      },
+      {
+        "pattern": "^Gasoline$",
+        "set": {
+          "name": "Gasoline (per gallon)"
+        },
+        "reason": "priced per gallon (pp. 15-16)"
+      },
+      {
+        "pattern": "^Kerosene$",
+        "set": {
+          "name": "Kerosene (per gallon)"
+        },
+        "reason": "priced per gallon (pp. 15-16)"
+      },
+      {
+        "pattern": "^Paper$",
+        "set": {
+          "name": "Paper (ream)"
+        },
+        "reason": "a ream of 500 sheets (p. 19)"
+      },
+      {
+        "pattern": "^Paperclip$",
+        "set": {
+          "name": "Paperclips (box of 500)"
+        },
+        "reason": "priced by the box (p. 19)"
+      },
+      {
+        "pattern": "^Duplicators$",
+        "set": {
+          "name": "Duplicator"
+        },
+        "reason": "the heading names the family; one hand-cranked duplicator is priced (p. 19)"
+      },
+      {
+        "pattern": "^Magnetic Diskettes$",
+        "set": {
+          "name": "Magnetic Diskette"
+        },
+        "reason": "priced each (p. 22)"
+      },
+      {
+        "pattern": "^Optical Disks$",
+        "set": {
+          "name": "Optical Disk"
+        },
+        "reason": "priced each (p. 22)"
+      },
+      {
+        "pattern": "^Mini-Tool Kit$",
+        "set": {
+          "name": "Mini-Tool Kit (Electronics Repair)",
+          "system.category": "tool",
+          "system.forSkills": [
+            "Electronics Repair"
+          ],
+          "system.equipmentModifier": -2
+        },
+        "reason": "a kit for Electronics Repair; the kit for Electrician, Machinist, Armoury or Mechanic, priced first, is kept by hand (p. 24); -2 (quality) for its own specialty"
+      },
+      {
+        "pattern": "^Portable Tool Kit$",
+        "set": {
+          "name": "Portable Tool Kit (Electronics Repair)",
+          "system.category": "tool",
+          "system.forSkills": [
+            "Electronics Repair"
+          ]
+        },
+        "reason": "a kit for Electronics Repair; the kit for Electrician, Machinist, Armoury or Mechanic, priced first, is kept by hand (p. 24); basic equipment for its own specialty"
+      },
+      {
+        "pattern": "^Workshop$",
+        "set": {
+          "name": "Workshop (Electronics Repair)",
+          "system.forSkills": [
+            "Electronics Repair"
+          ]
+        },
+        "reason": "the Electronics Repair workshop, +2 (quality); the one for Electrician, Machinist, Armoury or Mechanic is kept by hand (p. 24)"
+      },
+      {
+        "pattern": "^Superglue$",
+        "set": {
+          "name": "Superglue (10-use tube)"
+        },
+        "reason": "priced by the tube (p. 26)"
+      },
+      {
+        "pattern": "^Duct Tape$",
+        "set": {
+          "name": "Duct Tape (60-yard roll)"
+        },
+        "reason": "priced by the roll (p. 26)"
+      },
+      {
+        "pattern": "^Drill$",
+        "set": {
+          "name": "Steam-Powered Drill"
+        },
+        "reason": "one of the steam-powered tools, named for the family to tell it from the power drill (p. 27)"
+      },
+      {
+        "pattern": "^Pump$",
+        "set": {
+          "name": "Steam-Powered Pump"
+        },
+        "reason": "one of the steam-powered tools, named for the family to tell it from the power drill (p. 27)"
+      },
+      {
+        "pattern": "^Saw Mill$",
+        "set": {
+          "name": "Steam-Powered Saw Mill"
+        },
+        "reason": "one of the steam-powered tools, named for the family to tell it from the power drill (p. 27)"
+      },
+      {
+        "pattern": "^Air Compressor Hose$",
+        "set": {
+          "name": "Air Compressor Hose (per 5 feet)"
+        },
+        "reason": "priced per 5' length (p. 27)"
+      },
+      {
+        "pattern": "^Desktop CNC$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Machinist"
+          ]
+        },
+        "reason": "basic equipment for Machinist (p. 29)"
+      },
+      {
+        "pattern": "^Desktop RP$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Machinist"
+          ]
+        },
+        "reason": "basic equipment for Machinist (p. 29)"
+      },
+      {
+        "pattern": "^Pneumatic Nail Gun$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "Nail",
+              "skill": "Guns (Pistol)",
+              "damageBase": "fixed",
+              "damageFormula": "2d-1",
+              "damageType": "pi-",
+              "accuracy": 0,
+              "halfDamageRange": 5,
+              "maxRange": 25,
+              "rateOfFire": 1,
+              "shots": "50(3)",
+              "loaded": 50,
+              "minSt": 11,
+              "bulk": -4,
+              "recoil": 2,
+              "armorDivisor": 1,
+              "damageModifier": 0
+            }
+          ]
+        },
+        "reason": "fired with its safety bypassed: 2d-1 pi-, Acc 0, Range 5/25, RoF 1, Shots 50(3), ST 11, Bulk -4, Rcl 2; the -4 to Guns (Pistol) is the rule's (#360) (p. 28)"
+      },
+      {
+        "pattern": "^Powder-Actuated Nail Gun$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "Nail",
+              "skill": "Guns (Pistol)",
+              "damageBase": "fixed",
+              "damageFormula": "2d-1",
+              "damageType": "pi-",
+              "accuracy": 0,
+              "halfDamageRange": 5,
+              "maxRange": 25,
+              "rateOfFire": 1,
+              "shots": "50(3)",
+              "loaded": 50,
+              "minSt": 11,
+              "bulk": -4,
+              "recoil": 2,
+              "armorDivisor": 1,
+              "damageModifier": 0
+            }
+          ]
+        },
+        "reason": "fired with its safety bypassed: 2d-1 pi-, Acc 0, Range 5/25, RoF 1, Shots 50(3), ST 11, Bulk -4, Rcl 2; the -4 to Guns (Pistol) is the rule's (#360) (p. 28)"
+      },
+      {
+        "pattern": "^Combustion Nail Gun$",
+        "set": {
+          "system.rangedModes": [
+            {
+              "name": "Nail",
+              "skill": "Guns (Pistol)",
+              "damageBase": "fixed",
+              "damageFormula": "2d-1",
+              "damageType": "pi-",
+              "accuracy": 0,
+              "halfDamageRange": 5,
+              "maxRange": 25,
+              "rateOfFire": 1,
+              "shots": "50(3)",
+              "loaded": 50,
+              "minSt": 11,
+              "bulk": -4,
+              "recoil": 2,
+              "armorDivisor": 1,
+              "damageModifier": 0
+            }
+          ]
+        },
+        "reason": "fired with its safety bypassed: 2d-1 pi-, Acc 0, Range 5/25, RoF 1, Shots 50(3), ST 11, Bulk -4, Rcl 2; the -4 to Guns (Pistol) is the rule's (#360) (p. 28)"
+      },
+      {
+        "pattern": "^Hand Ram$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Ram",
+              "skill": "Forced Entry",
+              "reach": "1",
+              "canParry": false,
+              "armorDivisor": 1,
+              "damageModifier": 1,
+              "damageBase": "sw",
+              "damageExtraDice": 3,
+              "damageType": "cr",
+              "twoHanded": true,
+              "minSt": 20
+            },
+            {
+              "name": "Swing",
+              "skill": "Two-Handed Axe/Mace",
+              "reach": "1,2*",
+              "canParry": true,
+              "armorDivisor": 1,
+              "damageModifier": 4,
+              "damageBase": "sw",
+              "damageType": "cr",
+              "twoHanded": true,
+              "unbalanced": true,
+              "minSt": 13,
+              "skillModifier": -3
+            }
+          ]
+        },
+        "reason": "rammed at a braced door with Forced Entry: sw+3d+1 cr, Reach 1, ST 20; as a weapon, a clumsy maul at -3 (p. 29, maul p. B274)"
+      },
+      {
+        "pattern": "^Doorbuster$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Chisel",
+              "skill": "Forced Entry",
+              "reach": "C",
+              "canParry": false,
+              "armorDivisor": 2,
+              "damageModifier": 0,
+              "damageBase": "fixed",
+              "damageFormula": "4d",
+              "damageType": "pi++"
+            }
+          ]
+        },
+        "reason": "4d(2) pi++ with its head held against a lock or hinge (p. 30)"
+      },
+      {
+        "pattern": "^Hydraulic Door Opener$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Spread",
+              "skill": "Forced Entry",
+              "reach": "C",
+              "canParry": false,
+              "armorDivisor": 1,
+              "damageModifier": 0,
+              "damageBase": "fixed",
+              "damageFormula": "10d",
+              "damageType": "cr"
+            }
+          ]
+        },
+        "reason": "10d cr to doors and doorjambs after three Ready maneuvers pumping (p. 30)"
+      },
+      {
+        "pattern": "^Rescue Spreader/Cutter \\(TL7\\)$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Cut",
+              "skill": "Forced Entry",
+              "reach": "1",
+              "canParry": false,
+              "armorDivisor": 2,
+              "damageModifier": 0,
+              "damageBase": "fixed",
+              "damageFormula": "6dx4",
+              "damageType": "cr",
+              "twoHanded": true,
+              "minSt": 16
+            }
+          ]
+        },
+        "reason": "6d×4(2) cr per activation, Reach 1, ST 16 (p. 30)"
+      },
+      {
+        "pattern": "^Rescue Spreader/Cutter \\(TL8\\)$",
+        "set": {
+          "system.meleeModes": [
+            {
+              "name": "Cut",
+              "skill": "Forced Entry",
+              "reach": "1",
+              "canParry": false,
+              "armorDivisor": 2,
+              "damageModifier": 0,
+              "damageBase": "fixed",
+              "damageFormula": "6dx5",
+              "damageType": "cr",
+              "twoHanded": true,
+              "minSt": 14
+            }
+          ]
+        },
+        "reason": "6d×5(2) cr per activation, Reach 1, ST 14 (p. 30)"
+      },
+      {
+        "pattern": "^Pneumatic Nail Gun$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Powder-Actuated Nail Gun$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Combustion Nail Gun$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Hand Ram$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Doorbuster$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Hydraulic Door Opener$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "a tool with an attack (pp. 28-30)"
+      },
+      {
+        "pattern": "^Sewing Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Sewing"
+          ]
+        },
+        "reason": "basic equipment for Sewing (p. 31)"
+      },
+      {
+        "pattern": "^Attach� Case$",
+        "set": {
+          "name": "Attaché Case"
+        },
+        "reason": "the accent is lost in the PDF's text (p. 31)"
+      },
+      {
+        "pattern": "^Wristwatch$",
+        "set": {
+          "system.cost": 25,
+          "system.listCost": 25,
+          "system.weight": 0,
+          "system.lc": 4
+        },
+        "reason": "a good basic watch is $25, weight negligible, LC4; the $30 read is the microfiber towel's in the sidebar beside it (p. 31)"
+      },
+      {
+        "pattern": "^Grooming Kit$",
+        "set": {
+          "system.cost": 25,
+          "system.listCost": 25,
+          "system.weight": 0.5
+        },
+        "reason": "$25, 0.5 lb.; the $40,000 read is the luxury wristwatch's (p. 31)"
+      },
+      {
+        "pattern": "^Propane$",
+        "set": {
+          "name": "Hip Flask",
+          "system.tl": "5"
+        },
+        "reason": "the heading beside it took the hip flask's closing line, $10, 1 lb. (full), LC4, in reading order (p. 31)"
+      },
+      {
+        "pattern": "^Small Cylinder$",
+        "set": {
+          "name": "Propane Cylinder, Small"
+        },
+        "reason": "one of the propane cylinders (p. 31)"
+      },
+      {
+        "pattern": "^Large Cylinder$",
+        "set": {
+          "name": "Propane Cylinder, Large"
+        },
+        "reason": "one of the propane cylinders; a new tank is $45, a swap $8 (p. 31)"
+      },
+      {
+        "pattern": "^Dehydrated Food$",
+        "set": {
+          "name": "Dehydrated Food (meal)",
+          "system.weight": 0.75,
+          "system.category": "consumable"
+        },
+        "reason": "one meal, $5, 0.75 lb.; the 2.5 lbs. read is a bottle of alcohol's in the sidebar beside it (p. 34)"
+      },
+      {
+        "pattern": "^Canned Food$",
+        "set": {
+          "name": "Canned Food (meal)",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Fresh Food\\*$",
+        "set": {
+          "name": "Fresh Food (meal)",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Hardtack\\*$",
+        "set": {
+          "name": "Hardtack (meal)",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Jerky or Pemmican\\*$",
+        "set": {
+          "name": "Jerky or Pemmican",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Trail Food\\*$",
+        "set": {
+          "name": "Trail Food",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Portable Soup$",
+        "set": {
+          "name": "Portable Soup (meal)",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Military Rations$",
+        "set": {
+          "name": "Military Rations (meal)",
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35); the asterisk marks a TL0-1 food made at TL5-8"
+      },
+      {
+        "pattern": "^Desiccated Vegetables$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Freeze-Dried Food$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Snack$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Sports Drink$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Survivalist Food Cache$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Compressed Rations$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Survival Tablets$",
+        "set": {
+          "system.category": "consumable"
+        },
+        "reason": "food: a consumable, and the book prints no LC for it (pp. 34-35)"
+      },
+      {
+        "pattern": "^Telegraph Wire, Land$",
+        "set": {
+          "name": "Telegraph Wire, Land (per mile)"
+        },
+        "reason": "priced per mile (p. 36)"
+      },
+      {
+        "pattern": "^Telegraph Wire, Ocean$",
+        "set": {
+          "name": "Telegraph Wire, Ocean (per mile)"
+        },
+        "reason": "priced per mile (p. 36)"
+      },
+      {
+        "pattern": "^Communications Wire$",
+        "set": {
+          "name": "Communications Wire (1-mile spool)"
+        },
+        "reason": "a mile of line on a spool (p. 37)"
+      },
+      {
+        "pattern": "^Pocket Laser Communicator$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "endurance": "4 hrs.",
+                  "raw": "VS/4 hrs."
+                }
+              }
+            }
+          }
+        },
+        "reason": "the book prints \"VS/4 hrs.\", a size its battery list lacks; the endurance is kept and the cell left for a person to choose, rather than read as S (p. 40)"
+      },
+      {
+        "pattern": "^Mechanical Music$",
+        "set": {
+          "name": "Player Piano"
+        },
+        "reason": "the sidebar prices a player piano (p. 41)"
+      },
+      {
+        "pattern": "^Audio Cassette Tape$",
+        "set": {
+          "system.weight": 0.14
+        },
+        "reason": "seven weigh 1 lb. (p. 42)"
+      },
+      {
+        "pattern": "^Compact Disk$",
+        "set": {
+          "system.weight": 0.07
+        },
+        "reason": "fifteen weigh 1 lb. (p. 42)"
+      },
+      {
+        "pattern": "^Digital Camcorders$",
+        "set": {
+          "name": "Micro-Camcorder"
+        },
+        "reason": "the heading's first model, whose label ends in a colon (p. 43)"
+      },
+      {
+        "pattern": "^Film$",
+        "set": {
+          "name": "Film (roll)"
+        },
+        "reason": "a roll of 24-36 exposures (p. 44)"
+      },
+      {
+        "pattern": "^Infrared Film$",
+        "set": {
+          "name": "Infrared Film (roll)"
+        },
+        "reason": "a roll of 24-36 exposures (p. 44)"
+      },
+      {
+        "pattern": "^Ultraviolet Film$",
+        "set": {
+          "name": "Ultraviolet Film (roll)"
+        },
+        "reason": "a roll of 24-36 exposures (p. 44)"
+      },
+      {
+        "pattern": "^Movie Camera Film$",
+        "set": {
+          "name": "Movie Camera Film (100-foot reel)"
+        },
+        "reason": "a 100' reel (p. 44)"
+      },
+      {
+        "pattern": "^Personal Dosimeter$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 2,
+                  "endurance": "1 yr.",
+                  "raw": "2×XS/yr."
+                }
+              }
+            }
+          }
+        },
+        "reason": "two XS batteries last a year, printed \"2×XS/yr.\" (p. 49)"
+      },
+      {
+        "pattern": "^Suitcase Lab$",
+        "set": {
+          "system.category": "tool"
+        },
+        "reason": "basic equipment for the one scientific skill it's built for, chosen when bought (p. 50)"
+      },
+      {
+        "pattern": "^Field Lab$",
+        "set": {
+          "system.forSkills": []
+        },
+        "reason": "its quality bonus is to the one scientific skill it's built for, chosen when bought (p. 50)"
+      },
+      {
+        "pattern": "^Mobile Lab$",
+        "set": {
+          "system.forSkills": []
+        },
+        "reason": "its quality bonus is to the one scientific skill it's built for, chosen when bought (p. 50)"
+      },
+      {
+        "pattern": "^Tallow Candles$",
+        "set": {
+          "name": "Tallow Candles (per ounce)",
+          "system.weight": 0.06
+        },
+        "reason": "priced per ounce, 1/16 lb. (p. 51)"
+      },
+      {
+        "pattern": "^Wax Candles$",
+        "set": {
+          "name": "Wax Candles (per ounce)",
+          "system.weight": 0.06
+        },
+        "reason": "priced per ounce, 1/16 lb. (p. 51)"
+      },
+      {
+        "pattern": "^Smart Flashlight$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 2,
+                  "endurance": "2 hrs.",
+                  "raw": "2×XS"
+                }
+              }
+            }
+          }
+        },
+        "reason": "two XS batteries, printed without an endurance; the text gives 2 hours at the 50-yard beam, 40 at the 5-yard one (p. 52)"
+      },
+      {
+        "pattern": "^Fasteners$",
+        "set": {
+          "name": "Ice Screw"
+        },
+        "reason": "the last of three fasteners the closing line prices, each apiece; the iron spike and steel pitons are kept by hand (p. 55)"
+      },
+      {
+        "pattern": "^Cord \\(TL5\\)$",
+        "set": {
+          "name": "Cord, Hemp (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 1/2\" \\(TL5\\)$",
+        "set": {
+          "name": "Rope, 1/2\", Hemp (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 2 1/2\"$",
+        "set": {
+          "name": "Rope, 2 1/2\", Hemp (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 1/2\" \\(TL6\\)$",
+        "set": {
+          "name": "Rope, 1/2\", Manila (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 1 1/2\"$",
+        "set": {
+          "name": "Rope, 1 1/2\", Manila (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 1/4\"$",
+        "set": {
+          "name": "Rope, 1/4\", Synthetic (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 3/8\"$",
+        "set": {
+          "name": "Rope, 3/8\", Synthetic (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Rope, 1/2\" \\(TL8\\)$",
+        "set": {
+          "name": "Rope, 1/2\", Synthetic (10 yards)"
+        },
+        "reason": "the book's material; priced per 10 yards (p. 56)"
+      },
+      {
+        "pattern": "^Cord \\(TL7\\)$",
+        "set": {
+          "name": "Cord, Synthetic (100 yards)"
+        },
+        "reason": "priced per 100 yards (p. 56)"
+      },
+      {
+        "pattern": "^Suction Cups$",
+        "set": {
+          "name": "Suction Cup"
+        },
+        "reason": "priced each (p. 56)"
+      },
+      {
+        "pattern": "^Fuel Tablets$",
+        "set": {
+          "name": "Fuel Tablets (pack of 30)"
+        },
+        "reason": "priced by the pack (p. 57)"
+      },
+      {
+        "pattern": "^Meal Heaters$",
+        "set": {
+          "name": "Meal Heaters (dozen)"
+        },
+        "reason": "priced per dozen (p. 57)"
+      },
+      {
+        "pattern": "^Matches$",
+        "set": {
+          "name": "Matches (box of 50)"
+        },
+        "reason": "priced by the box (p. 57)"
+      },
+      {
+        "pattern": "^Fishing Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Fishing"
+          ]
+        },
+        "reason": "basic equipment for Fishing (p. 58)"
+      },
+      {
+        "pattern": "^Snare$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Survival"
+          ]
+        },
+        "reason": "basic Survival equipment for trapping small game (p. 58)"
+      },
+      {
+        "pattern": "^Traps$",
+        "set": {
+          "name": "Trap, Large Predator"
+        },
+        "reason": "the larger of the two traps, ST 15, $75, 35 lbs.; the beaver trap is kept by hand (p. 58)"
+      },
+      {
+        "pattern": "^Laser Rescue Flare$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            }
+          }
+        },
+        "reason": "a T battery lasting a week, printed \"T/week\" (p. 58)"
+      },
+      {
+        "pattern": "^Covert Survival Kit$",
+        "set": {
+          "system.category": "tool",
+          "system.forSkills": [
+            "Survival"
+          ]
+        },
+        "reason": "basic woodland survival gear (p. 59)"
+      },
+      {
+        "pattern": "^MIOX Water Purifier$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 1,
+                  "endurance": "200 quarts",
+                  "raw": "S/200 quarts"
+                }
+              }
+            }
+          }
+        },
+        "reason": "an S battery purifies 200 quarts (p. 59)"
+      },
+      {
+        "pattern": "^UV Purifier$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 4,
+                  "endurance": "20 quarts",
+                  "raw": "4×XS/20 quarts"
+                }
+              }
+            }
+          }
+        },
+        "reason": "four XS batteries purify 20 quarts (p. 59)"
+      },
+      {
+        "pattern": "^Water Purification Tablets$",
+        "set": {
+          "name": "Water Purification Tablets (bottle of 50)"
+        },
+        "reason": "priced by the bottle (p. 59)"
+      },
+      {
+        "pattern": "^Belt$",
+        "set": {
+          "system.cost": 10,
+          "system.listCost": 10
+        },
+        "reason": "priced $10-$50 by its make; the lower is recorded (p. 31)"
+      },
+      {
+        "pattern": "^Mini-Manufacturing Workshop$",
+        "set": {
+          "system.equipmentQuality": "best"
+        },
+        "reason": "+4 (quality) to Machinist, which is best at TL8 (p. 29)"
+      }
+    ]
+  },
   "notes": "GCA cites this book as HT120, the plain prefix, and no record also cites a Basic Set page, so overlap.txt is empty. PDF page = book page + 1. The data file (Eric B. Smith, October 2023, marked incomplete) holds the gun perks and techniques of the appendix, armour and weapons only: no general gear, accessories, explosives, mines, melee weapons, covert-ops or medical gear, drugs or vehicles, which are captured from the PDF (#347) or kept by hand (#346). Its [MODIFIERS] are equipment options, weapon quality and ammunition, every one a calculated field or a load rather than a modifier item (#357, #364, #374), so none is written. Fragmentation before the damage type, follow-up and linked modes shared by sibling modes, rate-of-fire marks and placeholder modes parse since sargas79/GWorldVTT#591, and a missile's minimum range since #592 (gworld 1.35.0); the dry runs against the pinned 1.25.0 and against GWorldVTT main are in TRIAGE.md. Four shields and three split-DR armours the parser rejects are kept by hand (#346), with the records the file lacks; the rules marked #346 give the extracted weapons the modes the file can't carry. Scope bonuses, missile guidance and a mode's second follow-up or linked line parse since sargas79/GWorldVTT#632 (API 1.80.0). Folded-stock and bipod pairs stay modes until #372 decides on states. See TRIAGE.md.",
   "exclude": [
     {

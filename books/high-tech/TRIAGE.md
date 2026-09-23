@@ -325,3 +325,51 @@ and the REF table (p. 183; 36 explosives) is `src/books/high-tech/explosives/ref
 table spans pp. 176-177 (p. 175 is its introduction). No rule reads them yet: #374 prices
 loads from the first, and the explosives rules the second.
 
+
+### The catalogue, chapters 2 and 3 (#348)
+
+**Captured.** `tools/capture-gear.mjs` read pp. 13-61 into
+`equipment/high-tech-captured-core-general.json`: 482 records, and 34 more kept by hand in
+`equipment/high-tech-by-hand.json`. Every one was read against its page. The tool is
+Ultra-Tech's, taught the book's marks through `capture` in book.json rather than forked:
+a label ends in a period, a heading can share its line with the text around it, a name
+printed at several TLs is one item per TL ("Magnetic Tape (TL7)", "(TL8)"), weights come
+in tons, prices in ranges (the lower is recorded), and batteries in the book's own sizes,
+T to VL, with the count's multiplication sign the PDF's text loses. Re-run on its three
+page ranges, Ultra-Tech's captures come out byte-identical.
+
+**What reading the page settled** (101 `capture.set` rules, 2 skips, each with its reason):
+names given the unit the price is for (per gallon, per 10 yards, box of 50, a meal); the
+family heading's name made the item's (Windmill, Duplicator); ten figures read off the
+wrong entry where reading order ran a sidebar into the text (the wristwatch and grooming
+kit took the luxury watch's and the towel's prices; the hip flask's closing line fell
+under the propane heading; dehydrated food took a bottle of alcohol's weight); food made
+a consumable with no LC, as the book prints none; tools given the skills their quality is
+for; and batteries the notation hides ("2×XS/yr.", "T/week", "VS/4 hrs." on the pocket
+laser communicator, a size the battery list doesn't have, kept as printed with no cell).
+
+**Kept by hand**: the six battery sizes (p. 13; TL5, where the text starts them), the
+four libraries (priced per skill, with no TL of their own), the tool kits and workshop for
+Electrician, Machinist, Armoury and Mechanic (the closing line prices the Electronics
+Repair ones), the two chainsaws (a weapon table, p. 27), a cord of wood, business cards,
+digital storage per GB, the pocket watch, towels, food by the case or crate, the luxuries
+sidebar (p. 34), the 5.5" record, the 5-gallon can, iron spikes and pitons, the beaver
+trap, and personal basics at 1% of the monthly cost of living (p. 59).
+
+**Attacks.** The chainsaws, nail guns, hand ram, doorbuster, hydraulic door opener and
+rescue spreader/cutters carry their attacks as modes, for #360's rules: the chainsaw's
+(0.5) divisor against hard materials, the nail gun's -4 to skill and damage per second of
+use are the rule's, not the record's.
+
+**Batteries.** High-Tech registers its battery table (sizes, prices, weights, LC, p. 13)
+with the shared cell engine, so the power data keeps its sizes; its switch, `batteries`,
+is left to #358, which reads the rest of pp. 13-16.
+
+**Left out**: services priced by the mile, word or month (mail, rail, telegrams, phone and
+cell service), software and databases (priced by Complexity, p. 22), ice (priced by TL,
+p. 32), maps (p. 53), recreational drugs (a range, and LC by local law), the alcohol still
+sidebar (p. 15), and options and refills priced inside another item's text (extra
+cylinders, blank strips, fuel canisters, film for the watch camera, ski climbers, bolts).
+Bonuses the book gives without "(quality)" -- the compass's +1 to Navigation, the
+shelters' survival modifiers, the HUD's +1 to Driving -- stay in the text, as Ultra-Tech's
+intrinsic bonuses do.

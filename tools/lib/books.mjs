@@ -143,8 +143,16 @@ export function book(slug) {
       })),
     },
     // For tools/capture-gear.mjs: gadget names it should not record, each a
-    // pattern and the reason.
-    capture: { skip: raw.capture?.skip ?? [], set: raw.capture?.set ?? [] },
+    // pattern and the reason; fields reading the page settled; and how the
+    // book prints its gear, where it differs from Ultra-Tech (tools/lib/capture.mjs).
+    capture: {
+      skip: raw.capture?.skip ?? [],
+      set: raw.capture?.set ?? [],
+      ...(raw.capture?.labelEnd ? { labelEnd: String(raw.capture.labelEnd) } : {}),
+      ...(raw.capture?.cellSizes ? { cellSizes: raw.capture.cellSizes.map(String) } : {}),
+      runInHeadings: raw.capture?.runInHeadings === true,
+      repeatsByTl: raw.capture?.repeatsByTl === true,
+    },
     dir: join(booksRoot, slug),
   };
 }
