@@ -98,16 +98,8 @@ export function laserRow(setting: LaserSetting, row: LaserRow): LaserRow {
   }
 }
 
-/** "Protected Vision adds +5 to resist. A Nictitating Membrane adds +1 per level" (pp. 113-114). */
-export function visionResistBonus(traitNames: readonly string[]): number {
-  let bonus = 0;
-  for (const name of traitNames) {
-    if (/^protected vision\b/i.test(name)) bonus += 5;
-    const membrane = /^nictitating membrane\b\D*(\d+)?/i.exec(name);
-    if (membrane) bonus += Math.max(1, Number(membrane[1]) || 1);
-  }
-  return bonus;
-}
+/** "Protected Vision adds +5 to resist. A Nictitating Membrane adds +1 per level" (pp. 113-114): the shared engine's. */
+export { visionResistBonus } from "../../../shared/dazzle/rules.js";
 
 /**
  * Extra DR from weather against a high-energy laser: "equal to the vision

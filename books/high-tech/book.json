@@ -4304,6 +4304,17 @@
         "system.extensions.gurps-compendium-content.firearm.powder": "other"
       },
       "reason": "an air gun burns no powder, so it never fouls (p. 88) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": ".",
+      "where": {
+        "system.rangedModes.0.skill": "Liquid Projector (Flamethrowers)"
+      },
+      "set": {
+        "system.rangedModes.*.skill": "Liquid Projector (Flamethrower)"
+      },
+      "reason": "the file names the skill Liquid Projector (Flamethrowers); the Basic Set's specialty is Flamethrower (p. B205), and only that name finds the skill and its DX-4 default (table p. 179) (#377)"
     }
   ]
 }

@@ -5029,6 +5029,18 @@
         "householdHazards": {
           "Name": "Household hazards",
           "Hint": "A row action rolls what a ruptured propane cylinder (a burning explosion with 1d cutting fragments), a hot stove, a blender, hot coffee, a hotplate, toaster or waffle iron, or an institutional microwave does. Lead is a poison the sheet doses; past half the victim's HP the worse symptoms are named (High-Tech pp. 31-33)."
+        },
+        "flamethrowers": {
+          "Name": "Flamethrowers",
+          "Hint": "A flamethrower's jet is a large-area injury and can set the victim's clothes alight; worn DR protects at a fifth unless the victim is sealed. The fuel then burns on the victim for 2d x 5 seconds (1d x 5 past 1/2D), 1d burn each second on their turn against the same fifth of their DR, until it burns out or the GM takes the condition off. Played over an area up to three yards wide as an All-Out Attack, each target is rolled for separately and damage and burning time are divided by the width. Unthickened fuel halves a TL7+ flamethrower's Range. A malfunction rolls the flamethrower's own table: no ignition (3-5), no fuel (6-17) or an explosion (18) that deals a second's damage to everything within two yards; clearing takes 10 seconds and an Armoury or IQ-based Liquid Projector roll, a critical failure an explosion. A shot at the weapon is at no penalty (-4 at a backpack model whose carrier faces the shooter) and meets DR 2; damage through it blows the tank up on a 1 on 1d and disables it otherwise (High-Tech pp. 178-179)."
+        },
+        "sprayGuns": {
+          "Name": "Spray guns and aerosols",
+          "Hint": "A spray must hit the face, but the wide jet gives +2 to hit it. Tear gas and pepper spray force two HT rolls at the spray's penalty, one against coughing and one against blindness; tear gas's last minutes equal to the margin of failure, pepper spray's until washed off with plenty of water (High-Tech p. 180)."
+        },
+        "laserDazzlers": {
+          "Name": "Laser dazzlers and blinding lasers",
+          "Hint": "Only those looking toward the laser are affected, and DR has no effect. Protected Vision gives +5 to resist, a Nictitating Membrane +1 a level, and anti-laser goggles both (Nictitating Membrane 4); past 1/2D the roll is at +3. A dazzler blinds for minutes equal to the margin of failure; a blinding laser cripples the eyes, for good on a failure by 10 or more (High-Tech pp. 71, 181)."
         }
       },
       "Gadget": {
@@ -6719,6 +6731,72 @@
         "HazardPerSecond": "{name}, for a second",
         "Lead": "Lead",
         "LeadWorse": "{name} has lost half their HP to lead: worse symptoms now, as the GM chooses: Bad Temper (15) or Laziness, or spells of agony, daze or retching, and a lost appetite. More failed rolls bring seizures and coma (High-Tech p. 33)."
+      },
+      "Projectors": {
+        "Flame": {
+          "Note": "Burning fuel",
+          "NoteHint": "A large-area injury that can set clothes alight; unsealed DR at a fifth. The fuel burns on for 2d x 5 seconds (1d x 5 past 1/2D), 1d burn a second. Even plywood cover stops the jet. The GM may call for a Fright Check (High-Tech pp. 178-179).",
+          "SheetLine": "Large-area injury; unsealed DR at a fifth; the fuel burns on for 2d x 5 seconds at 1d a second. DR 2 against a shot at the weapon.",
+          "Unthickened": "Unthickened fuel",
+          "UnthickenedHint": "Plain fuel, such as gasoline, in a TL7+ flamethrower: half the Range (High-Tech p. 178).",
+          "UnthickenedLine": "Unthickened fuel: half the Range.",
+          "FifthDr": "Unsealed DR protects at a fifth against a flamethrower (High-Tech p. 178).",
+          "Title": "Burning fuel",
+          "Burning": "Burning fuel ({seconds} s)",
+          "Burns": "The fuel burns on {name} for {seconds} seconds ({dice}), 1d burn a second.",
+          "Second": "{name} burns: {roll} against DR {dr}, {injury} injury.",
+          "BurnedOut": "The fuel on {name} has burned out.",
+          "ExplosionLabel": "{name} explodes (everything within {yards} yards)"
+        },
+        "Sweep": {
+          "Label": "Sweep an area (yards wide)",
+          "NeedsAllOut": "Sweeping an area is an All-Out Attack.",
+          "Note": "Swept over {width} yards: damage and burning time divided by {width}; roll to hit each target."
+        },
+        "Malfunction": {
+          "noIgnition": "No ignition: sprayed with unlit fuel",
+          "noFuel": "No fuel sprayed",
+          "explosion": "The flamethrower exploded",
+          "Repair": "Each attempt takes {seconds} seconds and an Armoury (Small Arms) or IQ-based Liquid Projector roll; a critical failure is an explosion.",
+          "explosionRepair": "Everything within two yards of the firer takes a second's damage.",
+          "Exploded": "The tank has exploded."
+        },
+        "Tank": {
+          "Note": "DR 2 against a shot at the weapon (High-Tech p. 179).",
+          "Target": "{name} (-4 at a backpack whose carrier faces you)",
+          "explodes": "The tank exploded",
+          "disabled": "Disabled",
+          "explodesLine": "Damage got through {name}'s DR: 1d rolled {roll}, and the tank explodes!",
+          "disabledLine": "Damage got through {name}'s DR: 1d rolled {roll}, and it is disabled."
+        },
+        "Spray": {
+          "Note": "Spray",
+          "NoteHint": "Must hit the face to work; the wide jet gives +{bonus} to hit it (High-Tech p. 180).",
+          "WideJet": "Wide jet",
+          "Blindness": "Blindness",
+          "Blinded": "Blinded (spray)",
+          "ForMinutes": "for {minutes} minutes",
+          "UntilWashed": "until washed off with plenty of water",
+          "CoughingLine": "{name} is coughing {lasting}.",
+          "BlindedLine": "{name} is blinded {lasting}."
+        },
+        "Laser": {
+          "Note": {
+            "dazzle": "Dazzler",
+            "blinding": "Blinding laser"
+          },
+          "NoteHint": {
+            "dazzle": "A cone: only those looking toward the laser are affected, and DR has no effect. Blind for minutes equal to the margin of failure (High-Tech p. 181).",
+            "blinding": "Only a target looking toward the laser is affected. Failure cripples the eyes; a failure by 10 or more is for good (High-Tech p. 181)."
+          },
+          "Protection": "Eye protection",
+          "Dazzled": "Dazzled",
+          "Blinded": "Blinded (crippled eyes)",
+          "BlindedForGood": "Blinded for good",
+          "DazzledLine": "{name} is blinded for {minutes} minutes.",
+          "BlindedLine": "{name}'s eyes are crippled: roll for how long as for any crippling injury (Campaigns p. 422).",
+          "BlindedForGoodLine": "{name} failed by 10 or more: the eyes are crippled for good."
+        }
       }
     },
     "Backblast": {

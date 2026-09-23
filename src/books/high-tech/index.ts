@@ -29,8 +29,10 @@
  * and projectile upgrades, the explosive and cargo rounds, power:
  * batteries, generators and fuel, the optional wounding rules, and the
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
- * guns, and household hazards (pp. 7-11, 13-16, 17-22, 24-33, 50,
- * 79-93, 109, 127-141, 143, 147-178, 249-252).
+ * guns, and household hazards, and the liquid projectors and laser
+ * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
+ * the eyes (pp. 7-11, 13-16, 17-22, 24-33, 50, 71, 79-93, 109, 127-141,
+ * 143, 147-181, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -54,6 +56,7 @@ import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.
 import { initTools, readyTools } from "./tools/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
 import { readyWounding } from "./wounding/index.js";
+import { projectorFields, readyProjectors } from "./projectors/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -138,6 +141,10 @@ const RULES = [
   { key: "forcedEntryTools", pages: "pp. 25-30", implemented: true },
   { key: "chainsaws", pages: "pp. 27-28", implemented: true },
   { key: "householdHazards", pages: "pp. 31-33", implemented: true },
+  // Liquid projectors and laser dazzlers.
+  { key: "flamethrowers", pages: "pp. 178-179", implemented: true },
+  { key: "sprayGuns", pages: "p. 180", implemented: true },
+  { key: "laserDazzlers", pages: "p. 181", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -176,7 +183,7 @@ function init(): void {
   initHighTechEquipment({ options: ruleKey("equipmentOptions"), sm: ruleKey("gearForSm"), legality: ruleKey("antiqueLegality") });
   initInformation(ruleKey("computerSystems"));
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f), ...projectorFields(f) }));
   initAmmunition();
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
@@ -219,6 +226,7 @@ function ready(api: GWorldApi): void {
   readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
+  readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
 }
 
 export const book: BookRules = {

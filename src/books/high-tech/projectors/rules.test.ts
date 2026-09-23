@@ -1,0 +1,91 @@
+import { describe, expect, it } from "vitest";
+
+import { blindnessFrom, eyeProtection, visionResistBonus } from "../../../shared/dazzle/rules.js";
+import {
+  HT_DAZZLE,
+  burnDice,
+  burnSeconds,
+  eyeBeamOf,
+  flameDr,
+  flameMalfunction,
+  sprayAgent,
+  sprayEffectSeconds,
+  sweepWidth,
+  sweptDamage,
+  tankStruck,
+  unthickenedRange,
+} from "./rules.js";
+
+describe("flamethrowers (High-Tech pp. 178-179)", () => {
+  it("burns for 2d x 5 seconds, 1d x 5 past 1/2D, divided by a sweep's width", () => {
+    expect(burnDice(false)).toBe(2);
+    expect(burnDice(true)).toBe(1);
+    expect(burnSeconds([3, 4])).toBe(35);
+    expect(burnSeconds([3, 4], 3)).toBe(11);
+    expect(burnSeconds([2], 2)).toBe(5);
+  });
+
+  it("counts unsealed DR at a fifth, sealed DR in full", () => {
+    expect(flameDr(12, false)).toBe(2);
+    expect(flameDr(4, false)).toBe(0);
+    expect(flameDr(12, true)).toBe(12);
+  });
+
+  it("divides a sweep's damage by its width, one to three yards", () => {
+    expect(sweepWidth(0)).toBe(1);
+    expect(sweepWidth(5)).toBe(3);
+    expect(sweptDamage(11, 3)).toBe(3);
+    expect(sweptDamage(11, 1)).toBe(11);
+  });
+
+  it("halves a TL7+ flamethrower's Range on unthickened fuel", () => {
+    expect(unthickenedRange(25, 7)).toBe(12);
+    expect(unthickenedRange(75, 7)).toBe(37);
+    expect(unthickenedRange(15, 6)).toBe(15);
+  });
+
+  it("reads its own Malfunction Table", () => {
+    expect(flameMalfunction(3)).toBe("noIgnition");
+    expect(flameMalfunction(5)).toBe("noIgnition");
+    expect(flameMalfunction(6)).toBe("noFuel");
+    expect(flameMalfunction(17)).toBe("noFuel");
+    expect(flameMalfunction(18)).toBe("explosion");
+  });
+
+  it("blows the tank up on a 1 once damage gets through", () => {
+    expect(tankStruck(1)).toBe("explodes");
+    expect(tankStruck(2)).toBe("disabled");
+  });
+});
+
+describe("spray guns (High-Tech p. 180)", () => {
+  it("lasts minutes equal to the margin for tear gas, until washed off for pepper spray", () => {
+    expect(sprayAgent("Pepper Spray")).toBe("pepper");
+    expect(sprayAgent("Tear Gas Spray")).toBe("tearGas");
+    expect(sprayEffectSeconds("tearGas", 3)).toBe(180);
+    expect(sprayEffectSeconds("tearGas", 0)).toBe(60);
+    expect(sprayEffectSeconds("pepper", 3)).toBeNull();
+  });
+});
+
+describe("laser dazzlers (High-Tech p. 181), through the shared engine", () => {
+  it("knows the book's two lasers", () => {
+    expect(eyeBeamOf("NORINCO QXJ04")).toBe("dazzle");
+    expect(eyeBeamOf("NORINCO ZM87")).toBe("blinding");
+    expect(eyeBeamOf("Laser Rifle")).toBeNull();
+  });
+
+  it("gives +5 for Protected Vision and +1 a level of Nictitating Membrane", () => {
+    expect(eyeProtection({ protectedVision: true, nictitatingMembrane: 4 })).toBe(9);
+    expect(eyeProtection({ protectedVision: false, nictitatingMembrane: 0 })).toBe(0);
+    expect(visionResistBonus(["Protected Vision", "Nictitating Membrane 3"])).toBe(8);
+  });
+
+  it("dazzles for minutes equal to the margin; blinds by crippling, for good at 10+", () => {
+    expect(blindnessFrom(HT_DAZZLE, "dazzle", 4)).toEqual({ kind: "dazzled", minutes: 4 });
+    expect(blindnessFrom(HT_DAZZLE, "blinding", 3)).toEqual({ kind: "blinded", permanent: false });
+    expect(blindnessFrom(HT_DAZZLE, "blinding", 10)).toEqual({ kind: "blinded", permanent: true });
+    // Ultra-Tech's blinding beam blinds for good whatever the margin (Ultra-Tech p. 114).
+    expect(blindnessFrom({ book: "ultra-tech", blinding: "permanent" }, "blinding", 1)).toEqual({ kind: "blinded", permanent: true });
+  });
+});

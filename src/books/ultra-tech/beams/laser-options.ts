@@ -10,6 +10,7 @@
  *     a laser crippled, which is crippled for good.
  */
 
+import { DAZZLE_TABLES, blindnessFrom, type DazzleTable } from "../../../shared/dazzle/rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -41,6 +42,9 @@ const SETTINGS: readonly LaserSetting[] = ["beam", "dazzle", "blinding", "pulse"
 
 /** Families a dazzle or blinding beam's roll to resist comes from. */
 const EYE_BEAMS: ReadonlySet<BeamFamily> = new Set(["dazzler", ...HIGH_ENERGY]);
+/** Ultra-Tech's table for the shared engine: a blinding beam blinds for good (p. 114). */
+const UT_DAZZLE: DazzleTable = { book: "ultra-tech", blinding: "permanent" };
+
 /** Families whose burn weather and glass change: every high-energy laser, and an electrolaser's (pp. 114, 119). */
 const WEATHERED: ReadonlySet<BeamFamily> = new Set([...HIGH_ENERGY, "electrolaser"]);
 
@@ -133,6 +137,7 @@ function itemListeners(element: HTMLElement, item: any): void {
 
 /** Registers the table-side parts. */
 export function readyLaserOptions(api: GWorldApi, on: () => boolean): void {
+  DAZZLE_TABLES.register(UT_DAZZLE);
   // "The setting adds +10% to laser cost"; a pulse-beam laser "is +100% to cost" (pp. 113, 114, 118).
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -242,11 +247,12 @@ export function readyLaserOptions(api: GWorldApi, on: () => boolean): void {
     const family = familyOf(context?.item);
     if (!family || !EYE_BEAMS.has(family)) return;
     const setting = family === "dazzler" ? "dazzle" : activeSetting(laserOptionsOf(context.item));
-    const margin = Math.max(1, Math.floor(Number(context.margin) || 0));
-    if (setting === "dazzle") {
-      context.effects.push({ module: MODULE_ID, key: "ut-dazzled", label: L("Dazzled"), duration: { seconds: margin * 60 } });
-      void say(context.actor, context.label ?? "", F("DazzledLine", { name: context.actor?.name, minutes: margin }));
-    } else if (setting === "blinding") {
+    if (setting !== "dazzle" && setting !== "blinding") return;
+    const blindness = blindnessFrom(UT_DAZZLE, setting, Number(context.margin));
+    if (blindness.kind === "dazzled") {
+      context.effects.push({ module: MODULE_ID, key: "ut-dazzled", label: L("Dazzled"), duration: { seconds: blindness.minutes * 60 } });
+      void say(context.actor, context.label ?? "", F("DazzledLine", { name: context.actor?.name, minutes: blindness.minutes }));
+    } else {
       context.effects.push({ module: MODULE_ID, key: "ut-blinded", label: L("Blinded") });
       void say(context.actor, context.label ?? "", F("BlindedLine", { name: context.actor?.name }));
     }
