@@ -18,11 +18,13 @@
  * ETC multiplies.
  */
 
+import { BACKBLAST_TABLES, readyBackblast } from "../../../shared/backblast/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { loadsOf } from "../warheads/index.js";
 import { divideDamage, plusPerDie } from "../warheads/rules.js";
 import {
+  BACKBLASTS,
   ETC,
   FUSINGS,
   HOMING_KINDS,
@@ -254,6 +256,20 @@ async function pullLimpet(api: GWorldApi, actor: any): Promise<void> {
 }
 
 export function readyGuns(api: GWorldApi, on: GunSwitches): void {
+  // A missile's backblast, rolled when it fires (p. 145), through the shared backblast engine.
+  BACKBLAST_TABLES.register({
+    book: "ultra-tech",
+    tls: { min: 9, max: 12 },
+    on: on.launchers,
+    of: (item) => {
+      const launcher = launcherByName(nameOf(item));
+      return launcher && !gunData(item).reactionless ? BACKBLASTS[launcher] : null;
+    },
+    label: (blast) => F("BackblastLabel", { yards: blast.fullYards }),
+    cone: false,
+  });
+  readyBackblast(api);
+
   api.data.registerPriceModifier({
     module: MODULE_ID,
     key: "ut-guns",
@@ -390,18 +406,13 @@ export function readyGuns(api: GWorldApi, on: GunSwitches): void {
     },
   } as any);
 
-  // On firing: the velocity for the damage roll, and a missile's backblast (p. 145).
+  // On firing: the velocity for the damage roll (p. 139).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
     if (!item || context?.mode?.ranged !== true) return;
     if (on.propellant() && velocityCapable(item) && item.isOwner) {
       const chosen = context.options?.[`${MODULE_ID}.${VELOCITY_OPTION}`];
       void api.combat.setWeaponState(item, MODULE_ID, { velocity: VELOCITIES.includes(chosen) ? chosen : "standard" });
-    }
-    const launcher = on.launchers() ? launcherByName(nameOf(item)) : null;
-    if (launcher && !gunData(item).reactionless) {
-      const blast = backblast(launcher);
-      void api.roll.damage({ actor: context.actor, label: F("BackblastLabel", { yards: blast.yards }), formula: blast.damage, damageType: "burn" } as any);
     }
   });
 

@@ -15,8 +15,10 @@
  * Targeted Attacks with guns, Instant Arsenal Disarm and the expanded
  * Gunslinger, the special shooting situations (underwater, into water,
  * steeply into the air, in space), sustained fire, the aftermath of a
- * firefight, and reloading, careful loading and black-powder fouling (pp.
- * 79-88, 129-137, 153-154, 249-252).
+ * firefight, reloading, careful loading and black-powder fouling, and the
+ * weapon families: air guns and ranged stunners, unsafe revolvers and pistol
+ * whipping, mechanical machine guns, and backblast (pp. 79-93, 127-137,
+ * 147-154, 159, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -31,6 +33,7 @@ import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/
 import { registerHighTechRecordData } from "./records.js";
 import { readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
+import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -75,6 +78,10 @@ const RULES = [
   { key: "firearmLoading", pages: "pp. 86-88, 251", implemented: true },
   { key: "carefulLoading", pages: "p. 86", implemented: true },
   { key: "blackPowderFouling", pages: "p. 86", implemented: true },
+  { key: "airGunsAndStunners", pages: "pp. 88-90", implemented: true },
+  { key: "revolverHandling", pages: "pp. 90, 93, 159", implemented: true },
+  { key: "mechanicalMachineGuns", pages: "p. 127", implemented: true },
+  { key: "backblast", pages: "pp. 141, 147-153", implemented: true },
   // Cinematic: the optional additions to Gunslinger.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
 ] as const;
@@ -108,7 +115,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f) }));
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
@@ -126,6 +133,7 @@ function ready(api: GWorldApi): void {
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));
   readyReloading(api, { loading: rule("firearmLoading"), careful: rule("carefulLoading"), fouling: rule("blackPowderFouling") });
+  readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
 }
 
 export const book: BookRules = {

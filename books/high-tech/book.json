@@ -3538,6 +3538,315 @@
         "system.extensions.gurps-compendium-content.firearm.loadingType": "internal"
       },
       "reason": "a single-shot bolt action: open, load and close the action (p. 87) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Steyr-Girandoni M\\.1780, 11\\.75mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.airShots": 30,
+        "system.extensions.gurps-compendium-content.firearm.airBands": [
+          {
+            "from": 11,
+            "damage": "1d+2",
+            "halfDamageRange": 50,
+            "maxRange": 400
+          },
+          {
+            "from": 21,
+            "damage": "1d+1",
+            "halfDamageRange": 40,
+            "maxRange": 340
+          }
+        ]
+      },
+      "reason": "the flask holds 30 shots; the second ten and the last ten do less damage at shorter range (pp. 88-89) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dan-Inject JM Standard, 11mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.airShots": 40
+      },
+      "reason": "a CO2 cartridge of 40 charges (pp. 88-89) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^FN 303, \\.68 FN$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.airShots": 110
+      },
+      "reason": "a CO2 cartridge of 110 charges (pp. 88-89) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^NSG SplatMaster, \\.68 Paintball$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.airShots": 30
+      },
+      "reason": "a CO2 cartridge of 30 charges (pp. 88-89) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tasertron TE-76$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.stunSeconds": 5,
+        "system.rangedModes.*.minRange": 1
+      },
+      "reason": "a ranged stunner, the trigger typically held 5-10 seconds; minimum range one yard (pp. 89-90) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^TASER M26$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.stunSeconds": 5,
+        "system.extensions.gurps-compendium-content.firearm.emd": true,
+        "system.rangedModes.*.minRange": 1
+      },
+      "reason": "an EMD stunner whose current runs five seconds unless cut off; minimum range one yard (pp. 89-90) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Tower Sea Service P\\/1796, \\.56 Flintlock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.brainer": true
+      },
+      "reason": "turned round and used to bash heads, swing+1 crushing with Axe/Mace (p. 90) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^MAS Pistolet AN IX, 17\\.1mm Flintlock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.brainer": true
+      },
+      "reason": "hefty enough to bash with, swing+1 crushing with Axe/Mace (p. 90) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Beaumont-Adams Mk I, \\.442 Caplock$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.safety": "safe"
+      },
+      "reason": "unlike most TL5 revolvers, it had a safety (p. 93) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nagant R-1895, 7\\.62x39mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.suppressible": true
+      },
+      "reason": "a revolver tight enough to be silenced (pp. 95, 159) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Gatling M1874, \\.45-70$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.mechanicalMg": true
+      },
+      "reason": "a mechanical machine gun (pp. 127-128) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hotchkiss 1-pdr, 37x94mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.mechanicalMg": true
+      },
+      "reason": "a mechanical machine gun (pp. 127-128) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Nordenfelt Single-Barrel, \\.450 MH$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.mechanicalMg": true
+      },
+      "reason": "a mechanical machine gun (pp. 127-128) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Watervliet M40, 106x607mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "7dx2",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 7dx2 burning (p. 141) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^GE M1A1 Bazooka, 2\\.36''$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d+1",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 1d+1 burning (p. 147) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^HASAG Panzerfaust 30, 44mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 1d burning (p. 147) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Firestone M18, 57x305mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "5d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 5d burning (p. 147) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Carl Gustaf M2, 84x250mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "4d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 4d burning (p. 148) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^KMZ RPG-2, 40mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d+2",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 1d+2 burning (p. 148) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^KMZ RPG-7, 40mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d+2",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 1d+2 burning (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^HEC M72A2, 66mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d+2",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 1d+2 burning (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^MBB Armbrust, 67mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "1d+1",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "cr"
+      },
+      "reason": "backblast 1d+1 crushing (countermass) (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^KBP RPO-A, 93mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "3d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 3d burning (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^FFV AT4, 84mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "4d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 4d burning (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Dynamit-Nobel PZF3, 60mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "2d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "cr"
+      },
+      "reason": "backblast 2d crushing (countermass) (p. 149) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Aérospatiale SS\\.11, 164mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "6d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 6d burning (p. 151) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Kolomna 9M14M Malyutka-M, 125mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "4d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 4d burning (p. 151) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hughes BGM-71A TOW, 127mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "8d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 8d burning (p. 151) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Euromissile MILAN, 103mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "2d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 2d burning (p. 151) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^McDonnell FGM-77A Dragon, 127mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "3d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 3d burning (p. 152) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Ford AIM-9L Sidewinder, 127mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "5dx2",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 5dx2 burning (p. 152) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^GD FIM-92A Stinger, 70mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "4d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 4d burning (p. 153) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^RLM FGM-148A Javelin, 127mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.backblast": "3d",
+        "system.extensions.gurps-compendium-content.firearm.backblastType": "burn"
+      },
+      "reason": "backblast 3d burning (p. 153) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Steyr-Girandoni M\\.1780, 11\\.75mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.powder": "other"
+      },
+      "reason": "an air gun burns no powder, so it never fouls (p. 88) (#370)"
     }
   ]
 }

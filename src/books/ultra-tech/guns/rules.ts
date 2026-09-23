@@ -6,6 +6,8 @@
  * mines, and bouncing a vortex ring.
  */
 
+import type { Backblast } from "../../../shared/backblast/rules.js";
+
 /** A conventional chemical-propellant slugthrower, by its ammunition designation: "7mmCL", "10mmCLP", "18.5mmPC", "40mmPLB" (p. 135). */
 export function isConventional(name: string): boolean {
   return /\d(?:\.\d+)?mm(?:CL[PR]?|PC|PLB)\b/i.test(String(name ?? ""));
@@ -98,8 +100,15 @@ export function launcherByName(name: string): Launcher | null {
 }
 
 /** Backblast: 2d burning in a 2-yard cone behind an IML or MLAWS, 4d in 3 yards behind a TML (p. 145). */
+export const BACKBLASTS: Readonly<Record<Launcher, Backblast>> = Object.freeze({
+  iml: { damage: "2d", kind: "burn", fullYards: 2, halfYards: 2 },
+  mlaws: { damage: "2d", kind: "burn", fullYards: 2, halfYards: 2 },
+  tml: { damage: "4d", kind: "burn", fullYards: 3, halfYards: 3 },
+});
+
 export function backblast(launcher: Launcher): { damage: string; yards: number } {
-  return launcher === "tml" ? { damage: "4d", yards: 3 } : { damage: "2d", yards: 2 };
+  const blast = BACKBLASTS[launcher];
+  return { damage: blast.damage, yards: blast.fullYards };
 }
 
 /** Reactionless missiles: no backblast, five times the Max range, twice the missile's cost (p. 145). */

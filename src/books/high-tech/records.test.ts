@@ -477,3 +477,41 @@ describe("High-Tech's guns built for sustained fire and underwater (#368)", () =
     expect(build("TsNIITochMash APS, 5.66x39mm").underwaterFactor).toBe(25);
   });
 });
+
+describe("High-Tech's weapon families (#370)", () => {
+  const gear = read(join(PACKS, "equipment/high-tech-gear.json"));
+  const family = (name: string) => named(gear, name).system.extensions?.["gurps-compendium-content"]?.firearm ?? {};
+
+  it("gives the air guns their charges, and the Girandoni its weakening stages (pp. 88-89)", () => {
+    expect(family("Steyr-Girandoni M.1780, 11.75mm")).toMatchObject({ airShots: 30, airBands: [{ from: 11, damage: "1d+2" }, { from: 21, damage: "1d+1" }], powder: "other" });
+    expect(family("Dan-Inject JM Standard, 11mm").airShots).toBe(40);
+    expect(family("FN 303, .68 FN").airShots).toBe(110);
+    expect(family("NSG SplatMaster, .68 Paintball").airShots).toBe(30);
+    expect(family("Daisy Number 111 Red Ryder, .175 BB").airShots).toBeUndefined();
+  });
+
+  it("makes the TASERs stunners with a one-yard minimum range (p. 89)", () => {
+    for (const name of ["Tasertron TE-76", "TASER M26"]) {
+      expect(family(name).stunSeconds, name).toBe(5);
+      expect(named(gear, name).system.rangedModes.every((m: any) => m.minRange === 1), name).toBe(true);
+    }
+    expect(family("TASER M26").emd).toBe(true);
+  });
+
+  it("gives every launcher and missile with a printed backblast its dice (pp. 141, 147-153)", () => {
+    expect(family("HEC M72A2, 66mm")).toMatchObject({ backblast: "1d+2", backblastType: "burn" });
+    expect(family("Dynamit-Nobel PZF3, 60mm")).toMatchObject({ backblast: "2d", backblastType: "cr" });
+    expect(family("Ford AIM-9L Sidewinder, 127mm").backblast).toBe("5dx2");
+    const launchers = gear.filter((d) => (d.system.rangedModes ?? []).some((m: any) => /Light Anti-Armor|Guided Missile/.test(String(m.skill))));
+    for (const doc of launchers) expect(family(doc.name).backblast, doc.name).toMatch(/^\d+d/);
+  });
+
+  it("marks the mechanical machine guns, the braining pistols and the safe and suppressible revolvers (pp. 90, 93, 95, 127)", () => {
+    for (const name of ["Gatling M1874, .45-70", "Hotchkiss 1-pdr, 37x94mmR", "Nordenfelt Single-Barrel, .450 MH"]) expect(family(name).mechanicalMg, name).toBe(true);
+    expect(family("Electric Gatling M1893, .30-40").mechanicalMg).toBeUndefined();
+    expect(family("Tower Sea Service P/1796, .56 Flintlock").brainer).toBe(true);
+    expect(family("MAS Pistolet AN IX, 17.1mm Flintlock").brainer).toBe(true);
+    expect(family("Beaumont-Adams Mk I, .442 Caplock").safety).toBe("safe");
+    expect(family("Nagant R-1895, 7.62x39mmR").suppressible).toBe(true);
+  });
+});
