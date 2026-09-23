@@ -25,9 +25,9 @@
  * and ammunition: calibres priced from the Ammunition Tables, the ammunition
  * upgrades, cartridge conversions, handloading and misloading, the
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
- * and projectile upgrades, the explosive and cargo rounds, and power:
- * batteries, generators and fuel (pp. 7-11, 13-16, 79-93, 109, 127-141,
- * 143, 147-178, 249-252).
+ * and projectile upgrades, the explosive and cargo rounds, power:
+ * batteries, generators and fuel, and the optional wounding rules
+ * (pp. 7-11, 13-16, 79-93, 109, 127-141, 143, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -48,6 +48,7 @@ import { registerHighTechRecordData } from "./records.js";
 import { readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
+import { readyWounding } from "./wounding/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -120,6 +121,11 @@ const RULES = [
   { key: "explosiveProjectiles", pages: "pp. 169-170, 175", implemented: true },
   { key: "cargoProjectiles", pages: "pp. 143, 171-172", implemented: true },
   { key: "batteries", pages: "pp. 10, 13-16", implemented: true },
+  // The optional wounding rules.
+  { key: "vitalsOnTorsoHits", pages: "p. 162", implemented: true },
+  { key: "realisticLimbWounds", pages: "p. 162", implemented: true },
+  { key: "vitalBleeding", pages: "p. 162", implemented: true },
+  { key: "woundFrightChecks", pages: "p. 162", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -196,6 +202,7 @@ function ready(api: GWorldApi): void {
   readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
   readyIndirectFire(api, rule("indirectFire"));
   readyHighTechPower(api, rule("batteries"));
+  readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
 }
 
 export const book: BookRules = {

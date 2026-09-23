@@ -11,6 +11,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { BLEEDING_TABLES, readySevereBleeding, recordSevereWound, type BleedingTable } from "../../../shared/bleeding/index.js";
 import {
   LASTING_TRAITS,
   carryThroughDr,
@@ -26,8 +27,6 @@ import {
   woundDuration,
   woundEffect,
   woundTable,
-  worstBleeding,
-  type SevereWound,
   type WoundTable,
 } from "./rules.js";
 
@@ -59,6 +58,10 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
   const hpOf = (actor: any) => Number(actor?.system?.hp?.max) || 10;
   const crippling = (location: string, actor: any): number | null => (api.rules as any).cripplingThreshold?.(location, hpOf(actor)) ?? null;
   const drAt = (actor: any, location: string) => Number(api.actors.derived(actor)?.drByLocation?.[location]) || 0;
+  // Severe bleeding is the shared engine's, with this book's table (p. 138).
+  const bleedingTable: BleedingTable = { book: "martial-arts", on: bleeding, flag: SEVERE_FLAG, i18n: "GCC.MA.Injury" };
+  BLEEDING_TABLES.register(bleedingTable);
+  readySevereBleeding(api);
 
   // A lasting injury that is a trait: the card finds it in the compendia, for the GM to drag onto the character.
   api.chat.registerChatCard({
@@ -124,7 +127,7 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
         // Destroying a part bleeds however it was destroyed.
         severed: severs(raw, threshold) ? (extremity ? "extremity" : "limb") : null,
       });
-      if (wound && result.injury > 0) await victim.setFlag(MODULE_ID, SEVERE_FLAG, [...(victim.getFlag(MODULE_ID, SEVERE_FLAG) ?? []), wound]);
+      if (wound && result.injury > 0) await recordSevereWound(victim, bleedingTable, wound);
     }
     if (dismember() && severed && otherPart(location)) {
       const posture = String(victim.system?.posture ?? "standing");
@@ -232,65 +235,6 @@ export function readyInjury(api: GWorldApi, partial: () => boolean, dismember: (
       if (move !== undefined && move < 1) context.lines.push({ label: L(`MoveLabel.${location}`), multiplier: move });
     }
   });
-
-  // ── severe bleeding (p. 138) ──
-  const severeOf = (actor: any): SevereWound | null => {
-    if (!bleeding() || !actor?.statuses?.has?.("bleeding")) return null;
-    return worstBleeding((actor.getFlag?.(MODULE_ID, SEVERE_FLAG) ?? []) as SevereWound[]);
-  };
-  Hooks.on(api.combat.hooks.bleedingSchedule, (context: any) => {
-    const worst = severeOf(context?.actor);
-    if (!worst) return;
-    context.intervalSeconds = Math.min(Number(context.intervalSeconds) || 60, worst.intervalSeconds);
-    context.modifier = (Number(context.modifier) || 0) + worst.modifier;
-  });
-  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
-    if (!(context?.tags ?? []).includes("firstAid")) return;
-    const worst = severeOf(context.opponent);
-    if (worst?.modifier) context.modifiers.push({ label: L("SevereWound"), value: worst.modifier });
-  });
-  Hooks.on(api.combat.hooks.firstAid, (context: any) => {
-    const worst = severeOf(context?.patient);
-    if (worst?.surgery) context.stopsBleeding = false;
-  });
-  api.sheets.registerGmTool({
-    module: MODULE_ID,
-    key: "ma-staunch-surgery",
-    label: L("Staunch"),
-    icon: "fa-solid fa-kit-medical",
-    visible: bleeding,
-    open: () => staunch(api),
-  });
-  async function staunch(api: GWorldApi): Promise<void> {
-    const patient = [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
-    if (!patient) return void ui.notifications?.warn(L("StaunchWho"));
-    // The selected token's character operates, or whoever the GM picks.
-    let surgeon = (globalThis as any).canvas?.tokens?.controlled?.[0]?.actor ?? null;
-    if (!surgeon) {
-      const options = [...((game as any).actors ?? [])].filter((a: any) => a.type === "character" && a.id !== patient.id).map((a: any) => `<option value="${a.id}">${foundry.utils.escapeHTML(String(a.name))}</option>`).join("");
-      const id = await foundry.applications.api.DialogV2.prompt({
-        window: { title: L("Staunch") },
-        content: `<div class="gworld"><label style="display:flex;justify-content:space-between;gap:8px"><span>${L("Surgeon")}</span><select name="surgeon">${options}</select></label></div>`,
-        ok: { label: L("Staunch"), callback: (_e: Event, button: HTMLElement) => button.closest<HTMLElement>(".application")?.querySelector<HTMLSelectElement>('[name="surgeon"]')?.value ?? "" },
-        rejectClose: false,
-      }) as string | null;
-      surgeon = id ? (game as any).actors?.get(id) ?? null : null;
-    }
-    if (!surgeon) return;
-    const level = api.actors.skillLevel(surgeon, "Surgery");
-    if (level === null) return void ui.notifications?.warn(L("NoSurgery"));
-    const worst = severeOf(patient);
-    const outcome: any = await api.roll.success({
-      actor: surgeon,
-      base: level,
-      label: F("StaunchLabel", { patient: String(patient.name ?? "") }),
-      skill: "Surgery",
-      modifiers: worst?.modifier ? [{ label: L("SevereWound"), value: worst.modifier }] : [],
-    } as any);
-    if (!outcome?.success) return;
-    await api.actors.stopBleeding(patient);
-    if (patient.isOwner) await patient.unsetFlag(MODULE_ID, SEVERE_FLAG);
-  }
 
   // ── lasting injuries (pp. 138-139) ──
   async function rollLasting(api: GWorldApi, victim: any, first: WoundTable, grave: boolean): Promise<void> {
