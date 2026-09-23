@@ -13,15 +13,25 @@
  *     weight and cost from the calibre's WPS, -1 Bulk past 1.5 (extended) or
  *     3 (drum) times the normal capacity, -1 Malf. for a drum or where the GM
  *     says it's unreliable.
- *   - **Sights (gunSights):** scopes by the +1 Acc, fixed-power ones only
- *     after as many seconds of Aim as their bonus; night and thermal sights'
- *     +2; a computer sight's targeting program, rangefinder and
- *     magnification; a reflex or collimating sight's +1 to 300 yards; all of
- *     it held to the gun's base Acc. A high-powered scope's -1 Bulk unaimed,
- *     and the sights' own Bulk. Looking through a night, thermal or computer
- *     sight (toggled from the gun's row) gives its Night Vision or
- *     Infravision and leaves the shooter colorblind with tunnel vision,
- *     through `gworld.traitEffects`. A targeting laser's colour reprices it.
+ *   - **Sights (gunSights):** the best magnifying sight -- a scope by the +1
+ *     Acc, a night or thermal sight's +2, a computer sight's magnification --
+ *     goes on the gun's rows as their scope (`scopeBonus`, and `scopeFixed`
+ *     for a fixed-power one), which the system counts after the seconds of
+ *     Aim and shows as "Acc 5+2"; a computer sight's targeting program and
+ *     rangefinder; a reflex or collimating sight's +1 to 300 yards; all of it
+ *     held to the gun's base Acc. The darkness line (keyed `darkness`) loses
+ *     what the sights negate: a TL7+ scope a point on an aimed shot, an
+ *     illuminated reticle two, improved-visibility sights one, a reflex sight
+ *     three; a tactical light, switched on for the shot, leaves no worse
+ *     than -3 within its beam. A targeting laser reaches as far as its
+ *     colour does in daylight or low light (the `laser` line and the target's
+ *     Dodge bonus follow it), an infrared dot only for a shooter who can see
+ *     it, and a reflex sight gives nothing while the laser is on. A
+ *     high-powered scope's -1 Bulk unaimed, and the sights' own Bulk.
+ *     Looking through a night, thermal or computer sight (toggled from the
+ *     gun's row) gives its Night Vision or Infravision and leaves the shooter
+ *     colorblind with tunnel vision, through `gworld.traitEffects`. A
+ *     targeting laser's colour reprices it.
  *   - **Suppressors (suppressors):** fitted only to a gun that takes one
  *     (never an ordinary revolver: the weapon families' `gunTakesSuppressor`);
  *     their Bulk; a wiper design's damage and range, for its 40 shots; a
@@ -37,11 +47,9 @@
  *     modes (43 of them, as the GCA file prints them) keeps them: the state
  *     picks the mode, and a shot from the other one is refused.
  *
- * Not reached through the API (see the PR): the darkness offsets of scopes,
- * improved-visibility and reflex sights and tactical lights, since the
- * darkness line carries no key; and a laser's reach by colour and light, and
- * the laser-or-reflex choice, since the Basic Set's laser line carries none
- * either.
+ * The Bulk the accessories leave -- magazine, suppressor, sights, stocks --
+ * is the rows' own `bulk`, so the Combat tab shows it and the system takes
+ * it on a Move and Attack, in close combat and when driving.
  */
 
 import { ACCESSORY_TABLES, accessoryOf, minStPenaltyAfter, minStPenaltyAt, multiplyDamage, scaledMinSt, type AccessoryFigures, type AccessoryKind } from "../../../shared/accessories/index.js";
@@ -81,7 +89,11 @@ import {
   rangefinderBonus,
   reflexBonus,
   reportOf,
-  sightAfterAiming,
+  DARKNESS_OFFSET,
+  darknessAfter,
+  laserReach,
+  scopeDarkness,
+  seesLaserDot,
   suppressorHearing,
   suppressorSeconds,
   unaimedScopeBulk,
@@ -98,6 +110,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const FIELD = "gunAccessory";
 const GUN_FIELD = "firearm";
+/** The attack option that switches a fitted tactical light on for the shot (p. 156). */
+const LIGHT_OPTION = "ht-tactical-light";
 
 export interface AccessorySwitches {
   magazines: () => boolean;
@@ -116,6 +130,7 @@ const SWITCH_OF: Record<AccessoryKind, keyof AccessorySwitches> = {
   thermalSight: "sights",
   computerSight: "sights",
   targetingLaser: "sights",
+  tacticalLight: "sights",
   suppressor: "suppressors",
   pistolStock: "stocks",
   foldingStock: "stocks",
@@ -139,6 +154,8 @@ export interface AccessoryData {
   fired: number;
   /** A computer sight bought with Night Vision rather than Infravision. */
   nightVision: boolean;
+  /** A scope with an illuminated reticle (p. 155). */
+  illuminated: boolean;
 }
 
 /** What this module keeps on a gun for its magazine and its report, beside the other rules' fields. */
@@ -166,6 +183,7 @@ export function initAccessories(): void {
       lifetime: whole(1000),
       fired: whole(100000),
       nightVision: new f.BooleanField({ initial: false }),
+      illuminated: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -181,6 +199,7 @@ export function accessoryData(item: any): AccessoryData {
     lifetime: count(d.lifetime),
     fired: count(d.fired),
     nightVision: d.nightVision === true,
+    illuminated: d.illuminated === true,
   };
 }
 
@@ -334,42 +353,71 @@ export function fittedScopeBonus(item: any, on: AccessorySwitches): number {
 interface SightLine {
   label: string;
   value: number;
+  /** A reflex sight's, which a shooter using a targeting laser goes without (p. 156). */
+  reflex?: boolean;
+}
+
+/** A fitted sight's magnifying bonus: a scope's level, a night or thermal sight's +2, a computer sight's magnification. */
+function magnifierOf({ figures, data }: Fitted): number {
+  if (figures.kind === "scope") return levelWithin(data.level, figures.levels);
+  if (figures.kind === "pistolStock") return 0;
+  return figures.accuracy ?? figures.magnification ?? 0;
 }
 
 /**
- * What the sights give a shot (pp. 155-157). `aimedSeconds` is null for an
- * unaimed shot. The best magnifying sight counts (fixed-power ones only after
- * aiming as long as their bonus); a computer sight's program and
- * rangefinder; a reflex sight's +1 without a magnifying one.
+ * The best magnifying sight on the gun, as the rows' scope: its bonus, and
+ * whether it is fixed-power (a computer sight's magnification is variable).
  */
-function sightLines(item: any, on: AccessorySwitches, aimedSeconds: number | null, yards: number | null): SightLine[] {
+export function fittedMagnifier(item: any, on: AccessorySwitches): { name: string; bonus: number; fixed: boolean } | null {
+  let best: { name: string; bonus: number; fixed: boolean } | null = null;
+  for (const fitted of fittedTo(item, on)) {
+    const bonus = magnifierOf(fitted);
+    if (bonus > (best?.bonus ?? 0)) best = { name: String(fitted.item.name), bonus, fixed: fitted.figures.fixed !== false && fitted.figures.kind !== "computerSight" };
+  }
+  return best;
+}
+
+/**
+ * What the sights give a shot besides the scope the rows carry (pp. 155-157):
+ * a computer sight's program, and its rangefinder on an aimed shot; a reflex
+ * sight's +1 without a magnifying one.
+ */
+function sightLines(item: any, on: AccessorySwitches, aimed: boolean, yards: number | null): SightLine[] {
   const lines: SightLine[] = [];
   const fitted = fittedTo(item, on);
-  let magnifier: { label: string; value: number } | null = null;
-  let magnifying = false;
-  for (const { item: sight, figures, data } of fitted) {
-    const full = figures.kind === "scope" ? levelWithin(data.level, figures.levels) : figures.kind === "pistolStock" ? 0 : (figures.accuracy ?? figures.magnification ?? 0);
-    if (full > 0) magnifying = true;
-    if (aimedSeconds !== null && full > 0) {
-      const value = sightAfterAiming(full, aimedSeconds, figures.fixed !== false && figures.kind !== "computerSight");
-      if (value > (magnifier?.value ?? 0)) magnifier = { label: String(sight.name), value };
-    }
-    if (figures.kind === "computerSight") {
-      if (figures.program) lines.push({ label: F("Program", { name: sight.name }), value: figures.program });
-      if (aimedSeconds !== null && figures.rangefinder) {
-        const value = rangefinderBonus(yards, figures.yards ?? Infinity, figures.rangefinder);
-        if (value) lines.push({ label: F("Rangefinder", { name: sight.name }), value });
-      }
+  const magnifying = fitted.some((f) => magnifierOf(f) > 0);
+  for (const { item: sight, figures } of fitted) {
+    if (figures.kind !== "computerSight") continue;
+    if (figures.program) lines.push({ label: F("Program", { name: sight.name }), value: figures.program });
+    if (aimed && figures.rangefinder) {
+      const value = rangefinderBonus(yards, figures.yards ?? Infinity, figures.rangefinder);
+      if (value) lines.push({ label: F("Rangefinder", { name: sight.name }), value });
     }
   }
-  if (magnifier) lines.unshift(magnifier);
   for (const { item: sight, figures } of fitted) {
     if (figures.kind !== "reflexSight") continue;
     const value = reflexBonus(yards, figures.yards ?? 300, magnifying);
-    if (value) lines.push({ label: String(sight.name), value });
+    if (value) lines.push({ label: String(sight.name), value, reflex: true });
     break;
   }
   return lines;
+}
+
+/**
+ * The most the gun's sights take off a darkness penalty (pp. 155-156): a TL7+
+ * scope or an illuminated reticle on an aimed shot, improved-visibility sights,
+ * or a reflex sight -- not with a magnifying scope, nor while the laser is on.
+ */
+function sightDarkness(item: any, on: AccessorySwitches, aimed: boolean, laserOn: boolean): number {
+  const fitted = fittedTo(item, on);
+  const magnifying = fitted.some((f) => magnifierOf(f) > 0);
+  let best = 0;
+  for (const { item: sight, figures, data } of fitted) {
+    if (figures.kind === "scope" && aimed) best = Math.max(best, scopeDarkness(tlOf(sight), data.illuminated));
+    else if (figures.kind === "visibilitySights") best = Math.max(best, DARKNESS_OFFSET.visibilitySights);
+    else if (figures.kind === "reflexSight" && !magnifying && !laserOn) best = Math.max(best, DARKNESS_OFFSET.reflexSight);
+  }
+  return best;
 }
 
 // ── hearing the shot ──
@@ -504,9 +552,15 @@ function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, 
   const lines: string[] = [];
   const level = levelWithin(data.level, figures.levels);
   switch (figures.kind) {
-    case "scope":
+    case "scope": {
       lines.push(F(figures.fixed ? "ScopeFixed" : "ScopeVariable", { bonus: level }));
       if (level >= 3) lines.push(L("ScopeBulk"));
+      const dark = scopeDarkness(tlOf(item), data.illuminated);
+      if (dark) lines.push(F("ScopeDarkness", { offset: dark }));
+      break;
+    }
+    case "tacticalLight":
+      lines.push(F("TacticalLightLine", { yards: figures.yards ?? 0, floor: -3 }));
       break;
     case "visibilitySights":
       lines.push(L("VisibilityLine"));
@@ -566,6 +620,7 @@ function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, 
     colours: figures.kind === "targetingLaser" ? LASER_COLOURS.map((c) => ({ value: c, label: L(`Colour.${c}`), selected: c === data.colour })) : null,
     grades: figures.kind === "suppressor" ? ["", ...SUPPRESSOR_GRADES].map((g) => ({ value: g, label: L(`Grade.${g || "commercial"}`), selected: g === data.grade })) : null,
     nightVisionChoice: figures.kind === "computerSight",
+    illuminatedChoice: figures.kind === "scope",
     lines,
     switchOn: kindOn(on, figures),
   };
@@ -747,10 +802,20 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches): void {
     const foldingStock = on.stocks() && !setups.foldPairs && state.stockFolded && fittedTo(item, on, ["foldingStock"]).length > 0;
     const bipod = on.stocks() && !setups.bipodPairs && state.bipodDeployed && prone(actor) && fittedTo(item, on, ["bipod"]).length > 0;
 
+    const magnifier = on.sights() ? fittedMagnifier(item, on) : null;
     for (const entry of context.rows ?? []) {
       if (entry.kind !== "ranged") continue;
       const row = entry.row;
       const mode = entry.mode ?? {};
+      // The Bulk the accessories leave, unaimed as a Move and Attack or close combat is (GWorld API 1.86.0).
+      const own = Number(mode.bulk) || 0;
+      const fittedBulk = accessoryBulk(api, item, mode, false, on);
+      if (fittedBulk !== own) row.bulk = (typeof row.bulk === "number" ? row.bulk : own) + (fittedBulk - own);
+      // The best magnifying sight is the row's scope, where it beats one built in.
+      if (magnifier && magnifier.bonus > (Number(row.scopeBonus) || 0)) {
+        row.scopeBonus = magnifier.bonus;
+        row.scopeFixed = magnifier.fixed;
+      }
       if (magazine && !magazine.refused && magazine.figures.malfunction && typeof row.malfunction === "number") {
         row.malfunction += magazine.figures.malfunction;
         row.notes.push({ label: L(`Magazine.${magazine.kind}`), hint: F("MagazineHint", { rounds: magazine.rounds }) });
@@ -864,28 +929,61 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches): void {
       }
     }
 
-    // Bulk with the magazine, suppressor, sights and stocks.
-    const bulk = lineOf("bulk");
-    if (bulk && (bulk.situation === "moveAndAttack" || bulk.situation === "closeCombat")) {
-      const own = Number(mode.bulk) || 0;
-      const now = accessoryBulk(api, item, mode, aimed, on);
-      if (now !== own) {
-        bulk.value = api.rules.bulkPenalty(now, bulk.situation as "moveAndAttack" | "closeCombat");
-        bulk.label = F("BulkLine", { label: bulk.label, bulk: now });
+    // The Bulk the accessories leave is on the row already, which the system's line reads.
+
+    if (!on.sights()) return;
+    const yards = typeof context.rangeYards === "number" ? context.rangeYards : null;
+    const laserOn = context.laser?.on === true;
+    // A reflex sight or a targeting laser, not both at once (p. 156).
+    const lines = sightLines(item, on, aimed, yards).filter((l) => !(laserOn && l.reflex)).map(({ label, value }) => ({ label, value }));
+    for (const line of lines) modifiers.push(line);
+
+    // Darkness: a tactical light switched on for the shot, within its beam, then the sights (pp. 155-156).
+    const dark = lineOf("darkness");
+    if (dark) {
+      const light = context.options?.[`${MODULE_ID}.${LIGHT_OPTION}`] === true
+        && fittedTo(item, on, ["tacticalLight"]).some((f) => yards === null || yards <= (f.figures.yards ?? 0));
+      const value = darknessAfter(Number(dark.value) || 0, { light, sightOffset: sightDarkness(item, on, aimed, laserOn) });
+      if (value !== dark.value) {
+        dark.value = value;
+        dark.label = F("DarknessLine", { label: dark.label });
       }
     }
 
-    if (!on.sights()) return;
-    const seconds = aimed ? Math.max(1, Number(actor?.system?.aim?.turns) || 0) : null;
-    const yards = typeof context.rangeYards === "number" ? context.rangeYards : null;
-    const lines = sightLines(item, on, seconds, yards);
-    for (const line of lines) modifiers.push(line);
+    // A targeting laser's reach by its colour, in daylight or low light; an infrared dot only for eyes that see it (p. 157).
+    const laser = laserOn ? fittedTo(item, on, ["targetingLaser"])[0] : undefined;
+    if (laser && context.laser) {
+      const reach = laserReach(laser.figures.yards ?? 0, laser.data.colour, !dark);
+      const within = yards === null || yards <= reach;
+      const sees = seesLaserDot(laser.data.colour, (api.actors.derived(actor) as any)?.traitEffects ?? {});
+      const line = lineOf("laser");
+      if (within && sees) {
+        if (line) line.label = F("LaserHit", { name: laser.item.name, yards: reach });
+        else modifiers.push({ label: F("LaserHit", { name: laser.item.name, yards: reach }), value: (api.rules as any).LASER_SIGHT_TO_HIT ?? 1, key: "laser" });
+      } else if (line) {
+        modifiers.splice(modifiers.indexOf(line), 1);
+      }
+      context.laser.dodgeBonus = within && context.laser.targetSees ? Math.max(1, Number(context.laser.dodgeBonus) || 0) : 0;
+    }
     // The whole of the sights held to the gun's base Acc (p. 155).
     const builtIn = Number(accuracy?.scope) || 0;
     const base = accuracy ? accuracy.value - builtIn : Number(rangedRowOf(actor, item, modeIndex)?.accuracy ?? mode.accuracy) || 0;
     const over = overSightCap(base, builtIn + lines.reduce((sum, l) => sum + l.value, 0));
     if (over > 0) modifiers.push({ label: F("SightCap", { accuracy: base }), value: -over });
   });
+
+  // A fitted tactical light switched on for the shot (p. 156): a free declaration here, its Ready to switch on the GM's.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: LIGHT_OPTION,
+    label: L("TacticalLight"),
+    attack: "ranged",
+    available: (context: any) => on.sights() && firearm(context?.item) && fittedTo(context.item, on, ["tacticalLight"]).length > 0,
+    apply: (context: any) => {
+      const light = fittedTo(context?.item, on, ["tacticalLight"])[0];
+      return light ? { notes: [F("TacticalLightNote", { name: light.item.name, yards: light.figures.yards ?? 0 })] } : null;
+    },
+  } as any);
 
   // Looking through a night, thermal or computer sight: its vision, and colorblind with tunnel vision (pp. 156-157).
   Hooks.on("gworld.traitEffects", (context: any) => {

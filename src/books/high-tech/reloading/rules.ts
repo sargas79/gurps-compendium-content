@@ -14,6 +14,10 @@
  *   - **Double-Loading (p. 251):** two chambers of a revolver or a
  *     multi-barrelled gun at once, which saves a second more per pair of
  *     rounds, two where each case comes out by hand.
+ *   - **Loading mounted or on the move (pp. 86-87):** a roll against the
+ *     lower of the weapon skill and Riding, at -3 for loose powder and ball
+ *     and -1 for fixed ammunition; on a moving vehicle, the weapon skill at
+ *     -2 for loose powder.
  *   - **Careful loading (p. 86):** twice the time to load a muzzle-loading
  *     musket or rifle, for +1 Acc.
  *   - **Black-powder fouling (p. 86):** every five shots since the gun was
@@ -173,6 +177,27 @@ export function loadingSeconds(type: LoadingType, rounds: number): LoadTime | nu
   }
 }
 
+/** The loads timed as so long to open and close the gun and so long a round (pp. 87-88). */
+const BY_THE_ROUND: readonly LoadingType[] = ["breech", "breechEjector", "gate", "breakOpen", "swingOut", "internal"];
+
+/**
+ * A load `loadingSeconds` times as a fixed part and a time a round, split
+ * so the Reload button can time however many rounds go in: the fixed
+ * seconds, each round's, and what Fast-Draw (Ammo) saves on each round (a
+ * second, on every one of these). A swing-out revolver is 3 seconds and 2 a
+ * round, 1 a round with Fast-Draw. Null for a load that isn't: a tube's
+ * Fast-Draw saving comes in threes, a clip's time in clips, and a magazine,
+ * drum or belt goes in whole.
+ */
+export function loadingByTheRound(type: LoadingType): { seconds: number; perRound: number; fastDrawPerRound: number } | null {
+  if (!BY_THE_ROUND.includes(type)) return null;
+  const one = loadingSeconds(type, 1);
+  const two = loadingSeconds(type, 2);
+  if (!one || !two) return null;
+  const perRound = two.seconds - one.seconds;
+  return { seconds: one.seconds - perRound, perRound, fastDrawPerRound: (two.seconds - two.fastDraw) - (one.seconds - one.fastDraw) };
+}
+
 /**
  * A speedloader puts a revolver's rounds in at once (p. 87): five Ready
  * maneuvers for a break-open gun (three with Fast-Draw), six for a swing-out
@@ -256,6 +281,24 @@ export function loadsLoose(cls: BlackPowderClass, tableSeconds: number): boolean
   return tableSeconds > BLACK_POWDER_CLASSES[cls].seconds / 2;
 }
 
+/**
+ * Loading while mounted takes a roll against the lower of the weapon skill
+ * and Riding: at -3 each for loose powder and ball (p. 86), at -1 for fixed
+ * ammunition (p. 87). On a moving vehicle loose powder needs a roll against
+ * the weapon skill at -2 (p. 86); the book asks none for fixed ammunition.
+ */
+export const MOUNTED_LOADING = Object.freeze({ loose: -3, fixed: -1 });
+export const MOVING_VEHICLE_LOADING = -2;
+
+/** The rolls a load needs where the shooter is: in the saddle, or on a moving vehicle. */
+export function loadingRolls(options: { type: LoadingType; mounted: boolean; movingVehicle: boolean }): Array<{ where: "mounted" | "vehicle"; modifier: number; riding: boolean }> {
+  const loose = BLACK_POWDER_LOADING.includes(options.type);
+  const rolls: Array<{ where: "mounted" | "vehicle"; modifier: number; riding: boolean }> = [];
+  if (options.mounted) rolls.push({ where: "mounted", modifier: loose ? MOUNTED_LOADING.loose : MOUNTED_LOADING.fixed, riding: true });
+  else if (options.movingVehicle && loose) rolls.push({ where: "vehicle", modifier: MOVING_VEHICLE_LOADING, riding: false });
+  return rolls;
+}
+
 /** A self-measuring powder flask: 5 seconds off loose powder's time (pp. 86, 163). */
 export const FLASK_SECONDS = 5;
 /** Loading a muzzle-loading long arm other than standing takes half as long again (p. 86). */
@@ -266,12 +309,23 @@ export const GREASED_PATCH_FACTOR = 0.7;
 export const CAREFUL_LOADING_FACTOR = 2;
 export const CAREFUL_LOADING_ACC = 1;
 
-/** A loading aid's effect: the seconds it adds (negative to save) and what Fast-Draw saves with it. */
+/**
+ * A loading aid's effect: the seconds it adds (negative to save), or the
+ * multiple it takes the time to once every aid's seconds are in, and what
+ * Fast-Draw saves with it. Aids sharing a group are used one at a time.
+ */
 export interface AidEffect {
   key: "flask" | "paperCartridges" | "greasedPatch";
   seconds: number;
+  multiplier?: number;
+  exclusiveGroup?: string;
   fastDrawSeconds?: number;
 }
+
+/** Paper cartridges halve the basic time, rounded up (p. 86). */
+export const PAPER_CARTRIDGE_FACTOR = 0.5;
+/** The flask and paper cartridges: the cartridges supersede the flask (p. 86). */
+export const POWDER_GROUP = "powder";
 
 /** What goes into loading a black-powder gun. */
 export interface BlackPowderLoad {
@@ -299,6 +353,13 @@ export interface BlackPowderLoad {
  * time), or paper cartridges (half the time, and not with the flask). The
  * book's Kentucky rifle: 60 seconds, 50 with Fast-Draw; with a patch 42 and
  * 35; with a flask as well 37 and 30.
+ *
+ * The patch works on the basic time before the flask's five seconds come
+ * off, as that example has it, so it is the seconds it saves on this gun's
+ * time rather than a multiple, which the system would take after the
+ * flask's seconds (60 - 5 = 55, x0.7 = 39, not 37). The cartridges halve
+ * what is left, after every other aid (GWorld API 1.88.0), and share a
+ * group with the flask.
  */
 export function blackPowderLoad(load: BlackPowderLoad): { seconds: number; fastDraw: number; aids: AidEffect[]; cls: BlackPowderClass } {
   const cls = blackPowderClass(load.type, load.skill, load.tableSeconds);
@@ -311,13 +372,13 @@ export function blackPowderLoad(load: BlackPowderLoad): { seconds: number; fastD
   const fastDraw = Math.ceil((seconds * table.fastDraw) / table.seconds);
   const aids: AidEffect[] = [];
   if (loadsLoose(cls, load.tableSeconds)) {
-    aids.push({ key: "flask", seconds: -FLASK_SECONDS });
+    aids.push({ key: "flask", seconds: -FLASK_SECONDS, exclusiveGroup: POWDER_GROUP });
     if (cls === "rifle" && load.type === "muzzleloader") {
       const patched = Math.ceil(seconds * GREASED_PATCH_FACTOR);
       aids.push({ key: "greasedPatch", seconds: patched - seconds, fastDrawSeconds: patched - Math.ceil(fastDraw * GREASED_PATCH_FACTOR) });
     }
-    const halved = Math.ceil(seconds / 2);
-    aids.push({ key: "paperCartridges", seconds: halved - seconds, fastDrawSeconds: halved - Math.ceil(fastDraw / 2) });
+    const halved = Math.ceil(seconds * PAPER_CARTRIDGE_FACTOR);
+    aids.push({ key: "paperCartridges", seconds: 0, multiplier: PAPER_CARTRIDGE_FACTOR, exclusiveGroup: POWDER_GROUP, fastDrawSeconds: halved - Math.ceil(fastDraw * PAPER_CARTRIDGE_FACTOR) });
   }
   return { seconds, fastDraw, aids, cls };
 }

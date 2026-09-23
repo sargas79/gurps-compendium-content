@@ -4852,7 +4852,7 @@
         },
         "firearmLoading": {
           "Name": "Reloading guns",
-          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask, paper cartridges and a greased patch for loose powder, a speedloader, clamped magazines, an assistant gunner, and Double-Loading for a character who has the technique at Fast-Draw (Ammo)'s level. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
+          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), timed for the rounds it is asked to load, a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask or paper cartridges (which halve the time), a greased patch, a speedloader the character carries, clamped magazines, an assistant gunner. A character who knows Double-Loading rolls it at its own level in place of Fast-Draw (Ammo). Loading in the saddle needs a roll against the lower of the weapon skill and Riding (-3 for loose powder, -1 for cartridges), and loose powder on a moving vehicle the weapon skill at -2. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
         },
         "carefulLoading": {
           "Name": "Careful loading",
@@ -4904,7 +4904,7 @@
         },
         "gunSights": {
           "Name": "Sights and aiming aids",
-          "Hint": "Scopes, night, thermal and computer sights and reflex sights fitted to a gun: fixed-power scopes give their bonus only after as many seconds of Aim, and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed; looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision. A targeting laser's colour prices it (High-Tech pp. 155-157)."
+          "Hint": "Scopes, night, thermal and computer sights, reflex sights, targeting lasers and tactical lights fitted to a gun: the best magnifying sight is the gun's scope on its rows (a fixed-power one gives its bonus only after as many seconds of Aim), and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed. Darkness penalties lose a point to a TL7+ scope on an aimed shot (two with an illuminated reticle), a point to improved-visibility sights, three to a reflex sight; a tactical light switched on for the shot leaves no worse than -3 within its beam. A targeting laser reaches as far as its colour does in daylight or low light, an infrared dot only for a shooter with Night Vision, Infravision or Hyperspectral Vision, and a reflex sight gives nothing while the laser is on. Looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision. A targeting laser's colour prices it (High-Tech pp. 155-157)."
         },
         "suppressors": {
           "Name": "Sound suppressors",
@@ -5368,7 +5368,6 @@
         "CarefulHint": "Twice the loading time, for +1 Acc on the shot it loads (High-Tech p. 86).",
         "TimeWhole": "A full reload: {seconds} seconds, {fastDraw} with Fast-Draw (Ammo).",
         "TimePerRound": "Reloading: {seconds} seconds a barrel or chamber, {fastDraw} with Fast-Draw (Ammo).",
-        "DoubleLoadingShort": "Double-Loading is offered once the technique reaches Fast-Draw (Ammo)'s level: the reload rolls the skill itself.",
         "CarefullyLoaded": "Carefully loaded: +{acc} Acc on the next shot.",
         "CarefulNote": "Carefully loaded: +{acc} Acc",
         "FoulingClean": "Fouling: {shots} shots since it was cleaned.",
@@ -5385,12 +5384,14 @@
         "Aid": {
           "flask": "Self-measuring powder flask (-{seconds} s; not with paper cartridges)",
           "greasedPatch": "Greased patch (-{seconds} s)",
-          "paperCartridges": "Paper cartridges (-{seconds} s; not with the flask or a patch)",
-          "doubleLoading": "Double-Loading (-{seconds} s more with a Fast-Draw success)",
+          "paperCartridges": "Paper cartridges (half the time; not with the flask)",
           "speedloader": "Speedloader ({seconds} s, {fastDraw} with Fast-Draw)",
           "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
           "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)"
-        }
+        },
+        "DoubleLoadingLine": "The reload rolls {name} at {level} in place of Fast-Draw (Ammo): a success saves Fast-Draw's seconds and a second or two a pair more (High-Tech p. 251).",
+        "MountedRoll": "Loading in the saddle: the lower of {skill} and Riding, {modifier}",
+        "VehicleRoll": "Loading on a moving vehicle: {skill} {modifier}"
       },
       "Families": {
         "Title": "Weapon family",
@@ -5558,15 +5559,15 @@
         "ScopeFixed": "Fixed-power scope: +{bonus} Acc once the shooter has aimed {bonus} seconds or more, nothing before.",
         "ScopeVariable": "Variable-power scope: up to +{bonus} Acc, a point for each second aimed.",
         "ScopeBulk": "Over 4x: -1 Bulk on unaimed shots.",
-        "VisibilityLine": "Improved-visibility sights: they take a point off darkness penalties, which the GM applies (the system's darkness line isn't reachable yet).",
-        "ReflexLine": "+1 to Guns out to {yards} yards, on every shot; not with a magnifying scope, and not together with a targeting laser. Up to -3 of darkness penalties are the GM's to take off.",
+        "VisibilityLine": "Improved-visibility sights: a point off darkness penalties on every shot.",
+        "ReflexLine": "+1 to Guns out to {yards} yards, on every shot, and up to 3 off darkness penalties; not with a magnifying scope, and nothing while a targeting laser is on.",
         "SightLine": "Looking through it: {vision}, colorblind and tunnel vision (toggle from the gun's row).",
         "AddOnLine": "An add-on: {vision} through the scope or sight it is mounted in front of; looking through it leaves the shooter colorblind with tunnel vision.",
         "SightAccuracy": "+{bonus} Acc to an aimed shot, as a fixed-power scope.",
         "ComputerLine": "Targeting program +{program} to the gun's skill; rangefinder +{rangefinder} to an aimed shot out to {yards} yards; magnification up to +{magnification}.",
         "NightVision": "Night Vision {level}",
         "Infravision": "Infravision",
-        "LaserLine": "Targeting laser: {yards} yards (in daylight {daylight}, in low light {low}). Tick the laser sight on the attack; the reach by colour is the GM's to apply.",
+        "LaserLine": "Targeting laser: {yards} yards (in daylight {daylight}, in low light {low}). Tick the laser sight on the attack: its +1 and the target's Dodge bonus go as far as the dot does.",
         "LaserInfrared": "Infrared: only a shooter with Night Vision, Infravision or Hyperspectral Vision sees the dot.",
         "LaserColourTl": "Only red lasers exist at TL7.",
         "SuppressorLine": "Hearing {penalty} to hear the shot. Fitting or removing it takes {seconds} seconds.",
@@ -5652,7 +5653,6 @@
         "PistolStockHint": "Shot with Guns (Rifle): +1 Acc, -1 Bulk, ST x0.8 (High-Tech p. 160).",
         "SuppressedNote": "Suppressed",
         "SuppressedHint": "{name} is fitted (High-Tech p. 159).",
-        "BulkLine": "{label} (Bulk {bulk} with accessories)",
         "Program": "{name}: targeting program",
         "Rangefinder": "{name}: rangefinder",
         "SightCap": "Sights held to base Acc {accuracy}",
@@ -5668,7 +5668,15 @@
         "HearSuppressor": "Suppressor",
         "HearOther": "Background noise, terrain, distraction, clothing",
         "HearDistance": "At {yards} yards (heard at {heard})",
-        "HearRoll": "{name}: Hearing, the {gun}'s shot"
+        "HearRoll": "{name}: Hearing, the {gun}'s shot",
+        "ScopeDarkness": "Collects light: -{offset} to darkness penalties on an aimed shot.",
+        "Illuminated": "Illuminated reticle",
+        "IlluminatedHint": "Lit by battery or tritium: up to 2 off darkness penalties on an aimed shot, in place of the scope's 1 (High-Tech p. 155).",
+        "TacticalLight": "Tactical light on",
+        "TacticalLightLine": "Tactical light: switched on for a shot within its {yards}-yard beam, darkness is no worse than {floor}.",
+        "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards; the target may be dazzled (HT-4) at the GM's call.",
+        "DarknessLine": "{label} (sights and light)",
+        "LaserHit": "{name} (dot out to {yards} yd)"
       }
     },
     "Backblast": {

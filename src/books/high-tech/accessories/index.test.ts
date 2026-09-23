@@ -11,7 +11,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { ACCESSORY_TABLES } from "../../../shared/accessories/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { accessoryBulk, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
+import { accessoryBulk, fittedMagnifier, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -29,6 +29,7 @@ let successes: any[];
 let chat: string[];
 let weaponState: Map<any, any>;
 let on: Record<string, boolean>;
+let options: Map<string, any>;
 
 function fakeApi() {
   return {
@@ -37,6 +38,7 @@ function fakeApi() {
     data: { registerPriceModifier: (m: any) => prices.push(m) },
     combat: {
       hooks: HOOKS,
+      registerAttackOption: (o: any) => { options.set(o.key, o); return `${o.module}.${o.key}`; },
       getWeaponState: (item: any) => weaponState.get(item),
       setWeaponState: async (item: any, _m: string, patch: any) => { weaponState.set(item, { ...weaponState.get(item), ...patch }); },
     },
@@ -119,7 +121,7 @@ function rows(item: any, skillLevel: (name: string) => number | null = () => 12)
     actor: item.actor,
     item,
     skillLevel,
-    rows: item.system.rangedModes.map((mode: any) => ({ kind: "ranged", mode, basis: {}, row: { skillName: mode.skill, skillLevel: 12, accuracy: mode.accuracy, recoil: mode.recoil, minSt: mode.minSt, minStPenalty: 0, malfunction: 17, damage: "7d", halfDamageRange: 500, maxRange: 3000, notes: [] } })),
+    rows: item.system.rangedModes.map((mode: any) => ({ kind: "ranged", mode, basis: {}, row: { skillName: mode.skill, skillLevel: 12, accuracy: mode.accuracy, recoil: mode.recoil, minSt: mode.minSt, minStPenalty: 0, malfunction: 17, damage: "7d", halfDamageRange: 500, maxRange: 3000, bulk: mode.bulk, scopeBonus: mode.scopeBonus ?? 0, scopeFixed: false, notes: [] } })),
   });
   return context.rows.map((r: any) => r.row);
 }
@@ -144,6 +146,7 @@ beforeEach(() => {
   chat = [];
   weaponState = new Map();
   on = {};
+  options = new Map();
   ACCESSORY_TABLES.clear();
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
@@ -211,14 +214,27 @@ describe("sights (pp. 155-157)", () => {
     const pistol = gun(actor, { accuracy: 2 });
     const scope = accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", pistol, { level: 4 });
     expect(prices.map((p) => p.apply(scope, { cost: 150, weight: 1 })).find(Boolean)).toMatchObject({ cost: 600 });
-    actor.system.aim.turns = 2;
-    expect(attack(pistol, aimedAt(2)).modifiers).toHaveLength(1);
-    actor.system.aim.turns = 4;
-    const lines = attack(pistol, aimedAt(2)).modifiers;
-    expect(valueOf(lines, "Fixed-Power Scope")).toBe(4);
-    // +4 on an Acc 2 pistol gives only +2 (p. 155).
+    // The rows carry it as their scope, fixed-power: the system gives nothing short of four seconds' Aim.
+    expect(rows(pistol)[0]).toMatchObject({ scopeBonus: 4, scopeFixed: true });
+    expect(rules.scopeBonus({ bonus: 4, secondsAimed: 2, fixed: true })).toBe(0);
+    // Aimed four seconds, the system's accuracy line carries the scope's +4; +4 on an Acc 2 pistol gives only +2 (p. 155).
+    const lines = attack(pistol, aimedAt(2, 4)).modifiers;
     expect(valueOf(lines, "SightCap")).toBe(-2);
     expect(fittedScopeBonus(pistol, switches())).toBe(4);
+    expect(fittedMagnifier(pistol, switches())).toMatchObject({ bonus: 4, fixed: true });
+  });
+
+  it("keeps a built-in scope that beats the fitted one, and counts a computer sight's magnification as variable", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const sniper = gun(actor, { skill: "Guns (Rifle)", accuracy: 5 });
+    sniper.system.rangedModes[0].scopeBonus = 3;
+    accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", sniper, { level: 2 });
+    expect(rows(sniper)[0]).toMatchObject({ scopeBonus: 3, scopeFixed: false });
+    const carbine = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    accessory(actor, "Mini-Computer Sight", carbine);
+    expect(rows(carbine)[0]).toMatchObject({ scopeBonus: 2, scopeFixed: false });
   });
 
   it("counts a built-in scope towards the cap", () => {
@@ -249,10 +265,10 @@ describe("sights (pp. 155-157)", () => {
     const actor = character();
     const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4, bulk: -5 });
     accessory(actor, "Variable-Power Scope (TL8, per +1 Acc)", rifle, { level: 3 });
-    const bulk = () => [{ key: "bulk", label: "Bulk", value: -5, situation: "moveAndAttack" }];
-    expect(attack(rifle, bulk()).modifiers[0].value).toBe(-6);
+    // On the rows, which the system's Bulk line reads.
+    expect(rows(rifle)[0].bulk).toBe(-6);
     accessory(actor, "Night Sight", rifle);
-    expect(attack(rifle, bulk()).modifiers[0].value).toBe(-8);
+    expect(rows(rifle)[0].bulk).toBe(-8);
   });
 
   it("gives Night Vision and imposes Colorblindness and Tunnel Vision while the shooter looks through it", async () => {
@@ -354,8 +370,7 @@ describe("stocks and bipods (p. 160)", () => {
     expect(rows(rifle)[0]).toMatchObject({ accuracy: 4, recoil: 2, minSt: 9 });
     await actions.find((a) => a.key === "ht-fold-stock").run(rifle, actor);
     expect(rows(rifle)[0]).toMatchObject({ accuracy: 3, recoil: 3, minSt: 11, minStPenalty: -1, skillLevel: 11 });
-    const bulk = attack(rifle, [{ key: "bulk", label: "Bulk", value: -5, situation: "moveAndAttack" }]).modifiers[0];
-    expect(bulk.value).toBe(-4);
+    expect(rows(rifle)[0].bulk).toBe(-4);
   });
 
   it("picks the GCA record's stored mode by the stock's state, refusing the other", async () => {
@@ -427,5 +442,75 @@ describe("stocks and bipods (p. 160)", () => {
     const row = rows(mauser, (name) => (name === "Guns (Rifle)" ? 13 : 12))[0];
     expect(row).toMatchObject({ skillName: "Guns (Rifle)", accuracy: 4, minSt: 9, skillLevel: 13 });
     expect(accessoryBulk(fakeApi() as never, mauser, mauser.system.rangedModes[0], true, switches())).toBe(-4);
+  });
+});
+
+describe("darkness and lasers (pp. 155-157)", () => {
+  const darkness = (value: number) => ({ key: "darkness", label: "Darkness", value, darkness: -value });
+
+  it("takes a point off darkness for improved-visibility sights, three for a reflex sight, and a TL7+ scope's on an aimed shot", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor, { accuracy: 2 });
+    accessory(actor, "Improved-Visibility Sights", pistol);
+    expect(valueOf(attack(pistol, [darkness(-5)]).modifiers, "DarknessLine")).toBe(-4);
+    accessory(actor, "Reflex Sight, Tritium", pistol);
+    expect(valueOf(attack(pistol, [darkness(-5)]).modifiers, "DarknessLine")).toBe(-2);
+    // A reflex sight or the laser, not both: with the laser on, the reflex sight gives nothing.
+    const lasered = attack(pistol, [darkness(-5)], { laser: { on: true, targetSees: false, dodgeBonus: 0 } }).modifiers;
+    expect(valueOf(lasered, "DarknessLine")).toBe(-4);
+    expect(valueOf(lasered, "Reflex Sight")).toBeUndefined();
+
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    const scope = accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", rifle, { level: 2 });
+    scope.system.tl = "7";
+    expect(valueOf(attack(rifle, [darkness(-4)]).modifiers, "Darkness")).toBe(-4);
+    expect(valueOf(attack(rifle, [...aimedAt(4, 2), darkness(-4)]).modifiers, "DarknessLine")).toBe(-3);
+    scope.system.extensions[MODULE_ID].gunAccessory.illuminated = true;
+    expect(valueOf(attack(rifle, [...aimedAt(4, 2), darkness(-4)]).modifiers, "DarknessLine")).toBe(-2);
+  });
+
+  it("lights the target with a tactical light switched on for the shot: no worse than -3 within its beam", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor);
+    const light = options.get("ht-tactical-light");
+    expect(light.available({ item: pistol })).toBe(false);
+    accessory(actor, "Small Tactical Light (TL8)", pistol);
+    expect(light.available({ item: pistol })).toBe(true);
+    const lit = { options: { [`${MODULE_ID}.ht-tactical-light`]: true } };
+    expect(valueOf(attack(pistol, [darkness(-7)], { ...lit, rangeYards: 20 }).modifiers, "DarknessLine")).toBe(-3);
+    // Beyond its 25-yard beam, or not switched on, nothing.
+    expect(valueOf(attack(pistol, [darkness(-7)], { ...lit, rangeYards: 30 }).modifiers, "Darkness")).toBe(-7);
+    expect(valueOf(attack(pistol, [darkness(-7)], { rangeYards: 20 }).modifiers, "Darkness")).toBe(-7);
+    // A milder darkness is left as it is.
+    expect(valueOf(attack(pistol, [darkness(-2)], { ...lit, rangeYards: 20 }).modifiers, "Darkness")).toBe(-2);
+  });
+
+  it("gives a targeting laser its reach by colour, in daylight or low light, and an infrared dot only to eyes that see it", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    const laser = accessory(actor, "Targeting Laser (Shoulder Arm)", rifle, { colour: "red" });
+    const shot = (lines: any[], rangeYards: number, targetSees = true) => attack(rifle, lines, { rangeYards, laser: { on: true, targetSees, dodgeBonus: 1 } });
+    const dot = () => [{ key: "laser", label: "Laser sight", value: 1 }];
+    // A red laser reaches 250 yards in daylight (a third of 750).
+    expect(valueOf(shot(dot(), 200).modifiers, "LaserHit")).toBe(1);
+    const far = shot(dot(), 300);
+    expect(far.modifiers.find((l: any) => l.key === "laser")).toBeUndefined();
+    expect(far.laser.dodgeBonus).toBe(0);
+    // In low light it reaches all 750, past the gun's 1/2D where the system gave no line.
+    const night = shot([darkness(-3)], 700);
+    expect(valueOf(night.modifiers, "LaserHit")).toBe(1);
+    expect(night.laser.dodgeBonus).toBe(1);
+    expect(shot([darkness(-3)], 700, false).laser.dodgeBonus).toBe(0);
+    // An infrared dot needs Night Vision, Infravision or Hyperspectral Vision.
+    laser.system.extensions[MODULE_ID].gunAccessory.colour = "infrared";
+    expect(shot(dot(), 200).modifiers.find((l: any) => l.key === "laser")).toBeUndefined();
+    actor.system.derived.traitEffects = { nightVision: 2 };
+    expect(valueOf(shot(dot(), 200).modifiers, "LaserHit")).toBe(1);
   });
 });

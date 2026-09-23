@@ -24,6 +24,7 @@ export type AccessoryKind =
   | "thermalSight"
   | "computerSight"
   | "targetingLaser"
+  | "tacticalLight"
   | "suppressor"
   | "pistolStock"
   | "foldingStock"

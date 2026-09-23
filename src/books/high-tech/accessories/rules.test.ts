@@ -19,7 +19,10 @@ import {
   rangefinderBonus,
   reflexBonus,
   reportOf,
-  sightAfterAiming,
+  scopeDarkness,
+  seesLaserDot,
+  darknessAfter,
+  DARKNESS_OFFSET,
   suppressorHearing,
   suppressorSeconds,
   unaimedScopeBulk,
@@ -95,11 +98,23 @@ describe("magazines (p. 155)", () => {
 });
 
 describe("sights (pp. 155-157)", () => {
-  it("gives a fixed-power scope all or nothing, a variable one a point a second", () => {
-    expect(sightAfterAiming(3, 2, true)).toBe(0);
-    expect(sightAfterAiming(3, 3, true)).toBe(3);
-    expect(sightAfterAiming(3, 2, false)).toBe(2);
-    expect(sightAfterAiming(3, 5, false)).toBe(3);
+  it("takes darkness off: a light to -3 within its beam, then the best sight's offset, never above 0", () => {
+    expect(darknessAfter(-6, { light: false, sightOffset: 0 })).toBe(-6);
+    expect(darknessAfter(-6, { light: true, sightOffset: 0 })).toBe(-3);
+    expect(darknessAfter(-6, { light: true, sightOffset: 3 })).toBe(0);
+    expect(darknessAfter(-2, { light: true, sightOffset: 0 })).toBe(-2);
+    expect(darknessAfter(-5, { light: false, sightOffset: DARKNESS_OFFSET.visibilitySights })).toBe(-4);
+    expect(darknessAfter(-1, { light: false, sightOffset: 2 })).toBe(0);
+    // A TL7+ scope collects light; an illuminated reticle does more, at any TL.
+    expect([scopeDarkness(6, false), scopeDarkness(7, false), scopeDarkness(5, true)]).toEqual([0, 1, 2]);
+  });
+
+  it("shows an infrared dot only to eyes that see it", () => {
+    expect(seesLaserDot("red", {})).toBe(true);
+    expect(seesLaserDot("infrared", {})).toBe(false);
+    expect(seesLaserDot("infrared", { nightVision: 3 })).toBe(true);
+    expect(seesLaserDot("infrared", { infravision: true })).toBe(true);
+    expect(seesLaserDot("infrared", { hyperspectralVision: true })).toBe(true);
   });
 
   it("holds the gadgets to the gun's base Acc: a +4 scope on an Acc 2 pistol is +2", () => {

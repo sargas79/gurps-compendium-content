@@ -33,6 +33,11 @@
         <label class="icheck"><input type="checkbox" data-gcc-ht-accessory="nightVision" {{#if data.nightVision}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.NightVisionChoice"}}</label>
       </div>
     {{/if}}
+    {{#if illuminatedChoice}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.IlluminatedHint'}}"><input type="checkbox" data-gcc-ht-accessory="illuminated" {{#if data.illuminated}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Illuminated"}}</label>
+      </div>
+    {{/if}}
   {{/if}}
   {{#if magazine}}
     <div class="ifields">
