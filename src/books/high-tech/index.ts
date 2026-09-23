@@ -50,9 +50,9 @@
  * seal their wearers, and the locks, safes, traps and barriers, and
  * emergency medicine and medical facilities: defibrillators, CPR, first aid
  * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic, and
- * armour: partial coverage, concealing it and its materials (pp. 7-11,
- * 13-16, 17-77, 79-93, 109, 127-141, 143, 147-205, 210-215, 219-225,
- * 249-252).
+ * armour: partial coverage, concealing it and its materials, and security
+ * screening, surveillance gear and jamming (pp. 7-11, 13-16, 17-77, 79-93,
+ * 109, 127-141, 143, 147-217, 219-225, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -90,6 +90,7 @@ import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js
 import { initMedicine, readyMedicine } from "./medicine/index.js";
 import { readyHighTechCodes } from "./codes/index.js";
 import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
+import { initSurveillance, readySurveillance } from "./surveillance/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -231,6 +232,10 @@ const RULES = [
   { key: "partialCoverage", pages: "pp. 66-69, 75", implemented: true },
   { key: "concealedArmor", pages: "pp. 64, 66", implemented: true },
   { key: "armorMaterials", pages: "pp. 65, 67", implemented: true },
+  // Security screening, surveillance and jamming.
+  { key: "securityScreening", pages: "pp. 205-207, 217", implemented: true },
+  { key: "surveillanceGear", pages: "pp. 208-212", implemented: true },
+  { key: "jamming", pages: "pp. 212-213", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -283,6 +288,7 @@ function init(): void {
   initHighTechSecurity();
   initMedicine();
   initHighTechArmor();
+  initSurveillance(ruleKey("jamming"));
 }
 
 function ready(api: GWorldApi): void {
@@ -337,6 +343,7 @@ function ready(api: GWorldApi): void {
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
+  readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming") });
 }
 
 export const book: BookRules = {

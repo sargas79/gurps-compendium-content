@@ -5201,6 +5201,18 @@
         "armorMaterials": {
           "Name": "Armour materials",
           "Hint": "Low-tech armour and shields remade in TL5+ steel have twice the DR, or keep it at half the cost and weight; smart foam is cloth armour at ten times the cost, DR 4 against crushing and 1 against the rest; titanium keeps the DR at a third of the weight and five times the cost. Trauma plates are semi-ablative: every 10 points of basic damage rolled take a point of their DR until the plate is replaced (High-Tech pp. 65, 67)."
+        },
+        "securityScreening": {
+          "Name": "Security screening and security systems",
+          "Hint": "A metal detector's, baggage screener's, CT scanner's or portable X-ray's row button: the operator's Electronics Operation (Security) roll claims the gear's bonus (handheld metal detector +1 to Search, Traps and Explosives (EOD) for metal, +2 to Search with a pat-down; walkthrough +1 to +3; X-ray screener +3, +1 more at TL8 for metal and explosives; CT scanner +4, +6 for explosives; the EOD X-ray +5 to Search and +4 to Explosives (EOD) with no operator roll). With a character targeted, Search is a Quick Contest against their Holdout, and against a metal detector undercover clothing adds nothing. A GM tool runs a security system for the selected character: spotting it (Vision-5, Observation or Per-based Traps; a Quick Contest against Camouflage if hidden), identifying it, defeating it in secret (Traps or Electronics Operation (Security), the housing first if wired against tampering; any failure sets off the alarm), a smart fence (-4), a seismic detector (Stealth-4) and a signature pad (Forgery-3). The countersniper system rolls 10 plus the shot's Hearing modifier (High-Tech pp. 205-207, 217)."
+        },
+        "surveillanceGear": {
+          "Name": "Surveillance gear and countersurveillance",
+          "Hint": "A spike mike in use (equipped) is Parabolic Hearing at TL-4 levels. Row buttons: a contact mike listens through a barrier at -(DR+HP)/5, -5 more into a shielded room; a pinhead mike's cable is guided on a DX-based Electronics Operation (Surveillance) roll; a search endoscope gives +3 to Search or +2 to Lockpicking; the document scanner copies a sealed document at -2; a bug is built at home on Electronics Repair (Surveillance) at SM+9 below a matchbox's size; a bug detector sweeps a minute per 100 square feet, a Quick Contest of Electronics Operation (Surveillance) with whoever hid the bug, at its quality, +4 for a radio beacon, and never finds a phone tap, laser mike or laser pinhead mike (High-Tech pp. 208-212)."
+        },
+        "jamming": {
+          "Name": "Electronic signals jamming",
+          "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cell phones and cellular beacons within 15 yards outright (High-Tech pp. 212-213)."
         }
       },
       "Codes": {
@@ -8369,6 +8381,158 @@
         "PlateWorn": "{item} loses {lost} DR ({total} in all).",
         "PlateReplace": "Replace the plate",
         "PlateReplaced": "{item} is replaced: its DR is whole again."
+      },
+      "Surveillance": {
+        "Title": "Security and surveillance",
+        "Screen": {
+          "Action": "Screen",
+          "Title": "Screen with {name}",
+          "Label": "{skill} with {name}",
+          "OperatorLabel": "Operating {name}",
+          "OperatorFailed": "The operator's Electronics Operation (Security) roll failed: the gear gives no bonus this time (p. 206).",
+          "Skill": "Roll",
+          "Metal": "Looking for metal",
+          "MetalWeapons": "Looking for metallic weapons or detonators",
+          "Explosive": "Looking for explosives",
+          "PatDown": "With a one-minute pat-down",
+          "Sensitivity": "Sensitivity",
+          "Against": "Search against {name}'s Holdout, in a Quick Contest.",
+          "UndercoverLine": "{name}: no help against a metal detector",
+          "Operator": "Its operator rolls Electronics Operation (Security) to claim the bonus (p. 206).",
+          "Undercover": "Undercover clothing adds nothing to Holdout against a search with a metal detector (p. 206).",
+          "handheldMetal": "+1 to Search, Traps and Explosives (EOD) to find metal; +2 to Search with a one-minute pat-down (p. 206).",
+          "walkthroughMetal": "+1 to +3 to Search in Quick Contests against Holdout, as its sensitivity is set; high settings mean pat-downs and long queues (p. 206).",
+          "baggage": "+3 to Search to find weapons and contraband; at TL8, +1 more for metal weapons, detonators and explosives (p. 206).",
+          "ct": "The best equipment for Search at TL8: +4, +6 to find explosives (p. 207).",
+          "portableXray": "+5 to Search examining a package's or vehicle's contents, +4 to Explosives (EOD) defusing a bomb (p. 217)."
+        },
+        "Security": {
+          "Title": "Security system",
+          "PickIntruder": "Select the intruder's token first.",
+          "TaskLabel": "Task",
+          "WayLabel": "Spot with",
+          "Concealed": "Hidden: installer's Camouflage (0 if not)",
+          "Sophisticated": "Electronic (not mechanical or a simple circuit)",
+          "Tamper": "Housing wired against tampering",
+          "Vision": "Vision",
+          "SpotVision": "Spotting a security system",
+          "Housing": "Opening the housing",
+          "RollLabel": "{task}: {skill}",
+          "Alarm": "{name} sets off the alarm.",
+          "Defeated": "{name} gets past it unnoticed.",
+          "SeismicCrossed": "{name} crosses the zone at Move 1 without being detected.",
+          "SmartFenceLine": "Smart fence section",
+          "SeismicLine": "Seismic detector",
+          "SignatureLine": "Signature pad",
+          "HearingModifier": "The shot's Hearing modifiers",
+          "CountersniperTitle": "Locate the shooter",
+          "CountersniperLabel": "{name} locating the shooter",
+          "ShooterFound": "Located: the shooter's position, range and calibre, direction to within 20 degrees (p. 207).",
+          "ShooterLost": "The system can't place the shot.",
+          "MillimeterWave": "Sees as Imaging Radar out to {range} yards, through clothing, packaging and thin walls (p. 207).",
+          "OpticalRecognition": "Recognizes faces as a guard with Per {conservative} (or {generous}+ if the GM is generous); Disguise and Acting fool it as they would a guard (p. 207).",
+          "Countersniper": "Locates a shooter on a roll against {base} plus the shot's total Hearing modifier (p. 207).",
+          "Seismic": "An intruder who knows it's there crosses at Move 1 on a Stealth roll at {modifier} (p. 206).",
+          "Voiceprint": "A good recording or a voice modulator fools it (p. 205).",
+          "IrMotion": "Detects motion out to 25 yards (p. 206).",
+          "Proximity": "Detects someone approaching or touching what it guards; its field shows on an EM field meter (pp. 205-206).",
+          "MicrowaveFence": "Detects movement in a 10-yard swath between its units, up to 500 yards apart (p. 205).",
+          "Task": {
+            "spot": "Spot the system",
+            "identify": "Identify the hardware",
+            "defeat": "Defeat a device",
+            "smartFence": "Neutralize a smart fence section",
+            "seismic": "Cross a seismic detector's zone",
+            "signature": "Fool a signature pad"
+          },
+          "Way": {
+            "vision": "Vision {modifier}",
+            "observation": "Observation",
+            "traps": "Per-based Traps"
+          }
+        },
+        "Mike": {
+          "Spike": "In use (equipped): Parabolic Hearing {levels}, hearing {factor} times as far through the wall (p. 208).",
+          "Pinhead": "Its cable is guided on a DX-based Electronics Operation (Surveillance) roll: failure, stuck or noisy; critical failure, broken or detected (p. 208).",
+          "Contact": "Hears through a barrier on Electronics Operation (Surveillance) at -(DR+HP)/5 (p. 208).",
+          "LaserTl7": "Range {range} yards; ordinary noise or a white noise generator defeats it, and most bug detectors can't sense it (p. 208).",
+          "LaserTl8": "Range {range} yards; filters ordinary noise, but a white noise generator defeats it, and most bug detectors can't sense it (p. 208).",
+          "ContactTitle": "Listen through a barrier",
+          "ContactLabel": "Listening with {name}",
+          "BarrierDr": "Barrier's DR",
+          "BarrierHp": "Barrier's HP",
+          "BarrierLine": "Barrier (DR {dr}, HP {hp})",
+          "Shielded": "Into a shielded room ({modifier})",
+          "ShieldedLine": "Shielded room",
+          "PinheadTitle": "Guide the cable",
+          "PinheadLabel": "Guiding {name}",
+          "PinheadIn": "The mike is in place.",
+          "PinheadStuck": "The mike gets stuck or makes a noise.",
+          "PinheadBroken": "The mike breaks, or the target notices it."
+        },
+        "Bug": {
+          "Undetectable": "Bug detectors can't find it; only a physical search does (pp. 208-209).",
+          "Noisy": "Anyone sweeping for bugs has {bonus} to find it (p. 210).",
+          "Homemade": "SM {sm}: built at home at {modifier} to Electronics Repair (Surveillance) (p. 210).",
+          "CellularBeacon": "Battery lasts {hourly} times as long reporting hourly, {daily} times daily; needs a cell network, and jammers stop it (p. 210).",
+          "HomemadeTitle": "Build at home",
+          "HomemadeLabel": "Building {name} at home",
+          "SmLine": "Smaller than a matchbox (SM {sm})",
+          "Built": "Built: about {hours} hours' work and ${low}-${high} of parts (p. 210).",
+          "NotBuilt": "It doesn't work: {hours} hours and ${low}-${high} of parts gone."
+        },
+        "Sweep": {
+          "Title": "Sweep for bugs",
+          "Label": "Sweeping with {name}",
+          "Line": "Finds a hidden bug in a Quick Contest of Electronics Operation (Surveillance) with whoever hid it, a minute per 100 square feet; good quality +1, fine +2; {bonus} for a radio beacon (pp. 210, 212).",
+          "Hider": "Hider's Electronics Operation (Surveillance)",
+          "HiderIs": "{name}'s Electronics Operation (Surveillance)",
+          "KindLabel": "The bug",
+          "Area": "Area (square feet)",
+          "Quality": "{name}'s quality",
+          "NoisyLine": "Radio beacon",
+          "Time": "{area} square feet take about {minutes} min.",
+          "CantSense": "A bug detector can't sense this: only a physical search finds it.",
+          "Found": "The bug is found.",
+          "Missed": "Nothing found.",
+          "Kind": {
+            "normal": "A bug or transmitter",
+            "noisy": "A radio beacon ({bonus})",
+            "undetectable": "A phone tap, laser mike or laser pinhead mike"
+          }
+        },
+        "Endoscope": {
+          "Title": "Search with the endoscope",
+          "Label": "{skill} with {name}",
+          "Search": "{search} to Search in hollow objects and body cavities; {lockpicking} to Lockpicking through a drilled hole (p. 209).",
+          "Surveillance": "{vision} to Vision through its lens; spotting its tube takes Vision{spot} (p. 209)."
+        },
+        "DocumentTitle": "Copy a sealed document",
+        "DocumentLabel": "Copying a sealed document with {name}",
+        "DocumentScanner": "Copies a document in a sealed envelope on Electronics Operation (Security or Surveillance) at {modifier} (p. 209).",
+        "ShieldedRoom": "At least {modifier} to electronic intelligence-gathering on the room (p. 212).",
+        "VoiceModulatorTl7": "Makes the voice an anonymous monotone; fools a voiceprint analyzer (pp. 205, 212).",
+        "VoiceModulatorTl8": "Hides the voiceprint and can pass as another sex or age; fools a voiceprint analyzer (pp. 205, 212).",
+        "Jammer": {
+          "Operated": "Range {range} yards, run by its operator's Electronics Operation (EW); radio gear within range is used in a Quick Contest against it, and within {shadow} times its range on an unopposed roll (p. 212).",
+          "Unmanned": "Range {range} yards at an effective Electronics Operation (EW) {skill}, with no operator; radio gear within range is used in a Quick Contest against it, and within {shadow} times its range on an unopposed roll (pp. 212-213).",
+          "Blocks": "Blocks every cell-phone call within {range} yards (p. 213).",
+          "Hindered": "Radio gear: a jammer in range makes using it a Quick Contest, and one within {shadow} times its range an unopposed roll (p. 212).",
+          "WhiteNoise": "Defeats laser mikes, audio bugs and tape recorders (p. 213)."
+        }
+      },
+      "Jamming": {
+        "SwitchTitle": "Switch the jammer on or off",
+        "SwitchedOn": "A jammer is switched on: everyone near knows it, though not where it is (p. 212).",
+        "SwitchedOff": "The jammer is switched off.",
+        "UseTitle": "Use near a jammer",
+        "UseLabel": "Using {name}",
+        "ContestLabel": "{name} against {jammer}",
+        "NearLabel": "Using {name} within {shadow} times {jammer}'s range",
+        "NoneInReach": "No switched-on jammer reaches it.",
+        "Blocked": "{jammer} blocks it.",
+        "Jammed": "Jammed by {jammer}.",
+        "GetsThrough": "It gets through."
       }
     },
     "Backblast": {

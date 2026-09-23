@@ -1871,6 +1871,7 @@
       "title": "Security Systems",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT205-206",
+      "rule": "gurps-compendium-content.securityScreening",
       "reference": "High-Tech pp. 205-206",
       "file": "security-systems.md",
       "status": "reviewed"
@@ -1880,6 +1881,7 @@
       "title": "Eye in the Sky",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT207",
+      "rule": "gurps-compendium-content.securityScreening",
       "reference": "High-Tech p. 207",
       "file": "eye-in-the-sky.md",
       "status": "reviewed"
@@ -1889,6 +1891,7 @@
       "title": "Surveillance and Tracking Devices",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT208-210",
+      "rule": "gurps-compendium-content.surveillanceGear",
       "reference": "High-Tech pp. 208-210",
       "file": "surveillance-and-tracking-devices.md",
       "status": "reviewed"
@@ -1928,6 +1931,7 @@
       "title": "Dirty Tech: Homemade Surveillance Gear",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT210",
+      "rule": "gurps-compendium-content.surveillanceGear",
       "reference": "High-Tech p. 210",
       "file": "dirty-tech-homemade-surveillance-gear.md",
       "status": "reviewed"
@@ -1937,6 +1941,7 @@
       "title": "Countersurveillance",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT211-212",
+      "rule": "gurps-compendium-content.surveillanceGear",
       "reference": "High-Tech pp. 211-212",
       "file": "countersurveillance.md",
       "status": "reviewed"
@@ -1946,6 +1951,7 @@
       "title": "Electronic Signals Jamming",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT212",
+      "rule": "gurps-compendium-content.jamming",
       "reference": "High-Tech p. 212",
       "file": "electronic-signals-jamming.md",
       "status": "reviewed"
@@ -1955,6 +1961,7 @@
       "title": "“Jamming” Cameras",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT212",
+      "rule": "gurps-compendium-content.jamming",
       "reference": "High-Tech p. 212",
       "file": "jamming-cameras.md",
       "status": "reviewed"
