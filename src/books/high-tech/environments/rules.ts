@@ -14,11 +14,17 @@ export function modernGun(techLevel: number): boolean {
 /**
  * A row fired underwater: its ranges divided by what the distance is
  * multiplied by -- 1,000 for an ordinary gun, 25 for a gun built to fire
- * underwater (pp. 85, 92, 117) -- to the nearest tenth of a yard.
+ * underwater (pp. 85, 92, 117) -- to the nearest tenth of a yard. A row's
+ * ranges are whole yards, so a range there was stays at least one: a pistol's
+ * 1/2D of 160 yards is under a foot of water, which a yard stands for, rather
+ * than reading as no 1/2D at all.
  */
 export function underwaterRange(row: { halfDamageRange: number; maxRange: number }, factor: number): { halfDamageRange: number; maxRange: number } {
   const f = factor > 0 ? factor : UNDERWATER_FACTOR;
-  const tenth = (n: number) => Math.round((Math.max(0, Number(n) || 0) / f) * 10) / 10;
+  const tenth = (n: number) => {
+    const range = Math.max(0, Number(n) || 0);
+    return range > 0 ? Math.max(1, Math.round((range / f) * 10) / 10) : 0;
+  };
   return { halfDamageRange: tenth(row.halfDamageRange), maxRange: tenth(row.maxRange) };
 }
 

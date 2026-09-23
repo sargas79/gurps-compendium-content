@@ -28,6 +28,8 @@ let worldTime: number;
 let on: Record<string, boolean>;
 let conditions: any[];
 let rollOutcome: any;
+let skill: number | null;
+let rolled: any[];
 
 function fakeApi() {
   return {
@@ -36,8 +38,8 @@ function fakeApi() {
     combat: { hooks: HOOKS },
     data: { registerPriceModifier: vi.fn() },
     sheets: { registerSheetSection: (s: any) => sections.push(s) },
-    actors: { skillLevel: () => 14, applyCondition: async (_a: any, c: any) => { conditions.push(c); return "c1"; } },
-    roll: { success: async () => rollOutcome },
+    actors: { skillLevel: () => skill, applyCondition: async (_a: any, c: any) => { conditions.push(c); return "c1"; } },
+    roll: { success: async (options: any) => { rolled.push(options); return rollOutcome; } },
   };
 }
 
@@ -109,6 +111,8 @@ beforeEach(() => {
   worldTime = 1000;
   on = { sustainedFire: true };
   rollOutcome = { success: true, criticalFailure: false };
+  skill = 14;
+  rolled = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     get time() { return { worldTime }; },
@@ -222,6 +226,15 @@ describe("changing the barrel (High-Tech p. 129)", () => {
     await clickBarrel(m60);
     expect(gunHeatOf(m60).shots).toBe(1200);
     expect(conditions).toEqual([{ key: "moderatePain", duration: { seconds: 4 * 60 } }]);
+  });
+
+  it("rolls the skill at default, as the gun's row has it, for a gunner who never learned it", async () => {
+    ready();
+    skill = null;
+    const m60 = gun();
+    m60.actor.system = { derived: { ranged: [{ itemId: "g1", modeIndex: 0, skillLevel: 9 }] } };
+    await clickBarrel(m60);
+    expect(rolled[0]).toMatchObject({ base: 9, skill: "Guns (Light Machine Gun)" });
   });
 
   it("shows the safe number and the heat on the gun's sheet", async () => {

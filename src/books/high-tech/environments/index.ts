@@ -13,7 +13,7 @@
  *   - **Attack options:** a shot into water, at -4 and with the water's depth
  *     counted a thousand times over against the gun's ranges; a shot steeply
  *     into the air, at 80% of the range. A shot out of range is refused, and
- *     one past 1/2D says so.
+ *     one the water puts past 1/2D says so on the card.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -25,6 +25,7 @@ import {
   INTO_WATER_PENALTY,
   SPACE_MALFUNCTION,
   STEEP_ANGLE_RANGE,
+  UNDERWATER_FACTOR,
   intoWaterDistance,
   modernGun,
   reach,
@@ -112,8 +113,10 @@ export function readyEnvironments(api: GWorldApi, on: () => boolean): void {
       const automatic = isAutomatic(item, entry.mode);
       if (environment.underwater) {
         Object.assign(row, underwaterRange({ halfDamageRange: Number(row.halfDamageRange) || 0, maxRange: Number(row.maxRange) || 0 }, factor));
-        if (!built && typeof row.malfunction === "number") row.malfunction -= underwaterMalfunctionLoss(automatic);
-        row.notes?.push?.({ label: F(built ? "UnderwaterBuiltNote" : "UnderwaterNote", { factor: built ? factor : 1000, malf: underwaterMalfunctionLoss(automatic) }), hint: L("UnderwaterHint") });
+        // A gun that won't malfunction (no Malf.) keeps none to lose.
+        const losesMalf = !built && typeof row.malfunction === "number";
+        if (losesMalf) row.malfunction -= underwaterMalfunctionLoss(automatic);
+        row.notes?.push?.({ label: F(losesMalf ? "UnderwaterNote" : "UnderwaterRangeNote", { factor: built ? factor : UNDERWATER_FACTOR, malf: underwaterMalfunctionLoss(automatic) }), hint: L(built ? "UnderwaterBuiltHint" : "UnderwaterHint") });
       } else if (automatic && modernGun(tlOf(item))) {
         row.malfunction = typeof row.malfunction === "number" ? Math.min(row.malfunction, SPACE_MALFUNCTION) : SPACE_MALFUNCTION;
         row.notes?.push?.({ label: F("SpaceNote", { malf: SPACE_MALFUNCTION }), hint: L("SpaceHint") });
@@ -129,10 +132,17 @@ export function readyEnvironments(api: GWorldApi, on: () => boolean): void {
     attack: "ranged",
     input: { type: "number", min: 0, max: 1000 },
     available: (context: any) => on() && isFirearm(api, context?.item) && !sceneEnvironment().underwater,
-    apply: (_context: any, value: unknown) => {
+    apply: (context: any, value: unknown) => {
       const feet = Math.floor(Number(value) || 0);
       if (feet <= 0) return null;
-      return { modifiers: [{ label: L("IntoWaterLine"), value: INTO_WATER_PENALTY }], notes: [F("IntoWaterNote", { feet, yards: Math.round(intoWaterDistance(0, feet)) })] };
+      const yards = intoWaterDistance(0, feet);
+      const notes = [F("IntoWaterNote", { feet, yards: Math.round(yards) })];
+      // The water alone puts the target past 1/2D: the card says so, for the damage roll's half damage.
+      const row = rangedRow(context?.actor, context?.item, 0);
+      if (row && reach(yards, { halfDamageRange: Number(row.halfDamageRange) || 0, maxRange: Number(row.maxRange) || 0 }) === "half") {
+        notes.push(F("IntoWaterHalf", { half: Number(row.halfDamageRange) || 0 }));
+      }
+      return { modifiers: [{ label: L("IntoWaterLine"), value: INTO_WATER_PENALTY }], notes };
     },
   } as any);
 
@@ -157,9 +167,8 @@ export function readyEnvironments(api: GWorldApi, on: () => boolean): void {
     const ranges = { halfDamageRange: Number(row.halfDamageRange) || 0, maxRange: Number(row.maxRange) || 0 };
     const yards = Math.max(0, Number(context.rangeYards) || 0);
     const distance = feet > 0 ? intoWaterDistance(yards, feet) : yards;
-    const result = reach(distance, ranges, steep ? STEEP_ANGLE_RANGE : 1);
-    const max = Math.round(ranges.maxRange * (steep ? STEEP_ANGLE_RANGE : 1));
-    if (result === "out") context.refusal = F("OutOfRange", { yards: Math.round(distance), max });
-    else if (result === "half") context.modifiers.push({ label: F("PastHalfDamage", { yards: Math.round(distance), half: Math.round(ranges.halfDamageRange * (steep ? STEEP_ANGLE_RANGE : 1)) }), value: 0 });
+    if (reach(distance, ranges, steep ? STEEP_ANGLE_RANGE : 1) === "out") {
+      context.refusal = F("OutOfRange", { yards: Math.round(distance), max: Math.round(ranges.maxRange * (steep ? STEEP_ANGLE_RANGE : 1)) });
+    }
   });
 }

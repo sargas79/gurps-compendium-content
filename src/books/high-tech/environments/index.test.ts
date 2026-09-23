@@ -72,7 +72,9 @@ afterEach(() => {
 
 describe("rules (High-Tech p. 85)", () => {
   it("divides a gun's ranges by 1,000 underwater, or by 25 for an underwater gun", () => {
-    expect(underwaterRange({ halfDamageRange: 160, maxRange: 1800 }, 0)).toEqual({ halfDamageRange: 0.2, maxRange: 1.8 });
+    expect(underwaterRange({ halfDamageRange: 160, maxRange: 1800 }, 0)).toEqual({ halfDamageRange: 1, maxRange: 1.8 });
+    expect(underwaterRange({ halfDamageRange: 1000, maxRange: 4200 }, 0)).toEqual({ halfDamageRange: 1, maxRange: 4.2 });
+    expect(underwaterRange({ halfDamageRange: 0, maxRange: 1800 }, 0)).toEqual({ halfDamageRange: 0, maxRange: 1.8 });
     expect(underwaterRange({ halfDamageRange: 50, maxRange: 500 }, 25)).toEqual({ halfDamageRange: 2, maxRange: 20 });
   });
 
@@ -96,10 +98,12 @@ describe("the scene's rows", () => {
 
   it("underwater: ranges /1,000, Malf. -2 for an automatic, -1 for a revolver", () => {
     flag = { underwater: true };
-    expect(rowFor(gun())).toMatchObject({ halfDamageRange: 0.2, maxRange: 1.8, malfunction: 15 });
+    expect(rowFor(gun())).toMatchObject({ halfDamageRange: 1, maxRange: 1.8, malfunction: 15 });
     expect(rowFor(gun({ shots: "6(3i)" }))).toMatchObject({ malfunction: 16 });
     // An underwater gun: ranges /25, no Malf. lost.
     expect(rowFor(gun({ build: { underwaterFactor: 25 } }), { halfDamageRange: 50, maxRange: 500 })).toMatchObject({ halfDamageRange: 2, maxRange: 20, malfunction: 17 });
+    // A gun that won't malfunction has no Malf. to lose.
+    expect(rowFor(gun(), { malfunction: null })).toMatchObject({ malfunction: null });
     // A TL5 gun isn't an ordinary TL6-8 firearm.
     expect(rowFor(gun({ tl: "5" }))).toMatchObject({ maxRange: 1800 });
   });
@@ -127,10 +131,13 @@ describe("shots into water and steeply up", () => {
 
   it("takes -4 into water, and refuses a shot the water puts out of range", () => {
     const into = options.find((o) => o.key === "ht-into-water");
-    expect(into.apply({}, 4).modifiers).toEqual([{ label: "GCC.HT.Environment.IntoWaterLine", value: -4 }]);
+    const item = gun();
+    const actor = { system: { derived: { ranged: [{ itemId: item.id, modeIndex: 0, halfDamageRange: 160, maxRange: 3100 }] } } };
+    const effect = into.apply({ actor, item }, 4);
+    expect(effect.modifiers).toEqual([{ label: "GCC.HT.Environment.IntoWaterLine", value: -4 }]);
+    expect(effect.notes[1]).toContain("IntoWaterHalf");
     expect(into.apply({}, 0)).toBeNull();
     expect(attack(gun(), { [`${MODULE_ID}.ht-into-water`]: 4 }, 3).refusal).toBeNull();
-    expect(attack(gun(), { [`${MODULE_ID}.ht-into-water`]: 4 }, 3).modifiers[0].label).toContain("PastHalfDamage");
     expect(attack(gun(), { [`${MODULE_ID}.ht-into-water`]: 10 }, 3).refusal).toContain("OutOfRange");
   });
 

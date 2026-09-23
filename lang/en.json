@@ -5243,7 +5243,7 @@
       },
       "Environment": {
         "Title": "Shooting environment",
-        "Hint": "Where the scene's guns are fired. The same facts the beam weapons' air and water use.",
+        "Hint": "Where the scene's guns are fired. Kept on the scene, with its air and water, for every book's weapons that read them.",
         "Underwater": "Underwater",
         "Space": "In space (vacuum)",
         "Set": "Set",
@@ -5252,7 +5252,6 @@
         "DoneSpace": "The scene is in space.",
         "DoneStandard": "The scene is in air.",
         "UnderwaterNote": "Underwater: range /{factor}, Malf. -{malf}",
-        "UnderwaterBuiltNote": "Underwater gun: range /{factor}",
         "UnderwaterHint": "Only cased ammunition with sealed primers is reliable; caseless ammo fails in time; hollow-points do nothing (High-Tech p. 85).",
         "SpaceNote": "In space: Malf. {malf}",
         "SpaceHint": "Vacuum and temperature extremes: an automatic TL6-8 gun malfunctions on 14 (High-Tech p. 85).",
@@ -5262,7 +5261,9 @@
         "SteepAngle": "Steeply up (50-90 degrees)",
         "SteepAngleNote": "Range at 80% (High-Tech p. 85).",
         "OutOfRange": "Out of range: the shot counts {yards} yards against a Max of {max}.",
-        "PastHalfDamage": "Past 1/2D ({yards} yards against {half}): half damage"
+        "UnderwaterRangeNote": "Underwater: range /{factor}",
+        "UnderwaterBuiltHint": "Built to fire underwater: distance counts x25, not x1,000 (High-Tech pp. 85, 92, 117).",
+        "IntoWaterHalf": "Past its 1/2D of {half} yards: half damage."
       },
       "Aftermath": {
         "Title": "After the firefight",

@@ -176,7 +176,9 @@ async function changeBarrel(api: GWorldApi, item: any): Promise<void> {
   const actor = item?.actor;
   if (!actor) return void ui.notifications?.warn(L("NoActor"));
   const skill = String(rangedModes(item)[0]?.skill ?? "");
-  const level = api.actors.skillLevel(actor, skill);
+  // The skill as the character has it, or at default as the gun's row has it worked out.
+  const row = (actor.system?.derived?.ranged ?? []).find((r: any) => r?.itemId === item.id && r?.modeIndex === 0);
+  const level = api.actors.skillLevel(actor, skill) ?? (typeof row?.skillLevel === "number" ? row.skillLevel : null);
   if (typeof level !== "number") return void ui.notifications?.warn(F("NoSkill", { skill }));
   const seconds = firearmBuild(item).barrelChangeSeconds || BARREL_CHANGE_SECONDS;
   const outcome: any = await api.roll.success({ actor, base: level, label: F("BarrelRoll", { gun: item.name, seconds }), skill } as any);
