@@ -1,0 +1,9 @@
+{{!-- Where the weapon is carried, for Fast-Draw from odd positions (every book's places whose switch is on). --}}
+<div class="ifields" data-gcc-carry-section>
+  <label>{{label}}
+    <select data-gcc-carry {{#unless editable}}disabled{{/unless}}>
+      <option value=""></option>
+      {{#each carries as |c|}}<option value="{{c.value}}" {{#if c.selected}}selected{{/if}}>{{c.label}}</option>{{/each}}
+    </select>
+  </label>
+</div>

@@ -7,8 +7,8 @@
  * weapon state, and where it is carried as its item data.
  */
 
-import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { CARRY_TABLES, carryModifierOf, carryOf, initCarry, readyCarry } from "../../../shared/readying/index.js";
 import {
   CARRIES,
   GRIPS,
@@ -19,7 +19,6 @@ import {
   rapidGripPenalty,
   situationModifiers,
   specialtyOf,
-  type Carry,
   type DrawCounts,
   type Grip,
   type Hand,
@@ -32,21 +31,19 @@ const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.
 /** Draws this turn, by hand. */
 const DRAWS = "ma-draws";
 
-/** Adds where a weapon is carried before the world's items are read. */
+/**
+ * Adds where a weapon is carried before the world's items are read, and
+ * registers this book's carry locations with the shared readying engine.
+ */
 export function initReadying(): void {
-  const f = foundry.data.fields as any;
-  addExtensionFields("Item", ITEM_EXTENSION_TYPES, { carry: new f.StringField({ required: true, blank: true, initial: "" }) });
+  initCarry();
+  CARRY_TABLES.register({ book: "martial-arts", rules: [`${MODULE_ID}.readying`], carries: CARRIES, figures: carryModifier, i18n: "GCC.MA.Readying" });
 }
 
 /** A weapon's grip, as this module keeps it. */
 export function gripOf(api: GWorldApi, item: any): Grip {
   const grip = api.combat.getWeaponState(item, MODULE_ID)?.grip;
   return GRIPS.includes(grip as Grip) ? (grip as Grip) : "regular";
-}
-
-function carryOf(item: any): Carry | null {
-  const value = item?.system?.extensions?.[MODULE_ID]?.carry;
-  return CARRIES.includes(value as Carry) ? (value as Carry) : null;
 }
 
 const weaponsOf = (actor: any) => [...(actor?.items ?? [])].filter((i: any) => i.type === "equipment" && ((i.system?.meleeModes ?? []).length || (i.system?.rangedModes ?? []).length));
@@ -84,7 +81,7 @@ async function fastDraw(api: GWorldApi, actor: any, form: HTMLElement): Promise<
       carry,
     }),
   ];
-  const located = carry ? carryModifier(specialtyOf(skill), carry, { reversedGrip: grip === "reversed", noScabbard: checked("[data-ma-draw-noscabbard]") }) : null;
+  const located = carry ? carryModifierOf(specialtyOf(skill), carry, { reversedGrip: grip === "reversed", noScabbard: checked("[data-ma-draw-noscabbard]") }) : null;
   if (located) lines.push({ key: "carry", value: located });
   const outcome: any = await api.roll.success({
     actor,
@@ -184,17 +181,6 @@ export function readyReadying(api: GWorldApi, on: () => boolean): void {
     },
   });
 
-  api.sheets.registerSheetSection({
-    module: MODULE_ID,
-    key: "ma-carry",
-    sheet: "item",
-    template: `modules/${MODULE_ID}/templates/ma-carry.hbs`,
-    visible: (item) => on() && item?.type === "equipment",
-    context: (item) => ({ carries: CARRIES.map((c) => ({ value: c, label: L(`Carries.${c}`), selected: carryOf(item) === c })) }),
-    listeners: (element, item) => {
-      element.querySelector<HTMLSelectElement>("[data-ma-carry]")?.addEventListener("change", (event) => {
-        void item.update({ [`system.extensions.${MODULE_ID}.carry`]: (event.currentTarget as HTMLSelectElement).value });
-      });
-    },
-  });
+  // Where a weapon is carried: the shared section, with this book's places while its switch is on.
+  readyCarry(api);
 }

@@ -1,0 +1,51 @@
+{{!-- Drawing guns (High-Tech pp. 81-82, 153-154, 249). --}}
+<div class="isec" data-ht-drawing>
+  <div class="grph">{{localize "GCC.HT.Drawing.Title"}}
+    <span class="sub">{{localize "GCC.HT.Drawing.Counts"}} {{draws.master}} / {{draws.off}}{{#if failed}} &middot; {{localize "GCC.HT.Drawing.Failed"}}{{/if}}</span>
+  </div>
+  <table class="gt">
+    <thead><tr>
+      <th>{{localize "GCC.HT.Drawing.Gun"}}</th>
+      <th>{{localize "GCC.HT.Drawing.Holster"}}</th>
+      <th>{{localize "GCC.HT.Drawing.Place"}}</th>
+      <th data-tooltip="{{localize 'GCC.HT.Drawing.ModifierHint'}}">{{localize "GCC.HT.Drawing.Modifier"}}</th>
+      <th data-tooltip="{{localize 'GCC.HT.Drawing.ReadiesHint'}}">{{localize "GCC.HT.Drawing.ReadiesShort"}}</th>
+      <th>{{localize "GCC.HT.Drawing.InHand"}}</th>
+      <th></th>
+    </tr></thead>
+    <tbody>
+      {{#each guns as |g|}}
+        <tr data-ht-gun="{{g.id}}">
+          <td>{{g.name}}</td>
+          <td>{{g.holster}}</td>
+          <td>{{g.place}}</td>
+          <td>{{g.modifier}}</td>
+          <td>{{g.readies}}</td>
+          <td><input type="checkbox" data-ht-in-hand {{#if g.drawn}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /></td>
+          <td>
+            {{#if g.drawn}}<button type="button" class="ibtn" data-ht-stow {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Drawing.StowHint'}}">{{localize "GCC.HT.Drawing.Stow"}}</button>{{/if}}
+            {{#if g.loop}}<button type="button" class="ibtn" data-ht-loop {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Drawing.HammerLoopHint'}}">{{localize "GCC.HT.Drawing.FreeLoop"}}</button>{{/if}}
+            {{#if g.lanyard}}{{#unless g.drawn}}<button type="button" class="ibtn" data-ht-retrieve {{#unless ../editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Drawing.LanyardHint'}}">{{localize "GCC.HT.Drawing.Retrieve"}}</button>{{/unless}}{{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  <div class="npcline" style="gap: 8px; align-items: center; flex-wrap: wrap">
+    <label>{{localize "GCC.HT.Drawing.MasterHand"}}
+      <select data-ht-draw-master {{#unless editable}}disabled{{/unless}}>
+        <option value=""></option>
+        {{#each guns as |g|}}{{#unless g.drawn}}<option value="{{g.id}}">{{g.name}}</option>{{/unless}}{{/each}}
+      </select>
+    </label>
+    <label>{{localize "GCC.HT.Drawing.OffHand"}}
+      <select data-ht-draw-off {{#unless editable}}disabled{{/unless}}>
+        <option value=""></option>
+        {{#each guns as |g|}}{{#unless g.drawn}}<option value="{{g.id}}">{{g.name}}</option>{{/unless}}{{/each}}
+      </select>
+    </label>
+    <label class="icheck"><input type="checkbox" data-ht-draw-grappled {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Drawing.Grappled"}}</label>
+    <label class="icheck"><input type="checkbox" data-ht-draw-upside {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Drawing.UpsideDown"}}</label>
+    <button type="button" class="ibtn" data-ht-draw {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Drawing.DrawHint'}}">{{localize "GCC.HT.Drawing.Draw"}}</button>
+  </div>
+</div>

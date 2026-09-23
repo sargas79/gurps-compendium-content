@@ -811,6 +811,7 @@
       "title": "Drawing Your Weapon",
       "chapter": "5. Weaponry",
       "pages": "HT81-82",
+      "rule": "gurps-compendium-content.gunDrawing",
       "reference": "High-Tech pp. 81-82",
       "file": "drawing-your-weapon.md",
       "status": "reviewed"
@@ -820,6 +821,7 @@
       "title": "Who Draws First?",
       "chapter": "5. Weaponry",
       "pages": "HT82",
+      "rule": "gurps-compendium-content.gunfightStandoff",
       "reference": "High-Tech p. 82",
       "file": "who-draws-first.md",
       "status": "reviewed"
@@ -1216,6 +1218,7 @@
       "title": "Holsters, Scabbards, and Slings",
       "chapter": "5. Weaponry",
       "pages": "HT153",
+      "rule": "gurps-compendium-content.gunDrawing",
       "reference": "High-Tech p. 153",
       "file": "holsters-scabbards-and-slings.md",
       "status": "reviewed"
