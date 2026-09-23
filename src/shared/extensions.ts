@@ -30,6 +30,10 @@ const pending = new Map<string, PendingExtension>();
  * the same set of types become one extension; a set that shares some types
  * with another but not all is refused, since the system would refuse the
  * overlap. No field name may be used twice for one set.
+ *
+ * A field may be given as a function that builds it, for a shared engine
+ * whose field holds what every book's table lists: it is built when the
+ * fields are registered, once every book has registered its table.
  */
 export function addExtensionFields(documentName: DocumentName, types: readonly string[], schema: Record<string, unknown>): void {
   const sorted = [...types].sort();
@@ -49,7 +53,8 @@ export function addExtensionFields(documentName: DocumentName, types: readonly s
 /** Registers what the books added, one extension per document. */
 export function registerExtensionFields(api: GWorldApi): void {
   for (const entry of pending.values()) {
-    const registered = api.data.registerDataExtension({ module: MODULE_ID, documentName: entry.documentName, types: entry.types, schema: entry.schema });
+    const schema = Object.fromEntries(Object.entries(entry.schema).map(([name, field]) => [name, typeof field === "function" ? (field as () => unknown)() : field]));
+    const registered = api.data.registerDataExtension({ module: MODULE_ID, documentName: entry.documentName, types: entry.types, schema });
     if (!registered) console.error(`${MODULE_ID} | the ${entry.documentName} data extension was refused`);
   }
   pending.clear();

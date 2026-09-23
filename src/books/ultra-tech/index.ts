@@ -122,7 +122,7 @@ function init(): void {
   initNeuralSonic();
   initBeamOptions();
   initWarheads();
-  initComputers();
+  initComputers(ruleKey("computers"));
   initSwarms();
   initStealth();
   initSensors();

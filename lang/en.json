@@ -5005,6 +5005,14 @@
         "batteries": {
           "Name": "Batteries, generators and fuel",
           "Hint": "Gear that runs on batteries (T to VL) tracks what is left of its endurance on the Inventory tab. Batteries may be rechargeable, at five times the price, and are recharged rather than bought again; throwaway ones are taken from the spare batteries carried. A gadget may take batteries of another size or number, its endurance in proportion to their weight and its weight changed by the difference. A power adapter (the cost and weight of the usual batteries) lets it run on external power; an inverter (the cost and weight of its batteries, M or larger) lets gear built for external power run on batteries. Generators and collectors carried are listed with their fuel: a tank's hours, refilled from the fuel carried; cranking a muscle-powered generator costs 1 FP an hour and recharges about 10 lbs. of batteries an hour; a solar collector gives nothing at a -1 Vision penalty or worse; the TL8 portable gasoline generator weighs 2/3 as much (High-Tech pp. 10, 13-16)."
+        },
+        "booksAndLibraries": {
+          "Name": "Books and libraries",
+          "Hint": "A manual or reference work, marked on its item sheet with the skill it covers, gets a row button that rolls the skill at its attribute default (Easy -4 to Very Hard -7), even for a character with no default, with extra time's bonus capped at that penalty. A library is Research equipment by its grade (a small collection is improvised, -2), costs 100 times as much on an occult subject, and at the GM's option a good or fine library's bonus also counts for the skill it covers (High-Tech pp. 17-18)."
+        },
+        "computerSystems": {
+          "Name": "Computers and software",
+          "Hint": "The TL8 computer models with their Complexity and storage, the options (compact, hardened, high-capacity, fast, slow) and, for a TL6-7 computer, one early technology (mechanical -5, vacuum tube -4 and hardened, transistor -3), repricing the computer. A program is priced from the Program Cost Table by Complexity and TL where its record has no price; a software tool shows the grade its Complexity reaches, and whether it is too simple for the skill at all. A worn head-up display gives +1 to Driving and Piloting (High-Tech pp. 19-22)."
         }
       },
       "Gadget": {
@@ -6465,6 +6473,114 @@
         "RefuelledCylinder": "Fitted a fresh {fuel} cylinder, for {hours} hr.",
         "RefuelledFromCylinder": "Fitted a {fuel} cylinder from the {name} carried, for {hours} hr.",
         "SwapSize": "Size"
+      },
+      "Computer": {
+        "Title": "Computer",
+        "SoftwareTitle": "Software",
+        "KindLabel": "Is a",
+        "KindHint": "A computer is one of the book's standard models; a program is rated by its Complexity (High-Tech pp. 20, 22).",
+        "Kind": {
+          "none": "Neither",
+          "computer": "Computer",
+          "program": "Program"
+        },
+        "ModelLabel": "Model",
+        "ModelHint": "The standard model, with its Complexity and storage at TL8. A TL6-7 computer is a model available then, built with one of the early technologies (High-Tech p. 20).",
+        "Model": {
+          "tiny": "Tiny (Complexity 1, TL8)",
+          "small": "Small (Complexity 2, TL8)",
+          "medium": "Medium (Complexity 3, TL8)",
+          "microframe": "Microframe (Complexity 4, TL7)",
+          "mainframe": "Mainframe (Complexity 5, TL6)",
+          "macroframe": "Macroframe (Complexity 6, TL6)",
+          "megacomputer": "Megacomputer (Complexity 7, TL6)"
+        },
+        "Excluded": "not with the other, or not yet at its TL",
+        "Option": {
+          "compact": "Compact",
+          "compactHint": "TL7: twice the cost, half the weight.",
+          "hardened": "Hardened",
+          "hardenedHint": "TL7: +3 HT against EMP, microwaves and the like; twice the cost and weight. A vacuum-tube computer already is.",
+          "highCapacity": "High-capacity",
+          "highCapacityHint": "TL7: runs half again as many programs at once, at 1.5 times the cost.",
+          "fast": "Fast",
+          "fastHint": "TL8: +1 Complexity at 20 times the cost. Not with Slow.",
+          "slow": "Slow",
+          "slowHint": "TL8: -1 Complexity at a twentieth the cost. Not with Fast.",
+          "mechanical": "Mechanical",
+          "mechanicalHint": "Early technology, TL6: -5 Complexity; storage in bytes.",
+          "vacuumTube": "Vacuum tube",
+          "vacuumTubeHint": "Early technology, early TL7: -4 Complexity, hardened at no extra cost; storage in kilobytes.",
+          "transistor": "Transistor",
+          "transistorHint": "Early technology, TL7: -3 Complexity; storage in kilobytes."
+        },
+        "Figures": "Complexity {complexity}, {storage} {unit}. Runs {own} programs of Complexity {complexity} at once, or {below} one level below.",
+        "Problem": {
+          "belowZero": "Its Complexity comes to less than 0: design a larger computer.",
+          "needsEarly": "A TL{tl} computer must be built with one of the early technologies.",
+          "modelTooLate": "This model isn't built yet at TL{built}."
+        },
+        "Legality": "LC{lc} with its options.",
+        "CompactCells": "Compact: half the batteries and half the operating time.",
+        "Hardened": "Hardened: +{bonus} HT against EMP, microwaves and the like.",
+        "HardenedLine": "{name} (hardened)",
+        "ComplexityLabel": "Complexity",
+        "ComplexityHint": "The least Complexity a computer must have to run the program (High-Tech p. 22).",
+        "DifficultyLabel": "Skill difficulty",
+        "DifficultyHint": "The difficulty of the skill a software tool is for: an Easy skill needs one level less Complexity for each grade (High-Tech p. 22).",
+        "RunsOnLabel": "Runs on",
+        "RunsOnHint": "Which of the character's computers the program is running on.",
+        "NotRunning": "Not running",
+        "ComplexityShort": "Complexity {complexity}",
+        "MassMarket": "Mass-market",
+        "MassMarketHint": "Software sold to a huge user base costs as little as a tenth of the table's price (High-Tech p. 22).",
+        "TablePrice": "${cost}: Complexity {complexity} at TL{tl} on the Program Cost Table.",
+        "Unavailable": "The Program Cost Table has no Complexity {complexity} program at TL{tl}.",
+        "Tool": {
+          "none": "Too simple for {skills}: at TL7+ a skill that needs software takes at least a basic program, Complexity {basic}.",
+          "basic": "A basic tool for {skills}, no bonus: good needs Complexity {good}, fine {fine}.",
+          "good": "A good tool for {skills} (+1); fine needs Complexity {fine}.",
+          "fine": "A fine tool for {skills} (+2)."
+        },
+        "SetQuality": "Set its quality",
+        "GearTitle": "Computers",
+        "Computer": "Computer",
+        "ComplexityShortHead": "Complexity",
+        "Storage": "Storage",
+        "Programs": "Running",
+        "TooComplex": "Too complex for this computer to run.",
+        "Overloaded": "Over capacity",
+        "OverloadedHint": "More programs than the computer runs at once: two of its own Complexity, ten times as many per level below."
+      },
+      "Books": {
+        "Title": "Reference work",
+        "Manual": "Manual or reference work",
+        "ManualHint": "Followed while doing a task, a suitable manual lets its reader use the skill at the attribute default, even with no default; the GM decides what counts (High-Tech p. 17).",
+        "Skill": "Skill covered",
+        "SkillHint": "The skill the manual or library covers, as the character sheet names it.",
+        "Attribute": "Attribute",
+        "Difficulty": "Difficulty",
+        "Default": "Followed: {skill} at {attribute}{penalty}; extra time can win back at most that penalty.",
+        "Occult": "Occult subject",
+        "OccultHint": "A library for magical research, Hidden Lore and the like may cost 100 times as much (High-Tech p. 18).",
+        "Extends": "Bonus counts for the skill",
+        "ExtendsHint": "At the GM's option, a good or fine library's bonus also counts for the skill it covers, not only for Research on it (High-Tech p. 18).",
+        "Library": "{grade}: {modifier} to Research on its subject. Outside it, the Research roll takes the scope modifiers; as a curriculum, it can teach the skill (High-Tech p. 18).",
+        "Grade": {
+          "smallCollection": "Small collection (improvised)",
+          "basic": "Basic library",
+          "good": "Good library",
+          "fine": "Fine library"
+        },
+        "Follow": "Follow the manual",
+        "FollowTitle": "Following {name}",
+        "FollowHint": "{skill} at {attribute}{penalty}. Time spent adds its bonus, up to that penalty.",
+        "TimeTaken": "Time taken",
+        "Times": "x{times} the usual time ({bonus})",
+        "Roll": "Roll",
+        "RollLabel": "{skill}, following {name}",
+        "TimeSpent": "Time spent",
+        "OwnBetter": "{name}'s own {skill} ({level}) is already as good as following the manual."
       }
     },
     "Backblast": {

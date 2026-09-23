@@ -231,6 +231,7 @@
       "title": "Books",
       "chapter": "2. Core Technologies",
       "pages": "HT17",
+      "rule": "gurps-compendium-content.booksAndLibraries",
       "reference": "High-Tech p. 17",
       "file": "books.md",
       "status": "reviewed"
@@ -240,6 +241,7 @@
       "title": "Libraries",
       "chapter": "2. Core Technologies",
       "pages": "HT17-18",
+      "rule": "gurps-compendium-content.booksAndLibraries",
       "reference": "High-Tech pp. 17-18",
       "file": "libraries.md",
       "status": "reviewed"
@@ -249,6 +251,7 @@
       "title": "Computers",
       "chapter": "2. Core Technologies",
       "pages": "HT19-20",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech pp. 19-20",
       "file": "computers.md",
       "status": "reviewed"
@@ -258,6 +261,7 @@
       "title": "Computer Types",
       "chapter": "2. Core Technologies",
       "pages": "HT20",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech p. 20",
       "file": "computer-types.md",
       "status": "reviewed"
@@ -267,6 +271,7 @@
       "title": "Customizing Hardware",
       "chapter": "2. Core Technologies",
       "pages": "HT20-21",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech pp. 20-21",
       "file": "customizing-hardware.md",
       "status": "reviewed"
@@ -276,6 +281,7 @@
       "title": "Terminals",
       "chapter": "2. Core Technologies",
       "pages": "HT21",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech p. 21",
       "file": "terminals.md",
       "status": "reviewed"
@@ -285,6 +291,7 @@
       "title": "Software",
       "chapter": "2. Core Technologies",
       "pages": "HT22",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech p. 22",
       "file": "software.md",
       "status": "reviewed"
@@ -294,6 +301,7 @@
       "title": "Computer Networks",
       "chapter": "2. Core Technologies",
       "pages": "HT20",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech p. 20",
       "file": "computer-networks.md",
       "status": "reviewed"
@@ -303,6 +311,7 @@
       "title": "Computer-Based Research",
       "chapter": "2. Core Technologies",
       "pages": "HT21",
+      "rule": "gurps-compendium-content.computerSystems",
       "reference": "High-Tech p. 21",
       "file": "computer-based-research.md",
       "status": "reviewed"

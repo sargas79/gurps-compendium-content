@@ -10,6 +10,8 @@
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 import { setRuleReader } from "../../shared/book-tables.js";
+import { COMPUTER_TABLES, computerCells, computerOf, computerTableOf } from "../../shared/computers/index.js";
+import { registerPowerAdjuster } from "../../shared/power/data.js";
 import { GADGET_TABLES, gadgetPriceOf, gadgetTables, type GadgetTable } from "../../shared/gadgets/index.js";
 import { gadgetItem } from "../../shared/gadgets/data.js";
 import type { GadgetFigures } from "../../shared/gadgets/rules.js";
@@ -21,6 +23,8 @@ import { ultraTechGadgets } from "../ultra-tech/gadgets/index.js";
 import { GADGETS } from "../ultra-tech/gadgets/rules.js";
 import { ultraTechCells } from "../ultra-tech/power/index.js";
 import { POWER_CELLS } from "../ultra-tech/power/rules.js";
+import { ultraTechComputers } from "../ultra-tech/computers/index.js";
+import { highTechComputers } from "./information/index.js";
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
 
@@ -68,11 +72,15 @@ beforeEach(() => {
   GADGET_TABLES.register(HT_GADGET_TABLE);
   CELL_TABLES.register(ultraTechCells(key("powerCells")));
   CELL_TABLES.register(HT_CELL_TABLE);
+  // The real tables for computers: High-Tech's is its own (#359).
+  COMPUTER_TABLES.register(ultraTechComputers(key("computers")));
+  COMPUTER_TABLES.register(highTechComputers(key("computerSystems")));
 });
 
 afterEach(() => {
   GADGET_TABLES.clear();
   CELL_TABLES.clear();
+  COMPUTER_TABLES.clear();
   setRuleReader(() => false);
 });
 
@@ -129,5 +137,67 @@ describe("with both books on", () => {
     only(key("gadgetOptions"), key("equipmentOptions"));
     expect(gadgetTables(gear(null, {}, "7")).options?.book).toBe("high-tech");
     expect(gadgetTables(gear(null, {}, "10")).options?.book).toBe("ultra-tech");
+  });
+});
+
+describe("computers (#359)", () => {
+  const computer = (book: string | null, name: string, tl: string, options: Record<string, boolean> = {}) => ({
+    type: "equipment",
+    name,
+    system: { tl, cost: 1000, weight: 4, extensions: { [MODULE_ID]: { computer: { options } } } },
+    flags: book ? { [MODULE_ID]: { book } } : {},
+  });
+
+  it("works out a High-Tech computer with only High-Tech's switch on", () => {
+    only(key("computerSystems"));
+    const medium = computer("high-tech", "Medium Computer", "8", { fast: true });
+    expect(computerTableOf(medium)?.book).toBe("high-tech");
+    expect(computerOf(medium)?.computer).toMatchObject({ complexity: 4, storageUnit: "GB", costFactor: 20 });
+  });
+
+  it("leaves a High-Tech computer alone with only Ultra-Tech's switch on", () => {
+    only(key("computers"));
+    expect(computerOf(computer("high-tech", "Medium Computer", "8"))).toBeNull();
+  });
+
+  it("works out an Ultra-Tech computer as before with only Ultra-Tech's switch on", () => {
+    only(key("computers"));
+    expect(computerOf(computer("ultra-tech", "Personal Computer", "10", { fast: true }))?.computer).toMatchObject({ complexity: 8, storageUnit: "PB", costFactor: 20 });
+    // And not with only High-Tech's.
+    only(key("computerSystems"));
+    expect(computerOf(computer("ultra-tech", "Personal Computer", "10"))).toBeNull();
+  });
+
+  it("gives a computer that names no book the table whose TLs cover it", () => {
+    only(key("computers"), key("computerSystems"));
+    expect(computerTableOf(computer(null, "Mainframe Computer", "6"))?.book).toBe("high-tech");
+    expect(computerTableOf(computer(null, "Mainframe Computer", "10"))?.book).toBe("ultra-tech");
+  });
+});
+
+describe("a compact computer's cells, with cells swapped in by weight (#358, #359)", () => {
+  registerPowerAdjuster(computerCells);
+
+  it("halves the cells and the endurance, and the swap multiplies what is left", () => {
+    // A stand-in: Ultra-Tech's cells with High-Tech's swapping by weight, so both rules reach one item.
+    CELL_TABLES.register({ ...ultraTechCells(key("powerCells")), figures: { ...POWER_CELLS, swapByWeight: true } });
+    only(key("computers"), key("powerCells"));
+    const extensions = (swap: Record<string, unknown>) => ({
+      computer: { options: { compact: true } },
+      power: { draw: { cell: "C", cells: 2, endurance: "10 hr." }, ...swap },
+    });
+    const pc = (swap: Record<string, unknown>) => ({ ...gear("ultra-tech", extensions(swap), "9"), name: "Personal Computer" });
+    // Compact: one C cell for half the time.
+    expect(powerData(pc({}))).toMatchObject({ enduranceFactor: 0.5, draw: { cells: 1 } });
+    expect(enduranceLeft(powerData(pc({})))).toEqual({ total: 5, left: 5 });
+    // A D cell weighs ten times a C: ten times as long on top of the half.
+    expect(enduranceLeft(powerData(pc({ swapCell: "D", swapCells: 1 })))).toEqual({ total: 50, left: 50 });
+  });
+
+  it("changes nothing on a High-Tech computer, whose compact option leaves the batteries alone", () => {
+    only(key("computerSystems"), key("batteries"));
+    const medium = { ...gear("high-tech", { computer: { options: { compact: true } }, power: { draw: { cell: "M", cells: 1, endurance: "2.5 hours." } } }), name: "Medium Computer" };
+    expect(computerCells(medium)).toBeNull();
+    expect(powerData(medium).enduranceFactor).toBe(1);
   });
 });

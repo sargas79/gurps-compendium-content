@@ -9,7 +9,8 @@
  * can use High-Tech without either of the other books. So far this registers
  * the equipment options, combination gadgets, gear for other sizes, the
  * Legality Class of antiques, the black market, Equipment Bond and intrinsic
- * bonuses, and TL penalties as unfamiliarity (pp. 7-11), a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * bonuses, and TL penalties as unfamiliarity (pp. 7-11), computers,
+ * software, manuals and libraries (pp. 17-22), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -27,7 +28,7 @@
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
  * and projectile upgrades, the explosive and cargo rounds, power:
  * batteries, generators and fuel, and the optional wounding rules
- * (pp. 7-11, 13-16, 79-93, 109, 127-141, 143, 147-178, 249-252).
+ * (pp. 7-11, 13-16, 17-22, 79-93, 109, 127-141, 143, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -42,6 +43,7 @@ import { readyEnvironments } from "./environments/index.js";
 import { readyIndirectFire } from "./indirect-fire/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower, readyHighTechPower } from "./power/index.js";
+import { initInformation, readyInformation } from "./information/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
@@ -126,6 +128,8 @@ const RULES = [
   { key: "realisticLimbWounds", pages: "p. 162", implemented: true },
   { key: "vitalBleeding", pages: "p. 162", implemented: true },
   { key: "woundFrightChecks", pages: "p. 162", implemented: true },
+  { key: "booksAndLibraries", pages: "pp. 17-18", implemented: true },
+  { key: "computerSystems", pages: "pp. 19-22", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -162,6 +166,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   initHighTechEquipment({ options: ruleKey("equipmentOptions"), sm: ruleKey("gearForSm"), legality: ruleKey("antiqueLegality") });
+  initInformation(ruleKey("computerSystems"));
   registerHighTechRecordData();
   initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f) }));
   initAmmunition();
@@ -203,6 +208,7 @@ function ready(api: GWorldApi): void {
   readyIndirectFire(api, rule("indirectFire"));
   readyHighTechPower(api, rule("batteries"));
   readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
+  readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
 }
 
 export const book: BookRules = {

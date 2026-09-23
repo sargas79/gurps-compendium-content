@@ -1,0 +1,34 @@
+{{!-- A manual or reference work, and a library (High-Tech pp. 17-18). --}}
+<div class="isub" data-ht-reference-section>
+  <div class="isub-head">{{localize "GCC.HT.Books.Title"}}</div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Books.ManualHint'}}"><input type="checkbox" data-ht-reference="manual" {{#if data.manual}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Books.Manual"}}</label>
+    {{#if isLibrary}}
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Books.OccultHint'}}"><input type="checkbox" data-ht-reference="occult" {{#if data.occult}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Books.Occult"}}</label>
+      {{#if extends}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Books.ExtendsHint'}}"><input type="checkbox" data-ht-reference="extendsToSkill" {{#if data.extendsToSkill}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Books.Extends"}}</label>
+      {{/if}}
+    {{/if}}
+  </div>
+  {{#if showFields}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Books.SkillHint'}}">{{localize "GCC.HT.Books.Skill"}}
+        <input type="text" data-ht-reference="skill" value="{{data.skill}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      {{#if data.manual}}
+        <label>{{localize "GCC.HT.Books.Attribute"}}
+          <select data-ht-reference="attribute" {{#unless editable}}disabled{{/unless}}>
+            {{#each attributes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.value}}</option>{{/each}}
+          </select>
+        </label>
+        <label>{{localize "GCC.HT.Books.Difficulty"}}
+          <select data-ht-reference="difficulty" {{#unless editable}}disabled{{/unless}}>
+            {{#each difficulties as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.value}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#if defaultText}}<p class="ihint">{{defaultText}}</p>{{/if}}
+  {{#if library}}<p class="ihint">{{library}}</p>{{/if}}
+</div>

@@ -1,0 +1,31 @@
+{{!-- The character's computers, what each runs, and what else each could
+     hold (Ultra-Tech pp. 22, 25; High-Tech pp. 20-22), headed in the words of
+     the first book whose computer table applies (`ns`). --}}
+<section class="card" data-gcc-computer-gear>
+  <div class="card-head"><h3>{{localize (concat @root.ns ".Computer.GearTitle")}}</h3></div>
+  <table class="gtable">
+    <thead>
+      <tr>
+        <th>{{localize (concat @root.ns ".Computer.Computer")}}</th>
+        <th>{{localize (concat @root.ns ".Computer.ComplexityShortHead")}}</th>
+        <th>{{localize (concat @root.ns ".Computer.Storage")}}</th>
+        <th>{{localize (concat @root.ns ".Computer.Programs")}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each rows as |r|}}
+        <tr data-item-id="{{r.id}}">
+          <td {{#if r.notes}}data-tooltip="{{r.notes}}"{{/if}}>{{r.name}}</td>
+          <td>{{r.complexity}}</td>
+          <td>{{r.storage}}</td>
+          <td>
+            {{#each r.programs as |p|}}<span {{#if p.tooComplex}}class="gc-bad" data-tooltip="{{localize (concat r.ns '.Computer.TooComplex')}}"{{/if}}>{{p.name}} ({{p.complexity}})</span>{{#unless @last}}, {{/unless}}{{/each}}
+            {{#if r.programs.length}}
+              · {{#if r.overloaded}}<strong data-tooltip="{{localize (concat r.ns '.Computer.OverloadedHint')}}">{{localize (concat r.ns ".Computer.Overloaded")}}</strong>{{else}}{{r.load}}%{{/if}}
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</section>
