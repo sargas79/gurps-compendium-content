@@ -24,7 +24,10 @@
  * capacity belongs on one item (sargas79/GWorldVTT#190). Fields the system
  * cannot take yet go in `patch`, each a pack, a name pattern, the fields to set
  * by path, and the reason: Magic's jets and rains do damage without being
- * Missile or Melee spells, which the system's validator refuses.
+ * Missile or Melee spells, which the system's validator refuses. A rule can
+ * also be limited by `where` and reach every attack mode with a `*` in its
+ * path (tools/lib/patch.mjs), as High-Tech's default Malf. does; rules apply
+ * in order, so a later one overrides an earlier one on the same field.
  *
  * Usage: node tools/extract.mjs <book> [--write]
  *
@@ -38,7 +41,9 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 
-import { MODULE_ID, book, books, statisticsDir, systemRoot } from "./lib/books.mjs";
+import { MODULE_ID, book, books, booksRoot, statisticsDir, systemRoot } from "./lib/books.mjs";
+import { clearOfTaken, otherBooksIds } from "./lib/ids.mjs";
+import { applyPatch, patchApplies } from "./lib/patch.mjs";
 import { powerOf } from "./lib/power-cells.mjs";
 
 /** Where the GCA data files live on this machine, unless the book says otherwise. */
@@ -172,20 +177,33 @@ async function main() {
         if (!Array.isArray(docs)) continue;
         let changed = false;
         for (const rule of rules) {
-          const matched = docs.filter((doc) => rule.pattern.test(String(doc.name ?? "")));
-          for (const doc of matched) {
-            for (const [path, value] of Object.entries(rule.set)) {
-              const keys = path.split(".");
-              const parent = keys.slice(0, -1).reduce((node, key) => (node[key] ??= {}), doc);
-              parent[keys.at(-1)] = structuredClone(value);
-            }
-          }
+          const matched = docs.filter((doc) => patchApplies(rule, doc));
+          for (const doc of matched) applyPatch(rule, doc);
           if (matched.length) {
             changed = true;
             console.log(`  patched ${matched.length} in ${entry.name}/${file}: ${rule.reason}`);
           }
         }
         if (changed) writeFileSync(join(dir, file), JSON.stringify(docs, null, 2) + "\n", "utf8");
+      }
+    }
+  }
+
+  // An id another book's record already has: the parser only steps aside for
+  // the Basic Set's (tools/lib/ids.mjs).
+  if (write) {
+    const taken = otherBooksIds(booksRoot, slug);
+    for (const entry of readdirSync(out, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+      const dir = join(out, entry.name);
+      for (const file of readdirSync(dir).filter((f) => f.endsWith(".json") && !f.includes("-by-hand"))) {
+        const docs = JSON.parse(readFileSync(join(dir, file), "utf8"));
+        if (!Array.isArray(docs)) continue;
+        const moved = clearOfTaken(docs, taken, bk.prefix);
+        if (!moved.length) continue;
+        writeFileSync(join(dir, file), JSON.stringify(docs, null, 2) + "\n", "utf8");
+        for (const [name, from, to] of moved) {
+          console.log(`  new id for ${entry.name}/${file}: ${name} (${from} is another book's) -> ${to}`);
+        }
       }
     }
   }

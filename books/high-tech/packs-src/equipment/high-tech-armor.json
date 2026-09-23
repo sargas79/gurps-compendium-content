@@ -1,0 +1,2970 @@
+[
+  {
+    "_id": "9b5dbde487ecb910",
+    "name": "Steel Vest (TL5)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "c89c5a74db8c0416",
+    "name": "Steel Corselet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "e518d124641d997a",
+    "name": "Silk Vest Steel Plate",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "1a4d38b277ecf985",
+    "name": "Composite Body Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "7a2d35fdb9ba9241",
+    "name": "Sentry Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 14,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "75518a111296458f",
+    "name": "Light Body Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "d7e13168ec34f9c0",
+    "name": "Bulletproof Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 750,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "ec01f88413a82534",
+    "name": "Flak Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 7,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f66b8b4e36f82d29",
+    "name": "Fragmentation Vest (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 13.5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "af715d37c0cd077f",
+    "name": "Improved Fragmentation Vest (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 4,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f279b0c74feab28a",
+    "name": "Improved Fragmentation Vest Trauma Plates (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 3600,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 18,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "afcdcf2e20f35142",
+    "name": "Aircrew Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 20,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a25fe7b3c138d700",
+    "name": "Shoulder Pads",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 3,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "arm"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f8dfa9ef7f71c289",
+    "name": "Fragmentation Vest (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 9,
+      "cost": 350,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 5,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "bb0574ac7e68eeed",
+    "name": "Fragmentation Vest Trauma Plates (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 16,
+      "cost": 350,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 25,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "e14ad158c7332f40",
+    "name": "Early Concealable Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 8,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "c6022b31bb3e86e8",
+    "name": "Concealable Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 12,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "08cb328ad59cc604",
+    "name": "Assault Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 12,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "torso",
+        "vitals",
+        "groin"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "bc2f63a5255aca04",
+    "name": "Assault Vest Trauma Plates",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 600,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 23,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "8e51821a846622a2",
+    "name": "Anti-Stab Vest",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2ba2f13802f53472",
+    "name": "Advanced Body Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 17,
+      "cost": 4600,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 66",
+      "dr": 35,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr"
+      ],
+      "locations": [
+        "torso",
+        "vitals"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "eaa7286de7e73da5",
+    "name": "Chaps",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "ff37992ee3ebbce5",
+    "name": "Shin Guards",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "d3250dd4cf0fae7c",
+    "name": "Light Body Armor Sleeves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 300,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "733b27c75836def6",
+    "name": "Light Body Armor Leggings",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 350,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a5fa8a719bed9ce1",
+    "name": "Aircrew Leg Armor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 18,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 15,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "1f0bda91d85ebf64",
+    "name": "Riot Gear Sleeves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "arm"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "22dac758893f3c3c",
+    "name": "Riot Gear Leggings",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "leg"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "ed84df105f1b9b71",
+    "name": "Ballistic Leggings",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 12,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": true,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "113cb6d2fca517bd",
+    "name": "Sharp-Protective Armor Sleeves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 3,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cr",
+        "fat",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "arm"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "170ce85327b843ea",
+    "name": "Sharp-Protective Armor Leggings",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 3,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cr",
+        "fat",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "leg"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "8a1466a031806e24",
+    "name": "DAP",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 8,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [
+        "arm"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "dca1f9e7f2af990a",
+    "name": "Boots",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 80,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "9c8fc5c917189312",
+    "name": "Boots, Arctic",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a74f19c3ace15df0",
+    "name": "Boots, High",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "5cefeb1276031d10",
+    "name": "Moccasins",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2af44607ec3dbf42",
+    "name": "Cleats",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "3bba2ce880ddf87f",
+    "name": "Sneakers",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "29322cf349b18cdf",
+    "name": "Boots, Jungle",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": 3,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "fd7eacf81c3d9722",
+    "name": "Boots, Blast",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 350,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": 15,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "82f81c08c216c4ce",
+    "name": "Boots, Firefighter",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 7,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": 6,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "1a2807c9e0f71c38",
+    "name": "Shoes, Climbing",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 80,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 68",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "foot"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "958b70f3c60ad858",
+    "name": "Hockey Glove",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 69",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "16042acba9b230fc",
+    "name": "Frisk Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 69",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "166c56f143543f10",
+    "name": "Sharp-Protective Gloves",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 69",
+      "dr": 3,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cr",
+        "fat",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "caf6adc7e6edf6ba",
+    "name": "Skullcap",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "d11f381ea9a18c6f",
+    "name": "Stock",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "neck"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "03dc000f3e3972d8",
+    "name": "Cavalry Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2ae57e16cd138884",
+    "name": "Early Firefighter's Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "697143244889ed06",
+    "name": "Heavy Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "e8b3189547bcc497",
+    "name": "Leather Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "8d198a05e3e64526",
+    "name": "Light Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "dc8dc153515e66ed",
+    "name": "Medium Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 60,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 4,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "e51919264622f62d",
+    "name": "Frag Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 125,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "867de8688364e485",
+    "name": "Frag Helmet Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a6a4ed9ae4173801",
+    "name": "Hard Hat",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 4,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "1f5a7d5e3d7505a0",
+    "name": "Modern Firefighter's Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2.5,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 5,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "4ce299629a241897",
+    "name": "Modern Firefighter's Helmet Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f2aae8de29a3c691",
+    "name": "Motorcycle Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 6,
+      "drSplit": 3,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "cb5b7cb9519b61b1",
+    "name": "Motorcycle Helmet Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "93e5f086ef45db06",
+    "name": "Ballistic Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 12,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2d4f6dd15f72eb47",
+    "name": "Ballistic Helmet Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1.4,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2f34ad97c2daa17f",
+    "name": "Football Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 6,
+      "drSplit": 3,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "56eb412f74015b07",
+    "name": "Hockey Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 2,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "burn",
+        "cor",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [
+        "skull"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f54d6976a786445f",
+    "name": "Riot Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 6,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "aadd588da5871f32",
+    "name": "Riot Helmet Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "79e79cc021969aa6",
+    "name": "Gas Mask (TL 5)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "d7f1e75a3d00e7d3",
+    "name": "Gas Mask (TL 6)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "084e580977c3bd60",
+    "name": "Gas Mask (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3.5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "2d967b4b0ecd8ff8",
+    "name": "Gas Mask (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "481a0e3bb864c74a",
+    "name": "SCBA Mask (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "18d46ff9e49e5c5e",
+    "name": "SCBA Mask (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "6c2c53b023b619b1",
+    "name": "Scuba Mask (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "df8f177863c86a6d",
+    "name": "FFM (TL 7)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "dd6317c028d2caaf",
+    "name": "Scuba Mask (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "c8333f67c6621005",
+    "name": "FFM (TL 8)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "0dc1a34ac8234c5b",
+    "name": "Hard-Hat Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 95,
+      "cost": 9000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": "",
+      "drByLocation": [
+        {
+          "locations": [
+            "skull",
+            "face"
+          ],
+          "dr": 6
+        }
+      ]
+    }
+  },
+  {
+    "_id": "e15ecbf349108dd5",
+    "name": "Anti-G Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "1c8577a99e7dbfb7",
+    "name": "Biohazard Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 1,
+      "drSplit": 0,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "cda90b669117d370",
+    "name": "Clean Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 0,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "b1e470efee4d4188",
+    "name": "Dry Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "91f58b2897cff45f",
+    "name": "Fireproof Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 4,
+      "drSplit": 1,
+      "drSplitAppliesTo": [
+        "cor",
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "e9eb7da17dcc877d",
+    "name": "NBC Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3.5,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 1,
+      "drSplit": 0,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": true,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": "NBC Suit"
+    }
+  },
+  {
+    "_id": "43c11274875d1c57",
+    "name": "Space Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 80,
+      "cost": 2000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 2,
+      "drSplit": 0,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": "Vacc Suit"
+    }
+  },
+  {
+    "_id": "9dd190070709cad3",
+    "name": "Space Suit Space Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 5000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a6a29a34cd57c2db",
+    "name": "Space Suit, EVA",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 180,
+      "cost": 2000000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 2,
+      "drSplit": 0,
+      "drSplitAppliesTo": [
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "35eadea965e89d69",
+    "name": "Space Suit, EVA Space Helmet",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 25000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 3,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "skull",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "cc7ae6d54f6ee89b",
+    "name": "Turnout Gear",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 5,
+      "drSplit": 2,
+      "drSplitAppliesTo": [
+        "cor",
+        "cr",
+        "cut",
+        "fat",
+        "imp",
+        "pi-",
+        "pi",
+        "pi+",
+        "pi++",
+        "tox"
+      ],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "dfe1fd3663b1cce1",
+    "name": "Wetsuit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "d8deb3c7028cc684",
+    "name": "Bomb Disposal Suit",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 65,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 20,
+      "drSplit": 5,
+      "drSplitAppliesTo": [
+        "cr",
+        "imp",
+        "burn",
+        "tox",
+        "cor",
+        "fat"
+      ],
+      "locations": [],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "f61a8955a3c8e6fc",
+    "name": "Bomb Disposal Suit Visor",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "dr": 10,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "a24275ed28f48b20",
+    "name": "Early Rebreather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 76",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "4d2f5529ff6c09a9",
+    "name": "Rebreather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 3500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 76",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "6f83e9184b06a46b",
+    "name": "Advanced Rebreather",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 7000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 76",
+      "dr": 2,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "eye",
+        "face"
+      ],
+      "flexible": false,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": true,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  }
+]

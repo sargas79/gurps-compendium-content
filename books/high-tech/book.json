@@ -98,6 +98,36 @@
     },
     {
       "pack": "equipment",
+      "pattern": ".",
+      "where": {
+        "system.weaponClass": "firearm"
+      },
+      "set": {
+        "system.rangedModes.*.malfunction": 17
+      },
+      "reason": "Malf. 17 for every gun, launcher and flamethrower the tables don't mark: the book notes each less reliable weapon, even TL5 black-powder guns (p. 94 note 3), so an unmarked one is Malf. 17 whatever its TL, not the Basic Set's figure by TL (p. B279); the file has no Malf. field, and the rules below set the marked ones"
+    },
+    {
+      "pack": "equipment",
+      "pattern": ".",
+      "where": {
+        "system.rangedModes.0.skill": "Throwing"
+      },
+      "set": {
+        "system.rangedModes.*.malfunction": 17
+      },
+      "reason": "Malf. 17 for the hand grenades, which have one as firearms do (p. B279); the grenade table marks none but the Grenade à Main, set below (p. 192)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Glock 17, 9x19mm|SIG-Sauer P226, 9x19mm|H&K USP, \\.40 S&W|H&K G11, 4\\.73x33mm|Voere VEC91, 5\\.7x26mm|GE M61A1, 20x102mm|GE M134, 7\\.62x51mm|Hughes M242, 25x137mm)$",
+      "set": {
+        "system.rangedModes.*.malfunction": null
+      },
+      "reason": "Very Reliable: no Malf. at all unless neglect lowers it (p. 101 note 4, p. 121 note 6, p. 137 note 3), which a Malf. of 19 or more also means (p. B279); maintenance is #364's"
+    },
+    {
+      "pack": "equipment",
       "pattern": "^(Grenade à Main|\\{?Collier, \\.50 Flintlock\\}?)$",
       "set": {
         "system.rangedModes.0.malfunction": 14
@@ -177,6 +207,39 @@
         "system.rangedModes.0.minRange": 1100
       },
       "reason": "minimum range 1100 yards (p. 152 note 1)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Aérospatiale SS\\.11, 164mm|Kolomna 9M14M Malyutka-M, 125mm|Hughes BGM-71A TOW, 127mm|Euromissile MILAN, 103mm|McDonnell FGM-77A Dragon, 127mm)$",
+      "set": {
+        "system.rangedModes.*.guidance": "guided"
+      },
+      "reason": "a guided attack (p. 152 note 3, p. B412), so the first Range figure is the missile's speed in yards a second, not 1/2D (p. 152)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^(Ford AIM-9L Sidewinder, 127mm|GD FIM-92A Stinger, 70mm|RLM FGM-148A Javelin, 127mm)$",
+      "set": {
+        "system.rangedModes.*.guidance": "homing",
+        "system.rangedModes.*.aimingSkill": "Artillery (Guided Missile)",
+        "system.rangedModes.*.guidedSkillLevel": 10
+      },
+      "reason": "a homing attack: the gunner aims with Artillery (Guided Missile) and the missile attacks at its own skill of 10 (p. 152 note 5, p. B413); the first Range figure is its speed, not 1/2D (p. 152)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^RLM FGM-148A Javelin, 127mm$",
+      "set": {
+        "system.rangedModes.1.linked": {
+          "damage": "6dx11",
+          "damageType": "cr",
+          "armorDivisor": 10,
+          "explosive": true,
+          "followUp": true,
+          "label": "Follow-up"
+        }
+      },
+      "reason": "the table prints a 6dx11(10) follow-up and a 7dx4 linked blast under both modes (p. 152); a mode holds one second line, and the parser gave the second mode the blast, so both keep the follow-up"
     },
     {
       "pack": "equipment",

@@ -1,0 +1,6 @@
+name is a GCA placeholder	Zen Marksmanship (%Gun Skills%)
+name is a GCA placeholder	Mounted Shooting ([Ranged Weapon]/[Mount/Vehicle])
+name is a GCA placeholder	Mounted Shooting (%RangedWeaponList%/[Mount/Vehicle])
+default is not a skill, defense or attribute: ""SK:__OPEN__::level" + ST:IQ - (ST:DX + 6)"	Precision Aiming
+name is a GCA placeholder	Targeted Attack ([Ranged Weapon Skill]/[Target])
+name is a GCA placeholder	Targeted Attack (%Gun Skills%/%TargetAlias%)

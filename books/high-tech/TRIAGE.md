@@ -93,7 +93,8 @@ of the 280 weapons on main keep them. 21 names also write the book's inch mark a
 apostrophes (`12G 2.75''` for 12G 2.75", p. 105; `Hale 9-pr Mk I, 2.5''`, p. 150). This
 is book-neutral (every GCA file quotes this way) and 258 name patches is not the fix.
 The patterns in book.json take a name with or without its braces, so they hold either
-way.
+way. **Fixed** by sargas79/GWorldVTT#627 (braces dropped); the inch mark stays `''`,
+as the system's own names spell it.
 
 **Malfunction.** The file has no `malf()` field, so every mode comes out with
 `malfunction: null`, which the system reads as a weapon that never jams.
@@ -109,7 +110,7 @@ way.
   tables have no Malf. column; its reliability rules count up from 17 (p. 79). Left null
   they never jam. The fix is either a default the parser applies to firearms (a
   book-neutral GWorldVTT issue) or a generated patch in #345; not done here. Ultra-Tech's
-  guns are all null too.
+  guns are all null too. **Decided in #345:** Malf. 17, below.
 
 **Split DR by footnote.** The parser reads every `a/b` split as the high-tech one
 (higher DR against piercing and cutting). The book has six kinds; patched:
@@ -212,3 +213,50 @@ Pistol style and the Equipment Bond perk (#346).
 3. Decide the default Malf. for the 207 weapons with none.
 4. Check each weapon row against its table, especially where the parser's reading
    changed (grenade launchers, mortars, cannon, rockets, missiles, shotguns).
+
+## Extracted in #345
+
+Against GWorldVTT main at 5603140 (gworld 1.35.0 + #591, #592, #595 and #627's braces;
+API 1.79.0): 13 perks, 9 techniques, 94 armour, 280 weapons (278 with attack modes).
+`overlap.txt` is empty, as expected. Every rule above matched.
+
+**Malf.** Basic Set p. B279 gives firearms and grenades a Malf. by TL (12, 14, 16, 17 at
+TL3, 4, 5, 6+), but High-Tech marks every less reliable weapon in its tables, TL5
+black-powder guns included ("Unreliable. Malfunctions on 16+", p. 94 note 3), and leaves
+the TL5 cartridge guns beside them unmarked. So an unmarked weapon is Malf. 17 whatever
+its TL. Three rules, in order: every `firearm` gets 17 on every mode (263), every hand
+grenade 17 (15), the eight Very Reliable guns back to none (p. 101 note 4, p. 121
+note 6, p. 137 note 3); the note rules above then set 14, 15 and 16 on the 44 marked.
+A `where` and a `*` in a patch path (`tools/lib/patch.mjs`) make this three rules rather
+than 270 names. Checked against the file's own notes: all 52 agree.
+
+**Guided and homing.** The missiles' first Range figure is speed, not 1/2D (p. 152), which
+the system reads from a mode's `guidance`: guided for the SS.11, 9M14M, TOW, MILAN and
+Dragon (note 3), homing for the Sidewinder, Stinger and Javelin (note 5), aimed with
+Artillery (Guided Missile) and attacking at the missile's own 10 (p. B413). **Patched.**
+The Javelin prints a follow-up and a linked blast; a mode holds one second line and the
+parser gave its second mode the blast, so both modes keep the follow-up (patched;
+sargas79/GWorldVTT#628).
+
+**Ids.** Quick-Swap, Sure-Footed (three) and Weapon Bond are also Martial Arts' or Monster
+Hunters 1's records, and Shoes, Climbing Monster Hunters 1's; the parser only steps aside
+for the Basic Set's ids, so extract.mjs gives these six an id seeded with HT
+(`tools/lib/ids.mjs`).
+
+**Every weapon row against its table** (Acc, damage, range, RoF, Shots, ST, Bulk, Rcl,
+cost, LC, and the follow-up or linked line), pp. 88-152, 179 and 192. Everything agrees
+except:
+
+| What | Records | |
+|---|---|---|
+| A scope's Acc (`scopeacc()`) is never read | 40 modes on 27 weapons: SVD 5+2, Barrett 6+3, the cannon, recoilless rifles, AGS-17, M29, TOW 3+3 ... | parser, sargas79/GWorldVTT#628; re-extract when it lands |
+| Second Rcl figure (slugs) of a shotgun with no Slug mode | Condor AM-402, Tower Blunderbuss, Manton Double, Colt Model 1855, Remington Hammer Lifter | a load, #374 |
+| RoF 1/8, Shots 22 read as RoF 1, Shots 22(8) | Motovilikha D-81TM | the autoloader's cycle; left |
+| A single Range figure written as 1/2D = Max | Tasertron TE-76, TASER M26, MBA Gyrojet | no halving either way; left |
+| Follow-ups the parser skips (drug effect, paint splat) | Dan-Inject JM Standard, NSG SplatMaster | #346 |
+
+**Blocked in the system:** the five armours whose higher DR is against crushing only
+(Hard Hat, Motorcycle, Football and Hockey Helmet, Shoulder Pads) validate as packs but
+the system's armour data model refuses them, so they can't be put on a character until
+sargas79/GWorldVTT#629 (which Monster Hunters 1's Cup, Athletic and Helmet, Motorcycle
+share). The data is right; nothing to change here.
