@@ -816,6 +816,70 @@
     "description": "<p>Zip-guns were a prominent part of street-gang culture in the 1950s in the U.S., in the 1970s in Northern Ireland, and in the 1990s in South Africa. A typical zip-gun is a single-shot .22 pistol. One common design uses a piece of wire-reinforced car-radio antenna as the barrel; scrap wood as the grip; a nail as the firing pin; and a rubber band as the mainspring. It suffers from poor accuracy, power, and reliability, but it can kill: Dmg 1d+1 pi-, Acc 0, Range 70/800, Wt. 0.5/0.0077, RoF 1, Shots 1(10i), ST 6, Bulk -1, Rcl 2. Malf. is only 12.</p><p>Finding the materials for a zip-gun takes three hours and a successful Scrounging roll. Base assembly time is eight hours - but use Long Tasks (p. B346) to determine how long it actually takes, rolling against Armoury (Small Arms)+2 or Machinist. The GM rolls in secret; critical failure means the gun explodes on first use, inflicting 1d cr ex damage on the user.</p>"
   },
   {
+    "_id": "78145f878d2c23a5",
+    "name": "Jam-Tin Grenade",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During the Russo-Japanese War (1904-1905), and again in WWI, the realities of trench warfare often led soldiers to construct their own hand grenades. Most consisted of a slab of explosive in a metal container such as an empty flare round, 37×94mmR cartridge case, cigarette can, or jam tin (as shown in the film Gallipoli). Combat engineers usually assembled these munitions.</p><p>Any available explosive will work - including black powder (pp. 183-184), dynamite (pp. 184-185), and military demolition explosives such as picric acid. Fitting an impact fuse or a burning time fuse (p. 187) yields a makeshift offensive hand grenade. Attaching a wooden handle allows better handling. Adding a handful of large nails, tightly wrapped with thick wire, gives an improvised defensive grenade with adequate fragmentation. Each device requires an Explosives (Demolition) roll and 10 minutes' work.</p><p>A typical jam-tin grenade inflicts 5d cr ex damage - or 4d [2d] cr ex, if fitted with fragmentation material. Cost depends on the explosive, which is free for soldiers on the battlefield. Weight is about 2 lbs.</p>"
+  },
+  {
+    "_id": "4572e47a6d3f89d2",
+    "name": "Jam-Tin Grenade (Fragmentation)",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During the Russo-Japanese War (1904-1905), and again in WWI, the realities of trench warfare often led soldiers to construct their own hand grenades. Most consisted of a slab of explosive in a metal container such as an empty flare round, 37×94mmR cartridge case, cigarette can, or jam tin (as shown in the film Gallipoli). Combat engineers usually assembled these munitions.</p><p>Any available explosive will work - including black powder (pp. 183-184), dynamite (pp. 184-185), and military demolition explosives such as picric acid. Fitting an impact fuse or a burning time fuse (p. 187) yields a makeshift offensive hand grenade. Attaching a wooden handle allows better handling. Adding a handful of large nails, tightly wrapped with thick wire, gives an improvised defensive grenade with adequate fragmentation. Each device requires an Explosives (Demolition) roll and 10 minutes' work.</p><p>A typical jam-tin grenade inflicts 5d cr ex damage - or 4d [2d] cr ex, if fitted with fragmentation material. Cost depends on the explosive, which is free for soldiers on the battlefield. Weight is about 2 lbs.</p>"
+  },
+  {
+    "_id": "4b4fced887b3c123",
+    "name": "Geballte Ladung",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWI, the Germans adopted a style of concussion grenade that remained standard until the end of WWII: the Stielhandgranate (\"stick hand grenade\"). Americans nicknamed it the \"Potato Masher\" after its appearance. German military influence manifested itself in similar or identical patterns in Bolivia, China, Finland, and elsewhere.</p><p>The long wooden handle gave good leverage for a throw, compensating for the extra weight (+2 ST to figure distance; see p. B355). It also made the grenade awkward to carry and hide; German soldiers stuck it in their belt or even their boot, and improvised carriers from sandbags. To activate the grenade before throwing, the user twisted the end cap off the handle and pulled sharply on the string inside (two Ready maneuvers).</p><p>The improvised geballte Ladung (\"concentrated charge\") - used to attack vehicles - consisted of six grenade heads bundled around one complete stick grenade: Dmg 6d×3 cr ex, Wt. 4.4.</p>"
+  },
+  {
+    "_id": "fd0205110ae8bd3f",
+    "name": "AMC M17, 56mm",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>Fired from a spigot launcher ($30), this was the body of the MK II fragmentation grenade (p. 191) screwed onto a tail and fitted with an impact fuse. The detachable launcher for the Springfield M1903 (p. 112) weighed 0.5 lb.; that for the Springfield M1 Garand (p. 112) weighed 0.75 lb.</p>"
+  },
+  {
+    "_id": "288a73d2e9fd1e40",
+    "name": "Bergmann GSprgr30, 30mm",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Gewehrsprenggranate 30mm (\"30mm HE rifle grenade\") was fired from a 1.7-lb. cup launcher ($50) attached to the Mauser Kar98k (see Mauser Gew98, p. 111). Some 1.5 million launchers were made during WWII; one was issued to every German infantry squad. A 0.6-lb. sight was issued but unpopular. The GSprgr30 was propelled using a blank cartridge. In a pinch, it could also function as a hand grenade: Fuse 6.</p><p>The Gewehrpropagandagranate (\"propaganda rifle grenade\") scattered 40 3.5\"×6\" leaflets instead: Range 50/500, Wt. 0.5.</p><p>The HASAG grosse Gewehrpanzergranate 40mm (\"large antitank rifle grenade\"), or GGPzgr40, featured a 40mm HEAT warhead: Dmg 7d(10) cr ex with 6d cr ex linked, Range 10/150, Wt. 0.9. Japanese copies were fired from a 1.5-lb. cup launcher attached to the Arisaka 99 Shiki (see Arisaka Meiji 38 Shiki Shoujuu, p. 112).</p>"
+  },
+  {
+    "_id": "4a0658289d292507",
+    "name": "MECAR Energa-75, 75mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Energa-75 rifle grenade was a HEAT munition originally designed to be launched from a 0.75-lb. spigot launcher ($30) attached to such rifles as the Enfield Number 4 Mk I (see Enfield SMLE Mk III, p. 112). It was soon modified to be fired from 7.62×51mm NATO rifles with integral launchers, such as the FN FAL (p. 115). It was widely adopted, users including Belgium, the Netherlands, Rhodesia, South Africa, and the U.K.</p><p>The U.S. Army used a copy called the M28 (1950-1953) during the Korean War, fired from a 0.75-lb. spigot launcher ($30) attached to the Springfield M1 Garand (p. 113).</p>"
+  },
+  {
+    "_id": "ee433169b126f9a9",
+    "name": "Rafael Simon 150, 100mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>This bullet-trap rifle grenade is designed for breaching doors and windows - especially in hostage-rescue operations and urban combat. Any 5.56×45mm rifle with a NATO flash-hider can launch it. A long aluminum standoff rod ensures that the explosion occurs at the proper distance, destroying doors with minimal collateral damage. The Simon is in service with the Israeli and French militaries, and the U.S. Army adopted it as the M100 Grenade Rifle Entry Munition (GREM) in 2000.</p>"
+  },
+  {
+    "_id": "6be0face09dc72bc",
+    "name": "Sedgley Glove Pistol MK 2, .38 S&W",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Designed for U.S. Naval Intelligence during WWII, the Sedgley Glove Pistol MK 2 probably never saw use in combat. It was a sturdy glove (DR 1) with a metal plate riveted to the back of the hand. This mounted a very short barrel loaded with a single .38 S&amp;W pistol cartridge (Dmg 2d-1 pi). It was fired by punching the target.</p><p>Use DX, Boxing, Brawling, or Karate to hit. The bullet's damage is linked to that of a successful punch; the two automatically hit the same location. The pistol doesn't go off if the target dodges the punch, but if he parries it, the shot may still hit the parrying arm or weapon - treat as Hitting the Wrong Target (p. B389). Reloading takes six seconds.</p>"
+  },
+  {
     "_id": "a5c5670116ca450b",
     "name": "T Battery",
     "pages": "HT13",
@@ -1398,6 +1462,1062 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This clothing treatment works like a sealed chemical-protection suit in reverse: instead of keeping chemicals out, it prevents chemicals from leaving. The result is -4 to all Tracking attempts to follow the wearer wholly or partly by scent. Scent-masking technology is common on commercial hunter's outfits and an option for most other clothing. Costs 200% of clothing cost.</p>"
+  },
+  {
+    "_id": "eb31c1bf8b88b571",
+    "name": "Computer Sight (Night Vision)",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, full-solution fire-control systems with integral ballistic computers are introduced for infantry weapons. Initial platforms are rocket launchers and grenade launchers, which profit greatly from improved rangefinding and programming. As TL8 progresses, these sights grow small enough to mount on small arms.</p><p>Typical devices run a targeting program that gives +1 Gunner or Guns, include a laser rangefinder, and incorporate magnification (optical and/or electronic) and low-light capability (image intensification or thermal imaging). The gunner lases the target, and the computer calculates the aiming point and shows it on an integral display. This provides an extra +3 to hit that target with an aimed attack.</p><p>Includes a targeting program (+1 Gunner/Guns), a laser rangefinder (+3 Acc out to 4,000 yards), 3-9× magnification (+1 to +3 Acc), and either Night Vision 7 or Infravision. Adds -2 Bulk.</p>"
+  },
+  {
+    "_id": "fbd1338fdac518fb",
+    "name": "Mini-Computer Sight (Night Vision)",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, full-solution fire-control systems with integral ballistic computers are introduced for infantry weapons. Initial platforms are rocket launchers and grenade launchers, which profit greatly from improved rangefinding and programming. As TL8 progresses, these sights grow small enough to mount on small arms.</p><p>Typical devices run a targeting program that gives +1 Gunner or Guns, include a laser rangefinder, and incorporate magnification (optical and/or electronic) and low-light capability (image intensification or thermal imaging). The gunner lases the target, and the computer calculates the aiming point and shows it on an integral display. This provides an extra +3 to hit that target with an aimed attack.</p><p>Includes a targeting program (+1 Gunner/Guns), a laser rangefinder (+3 Acc out to 2,000 yards), 2-4× magnification (+1 to +2 Acc), and either Night Vision 7 or Infravision. Adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "c325a74859afb221",
+    "name": "Accessory Rail (One Position)",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Many firearms feature integral rails for mounting accessories. Typically located on the receiver of a rifle or under the barrel of a modern pistol, these allow the user to attach and detach accessories quickly (a Ready maneuver). Weapons without rails require gunsmithing to provide a stable mount for optics and sighting aids. Duct tape (p. 26) will do in a pinch, but it won't suffice for a device that gives an Acc or skill bonus!</p><p>Strips of rail can be added to any suitable weapon surface - notably the top of the receiver (for sights and scopes) and around the forearm (for tactical lights, targeting lasers, and underbarrel grenade launchers). Each rail typically mounts one item, although long rails can hold more; e.g., an add-on night sight and a scope, front-to-back.</p>"
+  },
+  {
+    "_id": "3f18a7187ca701db",
+    "name": "Accessory Rail (Three or Four Positions)",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Many firearms feature integral rails for mounting accessories. Typically located on the receiver of a rifle or under the barrel of a modern pistol, these allow the user to attach and detach accessories quickly (a Ready maneuver). Weapons without rails require gunsmithing to provide a stable mount for optics and sighting aids. Duct tape (p. 26) will do in a pinch, but it won't suffice for a device that gives an Acc or skill bonus!</p><p>Strips of rail can be added to any suitable weapon surface - notably the top of the receiver (for sights and scopes) and around the forearm (for tactical lights, targeting lasers, and underbarrel grenade launchers). Each rail typically mounts one item, although long rails can hold more; e.g., an add-on night sight and a scope, front-to-back.</p>"
+  },
+  {
+    "_id": "f2327b5e291dcc8e",
+    "name": "Extrudable Explosive (Caulking-Gun Cartridge)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Extrudable explosive (plasticized RDX) looks like green toothpaste. It comes in caulking-gun cartridges and small plastic tubes. Used to fill hard-to-reach places, it's handy for blowing open doors, safes, etc. Roll against Explosives (Demolition) to apply it properly. Detonating it requires a blasting cap or other explosion.</p><p>A 0.1-lb. blob of extrudable explosive does 4d+2 cr ex damage; use maximum damage for objects in contact with it (see p. B415). A caulking-gun cartridge is $40, 1.1 lb., and holds 1 lb. of explosive (7d×2 cr ex); a caulking gun is $5, 0.5 lb. A small \"toothpaste tube\" is $10, 0.3 lb., and holds 0.25 lb. of explosive (7d cr ex).</p>"
+  },
+  {
+    "_id": "94992d8b33fe22a0",
+    "name": "Caulking Gun",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Extrudable explosive (plasticized RDX) looks like green toothpaste. It comes in caulking-gun cartridges and small plastic tubes. Used to fill hard-to-reach places, it's handy for blowing open doors, safes, etc. Roll against Explosives (Demolition) to apply it properly. Detonating it requires a blasting cap or other explosion.</p><p>A 0.1-lb. blob of extrudable explosive does 4d+2 cr ex damage; use maximum damage for objects in contact with it (see p. B415). A caulking-gun cartridge is $40, 1.1 lb., and holds 1 lb. of explosive (7d×2 cr ex); a caulking gun is $5, 0.5 lb. A small \"toothpaste tube\" is $10, 0.3 lb., and holds 0.25 lb. of explosive (7d cr ex).</p>"
+  },
+  {
+    "_id": "0ce20de59fbf4ea5",
+    "name": "Tear Gas Spray",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an aerosol spray canister that dispenses any of several agents commonly called \"tear gas\" (see Tear Gas, p. 171). Treat it as a melee weapon with Reach 1, 2, not as a ranged attack; speed/range penalties don't apply. The victim must make two HT-2 rolls: one to resist coughing (see Afflictions, p. B428) and another to resist blindness (p. B124). Both effects endure for minutes equal to the margin of failure.</p><p>Tear gas sprays come in many sizes. The canister in the table is small enough to carry in a coat pocket or a purse. Dispensers are sometimes incorporated into other devices, notably flashlights (pp. 51-52) and batons (see Clubs, p. 198). One-shot models can even be concealed in items as small as wristwatches (p. 31).</p>"
+  },
+  {
+    "_id": "c5e5a3bbff2246a5",
+    "name": "Pepper Spray",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to tear gas spray (above), this dispenser uses a pepper solution that's more effective than most chemical agents - especially in cold weather, against animals, and on people who are emotionally disturbed or on drugs. The victim must make two HT-4 rolls: one to resist coughing (see Afflictions, p. B428) and another to resist blindness (p. B124). Both effects endure until the solution is removed with lots of water and towels.</p>"
+  },
+  {
+    "_id": "c42c3564dd1f622e",
+    "name": "Squirt Carbine",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a powerful toy water gun charged with compressed air by pumping the action like a shotgun. Filling the two-pint water tank takes 10 seconds; removing the tank and replacing it with a spare takes only two Ready maneuvers. After that, pressurizing the firing chamber takes another five seconds. A larger version with an interchangeable 15-pint backpack tank has Range 12, Wt. 18/15, Shots 15, and Cost $45, and takes 10 seconds to pressurize.</p><p>Possible loads include water (regular or holy), water-soluble paint, malodorous fluid (see Liquid, pp. 171-172), alcohol, and distilled garlic. Undead-hunters will find the film From Dusk Till Dawn inspirational. Acids and other corrosives won't work, as they'll quickly eat through the gun's toy-grade plastic.</p><p>Effects depend on the liquid. Handle paint, alcohol, etc., using Liquids in the Face (p. B405). Water is merely distracting - halve the penalties given there to -1. Paint will blind those wearing goggles (eyes) or a visor (face) until it's wiped off (takes three Ready maneuvers) or the protective gear is removed.</p>"
+  },
+  {
+    "_id": "c6feccb4078f1c81",
+    "name": "Squirt Carbine (Backpack Tank)",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a powerful toy water gun charged with compressed air by pumping the action like a shotgun. Filling the two-pint water tank takes 10 seconds; removing the tank and replacing it with a spare takes only two Ready maneuvers. After that, pressurizing the firing chamber takes another five seconds. A larger version with an interchangeable 15-pint backpack tank has Range 12, Wt. 18/15, Shots 15, and Cost $45, and takes 10 seconds to pressurize.</p><p>Possible loads include water (regular or holy), water-soluble paint, malodorous fluid (see Liquid, pp. 171-172), alcohol, and distilled garlic. Undead-hunters will find the film From Dusk Till Dawn inspirational. Acids and other corrosives won't work, as they'll quickly eat through the gun's toy-grade plastic.</p><p>Effects depend on the liquid. Handle paint, alcohol, etc., using Liquids in the Face (p. B405). Water is merely distracting - halve the penalties given there to -1. Paint will blind those wearing goggles (eyes) or a visor (face) until it's wiped off (takes three Ready maneuvers) or the protective gear is removed.</p>"
+  },
+  {
+    "_id": "f51a09e738208567",
+    "name": "NORINCO QXJ04",
+    "pages": "HT181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, laser technology yields the first beam weapons. All fielded designs are for use against optics - including the human eye. Technical difficulties keep lethal laser weapons experimental at best.</p><p>A laser dazzler is a low-powered laser that temporarily blinds people and optical sensors. It's intended for personal defense and riot control. It emits a Vision-based affliction in a cone; see Area and Spreading Attacks (p. B413). Only those looking in the laser's direction are affected. Victims must make a HT-5 roll to resist; those beyond 1/2D get +3 on their roll. DR has no effect, but Protected Vision (p. B78) gives +5 and Nictitating Membrane (p. B71) confers +1/level - and anti-laser goggles (p. 71) grant both. Failure means blindness (p. B124) for minutes equal to the margin of failure.</p><p>The 04 Shi Jiguang Xuanmu Qiang (\"laser dazzler gun type 04\") looks like a bulky bullpup rifle. It has a 1-lb. 3× scope (+1 Acc) for aiming and a removable battery pack instead of a magazine. It uses a green laser beam. The Chinese police adopted it in 2004.</p>"
+  },
+  {
+    "_id": "004a2ae3ded60ce3",
+    "name": "NORINCO ZM87",
+    "pages": "HT181",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, laser technology yields the first beam weapons. All fielded designs are for use against optics - including the human eye. Technical difficulties keep lethal laser weapons experimental at best.</p><p>A blinding laser is a medium-powered laser that fries optics and permanently blinds people. It delivers a Vision-based affliction in a fairly narrow beam aimed at a single target - but this is still broad enough that the gunner need not specifically target the eyes (no penalty for hit location). The victim must be looking toward the laser to be affected. He gets a HT-10 roll to resist, modified as above: +3 beyond 1/2D, +5 for Protected Vision, and +1/level for Nictitating Membrane. Failure inflicts crippling blindness; see Duration of Crippling Injuries (p. B422), and remember that failure by 10+ is a critical failure (p. B348).</p><p>The ZM87 was a tripod-mounted blinding laser. It was offered for export in the mid-1990s but banned by the United Nations Protocol on Blinding Laser Weapons. Only 22 are thought to have been made.</p>"
+  },
+  {
+    "_id": "88bac7f84c618fb0",
+    "name": "TMi35",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Tellermine 35 (\"plate mine model 1935\") was the standard German antitank mine of WWII. It was a disc-shaped device, 1' in diameter, with a carrying handle. Its pressure fuse required at least 220 lbs. to activate. The TMi35 sometimes had an anti-lifting fuse, too (-2 on attempts to remove it, with any failure meaning detonation). Similar designs are still made in various places today.</p>"
+  },
+  {
+    "_id": "2edb8298c8007fdd",
+    "name": "OZM-3",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The OZM-3 resembled a soup can with a fuse assembly on top. The fuse was usually connected to a tripwire, which required 15 lbs. to activate. When tripped, the mine hurled a grenade that exploded 5' above the ground, scattering fragments to the sides. (Immediately dropping to the ground - see Dodge and Drop, p. B377 - avoids the fragmentation damage!) The OZM-3 is typical of TL7-8 bounding mines - often known by the slang term \"Bouncing Betty\" - used against personnel from WWII on. Most armies had something similar during the second half of the 20th century.</p><p>The German Schrapnellmine 35 (1935-1944), or SMi35, was the first mine of this type: Dmg 4d×2 [4d] cr ex, Wt. 8.8.</p><p>The U.S. equivalent is the M16 (1953-): Dmg 6d×2 [4d] cr ex, Wt. 8.2.</p>"
+  },
+  {
+    "_id": "046e3501d24e5f82",
+    "name": "M18A1 Claymore",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This directional, above-ground weapon is in service with the U.S. military and many other countries, and has been widely copied. It consists of a convex block of C4 explosive with 700 steel pellets embedded in the front, enclosed in a plastic case about the size of a pocket book. It comes in a 5-lb. bandoleer with blasting cap (p. 187), 33-yard wire, and 0.75-lb. military blasting machine (p. 187). With its folding legs deployed, the mine is pointed toward the desired area of effect and can be detonated remotely or by tripwire.</p><p>When triggered, everyone out to 270 yards in a 60° cone in front of the device is attacked at basic skill 9, with +9 for the rapid-fire bonus but minus the range penalty for distance from the mine. Treat this as a huge shotload (see Multiple Projectiles, pp. 172-174) with Dmg 2d(0.5) pi-, Range 55/270, RoF 1×700, Rcl 1. Resolve attacks in order of distance - if all 700 pellets somehow manage to hit something, no more-distant targets can be hit. While the pellets are directed forward, the explosion (6d×3 cr ex) isn't directional and affects a large area to the sides and rear; thus, the weapon is usually deployed 20+ yards from friendly positions. To see the Claymore at work, check out such action movies as Platoon and Predator.</p><p>The less-than-lethal M5 Modular Crowd Control Munition-Ground Emplaced (2001-) looks identical and works the same way, but fires a load of 600 plastic pellets. Treat the \"Stingmore\" as a shotload with Dmg 1d-2(0.2) cr, Range 15/75, RoF 1×600, Rcl 1, Cost $350. The explosion does only 2d+1 cr ex.</p>"
+  },
+  {
+    "_id": "51edf1c1e0abb5ee",
+    "name": "M86 PDM",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The M86 Pursuit Deterrent Munition (PDM) is a hand grenade-sized antipersonnel mine. American special-ops soldiers use it on the retreat, or for quick ambush and harassment. The user simply arms it and drops it on the ground. After a 25-second delay, it deploys seven 20' tripwires. After another 40 seconds, it's fully armed - and if disturbed, launches itself 6' above the ground and detonates. Left undisturbed, it self-destructs (explodes!) after four hours. Some TL8 artillery shells and cluster bombs scatter similar munitions.</p>"
+  },
+  {
+    "_id": "174b3cab6ea4de6e",
+    "name": "PuW12.5, 90mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>The PuW-series munitions were the first modern streamlined bombs. The 12.5-kilogram model was the lightest variant used by the Germans in WWI.</p>"
+  },
+  {
+    "_id": "4c2342bdf154e016",
+    "name": "Alkan MMN, 89mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>This was the standard light bomb of the French military during WWI and the 1920s.</p>"
+  },
+  {
+    "_id": "f7eacd662c82df99",
+    "name": "25-lb. MK II, 111mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>This was the U.S. military's standard light bomb through WWI and the 1920s.</p>"
+  },
+  {
+    "_id": "e07bae7d919da974",
+    "name": "SC50, 200mm",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>The Sprengbombe, Cylindrisch, 50kg (\"50-kilogram cylindrical demolition bomb\") was one of the lighter bombs the German Luftwaffe used during WWII.</p>"
+  },
+  {
+    "_id": "cac8e1d56a6621ac",
+    "name": "SC250, 370mm",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>The Sprengbombe, Cylindrisch, 250kg (\"250-kilogram cylindrical demolition bomb\") was the most common bomb dropped by the German Luftwaffe.</p>"
+  },
+  {
+    "_id": "9ed3bc41631c9184",
+    "name": "100-lb. GP AN-M30, 208mm",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>This was a light general-purpose bomb employed by the USAAF in WWII.</p>"
+  },
+  {
+    "_id": "f393f4ed49d03b94",
+    "name": "250-lb. GP MK 81, 228mm",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>This is the standard light, low-drag general-purpose bomb used by the U.S. military and many of its allies since the 1950s.</p>"
+  },
+  {
+    "_id": "24e95d6cbcfd49e6",
+    "name": "500-lb. GP MK 82, 273mm",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>The MK 82 is probably the most common \"dumb\" bomb worldwide today.</p>"
+  },
+  {
+    "_id": "0d0978566ca6f704",
+    "name": "500-lb. CBU-55/B, 256mm",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shortly after combat aircraft appear at TL6, they're carrying bombs; the first purpose-built aircraft bombs entered service in 1912. Most of these munitions are \"dumb\": they're simply dropped, and explode upon hitting the ground. Many of the weapons below arm the planes described in Chapter 8.</p><p>This low-drag fuel-air explosive bomb was dropped from helicopters and low-performance airplanes. It scattered three submunitions, which released an 8-yard-radius cloud that exploded violently. Its main applications were detonating minefields and clearing landing zones. See also Fuel-Air Explosives (pp. 186-187)</p>"
+  },
+  {
+    "_id": "93b87249dc7a1c74",
+    "name": "Little Boy (12.5 kt)",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nuclear weapons, an early TL7 development, derive their immense destructive power from nuclear fission or fusion. The energy released by a nuclear explosion takes the form of a thermal pulse (heat), concussion, hard radiation, and - in a low-altitude burst - residual radiation (fallout). A nuclear device thus inflicts crushing damage with the explosion (ex) modifier, linked to burning damage with the explosion, radiation (rad), and surge (sur) modifiers; see Damage Modifiers (p. B104). Divide burning damage by only (2 × distance in yards from center of blast). Flash and Blindness (p. 182) always applies!</p><p>It's customary to rate a nuclear weapon's yield in terms of the quantity of TNT to which it's equivalent. This is usually expressed in kilotons (thousands of tons of TNT) or megatons (millions of tons). Nuclear explosives don't appear on the Relative Explosive Force Table (p. 183), though, because most of a nuclear device's weight is that of the detonator, not the explosive.</p><p>The first atomic bomb used in war was a fission device named \"Little Boy.\" Released over Hiroshima, Japan on August 6, 1945, it devastated the city with the equivalent of 12,500 tons of TNT, or 12.5 kilotons (6d×10,000 cr ex with 6d×6,500 burn ex rad sur linked). The hydrogen bomb, developed in the mid-1950s, further refined the art of destruction. Properly known as a thermonuclear device, this two-stage weapon employs a fission bomb to provide the incredible heat necessary to fuse hydrogen. The yield can approach 100 megatons - well beyond what fission can accomplish. At the other end of the spectrum, compact, modest-yield nuclear weapons become possible at mid-TL7. The U.S. and Russia produced miniaturized warheads weighing 50-100 lbs., with yields of about 0.1 kiloton (6d×900 cr ex with 6d×650 burn ex rad sur linked).</p>"
+  },
+  {
+    "_id": "458be81f2d7cd076",
+    "name": "Miniaturized Nuclear Warhead (0.1 kt)",
+    "pages": "HT195",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Nuclear weapons, an early TL7 development, derive their immense destructive power from nuclear fission or fusion. The energy released by a nuclear explosion takes the form of a thermal pulse (heat), concussion, hard radiation, and - in a low-altitude burst - residual radiation (fallout). A nuclear device thus inflicts crushing damage with the explosion (ex) modifier, linked to burning damage with the explosion, radiation (rad), and surge (sur) modifiers; see Damage Modifiers (p. B104). Divide burning damage by only (2 × distance in yards from center of blast). Flash and Blindness (p. 182) always applies!</p><p>It's customary to rate a nuclear weapon's yield in terms of the quantity of TNT to which it's equivalent. This is usually expressed in kilotons (thousands of tons of TNT) or megatons (millions of tons). Nuclear explosives don't appear on the Relative Explosive Force Table (p. 183), though, because most of a nuclear device's weight is that of the detonator, not the explosive.</p><p>The first atomic bomb used in war was a fission device named \"Little Boy.\" Released over Hiroshima, Japan on August 6, 1945, it devastated the city with the equivalent of 12,500 tons of TNT, or 12.5 kilotons (6d×10,000 cr ex with 6d×6,500 burn ex rad sur linked). The hydrogen bomb, developed in the mid-1950s, further refined the art of destruction. Properly known as a thermonuclear device, this two-stage weapon employs a fission bomb to provide the incredible heat necessary to fuse hydrogen. The yield can approach 100 megatons - well beyond what fission can accomplish. At the other end of the spectrum, compact, modest-yield nuclear weapons become possible at mid-TL7. The U.S. and Russia produced miniaturized warheads weighing 50-100 lbs., with yields of about 0.1 kiloton (6d×900 cr ex with 6d×650 burn ex rad sur linked).</p>"
+  },
+  {
+    "_id": "4c431a8facfcae7e",
+    "name": "Trench Knife",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is simply a large knife with a knuckle guard that lets it function as brass knuckles when punching. Most U.S. Marine trench raiders during WWI carried an M1918 trench knife and a Colt M1911 (p. 98), and found both indispensable. It includes a 0.5 lb. sheath.</p>"
+  },
+  {
+    "_id": "0e7133dd1b958e61",
+    "name": "Tonfa",
+    "pages": "HT198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also known as a \"side-handle baton,\" this is a modernized plastic version of the TL3 Okinawan club. Introduced to U.S. police forces in 1958, it has become widespread with Western law enforcement.</p>"
+  },
+  {
+    "_id": "e78a239d673381e7",
+    "name": "Stun Gun",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electric stun weapons deliver a high-voltage, low-amperage electric current on contact. A hit means the victim must make a HT-3 roll or be stunned. On a failure, he's incapacitated for as long as the device remains in contact and for (20 - HT) seconds afterward, minimum one second. After that time, he may roll at HT-3 each second to recover. Note that the electric current may start a fire if the target is covered in flammable liquid such as alcohol, gasoline, or many pepper sprays! For other important details, see Nonlethal Electrical Damage (p. B432).</p><p>A \"stun gun\" isn't a gun at all, but a handheld contact device that uses an electric current to disorganize nerve function. Relatively small - just a handgrip with protruding contacts (Holdout -1) - it's sometimes concealed in such everyday items as cell phones. A stun gun requires 2×S batteries, which last for thousands of stuns. Legality is a touchy issue: stun guns are legal defensive weapons (LC4) in many jurisdictions, including most of the U.S., but illegal (LC2) in numerous others, such as in the states of New York, New Jersey, and Hawaii, and in Australia, Canada, India, Japan, and the U.K.</p>"
+  },
+  {
+    "_id": "44d5fbb324357840",
+    "name": "Katana",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Japanese soldiers during WWII were issued machine-made \"samurai swords\" such as the 99 Shiki Guntou (\"type 99 army blade\"). Modern cutlery shops sell similar models. Some lack the refinements commonly associated with Japanese swords, and may be of cheap quality; others are of fine or even very fine quality due to better materials. Many are simply good-quality. Modern blades are shorter and lighter than traditional katanas. The 1.25 lb. sheath doubles as a baton.</p>"
+  },
+  {
+    "_id": "f6ac1796681fb524",
+    "name": "Machete",
+    "pages": "HT196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This long knife has a heavy, flared, single-edged blade optimized for chopping. While designed as a tool for cutting sugarcane or clearing a path through jungle, it often serves as a weapon at TL5-8 - such as in the Cuban revolution of the late 19th century, the Chaco War in the 1930s, and the Rwandan civil war in the 1990s. It's usually cheap quality. A 0.3-lb. sheath is included.</p>"
+  },
+  {
+    "_id": "d1f33fd64dc1e5f1",
+    "name": "Push Knife",
+    "pages": "HT196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The hilt of this T-shaped knife is at 90° to the blade, which protrudes from between the fingers of the fist. There are many different sizes and patterns, but those most common at TL6-8 are small. A push knife issued to British secret agents during WWII consisted of a narrow pick mounted on a contoured metal grip. Some commercial push knives at TL7 are disguised as belt buckles (+4 to Holdout). A 0.25-lb. sheath is included.</p>"
+  },
+  {
+    "_id": "4bedfd5285a25242",
+    "name": "Survival Knife",
+    "pages": "HT196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a heavy hunting and fighting knife, often with a serrated section for sawing. Its prototype was the 19th-century Bowie knife. Modern versions often have a hollow hilt to hold a variety of useful or not-so-useful survival items (see Survival Kits, pp. 58-59). This hollow handle might even accept a pole, yielding a makeshift spear; see the film First Blood for a famous specimen that sparked considerable interest among fans. Pouches on the 0.5-lb. sheath may hold further equipment, such as a compass (p. 52) or a whetstone (p. 25).</p>"
+  },
+  {
+    "_id": "ee31a83d22b88de7",
+    "name": "Switchblade",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This easily concealed small knife springs or slides out of its case handle (Holdout 0). It's used for quick stabs and slashes. Paratroopers carry it for cutting parachute lines. Switchblades are flimsy, and may snap if used to parry (1-4 on 1d).</p>"
+  },
+  {
+    "_id": "e188a2ee0e1ab016",
+    "name": "Tactical Folding Knife",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This palm-sized folding knife (Holdout 0) unfolds with a flick of the wrist. This is a free action - an improvement over less-advanced folders, which require a Ready maneuver and two hands to open. Has either a 0.25 lb. belt pouch or a belt clip (+1 to Fast-Draw, -2 to rolls for incidental damage; see Sheaths, see box).</p>"
+  },
+  {
+    "_id": "3ed8407c8fc2c928",
+    "name": "Expandable Baton",
+    "pages": "HT198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This steel baton expands using an internal spring or gravity. The latter version takes a Ready maneuver to flick open - or no time at all on a successful Fast-Draw (Sword) roll. Retracting either type requires tapping it on a hard surface. Such batons are about 12\" long closed (Holdout -1), 30\" long open (Holdout -3). Security forces often use them, and their concealability makes them convenient for personal defense.</p>"
+  },
+  {
+    "_id": "075adbcb559cd74d",
+    "name": "Cattle Prod",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electric stun weapons deliver a high-voltage, low-amperage electric current on contact. A hit means the victim must make a HT-3 roll or be stunned. On a failure, he's incapacitated for as long as the device remains in contact and for (20 - HT) seconds afterward, minimum one second. After that time, he may roll at HT-3 each second to recover. Note that the electric current may start a fire if the target is covered in flammable liquid such as alcohol, gasoline, or many pepper sprays! For other important details, see Nonlethal Electrical Damage (p. B432).</p><p>A cattle prod is 3' long and delivers an electric jolt through contacts on the tip. This is sufficient to burn skin; a successful thrusting attack to an unprotected location does 1d-3 burning damage. While cattle prods aren't legal antipersonnel weapons in most places, they're easily acquired across the U.S. and elsewhere. A prod requires 6×S batteries, which last for thousands of \"zaps.\"</p>"
+  },
+  {
+    "_id": "8a71e70355b20572",
+    "name": "Stun Baton",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electric stun weapons deliver a high-voltage, low-amperage electric current on contact. A hit means the victim must make a HT-3 roll or be stunned. On a failure, he's incapacitated for as long as the device remains in contact and for (20 - HT) seconds afterward, minimum one second. After that time, he may roll at HT-3 each second to recover. Note that the electric current may start a fire if the target is covered in flammable liquid such as alcohol, gasoline, or many pepper sprays! For other important details, see Nonlethal Electrical Damage (p. B432).</p><p>A stun baton is a stun gun built into a light baton - mainly to increase reach. It has contacts running along the sides, which allows swung attacks as well as thrusts. A stun baton requires 2×S batteries, which last for thousands of stuns. For LC, see the discussion for stun guns (above).</p>"
+  },
+  {
+    "_id": "55a37f2450b81ea8",
+    "name": "Sword Cane",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This weapon is a 2-3' blade concealed in a walking stick. Fashionable gentlemen - and those posing as defenseless invalids - carry it in situations where weapons are forbidden or not tolerated. Treat as a smallsword, but due to the thin blade, quality is a level lower than what's paid for. It completely lacks a guard, which gives -2 to Parry. The 1-lb. sheath doubles as a baton.</p>"
+  },
+  {
+    "_id": "e27c467b3c59939d",
+    "name": "Bayonet (TL4-6 Long Arm)",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bayonet is a blade affixed to a firearm's muzzle, originally developed at TL4 to enable the single-shot muskets carried by soldiers and hunters to serve as effective melee weapons once discharged. At TL5, the bayonet completely replaces the pike in front-line military service. At TL6-8, guns can fire multiple shots and reload quickly, but close combat remains a battlefield possibility; a bayonet-tipped rifle is often the last line of defense.</p><p>Fixing a bayonet takes four Ready maneuvers: one to draw the bayonet, one to change grips, one to mount the blade, and one to ready the firearm as a melee weapon. Fast-Draw (Knife) can reduce this to three seconds.</p><p>Use the Spear skill to stab with a shoulder-arm bayonet (to club with the weapon's butt, see Clubs, p. 198). Damage is thr+3 impaling. Most TL4-6 long arms qualify for Reach 1, 2*, while TL7-8 weapons usually have Reach 1. Sidearm bayonets require the Knife skill and get the reach and damage of a large knife. Being unfamiliar with a particular gun-bayonet combination gives -2 to hit; see Familiarity (p. B169). Those on the receiving end of a bayonet charge may need to make a Fright Check, at the GM's discretion. For more on bayonet fighting, see GURPS Martial Arts.</p><p>A fixed bayonet changes the firearm's performance as a gun. It disturbs balance and alters barrel vibrations, degrading accuracy: -1 to Guns skill. It also makes a muzzleloader slower to load - multiply reloading time by 1.1 and round up. Its weight adds to the gun's weight, making it a heavier load.</p><p>For the weight and reach of a particular bayonet, see the description of the weapon that mounts it. Weight figures don't include a sheath. Indeed, many TL5-6 bayonets don't even have one!</p><p>A TL5 socket bayonet has a sleeve that slides over the muzzle. It locks to the gun via a lug that fits into a slot in the sleeve. Its 15-25\" blade is offset to allow firing and loading. Most such bayonets have no cutting edge and can only make thrusting attacks. They usually lack a proper grip and can't be used without the gun.</p><p>A sword bayonet is a shortsword, saber, or large knife, typically 15-25\" in length; a knife bayonet is 6-12\" long. Either attaches to the muzzle via a bayonet mount. At TL5, such bayonets are rarer than socket bayonets and usually issued to specialists such as combat engineers. At TL6-8, they replace other designs and gradually grow shorter; common lengths are 12\" at TL6, 7\" at TL7-8.</p><p>Many TL7-8 knife bayonets are multi-purpose tools. The back of the blade is serrated for use as a saw (sw-3 cut on rope, wood, or soft metal) and the pommel is a serviceable hammer. A slot in the blade clips to the sheath, turning the combination into wire cutters (p. 25). Some designs have additional built-in tools, such as screwdrivers and bottle-openers! The GM may count these bayonets as improvised tools in certain situations - but they're wholly inadequate for most routine tasks (-5 to skill at least).</p>"
+  },
+  {
+    "_id": "bb886bb59b9aa20e",
+    "name": "Bayonet (TL7-8 Long Arm)",
+    "pages": "HT197",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bayonet is a blade affixed to a firearm's muzzle, originally developed at TL4 to enable the single-shot muskets carried by soldiers and hunters to serve as effective melee weapons once discharged. At TL5, the bayonet completely replaces the pike in front-line military service. At TL6-8, guns can fire multiple shots and reload quickly, but close combat remains a battlefield possibility; a bayonet-tipped rifle is often the last line of defense.</p><p>Fixing a bayonet takes four Ready maneuvers: one to draw the bayonet, one to change grips, one to mount the blade, and one to ready the firearm as a melee weapon. Fast-Draw (Knife) can reduce this to three seconds.</p><p>Use the Spear skill to stab with a shoulder-arm bayonet (to club with the weapon's butt, see Clubs, p. 198). Damage is thr+3 impaling. Most TL4-6 long arms qualify for Reach 1, 2*, while TL7-8 weapons usually have Reach 1. Sidearm bayonets require the Knife skill and get the reach and damage of a large knife. Being unfamiliar with a particular gun-bayonet combination gives -2 to hit; see Familiarity (p. B169). Those on the receiving end of a bayonet charge may need to make a Fright Check, at the GM's discretion. For more on bayonet fighting, see GURPS Martial Arts.</p><p>A fixed bayonet changes the firearm's performance as a gun. It disturbs balance and alters barrel vibrations, degrading accuracy: -1 to Guns skill. It also makes a muzzleloader slower to load - multiply reloading time by 1.1 and round up. Its weight adds to the gun's weight, making it a heavier load.</p><p>For the weight and reach of a particular bayonet, see the description of the weapon that mounts it. Weight figures don't include a sheath. Indeed, many TL5-6 bayonets don't even have one!</p><p>A TL5 socket bayonet has a sleeve that slides over the muzzle. It locks to the gun via a lug that fits into a slot in the sleeve. Its 15-25\" blade is offset to allow firing and loading. Most such bayonets have no cutting edge and can only make thrusting attacks. They usually lack a proper grip and can't be used without the gun.</p><p>A sword bayonet is a shortsword, saber, or large knife, typically 15-25\" in length; a knife bayonet is 6-12\" long. Either attaches to the muzzle via a bayonet mount. At TL5, such bayonets are rarer than socket bayonets and usually issued to specialists such as combat engineers. At TL6-8, they replace other designs and gradually grow shorter; common lengths are 12\" at TL6, 7\" at TL7-8.</p><p>Many TL7-8 knife bayonets are multi-purpose tools. The back of the blade is serrated for use as a saw (sw-3 cut on rope, wood, or soft metal) and the pommel is a serviceable hammer. A slot in the blade clips to the sheath, turning the combination into wire cutters (p. 25). Some designs have additional built-in tools, such as screwdrivers and bottle-openers! The GM may count these bayonets as improvised tools in certain situations - but they're wholly inadequate for most routine tasks (-5 to skill at least).</p>"
+  },
+  {
+    "_id": "ffd313109d8e5b4e",
+    "name": "Rifle Butt (TL4-6 Long Arm)",
+    "pages": "HT198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Striking end-on with the butt of a shoulder arm uses the Staff skill and inflicts thr+2 crushing. Holding the gun by the barrel and swinging it like a baseball bat requires the Two-Handed Axe/Mace skill, does sw+3 crushing, and is only advisable with TL4-5 single-shot muskets and rifles (which are built for it) - the GM may require a HT roll to avoid breakage for other firearms. In general, TL4-6 long arms have Reach 1, 2*, while TL7-8 models are Reach 1. Sidearms use Pistol Whipping (p. 93).</p>"
+  },
+  {
+    "_id": "93f2aeb01e40033c",
+    "name": "Rifle Butt (TL7-8 Long Arm)",
+    "pages": "HT198",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Striking end-on with the butt of a shoulder arm uses the Staff skill and inflicts thr+2 crushing. Holding the gun by the barrel and swinging it like a baseball bat requires the Two-Handed Axe/Mace skill, does sw+3 crushing, and is only advisable with TL4-5 single-shot muskets and rifles (which are built for it) - the GM may require a HT roll to avoid breakage for other firearms. In general, TL4-6 long arms have Reach 1, 2*, while TL7-8 models are Reach 1. Sidearms use Pistol Whipping (p. 93).</p>"
+  },
+  {
+    "_id": "3be60f9a1803c958",
+    "name": "Spiked Tomahawk",
+    "pages": "HT196",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL5, the hatchet (p. B271) still serves the world's navies as a boarding weapon. Some irregulars and infantry forces - such as early 18th-century British and French grenadiers - prefer it to the bayonet (p. 197) as backup for their muskets and rifles. Both Native Americans and white settlers use the tomahawk (from the Algonquian tamahákan, meaning \"the thing that cuts\"): an iron-bladed war hatchet balanced for throwing (p. B276) and sometimes combined with a tobacco pipe.</p><p>At TL6-8, axes see more use as tools than as weapons (see Axes, pp. 24-25). During the Vietnam War, though, the U.S. Army Special Forces and U.S. Marine Corps issued a spiked tomahawk. Treat this as a fine (TL7) hatchet. The spike does -1 damage relative to the weapon's cutting attack but is impaling, and the rules for picks apply (p. B405).</p>"
+  },
+  {
+    "_id": "569cd6c9ae86817e",
+    "name": "Compound Short Bow",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in 1966, the compound bow uses pulleys and cables to store and transmit energy more efficiently. It requires less strength from the archer, yet has greater range. Any type of bow other than a composite bow (see p. B275) can be made this way. A compound bow shoots as if its ST were two points higher; e.g., a ST 11 compound longbow has damage and range for ST 13, but a ST 11 person can draw it. Double cost.</p>"
+  },
+  {
+    "_id": "fd292c4c41074606",
+    "name": "Compound Regular Bow",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in 1966, the compound bow uses pulleys and cables to store and transmit energy more efficiently. It requires less strength from the archer, yet has greater range. Any type of bow other than a composite bow (see p. B275) can be made this way. A compound bow shoots as if its ST were two points higher; e.g., a ST 11 compound longbow has damage and range for ST 13, but a ST 11 person can draw it. Double cost.</p>"
+  },
+  {
+    "_id": "9753d77a6bc586ed",
+    "name": "Compound Longbow",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in 1966, the compound bow uses pulleys and cables to store and transmit energy more efficiently. It requires less strength from the archer, yet has greater range. Any type of bow other than a composite bow (see p. B275) can be made this way. A compound bow shoots as if its ST were two points higher; e.g., a ST 11 compound longbow has damage and range for ST 13, but a ST 11 person can draw it. Double cost.</p>"
+  },
+  {
+    "_id": "8eb8143f970face6",
+    "name": "Compound Crossbow",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any type of crossbow (see p. B276) can be built to take advantage of compound-bow technology, with identical benefits: +2 to ST for damage and range without increasing draw strength. Double cost.</p>"
+  },
+  {
+    "_id": "af0a076a7515300c",
+    "name": "Compound Pistol Crossbow",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any type of crossbow (see p. B276) can be built to take advantage of compound-bow technology, with identical benefits: +2 to ST for damage and range without increasing draw strength. Double cost.</p>"
+  },
+  {
+    "_id": "5b1edd8d99031ee8",
+    "name": "Compound Prodd",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Any type of crossbow (see p. B276) can be built to take advantage of compound-bow technology, with identical benefits: +2 to ST for damage and range without increasing draw strength. Double cost.</p>"
+  },
+  {
+    "_id": "a7415dbd269ae5f7",
+    "name": "Slingshot",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rubber-powered, wrist-braced slingshot can easily kill small animals; headshots are dangerous to humans, too. Some models fold (Holdout -1). Ammunition is easily scavenged in most places; heavy steel ball bearings are most popular. Slingshots require the Bow (Slingshot) skill, a new specialty of Bow (p. B182).</p>"
+  },
+  {
+    "_id": "6558f4087c7af8dc",
+    "name": "Speargun",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A speargun is for hunting fish and defense against aquatic predators. It most commonly relies on thick rubber bands to propel the spear, but some models use compressed air. Divide range by 10 in water; however, line length is usually the more stringent limit, as the spear is normally fastened to the gun by no more than 30' (10 yards) of line. See Harpoons (p. B411) for rules for tethered spears. Spearguns use the Crossbow (Speargun) skill, a new specialty of Crossbow (p. B186).</p>"
+  },
+  {
+    "_id": "fc8275f303166107",
+    "name": "Slingshot Shot, Lead or Steel",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rubber-powered, wrist-braced slingshot can easily kill small animals; headshots are dangerous to humans, too. Some models fold (Holdout -1). Ammunition is easily scavenged in most places; heavy steel ball bearings are most popular. Slingshots require the Bow (Slingshot) skill, a new specialty of Bow (p. B182).</p>"
+  },
+  {
+    "_id": "491461b7e7309154",
+    "name": "Speargun Spear",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A speargun is for hunting fish and defense against aquatic predators. It most commonly relies on thick rubber bands to propel the spear, but some models use compressed air. Divide range by 10 in water; however, line length is usually the more stringent limit, as the spear is normally fastened to the gun by no more than 30' (10 yards) of line. See Harpoons (p. B411) for rules for tethered spears. Spearguns use the Crossbow (Speargun) skill, a new specialty of Crossbow (p. B186).</p>"
+  },
+  {
+    "_id": "b85d607d40db6390",
+    "name": "Bow Sights and Stabilizers",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bows at TL7-8 can have adjustable sights, wind gauges, stabilizers, rangefinders, and so on. These give +1 Acc in the hands of a skilled user and add $100 to the bow's price. An archer unfamiliar with such devices suffers -1 to skill for using a bow burdened with them! Bows can also take advantage of various sighting aids, just like guns (see Sights and Aiming Aids, pp. 155-157); targeting lasers aren't uncommon.</p>"
+  },
+  {
+    "_id": "f0ff2dd9c64a3540",
+    "name": "Grenade à Main Mle 1882",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Grenade à Main (simply \"hand grenade\") was the main weapon of French grenadiers for two centuries: a 4-pounder iron ball, about 3.2\" across, with a removable screw-plug for loading the powder. The plug held the fuse - a short length of match (p. 187). Other militaries fielded similar designs. Use of these unreliable and somewhat fumble-prone grenades declined during the 18th century but never quite broke off until the late 19th century.</p><p>The grenadier had to light the fuse prior to throwing the grenade (a Ready maneuver). This was impossible in rain, etc. A typical fuse burned for around five seconds.</p><p>The Grenade à Main Mle 1882 (1882-1914) was the same basic grenade given a mechanical time fuse for improved safety and reliability (Malf. 16): Wt. 2.6, Fuse 5. It was armed by pulling a ring (a Ready maneuver). This weapon was still in use during WWI.</p>"
+  },
+  {
+    "_id": "de76ad002c8a7c81",
+    "name": "StiHGr24",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWI, the Germans adopted a style of concussion grenade that remained standard until the end of WWII: the Stielhandgranate (\"stick hand grenade\"). Americans nicknamed it the \"Potato Masher\" after its appearance. German military influence manifested itself in similar or identical patterns in Bolivia, China, Finland, and elsewhere.</p><p>The long wooden handle gave good leverage for a throw, compensating for the extra weight (+2 ST to figure distance; see p. B355). It also made the grenade awkward to carry and hide; German soldiers stuck it in their belt or even their boot, and improvised carriers from sandbags. To activate the grenade before throwing, the user twisted the end cap off the handle and pulled sharply on the string inside (two Ready maneuvers).</p><p>Several models existed during WWI and the interwar years. During WWII, the standard type was the StiHGr24 (1928-1945), filled with TNT rather than black powder: Dmg 7d cr ex, Wt. 1.4. From 1943, one in three had a detachable 0.3-lb. fragmentation sleeve: Dmg 5d [2d] cr ex, Wt. 1.7. A 33-lb. case held 15.</p>"
+  },
+  {
+    "_id": "d41b1ae323115fdb",
+    "name": "StiHGr24 (Fragmentation Sleeve)",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWI, the Germans adopted a style of concussion grenade that remained standard until the end of WWII: the Stielhandgranate (\"stick hand grenade\"). Americans nicknamed it the \"Potato Masher\" after its appearance. German military influence manifested itself in similar or identical patterns in Bolivia, China, Finland, and elsewhere.</p><p>The long wooden handle gave good leverage for a throw, compensating for the extra weight (+2 ST to figure distance; see p. B355). It also made the grenade awkward to carry and hide; German soldiers stuck it in their belt or even their boot, and improvised carriers from sandbags. To activate the grenade before throwing, the user twisted the end cap off the handle and pulled sharply on the string inside (two Ready maneuvers).</p><p>Several models existed during WWI and the interwar years. During WWII, the standard type was the StiHGr24 (1928-1945), filled with TNT rather than black powder: Dmg 7d cr ex, Wt. 1.4. From 1943, one in three had a detachable 0.3-lb. fragmentation sleeve: Dmg 5d [2d] cr ex, Wt. 1.7. A 33-lb. case held 15.</p>"
+  },
+  {
+    "_id": "279542f90033717f",
+    "name": "NbHGr39",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWI, the Germans adopted a style of concussion grenade that remained standard until the end of WWII: the Stielhandgranate (\"stick hand grenade\"). Americans nicknamed it the \"Potato Masher\" after its appearance. German military influence manifested itself in similar or identical patterns in Bolivia, China, Finland, and elsewhere.</p><p>The long wooden handle gave good leverage for a throw, compensating for the extra weight (+2 ST to figure distance; see p. B355). It also made the grenade awkward to carry and hide; German soldiers stuck it in their belt or even their boot, and improvised carriers from sandbags. To activate the grenade before throwing, the user twisted the end cap off the handle and pulled sharply on the string inside (two Ready maneuvers).</p><p>The NbHGr39 (1939-1943) was a smoke grenade with identical appearance, except for a white stripe: Wt. 1.9, Fuse 7-8. It develops a 7-yard-radius smoke cloud that lasts for 90 seconds.</p>"
+  },
+  {
+    "_id": "7c27650258630c27",
+    "name": "M7",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This soup can-shaped device was typical of the chemical smoke grenades used by most armies since WWII. The fuse didn't burst the grenade - it ignited the filler. The AN-M8 burned for two minutes, generating a cloud of thick, white smoke over a 7-yard radius; see Smoke (p. 171). The canister grew hot enough (about 2,200°F) to burn unprotected flesh (1d-2 burn) and set fire to dry vegetation, paper, and similar flammables (see Making Things Burn, p. B433).</p><p>The M7 series (1935-) emits tear gas (p. 171) instead, filling a 7-yard radius for 25 seconds: Wt. 1, Cost $175.</p>"
+  },
+  {
+    "_id": "056c62b2a071d52f",
+    "name": "M18",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This soup can-shaped device was typical of the chemical smoke grenades used by most armies since WWII. The fuse didn't burst the grenade - it ignited the filler. The AN-M8 burned for two minutes, generating a cloud of thick, white smoke over a 7-yard radius; see Smoke (p. 171). The canister grew hot enough (about 2,200°F) to burn unprotected flesh (1d-2 burn) and set fire to dry vegetation, paper, and similar flammables (see Making Things Burn, p. B433).</p><p>The M18 (1942-) generates red, yellow, green, or violet smoke for signaling, and fills a 7-yard radius for 70 seconds: Wt. 1.2.</p>"
+  },
+  {
+    "_id": "69e4b2282b1b314b",
+    "name": "M83",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This soup can-shaped device was typical of the chemical smoke grenades used by most armies since WWII. The fuse didn't burst the grenade - it ignited the filler. The AN-M8 burned for two minutes, generating a cloud of thick, white smoke over a 7-yard radius; see Smoke (p. 171). The canister grew hot enough (about 2,200°F) to burn unprotected flesh (1d-2 burn) and set fire to dry vegetation, paper, and similar flammables (see Making Things Burn, p. B433).</p><p>The M83 (1994-) replaces the AN-M8 in U.S. military service, and fills a 7-yard radius for 50 seconds: Wt. 1, Cost $35.</p>"
+  },
+  {
+    "_id": "dae6e5dde1fdfac8",
+    "name": "M452C Comboball",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This less-than-lethal grenade has a plastic body filled with 100 soft rubber balls. The explosive blast can stun, while the rubber balls inflict a painful sting over a 7-yard radius. The U.S. Navy and Marines adopted the M452 in 1998.</p><p>The M452C Comboball (1987-) is almost identical, but also spreads a 3-yard-radius cloud of tear gas powder (see Tear Gas, p. 171), which settles after a second: Cost $35.</p>"
+  },
+  {
+    "_id": "6715dedcedaa4eb7",
+    "name": "Gewehrpropagandagranate, 30mm",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Gewehrsprenggranate 30mm (\"30mm HE rifle grenade\") was fired from a 1.7-lb. cup launcher ($50) attached to the Mauser Kar98k (see Mauser Gew98, p. 111). Some 1.5 million launchers were made during WWII; one was issued to every German infantry squad. A 0.6-lb. sight was issued but unpopular. The GSprgr30 was propelled using a blank cartridge. In a pinch, it could also function as a hand grenade: Fuse 6.</p><p>The Gewehrpropagandagranate (\"propaganda rifle grenade\") scattered 40 3.5\"×6\" leaflets instead: Range 50/500, Wt. 0.5.</p>"
+  },
+  {
+    "_id": "46ffbb35c124cd64",
+    "name": "HASAG GGPzgr40, 40mm",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Gewehrsprenggranate 30mm (\"30mm HE rifle grenade\") was fired from a 1.7-lb. cup launcher ($50) attached to the Mauser Kar98k (see Mauser Gew98, p. 111). Some 1.5 million launchers were made during WWII; one was issued to every German infantry squad. A 0.6-lb. sight was issued but unpopular. The GSprgr30 was propelled using a blank cartridge. In a pinch, it could also function as a hand grenade: Fuse 6.</p><p>The HASAG grosse Gewehrpanzergranate 40mm (\"large antitank rifle grenade\"), or GGPzgr40, featured a 40mm HEAT warhead: Dmg 7d(10) cr ex with 6d cr ex linked, Range 10/150, Wt. 0.9. Japanese copies were fired from a 1.5-lb. cup launcher attached to the Arisaka 99 Shiki (see Arisaka Meiji 38 Shiki Shoujuu, p. 112).</p>"
+  },
+  {
+    "_id": "d23c8a23ec76a124",
+    "name": "Spigot Launcher (AMC M17, Springfield M1903)",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>Fired from a spigot launcher ($30), this was the body of the MK II fragmentation grenade (p. 191) screwed onto a tail and fitted with an impact fuse. The detachable launcher for the Springfield M1903 (p. 112) weighed 0.5 lb.; that for the Springfield M1 Garand (p. 112) weighed 0.75 lb.</p>"
+  },
+  {
+    "_id": "0d686e5f679e86aa",
+    "name": "Spigot Launcher (AMC M17, M1 Garand)",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>Fired from a spigot launcher ($30), this was the body of the MK II fragmentation grenade (p. 191) screwed onto a tail and fitted with an impact fuse. The detachable launcher for the Springfield M1903 (p. 112) weighed 0.5 lb.; that for the Springfield M1 Garand (p. 112) weighed 0.75 lb.</p>"
+  },
+  {
+    "_id": "146936cbcde6e39c",
+    "name": "Cup Launcher (Bergmann GSprgr30)",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Gewehrsprenggranate 30mm (\"30mm HE rifle grenade\") was fired from a 1.7-lb. cup launcher ($50) attached to the Mauser Kar98k (see Mauser Gew98, p. 111). Some 1.5 million launchers were made during WWII; one was issued to every German infantry squad. A 0.6-lb. sight was issued but unpopular. The GSprgr30 was propelled using a blank cartridge. In a pinch, it could also function as a hand grenade: Fuse 6.</p><p>The Gewehrpropagandagranate (\"propaganda rifle grenade\") scattered 40 3.5\"×6\" leaflets instead: Range 50/500, Wt. 0.5.</p><p>The HASAG grosse Gewehrpanzergranate 40mm (\"large antitank rifle grenade\"), or GGPzgr40, featured a 40mm HEAT warhead: Dmg 7d(10) cr ex with 6d cr ex linked, Range 10/150, Wt. 0.9. Japanese copies were fired from a 1.5-lb. cup launcher attached to the Arisaka 99 Shiki (see Arisaka Meiji 38 Shiki Shoujuu, p. 112).</p>"
+  },
+  {
+    "_id": "b21c42829e117fbd",
+    "name": "Spigot Launcher (MECAR Energa-75)",
+    "pages": "HT194",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a \"spigot\" or a \"cup\" affixed to the rifle's muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!</p><p>Some TL6-7 and most TL8 rifle grenades don't rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.</p><p>In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.</p><p>The Energa-75 rifle grenade was a HEAT munition originally designed to be launched from a 0.75-lb. spigot launcher ($30) attached to such rifles as the Enfield Number 4 Mk I (see Enfield SMLE Mk III, p. 112). It was soon modified to be fired from 7.62×51mm NATO rifles with integral launchers, such as the FN FAL (p. 115). It was widely adopted, users including Belgium, the Netherlands, Rhodesia, South Africa, and the U.K.</p><p>The U.S. Army used a copy called the M28 (1950-1953) during the Korean War, fired from a 0.75-lb. spigot launcher ($30) attached to the Springfield M1 Garand (p. 113).</p>"
+  },
+  {
+    "_id": "c84889847a7e2d32",
+    "name": "SMi35",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The OZM-3 resembled a soup can with a fuse assembly on top. The fuse was usually connected to a tripwire, which required 15 lbs. to activate. When tripped, the mine hurled a grenade that exploded 5' above the ground, scattering fragments to the sides. (Immediately dropping to the ground - see Dodge and Drop, p. B377 - avoids the fragmentation damage!) The OZM-3 is typical of TL7-8 bounding mines - often known by the slang term \"Bouncing Betty\" - used against personnel from WWII on. Most armies had something similar during the second half of the 20th century.</p><p>The German Schrapnellmine 35 (1935-1944), or SMi35, was the first mine of this type: Dmg 4d×2 [4d] cr ex, Wt. 8.8.</p>"
+  },
+  {
+    "_id": "94245c2ee1b86d23",
+    "name": "M16",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The OZM-3 resembled a soup can with a fuse assembly on top. The fuse was usually connected to a tripwire, which required 15 lbs. to activate. When tripped, the mine hurled a grenade that exploded 5' above the ground, scattering fragments to the sides. (Immediately dropping to the ground - see Dodge and Drop, p. B377 - avoids the fragmentation damage!) The OZM-3 is typical of TL7-8 bounding mines - often known by the slang term \"Bouncing Betty\" - used against personnel from WWII on. Most armies had something similar during the second half of the 20th century.</p><p>The U.S. equivalent is the M16 (1953-): Dmg 6d×2 [4d] cr ex, Wt. 8.2.</p>"
+  },
+  {
+    "_id": "f3fc2c65758ef407",
+    "name": "M5 Modular Crowd Control Munition",
+    "pages": "HT189",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This directional, above-ground weapon is in service with the U.S. military and many other countries, and has been widely copied. It consists of a convex block of C4 explosive with 700 steel pellets embedded in the front, enclosed in a plastic case about the size of a pocket book. It comes in a 5-lb. bandoleer with blasting cap (p. 187), 33-yard wire, and 0.75-lb. military blasting machine (p. 187). With its folding legs deployed, the mine is pointed toward the desired area of effect and can be detonated remotely or by tripwire.</p><p>When triggered, everyone out to 270 yards in a 60° cone in front of the device is attacked at basic skill 9, with +9 for the rapid-fire bonus but minus the range penalty for distance from the mine. Treat this as a huge shotload (see Multiple Projectiles, pp. 172-174) with Dmg 2d(0.5) pi-, Range 55/270, RoF 1×700, Rcl 1. Resolve attacks in order of distance - if all 700 pellets somehow manage to hit something, no more-distant targets can be hit. While the pellets are directed forward, the explosion (6d×3 cr ex) isn't directional and affects a large area to the sides and rear; thus, the weapon is usually deployed 20+ yards from friendly positions. To see the Claymore at work, check out such action movies as Platoon and Predator.</p><p>The less-than-lethal M5 Modular Crowd Control Munition-Ground Emplaced (2001-) looks identical and works the same way, but fires a load of 600 plastic pellets. Treat the \"Stingmore\" as a shotload with Dmg 1d-2(0.2) cr, Range 15/75, RoF 1×600, Rcl 1, Cost $350. The explosion does only 2d+1 cr ex.</p>"
+  },
+  {
+    "_id": "eac5e2a36a3d8064",
+    "name": "Belt Holster",
+    "pages": "HT153",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the standard hip holster worn by cowpokes, soldiers, and cops from the mid-1800s to present. On early versions, a leather loop around the hammer keeps the weapon from falling out. It takes a Ready maneuver to remove this and enable use of Fast-Draw (Pistol). From the 1920s, a thumb-break strap - so-called because the gunman thumbs open the closed strap as he draws - serves the same purpose but is always ready for a speedy draw.</p>"
+  },
+  {
+    "_id": "f0226b5d0695f9ef",
+    "name": "Lanyard",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A lanyard is a cord running from a weapon to the belt or neck. It lets a gunman retrieve a dropped gun on a DX roll. Each attempt requires a Ready maneuver. Most firearms used with Guns (Pistol), but few others, have a ring for attaching a lanyard; see the weapon tables for exceptions. A lanyard can be cut: -6 to hit, DR 2, HP 2.</p>"
+  },
+  {
+    "_id": "a388a31e97ac3ce2",
+    "name": "Military Holster",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Military holsters often have a flap designed to keep dust, mud, and crud off a handgun; the pistol isn't \"exposed\" for the purpose of Slime, Sand, and Equipment Failure (p. B485) and may avoid the Malf. penalty for harsh environments noted in Cleaning and Maintenance (p. 80). Such holsters are slow, however. The flap can be opened and tucked behind the belt to avoid the Fast-Draw penalty, but then it provides no protection. Holsters like this often have built-in magazine or cartridge pouches. -2 Fast-Draw (Pistol).</p>"
+  },
+  {
+    "_id": "d0f951bd0615acb2",
+    "name": "Rifle Sling",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A sling allows a gunman to use both hands while keeping his shoulder arm close. It also lets him brace even when he has nothing to prop his gun on, giving an extra +1 when aiming; see Aim (p. B364). Bracing with a sling is a two-handed task that takes one Ready maneuver per -1 Bulk; e.g., five seconds at Bulk -5. Leaving this position, thereby freeing the hands, requires a Ready maneuver. Most firearms used with Guns (LMG, Rifle, Shotgun, or SMG), but few others, have swivels for fastening a sling; see the weapon tables for exceptions.</p>"
+  },
+  {
+    "_id": "a18ff6a32077220e",
+    "name": "Scabbard",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a sheath or a covering for a carbine, shotgun, or other shoulder arm. A scabbard is a common accessory among those who ride animals, motorcycles, and open-topped vehicles (for examples, see WWII Jeep, pp. 236-237). It protects a long arm in the same way that a military holster (see above) protects a handgun.</p>"
+  },
+  {
+    "_id": "5afe119aeeea3f52",
+    "name": "Shoulder Holster",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A shoulder holster is worn on the off-hand side, usually under the armpit. Some models carry the gun horizontally; others hold it vertically, barrel-down or (rarely) barrel-up. Most have provision for speedloaders, magazines, or handcuffs under the opposite armpit. This is more comfortable, as it helps balance the rig. Shoulder holsters are a common choice for private eyes, police detectives, aviators, and AFV crew. -1 Fast-Draw (Pistol).</p>"
+  },
+  {
+    "_id": "91717592a7deda0d",
+    "name": "Sleeve Holster",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a spring-loaded holster strapped to the forearm in the tradition of James West in The Wild, Wild West or Travis Bickle in Taxi Driver. The wearer activates it via a lever near the elbow, typically by pressing the elbow against the body. This requires a Fast-Draw (Pistol) roll. Success causes a slim metal bar thrust forward, allowing the gunman to grasp the handgun (no larger than Bulk -1) mounted at the end. Failure means the device fails to work properly; getting the weapon requires use of the free hand and a further Ready maneuver. Critical failure indicates the device breaks - extracting the gun requires 2d seconds of prying and pulling with the free hand! -2 Holdout.</p>"
+  },
+  {
+    "_id": "af047f62354fee93",
+    "name": "Fast-Draw Rig",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A holster and belt can be custom-built for speed. The drop-hip belt with its low-slung, smooth-drawing, steel-lined holster is a 1950s Hollywood novelty; authentic Old West gunfighters never used it. Nevertheless, it is fast! +2 Fast-Draw (Pistol).</p>"
+  },
+  {
+    "_id": "ea17f275c8787a48",
+    "name": "Patrol Sling",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This padded sling lets the wearer safely drop his long arm without pausing to stow it, immediately freeing both hands for another task. It's adjustable: at rest, the weapon hangs either horizontally, at waist level, or vertically, typically with its stock near the armpit and its barrel pointing down and behind the hip so that it doesn't hinder its owner as he runs. The gun can be fired without unslinging it. Raising it to a shooting position requires only one Ready maneuver; a successful Fast-Draw (Long Arm) roll makes this a free action. Most firearms used with Guns (LMG, Rifle, Shotgun, or SMG), but few others, have swivels for fastening a sling; see the weapon tables for exceptions. +1 Fast-Draw (Long Arm).</p>"
+  },
+  {
+    "_id": "e948051cadef2835",
+    "name": "Undercover Holster",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Concealable holsters are padded, designed to soften the hard edges of a hidden handgun. Most are worn inside the pants, with a shirt over the top of the gun (Bulk -2 or worse), or on the ankle (Bulk -1 or 0 only). -1 Fast-Draw (Pistol), +1 Holdout.</p>"
+  },
+  {
+    "_id": "7dfab2c2ea155436",
+    "name": "Retention Holster",
+    "pages": "HT154",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Modern hip holsters, especially those used by police, are sometimes designed to prevent an assailant from snatching the holstered sidearm. Without a specific twist or tilt, the pistol won't come out of such a holster, even if it's turned upside down. This makes it difficult for anyone but the wearer to draw the gun. The owner gets +2 to his Retain Weapon technique (p. B232) while his weapon is holstered.</p>"
+  },
+  {
+    "_id": "08161224c56a16db",
+    "name": "Speedloader",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A speedloader lets a gunman with a revolver insert all - or at least several - rounds into his weapon's cylinder simultaneously instead of reloading a cartridge at a time. This dramatically reduces reloading time; see Reloading Your Gun (p. 86). Speedloaders only work for revolvers that break or tip open, or those with swing-out cylinders; gate-loaders can't use them. One of the first models was the Prideaux speedloader for Webley revolvers, introduced in the 1880s. Speedloaders for swing-out revolvers weren't widely used until the 1960s.</p>"
+  },
+  {
+    "_id": "35c5f5a96a3d3272",
+    "name": "Magazine Clamp",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Magazines can be clamped side-by-side using a removable bracket ($20, 0.3 lb., LC4). Some plastic magazines have integral studs and brackets that let shooters clip as many magazines as desired alongside one another. Both developments are TL8, but taping magazines together with duct tape (p. 26) has been a popular field modification in every war since WWII. Any of these measures saves one Ready maneuver when reloading; see Reloading Your Gun (p. 86). Magazines not in use are prone to get dirt inside, and taped magazines, where one points down, often get damaged feeding lips; the GM may assess -1 Malf. in suitably harsh conditions.</p>"
+  },
+  {
+    "_id": "091982d5b5ac8fd0",
+    "name": "Fixed-Power Scope (TL5, per +1 Acc)",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Telescopic sights, or \"scopes,\" for firearms are a late-TL5 development that becomes common at TL6-8. A scope gives a bonus to hit if you take one or more Aim maneuvers: +1 Acc per full doubling of magnification. With a fixed-power scope, you must Aim for at least as many seconds as the bonus. With a variable-power scope, you may Aim for fewer seconds but this reduces the bonus by a like amount. Variables cost more and are somewhat more fragile. All scopes listed in this book are fixed-power unless noted otherwise.</p><p>Since they also collect light, all but the cheapest TL7-8 scopes remove -1 from darkness penalties. Some have an illuminated reticle (lit by battery, tritium, etc.) to aid aiming in low-light conditions; this cancels up to -2 in darkness penalties. For other notes, see Optics (p. 47) and Scopes (p. B412).</p><p>None of these benefits apply to unaimed shots. In fact, a high-powered scope (anything over 4×) makes unaimed shots slower: add -1 to Bulk.</p><p>An early device, 3-4' long. Pick any magnification between 2× and 32×.</p>"
+  },
+  {
+    "_id": "eedda89fa2932711",
+    "name": "Fixed-Power Scope (TL6, per +1 Acc)",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Telescopic sights, or \"scopes,\" for firearms are a late-TL5 development that becomes common at TL6-8. A scope gives a bonus to hit if you take one or more Aim maneuvers: +1 Acc per full doubling of magnification. With a fixed-power scope, you must Aim for at least as many seconds as the bonus. With a variable-power scope, you may Aim for fewer seconds but this reduces the bonus by a like amount. Variables cost more and are somewhat more fragile. All scopes listed in this book are fixed-power unless noted otherwise.</p><p>Since they also collect light, all but the cheapest TL7-8 scopes remove -1 from darkness penalties. Some have an illuminated reticle (lit by battery, tritium, etc.) to aid aiming in low-light conditions; this cancels up to -2 in darkness penalties. For other notes, see Optics (p. 47) and Scopes (p. B412).</p><p>None of these benefits apply to unaimed shots. In fact, a high-powered scope (anything over 4×) makes unaimed shots slower: add -1 to Bulk.</p><p>Pick any magnification between 2× and 32×.</p>"
+  },
+  {
+    "_id": "ff1a0e31c1517c50",
+    "name": "Fixed-Power Scope (TL7, per +1 Acc)",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Telescopic sights, or \"scopes,\" for firearms are a late-TL5 development that becomes common at TL6-8. A scope gives a bonus to hit if you take one or more Aim maneuvers: +1 Acc per full doubling of magnification. With a fixed-power scope, you must Aim for at least as many seconds as the bonus. With a variable-power scope, you may Aim for fewer seconds but this reduces the bonus by a like amount. Variables cost more and are somewhat more fragile. All scopes listed in this book are fixed-power unless noted otherwise.</p><p>Since they also collect light, all but the cheapest TL7-8 scopes remove -1 from darkness penalties. Some have an illuminated reticle (lit by battery, tritium, etc.) to aid aiming in low-light conditions; this cancels up to -2 in darkness penalties. For other notes, see Optics (p. 47) and Scopes (p. B412).</p><p>None of these benefits apply to unaimed shots. In fact, a high-powered scope (anything over 4×) makes unaimed shots slower: add -1 to Bulk.</p><p>Pick any magnification between 2× and 32×.</p>"
+  },
+  {
+    "_id": "c0cba4a5421f9c5c",
+    "name": "Variable-Power Scope (TL7, per +1 Acc)",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Telescopic sights, or \"scopes,\" for firearms are a late-TL5 development that becomes common at TL6-8. A scope gives a bonus to hit if you take one or more Aim maneuvers: +1 Acc per full doubling of magnification. With a fixed-power scope, you must Aim for at least as many seconds as the bonus. With a variable-power scope, you may Aim for fewer seconds but this reduces the bonus by a like amount. Variables cost more and are somewhat more fragile. All scopes listed in this book are fixed-power unless noted otherwise.</p><p>Since they also collect light, all but the cheapest TL7-8 scopes remove -1 from darkness penalties. Some have an illuminated reticle (lit by battery, tritium, etc.) to aid aiming in low-light conditions; this cancels up to -2 in darkness penalties. For other notes, see Optics (p. 47) and Scopes (p. B412).</p><p>None of these benefits apply to unaimed shots. In fact, a high-powered scope (anything over 4×) makes unaimed shots slower: add -1 to Bulk.</p><p>Pick three magnifications between 1.5× and 32×, typically whole-numbered multiples.</p>"
+  },
+  {
+    "_id": "a5b4819f70994d16",
+    "name": "Variable-Power Scope (TL8, per +1 Acc)",
+    "pages": "HT155",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Telescopic sights, or \"scopes,\" for firearms are a late-TL5 development that becomes common at TL6-8. A scope gives a bonus to hit if you take one or more Aim maneuvers: +1 Acc per full doubling of magnification. With a fixed-power scope, you must Aim for at least as many seconds as the bonus. With a variable-power scope, you may Aim for fewer seconds but this reduces the bonus by a like amount. Variables cost more and are somewhat more fragile. All scopes listed in this book are fixed-power unless noted otherwise.</p><p>Since they also collect light, all but the cheapest TL7-8 scopes remove -1 from darkness penalties. Some have an illuminated reticle (lit by battery, tritium, etc.) to aid aiming in low-light conditions; this cancels up to -2 in darkness penalties. For other notes, see Optics (p. 47) and Scopes (p. B412).</p><p>None of these benefits apply to unaimed shots. In fact, a high-powered scope (anything over 4×) makes unaimed shots slower: add -1 to Bulk.</p><p>Pick three magnifications between 1.5× and 32×, typically whole-numbered multiples.</p>"
+  },
+  {
+    "_id": "2251c20bf6cc9c3a",
+    "name": "Improved-Visibility Sights",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Making a gun's sights more visible reduces the difficulty of seeing them - and hence shooting - in the dark. Improved-visibility sights typically have three dots or lines of light-colored paint, or inserts of luminescent material (often tritium). This negates -1 in darkness penalties, but has no effect in normal light. (The GM may extend this benefit to such simple makeshift measures as a white handkerchief tied around the muzzle, common at lower TLs.) Improved-visibility sights appear as optional accessories for a few guns starting in mid-TL6, become integral fixtures on some late-TL7 firearms, and are either standard or available for nearly all TL8 weapons.</p>"
+  },
+  {
+    "_id": "86fa5afeb5509d3b",
+    "name": "Collimating Sight, Battery",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in WWI - originally for aircraft use - these sights involve a lens onto which a bright red or yellow dot is projected, coinciding with the weapon's point of aim out to a certain range. In a collimating sight (often called a \"red dot sight\"), the lens is incorporated into a scope-like tube. In a reflex sight, the lens is mounted in a small frame (known as a \"head-up display,\" or HUD, on aircraft).</p><p>Either type of sight improves situational awareness by allowing the shooter to keep both eyes open. Target acquisition is faster: instead of aligning fore and rear sights, the gunman simply superimposes the dot on his target. This gives +1 Guns skill at ranges up to 300 yards and makes it easier to aim in low-light conditions, negating up to -3 in darkness penalties on all shots. Both designs can be used with night-vision devices but not with magnifying scopes.</p><p>Note that the dot is visible only through the lens - the product of electronics or a tritium or battery illuminator. These sights don't project a visible dot on a distant target like a targeting laser (pp. 156-157) does. If you have a sight and a laser, you must choose to use one or the other - not both at once.</p>"
+  },
+  {
+    "_id": "a1298d5c8175e5ea",
+    "name": "Collimating Sight, Tritium",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in WWI - originally for aircraft use - these sights involve a lens onto which a bright red or yellow dot is projected, coinciding with the weapon's point of aim out to a certain range. In a collimating sight (often called a \"red dot sight\"), the lens is incorporated into a scope-like tube. In a reflex sight, the lens is mounted in a small frame (known as a \"head-up display,\" or HUD, on aircraft).</p><p>Either type of sight improves situational awareness by allowing the shooter to keep both eyes open. Target acquisition is faster: instead of aligning fore and rear sights, the gunman simply superimposes the dot on his target. This gives +1 Guns skill at ranges up to 300 yards and makes it easier to aim in low-light conditions, negating up to -3 in darkness penalties on all shots. Both designs can be used with night-vision devices but not with magnifying scopes.</p><p>Note that the dot is visible only through the lens - the product of electronics or a tritium or battery illuminator. These sights don't project a visible dot on a distant target like a targeting laser (pp. 156-157) does. If you have a sight and a laser, you must choose to use one or the other - not both at once.</p><p>An unpowered tritium-illuminated version.</p>"
+  },
+  {
+    "_id": "d65fba0e0c3e171f",
+    "name": "Reflex Sight, Battery",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in WWI - originally for aircraft use - these sights involve a lens onto which a bright red or yellow dot is projected, coinciding with the weapon's point of aim out to a certain range. In a collimating sight (often called a \"red dot sight\"), the lens is incorporated into a scope-like tube. In a reflex sight, the lens is mounted in a small frame (known as a \"head-up display,\" or HUD, on aircraft).</p><p>Either type of sight improves situational awareness by allowing the shooter to keep both eyes open. Target acquisition is faster: instead of aligning fore and rear sights, the gunman simply superimposes the dot on his target. This gives +1 Guns skill at ranges up to 300 yards and makes it easier to aim in low-light conditions, negating up to -3 in darkness penalties on all shots. Both designs can be used with night-vision devices but not with magnifying scopes.</p><p>Note that the dot is visible only through the lens - the product of electronics or a tritium or battery illuminator. These sights don't project a visible dot on a distant target like a targeting laser (pp. 156-157) does. If you have a sight and a laser, you must choose to use one or the other - not both at once.</p>"
+  },
+  {
+    "_id": "39db7330a872009f",
+    "name": "Reflex Sight, Tritium",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in WWI - originally for aircraft use - these sights involve a lens onto which a bright red or yellow dot is projected, coinciding with the weapon's point of aim out to a certain range. In a collimating sight (often called a \"red dot sight\"), the lens is incorporated into a scope-like tube. In a reflex sight, the lens is mounted in a small frame (known as a \"head-up display,\" or HUD, on aircraft).</p><p>Either type of sight improves situational awareness by allowing the shooter to keep both eyes open. Target acquisition is faster: instead of aligning fore and rear sights, the gunman simply superimposes the dot on his target. This gives +1 Guns skill at ranges up to 300 yards and makes it easier to aim in low-light conditions, negating up to -3 in darkness penalties on all shots. Both designs can be used with night-vision devices but not with magnifying scopes.</p><p>Note that the dot is visible only through the lens - the product of electronics or a tritium or battery illuminator. These sights don't project a visible dot on a distant target like a targeting laser (pp. 156-157) does. If you have a sight and a laser, you must choose to use one or the other - not both at once.</p>"
+  },
+  {
+    "_id": "e12350d830f695f7",
+    "name": "Early Night Sight",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>Introduced in the 1940s, this huge device gives Night Vision 2. It's usually used with IR illumination (p. 47). It adds -2 Bulk.</p>"
+  },
+  {
+    "_id": "4635ded91c6b1c86",
+    "name": "Night Sight",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>By the 1960s, a bulky but man-portable sight gives Night Vision 4 and +2 Acc. It adds -2 Bulk.</p>"
+  },
+  {
+    "_id": "b9ffaecc2ae3b4cb",
+    "name": "Improved Night Sight",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>A 1970s-era system gives Night Vision 5 and +2 Acc. It adds only -1 Bulk.</p>"
+  },
+  {
+    "_id": "3e96d06de7506aab",
+    "name": "Improved Night Sight, Add-On",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>This gadget adds Night Vision 5 to the benefits of another scope or sight.</p>"
+  },
+  {
+    "_id": "d91330cf7deb775b",
+    "name": "Advanced Night Sight",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>From the 1980s, a typical night sight gives Night Vision 7 and +2 Acc.</p>"
+  },
+  {
+    "_id": "1aca04dffa89605d",
+    "name": "Advanced Night Sight, Add-On",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Image-intensifying night sights (also known as \"light amplifiers\" or \"starlight scopes\") electronically amplify ambient light. The higher the TL, the lighter and smaller they get. Some include magnification, and work like telescopic sights (pp. 155-156); others are add-ons, installed in front of scopes or collimating sights (above). In all cases, the shooter has Colorblindness (p. B127) and Tunnel Vision (p. B151) while using the sight. For other important details, see Night-Vision Optics (pp. 47-48).</p><p>This accessory adds Night Vision 7 to the benefits of another scope or sight.</p>"
+  },
+  {
+    "_id": "8f45765bed3bba66",
+    "name": "Primitive Targeting Laser",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"laser sights\" (p. B412), these devices are low-powered lasers that project an aiming dot onto the target. Early versions were bulky gadgets cobbled together by amateurs in the 1970s. Commercial versions were miniaturized for sale in the 1980s. Models small enough to fit inside some pistols appeared in the 1990s.</p><p>If you can see your targeting laser's aiming dot, you get +1 to hit whether or not you took an Aim maneuver. If your target can see it, he gets +1 to Dodge - but the GM may require a Fright Check! Activating the laser is a free action; declare whether it's on before you Aim or Attack. Targeting lasers have a maximum effective range beyond which the dot is too dispersed to give a bonus, however. If no range is given, assume that it's matched to the 1/2D range of the weapon on which it's mounted.</p><p>Beam color, which depends on wavelength, modifies effective range in some situations. Red lasers are most common, and work well in low-light conditions but suffer as lighting improves (1/3 effective range in daylight). Orange lasers perform better in daylight (1/2 effective range). Green lasers have twice normal range in low light and normal range in daylight. Infrared (IR) lasers always get full range, but you need Night Vision, Infravision, or Hyperspectral Vision to see them. At TL7, red is the only option; at TL8, lasers can instead be orange (×1.25 cost), green (×4 cost), or IR (×1.5 cost). IR lasers are LC2.</p><p>Note that the laser beam - as opposed to the aiming dot - is generally invisible. In smoke, fog, and similar conditions, though, it's easily seen, betraying the shooter's position! Green beams are always visible, while IR ones are always invisible to those without special vision advantages.</p><p>A large, first-generation device with a 200-yard range. Adds -1 to Bulk.</p>"
+  },
+  {
+    "_id": "cfde689cb6c6ccbf",
+    "name": "Targeting Laser (Sidearm)",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"laser sights\" (p. B412), these devices are low-powered lasers that project an aiming dot onto the target. Early versions were bulky gadgets cobbled together by amateurs in the 1970s. Commercial versions were miniaturized for sale in the 1980s. Models small enough to fit inside some pistols appeared in the 1990s.</p><p>If you can see your targeting laser's aiming dot, you get +1 to hit whether or not you took an Aim maneuver. If your target can see it, he gets +1 to Dodge - but the GM may require a Fright Check! Activating the laser is a free action; declare whether it's on before you Aim or Attack. Targeting lasers have a maximum effective range beyond which the dot is too dispersed to give a bonus, however. If no range is given, assume that it's matched to the 1/2D range of the weapon on which it's mounted.</p><p>Beam color, which depends on wavelength, modifies effective range in some situations. Red lasers are most common, and work well in low-light conditions but suffer as lighting improves (1/3 effective range in daylight). Orange lasers perform better in daylight (1/2 effective range). Green lasers have twice normal range in low light and normal range in daylight. Infrared (IR) lasers always get full range, but you need Night Vision, Infravision, or Hyperspectral Vision to see them. At TL7, red is the only option; at TL8, lasers can instead be orange (×1.25 cost), green (×4 cost), or IR (×1.5 cost). IR lasers are LC2.</p><p>Note that the laser beam - as opposed to the aiming dot - is generally invisible. In smoke, fog, and similar conditions, though, it's easily seen, betraying the shooter's position! Green beams are always visible, while IR ones are always invisible to those without special vision advantages.</p><p>A compact targeting laser with a 150-yard range.</p>"
+  },
+  {
+    "_id": "b7b240996addbc06",
+    "name": "Targeting Laser (Shoulder Arm)",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"laser sights\" (p. B412), these devices are low-powered lasers that project an aiming dot onto the target. Early versions were bulky gadgets cobbled together by amateurs in the 1970s. Commercial versions were miniaturized for sale in the 1980s. Models small enough to fit inside some pistols appeared in the 1990s.</p><p>If you can see your targeting laser's aiming dot, you get +1 to hit whether or not you took an Aim maneuver. If your target can see it, he gets +1 to Dodge - but the GM may require a Fright Check! Activating the laser is a free action; declare whether it's on before you Aim or Attack. Targeting lasers have a maximum effective range beyond which the dot is too dispersed to give a bonus, however. If no range is given, assume that it's matched to the 1/2D range of the weapon on which it's mounted.</p><p>Beam color, which depends on wavelength, modifies effective range in some situations. Red lasers are most common, and work well in low-light conditions but suffer as lighting improves (1/3 effective range in daylight). Orange lasers perform better in daylight (1/2 effective range). Green lasers have twice normal range in low light and normal range in daylight. Infrared (IR) lasers always get full range, but you need Night Vision, Infravision, or Hyperspectral Vision to see them. At TL7, red is the only option; at TL8, lasers can instead be orange (×1.25 cost), green (×4 cost), or IR (×1.5 cost). IR lasers are LC2.</p><p>Note that the laser beam - as opposed to the aiming dot - is generally invisible. In smoke, fog, and similar conditions, though, it's easily seen, betraying the shooter's position! Green beams are always visible, while IR ones are always invisible to those without special vision advantages.</p><p>A compact targeting laser with a 750-yard range.</p>"
+  },
+  {
+    "_id": "d16cbdbfed0ef786",
+    "name": "Integral Targeting Laser (Sidearm)",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"laser sights\" (p. B412), these devices are low-powered lasers that project an aiming dot onto the target. Early versions were bulky gadgets cobbled together by amateurs in the 1970s. Commercial versions were miniaturized for sale in the 1980s. Models small enough to fit inside some pistols appeared in the 1990s.</p><p>If you can see your targeting laser's aiming dot, you get +1 to hit whether or not you took an Aim maneuver. If your target can see it, he gets +1 to Dodge - but the GM may require a Fright Check! Activating the laser is a free action; declare whether it's on before you Aim or Attack. Targeting lasers have a maximum effective range beyond which the dot is too dispersed to give a bonus, however. If no range is given, assume that it's matched to the 1/2D range of the weapon on which it's mounted.</p><p>Beam color, which depends on wavelength, modifies effective range in some situations. Red lasers are most common, and work well in low-light conditions but suffer as lighting improves (1/3 effective range in daylight). Orange lasers perform better in daylight (1/2 effective range). Green lasers have twice normal range in low light and normal range in daylight. Infrared (IR) lasers always get full range, but you need Night Vision, Infravision, or Hyperspectral Vision to see them. At TL7, red is the only option; at TL8, lasers can instead be orange (×1.25 cost), green (×4 cost), or IR (×1.5 cost). IR lasers are LC2.</p><p>Note that the laser beam - as opposed to the aiming dot - is generally invisible. In smoke, fog, and similar conditions, though, it's easily seen, betraying the shooter's position! Green beams are always visible, while IR ones are always invisible to those without special vision advantages.</p><p>A miniature targeting laser with a 150-yard range, installed inside the grip sideplates or in place of the recoil spring rod.</p>"
+  },
+  {
+    "_id": "3bb40fff2e64212b",
+    "name": "Integral Targeting Laser (Shoulder Arm)",
+    "pages": "HT156",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"laser sights\" (p. B412), these devices are low-powered lasers that project an aiming dot onto the target. Early versions were bulky gadgets cobbled together by amateurs in the 1970s. Commercial versions were miniaturized for sale in the 1980s. Models small enough to fit inside some pistols appeared in the 1990s.</p><p>If you can see your targeting laser's aiming dot, you get +1 to hit whether or not you took an Aim maneuver. If your target can see it, he gets +1 to Dodge - but the GM may require a Fright Check! Activating the laser is a free action; declare whether it's on before you Aim or Attack. Targeting lasers have a maximum effective range beyond which the dot is too dispersed to give a bonus, however. If no range is given, assume that it's matched to the 1/2D range of the weapon on which it's mounted.</p><p>Beam color, which depends on wavelength, modifies effective range in some situations. Red lasers are most common, and work well in low-light conditions but suffer as lighting improves (1/3 effective range in daylight). Orange lasers perform better in daylight (1/2 effective range). Green lasers have twice normal range in low light and normal range in daylight. Infrared (IR) lasers always get full range, but you need Night Vision, Infravision, or Hyperspectral Vision to see them. At TL7, red is the only option; at TL8, lasers can instead be orange (×1.25 cost), green (×4 cost), or IR (×1.5 cost). IR lasers are LC2.</p><p>Note that the laser beam - as opposed to the aiming dot - is generally invisible. In smoke, fog, and similar conditions, though, it's easily seen, betraying the shooter's position! Green beams are always visible, while IR ones are always invisible to those without special vision advantages.</p><p>A built-in targeting laser with a 750-yard range.</p>"
+  },
+  {
+    "_id": "9fc075f650331ad2",
+    "name": "Computer Sight (Infravision)",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, full-solution fire-control systems with integral ballistic computers are introduced for infantry weapons. Initial platforms are rocket launchers and grenade launchers, which profit greatly from improved rangefinding and programming. As TL8 progresses, these sights grow small enough to mount on small arms.</p><p>Typical devices run a targeting program that gives +1 Gunner or Guns, include a laser rangefinder, and incorporate magnification (optical and/or electronic) and low-light capability (image intensification or thermal imaging). The gunner lases the target, and the computer calculates the aiming point and shows it on an integral display. This provides an extra +3 to hit that target with an aimed attack.</p><p>Includes a targeting program (+1 Gunner/Guns), a laser rangefinder (+3 Acc out to 4,000 yards), 3-9× magnification (+1 to +3 Acc), and either Night Vision 7 or Infravision. Adds -2 Bulk.</p>"
+  },
+  {
+    "_id": "b9a0ef07d12ca037",
+    "name": "Mini-Computer Sight (Infravision)",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, full-solution fire-control systems with integral ballistic computers are introduced for infantry weapons. Initial platforms are rocket launchers and grenade launchers, which profit greatly from improved rangefinding and programming. As TL8 progresses, these sights grow small enough to mount on small arms.</p><p>Typical devices run a targeting program that gives +1 Gunner or Guns, include a laser rangefinder, and incorporate magnification (optical and/or electronic) and low-light capability (image intensification or thermal imaging). The gunner lases the target, and the computer calculates the aiming point and shows it on an integral display. This provides an extra +3 to hit that target with an aimed attack.</p><p>Includes a targeting program (+1 Gunner/Guns), a laser rangefinder (+3 Acc out to 2,000 yards), 2-4× magnification (+1 to +2 Acc), and either Night Vision 7 or Infravision. Adds -1 Bulk.</p>"
+  },
+  {
+    "_id": "14ad5a625ba76d77",
+    "name": "Thermal-Imaging Sight",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electronic passive IR-imaging sights for nighttime target acquisition have been available since the 1980s. Shooters using such devices have Colorblindness (p. B127) and Tunnel Vision (p. B151). See Thermographs (p. 48) for other important details.</p><p>Gives Infravision and +2 Acc, and adds -2 Bulk.</p>"
+  },
+  {
+    "_id": "825364990d2bbc15",
+    "name": "Improved Thermal-Imaging Sight",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electronic passive IR-imaging sights for nighttime target acquisition have been available since the 1980s. Shooters using such devices have Colorblindness (p. B127) and Tunnel Vision (p. B151). See Thermographs (p. 48) for other important details.</p><p>A lighter 1990s-era sight still gives Infravision and +2 Acc, but adds only -1 Bulk.</p>"
+  },
+  {
+    "_id": "b9096791c340f6b4",
+    "name": "Advanced Thermal-Imaging Sight",
+    "pages": "HT157",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Electronic passive IR-imaging sights for nighttime target acquisition have been available since the 1980s. Shooters using such devices have Colorblindness (p. B127) and Tunnel Vision (p. B151). See Thermographs (p. 48) for other important details.</p><p>By the 2000s, these sights give Infravision and +2 Acc without affecting Bulk.</p>"
+  },
+  {
+    "_id": "e557c34f11f7583b",
+    "name": "Detachable Baffle Suppressor, .22-caliber (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Most suppressors are of this type. They work by diffusing the muzzle blast and firing gases inside a baffled expansion tube (which has many tiny compartments). Lifetime is typically hundreds of shots - even tens of thousands of shots, by late TL7.</p><p>-1 to -4 Hearing. -1 Bulk.</p>"
+  },
+  {
+    "_id": "57c3cf0ecbe89b52",
+    "name": "Detachable Baffle Suppressor, Pistol or SMG (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Most suppressors are of this type. They work by diffusing the muzzle blast and firing gases inside a baffled expansion tube (which has many tiny compartments). Lifetime is typically hundreds of shots - even tens of thousands of shots, by late TL7.</p><p>-1 to -4 Hearing. -1 Bulk.</p>"
+  },
+  {
+    "_id": "afd734d298fb36c9",
+    "name": "Detachable Baffle Suppressor, Rifle (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Most suppressors are of this type. They work by diffusing the muzzle blast and firing gases inside a baffled expansion tube (which has many tiny compartments). Lifetime is typically hundreds of shots - even tens of thousands of shots, by late TL7.</p><p>For rifles firing 5.56×45mm NATO, 7.62×51mm NATO, or similar. -2 to -4 Hearing. -1 Bulk.</p>"
+  },
+  {
+    "_id": "15ade0d71aaa0bae",
+    "name": "Detachable Baffle Suppressor, Oversized (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Most suppressors are of this type. They work by diffusing the muzzle blast and firing gases inside a baffled expansion tube (which has many tiny compartments). Lifetime is typically hundreds of shots - even tens of thousands of shots, by late TL7.</p><p>Primarily for large-caliber rifles, such as .50 Browning weapons, but also available for some MGs. -2 to -4 Hearing. -2 Bulk.</p>"
+  },
+  {
+    "_id": "1a2f41f6ed2f640c",
+    "name": "Detachable Wiper Suppressor, Pistol or SMG (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wiper suppressor is a tube divided into compartments by \"wipes\" placed perpendicular to the barrel. The bullet passes through a sub-caliber hole in each wipe, while blast and gases are trapped in the compartments. Wipes are made of elastic materials such as oiled leather, rubber, or polyurethane, designed to close behind the bullet. This design means that wiper suppressors slow the projectile (causing it to lose power) and lose effectiveness after a few dozen shots, but also makes them more effective suppressors than baffle designs.</p><p>Multiply Dmg and Range by 0.8. Good for 40 shots. -2 to -4 Hearing. -1 Bulk.</p>"
+  },
+  {
+    "_id": "cc539d8688da66fb",
+    "name": "Detachable Wiper Suppressor, Rifle (per -1 Hearing)",
+    "pages": "HT159",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wiper suppressor is a tube divided into compartments by \"wipes\" placed perpendicular to the barrel. The bullet passes through a sub-caliber hole in each wipe, while blast and gases are trapped in the compartments. Wipes are made of elastic materials such as oiled leather, rubber, or polyurethane, designed to close behind the bullet. This design means that wiper suppressors slow the projectile (causing it to lose power) and lose effectiveness after a few dozen shots, but also makes them more effective suppressors than baffle designs.</p><p>For rifles firing 5.56×45mm NATO, 7.62×51mm NATO, or similar. Multiply Dmg and Range by 0.5. Good for 40 shots. -2 to -6 Hearing. -1 Bulk.</p>"
+  },
+  {
+    "_id": "e58d5c2fe4b0a59c",
+    "name": "Pistol Stock (TL5)",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A removable shoulder stock can convert a handgun into a carbine of sorts, improving accuracy and reducing felt recoil at the cost of increasing weight and making the weapon less handy. The pistol must be prepared to accept the stock by having a slot or groove in the grip. Attaching or removing the stock takes three seconds. While the stock is attached, use Guns (Rifle) to shoot, add +1 Acc and -1 Bulk, and multiply ST by 0.8 (round up). Many stocks are hollow, allowing storage of small items (ammo, a gun-cleaning kit, etc.); some can hold the gun itself when it isn't in use.</p>"
+  },
+  {
+    "_id": "fe4a3bc8bfa62ca3",
+    "name": "Pistol Stock (TL7)",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A removable shoulder stock can convert a handgun into a carbine of sorts, improving accuracy and reducing felt recoil at the cost of increasing weight and making the weapon less handy. The pistol must be prepared to accept the stock by having a slot or groove in the grip. Attaching or removing the stock takes three seconds. While the stock is attached, use Guns (Rifle) to shoot, add +1 Acc and -1 Bulk, and multiply ST by 0.8 (round up). Many stocks are hollow, allowing storage of small items (ammo, a gun-cleaning kit, etc.); some can hold the gun itself when it isn't in use.</p>"
+  },
+  {
+    "_id": "1826be60df99ad27",
+    "name": "Shooting Sticks",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Buffalo hunters sometimes propped long arms on \"bipods\" made from crossed sticks fastened with rawhide strips. A sitting marksman may treat a gun resting on shooting sticks as braced (see Aim, p. B364).</p>"
+  },
+  {
+    "_id": "baad28c3d78c51cc",
+    "name": "Bipod (TL6)",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bipods are integral to some weapons - especially MGs - and can be fitted to others. This is most common for rifles, but SMGs and even long-barreled revolvers have been so equipped! Bipods on MGs and heavy rifles function mainly to relieve the shooter of some of the weight. Others are installed for better accuracy.</p><p>If a weapon has an attached bipod, a prone shooter may treat it as if it were braced (see Aim, p. B364) and multiply its ST requirement by 2/3 (round up). Opening or closing a folded bipod requires a Ready maneuver. If the shooter isn't prone, the GM may allow the bonus for bracing if the bipod can reasonably be set on something stable - chest-high wall, pile of sandbags, window ledge, etc.</p><p>Available in fixed, semi-permanent, and quick-detach models (five seconds to install/remove).</p>"
+  },
+  {
+    "_id": "156976c0b6db5acb",
+    "name": "Bipod (TL7)",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bipods are integral to some weapons - especially MGs - and can be fitted to others. This is most common for rifles, but SMGs and even long-barreled revolvers have been so equipped! Bipods on MGs and heavy rifles function mainly to relieve the shooter of some of the weight. Others are installed for better accuracy.</p><p>If a weapon has an attached bipod, a prone shooter may treat it as if it were braced (see Aim, p. B364) and multiply its ST requirement by 2/3 (round up). Opening or closing a folded bipod requires a Ready maneuver. If the shooter isn't prone, the GM may allow the bonus for bracing if the bipod can reasonably be set on something stable - chest-high wall, pile of sandbags, window ledge, etc.</p><p>Available in fixed, semi-permanent, and quick-detach models (five seconds to install/remove).</p>"
+  },
+  {
+    "_id": "d796c19102261915",
+    "name": "Bipod (TL8)",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bipods are integral to some weapons - especially MGs - and can be fitted to others. This is most common for rifles, but SMGs and even long-barreled revolvers have been so equipped! Bipods on MGs and heavy rifles function mainly to relieve the shooter of some of the weight. Others are installed for better accuracy.</p><p>If a weapon has an attached bipod, a prone shooter may treat it as if it were braced (see Aim, p. B364) and multiply its ST requirement by 2/3 (round up). Opening or closing a folded bipod requires a Ready maneuver. If the shooter isn't prone, the GM may allow the bonus for bracing if the bipod can reasonably be set on something stable - chest-high wall, pile of sandbags, window ledge, etc.</p><p>Available in fixed, semi-permanent, and quick-detach models (five seconds to install/remove).</p>"
+  },
+  {
+    "_id": "fe8e40752daf4e0f",
+    "name": "Folding Stock",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The fixed shoulder stock of some long arms - but not that of weapons where the stock houses part of the action, or the magazine - can be replaced with a stock that folds or retracts to make the gun more compact. Folding such a stock removes -1 from Bulk; firearms that already include this feature indicate it with an asterisk (*) next to Bulk. While folded, also apply -1 to Acc and +1 to Recoil (unless Rcl is 1), and multiply ST by 1.2 (round up). Folding or unfolding the stock requires a Ready maneuver. All but the flimsiest folding stocks increase overall weight.</p>"
+  },
+  {
+    "_id": "1745e6b84a13e652",
+    "name": "Gun-Cleaning Kit",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A clean gun has been the mark of the professional shootist - from murdering thug to military sniper - since the dawn of firearms. Black-powder marksmen usually carry a multi-tool (p. 26) incorporating nipple key, vent pricker, oil bottle, screwdriver, double-pronged worm for cleaning, and tools for extracting jammed bullets. More modern kits fit in a small pouch and contain collapsible cleaning rod, cleaning patches, brush, cleaning solvent, and lubricant. Machine gunners are often issued a belt pouch that includes cleaning equipment and a few small spare parts. For game effects, see Cleaning and Maintenance (p. 80).</p>"
+  },
+  {
+    "_id": "7f51530d8d010129",
+    "name": "Gun Case",
+    "pages": "HT160",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>From the 1700s, high-quality dueling and target pistols were traditionally kept in a wooden case with their accessories - including a mold for the exact-sized ball. African safari hunters kept their elephant guns in velvet-lined strongboxes to protect against both the weather and light-fingered porters. Padded aluminum and hard plastic cases serve the same purpose today. A typical TL8 model is 4' long and holds a sniper rifle or two SMGs, plus spare magazines and other accessories. It is waterproof and lockable, and has DR 2.</p>"
+  },
+  {
+    "_id": "ce9f8c278b7b0ebb",
+    "name": "MG Brass Catcher",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A \"brass catcher\" is a bag or other container attached to a gun's ejection port to catch spent cartridge cases (the \"brass\"). Sport shooters use them to collect cases for reloading (see Handloading and Reloading, p. 174). Aircrews firing from within aircraft employ them to avoid the dangers of hot brass flying around the cabin - or into intakes or propellers. Covert operators, assassins, and others who can't afford to leave evidence behind also find them useful. As a field expedient, soldiers sometimes tape a sturdy plastic pouch (often taken from military rations, p. 35) to the gun.</p><p>Holds 500 cases. Adds -2 Bulk.</p><p>In all cases, halve weight at TL8.</p>"
+  },
+  {
+    "_id": "d28887f38397c258",
+    "name": "Pistol Brass Catcher",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A \"brass catcher\" is a bag or other container attached to a gun's ejection port to catch spent cartridge cases (the \"brass\"). Sport shooters use them to collect cases for reloading (see Handloading and Reloading, p. 174). Aircrews firing from within aircraft employ them to avoid the dangers of hot brass flying around the cabin - or into intakes or propellers. Covert operators, assassins, and others who can't afford to leave evidence behind also find them useful. As a field expedient, soldiers sometimes tape a sturdy plastic pouch (often taken from military rations, p. 35) to the gun.</p><p>Holds 20-30 cases. Adds -1 Bulk.</p><p>In all cases, halve weight at TL8.</p>"
+  },
+  {
+    "_id": "a8518cd84de0b043",
+    "name": "Rifle/SMG Brass Catcher",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A \"brass catcher\" is a bag or other container attached to a gun's ejection port to catch spent cartridge cases (the \"brass\"). Sport shooters use them to collect cases for reloading (see Handloading and Reloading, p. 174). Aircrews firing from within aircraft employ them to avoid the dangers of hot brass flying around the cabin - or into intakes or propellers. Covert operators, assassins, and others who can't afford to leave evidence behind also find them useful. As a field expedient, soldiers sometimes tape a sturdy plastic pouch (often taken from military rations, p. 35) to the gun.</p><p>Holds 60-100 cases. Adds -1 Bulk.</p><p>In all cases, halve weight at TL8.</p>"
+  },
+  {
+    "_id": "1e79ae470841b5fc",
+    "name": "Slide-Lock",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A slide-lock prevents the action of a semiautomatic firearm from cycling. This reduces mechanical noise when used with a sound suppressor (pp. 158-159), giving -1 to Hearing, but effectively converts the gun to a RoF 1 manual repeater - the operator must rack the slide after every shot to chamber a new cartridge. A slide-lock only comes standard on such specialized weapons as the Izhmekh PB (see Izhmekh PM, p. 100), but a gunsmith can add one to any semiautomatic with an Armoury (Small Arms) roll and two hours' work.</p>"
+  },
+  {
+    "_id": "d8bf214812a04905",
+    "name": "Drag Bag",
+    "pages": "HT161",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A sniper may use a padded \"drag bag\" to protect his rifle while creeping along the ground. A typical bag is camouflaged, has internal compartments and external pouches for small items, and can be worn as a backpack. It may unfold for use as a sniper mat once the sharpshooter reaches his objective. Its thick skin has DR 1.</p>"
   },
   {
     "_id": "7cf38e406e2be11f",
@@ -5446,6 +6566,350 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This is a bigger version of the IR-suppressing poncho (above), plus a system of support poles. One net covers about 25 square yards.</p>"
+  },
+  {
+    "_id": "b6bd4255ef580b4f",
+    "name": "Improved Black Powder (per pound)",
+    "pages": "HT183",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Black powder\" is a 20th-century term for the sole explosive and propellant in general use before the late 19th century. Prior to that time, it was the only powder used in guns, and called simply \"gunpowder.\" All black powder is a mixture of saltpeter (potassium nitrate), charcoal, and sulfur; see Home-Cooked Explosives (p. 186).</p><p>Exactly when gunpowder was invented is unknown. In writings dating to about 1240, Roger Bacon - an English Franciscan monk - described how to make it and that it would explode. He wrote in a cipher that wasn't broken for more than 600 years, though, and didn't claim to have invented gunpowder. A Chinese text claims that the \"Spear of Vehement Fire\" - a sort of Roman-candle incendiary - was first used in 1259. An Arab manuscript from 1304 depicts something that might be a cannon: an arrow, surrounded by smoke and flames, apparently emerging from a tube of some sort.</p><p>The earliest gunpowder was serpentine powder (TL3), also called \"meal powder.\" This was less powerful than later powder and tended to separate in storage or travel. It was used for artillery until the late 16th century. To keep it from separating, it was often hauled to the battlefield as ingredients and mixed on-site. Having to blend an unstable explosive under enemy fire, surrounded by burning matches or lit braziers, may explain the devotion of gunners to Saint Barbara, their patron saint!</p><p>Early in the 16th century, corned powder (TL4) was invented. Meal powder was dampened and pressed into cakes, which were dried and ground into grains of various sizes. Corned powder didn't separate in storage or transport - a huge advantage. As well, varying the grain size made it possible to adjust the burn rate: fine-grained powder was used for small arms and for priming (which needed a fast rate), while coarse powder was superior for large-bore weapons and as a blasting explosive.</p><p>These practices eventually led to a grading system - introduced in France in the 18th century - in which FG was the coarsest grade, FFG was one grade finer, and so on. Such standardization came with further advances in production, which made it possible to maximize power. The improved black powder (TL5) assumed in the remainder of this discussion and throughout High-Tech is about as good as black powder can get.</p><p>Historically, military gunpowder was packed in kegs holding 100 lbs. (6d×14 cr ex damage if it explodes). Two powder kegs made a convenient load for a mule or a pack horse. The usual charge for a flintlock musket was 100 to 200 grains; thus, at 7,000 grains to the pound, a mule-load of powder gave 7,000 to 14,000 musket shots! Smaller amounts were typically packed in 4-lb. cans (4d×4 cr ex).</p><p>A pound of improved black powder - enough for 35 to 70 musket shots - does 4d×2 cr ex damage.</p>"
+  },
+  {
+    "_id": "766892efafeb447d",
+    "name": "Nitroglycerin (per pound)",
+    "pages": "HT184",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In 1846, Ascanio Sobrero of Italy invented nitroglycerin (NG): a colorless liquid explosive. Swedish chemist Alfred Nobel perfected the process of making it in the 1860s. It was exported worldwide under the name \"Swedish Blasting Oil.\"</p><p>Nitroglycerin is powerful and not difficult to manufacture if sufficient care is taken (it involves mixing glycerin with nitric and sulfuric acids). Nobel insisted that it was so safe that the routine precautions developed for gunpowder were unnecessary. This proved not to be the case. Nitroglycerin is extremely sensitive to shock and thus tricky to transport. It's inert when frozen (at 50°F), so in the late 19th century, manufacturers froze it for shipment - but thawing it is dangerous in itself!</p><p>Whenever nitroglycerin is dropped or otherwise shocked, roll 3d. On 12+, it explodes. Impure nitro can be even more dangerous - some compounds explode on 10+!</p><p>A pound of nitroglycerin does 5d×3 cr ex damage. It commonly comes in 4-oz. vials (7d+1 cr ex).</p>"
+  },
+  {
+    "_id": "998d406a0fb7d889",
+    "name": "Dynamite, 80% (per pound)",
+    "pages": "HT184",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Dynamite was invented in 1867 to circumvent the problems of nitroglycerin. It consists of nitroglycerin soaked into a stabilizing material, such as kieselguhr (diatomaceous earth) or sawdust, to make it more difficult to detonate. It's so safe that it won't explode if set on fire. (It burns beautifully, too.) Dynamite must be detonated by the shock of an explosion - typically by a blasting cap that is itself set off electrically or by a burning fuse.</p><p>Despite its safety, dynamite initially faced heavy regulations - some of which amounted to prohibitions on shipping nitroglycerin at all - in many places. In the U.S., matters were further complicated by the absence of domestic manufacturers and an active dislike of the substance by the explosives industry. Nevertheless, there was a demand: dynamite could move more rock than black powder, and was safer to handle. From the late 1860s to the mid-1870s, there was an active black market in the stuff. Armed men with bulging suitcases roamed the mining and quarrying districts, at odds with the law, the explosives trust, and each other. By the 1870s, dynamite was being produced in America and the regulations had changed to allow legal transportation . . . but it was lively while it lasted.</p><p>One practical problem does enliven the use of dynamite, especially illegal use or transportation: old dynamite \"sweats\" - that is, the nitroglycerin oozes out of the carrier. Sweating dynamite is just as dangerous as nitro! If the PCs encounter old dynamite, the GM should decide what number, on 3d, sets it off if shocked. Guessing this number merely by looking requires a successful Explosives (Demolition) roll.</p><p>The REF of dynamite depends on its nitroglycerin content. This ranges from 20% to 80%, giving REF 0.3 to 1.2. Dynamite is named after its nitro percentage; e.g., \"80% dynamite\" is dynamite with 80% nitro. Note that so-called \"military dynamite\" (TL7) doesn't contain nitroglycerin - it's a mix of high explosives in \"stick\" form, equivalent in strength to 60% dynamite.</p><p>Dynamite commonly comes in 0.5-lb. sticks, which are about 1.25\" in diameter and 8\" long (Holdout -2). A 0.5-lb. stick of 80% dynamite does 9d+1 cr ex damage.</p>"
+  },
+  {
+    "_id": "f53d4c9f1edfdf7a",
+    "name": "Smokeless Powder (per pound)",
+    "pages": "HT185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In 1845, Christian Schönbein of Switzerland developed nitrocellulose (NC) or \"guncotton.\" In 1885, French chemist Paul Vieille produced the earliest \"single-base powder\" by combining nitrocellulose with moderators to make it burn more slowly. This was also the first successful \"smokeless powder\"; the French adopted a rifle that fired smokeless ammunition in 1886 (see Lebel Mle 1886, p. 111). In 1887, Swedish chemist Alfred Nobel invented \"double-base powder,\" which used a blend of nitrocellulose and nitroglycerin (p. 184). Almost all smokeless powders developed since have been of one of these two types.</p><p>There are many different smokeless powders, each with a specific purpose. The results of simply substituting one formula for another by weight or by bulk would range from embarrassing to disastrous. British and American writers often refer to all such propellants as \"cordite.\" In fact, Cordite was a particular class of double-base powders used in English sporting and military ammunition from the 1890s to about the 1960s.</p><p>Smokeless powders aren't entirely smokeless, but they produce so much less smoke than black powder that the name has stuck. They almost never fill the entire cartridge case . . . a .38 Special case completely filled with some mixtures would shatter the gun! However, they aren't normally explosive - you can't blow a bridge with the contents of a few thousand cartridges. They do burn fiercely, though, and can be used to start fires even on wet wood.</p>"
+  },
+  {
+    "_id": "8aa520a1f26ec64c",
+    "name": "TNT (per pound)",
+    "pages": "HT185",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The high explosive trinitrotoluene (TNT) was invented in 1876 and saw wide use as a demolition explosive and warhead filler throughout TL6. Its prevalence made it the benchmark against which the concussive power of all other explosives was measured: relative explosive force (REF) is a comparison to TNT, which has an arbitrary REF of 1. TNT was still used for demolition during WWII, common packaging including the German army's 0.45-lb. blocks (4d×2 cr ex) and the U.S. military's 1-lb. blocks (6d×2 cr ex).</p>"
+  },
+  {
+    "_id": "2df8f8c5959c6653",
+    "name": "Plastic Explosive (per pound)",
+    "pages": "HT186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Plastic explosives - also called \"plastique\" - consist of high explosives mixed with binding agents (\"plasticized\") to make them pliable. Their texture is similar to plastic putty, allowing them to be cut and formed to shape. They're also extremely stable, only exploding if set off by a detonator or another explosion. These factors make plastic explosives easy to work with and highly effective - they account for the majority of special-ops demolition jobs and well-planned terrorist bombings.</p><p>Nobel's Explosive Number 808, a green-colored British innovation used in WWII, was the first modern plastic explosive. Another British creation widely used during WWII was the grayish PE1 (also \"Composition C\"), which appeared in 1939. C4 (or \"Composition C4\"), the whitish explosive featured in countless action movies, is a U.S. innovation dating to 1948. The orange-colored Semtex-H, infamously used in many terrorist bombings, came out of Czechoslovakia in 1967. There are many other examples!</p><p>Most plastic explosives are odorless - although Nobel's No. 808 has a distinct almond smell - and emit a low level of fumes (nitrogen compounds). This makes them difficult (-8) for chemical detectors (pp. 48-49) or trained sniffer dogs to find, unlike most other explosives. They're also impossible for X-ray machines (pp. 206-207, 217) to detect unless specially treated - which some commercially available mixtures are, to discourage illegal use. Plastique has a long shelf-life (at least 10-20 years), and thus can be stored in caches until required.</p><p>World War II-era plastique usually came in wax paper-covered 0.25-lb. blocks (7d cr ex). Modern military C4 comes in 1.25-lb. blocks (5d×3 cr ex) sheathed in olive plastic, with a self-adhesive sticky side for placement. A chewing-gum stick of plastic explosive, as seen in Mission Impossible, would do 1d+1 cr ex - if you managed to detonate it.</p>"
+  },
+  {
+    "_id": "8b018cf015d750bd",
+    "name": "ANFO (per pound)",
+    "pages": "HT186",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"ANFO\" stands for \"ammonium nitrate/fuel oil.\" More generally, it refers to any explosive mixture of an oxidizing agent - such as ammonium nitrate (found in fertilizer), calcium nitrate, or ammonium perchlorate (used in bleaching agents) - with a liquid fuel, usually diesel (possibly mixed with vegetable oil). The ratio varies according to the ingredients and desired results, but is typically about 94% oxidizer to 6% fuel.</p><p>ANFO-type explosives, commercially available from 1955, are used in mining and account for 97% of the industrial explosives used in the U.S., as well as many major terrorist acts (including the truck bomb that destroyed the Alfred P. Murrah Federal Building in Oklahoma City, Oklahoma). They have many disadvantages - they're low-powered, highly water-absorbent, and easily detected (by their smell, fumes, and size). However, they're stable and relatively easy to put together; see Home-Cooked Explosives (see box). They need a blasting cap and a booster charge (a small amount of high explosive) to set off.</p><p>One pound of ANFO does 4d×2 cr ex.</p>"
+  },
+  {
+    "_id": "357960bd080ffff0",
+    "name": "Extrudable Explosive (Tube)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Extrudable explosive (plasticized RDX) looks like green toothpaste. It comes in caulking-gun cartridges and small plastic tubes. Used to fill hard-to-reach places, it's handy for blowing open doors, safes, etc. Roll against Explosives (Demolition) to apply it properly. Detonating it requires a blasting cap or other explosion.</p><p>A 0.1-lb. blob of extrudable explosive does 4d+2 cr ex damage; use maximum damage for objects in contact with it (see p. B415). A caulking-gun cartridge is $40, 1.1 lb., and holds 1 lb. of explosive (7d×2 cr ex); a caulking gun is $5, 0.5 lb. A small \"toothpaste tube\" is $10, 0.3 lb., and holds 0.25 lb. of explosive (7d cr ex).</p>"
+  },
+  {
+    "_id": "a905970950c6ffa1",
+    "name": "Foam Explosive (Aerosol Can)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Foam explosive (nitromethane) comes as a liquid in an aerosol dispensing can, and has the appearance and consistency of white shaving cream. Developed during the 1980s for destroying land mines, it's designed to cling to an object and deliver a powerful shock to its weakest part. Foam explosive has low explosive power for its volume, making it ideal for opening doors, car trunks, etc., in situations where stronger measures would draw unwelcome attention or endanger the user. Make an Explosives (Demolition) roll to apply it properly. Detonating it requires a blasting cap or other explosion.</p><p>A 0.1-lb. blob of foam does 4d cr ex damage; apply the maximum to objects in contact with it (see p. B415). An aerosol can is $10, 1 lb., and holds 0.9 lb. of explosive (6d×2 cr ex).</p>"
+  },
+  {
+    "_id": "c9b6f678d604a23d",
+    "name": "Time Fuse (15 feet)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL3-5, a time fuse, or \"match,\" is a cord impregnated with flammable material - usually a nitrate solution or spirits of wine (alcohol distilled from wine). At TL6-8, it's a cord with a black-powder core. Match comes in two varieties:</p><p>Slow-match is primarily a way to carry fire until it's needed. It burns at 4\" per hour. It's used to fire matchlock guns, to light grenades, to set off cannon, and as the slow element in a fuse train.</p><p>Quick-match is used principally as a time fuse. Various formulas burn at rates from 1' per minute to 4 yards per minute. (An open powder train - that is, a line of powder poured on the ground - also burns at about 4 yards/minute.)</p><p>To make or evaluate a fuse, or to set one to go off at a predetermined time, roll vs. Explosives (Demolition or Fireworks).</p>"
+  },
+  {
+    "_id": "f636eec84677eb5a",
+    "name": "Blasting Caps (6)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Blasting caps, invented in 1863, are used to detonate explosive charges. Non-electric caps are ignited by an ordinary 7.5' time fuse (burns for one minute per 1.5'). Electric caps attach to a blasting machine via integral 30' wires. Each cap does 1d-2 cr ex on its own.</p>"
+  },
+  {
+    "_id": "b5f54e2c0410ec27",
+    "name": "Early Blasting Machine",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Blasting machines (also called \"exploders\") produce the electric current that detonates electric blasting caps.</p><p>A heavy, boxy device with a T-shaped handle. Pushing down the plunger detonates up to 20 electric blasting caps at once.</p>"
+  },
+  {
+    "_id": "e123818a3e3acd03",
+    "name": "Military Blasting Machine",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Blasting machines (also called \"exploders\") produce the electric current that detonates electric blasting caps.</p><p>A modern military blasting machine - often called \"clacker,\" after the sound it makes - is cell phone-sized and generates enough electric current (usually by twisting its handles a few times) to detonate up to 50 electric blasting caps at once.</p>"
+  },
+  {
+    "_id": "6ccce92bdac6ff92",
+    "name": "Remote Blasting Machine",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Blasting machines (also called \"exploders\") produce the electric current that detonates electric blasting caps.</p><p>A radio transmitter for detonating electric blasting caps up to five miles away. It comes in a briefcase, which holds the transmitter and 10 receivers. Each receiver can set off up to 15 electric blasting caps at once.</p>"
+  },
+  {
+    "_id": "87b83ecfff13ab23",
+    "name": "Detonating Cord (per pound)",
+    "pages": "HT187",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also called \"det cord\" and \"primacord,\" this is a \"rope\" consisting of a PETN core sealed in tape, wrapped with yarn, and sheathed in plastic. When ignited, it detonates at over 6,000 yards per second - much faster than sound, and effectively instantaneous to human senses. It's intended primarily for linking detonators with explosives, and for connecting multiple charges for simultaneous detonation. Other applications are mine-clearing, cutting girders and trees, and laying booby traps. The military uses it extensively.</p><p>A pound of detonating cord does 5d×2 cr ex damage. Many thicknesses are available. The standard military type has a diameter of 0.2\", and a pound is about 55.5' long; it usually comes as a 500' roll of 9 lbs. of cord, which weighs 11.7 lbs. with spool. One foot weighs 0.018 lb. and does 1d+2 cr ex; one yard weighs 0.054 lb. and does 2d+2 cr ex. Det cord wrapped around something to cut it inflicts maximum damage on the object (roll damage normally for those nearby).</p>"
+  },
+  {
+    "_id": "8dbb7f0bb4e7f722",
+    "name": "Mechanical Clock",
+    "pages": "HT188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Precision timepieces are sometimes used to trigger explosives. A blasting cap (p. 187) is wired to the clock, which is then set. It can be stopped, reset, or tripped manually. Typical designs are waterproof to 20'.</p><p>Time delay can vary from 15 minutes to 12 hours.</p>"
+  },
+  {
+    "_id": "22e1bb67d27c4d0a",
+    "name": "Electronic Clock",
+    "pages": "HT188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Precision timepieces are sometimes used to trigger explosives. A blasting cap (p. 187) is wired to the clock, which is then set. It can be stopped, reset, or tripped manually. Typical designs are waterproof to 20'.</p><p>There's no specific limit on delay - an electronic clock can count down for a long time.</p>"
+  },
+  {
+    "_id": "3a47ec5811f020cd",
+    "name": "Time Pencils (6)",
+    "pages": "HT188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A \"time pencil\" consists of a pencil-shaped metal tube containing a thin wire and an ampoule of corrosive liquid. Crimping the tube crushes the ampoule, which starts the corrosive eating through the wire. When the wire finally breaks, it snaps a percussion cap that sets off any fuse or explosive attached. Special-ops soldiers and saboteurs made extensive use of such detonators during WWII.</p><p>Various models have delays of 10 minutes, 30 minutes, two hours, five hours, 12 hours, and 24 hours. Temperature variations cause the exact time of detonation to fluctuate; for instance, a temperature above 60°F reduces time by 20-50%. Make an Explosives (Demolition) roll to select the version needed for the situation and to determine the approximate time of detonation. A six-pack - one of each type - is $30, 0.25 lb.</p>"
+  },
+  {
+    "_id": "a410a2fe7d79c0f2",
+    "name": "Cutting Cord (per pound)",
+    "pages": "HT188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also known as a \"flexible linear shaped charge,\" this is an angular lead \"rope\" with a high-explosive core. The inverted-V shape causes the explosive to function as a shaped charge (pp. 182-183) that can cut through doors, walls, etc. Special-ops forces and SWAT teams often use cutting cord for forced entry; combat engineers employ it for various demolition tasks.</p><p>A 2' length of standard cutting cord weighs 1 lb. This does 4d×2 cr ex damage to anyone nearby - but against the item it's supposed to cut, use 4d(5) cr ex and apply maximum damage. It usually comes as a 20' roll of 10 lbs. of cord, which weighs 15 lbs. with spool.</p>"
+  },
+  {
+    "_id": "dcb104d5382a738e",
+    "name": "Thermite (per pound)",
+    "pages": "HT188",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Thermite is a powdered aluminum/ferrous oxide mixture used for welding and for sabotage. When heated to the combustion point of the aluminum via a special igniter, the components react vigorously and develop great heat (over 4,000°F). This reaction is almost impossible to contain - it cuts through steel, ignites nearby flammables, burns underwater (water won't extinguish it), and streams molten metal.</p><p>Burning thermite does 3d burn damage per second to anything it touches. Every 10 points of damage also reduces DR by 1 permanently, even on armor; in effect, DR at that specific point is considered semi-ablative against the attack (compare p. B559). Sparks and radiated heat inflict 3 points of burning damage per second in a one-yard radius, dropping to 1 point per second at two yards, but don't destroy DR. Thermite burns for about 25 seconds a pound.</p>"
+  },
+  {
+    "_id": "e55c76e03aac70e4",
+    "name": "Bowstring Silencers (pair)",
+    "pages": "HT199",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bowstring silencers - small leather or rubber pieces - reduce the noise of the bowstring twang (-2 to Hearing).</p>"
+  },
+  {
+    "_id": "7b91aa7f5d3128a0",
+    "name": "Grenade à Main",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Grenade à Main (simply \"hand grenade\") was the main weapon of French grenadiers for two centuries: a 4-pounder iron ball, about 3.2\" across, with a removable screw-plug for loading the powder. The plug held the fuse - a short length of match (p. 187). Other militaries fielded similar designs. Use of these unreliable and somewhat fumble-prone grenades declined during the 18th century but never quite broke off until the late 19th century.</p><p>The grenadier had to light the fuse prior to throwing the grenade (a Ready maneuver). This was impossible in rain, etc. A typical fuse burned for around five seconds.</p><p>The Grenade à Main Mle 1882 (1882-1914) was the same basic grenade given a mechanical time fuse for improved safety and reliability (Malf. 16): Wt. 2.6, Fuse 5. It was armed by pulling a ring (a Ready maneuver). This weapon was still in use during WWI.</p>"
+  },
+  {
+    "_id": "d2ca864f5a3d4b45",
+    "name": "Stielhandgranate",
+    "pages": "HT190",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWI, the Germans adopted a style of concussion grenade that remained standard until the end of WWII: the Stielhandgranate (\"stick hand grenade\"). Americans nicknamed it the \"Potato Masher\" after its appearance. German military influence manifested itself in similar or identical patterns in Bolivia, China, Finland, and elsewhere.</p><p>The long wooden handle gave good leverage for a throw, compensating for the extra weight (+2 ST to figure distance; see p. B355). It also made the grenade awkward to carry and hide; German soldiers stuck it in their belt or even their boot, and improvised carriers from sandbags. To activate the grenade before throwing, the user twisted the end cap off the handle and pulled sharply on the string inside (two Ready maneuvers).</p><p>Several models existed during WWI and the interwar years. During WWII, the standard type was the StiHGr24 (1928-1945), filled with TNT rather than black powder: Dmg 7d cr ex, Wt. 1.4. From 1943, one in three had a detachable 0.3-lb. fragmentation sleeve: Dmg 5d [2d] cr ex, Wt. 1.7. A 33-lb. case held 15.</p><p>The improvised geballte Ladung (\"concentrated charge\") - used to attack vehicles - consisted of six grenade heads bundled around one complete stick grenade: Dmg 6d×3 cr ex, Wt. 4.4.</p><p>The NbHGr39 (1939-1943) was a smoke grenade with identical appearance, except for a white stripe: Wt. 1.9, Fuse 7-8. It develops a 7-yard-radius smoke cloud that lasts for 90 seconds.</p>"
+  },
+  {
+    "_id": "012a27bf707d7137",
+    "name": "Mills Number 36M Mk I",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Developed from the almost identical Mills Number 5 Mk I (1915-1918), the Number 36M Mk I fragmentation grenade was produced in Britain for a long time. Hundreds of millions were made, and it was widely exported. It's still manufactured in India and Pakistan.</p><p>The \"Mills bomb\" was the first grenade with a deeply serrated cast-iron body. The serrations didn't actually control fragmentation (although William Mills might not have known this) but did give a better grip - especially in the slimy mud of a Flanders trench. Fragmentation with the Mills bomb was very uneven. Much of the cast iron was splintered, too small to cause serious injury, while an occasional large piece (especially the fuse and base) might travel 200 yards with enough force to kill. If the GM wishes, anything within 200 yards of the explosion could plausibly suffer a 2d fragmentation attack!</p><p>The original fuse delay was seven seconds. Starting in 1940, a four-second fuse became standard.</p>"
+  },
+  {
+    "_id": "685ef85937b0d631",
+    "name": "AMC MK II",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>After WWI, the U.S. military copied the contemporary French-issue grenade, the Grenade Défensive F1 Mle 1916, which they had used during the war. The MK II had a deeply serrated oval body similar to that of the Mills bomb. The nickname \"Pineapple Grenade\" was obvious.</p><p>The MK II and minor variants saw heavy use during WWII and the Korean War. It was widely exported, and copies are still made in Chile, Taiwan, and Turkey. There are several similar designs, including the Soviet Koveshnikov F-1 (1933-): Fuse 3-4.</p>"
+  },
+  {
+    "_id": "15a5f6aa446de5da",
+    "name": "AMC MK III",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This concussion grenade is a half-pound block of TNT in a cardboard body, which doesn't develop any fragments. Its final version, the MK 3A2 (1943-), is still in use. Late-production weapons have a plastic body for better protection against humidity. Widely exported, this grenade is also copied in Israel, Taiwan, and Turkey, among other places.</p>"
+  },
+  {
+    "_id": "51e5a848ffd3c81b",
+    "name": "Eihandgranate 39",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Although the StiHGr24 (see Stielhandgranate, pp. 190-191) was more visible, German forces used the Eihandgranate 39 (\"egg hand grenade model 1939\") or EiHGr39 - a small concussion grenade with a pull-string igniter - in greater numbers during WWII.</p>"
+  },
+  {
+    "_id": "25253049a0dd87ad",
+    "name": "AN-M8",
+    "pages": "HT191",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This soup can-shaped device was typical of the chemical smoke grenades used by most armies since WWII. The fuse didn't burst the grenade - it ignited the filler. The AN-M8 burned for two minutes, generating a cloud of thick, white smoke over a 7-yard radius; see Smoke (p. 171). The canister grew hot enough (about 2,200°F) to burn unprotected flesh (1d-2 burn) and set fire to dry vegetation, paper, and similar flammables (see Making Things Burn, p. B433).</p><p>The M7 series (1935-) emits tear gas (p. 171) instead, filling a 7-yard radius for 25 seconds: Wt. 1, Cost $175.</p><p>The M18 (1942-) generates red, yellow, green, or violet smoke for signaling, and fills a 7-yard radius for 70 seconds: Wt. 1.2.</p><p>The M83 (1994-) replaces the AN-M8 in U.S. military service, and fills a 7-yard radius for 50 seconds: Wt. 1, Cost $35.</p>"
+  },
+  {
+    "_id": "446239f25358cdfa",
+    "name": "AN-M14",
+    "pages": "HT192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This can-shaped device contained over 1.6 lbs. of thermate incendiary. Placed inside an abandoned tank, in the barrel of a captured artillery piece, or atop secret radio or encryption equipment, it would soon destroy the hardware. It also radiated enough heat to ignite flammables within two yards, and burned even underwater.</p><p>See Thermite (p. 188) for effects; thermate is identical for game purposes. The AN-M14 burns for 40 seconds. Anything in contact with it takes 3d burn damage per second and permanently loses DR 1 per 10 points of damage.</p>"
+  },
+  {
+    "_id": "2657589672996538",
+    "name": "RPG-43",
+    "pages": "HT192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Ruchnaya Protivotankovaya Granata obrazets 1943g (\"hand-held antitank grenade model 1943\") was a stick grenade with a 95mm shaped charge in the head and a cloth stabilizer in the tail. It was designed during WWII to give Soviet infantry a close-range weapon for use against armored vehicles. The Viet Cong employed it in the Vietnam War and the Egyptians used it during the 1973 Yom Kippur War.</p><p>This RPG-43 must hit head-on to be effective. Throwers unfamiliar with the special hurling technique required have -5 to Throwing skill. Attack from above using the Dropping skill (p. B189) is another option.</p>"
+  },
+  {
+    "_id": "6e91cc602f77a49b",
+    "name": "M26",
+    "pages": "HT192",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This lemon-shaped fragmentation grenade had a smooth, sheet-metal body. Inside, a tight coil of notched wire surrounded the explosive charge. The M26 superseded the MK II (p. 19) with the U.S. military after the Korean War, and served in America's subsequent conflicts until the 1970s. Widely copied - including in Germany, Israel, the Netherlands, South Africa, and the U.K. - the M26 is likely to turn up almost anywhere even today.</p>"
+  },
+  {
+    "_id": "9d533714bb208d5e",
+    "name": "M34 WP",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also known as \"Willy Pete,\" this grenade scatters burning white phosphorus fragments when it explodes. The result is an instant - and dangerous - hot smokescreen. The 5-yard-radius smoke cloud lasts for about a minute, depending on the weather. See also White Phosphorus (WP) (p. 172).</p>"
+  },
+  {
+    "_id": "0aaf99e46b341894",
+    "name": "M67",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This baseball-sized fragmentation grenade is current issue in U.S. military service. A replacement for the M26 (p. 190), it's safer, lighter, and easier to throw. It's widely distributed, and also made in Canada, South Korea, and Taiwan.</p>"
+  },
+  {
+    "_id": "19bdff7a099a5e33",
+    "name": "Diehl DM51",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Handgranate DM51 is a fragmentation grenade with a removable plastic sleeve containing several thousand steel balls. Without the sleeve, it functions as a concussion grenade: Dmg 5d cr ex, Wt. 0.3. The DM51 is the German military's standard combat grenade, and has also been exported.</p>"
+  },
+  {
+    "_id": "29e1f741c4501490",
+    "name": "Diehl DM51 (Without Sleeve)",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Handgranate DM51 is a fragmentation grenade with a removable plastic sleeve containing several thousand steel balls. Without the sleeve, it functions as a concussion grenade: Dmg 5d cr ex, Wt. 0.3. The DM51 is the German military's standard combat grenade, and has also been exported.</p>"
+  },
+  {
+    "_id": "56a333fd1d690a73",
+    "name": "Schermuly Stun",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stun munitions such as this Schermuly design - often called \"flashbangs\" due to their blinding flash and near-deafening bang - appeared during the 1970s. Originally intended as training grenades, they were first used in the 1977 hostage-rescue operation executed by the German GSG9 antiterror unit in Mogadishu. Since the 1980s, they've been standard issue for SWAT units and special-ops forces.</p>"
+  },
+  {
+    "_id": "5ab805db2a833c1f",
+    "name": "ARGES HG 86",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Handgranate 86 is a small fragmentation grenade ideally suited for house-to-house combat. In 2001, the U.S. Army Special Forces used it for cave-clearing in Afghanistan.</p>"
+  },
+  {
+    "_id": "bc5c5628ef9faf99",
+    "name": "M452 Stingball",
+    "pages": "HT193",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This less-than-lethal grenade has a plastic body filled with 100 soft rubber balls. The explosive blast can stun, while the rubber balls inflict a painful sting over a 7-yard radius. The U.S. Navy and Marines adopted the M452 in 1998.</p><p>The M452C Comboball (1987-) is almost identical, but also spreads a 3-yard-radius cloud of tear gas powder (see Tear Gas, p. 171), which settles after a second: Cost $35.</p>"
+  },
+  {
+    "_id": "21678b93cccae59d",
+    "name": "Fiedler Kleif",
+    "pages": "HT179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Kleinflammenwerfer (\"small flamethrower\") was the first modern flamethrower, and ideal for taking out strongpoints in trenches. By 1916, most WWI combatants had similar weapons. The Kleif had a single ignition cap, and fired its entire 4.2 gallons of unthickened fuel in one 20-second stream.</p>"
+  },
+  {
+    "_id": "4ca57d7ffb5822ed",
+    "name": "TOZ ROKS-2",
+    "pages": "HT179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>During WWII, the Red Army used the Rantseviy Ognemyot Klyueva-Sergeeva-2 (\"Klyuev's and Sergeev's backpack flamethrower\"). Its flame-gun looked like a rifle and its rectangular tank resembled a backpack. This was to deceive the enemy into letting it into range (make a Vision roll to identify it) . . . even though most soldiers don't allow any hostile within 40 yards, regardless of his armament! The tank held 2.6 gallons and the flame-gun used 7.62×25mm blanks in a revolving 10-round cylinder for ignition, giving 10 one-second bursts.</p>"
+  },
+  {
+    "_id": "0d39683af41cefae",
+    "name": "Beattie M2-2",
+    "pages": "HT179",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This flamethrower was standard for the U.S. military until the 1950s. Some 25,000 were made. Most nations had something similar during WWII. The tank held 4.75 gallons of thickened fuel and the flame-gun used blank cartridges in a revolving five-round cylinder for ignition, giving five two-second bursts or one 10-second stream.</p><p>The similar GE M9A1-7 (1956-1969) superseded the M2-2 and saw use in the Vietnam War: Range 35/55, Wt. 52. Two of these appear as part of the armory of the Antarctica Research Station in The Thing. The U.S. removed all flamethrowers from service in 1978.</p><p>The POA-CWS M3-4-3 (1944-1945) had the same performance as the M2-2, but was installed in some M4 Sherman tanks (p. 239) in the place of the bow MG (and 12 main gun rounds). It fed from a 25-gallon tank - enough for a 45-second stream or 10 five-second bursts. Some 1,784 were made and used in WWII and the Korean War.</p>"
+  },
+  {
+    "_id": "9bd397aacdb42dc0",
+    "name": "DWM FmW46",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Einstoss-Flammenwerfer 46 (\"single-burst flamethrower model 46\") was a disposable weapon resembling a fire extinguisher with a pistol grip. The operator tucked the bottle under one arm, pointed it at the enemy, and unleashed a single burst of flame. It was intended for parachutists and other assault troops. Some 30,900 were made.</p>"
+  },
+  {
+    "_id": "ed2219e45b5e8f96",
+    "name": "TOZ LPO-50",
+    "pages": "HT180",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The Soviet Lekkiy Piekhotnyy Ognemyot-50 (\"light infantry flamethrower\") contains 2.6 gallons of fuel - enough for three three-second bursts. Batteries (4×S) activate the three ignition cartridges. The flame-gun has a bipod. The LPO-50 was copied in China.</p>"
   },
   {
     "_id": "a7abe8c655d40218",
