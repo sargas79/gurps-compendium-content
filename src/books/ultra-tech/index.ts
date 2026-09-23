@@ -31,7 +31,7 @@ import { initMelee, readyMelee } from "./melee/index.js";
 import { initUltraTechPower, readyUltraTechPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
-import { readySecurity } from "./security/index.js";
+import { initSecurity, readySecurity } from "./security/index.js";
 import { initUltraTechSensors, readyUltraTechSensors } from "./sensors/index.js";
 import { initStealth, readyStealth } from "./stealth/index.js";
 import { initSwarms, readySwarms } from "./swarms/index.js";
@@ -127,6 +127,7 @@ function init(): void {
   initStealth(ruleKey("stealthSystems"));
   initUltraTechSensors({ communicators: ruleKey("communicators"), sensors: ruleKey("sensors") });
   initFabrication();
+  initSecurity();
   initTransport();
   initAccessories();
   initMelee();

@@ -46,8 +46,8 @@
  * bayonets and rifle butts, sheaths, blade composition, electric stun
  * weapons and high-tech bows, and the breathing gear and environment
  * suits: masks, diving rigs, air tanks and rebreathers, and the suits that
- * seal their wearers (pp. 7-11, 13-16, 17-65, 71-77, 79-93, 109, 127-141,
- * 143, 147-201, 249-252).
+ * seal their wearers, and the locks, safes, traps and barriers (pp. 7-11,
+ * 13-16, 17-65, 71-77, 79-93, 109, 127-141, 143, 147-205, 213, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -81,6 +81,7 @@ import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
 import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/index.js";
 import { readyBreathing } from "./breathing/index.js";
+import { initHighTechSecurity, readyHighTechSecurity } from "./security/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -209,6 +210,9 @@ const RULES = [
   // Breathing gear and environment suits.
   { key: "breathingGear", pages: "pp. 72-74, 76", implemented: true },
   { key: "environmentSuits", pages: "pp. 74-76", implemented: true },
+  // Covert ops and security: locks, safes, traps and barriers.
+  { key: "locksAndSafes", pages: "pp. 202-205, 213", implemented: true },
+  { key: "trapsAndBarriers", pages: "pp. 203-205", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -258,6 +262,7 @@ function init(): void {
   initClothing(ruleKey("climateControl"));
   initHighTechMelee();
   initHighTechCamouflage(ruleKey("camouflageGear"));
+  initHighTechSecurity();
 }
 
 function ready(api: GWorldApi): void {
@@ -308,6 +313,7 @@ function ready(api: GWorldApi): void {
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
   readyHighTechCamouflage(api);
   readyBreathing(api, { breathing: rule("breathingGear"), suits: rule("environmentSuits") });
+  readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
 }
 
 export const book: BookRules = {

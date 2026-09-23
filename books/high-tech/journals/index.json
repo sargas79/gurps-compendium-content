@@ -1856,6 +1856,7 @@
       "title": "Barriers and Traps",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT202-204",
+      "rule": "gurps-compendium-content.trapsAndBarriers",
       "reference": "High-Tech pp. 202-204",
       "file": "barriers-and-traps.md",
       "status": "reviewed"
@@ -1955,6 +1956,7 @@
       "title": "Burglary",
       "chapter": "6. Covert Ops and Security",
       "pages": "HT213",
+      "rule": "gurps-compendium-content.locksAndSafes",
       "reference": "High-Tech p. 213",
       "file": "burglary.md",
       "status": "reviewed"

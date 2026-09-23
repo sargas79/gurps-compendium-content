@@ -5165,6 +5165,14 @@
         "environmentSuits": {
           "Name": "Environment suits",
           "Hint": "Biohazard and NBC suits are Sealed with an air mask under them, and a biohazard suit triples the FP of effort and weather; a clean suit gives +4 HT against contagion; the Apollo space suits are Sealed with Vacuum Support under their helmets and breathe from a tank or the EVA suit's 7-hour pack; biomedical sensors give +1 to Diagnosis (High-Tech pp. 74-76)."
+        },
+        "locksAndSafes": {
+          "Name": "Locks and safes",
+          "Hint": "A lock's quality reprices it (basic x1, good x5, fine x20) and sets the roll to pick it (+5, 0, -5); a lock's toughness and a safe's DR and HP; picking takes a minute, a safe an hour, with Time Spent; a lockpick gun is +4 against basic locks and -5 against the rest; a stethoscope or endoscope is +2; an older lock gives the burglar the Tech-Level Modifiers' penalty as a bonus; electronic locks and identity verifiers take Electronics Operation (Security) (High-Tech pp. 202-205, 213)."
+        },
+        "trapsAndBarriers": {
+          "Name": "Traps and barriers",
+          "Hint": "A GM tool for caltrops (a Vision roll at the Move's speed penalty, thrust-3 impaling to the foot per caltrop stepped on), tripwires, stake pits, barbed and razor wire (DX-5 a yard, a Will roll not to cry out, snagged as a Binding ST 8), a cattle fence's stun held while in contact, a lethal fence's 3d a second and the electromagnetic car stopper; spike strips and smart fences on the item (High-Tech pp. 203-205)."
         }
       },
       "Gadget": {
@@ -7977,6 +7985,147 @@
         "BombSuit": "The hands are bare.",
         "Biomedical": "Biomedical sensors: +{bonus} to Diagnosis on the wearer, or Diagnosis at {remote} from afar.",
         "BiomedicalModifier": "Biomedical sensors ({item})"
+      },
+      "Security": {
+        "Title": "Locks, traps and barriers (High-Tech)",
+        "QualityLabel": "Lock quality",
+        "QualityHint": "A basic lock is +5 to pick, a good one no modifier, a fine one -5; good costs x5 and fine x20. Electronic locks, identity verifiers and a safe's lock take the same grades (High-Tech pp. 203-205).",
+        "QualityOption": "{quality} (x{cost})",
+        "QualityPrice": "{quality} lock",
+        "Quality": {
+          "basic": "Basic",
+          "good": "Good",
+          "fine": "Fine"
+        },
+        "Kind": {
+          "lock": "Mechanical lock",
+          "safe": "Safe",
+          "electronic": "Electronic lock",
+          "verifier": "Identity verifier"
+        },
+        "Toughness": {
+          "weak": "weak",
+          "standard": "standard",
+          "tough": "tough"
+        },
+        "Hours": "{hours} hour(s)",
+        "Minutes": "{minutes} minute(s)",
+        "Seconds": "{seconds} second(s)",
+        "Pick": {
+          "Title": "Pick a lock",
+          "Lock": "Lock",
+          "Described": "One described below",
+          "Kind": "Kind of lock",
+          "QualityField": "Quality",
+          "Tl": "Lock's TL",
+          "Time": "Time taken",
+          "Quiet": "Stethoscope, very quiet place",
+          "UseEndoscope": "Endoscope inside the mechanism",
+          "Quality": "{quality} lock",
+          "Gun": "Lockpick gun",
+          "Older": "TL{lock} lock, TL{skill} burglar",
+          "Stethoscope": "Stethoscope",
+          "Endoscope": "Endoscope",
+          "TimeSpent": "Time Spent",
+          "Label": "Getting past the {lock}",
+          "Opened": "{name} gets past the {lock} ({time}).",
+          "Failed": "{name} fails to get past the {lock} ({time})."
+        },
+        "Time": {
+          "1": "The usual time",
+          "2": "Twice as long (+1)",
+          "4": "4 times as long (+2)",
+          "8": "8 times as long (+3)",
+          "15": "15 times as long (+4)",
+          "30": "30 times as long (+5)",
+          "0_5": "Half the time (-5)"
+        },
+        "Trap": {
+          "Title": "Traps and barriers",
+          "Target": "Target whoever meets the trap or barrier.",
+          "Kind": "Trap or barrier",
+          "Yards": "Yards of wire to cross",
+          "Seconds": "Seconds touching the fence",
+          "Metal": "Metallic armour",
+          "Watching": "Watching the ground",
+          "Hidden": "Hidden (roll to spot it)",
+          "FishingLine": "Fishing line",
+          "DirtyField": "Dirty or poisoned points",
+          "caltrops": "Caltrops",
+          "tripwire": "Tripwire",
+          "stakePit": "Stake pit",
+          "barbedWire": "Barbed wire",
+          "razorWire": "Razor wire",
+          "cattleFence": "Cattle fence",
+          "lethalFence": "Lethal fence",
+          "carStopper": "Electromagnetic car stopper",
+          "Spot": "Spotting the {trap} (Per-based Traps)",
+          "MoveSpeed": "Moving at Move {move}",
+          "NotWatching": "Not watching the ground",
+          "Vision": "Vision: the {trap}",
+          "Avoided": "{name} picks a way through without stepping on one.",
+          "CaltropLabel": "Caltrop {n} of {count}: {name}'s foot",
+          "SteppedOn": "{name} steps on {count} caltrop(s): {formula} impaling to the foot each; footwear's DR counts.",
+          "Lodged": "{count} lodged: each does its damage again every turn the foot is walked on, and takes {readies} Ready maneuvers to pull out.",
+          "Dirty": "The wounds are dirty: {modifier} or worse to resist infection (Campaigns p. 444).",
+          "Spotted": "{name} spots it.",
+          "Trip": "DX: the {trap}",
+          "Kept": "{name} keeps their footing.",
+          "Tripped": "{name} is tripped and falls prone.",
+          "PitLabel": "Stake pit: {name}",
+          "FellIn": "{name} falls on the stakes: {formula} impaling, from their own ST."
+        },
+        "Barrier": {
+          "Avoid": "Getting past the {barrier}",
+          "Avoided": "{name} gets past without harm.",
+          "Immune": "Nothing here can harm {name}.",
+          "Resist": "Resisting the {barrier}",
+          "Afflicted": "{name} is {effect}.",
+          "Resisted": "{name} resists.",
+          "DamageLabel": "{barrier}: {name}",
+          "Yard": "{barrier}, yard {yard} of {yards}",
+          "Torn": "The barbs tear {name} at yard {yard}.",
+          "CryOut": "Will: {name} not crying out",
+          "CryOutInjury": "Pain threshold and {injury} injury",
+          "PainThreshold": "Pain threshold",
+          "Silent": "{name} keeps quiet.",
+          "CriedOut": "{name} cries out.",
+          "Snagged": "The wire snags clothing and gear: held as by a Binding of ST {st} (Characters p. 40).",
+          "Through": "{name} gets through {yards} yard(s) of wire.",
+          "Zap": "HT: second {second} on the fence",
+          "Stunned": "{name} is stunned, and may roll HT each second to recover.",
+          "StunnedHeld": "{name} is stunned while touching the fence, {seconds} second(s) more; the rolls to recover begin once the contact ends.",
+          "Unaffected": "{name} has no electronics for it to disable.",
+          "KnockedOut": "{name} is out of action for {seconds} second(s)."
+        },
+        "Item": {
+          "Safe": "DR {dr}, HP {hp}; the lock's own toughness doesn't count.",
+          "Toughness": "A {toughness} lock: DR {dr}, HP {hp}.",
+          "Pick": {
+            "lock": "Lockpicking {modifier} to pick it; a minute an attempt, with Time Spent. An older lock gives a higher-TL burglar a bonus.",
+            "safe": "Lockpicking {modifier} to open it; an hour an attempt, with Time Spent. A stethoscope is basic equipment for it.",
+            "electronic": "Electronics Operation (Security) {modifier} to get past it, with an electronic lockpicking kit or Electronics Repair (Security) tools. Cutting the power opens a fail-safe lock, not a fail-secure one.",
+            "verifier": "Electronics Operation (Security) {modifier} to bypass it with the case open and suitable tools."
+          },
+          "Forgery": "Forgery {modifier} to fool it, with Electronics Operation (Security) and a computer analysis of an authorized signature.",
+          "Gun": "{basic} more against a basic lock, {other} against a good or fine one; five seconds an attempt.",
+          "picks": "Basic equipment for Lockpicking; improvised or better picks use the Equipment Modifiers.",
+          "kit": "Basic equipment for Electronics Operation (Security) against electronic locks.",
+          "Stethoscope": "+{bonus} against a mechanical lock or other device heard working, in a very quiet place.",
+          "Endoscope": "+{bonus} to crack a lock or safe by seeing inside it.",
+          "Caltrops": "Covers a hex. Moving through it: a Vision roll each second at the Move's speed penalty, -2 more when not watching the ground; one caltrop stepped on per point of failure (at least one), each thrust{modifier} impaling to the foot. One that does at least the footwear's DR lodges; {readies} Ready maneuvers remove each.",
+          "BarbedWire": "DX-5 a yard to get through; a failure tears the skin (a Will roll not to cry out: +3 High Pain Threshold, -4 Low) and snags as a Binding of ST {st}. Laying something over it lets anyone climb across.",
+          "RazorWire": "As barbed wire, but a failed DX-5 roll also does 1d-3 cutting and the Will roll is at minus the injury; snags as a Binding of ST {st}.",
+          "WireLaying": "A coil takes {minutes} man-minutes to lay, {bare} without gloves, wire cutters and fasteners.",
+          "CattleFence": "A HT roll each second of contact; a failure stuns while the victim touches it, and HT rolls each second to recover once they let go (Campaigns p. 432).",
+          "LethalFence": "{damage} burning a second, a lethal shock (Campaigns p. 432).",
+          "SpikeStrip": "A tire driven over it deflates in {seconds} seconds: {driving} to Driving and Top Speed x{topSpeed}.",
+          "CarStopper": "HT{modifier} for a TL8+ vehicle or anyone with Electrical, or out of action for seconds equal to the margin; pre-TL8 vehicles are immune.",
+          "SmartFence": "Electronics Operation (Security){modifier} to neutralize each 10-yard section.",
+          "StakePit": "Thrust impaling from the victim's own ST; a punji pit's dirty stakes give {modifier} or worse to resist infection."
+        },
+        "SafeNote": "A safe's own DR and HP (High-Tech p. 203)",
+        "ToughnessNote": "A {toughness} lock (High-Tech p. 203)"
       }
     },
     "Backblast": {
