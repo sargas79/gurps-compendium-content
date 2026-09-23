@@ -4,18 +4,21 @@
  * ammunition: a load on each ranged mode, never an item of its own.
  *
  *   - **init:** the warhead loaded in each ranged mode, and its variant.
- *   - **ready:** the row each warhead fires, through `gworld.weaponAttacks`;
+ *   - **ready:** the row each warhead fires, through the load engine
+ *     (`src/shared/loads`, shared with High-Tech's ammunition);
  *     an item section to choose them, with the round's cost multiple and LC;
  *     the EMP, strobe, warbler and psi-bomb effects on a failed roll; and
  *     proximity detonation as an attack option.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { launcherOf as loadLauncherOf } from "../../../shared/loads/launcher.js";
+import { registerLoadRows } from "../../../shared/loads/rows.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamEnvironment } from "../beams/index.js";
 import { WARHEADS, WARHEAD_KINDS, sizeClass, type WarheadKind } from "./catalogue.js";
 import { placeArea } from "../areas.js";
-import { PSI_STUN_RECOVERY, WARBLER_SECONDS, warblerRings, blastDivisorPerYard, fadingBonus, loadable, refusal, warheadRow, type Launcher, type WarheadRow } from "./rules.js";
+import { PSI_STUN_RECOVERY, WARBLER_SECONDS, warblerRings, blastDivisorPerYard, fadingBonus, loadable, refusal, warheadRow, type Launcher } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Warheads.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Warheads.${key}`, data);
@@ -55,21 +58,9 @@ function recordWarhead(item: any): { sizeMm: number | null; kind: WarheadKind | 
   return { sizeMm: Number.isFinite(size) ? size : null, kind: WARHEAD_KINDS.includes(kind) ? kind : "" };
 }
 
-/** The weapon a mode loads warheads into. */
+/** The weapon a mode loads warheads into: the load engine's, with a grenade or mine's own warhead its size. */
 export function launcherOf(api: GWorldApi, item: any, modeIndex: number): Launcher {
-  const name = String(item?.name ?? "");
-  const mode = item?.system?.rangedModes?.[modeIndex] ?? {};
-  const record = recordWarhead(item);
-  const tl = Number(/-?\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
-  return {
-    calibreMm: record ? record.sizeMm : (api.rules.calibreOf(name) ?? null),
-    tl,
-    grenade: Boolean(record),
-    electromagnetic: /\b(gauss|railgun|emgl)\b/i.test(name),
-    railgun: /\brailgun\b/i.test(name),
-    shotgun: /shotgun|grenade launcher|gyroc/i.test(`${name} ${mode.skill ?? ""}`),
-    homing: /\b(homing|guided|missile)\b/i.test(name),
-  };
+  return loadLauncherOf(api, item, modeIndex, recordWarhead);
 }
 
 /** The loads on an item, with a grenade's own warhead where none is chosen. */
@@ -155,42 +146,23 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
     listeners: (element, item) => itemListeners(api, element, item),
   });
 
-  // Each mode fires the warhead it's loaded with (pp. 152-159).
-  Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
-    if (!on() || !isRanged(context?.item)) return;
-    for (const entry of context.rows ?? []) {
-      if (entry.kind !== "ranged") continue;
-      const index = (context.item.system?.rangedModes ?? []).indexOf(entry.mode);
-      if (index < 0) continue;
-      const load = loadFor(context.item, index);
-      if (!load?.kind) continue;
-      const row = entry.row;
-      // A Basic Set round already loaded stands; the two don't stack.
-      if (entry.mode?.ammunition) {
-        row.notes.push({ label: L("Ammunition"), hint: L("AmmunitionHint") });
-        continue;
-      }
-      const launcher = launcherOf(api, context.item, index);
-      if (refusal(load.kind, launcher)) continue;
-      const before: WarheadRow = {
-        damage: String(row.damage ?? ""), damageType: String(row.damageType ?? ""), armorDivisor: Number(row.armorDivisor) || 1,
-        halfDamageRange: Number(row.halfDamageRange) || 0, maxRange: Number(row.maxRange) || 0, projectiles: Number(row.projectiles) || 1, skillBonus: 0,
-        explosive: row.explosive === true, incendiary: row.incendiary === true, doubleKnockback: row.doubleKnockback === true, radiation: row.radiation === true, surge: row.surge === true,
-        fragmentation: String(row.fragmentation ?? ""), affliction: row.affliction === true, afflictionAttribute: String(row.afflictionAttribute ?? ""),
-        afflictionModifier: Number(row.afflictionModifier) || 0, followUp: row.followUp ?? null, notes: [],
-      };
-      const after = warheadRow(load.kind, before, launcher, { variant: load.variant, atmospheres: beamEnvironment().atmospheres });
-      Object.assign(row, {
-        damage: after.damage, damageType: after.damageType, armorDivisor: after.armorDivisor,
-        halfDamageRange: after.halfDamageRange, maxRange: after.maxRange, projectiles: after.projectiles,
-        explosive: after.explosive, incendiary: after.incendiary, doubleKnockback: after.doubleKnockback, radiation: after.radiation, surge: after.surge === true,
-        fragmentation: after.fragmentation, affliction: after.affliction, afflictionAttribute: after.afflictionAttribute,
-        afflictionModifier: after.afflictionModifier, followUp: after.followUp ? { ...after.followUp, label: L(`Kind.${after.followUp.label}`) } : null,
-      });
-      if (after.skillBonus && typeof row.skillLevel === "number") row.skillLevel += after.skillBonus;
-      row.notes.push({ label: L(`Kind.${load.kind}`), hint: L(`Hint.${load.kind}`) });
-      for (const note of after.notes) row.notes.push({ label: F(`Note.${note.key}`, note.data ?? {}), hint: L(`Hint.${load.kind}`) });
-    }
+  // Each mode fires the warhead it's loaded with (pp. 152-159). A Basic Set round
+  // already loaded stands; the two don't stack.
+  registerLoadRows(api, {
+    on,
+    loadFor: (item, index) => (isRanged(item) ? loadFor(item, index) : null),
+    basicAmmunition: { get label() { return L("Ammunition"); }, get hint() { return L("AmmunitionHint"); } },
+    apply: (load, before, place) => {
+      if (!load.kind) return null;
+      const launcher = launcherOf(api, place.item, place.modeIndex);
+      if (refusal(load.kind, launcher)) return null;
+      return warheadRow(load.kind, before, launcher, { variant: load.variant, atmospheres: beamEnvironment().atmospheres });
+    },
+    tags: (load, after) => [
+      { label: L(`Kind.${load.kind}`), hint: L(`Hint.${load.kind}`) },
+      ...after.notes.map((note) => ({ label: F(`Note.${note.key}`, note.data ?? {}), hint: L(`Hint.${load.kind}`) })),
+    ],
+    followUpLabel: (label) => L(`Kind.${label}`),
   });
 
   // What a failed roll against an energy warhead does (pp. 157-159).

@@ -1302,6 +1302,7 @@
       "title": "Calibers",
       "chapter": "5. Weaponry",
       "pages": "HT161-163",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech pp. 161-163",
       "file": "calibers.md",
       "status": "reviewed"
@@ -1320,6 +1321,7 @@
       "title": "Propellants",
       "chapter": "5. Weaponry",
       "pages": "HT163",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 163",
       "file": "propellants.md",
       "status": "reviewed"
@@ -1329,6 +1331,7 @@
       "title": "Dirty Tech: Home-Made Powder and Shot",
       "chapter": "5. Weaponry",
       "pages": "HT163",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 163",
       "file": "dirty-tech-home-made-powder-and-shot.md",
       "status": "reviewed"
@@ -1338,6 +1341,7 @@
       "title": "Ammunition Classes",
       "chapter": "5. Weaponry",
       "pages": "HT163-165",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech pp. 163-165",
       "file": "ammunition-classes.md",
       "status": "reviewed"
@@ -1347,6 +1351,7 @@
       "title": "Black-Powder Locks",
       "chapter": "5. Weaponry",
       "pages": "HT164",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 164",
       "file": "black-powder-locks.md",
       "status": "reviewed"
@@ -1356,6 +1361,7 @@
       "title": "Cartridge Conversions",
       "chapter": "5. Weaponry",
       "pages": "HT164",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 164",
       "file": "cartridge-conversions.md",
       "status": "reviewed"
@@ -1365,6 +1371,7 @@
       "title": "Ammunition Upgrades",
       "chapter": "5. Weaponry",
       "pages": "HT165",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 165",
       "file": "ammunition-upgrades.md",
       "status": "reviewed"
@@ -1464,6 +1471,7 @@
       "title": "Handloading and Reloading",
       "chapter": "5. Weaponry",
       "pages": "HT174",
+      "rule": "gurps-compendium-content.handloading",
       "reference": "High-Tech p. 174",
       "file": "handloading-and-reloading.md",
       "status": "reviewed"
@@ -1473,6 +1481,7 @@
       "title": "Ammunition Tables",
       "chapter": "5. Weaponry",
       "pages": "HT175",
+      "rule": "gurps-compendium-content.ammunitionUpgrades",
       "reference": "High-Tech p. 175",
       "file": "ammunition-tables.md",
       "status": "reviewed"
@@ -1482,6 +1491,7 @@
       "title": "Ammunition Interchangeability",
       "chapter": "5. Weaponry",
       "pages": "HT178",
+      "rule": "gurps-compendium-content.misloading",
       "reference": "High-Tech p. 178",
       "file": "ammunition-interchangeability.md",
       "status": "reviewed"

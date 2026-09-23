@@ -4921,6 +4921,18 @@
         "zenMarksmanship": {
           "Name": "Zen Marksmanship (cinematic)",
           "Hint": "Zen Archery for guns: a character who knows Zen Marksmanship (Pistol), (Rifle), (Shotgun), (Submachine Gun), (Musket) or (Gyroc), or (Beam Pistol) or (Beam Rifle), rolls it from the maneuver panel after concentrating, and a success takes two-thirds of the size and range penalties off the next shot with that Guns or Beam Weapons specialty (High-Tech p. 250)."
+        },
+        "ammunitionUpgrades": {
+          "Name": "Ammunition upgrades",
+          "Hint": "Each mode of a gun, and each box of rounds, holds a load: field-expedient shot, paper cartridges, light cases, extra-powerful, match-grade, subsonic or silent rounds, which change the row's Acc, Dmg, Range, ST and Malf. and how the shot is heard. A box's cost and weight per round come from the Ammunition Tables for its calibre, times the upgrades, less 5% for 500 rounds (15% for 5,000) and what an Area Knowledge roll finds. A caplock can be converted to fire cartridges (High-Tech pp. 161-165, 175-177)."
+        },
+        "handloading": {
+          "Name": "Handloading and reloading",
+          "Hint": "Rounds handloaded cost their materials, the round's CPS; reloads half of it. A batch takes the tools' time, with an Armoury (Small Arms) roll every hour or half-hour (+2 for reloads); a critical success takes a quarter off a batch of reloads, a critical failure costs it a point of Malf. A load developed for a gun on Armoury and IQ-based Guns rolls makes its match-grade handloads a perfect match: Acc x1.5, up to +2 (High-Tech p. 174)."
+        },
+        "misloading": {
+          "Name": "Misloading",
+          "Hint": "A round that isn't the gun's own, nor a shorter one down its chain of interchangeable calibres (for a revolver or manual repeater), rolls the Misloading Table when fired: it may fire at Acc 0, jam, misfire, damage the gun or burst it (High-Tech p. 178)."
         }
       },
       "Firearm": {
@@ -5676,7 +5688,144 @@
         "TacticalLightLine": "Tactical light: switched on for a shot within its {yards}-yard beam, darkness is no worse than {floor}.",
         "TacticalLightNote": "{name}: darkness no worse than -3 out to {yards} yards; the target may be dazzled (HT-4) at the GM's call.",
         "DarknessLine": "{label} (sights and light)",
-        "LaserHit": "{name} (dot out to {yards} yd)"
+        "LaserHit": "{name} (dot out to {yards} yd)",
+        "HearSubsonic": "Subsonic ammunition"
+      },
+      "Ammunition": {
+        "Title": "Ammunition (High-Tech)",
+        "Mode": "Mode {index}",
+        "Calibre": "Calibre: {name} ({cls}).",
+        "NoCalibre": "Its calibre isn't in the Ammunition Tables.",
+        "Class": {
+          "powderAndShot": "powder and shot",
+          "cased": "cased",
+          "caseless": "caseless",
+          "consumable": "consumable cased",
+          "airGun": "air-gun projectile",
+          "shell": "mortar shell"
+        },
+        "FromBox": "Loaded from {box}: its rounds are the load.",
+        "Upgrade": {
+          "fieldExpedient": "Field-expedient shot",
+          "paperCartridge": "Paper cartridges",
+          "lightCased": "Light cased",
+          "extraPowerful": "Extra-powerful (+P)",
+          "matchGrade": "Match-grade",
+          "subsonic": "Subsonic",
+          "silent": "Silent"
+        },
+        "UpgradeHint": {
+          "fieldExpedient": "Stones or coins for shot: -1 Acc, half damage and range, -2 Malf. (p. 163).",
+          "paperCartridge": "Charge and ball wrapped in paper: half the loading time, and the reloading aid starts ticked (p. 163).",
+          "lightCased": "Composite or plastic cases: WPS x0.7, CPS x2 (p. 164).",
+          "extraPowerful": "A hotter charge: Dmg, Range and ST x1.1; -1 Malf. on most TL5-6 and cheap TL7-8 guns; CPS x1.5 (p. 165).",
+          "matchGrade": "Acc x1.25, at most +1 (a handloaded perfect match x1.5, at most +2); not for automatic weapons or with extra-powerful; CPS x2 (pp. 165, 174).",
+          "subsonic": "Pistol rounds -1 to Hearing and Range x0.8; PDW and rifle rounds -2 to Hearing and Dmg and Range x0.6; CPS x1.3 (p. 165).",
+          "silent": "Heard on the 16-yard line of the Hearing Distance Table; most silent rounds need a gun built for them, though shotgun and grenade-launcher rounds were made for ordinary guns; CPS x10, LC1 (p. 165)."
+        },
+        "Refusal": {
+          "tl": "Not yet at the gun's TL.",
+          "class": "Not for this class of ammunition.",
+          "excludes": "Can't be combined with an upgrade already chosen.",
+          "automatic": "Not for automatic weapons.",
+          "alreadySubsonic": "This round is subsonic already.",
+          "notPistolOrRifle": "Only for pistol, PDW and rifle rounds.",
+          "alreadyLight": "This round is light cased already.",
+          "projectile": "Only with solid, hollow-point, AP or APHC projectiles."
+        },
+        "Note": {
+          "extraPowerfulAuto": "Automatic: Malf. and RoF may change (GM)",
+          "extraPowerfulPowder": "Charge: Armoury or IQ-based Guns-2 to stay safe",
+          "silent": "Heard at 16 yards",
+          "hearing": "{value} to Hearing",
+          "batch": "Batch: {malf} Malf.",
+          "matched": "Perfect match"
+        },
+        "NoteHint": {
+          "extraPowerfulAuto": "Automatic weapons are often sensitive to a change of propellant: they may suffer Malf. penalties, and their RoF is likely to rise, as the GM rules (p. 165).",
+          "extraPowerfulPowder": "Loading a powder-and-shot gun hot takes an Armoury (Small Arms) roll or an IQ-based Guns roll at -2 to stay within its safe limits (p. 165).",
+          "silent": "The shot is heard on the Hearing Distance Table's 16-yard line (pp. 158, 165).",
+          "hearing": "Subsonic ammunition is harder to hear (p. 165).",
+          "batch": "A critical failure while reloading lowered this batch's Malf. (p. 174).",
+          "matched": "Match-grade rounds handloaded for this gun: Acc x1.5, at most +2 (p. 174)."
+        },
+        "PerShot": "Per round: {cps}, {wps} lb. (the table's {table} x{multiple}).",
+        "SourceLine": {
+          "handloaded": "Handloaded: materials at the round's CPS.",
+          "reloaded": "Reloaded: materials at half the round's CPS."
+        },
+        "Discounts": "Less {percents}.",
+        "Lc": "LC{lc}.",
+        "PriceLabel": "High-Tech ammunition ({round})",
+        "SourceLabel": "Rounds",
+        "SourceHint": "Who made the rounds: bought, handloaded from components, or reloaded into fired cases (p. 174).",
+        "Source": {
+          "factory": "Bought",
+          "handloaded": "Handloaded",
+          "reloaded": "Reloaded"
+        },
+        "Matched": "A perfect match for this gun.",
+        "BatchMalfunction": "This batch: {malf} Malf.",
+        "BatchTitle": "Load a batch",
+        "BatchHint": "Load rounds with a reloading press or machine: timed by the tools, with Armoury (Small Arms) rolls (p. 174).",
+        "BatchTool": "Tools",
+        "BatchSource": "Rounds",
+        "BatchRounds": "How many",
+        "BatchLoad": "Load",
+        "Tool": {
+          "press": "Reloading press (TL{tl}): {perHour} an hour",
+          "progressive": "Progressive reloading machine (TL{tl}): {perHour} an hour",
+          "powered": "Power-operated machine (TL{tl}): {perHour} an hour"
+        },
+        "ToolName": {
+          "press": "a reloading press",
+          "progressive": "a progressive reloading machine",
+          "powered": "a power-operated machine"
+        },
+        "BatchLine": "{rounds} rounds with {tool}: {minutes} minutes, {rolls} Armoury roll(s) at {level}, {failures} failed.",
+        "BatchMaterials": "Materials: ${cost}.",
+        "BatchFaster": "Critical success: the batch takes a quarter less time.",
+        "BatchWorse": "Critical failure: the batch's Malf. drops by 1 (a round might even go off while loading, at the GM's word).",
+        "BatchFailures": "Failed rolls: the GM rules on those rounds.",
+        "Match": "Develop a matched load",
+        "MatchHint": "A day's work, an Armoury (Small Arms) roll and an IQ-based Guns roll: success on both makes match-grade handloads a perfect match for this gun (p. 174).",
+        "MatchRoll": "{skill}: matching a load to {gun}",
+        "IqBased": "IQ-based {skill}",
+        "MatchFound": "A perfect match: its match-grade handloads get Acc x1.5, at most +2.",
+        "MatchWasted": "No match found: the day and the materials are wasted.",
+        "MatchExplosion": "Critical failure: treat as an Explosion (p. B407)!",
+        "NoSkills": "The character needs Armoury (Small Arms), and the gun's skill, or no character holds this.",
+        "RoundLabel": "Round loaded",
+        "RoundHint": "A round other than the gun's own: a shorter one down its chain fires in a revolver or manual repeater; anything else is a misload (p. 178).",
+        "OwnRound": "Its own ({round})",
+        "MisloadLine": "Misloaded with {round}: each shot rolls the Misloading Table.",
+        "Misload": {
+          "Rolled": "Misloading Table ({round} in a gun made for {gun}): {roll}.",
+          "fires": "The round fires, at Acc 0; clearing the case and loading another takes as long as reloading a break-open gun.",
+          "firesAndJams": "The round fires, at Acc 0, and the gun jams after it (stoppage).",
+          "jams": "The round doesn't fire, and the gun jams (stoppage).",
+          "misfire": "The round doesn't fire (misfire).",
+          "damaged": "The round discharges wrongly and damages the gun (mechanical problem).",
+          "bursts": "The round bursts the gun: treat as an Explosion (p. B407), whatever its TL.",
+          "AccZero": "Acc counts as 0.",
+          "Refusal": "Misloaded round: {result}",
+          "Repair": "Repairs take at least {days} day and {percent}% of the gun's price in parts (${cost})."
+        },
+        "ConvertedTo": "Converted to",
+        "NotConverted": "Not converted",
+        "ConvertHint": "A gunsmith converts a caplock to fire cartridges on an Armoury (Small Arms) roll at {modifier}, {days} days' work; never to Magnum rounds (p. 164).",
+        "ConvertRoll": "Converting {gun} to {round}",
+        "ConvertModifier": "Cartridge conversion",
+        "Converted": "Converted to fire {round} after {days} days' work.",
+        "ConvertFailed": "The conversion to {round} failed.",
+        "BoxCalibre": "Calibre",
+        "BoxCalibreHint": "The round in the box, as the Ammunition Tables name it; blank for what the box fits.",
+        "Shop": "Shop (Area Knowledge)",
+        "ShopHint": "An Area Knowledge roll for where you shop finds ammunition 5% cheaper, 15% on a critical success (p. 175).",
+        "ShopRoll": "Area Knowledge: shopping for {box}",
+        "Found": "Found {percent}% off.",
+        "FoundNone": "No discount found.",
+        "NoAreaKnowledge": "The character has no Area Knowledge to roll."
       }
     },
     "Backblast": {

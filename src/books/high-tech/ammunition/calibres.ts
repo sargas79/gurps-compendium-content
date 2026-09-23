@@ -263,3 +263,37 @@ export function calibreRows(calibre: string): CalibreRow[] {
     return name === key || name.startsWith(`${key} `) || bracketed === key;
   });
 }
+
+/**
+ * The short forms the book's weapon names use for a calibre the table spells
+ * out: "12G 2.75''" for the 12-gauge 2.75” shell, ".22 LR", ".600 NE",
+ * ".450 MH", ".300 WM", ".50 AE".
+ */
+const SHORT_FORMS: ReadonlyArray<[RegExp, string]> = [
+  [/^(\d+)G\b/i, "$1-gauge"],
+  [/\bLR$/i, "Long Rifle"],
+  [/\bNE$/i, "Nitro Express"],
+  [/\bMH$/i, "Martini-Henry"],
+  [/\bWM$/i, "Winchester Magnum"],
+  [/\bAE$/i, "Action Express"],
+];
+
+/** The rows a calibre names as a gun's name writes it: the table's spelling, or the book's short form of it. */
+export function gunCalibreRows(calibre: string): CalibreRow[] {
+  const own = calibreRows(calibre);
+  if (own.length) return own;
+  const long = SHORT_FORMS.reduce((text, [short, full]) => text.replace(short, full), String(calibre ?? "").trim());
+  return long === calibre ? [] : calibreRows(long);
+}
+
+/** The calibre after the last comma of a weapon's name ("IMI Galil ARM, .223 Remington"), or the whole text. */
+export function calibreText(name: string): string {
+  const text = String(name ?? "");
+  const at = text.lastIndexOf(",");
+  return (at < 0 ? text : text.slice(at + 1)).trim();
+}
+
+/** The table row a gun's name, or a box's calibre, names; the first where it names more than one. */
+export function calibreRowOf(text: string): CalibreRow | null {
+  return gunCalibreRows(calibreText(text))[0] ?? null;
+}
