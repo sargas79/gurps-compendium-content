@@ -16,6 +16,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { SECURITY_TABLES, crossBarrier, figureLines, type SecurityTable } from "../../../shared/security/index.js";
+import { bugSweepContest } from "../../../shared/surveillance/index.js";
 import {
   BARRIERS,
   CUFFTAPE_FAILURE_DAMAGE,
@@ -211,13 +212,13 @@ async function sweepForBugs(api: GWorldApi, item: any, actor: any): Promise<void
     (form) => ({ hider: Number(value(form, "hider")?.value) || 0, auto: Boolean(value(form, "auto")?.checked) }));
   if (!answer) return;
   const base = answer.auto ? sweeperSkill(tlOf(item.system?.tl) ?? 9) : level(api, actor, skill, { attribute: "IQ", modifier: -5 });
-  const result: any = await api.roll.quickContest({
+  // The contest is the shared countersurveillance engine's, which High-Tech's bug detector rolls too.
+  const found = await bugSweepContest(api, {
     label: F("Sweep.Label", { name: item.name }),
-    first: { actor, base, note: answer.auto ? String(item.name) : skill },
-    second: { actor: null, base: answer.hider, note: L("Sweep.HiderNote") },
-    tags: ["bugSweep"],
-  } as any);
-  if (result) await say(actor, String(item.name), [L(result.outcome === "first" ? "Sweep.Found" : "Sweep.Missed")]);
+    sweeper: { actor, base, note: answer.auto ? String(item.name) : skill },
+    hider: { actor: null, base: answer.hider, note: L("Sweep.HiderNote") },
+  });
+  if (found !== null) await say(actor, String(item.name), [L(found ? "Sweep.Found" : "Sweep.Missed")]);
 }
 
 /**
