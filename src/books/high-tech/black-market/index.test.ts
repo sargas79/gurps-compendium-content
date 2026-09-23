@@ -47,6 +47,7 @@ describe("prices (High-Tech pp. 8, 10)", () => {
 describe("the GM tool", () => {
   let chat: any[];
   let rolled: number;
+  let asked: any[];
 
   const request = (patch: Partial<BlackMarketRequest> = {}): BlackMarketRequest => ({
     contactSkill: null, unfamiliarCulture: false, market: "electronics", sought: "Cracked software",
@@ -54,19 +55,28 @@ describe("the GM tool", () => {
     controlRating: 3, culture: 0, favourableArea: false, unfamiliarArea: false, gray: false, ...patch,
   });
 
+  // The system's success roll, standing in: the target is the base plus the lines, and 3-18 rolled as set.
   const api = (streetwise: number | null = 14) => ({
     rules,
     actors: { skillLevel: () => streetwise, attribute: () => 12 },
     sheets: { registerGmTool: vi.fn() },
+    roll: {
+      success: async (options: any) => {
+        asked.push(options);
+        const effective = options.base + (options.modifiers ?? []).reduce((sum: number, l: any) => sum + l.value, 0);
+        if (effective < 3) return null;
+        return { ...rules.resolveSuccess(rolled, effective, [3, 3, rolled - 6]), roll: rolled, effectiveSkill: effective };
+      },
+    },
   });
 
   beforeEach(() => {
     chat = [];
     rolled = 10;
+    asked = [];
     vi.stubGlobal("game", { i18n: { localize: (k: string) => k, format: (k: string, d: Record<string, unknown>) => `${k} ${JSON.stringify(d)}` } });
     vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
     vi.stubGlobal("ChatMessage", { implementation: { getWhisperRecipients: () => [{ id: "gm1" }], create: async (m: any) => { chat.push(m); } } });
-    vi.stubGlobal("Roll", class { total = rolled; dice = [{ results: [{ result: 3 }, { result: 3 }, { result: 4 }] }]; async evaluate() { return this; } });
   });
 
   afterEach(() => {
@@ -94,6 +104,20 @@ describe("the GM tool", () => {
     rolled = 12;
     expect(await searchBlackMarket(api() as never, { name: "Vic" }, request())).toBe("failure");
     expect(chat[1].content).toContain("GCC.HT.BlackMarket.Outcome.electronics.failure");
+  });
+
+  it("rolls through the system as the GM's secret roll, so other modules' modifiers reach it", async () => {
+    await searchBlackMarket(api() as never, { name: "Vic" }, request({ favourableArea: true }));
+    expect(asked[0]).toMatchObject({ secret: true, base: 14, skill: "Streetwise", tags: ["blackMarket", "streetwise"] });
+    expect(asked[0].modifiers.map((l: any) => l.value)).toEqual([-3, 1]);
+    // The whispered card carries the finding, not a second roll.
+    expect(chat[0].rolls).toBeUndefined();
+    expect(chat[0].content).toContain('"effective":12');
+  });
+
+  it("reports nothing where the roll can't be made", async () => {
+    expect(await searchBlackMarket(api() as never, { name: "Vic" }, request({ contactSkill: 4 }))).toBeNull();
+    expect(chat).toEqual([]);
   });
 
   it("makes no roll for outlawed goods", async () => {

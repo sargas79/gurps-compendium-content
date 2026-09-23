@@ -11,8 +11,9 @@
  * The rest is the book's own: a manual or reference work followed while doing
  * a task lets its reader use the skill at the attribute default, even without
  * one, and time spent can win back at most that penalty (p. 17); a library is
- * Research equipment by its grade (p. 18); a head-up display helps a driver or
- * pilot (p. 21).
+ * Research equipment by its grade (p. 18); an unfamiliar operating system,
+ * computer type or program, and a cramped terminal, cost the user skill
+ * (pp. 20-21); a head-up display helps a driver or pilot (p. 21).
  */
 
 import type { ComputerFigures, OptionEffect, SkillDifficulty } from "../../../shared/computers/rules.js";
@@ -106,6 +107,55 @@ export const COMPUTERS: ComputerFigures = Object.freeze({
   // Basic needs Complexity 2 for an Easy skill and 3 otherwise, good 4 and 5, fine 6 and 7 (p. 22).
   tools: Object.freeze({ basic: [2, 3] as const, good: [4, 5] as const, fine: [6, 7] as const }),
 });
+
+// ── using a computer (pp. 20-21) ─────────────────────────────────────────────
+
+/**
+ * Familiarity (p. 20, after Characters p. 169): -2 to skill for each of an
+ * unfamiliar operating system, computer type or program.
+ */
+export const UNFAMILIAR_COMPUTING = -2;
+
+/** The terminals the book lists (p. 21). */
+export const TERMINALS = ["", "primitive", "workstation", "portable", "datapad"] as const;
+export type Terminal = (typeof TERMINALS)[number];
+
+/**
+ * What a terminal costs a task (p. 21), both at the GM's option: a portable
+ * terminal -1 on time-consuming or graphics-heavy work, a datapad -2 on
+ * complex tasks or long work at its keyboard and screen.
+ */
+export const TERMINAL_PENALTY: Readonly<Record<Terminal, number>> = Object.freeze({ "": 0, primitive: 0, workstation: 0, portable: -1, datapad: -2 });
+
+/** What a roll with a computer or a program is made with, as the familiarity rule reads it. */
+export interface ComputerUse {
+  /** The program's name, where the roll is made with one. */
+  program: string | null;
+  /** The computer type -- its model -- where the roll's computer is known. */
+  computerType: string | null;
+  /** Its operating system, where the sheet names one. */
+  operatingSystem: string | null;
+  terminal: Terminal;
+}
+
+/**
+ * The lines a roll with a computer takes (pp. 20-21): -2 for each of the
+ * operating system, the computer type and the program the user isn't
+ * familiar with, where the familiarity rule is kept, and the terminal's
+ * penalty. `familiar` says whether a name is on the user's list.
+ */
+export function computerUseLines(use: ComputerUse, familiar: ((name: string) => boolean) | null): Array<{ key: "operatingSystem" | "computerType" | "program" | "terminal"; name: string; value: number }> {
+  const lines: Array<{ key: "operatingSystem" | "computerType" | "program" | "terminal"; name: string; value: number }> = [];
+  if (familiar) {
+    for (const key of ["operatingSystem", "computerType", "program"] as const) {
+      const name = String(use[key] ?? "").trim();
+      if (name && !familiar(name)) lines.push({ key, name, value: UNFAMILIAR_COMPUTING });
+    }
+  }
+  const terminal = TERMINAL_PENALTY[use.terminal] ?? 0;
+  if (terminal) lines.push({ key: "terminal", name: use.terminal, value: terminal });
+  return lines;
+}
 
 /** A head-up display gives +1 to skills such as Driving and Piloting (p. 21). */
 export const HUD_BONUS = 1;

@@ -2,9 +2,11 @@
  * The black market (pp. 7-9), registered with the system through the add-on
  * API under the blackMarket switch: a GM tool for the buyer the GM has
  * selected. It asks who searches -- a Contact at his effective Streetwise, or
- * the buyer's own -- where, in which niche, and for what; rolls the search in
- * secret at the Control Rating the campaign keeps (API 1.77.0), with the
- * place's modifiers, and whispers the GM what came of it: the niche's
+ * the buyer's own -- where, in which niche, and for what; rolls the search
+ * as the system's secret roll (API 1.95.0), which only the GM sees and other
+ * modules' roll modifiers reach, at the Control Rating the campaign keeps
+ * (API 1.77.0), with the place's modifiers, and whispers the GM what came of
+ * it: the niche's
  * trouble on a failure, and the price, black-market, used or old stock
  * (p. 10). Outlawed goods it leaves to an adventure. The rules are in
  * `rules.ts`.
@@ -83,8 +85,12 @@ export function priceLines(request: BlackMarketRequest): string[] {
   return lines;
 }
 
-/** Rolls the search in secret and whispers the GM what came of it. */
-export async function searchBlackMarket(api: GWorldApi, actor: any, request: BlackMarketRequest): Promise<"outlawed" | ReturnType<typeof findingOf>> {
+/**
+ * Rolls the search as the GM's secret roll (Campaigns p. 494), tagged
+ * `blackMarket` and `streetwise`, and whispers the GM what came of it. Null
+ * where the roll couldn't be made (effective skill below 3).
+ */
+export async function searchBlackMarket(api: GWorldApi, actor: any, request: BlackMarketRequest): Promise<"outlawed" | ReturnType<typeof findingOf> | null> {
   const gm = ChatMessage.implementation.getWhisperRecipients("GM").map((u: any) => u.id);
   const head = `<div class="gc-head"><span class="gc-label">${esc(L("Title"))}</span><span class="gc-target">${esc(request.sought || L(`Market.${request.market}`))}</span></div>`;
   if (isOutlawed(request.lc)) {
@@ -96,21 +102,26 @@ export async function searchBlackMarket(api: GWorldApi, actor: any, request: Bla
   }
   const skill = searchSkill(api, actor, request.contactSkill);
   const lines = searchLines(api, actor, request);
-  const effective = skill + lines.reduce((sum, l) => sum + l.value, 0);
-  const roll = new Roll("3d6");
-  await roll.evaluate();
-  const dice = (roll.dice?.[0]?.results ?? []).map((r: any) => Number(r.result));
-  const finding = findingOf(api.rules.resolveSuccess(roll.total, effective, dice));
+  const who = request.contactSkill === null ? F("Buyer", { name: actor?.name ?? "" }) : L("Contact");
+  // A Contact's search is made at his skill, on the buyer's card: the Contact is no actor here.
+  const rolled: any = await api.roll.success({
+    actor,
+    base: skill,
+    skill: "Streetwise",
+    label: F("RollLabel", { who, sought: request.sought || L(`Market.${request.market}`) }),
+    modifiers: lines,
+    tags: ["blackMarket", "streetwise"],
+    secret: true,
+  } as any);
+  if (!rolled) return null;
+  const finding = findingOf(rolled);
   const outcome = finding === "found"
     ? L(request.gray ? "FoundGray" : "Found")
     : L(`Outcome.${request.market}.${finding}`) + (request.gray ? ` ${L("GrayLighter")}` : "");
-  const who = request.contactSkill === null ? F("Buyer", { name: actor?.name ?? "" }) : L("Contact");
   await ChatMessage.implementation.create({
     whisper: gm,
-    rolls: [roll],
     content: `<div class="gworld gworld-chat">${head}
-      <div class="gc-result">${esc(F("Rolled", { who, skill, effective, roll: roll.total }))}</div>
-      ${lines.map((l) => `<div class="gc-result">${esc(`${l.label} ${l.value >= 0 ? "+" : ""}${l.value}`)}</div>`).join("")}
+      <div class="gc-result">${esc(F("Rolled", { who, skill, effective: rolled.effectiveSkill, roll: rolled.roll }))}</div>
       <div class="gc-result"><strong>${esc(L(`Finding.${finding}`))}</strong>: ${esc(outcome)}</div>
       ${finding === "found" ? priceLines(request).map((p) => `<div class="gc-result">${esc(p)}</div>`).join("") : ""}</div>`,
   });

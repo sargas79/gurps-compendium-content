@@ -7,20 +7,22 @@
  *     table for the shared gadget engine, which reprices the item, shows its
  *     HP, HT and DR, its Legality Class once obsolete and whether it is worth
  *     maintaining, adds rugged's (and fragile's, and quality's) HT to
- *     equipment failure, styling's bonus to reactions while it is shown, and
- *     sizes the battery count with the rest.
+ *     equipment failure, styling's bonus to reactions and to Merchant rolled
+ *     as an Influence roll while it is shown, sizes the battery count with
+ *     the rest, and gives the system the antique's raised Legality Class.
  *   - **Combination gadgets** (combinationGadgets): a row action that builds
  *     one gadget from several of the character's.
  *   - **Equipment bonuses** (equipmentBonuses): a tool's intrinsic bonus and
  *     the Equipment Bond perk's +1, as lines on the skill beside quality's.
  *   - **TL and familiarity** (tlFamiliarity): a DX-based skill's TL penalty,
- *     on an attack or a tool, lifted once the character is familiar with the
- *     gear. A success roll's context doesn't say what gear it is made with,
- *     so another roll carrying the TL line keeps it.
+ *     on an attack, a tool, a vehicle's control roll or any roll made with an
+ *     item that carries the TL line, lifted once the character is familiar
+ *     with the gear. IQ-based rolls keep it, as the book says -- among them
+ *     the IQ-based weapon-skill roll that clears a stoppage.
  */
 
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
-import { GADGET_TABLES, initGadgets, readyGadgets, type GadgetTable } from "../../../shared/gadgets/index.js";
+import { GADGET_TABLES, antiqueClassOf, gadgetTables, initGadgets, readyGadgets, stylingLine, type GadgetTable } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
 import { loadedCellWeight } from "../../../shared/power/data.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -103,6 +105,29 @@ export function familiarityLine(api: GWorldApi, actor: any, skill: string, item:
   const value = familiarityOffset({ techLevel: sum("techLevel"), unfamiliar: sum("unfamiliar"), familiar });
   if (!value) return null;
   return { label: F(familiar ? "Familiar" : "TlAsUnfamiliar", { item: String(item.name ?? "") }), value };
+}
+
+/**
+ * Whether a success roll is the influencer's side of an Influence roll made
+ * with Merchant (Campaigns p. 359), which styling adds to (p. 10).
+ */
+export function isMerchantInfluence(context: any): boolean {
+  const tags: unknown[] = Array.isArray(context?.tags) ? context.tags : [];
+  return tags.includes("influence") && !tags.includes("will") && /^merchant\b/i.test(String(context?.skill ?? "").trim());
+}
+
+/**
+ * The TL-familiarity line for a success roll made with an item, where the
+ * roll carries the item's keyed TL line: a vehicle's control roll, or a
+ * module's roll with gear. An attack has its line from `attackModifiers`,
+ * and an IQ-based roll -- tagged `IQ` -- keeps its penalty (p. 11).
+ */
+export function successRollFamiliarity(api: GWorldApi, context: any): { label: string; value: number } | null {
+  const tags: unknown[] = Array.isArray(context?.tags) ? context.tags : [];
+  if (!context?.item || context.kind === "attack" || tags.includes("attack") || tags.includes("IQ")) return null;
+  const lines = (context.modifiers ?? []) as Array<{ key?: string; value: number }>;
+  if (!lines.some((l) => l?.key === "techLevel")) return null;
+  return familiarityLine(api, context.actor, String(context.skill ?? ""), context.item, lines);
 }
 
 /** The gear that goes into a combination, as the rules read it. */
@@ -250,6 +275,32 @@ export function readyHighTechEquipment(api: GWorldApi, on: EquipmentSwitches): v
       const known = tools.find((t) => familiarWith(api, actor, String(t.name ?? "")) === true);
       if (known) context.lines.push({ label: F("Familiar", { item: String(known.name ?? "") }), value: -techLevel, source: MODULE_ID });
     }
+  });
+
+  // Styling's bonus on Merchant used as an Influence roll on collectors and
+  // buyers (p. 10), while the piece is shown to them, as its reaction bonus is.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!isMerchantInfluence(context)) return;
+    const line = stylingLine(context.actor);
+    if (line) context.modifiers.push(line);
+  });
+
+  // A vehicle's or other gear's TL penalty on a DX-based roll, as
+  // unfamiliarity (p. 11): the canoe of the book's example.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.familiarity()) return;
+    const line = successRollFamiliarity(api, context);
+    if (line) context.modifiers.push(line);
+  });
+
+  // An antique's Legality Class, risen with its age (p. 8), wherever the
+  // system reads it: the Gear tab's legality notes and the license cost.
+  Hooks.on(api.data.hooks.legalityClass, (context: any) => {
+    const table = gadgetTables(context?.item).legality;
+    if (table?.book !== "high-tech") return;
+    const lc = typeof context.lc === "number" ? context.lc : null;
+    const antique = antiqueClassOf(context.item, table, lc);
+    if (antique.steps) context.lc = antique.lc;
   });
 
   // A weapon's TL penalty on a DX-based skill, as unfamiliarity.
