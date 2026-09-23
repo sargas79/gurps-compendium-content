@@ -359,3 +359,94 @@ describe("High-Tech's explosives, mines, bombs and melee weapons (#349)", () => 
     expect(ranged("HASAG GGPzgr40, 40mm")).toMatchObject({ armorDivisor: 10, minRange: 10, maxRange: 150, linked: { damage: "6d", explosive: true } });
   });
 });
+
+describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
+  const captured = read(join(PACKS, "equipment/high-tech-captured-covert-medical.json"));
+  const gear = [...captured, ...byHand("equipment")];
+  const sys = (name: string) => named(gear, name).system;
+  const draw = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.power?.draw;
+
+  it("cites a page of pp. 202-227 on every captured record, with no book prose", () => {
+    for (const doc of captured) {
+      const page = Number(/^High-Tech p\. (\d+)$/.exec(doc.system.reference)?.[1]);
+      expect(page, doc.name).toBeGreaterThanOrEqual(202);
+      expect(page, doc.name).toBeLessThanOrEqual(227);
+      expect(doc.system.description, doc.name).toBe("");
+    }
+  });
+
+  it("keeps burglary and disguise tools with the skills they're for (pp. 213-215)", () => {
+    expect(sys("Lockpicks")).toMatchObject({ tl: "5", cost: 50, weight: 0, lc: 3, category: "tool", equipmentQuality: "basic", forSkills: ["Lockpicking/TL"] });
+    expect(sys("Electronic Lockpicking Kit")).toMatchObject({ forSkills: ["Electronics Operation/TL (Security)"] });
+    expect(draw("Electronic Lockpicking Kit")).toEqual({ cell: "S", cells: 3, endurance: "1 week", raw: "3×S/week" });
+    expect(sys("Advanced Disguise Kit")).toMatchObject({ cost: 4000, weight: 250, equipmentQuality: "fine", forSkills: ["Disguise/TL"] });
+    expect(sys("Smuggler's Attaché Case")).toMatchObject({ tl: "6", cost: 400, equipmentQuality: "fine", forSkills: ["Smuggling"] });
+    expect(sys("Forgery Tools")).toMatchObject({ tl: "6", cost: 1200, weight: 20, forSkills: ["Forgery/TL"] });
+    // p. 207: +4 (quality) to Search, which no grade holds.
+    expect(sys("CT Scanner")).toMatchObject({ equipmentQuality: "best", equipmentModifier: 4, forSkills: ["Search"] });
+  });
+
+  it("names each tool's skills as the skill records are named, which a carried tool is matched to", () => {
+    const skills = new Set([...pack(join(ROOT, "system/packs-src/skills")), ...pack(join(PACKS, "skills"))].map((d) => d.name));
+    const tools = gear.filter((d) => d.system.forSkills?.length && Number(/(\d+)$/.exec(d.system.reference)?.[1]) >= 202);
+    expect(tools.length).toBeGreaterThan(30);
+    for (const doc of tools) for (const skill of doc.system.forSkills) expect(skills.has(skill), `${doc.name}: ${skill}`).toBe(true);
+  });
+
+  it("gives traps and barriers the harm they do (pp. 203-204)", () => {
+    expect(sys("Caltrops (one hex)")).toMatchObject({ cost: 1, weight: 0.5, lc: 4 });
+    expect(sys("Caltrops (one hex)").meleeModes[0]).toMatchObject({ skill: "Traps", damageBase: "thr", damageModifier: -3, damageType: "imp" });
+    expect(sys("Stake Pit").meleeModes[0]).toMatchObject({ damageBase: "thr", damageModifier: 0, damageType: "imp" });
+    expect(sys("Razor Wire (15-yard coil)").meleeModes[0]).toMatchObject({ damageFormula: "1d-3", damageType: "cut" });
+    expect(sys("Lethal Fence (control box and 1/4 mile)")).toMatchObject({ cost: 10000, lc: 2 });
+    expect(sys("Lethal Fence (control box and 1/4 mile)").meleeModes[0]).toMatchObject({ damageFormula: "3d", damageType: "burn" });
+    expect(sys("Cattle Fence (control box and 1/4 mile)").meleeModes[0]).toMatchObject({ affliction: true, afflictionAttribute: "HT", afflictionModifier: 0 });
+    expect(sys("Barbed Wire (15-yard coil)").meleeModes).toEqual([]);
+  });
+
+  it("keeps restraints and reads a week's or month's battery (pp. 208-217)", () => {
+    expect(sys("Handcuffs")).toMatchObject({ tl: "6", cost: 50, weight: 0.5, lc: 4 });
+    expect(sys("Flex Cuffs (pack of 10)")).toMatchObject({ tl: "7", cost: 5, weight: 0.25 });
+    expect(sys("Leg Irons (Ball and Chain)")).toMatchObject({ cost: 120, weight: 52 });
+    expect(draw("Audio Bug (TL8)")).toEqual({ cell: "T", cells: 1, endurance: "1 month", raw: "T/month" });
+    expect(draw("Electronic Stethoscope")).toMatchObject({ cell: "T", cells: 4, endurance: "1 week" });
+    expect(sys("Portable X-Ray Machine (TL8)")).toMatchObject({ cost: 50000, weight: 25, lc: 3 });
+  });
+
+  it("settles the kits' figures and quality against the page (pp. 220-221)", () => {
+    // Reading order ran the body bag's line into the first aid kit and the kit's into the doctor's bag.
+    expect(sys("First Aid Kit")).toMatchObject({ tl: "7", cost: 50, weight: 2, lc: 4, equipmentQuality: "good", forSkills: ["First Aid/TL"] });
+    expect(sys("Doctor's Bag")).toMatchObject({ tl: "5", cost: 200, weight: 10, lc: 3, equipmentQuality: "good", forSkills: ["First Aid/TL"] });
+    expect(sys("Crash Kit")).toMatchObject({ cost: 200, weight: 10, equipmentQuality: "fine" });
+    expect(sys("Small First Aid Kit")).toMatchObject({ cost: 10, equipmentQuality: "basic", forSkills: ["First Aid/TL"] });
+    expect(sys("Body Bag")).toMatchObject({ cost: 5, weight: 2.5 });
+    expect(sys("Iron Lung")).toMatchObject({ cost: 5000, weight: 700, lc: 4 });
+    expect(sys("Decontamination Sprayer")).toMatchObject({ cost: 500, weight: 35, lc: 3 });
+  });
+
+  it("gives surgical kits their built-in modifier and imaging +TL/2 to Diagnosis (pp. 222-224)", () => {
+    expect(sys("Surgical Kit (TL5)")).toMatchObject({ equipmentQuality: "basic", equipmentModifier: -2, forSkills: ["Surgery/TL"] });
+    expect(sys("Surgical Kit (TL8)")).toMatchObject({ equipmentModifier: 2 });
+    expect(sys("Operating Theater")).toMatchObject({ equipmentQuality: "fine", forSkills: ["Surgery/TL"] });
+    expect(sys("CT or MRI Scanner")).toMatchObject({ cost: 500000, weight: 6000, equipmentQuality: "best", forSkills: ["Diagnosis/TL"] });
+    expect(sys("IV Stand").meleeModes[0]).toMatchObject({ skill: "Two-Handed Axe/Mace", damageBase: "sw", damageModifier: 1, skillModifier: -2 });
+  });
+
+  it("keeps the 14 drugs and 5 poisons as consumables under the book's names (pp. 226-227)", () => {
+    const drugs = ["Ammonia Inhalants (vial)", "Castor Oil (10 doses)", "Morphine", "Quinine", "Activated Charcoal", "Analgesics (100 doses)",
+      "Antibiotics", "Antibiotics (Two-Week Course)", "Antibiotic Ointment (10-dose tube)", "Antimalarial Pills (30 doses)", "Antitoxin Kit",
+      "Chelating Agents", "Psychiatric Drugs", "Truth Serum", "DMSO"];
+    const poisons = ["Curare", "Ricin", "Strychnine", "Botulin Toxins", "Irradiated Thallium"];
+    for (const name of [...drugs, ...poisons]) expect(sys(name).category, name).toBe("consumable");
+    for (const name of poisons) expect(sys(name).lc, name).toBe(1);
+    expect(sys("Morphine")).toMatchObject({ tl: "5", cost: 1, weight: 0, lc: 3 });
+    expect(sys("Antibiotics")).toMatchObject({ cost: 0.5, lc: 3 });
+    expect(sys("Irradiated Thallium")).toMatchObject({ tl: "7", cost: 1000 });
+  });
+
+  it("captures nothing the data file or the hand-kept records already hold", () => {
+    const others = [...read(join(PACKS, "equipment/high-tech-armor.json")), ...read(join(PACKS, "equipment/high-tech-gear.json")), ...byHand("equipment")];
+    const held = new Set(others.map((d) => d.name.toLowerCase()));
+    expect(captured.filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
+  });
+});

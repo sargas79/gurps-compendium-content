@@ -465,3 +465,74 @@ and left to the rules issues: the fuel-air bomb's and the nuclear burn's falloff
 distance (#378, #379), the Claymore's attack at skill 9 in a 60° cone, the dazzlers' Vision
 basis and the bonuses to resist them (#377), the sprays' face shot and +2 (#377), picks'
 getting stuck for the tomahawk's spike (#380).
+
+### The catalogue, chapters 6 and 7: covert ops, security and medical gear (#350)
+
+**Captured.** `tools/capture-gear.mjs`, unchanged, read pp. 202-227 in one run into
+`equipment/high-tech-captured-covert-medical.json`: 199 records, with 5 skips and 97
+`capture.set` rules; 22 more are kept by hand. One run, because the two portable X-ray
+machines (p. 217, the bomb-disposal one, TL8; p. 223, the medical one, TL7) share a name
+and a rule can't tell them apart by page: read together, they are named by TL. Every record
+was read against its page. Re-run on pp. 13-61, 62-77, 153-161 and 180-201, the book's
+earlier captures come out unchanged.
+
+**What reading the page settled:**
+- units the price is for, in the name: per yard, per foot, a 15-yard coil, a 10-yard section,
+  a control box and a quarter-mile of fence, per portal, per item, per square foot, a pack of
+  10, 10 sheets, 20 patient-days, a pint of plasma or blood, the hygiene sidebar's supplies
+  (month's, week's, a bottle of 50, a 10-use or four-use bottle), 10 uses of antiseptic;
+- closing lines that ran into a neighbour's where a sidebar or a column break falls: the first
+  aid kit took the body bag's ($5, 2.5 lbs.), the doctor's bag the first aid kit's, the
+  decontamination shower the sphygmomanometer's, the iron lung the decontamination sprayer's,
+  the stretcher isolator the iron lung's, and the Medical Imaging heading (no price) the
+  stretcher isolator's; invisible ink's line is the TL8 printer cartridge's;
+- batteries whose endurance is "week" or "month" (the audio and video bugs, beacons, endoscopes,
+  bug detector, voice modulator, electronic lockpicking kit and stethoscope), and "2×T/1,000
+  readings" and "2×XS/300 tests";
+- tools and the skills they're for: lockpicks, electronic lockpicking kit, counterfeiting and
+  forgery tools and disguise kits (basic equipment; the advanced kit +2, fine); the code-breaking
+  programs (basic, good, fine for Cryptography); the CT scanner's +4 to Search as a stated
+  modifier (`equipmentModifier`); first aid kits, the doctor's bag and crash kit, hemostatic
+  bandages, medical supplies (+1 to Physician), the clinical analyzer; imaging (X-ray machines,
+  CT or MRI, ultrasound) best for Diagnosis, the book's +TL/2; surgical kits basic for Surgery
+  with their built-in -2, +1 and +2 as the stated modifier; the theatres, portable surgery,
+  suturing kit and surgical laser. Each names its skills as the skill records are named
+  ("First Aid/TL", "Electronics Operation/TL (Security)", "Explosives/TL (Explosive Ordnance
+  Disposal)"), since a carried tool's bonus goes to the skill whose name matches exactly; the
+  name the page prints ("First Aid") reaches no skill;
+- consumables: single-use airway kits, IV fluids, hygiene, bandages, antiseptic, drugs and
+  poisons. A drug priced per dose keeps the book's name ("Morphine", "Curare"); one priced for
+  several names them ("Analgesics (100 doses)", "Castor Oil (10 doses)", "Antimalarial Pills
+  (30 doses)", "Ammonia Inhalants (vial)"). Antibiotics is the $0.50 dose for a wound; the
+  two-week course is kept by hand;
+- LC: locks are LC4 (p. 203); "LC3-4" (IV fluids) is recorded as 3.
+
+**Attacks.** A trap's or barrier's harm is a mode under Traps, the skill that sets and hides it
+(p. 203); the victim's own roll decides whether it strikes, which is the rules' to apply:
+caltrops thrust-3 impaling by the victim's ST (p. 203), the stake pit thrust
+impaling, razor wire 1d-3 cutting, the lethal fence 3d burning, the cattle fence a HT
+affliction (stunned while in contact). The IV stand is a clumsy maul, sw+1 cr at -2 to skill
+(p. 220). Barbed wire carries no mode: it snags as a Binding (ST 8) and harms no one itself.
+
+**Kept by hand:** the standard and tough locks (p. 203), the stake pit, a bottle of invisible
+ink, the mule pill (p. 214, no LC printed), forgery tools (TL6), the three pieces of smuggler's
+luggage (+2 (quality) to Smuggling; the ordinary trunk and bag are pp. 53-54's), leg irons with
+ball and chain (triple cost, +50 lbs.), an EOD tool kit priced as the portable Armoury kit
+(pp. 24, 217), saline, the body bag, the sphygmomanometer, the decontamination sprayer, a dose
+of chloroform or ether and the anesthesia machine's tank, the TL8 wheelchair (p. B142's at
+$300), quinine, the antibiotics' two-week course, antibiotic ointment, and psychiatric drugs
+(price varies, recorded as 0).
+
+**Left out, and why:** armoured doors, safes' and doors' DR and HP, and lock grades (x1, x5, x20
+for basic, good and fine, which reprice a lock or safe; the record is the basic lock); the
+tripwire (negligible cost, no harm but a trip); the TL6 and TL8 basic encryption (a cipher
+machine's use, and free); the PZT camera and wireless options, the 30-yard cell-phone jammer,
+satellite beacons and good or fine bug detectors (options priced inside another item's text);
+the cosmetic operations of p. 225 (services, not gear); the clinical analyzer's $5 test strips
+and surgical kits' replenishment (refills, as #348 left them). Bonuses printed without
+"(quality)" stay in the text: the metal detectors' +1, the endoscopes' +3 to Search and +2 to
+Lockpicking, the lockpick gun's +4, the defibrillators' +2 and +3, the anesthesia machine's +2,
+the portable X-ray's +4 and +5. A tool with two grades keeps the first skill's (the doctor's bag
+and crash kit are basic for Physician and improvised for Surgery; portable surgery is +2 to
+First Aid; the specialized theatre is +TL/2 to one specialty of Surgery only); the rules are
+#391's (drugs, hygiene and poisons) and the medical-gear issues'.
