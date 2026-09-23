@@ -31,6 +31,10 @@
  *     an object, and napalm that clings and burns for a minute, both through
  *     the lingering-burn engine (`../burning.ts`) the flamethrower's fuel
  *     uses.
+ *
+ * The grenades, bombs and nuclear weapons (`../ordnance`) add to these under
+ * their own switches: the AN-M14 burns as thermite, a nuclear blast's flash
+ * always calls for its roll, and the CBU-55/B falls off as fuel-air.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -102,6 +106,18 @@ export interface ExplosiveSwitches {
   demolition: () => boolean;
   unstable: () => boolean;
   incendiaries: () => boolean;
+}
+
+/** What the grenades, bombs and nuclear weapons (`../ordnance`, #379) ask of these rules, each with its own switch in. */
+export interface ExplosiveExtras {
+  /** A blast whose flash always applies, side effects or no: a nuclear device (p. 195). */
+  alwaysFlash?: (item: any) => boolean;
+  /** A grenade that burns as thermite, for this many seconds, or null: the AN-M14 (p. 192). */
+  thermiteGrenade?: (item: any) => number | null;
+  /** Whether a thermite grenade's rule is on, so its burn goes on ticking without the incendiaries'. */
+  thermiteGrenadesOn?: () => boolean;
+  /** A bomb whose blast is fuel-air, divided by 2 x the distance: the CBU-55/B (p. 194). */
+  fuelAirBomb?: (item: any) => boolean;
 }
 
 const d6 = (): number => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
@@ -183,7 +199,7 @@ async function skillRoll(api: GWorldApi, actor: any, choices: ReadonlyArray<{ sk
   return api.roll.success({ actor, base: use.level, label, skill: use.skill, modifiers, tags: ["explosives", ...tags] } as any);
 }
 
-export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
+export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: ExplosiveExtras = {}): void {
   // ── the REF table (p. 183) ──
   const ids = new Map<ExplosiveRow, string>();
   for (const each of EXPLOSIVES) {
@@ -294,7 +310,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
         await api.chat.update(message, { ...data, concussion: { ...data.concussion, rolled: true, result: outcome } });
       },
       flash: async ({ message, data, actor }: any) => {
-        if (!actor || data.flash?.rolled || !on.sideEffects()) return;
+        if (!actor || data.flash?.rolled || !(on.sideEffects() || data.always === true)) return;
         const outcome = await senseRoll(api, actor, "vision", Number(data.flash.modifier) || 0);
         await api.chat.update(message, { ...data, flash: { ...data.flash, rolled: true, result: outcome } });
       },
@@ -518,7 +534,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
     let fuelAir = flag.source === DETONATION_SOURCE && String(flag.label ?? "").includes(fuelAirLabel);
     if (!fuelAir && context?.itemUuid) {
       const item = (globalThis as any).fromUuidSync?.(String(context.itemUuid));
-      fuelAir = isFuelAir(chargeOf(item)?.row ?? null);
+      fuelAir = isFuelAir(chargeOf(item)?.row ?? null) || Boolean(item && extras.fuelAirBomb?.(item));
     }
     if (fuelAir) context.divisorPerYard = FUEL_AIR_DIVISOR_PER_YARD;
   });
@@ -527,7 +543,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
   const thermite: LingeringBurn = {
     flag: THERMITE_FLAG,
     condition: THERMITE_CONDITION,
-    on: on.incendiaries,
+    on: () => on.incendiaries() || Boolean(extras.thermiteGrenadesOn?.()),
     title: () => L("Thermite.Title"),
     conditionLabel: (seconds) => F("Thermite.Burning", { seconds }),
     dice: { dice: THERMITE.dice, adds: THERMITE.adds },
@@ -558,15 +574,17 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
     itemTypes: ["equipment"],
     label: L("Thermite.Ignite"),
     icon: "fa-solid fa-fire-flame-simple",
-    visible: (item: any) => on.incendiaries() && isThermite(item),
+    visible: (item: any) => (on.incendiaries() && isThermite(item)) || (extras.thermiteGrenade?.(item) ?? null) !== null,
     run: (item: any, actor: any) => { void igniteThermite(item, actor); },
   } as any);
 
   const igniteThermite = async (item: any, actor: any) => {
     const target = [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
     const locations = Object.keys((api.rules as any).HIT_LOCATIONS ?? { torso: {} });
+    // A thermite grenade burns for its own time, not by the pound (p. 192).
+    const grenadeSeconds = extras.thermiteGrenade?.(item) ?? null;
     const value = await ask(String(item.name ?? ""), [
-      row(L("Pounds"), number("pounds", Math.max(1, Math.floor(Number(item.system?.quantity) || 1)))),
+      ...(grenadeSeconds === null ? [row(L("Pounds"), number("pounds", Math.max(1, Math.floor(Number(item.system?.quantity) || 1))))] : []),
       row(L("Thermite.On"), select("on", [...(target ? [{ value: "actor", label: F("Thermite.OnTarget", { name: String(target.name ?? "") }) }] : []), { value: "object", label: L("Thermite.OnObject") }])),
       row(L("Thermite.Location"), select("location", locations.map((l) => ({ value: l, label: l })).sort((a, b) => (a.value === "torso" ? -1 : b.value === "torso" ? 1 : 0)))),
       row(L("Target"), select("structure", structures().filter((s) => s.value !== ""))),
@@ -575,8 +593,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
       `<p class="ihint" style="margin:0">${esc(L("Thermite.Hint"))}</p>`,
     ].join(""), L("Thermite.Ignite"));
     if (!value) return;
-    const pounds = Number(value("pounds")) || 0;
-    const seconds = thermiteSeconds(pounds);
+    const seconds = grenadeSeconds ?? thermiteSeconds(Number(value("pounds")) || 0);
     if (seconds <= 0) return;
     const sparks = F("Thermite.Sparks", { near: THERMITE_SPARKS[0].damage, far: THERMITE_SPARKS[1].damage });
     if (value("on") === "actor" && target) {
@@ -606,13 +623,15 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches): void {
     // A blast: concussion from its crushing, the flash from its crushing or burning (p. 181-182).
     const blast = damage.blastDistance !== undefined && damage.source !== "fragments" && !damage.cinematicBlast;
     const type = String(damage.type ?? "");
-    if (on.sideEffects() && blast && (type === "cr" || type === "burn")) {
+    // A nuclear flash always applies (p. 195), the rest only with the side effects in play.
+    const always = Boolean(context?.item && extras.alwaysFlash?.(context.item));
+    if ((on.sideEffects() || always) && blast && (type === "cr" || type === "burn")) {
       const signed = (n: number) => (n < 0 ? String(n) : `+${n}`);
       const hearing = concussionModifier(Number(result.penetrating) || 0);
       const vision = flashModifier(Number(damage.basicDamage) || 0);
-      const concussion = type === "cr" ? { modifier: hearing, shown: signed(hearing), rolled: false } : null;
+      const concussion = on.sideEffects() && type === "cr" ? { modifier: hearing, shown: signed(hearing), rolled: false } : null;
       const flash = { modifier: vision, shown: signed(vision), rolled: false };
-      await api.chat.post(`${MODULE_ID}.${SIDE_EFFECTS_CARD}`, { name: String(victim.name ?? ""), concussion, flash }, { actor: victim } as any);
+      await api.chat.post(`${MODULE_ID}.${SIDE_EFFECTS_CARD}`, { name: String(victim.name ?? ""), concussion, flash, always }, { actor: victim } as any);
     }
 
     // A jolt to whoever carries nitro, or dynamite sweating it (pp. 184-185).

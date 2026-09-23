@@ -35,10 +35,11 @@
  * jackets, swim fins and dye markers, parachutes and Death from Above, and
  * snacks and sports drinks, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
- * the eyes, and the explosives and incendiaries: an explosion's side effects, demolition charges,
- * unstable and home-made explosives, thermite and napalm (pp. 7-11,
- * 13-16, 17-22, 24-50, 56-61, 71, 79-93, 109, 127-141, 143, 147-188,
- * 249-252).
+ * the eyes, and the explosives and incendiaries: an explosion's side
+ * effects, demolition charges, unstable and home-made explosives, thermite
+ * and napalm, and the grenades, land mines, rifle grenades, bombs and
+ * nuclear weapons (pp. 7-11, 13-16, 17-22, 24-50, 56-61, 71, 79-93, 109,
+ * 127-141, 143, 147-196, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -66,6 +67,7 @@ import { projectorFields, readyProjectors } from "./projectors/index.js";
 import { readyExplosives } from "./explosives/index.js";
 import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
 import { initSurvival, readySurvival } from "./survival/index.js";
+import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -169,6 +171,11 @@ const RULES = [
   { key: "maritimeGear", pages: "pp. 59-60", implemented: true },
   { key: "parachuting", pages: "p. 61", implemented: true },
   { key: "rations", pages: "p. 35", implemented: true },
+  // Grenades, mines, rifle grenades, bombs and nuclear weapons.
+  { key: "grenadeHandling", pages: "pp. 190-193", implemented: true },
+  { key: "landMines", pages: "pp. 189-190", implemented: true },
+  { key: "rifleGrenades", pages: "pp. 193-194", implemented: true },
+  { key: "nuclearEffects", pages: "pp. 195-196", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -253,7 +260,9 @@ function ready(api: GWorldApi): void {
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
   readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
-  readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") });
+  const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };
+  readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") }, ordnanceExtras(ordnance));
+  readyOrdnance(api, ordnance);
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
 }

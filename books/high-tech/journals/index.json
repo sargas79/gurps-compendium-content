@@ -1655,6 +1655,7 @@
       "title": "Land Mines",
       "chapter": "5. Weaponry",
       "pages": "HT189",
+      "rule": "gurps-compendium-content.landMines",
       "reference": "High-Tech p. 189",
       "file": "land-mines.md",
       "status": "reviewed"
@@ -1664,6 +1665,7 @@
       "title": "Hand Grenades",
       "chapter": "5. Weaponry",
       "pages": "HT190",
+      "rule": "gurps-compendium-content.grenadeHandling",
       "reference": "High-Tech p. 190",
       "file": "hand-grenades.md",
       "status": "reviewed"
@@ -1673,6 +1675,7 @@
       "title": "Dirty Tech: Hand-Grenade Booby Trap",
       "chapter": "5. Weaponry",
       "pages": "HT190",
+      "rule": "gurps-compendium-content.grenadeHandling",
       "reference": "High-Tech p. 190",
       "file": "dirty-tech-hand-grenade-booby-trap.md",
       "status": "reviewed"
@@ -1682,6 +1685,7 @@
       "title": "Dirty Tech: Improvised Grenades",
       "chapter": "5. Weaponry",
       "pages": "HT191",
+      "rule": "gurps-compendium-content.grenadeHandling",
       "reference": "High-Tech p. 191",
       "file": "dirty-tech-improvised-grenades.md",
       "status": "reviewed"
@@ -1691,6 +1695,7 @@
       "title": "Rifle Grenades",
       "chapter": "5. Weaponry",
       "pages": "HT193",
+      "rule": "gurps-compendium-content.rifleGrenades",
       "reference": "High-Tech p. 193",
       "file": "rifle-grenades.md",
       "status": "reviewed"
@@ -1700,6 +1705,7 @@
       "title": "Nuclear Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT195",
+      "rule": "gurps-compendium-content.nuclearEffects",
       "reference": "High-Tech p. 195",
       "file": "nuclear-weapons.md",
       "status": "reviewed"
@@ -1709,6 +1715,7 @@
       "title": "EMP",
       "chapter": "5. Weaponry",
       "pages": "HT196",
+      "rule": "gurps-compendium-content.nuclearEffects",
       "reference": "High-Tech p. 196",
       "file": "emp.md",
       "status": "reviewed"
@@ -1718,6 +1725,7 @@
       "title": "Fallout",
       "chapter": "5. Weaponry",
       "pages": "HT196",
+      "rule": "gurps-compendium-content.nuclearEffects",
       "reference": "High-Tech p. 196",
       "file": "fallout.md",
       "status": "reviewed"
