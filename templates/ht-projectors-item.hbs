@@ -1,0 +1,10 @@
+{{!-- A flamethrower's fuel and what its jet does (High-Tech pp. 178-179). --}}
+<div class="isub" data-gcc-ht-projectors-section>
+  <div class="isub-head">{{localize "GCC.HT.Rules.flamethrowers.Name"}}</div>
+  {{#if thickened}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Projectors.Flame.UnthickenedHint'}}"><input type="checkbox" data-gcc-ht-unthickened {{#if unthickened}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Projectors.Flame.Unthickened"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

@@ -1549,6 +1549,7 @@
       "title": "Flamethrowers",
       "chapter": "5. Weaponry",
       "pages": "HT178",
+      "rule": "gurps-compendium-content.flamethrowers",
       "reference": "High-Tech p. 178",
       "file": "flamethrowers.md",
       "status": "reviewed"
@@ -1558,6 +1559,7 @@
       "title": "Dirty Tech: Improvised Flamethrowers",
       "chapter": "5. Weaponry",
       "pages": "HT179",
+      "rule": "gurps-compendium-content.flamethrowers",
       "reference": "High-Tech p. 179",
       "file": "dirty-tech-improvised-flamethrowers.md",
       "status": "reviewed"
@@ -1567,6 +1569,7 @@
       "title": "Spray Guns and Aerosols",
       "chapter": "5. Weaponry",
       "pages": "HT180",
+      "rule": "gurps-compendium-content.sprayGuns",
       "reference": "High-Tech p. 180",
       "file": "spray-guns-and-aerosols.md",
       "status": "reviewed"
@@ -1576,6 +1579,7 @@
       "title": "Laser Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT181",
+      "rule": "gurps-compendium-content.laserDazzlers",
       "reference": "High-Tech p. 181",
       "file": "laser-weapons.md",
       "status": "reviewed"
