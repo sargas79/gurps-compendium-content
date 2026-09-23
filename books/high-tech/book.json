@@ -11,7 +11,46 @@
   },
   "transcription": {
     "pdfOffset": 1,
-    "pageLabel": "HT"
+    "pageLabel": "HT",
+    "layout": true,
+    "asidesAsText": true,
+    "aliases": {
+      "Equipment Bond": "New Perk: Equipment Bond",
+      "T Battery": "Tiny",
+      "XS Battery": "Extra-Small",
+      "S Battery": "Small",
+      "M Battery": "Medium",
+      "L Battery": "Large",
+      "VL Battery": "Very Large",
+      "Wood (per cord)": "Wood",
+      "Small Collection (per skill)": "Small Collection",
+      "Basic Library (per skill)": "Basic Library",
+      "Good Library (per skill)": "Good Library",
+      "Fine Library (per skill)": "Fine Library",
+      "Business Cards (per 100)": "Business Cards",
+      "Digital Storage Device (per GB)": "Digital Storage Device",
+      "Chainsaw (TL7)": "Chainsaws",
+      "Chainsaw (TL8)": "Chainsaws",
+      "Towel": "Don't Forget Your Towel!",
+      "Microfiber Towel": "Don't Forget Your Towel!",
+      "Hardtack (crate)": "Hardtack",
+      "Iron Spike": "Fasteners",
+      "Steel Pitons (10)": "Fasteners",
+      "Trap, Beaver": "Traps",
+      "Hip Flask": "Hip Flask"
+    },
+    "families": [
+      { "pattern": "^(?:Diesel Fuel|Gasoline|Kerosene) \\(per gallon\\)$", "heading": "Hydrocarbon Fuels", "headingOnly": true },
+      { "pattern": "^Alcohol \\(per gallon\\)$", "heading": "Alcohol", "headingOnly": true },
+      { "pattern": "Tactical Light", "replace": "Tactical Light", "heading": "Tactical Lights" },
+      { "pattern": "^Telegraph Wire, Land", "heading": "Telegraph Wire", "headingOnly": true },
+      { "pattern": "^Telegraph Wire, Ocean", "replace": "Telegraph Wire, Ocean", "heading": "Telegraph Wire" },
+      { "pattern": "^Telephone$", "heading": "Telephones", "headingOnly": true },
+      { "pattern": "^(?:Magnetic Tape Recorder|Reel-to-Reel Tape Recorder)$", "heading": "Open Tape Recorders", "headingOnly": true },
+      { "pattern": "^Reel-to-Reel Tape Recorder, Miniature$", "replace": "Reel-to-Reel Tape Recorder, Miniature", "heading": "Open Tape Recorders" },
+      { "pattern": "^Electric Lantern, ", "replace": "Electric Lantern, ", "heading": "Electric Lanterns" },
+      { "pattern": "^(Rope|Cord), ", "replace": "$1, ", "heading": "Rope" }
+    ]
   },
   "capture": {
     "labelEnd": ".",

@@ -38,12 +38,14 @@
  * flag somebody reads.
  *
  * Usage:
- *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--write]
+ *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--pages A-B] [--write]
  *   node tools/transcribe.mjs <book> <pack> --review [--write]
  *
  * `--offset` is book page + offset = PDF page. It defaults to the book's
  * `transcription.pdfOffset`, or 2, which is the Basic Set's Characters volume;
- * Campaigns is -334. Nothing is written without `--write`.
+ * Campaigns is -334. `--pages` limits the draft to entries citing those book
+ * pages; every other entry keeps the text it has. Nothing is written without
+ * `--write`.
  */
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -51,6 +53,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 import { ACTOR_TYPES, book, packsOf, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
+import { gadgetLines, stripPrice } from "./lib/gadget-text.mjs";
 
 /**
  * The line under a heading that says what kind of thing the entry is.
@@ -159,16 +162,26 @@ function normalise(text) {
     .replace(/‘/g, "'")
     .replace(/“/g, '"')
     .replace(/”/g, '"')
+    // A dash between words, as the Latin-1 reading used to give it.
+    .replace(/–/g, "-")
+    // The books' symbol font puts its multiplication sign where Latin-1 has the
+    // yen sign, as lib/pdf-layout.mjs also finds: "4¥ magnification".
+    .replace(/¥/g, "×")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-/** The book, one string per page, cached so the PDF is read once. */
+/**
+ * The book, one string per page, cached so the PDF is read once.
+ *
+ * Read as UTF-8: pdftotext's default is Latin-1 on some builds, and read back
+ * as UTF-8 every degree sign and accent became a replacement character.
+ */
 function pagesOf(pdf) {
-  const cache = join(projectRoot, "extracted", "pages-" + pdf.replace(/\W+/g, "-").slice(-60) + ".json");
+  const cache = join(projectRoot, "extracted", "pages-" + pdf.replace(/\W+/g, "-").slice(-60) + "-utf8.json");
   if (existsSync(cache)) return JSON.parse(readFileSync(cache, "utf8"));
 
-  const result = spawnSync("pdftotext", [pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
+  const result = spawnSync("pdftotext", ["-enc", "UTF-8", pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
   if (result.status !== 0) {
     throw new Error(`pdftotext failed on ${pdf}. Is it installed and is the path right?`);
   }
@@ -176,6 +189,63 @@ function pagesOf(pdf) {
   mkdirSync(join(projectRoot, "extracted"), { recursive: true });
   writeFileSync(cache, JSON.stringify(pages), "utf8");
   return pages;
+}
+
+/**
+ * The book, one string per page, read from its layout rather than as a stream.
+ *
+ * High-Tech sets its gear on tinted panels beside sidebars, and pdftotext's
+ * stream interleaves the two: "...watch is $100, neg. LC4. Pocketknife (TL5)"
+ * with the towel sidebar's lines between a pocketknife's. The layout reader
+ * (lib/book-structure.mjs) reads a column at a time and keeps a sidebar
+ * apart, so each paragraph and heading arrives as one line, as the stream
+ * gives them where it can. A book that says `transcription.layout` is read so.
+ *
+ * Only the pages asked for are read (it takes a second a page), and each is
+ * cached. Every other page is left empty. With `asidesAsText` a box's title
+ * and paragraphs come first, as recapture.mjs reads them; a paragraph two
+ * boxes both claim is kept once.
+ */
+async function layoutPagesOf(pdf, bk, wanted) {
+  const [{ openBook, readPage }, { structureOf, useLexicon }, { lexiconOf }] = await Promise.all([
+    import("./lib/pdf-layout.mjs"),
+    import("./lib/book-structure.mjs"),
+    import("./lib/lexicon.mjs"),
+  ]);
+  const dir = join(projectRoot, "extracted", "layout", bk.slug);
+  mkdirSync(dir, { recursive: true });
+  let opened = null;
+  const pages = [];
+  for (const index of [...wanted].sort((a, b) => a - b)) {
+    const cache = join(dir, `${index + 1}.txt`);
+    if (existsSync(cache)) {
+      pages[index] = readFileSync(cache, "utf8");
+      continue;
+    }
+    if (!opened) {
+      useLexicon(await lexiconOf([pdf]));
+      opened = await openBook(pdf);
+    }
+    if (index + 1 > opened.pages) continue;
+    const s = structureOf(await readPage(opened, index + 1));
+    const lines = [];
+    const seen = new Set();
+    const take = (text) => {
+      const line = String(text ?? "").replace(/\s+/g, " ").trim();
+      if (!line || seen.has(line)) return;
+      seen.add(line);
+      lines.push(line);
+    };
+    const boxes = bk.transcription.asidesAsText ? s.asides.filter((aside) => aside.kind !== "table") : [];
+    for (const aside of boxes) {
+      take(aside.title);
+      for (const block of aside.blocks ?? []) if (block.kind !== "table") take(block.text);
+    }
+    for (const block of s.blocks) if (block.kind !== "table") take(block.text);
+    pages[index] = lines.join("\n");
+    writeFileSync(cache, pages[index], "utf8");
+  }
+  return Array.from({ length: Math.max(pages.length, 1) }, (_, i) => pages[i] ?? "");
 }
 
 /** The first page an entry cites, from the reference the system wrote. */
@@ -328,27 +398,6 @@ function escapeRegExp(text) {
   return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/**
- * Drops the price and weight an inline entry ends with.
- *
- * "$50, 4 lbs." and "Per set: $50, 4 lbs." are the item's cost and weight, both
- * of which the system carries as numbers. Repeating them in the text would put
- * a second copy on the sheet, and one that never changes when the other does.
- */
-function stripPrice(text) {
-  return text
-    // Ultra-Tech closes a gadget on price, weight, power and legality: "$50,
-    // neg. weight, A/10 hr. (uses flexible cells). LC4."
-    .replace(/\s*(?:If bought separately:\s*)?\+?\$[\d,]+(?:\.\d+)?[^$]{0,100}?\bLC\s*\d\.?\s*$/, "")
-    // A force blade prints only its cells and running time: "2C/420 seconds. LC2."
-    .replace(/\s*\d?[A-F]{1,2}\/[\d,]+\s*(?:seconds|minutes|hours|hrs?)\.?(?:\s*LC\s*\d\.?)?\s*$/, "")
-    // "$50, 2 lbs.", "$40, 12 hrs.", "Per set: $50, 4 lbs.", "$200.", and a
-    // weight with a decimal point in it, "$2, 0.5 lb.", "$250, 0.25 lb., 10 hrs."
-    .replace(/\s*(Per\s+[\w\s]+:\s*)?\+?\$[\d,]+(\.\d+)?(\s*,\s*(?:[^.;]|\.(?=\d)|\.,){1,32})?\.?\s*$/i, "")
-    .replace(/\s*,?\s*[\d./]+\s*lbs?\.?\s*$/i, "")
-    .trim();
-}
-
 /** The data file counts in figures where the book spells it: "4 Legs" is "Four Legs". */
 const NUMBERS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"];
 function spellNumber(label) {
@@ -415,7 +464,7 @@ function headingNames(bk) {
  */
 function printedNames(name, bk) {
   const own = normalise(name);
-  const alias = bk.transcription.aliases?.[own];
+  const alias = bk.transcription.aliases?.[own] ?? capturedLabels(bk).get(own);
   if (alias) return [own, normalise(alias)];
   const prefix = bk.transcription.namePrefix;
   if (!prefix || !prefix.test(own)) return [own, ...gadgetNames(own)];
@@ -423,6 +472,32 @@ function printedNames(name, bk) {
   const unlevelled = bare.replace(/\s+\d$/, "");
   const family = unlevelled.replace(/\s*\([^)]*\)$/, "");
   return [...new Set([own, bare, unlevelled, family])];
+}
+
+/**
+ * The labels captured gear is printed under, by the name its record was given.
+ *
+ * `tools/capture-gear.mjs` names a record after the label it read, and where
+ * reading the page settled on another name -- "Windmills (TL5)" is priced as
+ * one windmill, "Alcohol" per gallon -- a `capture.set` rule renames it. The
+ * rule's pattern is then the label the book prints, and the text under that
+ * label is the record's: it is where the record's statistics came from. Only a
+ * pattern that is a plain name counts; the book's own `aliases` win over it.
+ */
+const labelsByBook = new WeakMap();
+function capturedLabels(bk) {
+  if (labelsByBook.has(bk)) return labelsByBook.get(bk);
+  const labels = new Map();
+  for (const rule of bk.capture?.set ?? []) {
+    const renamed = rule.set?.name;
+    const literal = /^\^((?:[^\\.*+?^$()[\]{}|]|\\[()*.+?"])+)\$$/.exec(String(rule.pattern));
+    if (!renamed || !literal) continue;
+    // A footnote mark after the label is the book's, not the name's: "Hardtack*".
+    const label = literal[1].replace(/\\(.)/g, "$1").replace(/\*$/, "");
+    if (label !== renamed) labels.set(normalise(renamed), normalise(label));
+  }
+  labelsByBook.set(bk, labels);
+  return labels;
 }
 
 /**
@@ -522,6 +597,7 @@ function usefulLines(page) {
   return page
     .split("\n")
     .map((line) => normalise(line))
+    .flatMap(gadgetLines)
     .filter((line) => line.length > 0);
 }
 
@@ -574,8 +650,9 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
         // So does the heading of the family's first member: "One Bionic Arm (TL9)".
         if (FURNITURE.test(line) || (line.length < 60 && /[^.!?:)"]$/.test(line))) break;
         if (line.length < 70 && withoutTechLevel(line) !== line) break;
-        // Or a member run into the text, "Reflex (TL9): ...", whose own text follows.
-        if (/^[^:]{0,80}\(TL[\d\s^/-]+\):/.test(line)) break;
+        // Or a member run into the text, "Reflex (TL9): ...", whose own text
+        // follows -- in High-Tech, "Telephone (TL6). $25, 3 lbs."
+        if (/^[^:]{0,80}\(TL[\d\s^/-]+\):/.test(line) || /^[^.:]{0,80}\(TL[\d\s^/-]+\)\.\s/.test(line)) break;
         // Or the skill line over a weapon table.
         if (GADGET_STOP.test(line)) break;
         opening.push(line);
@@ -786,7 +863,8 @@ function capture(entry, pages, offset, names, bk) {
     // A weapon may also print its calibre there: "Wrist Needler, 3mm (TL9):".
     for (const candidate of inlineNames) {
       const inline = new RegExp(
-        `^${escapeRegExp(candidate)}((?:\\s*\\([^)]*\\)|,\\s*[^,:()]{1,12}(?=\\s*[(:]))*)\\*?\\s*[.:]\\s*(.*)$`,
+        // High-Tech puts the footnote mark before the tech level: "Hardtack* (TL5)."
+        `^${escapeRegExp(candidate)}\\*?((?:\\s*\\([^)]*\\)|,\\s*[^,:()]{1,12}(?=\\s*[(:]))*)\\*?\\s*[.:]\\s*(.*)$`,
         "i",
       );
       for (const [at, whole] of scoped.entries()) {
@@ -804,7 +882,8 @@ function capture(entry, pages, offset, names, bk) {
           // A gadget labelled with its tech level may say little: "Nausea Pistol
           // (TL9): A handy pistol-sized version.", "Infrared Binoculars (TL9):
           // 16× magnification." The label is proof enough that it is an entry.
-          const labelled = /\(TL[\d\s^/-]+\)/.test(match[1]);
+          // The label may be in the name itself: High-Tech's "Rope, 1/2" (TL6)."
+          const labelled = /\(TL[\d\s^/-]+\)/.test(match[1] + candidate);
           if (text.length < (labelled ? 8 : 15)) continue;
           // A weapon table row reads as an inline entry and is not one: "Pistol
           // Crossbow thr+2 imp 1 ±15/±20 4/0.06 1" is the statistics line, every
@@ -860,6 +939,16 @@ function capture(entry, pages, offset, names, bk) {
         // gadget's own label, not a paragraph about the tangler.
         if (/^[^:]{0,80}\(TL[\d\s^-]+\):/.test(line)) continue;
         if (line.startsWith(candidate + " ") && line.length > candidate.length + 25 && !COST.test(line)) {
+          // High-Tech's layout runs a gadget's heading into its one paragraph --
+          // "Optical Disks (TL8) All TL8 computers are assumed..." -- which then
+          // closes on its price, and may run on into the next column after it.
+          // The tech level may be in the name already: "Cord (TL7) Synthetic."
+          const level = /\)$/.test(candidate) ? "?" : "";
+          const run = new RegExp(`^${escapeRegExp(candidate)}(?:\\s*\\((?:TL[\\d\\s^/-]+|var\\.)\\))${level}\\s+(?=["A-Z])`).exec(line);
+          if (run) {
+            const own = stripPrice(line.slice(run[0].length).replace(/(\bLC\s?\d\.).*$/, "$1"));
+            if (own) return { kind: "sub-entry", paragraphs: [own], page: cited + delta };
+          }
           return { kind: candidate === name ? "sub-entry" : "variant", paragraphs: [line], page: cited + delta };
         }
       }
@@ -971,8 +1060,27 @@ async function main() {
   // the command line; a single-volume book may state it once in book.json.
   const offset = Number(flag("--offset", String(bk.transcription.pdfOffset ?? 2)));
   const label = bk.transcription.pageLabel;
+  const range = flag("--pages");
+  const pageRange = range ? range.split("-").map(Number) : null;
+  if (pageRange && (pageRange.length !== 2 || pageRange.some(Number.isNaN))) {
+    console.error(`--pages takes a range of book pages, "5-61". Got: ${range}`);
+    process.exit(1);
+  }
 
-  const pages = pagesOf(pdf);
+  // The layout reader is slow, so it reads only the pages the entries being
+  // drafted cite, and the few either side a capture may look at.
+  let pages;
+  if (bk.transcription.layout) {
+    const wanted = new Set();
+    for (const { entry } of readStatistics(bk, packName)) {
+      const cited = citedPage(entry);
+      if (cited === null || (pageRange && (cited < pageRange[0] || cited > pageRange[1]))) continue;
+      for (let delta = -3; delta <= 16; delta++) if (cited + offset - 1 + delta >= 0) wanted.add(cited + offset - 1 + delta);
+    }
+    pages = await layoutPagesOf(pdf, bk, wanted);
+  } else {
+    pages = pagesOf(pdf);
+  }
   const names = headingNames(bk);
   const existing = readProse(bk, packName).records;
   const readingNotes = readingDecisions(bk, packName);
@@ -986,6 +1094,16 @@ async function main() {
 
   for (const { entry } of readStatistics(bk, packName)) {
     const already = existing.get(entry._id);
+    // A book done a few chapters at a time: an entry cited outside the pages
+    // being worked on keeps whatever text it has, and gets none if it has none.
+    const cited = citedPage(entry);
+    if (pageRange && (cited === null || cited < pageRange[0] || cited > pageRange[1])) {
+      if (already) {
+        records.push(already);
+        tally.kept++;
+      }
+      continue;
+    }
     if (already && already.status === "reviewed") {
       records.push(already);
       tally.kept++;
