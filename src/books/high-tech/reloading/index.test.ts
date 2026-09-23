@@ -24,6 +24,8 @@ let sections: any[];
 let chat: string[];
 let on: Record<string, boolean>;
 let fastDrawAmmo: number | null;
+let skills: Record<string, number>;
+let vehicles: any[];
 
 function fakeApi() {
   return {
@@ -31,7 +33,7 @@ function fakeApi() {
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
     sheets: { registerSheetSection: (s: any) => sections.push(s) },
-    actors: { skillLevel: (_a: any, skill: string) => (skill === "Fast-Draw (Ammo)" ? fastDrawAmmo : null) },
+    actors: { skillLevel: (_a: any, skill: string) => (skill === "Fast-Draw (Ammo)" ? fastDrawAmmo : skills[skill] ?? null) },
   };
 }
 
@@ -47,8 +49,8 @@ function getPath(target: any, path: string): unknown {
 }
 
 /** A gun as the pack has it, held by a character with these items and posture. */
-function gun(patch: { name?: string; skill?: string; shots?: string; rof?: number; tl?: string; loaded?: number; firearm?: Record<string, unknown>; items?: any[]; posture?: string } = {}): any {
-  const actor = { name: "Shooter", system: { posture: patch.posture ?? "standing" }, items: patch.items ?? [] };
+function gun(patch: { name?: string; skill?: string; shots?: string; rof?: number; tl?: string; loaded?: number; firearm?: Record<string, unknown>; items?: any[]; posture?: string; mounted?: boolean } = {}): any {
+  const actor = { name: "Shooter", uuid: "Actor.shooter", system: { posture: patch.posture ?? "standing", mounted: patch.mounted === true }, items: patch.items ?? [] };
   const item: any = {
     id: "g1",
     name: patch.name ?? "S&W Model 10 M&P, .38 Special",
@@ -81,13 +83,13 @@ function entryOf(item: any): any {
   return fire(HOOKS.shotsEntry, { actor: item.actor, item, modeIndex: 0, mode, entry: { ...rules.parseShots(mode.shots) } }).entry;
 }
 
-/** A reload timed as the system times it, with these aids ticked. */
-function reload(item: any, aids: string[] = [], fastDraw = false): number | null {
+/** A reload timed as the system times it, with these aids ticked, for the rounds missing (or `asked` of them). */
+function reload(item: any, aids: string[] = [], fastDraw = false, asked?: number): number | null {
   const entry = entryOf(item);
   const mode = item.system.rangedModes[0];
   const full = rules.fullLoad(entry);
-  const rounds = full - (Number(mode.loaded) || 0);
-  const seconds = rules.reloadTime(entry, entry.perShot ? rounds : full);
+  const rounds = asked ?? full - (Number(mode.loaded) || 0);
+  const seconds = rules.reloadTime(entry, rounds);
   const ticked = entry.aids.filter((a: any) => aids.some((id) => a.id === `${MODULE_ID}.${id}`));
   return rules.reloadTimeWith({ entry, seconds, rounds, aids: ticked, fastDraw }).seconds;
 }
@@ -118,8 +120,10 @@ beforeEach(() => {
   chat = [];
   on = { firearmLoading: true };
   fastDrawAmmo = 14;
+  skills = {};
+  vehicles = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
-  vi.stubGlobal("game", { i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` } });
+  vi.stubGlobal("game", { actors: { get contents() { return vehicles; } }, i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s, getProperty: getPath, setProperty: setPath } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
 });
@@ -138,17 +142,28 @@ describe("reloading by how the gun loads (High-Tech pp. 86-88)", () => {
   it("reloads a swing-out revolver in 15 seconds, 9 with Fast-Draw, and 6 or 4 with a speedloader", () => {
     ready();
     const model10 = gun();
-    expect(entryOf(model10)).toMatchObject({ reloadSeconds: 15, perShot: false, fastDrawSeconds: 6, fastDrawPer: "reload" });
+    // A round at a time: 3 seconds and 2 a round, Fast-Draw saving 1 a round.
+    expect(entryOf(model10)).toMatchObject({ reloadSeconds: 3, perRoundSeconds: 2, perShot: false, fastDrawSeconds: 1, fastDrawPer: "round" });
+    expect(rules.loadsByTheRound(entryOf(model10))).toBe(true);
     expect(reload(model10)).toBe(15);
     expect(reload(model10, [], true)).toBe(9);
-    expect(reload(model10, ["speedloader"])).toBe(6);
-    expect(reload(model10, ["speedloader"], true)).toBe(4);
+    const loaded = gun({ items: [{ name: "Speedloader" }] });
+    expect(reload(loaded, ["speedloader"])).toBe(6);
+    expect(reload(loaded, ["speedloader"], true)).toBe(4);
   });
 
-  it("times the rounds that are missing", () => {
+  it("times the rounds that are missing, or as many as the Reload button is asked to load", () => {
     ready();
     // Three fired: swing out, eject, three rounds in, close.
     expect(reload(gun({ loaded: 3 }))).toBe(9);
+    // Two of them put back: 7 seconds, 5 with Fast-Draw.
+    expect(reload(gun({ loaded: 3 }), [], false, 2)).toBe(7);
+    expect(reload(gun({ loaded: 3 }), [], true, 2)).toBe(5);
+  });
+
+  it("offers the speedloader only to a character who carries one", () => {
+    ready();
+    expect(entryOf(gun()).aids).toEqual([]);
   });
 
   it("ticks the speedloader for a character who carries one", () => {
@@ -157,23 +172,28 @@ describe("reloading by how the gun loads (High-Tech pp. 86-88)", () => {
     expect(aid).toMatchObject({ checked: true, seconds: -9, fastDrawSeconds: 2 });
   });
 
-  it("offers Double-Loading to a character with it at Fast-Draw (Ammo)'s level: 6 seconds, and not with a speedloader", () => {
+  it("rolls Double-Loading at its own level in place of Fast-Draw (Ammo): 6 seconds, and not with a speedloader", () => {
     ready();
-    expect(entryOf(gun({ items: [doubleLoading(12)] })).aids.some((a: any) => a.id.endsWith("doubleLoading"))).toBe(false);
+    // Below Fast-Draw (Ammo)'s level too: the roll is the technique's.
+    expect(entryOf(gun({ items: [doubleLoading(12)] })).fastDrawRoll).toEqual({ level: 12, label: "Double-Loading (Fast-Draw (Ammo))" });
     const model10 = gun({ items: [doubleLoading(14)] });
-    expect(reload(model10, ["doubleLoading"], true)).toBe(6);
-    expect(reload(model10, ["doubleLoading", "speedloader"], true)).toBe(4);
-    // Without the Fast-Draw success, nothing.
-    expect(reload(model10, ["doubleLoading"])).toBe(15);
+    expect(entryOf(model10)).toMatchObject({ reloadSeconds: 15, fastDrawSeconds: 9, fastDrawPer: "reload" });
+    expect(reload(model10, [], true)).toBe(6);
+    // Without the success, nothing.
+    expect(reload(model10)).toBe(15);
+    const loader = gun({ items: [doubleLoading(14), { name: "Speedloader" }] });
+    expect(reload(loader, ["speedloader"], true)).toBe(4);
+    // A gun it can't help rolls Fast-Draw (Ammo) as usual.
+    expect(entryOf(gun({ name: "Glock 17, 9x19mm", shots: "17+1(3)", tl: "8", items: [doubleLoading(14)] })).fastDrawRoll).toBeNull();
   });
 
   it("reloads a gate-loading six-shooter as its record says: 20 seconds, 14 with Fast-Draw, 8 Double-Loading", () => {
     ready();
-    const colt = gun({ name: "Colt M1873 SAA, .45 Long Colt", shots: "6(5i)", rof: 1, tl: "5", firearm: { loadingType: "gate" }, items: [doubleLoading(14)] });
-    expect(reload(colt)).toBe(20);
-    expect(reload(colt, [], true)).toBe(14);
-    expect(reload(colt, ["doubleLoading"], true)).toBe(8);
-    expect(entryOf(colt).aids.some((a: any) => a.id.endsWith("speedloader"))).toBe(false);
+    const colt = (items: any[] = []) => gun({ name: "Colt M1873 SAA, .45 Long Colt", shots: "6(5i)", rof: 1, tl: "5", firearm: { loadingType: "gate" }, items });
+    expect(reload(colt())).toBe(20);
+    expect(reload(colt(), [], true)).toBe(14);
+    expect(reload(colt([doubleLoading(14)]), [], true)).toBe(8);
+    expect(entryOf(colt([{ name: "Speedloader" }])).aids.some((a: any) => a.id.endsWith("speedloader"))).toBe(false);
   });
 
   it("loads a pump shotgun's tube in 10 seconds, 8 with Fast-Draw", () => {
@@ -209,6 +229,20 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
     expect(reload(bess, ["flask"], true)).toBe(25);
     expect(reload(bess, ["paperCartridges"])).toBe(20);
     expect(reload(bess, ["paperCartridges"], true)).toBe(15);
+    // The cartridges halve the time and supersede the flask: one or the other.
+    const paper = entryOf(bess).aids.find((a: any) => a.id.endsWith("paperCartridges"));
+    expect(paper).toMatchObject({ multiplier: 0.5, exclusiveGroup: `${MODULE_ID}.powder` });
+    expect(entryOf(bess).aids.find((a: any) => a.id.endsWith("flask")).exclusiveGroup).toBe(`${MODULE_ID}.powder`);
+    expect(rules.usableAids(entryOf(bess).aids.map((a: any) => ({ ...a, checked: true }))).map((a: any) => a.id)).toEqual([`${MODULE_ID}.flask`]);
+  });
+
+  it("loads the Kentucky rifle in 60 seconds, 42 with a patch, 37 with a flask as well, and halves a rifle's time with cartridges", () => {
+    ready();
+    const kentucky = gun({ name: "Kentucky Rifle, .45 Flintlock", skill: "Guns (Rifle)", shots: "1(60)", rof: 1, tl: "5" });
+    expect([reload(kentucky), reload(kentucky, [], true)]).toEqual([60, 50]);
+    expect([reload(kentucky, ["greasedPatch"]), reload(kentucky, ["greasedPatch"], true)]).toEqual([42, 35]);
+    expect([reload(kentucky, ["greasedPatch", "flask"]), reload(kentucky, ["greasedPatch", "flask"], true)]).toEqual([37, 30]);
+    expect(reload(kentucky, ["paperCartridges"])).toBe(30);
   });
 
   it("ticks the flask for a character who carries one", () => {
@@ -308,5 +342,37 @@ describe("black-powder fouling (High-Tech p. 86)", () => {
     await shoot(model10, 3);
     expect(foulingShots(model10)).toBe(6);
     expect(row(model10).malfunction).toBe(15);
+  });
+});
+
+describe("loading in the saddle or on the move (High-Tech pp. 86-87)", () => {
+  it("rolls the lower of Guns-1 and Riding-1 to load fixed ammunition while mounted", () => {
+    ready();
+    skills = { "Guns (Pistol)": 13, "Riding (Horse)": 11 };
+    const model10 = gun({ mounted: true, items: [{ type: "skill", name: "Riding (Horse)" }] });
+    expect(entryOf(model10).requiredRolls).toEqual([{ level: 10, label: expect.stringContaining("MountedRoll") }]);
+    // A rider with no Riding skill fails the roll.
+    expect(entryOf(gun({ mounted: true })).requiredRolls).toEqual([{ skill: "Riding", label: expect.stringContaining("MountedRoll") }]);
+    expect(entryOf(gun()).requiredRolls).toEqual([]);
+  });
+
+  it("rolls at -3 for loose powder in the saddle, and Guns-2 on a moving vehicle", () => {
+    ready();
+    skills = { "Guns (Musket)": 12, "Riding (Horse)": 14 };
+    const bess = (patch: Parameters<typeof gun>[0] = {}) => gun({ name: "Brown Bess, .75 Flintlock", skill: "Guns (Musket)", shots: "1(40)", rof: 1, tl: "5", ...patch });
+    expect(entryOf(bess({ mounted: true, items: [{ type: "skill", name: "Riding (Horse)" }] })).requiredRolls).toEqual([{ level: 9, label: expect.stringContaining("MountedRoll") }]);
+    vehicles = [{ type: "vehicle", system: { speed: 10, crew: [{ uuid: "Actor.shooter" }] } }];
+    expect(entryOf(bess()).requiredRolls).toEqual([{ level: 10, label: expect.stringContaining("VehicleRoll") }]);
+    // Standing still, or fixed ammunition on the move: no roll.
+    expect(entryOf(gun()).requiredRolls).toEqual([]);
+    vehicles = [{ type: "vehicle", system: { speed: 0, crew: [{ uuid: "Actor.shooter" }] } }];
+    expect(entryOf(bess()).requiredRolls).toEqual([]);
+  });
+
+  it("asks nothing with the switch off", () => {
+    on = {};
+    ready();
+    skills = { "Guns (Pistol)": 13 };
+    expect(entryOf(gun({ mounted: true })).requiredRolls).toEqual([]);
   });
 });

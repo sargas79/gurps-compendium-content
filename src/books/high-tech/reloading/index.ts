@@ -8,10 +8,16 @@
  *     that is reliable and set from the book's descriptions where it isn't.
  *     `gworld.shotsEntry` then gives the Reload button the book's time for
  *     that procedure, what Fast-Draw (Ammo) saves on it, and the aids that
- *     help as ticks: a powder flask, paper cartridges, a greased patch, a
- *     speedloader, clamped magazines, an assistant gunner, and Double-Loading
- *     for a character who has the technique at Fast-Draw (Ammo)'s own level.
- *     A muzzle-loading long arm loaded from anything but standing takes half
+ *     help as ticks: a powder flask or paper cartridges (one or the other;
+ *     the cartridges halve the time), a greased patch, a speedloader the
+ *     character carries, clamped magazines, an assistant gunner. A gun
+ *     loaded a round at a time -- a breechloader, a revolver, an internal
+ *     magazine through a gate -- is timed for the rounds the Reload button
+ *     is asked to load (`perRoundSeconds`). A character who knows
+ *     Double-Loading rolls it at its own level in place of Fast-Draw (Ammo)
+ *     (`fastDrawRoll`), for the extra seconds a pair. Loading in the saddle
+ *     or on a moving vehicle needs its roll first (`requiredRolls`). A
+ *     muzzle-loading long arm loaded from anything but standing takes half
  *     as long again.
  *   - **Careful loading (carefulLoading):** a muzzle-loading musket or rifle
  *     set to load carefully takes twice as long, and the load it takes so
@@ -38,6 +44,8 @@ import {
   doubleLoadingSaving,
   firesBlackPowder,
   fouledSeconds,
+  loadingByTheRound,
+  loadingRolls,
   foulingPenalty,
   helpedSeconds,
   isLongArm,
@@ -142,10 +150,52 @@ function loadsCarefully(api: GWorldApi, item: any): boolean {
 /** The character's items whose names match, for aids that start ticked when they are carried. */
 const carries = (actor: any, name: RegExp): boolean => [...(actor?.items ?? [])].some((i: any) => name.test(String(i?.name ?? "")));
 
-/** Whether a character has Double-Loading at Fast-Draw (Ammo)'s own level: the level the reload's roll is made at. */
-function doubleLoadingAtFull(api: GWorldApi, actor: any): { known: boolean; full: boolean } {
+/**
+ * The Double-Loading roll a character who knows the technique makes in
+ * place of Fast-Draw (Ammo): its success gives Fast-Draw's saving and the
+ * technique's own (p. 251). Null for a character who doesn't know it.
+ */
+function doubleLoadingRoll(api: GWorldApi, actor: any): { level: number; label: string } | null {
+  const technique = [...(actor?.items ?? [])].find((i: any) => i?.type === "technique" && DOUBLE_LOADING.test(String(i.name ?? "")));
+  if (!technique) return null;
+  const own = technique.system?.derived?.level;
   const relative = techniqueRelative(api, actor, FAST_DRAW_AMMO, DOUBLE_LOADING, DOUBLE_LOADING_DEFAULT);
-  return { known: relative !== null, full: relative !== null && relative >= 0 };
+  const base = api.actors.skillLevel(actor, FAST_DRAW_AMMO);
+  const level = typeof own === "number" ? own : relative !== null && typeof base === "number" ? base + relative : null;
+  return level === null ? null : { level, label: String(technique.name ?? "Double-Loading") };
+}
+
+/** The best of the character's Riding skills, or Riding at default; null where there is none. */
+function ridingLevel(api: GWorldApi, actor: any): number | null {
+  const own = [...(actor?.items ?? [])].filter((i: any) => i?.type === "skill" && /^riding\b/i.test(String(i.name ?? "")))
+    .map((i: any) => api.actors.skillLevel(actor, String(i.name)))
+    .filter((n): n is number => typeof n === "number");
+  if (own.length) return Math.max(...own);
+  const fallback = api.actors.skillLevel(actor, "Riding");
+  return typeof fallback === "number" ? fallback : null;
+}
+
+/** Whether the character is aboard a vehicle that is moving: in a vehicle's crew, its speed above 0 (as the system reads it). */
+function onMovingVehicle(actor: any): boolean {
+  const uuid = String(actor?.uuid ?? "");
+  if (!uuid) return false;
+  return ((game as any).actors?.contents ?? []).some((v: any) => v?.type === "vehicle"
+    && (Number(v.system?.speed) || 0) > 0
+    && (v.system?.crew ?? []).some((seat: any) => seat?.uuid === uuid));
+}
+
+/** The rolls the load needs where the shooter is (pp. 86-87), as the Reload button takes them. */
+function requiredLoadingRolls(api: GWorldApi, actor: any, type: LoadingType, skill: string): any[] {
+  const rolls = loadingRolls({ type, mounted: actor?.system?.mounted === true, movingVehicle: onMovingVehicle(actor) });
+  return rolls.map((roll) => {
+    const guns = api.actors.skillLevel(actor, skill);
+    const riding = roll.riding ? ridingLevel(api, actor) : null;
+    const label = F(roll.where === "mounted" ? "MountedRoll" : "VehicleRoll", { skill, modifier: roll.modifier });
+    // A roll with no level and a skill the character lacks fails.
+    if (typeof guns !== "number") return { skill, label };
+    if (roll.riding && riding === null) return { skill: "Riding", label };
+    return { level: Math.min(guns, riding ?? guns) + roll.modifier, label };
+  });
 }
 
 const aidId = (key: string) => `${MODULE_ID}.${key}`;
@@ -161,6 +211,11 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
   const careful = on.careful() && reloadingData(item).loadCarefully && loadsCarefully(api, item);
   const aids: any[] = Array.isArray(entry.aids) ? entry.aids : (entry.aids = []);
 
+  if (on.loading()) {
+    const rolls = requiredLoadingRolls(api, actor, type, String(mode?.skill ?? ""));
+    if (rolls.length) entry.requiredRolls = [...(Array.isArray(entry.requiredRolls) ? entry.requiredRolls : []), ...rolls];
+  }
+
   if (on.loading() && BLACK_POWDER_LOADING.includes(type)) {
     const posture = String(actor?.system?.posture ?? "standing");
     const load = blackPowderLoad({ type, skill: String(mode?.skill ?? ""), tableSeconds: entry.reloadSeconds, lowPosture: posture !== "standing", careful, foulingSteps: fouling });
@@ -173,6 +228,8 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
         id: aidId(aid.key),
         label: F(`Aid.${aid.key}`, { seconds: Math.abs(aid.seconds), flask: FLASK_SECONDS }),
         seconds: aid.seconds,
+        ...(aid.multiplier !== undefined ? { multiplier: aid.multiplier } : {}),
+        ...(aid.exclusiveGroup ? { exclusiveGroup: aidId(aid.exclusiveGroup) } : {}),
         ...(aid.fastDrawSeconds !== undefined ? { fastDrawSeconds: Math.max(0, aid.fastDrawSeconds) } : {}),
         checked: aid.key === "flask" && flask,
       });
@@ -194,24 +251,39 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
     return;
   }
 
+  const speedloader = SPEEDLOADER[type] && carries(actor, /^speedloader/i) ? SPEEDLOADER[type] : null;
+  const doubling = doubleLoadingSaving(type, 2) > 0 ? doubleLoadingRoll(api, actor) : null;
+  const byTheRound = loadingByTheRound(type);
   entry.perShot = false;
+
+  // A round at a time: the Reload button asks how many and times that many (GWorld API 1.88.0). Not
+  // where the time is a whole: a speedloader's, Double-Loading's pairs, fouling's tenths of the total.
+  if (byTheRound && !speedloader && !doubling && !fouling) {
+    entry.reloadSeconds = byTheRound.seconds;
+    entry.perRoundSeconds = byTheRound.perRound;
+    entry.fastDrawSeconds = byTheRound.fastDrawPerRound;
+    entry.fastDrawPer = "round";
+    return;
+  }
+
   entry.reloadSeconds = fouledSeconds(time.seconds, fouling);
   entry.fastDrawSeconds = time.seconds - time.fastDraw;
   entry.fastDrawPer = "reload";
 
-  // Double-Loading: the Fast-Draw roll's saving and a second or two a pair (p. 251). Before the speedloader, whose saving replaces it.
+  // Double-Loading, rolled at its own level in place of Fast-Draw (Ammo): its success saves what Fast-Draw
+  // does and a second or two a pair more (p. 251). A speedloader's saving replaces it (p. 87).
   const doubled = doubleLoadingSaving(type, rounds);
-  if (doubled > 0 && doubleLoadingAtFull(api, actor).full) {
-    aids.push({ id: aidId("doubleLoading"), label: F("Aid.doubleLoading", { seconds: doubled }), fastDrawSeconds: entry.fastDrawSeconds + doubled, checked: true });
+  if (doubling && doubled > 0) {
+    entry.fastDrawRoll = { level: doubling.level, label: doubling.label };
+    entry.fastDrawSeconds += doubled;
   }
-  const speedloader = SPEEDLOADER[type];
   if (speedloader) {
     aids.push({
       id: aidId("speedloader"),
       label: F("Aid.speedloader", { seconds: speedloader.seconds, fastDraw: speedloader.fastDraw }),
       seconds: speedloader.seconds - time.seconds,
       fastDrawSeconds: speedloader.seconds - speedloader.fastDraw,
-      checked: carries(actor, /^speedloader/i),
+      checked: true,
     });
   }
   const helped = helpedSeconds(type);
@@ -237,9 +309,12 @@ function reloadLine(api: GWorldApi, item: any, on: ReloadingSwitches): string {
   if (typeof entry.capacity !== "number" || typeof entry.reloadSeconds !== "number") return "";
   const empty = { ...mode, loaded: 0 };
   reloadEntry(api, item, 0, empty, entry, item?.actor ?? null, on);
-  const saving = Number(entry.fastDrawSeconds) || 0;
-  const per = entry.perShot ? "PerRound" : "Whole";
-  return F(`Time${per}`, { seconds: entry.reloadSeconds, fastDraw: Math.max(1, entry.reloadSeconds - saving) });
+  // A barrel or chamber at a time: the time for one. Otherwise a full load, however it is timed.
+  const rounds = entry.perShot ? 1 : entry.capacity + (entry.chambered ? 1 : 0);
+  const seconds = api.rules.reloadTime(entry, rounds);
+  if (seconds === null) return "";
+  const fast = api.rules.reloadTimeWith({ entry, seconds, rounds, aids: [], fastDraw: true }).seconds ?? seconds;
+  return F(`Time${entry.perShot ? "PerRound" : "Whole"}`, { seconds, fastDraw: fast });
 }
 
 function itemContext(api: GWorldApi, item: any, on: ReloadingSwitches): Record<string, unknown> {
@@ -248,7 +323,7 @@ function itemContext(api: GWorldApi, item: any, on: ReloadingSwitches): Record<s
   const shots = foulingShots(item);
   const penalty = foulingPenalty(shots);
   const black = blackPowderGun(api, item);
-  const technique = item?.actor ? doubleLoadingAtFull(api, item.actor) : { known: false, full: false };
+  const doubling = item?.actor && doubleLoadingSaving(loadingOf(api, item), 2) > 0 ? doubleLoadingRoll(api, item.actor) : null;
   return {
     editable: item.isOwner,
     loading: on.loading(),
@@ -257,7 +332,7 @@ function itemContext(api: GWorldApi, item: any, on: ReloadingSwitches): Record<s
       ...LOADING_TYPES.map((t) => ({ value: t, label: L(`Type.${t}`), selected: data.loadingType === t })),
     ],
     time: on.loading() || on.fouling() || on.careful() ? reloadLine(api, item, on) : "",
-    doubleLoadingShort: on.loading() && technique.known && !technique.full && doubleLoadingSaving(loadingOf(api, item), 2) > 0 ? L("DoubleLoadingShort") : "",
+    doubleLoading: on.loading() && doubling ? F("DoubleLoadingLine", { name: doubling.label, level: doubling.level }) : "",
     careful: on.careful() && loadsCarefully(api, item),
     loadCarefully: data.loadCarefully,
     carefulLine: on.careful() && carefullyLoaded(item) ? F("CarefullyLoaded", { acc: CAREFUL_LOADING_ACC }) : "",

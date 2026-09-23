@@ -8,6 +8,8 @@ import {
   fouledSeconds,
   foulingPenalty,
   helpedSeconds,
+  loadingByTheRound,
+  loadingRolls,
   loadingSeconds,
   loadsLoose,
   SPEEDLOADER,
@@ -103,7 +105,8 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
   /** The time with these aids, and with Fast-Draw, as the system adds them up. */
   const withAids = (result: ReturnType<typeof blackPowderLoad>, keys: string[]) => {
     const used = keys.map((k) => aid(result, k)!);
-    const seconds = result.seconds + used.reduce((s, a) => s + a.seconds, 0);
+    const added = result.seconds + used.reduce((s, a) => s + a.seconds, 0);
+    const seconds = Math.ceil(added * used.reduce((m, a) => m * (a.multiplier ?? 1), 1));
     const saving = used.reduce((s, a) => (a.fastDrawSeconds === undefined ? s : a.fastDrawSeconds), result.seconds - result.fastDraw);
     return [seconds, seconds - saving];
   };
@@ -121,6 +124,30 @@ describe("loose powder and ball (High-Tech p. 86)", () => {
     expect([musket.seconds, musket.fastDraw]).toEqual([40, 30]);
     expect(withAids(musket, ["paperCartridges"])).toEqual([20, 15]);
     expect(aid(musket, "greasedPatch")).toBeUndefined();
+    // A multiple, taken after the other aids' seconds, and one or the other with the flask.
+    expect(aid(musket, "paperCartridges")).toMatchObject({ seconds: 0, multiplier: 0.5, exclusiveGroup: "powder" });
+    expect(aid(musket, "flask")?.exclusiveGroup).toBe("powder");
+  });
+
+  it("times a load by the round where the book times it so: the fixed part, each round, and Fast-Draw's second a round", () => {
+    expect(loadingByTheRound("swingOut")).toEqual({ seconds: 3, perRound: 2, fastDrawPerRound: 1 });
+    expect(loadingByTheRound("gate")).toEqual({ seconds: 2, perRound: 3, fastDrawPerRound: 1 });
+    for (const type of ["breech", "breechEjector", "gate", "breakOpen", "swingOut", "internal"] as const) {
+      const split = loadingByTheRound(type)!;
+      for (let n = 1; n <= 8; n += 1) {
+        expect(split.seconds + split.perRound * n).toBe(loadingSeconds(type, n)!.seconds);
+        expect(split.seconds + (split.perRound - split.fastDrawPerRound) * n).toBe(loadingSeconds(type, n)!.fastDraw);
+      }
+    }
+    expect([loadingByTheRound("tube"), loadingByTheRound("clip"), loadingByTheRound("magazine"), loadingByTheRound("muzzleloader")]).toEqual([null, null, null, null]);
+  });
+
+  it("asks a roll to load in the saddle, and on a moving vehicle for loose powder only", () => {
+    expect(loadingRolls({ type: "muzzleloader", mounted: true, movingVehicle: false })).toEqual([{ where: "mounted", modifier: -3, riding: true }]);
+    expect(loadingRolls({ type: "swingOut", mounted: true, movingVehicle: false })).toEqual([{ where: "mounted", modifier: -1, riding: true }]);
+    expect(loadingRolls({ type: "muzzleloader", mounted: false, movingVehicle: true })).toEqual([{ where: "vehicle", modifier: -2, riding: false }]);
+    expect(loadingRolls({ type: "magazine", mounted: false, movingVehicle: true })).toEqual([]);
+    expect(loadingRolls({ type: "muzzleloader", mounted: false, movingVehicle: false })).toEqual([]);
   });
 
   it("saves a pistol a fifth of its time with Fast-Draw", () => {

@@ -25,6 +25,9 @@ const CATALOGUE: ReadonlyArray<{ name: RegExp; figures: AccessoryFigures }> = [
   { name: /^improved night sight\b/i, figures: { kind: "nightSight", nightVision: 5, accuracy: 2, fixed: true, bulk: -1, imposesTunnelVision: true } },
   { name: /^advanced night sight, add-on\b/i, figures: { kind: "nightSight", nightVision: 7, addOn: true, imposesTunnelVision: true } },
   { name: /^advanced night sight\b/i, figures: { kind: "nightSight", nightVision: 7, accuracy: 2, fixed: true, imposesTunnelVision: true } },
+  // Tactical lights (pp. 52, 156): a small one on any firearm, a large one on a shoulder arm.
+  { name: /^small tactical light\b/i, figures: { kind: "tacticalLight", yards: 25 } },
+  { name: /^large tactical light\b/i, figures: { kind: "tacticalLight", yards: 100, fits: "shoulder" } },
   // Targeting lasers (p. 157).
   { name: /^primitive targeting laser\b/i, figures: { kind: "targetingLaser", yards: 200, bulk: -1 } },
   { name: /^(integral )?targeting laser \(sidearm\)/i, figures: { kind: "targetingLaser", yards: 150, fits: "sidearm" } },
@@ -142,12 +145,33 @@ export function magazinePriceChange(figures: MagazineFigures, normal: number, wp
 
 // ── sights (pp. 155-157) ──
 
-/** What a scope or a magnifying sight is worth after the seconds aimed: all or nothing if fixed-power, a point a second if variable. */
-export function sightAfterAiming(bonus: number, secondsAimed: number, fixed: boolean): number {
-  const full = Math.max(0, Math.floor(bonus));
-  const seconds = Math.max(0, Math.floor(secondsAimed));
-  if (fixed) return seconds >= full ? full : 0;
-  return Math.min(full, seconds);
+/**
+ * Darkness penalties the sights take off (pp. 155-156): all but the
+ * cheapest TL7-8 scopes collect light, a point; an illuminated reticle, up to
+ * two; improved-visibility sights a point; a collimating or reflex sight up
+ * to three, on every shot.
+ */
+export const DARKNESS_OFFSET = Object.freeze({ scope: 1, illuminatedReticle: 2, visibilitySights: 1, reflexSight: 3 });
+
+/** A scope's darkness offset, for an aimed shot through it: an illuminated reticle's, or a TL7+ scope's (p. 155). */
+export function scopeDarkness(techLevel: number, illuminated: boolean): number {
+  if (illuminated) return DARKNESS_OFFSET.illuminatedReticle;
+  return techLevel >= 7 ? DARKNESS_OFFSET.scope : 0;
+}
+
+/** Within its beam, a tactical light leaves the more favourable of -3 and the darkness penalty (p. 156). */
+export const TACTICAL_LIGHT_FLOOR = -3;
+
+/**
+ * A darkness penalty after a tactical light and the sights: the light first
+ * (no worse than -3 within its beam), then the best of the sights' offsets
+ * off what is left, never above 0. The offsets don't add up: each says what
+ * it negates, up to its figure.
+ */
+export function darknessAfter(penalty: number, options: { light: boolean; sightOffset: number }): number {
+  let value = Math.min(0, Math.trunc(Number(penalty) || 0));
+  if (options.light) value = Math.max(value, TACTICAL_LIGHT_FLOOR);
+  return Math.min(0, value + Math.max(0, Math.trunc(Number(options.sightOffset) || 0)));
 }
 
 /**
@@ -197,6 +221,15 @@ export const LASER_COLOUR = Object.freeze({
   green: { cost: 4, daylight: 1, lowLight: 2, tl: 8 },
   infrared: { cost: 1.5, daylight: 1, lowLight: 1, tl: 8, lc: 2 },
 } satisfies Record<LaserColour, { cost: number; daylight: number; lowLight: number; tl: number; lc?: number }>);
+
+/**
+ * Whether a shooter sees the laser's dot: an infrared one only with Night
+ * Vision, Infravision or Hyperspectral Vision (p. 157).
+ */
+export function seesLaserDot(colour: LaserColour, vision: { nightVision?: number; infravision?: boolean; hyperspectralVision?: boolean }): boolean {
+  if (colour !== "infrared") return true;
+  return (Number(vision.nightVision) || 0) > 0 || vision.infravision === true || vision.hyperspectralVision === true;
+}
 
 /** A laser's reach in yards by its colour and the light. */
 export function laserReach(yards: number, colour: LaserColour, daylight: boolean): number {
