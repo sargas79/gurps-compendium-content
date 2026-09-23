@@ -101,6 +101,21 @@ node tools/recapture.mjs skills --characters <pdf> --campaigns <pdf>
    Vest). Family rules are tried before the record's own name, since a
    cybernetic's own heading holds only its statistics.
 
+   A captured record that a `capture.set` rule renamed ("^Windmills$" to
+   "Windmill") is looked for under the rule's pattern, the label the book
+   prints, with no alias needed.
+
+   A book that sets its gear beside sidebars reads better from its layout than
+   from pdftotext's stream, which interleaves the two. `"layout": true` reads
+   each page a column at a time with `lib/book-structure.mjs` (with
+   `"asidesAsText": true` for a book whose text sits in tinted boxes), and
+   `--pages 5-61` drafts only the entries citing those pages, keeping every
+   other entry's text as it is:
+
+   ```bash
+   node tools/transcribe.mjs high-tech equipment --pdf <pdf> --pages 5-61 --write
+   ```
+
    `tools/capture-gear.mjs` drafts equipment records from gadget entries that no
    data file holds, reading each closing line ("$1,200, 1 lb., B/10 hr. LC4.")
    in both text orders. `capture.skip` and `capture.set` in `book.json` hold
