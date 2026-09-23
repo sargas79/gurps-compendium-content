@@ -75,6 +75,14 @@ export interface RateOfFireSwitches {
   fanning: () => boolean;
 }
 
+/** What the book's other shooting rules bring to these (pp. 84, 249). */
+export interface RateOfFireHelpers {
+  /** Why a gun can't be fanned or thumbed just now (the two-handed stance), or null. */
+  noFanning?: (item: any) => string | null;
+  /** A technique's default penalty for a shooter who doesn't know it, where another rule changes it; null for the book's. */
+  techniqueDefault?: (actor: any, technique: string, penalty: number) => number | null;
+}
+
 /** What this module keeps on a gun for these rules, beside #364's fields on the same `firearm` object. */
 export interface RateOfFireData {
   /** Blank to work it out from the statistics (p. 82). */
@@ -254,8 +262,11 @@ function itemListeners(element: HTMLElement, item: any): void {
 /** What an attack with fanning or thumbing leaves to follow its roll (p. 83), by actor. */
 const pending = new Map<string, { kind: "fanning" | "thumbing"; gun: string }>();
 
-export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches): void {
+export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers: RateOfFireHelpers = {}): void {
   const any = () => on.triggers() || on.bursts() || on.fastFiring() || on.fanning();
+  // A technique's level relative to the skill, or its default where the shooter doesn't know it.
+  const relativeFor = (actor: any, skill: string, name: RegExp, technique: string, penalty: number) =>
+    techniqueRelative(api, actor, skill, name, penalty) ?? helpers.techniqueDefault?.(actor, technique, penalty) ?? null;
 
   api.sheets.registerSheetSection({
     module: MODULE_ID,
@@ -352,8 +363,8 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches): void {
       const twoHanded = singleActionRevolver(context.item);
       const skill = String(modeOf(context.item).skill ?? "");
       const relative = twoHanded
-        ? techniqueRelative(api, context.actor, skill, /^two-handed thumbing\b/i, TWO_HANDED_PENALTY)
-        : techniqueRelative(api, context.actor, skill, /^fast-firing\b/i, FAST_FIRING_PENALTY);
+        ? relativeFor(context.actor, skill, /^two-handed thumbing\b/i, "Two-Handed Thumbing", TWO_HANDED_PENALTY)
+        : relativeFor(context.actor, skill, /^fast-firing\b/i, "Fast-Firing", FAST_FIRING_PENALTY);
       const effect = fastFired(rof, twoHanded, relative);
       return {
         rateOfFire: rof,
@@ -372,13 +383,13 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches): void {
     attack: "ranged",
     input: { type: "select", choices: [{ value: "", label: L("NotUsed") }, ...FANNING_RATES.map((n) => ({ value: String(n), label: F("RofChoice", { rof: n }) }))] },
     available: (context) => on.fanning() && isFirearm(api, context.item) && singleActionRevolver(context.item),
-    refuse: (context) => (chosen(context.chosen, THUMBING) || chosen(context.chosen, FAST_FIRING) ? L("NotWithFanning") : null),
+    refuse: (context) => helpers.noFanning?.(context.item) ?? (chosen(context.chosen, THUMBING) || chosen(context.chosen, FAST_FIRING) ? L("NotWithFanning") : null),
     apply: (context, value) => {
       const rof = picked(value);
       if (!(FANNING_RATES as readonly number[]).includes(rof)) return null;
       const skill = String(modeOf(context.item).skill ?? "");
-      const technique = fanned(2, techniqueRelative(api, context.actor, skill, /^fanning\b/i, FANNING_PENALTY)).penalty;
-      const effect = fanned(rof, techniqueRelative(api, context.actor, skill, /^fanning\b/i, FANNING_PENALTY));
+      const technique = fanned(2, relativeFor(context.actor, skill, /^fanning\b/i, "Fanning", FANNING_PENALTY)).penalty;
+      const effect = fanned(rof, relativeFor(context.actor, skill, /^fanning\b/i, "Fanning", FANNING_PENALTY));
       const modifiers = [
         ...(technique ? [{ label: L("FanningLine"), value: technique }] : []),
         ...(effect.penalty !== technique ? [{ label: F("FanningRofLine", { rof }), value: effect.penalty - technique }] : []),
@@ -394,10 +405,10 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches): void {
     label: L("Thumbing"),
     attack: "ranged",
     available: (context) => on.fanning() && isFirearm(api, context.item) && singleActionRevolver(context.item),
-    refuse: (context) => (chosen(context.chosen, FANNING) || chosen(context.chosen, FAST_FIRING) ? L("NotWithFanning") : null),
+    refuse: (context) => helpers.noFanning?.(context.item) ?? (chosen(context.chosen, FANNING) || chosen(context.chosen, FAST_FIRING) ? L("NotWithFanning") : null),
     apply: (context) => {
       const skill = String(modeOf(context.item).skill ?? "");
-      const effect = thumbed(techniqueRelative(api, context.actor, skill, /^thumbing\b/i, THUMBING_PENALTY));
+      const effect = thumbed(relativeFor(context.actor, skill, /^thumbing\b/i, "Thumbing", THUMBING_PENALTY));
       return { rateOfFire: THUMBING_RATE, modifiers: effect.penalty ? [{ label: L("ThumbingLine"), value: effect.penalty }] : [], notes: [L("ThumbingNote")] };
     },
   });

@@ -8,9 +8,12 @@
  * and this book registers its own table for each and its own switch, so a GM
  * can use High-Tech without either of the other books. So far this registers
  * a gun's quality, its care, clearing a stoppage by Immediate Action,
- * drawing guns, holsters and Who Draws First? with guns, and how fast a gun
+ * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
- * thumbing (pp. 79-84, 129, 153-154, 249-252).
+ * thumbing, and the shooting options and gun techniques: the two-handed
+ * stance, Precision Aiming, the Ranged Rapid Strike, Close-Quarters Battle,
+ * Targeted Attacks with guns, Instant Arsenal Disarm and the expanded
+ * Gunslinger (pp. 79-85, 129, 153-154, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -19,6 +22,7 @@ import { initDrawing, readyDrawing } from "./drawing/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower } from "./power/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
+import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
 
 const SLUG = "high-tech";
@@ -54,6 +58,12 @@ const RULES = [
   { key: "burstFire", pages: "pp. 82-83", implemented: true },
   { key: "fastFiring", pages: "pp. 84, 251-252", implemented: true },
   { key: "fanningAndThumbing", pages: "pp. 83-84, 251-252", implemented: true },
+  { key: "pistolero", pages: "p. 84", implemented: true },
+  { key: "precisionAiming", pages: "pp. 84, 250-251", implemented: true },
+  { key: "rangedRapidStrike", pages: "pp. 85, 252", implemented: true },
+  { key: "gunTechniques", pages: "pp. 250-252", implemented: true },
+  // Cinematic: the optional additions to Gunslinger.
+  { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -93,7 +103,12 @@ function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
-  readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") });
+  const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded") };
+  readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
+    noFanning: (item) => (shooting.pistolero() && inPistoleroStance(api, item) ? game.i18n.localize("GCC.HT.Shooting.StanceNoFanning") : null),
+    techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),
+  });
+  readyShooting(api, shooting);
 }
 
 export const book: BookRules = {

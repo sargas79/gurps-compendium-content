@@ -4833,6 +4833,26 @@
         "fanningAndThumbing": {
           "Name": "Fanning and thumbing",
           "Hint": "A single-action revolver of RoF 1 fanned at RoF 2 for -4 (bought off by the Fanning technique), with another -2 for each RoF above 2 up to 5 and +2 Rcl at RoF 5, none of which a technique buys off, and never aimed; a critical failure fires nothing and drops the gun (1-3 on 1d) or bruises the hand, moderate pain for minutes equal to the margin of failure. Thumbing fires RoF 2 at -2 (bought off by the Thumbing technique); a failure fires nothing that turn, a critical failure drops the gun or fires it wild. A revolver whose trigger is tied back or removed can only be fanned or thumbed (High-Tech pp. 83-84, 251-252)."
+        },
+        "pistolero": {
+          "Name": "Two-handed pistol stance",
+          "Hint": "A pistol's row toggles the two-handed stance: minimum ST times 0.8 (rounded up), Bulk a step better on Move and Attack and in close combat, and every aimed shot braced. A gun in the stance can't be fanned or thumbed (High-Tech p. 84)."
+        },
+        "precisionAiming": {
+          "Name": "Precision Aiming",
+          "Hint": "A braced, scoped gun aimed for 6, 12, 24, 45 and 90 seconds may claim a further +1 each time, from the gun's row: an IQ-based weapon skill roll at -6, which the Precision Aiming technique buys off, with the GM's modifier for the conditions. The extra bonus can't pass +5, the scope's bonus or the gun's Acc. A failure loses every aiming bonus; a critical failure also gives the sniper away (High-Tech pp. 84, 250-251)."
+        },
+        "rangedRapidStrike": {
+          "Name": "Ranged Rapid Strike",
+          "Hint": "A gun of RoF 2 or more may make two attacks in one second on Attack or All-Out Attack, each at -6 (Quick-Shot buys it off) and at half the RoF. Tick the option on both attacks; the Combat tab counts the second (High-Tech pp. 85, 252)."
+        },
+        "gunTechniques": {
+          "Name": "Gun techniques",
+          "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart (High-Tech pp. 250-252)."
+        },
+        "gunslingerExpanded": {
+          "Name": "Expanded Gunslinger (cinematic)",
+          "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant, and the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved (High-Tech p. 249)."
         }
       },
       "Firearm": {
@@ -5101,6 +5121,65 @@
         "ThumbingFailed": "Thumbing failed: the gun doesn't fire this turn.",
         "ThumbingFumble": "Critical failure: the gun is dropped or goes off early and wild (the GM decides what it hits).",
         "NeedsSingleAction": "Fanning and thumbing are for a single-action revolver of RoF 1."
+      },
+      "Shooting": {
+        "Stance": "Two-handed stance",
+        "StanceOn": "Held in the two-handed stance: minimum ST times 0.8, Bulk a step better, aimed shots braced; no fanning or thumbing.",
+        "StanceOff": "Held one-handed again.",
+        "StanceNote": "Two-handed",
+        "StanceHint": "The two-handed pistol stance: minimum ST times 0.8 (rounded up), Bulk a step better, every aimed shot braced (High-Tech p. 84).",
+        "StanceBulk": "{label} (two-handed)",
+        "StanceBraced": "Braced (two-handed stance)",
+        "StanceNoFanning": "A gun in the two-handed stance can't be fanned or thumbed (High-Tech p. 84).",
+        "Precision": "Precision Aiming",
+        "PrecisionTitle": "Precision Aiming: {gun}",
+        "PrecisionRoll": "Precision Aiming ({skill}, IQ-based) with {gun}",
+        "PrecisionLine": "Precision Aiming",
+        "PrecisionTechniqueLine": "Precision Aiming technique",
+        "PrecisionBonus": "Precision Aiming",
+        "Conditions": "Conditions (wind, rain, a dead calm)",
+        "PrecisionNotAiming": "Precision Aiming needs the Aim maneuver.",
+        "PrecisionNoScope": "Precision Aiming needs a scope or sights that give an aiming bonus.",
+        "PrecisionNotBraced": "Precision Aiming needs the gun braced.",
+        "PrecisionAtCap": "No higher: the extra aim can't pass +{cap}, the lower of the scope's bonus and the gun's Acc.",
+        "PrecisionWait": "The next +1 needs {seconds} seconds of Aim ({aimed} so far).",
+        "PrecisionNoSkill": "No level in {skill} to roll.",
+        "PrecisionGained": "+{bonus} from Precision Aiming (at most +{cap}); the next roll at {next} seconds.",
+        "PrecisionLost": "Every aiming bonus is lost: the shooter has to start the Aim over.",
+        "PrecisionSpotted": "Critical failure: the target sees a protruding barrel or a glint off the scope.",
+        "RapidStrike": "Ranged Rapid Strike",
+        "RapidStrikeLine": "Ranged Rapid Strike",
+        "RapidStrikeNote": "Ranged Rapid Strike: two attacks this second, each at half the RoF.",
+        "RapidRefusal": {
+          "rateOfFire": "A Ranged Rapid Strike needs RoF 2 or more.",
+          "maneuver": "A Rapid Strike is made on Attack or All-Out Attack.",
+          "spraying": "A Ranged Rapid Strike isn't Spraying Fire."
+        },
+        "RapidSecond": "The second attack of the Ranged Rapid Strike: tick the option again.",
+        "GunslingerBulk": "{label} (Gunslinger: ignored)",
+        "CloseQuartersLine": "Close-Quarters Battle",
+        "TargetedAttack": "Targeted Attack (guns)",
+        "TaName": "Name it \"TA (Specialty/Target)\", such as \"TA (Pistol/Skull)\" or \"TA (Rifle/Vitals Chinks)\".",
+        "TaNoSkill": "No level in {skill}.",
+        "TaNote": "Default {default}, at most {ceiling}",
+        "TaWeaponNote": "At a weapon: +1 against a large one, -1 against a small one, entered on the roll.",
+        "Iad": "Instant Arsenal Disarm",
+        "IadGun": "Gun",
+        "IadTarget": "Target the one foe whose gun you grab.",
+        "IadNoGun": "{foe} has no gun.",
+        "IadGrab": "Grab {gun} ({skill})",
+        "IadGrabLine": "Grabbing the gun",
+        "IadNoLevel": "The technique has no level.",
+        "IadContest": "Instant Arsenal Disarm: {gun}",
+        "IadTitle": "Instant Arsenal Disarm: {foe}'s {gun}",
+        "IadDisabled": "A vital part comes off: the gun can't fire until it is put back together.",
+        "IadGmMarks": "The GM marks the gun out of action.",
+        "Disassembled": "Taken apart",
+        "IadResult": {
+          "unready": "The gun is intact but unready.",
+          "intact": "The gun stays in the foe's hands, intact and ready.",
+          "shotAtHand": "Critical failure: the foe keeps the gun and may shoot the disarmer in the hand at full skill."
+        }
       }
     }
   },

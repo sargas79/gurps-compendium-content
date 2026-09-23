@@ -2,12 +2,22 @@
  * Targeted Attacks and Combinations (GURPS Martial Arts pp. 64, 68, 80): the
  * pure rules for reading them from their names, their defaults and ceilings,
  * what a Combination's attacks roll against and what it costs, and techniques
- * used together.
+ * used together. The TA's defaults and ceilings are the shared engine's, with
+ * this book's table.
  */
 
-/** A strike's penalty to hit each location (p. 68, as the Basic Set gives them). */
-const STRIKE_PENALTY: Readonly<Record<string, number>> = {
-  torso: 0, arm: -2, leg: -2, groin: -3, vitals: -3, hand: -4, foot: -4, face: -5, neck: -5, skull: -7, eye: -9,
+import { buyOff as sharedBuyOff, hardLevels, targetDefaultPenalty, targetedAttackBounds, type TargetTable } from "../../../shared/targeted-attacks/rules.js";
+
+export { hardLevels };
+
+/**
+ * A strike's penalty to hit each location (p. 68, as the Basic Set gives
+ * them), -10 for chinks (-8 in the torso) and -4 against a weapon.
+ */
+export const MARTIAL_ARTS_TARGETS: TargetTable = {
+  locations: { torso: 0, arm: -2, leg: -2, groin: -3, vitals: -3, hand: -4, foot: -4, face: -5, neck: -5, skull: -7, eye: -9 },
+  chinks: { torso: -8, other: -10 },
+  weapon: -4,
 };
 
 /** Attacks named by a basic move rather than a technique. */
@@ -80,10 +90,9 @@ const grappling = (attack: string) => attack === "grab" || attack === "grapple";
  * -4 against a weapon and -2 more to disarm except with a fencing weapon.
  */
 export function targetPenalty(ta: TargetedAttack, fencing = false): number {
-  if (ta.target === "weapon") return -4 + (ta.attack === "disarm" && !fencing ? -2 : 0);
-  if (ta.chinks) return ta.target === "torso" ? -8 : -10;
-  const penalty = STRIKE_PENALTY[ta.target ?? "torso"] ?? 0;
-  return grappling(ta.attack) ? -Math.ceil(-penalty / 2) : penalty;
+  if (ta.target === "weapon") return targetDefaultPenalty(MARTIAL_ARTS_TARGETS, "weapon", false) + (ta.attack === "disarm" && !fencing ? -2 : 0);
+  const penalty = targetDefaultPenalty(MARTIAL_ARTS_TARGETS, ta.target, ta.chinks);
+  return grappling(ta.attack) && !ta.chinks ? -Math.ceil(-penalty / 2) : penalty;
 }
 
 /** The penalty a striking technique adds when a TA defaults from the skill (p. 68). */
@@ -100,14 +109,7 @@ export function specialTechniqueName(ta: TargetedAttack): string | null {
 
 /** How much of a TA's penalty improving it may buy off (p. 68): half (rounded up), or all of it for a grapple. */
 export function buyOff(penalty: number, attack: string): number {
-  const magnitude = -Math.min(0, penalty);
-  return attack === "grapple" ? magnitude : Math.ceil(magnitude / 2);
-}
-
-/** Levels bought for a Hard technique's points: none for 0 or 1, one fewer than the points after that. */
-export function hardLevels(points: number): number {
-  const p = Math.floor(Number(points) || 0);
-  return p >= 2 ? p - 1 : 0;
+  return sharedBuyOff(penalty, attack === "grapple");
 }
 
 /**
@@ -117,14 +119,10 @@ export function hardLevels(points: number): number {
  */
 export function targetedAttackLevel(ta: TargetedAttack, options: { skill: number | null; technique: number | null; points: number; fencing?: boolean }): { level: number | null; default: number | null; ceiling: number | null } {
   const penalty = targetPenalty(ta, options.fencing);
-  const defaults = [
+  return targetedAttackBounds([
     options.skill === null ? null : options.skill + penalty + specialAttackPenalty(ta.attack),
     options.technique === null ? null : options.technique + penalty,
-  ].filter((d): d is number => d !== null);
-  if (defaults.length === 0) return { level: null, default: null, ceiling: null };
-  const best = Math.max(...defaults);
-  const ceiling = best + buyOff(penalty, ta.attack);
-  return { level: Math.min(ceiling, best + hardLevels(options.points)), default: best, ceiling };
+  ], buyOff(penalty, ta.attack), options.points);
 }
 
 /** A Combination's default penalty per attack (p. 80): -6 for two, -12 for three, halved with master training. */

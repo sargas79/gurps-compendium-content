@@ -880,6 +880,7 @@
       "title": "Pistolero",
       "chapter": "5. Weaponry",
       "pages": "HT84",
+      "rule": "gurps-compendium-content.pistolero",
       "reference": "High-Tech p. 84",
       "file": "pistolero.md",
       "status": "reviewed"
@@ -889,6 +890,7 @@
       "title": "Precision Aiming",
       "chapter": "5. Weaponry",
       "pages": "HT84",
+      "rule": "gurps-compendium-content.precisionAiming",
       "reference": "High-Tech p. 84",
       "file": "precision-aiming.md",
       "status": "reviewed"
@@ -898,6 +900,7 @@
       "title": "Ranged Rapid Strike",
       "chapter": "5. Weaponry",
       "pages": "HT85",
+      "rule": "gurps-compendium-content.rangedRapidStrike",
       "reference": "High-Tech p. 85",
       "file": "ranged-rapid-strike.md",
       "status": "reviewed"
@@ -2132,6 +2135,7 @@
       "title": "Gun Advantages",
       "chapter": "Appendix: Gunmen",
       "pages": "HT249",
+      "rule": "gurps-compendium-content.gunslingerExpanded",
       "reference": "High-Tech p. 249",
       "file": "gunslinger.md",
       "status": "reviewed"
@@ -2159,6 +2163,7 @@
       "title": "Gun Techniques",
       "chapter": "Appendix: Gunmen",
       "pages": "HT250",
+      "rule": "gurps-compendium-content.gunTechniques",
       "reference": "High-Tech p. 250",
       "file": "gun-techniques.md",
       "status": "reviewed"
@@ -2168,6 +2173,7 @@
       "title": "Targeted Attack",
       "chapter": "Appendix: Gunmen",
       "pages": "HT252",
+      "rule": "gurps-compendium-content.gunTechniques",
       "reference": "High-Tech p. 252",
       "file": "targeted-attack.md",
       "status": "reviewed"
