@@ -390,6 +390,7 @@
       "title": "Telegraph",
       "chapter": "3. General Equipment",
       "pages": "HT36",
+      "rule": "gurps-compendium-content.radios",
       "reference": "High-Tech p. 36",
       "file": "telegraph.md",
       "status": "reviewed"
@@ -408,6 +409,7 @@
       "title": "Radio",
       "chapter": "3. General Equipment",
       "pages": "HT37",
+      "rule": "gurps-compendium-content.radios",
       "reference": "High-Tech p. 37",
       "file": "radio.md",
       "status": "reviewed"
@@ -417,6 +419,7 @@
       "title": "Radio Options",
       "chapter": "3. General Equipment",
       "pages": "HT38-39",
+      "rule": "gurps-compendium-content.radios",
       "reference": "High-Tech pp. 38-39",
       "file": "radio-options.md",
       "status": "reviewed"
@@ -426,6 +429,7 @@
       "title": "Radio in Use",
       "chapter": "3. General Equipment",
       "pages": "HT38",
+      "rule": "gurps-compendium-content.radios",
       "reference": "High-Tech p. 38",
       "file": "radio-in-use.md",
       "status": "reviewed"
@@ -435,6 +439,7 @@
       "title": "Active Sensors",
       "chapter": "3. General Equipment",
       "pages": "HT45-46",
+      "rule": "gurps-compendium-content.activeSensors",
       "reference": "High-Tech pp. 45-46",
       "file": "active-sensors.md",
       "status": "reviewed"
@@ -444,6 +449,7 @@
       "title": "Special Sonar and Radar Modes",
       "chapter": "3. General Equipment",
       "pages": "HT46",
+      "rule": "gurps-compendium-content.activeSensors",
       "reference": "High-Tech p. 46",
       "file": "special-sonar-and-radar-modes.md",
       "status": "reviewed"
@@ -453,6 +459,7 @@
       "title": "Passive Visual Sensors",
       "chapter": "3. General Equipment",
       "pages": "HT47",
+      "rule": "gurps-compendium-content.visualSensors",
       "reference": "High-Tech p. 47",
       "file": "passive-visual-sensors.md",
       "status": "reviewed"
@@ -462,6 +469,7 @@
       "title": "Optics",
       "chapter": "3. General Equipment",
       "pages": "HT47",
+      "rule": "gurps-compendium-content.visualSensors",
       "reference": "High-Tech p. 47",
       "file": "optics.md",
       "status": "reviewed"
@@ -471,6 +479,7 @@
       "title": "Night-Vision Optics",
       "chapter": "3. General Equipment",
       "pages": "HT47",
+      "rule": "gurps-compendium-content.visualSensors",
       "reference": "High-Tech p. 47",
       "file": "night-vision-optics.md",
       "status": "reviewed"
@@ -480,6 +489,7 @@
       "title": "Thermographs",
       "chapter": "3. General Equipment",
       "pages": "HT48",
+      "rule": "gurps-compendium-content.visualSensors",
       "reference": "High-Tech p. 48",
       "file": "thermographs.md",
       "status": "reviewed"
@@ -489,6 +499,7 @@
       "title": "IR Illumination",
       "chapter": "3. General Equipment",
       "pages": "HT47",
+      "rule": "gurps-compendium-content.visualSensors",
       "reference": "High-Tech p. 47",
       "file": "ir-illumination.md",
       "status": "reviewed"
@@ -498,6 +509,7 @@
       "title": "Indirect Passive Sensors",
       "chapter": "3. General Equipment",
       "pages": "HT48-49",
+      "rule": "gurps-compendium-content.passiveSensors",
       "reference": "High-Tech pp. 48-49",
       "file": "indirect-passive-sensors.md",
       "status": "reviewed"

@@ -24,6 +24,7 @@
  * weight, for a book to register as a price modifier.
  */
 
+import { isProgram } from "../computers/data.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
 import { CELL_TABLES, cellOf, cellTableOf, isPowered, powerData, registerPowerData, storePower, tableCellOf, usesLeft, type CellTable, type PowerData } from "./data.js";
 import {
@@ -63,11 +64,22 @@ function tableIfPowered(item: any): CellTable | null {
 }
 
 /**
+ * A program, which runs on a computer and draws no power of its own: one the
+ * computer engine marks as a program, or a weightless record named as
+ * software or a program, as the catalogue lists them (High-Tech pp. 22, 211).
+ */
+function isSoftware(item: any): boolean {
+  if (isProgram(item, null)) return true;
+  return !(Number(item?.system?.weight) > 0) && /\b(software|program)\b/i.test(String(item?.name ?? ""));
+}
+
+/**
  * Gear with no cells that an inverter could run on them: equipment that isn't
- * a weapon, from a book whose table has inverters, with its switch on.
+ * a weapon or a program, from a book whose table has inverters, with its
+ * switch on.
  */
 export function tableForInverter(item: any): CellTable | null {
-  if (item?.type !== "equipment" || (item.system?.rangedModes ?? []).length || (item.system?.meleeModes ?? []).length) return null;
+  if (item?.type !== "equipment" || (item.system?.rangedModes ?? []).length || (item.system?.meleeModes ?? []).length || isSoftware(item)) return null;
   const table = cellTableOf(item);
   return table?.figures.adapters && !isPowered(powerData(item)) ? table : null;
 }

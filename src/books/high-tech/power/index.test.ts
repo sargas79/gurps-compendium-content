@@ -135,6 +135,20 @@ describe("adapters and inverters (p. 14)", () => {
     expect(powerPriceChange(bigger)).toEqual({ cost: 10, weight: 20 });
   });
 
+  it("offers no inverter on a program, which draws no power of its own", () => {
+    only(BATTERIES_RULE);
+    // One the computer engine marks as a program...
+    const marked = { ...gear("high-tech", {}), system: { ...gear("high-tech", {}).system, extensions: { [MODULE_ID]: { power: {}, computer: { program: true } } } } };
+    expect(tableForInverter(marked)).toBeNull();
+    const complex = { ...gear("high-tech", {}), system: { ...gear("high-tech", {}).system, extensions: { [MODULE_ID]: { power: {}, computer: { complexity: 3 } } } } };
+    expect(tableForInverter(complex)).toBeNull();
+    // ... and the catalogue's weightless software, before anyone marks it.
+    expect(tableForInverter({ ...gear("high-tech", {}, "8", { weight: 0 }), name: "Basic Code-Breaking Program (TL8)" })).toBeNull();
+    expect(tableForInverter({ ...gear("high-tech", {}, "8", { weight: 0 }), name: "CVSA Software" })).toBeNull();
+    // Gear that merely mentions programs still weighs something and is offered one.
+    expect(tableForInverter({ ...gear("high-tech", {}), name: "Programming Console" })?.book).toBe("high-tech");
+  });
+
   it("offers neither on Ultra-Tech gear", () => {
     only(UT_RULE);
     expect(tableForInverter(gear("ultra-tech", {}, "9"))).toBeNull();

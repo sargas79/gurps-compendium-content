@@ -29,12 +29,14 @@
  * and projectile upgrades, the explosive and cargo rounds, power:
  * batteries, generators and fuel, the optional wounding rules, and the
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
- * guns, and household hazards, and the liquid projectors and laser
+ * guns, and household hazards, the communications and sensors: radios,
+ * telegraphy, active sensors, optics, night vision and thermographs,
+ * hydrophones and sound detectors, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
- * the eyes, and the explosives and incendiaries: an explosion's side
- * effects, demolition charges, unstable and home-made explosives, thermite
- * and napalm (pp. 7-11, 13-16, 17-22, 24-33, 50, 71, 79-93, 109, 127-141,
- * 143, 147-188, 249-252).
+ * the eyes, and the explosives and incendiaries: an explosion's side effects, demolition charges,
+ * unstable and home-made explosives, thermite and napalm (pp. 7-11,
+ * 13-16, 17-22, 24-33, 36-50, 71, 79-93, 109, 127-141, 143, 147-188,
+ * 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -60,6 +62,7 @@ import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index
 import { readyWounding } from "./wounding/index.js";
 import { projectorFields, readyProjectors } from "./projectors/index.js";
 import { readyExplosives } from "./explosives/index.js";
+import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -153,6 +156,11 @@ const RULES = [
   { key: "demolitionCharges", pages: "pp. 182-183", implemented: true },
   { key: "unstableExplosives", pages: "pp. 184-187", implemented: true },
   { key: "incendiaryAgents", pages: "p. 188", implemented: true },
+  // Communications and sensors.
+  { key: "radios", pages: "pp. 36-40", implemented: true },
+  { key: "activeSensors", pages: "pp. 45-47", implemented: true },
+  { key: "visualSensors", pages: "pp. 47-48", implemented: true },
+  { key: "passiveSensors", pages: "pp. 48-50", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -196,6 +204,7 @@ function init(): void {
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
   initTools();
+  initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors") });
 }
 
 function ready(api: GWorldApi): void {
@@ -236,6 +245,7 @@ function ready(api: GWorldApi): void {
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
   readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
   readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") });
+  readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors") });
 }
 
 export const book: BookRules = {
