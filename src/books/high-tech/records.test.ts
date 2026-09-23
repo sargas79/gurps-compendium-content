@@ -321,7 +321,7 @@ describe("High-Tech's explosives, mines, bombs and melee weapons (#349)", () => 
     const charges = gear.filter((d) => d.system.extensions?.["gurps-compendium-content"]?.explosive);
     expect(charges.length).toBe(11);
     for (const doc of charges) expect(chargeOf(doc), doc.name).not.toBeNull();
-    expect(chargeOf(named(gear, "TNT (per pound)"))).toEqual({ row: EXPLOSIVES.find((r) => r.type === "TNT"), pounds: 1 });
+    expect(chargeOf(named(gear, "TNT (per pound)"))).toEqual({ row: EXPLOSIVES.find((r) => r.type === "TNT"), pounds: 1, shockOn: 0, homeMade: "" });
     expect(chargeOf(named(gear, "Plastic Explosive (per pound)"))?.row.ref).toBe(1.4);
     expect(chargeOf(named(gear, "Foam Explosive (Aerosol Can)"))).toMatchObject({ row: { ref: 1.1 }, pounds: 0.9 });
     expect(sys("Improved Black Powder (per pound)")).toMatchObject({ tl: "5", cost: 5, weight: 1, lc: 3 });

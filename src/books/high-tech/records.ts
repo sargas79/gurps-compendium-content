@@ -13,7 +13,9 @@
  *     Table names it (p. 183), and the pounds of it the item holds -- a pound
  *     of TNT, a tube holding a quarter-pound of extrudable explosive (#349).
  *     The REF comes from the table, not the record, so the two can't disagree;
- *     the demolition rules (#378) read it.
+ *     the demolition rules (#378) read it. Beside them, the 3d roll a jolt
+ *     sets the item off on (old, sweating dynamite; impure nitro), and what a
+ *     home-made batch came out as (#378).
  *
  * The batteries gear runs on are `power`, registered with the shared cell
  * engine (`power/`).
@@ -22,6 +24,7 @@
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../shared/extensions.js";
 import { MODULE_ID } from "../../shared/module.js";
 import { explosive, type ExplosiveRow } from "./explosives/ref.js";
+import { FLAWS, type Flaw } from "./explosives/rules.js";
 
 /** The keys this registers, for anything that needs to know them. */
 export const RECORD_KEYS = ["explosive", "firearmBuild"] as const;
@@ -48,6 +51,10 @@ export function registerHighTechRecordData(): void {
     explosive: new f.SchemaField({
       type: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
       pounds: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+      // The 3d roll a jolt sets it off on, 0 for the explosive's own (#378).
+      shockOn: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 18 }),
+      // A home-made batch: blank for bought, else what the roll to make it left (#378).
+      homeMade: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...FLAWS] }),
     }),
     firearmBuild: new f.SchemaField({
       waterPints: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
@@ -73,9 +80,11 @@ export function firearmBuild(item: any): FirearmBuild {
 }
 
 /** An item's charge: its row of the REF table and the pounds of it, or null for an item that is none. */
-export function chargeOf(item: any): { row: ExplosiveRow; pounds: number } | null {
+export function chargeOf(item: any): { row: ExplosiveRow; pounds: number; shockOn: number; homeMade: Flaw } | null {
   const data = item?.system?.extensions?.[MODULE_ID]?.explosive;
   const row = explosive(String(data?.type ?? ""));
   const pounds = Number(data?.pounds);
-  return row && pounds > 0 ? { row, pounds } : null;
+  if (!row || !(pounds > 0)) return null;
+  const shockOn = Math.floor(Number(data?.shockOn) || 0);
+  return { row, pounds, shockOn: shockOn >= 3 && shockOn <= 18 ? shockOn : 0, homeMade: FLAWS.includes(data?.homeMade) ? data.homeMade : "" };
 }

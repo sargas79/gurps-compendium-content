@@ -1589,6 +1589,7 @@
       "title": "Explosives and Incendiaries",
       "chapter": "5. Weaponry",
       "pages": "HT181",
+      "rule": "gurps-compendium-content.explosionSideEffects",
       "reference": "High-Tech p. 181",
       "file": "explosives-and-incendiaries.md",
       "status": "reviewed"
@@ -1598,6 +1599,7 @@
       "title": "Side Effects of Explosions",
       "chapter": "5. Weaponry",
       "pages": "HT181-182",
+      "rule": "gurps-compendium-content.explosionSideEffects",
       "reference": "High-Tech pp. 181-182",
       "file": "side-effects-of-explosions.md",
       "status": "reviewed"
@@ -1607,6 +1609,7 @@
       "title": "Explosive Destruction of Materiel",
       "chapter": "5. Weaponry",
       "pages": "HT182-183",
+      "rule": "gurps-compendium-content.demolitionCharges",
       "reference": "High-Tech pp. 182-183",
       "file": "explosive-destruction-of-materiel.md",
       "status": "reviewed"
@@ -1616,6 +1619,7 @@
       "title": "Dirty Tech: Skimming Nitro",
       "chapter": "5. Weaponry",
       "pages": "HT185",
+      "rule": "gurps-compendium-content.unstableExplosives",
       "reference": "High-Tech p. 185",
       "file": "dirty-tech-skimming-nitro.md",
       "status": "reviewed"
@@ -1625,6 +1629,7 @@
       "title": "Dirty Tech: Home-Cooked Explosives",
       "chapter": "5. Weaponry",
       "pages": "HT186",
+      "rule": "gurps-compendium-content.unstableExplosives",
       "reference": "High-Tech p. 186",
       "file": "dirty-tech-home-cooked-explosives.md",
       "status": "reviewed"
