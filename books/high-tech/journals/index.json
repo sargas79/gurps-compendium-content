@@ -707,6 +707,7 @@
       "title": "Footwear",
       "chapter": "4. Defenses",
       "pages": "HT68",
+      "rule": "gurps-compendium-content.protectiveOddments",
       "reference": "High-Tech p. 68",
       "file": "footwear.md",
       "status": "reviewed"
@@ -716,6 +717,7 @@
       "title": "My Sore, Aching Feet!",
       "chapter": "4. Defenses",
       "pages": "HT69",
+      "rule": "gurps-compendium-content.protectiveOddments",
       "reference": "High-Tech p. 69",
       "file": "my-sore-aching-feet.md",
       "status": "reviewed"
@@ -735,6 +737,7 @@
       "title": "Ear Protection",
       "chapter": "4. Defenses",
       "pages": "HT70",
+      "rule": "gurps-compendium-content.protectiveOddments",
       "reference": "High-Tech p. 70",
       "file": "ear-protection.md",
       "status": "reviewed"
@@ -744,6 +747,7 @@
       "title": "Eye Protection",
       "chapter": "4. Defenses",
       "pages": "HT70",
+      "rule": "gurps-compendium-content.protectiveOddments",
       "reference": "High-Tech p. 70",
       "file": "eye-protection.md",
       "status": "reviewed"
@@ -753,6 +757,7 @@
       "title": "Shields",
       "chapter": "4. Defenses",
       "pages": "HT71",
+      "rule": "gurps-compendium-content.portableCover",
       "reference": "High-Tech p. 71",
       "file": "shields.md",
       "status": "reviewed"
@@ -762,6 +767,7 @@
       "title": "Dirty Tech: Homemade Armor",
       "chapter": "4. Defenses",
       "pages": "HT71",
+      "rule": "gurps-compendium-content.protectiveOddments",
       "reference": "High-Tech p. 71",
       "file": "dirty-tech-homemade-armor.md",
       "status": "reviewed"
