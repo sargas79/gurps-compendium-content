@@ -65,7 +65,7 @@ function flamethrower(tl = 7, extra: Record<string, unknown> = {}): any {
     flags: { [MODULE_ID]: { book: "high-tech" } },
     system: {
       tl: String(tl), equipped: true, hpLost: 0,
-      rangedModes: [{ name: "attack", skill: "Liquid Projector (Flamethrowers)", damageFormula: "3d", damageType: "burn", halfDamageRange: 25, maxRange: 40, malfunction: 17 }],
+      rangedModes: [{ name: "attack", skill: "Liquid Projector (Flamethrower)", damageFormula: "3d", damageType: "burn", halfDamageRange: 25, maxRange: 40, malfunction: 17 }],
       meleeModes: [],
       extensions: { [MODULE_ID]: { firearm: { ...extra } } },
     },

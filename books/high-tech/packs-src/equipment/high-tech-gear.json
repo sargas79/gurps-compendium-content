@@ -1127,7 +1127,7 @@
       "rangedModes": [
         {
           "name": "attack",
-          "skill": "Liquid Projector (Flamethrowers)",
+          "skill": "Liquid Projector (Flamethrower)",
           "damageBase": "fixed",
           "damageModifier": 0,
           "damageFormula": "3d",
@@ -1191,7 +1191,7 @@
       "rangedModes": [
         {
           "name": "attack",
-          "skill": "Liquid Projector (Flamethrowers)",
+          "skill": "Liquid Projector (Flamethrower)",
           "damageBase": "fixed",
           "damageModifier": 0,
           "damageFormula": "3d",
@@ -1255,7 +1255,7 @@
       "rangedModes": [
         {
           "name": "attack",
-          "skill": "Liquid Projector (Flamethrowers)",
+          "skill": "Liquid Projector (Flamethrower)",
           "damageBase": "fixed",
           "damageModifier": 0,
           "damageFormula": "3d",
@@ -1319,7 +1319,7 @@
       "rangedModes": [
         {
           "name": "attack",
-          "skill": "Liquid Projector (Flamethrowers)",
+          "skill": "Liquid Projector (Flamethrower)",
           "damageBase": "fixed",
           "damageModifier": 0,
           "damageFormula": "3d",
@@ -1383,7 +1383,7 @@
       "rangedModes": [
         {
           "name": "attack",
-          "skill": "Liquid Projector (Flamethrowers)",
+          "skill": "Liquid Projector (Flamethrower)",
           "damageBase": "fixed",
           "damageModifier": 0,
           "damageFormula": "3d",
