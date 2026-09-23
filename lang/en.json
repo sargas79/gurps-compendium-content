@@ -4877,6 +4877,22 @@
         "firefightAftermath": {
           "Name": "After the firefight",
           "Hint": "A GM tool: everyone present (the selected tokens, or the fight's combatants) is at -4 to Hearing, -5 if the shooting was indoors, and at night -2 to Vision in the dark, for (20 - HT) minutes and then until an HT roll each second succeeds. Protected Hearing and Protected Vision prevent each (High-Tech p. 87)."
+        },
+        "airGunsAndStunners": {
+          "Name": "Air guns and ranged stunners",
+          "Hint": "An air gun's charge is good for the shots its description gives and must be replaced when spent; the Girandoni loses damage and range after its 10th and 20th shots. A ranged stunner's victim who fails the HT roll is stunned while the trigger is held and (20 - HT) seconds after (at least 1), then rolls to recover at the shock's penalty; an EMD stunner knocks the victim down (High-Tech pp. 88-90)."
+        },
+        "revolverHandling": {
+          "Name": "Revolver handling and pistol whipping",
+          "Hint": "A TL5 revolver without a safety is carried with the hammer on an empty chamber, a round short, unless its owner carries it fully loaded and risks an accidental discharge. Any handgun can pistol whip with Brawling or DX at thrust-1 crushing plus the absolute value of its Bulk; pistols made for braining swing with Axe/Mace at swing+1. Suppressors don't work on ordinary revolvers (High-Tech pp. 90, 93, 159)."
+        },
+        "mechanicalMachineGuns": {
+          "Name": "Mechanical machine guns",
+          "Hint": "A hand-cranked or lever-worked machine gun is at -5 for unfamiliarity rather than -2, at a further -1 to fix a malfunction for one who hasn't used the model, and at -8 fired off its mount (High-Tech p. 127)."
+        },
+        "backblast": {
+          "Name": "Backblast",
+          "Hint": "Firing a light antitank weapon, recoilless rifle or missile throws its backblast into a 60-degree cone behind it: burning damage in full to 2 yards a die and half to 6 yards a die, or a countermass weapon's crushing damage to 2 yards a die. Fired indoors, a burning backblast reflects at the firer, and a firer without hearing protection rolls HT-4 or is stunned (High-Tech pp. 141, 147-153)."
         }
       },
       "Firearm": {
@@ -5345,7 +5361,82 @@
           "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
           "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)"
         }
+      },
+      "Families": {
+        "Title": "Weapon family",
+        "AirLine": "Air charge: {left} of {shots} shots left.",
+        "AirBandLine": "The charge is running down: now {damage}, Range {half}/{max}.",
+        "AirNote": "Air: {left} left",
+        "AirHint": "The shots left in the air charge; a spent charge must be replaced before the gun fires again (High-Tech p. 88).",
+        "AirBandHint": "From shot {from} of the charge the pressure is down: less damage and range (High-Tech p. 88).",
+        "AirEmpty": "The air charge is spent: fit a fresh reservoir or gas cartridge from the gun's sheet (High-Tech p. 88).",
+        "AirSpent": "The air charge is spent.",
+        "Recharge": "Fresh charge",
+        "RechargeHint": "Replace the air reservoir or gas cartridge; the gun's description says how long it takes.",
+        "Recharged": "A fresh air charge: {shots} shots.",
+        "StunnerLine": "Ranged stunner: on a failed HT roll the victim is stunned while the trigger is held ({seconds} s unless the shooter says otherwise) and (20 - HT) s after, then rolls to recover at the shock's penalty. Minimum range 1 yard (High-Tech p. 89).",
+        "StunnerEmdLine": "Ranged EMD stunner: on a failed HT roll the victim is knocked down and stunned while the trigger is held ({seconds} s unless the shooter says otherwise) and (20 - HT) s after, then rolls to recover at the shock's penalty. Minimum range 1 yard (High-Tech p. 89).",
+        "HoldLabel": "Stunner: seconds the trigger is held (0 for the gun's own)",
+        "HoldNote": "Trigger held {seconds} s.",
+        "HeldLabel": "Held by the {weapon}: stunned {held} s + {after} s; no recovery roll until this ends",
+        "ShockLabel": "Shocked by the {weapon}: recovery at {penalty}",
+        "ShockLine": "The {weapon}'s shock",
+        "Stunned": "{name} is stunned while the trigger is held ({held} s) and {after} s after, then rolls HT{penalty} each second to recover. The darts can't be pulled out meanwhile, and a victim soaked in something flammable may catch fire.",
+        "StunnedEmd": "{name} is knocked down and stunned while the trigger is held ({held} s) and {after} s after, then rolls HT{penalty} each second to recover. The darts can't be pulled out meanwhile, and a victim soaked in something flammable may catch fire.",
+        "SafetyLabel": "Safety",
+        "SafetyTooltip": "Revolvers of TL5 and earlier have no safety unless their description says so (High-Tech p. 93).",
+        "Safety": {
+          "auto": "As its TL says ({answer})",
+          "unsafe": "No safety",
+          "safe": "Has a safety"
+        },
+        "CarriedFull": "Carried with every chamber loaded",
+        "CarriedFullHint": "Off: the hammer rests on an empty chamber, and the gun loads a round short (High-Tech p. 93).",
+        "EmptyChamberLine": "Carried with the hammer on an empty chamber: it loads a round short (High-Tech p. 93).",
+        "CarriedFullLine": "Carried with every chamber loaded: a knock on the hammer can fire it, and the GM may call for a DX roll whenever it is handled other than to shoot (High-Tech pp. 80, 93).",
+        "NoSuppressorLine": "Suppressors don't work on an ordinary revolver (High-Tech p. 159).",
+        "WhipLine": "Pistol whipping: Brawling or DX, thrust{modifier} crushing (High-Tech p. 93).",
+        "BrainerLine": "Made for braining: Axe/Mace, swing{modifier} crushing (High-Tech pp. 90, 93).",
+        "WhipMode": "Pistol whip",
+        "BrainMode": "Club (reversed)",
+        "BrainNote": "Reversed",
+        "BrainHint": "Turning it round to grip the barrel takes a Ready maneuver (High-Tech p. 90).",
+        "MechanicalLine": "Mechanical machine gun: unfamiliarity {unfamiliar} rather than -2, {clearing} more to fix a malfunction for one unfamiliar with it, {offMount} fired off its mount (High-Tech p. 127).",
+        "MechanicalUnfamiliar": "{label} (mechanical machine gun)",
+        "MechanicalClearing": "Unfamiliar mechanical machine gun",
+        "OffMount": "Off its mount ({penalty})",
+        "OffMountLine": "Mechanical machine gun off its mount",
+        "BackblastLine": "Backblast: {damage} burning, full damage to {full} yards and half to {half} yards behind, in a 60-degree cone (High-Tech p. 147).",
+        "BackblastCrLine": "Backblast: {damage} crushing countermass to {full} yards behind, in a 60-degree cone; safe to fire indoors (High-Tech p. 147).",
+        "BackblastLabel": "Backblast ({damage})",
+        "Backblast": {
+          "Reach": "{damage} {type}: full damage to {full} yards behind the firer, half to {half} yards, in a 60-degree cone.",
+          "ReachFull": "{damage} {type} to {full} yards behind the firer, in a 60-degree cone.",
+          "Kind": {
+            "burn": "burning",
+            "cr": "crushing"
+          },
+          "NoAim": "No target to aim by, so the cone isn't placed: apply it to whoever stands behind the firer.",
+          "NobodyCaught": "Nobody stands in the cone behind the firer.",
+          "CaughtFull": "Full damage: {names}.",
+          "CaughtHalf": "Half damage: {names}.",
+          "Reflected": "Fired indoors: the walls throw it back at {name}.",
+          "HalfLabel": "{label}, half damage",
+          "DeafeningRoll": "Deafening report indoors",
+          "Deafening": "No hearing protection"
+        }
       }
+    },
+    "Backblast": {
+      "Indoors": "Backblast: fired from",
+      "IndoorsChoice": {
+        "outdoors": "Outdoors, or a well-ventilated space",
+        "enclosed": "Indoors, no hearing protection",
+        "protected": "Indoors, with hearing protection"
+      },
+      "IndoorsReflects": "Indoors, the backblast reflects off the walls at the firer.",
+      "IndoorsSafe": "A countermass weapon is safe to fire indoors.",
+      "IndoorsDeafening": "The report stuns a firer who fails a HT{penalty} roll; temporary Hard of Hearing is almost certain."
     }
   },
   "TYPES": {

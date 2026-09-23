@@ -979,6 +979,7 @@
       "title": "Air Guns",
       "chapter": "5. Weaponry",
       "pages": "HT88",
+      "rule": "gurps-compendium-content.airGunsAndStunners",
       "reference": "High-Tech p. 88",
       "file": "air-guns.md",
       "status": "reviewed"
@@ -988,6 +989,7 @@
       "title": "Ranged Electric Stunners",
       "chapter": "5. Weaponry",
       "pages": "HT89-90",
+      "rule": "gurps-compendium-content.airGunsAndStunners",
       "reference": "High-Tech pp. 89-90",
       "file": "ranged-electric-stunners.md",
       "status": "reviewed"
@@ -1033,6 +1035,7 @@
       "title": "Pistol Whipping",
       "chapter": "5. Weaponry",
       "pages": "HT93",
+      "rule": "gurps-compendium-content.revolverHandling",
       "reference": "High-Tech p. 93",
       "file": "pistol-whipping.md",
       "status": "reviewed"
@@ -1042,6 +1045,7 @@
       "title": "“Unsafe” Revolvers",
       "chapter": "5. Weaponry",
       "pages": "HT93",
+      "rule": "gurps-compendium-content.revolverHandling",
       "reference": "High-Tech p. 93",
       "file": "unsafe-revolvers.md",
       "status": "reviewed"
@@ -1123,6 +1127,7 @@
       "title": "Mechanical Machine Guns",
       "chapter": "5. Weaponry",
       "pages": "HT127",
+      "rule": "gurps-compendium-content.mechanicalMachineGuns",
       "reference": "High-Tech p. 127",
       "file": "mechanical-machine-guns.md",
       "status": "reviewed"
@@ -1197,6 +1202,7 @@
       "title": "Light Antitank Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT147",
+      "rule": "gurps-compendium-content.backblast",
       "reference": "High-Tech p. 147",
       "file": "light-antitank-weapons.md",
       "status": "reviewed"
@@ -1206,6 +1212,7 @@
       "title": "Backblast",
       "chapter": "5. Weaponry",
       "pages": "HT147",
+      "rule": "gurps-compendium-content.backblast",
       "reference": "High-Tech p. 147",
       "file": "backblast.md",
       "status": "reviewed"
@@ -1215,6 +1222,7 @@
       "title": "Guided and Homing Missiles",
       "chapter": "5. Weaponry",
       "pages": "HT150-151",
+      "rule": "gurps-compendium-content.backblast",
       "reference": "High-Tech pp. 150-151",
       "file": "guided-and-homing-missiles.md",
       "status": "reviewed"

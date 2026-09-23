@@ -1,0 +1,24 @@
+{{!-- Air guns, stunners, revolvers and pistols, mechanical machine guns and backblast (High-Tech pp. 88-93, 127, 147, 159). --}}
+<div class="isub" data-gcc-ht-families-section>
+  <div class="isub-head">{{localize "GCC.HT.Families.Title"}}</div>
+  {{#if revolver}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Families.SafetyTooltip'}}">{{localize "GCC.HT.Families.SafetyLabel"}}
+        <select data-gcc-ht-family="safety" {{#unless editable}}disabled{{/unless}}>
+          {{#each revolver.safety as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    {{#if revolver.unsafe}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Families.CarriedFullHint'}}"><input type="checkbox" data-gcc-ht-family="carriedFull" {{#if revolver.carriedFull}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Families.CarriedFull"}}</label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if air}}
+    <p class="ihint">{{air.line}}
+      {{#if air.canRecharge}}<button type="button" class="ibtn tiny" data-gcc-ht-recharge {{#unless editable}}disabled{{/unless}} data-tooltip="{{localize 'GCC.HT.Families.RechargeHint'}}">{{localize "GCC.HT.Families.Recharge"}}</button>{{/if}}
+    </p>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

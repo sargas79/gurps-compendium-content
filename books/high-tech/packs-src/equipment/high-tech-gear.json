@@ -1489,7 +1489,14 @@
             "followUp": true
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "airShots": 40
+          }
+        }
+      }
     }
   },
   {
@@ -1553,7 +1560,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "airShots": 110
+          }
+        }
+      }
     }
   },
   {
@@ -1617,7 +1631,29 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "airShots": 30,
+            "airBands": [
+              {
+                "from": 11,
+                "damage": "1d+2",
+                "halfDamageRange": 50,
+                "maxRange": 400
+              },
+              {
+                "from": 21,
+                "damage": "1d+1",
+                "halfDamageRange": 40,
+                "maxRange": 340
+              }
+            ],
+            "powder": "other"
+          }
+        }
+      }
     }
   },
   {
@@ -1753,7 +1789,14 @@
             "followUp": true
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "airShots": 30
+          }
+        }
+      }
     }
   },
   {
@@ -1825,9 +1868,17 @@
             "afflictionModifier": -3,
             "followUp": true,
             "label": "Follow-up"
+          },
+          "minRange": 1
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "stunSeconds": 5
           }
         }
-      ]
+      }
     }
   },
   {
@@ -1899,9 +1950,18 @@
             "afflictionModifier": -5,
             "followUp": true,
             "label": "Follow-up"
+          },
+          "minRange": 1
+        }
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "stunSeconds": 5,
+            "emd": true
           }
         }
-      ]
+      }
     }
   },
   {
@@ -2029,7 +2089,14 @@
           "recoil": 3,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "brainer": true
+          }
+        }
+      }
     }
   },
   {
@@ -2093,7 +2160,14 @@
           "recoil": 3,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "brainer": true
+          }
+        }
+      }
     }
   },
   {
@@ -3221,7 +3295,14 @@
           "recoil": 3,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "safety": "safe"
+          }
+        }
+      }
     }
   },
   {
@@ -3843,7 +3924,8 @@
       "extensions": {
         "gurps-compendium-content": {
           "firearm": {
-            "loadingType": "gate"
+            "loadingType": "gate",
+            "suppressible": true
           }
         }
       }
@@ -13841,7 +13923,14 @@
           "recoil": 2,
           "malfunction": 15
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "mechanicalMg": true
+          }
+        }
+      }
     }
   },
   {
@@ -13914,7 +14003,14 @@
             "label": "Follow-up"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "mechanicalMg": true
+          }
+        }
+      }
     }
   },
   {
@@ -13978,7 +14074,14 @@
           "recoil": 2,
           "malfunction": 16
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "mechanicalMg": true
+          }
+        }
+      }
     }
   },
   {
@@ -17908,7 +18011,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "7dx2",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -19668,7 +19779,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d+1",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -19740,7 +19859,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -19856,7 +19983,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "5d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -19928,7 +20063,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "4d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20000,7 +20143,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d+2",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20072,7 +20223,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d+2",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20144,7 +20303,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d+2",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20216,7 +20383,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "1d+1",
+            "backblastType": "cr"
+          }
+        }
+      }
     }
   },
   {
@@ -20281,7 +20456,15 @@
           "malfunction": 17,
           "minRange": 20
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "3d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20353,7 +20536,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "4d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20425,7 +20616,15 @@
             "label": "Linked"
           }
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "2d",
+            "backblastType": "cr"
+          }
+        }
+      }
     }
   },
   {
@@ -20758,7 +20957,15 @@
           },
           "minRange": 550
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "6d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20831,7 +21038,15 @@
           },
           "minRange": 550
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "4d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20904,7 +21119,15 @@
           },
           "minRange": 70
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "8d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -20977,7 +21200,15 @@
           },
           "minRange": 30
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "2d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -21095,7 +21326,15 @@
           },
           "minRange": 70
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "3d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -21163,7 +21402,15 @@
           "minRange": 1100,
           "guidedSkillLevel": 10
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "5dx2",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -21231,7 +21478,15 @@
           "minRange": 220,
           "guidedSkillLevel": 10
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "4d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   },
   {
@@ -21369,7 +21624,15 @@
           "minRange": 70,
           "guidedSkillLevel": 10
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "backblast": "3d",
+            "backblastType": "burn"
+          }
+        }
+      }
     }
   }
 ]
