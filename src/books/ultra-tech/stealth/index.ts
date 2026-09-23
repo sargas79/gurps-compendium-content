@@ -19,6 +19,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { CAMOUFLAGE_TABLES, hidingState as camouflageState, initCamouflage, readyCamouflage, setHiding } from "../../../shared/stealth/index.js";
 import type { CamouflageFigures } from "../../../shared/stealth/data.js";
+import { FORGERY_TABLES, readyForgery, type ForgeryOutcome } from "../../../shared/forgery/index.js";
 import { reactorSpoilsInfrared } from "../armor/rules.js";
 import {
   AUTOGRAPNEL,
@@ -51,6 +52,7 @@ import {
   type Sense,
   type ShapeMemory,
   type StealthForm,
+  type ForgeryTool,
   type Terrain,
 } from "./rules.js";
 
@@ -71,16 +73,6 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
     content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
   });
 }
-
-async function ask<T>(title: string, fields: string, read: (form: HTMLElement) => T): Promise<T | null> {
-  return foundry.applications.api.DialogV2.prompt({
-    window: { title },
-    content: `<div class="gworld" style="display:grid;gap:6px">${fields}</div>`,
-    ok: { label: title, callback: (_event: Event, button: HTMLElement) => read(button.closest<HTMLElement>(".application")!) },
-    rejectClose: false,
-  }) as Promise<T | null>;
-}
-const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
 
 interface StealthData {
   kind: string;
@@ -374,33 +366,22 @@ async function toggleExophase(api: GWorldApi, item: any, actor: any): Promise<vo
   await say(actor, String(item.name), [F("ExophaseOn", { name: actor.name })]);
 }
 
-/** Forges a document with a doc-fab, a programmable wallet or HoloPaper (p. 97). */
-async function forge(api: GWorldApi, item: any, actor: any): Promise<void> {
-  const tool = forgeryToolByName(String(item?.name ?? ""));
-  if (!tool || !actor) return;
-  const toolTl = tlOf(item);
-  const skills = tool === "holoPaper" ? ["Forgery"] : ["Forgery", "Counterfeiting"];
-  const answer = await ask(L("Forgery.Title"),
-    row(L("Forgery.Skill"), `<select name="skill">${skills.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("")}</select>`)
-    + row(L("Forgery.DocumentTl"), `<input type="number" name="tl" value="${toolTl}" min="0" max="12" style="width:70px" />`),
-    (form) => ({
-      skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value ?? "Forgery",
-      tl: Number(form.querySelector<HTMLInputElement>("[name=tl]")?.value) || 0,
-    }));
-  if (!answer) return;
-  const grade = systemGrade(api, actor, answer.skill);
-  const roll = forgeryRoll(tool, toolTl, answer.tl, grade);
-  if (roll.fails) return void say(actor, String(item.name), [F("Forgery.HoloFails", { tl: answer.tl })]);
-  const label = F("Forgery.Label", { name: item.name, skill: answer.skill });
+/**
+ * Forging with a doc-fab, a programmable wallet or HoloPaper, by the
+ * document's TL (p. 97): this book's roll for the shared forgery engine.
+ */
+function forgeryOutcome(api: GWorldApi, options: { actor: any; item: any; tool: string; skill: string; toolTl: number; documentTl: number }): ForgeryOutcome {
+  const tool = options.tool as ForgeryTool;
+  const grade = systemGrade(api, options.actor, options.skill);
+  const roll = forgeryRoll(tool, options.toolTl, options.documentTl, grade);
+  if (roll.fails) return { fails: F("Forgery.HoloFails", { tl: options.documentTl }) };
   if (roll.ownSkill !== null) {
-    const modifiers = roll.bonus ? [{ label: L(`Forgery.${tool}Modifier`), value: roll.bonus }] : [];
-    await api.roll.success({ actor, base: roll.ownSkill, label, modifiers } as any);
-    return;
+    return { base: roll.ownSkill, modifiers: roll.bonus ? [{ label: L(`Forgery.${tool}Modifier`), value: roll.bonus }] : [] };
   }
   // The skill level already carries the doc-fab's grade; only what lower-TL documents add is new.
   const extra = roll.bonus - grade;
-  const base = api.actors.skillLevel(actor, answer.skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
-  await api.roll.success({ actor, base, skill: answer.skill, label, modifiers: extra ? [{ label: F("Forgery.LowerTl", { name: item.name }), value: extra }] : [] } as any);
+  const base = api.actors.skillLevel(options.actor, options.skill) ?? (api.actors.attribute(options.actor, "IQ") ?? 10) - 5;
+  return { base, skill: options.skill, modifiers: extra ? [{ label: F("Forgery.LowerTl", { name: options.item.name }), value: extra }] : [] };
 }
 
 export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boolean = on): void {
@@ -478,15 +459,17 @@ export function readyStealth(api: GWorldApi, on: () => boolean, tools: () => boo
     run: (item, actor) => toggleExophase(api, item, actor),
   });
 
-  api.sheets.registerRowAction({
-    module: MODULE_ID,
-    key: "ut-forge",
-    itemTypes: ["equipment"],
-    label: L("Forgery.Title"),
-    icon: "fa-solid fa-id-card",
-    visible: (item) => tools() && forgeryToolByName(String(item?.name ?? "")) !== null,
-    run: (item, actor) => forge(api, item, actor),
+  // Forging with this book's tools is the shared forgery engine's, with this book's table.
+  FORGERY_TABLES.register({
+    book: "ultra-tech",
+    tls: { min: 9, max: 12 },
+    on: tools,
+    i18n: "GCC.UT.Stealth",
+    tool: (item) => forgeryToolByName(String(item?.name ?? "")),
+    skills: (tool) => (tool === "holoPaper" ? ["Forgery"] : ["Forgery", "Counterfeiting"]),
+    roll: forgeryOutcome,
   });
+  readyForgery(api);
 
   // Only gravitic attacks reach someone in exophase, and they harm no one outside it (p. 96).
   Hooks.on(api.combat.hooks.injury, (context: any) => {
