@@ -1334,6 +1334,7 @@
       "title": "Optional Wounding Rules",
       "chapter": "5. Weaponry",
       "pages": "HT162",
+      "rule": "gurps-compendium-content.vitalsOnTorsoHits",
       "reference": "High-Tech p. 162",
       "file": "optional-wounding-rules.md",
       "status": "reviewed"

@@ -75,12 +75,10 @@ export function carryThroughInjury(basicDamage: number, dr: number): number {
 
 // ── severe bleeding (p. 138) ──
 
-/** A wound bleeding faster or harder than the Basic Set's, and whether bandages can stop it. */
-export interface SevereWound {
-  intervalSeconds: number;
-  modifier: number;
-  surgery: boolean;
-}
+// The engine is shared with High-Tech's (p. 162); this book's table is `severeWound`.
+import type { SevereWound } from "../../../shared/bleeding/rules.js";
+
+export { worstBleeding, type SevereWound } from "../../../shared/bleeding/rules.js";
 
 const PIERCING = ["cut", "imp", "pi-", "pi", "pi+", "pi++"];
 
@@ -96,16 +94,6 @@ export function severeWound(options: { hitLocation: string; addonLocation?: stri
   if (options.severed === "extremity") return { intervalSeconds: 60, modifier: cut ? -3 : -2, surgery: false };
   if (options.severed === "superficial") return { intervalSeconds: 60, modifier: cut ? -2 : -1, surgery: false };
   return null;
-}
-
-/** Several severe wounds bleed at the fastest rate and the worst penalty. */
-export function worstBleeding(wounds: readonly SevereWound[]): SevereWound | null {
-  if (!wounds.length) return null;
-  return {
-    intervalSeconds: Math.min(...wounds.map((w) => w.intervalSeconds)),
-    modifier: Math.min(...wounds.map((w) => w.modifier)),
-    surgery: wounds.some((w) => w.surgery),
-  };
 }
 
 // ── lasting and permanent injuries (pp. 138-139) ──

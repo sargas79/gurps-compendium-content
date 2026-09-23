@@ -4906,6 +4906,22 @@
           "Name": "After the firefight",
           "Hint": "A GM tool: everyone present (the selected tokens, or the fight's combatants) is at -4 to Hearing, -5 if the shooting was indoors, and at night -2 to Vision in the dark, for (20 - HT) minutes and then until an HT roll each second succeeds. Protected Hearing and Protected Vision prevent each (High-Tech p. 87)."
         },
+        "vitalsOnTorsoHits": {
+          "Name": "Body hits: the vitals",
+          "Hint": "An impaling or piercing hit on the torso rolls 1d: on a 1 it struck the vitals. Otherwise, and on the groin, injury is capped at the victim's HP where Bleeding is in play (at twice HP where it isn't), and what the cap took off still counts toward the bleeding roll's -1 per 5 HP (High-Tech p. 162)."
+        },
+        "realisticLimbWounds": {
+          "Name": "Realistic limb wounds",
+          "Hint": "A limb or extremity that takes at least twice the injury that cripples it, counted before the cap, is crippled for good, with no HT roll for how long; an impaling or piercing blow must do twice that again to sever it. The GM is told (High-Tech p. 162)."
+        },
+        "vitalBleeding": {
+          "Name": "Stopping severe bleeding",
+          "Hint": "A bleeding wound to the skull, an eye, the neck or the vitals bleeds every 30 seconds, at a further -2 for the neck or -4 for the vitals, and only Surgery (a GM tool) stops it. First Aid and that Surgery take the bleeding roll's whole penalty, the wound's size included (High-Tech p. 162)."
+        },
+        "woundFrightChecks": {
+          "Name": "\"You shot me, Mister!\"",
+          "Hint": "4 HP or more of injury to the torso or head, or a crippled limb or eye, offers the victim a Fright Check on their next turn: at -4 for a crippling wound, and the GM may make it worse; Combat Reflexes helps as usual (High-Tech p. 162)."
+        },
         "airGunsAndStunners": {
           "Name": "Air guns and ranged stunners",
           "Hint": "An air gun's charge is good for the shots its description gives and must be replaced when spent; the Girandoni loses damage and range after its 10th and 20th shots. A ranged stunner's victim who fails the HT roll is stunned while the trigger is held and (20 - HT) seconds after (at least 1), then rolls to recover at the shock's penalty; an EMD stunner knocks the victim down (High-Tech pp. 88-90)."
@@ -5555,6 +5571,25 @@
         "VisionLine": "After the firefight: Vision in the dark",
         "Line": "{name}: Hearing {hearing}, Vision {vision}, for {minutes} minutes {seconds} seconds.",
         "Spared": "{name}: protected, no effect."
+      },
+      "Wounding": {
+        "CapReason": "{part} hit, capped (High-Tech p. 162)",
+        "VitalsTitle": "Body hit: the vitals?",
+        "VitalsHit": "{name}: 1d for the vitals rolled {roll}: the bullet struck the vitals.",
+        "VitalsMissed": "{name}: 1d for the vitals rolled {roll}: the torso, its injury capped.",
+        "LimbTitle": "Realistic limb wound",
+        "LimbPermanent": "{name}'s {part}: {injury} injury, at least twice the {least} that cripples it: crippled for good, with no HT roll for how long.",
+        "LimbSevered": "{name}'s {part}: {injury} injury, enough to sever it.",
+        "FrightTitle": "\"You shot me, Mister!\"",
+        "FrightText": "{name} took a serious wound: a Fright Check ({modifier}) this turn. The GM may make it worse for a wound that spurts blood or breaks a bone, or better for someone used to injuries.",
+        "FrightRoll": "Fright Check ({modifier})",
+        "SevereWound": "Severe wound",
+        "WoundSize": "Wound size",
+        "Staunch": "Staunch with Surgery",
+        "StaunchWho": "Target the patient",
+        "NoSurgery": "The surgeon has no Surgery skill",
+        "StaunchLabel": "Surgery to staunch {patient}'s bleeding",
+        "Surgeon": "Surgeon"
       },
       "Reloading": {
         "Title": "Reloading",
