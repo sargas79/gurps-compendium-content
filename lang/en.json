@@ -5233,6 +5233,10 @@
         "prosthetics": {
           "Name": "Prosthetics and elective surgery",
           "Hint": "Worn eyeglasses and contact lenses mitigate Bad Sight, a hearing aid (while its battery lasts) Hard of Hearing, an arm prosthetic One Arm (the basic one leaving Ham-Fisted 2) and a leg prosthetic Lame (Missing Legs), with a point of reduced Basic Move back for the basic leg and all of it for the advanced; a GM tool for elective surgery rolls the operation and records a step of build or Appearance, or laser eye surgery curing Bad Sight (High-Tech pp. 225-226)."
+        },
+        "personalConveyances": {
+          "Name": "Personal conveyances",
+          "Hint": "A bicycle, skateboard or wheelchair in use (equipped) is ridden. A bicycle's rider moves at the better of his relative Bicycling level (DX-4 or Driving (Motorcycle)-4 unlearned) and his Move, times the bike's Enhanced Move (x1.5, the racing bike x2), rounded down; a skateboarder at his Move times the board's. The Inventory tab's \"Riding\" box sets the slope, which doubles Move at 7.5°, triples it at 15° and quadruples it at 30°, and whether the rider is off the road, where Road-Bound Enhanced Move is lost. A penny-farthing ridden is -1 to Bicycling, and its row button rolls a spill: at least a two-yard fall. A bicycle's Long ride button rolls the better of HT and HT-based Bicycling every minute of paced (or 15 seconds of sprinting) riding, a failure costing 1 FP. The powered wheelchairs move at Move 3. The conveyance ridden isn't carried weight, and the safety bicycle weighs x0.8 at TL7 and x0.5 at TL8. The item sheet notes towing as a two-wheeled cart and a surfboard's Move on the best waves (High-Tech pp. 226, 230-231)."
         }
       },
       "Codes": {
@@ -8712,6 +8716,50 @@
           "NoBadSight": "{name} has no Bad Sight to cure.",
           "TooLowTl": "This operation needs TL{tl} (High-Tech p. 225)."
         }
+      },
+      "Conveyance": {
+        "Title": "Personal conveyance",
+        "BicycleItem": "Ridden with {skill}: Move is the better of relative skill and Move, x{multiplier} (Enhanced Move), rounded down.",
+        "SkateboardItem": "Ridden with {skill}: Move x{multiplier} (Enhanced Move), rounded down.",
+        "RoadBoundItem": "Road-Bound: the Enhanced Move counts on a road only.",
+        "DownhillItem": "Downhill, Move is multiplied by the slope: {steps}.",
+        "LongRideItem": "Long rides: the better of HT and HT-based Bicycling every minute of paced riding (15 seconds of sprinting); a failure costs 1 FP.",
+        "TowingItem": "Towing, it counts as a two-wheeled cart: the load and cart pull at 1/{divisor} of their weight, 1/{smooth} on a smooth, level surface (Campaigns p. 353).",
+        "SkillModifierItem": "{modifier} to {skill} while ridden.",
+        "SpillItem": "Any spill is at least a {yards}-yard fall.",
+        "LighterItem": "Weight x{factor} at TL{tl}.",
+        "SurfboardItem": "Ridden with {skill}. The best waves carry a surfer at Move {least}-{most}; paddling is seldom faster than Move {paddling}.",
+        "WheelchairItem": "Move {move} while in use.",
+        "ManualWheelchairItem": "A muscle-powered wheelchair (Characters p. 142).",
+        "StairsItem": "Climbs curbs and stairs, a step a second; balances on two wheels at a standing person's eye level.",
+        "Lighter": "Lighter at TL{tl}",
+        "RidingTitle": "Riding",
+        "Downhill": "Downhill",
+        "SlopeHint": "The slope the rider is going down: Move x2 at 7.5°, x3 at 15°, x4 at 30° (High-Tech p. 230).",
+        "Level": "Level ground",
+        "Slope": "{degrees}° (x{multiplier})",
+        "OffRoad": "Off the road",
+        "OffRoadHint": "Road-Bound Enhanced Move counts on a road only.",
+        "MoveNow": "Move {move}",
+        "SurfingNow": "On the best waves Move {least}-{most}; paddling Move {paddling} (a water Move, not the sheet's).",
+        "RideLine": "{name}: Move {base} x{multiplier}",
+        "RideLineSkill": "{name}: relative skill {base} x{multiplier}",
+        "DownhillLine": "Downhill {degrees}° (x{multiplier})",
+        "Ridden": "Ridden, not carried",
+        "SpillAction": "Spill",
+        "SpillLine": "{name} takes a spill: a {yards}-yard fall, {velocity} yards/second.",
+        "SpillLanding": "{name}'s fall",
+        "LongRideAction": "Long ride",
+        "LongRide": "Long ride",
+        "LongRideHint": "A roll against the better of HT and HT-based Bicycling for every minute of paced riding or 15 seconds of sprinting; a failure costs 1 FP (Campaigns p. 354).",
+        "Pace": "Pace",
+        "Paced": "Paced (every {minutes} minute)",
+        "Sprint": "Sprinting (every {seconds} seconds)",
+        "Roll": "Roll",
+        "PacedRoll": "Paced riding: {skill}",
+        "SprintRoll": "Sprinting: {skill}",
+        "HtBased": "HT-based {skill}",
+        "RideTired": "{name} loses {fp} FP to the ride."
       }
     },
     "Backblast": {

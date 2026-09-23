@@ -322,6 +322,16 @@ and p. 238), spaced armour and skirts (p. 229), gun shields on one of several mo
 amphibian's Water Move (Ford GPA, BRDM-2), the kayaks' sail. The first and the last two
 are book-neutral questions for the system.
 
+**Conveyances in the text (#394).** The conveyances pp. 230-231 describe without a table
+row -- the velocipede, penny-farthing, safety bicycle, racing and off-road bikes, the
+skateboard and the four surfboards -- are ordinary gear kept by hand, at the text's TL,
+price and weight, the tool of the skill they're ridden with (so quality buys +1 or +2, as
+p. 230 says). Their Enhanced Move, Road-Bound, the penny-farthing's -1 and two-yard spill,
+the bicycle's lighter TL7 and TL8 builds, and the wheelchairs' Move 3 (p. 226) are
+`conveyance` data the personalConveyances switch reads. Sports (Surfing), Sports
+(Skateboard) and Sports (Sailboarding) are kept by hand as the skills these records serve,
+the last two with the defaults pp. 230-231 give.
+
 **Tables.** Ultra-Tech keeps its warhead table as a TS data module beside the rules that
 read it (`src/books/ultra-tech/warheads/catalogue.ts`), so these follow it: the ammunition
 tables (pp. 175-177; 207 rows, the seven tables' WPS, CPS and footnotes) are

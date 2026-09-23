@@ -3958,6 +3958,23 @@
           "system.extensions.gurps-compendium-content.medical.kind": "antiseptic"
         },
         "reason": "removes -2 from the roll against infection (p. 225) (#390)"
+      },
+      {
+        "pattern": "^Electric Wheelchair$",
+        "set": {
+          "system.extensions.gurps-compendium-content.conveyance.kind": "wheelchair",
+          "system.extensions.gurps-compendium-content.conveyance.move": 3
+        },
+        "reason": "Move 3 while in use (p. 226) (#394)"
+      },
+      {
+        "pattern": "^Advanced Wheelchair$",
+        "set": {
+          "system.extensions.gurps-compendium-content.conveyance.kind": "wheelchair",
+          "system.extensions.gurps-compendium-content.conveyance.move": 3,
+          "system.extensions.gurps-compendium-content.conveyance.stairs": true
+        },
+        "reason": "Move 3 while in use, climbs stairs a step a second (p. 226) (#394)"
       }
     ]
   },

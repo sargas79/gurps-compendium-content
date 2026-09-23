@@ -862,6 +862,238 @@
     }
   },
   {
+    "_id": "5d4a234da9dfefcd",
+    "name": "Velocipede",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 65,
+      "cost": 65,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Bicycling"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 65,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "bicycle",
+            "enhancedMove": 0.5,
+            "roadBound": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c9e7dcfc0c8062c1",
+    "name": "Penny-Farthing",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 40,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Bicycling"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "bicycle",
+            "enhancedMove": 0.5,
+            "roadBound": true,
+            "skillModifier": -1,
+            "spillYards": 2
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "73e4f3cd80895f0f",
+    "name": "Bicycle",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 60,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Bicycling"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "bicycle",
+            "enhancedMove": 0.5,
+            "roadBound": true,
+            "weightTl7": 0.8,
+            "weightTl8": 0.5
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "4762d34768fdcb90",
+    "name": "Racing Bike",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 20,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Bicycling"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "bicycle",
+            "enhancedMove": 1,
+            "roadBound": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b57575b63c01f0f4",
+    "name": "Off-Road Bike",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 30,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Bicycling"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "bicycle",
+            "enhancedMove": 0.5,
+            "roadBound": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "5a4dd5fd68c958fa",
+    "name": "Skateboard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 230",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Sports (Skateboard)"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "skateboard",
+            "enhancedMove": 0.5,
+            "roadBound": true
+          }
+        }
+      }
+    }
+  },
+  {
     "_id": "67452cd2e0321de2",
     "name": "Electric Bike",
     "type": "equipment",
@@ -1242,6 +1474,150 @@
         "roadBound": false,
         "draft": 2,
         "stall": 0
+      }
+    }
+  },
+  {
+    "_id": "5ad3f74d38b1f416",
+    "name": "Wooden Surfboard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 150,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 231",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Sports (Surfing)"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "surfboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f232ac69b3ca5a77",
+    "name": "Foam-Core Surfboard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 231",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Sports (Surfing)"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "surfboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b8502ee28a894214",
+    "name": "Carbon-Fiber Surfboard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 1200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 231",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Sports (Surfing)"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "surfboard"
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d791ca447663fc09",
+    "name": "Inflatable Surfboard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 231",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [
+        "Sports (Surfing)"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "surfboard"
+          }
+        }
       }
     }
   },
@@ -10862,7 +11238,14 @@
       "listCost": 300,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "wheelchair"
+          }
+        }
+      }
     }
   },
   {

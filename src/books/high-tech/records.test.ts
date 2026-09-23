@@ -619,3 +619,43 @@ describe("High-Tech's weapon families (#370)", () => {
     expect(family("Nagant R-1895, 7.62x39mmR").suppressible).toBe(true);
   });
 });
+
+describe("High-Tech's personal conveyances (#394)", () => {
+  const gear = byHand("equipment");
+  const captured = read(join(PACKS, "equipment/high-tech-captured-covert-medical.json"));
+  const ride = (docs: Doc[], name: string) => named(docs, name).system.extensions["gurps-compendium-content"].conveyance;
+
+  it("keeps the bikes, the skateboard and the surfboards the tables leave out, at the text's figures (pp. 230-231)", () => {
+    const rows = ["Velocipede", "Penny-Farthing", "Bicycle", "Racing Bike", "Off-Road Bike", "Skateboard", "Wooden Surfboard", "Foam-Core Surfboard", "Carbon-Fiber Surfboard", "Inflatable Surfboard"]
+      .map((name) => { const s = named(gear, name).system; return [name, s.tl, s.cost, s.weight, s.forSkills[0]]; });
+    expect(rows).toEqual([
+      ["Velocipede", "5", 65, 65, "Bicycling"],
+      ["Penny-Farthing", "5", 100, 40, "Bicycling"],
+      ["Bicycle", "6", 50, 60, "Bicycling"],
+      ["Racing Bike", "7", 100, 20, "Bicycling"],
+      ["Off-Road Bike", "8", 200, 30, "Bicycling"],
+      ["Skateboard", "7", 100, 6, "Sports (Skateboard)"],
+      ["Wooden Surfboard", "6", 100, 150, "Sports (Surfing)"],
+      ["Foam-Core Surfboard", "7", 500, 15, "Sports (Surfing)"],
+      ["Carbon-Fiber Surfboard", "8", 1200, 6, "Sports (Surfing)"],
+      ["Inflatable Surfboard", "8", 500, 15, "Sports (Surfing)"],
+    ]);
+    expect(ride(gear, "Penny-Farthing")).toEqual({ kind: "bicycle", enhancedMove: 0.5, roadBound: true, skillModifier: -1, spillYards: 2 });
+    expect(ride(gear, "Racing Bike")).toMatchObject({ enhancedMove: 1, roadBound: true });
+    expect(ride(gear, "Off-Road Bike")).toMatchObject({ enhancedMove: 0.5, roadBound: false });
+    expect(ride(gear, "Bicycle")).toMatchObject({ weightTl7: 0.8, weightTl8: 0.5 });
+  });
+
+  it("marks the wheelchairs, the powered ones at Move 3 (p. 226)", () => {
+    expect(ride(gear, "Wheelchair (TL8)")).toEqual({ kind: "wheelchair" });
+    expect(ride(captured, "Electric Wheelchair")).toEqual({ kind: "wheelchair", move: 3 });
+    expect(ride(captured, "Advanced Wheelchair")).toEqual({ kind: "wheelchair", move: 3, stairs: true });
+  });
+
+  it("gives the skateboard's and sailboard's skills the book's defaults (pp. 230-231)", () => {
+    const skills = byHand("skills");
+    const defaults = (name: string) => named(skills, name).system.defaults.map((d: any) => [d.skill || d.attribute, d.modifier]);
+    expect(defaults("Sports (Skateboard)")).toEqual([["DX", -5], ["Sports (Snowboard)", -2], ["Sports (Surfing)", -2]]);
+    expect(defaults("Sports (Sailboarding)")).toEqual([["DX", -5], ["Boating (Sailboat)", -5], ["Sports (Motorsurfing)", -3], ["Sports (Surfing)", -2]]);
+  });
+});

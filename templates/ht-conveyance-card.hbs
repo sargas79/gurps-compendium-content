@@ -1,0 +1,10 @@
+{{!-- A spill from a penny-farthing: at least a two-yard fall (High-Tech p. 230). --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+{{#each lines as |line|}}<div class="gc-result">{{line}}</div>{{/each}}
+{{#if landing}}
+  {{#unless landing.rolled}}
+    <div class="gc-apply">
+      <button type="button" class="gc-apply-button" data-addon-card-action="landing">{{landing.label}} ({{landing.formula}} cr)</button>
+    </div>
+  {{/unless}}
+{{/if}}
