@@ -618,6 +618,7 @@
       "title": "Clothing",
       "chapter": "4. Defenses",
       "pages": "HT62",
+      "rule": "gurps-compendium-content.clothingAndWeather",
       "reference": "High-Tech p. 62",
       "file": "clothing.md",
       "status": "reviewed"
@@ -627,6 +628,7 @@
       "title": "Clothing Types",
       "chapter": "4. Defenses",
       "pages": "HT63",
+      "rule": "gurps-compendium-content.clothingAndWeather",
       "reference": "High-Tech p. 63",
       "file": "clothing-types.md",
       "status": "reviewed"
@@ -636,6 +638,7 @@
       "title": "Frostbite",
       "chapter": "4. Defenses",
       "pages": "HT63",
+      "rule": "gurps-compendium-content.frostbite",
       "reference": "High-Tech p. 63",
       "file": "frostbite.md",
       "status": "reviewed"
@@ -645,6 +648,7 @@
       "title": "Clothing Materials and Technology",
       "chapter": "4. Defenses",
       "pages": "HT64-65",
+      "rule": "gurps-compendium-content.clothingAndWeather",
       "reference": "High-Tech pp. 64-65",
       "file": "clothing-materials-and-technology.md",
       "status": "reviewed"
@@ -771,6 +775,7 @@
       "title": "Climate-Controlled Clothing",
       "chapter": "4. Defenses",
       "pages": "HT74",
+      "rule": "gurps-compendium-content.climateControl",
       "reference": "High-Tech p. 74",
       "file": "climate-controlled-clothing.md",
       "status": "reviewed"

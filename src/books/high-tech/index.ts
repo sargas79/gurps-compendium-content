@@ -40,8 +40,9 @@
  * the eyes, and the explosives and incendiaries: an explosion's side
  * effects, demolition charges, unstable and home-made explosives, thermite
  * and napalm, and the grenades, land mines, rifle grenades, bombs and
- * nuclear weapons (pp. 7-11, 13-16, 17-61, 71, 79-93, 109, 127-141, 143,
- * 147-196, 249-252).
+ * nuclear weapons, and clothing against the weather, frostbite and
+ * climate-controlled clothing (pp. 7-11, 13-16, 17-65, 71, 74, 79-93, 109,
+ * 127-141, 143, 147-196, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -69,6 +70,7 @@ import { projectorFields, readyProjectors } from "./projectors/index.js";
 import { readyExplosives } from "./explosives/index.js";
 import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
 import { initSurvival, readySurvival } from "./survival/index.js";
+import { initClothing, readyClothing } from "./clothing/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
 
@@ -184,6 +186,10 @@ const RULES = [
   { key: "navigationGear", pages: "pp. 52-53", implemented: true },
   { key: "loadBearingEquipment", pages: "pp. 53-55", implemented: true },
   { key: "climbingGear", pages: "pp. 55-56", implemented: true },
+  // Clothing against the weather, frostbite (the GM's option) and climate-controlled clothing.
+  { key: "clothingAndWeather", pages: "pp. 63-65", implemented: true },
+  { key: "frostbite", pages: "p. 63", implemented: true },
+  { key: "climateControl", pages: "p. 74", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -230,6 +236,7 @@ function init(): void {
   initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors") });
   initSurvival();
   initExpedition();
+  initClothing(ruleKey("climateControl"));
 }
 
 function ready(api: GWorldApi): void {
@@ -275,6 +282,7 @@ function ready(api: GWorldApi): void {
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
+  readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
 }
 
 export const book: BookRules = {

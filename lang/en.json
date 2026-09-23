@@ -5121,6 +5121,18 @@
         "climbingGear": {
           "Name": "Climbing gear",
           "Hint": "A roped climber falls at most twice the distance past the last fastener; shooting while rappelling is -4 (-2 with a Sure-Footed perk); a grapnel is thrown at DX-3 or Throwing to ST x 2 yards; snowshoes are -1 Move while worn, except TL8 ones (High-Tech pp. 55-56)."
+        },
+        "clothingAndWeather": {
+          "Name": "Clothing against the weather",
+          "Hint": "The Weather dialog starts on the clothing class of what the character wears: summer, ordinary, formal and high-fashion clothes (and outfits made on them) as light clothing, winter clothes as winter clothing, arctic clothes as arctic clothing, or as winter or ordinary clothes with layers taken off. A worn winter or arctic outfit is -1 on the cold roll for each piece left off (boots, gloves, hat, scarf), ticked on the outfit's sheet. A worn wicking undergarment gives +1 on the heat roll. Fur winter or arctic clothes, ticked on the sheet, give DR 1 wherever they cover. An outfit's weight follows its TL: x2 at TL5-6, x0.5 at TL8 (arctic clothes x1.5, x1.25 and x0.5) (High-Tech pp. 63-65)."
+        },
+        "frostbite": {
+          "Name": "Frostbite",
+          "Hint": "At the GM's option: whenever the cold costs FP, a damage card for each exposed hit location, a point of injury per FP lost, through no DR, so it can cripple a hand or foot. Light clothing leaves the head, face, neck, hands and feet exposed; winter or arctic clothing only where a piece is left off (a hat the skull, a scarf the neck and face, gloves the hands, boots the feet); a heated suit nothing (High-Tech p. 63)."
+        },
+        "climateControl": {
+          "Name": "Climate-controlled clothing",
+          "Hint": "Worn heated clothing adds 60 degrees to the cold end of the comfort zone, a climate-control system 60 to both ends, a cooling vest 30 to the hot end, as Temperature Tolerance the cold and heat rolls read; the powered ones only while their cells last. Heated clothing counts as winter clothes with or without power. While gear that widens the hot end is worn, a hike in the heat costs no extra FP an hour (High-Tech p. 74)."
         }
       },
       "Gadget": {
@@ -7655,6 +7667,56 @@
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",
         "GrapnelRoll": "Throwing the grapnel ({skill})"
+      },
+      "Clothing": {
+        "Title": "Clothing against the weather",
+        "ClassItem": "Against the cold: {clothing}.",
+        "Class": {
+          "light": "light clothing (-5)",
+          "winter": "winter clothing",
+          "arctic": "arctic clothing (+5)",
+          "heatedSuit": "a heated suit (+10)"
+        },
+        "MissingItem": "Pieces left off: {penalty} on the cold roll.",
+        "Missing": "Left off:",
+        "MissingHint": "Winter and arctic clothes must cover feet, hands, head and neck: each piece left off is -1 on the cold roll, and bare to frostbite (High-Tech p. 63).",
+        "Piece": {
+          "boots": "Boots",
+          "gloves": "Gloves",
+          "hat": "Hat",
+          "scarf": "Scarf"
+        },
+        "WornAs": {
+          "Label": "Worn as",
+          "arctic": "Arctic clothes",
+          "winter": "Winter clothes",
+          "light": "Ordinary clothes"
+        },
+        "WornAsHint": "With a few layers off, arctic clothes count as winter or ordinary clothes (High-Tech p. 63).",
+        "Fur": "Made of fur (DR 1)",
+        "FurHint": "Fur winter or arctic clothes may give DR 1, at the GM's option (High-Tech p. 64).",
+        "FurItem": "Fur: DR {dr} wherever it covers.",
+        "FurLine": "{name} (fur)",
+        "WeightItem": "Weight at TL{tl}: x{factor} the TL7 outfit's.",
+        "WeightLabel": "TL{tl} outfit",
+        "WickingItem": "+{bonus} on HT and HT-based rolls against FP loss in the heat while worn.",
+        "WickingLine": "{name}",
+        "MissingLine": "Clothing missing: {pieces}",
+        "ZoneCold": "Adds {degrees} degrees to the cold end of the comfort zone while worn.",
+        "ZoneBoth": "Adds {degrees} degrees to both ends of the comfort zone while worn.",
+        "ZoneHeat": "Adds {degrees} degrees to the hot end of the comfort zone while worn: {hours} hours a charge, recharged by {minutes} minutes in ice-cold water (not tracked).",
+        "PoweredItem": "Only while its power lasts.",
+        "HotMarchItem": "A hike in the heat costs no extra FP while it runs.",
+        "HeatedWinterItem": "Counts as winter clothes, with or without power.",
+        "HotMarchLine": "{name}: no extra fatigue for the heat",
+        "FrostbiteLabel": "Frostbite: {name}'s {location} ({fp} FP lost to the cold)",
+        "Location": {
+          "skull": "head",
+          "face": "face",
+          "neck": "neck",
+          "hand": "hand",
+          "foot": "foot"
+        }
       }
     },
     "Backblast": {

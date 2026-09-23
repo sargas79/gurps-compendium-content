@@ -1,0 +1,27 @@
+{{!-- Clothing against the weather and climate-controlled clothing (High-Tech pp. 63-65, 74). --}}
+<div class="isub" data-gcc-ht-clothing-section>
+  <div class="isub-head">{{localize "GCC.HT.Clothing.Title"}}</div>
+  {{#if wornAs}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Clothing.WornAsHint'}}">{{localize "GCC.HT.Clothing.WornAs.Label"}}
+        <select data-gcc-ht-clothing="wornAs" {{#unless editable}}disabled{{/unless}}>
+          {{#each wornAs as |option|}}<option value="{{option.value}}" {{#if option.selected}}selected{{/if}}>{{option.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if pieces}}
+    <div class="ichecks" data-tooltip="{{localize 'GCC.HT.Clothing.MissingHint'}}">
+      <span>{{localize "GCC.HT.Clothing.Missing"}}</span>
+      {{#each pieces as |piece|}}
+        <label class="icheck"><input type="checkbox" data-gcc-ht-clothing="missing.{{piece.key}}" {{#if piece.missing}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{piece.label}}</label>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#if fur}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Clothing.FurHint'}}"><input type="checkbox" data-gcc-ht-clothing="fur" {{#if fur.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Clothing.Fur"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

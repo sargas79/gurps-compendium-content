@@ -29,6 +29,7 @@ import { beamFamily, type BeamFamily } from "../beams/rules.js";
 import { beamEnvironment } from "../beams/index.js";
 import { powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
+import { widenComfortZone } from "../../../shared/climate/rules.js";
 import { loadsOf } from "../warheads/index.js";
 import {
   ABLATIVE_FOAM,
@@ -234,11 +235,7 @@ function addProtection(context: any, protection: Protection, label: string): voi
   if (protection.vacuumSupport && !effects.vacuumSupport) { effects.vacuumSupport = true; push("vacuumSupport"); }
   const pressure = pressureSupportLevel(protection.pressureAtm ?? 0);
   if (pressure > (Number(effects.pressureSupport) || 0)) { effects.pressureSupport = pressure; push("pressureSupport", pressure); }
-  if (protection.climate && effects.temperatureTolerance) {
-    const zone = climateTolerance(protection.climate);
-    if (zone.coldF > (Number(effects.temperatureTolerance.coldF) || 0)) { effects.temperatureTolerance.coldF = zone.coldF; push("temperatureTolerance.coldF", zone.coldF); }
-    if (zone.heatF > (Number(effects.temperatureTolerance.heatF) || 0)) { effects.temperatureTolerance.heatF = zone.heatF; push("temperatureTolerance.heatF", zone.heatF); }
-  }
+  if (protection.climate) widenComfortZone(context, climateTolerance(protection.climate), label);
   if (effects.protectedSense) {
     if ((protection.glare || protection.mask) && !effects.protectedSense.vision) { effects.protectedSense.vision = true; push("protectedSense.vision"); }
     if (protection.mask && !effects.protectedSense.tasteSmell) { effects.protectedSense.tasteSmell = true; push("protectedSense.tasteSmell"); }
