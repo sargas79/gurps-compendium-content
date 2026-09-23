@@ -1,0 +1,68 @@
+{{!-- A computer's model and options, or a program's Complexity (Ultra-Tech
+     pp. 21-25; High-Tech pp. 19-22), in the words of the book whose computer
+     table applies (`ns`). --}}
+<div class="isub" data-gcc-computer-section>
+  <div class="isub-head">{{localize (concat @root.ns ".Computer.Title")}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize (concat @root.ns '.Computer.KindHint')}}">{{localize (concat @root.ns ".Computer.KindLabel")}}
+      <select data-gcc-computer="kind" {{#unless editable}}disabled{{/unless}}>
+        {{#each kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+      </select>
+    </label>
+    {{#if isComputer}}
+      <label data-tooltip="{{localize (concat @root.ns '.Computer.ModelHint')}}">{{localize (concat @root.ns ".Computer.ModelLabel")}}
+        <select data-gcc-computer="model" {{#unless editable}}disabled{{/unless}}>
+          {{#each models as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if extraStorage}}
+        <label data-tooltip="{{localize (concat @root.ns '.Computer.ExtraStorageHint')}}">{{localize (concat @root.ns ".Computer.ExtraStorageLabel")}}
+          <input type="number" data-gcc-computer="extraStorage" value="{{data.extraStorage}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      {{/if}}
+    {{/if}}
+    {{#if isProgram}}
+      <label data-tooltip="{{localize (concat @root.ns '.Computer.ComplexityHint')}}">{{localize (concat @root.ns ".Computer.ComplexityLabel")}}
+        <input type="number" data-gcc-computer="complexity" value="{{data.complexity}}" step="1" min="{{lowestProgram}}" max="20" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label data-tooltip="{{localize (concat @root.ns '.Computer.DifficultyHint')}}">{{localize (concat @root.ns ".Computer.DifficultyLabel")}}
+        <select data-gcc-computer="difficulty" {{#unless editable}}disabled{{/unless}}>
+          {{#each difficulties as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.value}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if carried}}
+        <label data-tooltip="{{localize (concat @root.ns '.Computer.RunsOnHint')}}">{{localize (concat @root.ns ".Computer.RunsOnLabel")}}
+          <select data-gcc-computer="runsOn" {{#unless editable}}disabled{{/unless}}>
+            {{#each computers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    {{/if}}
+  </div>
+
+  {{#if isComputer}}
+    <div class="ichecks">
+      {{#each options as |o|}}
+        <label class="icheck" data-tooltip="{{o.hint}}"><input type="checkbox" data-gcc-computer="options.{{o.value}}" {{#if o.checked}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{o.label}}{{#if o.conflict}} ({{localize (concat @root.ns ".Computer.Excluded")}}){{/if}}</label>
+      {{/each}}
+    </div>
+    <p class="ihint">{{figures}}</p>
+    {{#each problems as |p|}}<p class="ihint gc-bad">{{p}}</p>{{/each}}
+    {{#if lc}}<p class="ihint">{{lc}}</p>{{/if}}
+    {{#if cells}}<p class="ihint">{{cells}}</p>{{/if}}
+    {{#if hardened}}<p class="ihint">{{hardened}}</p>{{/if}}
+    {{#if notes}}<p class="ihint">{{notes}}</p>{{/if}}
+  {{/if}}
+
+  {{#if isProgram}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize (concat @root.ns '.Computer.MassMarketHint')}}"><input type="checkbox" data-gcc-computer="massMarket" {{#if data.massMarket}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat @root.ns ".Computer.MassMarket")}}</label>
+    </div>
+    <p class="ihint">{{price}}</p>
+    {{#if tool}}
+      <p class="ihint">{{tool}}
+        {{#if toolMismatch}}<button type="button" class="ibtn tiny" data-gcc-computer-quality {{#unless editable}}disabled{{/unless}}>{{localize (concat @root.ns ".Computer.SetQuality")}}</button>{{/if}}
+      </p>
+    {{/if}}
+  {{/if}}
+</div>

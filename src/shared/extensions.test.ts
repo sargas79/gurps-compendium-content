@@ -38,4 +38,17 @@ describe("this module's data on the system's documents", () => {
       [{ module: "gurps-compendium-content", documentName: "Item", types: ["template"], schema: { robotBody: "robot field" } }],
     ]);
   });
+
+  it("builds a field given as a function when the fields are registered", async () => {
+    const { addExtensionFields, registerExtensionFields } = await load();
+    const sizes: string[] = ["A"];
+    addExtensionFields("Item", ["equipment"], { computer: () => `computer field: ${sizes.join(", ")}` });
+    // A book registering its table after the field was added still has it in the field.
+    sizes.push("B");
+    const registerDataExtension = vi.fn(() => "gurps-compendium-content");
+    registerExtensionFields({ data: { registerDataExtension } } as never);
+    expect(registerDataExtension.mock.calls).toEqual([
+      [{ module: "gurps-compendium-content", documentName: "Item", types: ["equipment"], schema: { computer: "computer field: A, B" } }],
+    ]);
+  });
 });

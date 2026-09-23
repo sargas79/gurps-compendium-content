@@ -4,9 +4,18 @@
  * software costs, the Complexity an AI needs, and how long a computer takes
  * to break encryption (pp. 21-25, 27-28, 46-47).
  *
- * The options are fields on the computer that change its figures; nothing is
- * attached to it.
+ * The computer rule is the shared engine's (`src/shared/computers/`), which
+ * High-Tech prints too at its TLs; this is Ultra-Tech's table for it, the
+ * engine's functions with this book's figures, and the book's own AIs and
+ * encryption. The options are fields on the computer that change its
+ * figures; nothing is attached to it.
  */
+
+import * as engine from "../../../shared/computers/rules.js";
+import type { ComputerFigures, HardwareFigures, OptionEffect, SkillDifficulty, ToolGrade, ToolQuality } from "../../../shared/computers/rules.js";
+
+export { programLoad, programsAtOnce, type HardwareFigures, type SkillDifficulty, type ToolQuality } from "../../../shared/computers/rules.js";
+export { timeSpentModifier } from "../../../shared/time-spent.js";
 
 /** The standard models, smallest first (p. 22). */
 export const COMPUTER_MODELS = ["tiny", "small", "personal", "microframe", "mainframe", "macroframe", "megacomputer"] as const;
@@ -22,13 +31,6 @@ export const MODEL_FIGURES: Readonly<Record<ComputerModel, { complexity: number;
   macroframe: { complexity: 8, storage: 100_000 },
   megacomputer: { complexity: 9, storage: 1_000_000 },
 });
-
-/** The model a record's name is, or null. */
-export function modelByName(name: string): ComputerModel | null {
-  const text = String(name ?? "").trim().toLowerCase();
-  const found = COMPUTER_MODELS.find((model) => text === model || text === `${model} computer`);
-  return found ?? null;
-}
 
 /**
  * What a later tech level adds to every model's Complexity: +2 at TL10 and a
@@ -49,21 +51,6 @@ export type HardwareOptions = Readonly<Record<HardwareOption, boolean>>;
 
 export const NO_HARDWARE: HardwareOptions = Object.freeze(Object.fromEntries(HARDWARE_OPTIONS.map((o) => [o, false])) as Record<HardwareOption, boolean>);
 
-interface OptionEffect {
-  complexity?: number;
-  cost?: number;
-  weight?: number;
-  lc?: number;
-  /** A factor on the data the computer stores. */
-  storage?: number;
-  /** A factor on the programs it runs at once. */
-  programs?: number;
-  /** A factor on its power cells and its operating time. */
-  cells?: number;
-  /** Added to HT against attacks on electrical gadgets. */
-  hardening?: number;
-}
-
 /** Each option's changes (p. 23). Cost and weight multiply together; Complexity and LC add. */
 export const OPTION_EFFECTS: Readonly<Record<HardwareOption, OptionEffect>> = Object.freeze({
   compact: { cost: 2, weight: 0.5, cells: 0.5 },
@@ -83,132 +70,8 @@ export const EXCLUSIVE_OPTIONS: ReadonlyArray<readonly HardwareOption[]> = Objec
   ["printed", "quantum"],
 ]);
 
-/** The options a set of choices leaves out because another excludes it, first chosen kept. */
-export function conflictingOptions(options: HardwareOptions): HardwareOption[] {
-  const dropped: HardwareOption[] = [];
-  for (const group of EXCLUSIVE_OPTIONS) {
-    const chosen = group.filter((option) => options[option]);
-    dropped.push(...chosen.slice(1));
-  }
-  return dropped;
-}
-
-/** The options as they apply: those another option excludes are left out. */
-export function effectiveOptions(options: Partial<HardwareOptions>): HardwareOptions {
-  const whole = { ...NO_HARDWARE, ...options } as Record<HardwareOption, boolean>;
-  for (const option of conflictingOptions(whole)) whole[option] = false;
-  return whole;
-}
-
-/** What a computer built with these options is, relative to the model's figures. */
-export interface HardwareFigures {
-  complexity: number;
-  cost: number;
-  weight: number;
-  lc: number;
-  storage: number;
-  programs: number;
-  cells: number;
-  hardening: number;
-}
-
-/** Multiplies and adds the options' changes together (p. 23). */
-export function hardwareFactors(options: Partial<HardwareOptions>): HardwareFigures {
-  const chosen = effectiveOptions(options);
-  const figures: HardwareFigures = { complexity: 0, cost: 1, weight: 1, lc: 0, storage: 1, programs: 1, cells: 1, hardening: 0 };
-  for (const option of HARDWARE_OPTIONS) {
-    if (!chosen[option]) continue;
-    const effect = OPTION_EFFECTS[option];
-    figures.complexity += effect.complexity ?? 0;
-    figures.lc += effect.lc ?? 0;
-    figures.hardening += effect.hardening ?? 0;
-    figures.cost *= effect.cost ?? 1;
-    figures.weight *= effect.weight ?? 1;
-    figures.storage *= effect.storage ?? 1;
-    figures.programs *= effect.programs ?? 1;
-    figures.cells *= effect.cells ?? 1;
-  }
-  return figures;
-}
-
 /** Built-in storage bought on top: $1 and 0.001 lb. per unit of the TL's storage (p. 23). */
 export const EXTRA_STORAGE = Object.freeze({ cost: 1, weight: 0.001 });
-
-/** A computer: its model at a TL, with its options and any storage bought on top. */
-export interface ComputerBuild {
-  model: ComputerModel;
-  tl: number;
-  options: Partial<HardwareOptions>;
-  /** Units of the TL's storage bought on top (terabytes at TL9). */
-  extraStorage?: number;
-  /** The Legality Class of the record, before the options change it. */
-  lc?: number | null;
-}
-
-/** A computer's worked-out figures. */
-export interface Computer {
-  complexity: number;
-  /** In units of the TL's storage: terabytes at TL9, petabytes at TL10, and so on. */
-  storage: number;
-  storageUnit: (typeof STORAGE_UNITS)[number];
-  /** Factors on the list price and weight, and what extra storage adds to each. */
-  costFactor: number;
-  weightFactor: number;
-  extraCost: number;
-  extraWeight: number;
-  lc: number | null;
-  /** Programs of its own Complexity it runs at once. */
-  programsAtOwn: number;
-  cellFactor: number;
-  hardening: number;
-}
-
-/** Works out a computer (pp. 22-23). */
-export function computerFigures(build: ComputerBuild): Computer {
-  const model = MODEL_FIGURES[build.model];
-  const factors = hardwareFactors(build.options);
-  const tl = Number.isFinite(build.tl) ? build.tl : 9;
-  const unit = STORAGE_UNITS[Math.max(0, Math.min(STORAGE_UNITS.length - 1, tl - 9))] ?? "TB";
-  const extra = Math.max(0, Number(build.extraStorage) || 0);
-  return {
-    complexity: Math.max(0, model.complexity + complexityForTl(tl) + factors.complexity),
-    storage: model.storage * factors.storage + extra,
-    storageUnit: unit,
-    costFactor: factors.cost,
-    weightFactor: factors.weight,
-    extraCost: extra * EXTRA_STORAGE.cost,
-    extraWeight: extra * EXTRA_STORAGE.weight,
-    lc: typeof build.lc === "number" ? Math.max(0, build.lc + factors.lc) : null,
-    programsAtOwn: 2 * factors.programs,
-    cellFactor: factors.cells,
-    hardening: factors.hardening,
-  };
-}
-
-/**
- * How many programs of a Complexity a computer runs at once: two of its own
- * Complexity, ten times as many per level below it, none above it; a
- * high-capacity computer half again as many (p. 22-23).
- */
-export function programsAtOnce(computerComplexity: number, programComplexity: number, programsAtOwn = 2): number {
-  const below = computerComplexity - programComplexity;
-  if (below < 0) return 0;
-  return programsAtOwn * 10 ** below;
-}
-
-/**
- * The share of a computer's capacity a set of programs takes, 1 being all of
- * it; a program above its Complexity can't run at all and makes it Infinity.
- */
-export function programLoad(computerComplexity: number, programs: readonly number[], programsAtOwn = 2): number {
-  let load = 0;
-  for (const complexity of programs) {
-    const room = programsAtOnce(computerComplexity, complexity, programsAtOwn);
-    if (!room) return Infinity;
-    load += 1 / room;
-  }
-  return load;
-}
 
 /** The most complex program the Software Cost Table prices at a TL, or 0 where it prices none (p. 25). */
 export function highestSoftware(tl: number): number {
@@ -231,22 +94,54 @@ export function softwareCost(complexity: number, tl: number): number | null {
 /** Mass-market software may be as little as a tenth of the price (p. 24). */
 export const MASS_MARKET = 0.1;
 
-export type SkillDifficulty = "E" | "A" | "H" | "VH";
-export type ToolQuality = "good" | "fine";
+/** Ultra-Tech's figures, as the shared computer engine takes them. */
+export const COMPUTERS: ComputerFigures = Object.freeze({
+  models: COMPUTER_MODELS,
+  modelFigures: MODEL_FIGURES,
+  defaultModel: "personal",
+  printedTl: null,
+  complexityForTl,
+  storageUnits: Object.freeze({ firstTl: 9, units: STORAGE_UNITS }),
+  options: HARDWARE_OPTIONS,
+  effects: OPTION_EFFECTS,
+  exclusive: EXCLUSIVE_OPTIONS,
+  early: null,
+  extraStorage: EXTRA_STORAGE,
+  softwareCost,
+  lowestProgram: 1,
+  massMarket: MASS_MARKET,
+  // Good needs Complexity 4 for an Easy skill and 5 otherwise; fine 6 and 7 (p. 25).
+  tools: Object.freeze({ good: [4, 5] as const, fine: [6, 7] as const }),
+});
+
+/** The model a record's name is, or null. */
+export const modelByName = (name: string): ComputerModel | null => engine.modelByName(COMPUTERS, name) as ComputerModel | null;
+
+/** The options a set of choices leaves out because another excludes it, first chosen kept. */
+export const conflictingOptions = (options: HardwareOptions): HardwareOption[] => engine.conflictingOptions(COMPUTERS, options) as HardwareOption[];
+
+/** The options as they apply: those another option excludes are left out. */
+export const effectiveOptions = (options: Partial<HardwareOptions>): HardwareOptions => engine.effectiveOptions(COMPUTERS, options) as HardwareOptions;
+
+/** Multiplies and adds the options' changes together (p. 23). */
+export const hardwareFactors = (options: Partial<HardwareOptions>): HardwareFigures => engine.hardwareFactors(COMPUTERS, options);
+
+/** A computer: its model at a TL, with its options and any storage bought on top. */
+export interface ComputerBuild extends engine.ComputerBuild {
+  model: ComputerModel;
+  options: Partial<HardwareOptions>;
+}
+
+export type Computer = engine.Computer;
+
+/** Works out a computer (pp. 22-23). */
+export const computerFigures = (build: ComputerBuild): Computer => engine.computerFigures(COMPUTERS, build);
 
 /** The Complexity a software tool of a quality needs for a skill of a difficulty (p. 25). */
-export function toolComplexity(quality: ToolQuality, difficulty: SkillDifficulty): number {
-  const easy = difficulty === "E";
-  if (quality === "good") return easy ? 4 : 5;
-  return easy ? 6 : 7;
-}
+export const toolComplexity = (quality: ToolQuality, difficulty: SkillDifficulty): number => engine.toolComplexity(COMPUTERS, quality, difficulty)!;
 
 /** The best quality a program of a Complexity is as a tool for a skill: good +1, fine +2 (p. 25). */
-export function toolQuality(complexity: number, difficulty: SkillDifficulty): { quality: ToolQuality | "basic"; bonus: number } {
-  if (complexity >= toolComplexity("fine", difficulty)) return { quality: "fine", bonus: 2 };
-  if (complexity >= toolComplexity("good", difficulty)) return { quality: "good", bonus: 1 };
-  return { quality: "basic", bonus: 0 };
-}
+export const toolQuality = (complexity: number, difficulty: SkillDifficulty): { quality: ToolGrade; bonus: number } => engine.toolQuality(COMPUTERS, complexity, difficulty);
 
 /** The kinds of digital mind a computer runs (pp. 25, 27-28). */
 export const AI_KINDS = ["weakDedicated", "dedicated", "nonVolitional", "volitional", "mindEmulation"] as const;
@@ -319,23 +214,6 @@ export function decryptionHours(options: { standard: EncryptionStandard; tl: num
   const under = -over;
   if (!options.quantum) return 10 ** under;
   return under % 2 === 0 ? 10 ** (under / 2) : 3 * 10 ** ((under - 1) / 2);
-}
-
-/**
- * The Basic Set's modifier for time spent against a base time (Campaigns
- * p. 346): +1 for twice as long up to +5 for 30 times; -1 per 10% less, to
- * -9 at a tenth. The decryption roll takes it instead of the codes' modifiers
- * (p. 47).
- */
-export function timeSpentModifier(spent: number, base: number): number {
-  if (!(base > 0) || !(spent > 0)) return 0;
-  const ratio = spent / base;
-  if (ratio >= 1) {
-    const steps: Array<[number, number]> = [[30, 5], [15, 4], [8, 3], [4, 2], [2, 1]];
-    return steps.find(([times]) => ratio >= times)?.[1] ?? 0;
-  }
-  const less = Math.floor(Math.round((1 - ratio) * 1000) / 100);
-  return -Math.min(9, less);
 }
 
 /** A time in hours as the book gives it: hours, minutes or seconds. */
