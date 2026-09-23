@@ -15,7 +15,7 @@
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
 import { MODULE_ID } from "../module.js";
-import { enduranceUses as enduranceUsesOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
+import { cellsWeight, enduranceUses as enduranceUsesOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
 
 /** One book's cell table. */
 export interface CellTable extends BookTable {
@@ -200,6 +200,33 @@ export function tableCellOf(data: PowerData): { size: string; cells: number } | 
   if (data.cell) return { size: data.cell, cells: Math.max(1, data.cells) };
   if (data.draw?.cell) return { size: data.draw.cell, cells: Math.max(1, data.draw.cells) };
   return null;
+}
+
+/**
+ * What the batteries a gadget's record lists weigh, as the list weight counts
+ * them: the table's cells, before any size adjustment or swap. Null where the
+ * item's book's cell switch is off or the record lists none (an inverter's
+ * batteries are added to the gadget, not listed in it).
+ */
+export function listedCellWeight(item: any): number | null {
+  const table = cellTableOf(item);
+  const d = item?.system?.extensions?.[MODULE_ID]?.power ?? {};
+  if (!table || d.inverter) return null;
+  const sizes = table.figures.sizes;
+  const count = (value: unknown) => Math.max(1, Math.floor(Number(value) || 0));
+  if (sizes.includes(d.cell)) return cellsWeight(table.figures, d.cell, count(d.cells));
+  if (sizes.includes(d.draw?.cell)) return cellsWeight(table.figures, d.draw.cell, count(d.draw.cells));
+  return null;
+}
+
+/**
+ * What the batteries in a gadget weigh as it is now: any swapped in, and as
+ * many as its size takes. Null where the cell switch is off or it has none.
+ */
+export function loadedCellWeight(item: any): number | null {
+  const table = cellTableOf(item);
+  const cell = table ? cellOf(powerData(item)) : null;
+  return table && cell ? cellsWeight(table.figures, cell.size, cell.cells) : null;
 }
 
 /** Writes part of this module's power data. */

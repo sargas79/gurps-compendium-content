@@ -5002,7 +5002,7 @@
         "GradeLabel": "Built",
         "GradeHint": "Cheap: half the price, and either half again the weight or fragile (-2 HT, half the DR). Expensive: twice the price, two thirds the weight. Batteries are left out of the weight (High-Tech p. 10).",
         "CellWeightLabel": "Batteries (lbs.)",
-        "CellWeightHint": "What the batteries in the gadget weigh, which cheap and expensive leave out of their weight (High-Tech p. 10).",
+        "CellWeightHint": "What the batteries in the gadget weigh, which cheap and expensive leave out of their weight (High-Tech p. 10). With the batteries rule on, the batteries the gear lists are weighed for you, and batteries swapped in change the weight by the difference.",
         "BuildLabel": "Made of",
         "BuildHint": "What the gadget is built from, for the DR the book assumes: plastic, wood or thin metal DR 2, a weapon DR 4, a solid-metal melee weapon DR 6, and armour or a vehicle its own (High-Tech p. 11).",
         "HealthLabel": "Stated HT",

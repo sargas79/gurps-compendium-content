@@ -118,15 +118,20 @@ export function cellsWeight(figures: CellFigures, size: string, cells: number): 
 }
 
 /**
- * What swapping a gadget's cells for others multiplies its endurance by: the
- * new cells' weight over the old (High-Tech pp. 10, 13). An S battery weighs
- * 3.3 times an XS, so a gadget moved from one to the other runs 3.3 times as
+ * What running a gadget on other cells multiplies its endurance by: the new
+ * cells' weight over the old (High-Tech pp. 10, 13). An S battery weighs 3.3
+ * times an XS, so a gadget moved from one to the other runs 3.3 times as
  * long. Null where either weight is nothing.
  */
-export function swappedEndurance(figures: CellFigures, from: { size: string; cells: number }, to: { size: string; cells: number }): number | null {
-  const before = cellsWeight(figures, from.size, from.cells);
-  const after = cellsWeight(figures, to.size, to.cells);
+export function enduranceByWeight(fromWeight: number, toWeight: number): number | null {
+  const before = Math.max(0, Number(fromWeight) || 0);
+  const after = Math.max(0, Number(toWeight) || 0);
   return before > 0 && after > 0 ? after / before : null;
+}
+
+/** What swapping a gadget's cells for others of a size and number multiplies its endurance by. */
+export function swappedEndurance(figures: CellFigures, from: { size: string; cells: number }, to: { size: string; cells: number }): number | null {
+  return enduranceByWeight(cellsWeight(figures, from.size, from.cells), cellsWeight(figures, to.size, to.cells));
 }
 
 /** Whether the book prints a REF for exploding cells. */

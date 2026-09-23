@@ -22,6 +22,7 @@
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
 import { GADGET_TABLES, initGadgets, readyGadgets, type GadgetTable } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
+import { loadedCellWeight } from "../../../shared/power/data.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { HIGH_TECH_GADGETS, bondedName, combineGadgets, equipmentBonusLines, familiarityOffset, type CombinationPart } from "./rules.js";
 
@@ -111,7 +112,8 @@ function partOf(item: any): CombinationPart {
     name: String(item?.name ?? ""),
     cost: Number(item?.effectivePrice?.cost ?? item?.system?.cost) || 0,
     weight: Number(item?.effectivePrice?.weight ?? item?.system?.weight) || 0,
-    cellWeight: gadgetItem(item).cellWeight,
+    // The batteries in it as it is, which its effective weight holds, where the batteries rule knows them.
+    cellWeight: loadedCellWeight(item) ?? gadgetItem(item).cellWeight,
     lc: typeof item?.system?.lc === "number" ? item.system.lc : null,
     tl: tl ? Number(tl[0]) : null,
   };
