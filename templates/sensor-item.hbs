@@ -1,0 +1,23 @@
+{{!-- A comm's or sensor's figures at its TL, and its options (Ultra-Tech
+     pp. 43-46, 60-66; High-Tech pp. 36-50), in the words of the book whose
+     table applies. --}}
+<div class="isub" data-gcc-sensor-section>
+  <div class="isub-head">{{title}}</div>
+  {{#if modes}}
+    <div class="ifields">
+      <label data-tooltip="{{modeHint}}">{{modeLabel}}
+        <select data-gcc-sensor="commMode" {{#unless editable}}disabled{{/unless}}>
+          {{#each modes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if options.length}}
+    <div class="ichecks">
+      {{#each options as |o|}}
+        <label class="icheck" data-tooltip="{{o.hint}}"><input type="checkbox" data-gcc-sensor="{{o.key}}" {{#if o.checked}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} /> {{o.label}}</label>
+      {{/each}}
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

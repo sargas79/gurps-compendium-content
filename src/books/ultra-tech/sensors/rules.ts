@@ -4,11 +4,28 @@
  * transmit-only comms; worn passive visual sensors as senses; the indirect
  * sensors' bonuses; active sensors' ranges, the penalty past them, targeting
  * locks and LPI; ESM; radscanners against power cells (pp. 42-46, 60-67).
+ *
+ * The rules High-Tech prints too -- the sizes' steps, stretching range,
+ * slowed data, radio's cuts, the active sensors' range penalty and emissions,
+ * magnification as Telescopic Vision -- are the shared engine's
+ * (`src/shared/sensors/`); this is Ultra-Tech's gear and figures for it.
  */
 
-/** Communicator sizes, smallest first (p. 43). */
-export const COMM_SIZES = ["micro", "tiny", "small", "medium", "large", "veryLarge"] as const;
-export type CommSize = (typeof COMM_SIZES)[number];
+import { COMM_SIZES, RECEIVER, TRANSMITTER, sizeStepFactor, telescopicLevels, type CommMode, type CommSize } from "../../../shared/sensors/rules.js";
+
+export {
+  COMM_SIZES,
+  TARGETING_LOCK,
+  activeRangePenalty,
+  emissionDetectionRange,
+  radioRangeFactor,
+  rangeExtensionModifier,
+  sizeStepFactor,
+  slowedRangeFactor,
+  telescopicLevels,
+  type CommMode,
+  type CommSize,
+} from "../../../shared/sensors/rules.js";
 
 export type CommFamily = "ir" | "laser" | "radio" | "sonar" | "gravityRipple" | "neutrino" | "ftl" | "neurocomm";
 
@@ -66,33 +83,6 @@ export function mixedRange(family: CommFamily, a: CommSize, b: CommSize, tl: num
   return range * sizeStepFactor(steps);
 }
 
-/** 1, 3, 10, 30, 100 ... for 0, 1, 2, 3, 4 ... sizes' difference. */
-export function sizeStepFactor(steps: number): number {
-  const tens = 10 ** Math.floor(steps / 2);
-  return steps % 2 === 1 ? 3 * tens : tens;
-}
-
-/**
- * Stretching a comm's range (p. 43): an Electronics Operation (Communications)
- * roll at -1 per 10% added, up to double. Null past double.
- */
-export function rangeExtensionModifier(distance: number, range: number): number | null {
-  if (distance <= range) return 0;
-  const extra = distance / range - 1;
-  if (extra > 1 + 1e-9) return null;
-  return -Math.ceil(Math.round(extra * 1000) / 100);
-}
-
-/** Repeating data for range: 1/4 speed doubles it, 1/100 times 10, 1/10,000 times 100 (p. 43). */
-export function slowedRangeFactor(speedFraction: number): number {
-  if (speedFraction <= 1 / 10000) return 100;
-  if (speedFraction <= 1 / 100) return 10;
-  if (speedFraction <= 1 / 4) return 2;
-  return 1;
-}
-
-export type CommMode = "" | "receiver" | "transmitter";
-
 /**
  * A receive-only or transmit-only comm's price and weight (p. 46): a receiver
  * is 10% the cost and 20% the weight, a transmitter 90% and 80%; for
@@ -101,7 +91,7 @@ export type CommMode = "" | "receiver" | "transmitter";
 export function commModeFactors(family: CommFamily | null, mode: CommMode): { cost: number; weight: number } {
   if (!mode) return { cost: 1, weight: 1 };
   if (family === "gravityRipple" || family === "neutrino" || family === "ftl") return { cost: 0.5, weight: 0.5 };
-  return mode === "receiver" ? { cost: 0.1, weight: 0.2 } : { cost: 0.9, weight: 0.8 };
+  return mode === "receiver" ? { ...RECEIVER } : { ...TRANSMITTER };
 }
 
 /** The comm a record's name is: "Radio Communicator (Large)". */
@@ -167,11 +157,6 @@ export function magnificationAt(sensor: Omit<VisualSensor, "tl">, introduced: nu
   if (sensor.kind === "nightVision") return sensor.magnification * (tl >= 11 ? 4 : tl >= 10 ? 2 : 1);
   if (sensor.kind === "infrared") return sensor.magnification * (later >= 2 ? 4 : later >= 1 ? 2 : 1);
   return sensor.magnification * 2 ** later;
-}
-
-/** Each doubling of magnification ignores -1 in range penalties: Telescopic Vision levels (p. 60). */
-export function telescopicLevels(magnification: number): number {
-  return magnification > 1 ? Math.floor(Math.log2(magnification) + 1e-9) : 0;
 }
 
 /** What a worn visual sensor grants as senses (pp. 60-61). Cameras and arrays aren't worn. */
@@ -249,28 +234,10 @@ export function activeByName(name: string): { kind: ActiveKind; size: ActiveSize
   return { kind: kinds[match[2]!.toLowerCase()]!, size: match[1]!.toLowerCase() as ActiveSize };
 }
 
-/**
- * An active sensor's penalty at a distance (p. 63): nothing out to its range,
- * -2 per doubling beyond. LPI halves the range.
- */
-export function activeRangePenalty(distance: number, range: number, lpi = false): number {
-  const effective = lpi ? range / 2 : range;
-  if (distance <= effective) return 0;
-  return -2 * Math.ceil(Math.log2(distance / effective) - 1e-9);
-}
-
-/** How far away an active sensor's emissions are detected: twice its range, 1.5 times the halved range with LPI (p. 63). */
-export function emissionDetectionRange(range: number, lpi = false): number {
-  return lpi ? (range / 2) * 1.5 : range * 2;
-}
-
 /** A tactical sensor costs 5 times as much, a tactical sonar 10 times (pp. 64-66). */
 export function tacticalFactor(kind: ActiveKind): number {
   return kind === "sonar" ? 10 : 5;
 }
-
-/** A locked-on sensor gives +3 to hit with an aimed ranged attack and targeting software (p. 63). */
-export const TARGETING_LOCK = 3;
 
 /** An ESM's warning: +1 to Dodge an attack aimed with an active targeting sensor it detects (p. 62). */
 export const ESM_DODGE = 1;
@@ -284,15 +251,6 @@ export const CONCEALED_WEAPONS = Object.freeze({ imagingRadar: 3, terahertz: 4 }
 /** Air sonar has a tenth the range times the air pressure (p. 65). */
 export function airSonarRange(range: number, atmospheres: number): number {
   return (range / 10) * Math.max(0, atmospheres);
-}
-
-/**
- * What cuts a radio's range (p. 44): it "may drop by a factor of 10 in urban
- * environments or underground", and "divide by 10" again for real-time
- * audio-visual signals.
- */
-export function radioRangeFactor(options: { urban?: boolean; audioVisual?: boolean }): number {
-  return (options.urban ? 0.1 : 1) * (options.audioVisual ? 0.1 : 1);
 }
 
 /** A quantum channel (p. 47): laser and neutrino comms only, at 10% of normal range and 10 times the cost. */

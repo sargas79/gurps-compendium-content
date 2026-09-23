@@ -32,7 +32,7 @@ import { initUltraTechPower, readyUltraTechPower } from "./power/index.js";
 import { registerRecordData } from "./records.js";
 import { readyRobots } from "./robots/index.js";
 import { readySecurity } from "./security/index.js";
-import { initSensors, readySensors } from "./sensors/index.js";
+import { initUltraTechSensors, readyUltraTechSensors } from "./sensors/index.js";
 import { initStealth, readyStealth } from "./stealth/index.js";
 import { initSwarms, readySwarms } from "./swarms/index.js";
 import { initTransport, readyTransport } from "./transport/index.js";
@@ -125,7 +125,7 @@ function init(): void {
   initComputers(ruleKey("computers"));
   initSwarms();
   initStealth();
-  initSensors();
+  initUltraTechSensors({ communicators: ruleKey("communicators"), sensors: ruleKey("sensors") });
   initFabrication();
   initTransport();
   initAccessories();
@@ -167,7 +167,7 @@ function ready(api: GWorldApi): void {
   readyCybernetics(api, rule("cybernetics"));
   readyAgents(api, { biochemical: rule("biochemicalAgents"), nano: rule("nanoweapons") });
   readyMedical(api, { gear: rule("medicalGear"), drugs: rule("ultraTechDrugs"), regeneration: rule("regeneration") });
-  readySensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
+  readyUltraTechSensors(api, { communicators: rule("communicators"), sensors: rule("sensors") });
   readyInterfaces(api, rule("neuralInterfaces"));
   readyFabrication(api, { fabrication: rule("fabrication"), gravity: rule("gravityControl"), psi: rule("psiAmplifiers") });
   readyTransport(api, { vehicles: rule("vehicleSystems"), matterTransmission: rule("matterTransmission") });
