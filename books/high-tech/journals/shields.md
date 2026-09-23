@@ -1,0 +1,1 @@
+Shields were used in WWI trench warfare, and are still found in the hands of riot police and SWAT teams on the mean streets of the world’s metropolises. With the exception of riot officers, modern shield-bearers seldom use the Shield skill; they carry a shield strictly as cover (see p. B407). To interpret the table, see Shield Statistics (p. B287).

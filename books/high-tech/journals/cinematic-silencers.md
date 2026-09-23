@@ -1,0 +1,1 @@
+The suppressor rules aim to represent realistic sound levels – not the Hollywood fiction of near-silent gunshots. In a cinematic campaign, the GM may wish to improve silencer effectiveness dramatically, doubling or even tripling Hearing penalties!

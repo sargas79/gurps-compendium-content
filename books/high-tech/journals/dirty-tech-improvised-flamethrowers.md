@@ -1,0 +1,3 @@
+Flamethrowers are highly effective against certain enemies but nearly unobtainable outside the military – and even an army might not have any! A popular improvisation involves just a lighter and a spray can of flammable, pressurized liquid. Many hair sprays, spray paints, aerosol cleansers, and self-defense sprays (see Spray Guns and Aerosols, p. 180) will work, as will a liquor bottle with a spray cap.
+
+A makeshift flamethrower has Dmg 1d-2 burn and Range 1. It gives 1-5 seconds of flame, depending on container size. Few improvised fuels burn for more than 1-2 seconds on the victim. Malf. is 14; a malfunction usually means the flame fizzles out.

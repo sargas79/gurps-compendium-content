@@ -1,0 +1,5 @@
+Grenades fired from the muzzle of a rifle first appear at TL5. At TL6 and early TL7, most such weapons require a special launcher: a “spigot” or a “cup” affixed to the rifle’s muzzle. While this is present, the gun cannot fire normally. Attaching or detaching the launcher takes five seconds. With this device in place, the grenadier must typically load his rifle with a blank cartridge or other special round (three seconds), and then take out the grenade and place it on the launcher (two seconds). After that, the grenade is ready to launch!
+
+Some TL6-7 and most TL8 rifle grenades don’t rely on special cartridges for propulsion. Bullet-trap designs are launched by trapping a conventional service round (anything but an explosive bullet) in the tail. In bullet-through models, the bullet passes through the hollow grenade. These munitions also dispense with separate launchers; for instance, the majority of historical Western patterns could be fired from the muzzle of any rifle with a NATO-standardized flash-hider.
+
+In all cases, use the Guns (Grenade Launcher) skill to fire rifle grenades.

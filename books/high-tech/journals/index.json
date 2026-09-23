@@ -1,0 +1,2173 @@
+{
+  "pages": [
+    {
+      "id": "timeline",
+      "title": "Timeline",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT6-7",
+      "reference": "High-Tech pp. 6-7",
+      "file": "timeline.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech",
+      "title": "Dirty Tech",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT6",
+      "reference": "High-Tech p. 6",
+      "file": "dirty-tech.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "buying-equipment",
+      "title": "Buying Equipment",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT7",
+      "reference": "High-Tech p. 7",
+      "file": "buying-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "you-get-what-you-pay-for",
+      "title": "You Get What You Pay for",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT7",
+      "reference": "High-Tech p. 7",
+      "file": "you-get-what-you-pay-for.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-black-market",
+      "title": "The Black Market",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT7-9",
+      "reference": "High-Tech pp. 7-9",
+      "file": "the-black-market.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "new-perk-equipment-bond",
+      "title": "New Perk: Equipment Bond",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT7",
+      "reference": "High-Tech p. 7",
+      "file": "new-perk-equipment-bond.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "legality-and-antiques",
+      "title": "Legality and Antiques",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT8",
+      "reference": "High-Tech p. 8",
+      "file": "legality-and-antiques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wear-and-care",
+      "title": "Wear and Care",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT9",
+      "reference": "High-Tech p. 9",
+      "file": "wear-and-care.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "integrating-and-modifying-equipment",
+      "title": "Integrating and Modifying Equipment",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT9-10",
+      "reference": "High-Tech pp. 9-10",
+      "file": "integrating-and-modifying-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "combination-gadgets",
+      "title": "Combination Gadgets",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT10",
+      "reference": "High-Tech p. 10",
+      "file": "combination-gadgets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "adjusting-for-sm",
+      "title": "Adjusting for SM",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT10",
+      "reference": "High-Tech p. 10",
+      "file": "adjusting-for-sm.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "equipment-statistics",
+      "title": "Equipment Statistics",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT10-11",
+      "reference": "High-Tech pp. 10-11",
+      "file": "equipment-statistics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "equipment-bonuses",
+      "title": "Equipment Bonuses",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT11",
+      "reference": "High-Tech p. 11",
+      "file": "equipment-bonuses.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hp-ht-dr",
+      "title": "HP, HT, DR",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT11",
+      "reference": "High-Tech p. 11",
+      "file": "hp-ht-dr.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tech-level-specialization",
+      "title": "Tech-Level Specialization",
+      "chapter": "1. The Equipment Age",
+      "pages": "HT11",
+      "reference": "High-Tech p. 11",
+      "file": "tech-level-specialization.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "power",
+      "title": "Power",
+      "chapter": "2. Core Technologies",
+      "pages": "HT13",
+      "reference": "High-Tech p. 13",
+      "file": "power.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "batteries",
+      "title": "Batteries",
+      "chapter": "2. Core Technologies",
+      "pages": "HT13-14",
+      "reference": "High-Tech pp. 13-14",
+      "file": "batteries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-batteries",
+      "title": "Dirty Tech: Batteries",
+      "chapter": "2. Core Technologies",
+      "pages": "HT13",
+      "reference": "High-Tech p. 13",
+      "file": "dirty-tech-batteries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "generators",
+      "title": "Generators",
+      "chapter": "2. Core Technologies",
+      "pages": "HT14",
+      "reference": "High-Tech p. 14",
+      "file": "generators.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "energy-collectors",
+      "title": "Energy Collectors",
+      "chapter": "2. Core Technologies",
+      "pages": "HT15",
+      "reference": "High-Tech p. 15",
+      "file": "energy-collectors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "alcohol-still",
+      "title": "Alcohol Still",
+      "chapter": "2. Core Technologies",
+      "pages": "HT15",
+      "reference": "High-Tech p. 15",
+      "file": "alcohol-still.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-oil-refining",
+      "title": "Dirty Tech: Oil Refining",
+      "chapter": "2. Core Technologies",
+      "pages": "HT16",
+      "reference": "High-Tech p. 16",
+      "file": "dirty-tech-oil-refining.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-printed-page",
+      "title": "The Printed Page",
+      "chapter": "2. Core Technologies",
+      "pages": "HT17",
+      "reference": "High-Tech p. 17",
+      "file": "the-printed-page.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "books",
+      "title": "Books",
+      "chapter": "2. Core Technologies",
+      "pages": "HT17",
+      "reference": "High-Tech p. 17",
+      "file": "books.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "libraries",
+      "title": "Libraries",
+      "chapter": "2. Core Technologies",
+      "pages": "HT17-18",
+      "reference": "High-Tech pp. 17-18",
+      "file": "libraries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "computers",
+      "title": "Computers",
+      "chapter": "2. Core Technologies",
+      "pages": "HT19-20",
+      "reference": "High-Tech pp. 19-20",
+      "file": "computers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "computer-types",
+      "title": "Computer Types",
+      "chapter": "2. Core Technologies",
+      "pages": "HT20",
+      "reference": "High-Tech p. 20",
+      "file": "computer-types.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "customizing-hardware",
+      "title": "Customizing Hardware",
+      "chapter": "2. Core Technologies",
+      "pages": "HT20-21",
+      "reference": "High-Tech pp. 20-21",
+      "file": "customizing-hardware.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "terminals",
+      "title": "Terminals",
+      "chapter": "2. Core Technologies",
+      "pages": "HT21",
+      "reference": "High-Tech p. 21",
+      "file": "terminals.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "software",
+      "title": "Software",
+      "chapter": "2. Core Technologies",
+      "pages": "HT22",
+      "reference": "High-Tech p. 22",
+      "file": "software.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "computer-networks",
+      "title": "Computer Networks",
+      "chapter": "2. Core Technologies",
+      "pages": "HT20",
+      "reference": "High-Tech p. 20",
+      "file": "computer-networks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "computer-based-research",
+      "title": "Computer-Based Research",
+      "chapter": "2. Core Technologies",
+      "pages": "HT21",
+      "reference": "High-Tech p. 21",
+      "file": "computer-based-research.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tool-kits",
+      "title": "Tool Kits",
+      "chapter": "3. General Equipment",
+      "pages": "HT24",
+      "reference": "High-Tech p. 24",
+      "file": "tool-kits.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "tools-for-all-trades",
+      "title": "Tools for All Trades",
+      "chapter": "3. General Equipment",
+      "pages": "HT24",
+      "reference": "High-Tech p. 24",
+      "file": "tools-for-all-trades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "power-tools",
+      "title": "Power Tools",
+      "chapter": "3. General Equipment",
+      "pages": "HT26-28",
+      "reference": "High-Tech pp. 26-28",
+      "file": "power-tools.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "rescue-tools",
+      "title": "Rescue Tools",
+      "chapter": "3. General Equipment",
+      "pages": "HT29",
+      "reference": "High-Tech p. 29",
+      "file": "rescue-tools.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "propane",
+      "title": "Propane",
+      "chapter": "3. General Equipment",
+      "pages": "HT31",
+      "reference": "High-Tech p. 31",
+      "file": "propane.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "lead-poisoning",
+      "title": "Lead Poisoning",
+      "chapter": "3. General Equipment",
+      "pages": "HT33",
+      "reference": "High-Tech p. 33",
+      "file": "lead-poisoning.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "luxuries",
+      "title": "Luxuries",
+      "chapter": "3. General Equipment",
+      "pages": "HT34",
+      "reference": "High-Tech p. 34",
+      "file": "luxuries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "telegraph",
+      "title": "Telegraph",
+      "chapter": "3. General Equipment",
+      "pages": "HT36",
+      "reference": "High-Tech p. 36",
+      "file": "telegraph.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "telephone",
+      "title": "Telephone",
+      "chapter": "3. General Equipment",
+      "pages": "HT36-37",
+      "reference": "High-Tech pp. 36-37",
+      "file": "telephone.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "radio",
+      "title": "Radio",
+      "chapter": "3. General Equipment",
+      "pages": "HT37",
+      "reference": "High-Tech p. 37",
+      "file": "radio.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "radio-options",
+      "title": "Radio Options",
+      "chapter": "3. General Equipment",
+      "pages": "HT38-39",
+      "reference": "High-Tech pp. 38-39",
+      "file": "radio-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "radio-in-use",
+      "title": "Radio in Use",
+      "chapter": "3. General Equipment",
+      "pages": "HT38",
+      "reference": "High-Tech p. 38",
+      "file": "radio-in-use.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "active-sensors",
+      "title": "Active Sensors",
+      "chapter": "3. General Equipment",
+      "pages": "HT45-46",
+      "reference": "High-Tech pp. 45-46",
+      "file": "active-sensors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-sonar-and-radar-modes",
+      "title": "Special Sonar and Radar Modes",
+      "chapter": "3. General Equipment",
+      "pages": "HT46",
+      "reference": "High-Tech p. 46",
+      "file": "special-sonar-and-radar-modes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "passive-visual-sensors",
+      "title": "Passive Visual Sensors",
+      "chapter": "3. General Equipment",
+      "pages": "HT47",
+      "reference": "High-Tech p. 47",
+      "file": "passive-visual-sensors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optics",
+      "title": "Optics",
+      "chapter": "3. General Equipment",
+      "pages": "HT47",
+      "reference": "High-Tech p. 47",
+      "file": "optics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "night-vision-optics",
+      "title": "Night-Vision Optics",
+      "chapter": "3. General Equipment",
+      "pages": "HT47",
+      "reference": "High-Tech p. 47",
+      "file": "night-vision-optics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "thermographs",
+      "title": "Thermographs",
+      "chapter": "3. General Equipment",
+      "pages": "HT48",
+      "reference": "High-Tech p. 48",
+      "file": "thermographs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ir-illumination",
+      "title": "IR Illumination",
+      "chapter": "3. General Equipment",
+      "pages": "HT47",
+      "reference": "High-Tech p. 47",
+      "file": "ir-illumination.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "indirect-passive-sensors",
+      "title": "Indirect Passive Sensors",
+      "chapter": "3. General Equipment",
+      "pages": "HT48-49",
+      "reference": "High-Tech pp. 48-49",
+      "file": "indirect-passive-sensors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "expedition-gear",
+      "title": "Expedition Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT51",
+      "reference": "High-Tech p. 51",
+      "file": "expedition-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "lights",
+      "title": "Lights",
+      "chapter": "3. General Equipment",
+      "pages": "HT51-52",
+      "reference": "High-Tech pp. 51-52",
+      "file": "lights.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "navigation-instruments",
+      "title": "Navigation Instruments",
+      "chapter": "3. General Equipment",
+      "pages": "HT52-53",
+      "reference": "High-Tech pp. 52-53",
+      "file": "navigation-instruments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "load-bearing-gear",
+      "title": "Load-Bearing Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT53-54",
+      "reference": "High-Tech pp. 53-54",
+      "file": "load-bearing-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "humping-tramping-and-yomping",
+      "title": "Humping, Tramping, and Yomping",
+      "chapter": "3. General Equipment",
+      "pages": "HT55",
+      "reference": "High-Tech p. 55",
+      "file": "humping-tramping-and-yomping.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "climbing-and-mountaineering-gear",
+      "title": "Climbing and Mountaineering Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT55-56",
+      "reference": "High-Tech pp. 55-56",
+      "file": "climbing-and-mountaineering-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "survival-and-camping-gear",
+      "title": "Survival and Camping Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT56-59",
+      "reference": "High-Tech pp. 56-59",
+      "file": "survival-and-camping-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "maritime-gear",
+      "title": "Maritime Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT59-60",
+      "reference": "High-Tech pp. 59-60",
+      "file": "maritime-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "parachuting-gear",
+      "title": "Parachuting Gear",
+      "chapter": "3. General Equipment",
+      "pages": "HT60-61",
+      "reference": "High-Tech pp. 60-61",
+      "file": "parachuting-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "death-from-above",
+      "title": "Death from Above",
+      "chapter": "3. General Equipment",
+      "pages": "HT61",
+      "reference": "High-Tech p. 61",
+      "file": "death-from-above.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "clothing",
+      "title": "Clothing",
+      "chapter": "4. Defenses",
+      "pages": "HT62",
+      "reference": "High-Tech p. 62",
+      "file": "clothing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "clothing-types",
+      "title": "Clothing Types",
+      "chapter": "4. Defenses",
+      "pages": "HT63",
+      "reference": "High-Tech p. 63",
+      "file": "clothing-types.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "frostbite",
+      "title": "Frostbite",
+      "chapter": "4. Defenses",
+      "pages": "HT63",
+      "reference": "High-Tech p. 63",
+      "file": "frostbite.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "clothing-materials-and-technology",
+      "title": "Clothing Materials and Technology",
+      "chapter": "4. Defenses",
+      "pages": "HT64-65",
+      "reference": "High-Tech pp. 64-65",
+      "file": "clothing-materials-and-technology.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "high-tech-low-tech",
+      "title": "High-Tech Low-Tech",
+      "chapter": "4. Defenses",
+      "pages": "HT65",
+      "reference": "High-Tech p. 65",
+      "file": "high-tech-low-tech.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "armor-and-protective-gear",
+      "title": "Armor and Protective Gear",
+      "chapter": "4. Defenses",
+      "pages": "HT65",
+      "reference": "High-Tech p. 65",
+      "file": "armor-and-protective-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "body-armor",
+      "title": "Body Armor",
+      "chapter": "4. Defenses",
+      "pages": "HT65",
+      "reference": "High-Tech p. 65",
+      "file": "body-armor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "concealing-armor",
+      "title": "Concealing Armor",
+      "chapter": "4. Defenses",
+      "pages": "HT66",
+      "reference": "High-Tech p. 66",
+      "file": "concealing-armor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "limb-armor",
+      "title": "Limb Armor",
+      "chapter": "4. Defenses",
+      "pages": "HT67",
+      "reference": "High-Tech p. 67",
+      "file": "limb-armor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "footwear",
+      "title": "Footwear",
+      "chapter": "4. Defenses",
+      "pages": "HT68",
+      "reference": "High-Tech p. 68",
+      "file": "footwear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "my-sore-aching-feet",
+      "title": "My Sore, Aching Feet!",
+      "chapter": "4. Defenses",
+      "pages": "HT69",
+      "reference": "High-Tech p. 69",
+      "file": "my-sore-aching-feet.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hitting-em-where-it-hurts",
+      "title": "Hitting ’Em Where It Hurts",
+      "chapter": "4. Defenses",
+      "pages": "HT69",
+      "reference": "High-Tech p. 69",
+      "file": "hitting-em-where-it-hurts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ear-protection",
+      "title": "Ear Protection",
+      "chapter": "4. Defenses",
+      "pages": "HT70",
+      "reference": "High-Tech p. 70",
+      "file": "ear-protection.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "eye-protection",
+      "title": "Eye Protection",
+      "chapter": "4. Defenses",
+      "pages": "HT70",
+      "reference": "High-Tech p. 70",
+      "file": "eye-protection.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shields",
+      "title": "Shields",
+      "chapter": "4. Defenses",
+      "pages": "HT71",
+      "reference": "High-Tech p. 71",
+      "file": "shields.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-homemade-armor",
+      "title": "Dirty Tech: Homemade Armor",
+      "chapter": "4. Defenses",
+      "pages": "HT71",
+      "reference": "High-Tech p. 71",
+      "file": "dirty-tech-homemade-armor.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "environmental-protection",
+      "title": "Environmental Protection",
+      "chapter": "4. Defenses",
+      "pages": "HT72-74",
+      "reference": "High-Tech pp. 72-74",
+      "file": "environmental-protection.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "climate-controlled-clothing",
+      "title": "Climate-Controlled Clothing",
+      "chapter": "4. Defenses",
+      "pages": "HT74",
+      "reference": "High-Tech p. 74",
+      "file": "climate-controlled-clothing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "environment-suits",
+      "title": "Environment Suits",
+      "chapter": "4. Defenses",
+      "pages": "HT74-75",
+      "reference": "High-Tech pp. 74-75",
+      "file": "environment-suits.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "camouflage",
+      "title": "Camouflage",
+      "chapter": "4. Defenses",
+      "pages": "HT76-77",
+      "reference": "High-Tech pp. 76-77",
+      "file": "camouflage.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "firearms",
+      "title": "Firearms",
+      "chapter": "5. Weaponry",
+      "pages": "HT78",
+      "reference": "High-Tech p. 78",
+      "file": "firearms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "firearm-descriptions-and-statistics",
+      "title": "Firearm Descriptions and Statistics",
+      "chapter": "5. Weaponry",
+      "pages": "HT79",
+      "reference": "High-Tech p. 79",
+      "file": "firearm-descriptions-and-statistics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "firearm-quality",
+      "title": "Firearm Quality",
+      "chapter": "5. Weaponry",
+      "pages": "HT79",
+      "reference": "High-Tech p. 79",
+      "file": "firearm-quality.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-full-auto-conversions",
+      "title": "Dirty Tech: Full-Auto Conversions",
+      "chapter": "5. Weaponry",
+      "pages": "HT79",
+      "reference": "High-Tech p. 79",
+      "file": "dirty-tech-full-auto-conversions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "how-to-treat-your-gun",
+      "title": "How to Treat Your Gun",
+      "chapter": "5. Weaponry",
+      "pages": "HT79-81",
+      "reference": "High-Tech pp. 79-81",
+      "file": "how-to-treat-your-gun.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "malfunctions",
+      "title": "Malfunctions",
+      "chapter": "5. Weaponry",
+      "pages": "HT81",
+      "reference": "High-Tech p. 81",
+      "file": "malfunctions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "immediate-action",
+      "title": "Immediate Action",
+      "chapter": "5. Weaponry",
+      "pages": "HT81",
+      "reference": "High-Tech p. 81",
+      "file": "immediate-action.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "drawing-your-weapon",
+      "title": "Drawing Your Weapon",
+      "chapter": "5. Weaponry",
+      "pages": "HT81-82",
+      "reference": "High-Tech pp. 81-82",
+      "file": "drawing-your-weapon.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "who-draws-first",
+      "title": "Who Draws First?",
+      "chapter": "5. Weaponry",
+      "pages": "HT82",
+      "reference": "High-Tech p. 82",
+      "file": "who-draws-first.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shooting",
+      "title": "Shooting",
+      "chapter": "5. Weaponry",
+      "pages": "HT82",
+      "reference": "High-Tech p. 82",
+      "file": "shooting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "trigger-mechanisms",
+      "title": "Trigger Mechanisms",
+      "chapter": "5. Weaponry",
+      "pages": "HT82",
+      "reference": "High-Tech p. 82",
+      "file": "trigger-mechanisms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "automatic-weapons",
+      "title": "Automatic Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT82-83",
+      "reference": "High-Tech pp. 82-83",
+      "file": "automatic-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fanning-and-thumbing",
+      "title": "Fanning and Thumbing",
+      "chapter": "5. Weaponry",
+      "pages": "HT83-84",
+      "reference": "High-Tech pp. 83-84",
+      "file": "fanning-and-thumbing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fast-firing",
+      "title": "Fast-Firing",
+      "chapter": "5. Weaponry",
+      "pages": "HT84",
+      "reference": "High-Tech p. 84",
+      "file": "fast-firing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pistolero",
+      "title": "Pistolero",
+      "chapter": "5. Weaponry",
+      "pages": "HT84",
+      "reference": "High-Tech p. 84",
+      "file": "pistolero.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "precision-aiming",
+      "title": "Precision Aiming",
+      "chapter": "5. Weaponry",
+      "pages": "HT84",
+      "reference": "High-Tech p. 84",
+      "file": "precision-aiming.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ranged-rapid-strike",
+      "title": "Ranged Rapid Strike",
+      "chapter": "5. Weaponry",
+      "pages": "HT85",
+      "reference": "High-Tech p. 85",
+      "file": "ranged-rapid-strike.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "plinking-vs-combat-shooting",
+      "title": "Plinking vs. Combat Shooting",
+      "chapter": "5. Weaponry",
+      "pages": "HT85",
+      "reference": "High-Tech p. 85",
+      "file": "plinking-vs-combat-shooting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "special-shooting-situations",
+      "title": "Special Shooting Situations",
+      "chapter": "5. Weaponry",
+      "pages": "HT85",
+      "reference": "High-Tech p. 85",
+      "file": "special-shooting-situations.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sustained-fire",
+      "title": "Sustained Fire",
+      "chapter": "5. Weaponry",
+      "pages": "HT85-86",
+      "reference": "High-Tech pp. 85-86",
+      "file": "sustained-fire.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "after-the-firefight",
+      "title": "After the Firefight",
+      "chapter": "5. Weaponry",
+      "pages": "HT87",
+      "reference": "High-Tech p. 87",
+      "file": "after-the-firefight.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "reloading-your-gun",
+      "title": "Reloading Your Gun",
+      "chapter": "5. Weaponry",
+      "pages": "HT86-88",
+      "reference": "High-Tech pp. 86-88",
+      "file": "reloading-your-gun.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "careful-loading",
+      "title": "Careful Loading",
+      "chapter": "5. Weaponry",
+      "pages": "HT86",
+      "reference": "High-Tech p. 86",
+      "file": "careful-loading.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "black-powder-fouling",
+      "title": "Black-Powder Fouling",
+      "chapter": "5. Weaponry",
+      "pages": "HT86",
+      "reference": "High-Tech p. 86",
+      "file": "black-powder-fouling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "air-guns",
+      "title": "Air Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT88",
+      "reference": "High-Tech p. 88",
+      "file": "air-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ranged-electric-stunners",
+      "title": "Ranged Electric Stunners",
+      "chapter": "5. Weaponry",
+      "pages": "HT89-90",
+      "reference": "High-Tech pp. 89-90",
+      "file": "ranged-electric-stunners.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "non-repeating-pistols",
+      "title": "Non-Repeating Pistols",
+      "chapter": "5. Weaponry",
+      "pages": "HT90",
+      "reference": "High-Tech p. 90",
+      "file": "non-repeating-pistols.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "new-old-guns",
+      "title": "New Old Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT90",
+      "reference": "High-Tech p. 90",
+      "file": "new-old-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "revolvers",
+      "title": "Revolvers",
+      "chapter": "5. Weaponry",
+      "pages": "HT92",
+      "reference": "High-Tech p. 92",
+      "file": "revolvers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-improvised-guns",
+      "title": "Dirty Tech: Improvised Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT92",
+      "reference": "High-Tech p. 92",
+      "file": "dirty-tech-improvised-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "pistol-whipping",
+      "title": "Pistol Whipping",
+      "chapter": "5. Weaponry",
+      "pages": "HT93",
+      "reference": "High-Tech p. 93",
+      "file": "pistol-whipping.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "unsafe-revolvers",
+      "title": "“Unsafe” Revolvers",
+      "chapter": "5. Weaponry",
+      "pages": "HT93",
+      "reference": "High-Tech p. 93",
+      "file": "unsafe-revolvers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "semiautomatic-pistols",
+      "title": "Semiautomatic Pistols",
+      "chapter": "5. Weaponry",
+      "pages": "HT97",
+      "reference": "High-Tech p. 97",
+      "file": "semiautomatic-pistols.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disguised-firearms",
+      "title": "Disguised Firearms",
+      "chapter": "5. Weaponry",
+      "pages": "HT98",
+      "reference": "High-Tech p. 98",
+      "file": "disguised-firearms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shotguns",
+      "title": "Shotguns",
+      "chapter": "5. Weaponry",
+      "pages": "HT103",
+      "reference": "High-Tech p. 103",
+      "file": "shotguns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "exotic-shotgun-ammo",
+      "title": "Exotic Shotgun Ammo",
+      "chapter": "5. Weaponry",
+      "pages": "HT103",
+      "reference": "High-Tech p. 103",
+      "file": "exotic-shotgun-ammo.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "the-sawed-off-shotgun",
+      "title": "The Sawed-Off Shotgun",
+      "chapter": "5. Weaponry",
+      "pages": "HT106",
+      "reference": "High-Tech p. 106",
+      "file": "the-sawed-off-shotgun.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "muskets-and-rifles",
+      "title": "Muskets and Rifles",
+      "chapter": "5. Weaponry",
+      "pages": "HT107",
+      "reference": "High-Tech p. 107",
+      "file": "muskets-and-rifles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "minie-balls",
+      "title": "Minié Balls",
+      "chapter": "5. Weaponry",
+      "pages": "HT109",
+      "reference": "High-Tech p. 109",
+      "file": "minie-balls.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "submachine-guns",
+      "title": "Submachine Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT122",
+      "reference": "High-Tech p. 122",
+      "file": "submachine-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mechanical-machine-guns",
+      "title": "Mechanical Machine Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT127",
+      "reference": "High-Tech p. 127",
+      "file": "mechanical-machine-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "machine-guns-and-autocannon",
+      "title": "Machine Guns and Autocannon",
+      "chapter": "5. Weaponry",
+      "pages": "HT129",
+      "reference": "High-Tech p. 129",
+      "file": "machine-guns-and-autocannon.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "water-cooled-machine-guns",
+      "title": "Water-Cooled Machine Guns",
+      "chapter": "5. Weaponry",
+      "pages": "HT129",
+      "reference": "High-Tech p. 129",
+      "file": "water-cooled-machine-guns.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cannon",
+      "title": "Cannon",
+      "chapter": "5. Weaponry",
+      "pages": "HT138",
+      "reference": "High-Tech p. 138",
+      "file": "cannon.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "using-artillery",
+      "title": "Using Artillery",
+      "chapter": "5. Weaponry",
+      "pages": "HT139",
+      "reference": "High-Tech p. 139",
+      "file": "using-artillery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grenade-launchers",
+      "title": "Grenade Launchers",
+      "chapter": "5. Weaponry",
+      "pages": "HT142",
+      "reference": "High-Tech p. 142",
+      "file": "grenade-launchers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "grenade-launcher-ammo",
+      "title": "Grenade Launcher Ammo",
+      "chapter": "5. Weaponry",
+      "pages": "HT143",
+      "reference": "High-Tech p. 143",
+      "file": "grenade-launcher-ammo.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mortars",
+      "title": "Mortars",
+      "chapter": "5. Weaponry",
+      "pages": "HT145",
+      "reference": "High-Tech p. 145",
+      "file": "mortars.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "light-antitank-weapons",
+      "title": "Light Antitank Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT147",
+      "reference": "High-Tech p. 147",
+      "file": "light-antitank-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "backblast",
+      "title": "Backblast",
+      "chapter": "5. Weaponry",
+      "pages": "HT147",
+      "reference": "High-Tech p. 147",
+      "file": "backblast.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "guided-and-homing-missiles",
+      "title": "Guided and Homing Missiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT150-151",
+      "reference": "High-Tech pp. 150-151",
+      "file": "guided-and-homing-missiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "firearm-accessories",
+      "title": "Firearm Accessories",
+      "chapter": "5. Weaponry",
+      "pages": "HT153",
+      "reference": "High-Tech p. 153",
+      "file": "firearm-accessories.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "holsters-scabbards-and-slings",
+      "title": "Holsters, Scabbards, and Slings",
+      "chapter": "5. Weaponry",
+      "pages": "HT153",
+      "reference": "High-Tech p. 153",
+      "file": "holsters-scabbards-and-slings.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "magazine-modifications-and-reloading-aids",
+      "title": "Magazine Modifications and Reloading Aids",
+      "chapter": "5. Weaponry",
+      "pages": "HT155",
+      "reference": "High-Tech p. 155",
+      "file": "magazine-modifications-and-reloading-aids.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sights-and-aiming-aids",
+      "title": "Sights and Aiming Aids",
+      "chapter": "5. Weaponry",
+      "pages": "HT155",
+      "reference": "High-Tech p. 155",
+      "file": "sights-and-aiming-aids.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "sound-suppressors",
+      "title": "Sound Suppressors",
+      "chapter": "5. Weaponry",
+      "pages": "HT158-159",
+      "reference": "High-Tech pp. 158-159",
+      "file": "sound-suppressors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-home-built-suppressors",
+      "title": "Dirty Tech: Home-Built Suppressors",
+      "chapter": "5. Weaponry",
+      "pages": "HT159",
+      "reference": "High-Tech p. 159",
+      "file": "dirty-tech-home-built-suppressors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cinematic-silencers",
+      "title": "Cinematic Silencers",
+      "chapter": "5. Weaponry",
+      "pages": "HT159",
+      "reference": "High-Tech p. 159",
+      "file": "cinematic-silencers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "calibers",
+      "title": "Calibers",
+      "chapter": "5. Weaponry",
+      "pages": "HT161-163",
+      "reference": "High-Tech pp. 161-163",
+      "file": "calibers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-wounding-rules",
+      "title": "Optional Wounding Rules",
+      "chapter": "5. Weaponry",
+      "pages": "HT162",
+      "reference": "High-Tech p. 162",
+      "file": "optional-wounding-rules.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "propellants",
+      "title": "Propellants",
+      "chapter": "5. Weaponry",
+      "pages": "HT163",
+      "reference": "High-Tech p. 163",
+      "file": "propellants.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-home-made-powder-and-shot",
+      "title": "Dirty Tech: Home-Made Powder and Shot",
+      "chapter": "5. Weaponry",
+      "pages": "HT163",
+      "reference": "High-Tech p. 163",
+      "file": "dirty-tech-home-made-powder-and-shot.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ammunition-classes",
+      "title": "Ammunition Classes",
+      "chapter": "5. Weaponry",
+      "pages": "HT163-165",
+      "reference": "High-Tech pp. 163-165",
+      "file": "ammunition-classes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "black-powder-locks",
+      "title": "Black-Powder Locks",
+      "chapter": "5. Weaponry",
+      "pages": "HT164",
+      "reference": "High-Tech p. 164",
+      "file": "black-powder-locks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "cartridge-conversions",
+      "title": "Cartridge Conversions",
+      "chapter": "5. Weaponry",
+      "pages": "HT164",
+      "reference": "High-Tech p. 164",
+      "file": "cartridge-conversions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ammunition-upgrades",
+      "title": "Ammunition Upgrades",
+      "chapter": "5. Weaponry",
+      "pages": "HT165",
+      "reference": "High-Tech p. 165",
+      "file": "ammunition-upgrades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "projectile-options",
+      "title": "Projectile Options",
+      "chapter": "5. Weaponry",
+      "pages": "HT166",
+      "reference": "High-Tech p. 166",
+      "file": "projectile-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "adjusting-damage",
+      "title": "Adjusting Damage",
+      "chapter": "5. Weaponry",
+      "pages": "HT166",
+      "reference": "High-Tech p. 166",
+      "file": "adjusting-damage.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "kinetic-energy-projectiles",
+      "title": "Kinetic-Energy Projectiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT166-169",
+      "reference": "High-Tech pp. 166-169",
+      "file": "kinetic-energy-projectiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "exotic-bullets",
+      "title": "Exotic Bullets",
+      "chapter": "5. Weaponry",
+      "pages": "HT168",
+      "reference": "High-Tech p. 168",
+      "file": "exotic-bullets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "explosive-energy-projectiles",
+      "title": "Explosive-Energy Projectiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT169-170",
+      "reference": "High-Tech pp. 169-170",
+      "file": "explosive-energy-projectiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ejecting-cargo-projectiles",
+      "title": "Ejecting-Cargo Projectiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT171-172",
+      "reference": "High-Tech pp. 171-172",
+      "file": "ejecting-cargo-projectiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bursting-cargo-projectiles",
+      "title": "Bursting-Cargo Projectiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT172",
+      "reference": "High-Tech p. 172",
+      "file": "bursting-cargo-projectiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "multiple-projectiles",
+      "title": "Multiple Projectiles",
+      "chapter": "5. Weaponry",
+      "pages": "HT172-174",
+      "reference": "High-Tech pp. 172-174",
+      "file": "multiple-projectiles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "shot-sizes",
+      "title": "Shot Sizes",
+      "chapter": "5. Weaponry",
+      "pages": "HT173",
+      "reference": "High-Tech p. 173",
+      "file": "shot-sizes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "projectile-upgrades",
+      "title": "Projectile Upgrades",
+      "chapter": "5. Weaponry",
+      "pages": "HT174-175",
+      "reference": "High-Tech pp. 174-175",
+      "file": "projectile-upgrades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "handloading-and-reloading",
+      "title": "Handloading and Reloading",
+      "chapter": "5. Weaponry",
+      "pages": "HT174",
+      "reference": "High-Tech p. 174",
+      "file": "handloading-and-reloading.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ammunition-tables",
+      "title": "Ammunition Tables",
+      "chapter": "5. Weaponry",
+      "pages": "HT175",
+      "reference": "High-Tech p. 175",
+      "file": "ammunition-tables.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ammunition-interchangeability",
+      "title": "Ammunition Interchangeability",
+      "chapter": "5. Weaponry",
+      "pages": "HT178",
+      "reference": "High-Tech p. 178",
+      "file": "ammunition-interchangeability.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "flamethrowers",
+      "title": "Flamethrowers",
+      "chapter": "5. Weaponry",
+      "pages": "HT178",
+      "reference": "High-Tech p. 178",
+      "file": "flamethrowers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-improvised-flamethrowers",
+      "title": "Dirty Tech: Improvised Flamethrowers",
+      "chapter": "5. Weaponry",
+      "pages": "HT179",
+      "reference": "High-Tech p. 179",
+      "file": "dirty-tech-improvised-flamethrowers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "spray-guns-and-aerosols",
+      "title": "Spray Guns and Aerosols",
+      "chapter": "5. Weaponry",
+      "pages": "HT180",
+      "reference": "High-Tech p. 180",
+      "file": "spray-guns-and-aerosols.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "laser-weapons",
+      "title": "Laser Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT181",
+      "reference": "High-Tech p. 181",
+      "file": "laser-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "explosives-and-incendiaries",
+      "title": "Explosives and Incendiaries",
+      "chapter": "5. Weaponry",
+      "pages": "HT181",
+      "reference": "High-Tech p. 181",
+      "file": "explosives-and-incendiaries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "side-effects-of-explosions",
+      "title": "Side Effects of Explosions",
+      "chapter": "5. Weaponry",
+      "pages": "HT181-182",
+      "reference": "High-Tech pp. 181-182",
+      "file": "side-effects-of-explosions.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "explosive-destruction-of-materiel",
+      "title": "Explosive Destruction of Materiel",
+      "chapter": "5. Weaponry",
+      "pages": "HT182-183",
+      "reference": "High-Tech pp. 182-183",
+      "file": "explosive-destruction-of-materiel.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-skimming-nitro",
+      "title": "Dirty Tech: Skimming Nitro",
+      "chapter": "5. Weaponry",
+      "pages": "HT185",
+      "reference": "High-Tech p. 185",
+      "file": "dirty-tech-skimming-nitro.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-home-cooked-explosives",
+      "title": "Dirty Tech: Home-Cooked Explosives",
+      "chapter": "5. Weaponry",
+      "pages": "HT186",
+      "reference": "High-Tech p. 186",
+      "file": "dirty-tech-home-cooked-explosives.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "land-mines",
+      "title": "Land Mines",
+      "chapter": "5. Weaponry",
+      "pages": "HT189",
+      "reference": "High-Tech p. 189",
+      "file": "land-mines.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hand-grenades",
+      "title": "Hand Grenades",
+      "chapter": "5. Weaponry",
+      "pages": "HT190",
+      "reference": "High-Tech p. 190",
+      "file": "hand-grenades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-hand-grenade-booby-trap",
+      "title": "Dirty Tech: Hand-Grenade Booby Trap",
+      "chapter": "5. Weaponry",
+      "pages": "HT190",
+      "reference": "High-Tech p. 190",
+      "file": "dirty-tech-hand-grenade-booby-trap.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-improvised-grenades",
+      "title": "Dirty Tech: Improvised Grenades",
+      "chapter": "5. Weaponry",
+      "pages": "HT191",
+      "reference": "High-Tech p. 191",
+      "file": "dirty-tech-improvised-grenades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "rifle-grenades",
+      "title": "Rifle Grenades",
+      "chapter": "5. Weaponry",
+      "pages": "HT193",
+      "reference": "High-Tech p. 193",
+      "file": "rifle-grenades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "nuclear-weapons",
+      "title": "Nuclear Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT195",
+      "reference": "High-Tech p. 195",
+      "file": "nuclear-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "emp",
+      "title": "EMP",
+      "chapter": "5. Weaponry",
+      "pages": "HT196",
+      "reference": "High-Tech p. 196",
+      "file": "emp.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "fallout",
+      "title": "Fallout",
+      "chapter": "5. Weaponry",
+      "pages": "HT196",
+      "reference": "High-Tech p. 196",
+      "file": "fallout.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "building-a-nuclear-device",
+      "title": "Building a Nuclear Device",
+      "chapter": "5. Weaponry",
+      "pages": "HT196",
+      "reference": "High-Tech p. 196",
+      "file": "building-a-nuclear-device.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "battleaxes",
+      "title": "Battleaxes",
+      "chapter": "5. Weaponry",
+      "pages": "HT196",
+      "reference": "High-Tech p. 196",
+      "file": "battleaxes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "blades",
+      "title": "Blades",
+      "chapter": "5. Weaponry",
+      "pages": "HT196-197",
+      "reference": "High-Tech pp. 196-197",
+      "file": "blades.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bayonets",
+      "title": "Bayonets",
+      "chapter": "5. Weaponry",
+      "pages": "HT197",
+      "reference": "High-Tech p. 197",
+      "file": "bayonets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "blade-composition",
+      "title": "Blade Composition",
+      "chapter": "5. Weaponry",
+      "pages": "HT198",
+      "reference": "High-Tech p. 198",
+      "file": "blade-composition.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "optional-rule-sheaths",
+      "title": "Optional Rule: Sheaths",
+      "chapter": "5. Weaponry",
+      "pages": "HT198",
+      "reference": "High-Tech p. 198",
+      "file": "optional-rule-sheaths.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "clubs",
+      "title": "Clubs",
+      "chapter": "5. Weaponry",
+      "pages": "HT198",
+      "reference": "High-Tech p. 198",
+      "file": "clubs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "electric-stun-weapons",
+      "title": "Electric Stun Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT199",
+      "reference": "High-Tech p. 199",
+      "file": "electric-stun-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-improvised-melee-weapons",
+      "title": "Dirty Tech: Improvised Melee Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT199",
+      "reference": "High-Tech p. 199",
+      "file": "dirty-tech-improvised-melee-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bows-and-crossbows",
+      "title": "Bows and Crossbows",
+      "chapter": "5. Weaponry",
+      "pages": "HT201",
+      "reference": "High-Tech p. 201",
+      "file": "bows-and-crossbows.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "thrown-weapons",
+      "title": "Thrown Weapons",
+      "chapter": "5. Weaponry",
+      "pages": "HT201",
+      "reference": "High-Tech p. 201",
+      "file": "thrown-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "barriers-and-traps",
+      "title": "Barriers and Traps",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT202-204",
+      "reference": "High-Tech pp. 202-204",
+      "file": "barriers-and-traps.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "security-systems",
+      "title": "Security Systems",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT205-206",
+      "reference": "High-Tech pp. 205-206",
+      "file": "security-systems.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "eye-in-the-sky",
+      "title": "Eye in the Sky",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT207",
+      "reference": "High-Tech p. 207",
+      "file": "eye-in-the-sky.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "surveillance-and-tracking-devices",
+      "title": "Surveillance and Tracking Devices",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT208-210",
+      "reference": "High-Tech pp. 208-210",
+      "file": "surveillance-and-tracking-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "encryption",
+      "title": "Encryption",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT210",
+      "reference": "High-Tech p. 210",
+      "file": "encryption.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "code-breaking",
+      "title": "Code-Breaking",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT210-211",
+      "reference": "High-Tech pp. 210-211",
+      "file": "code-breaking.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "encryption-standards",
+      "title": "Encryption Standards",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT211",
+      "reference": "High-Tech p. 211",
+      "file": "encryption-standards.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "dirty-tech-homemade-surveillance-gear",
+      "title": "Dirty Tech: Homemade Surveillance Gear",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT210",
+      "reference": "High-Tech p. 210",
+      "file": "dirty-tech-homemade-surveillance-gear.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "countersurveillance",
+      "title": "Countersurveillance",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT211-212",
+      "reference": "High-Tech pp. 211-212",
+      "file": "countersurveillance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "electronic-signals-jamming",
+      "title": "Electronic Signals Jamming",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT212",
+      "reference": "High-Tech p. 212",
+      "file": "electronic-signals-jamming.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "jamming-cameras",
+      "title": "“Jamming” Cameras",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT212",
+      "reference": "High-Tech p. 212",
+      "file": "jamming-cameras.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "burglary",
+      "title": "Burglary",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT213",
+      "reference": "High-Tech p. 213",
+      "file": "burglary.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "forgery-and-counterfeiting",
+      "title": "Forgery and Counterfeiting",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT213",
+      "reference": "High-Tech p. 213",
+      "file": "forgery-and-counterfeiting.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "disguise-and-smuggling",
+      "title": "Disguise and Smuggling",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT214-215",
+      "reference": "High-Tech pp. 214-215",
+      "file": "disguise-and-smuggling.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "mule-pills",
+      "title": "Mule Pills",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT214",
+      "reference": "High-Tech p. 214",
+      "file": "mule-pills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "computer-intrusion",
+      "title": "Computer Intrusion",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT215",
+      "reference": "High-Tech p. 215",
+      "file": "computer-intrusion.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "lie-detection",
+      "title": "Lie Detection",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT215-216",
+      "reference": "High-Tech pp. 215-216",
+      "file": "lie-detection.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "forensics",
+      "title": "Forensics",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT216-217",
+      "reference": "High-Tech pp. 216-217",
+      "file": "forensics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "restraints",
+      "title": "Restraints",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT217",
+      "reference": "High-Tech p. 217",
+      "file": "restraints.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bomb-disposal",
+      "title": "Bomb Disposal",
+      "chapter": "6. Covert Ops and Security",
+      "pages": "HT217",
+      "reference": "High-Tech p. 217",
+      "file": "bomb-disposal.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "overview-medical-tech-levels-5-8",
+      "title": "Overview: Medical Tech Levels 5-8",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT219",
+      "reference": "High-Tech p. 219",
+      "file": "overview-medical-tech-levels-5-8.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "emergency-equipment",
+      "title": "Emergency Equipment",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT219",
+      "reference": "High-Tech p. 219",
+      "file": "emergency-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "airway",
+      "title": "Airway",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT219",
+      "reference": "High-Tech p. 219",
+      "file": "airway.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "breathing",
+      "title": "Breathing",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT219",
+      "reference": "High-Tech p. 219",
+      "file": "breathing.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "circulation",
+      "title": "Circulation",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT220",
+      "reference": "High-Tech p. 220",
+      "file": "circulation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "first-aid-kits-and-doctors-bags",
+      "title": "First Aid Kits and Doctor’s Bags",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT220-221",
+      "reference": "High-Tech pp. 220-221",
+      "file": "first-aid-kits-and-doctors-bags.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "miscellaneous-emergency-equipment",
+      "title": "Miscellaneous Emergency Equipment",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT221",
+      "reference": "High-Tech p. 221",
+      "file": "miscellaneous-emergency-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "hygiene-and-healthcare",
+      "title": "Hygiene and Healthcare",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT221",
+      "reference": "High-Tech p. 221",
+      "file": "hygiene-and-healthcare.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "medical-equipment",
+      "title": "Medical Equipment",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT221-223",
+      "reference": "High-Tech pp. 221-223",
+      "file": "medical-equipment.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "outbreak",
+      "title": "Outbreak!",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT222",
+      "reference": "High-Tech p. 222",
+      "file": "outbreak.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "surgery",
+      "title": "Surgery",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT223-224",
+      "reference": "High-Tech pp. 223-224",
+      "file": "surgery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "anesthesia",
+      "title": "Anesthesia",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT224",
+      "reference": "High-Tech p. 224",
+      "file": "anesthesia.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "antisepsis",
+      "title": "Antisepsis",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT225",
+      "reference": "High-Tech p. 225",
+      "file": "antisepsis.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "backyard-docs-and-body-shops",
+      "title": "Backyard Docs and Body Shops",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT224",
+      "reference": "High-Tech p. 224",
+      "file": "backyard-docs-and-body-shops.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "elective-surgery",
+      "title": "Elective Surgery",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT225",
+      "reference": "High-Tech p. 225",
+      "file": "elective-surgery.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "prosthetics",
+      "title": "Prosthetics",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT225",
+      "reference": "High-Tech p. 225",
+      "file": "prosthetics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "wheelchairs",
+      "title": "Wheelchairs",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT226",
+      "reference": "High-Tech p. 226",
+      "file": "wheelchairs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "drugs-and-poisons",
+      "title": "Drugs and Poisons",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT226",
+      "reference": "High-Tech p. 226",
+      "file": "drugs-and-poisons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "poisons",
+      "title": "Poisons",
+      "chapter": "7. Medical and Health Technology",
+      "pages": "HT227",
+      "reference": "High-Tech p. 227",
+      "file": "poisons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "transportation",
+      "title": "Transportation",
+      "chapter": "8. Transportation",
+      "pages": "HT228",
+      "reference": "High-Tech p. 228",
+      "file": "transportation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "vehicle-components",
+      "title": "Vehicle Components",
+      "chapter": "8. Transportation",
+      "pages": "HT228-229",
+      "reference": "High-Tech pp. 228-229",
+      "file": "vehicle-components.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "availability-of-combat-vehicles",
+      "title": "Availability of Combat Vehicles",
+      "chapter": "8. Transportation",
+      "pages": "HT229",
+      "reference": "High-Tech p. 229",
+      "file": "availability-of-combat-vehicles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "personal-conveyances",
+      "title": "Personal Conveyances",
+      "chapter": "8. Transportation",
+      "pages": "HT230-231",
+      "reference": "High-Tech pp. 230-231",
+      "file": "personal-conveyances.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "bicycles",
+      "title": "Bicycles",
+      "chapter": "8. Transportation",
+      "pages": "HT230",
+      "reference": "High-Tech p. 230",
+      "file": "bicycles.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "on-the-coach-across-america",
+      "title": "On the Coach Across America",
+      "chapter": "8. Transportation",
+      "pages": "HT232",
+      "reference": "High-Tech p. 232",
+      "file": "on-the-coach-across-america.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "inside-a-tl6-tank",
+      "title": "Inside a TL6 Tank",
+      "chapter": "8. Transportation",
+      "pages": "HT234",
+      "reference": "High-Tech p. 234",
+      "file": "inside-a-tl6-tank.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gunslinger",
+      "title": "Gun Advantages",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT249",
+      "reference": "High-Tech p. 249",
+      "file": "gunslinger.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gun-perks",
+      "title": "Gun Perks",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT249",
+      "reference": "High-Tech p. 249",
+      "file": "gun-perks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gun-skills",
+      "title": "Gun Skills",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT250",
+      "reference": "High-Tech p. 250",
+      "file": "gun-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gun-techniques",
+      "title": "Gun Techniques",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT250",
+      "reference": "High-Tech p. 250",
+      "file": "gun-techniques.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "targeted-attack",
+      "title": "Targeted Attack",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT252",
+      "reference": "High-Tech p. 252",
+      "file": "targeted-attack.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "gun-fu",
+      "title": "Gun Fu",
+      "chapter": "Appendix: Gunmen",
+      "pages": "HT252",
+      "reference": "High-Tech p. 252",
+      "file": "gun-fu.md",
+      "status": "reviewed"
+    }
+  ]
+}

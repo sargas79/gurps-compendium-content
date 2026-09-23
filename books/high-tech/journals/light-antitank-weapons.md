@@ -1,0 +1,5 @@
+At early TL7, the dominance of armored fighting vehicles spurs the development of light antitank weapons (LAWs) for infantry. Most designs use shaped-charge (HEAT) warheads, which are ideal for penetrating heavy armor even at maximum range. Alongside these warheads appear two man-portable means of delivering them: the rocket launcher and the recoilless rifle.
+
+An infantry rocket launcher consists of an unguided rocket fired from a lightweight tube. A recoilless rifle is a light cannon that’s open at both ends; this allows a blast of high-velocity gas vented out the back (known as counterblast) to balance the recoil of a shell fired out the front. Some TL8 weapons eject less-hazardous metal powder, plastic flakes, or water (called countermass) instead. See also Backblast (see box).
+
+Both types of LAW are light enough for one man to carry and fire – although often, an assistant carries spare ammo and helps reload. Rocket launchers are the cheaper and lighter of the two, while recoilless rifles are more accurate and tend to have a wider selection of ammo types. Weapons of both varieties are in widespread use throughout TL7-8.

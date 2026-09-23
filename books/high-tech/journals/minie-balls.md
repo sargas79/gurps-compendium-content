@@ -1,0 +1,5 @@
+The principal drawback of the muzzleloading rifle for military service is its slow loading speed. The bullet has to fit the bore tightly in order to take the rifling. However, a tight-fitting ball is difficult to load – especially in a bore fouled by firing.
+
+In 1847, French army officer Claude-Étienne Minié invented a hollow-based, conoidal bullet. It was smaller than the bore for quicker and easier loading (see Reloading Your Gun, p. 86). In the hollow base was a clay plug. The pressure of firing forced the plug into the base, expanding the lead to take the rifling. It was later shown that the plug was unnecessary – the propellant gases alone were sufficient to expand the base.
+
+Minié bullets – invariably called “minny balls” in America – were the standard solid projectiles in the great mid-19th century wars (Crimean War, Franco-Austrian War, American Civil War, and Indian Mutiny). However, its battlefield reign was short. Many armies adopted it in the early 1850s, but replaced it by the 1870s when new cartridge breechloaders appeared.

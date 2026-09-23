@@ -1,0 +1,7 @@
+At TL8, the preferred method for carrying drugs across heavily enforced borders is to have the courier – sometimes called a “mule” – swallow a “mule pill.” This is a packet constructed from the finger of a surgical glove sealed with paraffin. Each thumb-sized “pill” holds about half an ounce. Mules practice by swallowing grapes, eventually working up to 50, 100, or even 150 packets. After completing a run, the mule takes a laxative and passes the pellets over several hours. Nothing prevents smugglers from carrying cargoes other than drugs; indeed, counterterrorism experts fear that explosives could be carried onboard a plane this way.
+
+A mule must make a HT roll at -1 per 50 pellets swallowed. Success means the ruse works and the mule survives the ordeal. Failure results in an incident, such as passing pills too quickly or throwing some of them up. On a critical failure, a packet bursts, exposing the mule to its contents – often a lethal dose of cocaine or heroin.
+
+The pressure of the pills in the stomach causes cramps or more intense pain (see Afflictions, p. B428). The mule’s sweating and discomfort can tip off observers. To spot this, a screener must win a Quick Contest of Search or Observation against the mule’s Acting skill. An X-ray machine (pp. 217, 222-223) is more reliable: a successful Electronics Operation (Medical or Security) roll allows a Search attempt to detect the pellets in the mule’s digestive tract.
+
+A mule pill is $0.1, neg.

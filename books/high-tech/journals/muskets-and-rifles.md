@@ -1,0 +1,7 @@
+Both muskets and rifles are long-barreled firearms fired from the shoulder. The difference is in the barrel: a musket is a smoothbore, while a rifle uses a grooved (rifled) barrel that improves accuracy and power. Together, these long arms are the main TL5-8 infantry and sporting weapons.
+
+At TL5, the earlier muzzleloading musket coexists with the muzzleloading rifle until the rifle’s higher power, accuracy, and range retire the musket. Breechloading rifles – quicker to reload, and more convenient – are perfected by late TL5. Early manual repeating rifles, using a variety of actions, also appear late in the TL.
+
+At TL6, the manual repeating rifle is perfected. Semiautomatics follow, and then automatic rifles that offer both single shots and full-automatic fire. At TL7, this leads to the assault rifle – a weapon similar to the automatic rifle that fires an intermediate- or small-caliber round with less power and range but reduced recoil and weight. Assault rifles are the standard military shoulder arms of TL8, but many older actions and designs are still manufactured.
+
+Carbines are a subclass of muskets and rifles. They feature shorter barrels than comparable shoulder arms, and sometimes fire less-powerful ammunition. They’re intended for cavalry, artillery crews, sailors, and (at TL6-8) airborne and vehicle troops. From mid-TL7, the assault carbine – a short-barreled assault rifle – starts to replace the submachine gun (pp. 122-126) in many applications.

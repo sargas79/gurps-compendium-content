@@ -1,0 +1,1 @@
+Almost anything in this chapter might be valuable in a medical emergency, but gear for providing the “ABCs of resuscitation” (airway, breathing, and circulation) and treating shock is essential – and highly visible in adventure fiction. Except as noted, this equipment requires a First-Aid or Physician roll to use. Remember that First Aid defaults to Physician at no penalty.

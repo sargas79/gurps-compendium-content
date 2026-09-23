@@ -1,0 +1,9 @@
+Before the 1850s (mid-TL5), holsters were an item of horse furniture, not of human dress – cavalrymen slung a pair across the saddle pommel. Handguns were typically carried in a pocket or thrust through the belt. Large pistols, notably those issued by England’s Royal Navy and carried by Highland infantry, had flat spring hooks on one side to hold them in the belt. For a romp on Saturday night, cowboys tucked their Colt revolvers under their shirt, with the loading gate open; this prevented the gun from slipping any lower and facilitated a fast draw, if needed. Small pistols fit neatly in the side or tail pocket of a gentleman’s coat, or in a lady’s muff. They could even be tucked into the crown of a hat – a courtly doffing of the hat might be an assassin drawing his weapon!
+
+Holsters and scabbards protect firearms from the elements, help get them into action more quickly, and prevent them from being dropped or lost. Each model of gun requires its own specific holster or scabbard. Similar weapons may fit, at the GM’s discretion.
+
+Getting a pistol into or out of a holster takes one Ready maneuver. A successful Fast-Draw (Pistol) roll lets you draw a handgun as a free action; see Fast-Draw (p. 81). The Quick-Sheathe perk (p. 252) allows you to holster a weapon the same way.
+
+Unslinging or slinging a long arm takes two Ready maneuvers – or three, if the slung position is on the back. For unslinging, a successful Fast-Draw (Long Arm) roll reduces these times by a second. The Quick-Sheathe perk extends the benefits of Fast-Draw to slinging a weapon.
+
+For those trying to maintain a low profile while packing heat, holster design and placement can greatly affect the Holdout skill. The best hiding places are the hardest to reach. A gunman must choose between getting to his gun quickly and keeping it out of sight.

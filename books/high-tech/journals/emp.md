@@ -1,0 +1,5 @@
+Unshielded electronic equipment within the visual horizon of a nuclear explosion risks a surge effect that can incapacitate it. This side effect of a nuclear blast is termed electromagnetic pulse (EMP). The larger or more numerous the bombs, the greater the EMP; for example, a 10-megaton nuclear detonation 200 miles above the center of the continental U.S. would blanket the entire country in its pulse.
+
+Treat EMP as an Affliction that only affects electronics and those who have the Electrical disadvantage (p. B134). This effect is distinct from the surge modifier on the explosion’s burning damage! Every vulnerable target in the radius of the EMP suffers a HT-8(2) aff attack. A failed resistance roll means that item is knocked out of action until repaired. Affected solid-state technology is likely to be permanently damaged: all repair rolls are at -10. Repairs on other devices are at only -4.
+
+A variety of TL7-8 military hardware is shielded entirely against EMP. Fiber-optic systems are also immune. Other equipment can be protected by surrounding it with metal that is in turn grounded.

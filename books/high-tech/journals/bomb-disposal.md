@@ -1,0 +1,1 @@
+The work of explosive ordnance disposal (EOD) technicians, oft-romanticized in fiction, could form the basis of an exciting campaign. Beyond a flashlight (p. 52) and an EOD tool kit (costs and weighs as much as an Armoury kit; see Tool Kits, p. 24), two other items are important.

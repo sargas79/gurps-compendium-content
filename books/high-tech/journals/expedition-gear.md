@@ -1,0 +1,3 @@
+In 1804, Lewis and Clark’s Corps of Discovery set out to cross a continent. Along with them went two tons of equipment selected by Lewis and his patron, President Thomas Jefferson. Their list included 10 lbs. of fishhooks, a sextant, a chronometer, and four compasses. The group returned two and a half years and 8,000 miles later, having lost only one companion (to a ruptured appendix, an untreatable condition at the time).
+
+A century later, Norwegian explorer Roald Amundsen spent two years in the Antarctic and was the first to reach the South Pole – beating Englishman Robert Scott by a mere 35 days. All of Amundsen’s party returned safely; all of Scott’s perished. The deciding factor, according to Amundsen, was planning and equipment.

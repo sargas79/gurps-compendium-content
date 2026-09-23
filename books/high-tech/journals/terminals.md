@@ -1,0 +1,9 @@
+A computer requires at least one terminal. At TL7 especially, it’s possible that users might have terminals only, and rent time on networked systems.
+
+**Primitive Terminal (TL6).** This encompasses all varieties of paper-tape readers, typewriter-like card punches, automatic card sorters, and blinking display panels. A task performed on primitive terminal may take an hour or more simply to set up. Deciphering the results takes several minutes of sifting through the output. $5,000, 500 lbs., external power. LC4.
+
+**Workstation Terminal (TL7).** A standard desktop or office workstation, with a keyboard and a monitor (monochrome at TL7, color at TL8). It may include other accessories: mouse, speakers, microphone, digital camera, etc. Home systems at TL8 are generally medium computers with workstation terminals. Halve terminal weight. $500, 25 lbs., external power. LC4.
+
+**Portable Terminal (TL8).** A reduced-scale but fully functional keyboard and color video display. It includes accessories such as a wireless communicator for networking, a digital mini-camera, and a speaker/microphone. It’s adequate for most tasks, but the GM may rule that time-consuming or graphics-intensive tasks require a workstation terminal (above) to avoid a -1 penalty. It doesn’t require a separate power source, instead tapping a small amount of power from the attached computer. Notebook and laptop computers at TL8 are typically small or medium computers with portable terminals. $50, 0.5 lb. LC4.
+
+**Datapad (TL8).** A terminal for a PDA – including a tiny color video screen, a folding or laser-projection keyboard, and the accessories listed for a portable terminal (above). Complex tasks or those requiring use of the keyboard and screen for lengthy periods (GM’s option) are at -2 to skill. Powered by the computer to which it’s attached. $10, 0.05 lb. LC4.

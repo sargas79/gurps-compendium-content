@@ -1,0 +1,5 @@
+The submachine gun (SMG) is a TL6 development inspired by trench warfare, intended to give infantry a light automatic weapon for close-quarters combat. Like the pistol-carbine, the immediate forerunner of the SMG, the SMG uses low-powered rounds. This keeps weight down and allows accurate close-range fire. The SMG was initially dismissed as a weapon fit only for police and gangsters. By late TL6, it’s an important military small arm, invaluable for house-to-house fighting and jungle warfare, and issued to airborne troops and vehicle crews.
+
+Starting in early TL7, the assault rifle slowly replaces the SMG as a military weapon. The SMG continues to see widespread service into TL8 with police and security forces, however. Submachine guns at TL8 largely resemble the original archetypes but use lighter materials, offer better ergonomics, and have a wider selection of accessories.
+
+A uniquely TL8 innovation is the personal defense weapon (PDW). Similar to the SMG in size and use, the PDW was developed in response to body armor, its high-velocity, small-caliber rounds offering increased penetration.

@@ -1,0 +1,1 @@
+While neither as popular nor as essential as torso armor (pp. 65-67) and headgear (pp. 69-70), limb armor has occasionally found its way onto the modern battlefield. These items protect the entire length of the limb – and both its front and its back – unless specified otherwise. Exceptions use the notation explained in Hitting ’Em Where It Hurts (p. 69).
