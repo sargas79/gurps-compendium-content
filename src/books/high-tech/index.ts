@@ -31,8 +31,10 @@
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
  * guns, and household hazards, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
- * the eyes (pp. 7-11, 13-16, 17-22, 24-33, 50, 71, 79-93, 109, 127-141,
- * 143, 147-181, 249-252).
+ * the eyes, and the explosives and incendiaries: an explosion's side
+ * effects, demolition charges, unstable and home-made explosives, thermite
+ * and napalm (pp. 7-11, 13-16, 17-22, 24-33, 50, 71, 79-93, 109, 127-141,
+ * 143, 147-188, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -57,6 +59,7 @@ import { initTools, readyTools } from "./tools/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
 import { readyWounding } from "./wounding/index.js";
 import { projectorFields, readyProjectors } from "./projectors/index.js";
+import { readyExplosives } from "./explosives/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -145,6 +148,11 @@ const RULES = [
   { key: "flamethrowers", pages: "pp. 178-179", implemented: true },
   { key: "sprayGuns", pages: "p. 180", implemented: true },
   { key: "laserDazzlers", pages: "p. 181", implemented: true },
+  // Explosives and incendiaries.
+  { key: "explosionSideEffects", pages: "pp. 181-182", implemented: true },
+  { key: "demolitionCharges", pages: "pp. 182-183", implemented: true },
+  { key: "unstableExplosives", pages: "pp. 184-187", implemented: true },
+  { key: "incendiaryAgents", pages: "p. 188", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -227,6 +235,7 @@ function ready(api: GWorldApi): void {
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
   readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
+  readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") });
 }
 
 export const book: BookRules = {

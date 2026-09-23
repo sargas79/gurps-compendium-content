@@ -10,7 +10,7 @@
  *     fifth. The fuel then burns on the victim for 2d x 5 seconds (1d x 5 past
  *     1/2D), 1d burn a second on each of the victim's turns against the same
  *     fifth of their large-area DR, until it burns out or the GM takes the
- *     condition off. Played over an area up to three yards wide, as an
+ *     condition off (the lingering burn is `../burning.ts`'s). Played over an area up to three yards wide, as an
  *     All-Out Attack, damage and burning time are divided by the width.
  *     Unthickened fuel halves a TL7+ flamethrower's Range. A malfunction rolls
  *     the book's own table: no ignition, no fuel, or the tank exploding on
@@ -32,6 +32,7 @@
 import { bookOf } from "../../../shared/book-tables.js";
 import { DAZZLE_TABLES, blindnessFrom, eyeProtection } from "../../../shared/dazzle/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
 import {
   ANTI_LASER_GOGGLES,
   BACKPACK_FACING_PENALTY,
@@ -86,7 +87,6 @@ export function projectorFields(f: any): Record<string, unknown> {
 }
 
 const d6 = (): number => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
-const isActiveGm = () => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
 const rangedModes = (item: any): any[] => item?.system?.rangedModes ?? [];
 const meleeModes = (item: any): any[] => item?.system?.meleeModes ?? [];
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
@@ -161,11 +161,23 @@ function burningDr(api: GWorldApi, actor: any): number {
   return flameDr(large, sealed(api, actor));
 }
 
-const conditionId = `${MODULE_ID}.${BURN_CONDITION}`;
-const hasCondition = (api: GWorldApi, actor: any, id: string) => ((api.actors.conditions(actor) ?? []) as any[]).some((c) => c?.id === id);
 
 export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
   DAZZLE_TABLES.register(HT_DAZZLE);
+
+  // The fuel burning on a victim: 1d a second against a fifth of their large-area DR (p. 178).
+  const fuel: LingeringBurn = {
+    flag: BURN_FLAG,
+    condition: BURN_CONDITION,
+    on: on.flamethrowers,
+    title: () => L("Flame.Title"),
+    conditionLabel: (seconds) => F("Flame.Burning", { seconds }),
+    dice: BURN_PER_SECOND,
+    dr: (a, actor) => burningDr(a, actor),
+    secondLine: ({ name, roll, dr, injury }) => F("Flame.Second", { name, roll, dr, injury }),
+    burnedOutLine: (name) => F("Flame.BurnedOut", { name }),
+  };
+  registerLingeringBurn(api, fuel);
 
   api.sheets.registerSheetSection({
     module: MODULE_ID,
@@ -278,39 +290,8 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     const dice = Array.from({ length: burnDice(state.htFlameBeyondHalf === true) }, d6);
     const seconds = burnSeconds(dice, sweepWidth(state.htFlameSweep));
     if (seconds <= 0) return;
-    const left = Math.max(seconds, Number(victim.getFlag(MODULE_ID, BURN_FLAG)?.seconds) || 0);
-    await victim.setFlag(MODULE_ID, BURN_FLAG, { seconds: left });
-    await api.actors.applyCondition(victim, { module: MODULE_ID, key: BURN_CONDITION, label: F("Flame.Burning", { seconds: left }) });
+    await startBurn(api, victim, fuel, { seconds });
     await say(victim, L("Flame.Title"), [F("Flame.Burns", { name: String(victim.name ?? ""), seconds, dice: dice.join(", ") })]);
-  });
-
-  // Each second on the victim's turn: 1d burn against a fifth of their DR, until it burns out.
-  Hooks.on(api.combat.hooks.turnStart, async (_combat: any, combatant: any) => {
-    const actor = combatant?.actor;
-    if (!actor || !isActiveGm()) return;
-    const burning = actor.getFlag?.(MODULE_ID, BURN_FLAG);
-    if (!burning) return;
-    // Put out, or switched off: the GM took the condition off, or nobody plays the rule.
-    if (!on.flamethrowers() || !hasCondition(api, actor, conditionId)) {
-      await actor.unsetFlag(MODULE_ID, BURN_FLAG);
-      if (hasCondition(api, actor, conditionId)) await api.actors.removeCondition(actor, conditionId);
-      return;
-    }
-    const roll = Array.from({ length: BURN_PER_SECOND.dice }, d6).reduce((a, b) => a + b, BURN_PER_SECOND.adds);
-    const dr = burningDr(api, actor);
-    const injury = Math.max(0, roll - dr);
-    if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: L("Flame.Title") });
-    const left = Math.max(0, (Number(burning.seconds) || 0) - 1);
-    const lines = [F("Flame.Second", { name: String(actor.name ?? ""), roll, dr, injury })];
-    if (left > 0) {
-      await actor.setFlag(MODULE_ID, BURN_FLAG, { seconds: left });
-      await api.actors.applyCondition(actor, { module: MODULE_ID, key: BURN_CONDITION, label: F("Flame.Burning", { seconds: left }) });
-    } else {
-      await actor.unsetFlag(MODULE_ID, BURN_FLAG);
-      await api.actors.removeCondition(actor, conditionId);
-      lines.push(F("Flame.BurnedOut", { name: String(actor.name ?? "") }));
-    }
-    await say(actor, L("Flame.Title"), lines);
   });
 
   /** The tank goes up: one second's damage to everything within two yards of the firer (p. 179). */
