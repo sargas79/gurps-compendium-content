@@ -5089,6 +5089,22 @@
         "rations": {
           "Name": "Snacks and sports drinks",
           "Hint": "A snack or sports drink's row button eats one, taking it off the count: it counts as a decent meal on the next rest (+1 FP, the Rest dialog's meal box), and a sports drink as a quart of water for the day's rations (High-Tech p. 35)."
+        },
+        "grenadeHandling": {
+          "Name": "Hand grenades",
+          "Hint": "A TL6-8 grenade is primed before use (10 seconds each; a TL5 grenade's fuse takes five Readies to fit), then armed with a Ready (two for a stick grenade) before it is thrown. A pin grenade's fuse starts when the handle flies off: cook it off on the sheet, and the throw says how long is left and whether anyone has time to throw it back; one held too long goes off in the hand, and a critical failure drops it. Also booby traps (Soldier or Traps+4), improvised grenades, a Molotov through an engine grating, smoke and WP clouds, WP's burning fragments, the AN-M14 as thermite, and flashbangs resisted at +5 for each of Protected Hearing and Vision, their stun recovered at HT-5 (High-Tech pp. 190-193)."
+        },
+        "landMines": {
+          "Name": "Land mines",
+          "Hint": "Placing a mine (Explosives (Demolition)+4, Soldier or Traps+2; improvised, Explosives (Demolition)-2), probing for one (Explosives (EOD) or Soldier-5) and disarming it (Explosives (EOD); the TMi35's anti-lifting fuse at -2, any failure setting it off). A bounding mine's fragments are rolled on their own card, and whoever is flat on the ground takes none. A Claymore attacks everyone targeted at skill 9 plus its rapid-fire bonus, less range, nearest first, until its 700 pellets are spent (High-Tech pp. 189-190)."
+        },
+        "rifleGrenades": {
+          "Name": "Rifle grenades",
+          "Hint": "A rifle grenade is fired only once it is on a rifle: 5 seconds to fit a spigot or cup launcher, 3 to load the blank, 2 to put the grenade on. The rifle can't fire normally with the launcher on, and the grenade's Bulk is added to the rifle's. Inside its minimum range it doesn't arm: fire the dud row, 1d+1 crushing and no blast, as for one that fails to go off (High-Tech pp. 193-194)."
+        },
+        "nuclearEffects": {
+          "Name": "Nuclear weapons",
+          "Hint": "A nuclear blast's burning is divided by twice the distance, and its flash always calls for the HT roll. EMP (a row action) is an HT-8(2) affliction on the Electrical and the electronics the targets carry: what fails is out until repaired, at -10 for solid-state gear and -4 for older devices. Fallout (a row action) gives the footprint for the yield and doses the targets with the rads for their hours in it: 100 an hour at first, 10 after two days, 1 after two weeks (High-Tech pp. 195-196)."
         }
       },
       "Gadget": {
@@ -7323,6 +7339,199 @@
         "EatAction": "Eat or drink",
         "SnackEaten": "{name} has a {item}: it counts as a decent meal on the next rest, +{fp} FP.",
         "DrinkWater": "It also counts as a quart of water for the day's rations."
+      },
+      "Ordnance": {
+        "NoSkill": "Knows none of: {skills}.",
+        "SkillModifier": "{skill}",
+        "Seconds": "{n} seconds",
+        "SecondsRange": "{least}-{most} seconds",
+        "Prime": "Prime",
+        "Primed": "Primes {count}: {seconds} seconds putting grenade and detonator together.",
+        "FuseFitted": "Fits the fuse to {count}: {seconds} seconds (five Readies each).",
+        "Arm": "Arm",
+        "Armed": {
+          "pin": "Pulls the pin on the {name} (Ready maneuvers: {readies}). The fuse starts when the handle flies off.",
+          "string": "Pulls the cord on the {name} (Ready maneuvers: {readies}). The fuse is burning.",
+          "lit": "Lights the {name}'s fuse (Ready maneuvers: {readies})."
+        },
+        "NotPrimed": "The {name} isn't primed: prime it first (10 seconds a grenade at TL6-8).",
+        "NotArmed": "The {name} isn't armed: pull the pin, pull the cord or light the fuse first (a Ready maneuver).",
+        "NoLightingInRain": "A fuse can't be lit in rain.",
+        "FuseBurning": "Fuse: {fuse}.",
+        "FuseUnknownShort": "a fuse the GM sets",
+        "Cook": "Cook off",
+        "Cooking": "The handle flies off: the fuse ({fuse}) is burning. Wait, then throw.",
+        "Safe": "Pin back in",
+        "PinBack": "Puts the pin back in.",
+        "Rpg43Technique": "Knows the RPG-43's throw",
+        "Rpg43Unfamiliar": "RPG-43 throw, unfamiliar",
+        "Impact": "Impact fuse: it goes off where it lands.",
+        "ImpactDropped": "Impact fuse: dropped, it goes off at the thrower's feet.",
+        "FuseUnknown": "The fuse is the GM's to time.",
+        "FuseLeft": "{burned} seconds of fuse gone before the throw: it goes off in {least}-{most} seconds.",
+        "ThrowBack": "Long enough for a foe to pick it up (a Ready) and throw it back (p. B410).",
+        "NoThrowBack": "Too little fuse left for anyone to throw it back.",
+        "Dropped": "Critical failure: the {name} is dropped at the thrower's feet.",
+        "DroppedPickUp": "There is time to pick it up again (a Ready) and throw it.",
+        "DroppedNoTime": "There is no time to pick it up.",
+        "InHand": "{name} held the {grenade} too long: it goes off in the hand.",
+        "InHandLabel": "{name}, in the hand",
+        "BoobyTrap": "Booby trap",
+        "BoobyTrapRoll": "Rigging the {name} as a booby trap",
+        "BoobyTrapSet": "The {name} is rigged on a tripwire ({minutes} minutes' work).",
+        "BoobyTrapFailed": "The {name} isn't rigged right ({minutes} minutes spent).",
+        "Improvise": "Make",
+        "ImproviseFuse": "Make the fuse from scratch too",
+        "ImproviseHint": "Explosives (Demolition) and 10 minutes a grenade; making a fuse is Explosives (Demolition)+2.",
+        "ImproviseFuseRoll": "Making a fuse for the {name}",
+        "ImproviseFuseFailed": "The fuse won't work.",
+        "ImproviseRoll": "Making the {name}",
+        "Improvised": "The {name} is made ({minutes} minutes).",
+        "ImproviseFailed": "The {name} is a dud ({minutes} minutes spent).",
+        "Engine": {
+          "Action": "Engine fire",
+          "Title": "Molotov through the engine grating",
+          "Ht": "Vehicle's HT",
+          "Hint": "A hit through an unprotected engine grating is a vital-area hit, at {penalty} to hit. The vehicle rolls HT at once and every 3 seconds until the fire burns out.",
+          "TheVehicle": "The vehicle",
+          "Burns": "The fire in {vehicle}'s engine burns for {seconds} seconds.",
+          "CheckMade": "Second {second}: HT roll {roll} against {ht}, made.",
+          "CheckFailed": "Second {second}: HT roll {roll} against {ht}, failed.",
+          "runs": "{vehicle}'s engine keeps running.",
+          "brokenDown": "{vehicle}'s engine breaks down.",
+          "destroyed": "{vehicle}'s engine catches fire: it is destroyed."
+        },
+        "CloudVision": "Smoke ({value})",
+        "CloudSensors": "Smoke (sensors)",
+        "CloudPlaced": "Smoke fills a {radius}-yard radius for {seconds} seconds.",
+        "CloudNoPlace": "No scene or spot to put the cloud on: place a template or target a token.",
+        "FlashbangHearing": "Protected Hearing",
+        "FlashbangVision": "Protected Vision",
+        "FlashbangRecovery": "Flashbang stun",
+        "FlashbangStunned": "{name} is stunned: recovery rolls are at HT-5.",
+        "Mine": {
+          "Task": "Mine work",
+          "TaskLabel": "Task",
+          "Tasks": {
+            "place": "Place it",
+            "improvised": "Place an improvised mine",
+            "probe": "Probe for it",
+            "disarm": "Disarm it"
+          },
+          "AntiLifting": "Anti-lifting fuse ({penalty}; any failure sets it off)",
+          "AntiLiftingLine": "Anti-lifting fuse",
+          "Tamper": "Anti-tamper penalty",
+          "TamperLine": "Anti-tamper device",
+          "TaskHint": "Placing: Explosives (Demolition)+4, Soldier or Traps+2; improvised: Explosives (Demolition)-2. Probing: Explosives (EOD) or Soldier-5. Disarming: Explosives (EOD). A metal detector finds some buried mines, but not plastic or wooden ones.",
+          "Roll": {
+            "place": "Placing the {name}",
+            "improvised": "Placing an improvised {name}",
+            "probe": "Probing for the {name}",
+            "disarm": "Disarming the {name}"
+          },
+          "Result": {
+            "place": {
+              "success": "The {name} is in place.",
+              "failure": "The {name} isn't set right."
+            },
+            "improvised": {
+              "success": "The {name} is in place.",
+              "failure": "The {name} isn't set right."
+            },
+            "probe": {
+              "success": "The probe finds the {name}.",
+              "failure": "The probe misses the {name}."
+            },
+            "disarm": {
+              "success": "The {name} is disarmed.",
+              "failure": "The {name} isn't disarmed."
+            }
+          },
+          "GoesOff": "The {name} goes off!",
+          "SetOff": "Set off",
+          "Blast": "{name} goes off",
+          "Pdm": "An M86 PDM puts out its tripwires after 25 seconds and is armed {arms} seconds after it is dropped; left alone it destroys itself after {hours} hours.",
+          "BoundingTitle": "Bounding mine",
+          "BoundingFragments": "{name}'s fragments [{fragments}], five feet up",
+          "BoundingCard": "The burst is five feet up: whoever drops flat at once takes none of its fragments (Dodge and Drop, p. B377). Drop them before the fragments are applied.",
+          "DropButton": "The targeted drop flat",
+          "DroppedFlat": "Flat on the ground:",
+          "Flat": "{name} is flat on the ground: the fragments pass overhead.",
+          "BoundingNote": "Bounding",
+          "BoundingHint": "Its fragments come from Set off, on their own card: whoever is flat on the ground takes none.",
+          "PelletsNote": "Shotload",
+          "PelletsHint": "At basic skill {skill}; Set off resolves everyone targeted, nearest first, until the pellets are spent.",
+          "NoTargets": "Target those in the mine's cone first.",
+          "VolleyTitle": "{name}: who is in the cone",
+          "VolleyHint": "Yards from the mine to each (the mine's token, where it has one). Past {max} yards nothing is hit.",
+          "Fire": "Fire",
+          "Row": "{distance} yd, skill {skill}, rolled {roll}",
+          "RowHalf": "{distance} yd (past 1/2D), skill {skill}, rolled {roll}",
+          "Hits": "{hits} hits (by {margin})",
+          "Miss": "missed (by {margin})",
+          "Missed": {
+            "range": "out of range",
+            "spent": "the pellets are spent"
+          },
+          "VolleyCard": "Pellets left:",
+          "RollDamage": "Roll hits",
+          "HitsLanded": "Hits after the Dodge",
+          "DodgeHint": "A successful Dodge stops one hit, plus one per point of margin.",
+          "PelletLabel": "{name}: pellet {n} of {of} on {target}",
+          "Rolled": "({hits} rolled)"
+        },
+        "Rifle": {
+          "Ready": "Ready on a rifle",
+          "Which": "Rifle",
+          "Fitted": "The {launcher} is on already",
+          "Launcher": {
+            "spigot": "spigot launcher",
+            "cup": "cup launcher"
+          },
+          "ReadyHint": "Fitting a launcher takes {launcher} seconds, loading the blank {blank}, putting the grenade on {grenade}.",
+          "NoRifle": "No rifle to put it on.",
+          "Readied": "The {name} goes on the {rifle}: {seconds} seconds.",
+          "LauncherOn": "The {launcher} is fitted: the rifle can't fire normally until it comes off.",
+          "Blank": "Loaded with a blank to launch it.",
+          "BulletTrap": "Fired with an ordinary round, trapped in its tail.",
+          "LauncherOff": "Launcher off",
+          "LauncherTakenOff": "The launcher comes off: {seconds} seconds.",
+          "LauncherFitted": "A grenade launcher is fitted: the rifle can't fire normally until it comes off (5 seconds).",
+          "NotReadied": "The {name} isn't on a rifle: ready it on one first.",
+          "InsideMinimum": "{yards} yards is inside the {minimum}-yard minimum range: the grenade won't arm. Fire the dud row ({damage} cr) for that.",
+          "Dud": "Dud",
+          "DudHint": "Inside its minimum range, or failing to go off, a rifle grenade does 1d+1 crushing and nothing more (High-Tech p. 194).",
+          "DudSpent": "The grenade is spent: take it off the count."
+        },
+        "Nuclear": {
+          "Emp": "EMP",
+          "EmpGo": "Pulse",
+          "EmpHint": "HT{modifier}({divisor}) against the targeted: the Electrical roll HT, and each ticked piece of gear its object HT, at +1 per 2 DR. What fails is out until repaired.",
+          "Electrical": "Electrical",
+          "NoTargets": "Target those the pulse or fallout reaches first.",
+          "EmpDown": "{name}: rolled {roll} against {target}, knocked out until repaired.",
+          "EmpResisted": "{name}: rolled {roll} against {target}, shrugs off the pulse.",
+          "GearHolds": "{name}'s {gear}: rolled {roll} against {target}, unharmed.",
+          "GearOut": "{name}'s {gear}: rolled {roll} against {target}, knocked out until repaired (at {penalty}).",
+          "EmpMalfunction": "Knocked out by EMP",
+          "Repair": "Repair (EMP)",
+          "RepairRoll": "Repairing the {gear}",
+          "RepairLine": "EMP damage",
+          "Repaired": "It works again.",
+          "NotRepaired": "Not yet.",
+          "UseRepair": "Knocked out by EMP: use its Repair (EMP) action.",
+          "Fallout": "Fallout",
+          "FalloutGo": "Dose",
+          "Yield": "Yield (kilotons)",
+          "HoursAfter": "Hours after the blast",
+          "HoursIn": "Hours in the footprint",
+          "Protection": "Protection factor",
+          "FalloutHint": "Only a ground burst leaves fallout. Everyone targeted takes the dose, through their protection factor.",
+          "Footprint": "At {kt} kilotons the footprint is {length} yards long and {width} wide, drifting downwind.",
+          "Rate": "{rate} rads an hour, {hours} hours after the blast.",
+          "Dose": "{rads} rads over {hours} hours.",
+          "Dosed": "{name}: {rads} rads (protection factor {pf})."
+        }
       }
     },
     "Backblast": {

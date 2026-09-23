@@ -1,0 +1,10 @@
+{{!-- A bounding mine's burst, five feet up (High-Tech p. 189): whoever drops flat at once takes none of its fragments. --}}
+<div class="gc-head"><span class="gc-label">{{localize "GCC.HT.Ordnance.Mine.BoundingTitle"}}</span></div>
+<div class="gc-result">{{name}}</div>
+<div class="gc-note">{{localize "GCC.HT.Ordnance.Mine.BoundingCard"}}</div>
+{{#if dropped.length}}
+  <div class="gc-note">{{localize "GCC.HT.Ordnance.Mine.DroppedFlat"}} {{#each dropped}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}</div>
+{{/if}}
+<div class="gc-apply">
+  <button type="button" class="gc-apply-button" data-addon-card-action="drop">{{localize "GCC.HT.Ordnance.Mine.DropButton"}}</button>
+</div>
