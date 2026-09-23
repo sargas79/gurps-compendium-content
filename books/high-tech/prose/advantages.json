@@ -1,10 +1,122 @@
 [
   {
+    "_id": "682b55c60986ebb2",
+    "name": "Armorer's Gift",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced assembly and disassembly drills on a gun until you can do it in your sleep. Roll against the relevant Armoury or Guns specialty to accomplish this in record time: 10 seconds for a handgun, 30 for a rifle or a submachine gun, or 60 for a machine gun. The conditions are unimportant - you can do this upside down, blindfolded, underwater, etc. You also get +2 on rolls for Immediate Action (p. 81). You must specialize by Guns skill.</p>"
+  },
+  {
+    "_id": "ccec41565c9aeeff",
+    "name": "Quick Sheathe",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced holstering your gun quickly. A successful Fast-Draw roll lets you stow your firearm as quickly as it would allow you to draw it; see Holsters, Scabbards, and Slings (pp. 153-154). Specialties match those for Fast-Draw (p. B194): Quick-Sheathe (Long Arm) and Quick-Sheathe (Pistol). The latter is common among two-gun pistoleros.</p>"
+  },
+  {
+    "_id": "a2358a1005452c01",
+    "name": "Quick-Swap",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've perfected the art of juggling a one-handed weapon between hands. Once per turn, on your turn, you can switch hands as a free action. The receiving hand must be empty. However, Old West shootists often draw two handguns but only fire the one in their dominant hand, and then swap pistols once that gun is empty - a feat called \"crossing the border.\" Quick-Swap lets a gunman do this in one second instead of two. You must specialize by weapon skill: Quick-Swap (Pistol), Quick-Swap (Throwing), etc.</p>"
+  },
+  {
+    "_id": "0df8539adc349138",
+    "name": "Shtick",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As noted under Shtick (p. B101), a \"cool move\" that provides no combat bonuses is a valid perk if it might occasionally be useful. An example is twirling a handgun around your trigger finger, spinning a pistol presented butt-first (usually to surrender it) to shooting position instantly. Roll against Guns or DX to perform the Shtick without dropping the gun, firing accidentally, etc.</p>"
+  },
+  {
+    "_id": "6931972c9d9ac1b7",
+    "name": "Sure-Footed",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've studied low, stable stances for fighting on shaky ground. This lets you ignore the -2 to attack for a specific type of bad footing. You must specialize. Sure-Footed (Slippery) covers mud, oil, and blood. Sure-Footed (Uneven) covers rocks, piles of corpses, etc. Sure-Footed (Naval Training) covers fighting on a rocking ship or boat. The GM may allow other versions.</p>"
+  },
+  {
+    "_id": "fc71f84c6f07dacc",
+    "name": "Sure-Footed (Slippery)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've studied low, stable stances for fighting on shaky ground. This lets you ignore the -2 to attack for a specific type of bad footing. You must specialize. Sure-Footed (Slippery) covers mud, oil, and blood. Sure-Footed (Uneven) covers rocks, piles of corpses, etc. Sure-Footed (Naval Training) covers fighting on a rocking ship or boat. The GM may allow other versions.</p>"
+  },
+  {
+    "_id": "fb6921f8a73a0b9c",
+    "name": "Sure-Footed (Uneven)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've studied low, stable stances for fighting on shaky ground. This lets you ignore the -2 to attack for a specific type of bad footing. You must specialize. Sure-Footed (Slippery) covers mud, oil, and blood. Sure-Footed (Uneven) covers rocks, piles of corpses, etc. Sure-Footed (Naval Training) covers fighting on a rocking ship or boat. The GM may allow other versions.</p>"
+  },
+  {
+    "_id": "508994a157aba511",
+    "name": "Sure-Footed (Naval Training)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've studied low, stable stances for fighting on shaky ground. This lets you ignore the -2 to attack for a specific type of bad footing. You must specialize. Sure-Footed (Slippery) covers mud, oil, and blood. Sure-Footed (Uneven) covers rocks, piles of corpses, etc. Sure-Footed (Naval Training) covers fighting on a rocking ship or boat. The GM may allow other versions.</p>"
+  },
+  {
+    "_id": "4f7ee60a8e022f60",
+    "name": "Weapon Bond",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You own a weapon that's uniquely suited to you. Its quality might be no better than normal, but when you use it, you're at +1 to effective skill and all techniques based on that skill. This isn't a mystical attunement, nor does it require a specially modified weapon; it's a physical matter of balance, fit to your hand, and intimate familiarity.</p><p>You can have a bond to a weapon of any type or quality - even modern, mass-produced firearms display individual quirks and qualities to which an owner may bond. The bond changes neither the weapon nor its price. If the weapon is lost or destroyed, the bond doesn't transfer to a new weapon (not even one from the exact same production batch!), although you can buy a new Weapon Bond in play. To avoid such fates, buy the weapon as Signature Gear (p. B85).</p><p>Fictional examples include Indiana Jones' bullwhip and Hellboy's Samaritan revolver. Lara Croft's twin H&amp;K USP pistols qualify, too - but two weapons require two Weapon Bonds! This perk needn't be cinematic; consider Texas Ranger Frank Hamer's Colt M1873, \"Old Lucky.\"</p>"
+  },
+  {
+    "_id": "a21948298e542ccd",
+    "name": "Akimbo",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're not restricted by having two hands full of weapons (usually guns!). You can open doors, reload, and so forth without putting anything down. This doesn't help you fight using a weapon in either hand - take Ambidexterity (p. B39), Dual-Weapon Attack (p. B230), and/or Off-Hand Weapon Training (p. B232) for that. You must specialize by skill, most often Guns (Pistol).</p>"
+  },
+  {
+    "_id": "421d7e3997e7da47",
+    "name": "Cross-Trained",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You're familiar with all makes and models within a particular Guns specialty - you can pick up any such weapon and fire it at no penalty for unfamiliarity (see p. B169). A slightly toned-down version that covers only most types is appropriate for realistic special-ops soldiers who have access to numerous foreign firearms for familiarization. \"Special-ops training\" replaces Gunslinger or Trained by a Master as the prerequisite. The GM decides what constitutes such training and which guns it covers.</p>"
+  },
+  {
+    "_id": "0d7ea7a378d2fbc4",
+    "name": "One-Armed Bandit",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Like Marshall \"Rooster\" Cogburn in True Grit or the T-800 in Terminator 2, you can cock a lever-action long arm one-handed and without changing your grip. The gun's RoF becomes 1 and you must roll against the appropriate Guns specialty before each shot. Failure wastes your turn - treat it as a Do Nothing maneuver. Critical failure means an immediate roll on the Critical Miss Table (p. B556)! This perk works only for lever-action weapons, which can be spun around the lever loop. Most suitable rifles and shotguns will require modification by a gunsmith to enlarge the loop.</p>"
+  },
+  {
+    "_id": "8581cc9b8b953b18",
+    "name": "Pants-Positive Safety",
+    "pages": "HT249",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You can carry a loaded, cocked firearm shoved through your waistband without any risk of accidental discharge - even if you leave the safety off!</p>"
+  },
+  {
     "_id": "21a6e53cd24771ab",
     "name": "Equipment Bond",
     "pages": "HT7",
     "status": "reviewed",
     "notes": "",
     "description": "<p>You own a piece of equipment - or a kit (tool, survival, medical, etc.) - that's uniquely suited to you. When you use it, you have +1 to effective skill regardless of the gear's actual quality. This is cumulative with bonus for high-quality equipment.</p><p>Like Weapon Bond (p. 250), this isn't a magical enchantment or spiritual attunement. The equipment simply has the perfect level of comfort, fit, balance, and so on. If the gear is lost or destroyed, the Equipment Bond doesn't transfer to new hardware - but you can acquire a new Equipment Bond in play.</p><p>Each Equipment Bond is a 1-point perk. You must pay the usual price for the equipment, but you can acquire it as Signature Gear (p. B85).</p>"
+  },
+  {
+    "_id": "4004d8e0ab8127e8",
+    "name": "Style Familiarity (Way of the Pistol)",
+    "pages": "HT252",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This cinematic style - typical of contemporary movie pistoleros - melds mysticism with modernity to create a new type of martial artist who relies on studied movement, meditation, arcane philosophy . . . and a custom tactical handgun. Removing the cinematic components would make it reasonable for realistic modern pistol shooters, too.</p><p>Note for those without GURPS Martial Arts: A fighting style requires a one-point investment in each skill (excluding skills under Optional Traits) plus a point for \"Style Familiarity\" - a perk that gives access to the style's techniques and other perks.</p>"
   }
 ]

@@ -1,0 +1,170 @@
+[
+  {
+    "_id": "1e8a472c9e5cda3a",
+    "name": "Zen Marksmanship (Gyroc)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "eeb771ed7b1f43d9",
+    "name": "Zen Marksmanship (Musket)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "a36ab75cd2ee6174",
+    "name": "Zen Marksmanship (Pistol)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "b5a0b79534757522",
+    "name": "Zen Marksmanship (Rifle)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "08528ac99e61a965",
+    "name": "Zen Marksmanship (Shotgun)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "a432fef2be47ca03",
+    "name": "Zen Marksmanship (Submachine Gun)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Optionally, the GM may permit marksmen to learn a special cinematic skill.</p><p>This skill functions identically to Zen Archery (p. B228), but is for point-target small arms (such as pistols or rifles) instead of bows. You must specialize. Use the same specialties as Guns (p. B199); the GM is free to forbid specialties that seem inappropriate, like Grenade Launcher and Light Machine Gun. At high TLs, Beam Weapons (p. B179) specialties might also exist.</p>"
+  },
+  {
+    "_id": "2302992a9fee22ab",
+    "name": "Guns Sport/TL (Musket)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Since paintball, Airsoft, and MILES simulation participants face no real danger, they use Guns Sport/TL, not Guns. Shooting their \"weapons\" trains many habits and reflexes applicable to firearms, though; Guns and Guns Sport default either way at -3. Guns Sport requires specialization. Specialties match those for Guns (p. B199).</p>"
+  },
+  {
+    "_id": "7d566089401aee6f",
+    "name": "Guns Sport/TL (Pistol)",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Since paintball, Airsoft, and MILES simulation participants face no real danger, they use Guns Sport/TL, not Guns. Shooting their \"weapons\" trains many habits and reflexes applicable to firearms, though; Guns and Guns Sport default either way at -3. Guns Sport requires specialization. Specialties match those for Guns (p. B199).</p>"
+  },
+  {
+    "_id": "2f50486fee55fd81",
+    "name": "Precision Aiming",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique enables you to \"buy off\" the -6 to Guns when rolling to claim extra Aim bonuses. See Precision Aiming (p. 84). Rifle is by far the most common specialty! When learning this technique, base Guns on IQ, not on DX.</p><p>Example: Red Army sniper Svetlana Romanova has DX 11, IQ 12, and Guns (Rifle) at 14. Her IQ-based Guns skill is 15, making her Precision Aiming (Rifle) default 9. Investing 6 points gives her Precision Aiming (Rifle)-15.</p>"
+  },
+  {
+    "_id": "40543d1c67617896",
+    "name": "Mounted Shooting",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced shooting a ranged, handheld weapon from a moving mount or vehicle - horse, howdah, stagecoach, open biplane, etc. You must specialize by both weapon skill and mount or vehicle type. Use the specialties listed for the two skills chosen as prerequisites.</p><p>If you've improved this technique, modifiers for a rough ride and/or limited mobility (see Attacking from Moving Vehicle or Mount, p. B548) - including those for turning in the saddle to shoot - can't reduce your weapon skill below your Mounted Shooting level when using your chosen weapon from the specified platform. Other penalties apply normally.</p><p>Example: Obergefreiter Hugo Elting has Guns (SMG)-13 and Mounted Shooting (SMG/Motorcycle)-11. The various movement penalties for riding on his heavy Zündapp bike won't reduce his skill with his MP40 below 11, before other modifiers.</p><p>Remember that skill with a mounted attack can't exceed Riding (for a mount) or Driving, Piloting, or Teamster (for a vehicle). If you're a passenger, you're limited by your driver or pilot's skill.</p><p>† The GM may allow Mounted Shooting with other skills involving device-assisted movement, such as Parachuting and Skating.</p>"
+  },
+  {
+    "_id": "3bda17158116e3c3",
+    "name": "Bow (Slingshot)",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rubber-powered, wrist-braced slingshot can easily kill small animals; headshots are dangerous to humans, too. Some models fold (Holdout -1). Ammunition is easily scavenged in most places; heavy steel ball bearings are most popular. Slingshots require the Bow (Slingshot) skill, a new specialty of Bow (p. B182).</p>"
+  },
+  {
+    "_id": "1175dbee1ed2f33c",
+    "name": "Crossbow (Speargun)",
+    "pages": "HT201",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A speargun is for hunting fish and defense against aquatic predators. It most commonly relies on thick rubber bands to propel the spear, but some models use compressed air. Divide range by 10 in water; however, line length is usually the more stringent limit, as the spear is normally fastened to the gun by no more than 30' (10 yards) of line. See Harpoons (p. B411) for rules for tethered spears. Spearguns use the Crossbow (Speargun) skill, a new specialty of Crossbow (p. B186).</p>"
+  },
+  {
+    "_id": "b88352bd5c71eed1",
+    "name": "Close-Quarters Battle",
+    "pages": "HT250",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced shooting on the run at nearby targets - a situation that SWAT officers and special-ops soldiers call \"close-quarters battle\" (CQB). Whenever you take a Move and Attack maneuver (p. B365) to fire at a target whose distance from you in yards doesn't exceed your Per, use Close-Quarters Battle instead of Guns. Apply the penalty for shooting on the move: -2 or the firearm's Bulk, whichever is worse. If the result exceeds your Guns skill, reduce it to that level. Then apply any other modifiers for the shot.</p><p>Example: Morton Locke has Per 12, Guns (Pistol)-12, Guns (SMG)-12, CQB (Pistol)-15, and CQB (SMG)-15. He runs into a cave carrying a Tommy gun with Bulk -5. Without CQB, the -5 for shooting on the move would put Morton at 12 - 5 = 7. However, at ranges up to 12 yards, he fires at 15 - 5 = 10! If he used his Colt .38 Super pistol with Bulk -2, he would shoot at 15 - 2 = 13, reduced to his Guns (Pistol) level of 12.</p><p>If you have the Gunslinger advantage (see p. 249), this technique is redundant for you.</p>"
+  },
+  {
+    "_id": "fd03fcab7a146475",
+    "name": "Double-Loading (Fast-Draw (Ammo))",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>You've practiced reloading two chambers of a multi-barreled gun or a revolver at once. A successful Double-Loading roll gives all the benefits of Fast-Draw and means that each Ready maneuver taken to insert or manually extract one cartridge affects two cartridges. This shaves off one extra second per pair of cartridges if the firearm ejects all of its casings at once, or two extra seconds per pair if the weapon requires you to extract each empty by hand. See Reloading Your Gun (pp. 86-87).</p>"
+  },
+  {
+    "_id": "907de187eafd8d73",
+    "name": "Fanning (Guns (Pistol))",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique lets you \"buy off\" the basic -4 to Guns (Pistol) for fanning a single-action revolver with RoF 1 held in one hand. See Fanning (p. 83).</p>"
+  },
+  {
+    "_id": "63116dd7060e68f8",
+    "name": "Fast-Firing",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique allows you to \"buy off\" the -4 to Guns for fast-firing a weapon with RoF 2 or 3. See Fast-Firing (p. 84).</p>"
+  },
+  {
+    "_id": "1127083df8b78578",
+    "name": "Immediate Action",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique permits you to \"buy off\" the basic -4 to use an immediate action drill to clear a stoppage. See Immediate Action (p. 81). When learning Immediate Action, base Gunner or Guns on IQ, not on DX. Gunner versions also default to Armoury (Heavy Weapons)-4, while Guns versions default to Armoury (Small Arms)-4, but you must still choose a Gunner or Guns specialty, not an Armoury one.</p>"
+  },
+  {
+    "_id": "6594f6c354622f13",
+    "name": "Instant Arsenal Disarm (Armoury (Small Arms))",
+    "pages": "HT251",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This variation on Disarming (p. B230) lets you disarm a gunman by taking his weapon apart, as demonstrated by Jet Li in Lethal Weapon 4. First, roll against your grappling skill at -4, not this technique, to grab his weapon (see Grabbing, p. B370). On a success, immediately roll a Quick Contest: Instant Arsenal Disarm vs. your foe's DX or Retain Weapon. Victory means you remove some important component of his weapon, such as the slide of a semiautomatic pistol, rendering it unable to fire. If your opponent wins, but by less than 3, his weapon is intact but unready. On any critical failure, your rival isn't disarmed and may opt to roll at full Guns skill to shoot you in the hand!</p><p>You must specialize by type of gun. While the technique defaults to Armoury, its specialties correspond to those for Guns.</p>"
+  },
+  {
+    "_id": "976671cce87da389",
+    "name": "Quick-Shot",
+    "pages": "HT252",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique lets you buy off the -6 to use a RoF 2+ gun to shoot two targets in one second. See Ranged Rapid Strike (p. 85).</p>"
+  },
+  {
+    "_id": "1e6f99166d450f23",
+    "name": "Thumbing (Guns (Pistol))",
+    "pages": "HT252",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique allows you to \"buy off\" the -2 to Guns (Pistol) for thumbing a revolver. See Thumbing (p. 83).</p>"
+  },
+  {
+    "_id": "b3ca0ea4b91ed987",
+    "name": "Two-Handed Thumbing (Guns (Pistol))",
+    "pages": "HT252",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This technique permits you to \"buy off\" the -2 to Guns (Pistol) for fast-firing a single-action revolver held in two hands. See Fast-Firing (p. 84).</p>"
+  }
+]
