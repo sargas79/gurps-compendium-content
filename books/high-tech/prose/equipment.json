@@ -1,5 +1,813 @@
 [
   {
+    "_id": "9b5dbde487ecb910",
+    "name": "Steel Vest (TL5)",
+    "pages": "HT65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A concealable armor vest, relatively lightweight and cheap. An example is the Soldiers' Bullet Proof Vest, produced by carriage-maker G. &amp; D. Cook &amp; Co. of New Haven, Connecticut during the American Civil War. It was a standard, military-style blue vest with pockets for two steel plates in the front. These overlapped in the center where the vest buttoned. Infantrymen thought it too heavy and hot during long marches - and of little value against musket fire in any event. Nevertheless, it was a common sight on the battlefield. Legend has it that Wyatt Earp wore one, although he vehemently denied it.</p>"
+  },
+  {
+    "_id": "c89c5a74db8c0416",
+    "name": "Steel Corselet",
+    "pages": "HT65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The body armor of the heavy cavalryman. Before WWI, every major European government had at least one regiment of cuirassiers - big men on big horses, trained to charge home with the sword. Their armor was highly polished for show (and often used as a mirror!), but had a cloth cover for field duty.</p>"
+  },
+  {
+    "_id": "e518d124641d997a",
+    "name": "Silk Vest Steel Plate",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A thickly padded silk vest of the type often worn by affluent gentlemen. Most observers who notice it are unlikely to assume that it's armor. A famous example is the tightly woven vest that Catholic priest Casimir Zeglen developed after the 1893 murder of a popular Chicago mayor. The London Daily Mail reported that none other than Archduke Franz Ferdinand, heir to the Hapsburg dynasty, was wearing such a vest the day he was assassinated; other accounts suggest that he declined to wear it in Sarajevo's stifling heat. Regardless, the bullet struck him in the neck and he bled to death in minutes from a severed jugular vein. During the Russo-Japanese War, 50,000 vests with a steel plate sandwiched between silk padding were issued to Russian troops.</p>"
+  },
+  {
+    "_id": "1a4d38b277ecf985",
+    "name": "Composite Body Armor",
+    "pages": "HT65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A cuirass and groin protector made from layers of resin-impregnated silk, linen, and cotton. An example is the Chemico Body Shield, made by the Country Chemical Company of Birmingham, England. About an inch thick, it had a duck cloth cover with ammunition pockets on the front. It was the only practical body armor issued to British troops during WWI - and only from 1917.</p>"
+  },
+  {
+    "_id": "7a2d35fdb9ba9241",
+    "name": "Sentry Armor",
+    "pages": "HT65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A steel breastplate such as the Infanterie-Panzer, worn by German soldiers during WWI. Nicknamed Sappenpanzer (\"trench armor\"), some 500,000 were issued - mostly to machine gunners and sentries.</p>"
+  },
+  {
+    "_id": "75518a111296458f",
+    "name": "Light Body Armor",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Steel armor with thick, sponge-rubber padding. It covers both front and back, and is designed to protect against shell splinters and pistol bullets. Arm and leg protection is also available (pp. 67-68). The Engineering Division of the U.S. Ordnance Department developed it during WWI. Mainly experimental, but small lots were sent to France in the war's closing days.</p>"
+  },
+  {
+    "_id": "d7e13168ec34f9c0",
+    "name": "Bulletproof Vest",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A vest of overlapping steel plates riveted between layers of cloth, made to look like an ordinary suit vest. It covers the front and back of the torso. In the 1920s and 1930s, Elliott Wisbrod's Armored Police Vest Company marketed a concealable vest that became a favorite of criminals and government agents alike; the Dunrite Manufacturing Company sold similar body armor.</p><p>Wisbrod launched a unique national publicity campaign to demonstrate his confidence in his product: he was shot in the chest in front of crowds of police officers, city officials, and curious onlookers in cities all over the U.S.! His campaign worked. Baby Face Nelson and John Dillinger were repeat customers, and even Franklin Roosevelt and Joseph Stalin were reported to have worn Wisbrod vests. Japanese troops during WWII wore similar gear.</p>"
+  },
+  {
+    "_id": "ec01f88413a82534",
+    "name": "Flak Vest",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"Flak\" is an abbreviation for Fliegerabwehrkanone, German for \"anti-aircraft gun.\" The flak vests of WWII were designed to protect flight crews against anti-aircraft shell bursts. The American M1 was made of Hadfield manganese steel riveted to a nylon backing. It was heavy, bulky, and not designed to be concealed.</p>"
+  },
+  {
+    "_id": "f66b8b4e36f82d29",
+    "name": "Fragmentation Vest (TL 7)",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A nylon vest with aluminum plate inserts to shield the vitals from the front. It's intended to protect against fragments from artillery and hand grenades, not to stop bullets. The U.S. Marine Corps ordered 50,000 such vests in the closing days of WWII - too late to see action in that conflict. They were used extensively in Korea, however.</p>"
+  },
+  {
+    "_id": "af715d37c0cd077f",
+    "name": "Improved Fragmentation Vest (TL 7)",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A typical protective vest constructed of ballistic nylon or similar fibers. Examples include the U.S. M1952 and M69, worn by American ground troops in the Korean and Vietnam Wars. Some models can be fitted with heavy ceramic-fiberglass plates; vehicle drivers, tankers, and boat crews were issued such plates in Vietnam. The table lists the vest, plus a set of front and back plates (7.5 lbs. apiece).</p>"
+  },
+  {
+    "_id": "f279b0c74feab28a",
+    "name": "Improved Fragmentation Vest Trauma Plates (TL 7)",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A typical protective vest constructed of ballistic nylon or similar fibers. Examples include the U.S. M1952 and M69, worn by American ground troops in the Korean and Vietnam Wars. Some models can be fitted with heavy ceramic-fiberglass plates; vehicle drivers, tankers, and boat crews were issued such plates in Vietnam. The table lists the vest, plus a set of front and back plates (7.5 lbs. apiece).</p>"
+  },
+  {
+    "_id": "afcdcf2e20f35142",
+    "name": "Aircrew Armor",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rigid aluminum oxide and glass-reinforced plate inside a ballistic nylon carrier. Such armor was issued by the U.S. Army from 1966; helicopter crews called it \"chicken plate.\" The table entry assumes a vest with only a single plate in the front of the carrier, as worn by pilots and copilots. Helicopter door gunners wore a back plate as well.</p>"
+  },
+  {
+    "_id": "a25fe7b3c138d700",
+    "name": "Shoulder Pads",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is gridiron armor for American-style football. It protects the upper torso and shoulders.</p>"
+  },
+  {
+    "_id": "f8dfa9ef7f71c289",
+    "name": "Fragmentation Vest (TL 8)",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, frag vests use aramid fibers that are five times stronger than steel. An example is the Personnel Armor System for Ground Troops (PASGT) vest, adopted by the U.S. Army in 1976. Later versions - such as Germany's Mehler Splitterschutzweste MIL-120 - are much lighter (5.7 lbs.) and better-designed. In the 1990s, the PASGT vest was upgraded with a carrier for ceramic plates (8 lbs. each) and called the Interim Small Arms Protective Overvest, or ISAPO (DR 30, $700, 25 lbs.).</p>"
+  },
+  {
+    "_id": "bb0574ac7e68eeed",
+    "name": "Fragmentation Vest Trauma Plates (TL 8)",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, frag vests use aramid fibers that are five times stronger than steel. An example is the Personnel Armor System for Ground Troops (PASGT) vest, adopted by the U.S. Army in 1976. Later versions - such as Germany's Mehler Splitterschutzweste MIL-120 - are much lighter (5.7 lbs.) and better-designed. In the 1990s, the PASGT vest was upgraded with a carrier for ceramic plates (8 lbs. each) and called the Interim Small Arms Protective Overvest, or ISAPO (DR 30, $700, 25 lbs.).</p>"
+  },
+  {
+    "_id": "e14ad158c7332f40",
+    "name": "Early Concealable Vest",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A concealable vest representative of those on the market since the late 1970s. It may be available in TL7 campaigns set during this period (GM's option).</p>"
+  },
+  {
+    "_id": "c6022b31bb3e86e8",
+    "name": "Concealable Vest",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The lightest and most concealable protective vest currently on the market. It can be fitted with a trauma plate (see box).</p>"
+  },
+  {
+    "_id": "08cb328ad59cc604",
+    "name": "Assault Vest",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy ballistic vest, worn by SWAT teams and soldiers. The removable trauma plates provide protection against rifle-caliber weapons; the groin protector is also detachable. The Interceptor OTV (Outer Tactical Vest) is the current U.S. military-issue vest in Iraq and Afghanistan.</p>"
+  },
+  {
+    "_id": "bc2f63a5255aca04",
+    "name": "Assault Vest Trauma Plates",
+    "pages": "HT66",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy ballistic vest, worn by SWAT teams and soldiers. The removable trauma plates provide protection against rifle-caliber weapons; the groin protector is also detachable. The Interceptor OTV (Outer Tactical Vest) is the current U.S. military-issue vest in Iraq and Afghanistan.</p><p>At TL8, soft ballistic vests typically have built-in pockets for removable \"trauma plates\" or \"anti-stab plates.\" Such plates increase the armor's cost and weight, but significantly enhance the protection it affords. Assume that plates are available for any flexible torso armor.</p><p>Ballistic plates are rigid, and greatly increase a vest's bulk. Those made from ceramic are also brittle - they work by cracking, which absorbs some of the bullet's energy, and lose effectiveness after a small number of shots. The GM who enjoys gritty realism may treat trauma plates as semi-ablative DR (p. B47).</p>"
+  },
+  {
+    "_id": "8e51821a846622a2",
+    "name": "Anti-Stab Vest",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tight-weave ballistic vest - like those in the EnGarde Eagle Eye series - that can stop impaling damage as well as other attacks. It's worn by corrections officers, and by police in areas with high levels of violent crime that doesn't involve firearms (stabbings, beatings, etc.).</p>"
+  },
+  {
+    "_id": "2ba2f13802f53472",
+    "name": "Advanced Body Armor",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pinnacle Armor's SOV looks like a run-of-the-mill tactical ballistic vest - albeit thinner - but is much more advanced. Instead of relying on bulky plates, it takes a so-called \"scalar\" approach, using overlapping ballistic-resistant scales (each 2\"-3\" in diameter) made from a patented titanium-ceramic matrix. This makes it the only concealable vest capable of resisting rifle fire over the whole torso rather than just the vitals. Gives +4 (quality) to Holdout attempts to conceal it.</p>"
+  },
+  {
+    "_id": "eaa7286de7e73da5",
+    "name": "Chaps",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Chaparreras are worn by cowboys to protect from thorns and scrub brush while working cattle.</p>"
+  },
+  {
+    "_id": "ff37992ee3ebbce5",
+    "name": "Shin Guards",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Steel greaves were developed for soldiers during the American Civil War, but used only briefly. They protect only the lower leg (2/6 protection) - and only from the front.</p>"
+  },
+  {
+    "_id": "d3250dd4cf0fae7c",
+    "name": "Light Body Armor Sleeves",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is part of the experimental steel armor developed for trench fighting during WWI (see also \"Light Body Armor\" under Torso Armor, p. 66). While 50 sets were shipped to France before the Armistice, it's doubtful that any of it saw combat. It has foam-rubber backing and is painted a dull khaki or olive drab color. The armor covers most of the limb (5/6 protection).</p>"
+  },
+  {
+    "_id": "733b27c75836def6",
+    "name": "Light Body Armor Leggings",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is part of the experimental steel armor developed for trench fighting during WWI (see also \"Light Body Armor\" under Torso Armor, p. 66). While 50 sets were shipped to France before the Armistice, it's doubtful that any of it saw combat. It has foam-rubber backing and is painted a dull khaki or olive drab color. The armor covers most of the limb (5/6 protection).</p>"
+  },
+  {
+    "_id": "a5fa8a719bed9ce1",
+    "name": "Aircrew Leg Armor",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy ballistic shin guard of the type worn by helicopter crewmen during the Vietnam conflict. It protects the front of the lower leg, from just above the knee to the ankle (3/6 protection).</p>"
+  },
+  {
+    "_id": "1f0bda91d85ebf64",
+    "name": "Riot Gear Sleeves",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A set of leggings and sleeves made from thick plastic backed with padding. It's worn by riot-control and corrections officers. It can blunt the impact of a thrown rock or brick, and is light enough to wear in a foot chase. Very similar armor is used in many contact sports.</p>"
+  },
+  {
+    "_id": "22dac758893f3c3c",
+    "name": "Riot Gear Leggings",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A set of leggings and sleeves made from thick plastic backed with padding. It's worn by riot-control and corrections officers. It can blunt the impact of a thrown rock or brick, and is light enough to wear in a foot chase. Very similar armor is used in many contact sports.</p>"
+  },
+  {
+    "_id": "ed84df105f1b9b71",
+    "name": "Ballistic Leggings",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Flexible, ballistic-fabric leggings, worn by assault troops. They're bulky and not easily concealed.</p>"
+  },
+  {
+    "_id": "113cb6d2fca517bd",
+    "name": "Sharp-Protective Armor Sleeves",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A layer of ballistic fiber worn by corrections officers, lumberjacks, and industrial workers exposed to \"sharps\" during the work day. It's easily concealed under clothing.</p>"
+  },
+  {
+    "_id": "170ce85327b843ea",
+    "name": "Sharp-Protective Armor Leggings",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A layer of ballistic fiber worn by corrections officers, lumberjacks, and industrial workers exposed to \"sharps\" during the work day. It's easily concealed under clothing.</p>"
+  },
+  {
+    "_id": "8a1466a031806e24",
+    "name": "DAP",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>\"DAP\" is military-speak for an upper-arm protector worn with an assault vest. The flexible ballistic cloth covers from just above the elbows to the shoulders (2/6 protection).</p>"
+  },
+  {
+    "_id": "dca1f9e7f2af990a",
+    "name": "Boots",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Standard Wellington or \"cowboy\"-type boots, in either a pull-on or lace-up version. High heels keep the feet from slipping through saddle stirrups. At higher TLs, these are rugged work boots, combat boots, or hiking boots.</p>"
+  },
+  {
+    "_id": "9c8fc5c917189312",
+    "name": "Boots, Arctic",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heavily insulated and waterproof boots. At TL7-8, double price but halve weight. Arctic boots are often worn with crampons (p. 56). -1 to Stealth.</p>"
+  },
+  {
+    "_id": "a74f19c3ace15df0",
+    "name": "Boots, High",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Bucket boots were popular in the 1700s. These pull-on riding boots extend to the knees or even mid-thigh. Wearers often turn down the high tops, pirate fashion.</p>"
+  },
+  {
+    "_id": "5cefeb1276031d10",
+    "name": "Moccasins",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Light, thin leather footwear preferred by hunters, Indians, and other people who need to move quietly. Use the same statistics for any light, functional shoes; e.g., Japanese tabi. +1 to Stealth.</p>"
+  },
+  {
+    "_id": "2af44607ec3dbf42",
+    "name": "Cleats",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Athletic shoes fitted with spikes. They give Terrain Adaptation (Mud and Dirt). -1 to Stealth on tile floors, concrete, bare rock, etc.</p>"
+  },
+  {
+    "_id": "3bba2ce880ddf87f",
+    "name": "Sneakers",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Duck cloth uppers vulcanized to thick rubber soles. Later TLs introduce air-cushioned soles, zippered pockets, and even tiny impact-activated lights. +1 to Stealth.</p>"
+  },
+  {
+    "_id": "29322cf349b18cdf",
+    "name": "Boots, Jungle",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Boots with steel shanks in the soles for protection against attacks from below (nails, spiked pits, caltrops, etc.).</p>"
+  },
+  {
+    "_id": "fd7eacf81c3d9722",
+    "name": "Boots, Blast",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pair of clumsy, heavy boots, worn by explosive ordnance disposal (EOD) personnel when clearing minefields. They have ballistic material in the soles to protect against attacks from below. -1 to Stealth.</p>"
+  },
+  {
+    "_id": "82f81c08c216c4ce",
+    "name": "Boots, Firefighter",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>These rubber-soled, waterproof boots are nearly indestructible. They have steel toes, and steel shanks protect the bottom of the feet. -1 to Stealth.</p>"
+  },
+  {
+    "_id": "1a2807c9e0f71c38",
+    "name": "Shoes, Climbing",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Shoes with sticky rubber soles that are soft and pliable enough to allow the wearer to feel the surface beneath his feet. Give +1 to Climbing when scaling a vertical stone wall or other slick surface (see Climbing, p. B349). +1 to Stealth.</p>"
+  },
+  {
+    "_id": "958b70f3c60ad858",
+    "name": "Hockey Glove",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A modern padded sports glove for one hand. Gives Ham-Fisted 1 (p. B138) when using that hand for fine work.</p>"
+  },
+  {
+    "_id": "16042acba9b230fc",
+    "name": "Frisk Gloves",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Policemen often wear thin leather gloves with ballistic fiber liners which provide some protection against \"sharps\": needles and other objects that might stick or cut an officer during a pat-down search.</p>"
+  },
+  {
+    "_id": "166c56f143543f10",
+    "name": "Sharp-Protective Gloves",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Gloves that protect the hands much as sharp-protective armor (p. 67) protects the limbs.</p>"
+  },
+  {
+    "_id": "caf6adc7e6edf6ba",
+    "name": "Skullcap",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A thin metal plate designed to be worn under a hat. Skullcaps were relatively common in the civilian market throughout TL5-6. The French army issued such a cap to its soldiers in 1915.</p>"
+  },
+  {
+    "_id": "d11f381ea9a18c6f",
+    "name": "Stock",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A stiff leather collar buckled around the throat to protect against cutlass or saber blows. Many soldiers wore a stock, but the United States Marines were so strongly associated with the black leather stocks they wore until 1872 that Marines are sometimes called \"leathernecks\" even today.</p>"
+  },
+  {
+    "_id": "03dc000f3e3972d8",
+    "name": "Cavalry Helmet",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A cuirassier's stainless-steel or nickel-plated dress helmet. Polished to a mirror finish, it has a cloth cover for field use. It's worn with the steel corselet (p. 65).</p>"
+  },
+  {
+    "_id": "2ae57e16cd138884",
+    "name": "Early Firefighter's Helmet",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This traditional fire-helmet design has a high crown with a shield in front bearing fire-company markings, and a wide brim long enough in the back to keep water and debris off the firefighter's neck and out of his coat.</p>"
+  },
+  {
+    "_id": "697143244889ed06",
+    "name": "Heavy Helmet",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy steel helmet, such as the German Stahlhelm (\"steel helmet\") of WWI. A strap-on brow reinforcement of heavy steel plate is sometimes issued to machine gunners and trench sentries. This addition protects the skull from the front (+15 DR, +$10, +5 lbs.).</p>"
+  },
+  {
+    "_id": "e8b3189547bcc497",
+    "name": "Leather Helmet",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The famous \"Snoopy\"-style skullcap worn by aviators, tankers, paratroopers, and even athletes. It has ear flaps and thick padding. Later models have built-in headphones and steel plates, greatly increasing protection (+4 DR, +$50, +2 lbs.).</p>"
+  },
+  {
+    "_id": "8d198a05e3e64526",
+    "name": "Light Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This \"Brodie pattern\" helmet is the standard British and American helmet from WWI through WWII. The \"tin hat\" or \"battle bowler\" is a shallow helmet with wide brim.</p>"
+  },
+  {
+    "_id": "dc8dc153515e66ed",
+    "name": "Medium Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A well-designed steel helmet, such as the M1 \"steel pot\" worn by American soldiers from 1942 to the mid-1980s. The removable liner can be worn on its own (DR 1, $10, 1 lb.).</p>"
+  },
+  {
+    "_id": "e51919264622f62d",
+    "name": "Frag Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A ballistic resin pressed into a helmet shape, like the American PASGT helmet. The visor is worn for riot duty, as protection against rocks and other thrown projectiles.</p>"
+  },
+  {
+    "_id": "867de8688364e485",
+    "name": "Frag Helmet Visor",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A ballistic resin pressed into a helmet shape, like the American PASGT helmet. The visor is worn for riot duty, as protection against rocks and other thrown projectiles.</p>"
+  },
+  {
+    "_id": "a6a4ed9ae4173801",
+    "name": "Hard Hat",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A lightweight aluminum \"skull bucket\" for construction sites. At TL8, it's made from non-conductive plastic and costs half as much.</p>"
+  },
+  {
+    "_id": "1f5a7d5e3d7505a0",
+    "name": "Modern Firefighter's Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identical in shape to a leather firefighter's helmet, but the shell is made from heat-resistant plastic. It has a visor that can be flipped down to protect the face, and a clamp on the side to mount a small flashlight.</p>"
+  },
+  {
+    "_id": "4ce299629a241897",
+    "name": "Modern Firefighter's Helmet Visor",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identical in shape to a leather firefighter's helmet, but the shell is made from heat-resistant plastic. It has a visor that can be flipped down to protect the face, and a clamp on the side to mount a small flashlight.</p>"
+  },
+  {
+    "_id": "f2aae8de29a3c691",
+    "name": "Motorcycle Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A full-face, energy-absorbing shell designed to protect a motorcyclist's head from impact in a wipeout.</p>"
+  },
+  {
+    "_id": "cb5b7cb9519b61b1",
+    "name": "Motorcycle Helmet Visor",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A full-face, energy-absorbing shell designed to protect a motorcyclist's head from impact in a wipeout.</p>"
+  },
+  {
+    "_id": "93e5f086ef45db06",
+    "name": "Ballistic Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An improved ballistic helmet, such as the U.S. Army's MICH (Modular/Integrated Communications Helmet). It has attachment points for night-vision goggles and flashlights. Some include a removable ballistic visor for close-quarters battle.</p>"
+  },
+  {
+    "_id": "2d4f6dd15f72eb47",
+    "name": "Ballistic Helmet Visor",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An improved ballistic helmet, such as the U.S. Army's MICH (Modular/Integrated Communications Helmet). It has attachment points for night-vision goggles and flashlights. Some include a removable ballistic visor for close-quarters battle.</p>"
+  },
+  {
+    "_id": "2f34ad97c2daa17f",
+    "name": "Football Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy-duty sports helmet with a full facemask, designed to absorb and dissipate heavy impacts.</p>"
+  },
+  {
+    "_id": "56eb412f74015b07",
+    "name": "Hockey Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A sports helmet of the sort used by recreational skaters, snowboarders, climbers, and so on. Light assault forces sometimes wear it for protection against falls and general bumps and bruises.</p>"
+  },
+  {
+    "_id": "f54d6976a786445f",
+    "name": "Riot Helmet",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A riot or corrections helmet has a metal cage - much like a football helmet (above) - but adds a full polycarbonate \"splatter shield\" over the mask to block contact with biological hazards. The design allows the user to wear a gas mask underneath.</p>"
+  },
+  {
+    "_id": "aadd588da5871f32",
+    "name": "Riot Helmet Visor",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A riot or corrections helmet has a metal cage - much like a football helmet (above) - but adds a full polycarbonate \"splatter shield\" over the mask to block contact with biological hazards. The design allows the user to wear a gas mask underneath.</p>"
+  },
+  {
+    "_id": "79e79cc021969aa6",
+    "name": "Gas Mask (TL 5)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>A gas mask uses \"negative pressure\": the wearer sucks in clean air through the filter medium. Weight includes a replaceable filter ($25, 0.5 lb.).</p><p>A heavy leather hood fitted with glass lenses and a primitive smoke or dust filter.</p>"
+  },
+  {
+    "_id": "d7f1e75a3d00e7d3",
+    "name": "Gas Mask (TL 6)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>A gas mask uses \"negative pressure\": the wearer sucks in clean air through the filter medium. Weight includes a replaceable filter ($25, 0.5 lb.).</p><p>Many models have a separate belt- or chest-mounted filter connected to the mask by a hose. Severing the vulnerable hose (-2 to hit) exposes the wearer to the environment.</p>"
+  },
+  {
+    "_id": "084e580977c3bd60",
+    "name": "Gas Mask (TL 7)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>A gas mask uses \"negative pressure\": the wearer sucks in clean air through the filter medium. Weight includes a replaceable filter ($25, 0.5 lb.).</p><p>This mask includes fittings for drinking from a canteen or a water pack without unmasking.</p>"
+  },
+  {
+    "_id": "2d967b4b0ecd8ff8",
+    "name": "Gas Mask (TL 8)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>A gas mask uses \"negative pressure\": the wearer sucks in clean air through the filter medium. Weight includes a replaceable filter ($25, 0.5 lb.).</p><p>In addition to canteen fittings, modern masks include a voice amplifier and an adapter for using a radio while masked. Some have tinted lenses, providing Protected Vision against bright ordinary light.</p>"
+  },
+  {
+    "_id": "481a0e3bb864c74a",
+    "name": "SCBA Mask (TL 7)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Self-contained breathing apparatus (SCBA) uses \"positive pressure\": it expels air from a tank, keeping contaminants from entering the mask. Tests have shown that firefighters can breathe through SCBA even when floating face-down in water (beyond this, a malfunction is likely). The pioneers of SCBA were WWII firefighters. The SCBA mask has since become standard gear for fire and rescue personnel, who typically use it with a small air tank (p. 74).</p><p>A basic mask and regulator.</p>"
+  },
+  {
+    "_id": "18d46ff9e49e5c5e",
+    "name": "SCBA Mask (TL 8)",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Self-contained breathing apparatus (SCBA) uses \"positive pressure\": it expels air from a tank, keeping contaminants from entering the mask. Tests have shown that firefighters can breathe through SCBA even when floating face-down in water (beyond this, a malfunction is likely). The pioneers of SCBA were WWII firefighters. The SCBA mask has since become standard gear for fire and rescue personnel, who typically use it with a small air tank (p. 74).</p><p>A mask with a spare \"buddy hose\" to share with another air mask, a HUD-style air gauge, and an alarm that sounds five minutes before the air tank expires. It also has a voice amplifier and an adapter for using a radio while masked.</p>"
+  },
+  {
+    "_id": "6c2c53b023b619b1",
+    "name": "Scuba Mask (TL 7)",
+    "pages": "HT73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Reliable self-contained underwater breathing apparatus (formerly abbreviated SCUBA, but \"scuba\" today) is another WWII-era innovation. The standard \"mask\" is actually a tank-mounted regulator and mouthpiece with a separate diving mask (p. 71). This is a typical \"open-circuit\" system; bubbles are detectable on the surface.</p><p>The traditional scuba mask has a demand-only regulator, meaning it only provides air when the diver sucks on the mouthpiece.</p>"
+  },
+  {
+    "_id": "df8f177863c86a6d",
+    "name": "FFM (TL 7)",
+    "pages": "HT73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Reliable self-contained underwater breathing apparatus (formerly abbreviated SCUBA, but \"scuba\" today) is another WWII-era innovation. The standard \"mask\" is actually a tank-mounted regulator and mouthpiece with a separate diving mask (p. 71). This is a typical \"open-circuit\" system; bubbles are detectable on the surface.</p><p>The \"FFM\" completely covers the face in a positive-pressure environment, allowing the diver to use an underwater communicator (p. 40). It is more comfortable for lengthy dives, is less likely to be knocked off, and provides air even if the diver is unconscious.</p>"
+  },
+  {
+    "_id": "dd6317c028d2caaf",
+    "name": "Scuba Mask (TL 8)",
+    "pages": "HT73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Reliable self-contained underwater breathing apparatus (formerly abbreviated SCUBA, but \"scuba\" today) is another WWII-era innovation. The standard \"mask\" is actually a tank-mounted regulator and mouthpiece with a separate diving mask (p. 71). This is a typical \"open-circuit\" system; bubbles are detectable on the surface.</p><p>The TL8 mask includes a spare mouthpiece for sharing air in an emergency - and possibly a HUD-style air gauge that connects to wireless equipment such as a dive computer or a wrist-mounted depth gauge.</p>"
+  },
+  {
+    "_id": "c8333f67c6621005",
+    "name": "FFM (TL 8)",
+    "pages": "HT73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An air mask consists of a facemask or a mouthpiece equipped with a filter or a regulator. All varieties must be fitted correctly in order to form an airtight seal. Early rubber masks are shaved to fit with a knife and then sanded smooth. Modern ones come in specific sizes.</p><p>At TL5-7, an air mask muffles the user's voice; a listener must make a Hearing roll to understand him. This does affect radio communication. At TL8, masks often have built-in voice amplifiers and radio adapters that negate the need for this roll.</p><p>All air masks take three seconds to put on, one second to remove.</p><p>Reliable self-contained underwater breathing apparatus (formerly abbreviated SCUBA, but \"scuba\" today) is another WWII-era innovation. The standard \"mask\" is actually a tank-mounted regulator and mouthpiece with a separate diving mask (p. 71). This is a typical \"open-circuit\" system; bubbles are detectable on the surface.</p><p>A lightweight FFM with all the bells and whistles of a TL8 scuba mask (above).</p>"
+  },
+  {
+    "_id": "0dc1a34ac8234c5b",
+    "name": "Hard-Hat Suit",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the 1830s, Augustus Siebe perfected \"closed\" diving dress: a helmet sealed to a waterproof suit and fitted with controlled intake and outlet valves for air. This is still basic equipment for the modern \"hard-hat\" diver, who's tied to the surface by air lines. Hard-hat gear makes diving about as safe as being underwater can be; the dangers aren't so much inherent in the hardware as in the environment. Most diving jobs are construction, salvage, and rescue jobs that would be difficult and dangerous even on land. When performing a risky activity underwater in diving dress, roll against Diving Suit (p. B192). Most failures mean a job-specific hazard such as a punctured hose or suit, a fouled line, or a broken helmet.</p><p>Hard-hat diving isn't a solo activity. It requires a trained crew of handlers on the surface. Before the 1940s, most air pumps were operated manually by two or more pumpers. In addition, at least one line-tender is needed to keep the air hose and ropes from fouling. Paranoid adventurers should be encouraged to dwell on the thought of treachery topside!</p><p>A modern salvage suit with weights and helmet, plus a reel with 200' of hose ($1,000, 25 lbs.).</p>"
+  },
+  {
+    "_id": "e15ecbf349108dd5",
+    "name": "Anti-G Suit",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This outfit helps a pilot tolerate the \"G-forces\" of high acceleration and rapid maneuvers. It typically covers the legs and lower abdomen, and uses air or water to limit blood flow away from the brain. This provides +3 to HT rolls to resist high accelerations (p. B434). It's often worn with a fireproof suit (below).</p>"
+  },
+  {
+    "_id": "1c8577a99e7dbfb7",
+    "name": "Biohazard Suit",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky, hermetically sealed suit worn for protection from chemical spills and plagues. It cannot pass for clothing. It's worn with an air mask or an SCBA (pp. 72-73), which fits completely under the suit. It's incredibly hot - triple FP losses while suited-up. At TL8, advanced versions (×2 cost) have a special lining that effectively blocks low-level radiation, providing PF 2.5 against gamma or beta radiation; see Radiation Protection (p. B436). It uses the NBC Suit skill.</p>"
+  },
+  {
+    "_id": "cda90b669117d370",
+    "name": "Clean Suit",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A disposable paper suit (with booties, gloves, and hood) used in a \"clean room,\" or during forensic evidence collection or surgical operations. Investigators commonly wear a paper facemask - or optionally, an air mask (pp. 72-73) - to avoid inhaling dried blood or fecal matter. It uses the NBC Suit skill.</p>"
+  },
+  {
+    "_id": "b1e470efee4d4188",
+    "name": "Dry Suit",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A baggy, waterproof full-body suit that keeps the wearer dry while diving. It resists thermal shock effects in cold water (see Cold, p. B430), but the diver must wear proper clothing beneath it to protect against the cold. A dry suit is loose-fitting enough to accommodate a stylish tuxedo underneath . . .</p>"
+  },
+  {
+    "_id": "91f58b2897cff45f",
+    "name": "Fireproof Suit",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A fire-resistant jumpsuit worn by race-car drivers, pilots, forest firefighters, and SWAT men for short-term flame protection.</p>"
+  },
+  {
+    "_id": "e9eb7da17dcc877d",
+    "name": "NBC Suit",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A disposable quilted suit with a charcoal lining that protects against radioactive fallout and poisonous gases. It quickly loses its seal in a wet environment, and must be stored in an airtight container. After 72 hours at most, it's no longer reliable protection. It uses the NBC Suit skill.</p>"
+  },
+  {
+    "_id": "43c11274875d1c57",
+    "name": "Space Suit",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The \"intravehicular\" space suit of the Apollo missions - that is, the suit used inside the spacecraft. It consists of several layers of neoprene and nylon, along with a pressure bladder, biomedical attachments, a tight-fitting cap equipped with headphones and mike, and a clear polycarbonate helmet. It uses the Vacc Suit skill.</p>"
+  },
+  {
+    "_id": "9dd190070709cad3",
+    "name": "Space Suit Space Helmet",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The \"intravehicular\" space suit of the Apollo missions - that is, the suit used inside the spacecraft. It consists of several layers of neoprene and nylon, along with a pressure bladder, biomedical attachments, a tight-fitting cap equipped with headphones and mike, and a clear polycarbonate helmet. It uses the Vacc Suit skill.</p>"
+  },
+  {
+    "_id": "a6a29a34cd57c2db",
+    "name": "Space Suit, EVA",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the Apollo \"extravehicular activity\" (EVA) space suit. It's essentially the intravehicular suit (above) with several additional features, including a liquid-cooled climate-control system (p. 74), an outer protective shell, a life-support backpack (duration is 7 hours), and a short-range radio. It uses the Vacc Suit skill.</p>"
+  },
+  {
+    "_id": "35eadea965e89d69",
+    "name": "Space Suit, EVA Space Helmet",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is the Apollo \"extravehicular activity\" (EVA) space suit. It's essentially the intravehicular suit (above) with several additional features, including a liquid-cooled climate-control system (p. 74), an outer protective shell, a life-support backpack (duration is 7 hours), and a short-range radio. It uses the Vacc Suit skill.</p>"
+  },
+  {
+    "_id": "cc7ae6d54f6ee89b",
+    "name": "Turnout Gear",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A modern firefighter's outfit: coat, trousers, gloves, and hood (for other gear, see Footwear, pp. 68-69, Headgear, pp. 69-70, and Air Masks, pp. 72-73). The suit absorbs water if it gets wet (up to twice normal weight!), which provides an extra DR 5 versus burning damage. If any burning damage penetrates this DR, though, double it - the water turns to steam inside the suit, and the firefighter can't feel the heat until it's too late!</p>"
+  },
+  {
+    "_id": "dfe1fd3663b1cce1",
+    "name": "Wetsuit",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A neoprene or similar suit, it counts as winter clothing in cold water and provides a small amount of protection.</p>"
+  },
+  {
+    "_id": "d8deb3c7028cc684",
+    "name": "Bomb Disposal Suit",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A modern ballistic suit, worn by bomb-disposal technicians. It fully encapsulates the wearer in bulletproof material - except for the hands, which are totally unprotected. This allows the bomb tech to work without being hampered by gloves. Some are fitted with a climate-control system (p. 74).</p>"
+  },
+  {
+    "_id": "f61a8955a3c8e6fc",
+    "name": "Bomb Disposal Suit Visor",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A modern ballistic suit, worn by bomb-disposal technicians. It fully encapsulates the wearer in bulletproof material - except for the hands, which are totally unprotected. This allows the bomb tech to work without being hampered by gloves. Some are fitted with a climate-control system (p. 74).</p>"
+  },
+  {
+    "_id": "a24275ed28f48b20",
+    "name": "Early Rebreather",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Whereas conventional scuba gear releases exhaled gases as a stream of bubbles, a rebreather captures these gases in a \"counterlung\" or breathing bag, where a chemical absorbent removes the CO2, and then mixes and circulates them with gases from air tanks. Such a \"closed-circuit\" system produces no telltale bubbles. Shallow-water rebreathers use pure oxygen, and are dangerous below 30' (see The Bends, p. B435). Advanced deep-diving rebreathers use a mixed-gas system to avoid problems with the bends, allowing deeper dives.</p><p>Rebreathers are comparatively complicated. The GM may opt to treat their use as a specialty of the Scuba skill. Scuba (Closed-Circuit) defaults to normal Scuba at -4; the default in the other direction is only -2.</p><p>A WWII-era oxygen scrubber - complicated, finicky, and poorly understood. Duration is 1.5 hours.</p>"
+  },
+  {
+    "_id": "4d2f5529ff6c09a9",
+    "name": "Rebreather",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Whereas conventional scuba gear releases exhaled gases as a stream of bubbles, a rebreather captures these gases in a \"counterlung\" or breathing bag, where a chemical absorbent removes the CO2, and then mixes and circulates them with gases from air tanks. Such a \"closed-circuit\" system produces no telltale bubbles. Shallow-water rebreathers use pure oxygen, and are dangerous below 30' (see The Bends, p. B435). Advanced deep-diving rebreathers use a mixed-gas system to avoid problems with the bends, allowing deeper dives.</p><p>Rebreathers are comparatively complicated. The GM may opt to treat their use as a specialty of the Scuba skill. Scuba (Closed-Circuit) defaults to normal Scuba at -4; the default in the other direction is only -2.</p><p>A shallow-water rebreather. Duration is 4 hours.</p>"
+  },
+  {
+    "_id": "6f83e9184b06a46b",
+    "name": "Advanced Rebreather",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Whereas conventional scuba gear releases exhaled gases as a stream of bubbles, a rebreather captures these gases in a \"counterlung\" or breathing bag, where a chemical absorbent removes the CO2, and then mixes and circulates them with gases from air tanks. Such a \"closed-circuit\" system produces no telltale bubbles. Shallow-water rebreathers use pure oxygen, and are dangerous below 30' (see The Bends, p. B435). Advanced deep-diving rebreathers use a mixed-gas system to avoid problems with the bends, allowing deeper dives.</p><p>Rebreathers are comparatively complicated. The GM may opt to treat their use as a specialty of the Scuba skill. Scuba (Closed-Circuit) defaults to normal Scuba at -4; the default in the other direction is only -2.</p><p>A modern mixed-gas rebreather. Duration is 4 hours.</p>"
+  },
+  {
+    "_id": "d654566af2144962",
+    "name": "Bulletproof Shield",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy steel shield used by some military and police throughout the first half of the 20th century. It may have firing ports, allowing the shieldbearer to use the shield for cover and as a rifle brace while prone.</p>"
+  },
+  {
+    "_id": "5c5cc54ebfd0fbf3",
+    "name": "Riot Shield",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A simple, medium-sized polycarbonate shield - often with \"POLICE\" stenciled across the front.</p>"
+  },
+  {
+    "_id": "eec2d7c99498d7a7",
+    "name": "Medium Entry Shield",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy shield deployed by a SWAT team when entering a building. It's made to withstand gun-fire, and uses materials similar to trauma plates (p. 67). Some models have mounts for lights or video displays on the front, or even steps that let the shield function as a stepladder for scaling walls.</p>"
+  },
+  {
+    "_id": "de36ef47ce2336a9",
+    "name": "Large Entry Shield",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy shield deployed by a SWAT team when entering a building. It's made to withstand gun-fire, and uses materials similar to trauma plates (p. 67). Some models have mounts for lights or video displays on the front, or even steps that let the shield function as a stepladder for scaling walls.</p>"
+  },
+  {
+    "_id": "d16a8a460a7cd276",
+    "name": "Silk Vest",
+    "pages": "HT65",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A thickly padded silk vest of the type often worn by affluent gentlemen. Most observers who notice it are unlikely to assume that it's armor. A famous example is the tightly woven vest that Catholic priest Casimir Zeglen developed after the 1893 murder of a popular Chicago mayor. The London Daily Mail reported that none other than Archduke Franz Ferdinand, heir to the Hapsburg dynasty, was wearing such a vest the day he was assassinated; other accounts suggest that he declined to wear it in Sarajevo's stifling heat. Regardless, the bullet struck him in the neck and he bled to death in minutes from a severed jugular vein. During the Russo-Japanese War, 50,000 vests with a steel plate sandwiched between silk padding were issued to Russian troops.</p>"
+  },
+  {
+    "_id": "283d798436910619",
+    "name": "Boots, Steel-Toed",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Industrial or construction boots, with a box of metal around the toes.</p>"
+  },
+  {
+    "_id": "c48aa2f518223496",
+    "name": "Closed-Dress Suit",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the 1830s, Augustus Siebe perfected \"closed\" diving dress: a helmet sealed to a waterproof suit and fitted with controlled intake and outlet valves for air. This is still basic equipment for the modern \"hard-hat\" diver, who's tied to the surface by air lines. Hard-hat gear makes diving about as safe as being underwater can be; the dangers aren't so much inherent in the hardware as in the environment. Most diving jobs are construction, salvage, and rescue jobs that would be difficult and dangerous even on land. When performing a risky activity underwater in diving dress, roll against Diving Suit (p. B192). Most failures mean a job-specific hazard such as a punctured hose or suit, a fouled line, or a broken helmet.</p><p>Hard-hat diving isn't a solo activity. It requires a trained crew of handlers on the surface. Before the 1940s, most air pumps were operated manually by two or more pumpers. In addition, at least one line-tender is needed to keep the air hose and ropes from fouling. Paranoid adventurers should be encouraged to dwell on the thought of treachery topside!</p><p>A brass helmet with portholes, a rubberized canvas suit, and lead-soled shoes. Air is delivered from the surface by a hand-powered compressor ($1,000, 300 lbs.), via 200' of hose on a reel ($500, 25 lbs.). At TL6, the rig includes an intercom, and no manual compressor is needed, as most ships have an air compressor aboard.</p>"
+  },
+  {
     "_id": "a5c5670116ca450b",
     "name": "T Battery",
     "pages": "HT13",
@@ -270,6 +1078,318 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This is basic equipment for a particular Survival skill specialty - the minimum that each person needs during a life-threatening situation in a specific environment. In all cases, it includes a knife of some sort, a light source and/or a fire starter, and some means to procure food and clean water. The specifics vary depending on the hardware available at the tech level (flint and steel instead of a lighter, cell phone in place of a signal mirror, etc.) and on the intended environment (money is much more useful than a fishing kit in an Urban Survival situation!). This gear alone might weigh 0.5 lb. or less.</p>"
+  },
+  {
+    "_id": "6fd85fdcad8b1616",
+    "name": "Summer Clothes",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is lightweight clothing - perhaps a thin, white Arabian thobe; ao ba ba, the black pajamas of Vietnam's Mekong Delta region; or swim trunks and a t-shirt. It's light, comfortable, and cool. In hot weather, loose clothes allow air to circulate and cool the body. They aren't always white; traditional black Bedouin robes absorb more sunlight than white garments, but this actually increases sweat evaporation by drawing more air through the cloth, so they feel cooler. If robes aren't de rigueur in the campaign's desert climes, lightweight clothing such as pants, a long-sleeved shirt, and a broad hat will prevent sunburn (p. B434). Cost is 10% of cost of living; weight is 1 lb.</p>"
+  },
+  {
+    "_id": "526e5ede681891d4",
+    "name": "Ordinary Clothes",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is typical work wear or everyday dress for a temperate climate: military uniform, shirt and trousers, t-shirt and bib overalls, etc. Even this much clothing may increase FP costs in hot climates, as described under Fighting a Battle (p. B426). Cost is 20% of cost of living; weight is 2 lbs.</p>"
+  },
+  {
+    "_id": "db95a2431be11e0e",
+    "name": "Winter Clothes",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is outdoor clothing for colder climes. It may be as simple as a jacket or a coat over ordinary clothes (above), or as specialized as insulated coveralls. In freezing temperatures, it allows a HT roll at no penalty to avoid FP loss (see p. B430). For an outfit to count as winter clothes, it must protect the whole body against heat loss - particularly feet, hands, head, and neck (e.g., waterproof boots, gloves, a warm hat, and a scarf). If there are missing items, the GM may penalize HT rolls with the -1 per item recommended on p. B345. Cost is 30% of cost of living; weight is 4 lbs.</p>"
+  },
+  {
+    "_id": "bc5334f1b8866334",
+    "name": "Arctic Clothes",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is an outfit similar to winter clothes (above), but with multiple layers and a water- and windproof exterior to help retain body heat and protect against biting arctic winds. Through TL6, furs, oilcloth, and greased wool or felt are common; at TL7-8, lighter materials appear. All such clothing gives +5 to HT rolls to avoid FP or HP loss due to freezing temperatures (see p. B430). As with winter clothing, if crucial items - gloves, hat, etc. - are missing, the outfit loses much of its effectiveness. When necessary, the wearer can remove a few layers to allow arctic clothing to act as winter or ordinary clothes. Cost is 50% of cost of living; weight is 15 lbs.</p>"
+  },
+  {
+    "_id": "0cd9460945d55fc1",
+    "name": "Formal Wear",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Top hat and tuxedo, waistcoat and kilt, sequined evening gown and Pierre Cardin handbag . . . these are clothes for stepping out in. Fashion dictates the exact style and cut that's \"in,\" but one thing is for certain: it isn't cheap. Cost starts at 40% of cost of living; weight is 2 lbs.</p>"
+  },
+  {
+    "_id": "7a54f1b991d05aa5",
+    "name": "High-Fashion Attire",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This represents ridiculously luxurious materials crafted by the world's top designers, with glitz and glam to the hilt. Many high-fashion designs disregard the normal conventions of dress and decorum; some seem to defy the laws of physics. The chichi fabrics are equally outrageous: lace tatted by blind nuns, Andean vicuña cashmere, handwoven Thai silks, etc. Of course, the price for an original Oscar de la Renta or Jean-Paul Gaultier is astronomical. Cost starts at 100% of cost of living for Status 2 or above; weight is 1-4 lbs.</p>"
+  },
+  {
+    "_id": "2740c34228e72abb",
+    "name": "Clothing Accessories",
+    "pages": "HT63",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Trimmings help complete any outfit. Attention to such details is crucial when stepping out in high society!</p><p>For men, sleeve garters adjust the one-size-fits-all sleeves of TL5 shirts. Cufflinks are another important accessory - required for TL5 and often TL6 shirts, which lack cuff buttons, and stylish even today. During all of TL5-8, a necktie or a cravat adds color and distinction to a shirt. Well into TL7, hat, handkerchief, and pocketknife are also considered part of any respectable gent's ensemble.</p><p>For women, hosiery is a top priority through TL5-8. This includes leg garters in the days before nylon pantyhose, which stays up on its own (TL7). Trends in hats, gloves, handbags, and so on fluctuate annually. Veils are common in many times and places - for modesty, mystique, or protection from sunlight, dust, and insects.</p><p>Characters start with accessories appropriate to their Status. Bought separately, such items cost 1% of cost of living per \"outfit.\" Weight is negligible.</p>"
+  },
+  {
+    "_id": "87f4dec0f7453196",
+    "name": "Hat, Cloth",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Historically, man has worn many types of head coverings. Materials include wool (often felt), cotton, and leather. Styles, too, are highly variable - baseball caps, cowboy hats, derbies, fedoras, watch caps, and so on. Hats prevent sunburn, retain body heat, and/or keep rain out of the wearer's face. They can be decorative or utilitarian, distinctive or ubiquitous (perhaps even helping someone blend into the crowd). Prices run from around 1% of cost of living for cloth caps to 10% of cost of living for leather or felt hats. Weight is negligible for most cloth; 0.5-1 lb. for leather or felt.</p>"
+  },
+  {
+    "_id": "7489d4971520f3c7",
+    "name": "Hat, Leather or Felt",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Historically, man has worn many types of head coverings. Materials include wool (often felt), cotton, and leather. Styles, too, are highly variable - baseball caps, cowboy hats, derbies, fedoras, watch caps, and so on. Hats prevent sunburn, retain body heat, and/or keep rain out of the wearer's face. They can be decorative or utilitarian, distinctive or ubiquitous (perhaps even helping someone blend into the crowd). Prices run from around 1% of cost of living for cloth caps to 10% of cost of living for leather or felt hats. Weight is negligible for most cloth; 0.5-1 lb. for leather or felt.</p>"
+  },
+  {
+    "_id": "111d67c067ecf1a9",
+    "name": "Undercover Clothing (Ordinary Clothes, +1)",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Clothing designed to hide things gives a Holdout bonus, cumulative with that for a concealable holster (p. 154). This may be accomplished through a special cut, hidden pockets and reinforcements, panels, etc. An outfit that gives +1 (quality) to Holdout has 5× its usual cost; +2 (quality) is 20× normal cost.</p>"
+  },
+  {
+    "_id": "b91537e84575e98b",
+    "name": "Undercover Clothing (Ordinary Clothes, +2)",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Clothing designed to hide things gives a Holdout bonus, cumulative with that for a concealable holster (p. 154). This may be accomplished through a special cut, hidden pockets and reinforcements, panels, etc. An outfit that gives +1 (quality) to Holdout has 5× its usual cost; +2 (quality) is 20× normal cost.</p>"
+  },
+  {
+    "_id": "c7a9f4fdab2b7b24",
+    "name": "Wet-Weather Gear",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Rain and spray can greatly reduce the effectiveness of clothing in cold weather (see Cold, p. B430). At TL5-6, wet-weather gear is a thick \"gum\" blanket or poncho; at TL7-8, it's a lightweight synthetic suit. Because of their bulk, ponchos and the like grant +4 to Holdout when trying to conceal gear on the body. Cost and weight are as for ordinary clothes of the appropriate TL.</p>"
+  },
+  {
+    "_id": "d53f2081a0b4a5f6",
+    "name": "Wicking Undergarment",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This special clothing was originally designed to be worn under body armor and later adapted for athletic use. Its fibers draw moisture away from the skin, helping keep the wearer dry and facilitating evaporative cooling. Gives +1 to all HT and HT-based rolls to avoid FP loss in hot weather (see Heat, p. B434).</p>"
+  },
+  {
+    "_id": "0deb5715cb9d1e06",
+    "name": "Long Coat, Leather",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a trench coat, duster, overcoat, or similar item that covers the torso and extends to the knees or below. It can easily conceal bulky items (+4 to Holdout) but may look out-of-place in certain settings. It can be bought as undercover clothing (below) to increase its Holdout bonus. A leather version (×5 cost, ×2 weight) gives DR 1.</p>"
+  },
+  {
+    "_id": "892d12ad31855c26",
+    "name": "Anti-Stab Plate",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, soft ballistic vests typically have built-in pockets for removable \"trauma plates\" or \"anti-stab plates.\" Such plates increase the armor's cost and weight, but significantly enhance the protection it affords. Assume that plates are available for any flexible torso armor.</p><p>Ballistic plates are rigid, and greatly increase a vest's bulk. Those made from ceramic are also brittle - they work by cracking, which absorbs some of the bullet's energy, and lose effectiveness after a small number of shots. The GM who enjoys gritty realism may treat trauma plates as semi-ablative DR (p. B47).</p><p>A small plate of lightweight metal alloy, intended for protection against knife attacks, not firearms. It covers the vitals from the front only. Gives +4 DR.</p>"
+  },
+  {
+    "_id": "87ac319a1ec9cbf0",
+    "name": "Small Trauma Plate",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, soft ballistic vests typically have built-in pockets for removable \"trauma plates\" or \"anti-stab plates.\" Such plates increase the armor's cost and weight, but significantly enhance the protection it affords. Assume that plates are available for any flexible torso armor.</p><p>Ballistic plates are rigid, and greatly increase a vest's bulk. Those made from ceramic are also brittle - they work by cracking, which absorbs some of the bullet's energy, and lose effectiveness after a small number of shots. The GM who enjoys gritty realism may treat trauma plates as semi-ablative DR (p. B47).</p><p>A small ceramic plate that protects the vitals from the front only. Gives +25 DR.</p>"
+  },
+  {
+    "_id": "f266522f7807c10b",
+    "name": "Trauma Plate",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, soft ballistic vests typically have built-in pockets for removable \"trauma plates\" or \"anti-stab plates.\" Such plates increase the armor's cost and weight, but significantly enhance the protection it affords. Assume that plates are available for any flexible torso armor.</p><p>Ballistic plates are rigid, and greatly increase a vest's bulk. Those made from ceramic are also brittle - they work by cracking, which absorbs some of the bullet's energy, and lose effectiveness after a small number of shots. The GM who enjoys gritty realism may treat trauma plates as semi-ablative DR (p. B47).</p><p>A large ceramic plate that protects the entire torso from either the front or the back - two are needed for full torso coverage. Gives +25 DR.</p>"
+  },
+  {
+    "_id": "90a6e803da9c0fc6",
+    "name": "Interim Small Arms Protective Overvest (ISAPO)",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>At TL8, frag vests use aramid fibers that are five times stronger than steel. An example is the Personnel Armor System for Ground Troops (PASGT) vest, adopted by the U.S. Army in 1976. Later versions - such as Germany's Mehler Splitterschutzweste MIL-120 - are much lighter (5.7 lbs.) and better-designed. In the 1990s, the PASGT vest was upgraded with a carrier for ceramic plates (8 lbs. each) and called the Interim Small Arms Protective Overvest, or ISAPO (DR 30, $700, 25 lbs.).</p>"
+  },
+  {
+    "_id": "75fe4e5e721b0c51",
+    "name": "Aircrew Armor (Front and Back Plates)",
+    "pages": "HT67",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A rigid aluminum oxide and glass-reinforced plate inside a ballistic nylon carrier. Such armor was issued by the U.S. Army from 1966; helicopter crews called it \"chicken plate.\" The table entry assumes a vest with only a single plate in the front of the carrier, as worn by pilots and copilots. Helicopter door gunners wore a back plate as well. This provides protection for the front and back of the torso, but increases cost to $1,100 and weight to 34 lbs.</p>"
+  },
+  {
+    "_id": "696b322676d07f5c",
+    "name": "Heavy Helmet Brow Plate",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy steel helmet, such as the German Stahlhelm (\"steel helmet\") of WWI. A strap-on brow reinforcement of heavy steel plate is sometimes issued to machine gunners and trench sentries. This addition protects the skull from the front (+15 DR, +$10, +5 lbs.).</p>"
+  },
+  {
+    "_id": "4c38885107582b3a",
+    "name": "Leather Helmet (Steel Plates)",
+    "pages": "HT69",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The famous \"Snoopy\"-style skullcap worn by aviators, tankers, paratroopers, and even athletes. It has ear flaps and thick padding. Later models have built-in headphones and steel plates, greatly increasing protection (+4 DR, +$50, +2 lbs.).</p>"
+  },
+  {
+    "_id": "2b8eb76848139f81",
+    "name": "Medium Helmet Liner",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A well-designed steel helmet, such as the M1 \"steel pot\" worn by American soldiers from 1942 to the mid-1980s. The removable liner can be worn on its own (DR 1, $10, 1 lb.).</p>"
+  },
+  {
+    "_id": "1a42dcd2fa522efd",
+    "name": "Hard Hat (TL8)",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A lightweight aluminum \"skull bucket\" for construction sites. At TL8, it's made from non-conductive plastic and costs half as much.</p>"
+  },
+  {
+    "_id": "7c228d4edd0bc6ee",
+    "name": "Boots, Arctic (TL7)",
+    "pages": "HT68",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heavily insulated and waterproof boots. At TL7-8, double price but halve weight. Arctic boots are often worn with crampons (p. 56). -1 to Stealth.</p>"
+  },
+  {
+    "_id": "91f230f32518f09b",
+    "name": "Biohazard Suit (TL8)",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A bulky, hermetically sealed suit worn for protection from chemical spills and plagues. It cannot pass for clothing. It's worn with an air mask or an SCBA (pp. 72-73), which fits completely under the suit. It's incredibly hot - triple FP losses while suited-up. At TL8, advanced versions (×2 cost) have a special lining that effectively blocks low-level radiation, providing PF 2.5 against gamma or beta radiation; see Radiation Protection (p. B436). It uses the NBC Suit skill.</p>"
+  },
+  {
+    "_id": "d07ff97af66cb16c",
+    "name": "Goggles",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>The purpose of goggles is to form a seal around the eyes to keep out damaging dust, smoke, and other particles.</p><p>Glass goggles, with leather fittings. They give Nictitating Membrane 1 - but hits that penetrate the DR 1 this provides may cause extra damage! Some are tinted, and also grant Protected Vision (p. B78) against bright ordinary light (not lasers, etc.).</p>"
+  },
+  {
+    "_id": "34a1f4993ad36ae1",
+    "name": "Sunglasses (TL5)",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>Unlike goggles, glasses protect against impacts and splashes, but not dust, gas, or submersion in liquids.</p><p>Sunglasses became commercially available at TL5. Doctors prescribed tinted lenses for \"weak eyes,\" claiming that certain childhood diseases made their patients sensitive to sunlight. Sunglasses protect the eyes with DR 1.</p>"
+  },
+  {
+    "_id": "6c36a8c944e3ab26",
+    "name": "Sunglasses (TL6)",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>Unlike goggles, glasses protect against impacts and splashes, but not dust, gas, or submersion in liquids.</p><p>Ray-Bans were issued to aviators in the 1930s to protect against high-altitude glare and instrument-panel reflections. A trendy mirrored coating becomes available circa 1950 (TL7). Polarized sunglasses give Protected Vision against bright ordinary light and DR 1 over the eyes.</p>"
+  },
+  {
+    "_id": "209977a6a9f265de",
+    "name": "Ballistic Sunglasses",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>Unlike goggles, glasses protect against impacts and splashes, but not dust, gas, or submersion in liquids.</p><p>Modern battlefield sunglasses, designed to protect against a shotgun blast. They give Protected Vision against bright ordinary light and DR 4 for the eyes.</p>"
+  },
+  {
+    "_id": "78bd2fa09ea0a89e",
+    "name": "Cup",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A plastic guard that gives the groin DR 2 vs. crushing (DR 1 vs. other damage), only from the front. Also grants +2 to knockdown rolls for groin hits.</p>"
+  },
+  {
+    "_id": "e5ef42bc6b70eb83",
+    "name": "Homemade Armor, Paper and Tape",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Layers of paper (newspapers, magazines, etc.) and duct tape can be fashioned into a thick vest capable of providing some protection against knives, shotgun pellets, and shell fragments. It won't tolerate water, though, and will come apart in damp weather.</p><p>Constructing it requires an Armoury (Body Armor) roll at +5 - an IQ roll, if working at default - and 30 minutes' work. Gives the torso DR 3.</p><p>In a post-apocalyptic setting, those with the Armoury (Body Armor) skill and suitable tools can recycle old road signs and car bodies into real shields and armor.</p>"
+  },
+  {
+    "_id": "3794f3633d6088b6",
+    "name": "Homemade Armor, Plastic Bucket",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pair of heavy snips or bolt cutters can turn a plastic bucket or barrel into a quick-and-dirty lorica segmentata (p. B283). This requires an Armoury (Body Armor) roll at +3 and 3 hours' work. Gives the torso DR 3.</p><p>In a post-apocalyptic setting, those with the Armoury (Body Armor) skill and suitable tools can recycle old road signs and car bodies into real shields and armor.</p>"
+  },
+  {
+    "_id": "72cf49c9a5218d9d",
+    "name": "Air Tank, Medium",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Air tanks connect to an air mask (pp. 72-73). Those described below include valves, fittings, carrying harness, etc. Tanks may be filled with a variety of compressed breathing gases - including ordinary air, pure oxygen, and oxygen-helium-nitrogen \"trimix\" - but for simplicity's sake, these rules ignore the differences and assume that skilled users have the right mix.</p><p>Tank duration supposes a mostly inactive adult; assume that a tank lasts twice as long for a child under 12 years of age. Stress and heavy exertion greatly reduce textbook duration; a rookie firefighter uses up his air far more quickly than does an old hand. Subtract a minute from duration for each FP expended and for each failed Fright Check.</p><p>When using these tanks for scuba diving, divide duration by the local pressure. Divide by 2 at 33' depth, by 3 at 66', by 4 at 100', and so on. See Pressure (p. B435) for details.</p><p>Duration is 22 minutes (TL6), 45 minutes (TL7), or 90 minutes (TL8).</p>"
+  },
+  {
+    "_id": "1251003827bab7f6",
+    "name": "Air Tank, Large",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Air tanks connect to an air mask (pp. 72-73). Those described below include valves, fittings, carrying harness, etc. Tanks may be filled with a variety of compressed breathing gases - including ordinary air, pure oxygen, and oxygen-helium-nitrogen \"trimix\" - but for simplicity's sake, these rules ignore the differences and assume that skilled users have the right mix.</p><p>Tank duration supposes a mostly inactive adult; assume that a tank lasts twice as long for a child under 12 years of age. Stress and heavy exertion greatly reduce textbook duration; a rookie firefighter uses up his air far more quickly than does an old hand. Subtract a minute from duration for each FP expended and for each failed Fright Check.</p><p>When using these tanks for scuba diving, divide duration by the local pressure. Divide by 2 at 33' depth, by 3 at 66', by 4 at 100', and so on. See Pressure (p. B435) for details.</p><p>Duration is 45 minutes (TL6), 90 minutes (TL7), or 3 hours (TL8).</p>"
+  },
+  {
+    "_id": "9626fc15b943d3d0",
+    "name": "Simple Camouflage (Ordinary Clothes)",
+    "pages": "HT76",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The most common variety of camouflage is khaki, feldgrau, olive drab, or something similar. It gives +1 (quality) to Camouflage skill. Clothing can have such a color or pattern at no extra cost.</p>"
+  },
+  {
+    "_id": "a27b4801ce5d8fd7",
+    "name": "Basic Camouflage (Ordinary Clothes)",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pattern appropriate to the terrain gives +2 (quality) to Camouflage in that terrain - but -1 in other terrain and -2 in highly contrasting terrain (e.g., arctic camouflage in the jungle). Camouflage clothing at TL7+ incorporates dyes that mask or absorb light in the near-infrared wavelengths, too, providing +1 to Camouflage vs. observers relying on technological Night Vision or Infravision. Most recent military camouflage falls into this category: the USMC's digital MARPAT, the U.S. Army's woodland pattern, Vietnam-era \"tigerstripe\" for jungle warfare, etc. Costs 100% of clothing cost.</p>"
+  },
+  {
+    "_id": "914654030830f3f8",
+    "name": "Advanced Camouflage (Ordinary Clothes)",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The best camouflage is highly optimized for one extremely specific terrain - \"snowy deciduous forest,\" \"autumn hardwood forest,\" \"marshy bottomland,\" etc. - and may even include 3D components such as die-cut texturing. It gives +3 (quality) to Camouflage in the intended terrain but -2 almost everywhere else. Examples include the products of top commercial manufacturers; e.g., Realtree, Predator, and Mossy Oak. Costs 200% of clothing cost.</p>"
+  },
+  {
+    "_id": "92ce86f41bb58449",
+    "name": "Reversible Camouflage (Ordinary Clothes, Two Basic Patterns)",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Two different patterns - or one pattern and one normal color - can be printed on opposite sides of clothing, allowing a hunter or a soldier to switch patterns as he moves between terrain types. To find the price, total the additional cost; e.g., two advanced patterns add 400% to clothing cost.</p>"
+  },
+  {
+    "_id": "bd1de9b961d522f7",
+    "name": "Scent Masking (Ordinary Clothes)",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This clothing treatment works like a sealed chemical-protection suit in reverse: instead of keeping chemicals out, it prevents chemicals from leaving. The result is -4 to all Tracking attempts to follow the wearer wholly or partly by scent. Scent-masking technology is common on commercial hunter's outfits and an option for most other clothing. Costs 200% of clothing cost.</p>"
   },
   {
     "_id": "7cf38e406e2be11f",
@@ -4126,5 +5246,197 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>This is a streamlined human cargo pod, like the EXINT (extraction/insertion) pod from London-based AVPRO. It holds one person and attaches to an aircraft's hardpoints; a single AH-64 Apache helicopter can carry four. The occupant has a radio, a navigation display, and life support - but no controls! A GPS-guided control system steers the pod precisely and lands it safely using a combination of parachute and airbags. Maximum cargo load, including occupant, is 500 lbs.</p>"
+  },
+  {
+    "_id": "13f78c853f5d6b56",
+    "name": "Long Coat",
+    "pages": "HT64",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a trench coat, duster, overcoat, or similar item that covers the torso and extends to the knees or below. It can easily conceal bulky items (+4 to Holdout) but may look out-of-place in certain settings. It can be bought as undercover clothing (below) to increase its Holdout bonus. A leather version (×5 cost, ×2 weight) gives DR 1.</p>"
+  },
+  {
+    "_id": "9a2add0776c1c6ca",
+    "name": "Earmuffs",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Explosions, firearms, motorcycles, and power tools are loud enough to cause temporary Hearing penalties. All have the potential to inflict Hard of Hearing (p. B138) over time. Shooters use a variety of means to prevent such damage. Tactical teams often wear an earplug in one ear and a radio earbud (see Headsets and Microphones, p. 39) in the other. All of these measures grant Protected Hearing (p. B78).</p><p>Give Protected Hearing and Hard of Hearing while worn.</p>"
+  },
+  {
+    "_id": "2e0cf559778b1eb3",
+    "name": "Earplugs",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Explosions, firearms, motorcycles, and power tools are loud enough to cause temporary Hearing penalties. All have the potential to inflict Hard of Hearing (p. B138) over time. Shooters use a variety of means to prevent such damage. Tactical teams often wear an earplug in one ear and a radio earbud (see Headsets and Microphones, p. 39) in the other. All of these measures grant Protected Hearing (p. B78).</p><p>Give Protected Hearing and Hard of Hearing while worn.</p>"
+  },
+  {
+    "_id": "34c1d88854503593",
+    "name": "Electronic Earmuffs",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Explosions, firearms, motorcycles, and power tools are loud enough to cause temporary Hearing penalties. All have the potential to inflict Hard of Hearing (p. B138) over time. Shooters use a variety of means to prevent such damage. Tactical teams often wear an earplug in one ear and a radio earbud (see Headsets and Microphones, p. 39) in the other. All of these measures grant Protected Hearing (p. B78).</p><p>Filter out loud noises electronically but still allow normal conversation. Provide Protected Hearing while worn.</p>"
+  },
+  {
+    "_id": "1c8968ea3bfa94b4",
+    "name": "Electronic Earplugs",
+    "pages": "HT70",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Explosions, firearms, motorcycles, and power tools are loud enough to cause temporary Hearing penalties. All have the potential to inflict Hard of Hearing (p. B138) over time. Shooters use a variety of means to prevent such damage. Tactical teams often wear an earplug in one ear and a radio earbud (see Headsets and Microphones, p. 39) in the other. All of these measures grant Protected Hearing (p. B78).</p><p>As electronic earmuffs (above), but fit completely inside the ear.</p>"
+  },
+  {
+    "_id": "b8305b8f641f91fd",
+    "name": "Dive Mask",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>The purpose of goggles is to form a seal around the eyes to keep out damaging dust, smoke, and other particles.</p><p>A basic swimming or scuba mask grants Nictitating Membrane 1 (p. B71).</p>"
+  },
+  {
+    "_id": "3f68b890d1034912",
+    "name": "Anti-Laser Goggles",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>The purpose of goggles is to form a seal around the eyes to keep out damaging dust, smoke, and other particles.</p><p>With the growing threat of dazzle lasers, modern military forces began to field anti-laser goggles in the 1990s. These provide both Protected Vision and Nictitating Membrane 4.</p>"
+  },
+  {
+    "_id": "164bca29d8008925",
+    "name": "Tactical Goggles",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Protective goggles and glasses were widely used by cyclists and aviators in WWI, and went on to become standard props for adventurers. Most grant defensive advantages while worn. All require a Ready maneuver to don or remove.</p><p>The purpose of goggles is to form a seal around the eyes to keep out damaging dust, smoke, and other particles.</p><p>Nonfogging ballistic goggles with a tough polycarbonate lens. They grant Nictitating Membrane 5.</p>"
+  },
+  {
+    "_id": "dca30befdd9b01bc",
+    "name": "Mouthguard",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A form-fitted plastic mouthpiece worn to protect the jaw and teeth. Gives +1 to knockdown rolls for face hits, but makes speech difficult (treat as Disturbing Voice, p. B132).</p>"
+  },
+  {
+    "_id": "3cc78a0954d482ef",
+    "name": "Knee or Elbow Pads (pair)",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Modern pads provide DR 3 for arm or leg joints when crawling, kneeling, or falling on hard surfaces (GM's decision), or when the knee or elbow is struck in combat (2/6 protection for that limb).</p>"
+  },
+  {
+    "_id": "34667ffda7cc20d6",
+    "name": "Explosives Blanket",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A 4'×6' piece of flexible ballistic armor, used to contain an explosion if a bomb can't be removed. Subtract its DR from the bomb's damage roll. It's sometimes used as portable cover for multiple SWAT officers. DR 25.</p>"
+  },
+  {
+    "_id": "474382f259f47a90",
+    "name": "Radiation Blanket",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Identical to the explosives blanket (above), but also offers protection against radiation-scattering \"dirty bombs.\" It provides PF 3 (see Radiation Protection, p. B436) to those exposed.</p>"
+  },
+  {
+    "_id": "150606f4dd944e8d",
+    "name": "Gas Mask Filter",
+    "pages": "HT72",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A gas mask uses \"negative pressure\": the wearer sucks in clean air through the filter medium. Weight includes a replaceable filter.</p>"
+  },
+  {
+    "_id": "af2ae83747cdfd9c",
+    "name": "Closed-Dress Rig",
+    "pages": "HT73",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the 1830s, Augustus Siebe perfected \"closed\" diving dress: a helmet sealed to a waterproof suit and fitted with controlled intake and outlet valves for air. This is still basic equipment for the modern \"hard-hat\" diver, who's tied to the surface by air lines. Hard-hat gear makes diving about as safe as being underwater can be; the dangers aren't so much inherent in the hardware as in the environment. Most diving jobs are construction, salvage, and rescue jobs that would be difficult and dangerous even on land. When performing a risky activity underwater in diving dress, roll against Diving Suit (p. B192). Most failures mean a job-specific hazard such as a punctured hose or suit, a fouled line, or a broken helmet.</p><p>Hard-hat diving isn't a solo activity. It requires a trained crew of handlers on the surface. Before the 1940s, most air pumps were operated manually by two or more pumpers. In addition, at least one line-tender is needed to keep the air hose and ropes from fouling. Paranoid adventurers should be encouraged to dwell on the thought of treachery topside!</p><p>A brass helmet with portholes, a rubberized canvas suit, and lead-soled shoes. Air is delivered from the surface by a hand-powered compressor ($1,000, 300 lbs.), via 200' of hose on a reel ($500, 25 lbs.). At TL6, the rig includes an intercom, and no manual compressor is needed, as most ships have an air compressor aboard.</p>"
+  },
+  {
+    "_id": "cade02965b007240",
+    "name": "Hard-Hat Rig",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In the 1830s, Augustus Siebe perfected \"closed\" diving dress: a helmet sealed to a waterproof suit and fitted with controlled intake and outlet valves for air. This is still basic equipment for the modern \"hard-hat\" diver, who's tied to the surface by air lines. Hard-hat gear makes diving about as safe as being underwater can be; the dangers aren't so much inherent in the hardware as in the environment. Most diving jobs are construction, salvage, and rescue jobs that would be difficult and dangerous even on land. When performing a risky activity underwater in diving dress, roll against Diving Suit (p. B192). Most failures mean a job-specific hazard such as a punctured hose or suit, a fouled line, or a broken helmet.</p><p>Hard-hat diving isn't a solo activity. It requires a trained crew of handlers on the surface. Before the 1940s, most air pumps were operated manually by two or more pumpers. In addition, at least one line-tender is needed to keep the air hose and ropes from fouling. Paranoid adventurers should be encouraged to dwell on the thought of treachery topside!</p><p>A modern salvage suit with weights and helmet, plus a reel with 200' of hose ($1,000, 25 lbs.).</p>"
+  },
+  {
+    "_id": "ae02af4fa59ee4b0",
+    "name": "Air Tank, Small",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Air tanks connect to an air mask (pp. 72-73). Those described below include valves, fittings, carrying harness, etc. Tanks may be filled with a variety of compressed breathing gases - including ordinary air, pure oxygen, and oxygen-helium-nitrogen \"trimix\" - but for simplicity's sake, these rules ignore the differences and assume that skilled users have the right mix.</p><p>Tank duration supposes a mostly inactive adult; assume that a tank lasts twice as long for a child under 12 years of age. Stress and heavy exertion greatly reduce textbook duration; a rookie firefighter uses up his air far more quickly than does an old hand. Subtract a minute from duration for each FP expended and for each failed Fright Check.</p><p>When using these tanks for scuba diving, divide duration by the local pressure. Divide by 2 at 33' depth, by 3 at 66', by 4 at 100', and so on. See Pressure (p. B435) for details.</p><p>Duration is 12 minutes (TL6), 22 minutes (TL7), or 45 minutes (TL8).</p>"
+  },
+  {
+    "_id": "7edd7df24f904528",
+    "name": "Heated Clothing",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heated clothing appears at TL6; true personal climate control, at TL7. Simple systems rely on phase changes, heat exchangers, or evaporative cooling to keep the wearer's body temperature at a safe level. These must be \"recharged\" after a few hours - often by dunking them in either warm or cold water. Complex systems use a capillary network in an undergarment to circulate water or coolant. These require electricity but work for as long as the batteries hold out.</p><p>The systems below extend one or both ends of the normal human comfort zone of 35°F to 90°F (see Temperature Tolerance, p. B93). This alters the temperatures at which Cold (p. B430) and/or Heat (p. B434) apply. Systems that extend the hot end of the zone also negate extra FP costs in hot weather (see Fatigue Costs, p. B426).</p><p>An electrically heated bodysuit adds 60° to the cold end of the comfort zone. Without power, it counts as winter clothing. It runs off external power indefinitely - or batteries, at TL8.</p>"
+  },
+  {
+    "_id": "d3342f5e696b331a",
+    "name": "Climate-Control System",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heated clothing appears at TL6; true personal climate control, at TL7. Simple systems rely on phase changes, heat exchangers, or evaporative cooling to keep the wearer's body temperature at a safe level. These must be \"recharged\" after a few hours - often by dunking them in either warm or cold water. Complex systems use a capillary network in an undergarment to circulate water or coolant. These require electricity but work for as long as the batteries hold out.</p><p>The systems below extend one or both ends of the normal human comfort zone of 35°F to 90°F (see Temperature Tolerance, p. B93). This alters the temperatures at which Cold (p. B430) and/or Heat (p. B434) apply. Systems that extend the hot end of the zone also negate extra FP costs in hot weather (see Fatigue Costs, p. B426).</p><p>Adds 60° to both ends of the comfort zone. It contains 3 quarts of water, a quart of which can be used as drinking water without reducing effectiveness.</p>"
+  },
+  {
+    "_id": "6e182c8f2498b103",
+    "name": "Cooling System",
+    "pages": "HT74",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Heated clothing appears at TL6; true personal climate control, at TL7. Simple systems rely on phase changes, heat exchangers, or evaporative cooling to keep the wearer's body temperature at a safe level. These must be \"recharged\" after a few hours - often by dunking them in either warm or cold water. Complex systems use a capillary network in an undergarment to circulate water or coolant. These require electricity but work for as long as the batteries hold out.</p><p>The systems below extend one or both ends of the normal human comfort zone of 35°F to 90°F (see Temperature Tolerance, p. B93). This alters the temperatures at which Cold (p. B430) and/or Heat (p. B434) apply. Systems that extend the hot end of the zone also negate extra FP costs in hot weather (see Fatigue Costs, p. B426).</p><p>A phase-change or evaporative cooling vest that adds 30° to the hot end of the comfort zone for 4 hours. \"Recharged\" by soaking it in ice-cold water for 15 minutes.</p>"
+  },
+  {
+    "_id": "b07db81f99fc7989",
+    "name": "Biomedical Sensors",
+    "pages": "HT75",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This rig tracks the wearer's blood pressure, cardiopulmonary activity, oxygen saturation, and other vital functions. It can be remotely monitored over a communications system, and gives medics a +1 (quality) bonus to Diagnosis.</p><p>Some suits under Environment Suits (pp. 74-76) include this system. Its cost, weight, and power requirement are included in the suit statistics.</p>"
+  },
+  {
+    "_id": "dc7f1a86d3f2ce31",
+    "name": "Camouflage Net",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A net covered with real or faux foliage. It works like any camouflage pattern, providing a bonus to the Camouflage skill in the right terrain. One net covers about 25 square yards.</p>"
+  },
+  {
+    "_id": "d12207e7cde8b3bf",
+    "name": "Ghillie Suit",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a shaggy camouflage suit designed to break up the human outline. Users often attach bits of local foliage. Under ideal circumstances - in particular, when there's plenty of vegetation to lurk in - it can make the wearer nearly invisible.</p><p>The basic suit gives +3 (quality) to Camouflage if it's similar to the terrain in which it's being used (equivalent to advanced camouflage, see above). Veteran hunters, snipers, and scouts normally customize their suits for further effectiveness; this requires a Camouflage roll. Increase the suit's bonus by the margin of success, to a maximum total bonus of +8. If a team is working together to modify ghillie suits, the person with the best Camouflage skill may roll once for everyone. Regardless of quality, a ghillie suit gives -1 to Camouflage rolls in non-matching terrain and -2 in highly contrasting terrain.</p><p>A ghillie suit is hot and heavy. Treat it as an overcoat for the purposes of Fatigue Costs (p. B426).</p>"
+  },
+  {
+    "_id": "f688c2144014b8ea",
+    "name": "Infrared-Suppressing Poncho",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heavy fabric treated with dyes that block infrared (IR), with preformed slots to allow heat to escape. It gives +2 (quality) to Camouflage vs. thermographs and other Infravision.</p>"
+  },
+  {
+    "_id": "00815b1b811fee3f",
+    "name": "IR Camouflage Net",
+    "pages": "HT77",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>This is a bigger version of the IR-suppressing poncho (above), plus a system of support poles. One net covers about 25 square yards.</p>"
   }
 ]
