@@ -295,3 +295,33 @@ Elgin Cutlass Pistol (large knife at -1), the NRS-2 (large knife) and the Condor
 
 Not done: the AM-402T variant (p. 199), the Sedgley glove's DR 1 and its one cartridge,
 the rifle grenades' 1d+1 cr dud (note 2), and Targeted Attack, which is #367's.
+
+### Vehicles and tables (#346, second part)
+
+**Vehicles.** The 37 vehicles of chapter 8 (pp. 232-244) and the 15 personal conveyances
+(pp. 230-232) are vehicle equipment in `equipment/high-tech-by-hand.json`, every table row
+read by position and checked against the page, named for the section heading (maker and
+model) and given the control skill its section's text names. The system's own fields carry
+everything the tables print, split DR included, so none of them needs Ultra-Tech's
+`vehicle` extension data (decision D6 predates `drOther`): `drOther` is the second figure
+of a split, and the text's top and underbody armour, turrets, windows and gun tubs are
+`drTop`, `drUnderbody` and `drByLocation` (GWorldVTT #622, API 1.79.0). As Ultra-Tech's
+vehicles do, weight is the loaded weight and LC is left empty (the tables have none);
+Range "F" (muscle-powered) and "-" are 0, and "fx" is kept as "x", since the field holds
+one code.
+
+Not representable, and left out: a turret's DR by face (the Panzer IV's 175/155/55, the
+M4A1's 210/140/70, the T-72A's 1,375/420/180; `mainTurret` holds the front's), armour
+that protects from one direction only (the fighters' canopies and cockpit armour, p. 237
+and p. 238), spaced armour and skirts (p. 229), gun shields on one of several mounts, an
+amphibian's Water Move (Ford GPA, BRDM-2), the kayaks' sail. The first and the last two
+are book-neutral questions for the system.
+
+**Tables.** Ultra-Tech keeps its warhead table as a TS data module beside the rules that
+read it (`src/books/ultra-tech/warheads/catalogue.ts`), so these follow it: the ammunition
+tables (pp. 175-177; 207 rows, the seven tables' WPS, CPS and footnotes) are
+`src/books/high-tech/ammunition/calibres.ts`, with `calibreRows` to find a gun's calibre,
+and the REF table (p. 183; 36 explosives) is `src/books/high-tech/explosives/ref.ts`. The
+table spans pp. 176-177 (p. 175 is its introduction). No rule reads them yet: #374 prices
+loads from the first, and the explosives rules the second.
+

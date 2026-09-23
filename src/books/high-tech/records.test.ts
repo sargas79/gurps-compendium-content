@@ -108,3 +108,42 @@ describe("High-Tech's hand-kept traits, skills and the Way of the Pistol", () =>
     expect(entries.filter((e: any) => /gurps-compendium-content\.(?!high-tech-)/.test(e.uuid))).toEqual([]);
   });
 });
+
+describe("High-Tech's vehicles and personal conveyances (pp. 230-244)", () => {
+  const vehicles = byHand("equipment").filter((d) => d.system.category === "vehicle");
+  const vehicle = (name: string) => named(vehicles, name).system.vehicle;
+
+  it("keeps the 37 vehicles of the chapter and its 15 personal conveyances", () => {
+    const pages = (from: number, to: number) => vehicles.filter((d) => {
+      const page = Number(/(\d+)$/.exec(d.system.reference)?.[1]);
+      return page >= from && page <= to;
+    });
+    expect(vehicles).toHaveLength(52);
+    expect(pages(230, 231)).toHaveLength(9);
+    expect(vehicles.filter((d) => d.system.vehicle.skill === "Piloting (Glider)" || d.name === "Rocket Belt")).toHaveLength(6);
+  });
+
+  it("reads a table row into the system's vehicle fields", () => {
+    // p. 236: RR Phantom II, 63, 0/3, 12f, 2/38*, 2.5, 0.5, +3, 1+4, 8, 250, $105,000, G4W.
+    expect(vehicle("Rolls-Royce Phantom II")).toMatchObject({
+      stHp: 63, handling: 0, stability: 3, ht: 12, fragility: "f", acceleration: 2, topSpeed: 38, roadBound: true,
+      loadedWeight: 2.5, load: 0.5, sm: 3, occupants: "1+4", dr: 8, range: 250, locations: "G4W", skill: "Driving (Automobile)",
+    });
+    expect(named(vehicles, "Rolls-Royce Phantom II").system.cost).toBe(105000);
+    // p. 231: a kayak's draft; p. 232: a glider's stall speed.
+    expect(vehicle("Folding Kayak")).toMatchObject({ locomotion: "water", draft: 2, range: 0 });
+    expect(vehicle("Glider")).toMatchObject({ locomotion: "air", stall: 7, fragility: "c" });
+  });
+
+  it("splits DR by face as the table and the text give it", () => {
+    // p. 244: 1,155/165, top 90, underbody 70, the turret 1,375 in front.
+    expect(vehicle("Uralvagonzavod T-72A")).toMatchObject({ dr: 1155, drOther: 165, drTop: 90, drUnderbody: 70, drByLocation: { mainTurret: 1375 } });
+    // p. 234: 45/20, top 20, underbody 15, turret 60.
+    expect(vehicle("Renault FT17")).toMatchObject({ dr: 45, drOther: 20, drTop: 20, drUnderbody: 15, drByLocation: { mainTurret: 60 } });
+    // p. 236 note 1: an unarmoured underbody and DR 10 windows.
+    expect(vehicle("Cadillac V-16 Armored")).toMatchObject({ dr: 15, drUnderbody: 5, drByLocation: { largeWindow: 10 } });
+    // p. 233 note 1: thinner top armour.
+    expect(vehicle("Junkers J.I")).toMatchObject({ dr: 15, drTop: 5 });
+    expect(vehicle("Ford V-8").drOther).toBeUndefined();
+  });
+});
