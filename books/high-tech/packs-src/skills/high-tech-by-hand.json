@@ -213,5 +213,61 @@
       "description": "",
       "reference": "High-Tech p. 251"
     }
+  },
+  {
+    "_id": "3bda17158116e3c3",
+    "name": "Bow (Slingshot)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Bow",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 201"
+    }
+  },
+  {
+    "_id": "1175dbee1ed2f33c",
+    "name": "Crossbow (Speargun)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Crossbow",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 201"
+    }
   }
 ]

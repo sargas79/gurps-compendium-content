@@ -69,6 +69,10 @@
       {
         "pattern": "^Entry Shield$",
         "reason": "the shield table's figures run into the text; the four shields are kept by hand as shields (#346, p. 72)"
+      },
+      {
+        "pattern": "^Ceramic$",
+        "reason": "a blade material, which triples cost and halves weight (#380); the closing line read is the glove pistol's (pp. 198-199)"
       }
     ],
     "set": [
@@ -1162,6 +1166,227 @@
           "name": "Detachable Wiper Suppressor, Rifle (per -1 Hearing)"
         },
         "reason": "priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Black Powder$",
+        "set": {
+          "name": "Improved Black Powder (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Improved Black Powder",
+                "pounds": 1
+              }
+            }
+          },
+          "system.tl": "5"
+        },
+        "reason": "the price is improved black powder's, the TL5 powder the book assumes, per pound (pp. 183-184)"
+      },
+      {
+        "pattern": "^Nitroglycerin$",
+        "set": {
+          "name": "Nitroglycerin (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Nitroglycerin (NG)",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "priced per pound (p. 184)"
+      },
+      {
+        "pattern": "^Dynamite$",
+        "set": {
+          "name": "Dynamite, 80% (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Dynamite (80%)",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "priced per pound; the price follows 80% dynamite's sticks (p. 185)"
+      },
+      {
+        "pattern": "^Smokeless Powders$",
+        "set": {
+          "name": "Smokeless Powder (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Smokeless Powder/Cordite",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "a typical smokeless powder, priced per pound (p. 185)"
+      },
+      {
+        "pattern": "^TNT$",
+        "set": {
+          "name": "TNT (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "TNT",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "priced per pound (p. 185)"
+      },
+      {
+        "pattern": "^Plastic Explosives$",
+        "set": {
+          "name": "Plastic Explosive (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Composition C4",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "priced per pound; every plastic explosive in the table has C4's REF 1.4 (pp. 183, 186)"
+      },
+      {
+        "pattern": "^ANFO$",
+        "set": {
+          "name": "ANFO (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "ANFO",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "the ingredients' price, per pound (p. 186)"
+      },
+      {
+        "pattern": "^Detonating Cord$",
+        "set": {
+          "name": "Detonating Cord (per pound)",
+          "system.weight": 1,
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "PETN",
+                "pounds": 1
+              }
+            }
+          }
+        },
+        "reason": "priced per pound; its core is PETN (pp. 183, 187)"
+      },
+      {
+        "pattern": "^Cutting Cord$",
+        "set": {
+          "name": "Cutting Cord (per pound)",
+          "system.weight": 1
+        },
+        "reason": "priced per pound, 2 feet of cord; its high-explosive core has no row in the REF table (p. 188)"
+      },
+      {
+        "pattern": "^Thermite$",
+        "set": {
+          "name": "Thermite (per pound)",
+          "system.weight": 1
+        },
+        "reason": "an incendiary, priced per pound (p. 188)"
+      },
+      {
+        "pattern": "^Extrudable Explosive$",
+        "set": {
+          "name": "Extrudable Explosive (Tube)",
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Demex",
+                "pounds": 0.25
+              }
+            }
+          }
+        },
+        "reason": "the closing line is the small tube's, holding 0.25 lb.; the caulking-gun cartridge and the gun are kept by hand (p. 187)"
+      },
+      {
+        "pattern": "^Foam Explosive$",
+        "set": {
+          "name": "Foam Explosive (Aerosol Can)",
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "explosive": {
+                "type": "Liquid Explosive Foam",
+                "pounds": 0.9
+              }
+            }
+          }
+        },
+        "reason": "an aerosol can holding 0.9 lb. of nitromethane foam (pp. 183, 187)"
+      },
+      {
+        "pattern": "^Time Fuse$",
+        "set": {
+          "name": "Time Fuse (15 feet)"
+        },
+        "reason": "a 15' length of slow- or quick-match (p. 187)"
+      },
+      {
+        "pattern": "^Blasting Caps$",
+        "set": {
+          "name": "Blasting Caps (6)"
+        },
+        "reason": "priced for six (p. 187)"
+      },
+      {
+        "pattern": "^Time Pencils$",
+        "set": {
+          "name": "Time Pencils (6)"
+        },
+        "reason": "a six-pack, one of each delay (p. 188)"
+      },
+      {
+        "pattern": "^Bow Accessories$",
+        "set": {
+          "name": "Bowstring Silencers (pair)"
+        },
+        "reason": "the closing line is the bowstring silencers'; the sights and stabilizers are kept by hand (p. 201)"
+      },
+      {
+        "pattern": "^Remote Blasting Machine$",
+        "set": {
+          "system.extensions": {
+            "gurps-compendium-content": {
+              "power": {
+                "draw": {
+                  "cell": "S",
+                  "cells": 4,
+                  "endurance": "14 days",
+                  "raw": "4×S/14 days"
+                }
+              }
+            }
+          }
+        },
+        "reason": "four S batteries for 14 days; the sentence's period is not the endurance's (p. 187)"
       }
     ]
   },

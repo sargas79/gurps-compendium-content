@@ -1,0 +1,661 @@
+[
+  {
+    "_id": "b6bd4255ef580b4f",
+    "name": "Improved Black Powder (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 5,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 183",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Improved Black Powder",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "766892efafeb447d",
+    "name": "Nitroglycerin (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 15,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 184",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 15,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Nitroglycerin (NG)",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "998d406a0fb7d889",
+    "name": "Dynamite, 80% (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 184",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Dynamite (80%)",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f53d4c9f1edfdf7a",
+    "name": "Smokeless Powder (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 7.5,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 185",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 7.5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Smokeless Powder/Cordite",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8aa520a1f26ec64c",
+    "name": "TNT (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 185",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "TNT",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "2df8f8c5959c6653",
+    "name": "Plastic Explosive (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 185",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Composition C4",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8b018cf015d750bd",
+    "name": "ANFO (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 2,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 186",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "ANFO",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "357960bd080ffff0",
+    "name": "Extrudable Explosive (Tube)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.3,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Demex",
+            "pounds": 0.25
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a905970950c6ffa1",
+    "name": "Foam Explosive (Aerosol Can)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "Liquid Explosive Foam",
+            "pounds": 0.9
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "c9b6f678d604a23d",
+    "name": "Time Fuse (15 feet)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "3",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f636eec84677eb5a",
+    "name": "Blasting Caps (6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "b5f54e2c0410ec27",
+    "name": "Early Blasting Machine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e123818a3e3acd03",
+    "name": "Military Blasting Machine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.75,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "6ccce92bdac6ff92",
+    "name": "Remote Blasting Machine",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 4,
+              "endurance": "14 days",
+              "raw": "4×S/14 days"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "87b83ecfff13ab23",
+    "name": "Detonating Cord (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 187",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "explosive": {
+            "type": "PETN",
+            "pounds": 1
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8dbb7f0bb4e7f722",
+    "name": "Mechanical Clock",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "22e1bb67d27c4d0a",
+    "name": "Electronic Clock",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3a47ec5811f020cd",
+    "name": "Time Pencils (6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 30,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a410a2fe7d79c0f2",
+    "name": "Cutting Cord (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 90,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 90,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "dcb104d5382a738e",
+    "name": "Thermite (per pound)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 188",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e55c76e03aac70e4",
+    "name": "Bowstring Silencers (pair)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 201",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  }
+]

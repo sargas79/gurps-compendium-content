@@ -13,6 +13,7 @@
 
 import type { BookRules } from "../../shared/book.js";
 import { initHighTechPower } from "./power/index.js";
+import { registerHighTechRecordData } from "./records.js";
 
 const SLUG = "high-tech";
 
@@ -39,12 +40,14 @@ export const RESERVED_KEYS = Object.freeze({
  * No switches yet: each rule issue adds its own, as a RULES list and a
  * `registerRules` like Ultra-Tech's, and registers its tables with the shared
  * engines in `init`. The battery table is registered already, with its switch
- * left for #358, so the captured gear keeps its batteries (#348).
+ * left for #358, so the captured gear keeps its batteries (#348), and so are
+ * the record fields the explosives carry (#349).
  */
 export const book: BookRules = {
   slug: SLUG,
   label: "GURPS High-Tech",
   init: () => {
     initHighTechPower();
+    registerHighTechRecordData();
   },
 };

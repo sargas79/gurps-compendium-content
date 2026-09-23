@@ -414,3 +414,54 @@ are options priced inside another item's text, as #348 left them. Knee or elbow 
 gear: their DR 3 protects 2/6 of a joint when kneeling, falling or struck (#383, #384). The
 Protected Hearing and Vision, Nictitating Membrane and Ham-Fisted that eye, ear and hand
 protection grant are #384's.
+
+### The catalogue, chapter 5: explosives, mines, bombs and melee weapons (#349, second part)
+
+**Captured.** `tools/capture-gear.mjs` read pp. 180-201 into
+`equipment/high-tech-captured-weaponry.json` (21 records: explosives, fuses, caps, blasting
+machines, clocks, time pencils, cutting cord, thermite, bowstring silencers), with 1 skip and
+17 `capture.set` rules. The explosives are priced per pound and named so; the book's own
+captures on pp. 13-161 come out unchanged.
+
+**REF.** An explosive record carries `explosive: { type, pounds }` in the module's
+extension data: `type` is its row of the REF table (p. 183,
+`src/books/high-tech/explosives/ref.ts`), `pounds` the explosive it holds (1 for a pound, 0.25
+for the extrudable tube, 0.9 for the foam can). The REF itself is not copied onto the record,
+so the table is the one place it lives; `chargeOf(item)` in `src/books/high-tech/records.ts`
+reads the pair, and High-Tech registers the field itself (decision D1). Plastic explosive
+links to Composition C4 (every plastic in the table is REF 1.4). Cutting cord and thermite
+have no row and carry none. Nothing reads the link yet: registering the table with the
+system's `registerExplosive` and the charge rules are #378's.
+
+**Kept by hand** (69, and two skills):
+
+| What | Pages | |
+|---|---|---|
+| the extrudable explosive's caulking-gun cartridge (1 lb.) and the caulking gun | 187 | |
+| tear gas and pepper sprays | 180 | melee at Reach 1, 2, HT-2 and HT-4 afflictions (the text's two rolls, coughing and blindness, read as one) |
+| the squirt carbine, and its backpack-tank version | 180 | Special, Range 8 (12) |
+| NORINCO QXJ04 and ZM87 | 181 | HT-5 and HT-10 afflictions; the dazzler's 3-yard cone as `coneMaxWidth`; their M and VL batteries |
+| four land mines, and SMi35, M16 and M5 from the text | 189 | an explosion with fragments; the TMi35 pressed against what sets it off (`blastPlacement: contact`); the Claymore's 700 pellets and the M5's 600 as a second, multiple-projectile mode (note 1) |
+| nine bombs | 194 | Artillery (Bombs), explosion and fragments; the table's scrambled columns read by position |
+| Little Boy (12.5 kt) and the 0.1-kiloton warhead | 195 | crushing explosive damage linked to burning ex rad sur; no price, and no weight for Little Boy |
+| the 13 melee weapons of the table | 200 | every row with its reach, parry, ST and notes: the knuckle-guard and tonfa punches with the unarmed bonus, the stun weapons' linked HT-3(0.5) affliction and their S batteries, the switchblade's no parry, the sword cane's -2F; LC from the text, LC3-4 as 3 |
+| bayonets and the rifle butt, for TL4-6 and TL7-8 long arms | 197-198 | Spear thr+3 imp; Staff thr+2 cr and Two-Handed Axe/Mace sw+3 cr; Reach 1, 2* or 1; no price or weight (the gun's description gives them) |
+| the spiked tomahawk | 196 | the Basic Set's hatchet, fine, with the spike a point less and impaling |
+| compound bows and crossbows | 201 | the Basic Set's short, regular and long bows, crossbow, pistol crossbow and prodd at double cost, with the bow's ST (damage and range) two above the ST to draw it; not the composite bow |
+| slingshot and speargun, their shot and spears, bow sights and stabilizers ($100) | 201 | with the skills the page introduces, Bow (Slingshot) and Crossbow (Speargun), in `skills/high-tech-by-hand.json` |
+| grenade variants from the text | 190-193 | Grenade à Main Mle 1882, StiHGr24 with and without its sleeve, NbHGr39, M7, M18, M83, M452C: the data file's grenade with what the text changes |
+| rifle grenade variants and launchers | 193-194 | the Gewehrpropagandagranate (leaflets, Range 50/500) and GGPzgr40 (7d(10) with 6d linked); the M17, GSprgr30 and Energa launchers |
+
+A text variant takes its parent's other figures, as the book's variants do: the SMi35 and
+M16 are priced as the OZM-3 ($60), the grenade variants keep their grenade's Bulk and fuse.
+
+**Left out, and why:** military dynamite, fuel-air explosive, white phosphorus and napalm
+have no price; the black powder keg and can, the 0.25-lb. plastique block, the det cord roll
+and other packages are the per-pound items by weight; blade materials (stainless, ceramic,
+titanium) reprice a blade (#380); the improvised flamethrower (p. 179) and the hand-grenade
+booby trap have no price; name-only copies with no change of figures (Koveshnikov F-1, M28);
+the M18A1's Holdout and the sheaths' optional split (#380). Not representable on a mode,
+and left to the rules issues: the fuel-air bomb's and the nuclear burn's falloff by 2 x
+distance (#378, #379), the Claymore's attack at skill 9 in a 60° cone, the dazzlers' Vision
+basis and the bonuses to resist them (#377), the sprays' face shot and +2 (#377), picks'
+getting stuck for the tomahawk's spike (#380).
