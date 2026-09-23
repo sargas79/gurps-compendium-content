@@ -1167,6 +1167,7 @@
       "chapter": "5. Weaponry",
       "pages": "HT139",
       "reference": "High-Tech p. 139",
+      "rule": "gurps-compendium-content.indirectFire",
       "file": "using-artillery.md",
       "status": "reviewed"
     },

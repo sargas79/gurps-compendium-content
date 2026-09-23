@@ -17,7 +17,8 @@
  * steeply into the air, in space), sustained fire, the aftermath of a
  * firefight, reloading, careful loading and black-powder fouling, and the
  * weapon families: air guns and ranged stunners, unsafe revolvers and pistol
- * whipping, mechanical machine guns, and backblast (pp. 79-93, 127-137,
+ * whipping, mechanical machine guns, and backblast, and indirect fire with
+ * forward observers (pp. 79-93, 127-141,
  * 147-154, 159, 249-252).
  */
 
@@ -26,6 +27,7 @@ import { MODULE_ID, type GWorldApi, type RuleRegistry } from "../../shared/modul
 import { initDrawing, readyDrawing } from "./drawing/index.js";
 import { readyAftermath } from "./aftermath/index.js";
 import { readyEnvironments } from "./environments/index.js";
+import { readyIndirectFire } from "./indirect-fire/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower } from "./power/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
@@ -82,6 +84,7 @@ const RULES = [
   { key: "revolverHandling", pages: "pp. 90, 93, 159", implemented: true },
   { key: "mechanicalMachineGuns", pages: "p. 127", implemented: true },
   { key: "backblast", pages: "pp. 141, 147-153", implemented: true },
+  { key: "indirectFire", pages: "pp. 139-141", implemented: true },
   // Cinematic: the optional additions to Gunslinger.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
 ] as const;
@@ -134,6 +137,7 @@ function ready(api: GWorldApi): void {
   readyAftermath(api, rule("firefightAftermath"));
   readyReloading(api, { loading: rule("firearmLoading"), careful: rule("carefulLoading"), fouling: rule("blackPowderFouling") });
   readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
+  readyIndirectFire(api, rule("indirectFire"));
 }
 
 export const book: BookRules = {
