@@ -238,6 +238,26 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
   it("prices personal basics as a share of the cost of living (p. 59)", () => {
     expect(sys("Personal Basics")).toMatchObject({ cost: 0, costOfLivingPercent: 1, weight: 1 });
   });
+
+  it("says what each piece of survival, maritime and parachuting gear is (#363)", () => {
+    const survival = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.survival;
+    const shelters: Array<[string, number]> = [["Blanket", -2], ["Sleeping Bag", 0], ["Tarp", 1], ["Tent, Shelter Half", 1], ["Tent, Wall", 1], ["Sleeping Bag, Heavy", 3], ["Blanket, Emergency", -1], ["Tent, Dome", 2], ["Tent, Personal", 1]];
+    for (const [name, value] of shelters) expect(survival(name), name).toMatchObject({ kind: "shelter", value });
+    expect(survival("Sleeping Bag").valueAtTl8).toBe(1);
+    for (const name of ["Flint and Steel", "Magnifying Glass", "Matches (box of 50)", "Cigarette Lighter", "Fire-Starter Paste", "Solar Reflector"]) expect(survival(name)?.kind, name).toBe("fireStarter");
+    expect(survival("Trap, Large Predator")).toMatchObject({ kind: "trap", value: 15 });
+    expect(survival("Trap, Beaver")).toMatchObject({ kind: "trap", value: 8 });
+    expect(sys("Pilot's Survival Vest")).toMatchObject({ forSkills: ["Survival (Jungle)"], equipmentQuality: "good" });
+    expect(sys("Covert Survival Kit").forSkills).toEqual(["Survival (Woodlands)"]);
+    for (const name of ["Life Jacket", "Flotation Belt", "Flotation Vest"]) expect(survival(name)?.kind, name).toBe("lifeJacket");
+    expect(survival("Parachute (TL6)")).toMatchObject({ kind: "parachute", maxLbs: 150, maxLbsTl7: 200, maxLbsTl8: 250, openingYards: 80, descent: 5 });
+    expect(survival("Parachute (TL5)")).toMatchObject({ nausea: -4 });
+    expect(survival("Mini-Parachute")).toMatchObject({ openingYards: 40 });
+    expect(survival("Ram-Air Parachute")).toMatchObject({ kind: "parachute", maxLbs: 400 });
+    expect(survival("Parachute Container")).toMatchObject({ kind: "cargoChute", maxLbs: 250, descent: 6 });
+    expect(survival("Snack")?.kind).toBe("snack");
+    expect(survival("Sports Drink")?.kind).toBe("sportsDrink");
+  });
 });
 
 describe("High-Tech's defences and firearm accessories (#349)", () => {

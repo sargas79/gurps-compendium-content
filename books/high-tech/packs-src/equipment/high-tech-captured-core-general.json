@@ -5906,7 +5906,14 @@
       "listCost": 2,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "snack"
+          }
+        }
+      }
     }
   },
   {
@@ -5933,7 +5940,14 @@
       "listCost": 2,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "sportsDrink"
+          }
+        }
+      }
     }
   },
   {
@@ -12707,7 +12721,15 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": -2
+          }
+        }
+      }
     }
   },
   {
@@ -12734,7 +12756,16 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 0,
+            "valueAtTl8": 1
+          }
+        }
+      }
     }
   },
   {
@@ -12761,7 +12792,15 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 1
+          }
+        }
+      }
     }
   },
   {
@@ -12788,7 +12827,15 @@
       "listCost": 75,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 1
+          }
+        }
+      }
     }
   },
   {
@@ -12815,7 +12862,15 @@
       "listCost": 350,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 1
+          }
+        }
+      }
     }
   },
   {
@@ -12842,7 +12897,15 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 3
+          }
+        }
+      }
     }
   },
   {
@@ -12869,7 +12932,15 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": -1
+          }
+        }
+      }
     }
   },
   {
@@ -12896,7 +12967,15 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 2
+          }
+        }
+      }
     }
   },
   {
@@ -12923,7 +13002,15 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "shelter",
+            "value": 1
+          }
+        }
+      }
     }
   },
   {
@@ -13247,7 +13334,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13274,7 +13368,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13301,7 +13402,14 @@
       "listCost": 0.25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13328,7 +13436,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13355,7 +13470,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13382,7 +13504,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fireStarter"
+          }
+        }
+      }
     }
   },
   {
@@ -13411,7 +13540,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fishing"
+          }
+        }
+      }
     }
   },
   {
@@ -13440,7 +13576,15 @@
       "listCost": 75,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "trap",
+            "value": 15
+          }
+        }
+      }
     }
   },
   {
@@ -13469,7 +13613,14 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fishing"
+          }
+        }
+      }
     }
   },
   {
@@ -13498,7 +13649,14 @@
       "listCost": 1,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "fishing"
+          }
+        }
+      }
     }
   },
   {
@@ -13552,7 +13710,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "signal"
+          }
+        }
+      }
     }
   },
   {
@@ -13579,7 +13744,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "signal"
+          }
+        }
+      }
     }
   },
   {
@@ -13606,7 +13778,14 @@
       "listCost": 15,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "signal"
+          }
+        }
+      }
     }
   },
   {
@@ -13643,6 +13822,9 @@
               "endurance": "8 hrs.",
               "raw": "XS/8 hrs."
             }
+          },
+          "survival": {
+            "kind": "signal"
           }
         }
       }
@@ -13682,6 +13864,9 @@
               "endurance": "1 week",
               "raw": "T/week"
             }
+          },
+          "survival": {
+            "kind": "signal"
           }
         }
       }
@@ -13744,7 +13929,7 @@
       "category": "tool",
       "equipmentQuality": "basic",
       "forSkills": [
-        "Survival"
+        "Survival (Woodlands)"
       ],
       "quality": "good",
       "material": "",
@@ -13752,7 +13937,14 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "survivalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -13773,7 +13965,7 @@
       "category": "tool",
       "equipmentQuality": "good",
       "forSkills": [
-        "Survival"
+        "Survival (Jungle)"
       ],
       "quality": "good",
       "material": "",
@@ -13781,7 +13973,14 @@
       "listCost": 250,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "survivalKit"
+          }
+        }
+      }
     }
   },
   {
@@ -13835,7 +14034,14 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "waterFilter"
+          }
+        }
+      }
     }
   },
   {
@@ -13889,7 +14095,14 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "solarStill"
+          }
+        }
+      }
     }
   },
   {
@@ -13916,7 +14129,14 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "desalinator"
+          }
+        }
+      }
     }
   },
   {
@@ -14129,7 +14349,14 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "lifeJacket"
+          }
+        }
+      }
     }
   },
   {
@@ -14156,7 +14383,14 @@
       "listCost": 15,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "lifeJacket"
+          }
+        }
+      }
     }
   },
   {
@@ -14183,7 +14417,14 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "lifeJacket"
+          }
+        }
+      }
     }
   },
   {
@@ -14237,7 +14478,14 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "swimFins"
+          }
+        }
+      }
     }
   },
   {
@@ -14291,7 +14539,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "dyeMarker"
+          }
+        }
+      }
     }
   },
   {
@@ -14438,7 +14693,18 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "parachute",
+            "maxLbs": 150,
+            "openingYards": 80,
+            "descent": 5,
+            "nausea": -4
+          }
+        }
+      }
     }
   },
   {
@@ -14465,7 +14731,19 @@
       "listCost": 750,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "parachute",
+            "maxLbs": 150,
+            "maxLbsTl7": 200,
+            "maxLbsTl8": 250,
+            "openingYards": 80,
+            "descent": 5
+          }
+        }
+      }
     }
   },
   {
@@ -14492,7 +14770,16 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "parachute",
+            "openingYards": 40,
+            "descent": 5
+          }
+        }
+      }
     }
   },
   {
@@ -14558,7 +14845,16 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "cargoChute",
+            "maxLbs": 250,
+            "descent": 6
+          }
+        }
+      }
     }
   },
   {

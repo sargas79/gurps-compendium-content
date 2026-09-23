@@ -1,0 +1,17 @@
+{{!-- Survival and camping gear, maritime gear, parachutes and snacks (High-Tech pp. 34-35, 56-61). --}}
+<div class="isub" data-gcc-ht-survival-section>
+  <div class="isub-head">{{localize "GCC.HT.Survival.Title"}}</div>
+  {{#if kit}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Survival.SimilarHint'}}">{{localize "GCC.HT.Survival.Similar"}}
+        <input type="text" data-gcc-ht-survival="similar" value="{{kit.similar}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#if desalinator}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Survival.LargeHint'}}"><input type="checkbox" data-gcc-ht-survival="large" {{#if desalinator.large}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Survival.Large"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

@@ -1,0 +1,8 @@
+{{!-- Camping out in the cold (High-Tech p. 56): the shelter or sleeping gear the cold roll takes. --}}
+<section class="card" data-gcc-ht-camp>
+  <div class="card-head"><h3>{{localize "GCC.HT.Survival.CampTitle"}}</h3></div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Survival.CampingHint'}}"><input type="checkbox" data-gcc-ht-camping {{#if camping}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Survival.Camping"}}</label>
+  </div>
+  <p class="ihint">{{line}}</p>
+</section>
