@@ -343,6 +343,20 @@ describe("High-Tech's defences and firearm accessories (#349)", () => {
     const held = new Set(others.map((d) => d.name.toLowerCase()));
     expect([...defences, ...accessories].filter((d) => held.has(d.name.toLowerCase())).map((d) => d.name)).toEqual([]);
   });
+
+  it("says what each piece of camouflage is (#385)", () => {
+    const camouflage = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.camouflage;
+    expect(camouflage("Camouflage Net")).toEqual({ pattern: "simple", net: true });
+    expect(camouflage("Ghillie Suit")).toEqual({ pattern: "ghillie" });
+    expect(camouflage("Infrared-Suppressing Poncho")).toEqual({ pattern: "simple", infrared: true });
+    expect(camouflage("IR Camouflage Net")).toEqual({ pattern: "simple", infrared: true, net: true });
+    expect(camouflage("Simple Camouflage (Ordinary Clothes)")).toEqual({ pattern: "simple" });
+    // The by-hand records' prices already hold the pattern's share of the clothing.
+    expect(camouflage("Basic Camouflage (Ordinary Clothes)")).toEqual({ pattern: "basic", builtIn: true });
+    expect(camouflage("Advanced Camouflage (Ordinary Clothes)")).toEqual({ pattern: "advanced", builtIn: true });
+    expect(camouflage("Reversible Camouflage (Ordinary Clothes, Two Basic Patterns)")).toEqual({ pattern: "basic", second: "basic", builtIn: true });
+    expect(camouflage("Scent Masking (Ordinary Clothes)")).toEqual({ scent: true, builtIn: true });
+  });
 });
 
 describe("High-Tech's explosives, mines, bombs and melee weapons (#349)", () => {

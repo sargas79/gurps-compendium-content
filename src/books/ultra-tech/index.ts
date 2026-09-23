@@ -124,7 +124,7 @@ function init(): void {
   initWarheads();
   initComputers(ruleKey("computers"));
   initSwarms();
-  initStealth();
+  initStealth(ruleKey("stealthSystems"));
   initUltraTechSensors({ communicators: ruleKey("communicators"), sensors: ruleKey("sensors") });
   initFabrication();
   initTransport();

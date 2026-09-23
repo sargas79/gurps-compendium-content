@@ -35,7 +35,8 @@
  * navigation instruments and maps, load-bearing gear and packs, and climbing
  * gear, the survival and camping gear, life
  * jackets, swim fins and dye markers, parachutes and Death from Above, and
- * snacks and sports drinks, and the liquid projectors and laser
+ * snacks and sports drinks, camouflage patterns, ghillie suits, nets and
+ * scent masking, and the liquid projectors and laser
  * dazzlers: flamethrowers, spray guns and aerosols, and lasers aimed at
  * the eyes, and the explosives and incendiaries: an explosion's side
  * effects, demolition charges, unstable and home-made explosives, thermite
@@ -43,7 +44,7 @@
  * nuclear weapons, and clothing against the weather, frostbite and
  * climate-controlled clothing, and the melee and muscle-powered weapons:
  * bayonets and rifle butts, sheaths, blade composition, electric stun
- * weapons and high-tech bows (pp. 7-11, 13-16, 17-65, 71, 74, 79-93, 109,
+ * weapons and high-tech bows (pp. 7-11, 13-16, 17-65, 71, 74, 76-77, 79-93, 109,
  * 127-141, 143, 147-201, 249-252).
  */
 
@@ -76,6 +77,7 @@ import { initHighTechMelee, meleeGunFields, readyHighTechMelee } from "./melee/i
 import { initClothing, readyClothing } from "./clothing/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
+import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -199,6 +201,8 @@ const RULES = [
   { key: "bladeComposition", pages: "pp. 196-198, 201", implemented: true },
   { key: "stunWeapons", pages: "p. 199", implemented: true },
   { key: "highTechBows", pages: "p. 201", implemented: true },
+  // Camouflage and scent masking.
+  { key: "camouflageGear", pages: "pp. 76-77", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -247,6 +251,7 @@ function init(): void {
   initExpedition();
   initClothing(ruleKey("climateControl"));
   initHighTechMelee();
+  initHighTechCamouflage(ruleKey("camouflageGear"));
 }
 
 function ready(api: GWorldApi): void {
@@ -295,6 +300,7 @@ function ready(api: GWorldApi): void {
   readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
   // After the reloading rules, whose reload time a fixed bayonet lengthens.
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
+  readyHighTechCamouflage(api);
 }
 
 export const book: BookRules = {

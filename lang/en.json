@@ -5153,6 +5153,10 @@
         "highTechBows": {
           "Name": "High-tech bows, slingshots and spearguns",
           "Hint": "A bow or crossbow (not a composite bow) can be built compound on its item sheet: double cost, damage and range as if two ST stronger. A bow can take sights and stabilizers (+$100, +1 Acc for a user who knows the skill; -1 as an attack option for one unfamiliar with them) and string silencers ($1, -2 to hear it). A slingshot fires stones or lead and steel shot (+1 damage, double range). A speargun's range is a tenth in a scene set underwater, and its spear is on 10 yards of line (High-Tech p. 201)."
+        },
+        "camouflageGear": {
+          "Name": "Camouflage and scent masking",
+          "Hint": "The Gear tab says the terrain a character is hiding in and who is looking. The worn pattern worth most there is the Camouflage skill's equipment line: simple +1 anywhere; basic +2 in matching terrain, -1 elsewhere and -2 in contrasting terrain; advanced +3, and -2 elsewhere; a ghillie suit +3, -1 and -2, more once customised (to +8). From TL7, +1 against technological night vision or infravision; infrared suppression (the poncho, the IR net, a ghillie suit with it) +2 against infravision. In a Quick Contest, the other side's worn night-vision gear or thermograph counts in place of the Gear tab's choice. A reversible piece turns inside out from its row; a net's row button hides gear on the deployer's Camouflage. Scent masking worn is -4 to Tracking to follow the wearer. Patterns and scent masking on other clothing reprice it (High-Tech pp. 76-77)."
         }
       },
       "Gadget": {
@@ -7846,6 +7850,64 @@
         "SpeargunLine": "Range a tenth ({divisor}) under water; the spear is on {line} yards of line.",
         "LineNote": "{yards}-yd. line",
         "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201)."
+      },
+      "Camouflage": {
+        "Title": "Camouflage",
+        "GearTitle": "Camouflage",
+        "TerrainLabel": "Terrain",
+        "TerrainHint": "How the terrain around the character compares with the pattern they wear (High-Tech pp. 76-77).",
+        "Terrain": {
+          "matching": "Matches the pattern",
+          "nonMatching": "Doesn't match",
+          "contrasting": "Highly contrasting"
+        },
+        "ObserverLabel": "Hiding from",
+        "ObserverHint": "What whoever is looking sees with. TL7+ camouflage gives +1 against technological night vision or infravision, infrared suppression +2 against infravision. In a Quick Contest, the other side's worn gear decides (High-Tech p. 77).",
+        "Observer": {
+          "vision": "The naked eye",
+          "nightVision": "Night-vision gear",
+          "infravision": "Thermal imaging (infravision)"
+        },
+        "PieceWorn": "{name}: {value} here.",
+        "PieceNotWorn": "{name} (not worn): {value} here.",
+        "EquipmentLine": "Camouflage's equipment line: {value}.",
+        "EquipmentReason": "{name}, for the terrain and who is looking (High-Tech pp. 76-77)",
+        "NotWornReason": "Camouflage clothing counts only while worn (High-Tech pp. 76-77)",
+        "AgainstLine": "Against {observer}",
+        "PatternLabel": "Pattern",
+        "PatternHint": "The camouflage printed on it. On clothing that isn't a camouflage record, basic adds 100% of its cost and advanced 200% (High-Tech pp. 76-77).",
+        "SecondLabel": "Other side",
+        "SecondHint": "A reversible piece's second pattern, turned outward from its row; its cost is added too (High-Tech p. 77).",
+        "Pattern": {
+          "none": "None",
+          "simple": "Simple (+1)",
+          "basic": "Basic (+2/-1/-2)",
+          "advanced": "Advanced (+3/-2)",
+          "ghillie": "Ghillie suit (+3/-1/-2)"
+        },
+        "InfraredLabel": "Infrared suppression",
+        "InfraredHint": "+2 to Camouflage against infravision. $500 more in a ghillie suit (High-Tech p. 77).",
+        "ScentLabel": "Scent masking",
+        "ScentHint": "-4 to Tracking to follow the wearer by scent. 200% of the clothing's cost (High-Tech p. 77).",
+        "NetLabel": "Net",
+        "NetHint": "Laid over gear rather than worn: its row button hides gear, on the deployer's Camouflage (High-Tech p. 76).",
+        "CustomLabel": "Customised",
+        "CustomHint": "What customising added to the suit's bonus in matching terrain, to {most} in all (High-Tech p. 77).",
+        "PatternLine": "{matching} to Camouflage in matching terrain, {nonMatching} elsewhere, {contrasting} in highly contrasting terrain.",
+        "nightVisionLine": "{value} more against night-vision gear.",
+        "infravisionLine": "{value} more against infravision.",
+        "NetLine": "Hides gear: the deployer's Camouflage, with the net's pattern.",
+        "ScentLine": "{value} to Tracking to follow the wearer by scent.",
+        "ScentFollow": "{name} (scent masking)",
+        "TurnTitle": "Turn inside out",
+        "Turned": "Turned inside out: {pattern} now showing.",
+        "CustomiseTitle": "Customise",
+        "CustomiseLabel": "Customising {name}",
+        "CustomiseFailed": "The customising didn't take: the suit keeps its bonus.",
+        "Customised": "Customised: +{value} in matching terrain (at most +{most}).",
+        "HideTitle": "Hide gear",
+        "HideLabel": "Camouflage: gear under {name}",
+        "HideLine": "{name} ({terrain})"
       }
     },
     "Backblast": {

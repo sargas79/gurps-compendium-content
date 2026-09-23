@@ -794,6 +794,7 @@
       "title": "Camouflage",
       "chapter": "4. Defenses",
       "pages": "HT76-77",
+      "rule": "gurps-compendium-content.camouflageGear",
       "reference": "High-Tech pp. 76-77",
       "file": "camouflage.md",
       "status": "reviewed"

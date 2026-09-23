@@ -330,6 +330,19 @@ function applySenses(context: any, label: string, senses: WornSenses): void {
   }
 }
 
+/** What each worn optic or detector does for its wearer's senses, from the tables whose switches are on. */
+export function wornSenses(actor: any): Array<{ item: any; senses: WornSenses }> {
+  const found: Array<{ item: any; senses: WornSenses }> = [];
+  for (const item of actor?.items ?? []) {
+    if (!worn(item)) continue;
+    const data = sensorData(item);
+    const table = sensorTableOf(item, (t) => t.figures.senses(item, actor, data, partsOn(t)) !== null);
+    const senses = table ? table.figures.senses(item, actor, data, partsOn(table)) : null;
+    if (senses) found.push({ item, senses });
+  }
+  return found;
+}
+
 let readied = false;
 
 /** Registers the table-side parts, once whichever books ask. */
@@ -382,13 +395,7 @@ export function readySensors(api: GWorldApi): void {
   Hooks.on("gworld.traitEffects", (context: any) => {
     const actor = context?.actor;
     if (!actor || !context?.effects) return;
-    for (const item of actor.items ?? []) {
-      if (!worn(item)) continue;
-      const data = sensorData(item);
-      const table = sensorTableOf(item, (t) => t.figures.senses(item, actor, data, partsOn(t)) !== null);
-      const senses = table ? table.figures.senses(item, actor, data, partsOn(table)) : null;
-      if (senses) applySenses(context, String(item.name), senses);
-    }
+    for (const { item, senses } of wornSenses(actor)) applySenses(context, String(item.name), senses);
   });
 
   // A lock gives +3 to an aimed ranged attack at that target.
