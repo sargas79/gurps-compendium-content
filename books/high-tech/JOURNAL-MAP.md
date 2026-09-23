@@ -6,7 +6,7 @@ Which rule issue each page of the High-Tech rules journal belongs to (#356). The
 the switch id as `"rule"` in `index.json`. A page with no issue is text only: flavour, an
 overview, or a rule no switch implements.
 
-241 pages, 8 by hand; 208 belong to 38 of the 38 rule issues (#357-#394).
+241 pages, 8 by hand; 209 belong to 39 rule issues (the 38 of #357-#394, and #427 for Zen Marksmanship).
 
 
 ## 1. The Equipment Age
@@ -290,7 +290,7 @@ overview, or a rule no switch implements.
 |---|---|---|---|
 | `gunslinger` | Gun Advantages | 249 | #367 shooting options and gun techniques |
 | `gun-perks` | Gun Perks | 249 | – |
-| `gun-skills` | Gun Skills | 250 | – |
+| `gun-skills` | Gun Skills | 250 | #427 Zen Marksmanship |
 | `gun-techniques` | Gun Techniques | 250 | #367 shooting options and gun techniques |
 | `targeted-attack` | Targeted Attack | 252 | #367 shooting options and gun techniques |
 | `gun-fu` (by hand) | Gun Fu | 252 | – |

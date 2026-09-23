@@ -22,6 +22,7 @@ const HOOKS = {
   malfunction: "gworld.malfunction",
   clearMalfunction: "gworld.clearMalfunction",
   equipmentFailure: "gworld.equipmentFailure",
+  objectStats: "gworld.objectStats",
 };
 
 function fakeApi(systemRules: Record<string, boolean> = { weaponQuality: true }) {
@@ -29,7 +30,7 @@ function fakeApi(systemRules: Record<string, boolean> = { weaponQuality: true })
     rules,
     registry: { isRuleOn: (key: string) => systemRules[key] === true },
     combat: { hooks: HOOKS },
-    data: { registerPriceModifier: (r: any) => { priceModifier = r.apply; } },
+    data: { hooks: { objectStats: HOOKS.objectStats }, registerPriceModifier: (r: any) => { priceModifier = r.apply; } },
     sheets: { registerSheetSection: vi.fn() },
     actors: { skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null },
     roll: { equipmentUse: () => ({ lines: [{ key: "unfamiliar", label: "Unfamiliar", value: -2 }], tags: ["unfamiliar"], impossible: null }) },
@@ -161,11 +162,21 @@ describe("gun care", () => {
     expect(rows[0]!.row).toMatchObject({ accuracy: 1, malfunction: 15 });
   });
 
-  it("makes a precision gun roll HT against abuse, and a rugged one tougher", () => {
+  it("makes a precision gun roll HT against abuse", () => {
     readyFirearms(fakeApi() as never, switches);
     on.care = true;
     const context = fire(HOOKS.equipmentFailure, { item: gun({ firearm: { precision: true, rugged: "military" } }), modifiers: [] });
-    expect(context.modifiers.map((m: any) => m.value)).toEqual([-4, 1]);
+    expect(context.modifiers.map((m: any) => m.value)).toEqual([-4]);
+  });
+
+  it("gives a rugged gun its DR and HT as an object, which everything the system does with the gun reads", () => {
+    readyFirearms(fakeApi() as never, switches);
+    const stats = (firearm: Record<string, unknown>) => fire(HOOKS.objectStats, { item: gun({ firearm }), actor: null, kind: "unliving", dr: 4, hp: 6, ht: 10, notes: [] });
+    expect(stats({ rugged: "rugged" })).toMatchObject({ dr: 4, ht: 10, notes: [] });
+    on.care = true;
+    expect(stats({ rugged: "rugged" })).toMatchObject({ dr: 8, hp: 6, ht: 12, notes: ["GCC.HT.Firearm.Rugged.rugged"] });
+    expect(stats({ rugged: "military" })).toMatchObject({ dr: 6, ht: 11 });
+    expect(stats({})).toMatchObject({ dr: 4, ht: 10, notes: [] });
   });
 
   it("swaps a TL7 pistol's misfire for a stoppage", () => {

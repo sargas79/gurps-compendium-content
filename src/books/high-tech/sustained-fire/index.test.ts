@@ -36,7 +36,7 @@ function fakeApi() {
     rules: { qualityAccuracyBonus: () => 0, qualityMalfunction: (m: number | null) => m, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
-    data: { registerPriceModifier: vi.fn() },
+    data: { hooks: { objectStats: "gworld.objectStats" }, registerPriceModifier: vi.fn() },
     sheets: { registerSheetSection: (s: any) => sections.push(s) },
     actors: { skillLevel: () => skill, applyCondition: async (_a: any, c: any) => { conditions.push(c); return "c1"; } },
     roll: { success: async (options: any) => { rolled.push(options); return rollOutcome; } },

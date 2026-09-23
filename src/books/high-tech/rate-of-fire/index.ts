@@ -11,14 +11,20 @@
  *   - **Burst fire:** a gun with a fire selector changes setting from its row
  *     (a Ready maneuver in combat, unless its double or progressive trigger
  *     switches at once); single shots are RoF 3; a limited-burst gun fires
- *     whole bursts, up to three, and can't spray; a high-cyclic gun ("#")
- *     counts hits at Rcl 1 and can't suppress.
+ *     whole bursts, up to three, and can't spray -- the option holds the
+ *     shots to whole bursts (`minShots`, `shotsStep`), so a count between
+ *     them comes down to the burst below, and one a burst short is refused;
+ *     a high-cyclic gun ("#") counts hits at Rcl 1 and can't suppress.
  *   - **Fast-firing:** a gun of RoF 2 or 3 pulled up to RoF 6, at -4 (the
  *     technique buys it off) and +2 or +4 Rcl at RoF 5 and 6; a single-action
- *     revolver cocked with the off thumb, RoF 2 free and up to 4 at -2.
+ *     revolver cocked with the off thumb, RoF 2 free and up to 4 at -2. At
+ *     RoF 5 or 6 the gun may use Suppression Fire, whose dialog offers the
+ *     option and counts its RoF.
  *   - **Fanning and thumbing:** a single-action revolver fanned at RoF 2-5 or
  *     thumbed at RoF 2, with their penalties, the no-aiming rule and the
- *     critical failures; a tied-back or removed trigger leaves nothing else.
+ *     critical failures, whose rounds, never fired, go back in the gun
+ *     (`items.refundShots`); a tied-back or removed trigger leaves nothing
+ *     else.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -260,7 +266,10 @@ function itemListeners(element: HTMLElement, item: any): void {
 }
 
 /** What an attack with fanning or thumbing leaves to follow its roll (p. 83), by actor. */
-const pending = new Map<string, { kind: "fanning" | "thumbing"; gun: string }>();
+const pending = new Map<string, { kind: "fanning" | "thumbing"; gun: string; item: any; modeIndex: number }>();
+
+/** The guns whose last attack fired nothing after all, by item uuid: their rounds go back once they are spent. */
+const unfired = new Set<string>();
 
 export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers: RateOfFireHelpers = {}): void {
   const any = () => on.triggers() || on.bursts() || on.fastFiring() || on.fanning();
@@ -344,7 +353,8 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
       const limit = burstLimitOf(context.item, mode);
       const shots = burstShots(limit, rofOf(mode).rateOfFire);
       const rof = shots[Math.max(0, Math.min(shots.length, picked(value)) - 1)] ?? limit;
-      return { rateOfFire: rof, notes: [F("BurstsNote", { bursts: rof / limit, limit, shots: rof })] };
+      // Whole bursts only: the shots asked for come down to a whole number of bursts, never under one.
+      return { rateOfFire: rof, minShots: limit, shotsStep: limit, notes: [F("BurstsNote", { bursts: rof / limit, limit, shots: rof })] };
     },
   });
 
@@ -434,7 +444,7 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
         context.refusal = L("FanningNoAim");
         return;
       }
-      pending.set(key, { kind: fanRof ? "fanning" : "thumbing", gun: String(item.name ?? "") });
+      pending.set(key, { kind: fanRof ? "fanning" : "thumbing", gun: String(item.name ?? ""), item, modeIndex: index });
     } else if (on.fanning() && rateOfFireData(item).triggerTie && isRevolver(item)) {
       context.refusal = F("TiedRefusal", { tie: L(`Tie.${rateOfFireData(item).triggerTie}`) });
       return;
@@ -454,20 +464,33 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
     const actor = context?.actor;
     const key = String(actor?.uuid ?? "");
     if (!(context?.tags ?? []).includes("attack") || !pending.has(key)) return;
-    const { kind, gun } = pending.get(key)!;
+    const { kind, gun, item } = pending.get(key)!;
     pending.delete(key);
     const outcome = context.outcome ?? {};
     if (!on.fanning() || outcome.success || !actor?.isOwner) return;
     if (kind === "thumbing") {
+      // A plain failure doesn't fire; what a critical one fires is the GM's to say, so its rounds stay spent.
+      if (!outcome.criticalFailure && item?.uuid) unfired.add(String(item.uuid));
       void say(actor, gun, [L(outcome.criticalFailure ? "ThumbingFumble" : "ThumbingFailed")]);
       return;
     }
     if (!outcome.criticalFailure) return;
+    if (item?.uuid) unfired.add(String(item.uuid));
     const die = d6();
     const fumble = fanningFumble(die, Number(outcome.margin) || 0);
     void say(actor, gun, [L("FanningNoShots"), F(fumble.dropped ? "FanningDropped" : "FanningBruised", { die, minutes: fumble.painMinutes })]);
     if (fumble.painMinutes > 0) {
       void api.actors.applyCondition(actor, { key: "moderatePain", duration: { seconds: fumble.painMinutes * 60 } } as any);
     }
+  });
+
+  // The rounds of a shot that never went off go back in the gun, once the attack has spent them.
+  Hooks.on(api.combat.hooks.afterShots, (context: any) => {
+    const item = context?.item;
+    const id = String(item?.uuid ?? "");
+    if (!id || !unfired.has(id)) return;
+    unfired.delete(id);
+    const shots = Math.max(0, Math.floor(Number(context.shots) || 0));
+    if (item.isOwner && shots > 0) void api.items.refundShots(item, Number(context.modeIndex) || 0, shots);
   });
 }

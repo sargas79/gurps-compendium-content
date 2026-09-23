@@ -4824,15 +4824,15 @@
         },
         "burstFire": {
           "Name": "Fire selectors and bursts",
-          "Hint": "A gun with a fire selector changes setting from its row: the listed RoF, a second RoF after a slash, or single shots at RoF 3 for any setting of RoF 4+ without a \"!\". Changing takes a Ready maneuver in combat, unless the gun has a double or progressive trigger. A limited-burst gun fires one to three whole bursts per attack and can't use Spraying Fire; a high-cyclic gun (\"#\") is limited to bursts too, counts its hits at Rcl 1 and can't use Suppression Fire (High-Tech pp. 82-83)."
+          "Hint": "A gun with a fire selector changes setting from its row: the listed RoF, a second RoF after a slash, or single shots at RoF 3 for any setting of RoF 4+ without a \"!\". Changing takes a Ready maneuver in combat, unless the gun has a double or progressive trigger. A limited-burst gun fires one to three whole bursts per attack (shots between bursts come down to the burst below) and can't use Spraying Fire; a high-cyclic gun (\"#\") is limited to bursts too, counts its hits at Rcl 1 and can't use Suppression Fire (High-Tech pp. 82-83)."
         },
         "fastFiring": {
           "Name": "Fast-firing",
-          "Hint": "A semiautomatic or double-action gun of RoF 2 or 3 pulled faster, up to RoF 6, at -4 to skill (bought off by the Fast-Firing technique) and +2 Rcl at RoF 5, +4 at RoF 6; it still can't use Spraying Fire. A single-action revolver held in two hands is cocked with the off thumb: RoF 2 at no penalty, or up to RoF 4 at -2, bought off by Two-Handed Thumbing. Not for a limited-burst gun (High-Tech pp. 84, 251-252)."
+          "Hint": "A semiautomatic or double-action gun of RoF 2 or 3 pulled faster, up to RoF 6, at -4 to skill (bought off by the Fast-Firing technique) and +2 Rcl at RoF 5, +4 at RoF 6; it still can't use Spraying Fire, but at RoF 5 or 6 it may use Suppression Fire. A single-action revolver held in two hands is cocked with the off thumb: RoF 2 at no penalty, or up to RoF 4 at -2, bought off by Two-Handed Thumbing. Not for a limited-burst gun (High-Tech pp. 84, 251-252)."
         },
         "fanningAndThumbing": {
           "Name": "Fanning and thumbing",
-          "Hint": "A single-action revolver of RoF 1 fanned at RoF 2 for -4 (bought off by the Fanning technique), with another -2 for each RoF above 2 up to 5 and +2 Rcl at RoF 5, none of which a technique buys off, and never aimed; a critical failure fires nothing and drops the gun (1-3 on 1d) or bruises the hand, moderate pain for minutes equal to the margin of failure. Thumbing fires RoF 2 at -2 (bought off by the Thumbing technique); a failure fires nothing that turn, a critical failure drops the gun or fires it wild. A revolver whose trigger is tied back or removed can only be fanned or thumbed (High-Tech pp. 83-84, 251-252)."
+          "Hint": "A single-action revolver of RoF 1 fanned at RoF 2 for -4 (bought off by the Fanning technique), with another -2 for each RoF above 2 up to 5 and +2 Rcl at RoF 5, none of which a technique buys off, and never aimed; a critical failure fires nothing (the rounds stay in the gun) and drops the gun (1-3 on 1d) or bruises the hand, moderate pain for minutes equal to the margin of failure. Thumbing fires RoF 2 at -2 (bought off by the Thumbing technique); a failure fires nothing that turn and keeps its rounds, a critical failure drops the gun or fires it wild. A revolver whose trigger is tied back or removed can only be fanned or thumbed (High-Tech pp. 83-84, 251-252)."
         },
         "pistolero": {
           "Name": "Two-handed pistol stance",
@@ -4840,7 +4840,7 @@
         },
         "precisionAiming": {
           "Name": "Precision Aiming",
-          "Hint": "A braced, scoped gun aimed for 6, 12, 24, 45 and 90 seconds may claim a further +1 each time, from the gun's row: an IQ-based weapon skill roll at -6, which the Precision Aiming technique buys off, with the GM's modifier for the conditions. The extra bonus can't pass +5, the scope's bonus or the gun's Acc. A failure loses every aiming bonus; a critical failure also gives the sniper away (High-Tech pp. 84, 250-251)."
+          "Hint": "A braced, scoped gun aimed for 6, 12, 24, 45 and 90 seconds may claim a further +1 each time, from the gun's row: an IQ-based weapon skill roll at -6, which the Precision Aiming technique buys off, with the GM's modifier for the conditions. The extra bonus can't pass +5, the scope's bonus or the gun's Acc. A failure loses the aim and every aiming bonus; a critical failure also gives the sniper away (High-Tech pp. 84, 250-251)."
         },
         "rangedRapidStrike": {
           "Name": "Ranged Rapid Strike",
@@ -4848,7 +4848,7 @@
         },
         "gunTechniques": {
           "Name": "Gun techniques",
-          "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart (High-Tech pp. 250-252)."
+          "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart Mounted Shooting improved keeps the rough ride from a moving mount or vehicle from taking a handheld weapon's skill below the technique's level (High-Tech pp. 250-252)."
         },
         "firearmLoading": {
           "Name": "Reloading guns",
@@ -4917,6 +4917,10 @@
         "stocksAndMounts": {
           "Name": "Stocks, bipods and mounts",
           "Hint": "A pistol stock (Guns (Rifle), +1 Acc, -1 Bulk, ST x0.8); a folding stock folded from the gun's row (Bulk a step better, -1 Acc, +1 Recoil, ST x1.2); a bipod opened from the row, bracing a prone shooter at two-thirds the ST; shooting sticks bracing a sitting one. A gun whose record keeps \"Folded Stock\" or \"w/ Bipod\" modes fires the one its state picks (High-Tech p. 160)."
+        },
+        "zenMarksmanship": {
+          "Name": "Zen Marksmanship (cinematic)",
+          "Hint": "Zen Archery for guns: a character who knows Zen Marksmanship (Pistol), (Rifle), (Shotgun), (Submachine Gun), (Musket) or (Gyroc), or (Beam Pistol) or (Beam Rifle), rolls it from the maneuver panel after concentrating, and a success takes two-thirds of the size and range penalties off the next shot with that Guns or Beam Weapons specialty (High-Tech p. 250)."
         }
       },
       "Firearm": {
@@ -5161,7 +5165,7 @@
         "CockedRevolverNote": "Cocked for one single-action shot.",
         "Bursts": "Limited bursts",
         "BurstsChoice": "{bursts} burst(s)",
-        "BurstsNote": "{bursts} burst(s) of {limit}: {shots} shots are fired (a limited burst fires whole bursts only).",
+        "BurstsNote": "Up to {bursts} burst(s) of {limit} ({shots} shots): the shots come in whole bursts, those between bursts dropping to the burst below.",
         "NotUsed": "No",
         "RofChoice": "RoF {rof}",
         "FastFiring": "Fast-firing",
@@ -5176,13 +5180,13 @@
         "FanningRofLine": "Fanning at RoF {rof}",
         "FanningNote": "Fanned: the other hand works the hammer.",
         "FanningNoAim": "A fanned revolver can't be aimed.",
-        "FanningNoShots": "Critical failure: no shots are fired.",
+        "FanningNoShots": "Critical failure: no shots are fired, and the rounds stay in the gun.",
         "FanningDropped": "1d = {die}: the shooter drops the gun.",
         "FanningBruised": "1d = {die}: a bruised hand, moderate pain for {minutes} minute(s).",
         "Thumbing": "Thumbing",
         "ThumbingLine": "Thumbing",
         "ThumbingNote": "Thumbed: the thumb slips the hammer.",
-        "ThumbingFailed": "Thumbing failed: the gun doesn't fire this turn.",
+        "ThumbingFailed": "Thumbing failed: the gun doesn't fire this turn, and keeps its rounds.",
         "ThumbingFumble": "Critical failure: the gun is dropped or goes off early and wild (the GM decides what it hits).",
         "NeedsSingleAction": "Fanning and thumbing are for a single-action revolver of RoF 1."
       },
@@ -5209,7 +5213,7 @@
         "PrecisionWait": "The next +1 needs {seconds} seconds of Aim ({aimed} so far).",
         "PrecisionNoSkill": "No level in {skill} to roll.",
         "PrecisionGained": "+{bonus} from Precision Aiming (at most +{cap}); the next roll at {next} seconds.",
-        "PrecisionLost": "Every aiming bonus is lost: the shooter has to start the Aim over.",
+        "PrecisionLost": "The aim is lost with every aiming bonus: the shooter has to start over.",
         "PrecisionSpotted": "Critical failure: the target sees a protruding barrel or a glint off the scope.",
         "RapidStrike": "Ranged Rapid Strike",
         "RapidStrikeLine": "Ranged Rapid Strike",
@@ -5243,7 +5247,9 @@
           "unready": "The gun is intact but unready.",
           "intact": "The gun stays in the foe's hands, intact and ready.",
           "shotAtHand": "Critical failure: the foe keeps the gun and may shoot the disarmer in the hand at full skill."
-        }
+        },
+        "PrecisionLostReason": "the Precision Aiming roll failed",
+        "MountedShootingLine": "{label} (Mounted Shooting)"
       },
       "Sustained": {
         "Title": "Sustained fire",
@@ -5402,7 +5408,6 @@
         "StunnerEmdLine": "Ranged EMD stunner: on a failed HT roll the victim is knocked down and stunned while the trigger is held ({seconds} s unless the shooter says otherwise) and (20 - HT) s after, then rolls to recover at the shock's penalty. Minimum range 1 yard (High-Tech p. 89).",
         "HoldLabel": "Stunner: seconds the trigger is held (0 for the gun's own)",
         "HoldNote": "Trigger held {seconds} s.",
-        "HeldLabel": "Held by the {weapon}: stunned {held} s + {after} s; no recovery roll until this ends",
         "ShockLabel": "Shocked by the {weapon}: recovery at {penalty}",
         "ShockLine": "The {weapon}'s shock",
         "Stunned": "{name} is stunned while the trigger is held ({held} s) and {after} s after, then rolls HT{penalty} each second to recover. The darts can't be pulled out meanwhile, and a victim soaked in something flammable may catch fire.",

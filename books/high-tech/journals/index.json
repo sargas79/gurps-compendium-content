@@ -2176,6 +2176,7 @@
       "title": "Gun Skills",
       "chapter": "Appendix: Gunmen",
       "pages": "HT250",
+      "rule": "gurps-compendium-content.zenMarksmanship",
       "reference": "High-Tech p. 250",
       "file": "gun-skills.md",
       "status": "reviewed"

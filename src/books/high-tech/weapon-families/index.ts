@@ -9,7 +9,8 @@
  *     Girandoni's damage and range falling as its flask empties. A ranged
  *     stunner's hold: the seconds the trigger stays down are an attack
  *     option, and a victim who fails the roll is stunned (and, for an EMD
- *     stunner, knocked down) for those seconds and (20 - HT) more, then
+ *     stunner, knocked down), with no recovery roll allowed for those
+ *     seconds and (20 - HT) more (`holdRecovery`, GWorld API 1.89.0), then
  *     recovers at the shock's penalty.
  *   - **Revolver handling (revolverHandling):** an unsafe revolver carried on
  *     an empty chamber loads a round short; pistol whipping as a derived
@@ -18,7 +19,8 @@
  *   - **Mechanical machine guns (mechanicalMachineGuns):** -5 unfamiliarity,
  *     -1 more to fix a malfunction when unfamiliar, and -8 off the mount.
  *   - **Backblast (backblast):** the dice the book prints for each launcher
- *     and missile, the cone behind the firer at full and half damage, and
+ *     and missile, the cone behind the firer at full and half damage (the
+ *     tokens standing in it found through the system's cone areas), and
  *     firing indoors.
  *
  * Minimum range needs nothing here: the system refuses a shot inside a row's
@@ -53,6 +55,7 @@ const FIELD = "firearm";
 const AIR_FLAG = "airCharge";
 const HOLD_OPTION = "ht-stunner-hold";
 const OFF_MOUNT_OPTION = "ht-off-mount";
+/** Before GWorld API 1.89.0 a condition stood for the hold; it is still taken off with the shock's penalty. */
 const HELD = "ht-stunner-held";
 const SHOCK = "ht-stunner-shock";
 const BACKBLAST_KINDS: readonly BackblastKind[] = ["burn", "cr"];
@@ -320,9 +323,9 @@ export function readyWeaponFamilies(api: GWorldApi, on: FamilySwitches): void {
     const held = heldSeconds((api.combat.getWeaponState(item, MODULE_ID) as any)?.stunnerHold, data.stunSeconds);
     const after = stunAfterSeconds(Number(api.actors.attribute(context.actor, "HT")) || 10);
     const weapon = String(item.name ?? "");
-    context.effects.push({ key: "stunned" });
+    // No recovery roll while the trigger is held, nor for (20 - HT) seconds after (p. 89).
+    context.effects.push({ key: "stunned", holdRecovery: { seconds: held + after } });
     if (data.emd) context.effects.push({ key: "prone" });
-    context.effects.push({ module: MODULE_ID, key: HELD, label: F("HeldLabel", { weapon, held, after }), duration: { seconds: held + after } });
     context.effects.push({
       module: MODULE_ID,
       key: SHOCK,

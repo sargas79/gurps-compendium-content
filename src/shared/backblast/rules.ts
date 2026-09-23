@@ -54,28 +54,34 @@ export function backblastFromDice(damage: string, kind: BackblastKind): Backblas
   return { damage: String(damage).replace(/\s+/g, ""), kind, fullYards: reach.full * dice, halfYards: reach.half * dice };
 }
 
-/** A point on the map, in yards. */
+/** A point on the map, in scene pixels. */
 export interface Point { x: number; y: number }
 
-/** Where a point stands in a backblast: in its full damage, in its half damage, or out of it. */
-export type BackblastZone = "full" | "half" | null;
+/** A cone as the system's modifier areas keep it (GWorld API 1.89.0): degrees and scene pixels. */
+export interface BackblastCone {
+  /** Degrees clockwise from the scene's +x, as Foundry measures a template. */
+  direction: number;
+  length: number;
+  /** Its width at the far end. */
+  width: number;
+  /** Its width at the apex: a yard. */
+  base: number;
+}
 
 /**
- * Whether a point is caught by a launcher's backblast. The launcher points
- * from `firer` to `aim`, and the cone opens behind it, the opposite way, 30
- * degrees to either side. The firer's own square is not in it.
+ * The cone a backblast fills to `yards` behind a launcher pointed from
+ * `firer` at `aim`: the opposite way, 30 degrees to either side, so as wide
+ * at its end as twice its length times tan 30 degrees. In scene pixels, for
+ * the system's cone areas, which start a yard wide at the apex. Null where
+ * the launcher points nowhere or the blast reaches no distance.
  */
-export function backblastZone(firer: Point, aim: Point, point: Point, blast: Backblast): BackblastZone {
+export function backblastCone(firer: Point, aim: Point, yards: number, pixelsPerYard: number): BackblastCone | null {
   const back = { x: firer.x - aim.x, y: firer.y - aim.y };
-  const length = Math.hypot(back.x, back.y);
-  const to = { x: point.x - firer.x, y: point.y - firer.y };
-  const distance = Math.hypot(to.x, to.y);
-  if (!length || distance < 0.5) return null;
-  const cos = (back.x * to.x + back.y * to.y) / (length * distance);
-  if (cos < Math.cos((BACKBLAST_CONE_DEGREES / 2) * (Math.PI / 180)) - 1e-9) return null;
-  if (distance <= blast.fullYards) return "full";
-  if (distance <= blast.halfYards) return "half";
-  return null;
+  if (!Math.hypot(back.x, back.y) || !(yards > 0) || !(pixelsPerYard > 0)) return null;
+  const direction = ((Math.atan2(back.y, back.x) * 180) / Math.PI + 360) % 360;
+  const length = yards * pixelsPerYard;
+  const width = 2 * length * Math.tan((BACKBLAST_CONE_DEGREES / 2) * (Math.PI / 180));
+  return { direction, length, width, base: pixelsPerYard };
 }
 
 /**
