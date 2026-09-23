@@ -5165,7 +5165,7 @@
         "CockedRevolverNote": "Cocked for one single-action shot.",
         "Bursts": "Limited bursts",
         "BurstsChoice": "{bursts} burst(s)",
-        "BurstsNote": "{bursts} burst(s) of {limit}: {shots} shots are fired (a limited burst fires whole bursts only).",
+        "BurstsNote": "Up to {bursts} burst(s) of {limit} ({shots} shots): the shots come in whole bursts, those between bursts dropping to the burst below.",
         "NotUsed": "No",
         "RofChoice": "RoF {rof}",
         "FastFiring": "Fast-firing",
