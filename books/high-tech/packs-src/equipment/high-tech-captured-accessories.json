@@ -1,0 +1,1799 @@
+[
+  {
+    "_id": "eac5e2a36a3d8064",
+    "name": "Belt Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 153",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f0226b5d0695f9ef",
+    "name": "Lanyard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a388a31e97ac3ce2",
+    "name": "Military Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d0f951bd0615acb2",
+    "name": "Rifle Sling",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a18ff6a32077220e",
+    "name": "Scabbard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "5afe119aeeea3f52",
+    "name": "Shoulder Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "91717592a7deda0d",
+    "name": "Sleeve Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "af047f62354fee93",
+    "name": "Fast-Draw Rig",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ea17f275c8787a48",
+    "name": "Patrol Sling",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e948051cadef2835",
+    "name": "Undercover Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 125,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 125,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7dfab2c2ea155436",
+    "name": "Retention Holster",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 154",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "08161224c56a16db",
+    "name": "Speedloader",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.1,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 155",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "35c5f5a96a3d3272",
+    "name": "Magazine Clamp",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.3,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 155",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "091982d5b5ac8fd0",
+    "name": "Fixed-Power Scope (TL5, per +1 Acc)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "eedda89fa2932711",
+    "name": "Fixed-Power Scope (TL6, per +1 Acc)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 125,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 125,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ff1a0e31c1517c50",
+    "name": "Fixed-Power Scope (TL7, per +1 Acc)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "c0cba4a5421f9c5c",
+    "name": "Variable-Power Scope (TL7, per +1 Acc)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a5b4819f70994d16",
+    "name": "Variable-Power Scope (TL8, per +1 Acc)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2251c20bf6cc9c3a",
+    "name": "Improved-Visibility Sights",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 75,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "86fa5afeb5509d3b",
+    "name": "Collimating Sight, Battery",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 1,
+              "endurance": "250 hrs.",
+              "raw": "XS/250 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a1298d5c8175e5ea",
+    "name": "Collimating Sight, Tritium",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 400,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d65fba0e0c3e171f",
+    "name": "Reflex Sight, Battery",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 350,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 350,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 1,
+              "endurance": "500 hrs.",
+              "raw": "XS/500 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "39db7330a872009f",
+    "name": "Reflex Sight, Tritium",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 550,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 550,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e12350d830f695f7",
+    "name": "Early Night Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "4635ded91c6b1c86",
+    "name": "Night Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 4,
+              "endurance": "30 hrs.",
+              "raw": "4×S/30 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b9ffaecc2ae3b4cb",
+    "name": "Improved Night Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 3.5,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "60 hrs.",
+              "raw": "2×XS/60 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3e96d06de7506aab",
+    "name": "Improved Night Sight, Add-On",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2.5,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "60 hrs.",
+              "raw": "2×XS/60 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d91330cf7deb775b",
+    "name": "Advanced Night Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 2500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "90 hrs.",
+              "raw": "2×XS/90 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1aca04dffa89605d",
+    "name": "Advanced Night Sight, Add-On",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 156",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "90 hrs.",
+              "raw": "2×XS/90 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "8f45765bed3bba66",
+    "name": "Primitive Targeting Laser",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "2 hrs.",
+              "raw": "M/2 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "cfde689cb6c6ccbf",
+    "name": "Targeting Laser (Sidearm)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "50 hrs.",
+              "raw": "2×XS/50 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b7b240996addbc06",
+    "name": "Targeting Laser (Shoulder Arm)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 750,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 750,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "50 hrs.",
+              "raw": "2×XS/50 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d16cbdbfed0ef786",
+    "name": "Integral Targeting Laser (Sidearm)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 450,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 450,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "T",
+              "cells": 4,
+              "endurance": "2 hrs.",
+              "raw": "4×T/2 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3bb40fff2e64212b",
+    "name": "Integral Targeting Laser (Shoulder Arm)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 900,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 900,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "100 hrs.",
+              "raw": "2×XS/100 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "9fc075f650331ad2",
+    "name": "Computer Sight (Infravision)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 30000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "30 hrs.",
+              "raw": "M/30 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b9a0ef07d12ca037",
+    "name": "Mini-Computer Sight (Infravision)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2.5,
+      "cost": 20000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 2,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 2,
+              "endurance": "2 hrs.",
+              "raw": "2×S/2 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "14ad5a625ba76d77",
+    "name": "Thermal-Imaging Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 8000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 8000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "5 hrs.",
+              "raw": "M/5 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "825364990d2bbc15",
+    "name": "Improved Thermal-Imaging Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 8000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 8000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "10 hrs.",
+              "raw": "M/10 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b9096791c340f6b4",
+    "name": "Advanced Thermal-Imaging Sight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 157",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 2,
+              "endurance": "2 hrs.",
+              "raw": "2×S/2 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e557c34f11f7583b",
+    "name": "Detachable Baffle Suppressor, .22-caliber (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.25,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "57c3cf0ecbe89b52",
+    "name": "Detachable Baffle Suppressor, Pistol or SMG (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "afd734d298fb36c9",
+    "name": "Detachable Baffle Suppressor, Rifle (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "15ade0d71aaa0bae",
+    "name": "Detachable Baffle Suppressor, Oversized (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 400,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 400,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1a2f41f6ed2f640c",
+    "name": "Detachable Wiper Suppressor, Pistol or SMG (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "cc539d8688da66fb",
+    "name": "Detachable Wiper Suppressor, Rifle (per -1 Hearing)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 159",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "e58d5c2fe4b0a59c",
+    "name": "Pistol Stock (TL5)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "fe4a3bc8bfa62ca3",
+    "name": "Pistol Stock (TL7)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1826be60df99ad27",
+    "name": "Shooting Sticks",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 5,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "baad28c3d78c51cc",
+    "name": "Bipod (TL6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "156976c0b6db5acb",
+    "name": "Bipod (TL7)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d796c19102261915",
+    "name": "Bipod (TL8)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "fe8e40752daf4e0f",
+    "name": "Folding Stock",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 3,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1745e6b84a13e652",
+    "name": "Gun-Cleaning Kit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "4",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7f51530d8d010129",
+    "name": "Gun Case",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 25,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 160",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ce9f8c278b7b0ebb",
+    "name": "MG Brass Catcher",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 75,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 161",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 75,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d28887f38397c258",
+    "name": "Pistol Brass Catcher",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 161",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "a8518cd84de0b043",
+    "name": "Rifle/SMG Brass Catcher",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 161",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1e79ae470841b5fc",
+    "name": "Slide-Lock",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 161",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d8bf214812a04905",
+    "name": "Drag Bag",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 4,
+      "cost": 250,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 161",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 250,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  }
+]

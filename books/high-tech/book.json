@@ -33,6 +33,42 @@
       {
         "pattern": "^Telegraphs$",
         "reason": "telegram rates, a service priced per word (p. 36)"
+      },
+      {
+        "pattern": "^Anti-Stab Plate$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 67)"
+      },
+      {
+        "pattern": "^Small Trauma Plate$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 67)"
+      },
+      {
+        "pattern": "^Trauma Plate$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 67)"
+      },
+      {
+        "pattern": "^Goggles$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 71)"
+      },
+      {
+        "pattern": "^Sunglasses \\(TL5\\)$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 71)"
+      },
+      {
+        "pattern": "^Ballistic Sunglasses$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 71)"
+      },
+      {
+        "pattern": "^Cup$",
+        "reason": "kept by hand as armour, with the DR and location the text gives (p. 71)"
+      },
+      {
+        "pattern": "^A trendy mirrored coating becomes available circa 1950$",
+        "reason": "a sentence of the TL6 sunglasses' text read as a label; the TL6 sunglasses are kept by hand as armour (p. 71)"
+      },
+      {
+        "pattern": "^Entry Shield$",
+        "reason": "the shield table's figures run into the text; the four shields are kept by hand as shields (#346, p. 72)"
       }
     ],
     "set": [
@@ -992,6 +1028,140 @@
           "system.equipmentQuality": "best"
         },
         "reason": "+4 (quality) to Machinist, which is best at TL8 (p. 29)"
+      },
+      {
+        "pattern": "^Long Coat$",
+        "set": {
+          "system.lc": 4
+        },
+        "reason": "clothing is LC4 where the chapter doesn't say otherwise (p. 62); the leather coat is kept by hand as armour (p. 64)"
+      },
+      {
+        "pattern": "^Knee or Elbow Pads$",
+        "set": {
+          "name": "Knee or Elbow Pads (pair)"
+        },
+        "reason": "priced per pair (p. 71)"
+      },
+      {
+        "pattern": "^Gas Masks$",
+        "set": {
+          "name": "Gas Mask Filter"
+        },
+        "reason": "the price is the masks' replaceable filter, $25, 0.5 lb.; the masks are the data file's (p. 72)"
+      },
+      {
+        "pattern": "^Air Tanks$",
+        "set": {
+          "name": "Air Tank, Small"
+        },
+        "reason": "the first of three tanks; the medium and large tanks are kept by hand (p. 74)"
+      },
+      {
+        "pattern": "^Speedloaders$",
+        "set": {
+          "name": "Speedloader"
+        },
+        "reason": "priced each (p. 155)"
+      },
+      {
+        "pattern": "^Clamped Magazines$",
+        "set": {
+          "name": "Magazine Clamp"
+        },
+        "reason": "the price is the removable bracket's; magazines are priced by the gun and its ammunition (p. 155)"
+      },
+      {
+        "pattern": "^Fixed-Power Scope \\(TL5\\)$",
+        "set": {
+          "name": "Fixed-Power Scope (TL5, per +1 Acc)",
+          "system.weight": 3
+        },
+        "reason": "priced per +1 Acc; weighs 3-4 lbs., the lower recorded (p. 156)"
+      },
+      {
+        "pattern": "^Fixed-Power Scope \\(TL6\\)$",
+        "set": {
+          "name": "Fixed-Power Scope (TL6, per +1 Acc)"
+        },
+        "reason": "priced per +1 Acc, the magnification bought (p. 156)"
+      },
+      {
+        "pattern": "^Fixed-Power Scope \\(TL7\\)$",
+        "set": {
+          "name": "Fixed-Power Scope (TL7, per +1 Acc)"
+        },
+        "reason": "priced per +1 Acc, the magnification bought (p. 156)"
+      },
+      {
+        "pattern": "^Variable-Power Scope \\(TL7\\)$",
+        "set": {
+          "name": "Variable-Power Scope (TL7, per +1 Acc)"
+        },
+        "reason": "priced per +1 Acc, the magnification bought (p. 156)"
+      },
+      {
+        "pattern": "^Variable-Power Scope \\(TL8\\)$",
+        "set": {
+          "name": "Variable-Power Scope (TL8, per +1 Acc)"
+        },
+        "reason": "priced per +1 Acc, the magnification bought (p. 156)"
+      },
+      {
+        "pattern": "^Computer Sight$",
+        "set": {
+          "name": "Computer Sight (Infravision)"
+        },
+        "reason": "the price with a thermal imager; the night-vision version is kept by hand (p. 157)"
+      },
+      {
+        "pattern": "^Mini-Computer Sight$",
+        "set": {
+          "name": "Mini-Computer Sight (Infravision)"
+        },
+        "reason": "the price with a thermal imager; the night-vision version is kept by hand (p. 157)"
+      },
+      {
+        "pattern": "^Baffle Suppressors$",
+        "set": {
+          "name": "Detachable Baffle Suppressor, .22-caliber (per -1 Hearing)"
+        },
+        "reason": "the family heading took the .22-caliber suppressor's entry, whose label the period in \".22\" hides; priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Detachable Baffle Suppressor, Pistol or SMG$",
+        "set": {
+          "name": "Detachable Baffle Suppressor, Pistol or SMG (per -1 Hearing)"
+        },
+        "reason": "priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Detachable Baffle Suppressor, Rifle$",
+        "set": {
+          "name": "Detachable Baffle Suppressor, Rifle (per -1 Hearing)"
+        },
+        "reason": "priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Detachable Baffle Suppressor, Oversized$",
+        "set": {
+          "name": "Detachable Baffle Suppressor, Oversized (per -1 Hearing)"
+        },
+        "reason": "priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Detachable Wiper Suppressor, Pistol or SMG$",
+        "set": {
+          "name": "Detachable Wiper Suppressor, Pistol or SMG (per -1 Hearing)"
+        },
+        "reason": "priced per -1 Hearing (p. 159)"
+      },
+      {
+        "pattern": "^Detachable Wiper Suppressor, Rifle$",
+        "set": {
+          "name": "Detachable Wiper Suppressor, Rifle (per -1 Hearing)"
+        },
+        "reason": "priced per -1 Hearing (p. 159)"
       }
     ]
   },

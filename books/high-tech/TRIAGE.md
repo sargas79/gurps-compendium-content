@@ -373,3 +373,44 @@ cylinders, blank strips, fuel canisters, film for the watch camera, ski climbers
 Bonuses the book gives without "(quality)" -- the compass's +1 to Navigation, the
 shelters' survival modifiers, the HUD's +1 to Driving -- stay in the text, as Ultra-Tech's
 intrinsic bonuses do.
+
+### The catalogue, chapters 4 and 5: defences and firearm accessories (#349, first part)
+
+**Captured.** `tools/capture-gear.mjs`, unchanged, read pp. 62-77 into
+`equipment/high-tech-captured-defenses.json` (24 records) and pp. 153-161 into
+`equipment/high-tech-captured-accessories.json` (59), with 11 skips and 19 `capture.set`
+rules; 43 more are kept by hand in `equipment/high-tech-by-hand.json`. Every record was read
+against its page. Re-run on pp. 13-61, #348's capture comes out unchanged.
+
+**What reading the page settled:** the long coat's LC4 (clothing is LC4 unless the chapter
+says otherwise, p. 62); the gas masks' closing line is their replaceable filter's; the air
+tanks' is the small tank's; scopes and suppressors are priced per +1 Acc and per -1 Hearing,
+named so; the TL5 scope weighs 3-4 lbs. (read as 34); the computer sights' closing line is
+the thermal version's; the .22-caliber suppressor's label is hidden by the period in ".22",
+so its family heading took its entry; a sentence of the TL6 sunglasses read as a label; and
+the entry shields' table figures ran into the text (the shields are #346's).
+
+**Kept by hand:**
+
+| What | Pages | |
+|---|---|---|
+| 13 outfits | 63-64 | as a share of the cost of living (`costOfLivingPercent`), weights for TL7 garments (the Clothing Technology Table adjusts them, #381); hats as cloth (1%) and leather or felt (10%); undercover clothing at +1 and +2 (quality) to Holdout, priced on ordinary clothes (x5, x20); wet-weather gear as ordinary clothes at TL5 |
+| the leather long coat | 64 | armour, DR 1, x5 cost and x2 weight |
+| trauma and anti-stab plates | 67 | armour on the vitals or torso, from the front |
+| armour the text prints beside the tables | 67-74 | the ISAPO (DR 30), the aircrew vest with a back plate, the heavy helmet's brow plate, the leather helmet with steel plates, the M1 helmet's liner, the TL8 hard hat (half price), TL7-8 arctic boots (x2 cost, half weight), the TL8 biohazard suit (x2 cost; its PF 2.5 is #382's) |
+| goggles, sunglasses (TL5, TL6), ballistic sunglasses, the cup | 71 | armour with the DR the text gives; the cup DR 2 against crushing and 1 otherwise, from the front |
+| homemade armour | 71 | paper and tape, and a plastic bucket: DR 3 on the torso, no price |
+| medium and large air tanks | 74 | |
+| camouflage and scent masking | 76-77 | priced as a share of the clothing's own price, so each is kept on ordinary clothes (20% of cost of living): simple at no extra cost (+1 quality), basic x2 (+2), advanced x3 (+3, fine as the ghillie suit's), reversible with two basic patterns x3, scent masking x3 |
+| the night-vision computer sights | 157 | the text's first price |
+| accessory rails | 161 | one position, and three or four (three facings, 0.2 lb. each) |
+
+**Left out, and why:** armour materials (steel, smart foam, titanium, p. 65) and blade
+materials are calculated fields that reprice an item (#383, #380), never items of their own;
+extended, drum and high-density magazines are priced from the gun's ammunition (WPS) by
+formula (p. 155; #372); tripods and mounts vary by weapon; the brass catchers' half weight at
+TL8, the combined targeting laser and light, and the diving rig's compressor and hose reels
+are options priced inside another item's text, as #348 left them. Knee or elbow pads stay
+gear: their DR 3 protects 2/6 of a joint when kneeling, falling or struck (#383, #384). The
+Protected Hearing and Vision, Nictitating Membrane and Ham-Fisted that eye, ear and hand
+protection grant are #384's.

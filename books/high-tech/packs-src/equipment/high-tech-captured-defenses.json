@@ -1,0 +1,716 @@
+[
+  {
+    "_id": "13f78c853f5d6b56",
+    "name": "Long Coat",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 50,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 64",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 50,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "9a2add0776c1c6ca",
+    "name": "Earmuffs",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "2e0cf559778b1eb3",
+    "name": "Earplugs",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "34c1d88854503593",
+    "name": "Electronic Earmuffs",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 1,
+              "endurance": "100 hrs.",
+              "raw": "XS/100 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1c8968ea3bfa94b4",
+    "name": "Electronic Earplugs",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 70",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "T",
+              "cells": 1,
+              "endurance": "400 hrs.",
+              "raw": "T/400 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b8305b8f641f91fd",
+    "name": "Dive Mask",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3f68b890d1034912",
+    "name": "Anti-Laser Goggles",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "164bca29d8008925",
+    "name": "Tactical Goggles",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "dca30befdd9b01bc",
+    "name": "Mouthguard",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "3cc78a0954d482ef",
+    "name": "Knee or Elbow Pads (pair)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 71",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "34667ffda7cc20d6",
+    "name": "Explosives Blanket",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 45,
+      "cost": 1000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "474382f259f47a90",
+    "name": "Radiation Blanket",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 90,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "150606f4dd944e8d",
+    "name": "Gas Mask Filter",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.5,
+      "cost": 25,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 72",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 25,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "af2ae83747cdfd9c",
+    "name": "Closed-Dress Rig",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 500,
+      "cost": 4000,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 73",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 4000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "cade02965b007240",
+    "name": "Hard-Hat Rig",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 120,
+      "cost": 10000,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "ae02af4fa59ee4b0",
+    "name": "Air Tank, Small",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7edd7df24f904528",
+    "name": "Heated Clothing",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 550,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 550,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "M",
+              "cells": 1,
+              "endurance": "8 hrs.",
+              "raw": "M/8 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "d3342f5e696b331a",
+    "name": "Climate-Control System",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 2500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 4,
+              "endurance": "8 hrs.",
+              "raw": "4×S/8 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "6e182c8f2498b103",
+    "name": "Cooling System",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 74",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "b07db81f99fc7989",
+    "name": "Biomedical Sensors",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2,
+      "cost": 2000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 75",
+      "category": "tool",
+      "equipmentQuality": "good",
+      "forSkills": [
+        "Diagnosis"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 2000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "24 hrs.",
+              "raw": "2×XS/24 hrs."
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "dc7f1a86d3f2ce31",
+    "name": "Camouflage Net",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 8,
+      "cost": 20,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 20,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "d12207e7cde8b3bf",
+    "name": "Ghillie Suit",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 77",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Camouflage"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "f688c2144014b8ea",
+    "name": "Infrared-Suppressing Poncho",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 77",
+      "category": "tool",
+      "equipmentQuality": "fine",
+      "forSkills": [
+        "Camouflage"
+      ],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "00815b1b811fee3f",
+    "name": "IR Camouflage Net",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 100,
+      "cost": 800,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 77",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 800,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  }
+]
