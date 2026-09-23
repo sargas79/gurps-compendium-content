@@ -12,8 +12,8 @@
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
  * stance, Precision Aiming, the Ranged Rapid Strike, Close-Quarters Battle,
- * Targeted Attacks with guns, Instant Arsenal Disarm and the expanded
- * Gunslinger, the special shooting situations (underwater, into water,
+ * Targeted Attacks with guns, Instant Arsenal Disarm, Mounted Shooting, the
+ * expanded Gunslinger and Zen Marksmanship, the special shooting situations (underwater, into water,
  * steeply into the air, in space), sustained fire, the aftermath of a
  * firefight, reloading, careful loading and black-powder fouling, and the
  * weapon families: air guns and ranged stunners, unsafe revolvers and pistol
@@ -94,6 +94,8 @@ const RULES = [
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
+  // Cinematic: Zen Archery for guns.
+  { key: "zenMarksmanship", pages: "p. 250", implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -135,7 +137,7 @@ function ready(api: GWorldApi): void {
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
   const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
-  const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded") };
+  const shooting = { pistolero: rule("pistolero"), precisionAiming: rule("precisionAiming"), rangedRapidStrike: rule("rangedRapidStrike"), gunTechniques: rule("gunTechniques"), gunslinger: rule("gunslingerExpanded"), zenMarksmanship: rule("zenMarksmanship") };
   readyRateOfFire(api, { triggers: rule("triggerMechanisms"), bursts: rule("burstFire"), fastFiring: rule("fastFiring"), fanning: rule("fanningAndThumbing") }, {
     noFanning: (item) => (shooting.pistolero() && inPistoleroStance(api, item) ? game.i18n.localize("GCC.HT.Shooting.StanceNoFanning") : null),
     techniqueDefault: (actor, technique, penalty) => gunslingerDefault(shooting, actor, technique, penalty),

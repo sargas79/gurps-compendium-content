@@ -25,6 +25,8 @@ let rollOutcome: any;
 let contestOutcome: any;
 let malfunctions: any[];
 let prompted: unknown;
+let zenSkills: any[];
+let aimsLost: any[];
 
 const HOOKS = {
   weaponAttacks: "gworld.weaponAttacks",
@@ -45,6 +47,7 @@ function fakeApi() {
       setWeaponState: async (item: any, _module: string, patch: Record<string, unknown>) => { weaponState.set(item.id, { ...(weaponState.get(item.id) ?? {}), ...patch }); },
       getCombatState: (actor: any, _module: string, key: string) => combatState.get(`${actor.uuid}:${key}`),
       setCombatState: async (actor: any, _module: string, key: string, value: unknown) => { combatState.set(`${actor.uuid}:${key}`, value); },
+      registerZenSkill: (r: any) => { zenSkills.push(r); return `${r.module}.${r.key}`; },
     },
     sheets: { registerRowAction: (r: any) => { rowActions.set(r.key, r); } },
     data: { registerTechniqueKind: (r: any) => { kinds.set(r.key, r); } },
@@ -52,6 +55,11 @@ function fakeApi() {
       derived: (actor: any) => actor?.system?.derived ?? null,
       attribute: (actor: any, key: string) => actor?.attrs?.[key] ?? null,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
+      loseAim: async (actor: any, reason: string) => {
+        aimsLost.push({ actor: actor.id, reason });
+        actor.system.aim = { turns: 0, braced: false, target: "", bonuses: [] };
+        return true;
+      },
     },
     items: { setMalfunction: async (item: any, m: any) => { malfunctions.push({ item: item.id, ...m }); return true; } },
     roll: {
@@ -71,6 +79,7 @@ const switches: ShootingSwitches = {
   rangedRapidStrike: () => on.rangedRapidStrike === true,
   gunTechniques: () => on.gunTechniques === true,
   gunslinger: () => on.gunslinger === true,
+  zenMarksmanship: () => on.zenMarksmanship === true,
 };
 
 function fire(hook: string, context: any): any {
@@ -144,6 +153,8 @@ beforeEach(() => {
   contestOutcome = { outcome: "first" };
   malfunctions = [];
   prompted = 0;
+  zenSkills = [];
+  aimsLost = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -244,12 +255,13 @@ describe("Precision Aiming (p. 84)", () => {
     expect(await precisionAim(fakeApi() as never, rifle, actor)).toBeNull();
   });
 
-  it("loses every aiming bonus on a failure, and gives the sniper away on a critical one", async () => {
+  it("loses the aim on a failure, and gives the sniper away on a critical one", async () => {
     on.precisionAiming = true;
     rollOutcome = { success: false, criticalFailure: true };
     const { rifle, actor } = sniper(12, [{ label: "P", value: 1, key: "precisionAiming" }, { label: "Optics", value: 1 }]);
     expect(await precisionAim(fakeApi() as never, rifle, actor)).toBe("spotted");
-    expect(actor.system.aim.bonuses).toEqual([{ label: "Optics", value: 1 }]);
+    expect(aimsLost).toEqual([{ actor: actor.id, reason: "GCC.HT.Shooting.PrecisionLostReason" }]);
+    expect(actor.system.aim).toMatchObject({ turns: 0, bonuses: [] });
     expect(chat[0]).toContain("PrecisionLost");
     expect(chat[0]).toContain("PrecisionSpotted");
   });
@@ -388,5 +400,49 @@ describe("with every switch off", () => {
     expect(shot.modifiers).toEqual(lines);
     expect(row(pistol, actor).minSt).toBe(11);
     expect(options.get("ht-ranged-rapid-strike").available(optionContext(colt(), actor))).toBe(false);
+  });
+});
+
+describe("Mounted Shooting (p. 251)", () => {
+  const riding = (value: number, extra: Record<string, unknown> = {}) => [{ label: "Moving mount", value, key: "movingPlatform", platform: "mount", medium: "ground", ride: "rough", mounting: "handheld", ...extra }];
+
+  it("keeps a rough ride from taking the skill below the technique's level", () => {
+    on.gunTechniques = true;
+    // Guns (Submachine Gun)-12 and Mounted Shooting (SMG/Motorcycle)-11: a -4 ride leaves -1.
+    const actor = shooter({ items: [technique("Mounted Shooting (SMG/Motorcycle)", 11, { prerequisite: "Guns (Submachine Gun)" })] });
+    const shot = attack(tommy(), actor, { modifiers: riding(-4) });
+    expect(shot.modifiers[0]).toMatchObject({ value: -1, label: "GCC.HT.Shooting.MountedShootingLine {\"label\":\"Moving mount\"}" });
+    // A penalty already above the floor is left alone.
+    expect(attack(tommy(), actor, { modifiers: riding(-1) }).modifiers[0].value).toBe(-1);
+  });
+
+  it("does nothing at its default, for another weapon skill, or for a weapon on a mount", () => {
+    on.gunTechniques = true;
+    const atDefault = shooter({ items: [technique("Mounted Shooting (SMG/Motorcycle)", 8, { prerequisite: "Guns (Submachine Gun)" })] });
+    expect(attack(tommy(), atDefault, { modifiers: riding(-6) }).modifiers[0].value).toBe(-6);
+    const pistolOnly = shooter({ items: [technique("Mounted Shooting (Pistol/Horse)", 14, { prerequisite: "Guns (Pistol)" })] });
+    expect(attack(tommy(), pistolOnly, { modifiers: riding(-6) }).modifiers[0].value).toBe(-6);
+    const trained = shooter({ items: [technique("Mounted Shooting (SMG/Jeep)", 12, { prerequisite: "Guns (Submachine Gun)" })] });
+    expect(attack(tommy(), trained, { modifiers: riding(-6, { platform: "vehicle", mounting: "openMount" }) }).modifiers[0].value).toBe(-6);
+    on.gunTechniques = false;
+    expect(attack(tommy(), trained, { modifiers: riding(-6) }).modifiers[0].value).toBe(-6);
+  });
+});
+
+describe("Zen Marksmanship (p. 250)", () => {
+  it("registers a zen skill for each specialty, offered only while its switch is on", () => {
+    expect(zenSkills.map((z) => z.skill)).toEqual([
+      "Zen Marksmanship (Gyroc)", "Zen Marksmanship (Musket)", "Zen Marksmanship (Pistol)", "Zen Marksmanship (Rifle)",
+      "Zen Marksmanship (Shotgun)", "Zen Marksmanship (Submachine Gun)", "Zen Marksmanship (Beam Pistol)", "Zen Marksmanship (Beam Rifle)",
+    ]);
+    const pistol = zenSkills.find((z) => z.skill === "Zen Marksmanship (Pistol)");
+    expect(pistol).toMatchObject({ module: MODULE_ID, key: "ht-zen-pistol", covers: ["Guns (Pistol)"] });
+    expect(zenSkills.find((z) => z.key === "ht-zen-beam-rifle").covers).toEqual(["Beam Weapons (Rifle)"]);
+    // The system's own matching: a specialty covers the skill with its TL.
+    expect(rules.zenSkillCovers(pistol.covers, "Guns/TL8 (Pistol)")).toBe(true);
+    expect(rules.zenSkillCovers(pistol.covers, "Guns/TL8 (Rifle)")).toBe(false);
+    expect(pistol.available(shooter())).toBe(false);
+    on.zenMarksmanship = true;
+    expect(pistol.available(shooter())).toBe(true);
   });
 });

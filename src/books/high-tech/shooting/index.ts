@@ -9,15 +9,20 @@
  *   - **Precision Aiming:** after 6, 12, 24, 45 and 90 seconds of Aim with a
  *     braced, scoped gun, an IQ-based weapon skill roll at -6 (bought off by
  *     the technique) adds +1 to the aim, up to the lower of the scope's bonus
- *     and the gun's Acc; a failure loses the aim, a critical failure gives
- *     the sniper away.
+ *     and the gun's Acc; a failure ends the aim (`actors.loseAim`), a
+ *     critical failure gives the sniper away.
  *   - **Ranged Rapid Strike:** two attacks in one second from a gun of RoF
  *     2+, each at -6 (bought off by Quick-Shot) and half the RoF, on Attack or
  *     All-Out Attack.
  *   - **Gun techniques:** Close-Quarters Battle on Move and Attack within
  *     Per yards; Targeted Attacks with guns, "TA (Pistol/Skull)", on the
  *     shared Targeted Attack engine with this book's table; Instant Arsenal
- *     Disarm from its technique's row.
+ *     Disarm from its technique's row; Mounted Shooting, which keeps the
+ *     keyed `movingPlatform` line (Campaigns p. 548) from taking a handheld
+ *     weapon's skill below the technique's level.
+ *   - **Zen Marksmanship** (cinematic): Zen Archery for guns, one zen skill
+ *     (`combat.registerZenSkill`) per specialty, offered while its switch is
+ *     on.
  *   - **The expanded Gunslinger** (cinematic): Bulk ignored on Move and
  *     Attack and in close combat, and the default penalties of Fanning,
  *     Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved.
@@ -39,6 +44,7 @@ import {
   halvedDefault,
   instantArsenalResult,
   isPistolSkill,
+  mountedShootingLine,
   nextPrecisionSecond,
   pistoleroBulk,
   pistoleroMinSt,
@@ -48,6 +54,8 @@ import {
   rangedRapidStrikeRefusal,
   readGunTargetedAttack,
   withinCloseQuarters,
+  MOUNTED_SHOOTING_DEFAULT,
+  ZEN_MARKSMANSHIP,
   type GunTargetedAttack,
 } from "./rules.js";
 
@@ -68,6 +76,7 @@ export interface ShootingSwitches {
   rangedRapidStrike: () => boolean;
   gunTechniques: () => boolean;
   gunslinger: () => boolean;
+  zenMarksmanship: () => boolean;
 }
 
 interface RapidState { remaining: number; penalty: number }
@@ -192,8 +201,8 @@ export async function precisionAim(api: GWorldApi, item: any, actor: any): Promi
     await actor.update({ "system.aim.bonuses": [...others, { label: L("PrecisionBonus"), value: bonus, key: PRECISION_KEY }] });
     await say(actor, String(item?.name ?? ""), [F("PrecisionGained", { bonus, cap, next: nextPrecisionSecond(bonus) ?? "-" })]);
   } else {
-    // The aim itself is the system's to end; its bonuses are all lost, and the shooter starts over.
-    await actor.update({ "system.aim.bonuses": others });
+    // The aim is lost, its bonuses with it, and the shooter starts over (API 1.87.0).
+    await api.actors.loseAim(actor, L("PrecisionLostReason"));
     await say(actor, String(item?.name ?? ""), [L("PrecisionLost"), ...(result === "spotted" ? [L("PrecisionSpotted")] : [])]);
   }
   return result;
@@ -348,6 +357,17 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
         if (line) lines.push({ label: L("CloseQuartersLine"), value: line });
       }
 
+      // Mounted Shooting: a moving mount or vehicle can't take a handheld weapon's skill below the technique (p. 251).
+      const platform = lines.find((l) => l?.key === "movingPlatform");
+      if (platform && (platform.mounting ?? "handheld") === "handheld") {
+        const relative = techniqueRelative(api, actor, skill, /^mounted shooting\b/i, MOUNTED_SHOOTING_DEFAULT);
+        const value = mountedShootingLine(Number(platform.value) || 0, relative);
+        if (value !== platform.value) {
+          platform.value = value;
+          platform.label = F("MountedShootingLine", { label: platform.label });
+        }
+      }
+
       // A Targeted Attack with a gun: the levels bought in it, for a shot aimed where it aims (p. 252).
       const shot = context.calledShot;
       if (shot?.hitLocation) {
@@ -430,6 +450,12 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
       };
     },
   });
+
+  // ── Zen Marksmanship (p. 250) ──
+
+  for (const zen of ZEN_MARKSMANSHIP) {
+    api.combat.registerZenSkill({ module: MODULE_ID, key: zen.key, skill: zen.skill, covers: zen.covers, available: () => on.zenMarksmanship() });
+  }
 
   // ── Instant Arsenal Disarm (p. 251) ──
 

@@ -19,11 +19,13 @@ let conditions: any[];
 let weaponState: Map<string, Record<string, unknown>>;
 let on: Record<string, boolean>;
 let combat: any;
+let refunds: any[];
 
 const HOOKS = {
   weaponAttacks: "gworld.weaponAttacks",
   attackModifiers: "gworld.attackModifiers",
   afterSuccessRoll: "gworld.afterSuccessRoll",
+  afterShots: "gworld.afterShots",
 };
 
 function fakeApi() {
@@ -41,6 +43,7 @@ function fakeApi() {
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       applyCondition: async (_actor: any, c: any) => { conditions.push(c); return "c1"; },
     },
+    items: { refundShots: async (item: any, modeIndex: number, shots: number) => { refunds.push({ item: item.id, modeIndex, shots }); return shots; } },
   };
 }
 
@@ -59,6 +62,7 @@ function fire(hook: string, context: any): any {
 function gun(name: string, mode: Record<string, unknown>, firearm: Record<string, unknown> = {}): any {
   return {
     id: name,
+    uuid: `Item.${name}`,
     name,
     type: "equipment",
     isOwner: true,
@@ -97,6 +101,7 @@ function attack(item: any, chosen: Record<string, unknown>, modifiers: any[] = [
 
 beforeEach(() => {
   hooks = new Map();
+  refunds = [];
   options = new Map();
   rowAction = null;
   chat = [];
@@ -186,6 +191,16 @@ describe("fire selectors and bursts", () => {
     expect([1, 2, 3].map((n) => opt("ht-bursts").apply(context(beretta), String(n)).rateOfFire)).toEqual([3, 6, 9]);
   });
 
+  it("holds the shots to whole bursts, so 4 shots with two bursts chosen fire one, and a gun a burst short is refused", () => {
+    on.bursts = true;
+    const effect = opt("ht-bursts").apply(context(beretta93r()), "2");
+    expect(effect).toMatchObject({ rateOfFire: 6, minShots: 3, shotsStep: 3 });
+    // The system counts the shots from these (API 1.83.0).
+    expect(rules.burstShots({ asked: 4, rateOfFire: effect.rateOfFire, minShots: effect.minShots, step: effect.shotsStep })).toBe(3);
+    expect(rules.burstShots({ asked: 6, rateOfFire: effect.rateOfFire, minShots: effect.minShots, step: effect.shotsStep })).toBe(6);
+    expect(rules.burstShots({ asked: 3, rateOfFire: 2, minShots: effect.minShots, step: effect.shotsStep })).toBeNull();
+  });
+
   it("counts a high-cyclic gun's controlled bursts at Rcl 1 without Suppression Fire; its second setting fires normally", async () => {
     on.bursts = true;
     const rifle = g11();
@@ -265,6 +280,33 @@ describe("fanning and thumbing", () => {
     // randomUniform 0.9 is a 6: a bruised hand, four minutes of moderate pain.
     expect(chat.join()).toContain("FanningBruised");
     expect(conditions).toEqual([{ key: "moderatePain", duration: { seconds: 240 } }]);
+  });
+
+  it("gives back the rounds a fanning critical failure or a failed thumbing never fired", () => {
+    on.fanning = true;
+    const actor = shooter();
+    const fanned = peacemaker();
+    attack(fanned, { "ht-fanning": "3" }, [], actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["attack"], outcome: { success: false, criticalFailure: true, margin: 4 } });
+    fire(HOOKS.afterShots, { actor, item: fanned, modeIndex: 0, shots: 3, fired: 3 });
+    expect(refunds).toEqual([{ item: fanned.id, modeIndex: 0, shots: 3 }]);
+    // Once only: the next attack's shots stay spent.
+    fire(HOOKS.afterShots, { actor, item: fanned, modeIndex: 0, shots: 3, fired: 3 });
+    expect(refunds).toHaveLength(1);
+
+    const thumbed = peacemaker();
+    attack(thumbed, { "ht-thumbing": true }, [], actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["attack"], outcome: { success: false, criticalFailure: false, margin: 1 } });
+    fire(HOOKS.afterShots, { actor, item: thumbed, modeIndex: 0, shots: 2, fired: 2 });
+    expect(refunds).toHaveLength(2);
+    // A plain fanning failure fires, and a thumbing critical failure is the GM's call: nothing goes back.
+    attack(thumbed, { "ht-fanning": "2" }, [], actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["attack"], outcome: { success: false, criticalFailure: false, margin: 2 } });
+    fire(HOOKS.afterShots, { actor, item: thumbed, modeIndex: 0, shots: 2, fired: 2 });
+    attack(thumbed, { "ht-thumbing": true }, [], actor);
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["attack"], outcome: { success: false, criticalFailure: true, margin: 5 } });
+    fire(HOOKS.afterShots, { actor, item: thumbed, modeIndex: 0, shots: 2, fired: 2 });
+    expect(refunds).toHaveLength(2);
   });
 
   it("refuses an ordinary shot from a revolver with its trigger tied back", () => {

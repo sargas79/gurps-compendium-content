@@ -12,7 +12,7 @@ import {
   qualityProblems,
   qualityStep,
   rerollMalfunctions,
-  ruggedHtBonus,
+  ruggedObjectStats,
   specialtyCovers,
   specialtyOf,
   wearPenalty,
@@ -79,8 +79,13 @@ describe("gun care (High-Tech pp. 80-81, 129)", () => {
     expect(wearPenalty({ lost: 2, clothBelt: true, untrained: true })).toBe(4);
   });
 
-  it("makes a rugged gun HT 11 or 12 against an ordinary gun's 10", () => {
-    expect([ruggedHtBonus(""), ruggedHtBonus("military"), ruggedHtBonus("rugged")]).toEqual([0, 1, 2]);
+  it("makes a military gun at least DR 6, HT 11 and a famously rugged one DR 8, HT 12", () => {
+    const system = { dr: 3, ht: 10 };
+    expect([ruggedObjectStats(system, ""), ruggedObjectStats(system, "military"), ruggedObjectStats(system, "rugged")]).toEqual([
+      { dr: 3, ht: 10 }, { dr: 6, ht: 11 }, { dr: 8, ht: 12 },
+    ]);
+    // A gun the system already makes tougher keeps its own figures.
+    expect(ruggedObjectStats({ dr: 9, ht: 12 }, "military")).toEqual({ dr: 9, ht: 12 });
   });
 
   it("swaps misfires and stoppages at TL6-8, but not for a revolver", () => {

@@ -10,6 +10,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
+import { inShape } from "../../../../system/src/rules/modifier-areas.js";
 import { BACKBLAST_TABLES } from "../../../shared/backblast/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { BACKBLASTS } from "../../ultra-tech/guns/rules.js";
@@ -49,6 +50,7 @@ function fakeApi() {
       setWeaponState: async (item: any, _m: string, patch: any) => { weaponState.set(item, { ...weaponState.get(item), ...patch }); },
     },
     sheets: { registerSheetSection: () => undefined },
+    areas: { standsIn: (scene: any, area: any) => scene.tokens.filter((t: any) => inShape(t.center, area)) },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       conditions: () => conditions.map((c) => ({ id: c.module ? `${c.module}.${c.key}` : c.key })),
@@ -148,7 +150,7 @@ beforeEach(() => {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
     user: { targets: new Set([TOKENS.target]) },
   });
-  vi.stubGlobal("canvas", { dimensions: { size: 100, distance: 1 }, tokens: { placeables: Object.values(TOKENS) } });
+  vi.stubGlobal("canvas", { dimensions: { size: 100, distance: 1 }, scene: { tokens: Object.values(TOKENS) }, tokens: { placeables: Object.values(TOKENS) } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
 });
@@ -203,9 +205,10 @@ describe("ranged electric stunners (High-Tech p. 89)", () => {
     attack(m26, { options: { [`${MODULE_ID}.ht-stunner-hold`]: 3 } });
     const context = fire(HOOKS.afflictionEffect, { actor: victim, attacker: shooter, item: m26, mode: { index: 0, ranged: true }, label: "", margin: 2, effects: [] });
     const keys = context.effects.map((e: any) => e.key);
-    expect(keys).toEqual(["stunned", "prone", "ht-stunner-held", "ht-stunner-shock"]);
-    expect(context.effects[2].duration).toEqual({ seconds: 3 + 8 });
-    expect(context.effects[3].effects.modifiers[0]).toMatchObject({ value: -5, rolls: ["stunRecovery"] });
+    expect(keys).toEqual(["stunned", "prone", "ht-stunner-shock"]);
+    // No recovery roll until the hold and (20 - HT) seconds are over.
+    expect(context.effects[0]).toEqual({ key: "stunned", holdRecovery: { seconds: 3 + 8 } });
+    expect(context.effects[2].effects.modifiers[0]).toMatchObject({ value: -5, rolls: ["stunRecovery"] });
   });
 
   it("takes the gun's own hold when the shooter doesn't say, and lifts the penalty on recovery", async () => {
@@ -214,8 +217,8 @@ describe("ranged electric stunners (High-Tech p. 89)", () => {
     const te76 = taser({ emd: false });
     attack(te76);
     const context = fire(HOOKS.afflictionEffect, { actor: { attributes: { HT: 10 } }, item: te76, mode: { index: 0 }, effects: [] });
-    expect(context.effects.map((e: any) => e.key)).toEqual(["stunned", "ht-stunner-held", "ht-stunner-shock"]);
-    expect(context.effects[1].duration).toEqual({ seconds: 5 + 10 });
+    expect(context.effects.map((e: any) => e.key)).toEqual(["stunned", "ht-stunner-shock"]);
+    expect(context.effects[0].holdRecovery).toEqual({ seconds: 5 + 10 });
     conditions = context.effects.filter((e: any) => e.module);
     fire(HOOKS.afterSuccessRoll, { actor: {}, tags: ["stunRecovery", "HT"], outcome: { success: true } });
     await flush();

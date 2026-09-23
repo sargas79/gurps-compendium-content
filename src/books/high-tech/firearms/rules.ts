@@ -158,9 +158,18 @@ export const RUGGED_FIGURES: Readonly<Record<Ruggedness, { dr: number; ht: numbe
   rugged: { dr: 8, ht: 12 },
 };
 
-/** What a gun's robustness adds to a roll against its HT, over an ordinary gun's. */
-export function ruggedHtBonus(ruggedness: Ruggedness): number {
-  return RUGGED_FIGURES[ruggedness].ht - RUGGED_FIGURES[""].ht;
+/**
+ * A gun's DR and HT as an object, made at least as tough as its robustness
+ * says (p. 80). An ordinary gun keeps the figures the system works out from
+ * its weight and material (Campaigns pp. 483-484); a military or famously
+ * rugged one is never below its DR and HT.
+ */
+export function ruggedObjectStats(stats: { dr: number; ht: number }, ruggedness: Ruggedness): { dr: number; ht: number } {
+  const dr = Number(stats.dr) || 0;
+  const ht = Number(stats.ht) || 0;
+  if (!ruggedness) return { dr, ht };
+  const figures = RUGGED_FIGURES[ruggedness];
+  return { dr: Math.max(dr, figures.dr), ht: Math.max(ht, figures.ht) };
 }
 
 /** What wears a gun's Malf. down. */

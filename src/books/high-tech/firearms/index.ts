@@ -9,7 +9,9 @@
  *     gun reliable past Malf. 17 rolls a malfunction again.
  *   - **Gun care:** Malf. lost at default or without the ST, to a cloth belt,
  *     and (as the GM enters it) to abuse, age and hostile surroundings; Acc
- *     lost to abuse; a precision gun's HT roll against abuse; rugged guns; and
+ *     lost to abuse; a precision gun's HT roll against abuse; rugged guns'
+ *     DR and HT as objects (`gworld.objectStats`, GWorld API 1.90.0), which
+ *     breakage, damage to the gun and the exposure roll all read; and
  *     misfires and stoppages swapped for TL6-8 guns other than revolvers.
  *   - **Immediate Action:** clearing a stoppage at -4 (bought off by the
  *     technique), with the gun's TL and familiarity lines, in the Ready
@@ -29,7 +31,6 @@ import {
   PRECISION_ABUSE_MODIFIER,
   QUALITY_STEPS,
   RUGGEDNESS,
-  RUGGED_FIGURES,
   WEAPON_BOND_BONUS,
   accurateBonus,
   allowedQuality,
@@ -42,7 +43,7 @@ import {
   qualityProblems,
   qualityStep,
   rerollMalfunctions,
-  ruggedHtBonus,
+  ruggedObjectStats,
   specialtyCovers,
   wearPenalty,
   type Feed,
@@ -203,7 +204,8 @@ function itemContext(api: GWorldApi, item: any, on: FirearmSwitches): Record<str
     };
   }
   if (on.care()) {
-    const figures = RUGGED_FIGURES[data.rugged];
+    // The figures the system uses, once the gun's robustness has had its say.
+    const figures = api.items.objectStats(item);
     context.care = {
       data,
       rugged: RUGGEDNESS.map((r) => ({ value: r, label: L(`Rugged.${r || "standard"}`), selected: r === data.rugged })),
@@ -408,13 +410,24 @@ export function readyFirearms(api: GWorldApi, on: FirearmSwitches): void {
     }
   });
 
-  // Abuse (p. 80): a precision gun rolls HT rather than HT+4; a rugged one is HT 11 or 12.
+  // Abuse (p. 80): a precision gun rolls HT rather than HT+4. A rugged one's HT is the object's, below.
   Hooks.on(api.combat.hooks.equipmentFailure, (context: any) => {
     const item = context?.item;
     if (!on.care() || !isFirearm(api, item)) return;
-    const data = firearmData(item);
-    if (data.precision) context.modifiers.push({ label: L("PrecisionLine"), value: PRECISION_ABUSE_MODIFIER });
-    const bonus = ruggedHtBonus(data.rugged);
-    if (bonus) context.modifiers.push({ label: L(`Rugged.${data.rugged}`), value: bonus });
+    if (firearmData(item).precision) context.modifiers.push({ label: L("PrecisionLine"), value: PRECISION_ABUSE_MODIFIER });
+  });
+
+  // A rugged gun's DR and HT as an object (p. 80), wherever the system works them out.
+  Hooks.on(api.data.hooks.objectStats, (context: any) => {
+    const item = context?.item;
+    if (!on.care() || !isFirearm(api, item)) return;
+    const rugged = firearmData(item).rugged;
+    if (!rugged) return;
+    const before = { dr: Number(context.dr) || 0, ht: Number(context.ht) || 0 };
+    const after = ruggedObjectStats(before, rugged);
+    if (after.dr === before.dr && after.ht === before.ht) return;
+    context.dr = after.dr;
+    context.ht = after.ht;
+    context.notes?.push?.(L(`Rugged.${rugged}`));
   });
 }

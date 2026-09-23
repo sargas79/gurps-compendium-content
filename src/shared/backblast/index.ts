@@ -7,8 +7,10 @@
  * rule -- the cone's victims at full and half damage, and firing indoors.
  * When a launcher fires (`gworld.afterShots`, so never for an attack that was
  * refused), the backblast's damage is rolled. With the cone, the tokens
- * behind the firer, the other way from the target, are named, and those at
- * half damage get a half-damage roll of their own. Indoors is an attack
+ * behind the firer, the other way from the target, are named -- those
+ * standing in the system's cone areas (`areas.standsIn`, GWorld API 1.89.0)
+ * of the full and the half reach -- and those at half damage get a
+ * half-damage roll of their own. Indoors is an attack
  * option: the walls throw a burning backblast back at the firer, and the
  * report calls for a HT-4 roll against being stunned unless the firer wears
  * hearing protection.
@@ -16,7 +18,7 @@
 
 import { BookTables, type BookTable } from "../book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
-import { INDOORS_HT_PENALTY, backblastZone, reflectsAtFirer, type Backblast, type Point } from "./rules.js";
+import { INDOORS_HT_PENALTY, backblastCone, reflectsAtFirer, type Backblast, type Point } from "./rules.js";
 
 export * from "./rules.js";
 
@@ -53,43 +55,52 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 /** What each launcher was last fired with: where the firer stood and aimed, and whether indoors. */
 const pending = new Map<string, { indoors: Indoors; aim: Point | null }>();
 
-/** A token's centre, in yards on the map. */
-function centre(token: any, yardsPerPixel: number): Point | null {
+/** A token's centre, in scene pixels. */
+function centre(token: any): Point | null {
   const object = token?.object ?? token;
   const c = object?.center;
-  if (c && Number.isFinite(c.x) && Number.isFinite(c.y)) return { x: c.x * yardsPerPixel, y: c.y * yardsPerPixel };
+  if (c && Number.isFinite(c.x) && Number.isFinite(c.y)) return { x: c.x, y: c.y };
   const doc = token?.document ?? token;
   const size = Number((globalThis as any).canvas?.dimensions?.size) || 0;
   if (!doc || !size || !Number.isFinite(doc.x)) return null;
-  return { x: (doc.x + (Number(doc.width) || 1) * size / 2) * yardsPerPixel, y: (doc.y + (Number(doc.height) || 1) * size / 2) * yardsPerPixel };
+  return { x: doc.x + (Number(doc.width) || 1) * size / 2, y: doc.y + (Number(doc.height) || 1) * size / 2 };
 }
 
-function yardsPerPixel(): number {
+function pixelsPerYard(): number {
   const d = (globalThis as any).canvas?.dimensions;
-  return d?.size ? (Number(d.distance) || 1) / d.size : 0;
+  return d?.size ? d.size / (Number(d.distance) || 1) : 0;
 }
 
-/** The tokens caught behind a firer who aimed at `aim`, by zone. */
-export function caughtBehind(actor: any, aim: Point | null, blast: Backblast): { full: any[]; half: any[] } {
-  const scale = yardsPerPixel();
+/**
+ * The tokens caught behind a firer who aimed at `aim` (scene pixels), by
+ * zone: those the system finds standing in a cone of the full reach, and
+ * then those in one of the half reach. The cones are only looked in, never
+ * kept on the scene: the blast is over in an instant, and a player firing
+ * can't write to the scene.
+ */
+export function caughtBehind(api: GWorldApi, actor: any, aim: Point | null, blast: Backblast): { full: any[]; half: any[] } {
+  const scene = (globalThis as any).canvas?.scene ?? null;
+  const scale = pixelsPerYard();
   const firerToken = actor?.getActiveTokens?.()?.[0] ?? null;
-  const firer = firerToken && scale ? centre(firerToken, scale) : null;
+  const firer = firerToken ? centre(firerToken) : null;
   const caught = { full: [] as any[], half: [] as any[] };
-  if (!firer || !aim) return caught;
-  for (const token of (globalThis as any).canvas?.tokens?.placeables ?? []) {
-    if (token === firerToken || (token?.document && token.document === firerToken?.document)) continue;
-    const at = centre(token, scale);
-    const zone = at ? backblastZone(firer, aim, at, blast) : null;
-    if (zone) caught[zone].push(token);
-  }
+  if (!scene || !firer || !aim || !scale) return caught;
+  const firerDoc = firerToken?.document ?? firerToken;
+  const standing = (yards: number): any[] => {
+    const cone = backblastCone(firer, aim, yards, scale);
+    if (!cone) return [];
+    const area = { id: `${MODULE_ID}-backblast`, label: "", center: firer, radius: null, region: null, lines: [], expires: null, cone };
+    return ((api.areas.standsIn(scene, area as never) ?? []) as any[]).filter((doc) => doc !== firerDoc && !(doc?.id && doc.id === firerDoc?.id));
+  };
+  caught.full = standing(blast.fullYards);
+  if (blast.halfYards > blast.fullYards) caught.half = standing(blast.halfYards).filter((doc) => !caught.full.includes(doc));
   return caught;
 }
 
-/** Where the firer aims: their one targeted token, in yards. */
+/** Where the firer aims: their one targeted token, in scene pixels. */
 function aimPoint(): Point | null {
-  const scale = yardsPerPixel();
   const targets = [...((game as any).user?.targets ?? [])];
-  return targets.length && scale ? centre(targets[0], scale) : null;
+  return targets.length ? centre(targets[0]) : null;
 }
 
 async function say(actor: any, title: string, lines: string[]): Promise<void> {
@@ -149,7 +160,7 @@ export function readyBackblast(api: GWorldApi): void {
       void api.roll.damage({ actor, label: table.label(blast), formula: blast.damage, damageType: blast.kind } as any);
       return;
     }
-    const caught = caughtBehind(actor, fired.aim, blast);
+    const caught = caughtBehind(api, actor, fired.aim, blast);
     const names = (tokens: any[]) => tokens.map((t) => String(t?.name ?? t?.document?.name ?? "")).filter(Boolean).join(", ");
     const lines = [T(table, blast.halfYards > blast.fullYards ? "Reach" : "ReachFull", { damage: blast.damage, type: T(table, `Kind.${blast.kind}`), full: blast.fullYards, half: blast.halfYards })];
     if (!fired.aim) lines.push(T(table, "NoAim"));

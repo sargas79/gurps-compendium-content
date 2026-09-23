@@ -218,3 +218,43 @@ export function instantArsenalResult(options: { outcome: "first" | "second" | "t
   if (options.outcome === "second" && (Number(options.marginOfVictory) || 0) < INSTANT_ARSENAL_UNREADY_MARGIN) return "unready";
   return "intact";
 }
+
+// ── Mounted Shooting (p. 251) ──
+
+/** Mounted Shooting's default: the ranged weapon skill -4. */
+export const MOUNTED_SHOOTING_DEFAULT = -4;
+
+/**
+ * The penalty for shooting from a moving mount or vehicle (Campaigns p. 548)
+ * with Mounted Shooting improved: the rough ride and limited mobility can't
+ * take the weapon skill below the technique's level, so the line is never
+ * worse than the technique's level less the skill. At its default the
+ * technique does nothing. Other penalties apply as usual.
+ */
+export function mountedShootingLine(penalty: number, relative: number | null): number {
+  const value = Math.min(0, Math.trunc(Number(penalty) || 0));
+  if (relative === null || !Number.isFinite(relative) || relative <= MOUNTED_SHOOTING_DEFAULT) return value;
+  return Math.max(value, Math.min(0, Math.trunc(relative)));
+}
+
+// ── Zen Marksmanship (p. 250) ──
+
+/**
+ * Zen Marksmanship works as Zen Archery (Characters p. 228), for point-target
+ * small arms. It is specialized as Guns is; the book's records leave out the
+ * grenade launcher, light anti-armor weapon and light machine gun, as the text
+ * lets the GM, and at high TLs it may take Beam Weapons specialties too.
+ * Each specialty covers the weapon skill of the same specialty.
+ */
+export const ZEN_MARKSMANSHIP: ReadonlyArray<{ key: string; skill: string; covers: string[] }> = [
+  ...["Gyroc", "Musket", "Pistol", "Rifle", "Shotgun", "Submachine Gun"].map((specialty) => ({
+    key: `ht-zen-${specialty.toLowerCase().replace(/\s+/g, "-")}`,
+    skill: `Zen Marksmanship (${specialty})`,
+    covers: [`Guns (${specialty})`],
+  })),
+  ...["Pistol", "Rifle"].map((specialty) => ({
+    key: `ht-zen-beam-${specialty.toLowerCase()}`,
+    skill: `Zen Marksmanship (Beam ${specialty})`,
+    covers: [`Beam Weapons (${specialty})`],
+  })),
+];
