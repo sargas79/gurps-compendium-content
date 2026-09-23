@@ -49,7 +49,15 @@
       { "pattern": "^(?:Magnetic Tape Recorder|Reel-to-Reel Tape Recorder)$", "heading": "Open Tape Recorders", "headingOnly": true },
       { "pattern": "^Reel-to-Reel Tape Recorder, Miniature$", "replace": "Reel-to-Reel Tape Recorder, Miniature", "heading": "Open Tape Recorders" },
       { "pattern": "^Electric Lantern, ", "replace": "Electric Lantern, ", "heading": "Electric Lanterns" },
-      { "pattern": "^(Rope|Cord), ", "replace": "$1, ", "heading": "Rope" }
+      { "pattern": "^(Rope|Cord), ", "replace": "$1, ", "heading": "Rope" },
+      { "pattern": "^Hat, (?:Cloth|Leather or Felt)$", "replace": "Hat" },
+      { "pattern": "^Long Coat, Leather$", "replace": "Long Coat" },
+      { "pattern": "^Undercover Clothing \\(.*\\)$", "replace": "Undercover Clothing" },
+      { "pattern": "^(Riot Gear|Sharp-Protective Armor) (?:Sleeves|Leggings)$", "replace": "$1" },
+      { "pattern": "^DAP$", "replace": "Deltoid and Axillary Protectors (DAP)" },
+      { "pattern": "^(Heavy Helmet) Brow Plate$|^(Medium Helmet) Liner$|^(Leather Helmet) \\(Steel Plates\\)$", "replace": "$1$2$3" },
+      { "pattern": " (?:Visor|Space Helmet)$", "replace": "" },
+      { "pattern": "^(?:Medium|Large) Entry Shield$", "replace": "Entry Shield" }
     ]
   },
   "capture": {
