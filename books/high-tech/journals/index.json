@@ -1252,6 +1252,7 @@
       "title": "Magazine Modifications and Reloading Aids",
       "chapter": "5. Weaponry",
       "pages": "HT155",
+      "rule": "gurps-compendium-content.gunMagazines",
       "reference": "High-Tech p. 155",
       "file": "magazine-modifications-and-reloading-aids.md",
       "status": "reviewed"
@@ -1261,6 +1262,7 @@
       "title": "Sights and Aiming Aids",
       "chapter": "5. Weaponry",
       "pages": "HT155",
+      "rule": "gurps-compendium-content.gunSights",
       "reference": "High-Tech p. 155",
       "file": "sights-and-aiming-aids.md",
       "status": "reviewed"
@@ -1270,6 +1272,7 @@
       "title": "Sound Suppressors",
       "chapter": "5. Weaponry",
       "pages": "HT158-159",
+      "rule": "gurps-compendium-content.suppressors",
       "reference": "High-Tech pp. 158-159",
       "file": "sound-suppressors.md",
       "status": "reviewed"
@@ -1279,6 +1282,7 @@
       "title": "Dirty Tech: Home-Built Suppressors",
       "chapter": "5. Weaponry",
       "pages": "HT159",
+      "rule": "gurps-compendium-content.suppressors",
       "reference": "High-Tech p. 159",
       "file": "dirty-tech-home-built-suppressors.md",
       "status": "reviewed"
@@ -1288,6 +1292,7 @@
       "title": "Cinematic Silencers",
       "chapter": "5. Weaponry",
       "pages": "HT159",
+      "rule": "gurps-compendium-content.cinematicSilencers",
       "reference": "High-Tech p. 159",
       "file": "cinematic-silencers.md",
       "status": "reviewed"
