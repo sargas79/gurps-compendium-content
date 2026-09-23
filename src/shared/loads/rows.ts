@@ -35,6 +35,15 @@ export interface LoadRow {
   accuracy?: number;
   malfunction?: number | null;
   minSt?: number;
+  /**
+   * What a multiple-projectile load changes (GWorld API 1.70.0, 1.72.0,
+   * 1.73.0): Rcl, a first hit with its own line, a projectile that never
+   * overpenetrates, a miss scattered by the margin squared.
+   */
+  recoil?: number;
+  firstHit?: null | { damage: string; damageType?: string; armorDivisor?: number; label?: string };
+  noOverpenetration?: boolean;
+  scatterSquared?: boolean;
 }
 
 /** The figures of a row as a load starts from them. */
@@ -48,13 +57,18 @@ export function rowIn(row: any): LoadRow {
     accuracy: Number(row.accuracy) || 0,
     malfunction: typeof row.malfunction === "number" ? row.malfunction : null,
     minSt: Number(row.minSt) || 0,
+    recoil: Number(row.recoil) || 0,
+    firstHit: row.firstHit ?? null,
+    noOverpenetration: row.noOverpenetration === true,
+    scatterSquared: row.scatterSquared === true,
   };
 }
 
 /**
- * Writes what a load made of a row back onto it. Acc, Malf. and ST are only
- * written where the load changed them, so a load that never touches them
- * leaves the row's own as they were.
+ * Writes what a load made of a row back onto it. Acc, Malf., ST, Rcl, the
+ * first hit, overpenetration and scatter are only written where the load
+ * changed them, so a load that never touches them leaves the row's own as
+ * they were.
  */
 export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel: (label: string) => string = (label) => label): void {
   Object.assign(row, {
@@ -67,6 +81,10 @@ export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel:
   if (after.accuracy !== undefined && after.accuracy !== before.accuracy) row.accuracy = after.accuracy;
   if (after.malfunction !== undefined && after.malfunction !== before.malfunction) row.malfunction = after.malfunction;
   if (after.minSt !== undefined && after.minSt !== before.minSt) row.minSt = after.minSt;
+  if (after.recoil !== undefined && after.recoil !== before.recoil) row.recoil = after.recoil;
+  if (after.firstHit !== undefined && after.firstHit !== before.firstHit) row.firstHit = after.firstHit;
+  if (after.noOverpenetration !== undefined && after.noOverpenetration !== before.noOverpenetration) row.noOverpenetration = after.noOverpenetration;
+  if (after.scatterSquared !== undefined && after.scatterSquared !== before.scatterSquared) row.scatterSquared = after.scatterSquared;
   if (after.skillBonus && typeof row.skillLevel === "number") row.skillLevel += after.skillBonus;
 }
 

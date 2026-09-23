@@ -140,6 +140,8 @@ export interface ReloadingSwitches {
   fouling: () => boolean;
   /** Whether a mode is loaded with paper cartridges, which start the aid ticked (the ammunition upgrades, p. 163). */
   paperCartridges?: (item: any, modeIndex: number) => boolean;
+  /** Whether a mode fires Minié balls, which load a rifle as a musket (the projectile options, pp. 86, 109). */
+  minieBalls?: (item: any, modeIndex: number) => boolean;
 }
 
 /** Whether a gun can be loaded carefully: a muzzle-loading musket or rifle (p. 86). */
@@ -221,7 +223,7 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
 
   if (on.loading() && BLACK_POWDER_LOADING.includes(type)) {
     const posture = String(actor?.system?.posture ?? "standing");
-    const load = blackPowderLoad({ type, skill: String(mode?.skill ?? ""), tableSeconds: entry.reloadSeconds, lowPosture: posture !== "standing", careful, foulingSteps: fouling });
+    const load = blackPowderLoad({ type, skill: String(mode?.skill ?? ""), tableSeconds: entry.reloadSeconds, lowPosture: posture !== "standing", careful, foulingSteps: fouling, minie: on.minieBalls?.(item, modeIndex) === true });
     entry.reloadSeconds = load.seconds;
     entry.fastDrawSeconds = load.seconds - load.fastDraw;
     entry.fastDrawPer = entry.perShot ? "round" : "reload";

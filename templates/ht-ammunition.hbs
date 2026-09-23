@@ -1,4 +1,4 @@
-{{!-- A gun's ammunition by mode, or a box's rounds: calibre, upgrades, handloading, misloading (High-Tech pp. 161-165, 174-178). --}}
+{{!-- A gun's ammunition by mode, or a box's rounds: calibre, upgrades, projectiles, handloading, misloading (High-Tech pp. 161-178). --}}
 <div class="isub" data-gcc-ht-ammunition>
   <div class="isub-head">{{localize "GCC.HT.Ammunition.Title"}}</div>
   {{#if box}}
@@ -27,6 +27,45 @@
       <div class="ichecks">
         {{#each m.upgrades as |u|}}
           <label class="icheck" data-tooltip="{{#if u.refused}}{{u.refused}}{{else}}{{u.hint}}{{/if}}"><input type="checkbox" data-gcc-ht-ammo="upgrade" data-upgrade="{{u.key}}" data-mode="{{m.index}}" {{#if u.checked}}checked{{/if}} {{#if u.refused}}{{#unless u.checked}}disabled{{/unless}}{{/if}} {{#unless ../../editable}}disabled{{/unless}} /> {{u.label}}</label>
+        {{/each}}
+      </div>
+    {{/if}}
+    {{#if m.projectiles.length}}
+      <div class="ifields">
+        <label data-tooltip="{{m.projectileHint}}">{{localize "GCC.HT.Ammunition.ProjectileLabel"}}
+          <select data-gcc-ht-ammo="projectile" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.projectiles as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+        {{#if m.shot}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.ShotMmHint'}}">{{localize "GCC.HT.Ammunition.ShotMm"}}
+            <input type="number" min="0" step="0.01" list="gcc-ht-shot-{{m.index}}" data-gcc-ht-ammo="shotMm" data-mode="{{m.index}}" value="{{m.shot.mm}}" placeholder="{{m.shot.mmPlaceholder}}" style="width:80px" {{#unless ../editable}}disabled{{/unless}} />
+            <datalist id="gcc-ht-shot-{{m.index}}">{{#each m.shot.sizes as |z|}}<option value="{{z.mm}}" label="{{z.name}}"></option>{{/each}}</datalist>
+          </label>
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.ShotCountHint'}}">{{localize "GCC.HT.Ammunition.ShotCount"}}
+            <input type="number" min="0" step="1" data-gcc-ht-ammo="shotCount" data-mode="{{m.index}}" value="{{m.shot.count}}" placeholder="{{m.shot.countPlaceholder}}" style="width:70px" {{#unless ../editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+        {{#if m.poison}}
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.PoisonCostHint'}}">{{localize "GCC.HT.Ammunition.PoisonCost"}}
+            <input type="number" min="0" step="0.01" data-gcc-ht-ammo="poisonCost" data-mode="{{m.index}}" value="{{m.poison.cost}}" style="width:80px" {{#unless ../editable}}disabled{{/unless}} />
+          </label>
+        {{/if}}
+      </div>
+    {{/if}}
+    {{#if m.materials.length}}
+      <div class="ifields">
+        <label data-tooltip="{{m.materialHint}}">{{localize "GCC.HT.Ammunition.MaterialLabel"}}
+          <select data-gcc-ht-ammo="material" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+            {{#each m.materials as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      </div>
+    {{/if}}
+    {{#if m.projectileUpgrades.length}}
+      <div class="ichecks">
+        {{#each m.projectileUpgrades as |u|}}
+          <label class="icheck" data-tooltip="{{#if u.refused}}{{u.refused}}{{else}}{{u.hint}}{{/if}}"><input type="checkbox" data-gcc-ht-ammo="projectileUpgrade" data-upgrade="{{u.key}}" data-mode="{{m.index}}" {{#if u.checked}}checked{{/if}} {{#if u.refused}}{{#unless u.checked}}disabled{{/unless}}{{/if}} {{#unless ../../editable}}disabled{{/unless}} /> {{u.label}}</label>
         {{/each}}
       </div>
     {{/if}}

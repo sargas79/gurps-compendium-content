@@ -24,6 +24,7 @@
 
 import { parseDice } from "../../../shared/loads/dice.js";
 import type { CalibreRow } from "./calibres.js";
+import { MATCH_PROJECTILES } from "./projectiles.js";
 
 // ── classes of ammunition (pp. 163-165) ──
 
@@ -116,12 +117,12 @@ export interface GunFacts {
   skill: string;
   /** The Basic Set round loaded in the mode: "", "hp", "aphc", "apds", ... */
   ammunition: string;
+  /** High-Tech's projectile in the load, which takes the Basic Set round's place (pp. 166-174); blank for none. */
+  projectile?: string;
 }
 
 export type UpgradeRefusal = "tl" | "class" | "excludes" | "automatic" | "alreadySubsonic" | "notPistolOrRifle" | "alreadyLight" | "projectile";
 
-/** The Basic Set rounds match-grade may be made with: solid, hollow-point, AP, APHC (p. 165). */
-const MATCH_PROJECTILES = ["", "hp", "aphc"];
 
 /** The TL light cases reach a round at (p. 164): shotshells late TL5, grenade rounds TL6, other cartridges mid-TL8. */
 function lightCasedTl(row: CalibreRow | null): number {
@@ -145,7 +146,8 @@ export function upgradeRefusal(upgrade: AmmunitionUpgrade, gun: GunFacts, others
       break;
     case "matchGrade":
       if (gun.automatic) return "automatic";
-      if (!MATCH_PROJECTILES.includes(gun.ammunition)) return "projectile";
+      // The load's own projectile where it has one, else the Basic Set round.
+      if (!MATCH_PROJECTILES.includes(gun.projectile || gun.ammunition)) return "projectile";
       break;
     case "subsonic":
       if (gun.calibre && ALREADY_SUBSONIC.some((re) => re.test(gun.calibre!.name))) return "alreadySubsonic";
@@ -215,6 +217,8 @@ export interface AmmunitionEffect {
   /** Heard on the Hearing Distance Table's 16-yard line (p. 158) whatever the gun. */
   silent: boolean;
   notes: Array<"extraPowerfulAuto" | "extraPowerfulPowder">;
+  /** What the damage was multiplied by, the projectile's factor with the upgrades' (p. 166). */
+  damageFactor: number;
 }
 
 /**
@@ -223,8 +227,9 @@ export interface AmmunitionEffect {
  * `matched` load was handloaded to a perfect match for this gun (p. 174).
  * `batchMalfunction` is what a critically failed batch of reloads lost.
  */
-export function upgradedRow(row: AmmunitionRow, upgrades: readonly AmmunitionUpgrade[], gun: GunFacts, options: { baseAccuracy: number; matched?: boolean; batchMalfunction?: number }): AmmunitionEffect {
-  let damage = 1;
+export function upgradedRow(row: AmmunitionRow, upgrades: readonly AmmunitionUpgrade[], gun: GunFacts, options: { baseAccuracy: number; matched?: boolean; batchMalfunction?: number; damageFactor?: number }): AmmunitionEffect {
+  // A projectile's multiple comes in with the upgrades', so the dice are rounded once (p. 166).
+  let damage = options.damageFactor ?? 1;
   let range = 1;
   let st = 1;
   let accuracy = 0;
@@ -289,6 +294,7 @@ export function upgradedRow(row: AmmunitionRow, upgrades: readonly AmmunitionUpg
     hearing,
     silent,
     notes,
+    damageFactor: damage,
   };
 }
 
@@ -316,13 +322,17 @@ export function upgradeMultiples(upgrades: readonly AmmunitionUpgrade[]): { cps:
 }
 
 /**
- * A round's cost and weight: the table's CPS and WPS times the upgrades.
- * Handloaded rounds cost their materials, the round's usual CPS; reloads half
- * of it (p. 174). Rounded to the cent and the ten-thousandth of a pound.
+ * A round's cost and weight: the table's CPS and WPS times the upgrades, and
+ * times the projectile's multiple plus what it adds (a dose of poison,
+ * p. 167). Handloaded rounds cost their materials, the round's usual CPS;
+ * reloads half of it (p. 174); either way times the projectile's multiple. Rounded to the cent and the ten-thousandth of
+ * a pound.
  */
-export function perShot(row: CalibreRow, upgrades: readonly AmmunitionUpgrade[], source: AmmunitionSource = ""): { cps: number; wps: number } {
+export function perShot(row: CalibreRow, upgrades: readonly AmmunitionUpgrade[], source: AmmunitionSource = "", projectile: { cps: number; add: number } = { cps: 1, add: 0 }): { cps: number; wps: number } {
   const multiples = upgradeMultiples(upgrades);
-  const cps = source === "handloaded" ? row.cps : source === "reloaded" ? row.cps / 2 : row.cps * multiples.cps;
+  // The projectile's materials cost the same handloaded: Special Agent Lafayette's silver hollow-points are $0.3 x 50 (p. 168).
+  const base = source === "handloaded" ? row.cps : source === "reloaded" ? row.cps / 2 : row.cps * multiples.cps;
+  const cps = base * projectile.cps + projectile.add;
   return { cps: cents(cps), wps: Math.round(row.wps * multiples.wps * 10000) / 10000 };
 }
 

@@ -1082,6 +1082,7 @@
       "title": "Exotic Shotgun Ammo",
       "chapter": "5. Weaponry",
       "pages": "HT103",
+      "rule": "gurps-compendium-content.projectileOptions",
       "reference": "High-Tech p. 103",
       "file": "exotic-shotgun-ammo.md",
       "status": "reviewed"
@@ -1109,6 +1110,7 @@
       "title": "Minié Balls",
       "chapter": "5. Weaponry",
       "pages": "HT109",
+      "rule": "gurps-compendium-content.projectileOptions",
       "reference": "High-Tech p. 109",
       "file": "minie-balls.md",
       "status": "reviewed"
@@ -1381,6 +1383,7 @@
       "title": "Projectile Options",
       "chapter": "5. Weaponry",
       "pages": "HT166",
+      "rule": "gurps-compendium-content.projectileOptions",
       "reference": "High-Tech p. 166",
       "file": "projectile-options.md",
       "status": "reviewed"
@@ -1390,6 +1393,7 @@
       "title": "Adjusting Damage",
       "chapter": "5. Weaponry",
       "pages": "HT166",
+      "rule": "gurps-compendium-content.projectileOptions",
       "reference": "High-Tech p. 166",
       "file": "adjusting-damage.md",
       "status": "reviewed"
@@ -1399,6 +1403,7 @@
       "title": "Kinetic-Energy Projectiles",
       "chapter": "5. Weaponry",
       "pages": "HT166-169",
+      "rule": "gurps-compendium-content.projectileOptions",
       "reference": "High-Tech pp. 166-169",
       "file": "kinetic-energy-projectiles.md",
       "status": "reviewed"
@@ -1408,6 +1413,7 @@
       "title": "Exotic Bullets",
       "chapter": "5. Weaponry",
       "pages": "HT168",
+      "rule": "gurps-compendium-content.exoticBullets",
       "reference": "High-Tech p. 168",
       "file": "exotic-bullets.md",
       "status": "reviewed"
@@ -1444,6 +1450,7 @@
       "title": "Multiple Projectiles",
       "chapter": "5. Weaponry",
       "pages": "HT172-174",
+      "rule": "gurps-compendium-content.multipleProjectileLoads",
       "reference": "High-Tech pp. 172-174",
       "file": "multiple-projectiles.md",
       "status": "reviewed"
@@ -1453,6 +1460,7 @@
       "title": "Shot Sizes",
       "chapter": "5. Weaponry",
       "pages": "HT173",
+      "rule": "gurps-compendium-content.multipleProjectileLoads",
       "reference": "High-Tech p. 173",
       "file": "shot-sizes.md",
       "status": "reviewed"
@@ -1462,6 +1470,7 @@
       "title": "Projectile Upgrades",
       "chapter": "5. Weaponry",
       "pages": "HT174-175",
+      "rule": "gurps-compendium-content.projectileUpgrades",
       "reference": "High-Tech pp. 174-175",
       "file": "projectile-upgrades.md",
       "status": "reviewed"
