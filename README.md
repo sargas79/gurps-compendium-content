@@ -19,6 +19,14 @@ sources**.
 
 ## Installing
 
+In Foundry, under **Install Module**, paste the manifest URL:
+
+```
+https://github.com/sargas79/gurps-compendium-content/releases/latest/download/module.json
+```
+
+Or install by hand:
+
 1. Download `gurps-compendium-content.zip` from the latest release.
 2. Unzip it into Foundry's **Data/modules** directory as
    `gurps-compendium-content`.
