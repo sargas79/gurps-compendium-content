@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.16.0 — GURPS High-Tech: the book's records, text and journals
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.37.0**, which this release requires. On an older
+system the add-on registers no rules, and says so in the console.
+
+This is phase 1 of the High-Tech plan (#335): everything the book holds as data.
+Its rules come in the next releases; the "GURPS High-Tech" group is on the Rules
+page with no switches yet.
+
+- **Shared rule engines (#343):** gadget options, size adjustment, antique legality and power cells now live in shared code with a table per book, so High-Tech's rules will work without Ultra-Tech or Martial Arts in the world. Ultra-Tech behaves as before.
+- **Statistics from the GCA file (#344, #345):** 280 weapons, 94 armour pieces, 13 perks and 9 techniques. Minimum ranges, fragmentation, follow-up and linked blasts, scope bonuses, guided and homing missiles, and malfunction numbers as the book prints them.
+- **Records kept by hand (#346):** the shields and armour the file gets wrong, Zen Marksmanship, Equipment Bond, the Way of the Pistol style, improvised and rifle grenades, combination weapons, 37 vehicles and 15 personal conveyances (with DR by face and location), and the calibre and relative-explosive-force tables.
+- **The catalogue from the PDF (#347-#350):** about 950 more items the file doesn't have: power, computers, tools, consumer goods, radios, media, sensors and expedition gear; clothing, defences and firearm accessories; explosives, mines, bombs, sprays, lasers, melee weapons and bows; covert-ops, security and medical gear, drugs and poisons. Every record was read against its page.
+- **Book text (#351-#355):** every High-Tech record carries the book's text.
+- **Rules journal (#356):** 241 pages in nine folders, one for each chapter and the Gunmen appendix.
+- **Packs:** `high-tech-advantages`, `-skills`, `-equipment`, `-templates` and `-rules`, in a "GURPS High-Tech" folder.
+
 ## v0.15.0 — GURPS Ultra-Tech: zooming in, and seekers that smoke can blind
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts and Ultra-Tech
