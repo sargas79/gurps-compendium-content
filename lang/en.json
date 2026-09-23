@@ -5157,6 +5157,14 @@
         "camouflageGear": {
           "Name": "Camouflage and scent masking",
           "Hint": "The Gear tab says the terrain a character is hiding in and who is looking. The worn pattern worth most there is the Camouflage skill's equipment line: simple +1 anywhere; basic +2 in matching terrain, -1 elsewhere and -2 in contrasting terrain; advanced +3, and -2 elsewhere; a ghillie suit +3, -1 and -2, more once customised (to +8). From TL7, +1 against technological night vision or infravision; infrared suppression (the poncho, the IR net, a ghillie suit with it) +2 against infravision. In a Quick Contest, the other side's worn night-vision gear or thermograph counts in place of the Gear tab's choice. A reversible piece turns inside out from its row; a net's row button hides gear on the deployer's Camouflage. Scent masking worn is -4 to Tracking to follow the wearer. Patterns and scent masking on other clothing reprice it (High-Tech pp. 76-77)."
+        },
+        "breathingGear": {
+          "Name": "Breathing gear",
+          "Hint": "Gas masks give Filter Lungs; every mask and diving rig gives No Sense of Smell/Taste and No Peripheral Vision (Tunnel Vision for the TL5 gas mask and hard-hat dress) and keeps tear gas out; SCBA and scuba masks give Doesn't Breathe while a tank feeds them, rebreathers while their gas lasts; a tank's air by TL, divided by the depth's pressure, a minute less for every FP spent and every failed Fright Check (High-Tech pp. 72-74, 76)."
+        },
+        "environmentSuits": {
+          "Name": "Environment suits",
+          "Hint": "Biohazard and NBC suits are Sealed with an air mask under them, and a biohazard suit triples the FP of effort and weather; a clean suit gives +4 HT against contagion; the Apollo space suits are Sealed with Vacuum Support under their helmets and breathe from a tank or the EVA suit's 7-hour pack; biomedical sensors give +1 to Diagnosis (High-Tech pp. 74-76)."
         }
       },
       "Gadget": {
@@ -7908,6 +7916,67 @@
         "HideTitle": "Hide gear",
         "HideLabel": "Camouflage: gear under {name}",
         "HideLine": "{name} ({terrain})"
+      },
+      "Breathing": {
+        "Title": "Breathing gear and environment suits",
+        "Alone": "Worn: {list} (High-Tech pp. 72-76).",
+        "With": "With {with}: {list}.",
+        "Completes": {
+          "airMask": "an air mask under it",
+          "spaceHelmet": "its space helmet",
+          "evaHelmet": "its EVA space helmet"
+        },
+        "Protection": {
+          "sealed": "Sealed",
+          "vacuumSupport": "Vacuum Support",
+          "pressure": "Pressure Support to {atm} atm",
+          "radiationPf": "PF {pf}",
+          "climate": "climate control {low}°F to {high}°F",
+          "comfort": "comfort zone widened {cold}° at the cold end and {heat}° at the hot end",
+          "glare": "Protected Vision",
+          "hearing": "Protected Hearing",
+          "mask": "Protected Vision and Smell",
+          "smell": "Protected Smell",
+          "filter": "Filter Lungs",
+          "air": "Doesn't Breathe",
+          "noPeripheral": "No Peripheral Vision",
+          "tunnel": "Tunnel Vision",
+          "noSmellTaste": "No Sense of Smell/Taste"
+        },
+        "Don": "Takes {on} s to put on, {off} s to take off.",
+        "Irritants": "Immune to eye and nose irritants: tear gas doesn't reach the wearer.",
+        "Muffled": "Muffles the wearer's voice: a listener needs a Hearing roll to understand him, over a radio too.",
+        "Amplifier": "A voice amplifier and a radio adapter: the wearer is understood as usual.",
+        "Hose": "The filter hangs on a hose, {toHit} to hit; cutting it exposes the wearer.",
+        "Filter": "The weight includes a replaceable filter (${cost}, {weight} lb.).",
+        "TankFed": "Breathes from an air tank: Doesn't Breathe while a carried tank holds out.",
+        "Bubbles": "Open circuit: its bubbles can be seen on the surface.",
+        "Oxygen": "Closed circuit, no bubbles; pure oxygen, dangerous below {feet}' (the bends).",
+        "MixedGas": "Closed circuit, no bubbles; mixed gas, safe for deep dives.",
+        "HardHat": "Air comes down a hose from a crew on the surface; risky work in it is a Diving Suit roll.",
+        "Holds": "Holds {minutes} minutes of air at TL{tl}, twice that for a child under 12.",
+        "Left": "{left} minutes of air left.",
+        "LeftAtDepth": "{left} minutes of air left at {feet}' ({pressure} atm).",
+        "Exertion": "Each FP spent takes {fp} minute off it, and each failed Fright Check {fright}.",
+        "DepthFeet": "Depth (feet)",
+        "DepthHint": "How deep the wearer is: the air lasts a third as long at 66', a quarter at 100'.",
+        "Breathe": "Breathe from it",
+        "BreatheMinutes": "Minutes breathed",
+        "Breathed": "{minutes} minutes breathed at {feet}': {left} minutes of air left.",
+        "Empty": "The air is gone.",
+        "Refill": "Refill",
+        "Refilled": "Refilled.",
+        "HotSuit": "Incredibly hot: the FP of effort and weather are tripled while it is worn.",
+        "HotSuitSource": "{name}: FP tripled",
+        "NbcSeal": "Loses its seal quickly in the wet, and is unreliable after {hours} hours at most.",
+        "CleanSuit": "+{bonus} HT against catching a disease from a victim.",
+        "AntiG": "+{bonus} to HT rolls to resist high acceleration: the GM adds it, as the system rolls none.",
+        "DrySuit": "Resists thermal shock in cold water; proper clothing beneath it keeps out the cold.",
+        "Wetsuit": "Counts as winter clothing in cold water.",
+        "Turnout": "Wet, it gives +{dr} DR against burning, but burning damage that gets through is multiplied by {times}: the GM applies both.",
+        "BombSuit": "The hands are bare.",
+        "Biomedical": "Biomedical sensors: +{bonus} to Diagnosis on the wearer, or Diagnosis at {remote} from afar.",
+        "BiomedicalModifier": "Biomedical sensors ({item})"
       }
     },
     "Backblast": {

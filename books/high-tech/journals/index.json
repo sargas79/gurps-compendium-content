@@ -766,6 +766,7 @@
       "title": "Environmental Protection",
       "chapter": "4. Defenses",
       "pages": "HT72-74",
+      "rule": "gurps-compendium-content.breathingGear",
       "reference": "High-Tech pp. 72-74",
       "file": "environmental-protection.md",
       "status": "reviewed"
@@ -785,6 +786,7 @@
       "title": "Environment Suits",
       "chapter": "4. Defenses",
       "pages": "HT74-75",
+      "rule": "gurps-compendium-content.environmentSuits",
       "reference": "High-Tech pp. 74-75",
       "file": "environment-suits.md",
       "status": "reviewed"

@@ -4122,6 +4122,30 @@
     },
     {
       "pack": "equipment",
+      "pattern": "^(Biohazard Suit|Clean Suit)$",
+      "set": {
+        "system.environmentSuit": "NBC Suit"
+      },
+      "reason": "operated with the NBC Suit skill, which holds DX-based skills to it while worn (pp. 74-75); the file names no skill"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Space Suit, EVA$",
+      "set": {
+        "system.environmentSuit": "Vacc Suit"
+      },
+      "reason": "operated with the Vacc Suit skill, as the intravehicular suit is (p. 75); the file names no skill"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hard-Hat Suit$",
+      "set": {
+        "system.environmentSuit": "Diving Suit"
+      },
+      "reason": "diving dress is operated with the Diving Suit skill (p. 73); the file names no skill"
+    },
+    {
+      "pack": "equipment",
       "pattern": "^Boots, Jungle$",
       "set": {
         "system.dr": 2,

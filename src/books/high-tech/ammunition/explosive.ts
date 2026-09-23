@@ -261,10 +261,12 @@ export const BLINDED_PENALTY = -10;
 /**
  * Who a gas can't reach (Campaigns pp. 82, 429): a sealed suit keeps out
  * both; a body that doesn't breathe, or filters its air, keeps out what is
- * breathed in, but tear gas still reaches the eyes.
+ * breathed in, but tear gas still reaches the eyes -- unless a mask makes the
+ * wearer immune to eye and nose irritants (pp. 72-73).
  */
-export function gasReaches(gas: Gas, victim: { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean }): boolean {
+export function gasReaches(gas: Gas, victim: { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune?: boolean }): boolean {
   if (victim.sealed) return false;
+  if (victim.irritantImmune && (gas === "tearGasBlinding" || gas === "tearGasCoughing")) return false;
   if (gas === "tearGasBlinding") return true;
   return !(victim.doesntBreathe || victim.filterLungs);
 }

@@ -20,6 +20,7 @@
 import { placeArea, type AreaLine } from "../../../shared/areas.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { smokeAreaLines, smokeFormSeconds } from "../../../shared/smoke/rules.js";
+import { wearsIrritantMask } from "../breathing/index.js";
 import {
   BLINDED_PENALTY,
   GASES,
@@ -141,9 +142,9 @@ function actorsIn(api: GWorldApi, id: string): any[] {
 const cloudLeft = new Map<string, number>();
 
 /** Whether a body keeps a gas out (Campaigns pp. 82, 429). */
-function victimOf(api: GWorldApi, actor: any): { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean } {
+function victimOf(api: GWorldApi, actor: any): { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune: boolean } {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
-  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true };
+  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true, irritantImmune: wearsIrritantMask(actor) };
 }
 
 /** Rolls the gases of a cloud for everyone standing in it (p. 171). */
