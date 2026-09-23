@@ -196,6 +196,27 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
     expect(sys("Fishing Outfit")).toMatchObject({ equipmentQuality: "fine", forSkills: ["Fishing"] });
   });
 
+  it("says what each tool, kit and hazard is for the tools rules (#360)", () => {
+    const tool = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.tool;
+    for (const [name, kit] of [["Mini-Tool Kit", "mini"], ["Portable Tool Kit (Electronics Repair)", "portable"], ["Workshop", "workshop"]]) expect(tool(name!)?.kit, name).toBe(kit);
+    // p. 25: sw-3(2) cut a second to bars, chains and cables; 12d(2) on an ST+4 roll.
+    expect(tool("Hacksaw").work).toMatchObject({ damage: "sw-3", type: "cut", divisor: 2, every: 1, against: "metalBars", carbideBonus: 1 });
+    expect(tool("Bolt Cutters, Heavy").work).toMatchObject({ damage: "12d", every: 0, stRoll: 4 });
+    // p. 27: the steam drill and the jackhammer.
+    expect(tool("Steam-Powered Drill").work).toMatchObject({ damage: "6d", type: "pi++", divisor: 2 });
+    expect(tool("Jackhammer").work).toMatchObject({ damage: "7d", type: "pi++", against: "concreteRock" });
+    expect(tool("Lock Buster").work).toMatchObject({ damage: "sw+4", multiplier: 2 });
+    expect(tool("Hand Ram")).toMatchObject({ readies: 2, readiesWaivedAtSt: 20 });
+    expect(tool("Rescue Spreader/Cutter (TL8)")).toMatchObject({ readies: 4 });
+    for (const name of ["Chainsaw (TL7)", "Chainsaw (TL8)"]) expect(tool(name)?.use, name).toBe("chainsaw");
+    for (const name of ["Pneumatic Nail Gun", "Powder-Actuated Nail Gun", "Combustion Nail Gun"]) expect(tool(name)?.use, name).toBe("nailGun");
+    // p. 31: 4d×2 and 6d×5 burn ex.
+    expect(tool("Propane Cylinder, Small").hazard).toMatchObject({ kind: "explosion", damage: "4dx2" });
+    expect(tool("Propane Cylinder, Large").hazard).toMatchObject({ kind: "explosion", damage: "6dx5" });
+    expect(tool("Gas Range").hazard).toMatchObject({ kind: "burn", damage: "1d-1", upTo: "2d", perSecond: true });
+    expect(tool("Mobile Lab")).toMatchObject({ setupSeconds: 900 });
+  });
+
   it("gives the tools that attack their modes (pp. 27-30)", () => {
     // p. 27: sw+1d cut, Reach 1, Parry 0U, ST 11 at TL7 and 10 at TL8.
     expect(sys("Chainsaw (TL7)").meleeModes[0]).toMatchObject({ skill: "Two-Handed Axe/Mace", damageBase: "sw", damageExtraDice: 1, damageType: "cut", reach: "1", unbalanced: true, minSt: 11 });

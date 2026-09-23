@@ -1937,7 +1937,14 @@
       "hpLost": 0,
       "meleeModes": [],
       "rangedModes": [],
-      "equipmentModifier": -2
+      "equipmentModifier": -2,
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "mini"
+          }
+        }
+      }
     }
   },
   {
@@ -1966,7 +1973,14 @@
       "listCost": 1200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "portable"
+          }
+        }
+      }
     }
   },
   {
@@ -1995,7 +2009,14 @@
       "listCost": 30000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "kit": "workshop"
+          }
+        }
+      }
     }
   },
   {
@@ -2188,7 +2209,23 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw-2",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "wood",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2215,7 +2252,23 @@
       "listCost": 80,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw-3",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "wood",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2269,7 +2322,23 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw-3",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "metalBars",
+              "stRoll": null,
+              "carbideBonus": 1
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2350,7 +2419,23 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw-2",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "wood",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2458,7 +2543,23 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "2d",
+              "type": "cut",
+              "divisor": 2,
+              "every": 0,
+              "multiplier": 1,
+              "against": "rope",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2485,7 +2586,23 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "12d",
+              "type": "cut",
+              "divisor": 2,
+              "every": 0,
+              "multiplier": 1,
+              "against": "metalBars",
+              "stRoll": 4,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2512,7 +2629,23 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "8d",
+              "type": "cut",
+              "divisor": 2,
+              "every": 0,
+              "multiplier": 1,
+              "against": "metalBars",
+              "stRoll": 4,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2593,7 +2726,23 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "1",
+              "type": "cut",
+              "divisor": 1,
+              "every": 4,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2728,7 +2877,23 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw+4",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 0,
+              "multiplier": 1,
+              "against": "rock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -2755,7 +2920,14 @@
       "listCost": 1,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "ductTape"
+          }
+        }
+      }
     }
   },
   {
@@ -2782,7 +2954,14 @@
       "listCost": 140,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "glassCutter"
+          }
+        }
+      }
     }
   },
   {
@@ -2867,7 +3046,23 @@
       "listCost": 2000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "6d",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "concreteRock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3002,7 +3197,23 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw+3",
+              "type": "cut",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3029,7 +3240,23 @@
       "listCost": 75,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "1d+3",
+              "type": "burn",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3056,7 +3283,23 @@
       "listCost": 1500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "7d",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "concreteRock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3083,7 +3326,23 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "1d+2",
+              "type": "pi++",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "woodPlasticMetal",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3110,7 +3369,23 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "1d-2",
+              "type": "burn",
+              "divisor": 1,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3137,7 +3412,23 @@
       "listCost": 2000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "3d+6",
+              "type": "burn",
+              "divisor": 2,
+              "every": 1,
+              "multiplier": 1,
+              "against": "",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3183,7 +3474,14 @@
           "armorDivisor": 1,
           "damageModifier": 0
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "nailGun"
+          }
+        }
+      }
     }
   },
   {
@@ -3229,7 +3527,14 @@
           "armorDivisor": 1,
           "damageModifier": 0
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "nailGun"
+          }
+        }
+      }
     }
   },
   {
@@ -3275,7 +3580,14 @@
           "armorDivisor": 1,
           "damageModifier": 0
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "use": "nailGun"
+          }
+        }
+      }
     }
   },
   {
@@ -3304,7 +3616,14 @@
       "listCost": 250000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "partsPerHour": 10
+          }
+        }
+      }
     }
   },
   {
@@ -3333,7 +3652,14 @@
       "listCost": 25000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "partsPerHour": 0.5
+          }
+        }
+      }
     }
   },
   {
@@ -3362,7 +3688,14 @@
       "listCost": 500000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "partsPerHour": 1
+          }
+        }
+      }
     }
   },
   {
@@ -3391,7 +3724,14 @@
       "listCost": 2000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "partsPerHour": 0.1
+          }
+        }
+      }
     }
   },
   {
@@ -3502,7 +3842,15 @@
           "skillModifier": -3
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "readies": 2,
+            "readiesWaivedAtSt": 20
+          }
+        }
+      }
     }
   },
   {
@@ -3862,7 +4210,14 @@
           "damageType": "cr"
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "readies": 3
+          }
+        }
+      }
     }
   },
   {
@@ -3889,7 +4244,23 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "work": {
+              "damage": "sw+4",
+              "type": "cr",
+              "divisor": 1,
+              "every": 0,
+              "multiplier": 2,
+              "against": "padlock",
+              "stRoll": null,
+              "carbideBonus": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -3957,7 +4328,14 @@
           "minSt": 16
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "readies": 4
+          }
+        }
+      }
     }
   },
   {
@@ -3998,7 +4376,14 @@
           "minSt": 14
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "readies": 4
+          }
+        }
+      }
     }
   },
   {
@@ -4525,7 +4910,19 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "explosion",
+              "damage": "4dx2",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4552,7 +4949,19 @@
       "listCost": 45,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "explosion",
+              "damage": "6dx5",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4687,7 +5096,19 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-1",
+              "upTo": "2d",
+              "perSecond": true
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4714,7 +5135,19 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-1",
+              "upTo": "2d",
+              "perSecond": true
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4741,7 +5174,19 @@
       "listCost": 750,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-1",
+              "upTo": "2d",
+              "perSecond": true
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4795,7 +5240,19 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "injury",
+              "damage": "1",
+              "upTo": "",
+              "perSecond": true
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4822,7 +5279,19 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "cut",
+              "damage": "1d-3",
+              "upTo": "",
+              "perSecond": true
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4849,7 +5318,19 @@
       "listCost": 10,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-3",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4876,7 +5357,19 @@
       "listCost": 20,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-3",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4903,7 +5396,19 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-3",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -4957,7 +5462,19 @@
       "listCost": 30,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "hazard": {
+              "kind": "burn",
+              "damage": "1d-3",
+              "upTo": "",
+              "perSecond": false
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -9805,7 +10322,14 @@
       "listCost": 3000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "setupSeconds": 10
+          }
+        }
+      }
     }
   },
   {
@@ -9832,7 +10356,14 @@
       "listCost": 15000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "setupSeconds": 60
+          }
+        }
+      }
     }
   },
   {
@@ -9859,7 +10390,14 @@
       "listCost": 75000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "tool": {
+            "setupSeconds": 900
+          }
+        }
+      }
     }
   },
   {
