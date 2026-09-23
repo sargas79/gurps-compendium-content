@@ -23,6 +23,7 @@
       "title": "Buying Equipment",
       "chapter": "1. The Equipment Age",
       "pages": "HT7",
+      "rule": "gurps-compendium-content.blackMarket",
       "reference": "High-Tech p. 7",
       "file": "buying-equipment.md",
       "status": "reviewed"
@@ -32,6 +33,7 @@
       "title": "You Get What You Pay for",
       "chapter": "1. The Equipment Age",
       "pages": "HT7",
+      "rule": "gurps-compendium-content.equipmentBonuses",
       "reference": "High-Tech p. 7",
       "file": "you-get-what-you-pay-for.md",
       "status": "reviewed"
@@ -41,6 +43,7 @@
       "title": "The Black Market",
       "chapter": "1. The Equipment Age",
       "pages": "HT7-9",
+      "rule": "gurps-compendium-content.blackMarket",
       "reference": "High-Tech pp. 7-9",
       "file": "the-black-market.md",
       "status": "reviewed"
@@ -50,6 +53,7 @@
       "title": "New Perk: Equipment Bond",
       "chapter": "1. The Equipment Age",
       "pages": "HT7",
+      "rule": "gurps-compendium-content.equipmentBonuses",
       "reference": "High-Tech p. 7",
       "file": "new-perk-equipment-bond.md",
       "status": "reviewed"
@@ -59,6 +63,7 @@
       "title": "Legality and Antiques",
       "chapter": "1. The Equipment Age",
       "pages": "HT8",
+      "rule": "gurps-compendium-content.antiqueLegality",
       "reference": "High-Tech p. 8",
       "file": "legality-and-antiques.md",
       "status": "reviewed"
@@ -68,6 +73,7 @@
       "title": "Wear and Care",
       "chapter": "1. The Equipment Age",
       "pages": "HT9",
+      "rule": "gurps-compendium-content.equipmentOptions",
       "reference": "High-Tech p. 9",
       "file": "wear-and-care.md",
       "status": "reviewed"
@@ -77,6 +83,7 @@
       "title": "Integrating and Modifying Equipment",
       "chapter": "1. The Equipment Age",
       "pages": "HT9-10",
+      "rule": "gurps-compendium-content.equipmentOptions",
       "reference": "High-Tech pp. 9-10",
       "file": "integrating-and-modifying-equipment.md",
       "status": "reviewed"
@@ -86,6 +93,7 @@
       "title": "Combination Gadgets",
       "chapter": "1. The Equipment Age",
       "pages": "HT10",
+      "rule": "gurps-compendium-content.combinationGadgets",
       "reference": "High-Tech p. 10",
       "file": "combination-gadgets.md",
       "status": "reviewed"
@@ -95,6 +103,7 @@
       "title": "Adjusting for SM",
       "chapter": "1. The Equipment Age",
       "pages": "HT10",
+      "rule": "gurps-compendium-content.gearForSm",
       "reference": "High-Tech p. 10",
       "file": "adjusting-for-sm.md",
       "status": "reviewed"
@@ -113,6 +122,7 @@
       "title": "Equipment Bonuses",
       "chapter": "1. The Equipment Age",
       "pages": "HT11",
+      "rule": "gurps-compendium-content.equipmentBonuses",
       "reference": "High-Tech p. 11",
       "file": "equipment-bonuses.md",
       "status": "reviewed"
@@ -122,6 +132,7 @@
       "title": "HP, HT, DR",
       "chapter": "1. The Equipment Age",
       "pages": "HT11",
+      "rule": "gurps-compendium-content.equipmentOptions",
       "reference": "High-Tech p. 11",
       "file": "hp-ht-dr.md",
       "status": "reviewed"
@@ -131,6 +142,7 @@
       "title": "Tech-Level Specialization",
       "chapter": "1. The Equipment Age",
       "pages": "HT11",
+      "rule": "gurps-compendium-content.tlFamiliarity",
       "reference": "High-Tech p. 11",
       "file": "tech-level-specialization.md",
       "status": "reviewed"

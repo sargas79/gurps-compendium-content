@@ -1,5 +1,5 @@
 {{!-- The gadget engine's options on an item (Ultra-Tech pp. 14-17, and the
-     books that print the rule after it): each reprices the item from the table's
+     books that print the rule after it: High-Tech pp. 8-11): each reprices the item from the table's
      figures, with the statistics the book assumes for it. The text is the
      applying book's, under its namespace `ns`. --}}
 <div class="isub" data-gcc-gadget-section>
@@ -7,8 +7,10 @@
 
   {{#if options}}
     <div class="ichecks">
-      <label class="icheck" data-tooltip="{{localize (concat ns ".Gadget.RuggedHint")}}"><input type="checkbox" data-gcc-gadget="rugged" {{#if data.options.rugged}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Gadget.RuggedLabel")}}</label>
+      {{#if buildOptions}}<label class="icheck" data-tooltip="{{localize (concat ns ".Gadget.RuggedHint")}}"><input type="checkbox" data-gcc-gadget="rugged" {{#if data.options.rugged}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Gadget.RuggedLabel")}}</label>{{/if}}
+      {{#if styled}}<label class="icheck" data-tooltip="{{localize (concat ns ".Gadget.ShownHint")}}"><input type="checkbox" data-gcc-gadget="shown" {{#if data.shown}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Gadget.ShownLabel")}}</label>{{/if}}
     </div>
+    {{#unless buildOptions}}<p class="ihint">{{localize (concat ns ".Gadget.NoBuildOptions")}}</p>{{/unless}}
     <div class="ifields">
       <label data-tooltip="{{localize (concat ns ".Gadget.DisguiseHint")}}">{{localize (concat ns ".Gadget.DisguiseLabel")}}
         <select data-gcc-gadget="disguise" {{#unless editable}}disabled{{/unless}}>
@@ -16,13 +18,21 @@
         </select>
       </label>
       <label data-tooltip="{{localize (concat ns ".Gadget.StylingHint")}}">{{localize (concat ns ".Gadget.StylingLabel")}}
-        <input type="number" data-gcc-gadget="styling" value="{{data.options.styling}}" step="1" min="0" max="10" {{#unless editable}}disabled{{/unless}} />
+        {{#if stylingTiers}}
+          <select data-gcc-gadget="styling" {{#unless editable}}disabled{{/unless}}>
+            {{#each stylingTiers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        {{else}}
+          <input type="number" data-gcc-gadget="styling" value="{{data.options.styling}}" step="1" min="0" max="10" {{#unless editable}}disabled{{/unless}} />
+        {{/if}}
       </label>
+      {{#if buildOptions}}
       <label data-tooltip="{{localize (concat ns ".Gadget.GradeHint")}}">{{localize (concat ns ".Gadget.GradeLabel")}}
         <select data-gcc-gadget="grade" {{#unless editable}}disabled{{/unless}}>
           {{#each grades as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
         </select>
       </label>
+      {{/if}}
       <label data-tooltip="{{localize (concat ns ".Gadget.CellWeightHint")}}">{{localize (concat ns ".Gadget.CellWeightLabel")}}
         <input type="number" data-gcc-gadget="cellWeight" value="{{data.cellWeight}}" step="0.1" min="0" {{#unless editable}}disabled{{/unless}} />
       </label>
@@ -34,6 +44,12 @@
       <label data-tooltip="{{localize (concat ns ".Gadget.HealthHint")}}">{{localize (concat ns ".Gadget.HealthLabel")}}
         <input type="number" data-gcc-gadget="health" value="{{data.health}}" step="1" min="0" {{#unless editable}}disabled{{/unless}} />
       </label>
+    </div>
+  {{/if}}
+
+  {{#if controlledOffered}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize (concat ns ".Gadget.ControlledHint")}}"><input type="checkbox" data-gcc-gadget="controlled" {{#if data.controlled}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize (concat ns ".Gadget.ControlledLabel")}}</label>
     </div>
   {{/if}}
 

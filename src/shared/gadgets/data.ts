@@ -22,7 +22,7 @@ export const ITEM_TYPES = ITEM_EXTENSION_TYPES;
 const FIELD = "ultraTech";
 
 export const DISGUISES: readonly Disguise[] = ["", "massProduced", "custom"];
-export const GRADES: readonly Grade[] = ["", "cheap", "expensive"];
+export const GRADES: readonly Grade[] = ["", "cheap", "fragile", "expensive"];
 export const BUILDS: readonly Build[] = ["plastic", "weapon", "solidMelee", "own"];
 
 /** What the engine keeps on a gadget. */
@@ -36,6 +36,10 @@ export interface GadgetItem {
   build: Build;
   /** The gadget's own HT, where the book states one; zero to assume the book's. */
   health: number;
+  /** Being shown to collectors or buyers, whose reactions its styling improves (High-Tech p. 10). */
+  shown: boolean;
+  /** Gear that stays controlled however old it gets: chemical, biological and nuclear weapons (High-Tech p. 8). */
+  controlled: boolean;
 }
 
 let registered = false;
@@ -59,6 +63,8 @@ export function registerGadgetData(): void {
       adjustForSm: new f.BooleanField({ initial: false }),
       build: new f.StringField({ required: true, nullable: false, blank: false, initial: "plastic", choices: [...BUILDS] }),
       health: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+      shown: new f.BooleanField({ initial: false }),
+      controlled: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -80,6 +86,8 @@ export function gadgetItem(item: any): GadgetItem {
     adjustForSm: Boolean(data.adjustForSm),
     build,
     health: Math.max(0, Math.floor(Number(data.health) || 0)),
+    shown: Boolean(data.shown),
+    controlled: Boolean(data.controlled),
   };
 }
 

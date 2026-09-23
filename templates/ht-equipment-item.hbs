@@ -1,0 +1,13 @@
+{{!-- A tool's intrinsic bonus, which adds to its quality's (High-Tech p. 11), and what a combination gadget was made from (p. 10). --}}
+<div class="isub" data-gcc-ht-equipment-section>
+  <div class="isub-head">{{localize "GCC.HT.Equipment.ItemTitle"}}</div>
+  {{#if bonuses}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Equipment.IntrinsicHint'}}">{{localize "GCC.HT.Equipment.Intrinsic"}}
+        <input type="number" data-ht-equipment="intrinsicBonus" value="{{intrinsic}}" step="1" min="-10" max="10" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+    {{#if bonded}}<p class="ihint">{{bonded}}</p>{{/if}}
+  {{/if}}
+  {{#if combination}}<p class="ihint">{{combination}}</p>{{/if}}
+</div>

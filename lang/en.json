@@ -4798,6 +4798,34 @@
     },
     "HT": {
       "Rules": {
+        "equipmentOptions": {
+          "Name": "Equipment options and statistics",
+          "Hint": "Gear takes options that reprice it: disguised (x2 mass-produced, x5 custom), styling in three tiers (+1 reaction from collectors and buyers for x2, +2 for x5, +3 for x10, while the piece is marked as shown), rugged (+2 HT, twice the DR, x2 cost, x1.2 weight), cheap (x1/2 cost, and either x1.5 weight or fragile at -2 HT and half the DR) and expensive (x2 cost, x2/3 weight); cheap and expensive leave the batteries out of the weight. Rugged, cheap and expensive aren't offered on clothing, weapons or armour. The item sheet shows HP, HT and DR as assumed (HT 10, rugged +2, good quality +1 and fine +2 on top), and whether gear under a thousandth of the campaign TL's average starting wealth may skip maintenance (High-Tech pp. 9-11)."
+        },
+        "combinationGadgets": {
+          "Name": "Combination gadgets",
+          "Hint": "A row action builds one gadget from several of the character's: the heaviest part's empty weight plus 80% of the others' (50% where only one works at a time), the costliest part's price plus 80% (or 50%) of the others', one set of batteries, and the lowest LC of the parts. The parts stay on the sheet (High-Tech p. 10)."
+        },
+        "gearForSm": {
+          "Name": "Gear for other sizes",
+          "Hint": "Gear marked to adjust for SM costs, weighs and draws power by the carrier's Size Modifier, from x1/20 at SM -4 to x2,000 at SM +10; the battery count scales with it once the batteries rule is on (High-Tech p. 10)."
+        },
+        "antiqueLegality": {
+          "Name": "Legality of antiques",
+          "Hint": "Obsolete gear's LC rises by one for every two full TLs it is behind the campaign, two at most and no higher than LC4. Gear marked as chemical, biological or nuclear weapons stays as it is. The item sheet shows the class it is carried under (High-Tech p. 8)."
+        },
+        "blackMarket": {
+          "Name": "The black market",
+          "Hint": "A GM tool for the selected buyer rolls the search in secret: a Contact's effective Streetwise or the buyer's own, minus the Control Rating, with Cultural Familiarity, +1 for a port, a low-CR border or weak law enforcement, -3 in an unfamiliar area, and +3 on the gray market. It whispers the GM what came of it by market (general, electronics, medical, combat gear), and the price: 5% of the legal price for copied media and textiles, about 60% for the rest, 50-80% used and 1-10% old stock. Outlawed (LC0) goods are left to an adventure (High-Tech pp. 7-10)."
+        },
+        "equipmentBonuses": {
+          "Name": "Equipment Bond and intrinsic bonuses",
+          "Hint": "A tool can carry an intrinsic bonus beside its quality, and the Equipment Bond perk gives +1 with the piece it names; both add to quality's bonus on the skill the tool serves (High-Tech pp. 7, 11)."
+        },
+        "tlFamiliarity": {
+          "Name": "TL penalties as unfamiliarity",
+          "Hint": "Optional: a DX-based skill's TL penalty, on an attack or from a tool, counts as unfamiliarity instead. It stays as large while the character is unfamiliar with the gear (the familiarity rule's -2 is folded into it) and goes once the gear is on their familiarity list. IQ-based rolls keep it (High-Tech p. 11)."
+        },
         "firearmQuality": {
           "Name": "Firearm quality",
           "Hint": "Accurate and reliable work as separate grades on a gun: fine accurate +1 Acc (base Acc 2+) for 75% of its price, very fine +2 Acc (base Acc 4+) for 375%; fine reliable a step of Malf. for 25%, very fine two steps for 125%, none for a full-automatic weapon. A gun taken past Malf. 17 stays at 17 and rolls a malfunction again. These replace the Basic Set's fine and very fine grade on a gun (High-Tech p. 79)."
@@ -4949,6 +4977,158 @@
         "projectileUpgrades": {
           "Name": "Projectile Upgrades",
           "Hint": "Airburst (a miss scatters by the margin squared; +3 or +4 to hit an area), incendiary, self-destruct and tracer (incendiary out to 1/2D), each x1.5 cost (High-Tech pp. 174-175)."
+        }
+      },
+      "Gadget": {
+        "Title": "High-Tech",
+        "RuggedLabel": "Rugged",
+        "RuggedHint": "Shockproof, waterproof and shatterproof: +2 HT, twice the DR, a fifth more weight and twice the price (High-Tech p. 10).",
+        "DisguiseLabel": "Disguised as",
+        "DisguiseHint": "Built to look like something else of a similar shape, found with Search: twice the price mass-produced, five times custom-built (High-Tech p. 9).",
+        "StylingLabel": "Styling",
+        "StylingHint": "Jewels, tooled leather, plating and the like: a reaction bonus from collectors and buyers, and on Merchant used as an Influence roll on them (High-Tech p. 10).",
+        "GradeLabel": "Built",
+        "GradeHint": "Cheap: half the price, and either half again the weight or fragile (-2 HT, half the DR). Expensive: twice the price, two thirds the weight. Batteries are left out of the weight (High-Tech p. 10).",
+        "CellWeightLabel": "Batteries (lbs.)",
+        "CellWeightHint": "What the batteries in the gadget weigh, which cheap and expensive leave out of their weight (High-Tech p. 10).",
+        "BuildLabel": "Made of",
+        "BuildHint": "What the gadget is built from, for the DR the book assumes: plastic, wood or thin metal DR 2, a weapon DR 4, a solid-metal melee weapon DR 6, and armour or a vehicle its own (High-Tech p. 11).",
+        "HealthLabel": "Stated HT",
+        "HealthHint": "The HT the gadget's own entry gives; zero to assume HT 10 (High-Tech p. 11).",
+        "AdjustForSmLabel": "Adjust for SM",
+        "AdjustForSmHint": "Made for a user of another size: cost, weight and power go by the Size Modifier of whoever carries it (High-Tech p. 10).",
+        "ShownLabel": "Shown to buyers",
+        "ShownHint": "Being shown to collectors or potential buyers: its styling's bonus goes on reaction rolls toward the one carrying it (High-Tech p. 10).",
+        "ControlledLabel": "Always controlled",
+        "ControlledHint": "A chemical, biological or nuclear weapon, whose Legality Class never rises with age (High-Tech p. 8).",
+        "NoBuildOptions": "Clothing, weapons and armour can't be built rugged, cheap or expensive (High-Tech p. 10).",
+        "Disguise": {
+          "none": "Not disguised",
+          "massProduced": "Mass-produced (x2)",
+          "custom": "Custom-built (x5)"
+        },
+        "Grade": {
+          "none": "As listed",
+          "cheap": "Cheap, clunky (x1/2 cost, x1.5 weight)",
+          "fragile": "Cheap, fragile (x1/2 cost, -2 HT, half DR)",
+          "expensive": "Expensive (x2 cost, x2/3 weight)"
+        },
+        "Build": {
+          "plastic": "Plastic, wood or thin metal (DR 2)",
+          "weapon": "A weapon (DR 4)",
+          "solidMelee": "Solid-metal melee weapon (DR 6)",
+          "own": "Its own DR"
+        },
+        "Styling": {
+          "none": "None",
+          "tier": "+{reaction} (x{cost} cost)"
+        },
+        "PricedAt": "Built: ${cost} and {weight} lbs. (x{factor} the listed price).",
+        "Sized": "Adjusted for SM {sm}: cost, weight and power x{factor}.",
+        "Statistics": "HP {hp}, HT {ht}, DR {dr}.",
+        "Antique": "Obsolete at TL{campaign}: carried as LC{lc} rather than LC{was}.",
+        "Maintained": "Worth maintenance checks at TL{campaign}: it costs ${threshold} or more.",
+        "Simple": "Simple enough at TL{campaign} to skip maintenance: under ${threshold}.",
+        "Rugged": "Rugged",
+        "Quality": "Quality ({quality})",
+        "StylingLine": "Styling: {name}"
+      },
+      "Equipment": {
+        "ItemTitle": "High-Tech equipment",
+        "Intrinsic": "Intrinsic bonus",
+        "IntrinsicHint": "A skill bonus the gear gives whatever its quality, from how easy it is to use or how seldom it fails; it adds to the quality bonus (High-Tech p. 11).",
+        "IntrinsicLine": "Intrinsic: {item}",
+        "BondLine": "Equipment Bond: {item}",
+        "BondedTo": "{name} has an Equipment Bond with this piece: +1 when using it (High-Tech p. 7).",
+        "Familiar": "Familiar with {item}: TL penalty lifted",
+        "TlAsUnfamiliar": "TL penalty as unfamiliarity: {item}",
+        "CombineTitle": "Combine gadgets",
+        "CombineHint": "Build {name} into one gadget with the pieces ticked below.",
+        "NothingToCombine": "There is no other gear on this character to combine it with.",
+        "AllAtOnce": "All usable at once (80% of the rest)",
+        "OneAtATime": "One works at a time (50% of the rest)",
+        "CombinedName": "Name",
+        "Combine": "Combine",
+        "Combined": "{name}, from {parts}: ${cost}, {weight} lbs., LC {lc}.",
+        "CombinedAllAtOnce": "The parts can all be used at once: the heaviest and costliest in full, 80% of the others (High-Tech p. 10).",
+        "CombinedOneAtATime": "One part works at a time: the heaviest and costliest in full, 50% of the others (High-Tech p. 10).",
+        "PartsKept": "The parts are still on the sheet; remove the ones now built in.",
+        "MadeAllAtOnce": "Combination gadget of {parts}, all usable at once (High-Tech p. 10).",
+        "MadeOneAtATime": "Combination gadget of {parts}, one working at a time (High-Tech p. 10)."
+      },
+      "BlackMarket": {
+        "Title": "Black market",
+        "Hint": "{name} goes looking. The GM rolls in secret; only the GM sees the result.",
+        "SelectBuyer": "Select the buyer's token first.",
+        "Sought": "Looking for",
+        "MarketLabel": "Market",
+        "Market": {
+          "general": "General",
+          "electronics": "Electronics",
+          "medical": "Medical",
+          "combatGear": "Combat gear"
+        },
+        "ContactSkill": "Contact's Streetwise",
+        "ContactHint": "The Contact's effective skill, where one does the looking; blank for the buyer's own Streetwise.",
+        "ControlRating": "Control Rating",
+        "ListPrice": "Legal price ($)",
+        "Lc": "LC",
+        "NoLc": "No LC",
+        "ConditionLabel": "Sold",
+        "ConditionName": {
+          "new": "New",
+          "used": "Used",
+          "old": "Old stock"
+        },
+        "Gray": "Gray market (+3)",
+        "UnfamiliarCulture": "Unfamiliar culture",
+        "FavourableArea": "Port, low-CR border or weak law enforcement (+1)",
+        "UnfamiliarArea": "Area unfamiliar to whoever looks (-3)",
+        "Copied": "Easily copied media or textiles",
+        "HardToGet": "Hard to get legally",
+        "Roll": "Roll in secret",
+        "Buyer": "{name}'s Streetwise",
+        "Contact": "The Contact's Streetwise",
+        "Rolled": "{who} {skill}, effective {effective}: rolled {roll}.",
+        "Line": {
+          "controlRating": "Control Rating {rating}",
+          "culture": "Unfamiliar culture",
+          "favourableArea": "Favourable area",
+          "unfamiliarArea": "Unfamiliar area",
+          "gray": "Gray market"
+        },
+        "Finding": {
+          "found": "Found",
+          "failure": "Failure",
+          "criticalFailure": "Critical failure"
+        },
+        "Found": "A seller turns up.",
+        "FoundGray": "A gray-market seller turns up.",
+        "GrayLighter": "On the gray market, make it far milder.",
+        "Outcome": {
+          "general": {
+            "failure": "Unwanted attention from the local police or a criminal syndicate.",
+            "criticalFailure": "A police sting, an ambush by other criminals, or goods that are dangerously defective."
+          },
+          "electronics": {
+            "failure": "What was bought doesn't do what was promised, or is a fake.",
+            "criticalFailure": "Some very angry people now know exactly where the buyer is."
+          },
+          "medical": {
+            "failure": "Nothing turns up, or the seller can't supply as much as asked.",
+            "criticalFailure": "Scars, placebos, or someone angry on the buyer's trail."
+          },
+          "combatGear": {
+            "failure": "Only an inferior version of what was wanted.",
+            "criticalFailure": "Hardware that blows up on first use, or is being tracked."
+          }
+        },
+        "Outlawed": "Outlawed (LC0) goods: no roll. Finding them is an adventure, and failing can cost loved ones, freedom or a life (High-Tech p. 9).",
+        "Price": "Price: about ${price} ({share}% of the legal ${list}). Haggling with Merchant seldom moves black-market dealers.",
+        "PriceGm": "Price: hard to get legally, so the dealer names it; the GM sets it.",
+        "Condition": {
+          "used": "Used: ${low} to ${high} (50-80% of new), and it may not be in perfect shape: an operation roll spots problems.",
+          "old": "Old stock, not yet obsolete: ${low} to ${high} (1-10% of new)."
         }
       },
       "Firearm": {
