@@ -4850,6 +4850,18 @@
           "Name": "Gun techniques",
           "Hint": "Close-Quarters Battle on a Move and Attack at no more than Per yards (its level in place of the skill, the Bulk penalty still taken, never above the skill). Targeted Attacks with guns, named \"TA (Pistol/Skull)\": the skill at the target's penalty, half of it bought off, the levels taken on a shot aimed there. Instant Arsenal Disarm from its technique's row: a grab at -4, then a Quick Contest against DX or Retain Weapon to take the targeted foe's gun apart (High-Tech pp. 250-252)."
         },
+        "firearmLoading": {
+          "Name": "Reloading guns",
+          "Hint": "How a gun loads is a field on it, worked out from its Shots column where that is reliable: loose powder down the muzzle, a black-powder breechloader, a breechloader with or without an ejector, a gate, break-open or swing-out revolver, a tube or box magazine filled round by round or by charger clip, a detachable magazine, a drum or a belt. The Reload button takes the book's time for it and what Fast-Draw (Ammo) saves: a swing-out revolver 3 seconds and 2 a round (1 a round with Fast-Draw), a detachable magazine 3 (2), a belt 5 (3). It offers the aids that help: a powder flask, paper cartridges and a greased patch for loose powder, a speedloader, clamped magazines, an assistant gunner, and Double-Loading for a character who has the technique at Fast-Draw (Ammo)'s level. A muzzle-loading long arm loaded other than standing takes 1.5 times as long (High-Tech pp. 86-88, 251)."
+        },
+        "carefulLoading": {
+          "Name": "Careful loading",
+          "Hint": "A muzzle-loading musket or rifle set to load carefully takes twice as long to load, and that load shoots at +1 Acc (High-Tech p. 86)."
+        },
+        "blackPowderFouling": {
+          "Name": "Black-powder fouling",
+          "Hint": "The shots a black-powder gun fires are counted until it is cleaned: every five add 10% to its loading time and take 1 off Malf., every ten take 1 off Acc. Cleaning it thoroughly takes two minutes, from the gun's sheet (High-Tech p. 86)."
+        },
         "gunslingerExpanded": {
           "Name": "Expanded Gunslinger (cinematic)",
           "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant, and the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved (High-Tech p. 249)."
@@ -5277,6 +5289,62 @@
         "VisionLine": "After the firefight: Vision in the dark",
         "Line": "{name}: Hearing {hearing}, Vision {vision}, for {minutes} minutes {seconds} seconds.",
         "Spared": "{name}: protected, no effect."
+      },
+      "Reloading": {
+        "Title": "Reloading",
+        "TypeLabel": "Loads",
+        "TypeTooltip": "How the gun is loaded, which sets how long a reload takes and what Fast-Draw (Ammo) saves (High-Tech pp. 86-88). Worked out from its Shots column and skill where that is reliable; set it where the book's description says otherwise. \"As its table\" keeps the table's time.",
+        "Type": {
+          "auto": "As its statistics show ({type})",
+          "muzzleloader": "Muzzleloader",
+          "breechBlackPowder": "Black-powder breechloader",
+          "breech": "Breechloader",
+          "breechEjector": "Breechloader with ejector",
+          "gate": "Gate-loading revolver",
+          "breakOpen": "Break-open revolver",
+          "swingOut": "Swing-out revolver",
+          "tube": "Tube magazine (loading gate)",
+          "internal": "Internal magazine (loose rounds)",
+          "clip": "Internal magazine (charger clips)",
+          "magazine": "Detachable magazine",
+          "drum": "Drum or awkward magazine",
+          "belt": "Belt or strip",
+          "other": "As its table"
+        },
+        "PowderLabel": "Propellant",
+        "PowderTooltip": "Black powder fouls the gun (High-Tech p. 86). Worked out from how the gun loads and its TL (TL5 and earlier) unless set.",
+        "Powder": {
+          "auto": "As its TL shows ({powder})",
+          "black": "Black powder",
+          "other": "Smokeless or none"
+        },
+        "LoadCarefully": "Load carefully",
+        "CarefulHint": "Twice the loading time, for +1 Acc on the shot it loads (High-Tech p. 86).",
+        "TimeWhole": "A full reload: {seconds} seconds, {fastDraw} with Fast-Draw (Ammo).",
+        "TimePerRound": "Reloading: {seconds} seconds a barrel or chamber, {fastDraw} with Fast-Draw (Ammo).",
+        "DoubleLoadingShort": "Double-Loading is offered once the technique reaches Fast-Draw (Ammo)'s level: the reload rolls the skill itself.",
+        "CarefullyLoaded": "Carefully loaded: +{acc} Acc on the next shot.",
+        "CarefulNote": "Carefully loaded: +{acc} Acc",
+        "FoulingClean": "Fouling: {shots} shots since it was cleaned.",
+        "FoulingLine": "Fouling: {shots} shots since it was cleaned: Malf. -{malfunction}, loading +{percent}%.",
+        "FoulingLineAcc": "Fouling: {shots} shots since it was cleaned: Malf. -{malfunction}, Acc -{accuracy}, loading +{percent}%.",
+        "Clean": "Clean",
+        "CleanHint": "Two minutes' thorough cleaning clears the fouling (High-Tech p. 86).",
+        "Cleaned": "Cleaned: {minutes} minutes spent, the fouling gone.",
+        "Fouled": "Fouled after {shots} shots: Malf. -{malfunction}, loading +{percent}% until it is cleaned.",
+        "FouledAcc": "Fouled after {shots} shots: Malf. -{malfunction}, Acc -{accuracy}, loading +{percent}% until it is cleaned.",
+        "FouledNote": "Fouled: Malf. -{malfunction}",
+        "FouledNoteAcc": "Fouled: Malf. -{malfunction}, Acc -{accuracy}",
+        "FouledHint": "{shots} shots of black powder since it was cleaned (High-Tech p. 86).",
+        "Aid": {
+          "flask": "Self-measuring powder flask (-{seconds} s; not with paper cartridges)",
+          "greasedPatch": "Greased patch (-{seconds} s)",
+          "paperCartridges": "Paper cartridges (-{seconds} s; not with the flask or a patch)",
+          "doubleLoading": "Double-Loading (-{seconds} s more with a Fast-Draw success)",
+          "speedloader": "Speedloader ({seconds} s, {fastDraw} with Fast-Draw)",
+          "clamped": "Clamped magazines ({seconds} s; not with Fast-Draw)",
+          "assistant": "Assistant gunner ({seconds} s; not with Fast-Draw)"
+        }
       }
     }
   },

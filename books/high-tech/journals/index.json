@@ -949,6 +949,7 @@
       "title": "Reloading Your Gun",
       "chapter": "5. Weaponry",
       "pages": "HT86-88",
+      "rule": "gurps-compendium-content.firearmLoading",
       "reference": "High-Tech pp. 86-88",
       "file": "reloading-your-gun.md",
       "status": "reviewed"
@@ -958,6 +959,7 @@
       "title": "Careful Loading",
       "chapter": "5. Weaponry",
       "pages": "HT86",
+      "rule": "gurps-compendium-content.carefulLoading",
       "reference": "High-Tech p. 86",
       "file": "careful-loading.md",
       "status": "reviewed"
@@ -967,6 +969,7 @@
       "title": "Black-Powder Fouling",
       "chapter": "5. Weaponry",
       "pages": "HT86",
+      "rule": "gurps-compendium-content.blackPowderFouling",
       "reference": "High-Tech p. 86",
       "file": "black-powder-fouling.md",
       "status": "reviewed"

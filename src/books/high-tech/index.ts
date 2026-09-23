@@ -14,8 +14,9 @@
  * stance, Precision Aiming, the Ranged Rapid Strike, Close-Quarters Battle,
  * Targeted Attacks with guns, Instant Arsenal Disarm and the expanded
  * Gunslinger, the special shooting situations (underwater, into water,
- * steeply into the air, in space), sustained fire and the aftermath of a
- * firefight (pp. 79-87, 129-137, 153-154, 249-252).
+ * steeply into the air, in space), sustained fire, the aftermath of a
+ * firefight, and reloading, careful loading and black-powder fouling (pp.
+ * 79-88, 129-137, 153-154, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -28,6 +29,7 @@ import { initHighTechPower } from "./power/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
+import { readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
 
 const SLUG = "high-tech";
@@ -70,6 +72,9 @@ const RULES = [
   { key: "shootingEnvironments", pages: "pp. 85, 92, 117", implemented: true },
   { key: "sustainedFire", pages: "pp. 85-86, 129-137", implemented: true },
   { key: "firefightAftermath", pages: "p. 87", implemented: true },
+  { key: "firearmLoading", pages: "pp. 86-88, 251", implemented: true },
+  { key: "carefulLoading", pages: "p. 86", implemented: true },
+  { key: "blackPowderFouling", pages: "p. 86", implemented: true },
   // Cinematic: the optional additions to Gunslinger.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
 ] as const;
@@ -103,7 +108,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f) }));
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
 }
 
@@ -120,6 +125,7 @@ function ready(api: GWorldApi): void {
   readyEnvironments(api, rule("shootingEnvironments"));
   readySustainedFire(api, { sustained: rule("sustainedFire") }, rule("gunCare"));
   readyAftermath(api, rule("firefightAftermath"));
+  readyReloading(api, { loading: rule("firearmLoading"), careful: rule("carefulLoading"), fouling: rule("blackPowderFouling") });
 }
 
 export const book: BookRules = {
