@@ -1,0 +1,12 @@
+{{!-- Breathing gear and environment suits (High-Tech pp. 72-76). --}}
+<div class="isub" data-gcc-ht-breathing-section>
+  <div class="isub-head">{{localize "GCC.HT.Breathing.Title"}}</div>
+  {{#if supply}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Breathing.DepthHint'}}">{{localize "GCC.HT.Breathing.DepthFeet"}}
+        <input type="number" min="0" step="1" data-gcc-ht-dive-depth value="{{depthFeet}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

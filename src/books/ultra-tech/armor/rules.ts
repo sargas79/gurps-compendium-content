@@ -6,39 +6,21 @@
  */
 
 import type { BeamFamily } from "../beams/rules.js";
+import { baseName, figureAtTl, gearIn, protectionWornIn, type GearTable, type Protection, type ProtectiveGear } from "../../../shared/protective-gear/rules.js";
+
+// The trait terms, the merging and the climate figures are every book's (src/shared/protective-gear).
+export {
+  BIOMEDICAL,
+  COMFORT_ZONE,
+  baseName,
+  climateTolerance,
+  mergeProtection,
+  pressureSupportLevel,
+  type Protection,
+  type ProtectiveGear,
+} from "../../../shared/protective-gear/rules.js";
 
 // ── threat protection (pp. 171, 176-181) ─────────────────────────────────────
-
-/** What a piece of protective gear gives, in the Basic Set's trait terms (p. 171). */
-export interface Protection {
-  sealed?: boolean;
-  vacuumSupport?: boolean;
-  /** Pressure support up to this many atmospheres. */
-  pressureAtm?: number;
-  /** Radiation Protection Factor. */
-  radiationPf?: number;
-  /** Climate control: the comfort zone it gives, in °F. */
-  climate?: readonly [number, number];
-  /** Glare-resistant: Protected Vision. */
-  glare?: boolean;
-  /** Hearing protection: Protected Hearing. */
-  hearing?: boolean;
-  /** A mask over the face: Protected Vision and Protected Smell (p. 176). */
-  mask?: boolean;
-  /** Filters what is breathed. */
-  filter?: boolean;
-  /** Carries its own air: the wearer doesn't need to breathe what is outside. */
-  air?: boolean;
-}
-
-/** A piece of protective gear: what it gives on its own, and with what it needs worn with it. */
-export interface ProtectiveGear {
-  alone?: Protection;
-  /** The helmet or mask that completes it, and what the two give together. */
-  completedBy?: { pieces: RegExp; key: string; grants: Protection };
-  /** Seconds to put on and take off. */
-  don?: { on: number; off: number; skill?: string };
-}
 
 const SPACE_HELMET = /^(bubble helmet|space combat helmet|visored space helmet|flexible space helmet)$/i;
 const SPACE_OR_COMBAT_HELMET = /^(bubble helmet|space combat helmet|visored space helmet|flexible space helmet|combat infantry helmet)$/i;
@@ -57,7 +39,7 @@ const GLARE: ProtectiveGear = { alone: { glare: true } };
 const SEALED_HELMET = (extra: Protection = {}): ProtectiveGear => ({ alone: extra, don: { on: 3, off: 3 } });
 
 /** The book's protective gear, by name without its TL. */
-const GEAR: ReadonlyArray<[RegExp, ProtectiveGear]> = [
+const GEAR: GearTable = [
   [/^(civilian|reflex|nanoweave|monocrys|smart|energy) vacc suit$/i, VACC_SUIT],
   // "With the addition of a vacc suit helmet, it is sealed, providing climate control (-50° F to 150°F) and vacuum support" (p. 178).
   [/^skinsuit$/i, { completedBy: { pieces: SPACE_HELMET, key: "spaceHelmet", grants: { sealed: true, climate: [-50, 150], vacuumSupport: true } } }],
@@ -108,59 +90,15 @@ function battlesuit(helmet: RegExp, grants: Protection): ProtectiveGear {
   return { completedBy: { pieces: helmet, key: "suitHelmet", grants: { sealed: true, vacuumSupport: true, air: true, ...grants } } };
 }
 
-/** A name without the TL the table adds to it: "Combat Hardsuit (TL10)" is "Combat Hardsuit". */
-export function baseName(name: string): string {
-  return String(name ?? "").replace(/\s*\(TL\s*\d+\^?\)\s*$/i, "").trim();
-}
-
 /** A piece's protective gear entry, or null. */
 export function protectiveGear(name: string): ProtectiveGear | null {
-  const base = baseName(name);
-  return GEAR.find(([pattern]) => pattern.test(base))?.[1] ?? null;
+  return gearIn(GEAR, name);
 }
 
 /** What wearing a piece gives, given the names of everything else worn. */
 export function protectionWorn(name: string, wornNames: readonly string[]): Protection | null {
-  const gear = protectiveGear(name);
-  if (!gear) return null;
-  const completed = gear.completedBy && wornNames.some((other) => gear.completedBy!.pieces.test(baseName(other)));
-  if (!completed) return gear.alone ?? null;
-  return mergeProtection(gear.alone ?? {}, gear.completedBy!.grants);
+  return protectionWornIn(GEAR, name, wornNames);
 }
-
-/** Two sets of protection together: the better of each. */
-export function mergeProtection(a: Protection, b: Protection): Protection {
-  const climate = a.climate && b.climate
-    ? ([Math.min(a.climate[0], b.climate[0]), Math.max(a.climate[1], b.climate[1])] as const)
-    : (a.climate ?? b.climate);
-  return {
-    ...(a.sealed || b.sealed ? { sealed: true } : {}),
-    ...(a.vacuumSupport || b.vacuumSupport ? { vacuumSupport: true } : {}),
-    ...(a.pressureAtm || b.pressureAtm ? { pressureAtm: Math.max(a.pressureAtm ?? 0, b.pressureAtm ?? 0) } : {}),
-    ...(a.radiationPf || b.radiationPf ? { radiationPf: Math.max(a.radiationPf ?? 0, b.radiationPf ?? 0) } : {}),
-    ...(climate ? { climate } : {}),
-    ...(a.glare || b.glare ? { glare: true } : {}),
-    ...(a.hearing || b.hearing ? { hearing: true } : {}),
-    ...(a.mask || b.mask ? { mask: true } : {}),
-    ...(a.filter || b.filter ? { filter: true } : {}),
-    ...(a.air || b.air ? { air: true } : {}),
-  };
-}
-
-/**
- * Pressure Support's level for a suit rated to this many atmospheres
- * (Characters p. 77): 10 atmospheres is the first level, 100 the second, and
- * anything beyond the third.
- */
-export function pressureSupportLevel(atmospheres: number): number {
-  if (!(atmospheres > 1)) return 0;
-  if (atmospheres <= 10) return 1;
-  if (atmospheres <= 100) return 2;
-  return 3;
-}
-
-// A suit's climate range as degrees added to the comfort zone: the engine High-Tech's climate control shares.
-export { COMFORT_ZONE, climateTolerance } from "../../../shared/climate/rules.js";
 
 /** The air tanks, and the hours each holds at TL9-12 (p. 176). */
 export const AIR_TANK_HOURS: Readonly<Record<string, readonly [number, number, number, number]>> = {
@@ -180,7 +118,7 @@ export function airTankSize(name: string): string | null {
 export function airTankHours(size: string, tl: number): number {
   const hours = AIR_TANK_HOURS[size];
   if (!hours) return 0;
-  return hours[Math.max(0, Math.min(3, Math.floor(tl) - 9))]!;
+  return figureAtTl(hours, 9, tl);
 }
 
 /** Hooking up a tank and jettisoning it, in seconds (p. 171). */
@@ -449,9 +387,6 @@ export function nasalPlugBonus(hoursWorn: number): number {
 export function mindShieldBonus(tl: number): number {
   return Math.max(0, Math.floor(tl) - 6);
 }
-
-/** Biomedical sensors: +1 to Diagnosis in person, or Diagnosis at -2 from afar (p. 187). */
-export const BIOMEDICAL = { inPerson: 1, remote: -2 } as const;
 
 /** Suits that come with biomedical sensors (pp. 178-179). */
 export function hasBiomedicalSensors(name: string): boolean {

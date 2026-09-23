@@ -29,8 +29,8 @@ import { beamFamily, type BeamFamily } from "../beams/rules.js";
 import { beamEnvironment } from "../beams/index.js";
 import { powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
-import { widenComfortZone } from "../../../shared/climate/rules.js";
 import { loadsOf } from "../warheads/index.js";
+import { addProtection, diagnosisPatient, protectionText as sharedProtectionText } from "../../../shared/protective-gear/index.js";
 import {
   ABLATIVE_FOAM,
   BIOMEDICAL,
@@ -53,7 +53,6 @@ import {
   bouncedDamage,
   bouncesBack,
   canBeTransparent,
-  climateTolerance,
   coverageActivation,
   coverageMultiplier,
   coversArc,
@@ -68,7 +67,6 @@ import {
   nasalPlugBonus,
   partAt,
   pasteCovers,
-  pressureSupportLevel,
   protectionWorn,
   protectiveGear,
   reactivePasteDr,
@@ -227,40 +225,8 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 // ── threat protection ────────────────────────────────────────────────────────
 
-/** Adds what a worn piece protects against to a character's trait effects. */
-function addProtection(context: any, protection: Protection, label: string): void {
-  const effects = context.effects;
-  const push = (effect: string, value?: number) => context.sources.push({ effect, label, ...(value !== undefined ? { value } : {}) });
-  if (protection.sealed && !effects.sealed) { effects.sealed = true; push("sealed"); }
-  if (protection.vacuumSupport && !effects.vacuumSupport) { effects.vacuumSupport = true; push("vacuumSupport"); }
-  const pressure = pressureSupportLevel(protection.pressureAtm ?? 0);
-  if (pressure > (Number(effects.pressureSupport) || 0)) { effects.pressureSupport = pressure; push("pressureSupport", pressure); }
-  if (protection.climate) widenComfortZone(context, climateTolerance(protection.climate), label);
-  if (effects.protectedSense) {
-    if ((protection.glare || protection.mask) && !effects.protectedSense.vision) { effects.protectedSense.vision = true; push("protectedSense.vision"); }
-    if (protection.mask && !effects.protectedSense.tasteSmell) { effects.protectedSense.tasteSmell = true; push("protectedSense.tasteSmell"); }
-    if (protection.hearing && !effects.protectedSense.hearing) { effects.protectedSense.hearing = true; push("protectedSense.hearing"); }
-  }
-  if (protection.filter && !effects.filterLungs) { effects.filterLungs = true; push("filterLungs"); }
-  if (protection.air && !effects.doesntBreathe) { effects.doesntBreathe = true; push("doesntBreathe"); }
-}
-
 /** A readable list of what a piece protects against. */
-function protectionText(protection: Protection | null): string {
-  if (!protection) return "";
-  const parts: string[] = [];
-  if (protection.sealed) parts.push(L("Protection.sealed"));
-  if (protection.vacuumSupport) parts.push(L("Protection.vacuumSupport"));
-  if (protection.pressureAtm) parts.push(F("Protection.pressure", { atm: protection.pressureAtm }));
-  if (protection.radiationPf) parts.push(F("Protection.radiationPf", { pf: protection.radiationPf }));
-  if (protection.climate) parts.push(F("Protection.climate", { low: protection.climate[0], high: protection.climate[1] }));
-  if (protection.glare) parts.push(L("Protection.glare"));
-  if (protection.hearing) parts.push(L("Protection.hearing"));
-  if (protection.mask) parts.push(L("Protection.mask"));
-  if (protection.filter) parts.push(L("Protection.filter"));
-  if (protection.air) parts.push(L("Protection.air"));
-  return parts.join(", ");
-}
+const protectionText = (protection: Protection | null) => sharedProtectionText("GCC.UT.Armor", protection);
 
 /** The threat protection lines an item's sheet shows. */
 function threatLines(item: any): string[] {
@@ -708,7 +674,7 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
     }
     // Biomedical sensors on the patient: +1 to Diagnosis (p. 187).
     if (/^diagnosis\b/i.test(String(context.skill ?? ""))) {
-      const patient = context.opponent ?? [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
+      const patient = diagnosisPatient(context);
       const sensors = patient ? [...(patient.items ?? [])].find((i: any) => worn(i) && hasBiomedicalSensors(String(i.name))) : null;
       if (sensors) context.modifiers.push({ label: F("Systems.BiomedicalModifier", { item: sensors.name }), value: BIOMEDICAL.inPerson });
     }

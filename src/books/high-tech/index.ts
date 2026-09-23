@@ -44,8 +44,10 @@
  * nuclear weapons, and clothing against the weather, frostbite and
  * climate-controlled clothing, and the melee and muscle-powered weapons:
  * bayonets and rifle butts, sheaths, blade composition, electric stun
- * weapons and high-tech bows (pp. 7-11, 13-16, 17-65, 71, 74, 76-77, 79-93, 109,
- * 127-141, 143, 147-201, 249-252).
+ * weapons and high-tech bows, and the breathing gear and environment
+ * suits: masks, diving rigs, air tanks and rebreathers, and the suits that
+ * seal their wearers (pp. 7-11, 13-16, 17-65, 71-77, 79-93, 109, 127-141,
+ * 143, 147-201, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -78,6 +80,7 @@ import { initClothing, readyClothing } from "./clothing/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
 import { initHighTechCamouflage, readyHighTechCamouflage } from "./camouflage/index.js";
+import { readyBreathing } from "./breathing/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -203,6 +206,9 @@ const RULES = [
   { key: "highTechBows", pages: "p. 201", implemented: true },
   // Camouflage and scent masking.
   { key: "camouflageGear", pages: "pp. 76-77", implemented: true },
+  // Breathing gear and environment suits.
+  { key: "breathingGear", pages: "pp. 72-74, 76", implemented: true },
+  { key: "environmentSuits", pages: "pp. 74-76", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -301,6 +307,7 @@ function ready(api: GWorldApi): void {
   // After the reloading rules, whose reload time a fixed bayonet lengthens.
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
   readyHighTechCamouflage(api);
+  readyBreathing(api, { breathing: rule("breathingGear"), suits: rule("environmentSuits") });
 }
 
 export const book: BookRules = {

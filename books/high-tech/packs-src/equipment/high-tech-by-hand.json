@@ -189,7 +189,7 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": "",
+      "environmentSuit": "Diving Suit",
       "drByLocation": [
         {
           "locations": [
@@ -5153,7 +5153,7 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "NBC Suit"
     }
   },
   {
