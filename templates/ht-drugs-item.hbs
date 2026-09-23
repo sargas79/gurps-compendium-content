@@ -1,0 +1,12 @@
+{{!-- Hygiene supplies, drugs and poisons (High-Tech pp. 221, 226-227). --}}
+<div class="isub" data-gcc-ht-drugs-section>
+  <div class="isub-head">{{localize "GCC.HT.Drugs.Title"}}</div>
+  {{#if psychiatric}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Drugs.MitigatesHint'}}">{{localize "GCC.HT.Drugs.Mitigates"}}
+        <input type="text" data-gcc-ht-drug="mitigates" value="{{psychiatric.mitigates}}" placeholder="{{psychiatric.placeholder}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

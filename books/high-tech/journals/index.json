@@ -2133,6 +2133,7 @@
       "title": "Hygiene and Healthcare",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT221",
+      "rule": "gurps-compendium-content.hygieneAndDrugs",
       "reference": "High-Tech p. 221",
       "file": "hygiene-and-healthcare.md",
       "status": "reviewed"
@@ -2230,6 +2231,7 @@
       "title": "Drugs and Poisons",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT226",
+      "rule": "gurps-compendium-content.hygieneAndDrugs",
       "reference": "High-Tech p. 226",
       "file": "drugs-and-poisons.md",
       "status": "reviewed"
@@ -2239,6 +2241,7 @@
       "title": "Poisons",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT227",
+      "rule": "gurps-compendium-content.highTechPoisons",
       "reference": "High-Tech p. 227",
       "file": "poisons.md",
       "status": "reviewed"

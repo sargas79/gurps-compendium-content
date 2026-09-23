@@ -52,6 +52,7 @@ import {
 } from "./rules.js";
 
 import { placeArea, standsIn, type AreaLine } from "../../../shared/areas.js";
+import { poisonDose, registerPoisonTable, type PoisonTable } from "../../../shared/drugs/index.js";
 import { smokeAreaLines } from "../../../shared/smoke/rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Agents.${key}`);
@@ -170,9 +171,12 @@ async function ask<T>(title: string, fields: string, read: (form: HTMLElement) =
 const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
 const numberField = (form: HTMLElement, name: string) => Number(form.querySelector<HTMLInputElement>(`[name=${name}]`)?.value) || 0;
 
+/** This book's table in the shared poison engine: its agents, each under its own switch. */
+let AGENT_TABLE: PoisonTable<Agent> = { book: "ultra-tech", poisons: AGENT_POISONS, labelPrefix: "GCC.UT.Agents.Agent", available: () => false };
+
 /** The poison a registered agent is, as the system's `dosePoison` takes it. */
 function poisonOf(agent: Agent): any {
-  return { ...AGENT_POISONS[agent], name: L(`Agent.${agent}`), source: `${MODULE_ID}.${agent}` };
+  return poisonDose(AGENT_TABLE, agent, L(`Agent.${agent}`));
 }
 
 /** Whether a victim is out of an agent's reach, and why. */
@@ -419,15 +423,8 @@ function itemListeners(element: HTMLElement, item: any): void {
 
 export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
   // Every agent the system's dose machinery runs (API 1.57.0).
-  for (const agent of AGENTS) {
-    api.data.registerPoison({
-      module: MODULE_ID,
-      key: agent,
-      label: `GCC.UT.Agents.Agent.${agent}`,
-      poison: AGENT_POISONS[agent],
-      available: () => switchFor(on, agent),
-    });
-  }
+  AGENT_TABLE = { ...AGENT_TABLE, available: (agent) => switchFor(on, agent) };
+  registerPoisonTable(api, AGENT_TABLE);
 
   // A metabolic nanoweapon's price by how it's delivered; dominator nano by points; a mind-trapping seed (pp. 161-162).
   api.data.registerPriceModifier({
