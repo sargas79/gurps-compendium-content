@@ -23,10 +23,11 @@
  * forward observers, and firearm accessories: magazines, sights,
  * suppressors (and cinematic silencers), stocks, bipods and shooting sticks,
  * and ammunition: calibres priced from the Ammunition Tables, the ammunition
- * upgrades, cartridge conversions, handloading and misloading, and the
+ * upgrades, cartridge conversions, handloading and misloading, the
  * projectiles: projectile options, exotic bullets, multiple-projectile loads
- * and projectile upgrades, and the explosive and cargo rounds (pp. 7-11,
- * 79-93, 109, 127-141, 143, 147-178, 249-252).
+ * and projectile upgrades, the explosive and cargo rounds, and power:
+ * batteries, generators and fuel (pp. 7-11, 13-16, 79-93, 109, 127-141,
+ * 143, 147-178, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -40,7 +41,7 @@ import { initHighTechEquipment, readyHighTechEquipment } from "./equipment/index
 import { readyEnvironments } from "./environments/index.js";
 import { readyIndirectFire } from "./indirect-fire/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
-import { initHighTechPower } from "./power/index.js";
+import { initHighTechPower, readyHighTechPower } from "./power/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
@@ -118,6 +119,7 @@ const RULES = [
   { key: "projectileUpgrades", pages: "pp. 174-175", implemented: true },
   { key: "explosiveProjectiles", pages: "pp. 169-170, 175", implemented: true },
   { key: "cargoProjectiles", pages: "pp. 143, 171-172", implemented: true },
+  { key: "batteries", pages: "pp. 10, 13-16", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -147,9 +149,9 @@ function registerRules(registry: RuleRegistry, group: string): void {
 
 /**
  * Each rule issue adds its switches to RULES and registers its tables with
- * the shared engines in `init`. The battery table is registered already,
- * with its switch left for #358, so the captured gear keeps its batteries
- * (#348), and so are the record fields the explosives carry (#349).
+ * the shared engines in `init`: the battery table, so the captured gear keeps
+ * its batteries whatever the switch (#348), and the record fields the
+ * explosives carry (#349).
  */
 function init(): void {
   initHighTechPower();
@@ -193,6 +195,7 @@ function ready(api: GWorldApi): void {
   });
   readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
   readyIndirectFire(api, rule("indirectFire"));
+  readyHighTechPower(api, rule("batteries"));
 }
 
 export const book: BookRules = {

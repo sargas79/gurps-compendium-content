@@ -1,9 +1,9 @@
 /**
  * Power cells, as the books that print them price them (Ultra-Tech pp. 18-20,
- * 133; High-Tech's batteries are the same rule at its TLs): what each size
- * costs and weighs, how long one takes to change, the kinds of cell that last
- * longer or cost more, rigging a gadget to run on smaller ones, and what one
- * does when it blows up.
+ * 133; High-Tech's batteries, pp. 13-14, are the same rule at its TLs): what
+ * each size costs and weighs, how long one takes to change, the kinds of cell
+ * that last longer or cost more, rigging a gadget to run on smaller ones or
+ * swapping its size for another, and what one does when it blows up.
  *
  * Every figure comes from the book's table (`CellFigures`); this file holds
  * the arithmetic, and the reading of endurances the tables print.
@@ -26,7 +26,12 @@ export interface CellKind {
   cosmic?: boolean;
   /** The beam weapon option that multiplies its shots. */
   superscience?: boolean;
+  /** Cells that can be recharged, where the book prices its cells as throwaways. */
+  rechargeable?: boolean;
 }
+
+/** The kinds of cell a book offers, in the order its sheet lists them. */
+export type CellKindKey = keyof CellKind;
 
 /** One book's figures for its cells. */
 export interface CellFigures {
@@ -45,10 +50,24 @@ export interface CellFigures {
   superscienceShots: number;
   /** How many cells one size smaller stand in for one of a size. */
   substitutePerStep: number;
-  /** Rigging a gadget to smaller cells: the skill, its modifier and the minutes a try. */
-  juryRig: Readonly<{ skill: string; modifier: number; minutes: number }>;
-  /** An exploding cell's relative explosive force by TL, held at the ends. */
+  /** Rigging a gadget to smaller cells: the skill, its modifier and the minutes a try; null where the book has no such rule. */
+  juryRig: Readonly<{ skill: string; modifier: number; minutes: number }> | null;
+  /** An exploding cell's relative explosive force by TL, held at the ends; empty where the book gives none. */
   ref: Readonly<Record<number, number>>;
+  /** The kinds of cell the book offers on a gadget's sheet. */
+  kinds: readonly CellKindKey[];
+  /** What rechargeable cells multiply the price by, where the book's prices are for throwaway ones. */
+  rechargeable?: number;
+  /** Whether a gadget may take any size and number of cells, its endurance in proportion to their weight. */
+  swapByWeight?: boolean;
+  /**
+   * Power adapters and inverters, where the book has them: the smallest size
+   * an inverter takes. An adapter lets a gadget run on external power; an
+   * inverter lets one built for external power run on cells.
+   */
+  adapters?: Readonly<{ inverterMin: string }>;
+  /** The name of the book's record for a spare cell, "{size}" standing for the size: changing cells uses carried ones up. */
+  spareRecord?: string;
 }
 
 export function isCellSizeOf(figures: CellFigures, value: unknown): value is string {
@@ -60,6 +79,7 @@ export function cellCost(figures: CellFigures, size: string, kind: CellKind = {}
   let cost = figures.cells[size]!.cost;
   if (kind.flexible && !figures.flexible.fullPrice.includes(size)) cost *= figures.flexible.cost;
   if (kind.cosmic) cost *= figures.cosmic.cost;
+  if (kind.rechargeable && figures.rechargeable) cost *= figures.rechargeable;
   return cost;
 }
 
@@ -69,9 +89,9 @@ export function cellLegality(figures: CellFigures, size: string, kind: CellKind 
   return figures.cells[size]!.lc;
 }
 
-/** Seconds to change a cell. */
-export function replacementSeconds(figures: CellFigures, size: string): number {
-  return figures.replacementSeconds[size]!;
+/** Seconds to change a cell, or null where the book gives no time. */
+export function replacementSeconds(figures: CellFigures, size: string): number | null {
+  return figures.replacementSeconds[size] ?? null;
 }
 
 /** How much longer a kind of cell lasts, or null for as long as it's wanted. */
@@ -90,6 +110,28 @@ export function shotsMultiplier(figures: CellFigures, kind: CellKind = {}): numb
 export function substituteCells(figures: CellFigures, size: string, smaller: string): number | null {
   const steps = figures.sizes.indexOf(size) - figures.sizes.indexOf(smaller);
   return steps > 0 ? figures.substitutePerStep ** steps : null;
+}
+
+/** The weight of a number of cells of a size, in pounds. */
+export function cellsWeight(figures: CellFigures, size: string, cells: number): number {
+  return figures.cells[size]!.weight * Math.max(0, cells);
+}
+
+/**
+ * What swapping a gadget's cells for others multiplies its endurance by: the
+ * new cells' weight over the old (High-Tech pp. 10, 13). An S battery weighs
+ * 3.3 times an XS, so a gadget moved from one to the other runs 3.3 times as
+ * long. Null where either weight is nothing.
+ */
+export function swappedEndurance(figures: CellFigures, from: { size: string; cells: number }, to: { size: string; cells: number }): number | null {
+  const before = cellsWeight(figures, from.size, from.cells);
+  const after = cellsWeight(figures, to.size, to.cells);
+  return before > 0 && after > 0 ? after / before : null;
+}
+
+/** Whether the book prints a REF for exploding cells. */
+export function hasCellRef(figures: CellFigures): boolean {
+  return Object.keys(figures.ref).length > 0;
 }
 
 /** The REF of a cell of this TL, held at the ends of the book's list. */
