@@ -7268,7 +7268,14 @@
           "unarmedBonus": true
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 0.5
+          }
+        }
+      }
     }
   },
   {
@@ -7518,7 +7525,14 @@
           "unreadyAfterAttack": false
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 1.25
+          }
+        }
+      }
     }
   },
   {
@@ -7598,7 +7612,14 @@
           "unreadyAfterAttack": false
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 0.3
+          }
+        }
+      }
     }
   },
   {
@@ -7652,7 +7673,14 @@
           "unreadyAfterAttack": false
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 0.25
+          }
+        }
+      }
     }
   },
   {
@@ -7892,7 +7920,14 @@
           "unreadyAfterAttack": false
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 0.25
+          }
+        }
+      }
     }
   },
   {
@@ -8211,7 +8246,14 @@
           "unreadyAfterAttack": false
         }
       ],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "htWeapon": {
+            "sheathWeight": 1
+          }
+        }
+      }
     }
   },
   {

@@ -1754,6 +1754,7 @@
       "title": "Battleaxes",
       "chapter": "5. Weaponry",
       "pages": "HT196",
+      "rule": "gurps-compendium-content.bayonets",
       "reference": "High-Tech p. 196",
       "file": "battleaxes.md",
       "status": "reviewed"
@@ -1763,6 +1764,7 @@
       "title": "Blades",
       "chapter": "5. Weaponry",
       "pages": "HT196-197",
+      "rule": "gurps-compendium-content.bladeComposition",
       "reference": "High-Tech pp. 196-197",
       "file": "blades.md",
       "status": "reviewed"
@@ -1772,6 +1774,7 @@
       "title": "Bayonets",
       "chapter": "5. Weaponry",
       "pages": "HT197",
+      "rule": "gurps-compendium-content.bayonets",
       "reference": "High-Tech p. 197",
       "file": "bayonets.md",
       "status": "reviewed"
@@ -1781,6 +1784,7 @@
       "title": "Blade Composition",
       "chapter": "5. Weaponry",
       "pages": "HT198",
+      "rule": "gurps-compendium-content.bladeComposition",
       "reference": "High-Tech p. 198",
       "file": "blade-composition.md",
       "status": "reviewed"
@@ -1790,6 +1794,7 @@
       "title": "Optional Rule: Sheaths",
       "chapter": "5. Weaponry",
       "pages": "HT198",
+      "rule": "gurps-compendium-content.sheaths",
       "reference": "High-Tech p. 198",
       "file": "optional-rule-sheaths.md",
       "status": "reviewed"
@@ -1799,6 +1804,7 @@
       "title": "Clubs",
       "chapter": "5. Weaponry",
       "pages": "HT198",
+      "rule": "gurps-compendium-content.bayonets",
       "reference": "High-Tech p. 198",
       "file": "clubs.md",
       "status": "reviewed"
@@ -1808,6 +1814,7 @@
       "title": "Electric Stun Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT199",
+      "rule": "gurps-compendium-content.stunWeapons",
       "reference": "High-Tech p. 199",
       "file": "electric-stun-weapons.md",
       "status": "reviewed"
@@ -1826,6 +1833,7 @@
       "title": "Bows and Crossbows",
       "chapter": "5. Weaponry",
       "pages": "HT201",
+      "rule": "gurps-compendium-content.highTechBows",
       "reference": "High-Tech p. 201",
       "file": "bows-and-crossbows.md",
       "status": "reviewed"
@@ -1835,6 +1843,7 @@
       "title": "Thrown Weapons",
       "chapter": "5. Weaponry",
       "pages": "HT201",
+      "rule": "gurps-compendium-content.bladeComposition",
       "reference": "High-Tech p. 201",
       "file": "thrown-weapons.md",
       "status": "reviewed"

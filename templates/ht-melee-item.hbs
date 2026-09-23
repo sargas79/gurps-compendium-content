@@ -1,0 +1,59 @@
+{{!-- Bayonets, sheaths, blade composition, stun weapons and high-tech bows (High-Tech pp. 196-201). --}}
+<div class="isub" data-gcc-ht-melee-section>
+  <div class="isub-head">{{localize "GCC.HT.Melee.Title"}}</div>
+  {{#if gun}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Melee.BayonetTooltip'}}"><input type="checkbox" data-gcc-ht-melee="bayonet" {{#if gun.fitted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Melee.BayonetLabel"}}</label>
+    </div>
+    {{#if gun.fitted}}
+      <div class="ifields">
+        <label data-tooltip="{{localize 'GCC.HT.Melee.BayonetWeightHint'}}">{{localize "GCC.HT.Melee.BayonetWeight"}}
+          <input type="number" min="0" step="0.05" data-gcc-ht-melee="bayonetWeight" value="{{gun.weight}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+        <label data-tooltip="{{localize 'GCC.HT.Melee.BayonetCostHint'}}">{{localize "GCC.HT.Melee.BayonetCost"}}
+          <input type="number" min="0" step="1" data-gcc-ht-melee="bayonetCost" value="{{gun.cost}}" {{#unless editable}}disabled{{/unless}} />
+        </label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if sheath}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Melee.SheathTooltip'}}">{{localize "GCC.HT.Melee.SheathLabel"}}
+        <select data-gcc-ht-melee="sheath" {{#unless editable}}disabled{{/unless}}>
+          {{#each sheath.choices as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Melee.SheathWeightHint'}}">{{localize "GCC.HT.Melee.SheathWeight"}}
+        <input type="number" min="0" step="0.05" data-gcc-ht-melee="sheathWeight" value="{{sheath.weight}}" placeholder="{{sheath.worked}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#if blade}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Melee.BladeTooltip'}}">{{localize "GCC.HT.Melee.BladeLabel"}}
+        <select data-gcc-ht-melee="blade" {{#unless editable}}disabled{{/unless}}>
+          {{#each blade as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if shot}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Melee.ShotTooltip'}}">{{localize "GCC.HT.Melee.ShotLabel"}}
+        <select data-gcc-ht-melee="shot" {{#unless editable}}disabled{{/unless}}>
+          {{#each shot as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if bowChecks}}
+    <div class="ichecks">
+      {{#if compound}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Melee.CompoundTooltip'}}"><input type="checkbox" data-gcc-ht-melee="compound" {{#if compound.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Melee.CompoundLabel"}}</label>{{/if}}
+      {{#if bowAccessories}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Melee.SightsTooltip'}}"><input type="checkbox" data-gcc-ht-melee="sights" {{#if bowAccessories.sights}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Melee.SightsLabel"}}</label>
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Melee.SilencersTooltip'}}"><input type="checkbox" data-gcc-ht-melee="silencers" {{#if bowAccessories.silencers}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Melee.SilencersLabel"}}</label>
+      {{/if}}
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

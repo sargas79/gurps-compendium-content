@@ -41,8 +41,10 @@
  * effects, demolition charges, unstable and home-made explosives, thermite
  * and napalm, and the grenades, land mines, rifle grenades, bombs and
  * nuclear weapons, and clothing against the weather, frostbite and
- * climate-controlled clothing (pp. 7-11, 13-16, 17-65, 71, 74, 79-93, 109,
- * 127-141, 143, 147-196, 249-252).
+ * climate-controlled clothing, and the melee and muscle-powered weapons:
+ * bayonets and rifle butts, sheaths, blade composition, electric stun
+ * weapons and high-tech bows (pp. 7-11, 13-16, 17-65, 71, 74, 79-93, 109,
+ * 127-141, 143, 147-201, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -70,6 +72,7 @@ import { projectorFields, readyProjectors } from "./projectors/index.js";
 import { readyExplosives } from "./explosives/index.js";
 import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
 import { initSurvival, readySurvival } from "./survival/index.js";
+import { initHighTechMelee, meleeGunFields, readyHighTechMelee } from "./melee/index.js";
 import { initClothing, readyClothing } from "./clothing/index.js";
 import { ordnanceExtras, readyOrdnance } from "./ordnance/index.js";
 import { initExpedition, readyExpedition } from "./expedition/index.js";
@@ -190,6 +193,12 @@ const RULES = [
   { key: "clothingAndWeather", pages: "pp. 63-65", implemented: true },
   { key: "frostbite", pages: "p. 63", implemented: true },
   { key: "climateControl", pages: "p. 74", implemented: true },
+  // Melee and muscle-powered weapons.
+  { key: "bayonets", pages: "pp. 196-199", implemented: true },
+  { key: "sheaths", pages: "p. 198", implemented: true },
+  { key: "bladeComposition", pages: "pp. 196-198, 201", implemented: true },
+  { key: "stunWeapons", pages: "p. 199", implemented: true },
+  { key: "highTechBows", pages: "p. 201", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -228,7 +237,7 @@ function init(): void {
   initHighTechEquipment({ options: ruleKey("equipmentOptions"), sm: ruleKey("gearForSm"), legality: ruleKey("antiqueLegality") });
   initInformation(ruleKey("computerSystems"));
   registerHighTechRecordData();
-  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f), ...projectorFields(f) }));
+  initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f), ...projectorFields(f), ...meleeGunFields(f) }));
   initAmmunition();
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
@@ -237,6 +246,7 @@ function init(): void {
   initSurvival();
   initExpedition();
   initClothing(ruleKey("climateControl"));
+  initHighTechMelee();
 }
 
 function ready(api: GWorldApi): void {
@@ -283,6 +293,8 @@ function ready(api: GWorldApi): void {
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
   readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
+  // After the reloading rules, whose reload time a fixed bayonet lengthens.
+  readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
 }
 
 export const book: BookRules = {
