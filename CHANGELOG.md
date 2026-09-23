@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.17.0 — GURPS High-Tech: firearms, ammunition, explosives, armour and gear
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.41.0**, which this release requires (add-on API
+1.98.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+Phase 2 of the High-Tech plan (#335), and much of phase 3. Every High-Tech rule
+is a switch in the "GURPS High-Tech" group, off by default, and works without
+Ultra-Tech or Martial Arts in the world: rules both books print run on shared
+engines with a table per book.
+
+- **Firearms (#364-#372, #427):** gun quality and care, Immediate Action; drawing, holsters and gunfight standoffs; triggers, bursts, fast-firing, fanning and thumbing; the two-handed stance, Precision Aiming, ranged Rapid Strike, gun techniques and Zen Marksmanship; shooting underwater and in space, sustained fire and barrel changes; reloading by action type, careful loading and black-powder fouling; air guns, stunners, revolvers, mechanical machine guns and backblast; indirect fire with forward observers; magazines, sights, suppressors, stocks, bipods and tactical lights.
+- **Ammunition (#373-#375):** the calibre table and ammunition upgrades, handloading and misloading; projectile options and multiple projectiles; explosive and cargo rounds (smoke, tear gas, illumination, white phosphorus).
+- **Wounding and weapons (#376-#380):** the optional wounding rules; flamethrowers, spray guns and laser dazzlers; explosives, demolition charges and incendiaries; grenades, land mines, rifle grenades and nuclear weapons; bayonets, sheaths, blade materials, stun weapons and bows.
+- **Defences (#381-#385):** clothing and weather, frostbite, climate control; breathing gear and environment suits; partial coverage, concealed armour and armour materials; protective oddments and portable cover; camouflage.
+- **Equipment and security (#357-#363, #386-#388, #390, #440):** equipment options, legality and the black market; batteries; computers and libraries; tools and forced entry; radios and sensors; expedition, survival and maritime gear; locks, safes, traps and barriers; security screening, surveillance and jamming; codes, disguise and smuggling; emergency medicine and medical facilities.
+
 ## v0.16.0 — GURPS High-Tech: the book's records, text and journals
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
