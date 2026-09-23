@@ -761,6 +761,7 @@
       "title": "Firearm Quality",
       "chapter": "5. Weaponry",
       "pages": "HT79",
+      "rule": "gurps-compendium-content.firearmQuality",
       "reference": "High-Tech p. 79",
       "file": "firearm-quality.md",
       "status": "reviewed"
@@ -770,6 +771,7 @@
       "title": "Dirty Tech: Full-Auto Conversions",
       "chapter": "5. Weaponry",
       "pages": "HT79",
+      "rule": "gurps-compendium-content.firearmQuality",
       "reference": "High-Tech p. 79",
       "file": "dirty-tech-full-auto-conversions.md",
       "status": "reviewed"
@@ -779,6 +781,7 @@
       "title": "How to Treat Your Gun",
       "chapter": "5. Weaponry",
       "pages": "HT79-81",
+      "rule": "gurps-compendium-content.gunCare",
       "reference": "High-Tech pp. 79-81",
       "file": "how-to-treat-your-gun.md",
       "status": "reviewed"
@@ -788,6 +791,7 @@
       "title": "Malfunctions",
       "chapter": "5. Weaponry",
       "pages": "HT81",
+      "rule": "gurps-compendium-content.gunCare",
       "reference": "High-Tech p. 81",
       "file": "malfunctions.md",
       "status": "reviewed"
@@ -797,6 +801,7 @@
       "title": "Immediate Action",
       "chapter": "5. Weaponry",
       "pages": "HT81",
+      "rule": "gurps-compendium-content.immediateAction",
       "reference": "High-Tech p. 81",
       "file": "immediate-action.md",
       "status": "reviewed"
