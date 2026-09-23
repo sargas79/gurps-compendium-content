@@ -1,0 +1,192 @@
+[
+  {
+    "_id": "b88352bd5c71eed1",
+    "name": "Close-Quarters Battle",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Beam Weapons (Pistol)",
+        "Beam Weapons (Projector)",
+        "Beam Weapons (Rifle)",
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)"
+      ],
+      "defaultModifier": 0,
+      "points": 0,
+      "maxRelativeToPrerequisite": 4,
+      "description": "",
+      "reference": "High-Tech p. 250"
+    }
+  },
+  {
+    "_id": "fd03fcab7a146475",
+    "name": "Double-Loading (Fast-Draw (Ammo))",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "Fast-Draw (Ammo)",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "907de187eafd8d73",
+    "name": "Fanning (Guns (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Guns (Pistol)",
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "63116dd7060e68f8",
+    "name": "Fast-Firing",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "",
+      "skillChoices": [
+        "Beam Weapons (Pistol)",
+        "Beam Weapons (Projector)",
+        "Beam Weapons (Rifle)",
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)"
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "1127083df8b78578",
+    "name": "Immediate Action",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Gunner (Cannon)",
+        "Gunner (Catapult)",
+        "Gunner (Machine Gun)",
+        "Gunner (Rockets)",
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)"
+      ],
+      "alternateDefaults": [
+        {
+          "from": "skill",
+          "skill": "Armoury (%Gun SkillsAliasList%)",
+          "modifier": -4
+        }
+      ],
+      "defaultModifier": -4,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "6594f6c354622f13",
+    "name": "Instant Arsenal Disarm (Armoury (Small Arms))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Armoury (Small Arms)",
+      "defaultModifier": -5,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 251"
+    }
+  },
+  {
+    "_id": "976671cce87da389",
+    "name": "Quick-Shot",
+    "type": "technique",
+    "system": {
+      "difficulty": "A",
+      "prerequisite": "",
+      "skillChoices": [
+        "Beam Weapons (Pistol)",
+        "Beam Weapons (Projector)",
+        "Beam Weapons (Rifle)",
+        "Guns (Grenade Launcher)",
+        "Guns (Gyroc)",
+        "Guns (Light Anti-Armor Weapon)",
+        "Guns (Light Machine Gun)",
+        "Guns (Musket)",
+        "Guns (Pistol)",
+        "Guns (Rifle)",
+        "Guns (Shotgun)",
+        "Guns (Submachine Gun)"
+      ],
+      "defaultModifier": -6,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 252"
+    }
+  },
+  {
+    "_id": "1e6f99166d450f23",
+    "name": "Thumbing (Guns (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Guns (Pistol)",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 252"
+    }
+  },
+  {
+    "_id": "b3ca0ea4b91ed987",
+    "name": "Two-Handed Thumbing (Guns (Pistol))",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Guns (Pistol)",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech p. 252"
+    }
+  }
+]

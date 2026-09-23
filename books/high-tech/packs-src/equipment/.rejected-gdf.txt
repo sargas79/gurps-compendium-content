@@ -1,0 +1,82 @@
+split DR footnote and TL6 disagree: Silk Vest (TL6) has dr(4/2*), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Silk Vest (TL6)
+split DR footnote and TL6 disagree: Boots, Steel-Toed has dr(6/2), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Boots, Steel-Toed
+split DR footnote and TL5 disagree: Closed-Dress Suit has dr(6/2), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(5); patch whichever is wrong	Closed-Dress Suit
+split DR footnote and TL6 disagree: Bulletproof Shield has dr(10/80), the high-tech footnote (higher DR against piercing and cutting only), which is for TL7 and up, but techlvl(6); patch whichever is wrong	Bulletproof Shield
+no location	Riot Shield
+no location	Medium Entry Shield
+no location	Large Entry Shield
+not modelled	Immediate Action: the default rebases it on + IQ - DX, which the model has no field for; the skill and its penalty are kept
+not modelled	Precision Aiming: the default rebases it on + IQ, which the model has no field for; the skill and its penalty are kept
+not modelled	Grenade à Main: range comes from the Throwing Distance table, not the weapon
+not modelled	Stielhandgranate: range comes from the Throwing Distance table, not the weapon
+not modelled	Mills Number 36M Mk I: range comes from the Throwing Distance table, not the weapon
+not modelled	Mills Number 36M MK II: range comes from the Throwing Distance table, not the weapon
+not modelled	Mills Number 36M MK III: range comes from the Throwing Distance table, not the weapon
+not modelled	Eihandgranate 39: range comes from the Throwing Distance table, not the weapon
+not modelled	AN-M8: attack: damage "Smoke (7 yd.)" names an effect, not damage; the mode is skipped
+not modelled	AN-M14: attack: damage "Special" names an effect, not damage; the mode is skipped
+not modelled	RPG-43: range comes from the Throwing Distance table, not the weapon
+not modelled	M26: range comes from the Throwing Distance table, not the weapon
+not modelled	M34 WP: range comes from the Throwing Distance table, not the weapon
+not modelled	M67: range comes from the Throwing Distance table, not the weapon
+not modelled	Diehl DM51 (w/Frag Sleeve): range comes from the Throwing Distance table, not the weapon
+not modelled	Diehl DM51 (w/o Frag Sleeve): range comes from the Throwing Distance table, not the weapon
+not modelled	Schermuly Stun: range comes from the Throwing Distance table, not the weapon
+not modelled	Schermuly Stun: damage type says "aff (10 yd.)"; a radius or a cone's width, and the record does not say which
+not modelled	ARGES HG 86: range comes from the Throwing Distance table, not the weapon
+not modelled	M452 Stingball: range comes from the Throwing Distance table, not the weapon
+not modelled	Dan-Inject JM Standard, 11mm: Follow-up: no damage beside "drug effect"; the mode is skipped
+not modelled	NSG SplatMaster, .68 Paintball: Follow-up: no damage beside "paint splat"; the mode is skipped
+not modelled	Franchi SPAS-12, 12G 2.75'': modes "Shot; Folded Stock", "Slug; Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Armsel Striker, 12G 2.75'': modes "Shot; Folded Stock", "Slug; Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Mauser T-Gew18, 13x92mmSR: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Steyr-Solothurn S18-1000, 20x138mmB: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Rheinmetall FG42, 7.92x57mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	IMI Galil ARM, .223 Remington: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	TsNIITochMash APS, 5.66x39mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Barrett M82A1, .50 Browning: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	TsNIITochMash AS Val, 9x39mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	AI AW, 7.62x51mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K G36, 5.56x45mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	FN MK 16 MOD 0, 5.56x45mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	ERMA MP40, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Guide Lamp M3, .45 ACP: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Sterling L2A3, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	CZ Sa vz. 61 Skorpion, .32 ACP: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	IMI Uzi, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	MAC-Ingram M10, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K MP5A3, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K MP5SD3, 9x19mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Izhmash PP-19 Bizon-2, 9x18mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K UMP, .45 ACP: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	TsNIITochMash SR-2 Veresk, 9x21mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K MP7A1, 4.6x30mm: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Madsen M/03, 8x58mmR: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Lewis Mk I, .303: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	ZB ZB26, 7.92x57mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	ZiD DP, 7.62x54mmR: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Rheinmetall MG34, 7.92x57mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Enfield Bren Mk I, .303: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Rheinmetall MG42, 7.92x57mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	ZiD RPD, 7.62x39mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Saco M60, 7.62x51mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	FN MAG, 7.62x51mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	KMZ PK, 7.62x54mmR: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	MAC AA7.62NF1, 7.62x51mm: modes "w/o Bipod", "w/o Bipod; Folded Stock", "w/ Bipod", "w/ Bipod; Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K HK21A1, 7.62x51mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	FN MINIMI, 5.56x45mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	H&K HK69A1, 40x46mmSR: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Milkor MGL, 40x46mmSR: modes "Folded Stock" may be states of one weapon rather than modes; kept as modes
+not modelled	Firestone M18, 57x305mmR: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Aérospatiale SS.11, 164mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	Kolomna 9M14M Malyutka-M, 125mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	Hughes BGM-71A TOW, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	Euromissile MILAN, 103mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	McDonnell FGM-77A Dragon, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	McDonnell FGM-77A Dragon, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	McDonnell FGM-77A Dragon, 127mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes
+not modelled	Ford AIM-9L Sidewinder, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	GD FIM-92A Stinger, 70mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	RLM FGM-148A Javelin, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	RLM FGM-148A Javelin, 127mm: its notes give a minimum range this reader cannot tie to the record; none is set
+not modelled	RLM FGM-148A Javelin, 127mm: modes "w/o Bipod", "w/ Bipod" may be states of one weapon rather than modes; kept as modes

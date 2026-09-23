@@ -109,10 +109,13 @@ export function book(slug) {
       reason: String(rule.reason ?? ""),
     })),
     // Fields to set on the parsers' records, by path, where the system cannot
-    // take what the data file says yet (tools/extract.mjs).
+    // take what the data file says yet (tools/extract.mjs), optionally only
+    // where other fields hold a value; `*` in a path is every array element
+    // (tools/lib/patch.mjs).
     patch: (raw.patch ?? []).map((rule) => ({
       pack: String(rule.pack),
       pattern: new RegExp(rule.pattern),
+      where: rule.where ?? {},
       set: rule.set ?? {},
       reason: String(rule.reason ?? ""),
     })),
