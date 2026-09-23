@@ -1,0 +1,51 @@
+{{!-- A gun's quality work, its care and how Immediate Action clears it (High-Tech pp. 79-81, 129). --}}
+<div class="isub" data-gcc-ht-firearm-section>
+  <div class="isub-head">{{localize "GCC.HT.Firearm.Title"}}</div>
+  {{#if quality}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Firearm.AccurateTooltip'}}">{{localize "GCC.HT.Firearm.Accurate"}}
+        <select data-gcc-ht-firearm="accurate" {{#unless editable}}disabled{{/unless}}>
+          {{#each quality.accurate as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}} {{#if o.disabled}}disabled{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Firearm.ReliableTooltip'}}">{{localize "GCC.HT.Firearm.Reliable"}}
+        <select data-gcc-ht-firearm="reliable" {{#unless editable}}disabled{{/unless}}>
+          {{#each quality.reliable as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}} {{#if o.disabled}}disabled{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <p class="ihint">{{quality.priced}}</p>
+    {{#if quality.reroll}}<p class="ihint">{{quality.reroll}}</p>{{/if}}
+    {{#if quality.grade}}<p class="ihint">{{quality.grade}}</p>{{/if}}
+  {{/if}}
+  {{#if care}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Firearm.MalfunctionLostTooltip'}}">{{localize "GCC.HT.Firearm.MalfunctionLost"}}
+        <input type="number" min="0" max="10" step="1" data-gcc-ht-firearm="malfunctionLost" value="{{care.data.malfunctionLost}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Firearm.AccuracyLostTooltip'}}">{{localize "GCC.HT.Firearm.AccuracyLost"}}
+        <input type="number" min="0" max="10" step="1" data-gcc-ht-firearm="accuracyLost" value="{{care.data.accuracyLost}}" {{#unless editable}}disabled{{/unless}} />
+      </label>
+      <label>{{localize "GCC.HT.Firearm.RuggedLabel"}}
+        <select data-gcc-ht-firearm="rugged" {{#unless editable}}disabled{{/unless}}>
+          {{#each care.rugged as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Firearm.PrecisionHint'}}"><input type="checkbox" data-gcc-ht-firearm="precision" {{#if care.data.precision}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Firearm.Precision"}}</label>
+      {{#if care.clothBelt}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Firearm.ClothBeltHint'}}"><input type="checkbox" data-gcc-ht-firearm="clothBelt" {{#if care.data.clothBelt}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Firearm.ClothBelt"}}</label>{{/if}}
+    </div>
+    {{#each care.lines as |l|}}<p class="ihint">{{l}}</p>{{/each}}
+  {{/if}}
+  {{#if immediate}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Firearm.FeedTooltip'}}">{{localize "GCC.HT.Firearm.FeedLabel"}}
+        <select data-gcc-ht-firearm="feed" {{#unless editable}}disabled{{/unless}}>
+          {{#each immediate.feeds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <p class="ihint">{{immediate.line}}</p>
+  {{/if}}
+</div>

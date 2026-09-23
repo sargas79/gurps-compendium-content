@@ -4795,6 +4795,85 @@
         "BombLine": "A {calibre}mm smart grenade: 6d cr ex for an ounce; vitals x3, skull x4; an exploding skull throws 1d-3 cut fragments.",
         "BombUnpriced": "The book prices no {calibre}mm hand grenade: the GM sets the cost."
       }
+    },
+    "HT": {
+      "Rules": {
+        "firearmQuality": {
+          "Name": "Firearm quality",
+          "Hint": "Accurate and reliable work as separate grades on a gun: fine accurate +1 Acc (base Acc 2+) for 75% of its price, very fine +2 Acc (base Acc 4+) for 375%; fine reliable a step of Malf. for 25%, very fine two steps for 125%, none for a full-automatic weapon. A gun taken past Malf. 17 stays at 17 and rolls a malfunction again. These replace the Basic Set's fine and very fine grade on a gun (High-Tech p. 79)."
+        },
+        "gunCare": {
+          "Name": "Gun care",
+          "Hint": "-1 Malf. for a shooter at default or short of the gun's ST, and for a cloth belt; Malf. and Acc a gun has lost to abuse, age or harsh surroundings; a sniper rifle or target pistol rolling HT rather than HT+4 against abuse; rugged guns at HT 11 or 12; and at TL6-8, misfires and stoppages swapped on the malfunction table for anything but a revolver (High-Tech pp. 80-81, 129)."
+        },
+        "immediateAction": {
+          "Name": "Immediate Action",
+          "Hint": "Clearing a stoppage takes -4 on the Armoury or IQ-based weapon skill roll, bought off by the Immediate Action technique for the weapon skill, plus the gun's TL and familiarity penalties. It takes two Ready maneuvers for a magazine-fed self-loader, four for a belt-fed gun (three with an assistant gunner) and three otherwise; Armorer's Gift and Weapon Bond help (High-Tech pp. 81, 249-251)."
+        }
+      },
+      "Firearm": {
+        "Title": "Gun quality and care",
+        "PriceLabel": "Firearm quality",
+        "Accurate": "Accurate",
+        "AccurateTooltip": "Fine: +1 Acc, for a gun whose base Acc is 2 or more; very fine: +2 Acc, for base Acc 4 or more (High-Tech p. 79).",
+        "Accurate0": "Standard",
+        "Accurate1": "Fine (+1 Acc, +75%)",
+        "Accurate2": "Very fine (+2 Acc, +375%)",
+        "Reliable": "Reliable",
+        "ReliableTooltip": "Fine: Malf. a step better; very fine: two steps. Not for a full-automatic weapon (High-Tech p. 79).",
+        "Reliable0": "Standard",
+        "Reliable1": "Fine (+1 Malf., +25%)",
+        "Reliable2": "Very fine (+2 Malf., +125%)",
+        "Priced": "Priced at x{multiplier} its cost.",
+        "GradeSetAside": "Its Basic Set grade ({grade}) is set aside on a gun while this rule is on: choose accurate and reliable work here.",
+        "RerollLine": "Past Malf. {malf}: a malfunction is rolled again, and only happens if that roll malfunctions too.",
+        "Problem": {
+          "accurate1": "Fine accuracy work only helps a gun whose base Acc is 2 or more.",
+          "accurate2": "Very fine accuracy work only helps a gun whose base Acc is 4 or more.",
+          "fullAuto": "A full-automatic weapon can't be made more reliable."
+        },
+        "AccurateNote": "Accurate +{bonus}",
+        "AccurateHint": "Accuracy work on the gun (High-Tech p. 79).",
+        "AccuracyLostNote": "Acc -{lost}",
+        "AccuracyLostHint": "Accuracy lost to abuse, age or wear (High-Tech pp. 80-81).",
+        "RerollNote": "Reliable: Malf. rerolled",
+        "UntrainedNote": "Malf. -1",
+        "UntrainedHint": "Shooting at default or without the gun's minimum ST (High-Tech p. 81).",
+        "RerollSaved": "Reliable: the malfunction was rolled again ({roll}: {dice}), under Malf. {malf}. No malfunction.",
+        "RerollFailed": "Reliable: the malfunction was rolled again ({roll}: {dice}), and malfunctions too.",
+        "MalfunctionLost": "Malf. lost",
+        "MalfunctionLostTooltip": "Steps of Malf. the gun has lost to abuse, age, neglect or a hostile environment, as the GM rules (High-Tech p. 80).",
+        "AccuracyLost": "Acc lost",
+        "AccuracyLostTooltip": "Acc the gun has lost to abuse or a worn barrel, as the GM rules (High-Tech pp. 80-81).",
+        "RuggedLabel": "Build",
+        "Rugged": {
+          "standard": "Ordinary (DR 4, HT 10)",
+          "military": "Military (DR 6, HT 11)",
+          "rugged": "Famously rugged (DR 8, HT 12)"
+        },
+        "RuggedLine": "As an object: DR {dr}, HT {ht}, Unliving (High-Tech p. 80).",
+        "Precision": "Precision rifle or pistol",
+        "PrecisionHint": "A sniper rifle or target pistol rolls against HT, not HT+4, when abused; a failure costs it 1-3 Acc (High-Tech p. 80).",
+        "PrecisionLine": "Precision gun: HT, not HT+4",
+        "ClothBelt": "Cloth belt",
+        "ClothBeltHint": "A cloth ammunition belt soaks up mud and water: -1 Malf. (High-Tech p. 129).",
+        "SafetyLine": "Safety: a free action at the start or end of a turn with a familiar gun, a Ready maneuver at default or with an unfamiliar one (High-Tech p. 80).",
+        "MaintenanceLine": "Maintenance checks: IQ-based Guns, Armoury (Small Arms) or Soldier; Gunner or Armoury (Heavy Weapons) for heavy weapons (High-Tech p. 80).",
+        "FeedLabel": "Feed",
+        "FeedTooltip": "What Immediate Action has to clear, which sets how long it takes (High-Tech p. 81).",
+        "Feed": {
+          "auto": "From its statistics ({feed})",
+          "magazine": "Magazine, self-loading",
+          "belt": "Belt",
+          "other": "Other"
+        },
+        "Readies": "Immediate Action: {ready} Ready maneuvers.",
+        "ReadiesBelt": "Immediate Action: {ready} Ready maneuvers, {assisted} with an assistant gunner.",
+        "RollLabel": "Immediate Action: {roll}",
+        "AssistantGunner": "An assistant gunner ({ready} Ready maneuvers)",
+        "ArmorersGift": "Armorer's Gift (+{bonus})",
+        "WeaponBond": "Weapon Bond (+{bonus})"
+      }
     }
   },
   "TYPES": {
