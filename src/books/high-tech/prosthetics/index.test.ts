@@ -174,7 +174,7 @@ describe("elective surgery", () => {
     expect(changed[1]).toMatchObject({ actor: heavy, name: "Overweight", remove: true });
     const plain = person([]);
     await operateElectively(fakeApi() as never, { patient: plain, surgeon: { name: "Doc" }, techLevel: 8, procedure: "appearance" });
-    expect(changed[2]).toMatchObject({ actor: plain, add: "Appearance (Attractive)" });
+    expect(changed[2]).toMatchObject({ actor: plain, add: "Appearance", level: 1 });
     expect(posted[2].data.lines[0]).toContain("AppearanceChanged");
   });
 

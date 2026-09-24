@@ -236,7 +236,7 @@ async function writeTrait(api: GWorldApi, patient: any, plan: Operation): Promis
     return (await api.actors.changeTrait(patient, { name: plan.from, replaceWith: plan.to })) !== null;
   }
   if (plan.procedure !== "appearance") return false;
-  if (plan.from === APPEARANCE_NAMES[0]) return (await api.actors.changeTrait(patient, { add: ATTRACTIVE_TRAIT } as any)) !== null;
+  if (plan.from === APPEARANCE_NAMES[0]) return (await api.actors.changeTrait(patient, { add: ATTRACTIVE_TRAIT.name, level: ATTRACTIVE_TRAIT.level } as any)) !== null;
   const traits = [...(patient?.items ?? [])].filter((i: any) => i?.type === "trait").map((i: any) => ({ id: String(i.id ?? ""), name: String(i.name ?? ""), levels: Number(i.system?.levels) || 0 }));
   const change = appearanceChange(traits);
   if (!change) return false;

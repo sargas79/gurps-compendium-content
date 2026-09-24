@@ -177,8 +177,8 @@ export function appearanceChange(traits: ReadonlyArray<AppearanceTrait & { id: s
   return null;
 }
 
-/** The trait Average Appearance becomes a step up, by the system's trait name (Characters p. 21). */
-export const ATTRACTIVE_TRAIT = "Appearance (Attractive)";
+/** Average Appearance a step up: the system's Appearance at level 1, Attractive (Characters p. 21). */
+export const ATTRACTIVE_TRAIT = Object.freeze({ name: "Appearance", level: 1 });
 
 /** An Appearance step's name. */
 export const APPEARANCE_NAMES: Record<number, string> = {
