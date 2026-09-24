@@ -377,7 +377,6 @@ function designLines(item: any, data: SensorData, lines: string[], options: stri
     if (input.commMode === "transmitter" && input.size !== "large") lines.push(L("SparkGapLarge"));
     if (input.commMode === "transmitter" && !active.includes("wideband")) lines.push(L("WidebandRequired"));
   } else if (input.codePrinted) lines.push(L(active.some((k) => k === "audio" || k === "video" || k === "digitalVideo") ? "CarriesAudio" : "CodePrinted"));
-  if (input.commMode === "transmitter") lines.push(L("SendOnlyLine"));
   for (const key of active) {
     if (key === "sparkGap" || key === "audio") continue;
     if (key === "regenerative") lines.push(F("RegenerativeLine", { penalty: OSCILLATION.penalty, yards: OSCILLATION.yards }));

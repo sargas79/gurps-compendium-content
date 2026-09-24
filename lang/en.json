@@ -7375,7 +7375,7 @@
         "Parsecs": "{value} parsecs",
         "Anywhere": "anywhere in the world",
         "CommModeLabel": "Built as",
-        "CommModeHint": "A receive-only radio is 10% of the cost and 20% of the weight (High-Tech p. 39).",
+        "CommModeHint": "A receive-only radio is 10% of the cost and 20% of the weight (High-Tech p. 39); a send-only one, built as the supplement Electricity and Electronics builds sets, 90% of each (Electricity and Electronics p. 29).",
         "CommMode": {
           "both": "Two-way",
           "receiver": "Receive-only",
@@ -7693,7 +7693,6 @@
         "WidebandRequired": "A spark-gap transmitter must be wideband.",
         "CodePrinted": "Printed for code alone, at half price; tick Audio for voice.",
         "CarriesAudio": "Carries audio (or video) as well as code.",
-        "SendOnlyLine": "Send-only: a transmitter as a unit of its own, x0.9 cost and weight.",
         "RegenerativeLine": "Regenerative: an Electronics Operation (Communications) roll to adjust it before it hears; a failure divides its range by 5, and on a critical failure it oscillates, jamming receivers within {yards} yards at {penalty}, 1 less for each doubling of the distance.",
         "RotaryLine": "Rotary spark gap: +{bonus} (quality) to Electronics Operation (Communications) to send.",
         "UltraRotaryLine": "Ultra-high-speed rotary spark gap: +{bonus} (quality) to send; its audio is distorted, {penalty} to understand speech and to Connoisseur (Music).",
