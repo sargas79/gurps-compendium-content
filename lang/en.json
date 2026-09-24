@@ -9108,7 +9108,11 @@
         "PlateReason": "plate cracked, -{lost}",
         "PlateWorn": "{item} loses {lost} DR ({total} in all).",
         "PlateReplace": "Replace the plate",
-        "PlateReplaced": "{item} is replaced: its DR is whole again."
+        "PlateReplaced": "{item} is replaced: its DR is whole again.",
+        "SlamPadsDamage": "{name}: worn to slam with (High-Tech p. 66)",
+        "SlamPadsReason": "DR 3 against a slam's damage, the whole piece (High-Tech p. 66)",
+        "PartialPreview": "covers {n} in 6: a blow rolls whether it stands (High-Tech p. 69)",
+        "ToePreview": "steel toe box DR {dr} on {n} in 6 foot hits (High-Tech p. 68)"
       },
       "Surveillance": {
         "Title": "Security and surveillance",

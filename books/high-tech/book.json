@@ -5657,12 +5657,13 @@
         "system.extensions": {
           "gurps-compendium-content": {
             "htArmor": {
-              "coverage": 1
+              "coverage": 1,
+              "slamPads": true
             }
           }
         }
       },
-      "reason": "1 in 6 of the torso and of the arms (p. 66 note 4); partial coverage is #383's (p. 69)"
+      "reason": "1 in 6 of the torso and of the arms (p. 66 note 4); partial coverage is #383's (p. 69); +1 damage and DR 3 when slamming (p. 66 note 4; #510)"
     },
     {
       "pack": "equipment",

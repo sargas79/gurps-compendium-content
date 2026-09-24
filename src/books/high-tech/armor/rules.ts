@@ -21,6 +21,9 @@ export function baseName(name: unknown): string {
  */
 export const TOE_BOX_SIXTHS = 2;
 
+/** Shoulder pads worn to slam with: +1 to the slam's damage, DR 3 against what the slammer takes back (p. 66 note 4). */
+export const SLAM_PADS = Object.freeze({ damage: 1, dr: 3 });
+
 /** High boots with their tops turned up cover 3 in 6 of the legs (p. 68 note 3). */
 export const TOPS_UP = { pattern: /^boots, high$/i, sixths: 3, location: "leg" } as const;
 
