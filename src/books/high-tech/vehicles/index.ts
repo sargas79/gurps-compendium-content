@@ -25,7 +25,8 @@
  *     flying rivets once the shot is worked out (`gworld.afterVehicleHit`); on
  *     flat run-flat tyres -1 Handling and top speed less 20% while they last
  *     (`gworld.vehicleStats`, which the control roll and Dodge read; CTIS
- *     ignoring two or three flats); improved brakes' +1 on a control roll made
+ *     ignoring two or three flats), in place of the system's crippled-wheel
+ *     Move for the wheels it counts crippled; improved brakes' +1 on a control roll made
  *     for braking hard; and on the tool, braking hard, an extinguisher's or
  *     fire-suppression system's roll, airbags in a collision and getting out
  *     from behind one (the shared restraint).
@@ -520,10 +521,27 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
   // Running on flat run-flat tyres: -1 Handling and top speed less 20% while
   // they last (p. 229), on the figures the rules read (API 1.115.0): the
   // control roll, Dodge, and speeds follow.
+  // The system's crippled wheels (API 1.134.0) count as flat tyres here: on
+  // run-flats or with the CTIS keeping them up the wheel isn't lost, so its
+  // crippled-wheel Move goes back and its line comes off.
   Hooks.on(api.data.hooks.vehicleStats, (context: any) => {
     const vehicle = context?.vehicle;
     if (!on.protection() || !vehicle || !Array.isArray(context.lines)) return;
-    if (flatTyres(fitOf(vehicle), stateOf(vehicle).flats, wheelsOf(vehicle)) !== "runFlat") return;
+    const move = context.move ?? {};
+    const crippledWheels = move.locomotion === "wheels" ? Math.max(0, Math.floor(Number(context.crippled?.wheel) || 0)) : 0;
+    const state = flatTyres(fitOf(vehicle), Math.max(stateOf(vehicle).flats, crippledWheels), wheelsOf(vehicle));
+    if (state !== "runFlat" && state !== "ctis") return;
+    if (crippledWheels) {
+      const lamed = (api.rules as any).crippledMove?.({ move, crippled: context.crippled, locations: String(vehicle.system?.vehicle?.locations ?? "") });
+      if (lamed?.cause === "wheel") {
+        const at = context.lines.findIndex((l: any) => l?.stat === "topSpeed" && l.value === lamed.topSpeed - (Number(move.topSpeed) || 0));
+        if (at >= 0) context.lines.splice(at, 1);
+        // What the crippled wheels took, given back on top of whatever else changed the figures.
+        context.acceleration = (Number(context.acceleration) || 0) + (Number(move.acceleration) || 0) - lamed.acceleration;
+        context.topSpeed = (Number(context.topSpeed) || 0) + (Number(move.topSpeed) || 0) - lamed.topSpeed;
+      }
+    }
+    if (state !== "runFlat") return;
     context.handling = (Number(context.handling) || 0) + RUN_FLAT.handling;
     context.topSpeed = runFlatMove(Number(context.topSpeed) || 0);
     context.lines.push({ label: L("RunningFlat"), stat: "handling", value: RUN_FLAT.handling }, { label: L("RunningFlat"), stat: "topSpeed" });

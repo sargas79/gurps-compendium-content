@@ -9722,7 +9722,7 @@
             "none": "No tyres flat.",
             "ctis": "{flats} flat: the CTIS keeps them up; no effect.",
             "runFlat": "{flats} flat: on its run-flat tyres, {handling} Handling and Move less 20%, for {miles} miles.",
-            "flat": "{flats} flat, with no run-flat tyres: see the wheel hit location (Campaigns p. 555)."
+            "flat": "{flats} flat, with no run-flat tyres: count them as crippled wheels on the vehicle's Condition panel, which slows it (Campaigns p. 555)."
           },
           "NoAirbags": "It has no airbags.",
           "AirbagsStay": "The airbags fire only above Move {move}.",

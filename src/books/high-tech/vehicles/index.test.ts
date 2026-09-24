@@ -201,6 +201,22 @@ describe("protection, with only High-Tech's switch on", () => {
     expect(stats(brdm)).toMatchObject({ handling: 1, topSpeed: 28 });
   });
 
+  it("takes the system's crippled wheels as flat tyres the run-flats or CTIS carry (API 1.134.0)", () => {
+    // As the system hands it over: one of four wheels crippled, Move 28 down to 14 with its line.
+    const lamed = (vehicle: any) => call("gworld.vehicleStats", {
+      vehicle, handling: 1, stability: 4, acceleration: 1.5, topSpeed: 14,
+      move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, crippled: { wheel: 1 },
+      lines: [{ label: "Crippled wheel", stat: "topSpeed", value: -14 }],
+    });
+    const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W", range: 375, roadBound: false });
+    expect(lamed(aml)).toMatchObject({ handling: 0, acceleration: 3, topSpeed: 22.4, lines: [{ label: "GCC.HT.Vehicles.RunningFlat", stat: "handling" }, { label: "GCC.HT.Vehicles.RunningFlat", stat: "topSpeed" }] });
+    const brdm = vehicleActor("GAZ BRDM-2", { dr: 40, locations: "t4W" });
+    expect(lamed(brdm)).toMatchObject({ handling: 1, acceleration: 3, topSpeed: 28, lines: [] });
+    // A car with neither keeps the system's figures.
+    const car = vehicleActor("Car", { dr: 4, locations: "4W" });
+    expect(lamed(car)).toMatchObject({ handling: 1, acceleration: 1.5, topSpeed: 14, lines: [{ label: "Crippled wheel" }] });
+  });
+
   it("gives improved brakes +1 on a control roll made for braking hard, from the tool (p. 229)", async () => {
     const driver = person("Driver");
     actors = [driver];
