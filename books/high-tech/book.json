@@ -4011,6 +4011,14 @@
           {
             "pattern": "^Color Television$",
             "reason": "one entry prices the set at TL7 (cutting edge) and again at TL8; both kept by hand (HT:EE p. 34)"
+          },
+          {
+            "pattern": "^(?:Workstation Terminal|Radar Jammer|Fuze)$",
+            "reason": "each is printed at two TLs or as several kinds, all kept by hand, since the capture leaves a name held at any TL alone (HT:EE pp. 40, 48, 49)"
+          },
+          {
+            "pattern": "^Reconnaissance UAVs$",
+            "reason": "the two UAVs are kept by hand as vehicles from the Reconnaissance UAVs Table; the entry's price is two T-Hawks and their controller (HT:EE p. 46)"
           }
         ],
         "set": [
@@ -4427,6 +4435,697 @@
               }
             },
             "reason": "one XS cell for 10,000 readings, printed before the price and not read (HT:EE p. 35)"
+          },
+          {
+            "pattern": "^Desktop Calculator$",
+            "set": {
+              "name": "Desktop Calculator (Vacuum Tube)"
+            },
+            "reason": "the entry prices the tube model and then a transistorized one, kept by hand (HT:EE p. 39)"
+          },
+          {
+            "pattern": "^Game Console \\(TL7\\)$",
+            "set": {
+              "system.cost": 120,
+              "system.listCost": 120,
+              "system.weight": 3.5,
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "Household power"
+              },
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1951,
+                "marketYear": 1976
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1951,
+                "marketYear": 1976
+              }
+            },
+            "reason": "the ROM cartridge's price in the entry read as the console's; the console is $120, 3.5 lbs., household power, [1951] 1976, and the cartridge is kept by hand (HT:EE p. 39)"
+          },
+          {
+            "pattern": "^Touch Screen$",
+            "set": {
+              "name": "Touch Screen (Desktop)",
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1965,
+                "marketYear": 1988
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1965,
+                "marketYear": 1988
+              }
+            },
+            "reason": "the first of three sizes, each priced; the tablet and phone screens are kept by hand. The years are the entry's, before its sizes (HT:EE p. 40)"
+          },
+          {
+            "pattern": "^Broadband modem$",
+            "set": {
+              "name": "Broadband Modem",
+              "system.extensions.gurps-compendium-content.device.cuttingEdge": true
+            },
+            "reason": "cutting edge until 2004 by the entry; a GM past that year clears it (HT:EE pp. 8, 41)"
+          },
+          {
+            "pattern": "^Low-Voltage Fence$",
+            "set": {
+              "name": "Low-Voltage Fence (per mile)",
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "XL/5 weeks, automotive power, or household power"
+              }
+            },
+            "reason": "priced per mile; the page prints an XL cell, a size the supplement doesn't sell, so the grade stays as printed and no cell is read (HT:EE p. 42)"
+          },
+          {
+            "pattern": "^High-Voltage Fence$",
+            "set": {
+              "name": "High-Voltage Fence (per 0.25 mile)"
+            },
+            "reason": "priced for a quarter mile of fence (HT:EE p. 42)"
+          },
+          {
+            "pattern": "^Magnetic Lock$",
+            "set": {
+              "name": "Magnetic Lock (Micro)",
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "Household power"
+              },
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1969
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1969
+              }
+            },
+            "reason": "the smallest of five sizes, each priced; the other four are kept by hand. Household power and 1969 are the entry's, before its sizes (HT:EE p. 42)"
+          },
+          {
+            "pattern": "^Keycard Reader$",
+            "set": {
+              "name": "Keycard Reader (Optical Barcode)",
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1949,
+                "marketYear": 1974
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1949,
+                "marketYear": 1974
+              }
+            },
+            "reason": "the reader's price with its first technology; the other four are kept by hand (HT:EE p. 43)"
+          },
+          {
+            "pattern": "^Biometric Identification$",
+            "set": {
+              "name": "Biometric Identification (Signature)"
+            },
+            "reason": "the first kind's price; it is High-Tech's Signature Pad, left to it in overlap-ee.txt, and the kinds High-Tech lacks are kept by hand (HT:EE p. 43)"
+          },
+          {
+            "pattern": "^Pressure Mat$",
+            "set": {
+              "name": "Pressure Mat (per square foot)"
+            },
+            "reason": "priced per square foot (HT:EE p. 44)"
+          },
+          {
+            "pattern": "^Photoelectric Beam$",
+            "set": {
+              "name": "Photoelectric Beam (per beam)"
+            },
+            "reason": "priced per beam (HT:EE p. 44)"
+          },
+          {
+            "pattern": "^Contact Microphone$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "T",
+                  "cells": 1,
+                  "endurance": "1 week",
+                  "raw": "T/week"
+                }
+              }
+            },
+            "reason": "a T cell for a week, printed without a number the capture reads (HT:EE p. 44)"
+          },
+          {
+            "pattern": "^Digital Spectrum Analyzer$",
+            "set": {
+              "name": "Spectrum Analyzer (Digital)"
+            },
+            "reason": "named as a spectrum analyzer, which gives +4 to jamming (p. 49, the jamming switch reads the name); the TL7 one is p. 11's (HT:EE p. 48)"
+          },
+          {
+            "pattern": "^Taser \\(TL8\\)$",
+            "set": {
+              "name": "Air Taser Model 34000",
+              "system.category": "weapon",
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 1,
+                  "endurance": "20 seconds",
+                  "raw": "XS/20 seconds"
+                }
+              },
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1994
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1994
+              },
+              "system.rangedModes": [
+                {
+                  "name": "Primary",
+                  "skill": "Guns (Pistol)",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "1d-3",
+                  "damageType": "pi-",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "accuracy": 0,
+                  "scopeBonus": 0,
+                  "halfDamageRange": 5,
+                  "maxRange": 5,
+                  "rangeIsStMultiple": false,
+                  "rateOfFire": 1,
+                  "projectiles": 1,
+                  "shots": "2(3i)",
+                  "loaded": 2,
+                  "reloadWeight": 0.25,
+                  "ammunition": "",
+                  "minSt": 7,
+                  "twoHanded": false,
+                  "weaponSt": null,
+                  "thrown": false,
+                  "mount": "",
+                  "bulk": -2,
+                  "recoil": 2,
+                  "malfunction": 17,
+                  "minRange": 1,
+                  "linked": {
+                    "damage": "HT-3",
+                    "damageType": "cr",
+                    "armorDivisor": 0.5,
+                    "affliction": true,
+                    "afflictionAttribute": "HT",
+                    "afflictionModifier": -3,
+                    "explosive": false,
+                    "followUp": true,
+                    "label": "Follow-up"
+                  }
+                }
+              ]
+            },
+            "reason": "the Ranged Weapons Table's name for it and its row; the power and 1994 are split by a sidebar in reading order; its cartridges are kept by hand (HT:EE pp. 49, 51)"
+          },
+          {
+            "pattern": "^Cattle Prod$",
+            "set": {
+              "system.category": "weapon",
+              "system.meleeModes": [
+                {
+                  "name": "Thrust",
+                  "skill": "Shortsword",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "1d-3",
+                  "damageType": "burn",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "reach": "1",
+                  "skillModifier": 0,
+                  "parryModifier": 0,
+                  "canParry": true,
+                  "unbalanced": false,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 3,
+                  "twoHanded": false,
+                  "unreadyAfterAttack": false,
+                  "linked": {
+                    "damage": "HT-3",
+                    "damageType": "cr",
+                    "armorDivisor": 1,
+                    "affliction": true,
+                    "afflictionAttribute": "HT",
+                    "afflictionModifier": -3,
+                    "explosive": false,
+                    "followUp": false,
+                    "label": "linked"
+                  }
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row (HT:EE p. 51)"
+          },
+          {
+            "pattern": "^Active Denial System$",
+            "set": {
+              "system.weight": 4500,
+              "system.category": "weapon",
+              "system.rangedModes": [
+                {
+                  "name": "beam",
+                  "skill": "Gunner (Beams)",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "",
+                  "damageType": "cr",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": true,
+                  "afflictionAttribute": "HT",
+                  "afflictionModifier": -5,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "accuracy": 5,
+                  "scopeBonus": 0,
+                  "halfDamageRange": 300,
+                  "maxRange": 300,
+                  "rangeIsStMultiple": false,
+                  "rateOfFire": 1,
+                  "projectiles": 1,
+                  "shots": "1(2)",
+                  "loaded": 1,
+                  "reloadWeight": 0,
+                  "ammunition": "",
+                  "minSt": 250,
+                  "twoHanded": false,
+                  "weaponSt": null,
+                  "thrown": false,
+                  "mount": "mounted",
+                  "bulk": -15,
+                  "recoil": 1,
+                  "malfunction": null,
+                  "areaAttack": true,
+                  "radius": 5
+                }
+              ]
+            },
+            "reason": "the prototype weighs 4,500 lbs. by its entry (the table prints 10,000, taken as its truck mount); the Ranged Weapons Table's row (HT:EE pp. 50-51)"
+          },
+          {
+            "pattern": "^Arc Welder$",
+            "set": {
+              "system.meleeModes": [
+                {
+                  "name": "Thrust",
+                  "skill": "Knife",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "3d",
+                  "damageType": "burn",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "reach": "C",
+                  "skillModifier": -2,
+                  "parryModifier": 0,
+                  "canParry": false,
+                  "unbalanced": false,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 3,
+                  "twoHanded": false,
+                  "unreadyAfterAttack": false
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row (HT:EE p. 50)"
+          },
+          {
+            "pattern": "^Power Drill$",
+            "set": {
+              "system.meleeModes": [
+                {
+                  "name": "Thrust",
+                  "skill": "Knife",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "1d+2",
+                  "damageType": "pi++",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 2,
+                  "reach": "C",
+                  "skillModifier": -2,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": true,
+                  "minSt": 10,
+                  "twoHanded": false,
+                  "unreadyAfterAttack": false
+                },
+                {
+                  "name": "Thrust (small bit)",
+                  "skill": "Knife",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "1d+2",
+                  "damageType": "pi+",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 2,
+                  "reach": "C",
+                  "skillModifier": -2,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": true,
+                  "minSt": 10,
+                  "twoHanded": false,
+                  "unreadyAfterAttack": false
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row, and its smaller bits at pi+ by note [3] (HT:EE p. 50)"
+          },
+          {
+            "pattern": "^Soldering Iron \\(TL6\\)$",
+            "set": {
+              "system.meleeModes": [
+                {
+                  "name": "Thrust",
+                  "skill": "Knife",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "1",
+                  "damageType": "burn",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "reach": "C",
+                  "skillModifier": -1,
+                  "parryModifier": -2,
+                  "canParry": true,
+                  "unbalanced": false,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 7,
+                  "twoHanded": false,
+                  "unreadyAfterAttack": false
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row is the TL6 iron's, 1.25 lbs. (HT:EE p. 50)"
+          },
+          {
+            "pattern": "^Circular Saw$",
+            "set": {
+              "system.meleeModes": [
+                {
+                  "name": "Swing",
+                  "skill": "Two-Handed Axe/Mace",
+                  "damageBase": "sw",
+                  "damageModifier": 3,
+                  "damageFormula": "",
+                  "damageType": "cut",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 2,
+                  "reach": "1",
+                  "skillModifier": -3,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 11,
+                  "twoHanded": true,
+                  "unreadyAfterAttack": true
+                },
+                {
+                  "name": "Swing (diamond blade)",
+                  "skill": "Two-Handed Axe/Mace",
+                  "damageBase": "sw",
+                  "damageModifier": 3,
+                  "damageFormula": "",
+                  "damageType": "cut",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 5,
+                  "reach": "1",
+                  "skillModifier": -3,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 11,
+                  "twoHanded": true,
+                  "unreadyAfterAttack": true
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row and its diamond-blade row (HT:EE p. 51)"
+          },
+          {
+            "pattern": "^Compact Circular Saw$",
+            "set": {
+              "system.meleeModes": [
+                {
+                  "name": "Swing",
+                  "skill": "Two-Handed Axe/Mace",
+                  "damageBase": "sw",
+                  "damageModifier": 1,
+                  "damageFormula": "",
+                  "damageType": "cut",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 2,
+                  "reach": "C",
+                  "skillModifier": -2,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 10,
+                  "twoHanded": true,
+                  "unreadyAfterAttack": true
+                },
+                {
+                  "name": "Swing (diamond blade)",
+                  "skill": "Two-Handed Axe/Mace",
+                  "damageBase": "sw",
+                  "damageModifier": 1,
+                  "damageFormula": "",
+                  "damageType": "cut",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": false,
+                  "afflictionAttribute": "",
+                  "afflictionModifier": 0,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 5,
+                  "reach": "C",
+                  "skillModifier": -2,
+                  "parryModifier": -1,
+                  "canParry": true,
+                  "unbalanced": true,
+                  "isFencing": false,
+                  "isFlail": false,
+                  "pick": false,
+                  "minSt": 10,
+                  "twoHanded": true,
+                  "unreadyAfterAttack": true
+                }
+              ]
+            },
+            "reason": "the Melee Weapons Table's row; its diamond row prints sw+13(5), settled as sw+1(5): the blade changes the divisor, as on the circular saw (HT:EE p. 51)"
+          },
+          {
+            "pattern": "^Laser Pointer$",
+            "set": {
+              "system.rangedModes": [
+                {
+                  "name": "dazzle",
+                  "skill": "Beam Weapons (Pistol)",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "",
+                  "damageType": "cr",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": true,
+                  "afflictionAttribute": "HT",
+                  "afflictionModifier": -2,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "accuracy": 5,
+                  "scopeBonus": 0,
+                  "halfDamageRange": 2,
+                  "maxRange": 20,
+                  "rangeIsStMultiple": false,
+                  "rateOfFire": 1,
+                  "projectiles": 1,
+                  "shots": "50,000",
+                  "loaded": 50000,
+                  "reloadWeight": 0,
+                  "ammunition": "",
+                  "minSt": 2,
+                  "twoHanded": false,
+                  "weaponSt": null,
+                  "thrown": false,
+                  "mount": "",
+                  "bulk": 0,
+                  "recoil": 1,
+                  "malfunction": null
+                }
+              ]
+            },
+            "reason": "the Ranged Weapons Table's row; its -1 skill penalty has no field on a ranged mode (HT:EE p. 51)"
+          },
+          {
+            "pattern": "^Acoustic Hailing Device$",
+            "set": {
+              "system.rangedModes": [
+                {
+                  "name": "hail",
+                  "skill": "Beam Weapons (Projector)",
+                  "damageBase": "fixed",
+                  "damageModifier": 0,
+                  "damageFormula": "",
+                  "damageType": "cr",
+                  "explosive": false,
+                  "fragmentation": "",
+                  "affliction": true,
+                  "afflictionAttribute": "HT",
+                  "afflictionModifier": -3,
+                  "damageExtraDice": 0,
+                  "damageSpecial": false,
+                  "surge": false,
+                  "armorDivisor": 1,
+                  "accuracy": 7,
+                  "scopeBonus": 0,
+                  "halfDamageRange": 2,
+                  "maxRange": 30,
+                  "rangeIsStMultiple": false,
+                  "rateOfFire": 1,
+                  "projectiles": 1,
+                  "shots": "480",
+                  "loaded": 480,
+                  "reloadWeight": 0,
+                  "ammunition": "",
+                  "minSt": 10,
+                  "twoHanded": true,
+                  "weaponSt": null,
+                  "thrown": false,
+                  "mount": "",
+                  "bulk": -5,
+                  "recoil": 1,
+                  "malfunction": null,
+                  "areaAttack": true,
+                  "radius": 30
+                }
+              ]
+            },
+            "reason": "the Ranged Weapons Table's row (HT:EE p. 51)"
+          },
+          {
+            "pattern": "^(?:Low-Voltage Fence|High-Voltage Fence|Key Switch|Electric Deadbolt|Keypad Combination Lock|Magnetic Lock|Smart Lock|Keycard Reader|Electric Alarm|Pressure Mat|Ultrasonic Alarm|Proximity Sensor|Car Alarm|Photoelectric Beam|Infrasonic Alarm|Resonant Cavity Microphone|Isolator|Contact Microphone|Nonlinear Junction Detector|Keylogger|Shielded Wallet|Taser \\(TL8\\)|Cattle Prod|NNEMP|Shielded Cap|Active Denial System)$",
+            "set": {
+              "system.extensions.gurps-compendium-content.device.ht": 12
+            },
+            "reason": "the chapter's adventuring gear has HT 12 (HT:EE p. 42)"
+          },
+          {
+            "pattern": "^(?:Seismic Ground Sensor|Digital Spectrum Analyzer|Laser Designator)$",
+            "set": {
+              "system.extensions.gurps-compendium-content.device.ht": 12,
+              "system.extensions.gurps-compendium-content.device.dr": 8
+            },
+            "reason": "military electronics are built to HT 12 and DR 8 (HT:EE p. 45)"
           }
         ]
       },

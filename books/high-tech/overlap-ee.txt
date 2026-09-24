@@ -57,7 +57,8 @@ EQUIPMENT	Megacomputer	Megacomputer	HT:EE37, HT20	keep	TL7 and industrial power 
 EQUIPMENT	Medium Computer	Medium Computer	HT:EE37, HT20	keep	TL7 and rechargeable/8 hrs. against TL8, M/2.5 hrs.; same price and weight
 EQUIPMENT	Small Computer	Small Computer	HT:EE37, HT20	keep	rechargeable/8 hrs. against M/5 hrs.; same TL, price and weight
 EQUIPMENT	Tiny Computer	Tiny Computer	HT:EE37, HT20	keep	rechargeable/8 hrs. against 2xS/5 hrs.; same TL, price and weight
-EQUIPMENT	Workstation Terminal	Workstation Terminal	HT:EE40, HT21	keep	$375, 25 lbs., household power, against $500, 25 lbs.
+EQUIPMENT	Workstation Terminal (TL7)	Workstation Terminal	HT:EE40, HT21	keep	$375, 25 lbs., household power, against $500, 25 lbs.; named by TL beside the TL8 one, both kept by hand
+EQUIPMENT	Workstation Terminal (TL8)	Workstation Terminal	HT:EE40, HT21	keep	the TL7 terminal at half the weight, 12.5 lbs., as its entry says of TL8; kept by hand
 EQUIPMENT	Portable Terminal	Portable Terminal	HT:EE40, HT21	skip	identical: TL8, $50, 0.5 lb.
 EQUIPMENT	Electronic Lockpicking Kit	Electronic Lockpicking Kit	HT:EE42, HT213	skip	identical: TL7, $1,500, 3 lbs.
 EQUIPMENT	Portable X-Ray Machine	Portable X-Ray Machine (TL8)	HT:EE43, HT217	skip	identical: TL8, $50,000, 25 lbs.; the supplement adds rechargeable/3 hrs. (#488)
@@ -65,7 +66,7 @@ EQUIPMENT	Electric Alarm	Electric Alarm (per portal)	HT:EE43, HT206	keep	TL5 and
 EQUIPMENT	Bug Detector	Bug Detector	HT:EE44, HT212	skip	identical: TL7, $500, 1 lb.
 EQUIPMENT	White Noise Generator	White Noise Generator (TL7)	HT:EE44, HT213	skip	identical: TL7, $150, 4 lbs., 3xS/4 hrs.
 EQUIPMENT	Cattle Prod	Cattle Prod	HT:EE49, HT200	keep	TL6 against TL7, 6xS/2,000 uses, and its own melee row (HT:EE51): the linked affliction has no armour divisor, and the pain lasts a minute per point of failure
-EQUIPMENT	Stun Baton	Stun Baton	HT:EE49, HT200	skip	identical: TL8, $60, 1.5 lbs., 2xS; the melee table's HT-1 linked roll (HT:EE51) disagrees with its own note [1] (HT-3), which is High-Tech's
+EQUIPMENT	Stun Baton	Stun Baton	HT:EE49, HT200	skip	identical: TL8, $60, 1.5 lbs., 2xS; the melee table (HT:EE51) prints it at TL7 and its linked roll at HT-1(0.5), against its own entry (TL8, 1994) and its own note [1] (HT-3), which agree with High-Tech's record
 EQUIPMENT	Cell-Phone Jammer	Cell-Phone Jammer	HT:EE50, HT213	skip	identical: TL8, $500, 5 lbs.; its revised effect is a rule, E3, under jamming (#501)
 EQUIPMENT	Security Metal Detector	Handheld Metal Detector (TL8)	HT:EE43, HT206	skip	near-duplicate, identical: TL8, $250, 1 lb., S/10 hrs.
 EQUIPMENT	Laser Microphone	Laser Mike	HT:EE44, HT208	skip	near-duplicate, identical: TL7, $5,000, 2 lbs.
@@ -73,10 +74,10 @@ EQUIPMENT	Surveillance Camera	Video Surveillance Camera (TL7)	HT:EE45, HT206	ski
 EQUIPMENT	High-Definition Surveillance Camera	Video Surveillance Camera (TL8)	HT:EE45, HT206	skip	near-duplicate, identical: TL8, $150, 1 lb.
 EQUIPMENT	Handheld Stun Gun	Stun Gun	HT:EE49, HT200	skip	near-duplicate, identical: TL8, $25, 0.5 lb., 2xS, and the same melee row (HT:EE50)
 EQUIPMENT	Taser (TL7)	Tasertron TE-76	HT:EE49, HT89	skip	near-duplicate, identical: the weapon table names it Tasertron TE-76 (HT:EE51), TL7, $350, 2 lbs., the same ranged row
-EQUIPMENT	Taser (TL8)	TASER M26	HT:EE49, HT89	keep	another product: the weapon table names it Air Taser Model 34000 (HT:EE51); same $400, 1.1 lbs., but range 5 against 7 and a HT-3 follow-up against HT-5
+EQUIPMENT	Air Taser Model 34000	TASER M26	HT:EE49, HT89	keep	another product: the entry's Taser (TL8), named as the weapon table names it (HT:EE51); same $400, 1.1 lbs., but range 5 against 7 and a HT-3 follow-up against HT-5
 EQUIPMENT	Pedal Generator	Semi-Portable Muscle-Powered Generator	HT:EE17, HT14	skip	near-duplicate, identical: TL6, $125, 50 lbs.; its FP cost and recharge rates are #488's generator data for High-Tech's record
 EQUIPMENT	Hand Crank Generator	Portable Muscle-Powered Generator	HT:EE17, HT14	keep	$15, 0.25 lb. against $50, 10 lbs., and no FP
-EQUIPMENT	Workstation	Microframe Computer	HT:EE37, HT20	skip	near-duplicate, identical: TL7, $10,000, 40 lbs.; the supplement's name and Complexity for the size are #496's
+EQUIPMENT	Workstation	Microframe Computer	HT:EE37, HT20	keep	same TL7, $10,000, 40 lbs., but the supplement's size by its own name: the era computers (#496) read "Workstation" as the size of Complexity 4, which High-Tech's microframe is not
 EQUIPMENT	Minicomputer	Mainframe Computer	HT:EE37, HT20	keep	TL7 against TL6; same $100,000, 400 lbs.
 EQUIPMENT	Macroframe	Macroframe Computer	HT:EE37, HT20	keep	TL7 against TL6; same $1,000,000, 2 tons
 EQUIPMENT	Penlight	Mini-Flashlight	HT:EE22, HT52	keep	XS/5 hrs. against 2xXS/1 hr.; same TL6, $10, 0.25 lb.
@@ -105,7 +106,8 @@ EQUIPMENT	Flatscreen Television	TV Set (TL8)	HT:EE34, HT45	keep	$130, 7 lbs., ag
 EQUIPMENT	Flatbed Scanner	Document Scanner	HT:EE33, HT21	keep	$75, 9 lbs., household power, against $25, 2 lbs.
 EQUIPMENT	Laser Printer	Desktop Printer	HT:EE33, HT21	keep	$150, 35 lbs., against $100, 10 lbs.
 EQUIPMENT	Handheld Sonar	Small Sonar	HT:EE35, HT45	keep	$10,000, 16 lbs., 8xS/20 hours, 10 yards, against $2,000, 8 lbs.
-EQUIPMENT	Radar Jammer	Area Jammer (TL7)	HT:EE49, HT212	keep	$50,000, 200 lbs. against $5,000, 50 lbs.
+EQUIPMENT	Radar Jammer (TL7)	Area Jammer (TL7)	HT:EE49, HT212	keep	$50,000, 200 lbs. against $5,000, 50 lbs., and against radar, not radio; kept by hand beside the TL8 one
+EQUIPMENT	Radar Jammer (TL8)	Area Jammer (TL8)	HT:EE49, HT212	keep	the TL7 jammer at half the weight, 100 lbs., and twice the radius; kept by hand
 EQUIPMENT	Large Jammer	Area Jammer (TL6)	HT:EE49, HT212	keep	priced from the supplement's large radio (half cost, twice weight), not High-Tech's area jammer: by hand
 EQUIPMENT	Portable Jammer	Area Jammer (TL8)	HT:EE49, HT212	keep	priced from the supplement's medium radio (half cost, twice weight, five times the power): by hand
 EQUIPMENT	Biometric Identification (Signature)	Signature Pad	HT:EE43, HT205	skip	near-duplicate, identical: TL8, $200, 2 lbs.
@@ -127,3 +129,8 @@ EQUIPMENT	Very Large (VL)	VL Battery	HT:EE16, HT13	skip	$30, 75 lbs. against $20
 EQUIPMENT	Laser Scalpel	Surgical Laser	HT:EE14, HT224	keep	near-duplicate: $1,850, 45 lbs., household power, against $100,000, 200 lbs.
 EQUIPMENT	Inkjet Printer	Desktop Printer	HT:EE24, HT21	keep	near-duplicate: $110, 12 lbs., against $100, 10 lbs.
 EQUIPMENT	Multifunction Printer	Desktop Printer	HT:EE23, HT21	keep	near-duplicate: $100, 12 lbs., a printer, scanner, copier and fax in one, against $100, 10 lbs.
+EQUIPMENT	GPS	Global Positioning System Receiver	HT:EE39, HT53	keep	near-duplicate: $75, 0.25 lb., 2xS/40 hrs., against $100, 0.25 lb.; kept by hand, as the page prints its weight without a unit
+EQUIPMENT	Infrared Motion Detector	IR Motion Detector	HT:EE44, HT206	skip	near-duplicate, identical: TL8, $100, 1 lb.; the supplement adds household power (#488)
+EQUIPMENT	Proximity Sensor	Proximity Detector (per item)	HT:EE44, HT206	skip	near-duplicate, identical: TL7, $40, neg.; the supplement adds household power (#488)
+EQUIPMENT	Low-Voltage Fence (per mile)	Cattle Fence (control box and 1/4 mile)	HT:EE42, HT204	keep	near-duplicate: TL7, $800, 1,200 lbs. a mile, against TL6, $1,000, 400 lbs. a quarter mile
+EQUIPMENT	High-Voltage Fence (per 0.25 mile)	Lethal Fence (control box and 1/4 mile)	HT:EE42, HT204	keep	near-duplicate: TL8 and industrial power against TL6; same $10,000, 500 lbs.
