@@ -210,8 +210,8 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
       if (effects.blindness === true) return void say(actor, nameOf(item), [F("AlreadyBlind", { name })]);
       const darkness = darknessAtVictim(api, actor);
       if (darkness !== null && !darkAdapted(darkness)) return void say(actor, nameOf(item), [F("NotDarkAdapted", { name })]);
-      // The system hands the margin of a failure as a negative number.
-      const blindness = blindnessFrom(DAZZLE_TABLES.forBook("high-tech") ?? HT_DAZZLE, "dazzle", Math.abs(margin));
+      // The engine takes the margin by its size (the system's is negative).
+      const blindness = blindnessFrom(DAZZLE_TABLES.forBook("high-tech") ?? HT_DAZZLE, "dazzle", margin);
       const minutes = blindness.kind === "dazzled" ? blindness.minutes : 1;
       context.effects.push({ module: MODULE_ID, key: DAZZLE_BLINDED, label: L("Blinded"), duration: { seconds: minutes * 60 } });
       void say(actor, nameOf(item), [F(darkness === null ? "BlindedUnread" : "BlindedLine", { name, minutes })]);

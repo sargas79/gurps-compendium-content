@@ -54,10 +54,12 @@ export const CRITICAL_MARGIN = 10;
 /**
  * What a failed resistance roll leaves: blindness for minutes equal to the
  * margin from a dazzle beam (at least one), and from a blinding beam whatever
- * the book's table says.
+ * the book's table says. The margin is taken by its size: the system hands a
+ * failure's margin over as a negative number, and a caller may already have
+ * made it positive.
  */
 export function blindnessFrom(table: DazzleTable, beam: EyeBeam, margin: number): Blindness {
-  const by = Math.max(1, Math.floor(Number(margin) || 0));
+  const by = Math.max(1, Math.floor(Math.abs(Number(margin) || 0)));
   if (beam === "dazzle") return { kind: "dazzled", minutes: by };
   return { kind: "blinded", permanent: table.blinding === "permanent" || by >= CRITICAL_MARGIN };
 }

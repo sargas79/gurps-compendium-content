@@ -359,27 +359,45 @@ describe("laser dazzlers (laserDazzlers)", () => {
     expect(goggled.modifiers).toEqual([{ label: "GCC.HT.Projectors.Laser.Protection", value: 9 }]);
   });
 
+  // The system hands a failure's margin over as a negative number (#535).
   it("dazzles for the margin in minutes, and a blinding laser cripples the eyes, for good at 10+", () => {
     on.laserDazzlers = true;
     const victim = actorWith("Guard");
-    const dazzled = { actor: victim, item: laser("NORINCO QXJ04", -5), label: "", margin: 3, effects: [] as any[] };
+    const dazzled = { actor: victim, item: laser("NORINCO QXJ04", -5), label: "", margin: -3, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, dazzled);
     expect(dazzled.effects).toEqual([{ module: MODULE_ID, key: "ht-dazzled", label: "GCC.HT.Projectors.Laser.Dazzled", duration: { seconds: 180 } }]);
-    const blinded = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: 4, effects: [] as any[] };
+    const blinded = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: -4, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, blinded);
     expect(blinded.effects[0]).toMatchObject({ key: "ht-laser-blinded", label: "GCC.HT.Projectors.Laser.Blinded" });
-    const lost = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: 11, effects: [] as any[] };
+    const lost = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: -11, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, lost);
     expect(lost.effects[0]).toMatchObject({ label: "GCC.HT.Projectors.Laser.BlindedForGood" });
   });
 
+  it("dazzles for 1, 5 and 12 minutes on failures by 1, 5 and 12; a blinding laser cripples for good only from 10 (#535)", () => {
+    on.laserDazzlers = true;
+    const victim = actorWith("Guard");
+    const hit = (name: string, modifier: number, margin: number) => {
+      const context = { actor: victim, item: laser(name, modifier), label: "", margin, effects: [] as any[] };
+      fire(HOOKS.afflictionEffect, context);
+      return context.effects[0];
+    };
+    expect(hit("NORINCO QXJ04", -5, -1)).toMatchObject({ key: "ht-dazzled", duration: { seconds: 60 } });
+    expect(hit("NORINCO QXJ04", -5, -5)).toMatchObject({ key: "ht-dazzled", duration: { seconds: 300 } });
+    expect(hit("NORINCO QXJ04", -5, -12)).toMatchObject({ key: "ht-dazzled", duration: { seconds: 720 } });
+    expect(hit("NORINCO ZM87", -10, -1)).toMatchObject({ label: "GCC.HT.Projectors.Laser.Blinded" });
+    expect(hit("NORINCO ZM87", -10, -5)).toMatchObject({ label: "GCC.HT.Projectors.Laser.Blinded" });
+    expect(hit("NORINCO ZM87", -10, -9)).toMatchObject({ label: "GCC.HT.Projectors.Laser.Blinded" });
+    expect(hit("NORINCO ZM87", -10, -10)).toMatchObject({ label: "GCC.HT.Projectors.Laser.BlindedForGood" });
+  });
+
   it("leaves another book's laser to that book, and does nothing with the switch off", () => {
     const victim = actorWith("Guard");
-    const off = { actor: victim, item: laser("NORINCO QXJ04", -5), label: "", margin: 3, effects: [] as any[] };
+    const off = { actor: victim, item: laser("NORINCO QXJ04", -5), label: "", margin: -3, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, off);
     expect(off.effects).toEqual([]);
     on.laserDazzlers = true;
-    const theirs = { actor: victim, item: laser("Laser Dazzler", -5, "ultra-tech"), label: "", margin: 3, effects: [] as any[] };
+    const theirs = { actor: victim, item: laser("Laser Dazzler", -5, "ultra-tech"), label: "", margin: -3, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, theirs);
     expect(theirs.effects).toEqual([]);
   });
