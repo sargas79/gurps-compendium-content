@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { setRuleReader } from "../../../shared/book-tables.js";
 import { CELL_TABLES, cellPrice, enduranceLeft, powerPriceChange } from "../../../shared/power/index.js";
-import { isPluggable, isPowered, powerData } from "../../../shared/power/data.js";
+import { isPluggable, isPowered, loadedCellWeight, powerData } from "../../../shared/power/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechCells } from "../../ultra-tech/power/index.js";
 import { BATTERIES_RULE, CHEMISTRY_RULE, EXTERNAL_POWER_RULE, HIGH_TECH_BATTERIES, generatorShown, highTechBatteries, hoursToRecharge } from "./index.js";
@@ -104,6 +104,10 @@ describe("battery chemistries against High-Tech's table (HT:EE pp. 16-18)", () =
     const lamp = gear("high-tech", { draw: { cell: "L", cells: 1, endurance: "8 hrs." }, chemistry: "alkaline" });
     expect(powerData(lamp).enduranceFactor).toBeCloseTo(3);
     expect(powerPriceChange(lamp)).toEqual({ cost: 0, weight: 5 });
+    // The batteries it holds, as the gadget options and combinations count them, weigh the same half again (#549).
+    expect(loadedCellWeight(lamp)).toBe(15);
+    only(BATTERIES_RULE);
+    expect(loadedCellWeight(lamp)).toBe(10);
   });
 
   it("leaves Ultra-Tech's cells alone, whatever the field says", () => {
