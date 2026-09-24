@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyReloading } from "../reloading/index.js";
-import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, readyAmmunition, type AmmunitionSwitches } from "./index.js";
+import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, gunCalibre, readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -179,6 +179,15 @@ describe("a gun's load (High-Tech pp. 163-166)", () => {
     expect(price).toMatchObject({ cost: 3.71, weight: 0.026 });
     // A box whose calibre the table doesn't know keeps its own price.
     expect(prices[0].apply(box({ fits: "arrow" }), { cost: 9, weight: 1 })).toBeNull();
+  });
+});
+
+describe("a gun's calibre row (#433)", () => {
+  it("takes the musket row for the Brown Bess and the pistol row for the Rigby, by their skills", () => {
+    expect(gunCalibre(gun({ name: "Brown Bess, .75 Flintlock", tl: "5", skill: "Guns (Musket)" }))?.name).toBe(".75 Flintlock (Brown Bess)");
+    expect(gunCalibre(gun({ name: "Rigby Traveling Pistol, .75 Flintlock", tl: "5", skill: "Guns (Pistol)" }))?.name).toBe(".75 Flintlock (Rigby)");
+    // A GM's own musket of that calibre, named for nobody, still finds the musket row.
+    expect(gunCalibre(gun({ name: "Old Musket, .75 Flintlock", tl: "5", skill: "Guns (Musket)" }))?.name).toBe(".75 Flintlock (Brown Bess)");
   });
 });
 

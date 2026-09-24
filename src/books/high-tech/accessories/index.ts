@@ -55,7 +55,7 @@
 import { ACCESSORY_TABLES, accessoryOf, minStPenaltyAfter, minStPenaltyAt, multiplyDamage, scaledMinSt, type AccessoryFigures, type AccessoryKind } from "../../../shared/accessories/index.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { calibreRows } from "../ammunition/calibres.js";
+import { calibreRowOf } from "../ammunition/calibres.js";
 import { isFirearm } from "../firearms/index.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
@@ -228,11 +228,12 @@ const rangedModes = (item: any): any[] => item?.system?.rangedModes ?? [];
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
 const isPistolSkill = (skill: string) => /^guns(?: sport)? \(pistol\)/i.test(String(skill ?? "").trim());
 
-/** The calibre a gun's name gives after its last comma: "IMI Galil ARM, .223 Remington". */
+/** The calibre a gun's name gives after its last comma: "IMI Galil ARM, .223 Remington", in the gun's own table. */
 function calibreOf(item: any) {
   const name = String(item?.name ?? "");
-  const at = name.lastIndexOf(",");
-  return at < 0 ? null : (calibreRows(name.slice(at + 1).trim())[0] ?? null);
+  if (name.lastIndexOf(",") < 0) return null;
+  const skill = String(rangedModes(item).find((m) => m?.skill)?.skill ?? "");
+  return calibreRowOf(name, skill);
 }
 
 /** Whether an accessory's rule is on. */
