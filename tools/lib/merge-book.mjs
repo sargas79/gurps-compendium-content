@@ -31,6 +31,7 @@ import {
   readProse,
   readStatistics,
 } from "./books.mjs";
+import { volumeOfPages, volumeOfReference } from "./sources.mjs";
 
 /** The only keys a text record may carry. */
 const PROSE_KEYS = new Set(["_id", "name", "description", "pages", "status", "notes"]);
@@ -190,6 +191,20 @@ export function mergeBook(bk, packs) {
               `then update the name here.`,
           );
           continue;
+        }
+        // A book with other volumes (tools/lib/sources.mjs): the text's pages
+        // cite the volume the record does, so "HT:EE12" never lands on a
+        // record citing High-Tech's own p. 12, nor "HT12" on the supplement's.
+        if (bk.sources?.length && prose.pages) {
+          const pagesIn = volumeOfPages(bk, prose.pages)?.id ?? null;
+          const recordIn = volumeOfReference(bk, entry.system?.reference ?? "")?.id ?? null;
+          if (pagesIn !== recordIn) {
+            problems.push(
+              `${prosePath} — ${prose.name}: its pages "${prose.pages}" cite another volume ` +
+                `than the record's reference "${entry.system?.reference ?? ""}".`,
+            );
+            continue;
+          }
         }
         if (!STATUSES.has(prose.status)) {
           problems.push(

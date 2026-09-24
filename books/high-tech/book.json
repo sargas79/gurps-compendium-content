@@ -3979,6 +3979,33 @@
     ]
   },
   "notes": "GCA cites this book as HT120, the plain prefix, and no record also cites a Basic Set page, so overlap.txt is empty. PDF page = book page + 1. The data file (Eric B. Smith, October 2023, marked incomplete) holds the gun perks and techniques of the appendix, armour and weapons only: no general gear, accessories, explosives, mines, melee weapons, covert-ops or medical gear, drugs or vehicles, which are captured from the PDF (#347) or kept by hand (#346). Its [MODIFIERS] are equipment options, weapon quality and ammunition, every one a calculated field or a load rather than a modifier item (#357, #364, #374), so none is written. Fragmentation before the damage type, follow-up and linked modes shared by sibling modes, rate-of-fire marks and placeholder modes parse since sargas79/GWorldVTT#591, and a missile's minimum range since #592 (gworld 1.35.0); the dry runs against the pinned 1.25.0 and against GWorldVTT main are in TRIAGE.md. Four shields and three split-DR armours the parser rejects are kept by hand (#346), with the records the file lacks; the rules marked #346 give the extracted weapons the modes the file can't carry. Scope bonuses, missile guidance and a mode's second follow-up or linked line parse since sargas79/GWorldVTT#632 (API 1.80.0). Folded-stock and bipod pairs stay modes until #372 decides on states. See TRIAGE.md.",
+  "sources": [
+    {
+      "id": "ee",
+      "title": "GURPS High-Tech: Electricity and Electronics",
+      "reference": "High-Tech: Electricity and Electronics",
+      "pdf": "GURPS_4th_Edition_High-Tech_Electricity_and_Electronics.pdf",
+      "transcription": {
+        "pdfOffset": 0,
+        "pageLabel": "HT:EE",
+        "layout": true,
+        "asidesAsText": true
+      },
+      "capture": {
+        "labelEnd": ".:",
+        "cellSizes": ["T", "XS", "S", "M", "L", "VL"],
+        "runInHeadings": true,
+        "repeatsByTl": true,
+        "noLegality": true,
+        "powerBeforePrice": true,
+        "years": true,
+        "skip": [],
+        "set": []
+      },
+      "overlap": "overlap-ee.txt",
+      "notes": "A 55-page supplement added to High-Tech (private #471, E1): its records join High-Tech's packs under High-Tech's book flag and cite it as \"High-Tech: Electricity and Electronics p. N\"; its text and journal pages cite \"HT:EE<N>\". PDF page = printed page. No GCA file: every record is captured from the PDF with tools/capture-gear.mjs --source ee. A name High-Tech's own records hold is kept or left out by overlap-ee.txt (E2). Triage in TRIAGE.md (#476)."
+    }
+  ],
   "exclude": [
     {
       "pack": "modifiers",

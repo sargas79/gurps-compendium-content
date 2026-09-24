@@ -555,3 +555,253 @@ the portable X-ray's +4 and +5. A tool with two grades keeps the first skill's (
 and crash kit are basic for Physician and improvised for Surgery; portable surgery is +2 to
 First Aid; the specialized theatre is +TL/2 to one specialty of Surgery only); the rules are
 #391's (drugs, hygiene and poisons) and the medical-gear issues'.
+
+# Electricity and Electronics (#476)
+
+Triage of the supplement on 2026-09-24, for the plan in #471. Nothing is captured here: the
+catalogue is #477 (#478-#480), the skills #481, the text #482 (#483, #484), the journals #485.
+
+| | |
+|---|---|
+| Book | GURPS High-Tech: Electricity and Electronics, 55 pages, six chapters and an index |
+| PDF | `GURPS_4th_Edition_High-Tech_Electricity_and_Electronics.pdf`; **PDF page = printed page** (`pdfOffset: 0`) |
+| GCA file | none: every record comes from the PDF |
+| Where it goes | High-Tech's packs, under High-Tech's book flag (E1); `book.json`'s `sources`, id `ee` |
+| Citations | records `High-Tech: Electricity and Electronics p. 12`; text and journal pages `HT:EE12`; comments in `src/` `HT:EE p. 12` |
+| Switches | the "GURPS High-Tech" group, off by default (E1); none added here |
+
+## The decisions (#471)
+
+- **E1.** The supplement is part of High-Tech. Its records join High-Tech's packs and carry
+  High-Tech's book flag, and each cites the supplement. Its rules run on the shared engines
+  High-Tech already uses, so High-Tech stays usable without Ultra-Tech. High-Tech's battery
+  table stays; the supplement's chemistries reconcile with it through #488's field (below).
+- **E2.** Only the records whose statistics differ are captured, as the supplement's own.
+  Identical ones are left out and listed in `overlap-ee.txt` (below).
+- **E3.** Where the supplement revises a High-Tech rule (the defibrillator's revival roll,
+  two mismatched radios, triangulation's scatter, the cell-phone jammer), the revision goes
+  inside the High-Tech switch that runs the rule today (`emergencyMedicine`, `radios`,
+  `jamming`), citing both books. No new switch.
+- **E4.** Real product names stay as printed: the Tesla Model S, the Electrobat, Heathkits,
+  the Tasertron TE-76, the Air Taser Model 34000, the two UAVs.
+- **E5.** The new skills and specialties are records; their new defaults onto Basic Set
+  skills are the `skillSubstitutes` switch, through `gworld.skillLevels` (#481).
+
+## Telling the two books apart
+
+`books/high-tech/book.json` has a second source, `sources[0]`, id `ee`: its own PDF, its
+reference, `pdfOffset: 0`, page label `HT:EE`, its own capture settings and its overlap file.
+`tools/lib/sources.mjs` reads it, and every tool that reads a PDF takes `--source ee`:
+
+| Tool | With `--source ee` | Without it |
+|---|---|---|
+| `capture-gear.mjs` | reads the supplement's PDF at offset 0 with its capture settings; each record cites the supplement, and its id hashes `ee` in, so it can share a name with High-Tech's record without sharing its id; a name High-Tech holds is captured only where `overlap-ee.txt` says keep | High-Tech as before; the supplement's records count as another volume's, not as names High-Tech holds |
+| `transcribe.mjs` | drafts only the records citing the supplement, and records their pages as `HT:EE<n>`; its layout cache is `extracted/layout/high-tech-ee/` | drafts only High-Tech's own records; the supplement's keep their text |
+| `recapture.mjs` | captures only the text records whose pages read `HT:EE<n>`, from the supplement's PDF | only High-Tech's own |
+
+Two checks make a crossed citation fail the build rather than land:
+
+- `merge-book.mjs`: a text record whose `pages` cite one volume on a record whose `reference`
+  cites the other ("HT:EE12" on "High-Tech p. 12") is a problem.
+- `journals.mjs`: a journal page whose `pages` and `reference` cite different volumes is a
+  problem. A page with `"pages": "HT:EE18-19"` and no `reference` is cited "High-Tech:
+  Electricity and Electronics pp. 18-19". Journal pages go in High-Tech's `journals/index.json`
+  and its rules pack (E1); give them their own chapter folders, named for the supplement's
+  chapters, so they don't mix with High-Tech's eight (#485).
+
+## Sections of the book, and where they go
+
+| Pages | Section | Records | Rules | Issue |
+|---|---|---|---|---|
+| 3-7 | Introduction; the progress of science; technologies | none | text only (journal) | #485 |
+| 6-8 | Skills: Machine Operation, Hobby Skill (Feats of Science), the three electrophone instruments, Physics (Electromagnetism), the new specialties; new defaults | `skill` records in `high-tech-skills` | new defaults, and a Hobby Skill standing in for operation or repair: `skillSubstitutes` | #481 |
+| 8-9 | Understanding the devices: dates, prototypes, cost, cutting edge, weight, power, HP/HT/DR, combined devices, breakable parts | `invention` data on every record (below) | #490 (cutting edge, breakable, kits), #488 (power grades), #487 (combined devices) | |
+| 9 | Electrical hazards | none | #486 | |
+| 10-13 | Experimental apparatus: electrometers, galvanometers, signal gear, waveform analysis, static machines, the Tesla coil; scientific and medical electronics, transducers, telemetry, analog computers | about 45 `equipment` | #487 | #478 |
+| 13-15 | Medical and surgical tools; hand tools, tool kits, safety equipment, lightning rods, test equipment, Heathkits | about 30 `equipment`; the hot-stick technique is #481's | #491 (electromedicine), #486 (protection), #490 (kits) | #478 |
+| 16-19 | Electrical energy: batteries and chemistries, fuel cells, generators, photovoltaics, capacitors, supercapacitors, flywheels; transmission, the voltage table, low and high voltage | about 25 `equipment`; chemistries and flywheel materials are fields, not records | #488, #486 (voltage table, power lines) | #478 |
+| 20-22 | Electrical equipment: heat and light, light levels (the illumination table), lamps, electrochemistry, magnets | about 30 `equipment` | #489 (light), #491 (magnets, appliances) | #478 |
+| 23-25 | Motors: household, office and workshop devices; the two electric vehicles; MEMS, switching, variable power, safety devices | about 30 `equipment`; the Electrobat and Tesla Model S as vehicle `equipment` from the table on p. 24 | #491 | #478 |
+| 26-30 | Modes of transmission: wired, wireless, radios, bandwidth, antennas, tuning, oscillators, shortwave, optical | about 25 `equipment`; the spark-gap and receiver options are fields that reprice a radio (#493), never items | #492, #493; the mixed-radio range is E3 under `radios` | #479 |
+| 30-35 | Audio: transducers, generation (electrophones), amplification, recording; video: cameras, displays, recording; active rangefinding, sonar | about 70 `equipment`; the audio and video radio options are #493's fields | #494, #495 | #479 |
+| 36-38 | Computers: processing power, the seven sizes, design options, programs and languages | 7 `equipment` (the sizes); the 15 options are fields (#496) | #496 | #480 |
+| 39-41 | Special-purpose devices, digital interfaces, voice control, networks, VR | about 30 `equipment` | #496 | #480 |
+| 42-44 | Security: fences, locks, screening, alarms, bugs and taps | about 40 `equipment`; the magnetic lock's five sizes, the keycard technologies and the biometric kinds as records | #497, #498 | #480 |
+| 45-48 | The electronic battlefield: surveillance, the two UAVs, communications and encryption, spread spectrum, triangulation, SIGINT, fuzes and guidance | about 15 `equipment`; the UAVs as vehicle `equipment` from the table on p. 46, ceiling and controller range in notes | #499, #500, #503; triangulation's scatter is E3 under `radios` | #480 |
+| 49-51 | Electronic weapons: stunners, jammers, directed-energy weapons, NNEMP; the weapon tables | about 15 `equipment`; 8 melee and 6 ranged rows as attack modes on their records | #501 (the cell-phone jammer is E3 under `jamming`), #502 | #480 |
+| 52-54 | Index | none | none | |
+
+Chapter openings and running heads use small capitals, which the layout reader returns in
+mixed case ("chaPtEr thrEE"): the journal pages need `titleCase` on their headings (#485).
+Most section headings sit on tinted panels, so `asidesAsText` is on for the supplement, as
+for High-Tech.
+
+## What the capture reads, and what it can't
+
+`tools/capture-gear.mjs` was taught the supplement's stat line (`capture` in its source):
+
+- **No LC** anywhere (`noLegality`): a closing line is a price and a weight, "$20, 0.5lb.",
+  "$4,000; 25lbs.", "$3,700, stationary.", or a price that ends its sentence ("$100.").
+  A price per unit ("$5/dozen") is noted.
+- **"neg." and "stationary"** weigh 0; a stationary record is noted, so a person can decide
+  what it weighs (it is too heavy to carry, not weightless).
+- **Power before the price** (`powerBeforePrice`), read from the two sentences before it,
+  into the record's `power` (the shared engine's schema):
+  - cells, "3×S/10 hours": `power.draw` as High-Tech's are;
+  - built-in rechargeable batteries, "rechargeable/9 hours": `power.draw` with no cell, the
+    endurance, and `power.rechargeable: true`;
+  - a grade of external power, "Household power", "Major appliance or industrial power",
+    "External power": `power.raw`, as printed. #488 adds the grade as a field and reads it
+    from `raw`;
+  - both, "2×XS/120 hours or rechargeable/120 hours": the cells as the draw, the whole
+    statement in `raw`.
+- **Years** (`years`): the market year and a working model's year in brackets, "[1908] 1928.",
+  go in the record's `invention` data (`marketYear`, `prototypeYear`; 0 where not printed),
+  registered in `src/books/high-tech/records.ts`.
+- **Prototypes** with no market price: "Average complexity. Household power. [1900]." is a
+  record at $0 with `invention.complexity` ("simple", "average", "complex", "amazing") and
+  `prototypeYear`, noted "prototype ... no price". The complexity prices it under the
+  invention rules (pp. B473-474) when #490 or the GM builds one. Nine are read: the voltaic
+  pile, the arc converter, the alternator, the photophone, the singing arc, Celldar, the
+  resonant cavity microphone, NNEMP and the Active Denial System. Four more are by hand: the
+  large Tesla coil and the Leyden jar (a later price in the entry closes it first, below),
+  the microwave rectenna in the Wireless Power box (p. 19) and brain-computer interfaces
+  (p. 40), which have no labelled entry. Computer Complexity ("Complexity 5", pp. 36-37) is
+  not this and is not read as it.
+- **Labels** end with a period or a colon (`labelEnd: ".:"`): "Macroframe (TL7):".
+- **Names at several TLs** are named with their TL (`repeatsByTl`), as High-Tech's are.
+
+Dry run over pp. 10-51 on this branch: **279 records**, 50 entries without a closing line,
+22 left to High-Tech's records by `overlap-ee.txt`, none undecided. By range: pp. 10-15 59,
+16-25 66, 26-35 87, 36-41 33, 42-51 34. Every record is still to be read against its page.
+
+Commands (one output file per sub-issue range; `--file` names `high-tech-<name>.json`):
+
+```
+node tools/capture-gear.mjs high-tech --source ee --pdf <EE pdf> --pages 10-25 --file ee-laboratory-power [--write]
+node tools/capture-gear.mjs high-tech --source ee --pdf <EE pdf> --pages 26-35 --file ee-signals [--write]
+node tools/capture-gear.mjs high-tech --source ee --pdf <EE pdf> --pages 36-51 --file ee-computation-warfare [--write]
+```
+
+What reading settles goes in `sources[0].capture.skip` and `.set` in book.json, not in the
+output, as for High-Tech. What the dry run shows needs settling:
+
+- **Reading order runs two columns together** on some pages, so a record takes a neighbour's
+  closing line. The tool flags each ("stored order reads ..."): the portable diathermy
+  apparatus ($3,700, 15 lbs., not the pH meter's $375), the Faraday suit ($1,500, 12 lbs., not
+  a workshop's), the hot stick (two models: $55, 1 lb. and $130, 1.75 lbs.), the Leyden jar
+  (a prototype, not the flywheel's $500).
+- **A sentence read as a label**: "LEDs for display became ..." on p. 21 is the LED bulb's text
+  ($5, neg.): `set` it to Light-Emitting Diode Bulb.
+- **Two items in one entry**: the Tesla coil (a prototype, and a small market coil at $150),
+  the telephone (only the battery model; the later $25 one is High-Tech's), the flashlight and
+  its rugged model, the general-purpose analog computer and its larger model, the TV at TL8,
+  the magnetic lock's five sizes, the biometric kinds, the fuzes, the touch screens, the UAVs.
+  The tool records the first closing line and notes "N closing lines"; the rest are by hand.
+- **Weight before price**, on the hearing aids (p. 32): "7lbs., $1,200." reads no weight; set
+  the TL6 aid's 7 lbs. and the TL7 aid's 0.5 lb.
+- **No weight printed**: the glass electrode, the digital camera ("$65."). GPS prints "0.25."
+  with no unit and is missed; it is 0.25 lb.
+- **Misprints to settle, not copy**: "Cautery Pen (1991)." prints its year where the TL goes
+  (it is TL8, and not read); the compact circular saw's diamond row reads sw+13(5), surely
+  sw+1(5) (p. 51); the stun baton's linked roll reads HT-1(0.5) against its own note's HT-3;
+  the daisy wheel printer's prototype year is in parentheses; the TL7 photocopier weighs 65
+  lbs. against High-Tech's 650.
+- **Not records**: the battery chemistries (p. 16-18) and flywheel materials (p. 18), which
+  are #488's fields; Video and Digital Video (p. 34) and the spark-gap and receiver options
+  (pp. 28-30), which are #493's; the computer-design options (p. 37), #496's; spread spectrum,
+  SIGINT gear as an option, encryption and decryption (pp. 46-48), which are rules; the
+  large and portable jammers, priced as a radio of the supplement's (half cost, twice weight),
+  by hand. The tool skips them already (no closing line), except where noted.
+- **Power sources** state what they supply, not what they draw: the fuel cell power supply,
+  the wind generators and the portable solar panel read "Major appliance power", "Household
+  power", "Automotive power" into `power.raw`. `set` their `system.extensions.gurps-compendium-content.power`
+  to nothing, and leave what they supply to #488's generator data.
+- **The weapon tables (pp. 50-51)** and the illumination (p. 20) and vehicle (pp. 24, 46)
+  tables: pdftotext drops their minus signs and scrambles their rows. `tools/lib/pdf-layout.mjs`
+  (`textLines`, pdf.js) keeps both: "HT-3(0.5) aff", "-2", "sw-1 cr" come out as printed.
+  Read every modifier from there, or from the page.
+
+Families printed without a TL on each item, for #478-#480 to record by hand: the
+electrician's and electronics technician's tool kits (all six in `overlap-ee.txt`, all
+High-Tech's), the six battery sizes (High-Tech's), the flywheel's three sizes, the magnetic
+lock's five sizes, the keycard reader's technologies, the six biometric kinds, the touch
+screen sizes, the projector models, the trench radio kit's four parts, the fuze kinds, the
+two UAVs.
+
+## Records High-Tech already has (E2): `overlap-ee.txt`
+
+`books/high-tech/overlap-ee.txt` (not `overlap.txt`, which `extract.mjs` rewrites from the
+GCA parsers) lists 99 records, one tab-separated line each: the supplement's name, High-Tech's
+record, both pages, keep or skip, and why. Statistics are compared as TL, price, weight and
+power; the supplement prints no LC, so a missing LC never makes two records differ.
+
+- **Keep, 62:** the eleven radios (code-only at half price, p. 27), the cattle prod (TL6),
+  the electric alarm (TL5), the Air Taser Model 34000 (another product than the TASER M26:
+  range 5, a HT-3 follow-up), the computer sizes at other TLs or power, and every appliance,
+  tool and instrument whose price, weight or TL differs. Near-duplicates under another name
+  whose statistics differ are kept too (the keylogger at TL8, the seismic ground sensor, the
+  parabolic microphones), and listed so nobody looks for them twice.
+- **Skip, 37:** identical records (the tactical headset, the cassette recorder, the portable
+  terminal, the bug detector, the stun baton and stun gun, the Tasertron, the cell-phone
+  jammer, three biometric kinds, the surveillance cameras, the laser microphone), the tool
+  kits, the six battery sizes, the pedal generator (High-Tech's semi-portable muscle-powered
+  generator) and the cigarette lighter (no statistics printed).
+
+Where a skipped record adds only a power grade or endurance High-Tech leaves out (the
+reel-to-reel recorder's and DVD player's household power, the X-ray machine's rechargeable
+batteries, the stunners' 2,000 uses), the line says so, for #488 to give High-Tech's record.
+A kept record shares its name with High-Tech's where the book prints the same name ("Small
+Radio (TL6)"): the reference tells them apart in the compendium, and a `set` rule can
+rename one if a campaign finds two confusing.
+
+## The battery table (p. 16) against High-Tech's (p. 13), for #488
+
+| Size | Supplement: $, lbs. | High-Tech: $, lbs. |
+|---|---|---|
+| T | 0.25, neg. | 0.25, 0.02 |
+| XS | 0.50, 0.1 | 0.50, 0.1 |
+| S | 1, 0.33 | 1, 0.33 |
+| M | 5, 1.5 | 5, 2 |
+| L | 15, 15 | 10, 10 |
+| VL | 30, 75 | 20, 50 |
+
+The supplement's sizes are TL7-8 alkaline cells, and it rates every gadget's endurance in
+alkaline cells. Its chemistries scale them (pp. 16-18): voltaic pile and wet cell (1/4 the
+endurance; the pile fails an HT roll every 30 minutes), carbon-zinc (1/4 endurance, 0.9 cost
+and weight), alkaline (the base), lead-acid (1/3 endurance, 2/3 cost and weight), NiCad (1/3
+endurance, twice the cost), NiMH (the same endurance, twice the cost), lithium-ion (+10%
+endurance, +20% cost). Lead-acid's two-thirds on the supplement's L and VL give exactly
+High-Tech's L and VL, as the supplement itself notes (p. 18): High-Tech's big batteries are
+lead-acid car and golf-cart batteries.
+
+How #488's chemistry field maps one onto the other, keeping High-Tech's table (E1):
+
+1. **No chemistry set means the printed figures.** High-Tech's `BATTERIES` and its cell
+   table stay as they are, and every High-Tech record keeps its price, weight and endurance.
+2. **Each size has a chemistry it is printed as.** T, XS, S and M are alkaline; L and VL are
+   lead-acid. Choosing another chemistry first takes the printed figures back to alkaline
+   (for L and VL, cost and weight × 3/2 and endurance × 3: $15, 15 lbs. and $30, 75 lbs.,
+   the supplement's own), then applies the chosen chemistry's multipliers.
+3. **M is the one real disagreement**: 2 lbs. in High-Tech, 1.5 in the supplement, and no
+   chemistry turns one into the other. With E1 High-Tech's 2 lbs. stays; a chemistry scales
+   High-Tech's M as if it were alkaline. Say so in #488's PR.
+4. **High-Tech's "rechargeable" kind** (five times the price, p. 13) is a generic
+   rechargeable. Where a chemistry is set, its own cost multiplier replaces the ×5 (NiCad
+   and NiMH ×2, lithium-ion ×1.2, lead-acid 2/3); where none is, High-Tech's rule stands.
+5. **Gadget endurance** stays as each book prints it: High-Tech's in its own cells, the
+   supplement's in alkaline. The chemistry scales the endurance of the cells loaded, as the
+   engine's `swapByWeight` already scales a swapped cell.
+
+A second `CellTable` for the supplement isn't needed and would split one book's cells in two.
+
+## For the catalogue agents (#477-#480)
+
+1. Capture with `--source ee`; never without it, which reads the supplement's pages as
+   High-Tech's.
+2. Read `overlap-ee.txt` before adding a record High-Tech might have; a new near-duplicate
+   gets a line there with its decision.
+3. Settle the dry run's flags above with `sources[0].capture.set` and `.skip` in book.json.
+4. Read the tables (pp. 20, 24, 46, 50-51) with pdf.js, not pdftotext: minus signs.
+5. Text records (#482) cite `HT:EE<n>`, and `transcribe.mjs --source ee` writes them so; the
+   merge fails a crossed citation.

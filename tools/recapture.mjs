@@ -16,9 +16,12 @@
  * Usage:
  *   node tools/recapture.mjs <pack> --characters <pdf> --campaigns <pdf> [--status needs-review,reviewed]
  *   node tools/recapture.mjs <pack> --book <slug> --pdf <pdf> [--status ...]
+ *   node tools/recapture.mjs <pack> --book <slug> --source <id> --pdf <volume's pdf> [--status ...]
  *
  * The Basic Set is two volumes sharing one run of pages; any other book is one
- * PDF, read at its book.json `transcription.pdfOffset`.
+ * PDF, read at its book.json `transcription.pdfOffset`. A book's other volume
+ * (book.json's `sources`) is read with `--source <id>` and that volume's PDF,
+ * and only the entries citing it are captured.
  *
  * Output: build/recapture/<pack>.json and build/recapture/<pack>.txt
  */
@@ -30,6 +33,7 @@ import { book, buildRoot, projectRoot, readProse, readStatistics } from "./lib/b
 import { joinText, structureOf, useLexicon } from "./lib/book-structure.mjs";
 import { lexiconOf } from "./lib/lexicon.mjs";
 import { openBook, readPage } from "./lib/pdf-layout.mjs";
+import { inSource, volumeKey, volumeOfPages, withSource } from "./lib/sources.mjs";
 
 const BASIC_SET_VOLUMES = {
   characters: { first: 1, last: 336, pdfPage: (page) => page + 2 },
@@ -40,7 +44,8 @@ const BASIC_SET_VOLUMES = {
 function volumesOf(bk) {
   if (bk.slug === "basic-set") return BASIC_SET_VOLUMES;
   const offset = bk.transcription.pdfOffset ?? 0;
-  return { [bk.slug]: { first: 1, last: 100000, pdfPage: (page) => page + offset } };
+  // A book's other volume is its own PDF, cached apart from the book's.
+  return { [volumeKey(bk)]: { first: 1, last: 100000, pdfPage: (page) => page + offset } };
 }
 
 const RANK = { chapter: 0, h1: 1, h2: 2, h3: 3, h4: 4 };
@@ -458,10 +463,10 @@ function likeness(a, b) {
 
 async function main() {
   const pack = process.argv[2];
-  const bk = book(option("--book") ?? "basic-set");
+  const bk = withSource(book(option("--book") ?? "basic-set"), option("--source"));
   const paths = bk.slug === "basic-set"
     ? { characters: option("--characters"), campaigns: option("--campaigns") }
-    : { [bk.slug]: option("--pdf") };
+    : { [volumeKey(bk)]: option("--pdf") };
   const statuses = new Set((option("--status") ?? "needs-review,reviewed").split(","));
   if (!pack || pack.startsWith("--") || Object.values(paths).some((path) => !path)) {
     console.error(
@@ -474,13 +479,17 @@ async function main() {
   asidesAsText = Boolean(bk.transcription?.asidesAsText);
   const structure = library(paths, volumesOf(bk));
   const { records } = readProse(bk, pack);
+  // Only the volume being read: a text record is its volume's by its pages ("HT:EE12").
+  for (const [id, record] of records) {
+    if (record.pages && (volumeOfPages(bk, record.pages)?.id ?? null) !== (bk.source?.id ?? null)) records.delete(id);
+  }
   // An entry with no text yet is captured too, as status "none", for a book
   // whose statistics are its own: its page comes from the entry's reference.
   if (bk.statistics === "book") {
     for (const { entry } of readStatistics(bk, pack)) {
-      if (records.has(entry._id)) continue;
-      const page = /\d+/.exec(entry.system?.reference ?? "")?.[0];
-      records.set(entry._id, { _id: entry._id, name: entry.name, pages: page ? `${bk.prefix}${page}` : "", status: "none", notes: "", description: "" });
+      if (records.has(entry._id) || !inSource(bk, entry)) continue;
+      const page = /(\d+)\s*(?:[-–]\s*\d+)?\s*$/.exec(entry.system?.reference ?? "")?.[1];
+      records.set(entry._id, { _id: entry._id, name: entry.name, pages: page ? `${bk.source ? bk.transcription.pageLabel : bk.prefix}${page}` : "", status: "none", notes: "", description: "" });
     }
   }
 
@@ -509,7 +518,7 @@ async function main() {
 
   const outDir = join(buildRoot, "recapture");
   mkdirSync(outDir, { recursive: true });
-  const stem = bk.slug === "basic-set" ? pack : `${bk.slug}-${pack}`;
+  const stem = bk.slug === "basic-set" ? pack : `${volumeKey(bk)}-${pack}`;
   writeFileSync(join(outDir, `${stem}.json`), JSON.stringify(results, null, 2), "utf8");
   const text = (html) => plainText(String(html).replace(/<\/p>|<\/li>/g, "\n").replace(/<[^>]+>/g, "")).trim();
   const report = results.map(
