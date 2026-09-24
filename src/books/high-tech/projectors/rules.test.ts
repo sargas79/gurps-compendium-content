@@ -88,4 +88,14 @@ describe("laser dazzlers (High-Tech p. 181), through the shared engine", () => {
     // Ultra-Tech's blinding beam blinds for good whatever the margin (Ultra-Tech p. 114).
     expect(blindnessFrom({ book: "ultra-tech", blinding: "permanent" }, "blinding", 1)).toEqual({ kind: "blinded", permanent: true });
   });
+
+  it("reads a failure's margin by its size, as the system hands it over negative (#535)", () => {
+    expect(blindnessFrom(HT_DAZZLE, "dazzle", -1)).toEqual({ kind: "dazzled", minutes: 1 });
+    expect(blindnessFrom(HT_DAZZLE, "dazzle", -5)).toEqual({ kind: "dazzled", minutes: 5 });
+    expect(blindnessFrom(HT_DAZZLE, "dazzle", -12)).toEqual({ kind: "dazzled", minutes: 12 });
+    expect(blindnessFrom(HT_DAZZLE, "blinding", -9)).toEqual({ kind: "blinded", permanent: false });
+    expect(blindnessFrom(HT_DAZZLE, "blinding", -10)).toEqual({ kind: "blinded", permanent: true });
+    // A margin already made positive reads the same.
+    expect(blindnessFrom(HT_DAZZLE, "dazzle", 5)).toEqual(blindnessFrom(HT_DAZZLE, "dazzle", -5));
+  });
 });

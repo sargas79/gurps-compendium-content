@@ -177,6 +177,10 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     const victim = person("Guard");
     on.directed = true;
     expect(effectsOf(victim, pointer, -3)).toEqual([{ module: MODULE_ID, key: "ee-dazzler-blinded", label: expect.any(String), duration: { seconds: 180 } }]);
+    // A failure by 1, 5 and 12 (the system's margin is negative; #535).
+    expect(effectsOf(victim, pointer, -1)[0].duration).toEqual({ seconds: 60 });
+    expect(effectsOf(victim, pointer, -5)[0].duration).toEqual({ seconds: 300 });
+    expect(effectsOf(victim, pointer, -12)[0].duration).toEqual({ seconds: 720 });
     darkness = 1;
     expect(effectsOf(victim, pointer, -3)).toEqual([]);
     conditions.set(victim, [{ id: `${MODULE_ID}.ee-dazzler-blinded` }]);
