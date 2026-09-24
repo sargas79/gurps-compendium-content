@@ -12,8 +12,9 @@
  * bonuses, and TL penalties as unfamiliarity (pp. 7-11), computers,
  * software, manuals and libraries (pp. 17-22), with the Electricity and
  * Electronics supplement's computer eras, interfaces and programming
- * languages (HT:EE pp. 36-41) and its electric light, light levels and
- * glare (HT:EE pp. 9, 20-22), a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * languages (HT:EE pp. 36-41), its electric light, light levels and
+ * glare (HT:EE pp. 9, 20-22), and its electrical hazards, shock protection
+ * and power lines (HT:EE pp. 9, 14-15, 18-19, 25), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -90,6 +91,7 @@ import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower, readyHighTechPower } from "./power/index.js";
 import { initInformation, readyInformation } from "./information/index.js";
 import { readyComputing } from "./computing/index.js";
+import { readyElectricity } from "./electricity/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
@@ -208,6 +210,10 @@ const RULES = [
   { key: "computerEras", pages: "pp. 36-37", reference: EE_REFERENCE, implemented: true },
   { key: "computerInterfaces", pages: "pp. 39-41", reference: EE_REFERENCE, implemented: true },
   { key: "programmingLanguages", pages: "p. 38", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: electrical hazards, shock protection and power lines.
+  { key: "electricalHazards", pages: "p. 9", reference: EE_REFERENCE, implemented: true },
+  { key: "shockProtection", pages: "pp. 9, 14-15, 19, 25", reference: EE_REFERENCE, implemented: true },
+  { key: "powerLines", pages: "pp. 18-19", reference: EE_REFERENCE, implemented: true },
   // General equipment: tool kits, forced entry, chainsaws and nail guns, household hazards.
   { key: "toolKits", pages: "pp. 24, 29, 50", implemented: true },
   { key: "forcedEntryTools", pages: "pp. 25-30", implemented: true },
@@ -416,6 +422,7 @@ function ready(api: GWorldApi): void {
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
   // After High-Tech's computers, whose unfamiliar computer type a high-level language lifts.
   readyComputing(api, { eras: rule("computerEras"), interfaces: rule("computerInterfaces"), languages: rule("programmingLanguages") });
+  readyElectricity(api, { hazards: rule("electricalHazards"), protection: rule("shockProtection"), powerLines: rule("powerLines"), glare: rule("lightDazzle") });
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
   readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
   const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };
