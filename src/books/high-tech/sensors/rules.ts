@@ -14,6 +14,7 @@
  */
 
 import { COMM_SIZES, sizeStepFactor, telescopicLevels, type CommSize } from "../../../shared/sensors/rules.js";
+import { GPR_SURVEY } from "./rangefinding.js";
 
 const MILE = 1760;
 
@@ -156,6 +157,8 @@ export interface ActiveFigures {
   skill: string;
   /** The modes it may be bought with, and the TL each appears at. */
   modes: Readonly<Partial<Record<"tactical" | "lpi" | "imaging", number>>>;
+  /** What a successful roll with it gives a skill it serves, where the record says (HT:EE p. 35). */
+  survey?: number;
 }
 
 const SONAR = "Electronics Operation (Sonar)";
@@ -164,7 +167,7 @@ const SENSORS = "Electronics Operation (Sensors)";
 const radar = (miles: number) => (tl: number) => miles * MILE * (tl >= 8 ? 2 : 1);
 const RADAR_MODES = { tactical: 8, lpi: 8 } as const;
 
-/** The active sensors by record name (pp. 45-47). */
+/** The active sensors by record name (pp. 45-47; HT:EE p. 35). */
 export const ACTIVE_SENSORS: Readonly<Record<string, ActiveFigures>> = Object.freeze({
   // Large sonar: 4,000 yards at TL6, 8,000 at TL7, 20,000 at TL8.
   "Large Sonar": { kind: "sonar", size: "large", range: (tl) => (tl >= 8 ? 20000 : tl >= 7 ? 8000 : 4000), skill: SONAR, modes: { tactical: 6, imaging: 8 } },
@@ -178,6 +181,12 @@ export const ACTIVE_SENSORS: Readonly<Record<string, ActiveFigures>> = Object.fr
   "Portable GPR": { kind: "gpr", range: () => 10, skill: "Electronics Operation (Scientific)", modes: {} },
   // A person 20 yards beyond a foot-thick wall (pp. 46-47).
   "Thru-Wall Radar": { kind: "thruWall", range: () => 20, skill: "Electronics Operation (Surveillance)", modes: {} },
+  // The Electricity and Electronics supplement's (HT:EE p. 35): a handheld
+  // sonar reaching 10 yards; a TL7 ground-penetrating radar on a tricycle
+  // base, its low-frequency antenna reaching 50 yards down, whose successful
+  // roll is +2 to a skill it serves.
+  "Handheld Sonar": { kind: "sonar", size: "small", range: () => 10, skill: SONAR, modes: {} },
+  "Ground-Penetrating Radar": { kind: "gpr", range: () => 50, skill: "Electronics Operation (Scientific)", modes: {}, survey: GPR_SURVEY },
 });
 
 /** The modes a sensor of this TL may have. */

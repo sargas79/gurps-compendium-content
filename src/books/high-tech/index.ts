@@ -214,6 +214,8 @@ const RULES = [
   { key: "activeSensors", pages: "pp. 45-47", implemented: true },
   { key: "visualSensors", pages: "pp. 47-48", implemented: true },
   { key: "passiveSensors", pages: "pp. 48-50", implemented: true },
+  // The Electricity and Electronics supplement's refinements to active rangefinding.
+  { key: "rangefindingEmissions", pages: "p. 35", reference: EE_REFERENCE, implemented: true },
   // Survival, maritime and parachuting gear, and snacks.
   { key: "survivalGear", pages: "pp. 56-59", implemented: true },
   { key: "maritimeGear", pages: "pp. 59-60", implemented: true },
@@ -325,7 +327,7 @@ function init(): void {
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
   initTools();
-  initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors") });
+  initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors"), rangefindingEmissions: ruleKey("rangefindingEmissions") });
   initSurvival();
   initExpedition();
   initClothing(ruleKey("climateControl"));

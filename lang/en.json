@@ -5083,6 +5083,10 @@
           "Name": "Hydrophones and sound detectors",
           "Hint": "A hydrophone's row button rolls Electronics Operation (Sonar) with its bonus (+4 large, +2 medium, +2 per TL after its introduction), the target's size and speed and the range and current's penalties from the Size and Speed/Range Table; success fixes the target, +3 to hit it with an aimed attack (not a search hydrophone, a tenth the price) and +4 to shadow it. Sound-detection gear gives +4 to identify a sound, or rolls to locate one by miles and decibels with the ambient noise. A worn directional microphone is Parabolic Hearing 2 (TL7) or 3 (TL8) (High-Tech pp. 48-50)."
         },
+        "rangefindingEmissions": {
+          "Name": "Active rangefinding (Electricity and Electronics)",
+          "Hint": "With the active sensors: the sensor sweep's penalty past range in half steps (-1 at 1.5 times, -2 at twice, -3 at three times ...), the target's size at half its SM (rounded down), and dwelling 4 times as long to reach twice as far before the penalty, or 15 times as long for four times, which gives the target +2 or +4 to detect the emissions. A GM tool for detecting the targeted character's sonar or radar: nothing to roll within twice its range (1.5 times the halved range with LPI) and its arc, then -1 per further 20% of its range, out to -10. The supplement's ground-penetrating radar: a successful Electronics Operation (Scientific) sweep gives +2 to a skill it serves (High-Tech: Electricity and Electronics p. 35)."
+        },
         "survivalGear": {
           "Name": "Survival and camping gear",
           "Hint": "A \"Camping out\" box on the Inventory tab: while it's ticked, the cold roll takes the best shelter or sleeping gear carried (blanket -2, emergency blanket -1, sleeping bag 0, +1 at TL8, tarp and tents +1, dome tent +2, heavy sleeping bag +3), its quality added, or -5 with none. A fire starter's row button rolls DX-based Survival at +5 to +10. A spring trap's button strikes the targeted character for thrust+2 crushing at the trap's ST, and its card rolls the Quick Contest of ST to break free. A survival kit carried for another environment is -1 (a similar one), -2 (a very different one) or -3 (land for water, or Urban Survival) as the Survival roll's equipment line, where no kit for the roll's own specialty is carried. A water filter in use gives +(TL-2) to HT against a digestive disease. The hand-pumped desalinator's button costs 1 FP for a cup (the large model a quart, at three times the cost and weight); the solar still's rolls Survival for a quart a day. A rescue signal in use gives +2 to a Vision roll to spot its user. Fishing and trapping gear notes the five foraging rolls a day (High-Tech pp. 56-59)."
@@ -7494,7 +7498,30 @@
         "HeatTrail": "{name} (a heat trail under an hour old)",
         "WarmTarget": "{name} (a warm target)",
         "InfraredSource": "{name} (an active IR source)",
-        "HydrophoneFix": "A fix: the target's position, heading, rough size and class; +{identify} to identify it, +{shadow} to shadow it and +{hit} to hit it with an aimed attack."
+        "HydrophoneFix": "A fix: the target's position, heading, rough size and class; +{identify} to identify it, +{shadow} to shadow it and +{hit} to hit it with an aimed attack.",
+        "Rangefinding": "Past its range: -1 at 1.5 times, -2 at twice, and so on; the target's SM counts at half. Dwelling {x4} times as long reaches twice as far, {x15} times as long four times, but gives the target +{d4} or +{d15} to detect it.",
+        "EmissionReach": "A detector past twice the range rolls at -1 per 20% of it more, out to {range}.",
+        "SurveyLine": "A successful roll with it gives {bonus} to a skill the survey serves: archaeology, prospecting, engineering, finding buried threats.",
+        "SurveyResult": "The survey gives {bonus} to a skill it serves (archaeology, prospecting, engineering, finding buried threats).",
+        "Dwell": "Dwelling on the target",
+        "DwellOption": {
+          "none": "No",
+          "x4": "{time} times as long (range x{range})",
+          "x15": "{time} times as long (range x{range})"
+        },
+        "DwellLine": "Dwelling {time} times as long: the target has {bonus} to detect these emissions.",
+        "SizeLine": "Target's size (SM {sm}, halved)",
+        "EmissionsTitle": "Detect sensor emissions",
+        "EmissionsPick": "Select the character detecting; target the one whose sonar or radar they detect.",
+        "NoEmitter": "They carry no sonar or radar.",
+        "EmissionsLabel": "Detecting the {sensor} of {name}",
+        "OutsideArcEmitter": "Detector outside its {arc}-degree arc",
+        "EmitterArcMiss": "The detector is outside the sensor's {arc}-degree arc: nothing to detect.",
+        "EmissionsDetected": "Within {range}: its emissions are detected without a roll.",
+        "EmissionsOut": "Beyond {range}: too far to detect its emissions.",
+        "EmissionLine": "Past twice its range",
+        "DwellBonus": "Its operator dwells {time} times as long",
+        "DetectorSkill": "Detector's skill"
       },
       "Survival": {
         "Title": "Survival gear",
