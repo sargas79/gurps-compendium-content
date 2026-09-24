@@ -94,10 +94,16 @@ function kindOf(line) {
 /**
  * Page furniture: the running title and page number at the foot, and anything
  * else set in the margins. None of it is the book's text.
+ *
+ * `top` is where the text block starts; anything above it is margin. The
+ * books read so far keep their text below 45 points, but High-Tech:
+ * Electricity and Electronics prints its running head at the foot and sets
+ * the first line of each column at 44, which a margin of 45 threw away (HT:EE
+ * pp. 26-51), so a book or volume can say where its own text starts.
  */
-function isFurniture(line, page) {
+function isFurniture(line, page, top = 45) {
   if (line.y > page.height - 40) return true;
-  if (line.y < 45) return true;
+  if (line.y < top) return true;
   if (/^\d{1,3}$/.test(line.text) && line.size >= 12) return true;
   return false;
 }
@@ -603,9 +609,10 @@ function spanningTables(lines, edges) {
 
 /**
  * A page's structure: its running text in reading order, and its sidebars and
- * tables kept apart from it.
+ * tables kept apart from it. `top` is where the page's text block starts
+ * (`transcription.topMargin`, 45 points unless a book says otherwise).
  */
-export function structureOf(page) {
+export function structureOf(page, { top = 45 } = {}) {
   // A quotation set in the margin -- "I'm 37. I'm not old." / "– Dennis," /
   // "Monty Python and the Holy Grail" -- is plain italic with its source in
   // bold italic underneath. The source is the size of a heading, so it is
@@ -616,7 +623,7 @@ export function structureOf(page) {
     !/Semi/i.test(l.font ?? "") &&
     quotes.some((q) => l.y > q.y && l.y - q.y < 36 && Math.abs(l.x - q.x) < 60);
   const lines = page.lines.filter(
-    (l) => !isFurniture(l, page) && l.text && kindOf(l) !== "quote" && !attribution(l),
+    (l) => !isFurniture(l, page, top) && l.text && kindOf(l) !== "quote" && !attribution(l),
   );
   const wideTables = spanningTables(lines, page.columns.edges);
   const tableLines = new Set(wideTables.flatMap((t) => t.lines));

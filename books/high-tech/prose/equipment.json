@@ -1808,6 +1808,14 @@
     "description": "<p>A plastic guard that gives the groin DR 2 vs. crushing (DR 1 vs. other damage), only from the front. Also grants +2 to knockdown rolls for groin hits.</p>"
   },
   {
+    "_id": "3cc78a0954d482ef",
+    "name": "Knee or Elbow Pads (pair)",
+    "pages": "HT71",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Modern pads provide DR 3 for arm or leg joints when crawling, kneeling, or falling on hard surfaces (GM's decision), or when the knee or elbow is struck in combat (2/6 protection for that limb).</p>"
+  },
+  {
     "_id": "e5ef42bc6b70eb83",
     "name": "Homemade Armor, Paper and Tape",
     "pages": "HT71",
@@ -8632,14 +8640,6 @@
     "description": "<p>A form-fitted plastic mouthpiece worn to protect the jaw and teeth. Gives +1 to knockdown rolls for face hits, but makes speech difficult (treat as Disturbing Voice, p. B132).</p>"
   },
   {
-    "_id": "3cc78a0954d482ef",
-    "name": "Knee or Elbow Pads (pair)",
-    "pages": "HT71",
-    "status": "reviewed",
-    "notes": "",
-    "description": "<p>Modern pads provide DR 3 for arm or leg joints when crawling, kneeling, or falling on hard surfaces (GM's decision), or when the knee or elbow is struck in combat (2/6 protection for that limb).</p>"
-  },
-  {
     "_id": "34667ffda7cc20d6",
     "name": "Explosives Blanket",
     "pages": "HT72",
@@ -8918,6 +8918,1590 @@
     "status": "reviewed",
     "notes": "",
     "description": "<p>Bowstring silencers - small leather or rubber pieces - reduce the noise of the bowstring twang (-2 to Hearing).</p>"
+  },
+  {
+    "_id": "9834153a3507967f",
+    "name": "Desktop Calculator (Transistorized)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "the Desktop Calculator entry, which prices its transistorized model",
+    "description": "<p>A large machine that electronically adds, subtracts, multiplies, and divides. An early relay-based model (1957) was actually as large as a whole desk and weighed 300 lbs. It was quickly replaced with tube-based electronic devices.</p>"
+  },
+  {
+    "_id": "055e068573abd13b",
+    "name": "Game Cartridge",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "priced in the Game Console (TL7) entry: its text and the cartridges' sentence",
+    "description": "<p>The first game played on a video display was patented in 1947, and the use of computers to play games began in the 1950s. Large arcade games came on the market in the 1970s, followed shortly by home game consoles used with a separate video monitor or television (p. 34).</p><p>Runs games stored on ROM cartridges ($35; 0.2 lb.).</p>"
+  },
+  {
+    "_id": "c741db9be69b3f4f",
+    "name": "GPS",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld device that receives radio signals from global navigation satellites and uses them to identify its own position and the exact time. Gives +3 to Navigation (Air, Land, or Sea) if a satellite constellation is above the horizon. GPS is increasingly incorporated into smartphones and other portable computers, and into vehicles.</p>"
+  },
+  {
+    "_id": "3234db68359a07be",
+    "name": "Workstation Terminal (TL7)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "the TL8 weight is the TL8 record's statistic",
+    "description": "<p>A teletype system can be used as an improvised terminal; roll vs. Electronics Repair (Computers) to set up. Allows Computer Operation rolls at no penalty, but takes 4× as long for most tasks. A standard terminal has a keyboard and monitor. A printer (pp. 23, 33) has to be added separately, but multiple terminals or computers may share a printer.</p>"
+  },
+  {
+    "_id": "fbddffd38e3d349b",
+    "name": "Workstation Terminal (TL8)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "the TL7 entry, which gives the TL8 weight",
+    "description": "<p>A teletype system can be used as an improvised terminal; roll vs. Electronics Repair (Computers) to set up. Allows Computer Operation rolls at no penalty, but takes 4× as long for most tasks. A standard terminal has a keyboard and monitor. A printer (pp. 23, 33) has to be added separately, but multiple terminals or computers may share a printer.</p>"
+  },
+  {
+    "_id": "5815674a0dfc90df",
+    "name": "Touch Screen (Tablet)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "the Touch Screen entry's opening and its own size",
+    "description": "<p>A computer interface based mainly on a touch screen. Gives -1 to tasks that involve typing, but can be used with a separate keyboard. Comes in three main sizes:</p><p>A screen with a 10” or less diagonal. Early single-touch versions give -1 to Computer Operation. Powered by the computer contained in the case.</p>"
+  },
+  {
+    "_id": "c96473eb97f00d61",
+    "name": "Touch Screen (Phone)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "the Touch Screen entry's opening and its own size",
+    "description": "<p>A computer interface based mainly on a touch screen. Gives -1 to tasks that involve typing, but can be used with a separate keyboard. Comes in three main sizes:</p><p>A screen suited to a smartphone. Multitouch versions give -1 to Computer Operation; single-touch versions give -2. Powered by the smartphone contained in the case.</p>"
+  },
+  {
+    "_id": "1c389c3b7e9e9ac6",
+    "name": "Brain-Computer Interface",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "the Brain-Computer Interfaces section, which prices none: a prototype of Average complexity",
+    "description": "<p>Experiments with direct control of computers and other devices by the brain began in 1969. In 2015, the BCI Society began holding annual international conferences. Such devices are prototypes at present. Two basic approaches are invasive, using surgically implanted electrodes, and noninvasive, based on electroencephalography, magnetic resonance imaging (MRI), or other methods of scanning brain activity. Noninvasive interfaces based on wireless EEG headsets (p. 12) produce weaker signals, for -2 to skill rolls (which can be compensated for by taking extra time). Applications include control of computers and of wheelchairs and prosthetic limbs.</p>"
+  },
+  {
+    "_id": "8ba0380081dd8518",
+    "name": "Magnetic Lock (Mini)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "the Magnetic Lock entry and its own size",
+    "description": "<p>Holds a door closed with a powerful magnetic field generated by an electromagnet (pp. 22-23) mounted on the doorframe. An intruder can shut off the power with an Electrician roll. Available in several standard sizes with different effective strengths (figured as for electromagnets, pp. 22-23):</p><p>650 lbs. force (ST 18).</p>"
+  },
+  {
+    "_id": "a8b8c0d6084e6643",
+    "name": "Magnetic Lock (Midi)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "the Magnetic Lock entry and its own size",
+    "description": "<p>Holds a door closed with a powerful magnetic field generated by an electromagnet (pp. 22-23) mounted on the doorframe. An intruder can shut off the power with an Electrician roll. Available in several standard sizes with different effective strengths (figured as for electromagnets, pp. 22-23):</p><p>800 lbs. force (ST 20).</p>"
+  },
+  {
+    "_id": "ceaf48d09342852b",
+    "name": "Magnetic Lock (Standard)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "the Magnetic Lock entry and its own size",
+    "description": "<p>Holds a door closed with a powerful magnetic field generated by an electromagnet (pp. 22-23) mounted on the doorframe. An intruder can shut off the power with an Electrician roll. Available in several standard sizes with different effective strengths (figured as for electromagnets, pp. 22-23):</p><p>1,200 lbs. force (ST 24).</p>"
+  },
+  {
+    "_id": "ad706cac60f1410e",
+    "name": "Magnetic Lock (Shear)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "the Magnetic Lock entry and its own size",
+    "description": "<p>Holds a door closed with a powerful magnetic field generated by an electromagnet (pp. 22-23) mounted on the doorframe. An intruder can shut off the power with an Electrician roll. Available in several standard sizes with different effective strengths (figured as for electromagnets, pp. 22-23):</p><p>2,000 lbs. force (ST 32).</p>"
+  },
+  {
+    "_id": "eb3c89fd04471d11",
+    "name": "Keycard Reader (Magnetic Stripe)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Keycard Reader entry and its own technology",
+    "description": "<p>A device that can read an access code number from a wallet-sized plastic card. Multiply cost ×2 if the device keeps a record of scanned cards. Several technologies have been used:</p><p>A strip of magnetic material on which data can be recorded.</p>"
+  },
+  {
+    "_id": "17bb727be743ee0b",
+    "name": "Keycard Reader (Holepunched)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Keycard Reader entry and its own technology",
+    "description": "<p>A device that can read an access code number from a wallet-sized plastic card. Multiply cost ×2 if the device keeps a record of scanned cards. Several technologies have been used:</p><p>A pattern of holes, which can be read by photoelectric sensors.</p>"
+  },
+  {
+    "_id": "5b186cc388c42fa7",
+    "name": "Keycard Reader (RFID)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Keycard Reader entry and its own technology",
+    "description": "<p>A device that can read an access code number from a wallet-sized plastic card. Multiply cost ×2 if the device keeps a record of scanned cards. Several technologies have been used:</p><p>A conductive loop that harvests power from a small radio transmitter to send a return signal; physical contact isn’t necessary. The same technology is used to track property and prevent theft, and for other purposes – even implanted subcutaneously in animals to identify strayed pets. Multiply reader cost ×2.</p>"
+  },
+  {
+    "_id": "f9ea953416795bce",
+    "name": "Keycard Reader (Smart Card)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Keycard Reader entry and its own technology",
+    "description": "<p>A device that can read an access code number from a wallet-sized plastic card. Multiply cost ×2 if the device keeps a record of scanned cards. Several technologies have been used:</p><p>A microchip with stored identifying data, powered through electrical contacts on the surface.</p>"
+  },
+  {
+    "_id": "46f7e7dae72fb24a",
+    "name": "Biometric Identification (Hand Geometry)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Biometric Identification entry and its own kind",
+    "description": "<p>Devices that recognize some distinctive trait of the person being identified. Normally used in a fixed location with household power; however, security personnel may carry models with rechargeable batteries (recharged daily; add 0.2 lb. to weight and $5 to cost). A basic system (as specified below) can be bypassed by opening its case and modifying its circuits with a roll vs. Electronics Repair (Security) at +5; a good system (×5 cost) requires an unmodified roll, and a fine system (×20 cost) requires a roll at -5. Any such device can keep a record of persons identified at no added cost.</p><p>Performs a large number of anthropometric measurements on a human hand.</p>"
+  },
+  {
+    "_id": "0a990186abbdfe4f",
+    "name": "Biometric Identification (Fingerprints)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Biometric Identification entry and its own kind",
+    "description": "<p>Devices that recognize some distinctive trait of the person being identified. Normally used in a fixed location with household power; however, security personnel may carry models with rechargeable batteries (recharged daily; add 0.2 lb. to weight and $5 to cost). A basic system (as specified below) can be bypassed by opening its case and modifying its circuits with a roll vs. Electronics Repair (Security) at +5; a good system (×5 cost) requires an unmodified roll, and a fine system (×20 cost) requires a roll at -5. Any such device can keep a record of persons identified at no added cost.</p><p>A basic device can be fooled by breathing on the scanner, which causes it to read the last print scanned. High-quality visual imaging equipment can produce a counterfeit fingerprint.</p>"
+  },
+  {
+    "_id": "ff7b788f4e2eb310",
+    "name": "Biometric Identification (Facial Recognition)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Biometric Identification entry and its own kind",
+    "description": "<p>Devices that recognize some distinctive trait of the person being identified. Normally used in a fixed location with household power; however, security personnel may carry models with rechargeable batteries (recharged daily; add 0.2 lb. to weight and $5 to cost). A basic system (as specified below) can be bypassed by opening its case and modifying its circuits with a roll vs. Electronics Repair (Security) at +5; a good system (×5 cost) requires an unmodified roll, and a fine system (×20 cost) requires a roll at -5. Any such device can keep a record of persons identified at no added cost.</p><p>Uses the shape of the face; now being adapted for use on computers (including smartphones) with camera input, without a separate scanner.</p>"
+  },
+  {
+    "_id": "568e74b20ecd1d53",
+    "name": "Chaff (per package)",
+    "pages": "HT:EE45",
+    "status": "reviewed",
+    "notes": "the book's Chaff entry",
+    "description": "<p>Strips of aluminum-coated paper cut to half the wavelength of a targeting radar signal, dumped out of an aircraft. Dumping chaff doesn’t conceal the aircraft’s presence – it makes it more visible – but gives -2 to targeting per package dumped.</p>"
+  },
+  {
+    "_id": "a52739347af86278",
+    "name": "Phantom 4 Pro",
+    "pages": "HT:EE46",
+    "status": "reviewed",
+    "notes": "the Reconnaissance UAVs opening and its own entry",
+    "description": "<p>Unmanned aerial vehicles (“drones”) were originally created for military purposes. Experimental models saw specialized use in World War II; their use for surveillance dates to 1959. UAVs gained acceptance as effective combat equipment after Israel used them against Syria in 1982.</p><p>At TL8, UAV control systems incorporate specialized computers that give them enhanced autonomy. Widespread civilian use began in 2015, as technological advances (including smaller computers and longer-lasting batteries) made UAVs more affordable. The following examples illustrate options available to adventurers.</p><p>A quadcopter designed for civilian professional use in photography and video, but adaptable to more adventurous tasks. Dimensions are 12” long, 7” wide, and 4.5” high. It carries a high-definition camera that can film video or take bursts of still photographs. An onboard autopilot provides flight stabilization and obstacle avoidance using infrared cameras with an 8-yard range; treat it as having Piloting (Helicopter)-14 and Dodge-9 for avoiding obstacles. Its remote control system uses a touch-screen interface that gives +1 to the operator’s Piloting rolls.</p>"
+  },
+  {
+    "_id": "fd6cb6080c8a20fe",
+    "name": "RQ-16A T-Hawk",
+    "pages": "HT:EE46",
+    "status": "reviewed",
+    "notes": "the Reconnaissance UAVs opening and its own entry",
+    "description": "<p>Unmanned aerial vehicles (“drones”) were originally created for military purposes. Experimental models saw specialized use in World War II; their use for surveillance dates to 1959. UAVs gained acceptance as effective combat equipment after Israel used them against Syria in 1982.</p><p>At TL8, UAV control systems incorporate specialized computers that give them enhanced autonomy. Widespread civilian use began in 2015, as technological advances (including smaller computers and longer-lasting batteries) made UAVs more affordable. The following examples illustrate options available to adventurers.</p><p>A “micro air vehicle” originally built by Honeywell for the U.S. Army for reconnaissance and bomb detection, but subsequently turned to civilian uses. The entire package is 14” in diameter and can be carried in a backpack, with another pack holding the 32-lb. remote-control system. The main body holds a vertol system powered by a gasoline engine. Two pods at the sides carry the onboard control system and a modular sensor (a video camera and passive IR sensor are standard). The onboard autopilot provides Piloting (Vertol)-10 and Dodge-8. The remote-control system uses a touch-screen interface (p. 40) and track pen for +2 to the operator’s Piloting rolls, and communicates with the craft by spread-spectrum radio (-4 to detect; see below).</p>"
+  },
+  {
+    "_id": "4634d087cdb6a331",
+    "name": "Impact Fuze (TL7)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>Sets off the explosive charge on impact with the target. To avoid premature detonation, it has a safety wire that’s removed just before firing, after which the projectile arms itself, with a short delay.</p>"
+  },
+  {
+    "_id": "fc989306975185ad",
+    "name": "Impact Fuze (TL8)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>Sets off the explosive charge on impact with the target. To avoid premature detonation, it has a safety wire that’s removed just before firing, after which the projectile arms itself, with a short delay.</p>"
+  },
+  {
+    "_id": "83c55f4b106b0888",
+    "name": "Proximity Fuze (TL7)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>Originally called the “VT fuze” (for variable time) to avoid revealing how it actually worked. It contains a compact radar system that can detect a target up to 25 yards away and set off an explosive charge at a specified distance.</p>"
+  },
+  {
+    "_id": "3b8e38255046a3b3",
+    "name": "Proximity Fuze (TL8)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>Originally called the “VT fuze” (for variable time) to avoid revealing how it actually worked. It contains a compact radar system that can detect a target up to 25 yards away and set off an explosive charge at a specified distance.</p>"
+  },
+  {
+    "_id": "4acbe85e894c7039",
+    "name": "Time Fuze (TL7)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>A much more rugged version of the electronic watch (p. 39). Can be set for any time after firing up to 3 minutes. An improvised version can be made with a clock and a few electronic parts on a roll vs. Explosives (Demolition).</p>"
+  },
+  {
+    "_id": "67d8ad50e4311e06",
+    "name": "Time Fuze (TL8)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "the Fuze entry and its own kind",
+    "description": "<p>A fuze (in American usage) is a complex mechanism for setting off an explosive charge automatically. In 1943 (TL7), a variety of electronic fuzes were developed. Specified weights are for TL7 fuzes; halve the weight after 1980 (TL8).</p><p>A much more rugged version of the electronic watch (p. 39). Can be set for any time after firing up to 3 minutes. An improvised version can be made with a clock and a few electronic parts on a roll vs. Explosives (Demolition).</p>"
+  },
+  {
+    "_id": "efcc7ca7feca3a42",
+    "name": "Air Taser Cartridge",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "priced in the Taser (TL8) entry, whose text it shares",
+    "description": "<p>Uses air cartridges as a propellant.</p>"
+  },
+  {
+    "_id": "65a5d171bd12b7b3",
+    "name": "Large Jammer (TL6)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large jammer is normally operated in a fixed location with major appliance power. Treat it as a large radio (p. 27) with ×0.5 cost and ×2 weight.</p>"
+  },
+  {
+    "_id": "ec732151184e6f8f",
+    "name": "Large Jammer (TL7)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large jammer is normally operated in a fixed location with major appliance power. Treat it as a large radio (p. 27) with ×0.5 cost and ×2 weight.</p>"
+  },
+  {
+    "_id": "ec1e657bc4da7419",
+    "name": "Large Jammer (TL8)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large jammer is normally operated in a fixed location with major appliance power. Treat it as a large radio (p. 27) with ×0.5 cost and ×2 weight.</p>"
+  },
+  {
+    "_id": "28f27880c5579fc6",
+    "name": "Portable Jammer (TL6)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A portable jammer can be treated as a medium radio (p. 27) with ×5 power consumption (or automotive or better power), ×0.5 cost, and ×2 weight.</p>"
+  },
+  {
+    "_id": "dd637a6f08d3dc72",
+    "name": "Portable Jammer (TL7)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A portable jammer can be treated as a medium radio (p. 27) with ×5 power consumption (or automotive or better power), ×0.5 cost, and ×2 weight.</p>"
+  },
+  {
+    "_id": "59d8cae425edff3f",
+    "name": "Portable Jammer (TL8)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A portable jammer can be treated as a medium radio (p. 27) with ×5 power consumption (or automotive or better power), ×0.5 cost, and ×2 weight.</p>"
+  },
+  {
+    "_id": "6402bd896695440f",
+    "name": "Radar Jammer (TL7)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A jammer tuned to radar frequencies, operating to \"blind\" the radar system; often carried in EW aircraft to provide cover for other aircraft. Effectively similar to a radio jammer, but works against Electronics Operation (Sensors) rather than Electronics Operation (Comm). Radius 15 miles. At TL8, double radius and halve weight.</p>"
+  },
+  {
+    "_id": "1e1484476f02b0dc",
+    "name": "Radar Jammer (TL8)",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A jammer tuned to radar frequencies, operating to \"blind\" the radar system; often carried in EW aircraft to provide cover for other aircraft. Effectively similar to a radio jammer, but works against Electronics Operation (Sensors) rather than Electronics Operation (Comm). Radius 15 miles. At TL8, double radius and halve weight.</p>"
+  },
+  {
+    "_id": "ce924edb3d4e8d00",
+    "name": "Radar Spoofer",
+    "pages": "HT:EE50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An advanced variation on radar jamming, based on digital radio-frequency memory. Rather than simply blinding a radar system, it records its output and sends back a modified version that gives a misleading impression of a target’s location and size. Requires a Quick Contest of Electronics Operation (EW) vs. Electronics Operation (Sensors). Treat as a TL8 radar jammer with ×2 cost.</p>"
+  },
+  {
+    "_id": "c5264d6b92be2261",
+    "name": "Dazzler",
+    "pages": "HT:EE50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A laser weapon designed to blind humans or animals temporarily. The model described is relatively low-power and short-ranged, and is available for civilian use.</p>"
+  },
+  {
+    "_id": "1f2d229e263322b5",
+    "name": "Megacomputer",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An early, very large computer, or a computer complex at a major research facility.</p>"
+  },
+  {
+    "_id": "62b05b1d105333bf",
+    "name": "Macroframe",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller early computer, a first- or second-generation mainframe, a large mainframe owned by a major organization, or a small supercomputer.</p>"
+  },
+  {
+    "_id": "4536de55dd694f31",
+    "name": "Minicomputer",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact, less expensive computer, first built to take advantage of early integrated circuits – typically about the size of a refrigerator. Later models are called “midrange computers.”</p>"
+  },
+  {
+    "_id": "be0ab9e7c122c6e1",
+    "name": "Workstation",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A one-person computer, sometimes built into a workstation terminal (p. 40). Includes larger desktop computers such as the first IBM PC.</p>"
+  },
+  {
+    "_id": "61b26f47340bac1a",
+    "name": "Medium Computer",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller desktop (often built into a monitor or keyboard), or the internal components of a laptop.</p>"
+  },
+  {
+    "_id": "732db55c0191063f",
+    "name": "Small Computer",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The internal components of a notebook, palmtop, or tablet.</p>"
+  },
+  {
+    "_id": "25ff58464f7a2947",
+    "name": "Tiny Computer",
+    "pages": "HT:EE37",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The internal components of a smartphone or wearable.</p>"
+  },
+  {
+    "_id": "28347db54d229083",
+    "name": "Desktop Calculator (Vacuum Tube)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A large machine that electronically adds, subtracts, multiplies, and divides. An early relay-based model (1957) was actually as large as a whole desk and weighed 300 lbs. It was quickly replaced with tube-based electronic devices.</p>"
+  },
+  {
+    "_id": "951f7c48ad74c475",
+    "name": "Electronic Watch",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Early watches used a variety of circuits and mechanical components. The quartz watch, based on an oscillator controlled by a quartz crystal, became standard because of superior durability and accuracy.</p>"
+  },
+  {
+    "_id": "ba9d384a9b8bf22f",
+    "name": "Pocket Calculator (TL7)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket-sized device that adds, subtracts, multiplies, and divides; more advanced models carry out scientific, statistical, or financial calculations (treat as good equipment).</p>"
+  },
+  {
+    "_id": "432d9e7125753358",
+    "name": "Digital Watch",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>LCD and LED displays led to the emergence of the digital watch, with a numerical display rather than hands.</p>"
+  },
+  {
+    "_id": "fad77f5e10aa414d",
+    "name": "Game Console (TL7)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "the cartridges' sentence is the Game Cartridge record's",
+    "description": "<p>The first game played on a video display was patented in 1947, and the use of computers to play games began in the 1950s. Large arcade games came on the market in the 1970s, followed shortly by home game consoles used with a separate video monitor or television (p. 34).</p>"
+  },
+  {
+    "_id": "e908e7e3b102c2e7",
+    "name": "Programmable Calculator",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A calculator that can carry out and store a short program defined by the user (roll vs. Computer Programming).</p>"
+  },
+  {
+    "_id": "f0a8472c782795c1",
+    "name": "Pocket Calculator (TL8)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses inexpensive integrated circuits and has much lower power consumption.</p>"
+  },
+  {
+    "_id": "c6c1e4f376200a6a",
+    "name": "Game Console (TL8)",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld console, two or more of which can be linked together for multiplayer games.</p>"
+  },
+  {
+    "_id": "b26a25de95a4cb4f",
+    "name": "E-Reader",
+    "pages": "HT:EE39",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld device that stores the texts of a large number of books and displays them on an LCD or LED screen. This function is now routinely incorporated into tablets (see Small Computer, p. 37).</p>"
+  },
+  {
+    "_id": "9ab162635108df60",
+    "name": "Joystick (TL7)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The electric joystick was originally developed to control aircraft remotely (Remote Control, p. 25) and was used for this during World War II; it was later adapted to video games.</p>"
+  },
+  {
+    "_id": "f290830e96b118c1",
+    "name": "Light Pen",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented early in the development of mainframes, for use with CRT displays, primarily of graphic output. Came into more general use with standard terminals based on a keyboard and monitor. However, it has to be held up to the screen, causing fatigue and even repetitive stress injury to the arm; roll vs. HT every 10 minutes, with failure costing 1 FP and critical failure also costing 1 HP. Because of this, other pointing devices became more popular.</p>"
+  },
+  {
+    "_id": "2399e15ca4e268c4",
+    "name": "Joystick (TL8)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A digital version using peripheral power.</p>"
+  },
+  {
+    "_id": "48f8b1424ea4fc95",
+    "name": "Keyboard",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The equivalent of a teletype keyboard, often with extra keys for numerical input or to control computer functions or navigate the screen of a monitor. Sold separately for use with desktop computers. Navigating a video display with only the up, down, left, and right arrows of a keyboard (common in CLI systems) gives -1 to effective skill; this can be compensated for by taking extra time.</p>"
+  },
+  {
+    "_id": "e3f17d5a3f7799ff",
+    "name": "Mouse",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The most commonly used pointer for GUIs on desktop computers.</p>"
+  },
+  {
+    "_id": "55cf91a76a0df6c4",
+    "name": "Trackpad",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An alternative pointer for a desktop computer, and built into laptop computers.</p>"
+  },
+  {
+    "_id": "97d2498887006312",
+    "name": "Wireless Mouse",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses internal batteries recharged by peripheral power, and tracks position optically rather than mechanically.</p>"
+  },
+  {
+    "_id": "454b3f603f146355",
+    "name": "Wireless Keyboard",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses internal batteries recharged by peripheral power.</p>"
+  },
+  {
+    "_id": "b42ccf60e63e797b",
+    "name": "Stylus",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A penlike device that allows more precise control of a touch screen; +1 quality modifier to effective skill. Does not provide a multitouch option.</p>"
+  },
+  {
+    "_id": "2df7687c023d09a2",
+    "name": "Touch Screen (Desktop)",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "the Touch Screen entry's opening and its own size",
+    "description": "<p>A computer interface based mainly on a touch screen. Gives -1 to tasks that involve typing, but can be used with a separate keyboard. Comes in three main sizes:</p><p>Comparable to the screen of a laptop, but can be freestanding. Multitouch versions (since 2005) give +1 to Computer Operation.</p>"
+  },
+  {
+    "_id": "97afa7f61e4a895a",
+    "name": "Smart Speaker",
+    "pages": "HT:EE40",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A purely or primarily acoustic interface for accessing a remote computer, containing small loudspeakers and multiple microphones (to detect a user's location). Typical models can play music, access a network, answer questions, and sometimes control other devices.</p>"
+  },
+  {
+    "_id": "0f28e63e28bc3b39",
+    "name": "Virtual Reality Headset",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A headset that provides separate video images to both eyes, allowing three-dimensional imagery, together with stereo sound. Also provided is a handheld pointer device for selecting and moving virtual objects. If used for Computer Operation, it offsets up to -2 in penalties for tasks that would benefit from wearing a VR headset.</p>"
+  },
+  {
+    "_id": "fa5c61ace79208f0",
+    "name": "Modem (TL7)",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that translates digital data into an analog signal for transmission to a remote location. Early modems sent audio signals, originally at 300 bits/second, and had to be manually controlled.</p>"
+  },
+  {
+    "_id": "c8d25faa2d49d11e",
+    "name": "Modem (TL8)",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device directly controlled by a computer and capable of higher speeds, starting at 1,200 bits/second, letting it be used for file transfer.</p>"
+  },
+  {
+    "_id": "a0ac8b3545643797",
+    "name": "Broadband Modem",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Digital signals allow transmission rates in megabits/second over phone lines or television cable. Treat as cutting edge (p. 8) until 2004.</p>"
+  },
+  {
+    "_id": "5b5eea5bad913cc8",
+    "name": "Ethernet Adapter",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that can be connected to a computer's bus, or in later versions to a USB port. It enables Ethernet communication via coaxial cable ([1973] 1982), copper twisted pair connectors ([1983] 1986), or fiber-optic cable ([1978] 1993). After 1990, Ethernet capability was built into most computers.</p>"
+  },
+  {
+    "_id": "34cef13cc6a86bd5",
+    "name": "Router",
+    "pages": "HT:EE41",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that connects with multiple computers and other devices within a house or office, letting them exchange files and assign each other tasks. Routers are usually connected to a modem via Ethernet, providing Internet access.</p>"
+  },
+  {
+    "_id": "5c58da05c9c55814",
+    "name": "Low-Voltage Fence (per mile)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used for animal control or for home or private business security. Causes nonlethal electrical damage (p. 9) resisted with an unmodified HT roll each second, as well as Moderate Pain (p. B428). Stun lasts while contact is maintained, and a HT roll is required to recover after it’s broken; this may be attempted once per second. Can be extended to up to 20 miles.</p>"
+  },
+  {
+    "_id": "5fecd0d1828603d0",
+    "name": "High-Voltage Fence (per 0.25 mile)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>“Stun-lethal” fences deliver low-voltage effects at a first touch, and high-voltage ones at a second. High voltage inflicts 3d burning damage per second as lethal electrical damage (p. 9).</p>"
+  },
+  {
+    "_id": "759d8f555276aa96",
+    "name": "Key Switch",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electric switch operated by a key, turning on power to open an electric deadbolt or activate other devices (in particular, automobiles). Roll vs. Electronics Repair (Security) or Mechanic (vehicle type) to bypass, or make a standard Lockpicking roll (p. B206).</p>"
+  },
+  {
+    "_id": "2117d1fdd6cc6095",
+    "name": "Electric Deadbolt",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A deadbolt that's either closed (fail-safe) or opened (fail-secure) by an electromagnet.</p>"
+  },
+  {
+    "_id": "07eef7f278f0c7d1",
+    "name": "Keypad Combination Lock",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A numeric keypad that opens a lock when a specific sequence of digits (usually from four to six) is pressed.</p>"
+  },
+  {
+    "_id": "ab93dba39bd2bb05",
+    "name": "Magnetic Lock (Micro)",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "the Magnetic Lock entry and its own size",
+    "description": "<p>Holds a door closed with a powerful magnetic field generated by an electromagnet (pp. 22-23) mounted on the doorframe. An intruder can shut off the power with an Electrician roll. Available in several standard sizes with different effective strengths (figured as for electromagnets, pp. 22-23):</p><p>275 lbs. force (ST 12).</p>"
+  },
+  {
+    "_id": "2915cef8b5ac3feb",
+    "name": "Smart Lock",
+    "pages": "HT:EE42",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electric deadbolt designed for wireless control by a coded signal from a specialized key fob or a smartphone.</p>"
+  },
+  {
+    "_id": "d5e359dfbd5fdded",
+    "name": "Keycard Reader (Optical Barcode)",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "the Keycard Reader entry and its own technology",
+    "description": "<p>A device that can read an access code number from a wallet-sized plastic card. Multiply cost ×2 if the device keeps a record of scanned cards. Several technologies have been used:</p><p>A pattern of wide and narrow stripes that can be visually scanned.</p>"
+  },
+  {
+    "_id": "4b4530790c5f5e14",
+    "name": "Electric Alarm",
+    "pages": "HT:EE43",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electric circuit that crosses a door or window; if this is opened (or a window is broken), current stops flowing and the alarm goes off. Simple enough to be disabled with a roll vs. Traps. Per portal: M/1 month or household power.</p>"
+  },
+  {
+    "_id": "5390382e80145ba8",
+    "name": "Pressure Mat (per square foot)",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A flat device that signals when stepped on. Can provide security for an entry or passageway, show when a patient gets out of bed, or open doors automatically.</p>"
+  },
+  {
+    "_id": "7b9a480faefa2a47",
+    "name": "Ultrasonic Alarm",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A motion-detector system that fills a room with ultrasonic waves and responds to changes in the frequency of reflected waves when someone moves through. Can be used to turn on lights when someone enters a room.</p>"
+  },
+  {
+    "_id": "83501c80cf6ff712",
+    "name": "Car Alarm",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A motion sensor for an automobile, based on mercury switches that conduct electric current if the vehicle is tilted or suffers an impact, setting off a loud noise. At TL8, often built into the vehicle and recharged by automotive power.</p>"
+  },
+  {
+    "_id": "07dab4d5838014d8",
+    "name": "Photoelectric Beam (per beam)",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Based on photodetectors (p. 12), this alarm system has beams of visible or near infrared light crossing a doorway, corridor, or other space; interrupting a beam sets off an alarm. Beams can be up to 3 yards long.</p>"
+  },
+  {
+    "_id": "e3316668e157e216",
+    "name": "Infrasonic Alarm",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A microphone designed to pick up subsonic sound waves, such as those emitted by attempts at forced entry or by explosions. When a suspicious pattern is identified, the alarm is triggered. It doesn't respond to human or animal movements.</p>"
+  },
+  {
+    "_id": "28caf566f219fafc",
+    "name": "Resonant Cavity Microphone",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Created in the Soviet Union to bug the U.S. embassy. Nicknamed \"the Thing\" when discovered. Hidden inside a large Great Seal of the United States was a 9\" antenna (SM -5) connected to a very small condenser microphone. A beam of microwaves supplied power to the device, which modulated and retransmitted the signal. The device is considered a precursor of RFID (p. 43).</p>"
+  },
+  {
+    "_id": "5667f8a426703b53",
+    "name": "Isolator",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Safeguards a bug against detection by a nonlinear junction detector (below). Radio-frequency emissions are diverted into a resistor that dissipates most of their energy. Gives -2 to rolls to detect a bug; SM -10.</p>"
+  },
+  {
+    "_id": "108551dedb7c26c7",
+    "name": "Contact Microphone",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An extremely small microphone (SM -11) with adhesive backing, to be pressed against a flat surface. The operator can pick up sounds from the other side, at a penalty equal to the barrier's (DR + HP)/5, rounded down. T/week.</p>"
+  },
+  {
+    "_id": "aa86858b7c614be8",
+    "name": "Nonlinear Junction Detector",
+    "pages": "HT:EE44",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sends out high-frequency radio waves that cause oscillations in solid-state devices. A sweep of a room detects any such device with an Electronics Operation (Security) roll. Originally created in World War II to find corrosion in aircraft, it also responds to such things as rusty nails; on failure by 4 or more, or critical failure, the operator mistakes such an object for a bug.</p>"
+  },
+  {
+    "_id": "7a8ae456d2b15158",
+    "name": "Keylogger",
+    "pages": "HT:EE45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electronic device that captures the characters typed on a keyboard. Early versions had to be physically wired into electric typewriters (with half an hour access and a roll vs. Electronics Repair (Surveillance)). After the emergence of desktop computers, commercially made devices could be plugged into the main computer and have the keyboard cable plugged into them in a “man in the middle” configuration, usually for later retrieval, though such a device can also be equipped with a built-in transmitter with range 2 miles. Keystrokes can also be logged by placing a concealed microphone close to the keyboard and analyzing subtle differences in the sounds of different keys, or by placing an accelerometer (p. 13) on the desk and analyzing the vibrations caused by typing. Either form of analysis requires a sample of 1,000 typed characters – about 200 words (the time required to collect this depends on the Typing skill of the user; see p. B228). After 2000, a smartphone can be programmed to perform either task.</p>"
+  },
+  {
+    "_id": "4a9110bdd2cb91ae",
+    "name": "Shielded Wallet",
+    "pages": "HT:EE45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wallet designed to block radio signals and prevent RFID cards (p. 43) from being scanned or copied.</p>"
+  },
+  {
+    "_id": "2fbd8d37f87ec850",
+    "name": "Seismic Ground Sensor",
+    "pages": "HT:EE45",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A microphone on a spike that's driven into the ground. To detect subsonic ground vibrations, such as footsteps or vehicles, roll vs. Electronics Operation (Surveillance) with bonuses based on size and speed, and a penalty based on range (Size and Speed/Range Table, p. B550).</p>"
+  },
+  {
+    "_id": "0922343e510e0f69",
+    "name": "Spectrum Analyzer (Digital)",
+    "pages": "HT:EE48",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An inexpensive handheld device usable in the field to detect radio transmitters; roll Electronics Operation (EW) at -2.</p>"
+  },
+  {
+    "_id": "71dc35e193592246",
+    "name": "Laser Designator",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>First used in the Vietnam War, this system combines guidance and homing. The missile is designed to seek a point of light projected by a laser. The operator or a forward observer keeps the point on the desired target with a series of Aim maneuvers.</p>"
+  },
+  {
+    "_id": "1dc0fd625e247a24",
+    "name": "Air Taser Model 34000",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "the book's Taser (TL8) entry is one sentence",
+    "description": "<p>Uses air cartridges as a propellant.</p>"
+  },
+  {
+    "_id": "ec468332a156ce99",
+    "name": "Cattle Prod",
+    "pages": "HT:EE49",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device primarily designed for controlling the movement of large animals. Causes localized burning damage and moderate pain that the animal tries to avoid by moving away. +2 to Animal Handling. Date of invention uncertain; listed dates range from 1890 (by John Burton) to 1930 (by Robert Kleberg).</p>"
+  },
+  {
+    "_id": "e908b9ffc06d9559",
+    "name": "NNEMP",
+    "pages": "HT:EE50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A non-nuclear EMP device that disables electronic devices within 220 yards. One proposed design, the flux compression generator, discharges a bank of capacitors into coils that are then compressed by an explosive charge (set up using Explosives (Demolition) skill), creating an intense magnetic field. Such devices, nicknamed \"E-bombs,\" are destroyed by being used. Roll vs. HT for each device (HT+3 for Hardened devices and for purely electrical devices without electronic components). On a failure, the device shuts down and must be repaired before it can work again; repair rolls for non-Hardened electronic devices are at -6.</p>"
+  },
+  {
+    "_id": "aae86c9e5073ea88",
+    "name": "Shielded Cap",
+    "pages": "HT:EE50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A commercially manufactured garment that covers the skull with a screen against radio waves.</p>"
+  },
+  {
+    "_id": "ae456bf94d16570c",
+    "name": "Active Denial System",
+    "pages": "HT:EE50",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A transmitter operating at millimeter wavelengths. Aimed with a video screen and joystick. The beam from its antenna heats living tissue to a depth of less than 1/20\", causing painful burning sensations but no injury. The number of shots reflects the time required to select a new target; it can continue to fire as long as it's supplied with power. Prototype versions weigh 4,500 lbs. and can be transported on a truck or similar vehicle.</p>"
+  },
+  {
+    "_id": "d718a98b314a60c8",
+    "name": "Fax Machine",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "the book's Fax entry",
+    "description": "<p>A fax machine uses a photoelectric sensor to scan a flat image, pixel by pixel. Experimental systems date to 1911; “wirephoto” became commercially available in 1921, and “radiophoto” in 1926. By 1929, a full page could be sent in a minute over a dedicated phone line. Digital fax appeared in 1960, and analog fax was discontinued in 1996. Digital machines can send three pages per minute. No skill roll is required.</p>"
+  },
+  {
+    "_id": "cdfa303008dce74b",
+    "name": "Trench Radio Receiver",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "the Trench Radio kit's opening and its receiver",
+    "description": "<p>Radio equipment designed for use under battlefield conditions in World War I.</p><p>A crystal-based (p. 28) receiver. Medium, receive-only (p. 28). Range 0.5 miles.</p>"
+  },
+  {
+    "_id": "791530ab15de8f3f",
+    "name": "Trench Radio Antenna Wire (1,000 feet)",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "the Trench Radio kit's opening and its antenna wire",
+    "description": "<p>Radio equipment designed for use under battlefield conditions in World War I.</p><p>Insulated wire for a dipole antenna (p. 28). Gives ×1.5 range. An improvised “ground aerial” made of two lengths of wire running in opposite directions gives -2 to Electronics Operation (Comm) but is concealable with a Camouflage roll.</p>"
+  },
+  {
+    "_id": "843cb3d13e68c0d9",
+    "name": "Trench Radio Spare Batteries (6 sets)",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "the Trench Radio kit's opening and its spare batteries",
+    "description": "<p>Radio equipment designed for use under battlefield conditions in World War I.</p><p>Half a dozen sets of spare batteries.</p>"
+  },
+  {
+    "_id": "c6a993d91902b343",
+    "name": "Shotgun Microphone (TL7)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Invented in the movie industry for use on sound stages - but adventurers will think of other uses! Responds much more strongly to sounds directly in front of it than to sounds from other directions, giving +3 to Electronics Operation rolls to target a specific sound.</p>"
+  },
+  {
+    "_id": "7633aa017e9f8036",
+    "name": "Shotgun Microphone (TL8)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact device using miniaturized components.</p>"
+  },
+  {
+    "_id": "67da90fc2a0c8c58",
+    "name": "Telharmonium",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "described in the Electric Organ entry (HT:EE31), whose text it shares",
+    "description": "<p>A keyboard instrument with tonewheels (rotating magnetized disks with electromagnetic pickups), whose output could be combined to produce a complex waveform imitating that of a musical instrument. The first such instrument, the telharmonium, consumed 670 kilowatts, weighed 200 tons, and was used primarily to send music over telephone lines (in 1906, Lee de Forest made experimental broadcasts with an arc converter); treat it as a Complex complexity prototype. The technology became commercial with the Hammond organ.</p>"
+  },
+  {
+    "_id": "3f5ab149a46b42fd",
+    "name": "Dictation Machine (Cassette)",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "the second Dictation Machine (TL7) entry, on cassettes",
+    "description": "<p>Records on reusable magnetic cassettes.</p>"
+  },
+  {
+    "_id": "408fb7581d768ddf",
+    "name": "Flatbed Scanner",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Available after the development of solid-state image devices. Captures documents easily but give -2 (quality) to Electronics Operation (Media) to capture images of high artistic quality, or photographs that need to be enlarged.</p>"
+  },
+  {
+    "_id": "1561b231a23fc6b6",
+    "name": "Home Theater Projector",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the Digital Micromirror Device entry's opening and its own size",
+    "description": "<p>A projection system that fits several hundred thousand microscopic mirrors onto a MEMS chip (p. 24) a few inches on a side, each of which can direct light from an external source into a lens. Early models used arc lights; since 2008, high-powered LEDs or lasers in multiple colors have replaced them. Widely used in digital cinema and other projection devices. Available in various sizes:</p><p>Projects video output onto a screen up to 200”.</p>"
+  },
+  {
+    "_id": "400b9a0974a6c163",
+    "name": "Professional Webcam",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the Webcam entry and its professional model",
+    "description": "<p>A very small camera and microphone designed to feed into a computer, usually for uploading to the Internet, or to upload to a wired or wireless channel. Often built into computers or other devices.</p><p>Professional models with +1 (quality) to skill are available.</p>"
+  },
+  {
+    "_id": "03db4651b99ed43c",
+    "name": "Color Television (TL7)",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the entry's text beyond its statistics is this sentence",
+    "description": "<p>Cutting edge at TL7.</p>"
+  },
+  {
+    "_id": "dd674d0590c52751",
+    "name": "Color Television (TL8)",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the TL7 entry, which gives the TL8 price",
+    "description": "<p>Cutting edge at TL7.</p>"
+  },
+  {
+    "_id": "bcf8f6f7eddd1ae5",
+    "name": "Videocassette",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "priced in the Videotape Recorder entry (HT:EE34), whose text it shares",
+    "description": "<p>A device for recording televi -sion programs, playing them back, and playing purchased videocassettes. The Betamax format (available in 1975) was limited to 60 minutes. The VHS format (available after 1976 in Japan and 1977 in the United States) held 2-3 hours and decisively displaced Betamax between 1981 and 1986.</p>"
+  },
+  {
+    "_id": "3e7c0d0116921519",
+    "name": "Professional Digital Camcorder",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the Digital Camcorder entry and its professional model",
+    "description": "<p>Early models used 0.75” tape or DVDs, but they didn’t become successful until they adopted solid-state memory.</p><p>Professional models give +1 (quality) to Elec -tronics Operation (Media).</p>"
+  },
+  {
+    "_id": "40a218280e9fbfd1",
+    "name": "Telegraph Key",
+    "pages": "HT:EE26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A specialized electric switch that sends a telegraphic signal by turning on a current when pressed down. L/8 weeks for 20 miles; each added battery adds 10 miles.</p>"
+  },
+  {
+    "_id": "8808618762e8d144",
+    "name": "Telegraph Sounder",
+    "pages": "HT:EE26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Similar to an electric bell (p. 23), producing clicking sounds when current flow starts and stops.</p>"
+  },
+  {
+    "_id": "ceb7b9640dbc4c47",
+    "name": "Teletype",
+    "pages": "HT:EE26",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that uses telegraph lines to transmit signals from a typewriter keyboard to a teleprinter - or, after 1924, sends such signals via radio. It doesn't require skill in Morse code, but only in typing, for which it counts as a familiarity; typing speeds are as for electric typewriters (p. B228). Nearly all commercial models use Baudot code (the basis for baud as a unit of data transmission), automatically generated within the keyboard. A network of teletype exchanges (telex) emerged in 1931; operators developed shorthand expressions such as \"CU L8R\" long before texting.</p>"
+  },
+  {
+    "_id": "216ff6aaed23653f",
+    "name": "Telephone",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "the battery model only; the later model the entry mentions is High-Tech's record",
+    "description": "<p>Early telephones were powered by carbon-zinc batteries.</p>"
+  },
+  {
+    "_id": "84bca1f54774aa04",
+    "name": "Intercom",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A short-range system for wired voice transmission, with a microphone and a loudspeaker at each end. This basic version has two stations that can be up to 60' apart.</p>"
+  },
+  {
+    "_id": "1738206331d6501e",
+    "name": "Large Radio (TL6)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "c781ddb5510f0ea2",
+    "name": "Large Radio (TL7)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "eb589da40820605e",
+    "name": "Large Radio (TL8)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "6e558b2619f3a98b",
+    "name": "Medium Radio (TL6)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "a3420e07c88863d1",
+    "name": "Medium Radio (TL7)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "1643ab8f68f924ce",
+    "name": "Medium Radio (TL8)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "a32bcf89ff634c15",
+    "name": "Small Radio (TL6)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "1bde9c96d5e4cd91",
+    "name": "Small Radio (TL7)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "ddef76b74c7d7894",
+    "name": "Small Radio (TL8)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "2a58c5c8e298d725",
+    "name": "Tiny Radio (TL7)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "3ebf03ace1c3e41f",
+    "name": "Tiny Radio (TL8)",
+    "pages": "HT:EE27",
+    "status": "reviewed",
+    "notes": "a radio size, which the Radios entry prices in its list (HT:EE27): the entry's text, as every size shares it",
+    "description": "<p>Each radio has a defined range, used when -two systems of the same type are in communi cation. See Mix and Match (p. 28) for rules on combining different systems. A skilled operator can receive signals at greater distances with a roll vs. Electronics Operation (Comm) at -1 per added 10% range, with a maximum increase of 100%. Broadcast signals that are intended to be received easily require no skill roll to be picked up at normal range and without interference. In code or data trans -mission, the range can be increased by rep -etition; the number of repetitions required is the square of the factor of range increase. For example, doubling the standard range requires four repetitions, which take 4× as long.</p><p>Radio was subject to interference from lightning, electrical machinery, or other signals (including intentional jamming; see pp. 49-50). This can be represented as a penalty to rolls to detect a signal, from -1 to -10, similar to those for Obscure; -10 represents a completely blocked the signal. Under favorable conditions, a bonus may apply; +4 could represent a strong signal or an exceptionally clear channel.</p><p>Radio size categories are as defined in High-Tech, pp. 37-38. Specifications given here are for code transmission (radiotelegraphy), which is available at all stages in the development of radio, and costs have been reduced 50% to reflect this. Audio and video transmission are discussed later (audio on pp. 30-33; video on p. 33-34).</p>"
+  },
+  {
+    "_id": "4378922391e3f75f",
+    "name": "Trench Radio Transmitter",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "the Trench Radio kit's opening and its transmitter",
+    "description": "<p>Radio equipment designed for use under battlefield conditions in World War I.</p><p>A spark-gap radio transmitter operating at 350 meters (857 kilohertz), 450 meters (667 kilohertz), 550 meters (545 kilohertz), and the international distress wavelength of 600 meters (500 kilohertz). Large, send-only (above), wideband (above). Range 50 miles. Includes three lead-acid M batteries that supply power for 35 minutes.</p>"
+  },
+  {
+    "_id": "23ced2d48b3117a8",
+    "name": "Arc Converter",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An early form of tuned-circuit oscillator, in which electric arcs sustain the oscillation; used for large, high-power transmitters into the 1920s. On a critical failure, it creates interference at multiples of its frequency. Treat as a standard Large transmitter.</p>"
+  },
+  {
+    "_id": "aca1e992a0513a5d",
+    "name": "Alternator",
+    "pages": "HT:EE29",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A specialized generator spinning at thousands of RPM. A small model is stationary (weighing several tons) and consumes 7.5 gallons of hydrocarbon fuel per hour. Its high power allows a 200-mile range. Requires a skilled mechanic to keep it running (roll daily vs. Mechanic for the power-plant type). If it breaks down, minor repairs (p. B484) can restart it. Most alternators operate at 10-30 kilohertz; high-quality models can reach hundreds of kilohertz.</p>"
+  },
+  {
+    "_id": "7a5c9cf06ef617b5",
+    "name": "Radio Peripheral",
+    "pages": "HT:EE30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A combination of analog-to-digital and digital-to-analog converters that works directly with radio signals. Allows a computer to emulate multiple types of radio, sending and receiving data, text, audio, and sometimes still pictures. In addition to enhanced tuning (Tuning In, p. 29), the user can record a radio signal directly by making a Computer Operation roll and then recognize it or search for it later. 35-mile range.</p>"
+  },
+  {
+    "_id": "17051548437d3638",
+    "name": "Digital TV Tuner",
+    "pages": "HT:EE30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small peripheral device that provides a computer with the ability to receive digital broadcast television, but doesn't function as a transmitter. Can be adapted into a general-purpose radio peripheral with downloaded software and a Computer Operation roll. Its lower sensitivity gives no bonus to Electronics Operation (Comm) rolls.</p>"
+  },
+  {
+    "_id": "6ca9dd1e959af88b",
+    "name": "Photophone",
+    "pages": "HT:EE30",
+    "status": "reviewed",
+    "notes": "a prototype: its complexity and year are the record's",
+    "description": "<p>A prototype using reflected sunlight to carry audio signals to a parabolic mirror (1’ in diameter), photocell, and earphone at a range of 250 yards. Requires full daylight (10,000 lux); powered by half a dozen M wet cells (pp. 16-17).</p>"
+  },
+  {
+    "_id": "7b71bca7bbe73e2f",
+    "name": "Satellite Phone Repeater",
+    "pages": "HT:EE30",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An outdoor satellite-phone transceiver and antenna, connected to an indoor transceiver and antenna by a cable. Avoids penalties for using the phone indoors, inside a ship's hull, and even underground at up to a 2-mile range.</p>"
+  },
+  {
+    "_id": "d033ce7b1c8073ae",
+    "name": "Hydrophone",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A microphone designed to work underwater, typically mounted on the side of a ship, first invented after the sinking of the Titanic; also called \"passive sonar.\" This is a basic design not intended for tactical use. Roll vs. Electronics Operation (Sonar) to hear an underwater sound, at +2 at TL7 or +4 at TL8. To detect a moving object, apply a bonus for size, a bonus for speed, and a penalty for range per the Size and Speed/Range Table (p. B550).</p>"
+  },
+  {
+    "_id": "cc55851e0490ec02",
+    "name": "Parabolic Microphone (TL6)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A microphone mounted at the focus of a parabolic surface. It must be targeted on the sound source (roll vs. Electronics Operation with any applicable Hearing modifiers), but once targeted, gives +2 to detect or identify sounds. A 1-yard-diameter reflector works for sounds at 1 kilohertz or higher, such as bird songs; halve the bonus for human speech, and ignore it for lower-pitched sounds.</p>"
+  },
+  {
+    "_id": "d89aa6cbb1921d77",
+    "name": "Throat Microphone (TL6)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A microphone in physical contact with the throat. Originally used by pilots to speak without interference from aircraft noise.</p>"
+  },
+  {
+    "_id": "561ac3409317d7a8",
+    "name": "Headphones",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pair of earphones mounted in earpieces, providing basic quality sound. Early models are connected directly to the high-voltage output of a vacuum-tube amplifier (see Audio Amplification, p. 32) and may shock the user if handled carelessly.</p>"
+  },
+  {
+    "_id": "9a6f7a551761561d",
+    "name": "Loudspeaker",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The now standard version was invented after the moving-coil system was created; it has a coil attached to a paper cone that gives enough sound to fill a room. Higher quality requires multiple speakers and more substantial housings; multiply weight ×2 for each step of quality improvement.</p>"
+  },
+  {
+    "_id": "adbd78e60d5a0c52",
+    "name": "Earbuds",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>First developed for use in hearing aids (p. 32), small earphones (called earbuds since 1984) were adapted to use with consumer devices. They don't exclude external sound as well as headphones; subtract one-half the penalty for external noise when making Hearing-based rolls.</p>"
+  },
+  {
+    "_id": "bd5cf2ec51930be3",
+    "name": "Stereo Headphones",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Higher-quality stereo headphones.</p>"
+  },
+  {
+    "_id": "77dcdeb7f9ff17af",
+    "name": "Wireless Headphones",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Headphones capable of noise cancellation and of wireless interfacing with a computer or digital music player.</p>"
+  },
+  {
+    "_id": "4bc108081a8b86a7",
+    "name": "Microphone (TL8)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact microphone using miniaturized components.</p>"
+  },
+  {
+    "_id": "0387d0bafb28ae3d",
+    "name": "Parabolic Microphone (TL8)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact device using miniaturized components.</p>"
+  },
+  {
+    "_id": "080992ad3f49d5aa",
+    "name": "Throat Microphone (TL8)",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact device using miniaturized components.</p>"
+  },
+  {
+    "_id": "92d0521fa4db72c0",
+    "name": "Electric Organ",
+    "pages": "HT:EE31",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A keyboard instrument with tonewheels (rotating magnetized disks with electromagnetic pickups), whose output could be combined to produce a complex waveform imitating that of a musical instrument. The first such instrument, the telharmonium, consumed 670 kilowatts, weighed 200 tons, and was used primarily to send music over telephone lines (in 1906, Lee de Forest made experimental broadcasts with an arc converter); treat it as a Complex complexity prototype. The technology became commercial with the Hammond organ.</p>"
+  },
+  {
+    "_id": "9435fd444645ac49",
+    "name": "Singing Arc",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A prototype keyboard instrument based on the discovery that an electric arc could sustain oscillation in a tuned circuit (see Arc Converter, p. 29). Roll vs. Electrician or Physics to set up, and Musical Instrument (Keyboard) to play.</p>"
+  },
+  {
+    "_id": "a415981c0cd2199d",
+    "name": "Theremin",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An analog musical instrument, named for its inventor. Controlled by body capacitance, with one hand changing the pitch and the other the volume; roll vs. Musical Instrument (Theremin) to play.</p>"
+  },
+  {
+    "_id": "02b4f026a7788773",
+    "name": "Electronic Organ",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact keyboard instrument with vacuum tube or transistor circuits.</p>"
+  },
+  {
+    "_id": "8794f597e98b1485",
+    "name": "Stylophone",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An analog instrument with a printed circuit grid touched with a stylus to turn on oscillation at a particular frequency - roll vs. Musical Instrument (Stylophone) to play. Notably played by David Bowie on \"Space Oddity.\" 2×XS/8 hours.</p>"
+  },
+  {
+    "_id": "f25d0510eacddfdb",
+    "name": "Synthesizer (TL7)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A transistor-based keyboard instru ment in which analog circuits produce a variety of waveforms and sound qualities; widely used in progressive rock after the Monterey Pop Festival. A compact version, the Minimoog, became available in 1970. Roll vs. Electronics Operation (Media) to design sound qualities.</p>"
+  },
+  {
+    "_id": "a8ed6a61c8911834",
+    "name": "Synthesizer (TL8)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A programmable digital keyboard instrument.</p>"
+  },
+  {
+    "_id": "1980e5d3ea3b1018",
+    "name": "Public Address System",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "the extra-speaker pricing is statistics, left out",
+    "description": "<p>A microphone to pick up sound and one or more loudspeakers to output it at amplified volume. Early models use batteries and carbon microphones, giving -2 to sound quality; the mature technology uses electronic amplification. Base hearing range 16 yards.</p>"
+  },
+  {
+    "_id": "61cfc973518ae378",
+    "name": "Guitar Amplifier (TL6)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Early improvised guitar amplifiers attached microphones to conventional guitars, feeding into PA systems; roll vs. Electronics Operation (Media) to set up. Sound quality is at -2. Special-purpose pickups and amplifiers can be used with no penalty. Base Hearing range 16 yards. Musical experimentation with distortion began in the 1950s, at -2 to effective skill. Household power; can be adapted to automotive power with a roll vs. Electronics Repair (Media).</p>"
+  },
+  {
+    "_id": "a28795473560b975",
+    "name": "Hearing Aid (TL6)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A Mitigator for Hard of Hearing (p. B138). Gives up to +4 to Hearing rolls, canceling the -4 for Hard of Hearing, but a Hearing roll is still required. Early experimental versions used batteries and carbon microphones; sound quality was low, giving -2 to Hearing rolls. Vacuum-tube versions avoided this issue, and could be carried in a briefcase or large purse.</p>"
+  },
+  {
+    "_id": "28e77c00b208175c",
+    "name": "Hearing Aid (TL7)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Advances in vacuum tubes during World War II, and then the invention of the transistor, made pocket-sized hearing aids practical.</p>"
+  },
+  {
+    "_id": "2b7e4968a254a0d9",
+    "name": "Bullhorn",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Handheld electric megaphones become practical after the invention of the transistor. They have a microphone, a horn speaker, and a switch in a pistol grip. Base Hearing range is 16 yards to the front, 8 yards to the side, and 4 yards to the rear. Sound output is distorted, giving -2 to rolls to recognize a voice or understand speech. Gives +1 to Intimidation out to 2 yards to the front or 1 yard to the side.</p>"
+  },
+  {
+    "_id": "efca484f37cdf92c",
+    "name": "Guitar Amplifier (TL7)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A higher-powered amplifier with no extra penalty to create distortion. Base Hearing range 32 yards.</p>"
+  },
+  {
+    "_id": "9f1022b6ca82adaa",
+    "name": "Hearing Aid (TL8)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Microprocessors led to the development of digital hearing aids; early versions were no smaller, but the mature versions could be worn behind the ear.</p>"
+  },
+  {
+    "_id": "a3d15173b366e004",
+    "name": "Acoustic Hailing Device",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An extremely high-powered sound amplifier. Base Hearing range is 256 yards in a 60° cone to the front. Advanced signal processing keeps its sound output intelligible at full range. Gives +1 to Intimidation out to 32 yards. Can be applied as a nonlethal weapon (see p. 51).</p>"
+  },
+  {
+    "_id": "9b12b968e923da09",
+    "name": "Guitar Amplifier (TL8)",
+    "pages": "HT:EE32",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A solid-state amplifier. Much less heavy, but many players prefer the sound quality of tube amplifiers.</p>"
+  },
+  {
+    "_id": "12111736339272dd",
+    "name": "Phonograph",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>In electronic phonographs, the needle affects a pickup, which feeds into an amplifier. Early models have heavy magnetic pickups whose full weight rests on the record, causing rapid deterioration. Counterweighted arms and smaller pickups, magnetic or piezoelectric, avoid this problem.</p>"
+  },
+  {
+    "_id": "0990a993776db4e3",
+    "name": "Dictation Machine (Wax Cylinder)",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses a microphone and amplifier to cut grooves into a wax cylinder.</p>"
+  },
+  {
+    "_id": "757c449661f8311c",
+    "name": "Answering Machine",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electromechanical or magnetic recording device for telephone calls. Typically, it delivers a greeting and then records a message. At TL8, its function is often incorporated into a telephone.</p>"
+  },
+  {
+    "_id": "7be91cbb83b131b6",
+    "name": "Personal Cassette Player",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket-sized play-only device designed to be used with headphones, such as Sony's Walkman, which created the market for personally chosen music.</p>"
+  },
+  {
+    "_id": "0807efc828cb7a7c",
+    "name": "CD Player",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that plays music or other sounds from digital files on an optical disk.</p>"
+  },
+  {
+    "_id": "c6fff891f5744c50",
+    "name": "Digital Music Player",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny device such as Apple's iPod, able to store hundreds or thousands of songs or other audio in digital form, and output them to headphones. Content is downloaded from a computer. More advanced models can store and display video and perform a variety of other functions. Similar functions are incorporated into smartphones.</p>"
+  },
+  {
+    "_id": "1c436aa3c6126d59",
+    "name": "Digital Voice Recorder",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A pocket-sized device that can record sound in digital form and later play it back or upload it to a computer. Its memory capacity is sufficient for 1,500 hours of sound. Concealable with an unmodified Holdout roll, making it useful for spies!</p>"
+  },
+  {
+    "_id": "3c6dd96eb713b356",
+    "name": "Laser Printer",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Adapts the principle of xerography from photocopying to printing original images drawn with laser beams under computer control. High resolution gives +1 (quality) to Artist rolls. Invented in 1972; commercially available in 1976, but only in expensive, stationary high-volume models.</p>"
+  },
+  {
+    "_id": "fc4745b017fce00e",
+    "name": "Scanner",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for turning an image on a sheet of paper or transparent material into a signal that can be output to a computer for storage. The sheet is placed on a drum that rotates past an array of photomultiplier tubes.</p>"
+  },
+  {
+    "_id": "6ee2eef79201bd87",
+    "name": "Monitor",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A CRT-based display for a video signal from a television camera, video recorder, or computer. At TL7, early home computer systems are designed to be connected to small television sets; this is straightforward and doesn't impose a penalty on Computer Operation. Color monitors become available in 1954 as cutting-edge equipment (see p. 8). At TL8, color is standard.</p>"
+  },
+  {
+    "_id": "49e2bf886f1ab4c1",
+    "name": "Television Camera",
+    "pages": "HT:EE33",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Early experimental television cameras used mechanical scanners that produced 15-20 frames per second with very low definition, giving -5 to Vision rolls. CRTs emerged as an alternative in the late 1920s and became the standard technology. Color cameras appeared in 1954.</p>"
+  },
+  {
+    "_id": "a7a2f0a0cd6210c5",
+    "name": "Compact Monitor",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the book's entry is one sentence",
+    "description": "<p>Available after 1970.</p>"
+  },
+  {
+    "_id": "4d0bdf253933bb21",
+    "name": "Flatscreen Monitor",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Technologies such as LCD, plasma, and LED almost completely replace CRTs by the mid-2000s. Treat as cutting edge (p. 8) before 2000.</p>"
+  },
+  {
+    "_id": "28fe841f1d841971",
+    "name": "Mini Projector",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the Digital Micromirror Device entry's opening and its own size",
+    "description": "<p>A projection system that fits several hundred thousand microscopic mirrors onto a MEMS chip (p. 24) a few inches on a side, each of which can direct light from an external source into a lens. Early models used arc lights; since 2008, high-powered LEDs or lasers in multiple colors have replaced them. Widely used in digital cinema and other projection devices. Available in various sizes:</p><p>Projects the image from the screen of a smartphone or tablet onto a flat surface up to 10’ away (maximum virtual screen size 130”).</p>"
+  },
+  {
+    "_id": "f4676c80bb51cdc1",
+    "name": "Webcam",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A very small camera and microphone designed to feed into a computer, usually for uploading to the Internet, or to upload to a wired or wireless channel. Often built into computers or other devices.</p>"
+  },
+  {
+    "_id": "71ed2142dae6044f",
+    "name": "Console Television",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A commercially manufactured receiver for home viewing in black and white. Cutting edge (p. 8) through the end of World War II.</p>"
+  },
+  {
+    "_id": "2105bd1c3fa3fa83",
+    "name": "Tabletop Television",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the book's entry is one sentence",
+    "description": "<p>A smaller receiver.</p>"
+  },
+  {
+    "_id": "2c11f017b5705660",
+    "name": "Portable Television",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Transistor-based models were more affordable and convenient and came into widespread use. Often adapted as improvised monitors for home computers (pp. 36-38). Has a color display at TL8.</p>"
+  },
+  {
+    "_id": "d6f3feb2121ac60f",
+    "name": "Flatscreen Television",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A freestanding television receiver with up to a 32\" LCD or LED screen. Wall-mounted models up to 64\" average 5× the cost and weight; larger models average 20× the cost and weight.</p>"
+  },
+  {
+    "_id": "d4dfd574b33556cd",
+    "name": "Converter Box",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small device that takes in a broadcast digital TV signal and outputs an analog signal for an older television.</p>"
+  },
+  {
+    "_id": "7bb82f96af1741ae",
+    "name": "Videotape Recorder",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the cassettes' price is the Videocassette record's",
+    "description": "<p>A device for recording televi -sion programs, playing them back, and playing purchased videocassettes. The Betamax format (available in 1975) was limited to 60 minutes. The VHS format (available after 1976 in Japan and 1977 in the United States) held 2-3 hours and decisively displaced Betamax between 1981 and 1986.</p>"
+  },
+  {
+    "_id": "b02e29b9470ac26a",
+    "name": "Compact Camcorder",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "the book's entry is one sentence",
+    "description": "<p>A smaller model using 8-mm tape.</p>"
+  },
+  {
+    "_id": "f208da9192bbe4ca",
+    "name": "Digital Camera",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electronic device that can take still pictures, store them, and transmit them to a computer or printer. Many can also record moving pictures.</p>"
+  },
+  {
+    "_id": "98034e0c13573052",
+    "name": "Digital Video Recorder",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Records digital video content in a solid-state medium and plays it back. A computer with a suitable adapter and software can function as aDVR; each hour of content requires 1 GB of storage.</p>"
+  },
+  {
+    "_id": "cf8cba304596f6d1",
+    "name": "Blu-Ray Player",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses shorter-wavelength blue light for higher resolution and more data capacity (50 GB is the industry standard). Initially priced as cutting-edge equip -ment (see p. 8).</p>"
+  },
+  {
+    "_id": "cbd0ee2ff455e764",
+    "name": "Digital Camcorder",
+    "pages": "HT:EE34",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Early models used 0.75” tape or DVDs, but they didn’t become successful until they adopted solid-state memory.</p>"
+  },
+  {
+    "_id": "f36fdcc5b11a3096",
+    "name": "Radar Gun (TL7)",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device that applies radar to measure speed, primarily used by police forces to detect speeders. Measures vehicle speed to the nearest Move rating by frequency changes in reflected waves caused by the Doppler effect.</p>"
+  },
+  {
+    "_id": "e916fa358ea632f2",
+    "name": "Ground-Penetrating Radar",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A radar set using comparatively low frequencies that can penetrate soil and rock, mounted on a tricycle base for maneuverability, with two different antennas for low and high frequencies. Low frequencies (30-300 megahertz) penetrate to 10-50 yards, with image resolution 1-10 yards. High frequencies (300-1,000 megahertz) penetrate to 0-10 yards, with image resolution 1-3 feet. Has a variety of uses, from archaeological studies or treasure hunting, to prospecting and engineering, to finding military threats. Roll vs.</p>"
+  },
+  {
+    "_id": "de3b55d52495a162",
+    "name": "Radar Gun (TL8)",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A digital version with a numerical readout.</p>"
+  },
+  {
+    "_id": "763c2b5516210aa6",
+    "name": "Celldar",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A passive variant on radar, using microwave emissions from cell-phone towers. Requires analog-to-digital conversion and a dedicated computer of Complexity 3; an improvised version can be created from two or more cell phones and a laptop computer. Variant systems can be based on other transmitters in microwave-frequency bands, such as FM radio. Such systems are hard to spot, since they don't emit radar frequencies, and conventional radar jamming and stealth are ineffective against them.</p>"
+  },
+  {
+    "_id": "5bcc48783432e623",
+    "name": "Echo Sounder (TL6)",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A ship-mounted device that uses sonar to measure the depth under the hull. Gives warning of submerged hazards and can be compared with charts of known depths.</p>"
+  },
+  {
+    "_id": "61d061de34433a6e",
+    "name": "Handheld Sonar",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld device that produces sonar images of underwater objects, terrain, and life forms, with a resolution of 1/10\". Range is 10 yards.</p>"
+  },
+  {
+    "_id": "77fd3fceeafa8146",
+    "name": "Laser Measuring Tool",
+    "pages": "HT:EE35",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld device that bounces laser beams off of surfaces to measure the dimensions of rooms and other spaces, up to 100 yards. Results are displayed on a digital readout and can include calculated areas, volumes, and diagonal dimensions. Gives +1 to effective skill for Cartography, Engineer, or other tasks that involve measurement.</p>"
   },
   {
     "_id": "7b91aa7f5d3128a0",

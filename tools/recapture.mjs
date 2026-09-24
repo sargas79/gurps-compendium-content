@@ -94,7 +94,7 @@ function library(paths, volumes) {
       s = JSON.parse(readFileSync(cacheFile, "utf8"));
     } else {
       if (!open.has(volume)) open.set(volume, await openBook(paths[volume]));
-      s = structureOf(await readPage(open.get(volume), pdfPage(page)));
+      s = structureOf(await readPage(open.get(volume), pdfPage(page)), { top: topMargin });
       for (const block of s.blocks) block.page = page;
       for (const aside of s.asides) {
         aside.page = page;
@@ -121,6 +121,9 @@ function library(paths, volumes) {
  * reader found twice is read once.
  */
 let asidesAsText = false;
+
+/** Where a page's text block starts, when the book says (`transcription.topMargin`). */
+let topMargin;
 
 /** A page's blocks, with its boxes' contents read as text where the book asks for that. */
 function pageBlocks(s) {
@@ -477,6 +480,7 @@ async function main() {
   }
   useLexicon(await lexiconOf(Object.values(paths)));
   asidesAsText = Boolean(bk.transcription?.asidesAsText);
+  topMargin = bk.transcription?.topMargin;
   const structure = library(paths, volumesOf(bk));
   const { records } = readProse(bk, pack);
   // Only the volume being read: a text record is its volume's by its pages ("HT:EE12").

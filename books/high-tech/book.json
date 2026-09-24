@@ -4013,7 +4013,11 @@
         "pdfOffset": 0,
         "pageLabel": "HT:EE",
         "layout": true,
-        "asidesAsText": true
+        "asidesAsText": true,
+        "topMargin": 40,
+        "aliases": {
+          "Chaff (per package)": "Chaff"
+        }
       },
       "capture": {
         "labelEnd": ".:",

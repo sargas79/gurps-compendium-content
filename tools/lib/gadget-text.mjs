@@ -36,6 +36,75 @@ export function stripPrice(text) {
 }
 
 /**
+ * A price and weight with no legality class after them, as High-Tech:
+ * Electricity and Electronics prints them (HT:EE p. 8): "$20, 0.5 lb.",
+ * "$4,000; 25 lbs.", "$3,700, stationary.", a price ending its sentence
+ * ("$100."), the weight first ("0.5 lb., $100."), a price per unit
+ * ("$5/dozen"), two models' prices ("$35 (TL6)/$135 (TL8); 1.2 lbs."), or a
+ * prototype's weight alone.
+ */
+const PLAIN_PRICE = String.raw`\+?\$[\d,]+(?:\.\d+)?(?:\s+million)?(?:\/[a-z]+)?(?:\s*\([^)$]{1,20}\))?`;
+const PLAIN_WEIGHT = String.raw`(?:neg\.?|negligible|stationary|[\d,]*\.?\d+\s*(?:lbs?|tons?)\.?)`;
+const PLAIN_PRICE_WEIGHT = new RegExp(
+  String.raw`\s*(?:${PLAIN_PRICE}(?:\s*\/\s*${PLAIN_PRICE})*(?:\s*[,;]\s*${PLAIN_WEIGHT})?|${PLAIN_WEIGHT}\s*[,;]\s*${PLAIN_PRICE}|[\d,]*\.?\d+\s*lbs?)\.?\s*$`,
+  "i",
+);
+
+/** The years a closing line ends on: "1787.", "[1826] 1858.", a prototype's "[1745]." */
+const PLAIN_YEARS = /\s*(?:[[(]\d{4}[\])]\s*)?\d{4}\.?\s*$|\s*\[\d{4}\]\.?\s*$/;
+
+/**
+ * The sentence before the price that says what powers the item, or a
+ * prototype's complexity: "2×XS/120 hours or rechargeable/120 hours.",
+ * "Household power or S/6 hours.", "Major appliance power.", "Average
+ * complexity." (HT:EE pp. 8-9). The record holds both.
+ */
+const PLAIN_POWER = new RegExp(
+  String.raw`(?:^|(?<=[.!?)]\s))(?:(?:\d+\s*×\s*)?(?:T|XS|S|M|L|VL)(?:\/[\d,.]+\s*[a-z]+)?|rechargeable\/[\d,.]+\s*[a-z]+|(?:peripheral|automotive|household|major appliance|industrial|external)[a-z ]{0,30}?(?:power|current))(?:\s+or\s+[^.$]{1,40})?[.,]?\s*$|(?:^|(?<=[.!?)]\s))(?:simple|average|complex|amazing) complexity\.\s*$`,
+  "i",
+);
+
+/**
+ * Where one item's closing line ends and more of the entry follows: after its
+ * years. "...$280, 7.5 lbs. 1980. A compact model..." prices one model and
+ * goes on to the next under the same entry.
+ */
+const PLAIN_SEAM = /(?<=\$[\d,]+(?:\.\d+)?(?:\s*\([^)$]{1,20}\))?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+\s*lbs?\.)\s*(?:\[\d{4}\]\s*)?\d{4}\.)\s+(?=["A-Z])/;
+
+/** One closing line dropped from the end of a piece of an entry. */
+function withoutPlainClosing(text) {
+  let out = text.trim();
+  const noYears = out.replace(PLAIN_YEARS, "");
+  if (PLAIN_PRICE_WEIGHT.test(noYears)) out = noYears.replace(PLAIN_PRICE_WEIGHT, "").trim();
+  else if (noYears !== out && PLAIN_POWER.test(noYears)) out = noYears.trim();
+  for (let previous = null; previous !== out; ) {
+    previous = out;
+    out = out.replace(PLAIN_POWER, "").trim();
+  }
+  return out;
+}
+
+/**
+ * Drops the closing lines of a book that prints no legality class: the power,
+ * the price and weight, and the years, which the record holds as its power,
+ * cost, weight and `invention` data (HT:EE pp. 8-9). "...a steady reading.
+ * Household power. $52, 10 lbs. [1922] 1936." keeps "...a steady reading."
+ *
+ * An entry pricing two models ("...$280, 7.5 lbs. 1980. A compact model...
+ * $150, 6 lbs. 1985.") loses both closings and keeps what it says of each, so
+ * the two records it prices can share its text. Nothing is dropped from a
+ * piece that doesn't end on a price, a weight, or a power statement or
+ * complexity before them, so a sentence ending on a year stays whole.
+ */
+export function stripPlainClosing(text) {
+  return text
+    .split(PLAIN_SEAM)
+    .map(withoutPlainClosing)
+    .filter(Boolean)
+    .join(" ");
+}
+
+/**
  * A closing sentence whose price was taken away.
  *
  * High-Tech prices a gadget inside its last sentence -- "A 60-yard roll is $5,
