@@ -21,6 +21,7 @@ import {
   lampLux,
   lampNamed,
   luxStep,
+  refusedMargin,
   stepDarkness,
   stepLux,
 } from "./rules.js";
@@ -152,6 +153,12 @@ describe("glare (HT:EE pp. 9, 20-21)", () => {
     expect(glareOutcome({ success: true, margin: 0 })).toEqual({ kind: "readapt" });
     expect(glareOutcome({ success: false, margin: -4 })).toEqual({ kind: "dazzled", minutes: 4 });
     expect(glareOutcome({ success: false, margin: -6, criticalFailure: true })).toEqual({ kind: "blinded", seconds: 6, minutes: 6 });
+  });
+
+  it("fails a roll the system refuses below 3 by what it fell short", () => {
+    expect(refusedMargin(1)).toBe(-2);
+    expect(refusedMargin(2)).toBe(-1);
+    expect(refusedMargin(-4)).toBe(-7);
   });
 });
 

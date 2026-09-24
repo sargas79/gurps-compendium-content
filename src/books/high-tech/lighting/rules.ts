@@ -262,6 +262,16 @@ export function glareRoll(step: number, adapted: number): { required: boolean; m
 /** A dazzled character's extra penalty on Vision (HT:EE p. 20). */
 export const DAZZLED_VISION = -4;
 
+/**
+ * The margin of a roll against glare the system refuses to make, at an
+ * effective HT below 3 (Campaigns p. 344): a failure by what it fell short of
+ * 3, at least 1.
+ */
+export function refusedMargin(effective: number): number {
+  const e = Number(effective);
+  return -Math.max(1, Number.isFinite(e) ? 3 - Math.trunc(e) : 1);
+}
+
 /** What the HT roll against glare leaves (HT:EE p. 20). */
 export type GlareOutcome =
   | { kind: "unaffected" }

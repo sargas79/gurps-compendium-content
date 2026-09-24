@@ -8,7 +8,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
-import { LAMP_FLAG, aimBeam, carriedLamp, lampLevel, lightAt, postGlare, readLight, readyLighting, resistGlare, type GlareData } from "./index.js";
+import { LAMP_FLAG, aimBeam, carriedLamp, lampConfigFields, lampLevel, lightAt, postGlare, readLight, readyLighting, resistGlare, type GlareData } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -163,7 +163,7 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
   });
 
   it("reads nothing with the switch off, or for a light that isn't a lamp", () => {
-    const light = ambientLight({ element: "tungstenFilament", geometry: "exposed", watts: 100 });
+    const light = ambientLight({ lamp: "Table Lamp", watts: 100 });
     expect(lampLevel(switches, light, { distance: 1 })).toBeNull();
     on.illumination = true;
     expect(lampLevel(switches, ambientLight(), { distance: 1 })).toBeNull();
@@ -172,8 +172,24 @@ describe("the darkness a lamp leaves (HT:EE p. 20)", () => {
 
   it("falls off from a lamp the GM marked on the map", () => {
     on.illumination = true;
-    const light = ambientLight({ element: "tungstenFilament", geometry: "exposed", watts: 100 });
+    const light = ambientLight({ lamp: "Table Lamp", watts: 100 });
     expect([1, 2, 4, 8, 50].map((distance) => lampLevel(switches, light, { distance }))).toEqual([0, 1, 2, 3, 6]);
+  });
+
+  it("marks a light as a lamp in its own configuration sheet, saved as the light's flag", () => {
+    const html = lampConfigFields(ambientLight({ lamp: "Spotlight", watts: 250, brighter: true }));
+    expect(html).toContain(`name="flags.${MODULE_ID}.${LAMP_FLAG}.lamp"`);
+    expect(html).toContain('<option value="Spotlight" selected>');
+    expect(html).toContain('value="250"');
+    expect(html).toContain("checked");
+    const form: any = { inserted: "", querySelector: (q: string) => (q.startsWith("[data-gcc") ? null : q.startsWith(".tab") ? form : null), insertAdjacentHTML: (_w: string, h: string) => { form.inserted += h; } };
+    fire("renderAmbientLightConfig", { document: ambientLight() }, form);
+    expect(form.inserted).toBe("");
+    on.illumination = true;
+    fire("renderAmbientLightConfig", { document: ambientLight() }, form);
+    expect(form.inserted).toContain("data-gcc-ee-lamp-config");
+    // Marked as none, it is an ordinary light again.
+    expect(lampLevel(switches, ambientLight({ lamp: "", watts: 100 }), { distance: 1 })).toBeNull();
   });
 
   it("reads a token's own light as the lamp its character carries, the lit one first", () => {
@@ -211,7 +227,7 @@ describe("the light at a token (HT:EE p. 20)", () => {
   it("reads the lux of the brightest lamp reaching it, and the darkness", () => {
     on.illumination = true;
     const token = tokenAt("t1", 0, person("Ann"));
-    lightsHere = [{ light: ambientLight({ element: "tungstenFilament", geometry: "closeRange", watts: 60, range: 1 }), distance: 0.5 }];
+    lightsHere = [{ light: ambientLight({ lamp: "Desk Lamp" }), distance: 0.5 }];
     expect(lightAt(fakeApi() as never, token)).toEqual({ lux: 500, darkness: 0, penalty: 0 });
     lightsHere = [{ light: ambientLight(), distance: 1 }];
     expect(lightAt(fakeApi() as never, token)).toEqual({ lux: 1, darkness: 3, penalty: -3 });
@@ -224,7 +240,7 @@ describe("the light at a token (HT:EE p. 20)", () => {
     on.illumination = true;
     expect(tools.get("ee-read-light").visible()).toBe(true);
     controlled = [tokenAt("t1", 0, person("Ann"))];
-    lightsHere = [{ light: ambientLight({ element: "tungstenFilament", geometry: "exposed", watts: 100 }), distance: 1 }];
+    lightsHere = [{ light: ambientLight({ lamp: "Table Lamp", watts: 100 }), distance: 1 }];
     await readLight(fakeApi() as never);
     expect(chat[0]).toContain("GCC.HT.Lighting.ReadLine");
     expect(chat[0]).toContain('"lux":"100"');
@@ -233,11 +249,11 @@ describe("the light at a token (HT:EE p. 20)", () => {
 
   it("offers the tools and sheet only with the switch on", () => {
     const flashlight = lamp("Flashlight");
-    expect(tools.get("ee-mark-lamps").visible()).toBe(false);
+    expect(tools.get("ee-read-light").visible()).toBe(false);
     expect(sections.get("ee-lamp-item").visible(flashlight)).toBe(false);
     expect(actions.get("ee-aim-beam").visible(flashlight)).toBe(false);
     on.illumination = true;
-    expect(tools.get("ee-mark-lamps").visible()).toBe(true);
+    expect(tools.get("ee-read-light").visible()).toBe(true);
     expect(sections.get("ee-lamp-item").visible(flashlight)).toBe(true);
     expect(sections.get("ee-lamp-item").context(flashlight).lines[0]).toContain("GCC.HT.Lighting.BeamLux");
     expect(actions.get("ee-aim-beam").visible(flashlight)).toBe(true);
@@ -318,6 +334,15 @@ describe("glare (HT:EE pp. 9, 20-21)", () => {
     expect(conditions.map((c) => [c.key, c.duration])).toEqual([["ee-glare-blinded", { seconds: 5 }], ["ee-dazzled", { seconds: 305 }]]);
   });
 
+  it("counts a roll the system won't make, below 3, as a failure by what it fell short", async () => {
+    on.lightDazzle = true;
+    const victim = person("Dee");
+    successResult = { refused: true, effective: 1 };
+    await resistGlare(fakeApi() as never, {}, { victimUuid: victim.uuid, victim: "Dee", source: "Flashbulb", modifier: -4, lookingAt: -5, result: "" }, true);
+    expect(successes[0].returnRefusal).toBe(true);
+    expect(conditions.map((c) => [c.key, c.duration])).toEqual([["ee-dazzled", { seconds: 120 }]]);
+  });
+
   it("does nothing to someone already blind", async () => {
     on.lightDazzle = true;
     const victim = person("Bob", [], { derived: { traitEffects: { blindness: true } } });
@@ -346,6 +371,6 @@ describe("glare (HT:EE pp. 9, 20-21)", () => {
     expect(tools.get("ee-glare").visible()).toBe(false);
     on.lightDazzle = true;
     expect(tools.get("ee-glare").visible()).toBe(true);
-    expect(tools.get("ee-mark-lamps").visible()).toBe(false);
+    expect(tools.get("ee-read-light").visible()).toBe(false);
   });
 });

@@ -7,8 +7,8 @@
  *     its element and its geometry, and the darkness it leaves as it falls off
  *     with distance: read by the system for each light on the canvas that is
  *     a lamp (`areas.registerLightLevel`, API 1.116.0) -- a light the GM has
- *     marked as one with the "Lamps on the map" tool, or a token's own light
- *     where its character carries one of the supplement's lamps. The least
+ *     made one of the supplement's lamps in its configuration sheet, or a
+ *     token's own light where its character carries one. The least
  *     darkness a light leaves wins, and none makes the spot darker than it
  *     was. A GM tool reads the light at the selected tokens, and whether it
  *     is bright enough for reading or surgery (-2 without). A row action aims
@@ -35,7 +35,6 @@ import {
   ELEMENTS,
   ELEMENT_KEYS,
   FLASHBULB,
-  GEOMETRY_KEYS,
   HEARD_AIM,
   LAMPS,
   NO_PENALTY_STEP,
@@ -54,6 +53,7 @@ import {
   lampNamed,
   lampStepAt,
   luxStep,
+  refusedMargin,
   stepLux,
   type BrightTask,
   type Lamp,
@@ -103,8 +103,8 @@ export function lampOfLight(light: any): Lamp | null {
   const doc = light?.document ?? light;
   if (doc?.documentName === "AmbientLight") {
     const data = doc.flags?.[MODULE_ID]?.[LAMP_FLAG];
-    if (!data || !ELEMENT_KEYS.includes(data.element) || !GEOMETRY_KEYS.includes(data.geometry)) return null;
-    return lampFrom(data, { element: data.element, geometry: data.geometry, watts: 60, brighter: false, range: 0 });
+    const base = lampNamed(data?.lamp);
+    return base ? lampFrom(data, base) : null;
   }
   if (doc?.documentName === "Token") return carriedLamp(doc.actor)?.lamp ?? null;
   return null;
@@ -224,46 +224,26 @@ function itemListeners(element: HTMLElement, item: any): void {
 
 // ── the GM's tools (HT:EE p. 20) ──
 
-/** Marks the selected lights on the map as a lamp, or clears the mark. */
-async function markLamps(): Promise<void> {
-  if (!game.user?.isGM) return;
-  const lights: any[] = (stage()?.lighting?.controlled ?? []).map((l: any) => l.document ?? l).filter(Boolean);
-  if (!lights.length) return void ui.notifications?.warn(L("MarkNone"));
-  const options = [`<option value="">${esc(L("MarkClear"))}</option>`, ...Object.keys(LAMPS).map((name) => `<option value="${esc(name)}">${esc(name)}</option>`)].join("");
-  const elements = ELEMENT_KEYS.map((key) => `<option value="${key}">${esc(L(`Element.${key}`))}</option>`).join("");
-  const geometries = GEOMETRY_KEYS.map((key) => `<option value="${key}">${esc(L(`Geometry.${key}`))}</option>`).join("");
-  const answer: any = await foundry.applications.api.DialogV2.prompt({
-    window: { title: L("MarkTitle") },
-    content: `<div class="gworld"><p class="ihint">${esc(F("MarkHint", { count: lights.length }))}</p>
-      <div class="ifields">
-        <label>${esc(L("MarkLamp"))} <select name="lamp">${options}</select></label>
-        <label>${esc(L("Watts"))} <input type="number" name="watts" min="0" step="any" placeholder="${esc(L("AsRecord"))}"></label>
-        <label>${esc(L("ElementLabel"))} <select name="element"><option value="">${esc(L("AsRecord"))}</option>${elements}</select></label>
-        <label>${esc(L("GeometryLabel"))} <select name="geometry"><option value="">${esc(L("AsRecord"))}</option>${geometries}</select></label>
-        <label>${esc(L("RangeLabel"))} <input type="number" name="range" min="0" step="any" placeholder="${esc(L("AsRecord"))}"></label>
-      </div>
-      <div class="ichecks"><label class="icheck"><input type="checkbox" name="brighter"> ${esc(L("Brighter"))}</label></div></div>`,
-    ok: {
-      label: L("MarkApply"),
-      callback: (_event: Event, button: HTMLElement) => {
-        const form = button.closest<HTMLElement>(".application");
-        const value = (name: string) => form?.querySelector<HTMLInputElement>(`[name="${name}"]`)?.value ?? "";
-        return { lamp: value("lamp"), watts: value("watts"), element: value("element"), geometry: value("geometry"), range: value("range"), brighter: Boolean(form?.querySelector<HTMLInputElement>('[name="brighter"]')?.checked) };
-      },
-    },
-    rejectClose: false,
-  });
-  if (!answer) return;
-  const base = lampNamed(answer.lamp);
-  for (const doc of lights) {
-    if (!base) {
-      await doc.unsetFlag?.(MODULE_ID, LAMP_FLAG);
-      continue;
-    }
-    const lamp = lampFrom({ ...answer, brighter: answer.brighter }, base);
-    await doc.setFlag(MODULE_ID, LAMP_FLAG, lamp);
-  }
-  ui.notifications?.info(base ? F("Marked", { count: lights.length, name: answer.lamp }) : F("Cleared", { count: lights.length }));
+/**
+ * The lamp fields added to a light's own configuration sheet: which of the
+ * supplement's lamps it is (none, an ordinary light), and its rated watts,
+ * element and a brighter element, each left blank to keep the lamp's own.
+ * Their names are the light's flag, so the sheet saves them with the light.
+ */
+export function lampConfigFields(doc: any): string {
+  const data = doc?.flags?.[MODULE_ID]?.[LAMP_FLAG] ?? {};
+  const name = `flags.${MODULE_ID}.${LAMP_FLAG}`;
+  const option = (value: string, label: string, chosen: unknown) => `<option value="${esc(value)}"${value === chosen ? " selected" : ""}>${esc(label)}</option>`;
+  const lamps = [option("", L("MarkClear"), data.lamp ?? ""), ...Object.keys(LAMPS).map((n) => option(n, n, data.lamp))].join("");
+  const elements = [option("", L("AsRecord"), data.element ?? ""), ...ELEMENT_KEYS.map((k) => option(k, L(`Element.${k}`), data.element))].join("");
+  const watts = Number(data.watts) > 0 ? String(Number(data.watts)) : "";
+  return `<fieldset data-gcc-ee-lamp-config><legend>${esc(L("MarkTitle"))}</legend>
+    <p class="hint">${esc(L("MarkHint"))}</p>
+    <div class="form-group"><label>${esc(L("MarkLamp"))}</label><div class="form-fields"><select name="${name}.lamp">${lamps}</select></div></div>
+    <div class="form-group"><label>${esc(L("Watts"))}</label><div class="form-fields"><input type="number" name="${name}.watts" min="0" step="any" value="${watts}" placeholder="${esc(L("AsRecord"))}"></div></div>
+    <div class="form-group"><label>${esc(L("ElementLabel"))}</label><div class="form-fields"><select name="${name}.element">${elements}</select></div></div>
+    <div class="form-group"><label>${esc(L("Brighter"))}</label><div class="form-fields"><input type="checkbox" name="${name}.brighter"${data.brighter === true ? " checked" : ""}></div></div>
+  </fieldset>`;
 }
 
 /** What a task needing bright light gets at this lux: met, or -2 (HT:EE p. 20). */
@@ -404,10 +384,14 @@ export async function resistGlare(api: GWorldApi, message: any, data: GlareData,
   if (protection) modifiers.push({ label: L("Protection"), value: protection });
   const outcome: any = await api.roll.success({
     actor: victim, base: Number(api.actors.attribute(victim, "HT")) || 10, label: F("GlareRoll", { name: victim.name, source: data.source }), skill: "HT", kind: "attribute",
-    modifiers, tags: ["resist", "vision", "glare"],
+    modifiers, tags: ["resist", "vision", "glare"], returnRefusal: true,
   } as any);
   if (!outcome) return;
-  const result = glareOutcome({ success: outcome.success === true, margin: Number(outcome.margin) || 0, criticalFailure: outcome.criticalFailure === true });
+  // The system makes no roll at an effective HT below 3 (Campaigns p. 344):
+  // the victim can't resist, and fails by at least what the roll fell short.
+  const result = outcome.refused
+    ? glareOutcome({ success: false, margin: refusedMargin(Number(outcome.effective)) })
+    : glareOutcome({ success: outcome.success === true, margin: Number(outcome.margin) || 0, criticalFailure: outcome.criticalFailure === true });
   if (result.kind === "blinded") {
     await api.actors.applyCondition(victim, { module: MODULE_ID, key: BLINDED, label: L("Blinded"), duration: { seconds: result.seconds } } as any);
   }
@@ -456,14 +440,14 @@ export function readyLighting(api: GWorldApi, on: LightingSwitches): void {
     run: (item, actor) => { void aimBeam(api, item, actor); },
   });
 
-  api.sheets.registerGmTool({
-    module: MODULE_ID,
-    key: "ee-mark-lamps",
-    label: L("MarkTitle"),
-    icon: "fa-solid fa-lightbulb",
-    visible: on.illumination,
-    open: () => markLamps(),
-  } as any);
+  // A light on the map is marked as a lamp in its own configuration sheet.
+  Hooks.on("renderAmbientLightConfig", (app: any, html: HTMLElement) => {
+    if (!on.illumination() || !game.user?.isGM) return;
+    const root: HTMLElement | null = (html as any)?.querySelector ? html : (app?.element ?? null);
+    if (!root || root.querySelector("[data-gcc-ee-lamp-config]")) return;
+    const where = root.querySelector('.tab[data-tab="basic"]') ?? root.querySelector("form") ?? root;
+    where.insertAdjacentHTML("beforeend", lampConfigFields(app?.document));
+  });
   api.sheets.registerGmTool({
     module: MODULE_ID,
     key: "ee-read-light",
