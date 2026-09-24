@@ -11,7 +11,7 @@
  * (`src/shared/sensors/`); this is Ultra-Tech's gear and figures for it.
  */
 
-import { COMM_SIZES, RECEIVER, TRANSMITTER, sizeStepFactor, telescopicLevels, type CommMode, type CommSize } from "../../../shared/sensors/rules.js";
+import { COMM_SIZES, RECEIVER, TRANSMITTER, sizeStepFactor, sizeSteps, telescopicLevels, type CommMode, type CommSize } from "../../../shared/sensors/rules.js";
 
 export {
   COMM_SIZES,
@@ -77,7 +77,7 @@ export function commRange(family: CommFamily, size: CommSize, tl: number): numbe
  */
 export function mixedRange(family: CommFamily, a: CommSize, b: CommSize, tl: number): number | null {
   const small = COMM_SIZES.indexOf(a) <= COMM_SIZES.indexOf(b) ? a : b;
-  const steps = Math.abs(COMM_SIZES.indexOf(a) - COMM_SIZES.indexOf(b));
+  const steps = sizeSteps(a, b);
   const range = commRange(family, small, tl);
   if (range === null) return null;
   return range * sizeStepFactor(steps);

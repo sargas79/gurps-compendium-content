@@ -13,6 +13,8 @@ import { setRuleReader } from "../../../shared/book-tables.js";
 import { GADGET_TABLES, failureLines, gadgetPriceOf, gadgetTables, sizedCells, stylingLine } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { CELL_TABLES } from "../../../shared/power/index.js";
+import { highTechBatteries } from "../power/index.js";
 import { ultraTechGadgets } from "../../ultra-tech/gadgets/index.js";
 import { combinationSource, familiarityLine, highTechGadgets, isMerchantInfluence, readyHighTechEquipment, successRollFamiliarity, type EquipmentSwitches } from "./index.js";
 
@@ -167,6 +169,34 @@ describe("combination gadgets (p. 10)", () => {
       flags: { [MODULE_ID]: { book: "high-tech", combination: { parts: ["GPS", "PDA"], allAtOnce: true } } },
     });
     expect(source.system.extensions[MODULE_ID].ultraTech.cellWeight).toBe(0.1);
+  });
+
+  it("runs each part off the shared batteries for as long as their weight says, and shows it (p. 10)", () => {
+    CELL_TABLES.register(highTechBatteries());
+    only(key("batteries"));
+    try {
+      const power = (cell: string, endurance: string) => ({ power: { cell, cells: 1, draw: { cell, cells: 1, endurance } } });
+      const gps = gear({ name: "GPS", system: { cost: 200, weight: 1, lc: 4 } });
+      gps.system.extensions[MODULE_ID] = { ...gps.system.extensions[MODULE_ID], ...power("XS", "10 hr.") };
+      const thermograph = gear({ name: "Thermograph", system: { cost: 500, weight: 2, lc: 4 } });
+      thermograph.system.extensions[MODULE_ID] = { ...thermograph.system.extensions[MODULE_ID], ...power("S", "5 hr.") };
+      const source: any = combinationSource([gps, thermograph], "Scout", true);
+      // One S battery for both: the GPS's XS battery weighed 0.1 lb., the S 0.33, so it runs 3.3 times as long.
+      expect(source.system.extensions[MODULE_ID].ultraTech.cellWeight).toBe(0.33);
+      expect(source.flags[MODULE_ID].combination.endurance).toEqual([{ name: "GPS", hours: 33 }, { name: "Thermograph", hours: 5 }]);
+
+      on.combination = true;
+      const sections: any[] = [];
+      readyHighTechEquipment({ ...fakeApi(), sheets: { registerSheetSection: (s: any) => sections.push(s), registerRowAction: vi.fn() } } as never, switches);
+      const section = sections.find((s) => s.key === "ht-equipment-item");
+      expect(section.visible(source)).toBe(true);
+      expect(section.context(source).endurance).toEqual([
+        'GCC.HT.Equipment.SharedEndurance {"name":"GPS","hours":33}',
+        'GCC.HT.Equipment.SharedEndurance {"name":"Thermograph","hours":5}',
+      ]);
+    } finally {
+      CELL_TABLES.clear();
+    }
   });
 
   it("offers the row action under its switch", () => {

@@ -11,7 +11,8 @@
  *     as an Influence roll while it is shown, sizes the battery count with
  *     the rest, and gives the system the antique's raised Legality Class.
  *   - **Combination gadgets** (combinationGadgets): a row action that builds
- *     one gadget from several of the character's.
+ *     one gadget from several of the character's, each part's endurance
+ *     worked out again for the batteries they now share.
  *   - **Equipment bonuses** (equipmentBonuses): a tool's intrinsic bonus and
  *     the Equipment Bond perk's +1, as lines on the skill beside quality's.
  *   - **TL and familiarity** (tlFamiliarity): a DX-based skill's TL penalty,
@@ -24,9 +25,10 @@
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
 import { GADGET_TABLES, antiqueClassOf, gadgetTables, initGadgets, readyGadgets, stylingLine, type GadgetTable } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
-import { loadedCellWeight } from "../../../shared/power/data.js";
+import { loadedCellWeight, powerData } from "../../../shared/power/data.js";
+import { enduranceLeft } from "../../../shared/power/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { HIGH_TECH_GADGETS, bondedName, combineGadgets, equipmentBonusLines, familiarityOffset, type CombinationPart } from "./rules.js";
+import { HIGH_TECH_GADGETS, bondedName, combineGadgets, equipmentBonusLines, familiarityOffset, sharedBatteryEndurance, type CombinationPart } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Equipment.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Equipment.${key}`, data);
@@ -147,6 +149,12 @@ function partOf(item: any): CombinationPart {
 /** The item a combination makes: one piece of gear, with the parts' skills. */
 export function combinationSource(parts: any[], name: string, allAtOnce: boolean): Record<string, unknown> {
   const made = combineGadgets(parts.map(partOf), allAtOnce);
+  // Each part runs off the shared batteries for as long as their weight against its own says (p. 10).
+  const endurance = parts.flatMap((p) => {
+    const left = enduranceLeft(powerData(p));
+    if (!left || left === "unlimited") return [];
+    return [{ name: String(p.name ?? ""), hours: sharedBatteryEndurance(left.total, partOf(p).cellWeight, made.cellWeight) }];
+  });
   const skills = [...new Set(parts.flatMap((p) => (p.system?.forSkills ?? []).map(String)).filter(Boolean))];
   return {
     name,
@@ -160,7 +168,7 @@ export function combinationSource(parts: any[], name: string, allAtOnce: boolean
       category: parts.some((p) => p.system?.category === "tool") ? "tool" : "misc",
       extensions: { [MODULE_ID]: { ultraTech: { cellWeight: made.cellWeight } } },
     },
-    flags: { [MODULE_ID]: { book: "high-tech", combination: { parts: parts.map((p) => String(p.name ?? "")), allAtOnce } } },
+    flags: { [MODULE_ID]: { book: "high-tech", combination: { parts: parts.map((p) => String(p.name ?? "")), allAtOnce, endurance } } },
   };
 }
 
@@ -220,6 +228,9 @@ function itemContext(item: any, on: EquipmentSwitches): Record<string, unknown> 
     combination: combination?.parts?.length
       ? F(combination.allAtOnce ? "MadeAllAtOnce" : "MadeOneAtATime", { parts: combination.parts.join(", ") })
       : "",
+    endurance: combination?.parts?.length
+      ? (Array.isArray(combination.endurance) ? combination.endurance : []).map((e: any) => F("SharedEndurance", { name: String(e?.name ?? ""), hours: Number(e?.hours) || 0 }))
+      : [],
   };
 }
 

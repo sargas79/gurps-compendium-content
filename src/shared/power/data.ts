@@ -15,7 +15,7 @@
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
 import { MODULE_ID } from "../module.js";
-import { cellsWeight, enduranceUses as enduranceUsesOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
+import { cellsWeight, enduranceUses as enduranceUsesOf, isCellSizeOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
 
 /** One book's cell table. */
 export interface CellTable extends BookTable {
@@ -140,7 +140,7 @@ export function powerData(item: any): PowerData {
   const d = item?.system?.extensions?.[MODULE_ID]?.power ?? {};
   const draw = d.draw ?? {};
   const figures = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule))?.figures ?? null;
-  const isSize = (value: unknown): value is string => typeof value === "string" && Boolean(figures?.sizes.includes(value));
+  const isSize = (value: unknown): value is string => figures !== null && isCellSizeOf(figures, value);
   const drawCell = isSize(draw.cell) ? draw.cell : null;
   const factor = adjustment(item);
   const cell = isSize(d.cell) ? d.cell : null;

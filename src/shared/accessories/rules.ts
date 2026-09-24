@@ -12,16 +12,6 @@ export function scopeAfterAiming(bonus: number, secondsAimed: number): number {
   return Math.max(0, Math.min(bonus, Math.floor(secondsAimed)));
 }
 
-/**
- * What a fixed-power scope is worth for the seconds aimed: all of it once the
- * shooter has aimed at least as many seconds as the bonus, nothing before
- * (Campaigns p. 411).
- */
-export function fixedScopeAfterAiming(bonus: number, secondsAimed: number): number {
-  const full = Math.max(0, Math.floor(bonus));
-  return Math.floor(secondsAimed) >= full ? full : 0;
-}
-
 /** A targeting program: +1 to one Guns or Gunner specialization at Complexity 3, +2 at 4 (Ultra-Tech p. 150). */
 export function targetingProgramBonus(complexity: number): number {
   return complexity >= 4 ? 2 : complexity >= 3 ? 1 : 0;

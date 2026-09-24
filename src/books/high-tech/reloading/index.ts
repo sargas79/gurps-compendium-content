@@ -43,6 +43,7 @@ import {
   blackPowderClass,
   blackPowderLoad,
   doubleLoadingSaving,
+  doubleLoads,
   firesBlackPowder,
   fouledSeconds,
   loadingByTheRound,
@@ -259,7 +260,7 @@ export function reloadEntry(api: GWorldApi, item: any, modeIndex: number, mode: 
   }
 
   const speedloader = SPEEDLOADER[type] && carries(actor, /^speedloader/i) ? SPEEDLOADER[type] : null;
-  const doubling = doubleLoadingSaving(type, 2) > 0 ? doubleLoadingRoll(api, actor) : null;
+  const doubling = doubleLoads(type, 2) ? doubleLoadingRoll(api, actor) : null;
   const byTheRound = loadingByTheRound(type);
   entry.perShot = false;
 
@@ -330,7 +331,7 @@ function itemContext(api: GWorldApi, item: any, on: ReloadingSwitches): Record<s
   const shots = foulingShots(item);
   const penalty = foulingPenalty(shots);
   const black = blackPowderGun(api, item);
-  const doubling = item?.actor && doubleLoadingSaving(loadingOf(api, item), 2) > 0 ? doubleLoadingRoll(api, item.actor) : null;
+  const doubling = item?.actor && doubleLoads(loadingOf(api, item), 2) ? doubleLoadingRoll(api, item.actor) : null;
   return {
     editable: item.isOwner,
     loading: on.loading(),

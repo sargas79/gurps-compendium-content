@@ -74,6 +74,7 @@ import {
   sheathHtModifier,
   sheathIsBaton,
   sheathWeight,
+  sheathedWeight,
   stainlessSwordMultiplier,
   takesBladeMaterial,
   type BladeMaterial,
@@ -377,10 +378,10 @@ function priced(api: GWorldApi, item: any, price: { cost: number; weight: number
   if (sheathed || material) {
     const listed = price.weight;
     const sheath = sheathed ? sheathWeight(listed, data.sheathWeight) : 0;
-    const blade = (listed - sheath) * (material?.weight ?? 1);
-    // A flexible sheath's weight is negligible, and no sheath weighs nothing.
-    const kept = sheathed && data.sheath ? 0 : sheath;
-    weight += blade + kept - listed;
+    // The weapon with the sheath it has (a flexible sheath's weight is negligible, and no sheath weighs nothing),
+    // then the blade's material on the blade alone.
+    const carried = sheathed ? sheathedWeight(listed, data.sheathWeight, data.sheath) : listed;
+    weight += carried - listed + (listed - sheath) * ((material?.weight ?? 1) - 1);
   }
   if (on.bows() && isBowOrCrossbow(item)) {
     if (data.compound && canBeCompound(nameOf(item))) cost *= COMPOUND.cost;

@@ -23,7 +23,8 @@
  *   - **Unstable explosives (unstableExplosives):** nitroglycerin that is
  *     jolted -- a row action, or a blow to whoever carries it -- goes off on
  *     12+ on 3d, and anything with a number set on it (impure nitro, sweating
- *     dynamite) on that number; skimming nitro from dynamite; home-cooked
+ *     dynamite) on that number, which the item sheet asks for only on an
+ *     explosive with nitro in it; skimming nitro from dynamite; home-cooked
  *     black powder, plastique, ANFO and fuel-air devices, with what a failed
  *     batch comes out as; and a fuel-air blast's slower falloff.
  *   - **Incendiaries (incendiaryAgents):** thermite set burning on a victim
@@ -58,6 +59,7 @@ import {
   blowsUpOnCriticalFailure,
   canShape,
   canTamp,
+  carriesNitro,
   chargeFor,
   concussionModifier,
   enclosureFactor,
@@ -446,6 +448,8 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
         editable: item.isOwner,
         field: `system.extensions.${MODULE_ID}.explosive`,
         shockOn: charge.shockOn,
+        // Only nitro sweats or comes out impure: the number is for an explosive with nitro in it, or one already set (pp. 184-185).
+        sweats: carriesNitro(charge.row) || charge.shockOn > 0,
         homeMade: charge.homeMade,
         flaws: FLAWS.map((f) => ({ value: f, label: L(`Flaws.${f || "none"}`), selected: f === charge.homeMade })),
         line: number === null ? L("Stable") : F("ShockLine", { number }),
