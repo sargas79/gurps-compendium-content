@@ -5311,6 +5311,18 @@
           "Name": "Reconnaissance drones (Electricity and Electronics)",
           "Hint": "A vehicle record's drone figures, on its sheet and set on the two UAVs: the autopilot's skill and Dodge, the remote control's bonus, the controller's range and the ceiling. The operator's control roll takes the remote control's bonus while he is within the controller's range; the figures show as a hint on the vehicle's Hnd/SR once it is on the road; a row button, or a GM tool for a drone on the map, rolls the autopilot's Piloting or its Dodge against obstacles, and the tool checks the controller's range to the targeted operator and the ceiling against the token's elevation (High-Tech: Electricity and Electronics p. 46)."
         },
+        "electricStunners": {
+          "Name": "Electric stunners",
+          "Hint": "From the supplement Electricity and Electronics. An electric stunner in hand gives +6 to Interrogation (its pain counts as torture) and +2 to Intimidation; a cattle prod +2 to Animal Handling. The supplement's cattle prod pains rather than stuns: Moderate Pain for a minute a point the roll failed by, Severe Pain when an attack option says it was put to the face or groin. The stun of the stun gun, stun baton and tasers is High-Tech's own (Stun weapons, Air guns and stunners), and the supplement's Air Taser carries it (Electricity and Electronics pp. 49, 51)."
+        },
+        "directedEnergyWeapons": {
+          "Name": "Directed-energy weapons",
+          "Hint": "From the supplement Electricity and Electronics. The dazzler and the laser pointer blind for minutes equal to the margin, but only where the darkness at the victim is -2 or worse; DR does nothing, Protected Vision gives +5, a Nictitating Membrane +1 a level, and obscuring conditions +1 a point of their Vision penalty (an attack option). The acoustic hailing device's Moderate Pain lasts while the sound does; after a minute of it, a row action gives tinnitus (Hard of Hearing) for a minute a point of failure and an HT roll that keeps it 1d months, or for good on a critical failure. Protected Hearing gives +5 and prevents permanent loss; Deafness is immune. The Active Denial System's Agony lasts while in the beam, though the victim can move away, and a second after leaving it (Electricity and Electronics pp. 50-51)."
+        },
+        "nonNuclearEmp": {
+          "Name": "Non-nuclear EMP",
+          "Hint": "From the supplement Electricity and Electronics. A row action sets off an NNEMP at the targeted characters within 220 yards: each device the GM picks rolls HT as an object, +3 if Hardened or purely electrical. A failure shuts it down until repaired, a row action with Electronics Repair at -6 for plain electronics. The device is spent (Electricity and Electronics p. 50)."
+        },
         "jammerKinds": {
           "Name": "Broad-spectrum and selective jammers",
           "Hint": "An operated radio jammer (High-Tech's area jammer, the supplement's large and portable jammers) is switched on as one of two varieties. Broad-spectrum: the operator's Electronics Operation (EW) roll to switch it on, then every user of radio gear rolls at -2 within its range and unmodified out to 10 times it. Selective: for each user, an unopposed EW roll where the operator knows the frequency, else a Quick Contest of EW, at -1 per 10% past the jammer's range (no further than double); caught, the user rolls at -4 within its range, -2 beyond. A spectrum analyzer carried gives the operator +4 (High-Tech: Electricity and Electronics p. 49)."
@@ -10236,6 +10248,67 @@
         "SpeakerWeight": "Quality (weight)",
         "SpeakersPrice": "{count} extra speakers",
         "HydrophoneTitle": "Listen (hydrophone)"
+      },
+      "ElectronicWeapons": {
+        "Skill": {
+          "interrogation": "Electric stunner ({name}): pain as torture",
+          "intimidation": "Electric stunner ({name}), if the subject knows what it is",
+          "animalHandling": "Cattle prod ({name})"
+        },
+        "FaceOption": "Applied to the face or groin",
+        "FaceNote": "To the face or groin: Severe Pain on a failure",
+        "ProdModerate": "{name} is in Moderate Pain for {minutes} min.",
+        "ProdSevere": "{name} is in Severe Pain for {minutes} min.",
+        "ObscuredOption": "Obscuring conditions (their Vision penalty)",
+        "ObscuredNote": "Fog or smoke: +{bonus} to resist",
+        "Obscured": "Obscuring conditions",
+        "EyeProtection": "Protected Vision / Nictitating Membrane",
+        "ProtectedHearing": "Protected Hearing",
+        "Blinded": "Dazzled blind",
+        "BlindedLine": "{name} is blinded for {minutes} min.",
+        "BlindedUnread": "{name} is blinded for {minutes} min., if the eyes were used to twilight or darker (no light could be read where they stand).",
+        "NotDarkAdapted": "{name}'s eyes are used to the light: the dazzle does nothing.",
+        "AlreadyBlind": "{name} is blind already.",
+        "Deaf": "{name} is deaf and immune to the sound.",
+        "HailedLine": "{name} is in Moderate Pain while the sound lasts; after a minute of it, use the device's row action for tinnitus.",
+        "HailMinute": "A minute of the sound: tinnitus",
+        "HailStop": "The sound stops",
+        "HailStopped": "The sound stops: the pain goes for {names}.",
+        "NoHailed": "Target the characters the sound has pained.",
+        "TinnitusRoll": "{name}: HT against lasting hearing loss",
+        "Tinnitus": "Tinnitus (Hard of Hearing)",
+        "TinnitusMinutes": "{name} has tinnitus for {minutes} min.",
+        "TinnitusMonths": "{name} has tinnitus for {months} months.",
+        "TinnitusPermanent": "{name}'s hearing loss is permanent.",
+        "DenialCondition": "Active Denial: in the beam, free to flee",
+        "DenialLine": "{name} is in Agony while in the beam, and can still move away.",
+        "DenialLeave": "Victims leave the beam",
+        "DenialLeft": "Out of the beam: {names}, in Agony for {seconds} second more.",
+        "NoDenied": "Target the characters leaving the beam.",
+        "Pulse": "Set off the NNEMP",
+        "PulseGo": "Pulse",
+        "PulseHint": "Every device within {yards} yards rolls HT: +{bonus} if Hardened or purely electrical. A failure shuts it down; repairing plain electronics is at {repair}.",
+        "PulseBeyond": "{count} targeted character(s) stand more than {yards} yards off and are left out.",
+        "PulseNoTargets": "Target the characters whose gear the pulse reaches.",
+        "PulseOutOfRange": "Every targeted character is more than 220 yards off.",
+        "PulseSpent": "The NNEMP is destroyed by going off",
+        "PulseRoll": "NNEMP: {gear}",
+        "PulseMalfunction": "Shut down by an NNEMP",
+        "PulseUsed": "{name} is spent ({left} left).",
+        "GearHolds": "{name}'s {gear} keeps working.",
+        "GearOut": "{name}'s {gear} shuts down until repaired (repair at {penalty}).",
+        "Kind": {
+          "skip": "Not affected",
+          "electronic": "Electronic",
+          "hardened": "Hardened (+3)",
+          "electrical": "Purely electrical (+3)"
+        },
+        "Repair": "Repair after the NNEMP",
+        "RepairRoll": "Repair {gear}",
+        "RepairLine": "Unhardened electronics after an NNEMP",
+        "Repaired": "It works again.",
+        "NotRepaired": "It still doesn't work.",
+        "UseRepair": "Shut down by an NNEMP: use the repair row action."
       },
       "Electricity": {
         "Tool": "Electrical hazards",

@@ -110,9 +110,15 @@ export function isSprayGun(item: any): boolean {
 /** Whether an item is a spray canister that forces the two rolls, against coughing and blindness. */
 const isGasSpray = (item: any): boolean => ownBook(item) && [...meleeModes(item), ...rangedModes(item)].some((m) => SPRAYER_SKILL.test(String(m?.skill ?? "")) && m?.affliction);
 
-/** The eye-beam a High-Tech laser weapon fires, or null. */
+/**
+ * The eye-beam a High-Tech laser weapon fires, or null. The supplement
+ * Electricity and Electronics' dazzler and laser pointer blind only eyes used
+ * to the dark (HT:EE p. 51), under its directedEnergyWeapons switch
+ * (`../electronic-weapons`), not this one.
+ */
 export function laserBeamOf(item: any) {
   if (!ownBook(item) || !rangedModes(item).some((m) => m?.affliction)) return null;
+  if (/Electricity and Electronics/i.test(String(item?.system?.reference ?? ""))) return null;
   return eyeBeamOf(String(item.name ?? ""));
 }
 

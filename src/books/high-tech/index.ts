@@ -61,8 +61,9 @@
  * screening, surveillance gear and jamming (with the Electricity and
  * Electronics supplement's bugs, taps and countersurveillance, HT:EE
  * pp. 44-45, its electric fences, locks, screening and alarms, HT:EE
- * pp. 42-44, and its electronic battlefield's sensors and reconnaissance
- * drones, HT:EE pp. 45-46), and the protective oddments and
+ * pp. 42-44, its electronic battlefield's sensors and reconnaissance
+ * drones, HT:EE pp. 45-46, and its electric stunners, directed-energy
+ * weapons and non-nuclear EMP, HT:EE pp. 49-51), and the protective oddments and
  * portable cover: footwear, gloves, ear and eye protection, cups and
  * mouthguards, eyeglasses, homemade armour and blankets over bombs, and
  * lie detection and restraints: polygraphs and voice stress analysers on
@@ -143,6 +144,7 @@ import { readyAudio } from "./audio/index.js";
 import { applianceClimateGear, readyAppliances } from "./appliances/index.js";
 import { readyElectromedicine } from "./electromedicine/index.js";
 import { readySkills } from "./skills/index.js";
+import { readyElectronicWeapons } from "./electronic-weapons/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -333,6 +335,10 @@ const RULES = [
   // Electricity and Electronics: the electronic battlefield's sensors, and reconnaissance drones.
   { key: "battlefieldSensors", pages: "p. 45", reference: EE_REFERENCE, implemented: true },
   { key: "reconDrones", pages: "p. 46", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: electric stunners, directed-energy weapons and non-nuclear EMP.
+  { key: "electricStunners", pages: "pp. 49, 51", reference: EE_REFERENCE, implemented: true },
+  { key: "directedEnergyWeapons", pages: "pp. 50-51", reference: EE_REFERENCE, implemented: true },
+  { key: "nonNuclearEmp", pages: "p. 50", reference: EE_REFERENCE, implemented: true },
   // Protective oddments and portable cover.
   { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
   { key: "portableCover", pages: "p. 72", implemented: true },
@@ -504,6 +510,7 @@ function ready(api: GWorldApi): void {
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
   readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });
   readyInstruments(api, { measurement: rule("electricalMeasurement"), instruments: rule("labInstruments"), combined: rule("combinedDevices") });
+  readyElectronicWeapons(api, { stunners: rule("electricStunners"), directed: rule("directedEnergyWeapons"), emp: rule("nonNuclearEmp") });
 }
 
 export const book: BookRules = {

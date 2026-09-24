@@ -213,6 +213,13 @@ const isSpikedTomahawk = (item: any) => /spiked tomahawk/i.test(nameOf(item));
 const isSwordCane = (item: any) => /^sword cane\b/i.test(nameOf(item));
 const isScoutKnife = (item: any) => /\bNRS-2\b/i.test(nameOf(item));
 const isStunner = (item: any) => isEquipment(item) && isContactStunner(nameOf(item));
+/**
+ * A stun weapon this book's p. 199 stun is for. The supplement Electricity
+ * and Electronics' own cattle prod (HT:EE p. 51, note [4]) pains rather than
+ * stuns, under its electricStunners switch (`../electronic-weapons`); its
+ * armour on the roll to resist is still the contact stunners' (`isStunner`).
+ */
+const stunsOnContact = (item: any) => isStunner(item) && !/Electricity and Electronics/i.test(String(item?.system?.reference ?? ""));
 
 interface WeaponState {
   /** Ready maneuvers spent fixing the bayonet, and how many it takes. */
@@ -299,7 +306,7 @@ function itemContext(api: GWorldApi, item: any, on: MeleeSwitches): Record<strin
     if (data.blade === "stainless" && isSword(api, item) && stainlessSwordMultiplier(gradeOf(item), tlOf(item)) === null && gradeOf(item) === "veryFine") lines.push(L("StainlessTooFine"));
   }
   if (on.blades() && isSwordCane(item)) lines.push(F("SwordCaneLine", { grade: L(`Grade.${gradeBelow(gradeOf(item))}`) }));
-  if (on.stun() && isStunner(item)) lines.push(F("StunLine", { recovery: CONTACT_STUN.recovery }));
+  if (on.stun() && stunsOnContact(item)) lines.push(F("StunLine", { recovery: CONTACT_STUN.recovery }));
   const bow = on.bows() && isBowOrCrossbow(item);
   if (bow && data.silencers && isBow(item)) lines.push(F("SilencerLine", { hearing: BOW_SILENCERS.hearing }));
   if (on.bows() && isSpeargun(item)) lines.push(F("SpeargunLine", { divisor: SPEARGUN.underwaterDivisor, line: SPEARGUN.lineYards }));
@@ -479,7 +486,7 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
         if (lost) row.damage = withAdds(api, row.damage, 0, -lost);
         row.notes?.push?.({ label: L("SwordCaneNote"), hint: L("SwordCaneHint") });
       }
-      if (on.stun() && isStunner(item) && (row.affliction || row.followUp || mode.linked)) {
+      if (on.stun() && stunsOnContact(item) && (row.affliction || row.followUp || mode.linked)) {
         row.notes?.push?.({ label: F("StunNote", { recovery: CONTACT_STUN.recovery }), hint: L(/cattle prod/i.test(nameOf(item)) ? "ProdHint" : "StunHint") });
       }
     }
@@ -568,7 +575,7 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
     label: L("HoldLabel"),
     attack: "melee",
     input: { type: "number", min: 0, max: 600 },
-    available: (context: any) => on.stun() && isStunner(context?.item),
+    available: (context: any) => on.stun() && stunsOnContact(context?.item),
     apply: (_context: any, value: unknown) => {
       const seconds = Math.max(0, Math.floor(Number(value) || 0));
       return seconds ? { notes: [F("HoldNote", { seconds })] } : null;
@@ -584,7 +591,7 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
       if (context.mode?.ranged === true && !reversed) return void (context.refusal = F("NotReversed", { name: nameOf(item) }));
       if (context.mode?.ranged !== true && !context.mode?.derived && reversed) return void (context.refusal = F("IsReversed", { name: nameOf(item) }));
     }
-    if (on.stun() && isStunner(item) && context.mode?.ranged !== true && item.isOwner) {
+    if (on.stun() && stunsOnContact(item) && context.mode?.ranged !== true && item.isOwner) {
       const seconds = Math.max(0, Math.floor(Number(context.options?.[`${MODULE_ID}.${HOLD_OPTION}`]) || 0));
       void api.combat.setWeaponState(item, MODULE_ID, { contactHold: seconds });
     }
@@ -615,7 +622,7 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
   // A stun weapon's victim: stunned while it's held on and (20 - HT) seconds more, then HT-3 each second (p. 199).
   Hooks.on(api.combat.hooks.afflictionEffect, (context: any) => {
     const item = context?.item;
-    if (!on.stun() || !isStunner(item)) return;
+    if (!on.stun() || !stunsOnContact(item)) return;
     const held = Math.max(0, Math.floor(Number(stateOf(api, item).contactHold) || 0));
     const ht = Number(api.actors.attribute(context.actor, "HT")) || 10;
     const seconds = contactStunSeconds(held, ht);

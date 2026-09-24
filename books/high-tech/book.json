@@ -4634,6 +4634,7 @@
             "set": {
               "name": "Air Taser Model 34000",
               "system.category": "weapon",
+              "system.extensions.gurps-compendium-content.firearm.stunSeconds": 5,
               "system.extensions.gurps-compendium-content.power": {
                 "draw": {
                   "cell": "XS",
@@ -4703,7 +4704,7 @@
                 }
               ]
             },
-            "reason": "the Ranged Weapons Table's name for it and its row; the power and 1994 are split by a sidebar in reading order; its cartridges are kept by hand (HT:EE pp. 49, 51)"
+            "reason": "the Ranged Weapons Table's name for it and its row, a ranged stunner whose trigger is held as High-Tech's are (p. 89); the power and 1994 are split by a sidebar in reading order; its cartridges are kept by hand (HT:EE pp. 49, 51)"
           },
           {
             "pattern": "^Cattle Prod$",
