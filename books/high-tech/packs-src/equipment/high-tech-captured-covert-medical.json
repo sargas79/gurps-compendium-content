@@ -5772,7 +5772,15 @@
       "listCost": 1500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "conveyance": {
+            "kind": "wheelchair",
+            "move": 3
+          }
+        }
+      }
     }
   },
   {
@@ -5809,6 +5817,11 @@
               "endurance": "6 hrs.",
               "raw": "VL/6 hrs."
             }
+          },
+          "conveyance": {
+            "kind": "wheelchair",
+            "move": 3,
+            "stairs": true
           }
         }
       }

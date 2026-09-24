@@ -1,0 +1,20 @@
+{{!-- The conveyance ridden: the slope and the road its Move depends on (High-Tech p. 230). --}}
+<section class="card" data-gcc-ht-riding>
+  <div class="card-head"><h3>{{localize "GCC.HT.Conveyance.RidingTitle"}}: {{name}}</h3></div>
+  {{#if downhill}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Conveyance.SlopeHint'}}">{{localize "GCC.HT.Conveyance.Downhill"}}
+        <select data-gcc-ht-slope {{#unless editable}}disabled{{/unless}}>
+          {{#each slopes as |slope|}}<option value="{{slope.value}}" {{#if slope.selected}}selected{{/if}}>{{slope.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    {{#if roadBound}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Conveyance.OffRoadHint'}}"><input type="checkbox" data-gcc-ht-off-road {{#if offRoad}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Conveyance.OffRoad"}}</label>
+      </div>
+    {{/if}}
+  {{/if}}
+  {{#if surf}}<p class="ihint">{{surf}}</p>{{/if}}
+  {{#if moveLine}}<p class="ihint">{{moveLine}}</p>{{/if}}
+</section>

@@ -299,5 +299,101 @@
       "description": "",
       "reference": "High-Tech p. 252"
     }
+  },
+  {
+    "_id": "03a56dd0c2819d5c",
+    "name": "Sports (Surfing)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 231"
+    }
+  },
+  {
+    "_id": "0333cbfc0e9fc74d",
+    "name": "Sports (Skateboard)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Sports (Snowboard)",
+          "modifier": -2
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Sports (Surfing)",
+          "modifier": -2
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 230"
+    }
+  },
+  {
+    "_id": "3e7870f279239f2d",
+    "name": "Sports (Sailboarding)",
+    "type": "skill",
+    "system": {
+      "attribute": "DX",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "DX",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Boating (Sailboat)",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Sports (Motorsurfing)",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Sports (Surfing)",
+          "modifier": -2
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech p. 231"
+    }
   }
 ]

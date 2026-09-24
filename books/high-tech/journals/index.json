@@ -2220,6 +2220,7 @@
       "title": "Wheelchairs",
       "chapter": "7. Medical and Health Technology",
       "pages": "HT226",
+      "rule": "gurps-compendium-content.personalConveyances",
       "reference": "High-Tech p. 226",
       "file": "wheelchairs.md",
       "status": "reviewed"
@@ -2274,6 +2275,7 @@
       "title": "Personal Conveyances",
       "chapter": "8. Transportation",
       "pages": "HT230-231",
+      "rule": "gurps-compendium-content.personalConveyances",
       "reference": "High-Tech pp. 230-231",
       "file": "personal-conveyances.md",
       "status": "reviewed"
@@ -2283,6 +2285,7 @@
       "title": "Bicycles",
       "chapter": "8. Transportation",
       "pages": "HT230",
+      "rule": "gurps-compendium-content.personalConveyances",
       "reference": "High-Tech p. 230",
       "file": "bicycles.md",
       "status": "reviewed"

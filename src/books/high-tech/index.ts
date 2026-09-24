@@ -57,7 +57,8 @@
  * lie detection and restraints: polygraphs and voice stress analysers on
  * Interrogation, cuffs, leg irons and straitjackets, and prosthetics and
  * elective surgery (pp. 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143,
- * 147-217, 219-226, 249-252).
+ * 147-217, 219-226, 249-252), and the personal conveyances: bicycles,
+ * skateboards, surfboards and wheelchairs (pp. 226, 230-231).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -99,6 +100,7 @@ import { initSurveillance, readySurveillance } from "./surveillance/index.js";
 import { readyOddments } from "./oddments/index.js";
 import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
+import { initConveyances, readyConveyances } from "./conveyances/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -236,6 +238,8 @@ const RULES = [
   // Encryption and code-breaking; forgery, disguise, smuggling and mule pills.
   { key: "encryption", pages: "pp. 210-211", implemented: true },
   { key: "disguiseAndSmuggling", pages: "pp. 213-215", implemented: true },
+  // Personal conveyances: bicycles, skateboards, surfboards and wheelchairs.
+  { key: "personalConveyances", pages: "pp. 226, 230-231", implemented: true },
   // Armour: partial coverage and the direction a piece protects from, concealing it, and its materials.
   { key: "partialCoverage", pages: "pp. 66-69, 75", implemented: true },
   { key: "concealedArmor", pages: "pp. 64, 66", implemented: true },
@@ -306,6 +310,7 @@ function init(): void {
   initHighTechArmor();
   initSurveillance(ruleKey("jamming"));
   initEnforcement({ lieDetection: ruleKey("lieDetection"), restraints: ruleKey("restraintDevices") });
+  initConveyances();
 }
 
 function ready(api: GWorldApi): void {
@@ -364,6 +369,7 @@ function ready(api: GWorldApi): void {
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));
+  readyConveyances(api, rule("personalConveyances"));
 }
 
 export const book: BookRules = {
