@@ -60,7 +60,8 @@
  * armour: partial coverage, concealing it and its materials, security
  * screening, surveillance gear and jamming (with the Electricity and
  * Electronics supplement's bugs, taps and countersurveillance, HT:EE
- * pp. 44-45), and the protective oddments and
+ * pp. 44-45, and its electric fences, locks, screening and alarms, HT:EE
+ * pp. 42-44), and the protective oddments and
  * portable cover: footwear, gloves, ear and eye protection, cups and
  * mouthguards, eyeglasses, homemade armour and blankets over bombs, and
  * lie detection and restraints: polygraphs and voice stress analysers on
@@ -118,6 +119,7 @@ import { readyHighTechCodes } from "./codes/index.js";
 import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 import { initSurveillance, readySurveillance } from "./surveillance/index.js";
 import { readyCovertListening } from "./covert-listening/index.js";
+import { initElectricSecurity, readyElectricSecurity } from "./electric-security/index.js";
 import { readyOddments } from "./oddments/index.js";
 import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
@@ -307,6 +309,10 @@ const RULES = [
   { key: "radarJamming", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
   // Electricity and Electronics: bugs, taps and countersurveillance.
   { key: "covertListening", pages: "pp. 44-45", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: electric fences, locks, screening and alarms.
+  { key: "stunLethalFences", pages: "pp. 9, 42, 44", reference: EE_REFERENCE, implemented: true },
+  { key: "electricLocks", pages: "pp. 14, 42", reference: EE_REFERENCE, implemented: true },
+  { key: "alarmSystems", pages: "pp. 43-44", reference: EE_REFERENCE, implemented: true },
   // Protective oddments and portable cover.
   { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
   { key: "portableCover", pages: "p. 72", implemented: true },
@@ -383,6 +389,7 @@ function init(): void {
   initHighTechMelee();
   initHighTechCamouflage(ruleKey("camouflageGear"));
   initHighTechSecurity();
+  initElectricSecurity();
   initMedicine();
   initHighTechArmor();
   initSurveillance({ jamming: ruleKey("jamming"), jammerKinds: ruleKey("jammerKinds"), radarJamming: ruleKey("radarJamming") });
@@ -447,12 +454,14 @@ function ready(api: GWorldApi): void {
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
   readyHighTechCamouflage(api);
   readyBreathing(api, { breathing: rule("breathingGear"), suits: rule("environmentSuits") });
-  readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
+  const electric = { fences: rule("stunLethalFences"), electricLocks: rule("electricLocks"), alarms: rule("alarmSystems") };
+  readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers"), ...electric });
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
   readyCovertListening(api, rule("covertListening"));
+  readyElectricSecurity(api, electric);
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));

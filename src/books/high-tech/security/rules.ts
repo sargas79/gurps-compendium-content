@@ -43,6 +43,8 @@ export interface LockRecord {
   toughness?: LockToughness;
   /** Forgery's modifier against a signature pad, with a computer analysis of a signature (p. 205). */
   forgery?: number;
+  /** The skill that gets past it, where not the kind's own: the supplement's biometric systems take Electronics Repair (Security) (HT:EE p. 43). */
+  skill?: string;
 }
 
 /** The book's locks, safes, electronic locks and identity verifiers, by record name (pp. 203-205). */
@@ -71,8 +73,13 @@ export const SAFES: Readonly<Record<string, { dr: number; hp: number }>> = Objec
   "Firearms Safe": { dr: 80, hp: 64 },
 });
 
-/** The skill that gets past a lock: Lockpicking for a mechanical one, Electronics Operation (Security) for the rest (pp. 204-205, 213). */
-export function pickSkill(kind: LockKind): string {
+/**
+ * The skill that gets past a lock: Lockpicking for a mechanical one,
+ * Electronics Operation (Security) for the rest (pp. 204-205, 213), or the
+ * record's own (the supplement's biometric systems, HT:EE p. 43).
+ */
+export function pickSkill(kind: LockKind, own?: string): string {
+  if (own) return own;
   return kind === "lock" || kind === "safe" ? "Lockpicking" : "Electronics Operation (Security)";
 }
 

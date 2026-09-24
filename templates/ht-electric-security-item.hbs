@@ -1,0 +1,13 @@
+{{!-- Electric fences, locks, screening and alarms (High-Tech: Electricity and Electronics pp. 42-44). --}}
+<div class="isub" data-gcc-ht-electric-security-section>
+  <div class="isub-head">{{localize "GCC.HT.ElectricSecurity.SectionTitle"}}</div>
+  {{#if option}}
+    <div class="ifields">
+      <label data-tooltip="{{option.hint}}">
+        <input type="checkbox" data-gcc-ht-ee-option="{{option.key}}" {{#if option.checked}}checked{{/if}} {{#unless option.editable}}disabled{{/unless}} />
+        {{option.label}}
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>
