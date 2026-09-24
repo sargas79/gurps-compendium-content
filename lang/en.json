@@ -10283,7 +10283,7 @@
         "DenialCondition": "Active Denial: in the beam, free to flee",
         "DenialLine": "{name} is in Agony while in the beam, and can still move away.",
         "DenialLeave": "Victims leave the beam",
-        "DenialLeft": "{names} leave the beam: Agony for {seconds} second more.",
+        "DenialLeft": "Out of the beam: {names}, in Agony for {seconds} second more.",
         "NoDenied": "Target the characters leaving the beam.",
         "Pulse": "Set off the NNEMP",
         "PulseGo": "Pulse",
