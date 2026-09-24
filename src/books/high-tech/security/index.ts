@@ -20,6 +20,13 @@
  *     yard, a cattle fence's stun held while the victim touches it, a lethal
  *     fence's shocks, and a car stopper -- and each record's figures on the
  *     item sheet.
+ *
+ * The supplement Electricity and Electronics extends both (HT:EE pp. 42-43,
+ * `../electric-security/`): its electric locks and screening systems are lock
+ * records here under their own switches (`electricLocks`, `alarmSystems`),
+ * its biometric systems joining the identity verifiers' grades, and its
+ * low-voltage and stun-lethal fences are the traps tool's under
+ * `stunLethalFences`.
  */
 
 import { bookOf } from "../../../shared/book-tables.js";
@@ -27,6 +34,8 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { SECURITY_TABLES, crossBarrier, figureLines, type SecurityTable } from "../../../shared/security/index.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
+import { touchFence } from "../electric-security/fences.js";
+import { DIGITAL_STETHOSCOPE, supplementLock, type FenceTouch, type SupplementLock } from "../electric-security/rules.js";
 import {
   BARRIERS,
   CALTROP_DAMAGE,
@@ -83,6 +92,10 @@ export const SECURITY_TABLE: SecurityTable = Object.freeze({
 export interface SecuritySwitches {
   locks: () => boolean;
   traps: () => boolean;
+  /** The supplement's stun-lethal fences, electric locks, and screening and alarms (HT:EE pp. 42-44). */
+  fences?: () => boolean;
+  electricLocks?: () => boolean;
+  alarms?: () => boolean;
 }
 
 /** Registers the lock's quality field, and this book's table with the shared security engine. */
@@ -102,10 +115,26 @@ const ours = (item: any) => {
   return book === null || book === "high-tech";
 };
 
-/** What a record is to the lock rules, or null. */
+/** What a record is to the lock rules, or null: High-Tech's by name, then the supplement's (HT:EE pp. 42-43). */
 export function lockRecord(item: any): LockRecord | null {
   if (item?.type !== "equipment" || !ours(item)) return null;
-  return LOCK_RECORDS[String(item.name ?? "").trim()] ?? null;
+  const name = String(item.name ?? "").trim();
+  return LOCK_RECORDS[name] ?? supplementLock(name);
+}
+
+/** Whether the switch that runs a lock record is on: High-Tech's `locksAndSafes`, or the supplement's own for its records. */
+export function lockOn(record: LockRecord | null, on: SecuritySwitches): boolean {
+  if (!record) return false;
+  const rule = (record as Partial<SupplementLock>).rule;
+  if (rule === "electricLocks") return Boolean(on.electricLocks?.());
+  if (rule === "alarmSystems") return Boolean(on.alarms?.());
+  return on.locks();
+}
+
+/** A record's lock rules, where the switch that runs them is on. */
+export function activeLock(item: any, on: SecuritySwitches): LockRecord | null {
+  const record = lockRecord(item);
+  return lockOn(record, on) ? record : null;
 }
 
 /** A lock's quality grade: basic unless its field says otherwise. */
@@ -190,15 +219,17 @@ export interface LockTarget {
   kind: LockKind;
   quality: LockQuality;
   tl: number;
+  /** The skill that gets past it, where not the kind's own. */
+  skill?: string | undefined;
 }
 
 /** A pick's modifiers, each with its label: quality, the gun, the lock's TL, aids, time. */
-export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: LockTarget, aids: { stethoscope: boolean; endoscope: boolean; timeFactor: number }): { modifiers: Array<{ label: string; value: number }>; impossible: string | null } {
+export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: LockTarget, aids: { stethoscope: boolean; endoscope: boolean; timeFactor: number; digitalStethoscope?: boolean }): { modifiers: Array<{ label: string; value: number }>; impossible: string | null } {
   const modifiers: Array<{ label: string; value: number }> = [];
   const quality = lockQualityModifier(lock.quality);
   if (quality) modifiers.push({ label: F("Pick.Quality", { quality: L(`Quality.${lock.quality}`) }), value: quality });
   if (tool === "gun") modifiers.push({ label: L("Pick.Gun"), value: pickGunModifier(lock.quality) });
-  const skill = pickSkill(lock.kind);
+  const skill = pickSkill(lock.kind, lock.skill);
   const tl = skillTl(api, actor, skill);
   let impossible: string | null = null;
   if (lock.tl < tl) {
@@ -213,6 +244,8 @@ export function pickModifiers(api: GWorldApi, actor: any, tool: PickTool, lock: 
   }
   if (aids.stethoscope && lock.kind !== "electronic" && lock.kind !== "verifier") modifiers.push({ label: L("Pick.Stethoscope"), value: STETHOSCOPE_BONUS });
   if (aids.endoscope) modifiers.push({ label: L("Pick.Endoscope"), value: ENDOSCOPE_BONUS });
+  // The supplement's digital stethoscope: +1 to crack a safe (HT:EE pp. 14, 42).
+  if (aids.digitalStethoscope && lock.kind === "safe") modifiers.push({ label: L("Pick.DigitalStethoscope"), value: DIGITAL_STETHOSCOPE.safe });
   const base = pickSeconds(lock.kind, tool === "gun");
   const time = timeSpentModifier(base * aids.timeFactor, base);
   if (time) modifiers.push({ label: L("Pick.TimeSpent"), value: time });
@@ -229,15 +262,16 @@ function duration(seconds: number): string {
 }
 
 /** Picks a lock with a tool: a targeted character's lock, or one described. */
-async function pickLock(api: GWorldApi, item: any, actor: any): Promise<void> {
+async function pickLock(api: GWorldApi, item: any, actor: any, on: SecuritySwitches): Promise<void> {
   const tool = pickTool(item);
   if (!tool || !actor) return;
   const kinds = kindsFor(tool);
   const targeted = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean)
-    .flatMap((owner: any) => [...(owner.items ?? [])].filter((i: any) => kinds.includes(lockRecord(i)?.kind as LockKind)).map((lock: any) => ({ owner, lock })));
+    .flatMap((owner: any) => [...(owner.items ?? [])].filter((i: any) => kinds.includes(activeLock(i, on)?.kind as LockKind)).map((lock: any) => ({ owner, lock })));
   const personal = api.rules.parseTechLevel(actor.system?.tl) ?? 8;
   const hasStethoscope = tool !== "kit" && carries(actor, STETHOSCOPE);
   const hasEndoscope = carries(actor, ENDOSCOPE);
+  const hasDigital = Boolean(on.electricLocks?.()) && tool !== "kit" && carries(actor, /^digital stethoscope$/i);
   const answer = await ask(L("Pick.Title"),
     (targeted.length ? row(L("Pick.Lock"), select("lock", [["", L("Pick.Described")], ...targeted.map(({ owner, lock }: any, i: number): [string, string] => [String(i), `${lock.name} (${owner.name})`])], "0")) : "")
     + row(L("Pick.Kind"), select("kind", kinds.map((k): [string, string] => [k, L(`Kind.${k}`)])))
@@ -258,10 +292,10 @@ async function pickLock(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (!answer) return;
   const chosen = answer.lock === "" ? null : targeted[Number(answer.lock)] ?? null;
   const lock: LockTarget = chosen
-    ? { name: String(chosen.lock.name), kind: lockRecord(chosen.lock)!.kind, quality: lockQuality(chosen.lock), tl: api.rules.parseTechLevel(chosen.lock.system?.tl) ?? answer.tl }
+    ? { name: String(chosen.lock.name), kind: lockRecord(chosen.lock)!.kind, quality: lockQuality(chosen.lock), tl: api.rules.parseTechLevel(chosen.lock.system?.tl) ?? answer.tl, skill: lockRecord(chosen.lock)!.skill }
     : { name: L(`Kind.${answer.kind}`), kind: answer.kind, quality: answer.quality, tl: answer.tl };
-  const skill = pickSkill(lock.kind);
-  const { modifiers, impossible } = pickModifiers(api, actor, tool, lock, { stethoscope: answer.stethoscope, endoscope: answer.endoscope, timeFactor: answer.time });
+  const skill = pickSkill(lock.kind, lock.skill);
+  const { modifiers, impossible } = pickModifiers(api, actor, tool, lock, { stethoscope: answer.stethoscope, endoscope: answer.endoscope, timeFactor: answer.time, digitalStethoscope: hasDigital });
   if (impossible) return void ui.notifications?.warn(impossible);
   const base = api.actors.skillLevel(actor, skill) ?? (api.actors.attribute(actor, "IQ") ?? 10) - 5;
   const result: any = await api.roll.success({ actor, base, kind: "skill", skill, item, label: F("Pick.Label", { lock: lock.name }), modifiers, tags: ["lockpicking"] } as any);
@@ -273,7 +307,9 @@ async function pickLock(api: GWorldApi, item: any, actor: any): Promise<void> {
 // ── traps and barriers (pp. 203-205) ──
 
 const TRAP_KINDS = ["caltrops", "tripwire", "stakePit", "barbedWire", "razorWire", "cattleFence", "lethalFence", "carStopper"] as const;
-type TrapKind = (typeof TRAP_KINDS)[number];
+/** The supplement's fences, under `stunLethalFences` (HT:EE p. 42). */
+const FENCE_KINDS = ["lowVoltageFence", "stunLethalFence"] as const;
+type TrapKind = (typeof TRAP_KINDS)[number] | (typeof FENCE_KINDS)[number];
 
 interface TrapAnswer {
   kind: TrapKind;
@@ -284,6 +320,12 @@ interface TrapAnswer {
   hidden: boolean;
   fishingLine: boolean;
   dirty: boolean;
+  /** A stun-lethal fence's first touch, or a later one (HT:EE p. 42). */
+  touch?: FenceTouch;
+  /** Seconds before the current is cut, for a victim held on the wire. */
+  cutOff?: number;
+  /** A security fence, which sets off an alarm when touched (HT:EE p. 44). */
+  alarmed?: boolean;
 }
 
 /** A Per-based Traps roll's level (p. 203): the skill moved from IQ to Per, or its Per-5 default. */
@@ -420,20 +462,26 @@ async function carStopper(api: GWorldApi, victim: any, name: string): Promise<vo
   await say(victim, name, [F("Barrier.KnockedOut", { name: victim.name, seconds })]);
 }
 
-async function runTrap(api: GWorldApi): Promise<void> {
+async function runTrap(api: GWorldApi, on: SecuritySwitches): Promise<void> {
   const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
   if (!targets.length) return void ui.notifications?.warn(L("Trap.Target"));
+  const traps = on.traps();
+  const fences = Boolean(on.fences?.());
+  const kinds: TrapKind[] = [...(traps ? TRAP_KINDS : []), ...(fences ? FENCE_KINDS : [])];
+  if (!kinds.length) return;
   const answer = await ask(L("Trap.Title"),
-    row(L("Trap.Kind"), select("kind", TRAP_KINDS.map((k): [string, string] => [k, L(`Trap.${k}`)])))
-    + row(L("Trap.Yards"), number("yards", 1, 1))
+    row(L("Trap.Kind"), select("kind", kinds.map((k): [string, string] => [k, L(`Trap.${k}`)])))
+    + (traps ? row(L("Trap.Yards"), number("yards", 1, 1)) : "")
     + row(L("Trap.Seconds"), number("seconds", 1, 1))
     + row(L("Trap.Metal"), checkbox("metal"))
-    + row(L("Trap.Watching"), checkbox("watching"))
-    + row(L("Trap.Hidden"), checkbox("hidden", true))
-    + row(L("Trap.FishingLine"), checkbox("fishingLine"))
-    + row(L("Trap.DirtyField"), checkbox("dirty")),
+    + (traps ? row(L("Trap.Watching"), checkbox("watching")) + row(L("Trap.Hidden"), checkbox("hidden", true)) + row(L("Trap.FishingLine"), checkbox("fishingLine")) + row(L("Trap.DirtyField"), checkbox("dirty")) : "")
+    + (fences
+      ? row(L("Trap.Touch"), select("touch", [["first", L("Trap.TouchFirst")], ["second", L("Trap.TouchSecond")]]))
+        + row(L("Trap.CutOff"), number("cutOff", 10, 1))
+        + row(L("Trap.Alarmed"), checkbox("alarmed"))
+      : ""),
     (form): TrapAnswer => ({
-      kind: (field(form, "kind")?.value ?? "caltrops") as TrapKind,
+      kind: (field(form, "kind")?.value ?? kinds[0]) as TrapKind,
       yards: Math.max(1, Math.floor(Number(field(form, "yards")?.value) || 1)),
       seconds: Math.max(1, Math.floor(Number(field(form, "seconds")?.value) || 1)),
       metal: Boolean(field(form, "metal")?.checked),
@@ -441,6 +489,9 @@ async function runTrap(api: GWorldApi): Promise<void> {
       hidden: Boolean(field(form, "hidden")?.checked),
       fishingLine: Boolean(field(form, "fishingLine")?.checked),
       dirty: Boolean(field(form, "dirty")?.checked),
+      touch: (field(form, "touch")?.value ?? "first") as FenceTouch,
+      cutOff: Math.max(1, Math.floor(Number(field(form, "cutOff")?.value) || 10)),
+      alarmed: Boolean(field(form, "alarmed")?.checked),
     }));
   if (!answer) return;
   await runTrapOn(api, targets, answer);
@@ -457,6 +508,16 @@ export async function runTrapOn(api: GWorldApi, victims: any[], answer: TrapAnsw
     else if (answer.kind === "cattleFence") await cattleFence(api, victim, name, answer);
     else if (answer.kind === "lethalFence") await lethalFence(api, victim, answer);
     else if (answer.kind === "carStopper") await carStopper(api, victim, name);
+    else if (answer.kind === "lowVoltageFence" || answer.kind === "stunLethalFence") {
+      await touchFence(api, victim, name, {
+        fence: answer.kind === "lowVoltageFence" ? "lowVoltage" : "stunLethal",
+        touch: answer.touch ?? "first",
+        seconds: answer.seconds,
+        cutOff: answer.cutOff ?? 10,
+        metal: answer.metal,
+        alarmed: answer.alarmed ?? false,
+      });
+    }
   }
 }
 
@@ -480,18 +541,19 @@ function trapLines(item: any): string[] {
   return [];
 }
 
-function lockLines(item: any): string[] {
+function lockLines(item: any, on: SecuritySwitches): string[] {
   const lines: string[] = [];
-  const record = lockRecord(item);
+  const record = activeLock(item, on);
   if (record) {
     const quality = lockQuality(item);
     const modifier = signed(lockQualityModifier(quality));
     if (record.kind === "lock" && record.toughness) lines.push(F("Item.Toughness", { ...LOCK_TOUGHNESS[record.toughness], toughness: L(`Toughness.${record.toughness}`) }));
     // A safe's DR and HP, from this book's table in the shared engine.
     if (record.kind === "safe") lines.push(...figureLines(item, SECURITY_TABLE));
-    lines.push(F(`Item.Pick.${record.kind}`, { modifier }));
+    lines.push(record.skill ? F("Item.PickWith", { skill: record.skill, modifier }) : F(`Item.Pick.${record.kind}`, { modifier }));
     if (record.forgery !== undefined) lines.push(F("Item.Forgery", { modifier: record.forgery }));
   }
+  if (!on.locks()) return lines;
   const tool = pickTool(item);
   if (tool) lines.push(tool === "gun" ? F("Item.Gun", { basic: signed(pickGunModifier("basic")), other: pickGunModifier("fine") }) : L(`Item.${tool}`));
   const name = String(item?.name ?? "");
@@ -501,8 +563,8 @@ function lockLines(item: any): string[] {
 }
 
 function itemContext(item: any, on: SecuritySwitches): Record<string, unknown> {
-  const lines = [...(on.locks() ? lockLines(item) : []), ...(on.traps() ? trapLines(item) : [])];
-  const record = on.locks() ? lockRecord(item) : null;
+  const lines = [...lockLines(item, on), ...(on.traps() ? trapLines(item) : [])];
+  const record = activeLock(item, on);
   const quality = lockQuality(item);
   return {
     lines,
@@ -513,7 +575,7 @@ function itemContext(item: any, on: SecuritySwitches): Record<string, unknown> {
 }
 
 export function readyHighTechSecurity(api: GWorldApi, on: SecuritySwitches): void {
-  api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-traps", label: L("Trap.Title"), icon: "fa-solid fa-road-barrier", visible: on.traps, open: () => runTrap(api) });
+  api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-traps", label: L("Trap.Title"), icon: "fa-solid fa-road-barrier", visible: () => on.traps() || Boolean(on.fences?.()), open: () => runTrap(api, on) });
 
   api.sheets.registerSheetSection({
     module: MODULE_ID,
@@ -535,7 +597,7 @@ export function readyHighTechSecurity(api: GWorldApi, on: SecuritySwitches): voi
     key: "ht-lock-quality",
     types: ["equipment"],
     apply: (item, price) => {
-      if (!on.locks() || !lockRecord(item)) return null;
+      if (!activeLock(item, on)) return null;
       const quality = lockQuality(item);
       const multiple = lockQualityCost(quality);
       if (multiple === 1) return null;
@@ -545,7 +607,7 @@ export function readyHighTechSecurity(api: GWorldApi, on: SecuritySwitches): voi
 
   // A lock's toughness, or a safe's own DR and HP in place of its lock's, as the object the system breaks (p. 203).
   Hooks.on(api.data.hooks.objectStats, (context: any) => {
-    const record = on.locks() ? lockRecord(context?.item) : null;
+    const record = activeLock(context?.item, on);
     const figures = record?.kind === "safe" ? SAFES[String(context.item.name ?? "").trim()] : record?.toughness ? LOCK_TOUGHNESS[record.toughness] : null;
     if (!figures) return;
     context.dr = figures.dr;
@@ -560,6 +622,6 @@ export function readyHighTechSecurity(api: GWorldApi, on: SecuritySwitches): voi
     label: L("Pick.Title"),
     icon: "fa-solid fa-key",
     visible: (item) => on.locks() && pickTool(item) !== null,
-    run: (item, actor) => { void pickLock(api, item, actor); },
+    run: (item, actor) => { void pickLock(api, item, actor, on); },
   });
 }

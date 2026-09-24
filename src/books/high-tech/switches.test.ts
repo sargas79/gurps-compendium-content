@@ -505,7 +505,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   it("reads the book's records and its switches, and nothing else registers", async () => {
     expect(docs.length).toBeGreaterThan(1400);
-    expect(switches()).toHaveLength(139);
+    expect(switches()).toHaveLength(142);
     on = new Set();
     baseOffered = await offered();
   });

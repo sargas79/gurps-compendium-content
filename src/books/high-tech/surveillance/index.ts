@@ -100,6 +100,7 @@ import {
   supplementJammerByName,
   sweepMinutes,
   isContactMike,
+  type Screener,
   type ScreeningSearch,
   type SecurityTask,
   type SpotWay,
@@ -294,9 +295,12 @@ export function undercoverLines(actor: any): Array<{ label: string; value: numbe
   return [{ label: F("Screen.UndercoverLine", { name: tool.name }), value: -bonus }];
 }
 
-/** A screening device used on the targeted character, or on something being searched (pp. 206-207, 217). */
-export async function screen(api: GWorldApi, item: any, actor: any): Promise<void> {
-  const screener = screenerOf(nameOf(item));
+/**
+ * A screening device used on the targeted character, or on something being
+ * searched (pp. 206-207, 217); `screener` is the supplement's reading of its
+ * own detectors where it runs one (HT:EE p. 43).
+ */
+export async function screen(api: GWorldApi, item: any, actor: any, screener: Screener | null = screenerOf(nameOf(item))): Promise<void> {
   if (!actor || !screener) return;
   const kind = screener.kind;
   const target = picked().target;

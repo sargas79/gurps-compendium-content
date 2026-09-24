@@ -5279,6 +5279,18 @@
           "Name": "Bugs, taps and countersurveillance (Electricity and Electronics)",
           "Hint": "The supplement's covert listening. With surveillance gear on, a bug detector's sweep is -5 against a spread-spectrum (ECCM) bug and -2 against one an isolator guards, and a contact mike's roll -4 under white noise. Row buttons: listen with a laser mike (-2 through heavy curtains or triple glazing, -1 to -4 for noise at TL7, -4 under white noise), trace a planted signal with a lock-in amplifier (+6, +10 at TL8), sweep with a nonlinear junction detector (a failure by 4 or more takes a stray object for a bug) and wire a keylogger into a typewriter. A GM tool builds and reads a computer-emissions interceptor (-1 per 100 yards past 300), times acoustic keylogging's typing sample, captures an RFID chip (-2, -1 per yard), makes a booster bag and improvises white noise from an FM receiver (High-Tech: Electricity and Electronics pp. 44-45)."
         },
+        "stunLethalFences": {
+          "Name": "Electric fences (Electricity and Electronics)",
+          "Hint": "The traps and barriers tool runs the supplement's fences through the shock rules. A low-voltage fence: a nonlethal shock each second on an unmodified HT roll, Moderate Pain while touching it, and a stun held for as long as the contact lasts. A stun-lethal fence: that at a first touch, which arms it; at a second, 3d burning a second as lethal electrical damage, and a victim it injures by more than 1 point can't let go until the current is cut. A security fence ($100 more, free on a stun-lethal one) sets off an alarm when touched (High-Tech: Electricity and Electronics pp. 9, 42, 44)."
+        },
+        "electricLocks": {
+          "Name": "Electric locks (Electricity and Electronics)",
+          "Hint": "The key switch, electric deadbolt, keypad combination lock, smart lock and the five magnetic locks take High-Tech's lock grades. A GM tool bypasses a key switch (Electronics Repair (Security), Mechanic or Lockpicking), cuts a magnetic lock's power with Electrician, or forces it in a Quick Contest of ST against the lock's (ST 12 to 32 by size). The digital stethoscope gives +1 to crack a safe and +3 to disable a security device by ear (High-Tech: Electricity and Electronics pp. 14, 42)."
+        },
+        "alarmSystems": {
+          "Name": "Screening and alarms (Electricity and Electronics)",
+          "Hint": "Keycard readers (x2 with a log of the cards) and the biometric systems join High-Tech's identity verifiers: bypassed with Electronics Repair (Security) at +5, 0 or -5 by grade (x1, x5, x20), a portable unit $5 and 0.2 lb. more; a signature pad by Forgery at -3. The security metal detector, and a general-purpose one in improvised use, screen as High-Tech's handheld detector. A GM tool spots an alarm (Vision-5, Observation or Per-based Traps, or against Camouflage), identifies it (Electronics Operation (Security)), disables it (Electronics Repair (Security); Traps for an electric alarm) or cuts its power (Electrician; a professional system goes off); each alarm's figures are on its sheet (High-Tech: Electricity and Electronics pp. 43-44)."
+        },
         "jammerKinds": {
           "Name": "Broad-spectrum and selective jammers",
           "Hint": "An operated radio jammer (High-Tech's area jammer, the supplement's large and portable jammers) is switched on as one of two varieties. Broad-spectrum: the operator's Electronics Operation (EW) roll to switch it on, then every user of radio gear rolls at -2 within its range and unmodified out to 10 times it. Selective: for each user, an unopposed EW roll where the operator knows the frequency, else a Quick Contest of EW, at -1 per 10% past the jammer's range (no further than double); caught, the user rolls at -4 within its range, -2 beyond. A spectrum analyzer carried gives the operator +4 (High-Tech: Electricity and Electronics p. 49)."
@@ -8594,7 +8606,8 @@
           "TimeSpent": "Time Spent",
           "Label": "Getting past the {lock}",
           "Opened": "{name} gets past the {lock} ({time}).",
-          "Failed": "{name} fails to get past the {lock} ({time})."
+          "Failed": "{name} fails to get past the {lock} ({time}).",
+          "DigitalStethoscope": "Digital stethoscope"
         },
         "Time": {
           "1": "The usual time",
@@ -8638,7 +8651,14 @@
           "Kept": "{name} keeps their footing.",
           "Tripped": "{name} is tripped and falls prone.",
           "PitLabel": "Stake pit: {name}",
-          "FellIn": "{name} falls on the stakes: {formula} impaling, from their own ST."
+          "FellIn": "{name} falls on the stakes: {formula} impaling, from their own ST.",
+          "lowVoltageFence": "Low-voltage fence",
+          "stunLethalFence": "Stun-lethal (high-voltage) fence",
+          "Touch": "Touch (stun-lethal fence)",
+          "TouchFirst": "First touch: low voltage, arms it",
+          "TouchSecond": "A later touch: high voltage",
+          "CutOff": "Current cut after (seconds)",
+          "Alarmed": "Security fence (sets off an alarm)"
         },
         "Barrier": {
           "Avoid": "Getting past the {barrier}",
@@ -8688,7 +8708,8 @@
           "SpikeStrip": "A tire driven over it deflates in {seconds} seconds: {driving} to Driving and Top Speed x{topSpeed}.",
           "CarStopper": "HT{modifier} for a TL8+ vehicle or anyone with Electrical, or out of action for seconds equal to the margin; pre-TL8 vehicles are immune.",
           "SmartFence": "Electronics Operation (Security){modifier} to neutralize each 10-yard section.",
-          "StakePit": "Thrust impaling from the victim's own ST; a punji pit's dirty stakes give {modifier} or worse to resist infection."
+          "StakePit": "Thrust impaling from the victim's own ST; a punji pit's dirty stakes give {modifier} or worse to resist infection.",
+          "PickWith": "{skill} {modifier} to bypass it, with the case open and suitable tools."
         },
         "SafeNote": "A safe's own DR and HP (High-Tech p. 203)",
         "ToughnessNote": "A {toughness} lock (High-Tech p. 203)"
@@ -10159,6 +10180,120 @@
         "PlotLabel": "A waveform plotted by hand",
         "PlotLine": "Timed meter readings",
         "CombinedRecord": "Combined device"
+      },
+      "ElectricSecurity": {
+        "SectionTitle": "Electric security (Electricity and Electronics)",
+        "Title": "Electric locks and alarms",
+        "PickIntruder": "Select the intruder's token.",
+        "TaskLabel": "Job",
+        "Task": {
+          "spot": "Spot an alarm",
+          "identify": "Identify an alarm",
+          "disable": "Disable an alarm",
+          "cutPower": "Cut an alarm's power",
+          "keySwitch": "Bypass a key switch",
+          "magneticPower": "Cut a magnetic lock's power",
+          "magneticForce": "Force a magnetic lock",
+          "biometric": "Bypass a biometric system",
+          "signature": "Forge a signature on a signature pad"
+        },
+        "WayLabel": "Spotting with",
+        "Way": {
+          "vision": "Vision {modifier}",
+          "observation": "Observation",
+          "traps": "Per-based Traps"
+        },
+        "Concealed": "Hidden: installer's Camouflage (0 if not)",
+        "Simple": "Simple enough for Traps (an electric alarm)",
+        "OwnBatteries": "Alarm has its own batteries",
+        "Professional": "Professionally designed system",
+        "GradeLabel": "Biometric system's grade",
+        "GradeOption": "{grade} ({modifier})",
+        "Grade": {
+          "basic": "Basic",
+          "good": "Good",
+          "fine": "Fine"
+        },
+        "GradeLine": "{grade} system",
+        "Hearing": "Hearing the mechanism helps (digital stethoscope +{bonus})",
+        "LockSt": "Magnetic lock's ST",
+        "RollLabel": "{task}: {skill}",
+        "StethoscopeLine": "Digital stethoscope, by ear",
+        "Disabled": "{name} disables the alarm.",
+        "AlarmSounds": "{name} sets off the alarm!",
+        "Alarm": {
+          "electric": "A circuit across a door or window: opening it (or breaking the window) sets it off. Simple enough to disable with Traps.",
+          "pressureMat": "Signals when stepped on.",
+          "ultrasonic": "Fills a room with ultrasound and senses movement through it.",
+          "proximity": "Senses anyone closer than {yards} yard(s).",
+          "car": "Senses a vehicle tilted or struck.",
+          "photoelectric": "Beams up to {yards} yards long; breaking one sets it off.",
+          "infrared": "Senses a sudden change in temperature out to {yards} yards.",
+          "infrasonic": "Hears forced entry and explosions, not people or animals moving.",
+          "Rolls": "Spot it: Vision{vision}, Observation or Per-based Traps (a Quick Contest with Camouflage if hidden); identify it: Electronics Operation (Security); disable it: {disable}; cut its power: Electrician, which sets off a professional system."
+        },
+        "OwnBatteriesLine": "The alarm runs on its own batteries: cutting the power does nothing ({name}).",
+        "ProfessionalLine": "Cutting a professional system's power sets off the alarm ({name})!",
+        "PowerCut": "{name} cuts the power: the alarm is dead.",
+        "PowerOn": "{name} fails to cut the power.",
+        "Bypassed": "{name} bypasses the key switch.",
+        "NotBypassed": "{name} fails to bypass the key switch.",
+        "MagnetOff": "{name} cuts the power: the magnet lets go and the door opens.",
+        "ForceLabel": "Forcing a magnetic lock (ST {st})",
+        "MagnetNote": "Magnetic lock",
+        "SignatureLine": "Forged signature",
+        "NeedsSecurity": "{name} needs {skill} to try it.",
+        "ScreenAction": "Screen",
+        "LowVoltage": "{fence}: low voltage, an unmodified HT roll.",
+        "HighVoltage": "{fence}: high voltage, lethal electrical damage.",
+        "Held": "{name} can't let go of the {fence}.",
+        "StunnedOn": "{name} is stunned on the {fence} while touching it.",
+        "CutOff": "The current is cut after {seconds} second(s): {name} comes free.",
+        "FenceAlarm": "The security fence sets off the alarm: {name} touched it.",
+        "Armed": "The fence is armed: the next touch is high voltage.",
+        "Option": {
+          "logged": "Keeps a record of cards scanned (x2)",
+          "loggedHint": "A keycard reader that logs the cards it scans costs twice as much (High-Tech: Electricity and Electronics p. 43).",
+          "portable": "Portable, on rechargeable batteries (+$5, +0.2 lb.)",
+          "portableHint": "A biometric unit security personnel carry, recharged daily (High-Tech: Electricity and Electronics p. 43).",
+          "alarmed": "Security fence (+$100)",
+          "alarmedHint": "An imperceptible current that sets off an alarm at a touch; free on a stun-lethal fence (High-Tech: Electricity and Electronics p. 44)."
+        },
+        "Fence": {
+          "LowVoltage": "A nonlethal shock each second of contact, resisted by an unmodified HT roll, and Moderate Pain while touching it; the stun lasts while the contact does, then HT each second to recover. Up to 20 miles long.",
+          "StunLethal": "Low-voltage effects at a first touch; at a second, {formula} burning a second as lethal electrical damage, and more than 1 point of injury keeps the victim from letting go.",
+          "Security": "Can be a security fence, setting off an alarm at a touch: ${cost} more.",
+          "SecurityFree": "Sets off an alarm at a touch: it is a security fence already."
+        },
+        "Lock": {
+          "KeySwitch": "Bypassed with {skills}.",
+          "Deadbolt": "Fail-safe (opens when the power goes) or fail-secure (locks when it goes).",
+          "Keypad": "Opens to a sequence of four to six digits.",
+          "Smart": "Opened wirelessly by a coded signal from a key fob or smartphone.",
+          "Magnetic": "Holds with {force} lbs. of force: ST {st} to force the door. Fail-safe: an intruder cuts its power with an {skill} roll.",
+          "Stethoscope": "+{safe} to crack a safe, +{hearing} to defeat a security device by ear, +{eod} to Explosives (EOD) against a mechanical bomb; cancels -{noise} of a noise penalty to these."
+        },
+        "Screen": {
+          "Keycard": "Reads an access code from a card; x{log} cost if it keeps a record of the cards it scans.",
+          "Tech": {
+            "opticalBarcode": "Optical barcode: stripes read by a scanner.",
+            "magneticStripe": "Magnetic stripe.",
+            "holepunched": "Holepunched: holes read by photoelectric sensors.",
+            "rfid": "RFID: read without contact; the reader costs twice as much.",
+            "smartCard": "Smart card: a chip powered through its contacts."
+          },
+          "Biometric": "Bypassed by opening its case: {skill} at +5 (basic), 0 (good, x5 cost) or -5 (fine, x20 cost). Portable on batteries: +${cost}, +{weight} lb. Can keep a record of those identified.",
+          "Portable": "Can be a portable unit on rechargeable batteries, recharged daily: +${cost}, +{weight} lb.",
+          "Kind": {
+            "signature": "An intruder with Electronics Operation (Security) may try Forgery at {modifier}.",
+            "voiceprint": "Needs a good microphone; a good recording of an authorized password gets past it.",
+            "handGeometry": "Measures the hand.",
+            "fingerprints": "A basic scanner is fooled by breathing on it (it reads the last print); good imaging gear can make a false print.",
+            "retinalPatterns": "Scans the retina's blood vessels; surgery or special lenses may fool it in a cinematic campaign.",
+            "facialRecognition": "Reads the shape of the face; computers and phones with a camera can do it without a scanner."
+          },
+          "Improvised": "In improvised use as a security detector: an Electronics Operation (Security) roll, then +1 to Explosives (EOD), Search or Traps (+2 to Search with a pat-down)."
+        }
       }
     },
     "Backblast": {
