@@ -44,6 +44,23 @@ describe("Fast-Draw from odd positions", () => {
     expect(sum(situationModifiers({ posture: "kneeling", grappled: false, upsideDown: false, moving: false, hand: "master", carry: "boot" }))).toBe(0);
     expect(sum(situationModifiers({ posture: "lying", grappled: true, upsideDown: false, moving: true, hand: "master", carry: null }))).toBe(-10);
   });
+
+  const bootDraw = (specialty: string, posture: string) =>
+    sum(situationModifiers({ posture, grappled: false, upsideDown: false, moving: false, hand: "master", carry: "boot" })) + (carryModifier(specialty, "boot", { posture }) ?? 0);
+
+  it.each(["crouching", "kneeling", "sitting"])("draws a knife or force sword from a boot at +0 when %s (p. 104)", (posture) => {
+    expect(carryModifier("knife", "boot", { posture })).toBe(0);
+    expect(carryModifier("forcesword", "boot", { posture })).toBe(0);
+    expect(bootDraw("knife", posture)).toBe(0);
+  });
+
+  it("keeps a boot's -2 standing, lying or with no posture given, and a low posture's -2 elsewhere", () => {
+    expect(carryModifier("knife", "boot")).toBe(-2);
+    expect(bootDraw("knife", "standing")).toBe(-2);
+    expect(bootDraw("knife", "lying")).toBe(-6);
+    expect(carryModifier("knife", "belt", { posture: "kneeling" })).toBe(-2);
+    expect(sum(situationModifiers({ posture: "kneeling", grappled: false, upsideDown: false, moving: false, hand: "master", carry: "belt" }))).toBe(-2);
+  });
 });
 
 describe("grip changes", () => {

@@ -69,11 +69,12 @@ async function fastDraw(api: GWorldApi, actor: any, form: HTMLElement): Promise<
   const grip = (GRIPS.includes(value("[data-ma-draw-grip]") as Grip) ? value("[data-ma-draw-grip]") : "regular") as Grip;
   const counts = (api.combat.getCombatState(actor, MODULE_ID, DRAWS) as DrawCounts | undefined) ?? { master: 0, off: 0 };
   const maneuver = String(actor.system?.maneuver ?? "");
+  const posture = String(actor.system?.posture ?? "standing");
   const carry = carryOf(weapon);
   const lines = [
     { key: "multiple", value: multipleDrawPenalty(counts, hand, count, halvings(actor)) },
     ...situationModifiers({
-      posture: String(actor.system?.posture ?? "standing"),
+      posture,
       grappled: checked("[data-ma-draw-grappled]"),
       upsideDown: checked("[data-ma-draw-upside]"),
       moving: maneuver === "move" || maneuver === "moveAndAttack",
@@ -81,7 +82,7 @@ async function fastDraw(api: GWorldApi, actor: any, form: HTMLElement): Promise<
       carry,
     }),
   ];
-  const located = carry ? carryModifierOf(specialtyOf(skill), carry, { reversedGrip: grip === "reversed", noScabbard: checked("[data-ma-draw-noscabbard]") }) : null;
+  const located = carry ? carryModifierOf(specialtyOf(skill), carry, { reversedGrip: grip === "reversed", noScabbard: checked("[data-ma-draw-noscabbard]"), posture }) : null;
   if (located) lines.push({ key: "carry", value: located });
   const outcome: any = await api.roll.success({
     actor,

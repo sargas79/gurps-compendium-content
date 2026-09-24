@@ -8,7 +8,7 @@
  * Arts' table of carry locations, and the rules only it prints.
  */
 
-import type { Carry, CarryOptions } from "../../../shared/readying/rules.js";
+import { bootReachable, type Carry, type CarryOptions } from "../../../shared/readying/rules.js";
 
 export {
   afterDraw,
@@ -31,7 +31,12 @@ export const CARRIES: readonly Carry[] = [
   "elsewhere", "chestHandleDown", "boot", "belt", "concealed", "teeth", "pegs", "coiled", "wrapped", "other",
 ];
 
-/** A carry location's modifier for a specialty (p. 104); null where the table doesn't list that place. */
+/**
+ * A carry location's modifier for a specialty (p. 104); null where the table
+ * doesn't list that place. A weapon in a boot is at +0 from a crouch, kneeling
+ * or sitting (p. 104): the boot's -2 goes, as the posture's does in the shared
+ * engine.
+ */
 export function carryModifier(specialty: string, carry: Carry, options: CarryOptions = {}): number | null {
   const table: Record<string, Partial<Record<Carry, number>>> = {
     arrow: { ground: 1, quiver: 0, belt: -2 },
@@ -45,6 +50,7 @@ export function carryModifier(specialty: string, carry: Carry, options: CarryOpt
   };
   const row = table[specialty];
   if (!row || row[carry] === undefined) return null;
+  if (carry === "boot" && bootReachable(String(options.posture ?? ""))) return 0;
   return row[carry]! + (specialty === "sword" && options.noScabbard ? -2 : 0);
 }
 
