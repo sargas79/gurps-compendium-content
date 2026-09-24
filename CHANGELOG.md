@@ -1,5 +1,29 @@
 # Changelog
 
+## v0.19.0 — GURPS High-Tech: Electricity and Electronics
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.43.0**, which this release requires (add-on API
+1.120.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+The supplement *GURPS High-Tech: Electricity and Electronics* (#471), added to
+High-Tech rather than built as a book of its own. Its records sit in High-Tech's
+packs, and its text and journal pages cite it as HT:EE. Its 47 switches are in
+the "GURPS High-Tech" group, all off by default. Where the supplement revises a
+High-Tech rule, the revision replaces High-Tech's version inside the same
+switch: the defibrillator (`emergencyMedicine`), mismatched radios and
+triangulation (`radios`), and the cell-phone jammer (`jamming`). Like
+High-Tech, it works without Ultra-Tech or Martial Arts in the world.
+
+- **Records (#478-#481):** about 350 items from the supplement's catalogue, including lab gear, power sources, lamps, appliances, radios, audio and video, computers, security and surveillance gear, fuzes, jammers, two cars and two reconnaissance drones, and the weapon tables. It also adds the supplement's skills and specialties and the Hot Stick technique. Every record has the supplement's text (#483, #484), and 76 rules pages join High-Tech's journal (#485).
+- **Chapters 1-3 (#486-#491):** electrical hazards, shock protection and power lines; instruments and measurement; battery chemistry, energy storage and external power; light levels, lamps and glare; cutting-edge prices, breakable parts and kits; appliances, power tools and electromedicine.
+- **Chapters 4-6 (#492-#503):** radio reception, antennas and shortwave; radio and video construction options; audio fidelity and amplification; active rangefinding; computer eras, interfaces and programming; electric fences, locks, screening and alarms; bugs and countersurveillance; battlefield sensors and drones; spread spectrum, SIGINT and cipher machines; broad-spectrum, selective and radar jammers; electronic weapons and non-nuclear EMP; fuzes and homing seekers.
+- **Skills (#481):** a switch adds the supplement's new defaults to Basic Set skills, and lets its skills stand in for others on the tasks it names.
+- **Fixes:** every affliction effect reads the margin of failure by its size (#535, #539); Ultra-Tech's blinding laser cripples the eyes rather than blinding for good; a gadget running on several cells shows its battery text again (#538).
+
+What the rules don't cover yet is listed in #549.
+
 ## v0.18.0 — GURPS High-Tech: the rest of the book
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
