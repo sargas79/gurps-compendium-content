@@ -4,10 +4,17 @@
  * the list of it a sheet shows in a book's own words, and the patient a
  * Diagnosis roll reads biomedical sensors from. Each book registers its own
  * listeners with its own table and switch; these only do the writing.
+ *
+ * Biomedical sensors are one rule two books print (Ultra-Tech p. 187,
+ * High-Tech p. 75), so they are one listener: each book registers which of
+ * its gear carries them, and a patient's sensors give +1 once, whichever
+ * books are on.
  */
 
+import { BookTables, bookOf, type BookTable } from "../book-tables.js";
 import { climateTolerance, widenComfortZone } from "../climate/rules.js";
-import { pressureSupportLevel, type Protection } from "./rules.js";
+import type { GWorldApi } from "../module.js";
+import { BIOMEDICAL, pressureSupportLevel, type Protection } from "./rules.js";
 
 export * from "./rules.js";
 
@@ -70,4 +77,57 @@ export function protectionText(prefix: string, protection: Protection | null): s
 /** The patient of a Diagnosis roll: the roll's opponent, or the one targeted token's character. */
 export function diagnosisPatient(context: any): any {
   return context?.opponent ?? [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
+}
+
+/** One book's gear with biomedical sensors. */
+export interface BiomedicalTable extends BookTable {
+  /** Whether the book's switch is on. */
+  on: () => boolean;
+  /** Whether an item is one of the book's pieces with biomedical sensors. */
+  applies: (item: any) => boolean;
+  /** The label of the bonus on the Diagnosis roll, naming the piece. */
+  label: (item: any) => string;
+}
+
+/** Every book's gear with biomedical sensors. */
+export const BIOMEDICAL_TABLES = new BookTables<BiomedicalTable>();
+
+/**
+ * The table that claims an item as carrying biomedical sensors, or null. An
+ * item from a book with a table takes that book's, and only while that
+ * book's switch is on; any other takes the first switched-on table that
+ * claims it.
+ */
+export function biomedicalTableOf(item: any): BiomedicalTable | null {
+  if (!item) return null;
+  const own = BIOMEDICAL_TABLES.forBook(bookOf(item));
+  if (own) return own.on() && own.applies(item) ? own : null;
+  return BIOMEDICAL_TABLES.all.find((t) => t.on() && t.applies(item)) ?? null;
+}
+
+const wornGear = (item: any) => (item?.type === "armor" || item?.type === "equipment") && item.system?.equipped === true;
+
+let biomedicalReadied = false;
+
+/** Puts a patient's biomedical sensors on a Diagnosis roll, once whichever books ask. */
+export function readyBiomedical(api: GWorldApi): void {
+  if (biomedicalReadied) return;
+  biomedicalReadied = true;
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!context?.actor || !/^diagnosis\b/i.test(String(context.skill ?? ""))) return;
+    const patient = diagnosisPatient(context);
+    for (const item of patient?.items ?? []) {
+      const table = wornGear(item) ? biomedicalTableOf(item) : null;
+      if (!table) continue;
+      // However many pieces, or books, claim them, the sensors are +1 once.
+      context.modifiers.push({ label: table.label(item), value: BIOMEDICAL.inPerson });
+      return;
+    }
+  });
+}
+
+/** Forgets the listener and the tables. For tests. */
+export function resetBiomedical(): void {
+  biomedicalReadied = false;
+  BIOMEDICAL_TABLES.clear();
 }

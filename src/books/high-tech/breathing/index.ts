@@ -28,7 +28,7 @@
 
 import { bookOf } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { BIOMEDICAL, addProtection, diagnosisPatient, protectionText } from "../../../shared/protective-gear/index.js";
+import { BIOMEDICAL, BIOMEDICAL_TABLES, addProtection, protectionText, readyBiomedical } from "../../../shared/protective-gear/index.js";
 import {
   AIR_LOST,
   ANTI_G_BONUS,
@@ -356,11 +356,15 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
       const suit = [...(context.actor.items ?? [])].find((i: any) => worn(i) && ours(i) && isCleanSuit(nameOf(i)));
       if (suit) context.modifiers.push({ label: nameOf(suit), value: CLEAN_SUIT_CONTAGION });
     }
-    // Biomedical sensors on the patient: +1 to Diagnosis (p. 75).
-    if (/^diagnosis\b/i.test(String(context.skill ?? ""))) {
-      const patient = diagnosisPatient(context);
-      const sensors = patient ? [...(patient.items ?? [])].find((i: any) => worn(i) && ours(i) && hasBiomedicalSensors(nameOf(i))) : null;
-      if (sensors) context.modifiers.push({ label: F("BiomedicalModifier", { item: nameOf(sensors) }), value: BIOMEDICAL.inPerson });
-    }
   });
+
+  // Biomedical sensors on the patient: +1 to Diagnosis (p. 75), counted once with Ultra-Tech's.
+  BIOMEDICAL_TABLES.register({
+    book: "high-tech",
+    tls: { min: 0, max: 8 },
+    on: on.suits,
+    applies: (item) => hasBiomedicalSensors(nameOf(item)),
+    label: (item) => F("BiomedicalModifier", { item: nameOf(item) }),
+  });
+  readyBiomedical(api);
 }
