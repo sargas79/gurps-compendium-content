@@ -5290,6 +5290,18 @@
         "crewConditions": {
           "Name": "Crew conditions",
           "Hint": "In a tank, the crew hear each other at -4 while the motor runs unless it has headsets, and hear outside at -10 (-3 with the motor off); buttoned up, Vision is at -2 and nothing within five yards is seen. A fight in a tank costs 1 FP more every 10 minutes, and the tool charges the ride's 1 FP an hour (none with your head outside). Driving (Tracked) already defaults to other Driving at -4, and another tank is only unfamiliar (High-Tech pp. 234-235)."
+        },
+        "cuttingEdgeGear": {
+          "Name": "Cutting-edge gear and prototypes",
+          "Hint": "A device marked cutting edge (newly released, or a new high-end version) is priced one quality grade up: x5 at basic quality, x20 at good, and fine isn't sold while it's new. A prototype's complexity, the year it was first built (in brackets) and the year it came on the market show on the item sheet, with what inventing it takes under the Basic Set's rules (Campaigns pp. 473-474), a grade easier for a carrier of a later TL (High-Tech: Electricity and Electronics p. 8)."
+        },
+        "breakableComponents": {
+          "Name": "Breakable parts and device statistics",
+          "Hint": "A High-Tech device that isn't a weapon has HP from its weight as an Unliving object (1 at negligible weight), HT 10 and DR 2, or DR 0 if fragile, unless its record states them. A device with fragile parts (tubes, bulbs) gets a row action for a drop or a throw: the collision damage at its speed is rolled once, each part takes all of it with no DR, parts at -1xHP roll HT or break, and the device takes what gets past its DR (High-Tech: Electricity and Electronics pp. 8-9)."
+        },
+        "kitBuilding": {
+          "Name": "Building from kits",
+          "Hint": "A device bought as a kit costs a quarter of its price (20% for parts, 5% for the instructions). A row action builds it as a single copy, rolled against IQ or a Hobby Skill (the instructions count as One-Task Wonder), with Time Spent against half the prototype time for its grade; once built it's no longer a kit (High-Tech: Electricity and Electronics p. 15; Campaigns pp. 346, 474)."
         }
       },
       "Codes": {
@@ -9401,6 +9413,103 @@
         "Repaired": "The burned-out tube is replaced.",
         "LightPen": "Light pen strain",
         "LightPenRoll": "{name}: HT roll after {minutes} minutes"
+      },
+      "Devices": {
+        "Title": "Device (Electricity and Electronics)",
+        "CuttingEdge": "Cutting edge",
+        "CuttingEdgeHint": "Newly released, or a new high-end version: priced one quality grade up (HT:EE p. 8).",
+        "CuttingEdgePrice": "Cutting edge: at {quality} quality it costs x{factor} its listed price.",
+        "FineUnavailable": "Cutting edge: fine quality isn't normally available while the device is new.",
+        "ComplexityLabel": "Prototype complexity",
+        "ComplexityHint": "The invention grade a prototype is rated at (HT:EE p. 8; Campaigns p. 473).",
+        "PrototypeYear": "First built",
+        "MarketYear": "On the market",
+        "Dated": "First built in [{prototype}]; on the market from {market}.",
+        "PrototypeOnly": "A prototype, first built in [{prototype}].",
+        "MarketOnly": "On the market from {market}.",
+        "Invention": "To invent it ({grade}): skill {skill} needed, Concept roll at {concept}, each Prototype roll takes {time} {unit}, facilities cost ${facilities}; a copy costs 20% of retail in parts and takes half the Prototype time (Campaigns pp. 473-474).",
+        "Reinvented": "{from} as invented; at TL{tl} it counts as {grade}.",
+        "Complexity": {
+          "none": "Not a prototype",
+          "simple": "Simple",
+          "average": "Average",
+          "complex": "Complex",
+          "amazing": "Amazing"
+        },
+        "Unit": {
+          "days": "days",
+          "months": "months"
+        },
+        "Quality": {
+          "basic": "basic",
+          "good": "good",
+          "fine": "fine"
+        },
+        "Fragile": "Fragile (DR 0)",
+        "FragileHint": "More fragile than its HP say, such as a light bulb or a vacuum tube: DR 0 (HT:EE p. 9).",
+        "Statistics": "As a device: HP {hp}, HT {ht}, DR {dr} (HT:EE p. 9).",
+        "StatisticsNote": "A device's HP, HT and DR (HT:EE p. 9)",
+        "PartsHint": "Fragile parts inside the device, such as tubes or bulbs, that a drop may break whatever the device's DR (HT:EE p. 8).",
+        "PartsCount": "Fragile parts",
+        "PartsLabel": "Called",
+        "PartsDefault": "fragile parts",
+        "PartsHp": "HP each",
+        "PartsHt": "HT each",
+        "Broken": "{broken} of {count} {label} broken: the device won't work until they're replaced.",
+        "ReplaceParts": "Replaced",
+        "KitLabel": "A kit",
+        "KitHint": "Bought as a kit to build: a quarter of the price (HT:EE p. 15).",
+        "KitPrice": "Kit (25% of the price)",
+        "KitLine": "A kit at ${price}: built as a single copy with IQ or a Hobby Skill; the usual time is {time}.",
+        "CopyTime": "half of {dice} {unit}",
+        "Drop": {
+          "Title": "Dropped or thrown",
+          "Hint": "Give how far it fell, or its speed when it hit for a throw (yards per second).",
+          "Yards": "Fell (yards)",
+          "Speed": "Or speed at impact",
+          "Surface": "Landed on",
+          "Hard": "Something hard (x2 HP)",
+          "Soft": "Something soft",
+          "Card": "{name} is dropped",
+          "Damage": "{name} ({hp} HP) takes {dice}: {damage} points.",
+          "Parts": {
+            "sound": "The {label} ({count}) take it with no DR and are unharmed ({hp} HP left).",
+            "damaged": "The {label} ({count}) take it with no DR and are damaged ({hp} HP left), but work.",
+            "failing": "The {label} ({count}) are at {hp} HP: each must roll HT each second it's used, or stop working.",
+            "breaking": "The {label} ({count}) are at {hp} HP and roll HT {ht}: {rolls}. {broken} break.",
+            "destroyed": "The {label} ({count}) are at {hp} HP: all {broken} are destroyed."
+          },
+          "Replace": "{broken} {label} are broken: the device won't work until they're replaced.",
+          "Injured": "The device takes {injury} injury past its DR {dr} ({state}); mark it on the item.",
+          "Unhurt": "Its DR {dr} stops the rest: the device itself is unharmed."
+        },
+        "State": {
+          "sound": "sound",
+          "damaged": "damaged",
+          "failing": "at 0 HP or less: HT rolls to keep working",
+          "breaking": "at -1xHP: a HT roll to avoid being destroyed",
+          "destroyed": "destroyed"
+        },
+        "Kit": {
+          "Title": "Build the kit",
+          "Hint": "Build {name} as a single copy (Campaigns p. 474). The usual time is {time}; taking longer helps (Campaigns p. 346).",
+          "With": "Roll against",
+          "Iq": "IQ ({level})",
+          "Hobby": "{name} ({level})",
+          "Time": "Time taken",
+          "Label": "Building {name} from a kit",
+          "Built": "{builder} builds {name} (time x{factor} of {time}): it's no longer a kit.",
+          "NotBuilt": "{builder} doesn't finish {name} (time x{factor} of {time}); the kit can be tried again."
+        },
+        "Time": {
+          "1": "The usual time",
+          "2": "Twice as long (+1)",
+          "4": "4 times as long (+2)",
+          "8": "8 times as long (+3)",
+          "15": "15 times as long (+4)",
+          "30": "30 times as long (+5)",
+          "0_5": "Half the time (-5)"
+        }
       }
     },
     "Backblast": {
