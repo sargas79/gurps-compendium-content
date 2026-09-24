@@ -4,7 +4,11 @@
  * hearing, the metal detector's search against undercover clothing, the bug
  * sweep, and jammers found on the map -- with only High-Tech's switches on
  * (decision D1). The shared bug sweep is also rolled as Ultra-Tech's sweeper
- * calls it, so its contest is unchanged.
+ * calls it, so its contest is unchanged. The supplement's jammers (HT:EE
+ * pp. 49-50) are fixture records named and stamped as its catalogue will
+ * write them: "Large Jammer (TL7)", "Portable Jammer (TL8)", "Radar Jammer
+ * (TL7)", "Radar Spoofer" and "Spectrum Analyzer", equipment with a `tl` and
+ * High-Tech's book flag, and nothing else.
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -43,6 +47,7 @@ function fakeApi() {
     actors: {
       attribute: (actor: any, k: string) => actor?.attributes?.[k] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
+      derived: (actor: any) => actor?.derived ?? {},
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -88,9 +93,15 @@ async function load(): Promise<void> {
   tables.setRuleReader((k) => on.has(k));
   shared = await import("../../../shared/surveillance/index.js");
   book = await import("./index.js");
-  book.initSurveillance(key("jamming"));
+  book.initSurveillance({ jamming: key("jamming"), jammerKinds: key("jammerKinds"), radarJamming: key("radarJamming") });
   const api = fakeApi();
-  book.readySurveillance(api as never, { screening: () => on.has(key("securityScreening")), surveillance: () => on.has(key("surveillanceGear")), jamming: () => on.has(key("jamming")) });
+  book.readySurveillance(api as never, {
+    screening: () => on.has(key("securityScreening")),
+    surveillance: () => on.has(key("surveillanceGear")),
+    jamming: () => on.has(key("jamming")),
+    jammerKinds: () => on.has(key("jammerKinds")),
+    radarJamming: () => on.has(key("radarJamming")),
+  });
 }
 
 beforeEach(async () => {
@@ -351,16 +362,263 @@ describe("jamming (pp. 212-213)", () => {
     expect(contests.length).toBe(1);
   });
 
-  it("lets a cell-phone jammer block cell phones outright, and nothing else", async () => {
+  it("lets a cell-phone jammer block cellular beacons, and nothing but the cell band", async () => {
     on.add(key("jamming"));
     const { radio, user } = scene("Cell-Phone Jammer", 10);
     await actions.get("jammer-use-near").run(radio, user);
     expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
-    const phone = gear("Cellular Phone", { tl: "8" });
-    const caller = character("Caller", [phone], {}, 12);
-    await actions.get("jammer-use-near").run(phone, caller);
+    const beacon = gear("Cellular Beacon", { tl: "8" });
+    const tracker = character("Tracker", [beacon], {}, 12);
+    await actions.get("jammer-use-near").run(beacon, tracker);
     expect(chat.at(-1).content).toContain("Jamming.Blocked");
+    tokens = [];
+    scene("Cell-Phone Jammer", 0);
+    const distant = character("Distant", [gear("Cellular Beacon", { tl: "8" })], {}, 16);
+    await actions.get("jammer-use-near").run(distant.items[0], distant);
+    expect(chat.at(-1).content).toContain("Jamming.NoneInReach");
     expect(contests).toEqual([]);
     expect(successes).toEqual([]);
+  });
+
+  it("lets a caller follow a call through a cell-phone jammer by ear: Hearing-2 within 15 yards, unmodified to 150 (HT:EE p. 50)", async () => {
+    on.add(key("jamming"));
+    scene("Cell-Phone Jammer", 0);
+    const phone = gear("Cellular Phone", { tl: "8" });
+    const caller = character("Caller", [phone], { derived: { senses: [{ sense: "hearing", score: 13 }] } }, 12);
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, phone, caller)).toBe("jammed");
+    expect(successes[0]).toMatchObject({ actor: caller, base: 13, skill: "Hearing", modifiers: [{ value: -2 }], tags: ["jamming", "hearing"] });
+    expect(chat.at(-1).content).toContain("Jamming.Jammed");
+    tokens = [];
+    scene("Cell-Phone Jammer", 0);
+    const other = gear("Cellular Phone", { tl: "8" });
+    const across = character("Across", [other], { derived: { senses: [{ sense: "hearing", score: 13 }] } }, 100);
+    successResult = { success: true };
+    expect(await shared.useNearJammers(fakeApi() as never, other, across)).toBe("through");
+    expect(successes[1]).toMatchObject({ skill: "Hearing", modifiers: [] });
+    tokens = [];
+    scene("Cell-Phone Jammer", 0);
+    const beyond = gear("Cellular Phone", { tl: "8" });
+    const away = character("Away", [beyond], {}, 151);
+    expect(await shared.useNearJammers(fakeApi() as never, beyond, away)).toBe("clear");
+    expect(successes.length).toBe(2);
+  });
+});
+
+describe("broad-spectrum and selective jammers (HT:EE p. 49)", () => {
+  const EW = "Electronics Operation (EW)";
+  const COMM = "Electronics Operation (Communications)";
+
+  function scene(jammerName: string, at: number, flags: Record<string, unknown> = {}, carry: any[] = []) {
+    const jammer = gear(jammerName, { tl: /TL8|spoofer/i.test(jammerName) ? "8" : "7" }, { jammerOn: true, ...flags });
+    const holder = character("Jammer", [jammer, ...carry], { skills: { [EW]: 15 } }, 0);
+    const radio = gear("Small Radio (TL7)");
+    const user = character("Radioman", [radio], { skills: { [COMM]: 12 } }, at);
+    return { jammer, holder, radio, user };
+  }
+
+  it("runs the supplement's jammers under jammerKinds alone, and High-Tech's area jammer either way", () => {
+    const large = gear("Large Jammer (TL7)");
+    const area = gear("Area Jammer (TL7)");
+    const expendable = gear("Expendable Radio Jammer");
+    const radio = gear("Small Radio (TL7)");
+    expect(actions.get("jammer-switch").visible(large)).toBe(false);
+    on.add(key("jamming"));
+    expect(actions.get("jammer-switch").visible(large)).toBe(false);
+    expect(shared.jammerOf(area)!.jammer.variety).toBeUndefined();
+    on.clear();
+    on.add(key("jammerKinds"));
+    expect(actions.get("jammer-switch").visible(large)).toBe(true);
+    expect(actions.get("jammer-switch").visible(area)).toBe(true);
+    expect(actions.get("jammer-switch").visible(expendable)).toBe(false);
+    expect(actions.get("jammer-use-near").visible(radio)).toBe(true);
+    expect(shared.jammerOf(area)!.jammer.variety).toBe("choose");
+    // A large jammer ranges as a large radio: 100 miles at TL7; a portable one as a medium radio, 35 at TL8.
+    expect(shared.jammerOf(large)!.jammer.range).toBe(100 * 1760);
+    expect(shared.jammerOf(gear("Portable Jammer (TL8)", { tl: "8" }))!.jammer.range).toBe(35 * 1760);
+    expect(shared.jammerOf(gear("Portable Jammer", { tl: "6" }))!.jammer.range).toBe(5 * 1760);
+  });
+
+  it("switches a broad-spectrum jammer on with the operator's EW roll, +4 for a spectrum analyzer, and leaves it off where it fails", async () => {
+    on.add(key("jammerKinds"));
+    const analyzer = gear("Spectrum Analyzer", { tl: "8" });
+    const { jammer, holder } = scene("Large Jammer (TL7)", 10, { jammerOn: false }, [analyzer]);
+    dialogAnswer = { variety: "broad", known: false };
+    successResult = { success: false };
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(successes[0]).toMatchObject({ actor: holder, base: 15, skill: EW, modifiers: [{ label: "Spectrum Analyzer", value: 4 }] });
+    expect(jammer.flags[MODULE_ID].jammerOn).toBe(false);
+    expect(chat.at(-1).content).toContain("Jamming.FailsToJam");
+    successResult = { success: true };
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(jammer.flags[MODULE_ID]).toMatchObject({ jammerOn: true, jammerVariety: "broad", jammerFrequencyKnown: false });
+  });
+
+  it("switches a selective jammer on with no roll, and closing the dialog leaves it off", async () => {
+    on.add(key("jammerKinds"));
+    const { jammer, holder } = scene("Area Jammer (TL7)", 10, { jammerOn: false });
+    dialogAnswer = null;
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(jammer.flags[MODULE_ID].jammerOn).toBe(false);
+    dialogAnswer = { variety: "selective", known: true };
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(successes).toEqual([]);
+    expect(jammer.flags[MODULE_ID]).toMatchObject({ jammerOn: true, jammerVariety: "selective", jammerFrequencyKnown: true });
+  });
+
+  it("makes a broad-spectrum jammer -2 to users within its range and a plain roll out to 10 times it", async () => {
+    on.add(key("jammerKinds"));
+    const near = scene("Portable Jammer (TL6)", 5 * 1760, { jammerVariety: "broad" });
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, near.radio, near.user)).toBe("jammed");
+    expect(successes[0]).toMatchObject({ actor: near.user, base: 12, skill: COMM, modifiers: [{ value: -2 }], tags: ["jamming"] });
+    expect(contests).toEqual([]);
+    tokens = [];
+    const far = scene("Portable Jammer (TL6)", 50 * 1760, { jammerVariety: "broad" });
+    successResult = { success: true };
+    expect(await shared.useNearJammers(fakeApi() as never, far.radio, far.user)).toBe("through");
+    expect(successes[1]).toMatchObject({ modifiers: [] });
+    tokens = [];
+    const beyond = scene("Portable Jammer (TL6)", 50 * 1760 + 1, { jammerVariety: "broad" });
+    expect(await shared.useNearJammers(fakeApi() as never, beyond.radio, beyond.user)).toBe("clear");
+  });
+
+  it("catches an unknown frequency in a Quick Contest of EW, then -4 within range", async () => {
+    on.add(key("jammerKinds"));
+    const analyzer = gear("Spectrum Analyzer", { tl: "8" });
+    const { radio, user, holder } = scene("Area Jammer (TL7)", 100, { jammerVariety: "selective" }, [analyzer]);
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, radio, user)).toBe("jammed");
+    // The user's own EW defaults to Communications-4 (High-Tech p. 209).
+    expect(contests[0].first).toMatchObject({ actor: holder, base: 15, modifiers: [{ value: 4 }], note: EW });
+    expect(contests[0].second).toMatchObject({ actor: user, base: 8, note: EW });
+    expect(successes[0]).toMatchObject({ actor: user, skill: COMM, modifiers: [{ value: -4 }] });
+    contests = [];
+    successes = [];
+    contestOutcome = "second";
+    expect(await shared.useNearJammers(fakeApi() as never, radio, user)).toBe("through");
+    expect(successes).toEqual([]);
+  });
+
+  it("rolls a known frequency unopposed, at -1 per 10% past its range and no further than double; caught there, -2", async () => {
+    on.add(key("jammerKinds"));
+    // The TL7 area jammer's mile; 1.25 miles is 25% past it: -3.
+    const { radio, user, holder } = scene("Area Jammer (TL7)", 1.25 * 1760, { jammerVariety: "selective", jammerFrequencyKnown: true });
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(contests).toEqual([]);
+    expect(successes[0]).toMatchObject({ actor: holder, base: 15, skill: EW, modifiers: [{ label: "GCC.HT.Jamming.StretchLine", value: -3 }] });
+    expect(successes[1]).toMatchObject({ actor: user, modifiers: [{ value: -2 }] });
+    tokens = [];
+    successes = [];
+    const past = scene("Area Jammer (TL7)", 2 * 1760 + 1, { jammerVariety: "selective", jammerFrequencyKnown: true });
+    expect(await shared.useNearJammers(fakeApi() as never, past.radio, past.user)).toBe("through");
+    expect(successes).toEqual([]);
+  });
+
+  it("gives the spectrum analyzer's +4 only under jammerKinds, not to High-Tech's own contest", async () => {
+    on.add(key("jamming"));
+    const analyzer = gear("Spectrum Analyzer", { tl: "8" });
+    const { radio, user } = scene("Area Jammer (TL7)", 100, {}, [analyzer]);
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(contests[0].second).toMatchObject({ base: 15, modifiers: [] });
+  });
+
+  it("puts the varieties and the analyzer on the sheet", () => {
+    const section = sections.get("ht-surveillance-item");
+    expect(section.visible(gear("Spectrum Analyzer", { tl: "8" }))).toBe(false);
+    on.add(key("jammerKinds"));
+    expect(section.context(gear("Spectrum Analyzer", { tl: "8" })).lines).toEqual(['Jammer.Analyzer {"bonus":"+4"}'.replace("Jammer", "GCC.HT.Surveillance.Jammer")]);
+    expect(section.context(gear("Area Jammer (TL7)")).lines[0]).toContain("Jammer.Varieties");
+    expect(section.context(gear("Large Jammer (TL8)", { tl: "8" })).lines[0]).toContain("Jammer.Varieties");
+    expect(section.context(gear("Small Radio (TL7)")).lines).toEqual(["GCC.HT.Surveillance.Jammer.HinderedVarieties"]);
+  });
+});
+
+describe("radar jammers and spoofers (HT:EE pp. 49-50)", () => {
+  const EW = "Electronics Operation (EW)";
+  const SENSORS = "Electronics Operation (Sensors)";
+
+  function scene(jammerName: string, at: number) {
+    const jammer = gear(jammerName, { tl: /TL8|spoofer/i.test(jammerName) ? "8" : "7" }, { jammerOn: true });
+    const holder = character("Jammer", [jammer], { skills: { [EW]: 14 } }, 0);
+    const radar = gear("Medium Radar");
+    const user = character("Radarman", [radar], { skills: { [SENSORS]: 13 } }, at);
+    return { jammer, holder, radar, user };
+  }
+
+  it("runs under radarJamming alone, and hinders radar but not radios", async () => {
+    const jammer = gear("Radar Jammer (TL7)");
+    const radar = gear("Medium Radar");
+    expect(actions.get("jammer-switch").visible(jammer)).toBe(false);
+    expect(actions.get("jammer-use-near").visible(radar)).toBe(false);
+    on.add(key("jammerKinds"));
+    on.add(key("jamming"));
+    expect(actions.get("jammer-switch").visible(jammer)).toBe(false);
+    expect(actions.get("jammer-use-near").visible(radar)).toBe(false);
+    on.clear();
+    on.add(key("radarJamming"));
+    expect(actions.get("jammer-switch").visible(jammer)).toBe(true);
+    expect(actions.get("jammer-use-near").visible(radar)).toBe(true);
+    expect(actions.get("jammer-use-near").visible(gear("Small Radio (TL7)"))).toBe(false);
+    // 15 miles, doubled at TL8; the spoofer is a TL8 radar jammer.
+    expect(shared.jammerOf(jammer)!.jammer.range).toBe(15 * 1760);
+    expect(shared.jammerOf(gear("Radar Jammer (TL8)", { tl: "8" }))!.jammer.range).toBe(30 * 1760);
+    expect(shared.jammerOf(gear("Radar Spoofer", { tl: "8" }))!.jammer).toMatchObject({ range: 30 * 1760, spoofs: true });
+    // A radio jammer doesn't reach radar, even with every switch on.
+    on.add(key("jamming"));
+    on.add(key("jammerKinds"));
+    tokens = [];
+    const area = gear("Area Jammer (TL8)", { tl: "8" }, { jammerOn: true, jammerVariety: "broad" });
+    character("Jammer", [area], { skills: { [EW]: 14 } }, 0);
+    const radarman = character("Radarman", [radar], {}, 10);
+    expect(await shared.useNearJammers(fakeApi() as never, radar, radarman)).toBe("clear");
+  });
+
+  it("switches a radar jammer on with the operator's EW roll, asking nothing", async () => {
+    on.add(key("radarJamming"));
+    const { jammer, holder } = scene("Radar Jammer (TL7)", 10);
+    jammer.flags[MODULE_ID].jammerOn = false;
+    dialogAnswer = { variety: "selective", known: true };
+    await actions.get("jammer-switch").run(jammer, holder);
+    expect(successes[0]).toMatchObject({ actor: holder, base: 14, skill: EW, modifiers: [] });
+    expect(jammer.flags[MODULE_ID].jammerOn).toBe(true);
+    expect(jammer.flags[MODULE_ID].jammerVariety).toBeUndefined();
+  });
+
+  it("makes a radar's Sensors -2 within the jammer's radius, a plain roll out to 10 times it", async () => {
+    on.add(key("radarJamming"));
+    const near = scene("Radar Jammer (TL7)", 10 * 1760);
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, near.radar, near.user)).toBe("jammed");
+    expect(successes[0]).toMatchObject({ actor: near.user, base: 13, skill: SENSORS, modifiers: [{ value: -2 }] });
+    tokens = [];
+    const far = scene("Radar Jammer (TL7)", 100 * 1760);
+    successResult = { success: true };
+    expect(await shared.useNearJammers(fakeApi() as never, far.radar, far.user)).toBe("through");
+    expect(successes[1]).toMatchObject({ skill: SENSORS, modifiers: [] });
+  });
+
+  it("feeds a radar a false picture where the spoofer wins a Quick Contest of EW against Sensors, within its radius only", async () => {
+    on.add(key("radarJamming"));
+    const { radar, user, holder } = scene("Radar Spoofer", 20 * 1760);
+    contestOutcome = "second";
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("spoofed");
+    expect(contests[0].first).toMatchObject({ actor: user, base: 13, note: SENSORS });
+    expect(contests[0].second).toMatchObject({ actor: holder, base: 14, note: EW });
+    expect(chat.at(-1).content).toContain("Jamming.Spoofed");
+    contestOutcome = "first";
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("through");
+    tokens = [];
+    const beyond = scene("Radar Spoofer", 31 * 1760);
+    expect(await shared.useNearJammers(fakeApi() as never, beyond.radar, beyond.user)).toBe("clear");
+    expect(contests.length).toBe(2);
+  });
+
+  it("puts the radar jammer, the spoofer and the radar's hindrance on the sheet", () => {
+    const section = sections.get("ht-surveillance-item");
+    on.add(key("radarJamming"));
+    expect(section.context(gear("Radar Jammer (TL7)")).lines[0]).toContain("Jammer.Radar");
+    expect(section.context(gear("Radar Spoofer", { tl: "8" })).lines[0]).toContain("Jammer.Spoofer");
+    expect(section.context(gear("Large Radar")).lines).toEqual(["GCC.HT.Surveillance.Jammer.RadarHindered"]);
   });
 });

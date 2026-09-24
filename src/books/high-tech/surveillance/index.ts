@@ -31,13 +31,27 @@
  *   - **Jamming (jamming):** a jammer is switched on from its row; radio
  *     gear's row button rolls the Quick Contest against each switched-on
  *     jammer on the map within range, or the unopposed roll within 10 times
- *     its range; a cell-phone jammer blocks cell phones outright (pp. 212-213).
+ *     its range; a cell-phone jammer blocks cellular beacons outright, and a
+ *     call through it takes a Hearing roll at -2 to follow (pp. 212-213,
+ *     revised by HT:EE p. 50).
+ *   - **Jammer varieties (jammerKinds):** an operated radio jammer -- the
+ *     area jammer, the supplement's large and portable jammers -- is switched
+ *     on as broad-spectrum (its operator's EW roll, then -2 to every user in
+ *     range and a plain roll out to 10 times it) or selective (a roll, or a
+ *     Quick Contest where the frequency isn't known, to catch each user, at -1
+ *     per 10% past its range, then -4 or -2); a spectrum analyzer gives the
+ *     operator +4 (HT:EE p. 49).
+ *   - **Radar jamming (radarJamming):** a radar jammer is a broad-spectrum
+ *     jammer against radar and Electronics Operation (Sensors); a radar
+ *     spoofer is a Quick Contest of EW against the radar's Sensors (HT:EE
+ *     pp. 49-50).
  */
 
+import { isRuleOn } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { ask, card, esc, itemTl, picked, row, skillBase, worn } from "../../../shared/sensors/index.js";
-import { JAMMER_TABLES, bugSweepContest, readyJamming, type JammerTable } from "../../../shared/surveillance/index.js";
-import { EW_FROM_COMM } from "../sensors/rules.js";
+import { ask, card, carried, distanceText, esc, itemTl, picked, row, skillBase, worn } from "../../../shared/sensors/index.js";
+import { JAMMER_TABLES, bugSweepContest, readyJamming, type Jammable, type Jammer, type JammerTable } from "../../../shared/surveillance/index.js";
+import { ACTIVE_SENSORS, EW_FROM_COMM } from "../sensors/rules.js";
 import {
   BEACON_BATTERY,
   COMMUNICATIONS,
@@ -45,7 +59,9 @@ import {
   DOCUMENT_SCANNER,
   EW,
   HOMEMADE,
+  CELL_PHONE_HEARING,
   JAMMER_SHADOW,
+  JAMMER_VARIETY_PENALTIES,
   LASER_MIKE_RANGE,
   MILLIMETER_WAVE_RANGE,
   NOISY_BUG,
@@ -55,9 +71,11 @@ import {
   SECURITY,
   SECURITY_TASKS,
   SEISMIC_STEALTH,
+  SENSORS,
   SHIELDED_ROOM,
   SIGNATURE_PAD,
   SMART_FENCE,
+  SPECTRUM_ANALYZER,
   SPOT_VISION,
   SPOT_WAYS,
   SURVEILLANCE,
@@ -68,6 +86,7 @@ import {
   defeatSkill,
   homemadeBugPenalty,
   isPinheadMike,
+  isSpectrumAnalyzer,
   isUndercoverClothing,
   isWhiteNoise,
   jammableByName,
@@ -78,6 +97,7 @@ import {
   screenerOf,
   screeningBonus,
   spikeMikeLevels,
+  supplementJammerByName,
   sweepMinutes,
   type ScreeningSearch,
   type SecurityTask,
@@ -96,6 +116,15 @@ export interface SurveillanceSwitches {
   screening: () => boolean;
   surveillance: () => boolean;
   jamming: () => boolean;
+  jammerKinds: () => boolean;
+  radarJamming: () => boolean;
+}
+
+/** The switches the jammer table answers to, as full keys. */
+export interface JammingSwitches {
+  jamming: string;
+  jammerKinds: string;
+  radarJamming: string;
 }
 
 /** A character's level with a skill, or the attribute's default at -5 (p. B173). */
@@ -111,33 +140,79 @@ const options = (values: readonly string[], label: (v: string) => string, select
 
 // ── the jammer table ──
 
-/** High-Tech's jammers and the radio gear they hinder, behind the book's jamming switch. */
-export function highTechJammers(jammingSwitch: string): JammerTable {
+/**
+ * A record as a jammer, under the switch that runs it: High-Tech's jammers
+ * under `jamming`, save that an operated one (the area jammer) runs as either
+ * of the supplement's varieties while `jammerKinds` is on (HT:EE p. 49); the
+ * supplement's large and portable jammers under `jammerKinds`; its radar
+ * jammer and spoofer under `radarJamming`.
+ */
+export function jammerFor(item: any, switches: JammingSwitches): Jammer | null {
+  if (!isGear(item)) return null;
+  const name = nameOf(item);
+  const own = jammerByName(name);
+  if (own) {
+    if (own.skill === null && !own.blocks && isRuleOn(switches.jammerKinds)) return { ...own, variety: "choose" };
+    return isRuleOn(switches.jamming) ? own : null;
+  }
+  const supplement = supplementJammerByName(name, itemTl(item));
+  if (!supplement || !isRuleOn(switches[supplement.rule])) return null;
+  const { range, skill, hinders, variety, spoofs } = supplement;
+  return { range, skill, ...(hinders ? { hinders } : {}), ...(variety ? { variety } : {}), ...(spoofs ? { spoofs } : {}) };
+}
+
+/**
+ * A record as gear a jammer hinders: radio gear while either radio-jamming
+ * rule is on; a radar (pp. 45-46) while radar jamming is, used with
+ * Electronics Operation (Sensors) (HT:EE p. 49).
+ */
+export function jammableFor(item: any, switches: JammingSwitches): Jammable | null {
+  if (!isGear(item)) return null;
+  const name = nameOf(item);
+  if (isRuleOn(switches.jamming) || isRuleOn(switches.jammerKinds)) {
+    const gear = jammableByName(name, itemTl(item));
+    if (gear) return gear;
+  }
+  if (isRuleOn(switches.radarJamming) && ACTIVE_SENSORS[name]?.kind === "radar") return { skill: SENSORS, kind: "radar" };
+  return null;
+}
+
+/** A spectrum analyzer the operator carries: +4 to his EW for jamming, under the varieties' rule (HT:EE p. 49). */
+export function analyzerLines(actor: any, jammerKinds: string): Array<{ label: string; value: number }> {
+  if (!isRuleOn(jammerKinds)) return [];
+  const analyzer = [...(actor?.items ?? [])].find((i: any) => carried(i) && isSpectrumAnalyzer(nameOf(i)));
+  return analyzer ? [{ label: String(analyzer.name), value: SPECTRUM_ANALYZER }] : [];
+}
+
+/** High-Tech's jammers and the gear they hinder, behind the book's jamming switches. */
+export function highTechJammers(switches: JammingSwitches): JammerTable {
   return {
     book: "high-tech",
     tls: { min: 0, max: 8 },
-    switch: jammingSwitch,
+    switches: [switches.jamming, switches.jammerKinds, switches.radarJamming],
     i18n: NS,
     shadow: JAMMER_SHADOW,
-    jammer: (item) => (isGear(item) ? jammerByName(nameOf(item)) : null),
-    jammable: (item) => (isGear(item) ? jammableByName(nameOf(item), itemTl(item)) : null),
+    jammer: (item) => jammerFor(item, switches),
+    jammable: (item) => jammableFor(item, switches),
     // Electronics Operation (EW) defaults to Electronics Operation (Communications)-4 (p. 209).
     operatorSkill: (api, actor) => {
       const comm = api.actors.skillLevel(actor, COMMUNICATIONS);
       return api.actors.skillLevel(actor, EW) ?? (comm !== null ? comm + EW_FROM_COMM : skillBase(api, actor, EW));
     },
+    varieties: JAMMER_VARIETY_PENALTIES,
+    operatorModifiers: (actor) => analyzerLines(actor, switches.jammerKinds),
   };
 }
 
 /** Registers the book's jammer table with the shared engine. */
-export function initSurveillance(jammingSwitch: string): void {
-  JAMMER_TABLES.register(highTechJammers(jammingSwitch));
+export function initSurveillance(switches: JammingSwitches): void {
+  JAMMER_TABLES.register(highTechJammers(switches));
 }
 
 // ── what the gear's sheet says ──
 
 /** The lines on a record's sheet, under the switches that are on. */
-export function surveillanceLines(item: any, on: { screening: boolean; surveillance: boolean; jamming: boolean }): string[] {
+export function surveillanceLines(item: any, on: { screening: boolean; surveillance: boolean; jamming: boolean; jammerKinds?: boolean; radarJamming?: boolean }): string[] {
   if (!isGear(item)) return [];
   const name = nameOf(item);
   const tl = itemTl(item);
@@ -178,10 +253,23 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
   }
   if (on.jamming) {
     const jammer = jammerByName(name);
-    if (jammer?.blocks) lines.push(F("Jammer.Blocks", { range: jammer.range }));
+    if (jammer?.blocks) lines.push(F("Jammer.Blocks", { range: jammer.range, hearing: CELL_PHONE_HEARING, shadow: JAMMER_SHADOW }));
     else if (jammer) lines.push(F(jammer.skill === null ? "Jammer.Operated" : "Jammer.Unmanned", { range: jammer.range, skill: jammer.skill ?? 0, shadow: JAMMER_SHADOW }));
     if (jammableByName(name, tl)) lines.push(F("Jammer.Hindered", { shadow: JAMMER_SHADOW }));
     if (isWhiteNoise(name)) lines.push(L("Jammer.WhiteNoise"));
+  }
+  if (on.jammerKinds) {
+    const own = jammerByName(name);
+    const supplement = supplementJammerByName(name, tl);
+    const range = own && own.skill === null && !own.blocks ? own.range : supplement?.rule === "jammerKinds" ? supplement.range : null;
+    if (range !== null) lines.push(F("Jammer.Varieties", { range: distanceText(NS, range), shadow: JAMMER_SHADOW }));
+    if (isSpectrumAnalyzer(name)) lines.push(F("Jammer.Analyzer", { bonus: signed(SPECTRUM_ANALYZER) }));
+    if (jammableByName(name, tl)) lines.push(L("Jammer.HinderedVarieties"));
+  }
+  if (on.radarJamming) {
+    const supplement = supplementJammerByName(name, tl);
+    if (supplement?.rule === "radarJamming") lines.push(F(supplement.spoofs ? "Jammer.Spoofer" : "Jammer.Radar", { range: distanceText(NS, supplement.range), shadow: JAMMER_SHADOW }));
+    if (ACTIVE_SENSORS[name]?.kind === "radar") lines.push(L("Jammer.RadarHindered"));
   }
   return lines;
 }
@@ -453,7 +541,7 @@ export async function sweepForBugs(api: GWorldApi, item: any, actor: any): Promi
 
 /** Registers the section, the buttons, the GM tool, the spike mike's hearing and the jammers. */
 export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): void {
-  const state = () => ({ screening: on.screening(), surveillance: on.surveillance(), jamming: on.jamming() });
+  const state = () => ({ screening: on.screening(), surveillance: on.surveillance(), jamming: on.jamming(), jammerKinds: on.jammerKinds(), radarJamming: on.radarJamming() });
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-surveillance-item",

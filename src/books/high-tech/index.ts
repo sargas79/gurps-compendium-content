@@ -262,7 +262,11 @@ const RULES = [
   // Security screening, surveillance and jamming.
   { key: "securityScreening", pages: "pp. 205-207, 217", implemented: true },
   { key: "surveillanceGear", pages: "pp. 208-212", implemented: true },
-  { key: "jamming", pages: "pp. 212-213", implemented: true },
+  // The cell-phone jammer as the supplement revises it (E3 in #471).
+  { key: "jamming", pages: "p. 50", reference: `${REFERENCE} pp. 212-213; ${EE_REFERENCE}`, implemented: true },
+  // Electricity and Electronics: broad-spectrum and selective jammers, radar jammers and spoofers.
+  { key: "jammerKinds", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
+  { key: "radarJamming", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
   // Protective oddments and portable cover.
   { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
   { key: "portableCover", pages: "p. 72", implemented: true },
@@ -330,7 +334,7 @@ function init(): void {
   initHighTechSecurity();
   initMedicine();
   initHighTechArmor();
-  initSurveillance(ruleKey("jamming"));
+  initSurveillance({ jamming: ruleKey("jamming"), jammerKinds: ruleKey("jammerKinds"), radarJamming: ruleKey("radarJamming") });
   initEnforcement({ lieDetection: ruleKey("lieDetection"), restraints: ruleKey("restraintDevices") });
   initConveyances();
   initDrugs();
@@ -391,7 +395,7 @@ function ready(api: GWorldApi): void {
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
-  readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming") });
+  readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming") });
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));

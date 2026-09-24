@@ -5221,7 +5221,15 @@
         },
         "jamming": {
           "Name": "Electronic signals jamming",
-          "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cell phones and cellular beacons within 15 yards outright (High-Tech pp. 212-213)."
+          "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cellular beacons within 15 yards, and a call through it takes a Hearing roll at -2 to follow, unmodified out to 10 times its range (High-Tech pp. 212-213, as High-Tech: Electricity and Electronics p. 50 revises the cell-phone jammer)."
+        },
+        "jammerKinds": {
+          "Name": "Broad-spectrum and selective jammers",
+          "Hint": "An operated radio jammer (High-Tech's area jammer, the supplement's large and portable jammers) is switched on as one of two varieties. Broad-spectrum: the operator's Electronics Operation (EW) roll to switch it on, then every user of radio gear rolls at -2 within its range and unmodified out to 10 times it. Selective: for each user, an unopposed EW roll where the operator knows the frequency, else a Quick Contest of EW, at -1 per 10% past the jammer's range (no further than double); caught, the user rolls at -4 within its range, -2 beyond. A spectrum analyzer carried gives the operator +4 (High-Tech: Electricity and Electronics p. 49)."
+        },
+        "radarJamming": {
+          "Name": "Radar jammers and spoofers",
+          "Hint": "A radar jammer is a broad-spectrum jammer against radar: its operator's Electronics Operation (EW) roll to switch it on, then a radar's operator rolls Electronics Operation (Sensors) at -2 within 15 miles (30 at TL8), unmodified out to 10 times that. A radar spoofer blinds nothing: a radar within its range is used in a Quick Contest of the radar's Sensors against the spoofer's EW, and a lost contest shows a false location and size (High-Tech: Electricity and Electronics pp. 49-50)."
         },
         "protectiveOddments": {
           "Name": "Protective oddments",
@@ -8646,9 +8654,15 @@
         "Jammer": {
           "Operated": "Range {range} yards, run by its operator's Electronics Operation (EW); radio gear within range is used in a Quick Contest against it, and within {shadow} times its range on an unopposed roll (p. 212).",
           "Unmanned": "Range {range} yards at an effective Electronics Operation (EW) {skill}, with no operator; radio gear within range is used in a Quick Contest against it, and within {shadow} times its range on an unopposed roll (pp. 212-213).",
-          "Blocks": "Blocks every cell-phone call within {range} yards (p. 213).",
+          "Blocks": "Blocks cellular beacons within {range} yards; a call through it takes a Hearing roll at {hearing} to follow, unmodified out to {shadow} times that (High-Tech p. 213; High-Tech: Electricity and Electronics p. 50).",
           "Hindered": "Radio gear: a jammer in range makes using it a Quick Contest, and one within {shadow} times its range an unopposed roll (p. 212).",
-          "WhiteNoise": "Defeats laser mikes, audio bugs and tape recorders (p. 213)."
+          "WhiteNoise": "Defeats laser mikes, audio bugs and tape recorders (p. 213).",
+          "Varieties": "Range {range}: switched on as broad-spectrum (the operator's EW roll; users roll at -2 within range, unmodified to {shadow} times it) or selective (caught per user by an EW roll or Quick Contest; then -4 within range, -2 beyond) (High-Tech: Electricity and Electronics p. 49).",
+          "Analyzer": "{bonus} to the carrier's Electronics Operation (EW) when he runs a jammer (High-Tech: Electricity and Electronics p. 49).",
+          "HinderedVarieties": "Radio gear: a broad-spectrum or selective jammer in reach makes using it a roll at a penalty (High-Tech: Electricity and Electronics p. 49).",
+          "Radar": "Radius {range} against radar: the operator's EW roll to switch it on, then a radar's Electronics Operation (Sensors) at -2 within it, unmodified to {shadow} times it (High-Tech: Electricity and Electronics p. 49).",
+          "Spoofer": "Radius {range}: a radar within it is used in a Quick Contest of its Sensors against the operator's EW; lost, it shows a false location and size (High-Tech: Electricity and Electronics p. 50).",
+          "RadarHindered": "Radar: a switched-on radar jammer or spoofer in reach hinders it (High-Tech: Electricity and Electronics pp. 49-50)."
         }
       },
       "Jamming": {
@@ -8662,7 +8676,31 @@
         "NoneInReach": "No switched-on jammer reaches it.",
         "Blocked": "{jammer} blocks it.",
         "Jammed": "Jammed by {jammer}.",
-        "GetsThrough": "It gets through."
+        "GetsThrough": "It gets through.",
+        "VarietyTitle": "Switch the jammer on",
+        "VarietyLabel": "Run as",
+        "Variety": {
+          "broad": "Broad-spectrum",
+          "selective": "Selective"
+        },
+        "KnownLabel": "Selective: the frequency is known and fixed",
+        "JamLabel": "Jamming with {name}",
+        "FailsToJam": "The operator fails to jam; the jammer stays off.",
+        "Runs": {
+          "broad": "{name} jams the whole band.",
+          "selective": "{name} jams one frequency at a time."
+        },
+        "CatchLabel": "{jammer} catching {name}'s frequency",
+        "StretchLine": "Past the jammer's range",
+        "ThroughLabel": "Getting {name} through {jammer}",
+        "VarietyLine": {
+          "broad": "{jammer}, broad-spectrum",
+          "selective": "{jammer}, selective"
+        },
+        "HearLabel": "Following the call on {name} through {jammer}",
+        "HearLine": "{jammer}",
+        "SpoofLabel": "{name} against {jammer}",
+        "Spoofed": "{jammer} feeds it a false location and size."
       },
       "LieDetection": {
         "Title": "Lie detector",
