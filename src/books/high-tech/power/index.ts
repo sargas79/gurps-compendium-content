@@ -160,7 +160,7 @@ function supplementDoes(figures: GeneratorFigures): string {
     parts.push(F("WindOutput", { high: gradeNames(ee.wind.high.supplies), highHours: ee.wind.high.recharges.VL, low: gradeNames(ee.wind.low.supplies), lowHours: ee.wind.low.recharges.VL }));
     if (ee.skill) parts.push(F("WindSkill", { skill: ee.skill }));
   }
-  if (ee.supplies?.length) parts.push(F("Supplies", { grades: gradeNames(ee.supplies) }));
+  if (ee.supplies?.length) parts.push(F("SuppliesGrades", { grades: gradeNames(ee.supplies) }));
   if (ee.standsFor) parts.push(F(ee.standsFor.cells === 1 ? "StandsForOne" : "StandsFor", { ...ee.standsFor }));
   if (ee.recharges) parts.push(F("RechargesIn", { rates: Object.entries(ee.recharges).map(([size, hours]) => F("Rate", { size, hours })).join(", ") }));
   if (ee.fpPerHour !== undefined && !ee.wind) parts.push(ee.fpPerHour ? F("FpPerHour", { fp: ee.fpPerHour }) : L("NoFatigue"));

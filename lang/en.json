@@ -7074,7 +7074,7 @@
         "Or": " or ",
         "WindOutput": "high wind: {high}, a VL battery in {highHours} hr.; low wind: {low}, {lowHours} hr.; calm: nothing",
         "WindSkill": "adjusted by {skill}",
-        "Supplies": "supplies {grades}",
+        "SuppliesGrades": "supplies {grades}",
         "StandsForOne": "stands in for one {size} battery",
         "StandsFor": "stands in for {cells} {size} batteries",
         "RechargesIn": "recharges {rates}",
