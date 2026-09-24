@@ -1,4 +1,4 @@
-Electrical and electronic devices can be used as weapons, delivering electric current or electromagnetic radiation to incapacitate or injure a foe. See the Weapons Tables (pp. 50-51) for details on their effects.
+Electrical and electronic devices can be used as weapons, Taser (TL8). Uses air cartridges as a propellant. XS/20 secdelivering electric current or electromagnetic radiation to incapacitate or injure a foe. See the Weapons Tables (pp. 50-51) for details on their effects.
 
 ### Electric Stunners
 

@@ -1,10 +1,10 @@
 import { spawnSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { describe, expect, it } from "vitest";
 
-import { book, packsOf, readProse } from "./books.mjs";
+import { book, packsOf, projectRoot, readProse } from "./books.mjs";
 import { printedWords, unprinted } from "./printed-words.mjs";
 import { withSource } from "./sources.mjs";
 
@@ -67,6 +67,24 @@ describe.skipIf(!readable)("High-Tech: Electricity and Electronics' prose", () =
       }
     }
     expect(texts).toBeGreaterThan(300);
+    expect(wrong).toEqual([]);
+  });
+
+  // The rules journal's pages for the supplement (#485), built with the layout reader
+  // before #547 mended it (#549).
+  it("prints every word of every rules journal page", () => {
+    const printed = printedWords(stream.stdout);
+    const dir = join(projectRoot, "books/high-tech/journals");
+    const index = JSON.parse(readFileSync(join(dir, "index.json"), "utf8"));
+    const pages = index.pages.filter((p) => String(p.pages).startsWith(ee.transcription.pageLabel));
+    const wrong = [];
+    for (const page of pages) {
+      // Markdown to its words: a link's target and the markup aren't words of the book.
+      const text = readFileSync(join(dir, page.file), "utf8").replace(/\]\([^)]*\)/g, "]").replace(/[*_#|>`[\]\\]/g, " ");
+      const odd = unprinted(text, printed);
+      if (odd.length) wrong.push(`${page.file} (${odd.length})`);
+    }
+    expect(pages.length).toBeGreaterThan(70);
     expect(wrong).toEqual([]);
   });
 });
