@@ -148,15 +148,16 @@ export function readyTiming(api: GWorldApi, draws: () => boolean, stopHits: () =
     const stored = item?.system?.extensions?.[MODULE_ID]?.carry;
     const carry = CARRIES.includes(stored as Carry) ? (stored as Carry) : null;
     const maneuver = String(s.actor.system?.maneuver ?? "");
+    const posture = String(s.actor.system?.posture ?? "standing");
     const lines = situationModifiers({
-      posture: String(s.actor.system?.posture ?? "standing"),
+      posture,
       grappled: Boolean(api.combat.grapple(s.actor)) && !api.combat.grapple(s.actor)?.holding,
       upsideDown: false,
       moving: maneuver === "move" || maneuver === "moveAndAttack",
       hand: "master",
       carry,
     });
-    const located = carry ? carryModifier(specialtyOf(s.fastDrawSkill), carry) : null;
+    const located = carry ? carryModifier(specialtyOf(s.fastDrawSkill), carry, { posture }) : null;
     if (located) lines.push({ key: "carry", value: located });
     return lines.filter((l) => l.value).map((l) => ({ label: game.i18n.localize(`GCC.MA.Readying.Line.${l.key}`), value: l.value }));
   }
