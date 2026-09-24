@@ -13,7 +13,9 @@
 # prints no LC, so an LC alone never makes two records differ.
 EQUIPMENT	Metal Detector (TL6)	Metal Detector	HT:EE12, HT50	keep	a TL6 model High-Tech lacks: TL6 against TL7, same $100, 12 lbs., 6xS/8 hrs.
 EQUIPMENT	Metal Detector (TL7)	Metal Detector	HT:EE13, HT50	skip	identical: TL7, $100, 12 lbs., 6xS/8 hrs.
-EQUIPMENT	Geiger Counter	Geiger Counter (TL8)	HT:EE13, HT49	keep	the TL8 counter at $260, 1.25 lbs., 2xXS, against $400, 0.5 lb., XS/10 hrs.
+EQUIPMENT	Metal Detector (TL8)	Metal Detector	HT:EE13, HT50	keep	the TL7 detector at half the weight, 6 lbs., as the TL7 entry says of TL8; High-Tech prints only the TL7 one; kept by hand
+EQUIPMENT	Geiger Counter (TL6)	Geiger Counter (TL6)	HT:EE12, HT49	keep	the portable counter built on the Geiger-Mueller tube: $200, 2.5 lbs., 3xS/12 hrs., against $800, 4 lbs.; kept by hand (a second closing line in the tube's entry)
+EQUIPMENT	Geiger Counter (TL8)	Geiger Counter (TL8)	HT:EE13, HT49	keep	the TL8 counter at $260, 1.25 lbs., 2xXS, against $400, 0.5 lb., XS/10 hrs.; named by TL, as High-Tech names its two, and kept by hand beside the TL6 one
 EQUIPMENT	Wire Cutters	Wire Cutters	HT:EE14, HT25	keep	the electrician's cutters: TL6, $9, neg., against a TL5 tool at $30, 2 lbs.
 EQUIPMENT	Cigarette Lighter	Cigarette Lighter	HT:EE21, HT57	skip	the supplement prints no price or weight, only dates; High-Tech's $10, neg. record stands
 EQUIPMENT	Flashlight	Flashlight	HT:EE22, HT52	keep	$20, 1.25 lbs., 3xS/30 hrs. against $20, 1 lb., 2xS/5 hrs.; the rugged model ($40, 1.5 lbs., HT 12, DR 4) is a second record of the supplement's
@@ -22,7 +24,7 @@ EQUIPMENT	Sewing Machine (TL6)	Sewing Machine	HT:EE23, HT27	keep	the electric ma
 EQUIPMENT	Sewing Machine (TL8)	Sewing Machine	HT:EE23, HT27	keep	a TL8 programmable machine, $150, 15 lbs.; High-Tech has none
 EQUIPMENT	Electric Typewriter (TL6)	Electric Typewriter	HT:EE23, HT19	keep	$75, 20 lbs., household power, against $250, 35 lbs.
 EQUIPMENT	Electric Typewriter (TL7)	Electric Typewriter	HT:EE23, HT19	keep	a TL7 golf-ball model priced as cutting edge, $375, 37 lbs.; High-Tech's is TL6
-EQUIPMENT	Photocopier	Photocopier (TL7)	HT:EE23, HT19	keep	$30,000, 65 lbs. as printed, against $15,000, 650 lbs.; the 65 may be a misprint for 650, so read the page before recording it
+EQUIPMENT	Photocopier	Photocopier (TL7)	HT:EE23, HT19	keep	$30,000, 65 lbs., against $15,000, 650 lbs.; read against the page, not a misprint: the entry's 1963 machine is the desktop model it describes for smaller offices, where High-Tech's 650-lb. copier is the floor-standing one
 EQUIPMENT	Power Drill	Power Drill	HT:EE24, HT27	keep	$20, 4.5 lbs., household power, with its own melee row (HT:EE50), against $50, 2 lbs.
 EQUIPMENT	Circular Saw	Circular Saw	HT:EE24, HT27	keep	$125, 20 lbs., major appliance power, with its own melee rows and a diamond blade (HT:EE51), against $150, 20 lbs.
 EQUIPMENT	Telegraph Key	Telegraph Key	HT:EE26, HT36	keep	$25, neg., L/8 weeks, against $150, 3 lbs.
@@ -110,3 +112,6 @@ EQUIPMENT	Small (S)	S Battery	HT:EE16, HT13	skip	identical: $1, 0.33 lb.
 EQUIPMENT	Medium (M)	M Battery	HT:EE16, HT13	skip	1.5 lbs. against 2 lbs.: the supplement's sizes are alkaline, High-Tech's M, L and VL heavier; E1 keeps High-Tech's table and #488's chemistry field reconciles them (TRIAGE.md)
 EQUIPMENT	Large (L)	L Battery	HT:EE16, HT13	skip	$15, 15 lbs. against $10, 10 lbs.: High-Tech's L is the supplement's lead-acid L (E1, #488)
 EQUIPMENT	Very Large (VL)	VL Battery	HT:EE16, HT13	skip	$30, 75 lbs. against $20, 50 lbs.: High-Tech's VL is the supplement's lead-acid VL (E1, #488)
+EQUIPMENT	Laser Scalpel	Surgical Laser	HT:EE14, HT224	keep	near-duplicate: $1,850, 45 lbs., household power, against $100,000, 200 lbs.
+EQUIPMENT	Inkjet Printer	Desktop Printer	HT:EE24, HT21	keep	near-duplicate: $110, 12 lbs., against $100, 10 lbs.
+EQUIPMENT	Multifunction Printer	Desktop Printer	HT:EE23, HT21	keep	near-duplicate: $100, 12 lbs., a printer, scanner, copier and fax in one, against $100, 10 lbs.

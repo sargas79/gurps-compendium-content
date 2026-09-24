@@ -3999,8 +3999,203 @@
         "noLegality": true,
         "powerBeforePrice": true,
         "years": true,
-        "skip": [],
-        "set": []
+        "skip": [
+          {
+            "pattern": "^Electrobat$",
+            "reason": "kept by hand as a vehicle, Electrobat II, from the Electrically Powered Vehicles Table: the table's statistics are the second model's (HT:EE p. 24)"
+          }
+        ],
+        "set": [
+          {
+            "pattern": "^Multimeter$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1923
+              }
+            },
+            "reason": "the year closes the entry after a sentence on AC use, past the closing line (HT:EE p. 11)"
+          },
+          {
+            "pattern": "^Tesla Coil$",
+            "set": {
+              "name": "Small Tesla Coil",
+              "system.tl": "8"
+            },
+            "reason": "the entry's price is the small hobby coil of 1995, TL8 by its date; the large coil it opens with is a prototype, kept by hand (HT:EE p. 12)"
+          },
+          {
+            "pattern": "^Geiger-M.ller Tube$",
+            "set": {
+              "name": "Geiger-Müller Tube"
+            },
+            "reason": "the text layer loses the umlaut (HT:EE p. 12)"
+          },
+          {
+            "pattern": "^Glass Electrode$",
+            "set": {
+              "system.weight": 0.5
+            },
+            "reason": "the weight is printed before the price, 0.5 lb.; the integrated pH meter the entry ends with is kept by hand (HT:EE p. 12)"
+          },
+          {
+            "pattern": "^Light Meter$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 1,
+                  "endurance": "12 hours",
+                  "raw": "XS/12 hours"
+                }
+              }
+            },
+            "reason": "an XS cell for 12 hours, printed before the price with a comma rather than a period (HT:EE p. 13)"
+          },
+          {
+            "pattern": "^Portable Diathermy Apparatus$",
+            "set": {
+              "system.cost": 3700,
+              "system.listCost": 3700,
+              "system.weight": 15,
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "Household current"
+              },
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1890,
+                "marketYear": 1920
+              }
+            },
+            "reason": "reading order took the TL8 pH meter's closing line from the next column; the apparatus is $3,700, 15 lbs., household current, [1890] 1920 (HT:EE p. 13)"
+          },
+          {
+            "pattern": "^Faraday Suit$",
+            "set": {
+              "system.cost": 1500,
+              "system.listCost": 1500,
+              "system.weight": 12,
+              "system.category": "misc",
+              "system.equipmentQuality": "basic",
+              "system.forSkills": [],
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1960
+              }
+            },
+            "reason": "reading order took the electrician's workshop's closing line and quality bonus; the suit is $1,500, 12 lbs., 1960 (HT:EE p. 15)"
+          },
+          {
+            "pattern": "^Hot Stick$",
+            "set": {
+              "name": "Hot Stick (Wood)",
+              "system.cost": 55,
+              "system.listCost": 55,
+              "system.weight": 1,
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1913,
+                "marketYear": 1916
+              }
+            },
+            "reason": "reading order took the insulation resistance tester's closing line; the early wooden stick is $55, 1 lb., [1913] 1916, and the fiberglass one is kept by hand (HT:EE p. 15)"
+          },
+          {
+            "pattern": "^(?:Fuel Cell Power Supply|Wind Generator \\(TL6\\)|Portable Solar Panel)$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": null
+            },
+            "reason": "the power grade printed is what the source supplies, not what it draws; the supply is #488's generator data (HT:EE p. 17)"
+          },
+          {
+            "pattern": "^Lithium-Ion Battery Recharger$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "Household power"
+              }
+            },
+            "reason": "household power is printed before the price, where two columns run together (HT:EE p. 18)"
+          },
+          {
+            "pattern": "^Power Outlet$",
+            "set": {
+              "name": "Power Outlets (10-pack)"
+            },
+            "reason": "the price and weight are a pack of ten (HT:EE p. 19)"
+          },
+          {
+            "pattern": "^Arc Welder$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1881
+              }
+            },
+            "reason": "the year follows the replacement electrodes' price, kept by hand (HT:EE p. 21)"
+          },
+          {
+            "pattern": "^Tungsten Filament Bulb$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1906,
+                "marketYear": 1911
+              }
+            },
+            "reason": "the years follow the miniature bulbs' price, kept by hand (HT:EE p. 21)"
+          },
+          {
+            "pattern": "^LEDs for display",
+            "set": {
+              "name": "Light-Emitting Diode Bulb",
+              "system.tl": "8"
+            },
+            "reason": "a sentence of the LED bulb's text read as a label; the bulb is TL8, the TL7 in that sentence is the display LEDs' (HT:EE p. 21)"
+          },
+          {
+            "pattern": "^Flashlight$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1899,
+                "marketYear": 1911
+              }
+            },
+            "reason": "the years follow the rugged model's price, kept by hand (HT:EE p. 22)"
+          },
+          {
+            "pattern": "^Bells and Buzzers$",
+            "set": {
+              "name": "Bell or Buzzer"
+            },
+            "reason": "the heading names the family; one bell or buzzer is priced (HT:EE p. 23)"
+          },
+          {
+            "pattern": "^Daisy Wheel Printer$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1939,
+                "marketYear": 1970
+              }
+            },
+            "reason": "the working model's year is printed in parentheses rather than brackets (HT:EE p. 23)"
+          },
+          {
+            "pattern": "^Telautograph$",
+            "set": {
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1888,
+                "marketYear": 1900
+              }
+            },
+            "reason": "the years follow the extra receiver's price, kept by hand (HT:EE p. 25)"
+          }
+        ]
       },
       "overlap": "overlap-ee.txt",
       "notes": "A 55-page supplement added to High-Tech (private #471, E1): its records join High-Tech's packs under High-Tech's book flag and cite it as \"High-Tech: Electricity and Electronics p. N\"; its text and journal pages cite \"HT:EE<N>\". PDF page = printed page. No GCA file: every record is captured from the PDF with tools/capture-gear.mjs --source ee. A name High-Tech's own records hold is kept or left out by overlap-ee.txt (E2). Triage in TRIAGE.md (#476)."
