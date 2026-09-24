@@ -4003,6 +4003,14 @@
           {
             "pattern": "^Electrobat$",
             "reason": "kept by hand as a vehicle, Electrobat II, from the Electrically Powered Vehicles Table: the table's statistics are the second model's (HT:EE p. 24)"
+          },
+          {
+            "pattern": "^Shotgun Microphone(?: \\(TL\\d\\))?$",
+            "reason": "both TLs kept by hand: the TL7 microphone's closing line is split by the column's quotation and not read (HT:EE p. 31)"
+          },
+          {
+            "pattern": "^Color Television$",
+            "reason": "one entry prices the set at TL7 (cutting edge) and again at TL8; both kept by hand (HT:EE p. 34)"
           }
         ],
         "set": [
@@ -4262,6 +4270,163 @@
               "system.extensions.gurps-compendium-content.device.fragile": true
             },
             "reason": "a light bulb, more fragile than its HP (HT:EE pp. 8, 21)"
+          },
+          {
+            "pattern": "^Telegraph Key$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "L",
+                  "cells": 1,
+                  "endurance": "8 weeks",
+                  "raw": "L/8 weeks"
+                }
+              }
+            },
+            "reason": "one L cell for 8 weeks at 20 miles of line; the range each added cell buys stays in the text (HT:EE p. 26)"
+          },
+          {
+            "pattern": "^Trench Radio$",
+            "set": {
+              "name": "Trench Radio Transmitter",
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "M",
+                  "cells": 3,
+                  "endurance": "35 minutes",
+                  "raw": "3×M/35 minutes"
+                }
+              }
+            },
+            "reason": "the kit's first part, a large send-only wideband spark-gap transmitter with its three lead-acid M cells included; the receiver, the antenna wire and the spare cells are kept by hand (HT:EE p. 29)"
+          },
+          {
+            "pattern": "^Photophone$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "6×M wet cells"
+              }
+            },
+            "reason": "half a dozen M wet cells power it; no endurance is printed (HT:EE p. 30)"
+          },
+          {
+            "pattern": "^Stylophone$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 2,
+                  "endurance": "8 hours",
+                  "raw": "2×XS/8 hours"
+                }
+              }
+            },
+            "reason": "the power statement took a sentence of the entry's text before the cells (HT:EE p. 32)"
+          },
+          {
+            "pattern": "^Hearing Aid \\(TL6\\)$",
+            "set": {
+              "system.weight": 7
+            },
+            "reason": "the weight, 7 lbs., is printed before the price (HT:EE p. 32)"
+          },
+          {
+            "pattern": "^Hearing Aid \\(TL7\\)$",
+            "set": {
+              "system.weight": 0.5
+            },
+            "reason": "the weight, 0.5 lb., is printed before the price (HT:EE p. 32)"
+          },
+          {
+            "pattern": "^Dictation Machine$",
+            "set": {
+              "name": "Dictation Machine (Wax Cylinder)"
+            },
+            "reason": "the page prints two TL7 dictation machines; this is the 1939 wax-cylinder one, and the 1963 cassette one is kept by hand (HT:EE p. 33)"
+          },
+          {
+            "pattern": "^Digital Voice Recorder$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "",
+                  "cells": 0,
+                  "endurance": "10 hours",
+                  "raw": "Rechargeable/10 hours"
+                },
+                "rechargeable": true,
+                "raw": "Peripheral power or rechargeable/10 hours"
+              }
+            },
+            "reason": "peripheral power or a built-in rechargeable for 10 hours; only the first was read (HT:EE p. 33)"
+          },
+          {
+            "pattern": "^Digital Micromirror Device$",
+            "set": {
+              "name": "Mini Projector",
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1987,
+                "marketYear": 1999
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1987,
+                "marketYear": 1999
+              }
+            },
+            "reason": "the entry is a family of projectors; this is its small one, and the home theater projector is kept by hand; the dates close the family's opening (HT:EE p. 34)"
+          },
+          {
+            "pattern": "^Videotape Recorder$",
+            "set": {
+              "system.cost": 150,
+              "system.listCost": 150,
+              "system.weight": 8,
+              "system.extensions.gurps-compendium-content.power": {
+                "raw": "Household power"
+              },
+              "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1972,
+                "marketYear": 1975
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1972,
+                "marketYear": 1975
+              }
+            },
+            "reason": "the closing line read is the videocassettes' ($2, 0.5 lb., kept by hand as Videocassette); the recorder is $150, 8 lbs., household power, [1972] 1975 (HT:EE p. 34)"
+          },
+          {
+            "pattern": "^Ground-Penetrating Radar$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "",
+                  "cells": 0,
+                  "endurance": "8 hours",
+                  "raw": "Rechargeable/8 hours"
+                },
+                "rechargeable": true
+              }
+            },
+            "reason": "the power statement ran into the next column's text (HT:EE p. 35)"
+          },
+          {
+            "pattern": "^Laser Measuring Tool$",
+            "set": {
+              "system.extensions.gurps-compendium-content.power": {
+                "draw": {
+                  "cell": "XS",
+                  "cells": 1,
+                  "endurance": "10,000 readings",
+                  "raw": "XS/10,000 readings"
+                }
+              }
+            },
+            "reason": "one XS cell for 10,000 readings, printed before the price and not read (HT:EE p. 35)"
           }
         ]
       },

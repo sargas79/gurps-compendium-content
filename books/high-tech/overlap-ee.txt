@@ -93,6 +93,18 @@ EQUIPMENT	Seismic Ground Sensor	Seismic Detector	HT:EE45, HT206	keep	$80, 0.3 lb
 EQUIPMENT	Parabolic Microphone (TL6)	Directional Microphone	HT:EE31, HT50	keep	TL6, $300, 5 lbs., against TL7, $800, 3 lbs.
 EQUIPMENT	Parabolic Microphone (TL8)	Directional Microphone	HT:EE31, HT50	keep	TL8, $250, 2 lbs.
 EQUIPMENT	Hydrophone	Small Hydrophone	HT:EE31, HT49	keep	TL6, $500, 15 lbs., against TL7, $5,000, 15 lbs.
+EQUIPMENT	Telegraph Wire (per mile)	Telegraph Wire, Land (per mile)	HT:EE26, HT36	skip	near-duplicate, identical: $1,500, 350 lbs. a mile; printed in the text, with no entry of its own
+EQUIPMENT	Voice-Powered Telephone	Military Telephone	HT:EE27, HT37	skip	near-duplicate, identical: the same sound-powered, crank-rung set, TL6, $50, 5 lbs.
+EQUIPMENT	Camcorder	VHS Camcorder	HT:EE34, HT43	skip	near-duplicate, identical: TL8, $1,500, 8 lbs., M/2 hrs.
+EQUIPMENT	Compact Camcorder	VHS Camcorder	HT:EE34, HT43	keep	the compact tape camcorder High-Tech prices only in its text (a quarter the weight): $1,500, 2 lbs., M/3 hours
+EQUIPMENT	Videotape Recorder	VHS Recorder (TL7)	HT:EE34, HT45	keep	$150, 8 lbs., household power, against $5,000, 10 lbs.
+EQUIPMENT	Videocassette	VHS Cassette	HT:EE34, HT45	keep	TL7 against TL8; same $2, 0.5 lb.
+EQUIPMENT	Portable Television	Portable TV	HT:EE34, HT45	keep	a TL7 transistor set, $180, 13 lbs., against a TL8 flat panel, $100, 2 lbs.
+EQUIPMENT	Console Television	TV Set (TL7)	HT:EE34, HT45	keep	$1,400, 60 lbs., against $500, 150 lbs.
+EQUIPMENT	Flatscreen Television	TV Set (TL8)	HT:EE34, HT45	keep	$130, 7 lbs., against $1,500, 100 lbs.
+EQUIPMENT	Flatbed Scanner	Document Scanner	HT:EE33, HT21	keep	$75, 9 lbs., household power, against $25, 2 lbs.
+EQUIPMENT	Laser Printer	Desktop Printer	HT:EE33, HT21	keep	$150, 35 lbs., against $100, 10 lbs.
+EQUIPMENT	Handheld Sonar	Small Sonar	HT:EE35, HT45	keep	$10,000, 16 lbs., 8xS/20 hours, 10 yards, against $2,000, 8 lbs.
 EQUIPMENT	Radar Jammer	Area Jammer (TL7)	HT:EE49, HT212	keep	$50,000, 200 lbs. against $5,000, 50 lbs.
 EQUIPMENT	Large Jammer	Area Jammer (TL6)	HT:EE49, HT212	keep	priced from the supplement's large radio (half cost, twice weight), not High-Tech's area jammer: by hand
 EQUIPMENT	Portable Jammer	Area Jammer (TL8)	HT:EE49, HT212	keep	priced from the supplement's medium radio (half cost, twice weight, five times the power): by hand
