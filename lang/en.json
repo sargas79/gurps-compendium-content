@@ -4553,7 +4553,7 @@
           "respirocytes": "Respirocytes"
         },
         "Resisted": {
-          "morphazine": "{name} falls into a deep, dreamless sleep for {value} {unit}.",
+          "morphazine": "{name} falls into a deep, dreamless sleep for {minutes} minutes.",
           "soothe": "{name} drifts into euphoria, with High Pain Threshold, for {minutes} minutes, and won't remember it.",
           "crediline": "{name} becomes trusting and talkative: Gullibility (9) for {minutes} minutes."
         },
@@ -4733,7 +4733,7 @@
         "DisadvantagePoints": "Disadvantage points",
         "Recovering": "recovering from surgery",
         "SurgeDown": "knocked out by a surge",
-        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {minutes} minutes.",
+        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {value} {unit}.",
         "PsychTitle": "Implant removed",
         "PsychMonths": "Months it was worn",
         "PsychTooSoon": "Worn less than three months: the disadvantage ends with the implant.",
