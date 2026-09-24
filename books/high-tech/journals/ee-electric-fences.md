@@ -1,4 +1,4 @@
-Electronics plays a role in maintaining the security of fixed installations, at every level from home protection to top-secret military facilities – or violating it! The following devices will be of interest to burglars, spies, and assassins, and to the guards who have to stop them. Use Electronics Operation or Electronics Repair (Security) if a skill roll is needed, unless otherwise specified.
+Electronics plays a role in maintaining the security of fixed installations, at every level from home protection to top-se- for countering them come into use in the 20th century. cret military facilities – or violating it! The following devices will be of interest to burglars, spies, and assassins, and to the guards who have to stop them. Use Electronics Operation or Electronics Repair (Security) if a skill roll is needed, unless otherwise specified.
 
 ### Electric Fences
 

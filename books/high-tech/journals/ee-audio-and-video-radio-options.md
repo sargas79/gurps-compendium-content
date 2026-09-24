@@ -14,7 +14,7 @@ An early experiment used a carbon microphone to modulate an ultra-high-speed rot
 
 Transmission of images began with still pictures sent over telegraph lines, scanned using selenium photocells. Experiments with rapidly repeated scanning in the early 20th century made it possible to transmit moving images. Electronic scanning based on cathode-ray tubes (CRTs), which scan an electron beam over a photoelectric screen, led to commercial television in the 1940s. Digital video, developed in the 1990s, allowed higher-definition images and largely replaced analog video by 2010.
 
-Use Photography to capture still images, or Photography-3 to capture moving ones (for either live transmission or recording); digital cameras, or devices such as smartphones, may incorporate software that takes routine photographs with no skill roll (treat as improvised equipment for challenging photos that require a Photography roll). Processing or editing images is Electronics Operation (Media).
+Use Photography to capture still images, or Photography-3 to capture moving ones (for either live transmission or recording); digital cameras, or devices such as smartphones, may incorporate software that takes routine photographs with no skill roll (treat as improvised equipment for challenging Europe or the United States) - fast enough to create the illuphotos that require a Photography roll). Processing or editing images is Electronics Operation (Media).
 
 ### Video Transmission and Reception
 
