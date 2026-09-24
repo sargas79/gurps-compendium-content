@@ -56,7 +56,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 import { book, projectRoot, statisticsDir, systemRoot } from "./lib/books.mjs";
-import { captureSettings, entriesOn, key, nameRepeats, normalise, recordKey, recordOf } from "./lib/capture.mjs";
+import { captureSettings, entriesOn, gradesIn, key, nameRepeats, normalise, recordKey, recordOf } from "./lib/capture.mjs";
 import { inSource, readOverlap, withSource } from "./lib/sources.mjs";
 
 function flag(name, fallback = null) {
@@ -211,6 +211,12 @@ function main() {
           else at[parts.at(-1)] = value;
         }
         out.notes = [];
+      }
+      // A power statement a rule sets keeps its grades of external power too (HT:EE p. 9).
+      const setPower = out.record.system?.extensions?.["gurps-compendium-content"]?.power;
+      if (setPower?.raw && !setPower.grades) {
+        const grades = gradesIn(setPower.raw);
+        if (grades.length) setPower.grades = grades;
       }
       const other = stored.get(recordKey(entry, settings));
       const s = out.record.system;

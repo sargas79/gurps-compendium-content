@@ -1720,7 +1720,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household current"
+            "raw": "Household current",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2851,7 +2854,10 @@
             "marketYear": 1991
           },
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           }
         }
       }

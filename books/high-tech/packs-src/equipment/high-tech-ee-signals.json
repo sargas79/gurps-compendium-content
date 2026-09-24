@@ -2496,7 +2496,10 @@
               "raw": "Rechargeable/10 hours"
             },
             "rechargeable": true,
-            "raw": "Peripheral power or rechargeable/10 hours"
+            "raw": "Peripheral power or rechargeable/10 hours",
+            "grades": [
+              "peripheral"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -3112,7 +3115,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
