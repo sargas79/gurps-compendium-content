@@ -49,6 +49,11 @@ function fakeApi() {
     actors: {
       attribute: (actor: any, k: string) => actor?.attributes?.[k] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
+      // The system's reading of the vehicle a character is aboard (API 1.141.0), over the world's vehicles here.
+      vehicleAboard: (actor: any) => {
+        const vehicle = [...((globalThis as any).game?.actors ?? [])].find((v: any) => v?.type === "vehicle" && (v.system?.crew ?? []).some((seat: any) => seat?.uuid === actor?.uuid));
+        return vehicle ? { vehicle, operator: false, moving: (Number(vehicle.system?.speed) || 0) > 0, medium: "ground" } : null;
+      },
     },
     roll: {
       success: async (o: any) => { successes.push(o); return { success: true }; },

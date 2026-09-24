@@ -15,7 +15,7 @@ import { readyMedicine } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
-const HOOKS = { successRollModifiers: "gworld.successRollModifiers", firstAid: "gworld.firstAid" };
+const HOOKS = { successRollModifiers: "gworld.successRollModifiers", firstAid: "gworld.firstAid", physicianRounds: "gworld.physicianRounds" };
 
 let hooks: Map<string, Listener[]>;
 let actions: Map<string, any>;
@@ -426,6 +426,14 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     // TL5 and below already work at their own TL; TL9+ isn't this book's.
     expect(firstAid(person("Doctor"), 5)).toBe(5);
     expect(firstAid(person("Doctor"), 9)).toBe(9);
+  });
+
+  it("makes a TL6-8 doctor's rounds as at TL5 without medical supplies (p. 223; API 1.142.0)", () => {
+    const rounds = (healer: any, techLevel: number) => fire(HOOKS.physicianRounds, { healer, patient: person("Patient"), refusal: null, techLevel, lines: [] as string[] });
+    const bare = rounds(person("Doctor"), 8);
+    expect(bare).toMatchObject({ techLevel: 5, lines: ["GCC.HT.Medicine.RoundsWithoutSupplies"] });
+    expect(rounds(person("Doctor", [gear("Medical Supplies (20 patient-days)", {})]), 8)).toMatchObject({ techLevel: 8, lines: [] });
+    expect(rounds(person("Doctor"), 5)).toMatchObject({ techLevel: 5, lines: [] });
   });
 
   it("scans with Electronics Operation (Medical), then Diagnosis; the early X-ray irradiates both", async () => {

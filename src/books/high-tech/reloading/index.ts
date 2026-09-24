@@ -181,18 +181,18 @@ function ridingLevel(api: GWorldApi, actor: any): number | null {
   return typeof fallback === "number" ? fallback : null;
 }
 
-/** Whether the character is aboard a vehicle that is moving: in a vehicle's crew, its speed above 0 (as the system reads it). */
-function onMovingVehicle(actor: any): boolean {
-  const uuid = String(actor?.uuid ?? "");
-  if (!uuid) return false;
-  return ((game as any).actors?.contents ?? []).some((v: any) => v?.type === "vehicle"
-    && (Number(v.system?.speed) || 0) > 0
-    && (v.system?.crew ?? []).some((seat: any) => seat?.uuid === uuid));
+/**
+ * Whether the character is aboard a vehicle that is moving, as the system
+ * reads it (API 1.141.0): a world vehicle's crew or an unlinked vehicle
+ * token's, its speed above 0.
+ */
+function onMovingVehicle(api: GWorldApi, actor: any): boolean {
+  return api.actors.vehicleAboard(actor)?.moving === true;
 }
 
 /** The rolls the load needs where the shooter is (pp. 86-87), as the Reload button takes them. */
 function requiredLoadingRolls(api: GWorldApi, actor: any, type: LoadingType, skill: string): any[] {
-  const rolls = loadingRolls({ type, mounted: actor?.system?.mounted === true, movingVehicle: onMovingVehicle(actor) });
+  const rolls = loadingRolls({ type, mounted: actor?.system?.mounted === true, movingVehicle: onMovingVehicle(api, actor) });
   return rolls.map((roll) => {
     const guns = api.actors.skillLevel(actor, skill);
     const riding = roll.riding ? ridingLevel(api, actor) : null;

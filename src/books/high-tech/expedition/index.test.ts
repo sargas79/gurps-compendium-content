@@ -8,7 +8,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
-import { lightOver, navigationLines, readyExpedition } from "./index.js";
+import { grapnelSound, lightOver, navigationLines, readyExpedition } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -386,6 +386,28 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
     await flush();
     expect(successes.at(-1)).toMatchObject({ base: 13, skill: "Throwing" });
     expect(chat.at(-1)).toContain('"yards":22');
+  });
+
+  it("pads a grapnel: a pound more, and -2 to hear it land at 1 yard (p. 55)", () => {
+    const hook = gear("Grappling Hook", { climbing: "grapnel" }, { tl: "5" });
+    const padded = gear("Grappling Hook", { climbing: "grapnel", padded: true }, { tl: "5" });
+    expect(grapnelSound(hook)).toMatchObject({ heardAt: 1, lines: [] });
+    expect(grapnelSound(padded)).toMatchObject({ heardAt: 1, lines: [{ value: -2 }] });
+    const price = prices.find((p) => p.key === "ht-padded-grapnel");
+    expect(price.apply(padded, { cost: 20, weight: 2 })).toMatchObject({ cost: 20, weight: 3 });
+    expect(price.apply(hook, { cost: 20, weight: 2 })).toBeNull();
+    expect(actions.get("ht-grapnel-heard").visible(hook)).toBe(true);
+    expect(actions.get("ht-grapnel-heard").visible(gear("Harness", { climbing: "harness" }))).toBe(false);
+  });
+
+  it("rolls a targeted listener's Hearing for a grapnel landing, with the distance (API 1.117.0)", async () => {
+    const padded = gear("Grappling Hook", { climbing: "grapnel", padded: true }, { tl: "5" });
+    const listener = person("Guard", [], { derived: { senses: [{ sense: "hearing", score: 11 }] } });
+    targets = [{ actor: listener }];
+    dialogAnswer = { yards: 6, other: 0 };
+    actions.get("ht-grapnel-heard").run(padded, person("Climber"));
+    await flush();
+    expect(successes.at(-1)).toMatchObject({ actor: listener, base: 11, skill: "Hearing", distance: { yards: 6, baseYards: 1 }, modifiers: [{ value: -2 }] });
   });
 
   it("takes a Move off for worn snowshoes, but not TL8 ones", () => {

@@ -79,7 +79,7 @@ const SCENARIOS: Record<string, { record: string; arrange: Arrange }> = {
   frostbite: {
     record: "Summer Clothes",
     arrange: (_actor, _item, context) => {
-      Object.assign(context, { tags: ["exposure", "cold"], weather: { clothing: "light" }, reason: "exposure", details: { heat: false }, fp: 2 });
+      Object.assign(context, { tags: ["exposure", "cold"], weather: { clothing: "light" }, reason: "exposure", details: { heat: false }, fp: 2, fpLost: 2 });
     },
   },
   // A blow that cripples an arm with twice what it takes (p. 162).

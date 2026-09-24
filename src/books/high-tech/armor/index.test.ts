@@ -17,6 +17,7 @@ type Listener = (...args: any[]) => void;
 
 const HOOKS = {
   armorDr: "gworld.armorDr",
+  damageModifiers: "gworld.damageModifiers",
   afterDamage: "gworld.afterDamage",
   attackModifiers: "gworld.attackModifiers",
   skillBonuses: "gworld.skillBonuses",
@@ -122,6 +123,8 @@ describe("with every switch off", () => {
     const lines = [line(guard)];
     fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "cr", lines });
     expect(lines).toEqual([line(guard)]);
+    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso"] }, { coverage: 1, slamPads: true });
+    expect(fire(HOOKS.damageModifiers, { actor: person("Player", [pads]), source: "slam", modifiers: [] }).modifiers).toEqual([]);
     expect(prices[0].apply(piece("Plate", {}, { material: "titanium" }), { cost: 100, weight: 30 })).toBeNull();
     const skill = fire(HOOKS.skillBonuses, { actor: person("Spy", [piece("Long Coat", {}, {}, "equipment")]), name: "Holdout", lines: [] });
     expect(skill.lines).toEqual([]);
@@ -210,6 +213,46 @@ describe("partial coverage (High-Tech p. 69)", () => {
     lines = [line(boots)];
     fire(HOOKS.armorDr, { actor: worker, hitLocation: "foot", damageType: "cr", fromBelow: true, lines });
     expect(lines[0]!.dr).toBe(2);
+  });
+
+  it("rolls nothing for the sheet's figures: partial pieces and the toe box keep their DR, with a note (API 1.140.0)", () => {
+    const guard = piece("Shin Guards", { dr: 4, locations: ["leg"] }, { coverage: 2 });
+    const boots = piece("Boots, Steel-Toed", { dr: 2, locations: ["foot"] }, { toeDr: 6 });
+    const soldier = person("Soldier", [guard, boots]);
+    dice = [6, 6];
+    const legs = [line(guard)];
+    fire(HOOKS.armorDr, { actor: soldier, hitLocation: "leg", damageType: "cr", preview: true, options: {}, lines: legs });
+    expect(legs[0]).toMatchObject({ applies: true, dr: 4, reason: expect.stringContaining("PartialPreview") });
+    const feet = [line(boots)];
+    fire(HOOKS.armorDr, { actor: soldier, hitLocation: "foot", damageType: "cr", preview: true, options: {}, lines: feet });
+    expect(feet[0]).toMatchObject({ dr: 2, reason: expect.stringContaining("ToePreview") });
+    expect(dice).toEqual([6, 6]);
+  });
+
+  it("gives shoulder pads +1 to a slam's damage and DR 3, whole, against what the slammer takes back (p. 66 note 4; API 1.139.0)", () => {
+    const pads = piece("Shoulder Pads", { dr: 1, locations: ["torso", "vitals", "arm"] }, { coverage: 1, slamPads: true });
+    const player = person("Player", [pads]);
+    const blow = (source: string | null) => fire(HOOKS.damageModifiers, { actor: player, source, modifiers: [] }).modifiers;
+    expect(blow("slam")).toEqual([{ label: expect.stringContaining("Shoulder Pads"), value: 1 }]);
+    expect(blow("slammed")).toEqual([]);
+    expect(blow(null)).toEqual([]);
+    dice = [6];
+    const back = [line(pads)];
+    fire(HOOKS.armorDr, { actor: player, hitLocation: "torso", damageType: "cr", source: "slammed", lines: back });
+    expect(back[0]).toMatchObject({ applies: true, dr: 3 });
+    expect(dice).toEqual([6]);
+    // Where the pads don't reach, they still guard against the slam.
+    const skull: any[] = [];
+    fire(HOOKS.armorDr, { actor: player, hitLocation: "skull", damageType: "cr", source: "slammed", lines: skull });
+    expect(skull).toEqual([expect.objectContaining({ itemId: "Shoulder Pads", dr: 3, applies: true })]);
+    // Any other blow: the 1 in 6 is rolled as ever.
+    dice = [6];
+    const other = [line(pads)];
+    fire(HOOKS.armorDr, { actor: player, hitLocation: "torso", damageType: "cr", source: null, lines: other });
+    expect(other[0]!.applies).toBe(false);
+    // Not worn: nothing.
+    const off = person("Off", [piece("Shoulder Pads", { equipped: false }, { slamPads: true })]);
+    expect(fire(HOOKS.damageModifiers, { actor: off, source: "slam", modifiers: [] }).modifiers).toEqual([]);
   });
 
   it("covers 3 in 6 of the legs with high boots' tops turned up", () => {

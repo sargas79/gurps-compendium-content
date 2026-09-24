@@ -128,6 +128,12 @@ export const WICKING = /^wicking undergarment$/i;
 /** Its bonus on HT and HT-based rolls against FP loss in the heat. */
 export const WICKING_BONUS = 1;
 
+/**
+ * Body armour on a hot day adds to a battle's fatigue (p. 65): the Basic
+ * Set's 2 FP for anyone in plate armour or an overcoat (Campaigns p. 426).
+ */
+export const HOT_BATTLE_ARMOUR_FP = 2;
+
 /** The Clothing Technology Table (p. 65): the TL7 weight's multiple at TL5-8. */
 const WEIGHT_BY_TL: Readonly<Record<Outfit["weightRow"], Readonly<Record<number, number>>>> = Object.freeze({
   other: { 5: 2, 6: 2, 7: 1, 8: 0.5 },

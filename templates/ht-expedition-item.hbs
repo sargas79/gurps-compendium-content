@@ -8,6 +8,11 @@
       </label>
     </div>
   {{/if}}
+  {{#if grapnel}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Expedition.PaddedHint'}}"><input type="checkbox" data-gcc-ht-padded {{#if grapnel.padded}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Expedition.Padded"}}</label>
+    </div>
+  {{/if}}
   {{#if gps}}
     <div class="ichecks">
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Expedition.NoSignalHint'}}"><input type="checkbox" data-gcc-ht-gps {{#if gps.noSignal}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Expedition.NoSignal"}}</label>

@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyReloading } from "../reloading/index.js";
-import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, gunCalibre, readyAmmunition, type AmmunitionSwitches } from "./index.js";
+import { ammunitionHearing, firesMinieBalls, firesPaperCartridges, gunCalibre, loadBatch, readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -36,7 +36,7 @@ function fakeApi() {
     sheets: { registerSheetSection: () => undefined },
     data: { registerPriceModifier: (m: any) => prices.push(m), registerPoison: () => undefined },
     items: { setMalfunction: async (item: any, malfunction: any) => { malfunctions.push({ item: item.name, ...malfunction }); } },
-    actors: { skillLevel: () => null, attribute: () => 10 },
+    actors: { skillLevel: () => null, attribute: () => 10, vehicleAboard: () => null },
   };
 }
 
@@ -328,5 +328,25 @@ describe("projectiles (pp. 166-175)", () => {
     const entry = fire(HOOKS.shotsEntry, { actor: enfield.actor, item: enfield, modeIndex: 0, mode, entry: { ...rules.parseShots(mode.shots) } }).entry;
     expect(entry.reloadSeconds).toBe(40);
     expect(entry.aids.some((a: any) => a.id.endsWith("greasedPatch"))).toBe(false);
+  });
+});
+
+describe("a batch of handloads (High-Tech p. 174)", () => {
+  it("adds the batch's rounds to the box it is loaded into (API 1.123.0)", async () => {
+    const changed: any[] = [];
+    const api = {
+      ...fakeApi(),
+      actors: { skillLevel: (_a: any, name: string) => (name === "Armoury (Small Arms)" ? 12 : null), attribute: () => 10 },
+      items: { changeQuantity: async (item: any, delta: number, o: any) => { changed.push({ item: item.id, delta, ...o }); return { from: item.system.quantity, to: item.system.quantity + delta, reason: o.reason }; } },
+    };
+    const rounds = box({ quantity: 10 });
+    rounds.actor = { name: "Loader", items: [rounds] };
+    rounds.update = async (changes: Record<string, unknown>) => { for (const [path, value] of Object.entries(changes)) setPath(rounds, path, value); };
+    vi.stubGlobal("Roll", class { total = 10; async evaluate() { return this; } });
+    (globalThis as any).foundry.applications = { api: { DialogV2: { prompt: async () => ({ tool: "press", source: "handloaded", rounds: 20 }) } } };
+    await loadBatch(api as never, rounds, 0, switches);
+    expect(changed).toEqual([{ item: "b1", delta: 20, reason: "GCC.HT.Ammunition.BatchTitle" }]);
+    expect(chat.at(-1)).toContain("BatchAdded");
+    expect(chat.at(-1)).toContain('"total":30');
   });
 });

@@ -277,14 +277,13 @@ export function readyHighTechEquipment(api: GWorldApi, on: EquipmentSwitches): v
         if (bond) context.lines.push({ label: F("BondLine", { item: bond.name }), value: bond.value, source: MODULE_ID });
       }
     }
-    // A tool's TL line, lifted once the character knows the gear: of the
-    // carried tools the TL line may come from, any one they are familiar with.
+    // A tool's TL line, lifted once the character knows the gear: the tool
+    // the system picked for the skill, which the TL line is for.
     if (on.familiarity() && context.item?.system?.attribute === "DX") {
       const techLevel = (context.lines as any[]).filter((l) => l.key === "techLevel").reduce((sum, l) => sum + (Number(l.value) || 0), 0);
-      if (techLevel >= 0) return;
-      const tools = toolsFor(api, actor, name).filter((t) => api.rules.parseTechLevel(t.system?.tl) !== null);
-      const known = tools.find((t) => familiarWith(api, actor, String(t.name ?? "")) === true);
-      if (known) context.lines.push({ label: F("Familiar", { item: String(known.name ?? "") }), value: -techLevel, source: MODULE_ID });
+      const tool = context.tool;
+      if (techLevel >= 0 || !tool) return;
+      if (familiarWith(api, actor, String(tool.name ?? "")) === true) context.lines.push({ label: F("Familiar", { item: String(tool.name ?? "") }), value: -techLevel, source: MODULE_ID });
     }
   });
 

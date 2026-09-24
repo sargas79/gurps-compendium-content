@@ -20,7 +20,8 @@
  *     to fire cartridges, on an Armoury (Small Arms)-4 roll.
  *   - **Handloading (handloading):** rounds handloaded or reloaded cost
  *     their materials; a batch is timed by its tools and rolled for, a
- *     critical failure costing the batch a point of Malf.; a load developed
+ *     critical failure costing the batch a point of Malf., and loaded into a
+ *     box its rounds are added to the box's count; a load developed
  *     for the gun on Armoury and IQ-based Guns rolls makes its match-grade
  *     rounds a perfect match.
  *   - **Misloading (misloading):** a round that isn't the gun's, nor one down
@@ -580,7 +581,7 @@ async function developMatch(api: GWorldApi, item: any, modeIndex: number): Promi
  * failure a point off the batch's Malf. Jacketed silver bullets are at -3
  * (p. 168).
  */
-async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on: AmmunitionSwitches): Promise<void> {
+export async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on: AmmunitionSwitches): Promise<void> {
   const actor = item?.actor ?? null;
   const load = isBox(item) ? ownLoad(item, 0) : loadIn(item, modeIndex).load;
   const row = isBox(item) ? boxCalibre(item, load) : gunCalibre(item);
@@ -635,6 +636,11 @@ async function loadBatch(api: GWorldApi, item: any, modeIndex: number, on: Ammun
   }
   if (failures) lines.push(L("BatchFailures"));
   await storeLoad(item, isBox(item) ? next : { ...next, matched: ownLoad(item, modeIndex).matched });
+  // A box's quantity is its rounds: the batch goes into it (API 1.123.0).
+  if (isBox(item)) {
+    const added = await api.items.changeQuantity(item, asked.rounds, { reason: L("BatchTitle") });
+    if (added) lines.push(F("BatchAdded", { rounds: added.to - added.from, total: added.to }));
+  }
   await say(actor, String(item.name ?? ""), lines, rolls);
 }
 

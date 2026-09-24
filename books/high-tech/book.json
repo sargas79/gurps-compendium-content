@@ -3257,6 +3257,34 @@
         "reason": "+2 to a rescuer's Vision roll (p. 58) (#363)"
       },
       {
+        "pattern": "^Signal Mirror$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.value": 88000
+        },
+        "reason": "seen over 50 miles away, in yards (p. 58) (#510)"
+      },
+      {
+        "pattern": "^Strobe Marker$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.value": 3520
+        },
+        "reason": "visible up to 2 miles away, in yards (p. 58) (#510)"
+      },
+      {
+        "pattern": "^Laser Rescue Flare$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.value": 17600
+        },
+        "reason": "seen by aircraft up to 10 miles away, in yards (p. 58) (#510)"
+      },
+      {
+        "pattern": "^Whistle$",
+        "set": {
+          "system.extensions.gurps-compendium-content.survival.kind": "whistle"
+        },
+        "reason": "heard on an unmodified Hearing roll at 128 yards (p. 58) (#510)"
+      },
+      {
         "pattern": "^(?:Life Jacket|Flotation Belt|Flotation Vest)$",
         "set": {
           "system.extensions.gurps-compendium-content.survival.kind": "lifeJacket"
@@ -5629,12 +5657,13 @@
         "system.extensions": {
           "gurps-compendium-content": {
             "htArmor": {
-              "coverage": 1
+              "coverage": 1,
+              "slamPads": true
             }
           }
         }
       },
-      "reason": "1 in 6 of the torso and of the arms (p. 66 note 4); partial coverage is #383's (p. 69)"
+      "reason": "1 in 6 of the torso and of the arms (p. 66 note 4); partial coverage is #383's (p. 69); +1 damage and DR 3 when slamming (p. 66 note 4; #510)"
     },
     {
       "pack": "equipment",

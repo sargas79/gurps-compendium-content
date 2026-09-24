@@ -62,18 +62,13 @@ export function isVehicle(doc: any): boolean {
   return doc.documentName === "Actor" ? doc.type === "vehicle" : doc.type === "equipment" && doc.system?.category === "vehicle";
 }
 
-/** Whether a seat in a vehicle's crew is this actor's. */
-function seatIs(seat: any, actor: any): boolean {
-  const uuid = String(seat?.uuid ?? "");
-  if (!uuid) return false;
-  return uuid === String(actor?.uuid ?? "") || (Boolean(actor?.id) && uuid.endsWith(`.${actor.id}`));
-}
-
-/** The vehicle actor whose crew this actor is in, or null. */
-export function vehicleAboard(actor: any): any | null {
+/**
+ * The vehicle actor whose crew this actor is in, or null, as the system
+ * reads it (API 1.141.0): a world vehicle's or an unlinked vehicle token's.
+ */
+export function vehicleAboard(api: GWorldApi, actor: any): any | null {
   if (!actor) return null;
-  const actors: any[] = [...((game as any).actors ?? [])];
-  return actors.find((v) => v?.type === "vehicle" && (v.system?.crew ?? []).some((seat: any) => seatIs(seat, actor))) ?? null;
+  return api.actors.vehicleAboard(actor)?.vehicle ?? null;
 }
 
 /** The actors in a vehicle's crew that can be found. */

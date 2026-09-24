@@ -268,13 +268,24 @@ describe("TL penalties as unfamiliarity (p. 11)", () => {
     expect(context.modifiers).toHaveLength(1);
   });
 
-  it("lifts a tool's TL line on a DX-based skill once the character knows one of the tools", () => {
+  it("lifts a tool's TL line on a DX-based skill once the character knows the tool picked for it (API 1.135.0)", () => {
     readyHighTechEquipment(fakeApi() as never, switches);
     on.familiarity = true;
     const canoe = gear({ name: "Dugout Canoe", system: { tl: "0", forSkills: ["Boating (Unpowered)"] } });
     const actor = { items: [canoe], system: { familiarities: ["Dugout Canoe"] } };
-    const context = fire("gworld.skillBonuses", { actor, item: { system: { attribute: "DX" } }, name: "Boating/TL6 (Unpowered)", lines: [{ key: "techLevel", value: -6 }] });
+    const context = fire("gworld.skillBonuses", { actor, item: { system: { attribute: "DX" } }, name: "Boating/TL6 (Unpowered)", tool: canoe, lines: [{ key: "techLevel", value: -6 }] });
     expect(context.lines.at(-1)).toMatchObject({ value: 6, source: MODULE_ID });
+  });
+
+  it("keeps the TL line where the tool picked is not the one the character knows", () => {
+    readyHighTechEquipment(fakeApi() as never, switches);
+    on.familiarity = true;
+    const canoe = gear({ name: "Dugout Canoe", system: { tl: "0", forSkills: ["Boating (Unpowered)"] } });
+    const raft = gear({ name: "Log Raft", system: { tl: "0", forSkills: ["Boating (Unpowered)"] } });
+    const actor = { items: [canoe, raft], system: { familiarities: ["Dugout Canoe"] } };
+    const lines = () => [{ key: "techLevel", value: -6 }];
+    expect(fire("gworld.skillBonuses", { actor, item: { system: { attribute: "DX" } }, name: "Boating/TL6 (Unpowered)", tool: raft, lines: lines() }).lines).toHaveLength(1);
+    expect(fire("gworld.skillBonuses", { actor, item: { system: { attribute: "DX" } }, name: "Boating/TL6 (Unpowered)", tool: null, lines: lines() }).lines).toHaveLength(1);
   });
 });
 

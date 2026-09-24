@@ -10,7 +10,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { resetStunners } from "../../../shared/stunners/index.js";
-import { readyHighTechMelee } from "./index.js";
+import { bowSound, readyHighTechMelee } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -312,6 +312,17 @@ describe("high-tech bows (p. 201)", () => {
     ]);
     expect(skilled.accuracy).toBe(4);
     expect(unskilled.accuracy).toBe(3);
+  });
+
+  it("offers a Hearing roll for a bow's or crossbow's shot: 4 or 8 yards, a bow's silencers -2 (pp. 158, 201)", () => {
+    const action = actions.get("ht-bow-heard");
+    const crossbow = weapon("Crossbow", { rangedModes: [{ skill: "Crossbow" }] }, { htWeapon: { silencers: true } });
+    expect(action.visible(longbow({}))).toBe(true);
+    expect(action.visible(crossbow)).toBe(true);
+    expect(action.visible(rifle())).toBe(false);
+    expect(bowSound(longbow({ silencers: true }))).toMatchObject({ heardAt: 4, lines: [{ value: -2 }] });
+    expect(bowSound(longbow({}))).toMatchObject({ heardAt: 4, lines: [] });
+    expect(bowSound(crossbow)).toMatchObject({ heardAt: 8, lines: [] });
   });
 
   it("gives a slingshot's metal shot +1 damage and double range", () => {

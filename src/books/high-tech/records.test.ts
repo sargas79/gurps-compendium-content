@@ -270,6 +270,12 @@ describe("High-Tech's gear captured from chapters 2 and 3 (#348)", () => {
     expect(sys("Pilot's Survival Vest")).toMatchObject({ forSkills: ["Survival (Jungle)"], equipmentQuality: "good" });
     expect(sys("Covert Survival Kit").forSkills).toEqual(["Survival (Woodlands)"]);
     for (const name of ["Life Jacket", "Flotation Belt", "Flotation Vest"]) expect(survival(name)?.kind, name).toBe("lifeJacket");
+    // The range each rescue signal is seen at, in yards, and the whistle heard at 128 (p. 58; #510).
+    expect(survival("Signal Mirror")).toMatchObject({ kind: "signal", value: 88000 });
+    expect(survival("Strobe Marker")).toMatchObject({ kind: "signal", value: 3520 });
+    expect(survival("Laser Rescue Flare")).toMatchObject({ kind: "signal", value: 17600 });
+    expect(survival("Hand Flare")).toEqual({ kind: "signal" });
+    expect(survival("Whistle")).toEqual({ kind: "whistle" });
     expect(survival("Parachute (TL6)")).toMatchObject({ kind: "parachute", maxLbs: 150, maxLbsTl7: 200, maxLbsTl8: 250, openingYards: 80, descent: 5 });
     expect(survival("Parachute (TL5)")).toMatchObject({ nausea: -4 });
     expect(survival("Mini-Parachute")).toMatchObject({ openingYards: 40 });

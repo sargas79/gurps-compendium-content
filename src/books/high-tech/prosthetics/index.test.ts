@@ -164,6 +164,20 @@ describe("elective surgery", () => {
     expect(posted[1].data.lines[0]).toContain("BuildChanged");
   });
 
+  it("adds a trait from Average and takes one away back to it, through changeTrait (API 1.124.0)", async () => {
+    const average = person([]);
+    await operateElectively(fakeApi() as never, { patient: average, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: true });
+    expect(changed[0]).toMatchObject({ actor: average, add: "Skinny" });
+    expect(posted[0].data.lines[0]).toContain("BuildChanged");
+    const heavy = person([item("Overweight", "trait")]);
+    await operateElectively(fakeApi() as never, { patient: heavy, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: true });
+    expect(changed[1]).toMatchObject({ actor: heavy, name: "Overweight", remove: true });
+    const plain = person([]);
+    await operateElectively(fakeApi() as never, { patient: plain, surgeon: { name: "Doc" }, techLevel: 8, procedure: "appearance" });
+    expect(changed[2]).toMatchObject({ actor: plain, add: "Appearance", level: 1 });
+    expect(posted[2].data.lines[0]).toContain("AppearanceChanged");
+  });
+
   it("records nothing on a failed roll, and nothing at all where the system rolled nothing", async () => {
     outcome = { success: false, margin: -3 };
     const pat = person([item("Fat", "trait")]);
@@ -201,7 +215,9 @@ describe("elective surgery", () => {
     expect(plan).toMatchObject({ from: "Average", to: "Overweight" });
     await cards.get("ht-elective-surgery").actions.worked.run({ message: "m", data: { ...posted[0].data, buttons: [{ action: "worked" }, { action: "failed" }] } });
     expect(updated[0].data.buttons).toEqual([]);
-    expect(updated[0].data.lines[0]).toContain("SetBuild");
+    // Average to Overweight: the trait added (API 1.124.0).
+    expect(updated[0].data.lines[0]).toContain("BuildChanged");
+    expect(changed.at(-1)).toMatchObject({ actor: pat, add: "Overweight" });
     expect(pat.getFlag(MODULE_ID, SURGERY_FLAG).operations[0]).toMatchObject({ procedure: "build", from: "Average", to: "Overweight" });
     await cards.get("ht-elective-surgery").actions.failed.run({ message: "m", data: posted[0].data });
     expect(updated[1].data.lines[0]).toBe("GCC.HT.Prosthetics.FailedNote.build");

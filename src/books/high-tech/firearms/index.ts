@@ -278,9 +278,10 @@ function traitsNamed(actor: any, name: RegExp): string[] {
  * which the technique's own levels are counted up from where no level is
  * worked out.
  */
-export function techniqueRelative(api: GWorldApi, actor: any, skill: string, name: RegExp = /^immediate action\b/i, penalty = IMMEDIATE_ACTION_PENALTY): number | null {
+export function techniqueRelative(api: GWorldApi, actor: any, skill: string, name: RegExp = /^immediate action\b/i, penalty = IMMEDIATE_ACTION_PENALTY, accept: (technique: any) => boolean = () => true): number | null {
   const technique = [...(actor?.items ?? [])].find((i: any) => i?.type === "technique"
     && name.test(String(i.name ?? ""))
+    && accept(i)
     && (specialtyCovers(String(i.system?.prerequisite ?? ""), skill) || specialtyCovers(/^[^(]*\((.*)\)\s*$/.exec(String(i.name ?? ""))?.[1] ?? "", skill)));
   if (!technique) return null;
   const level = technique.system?.derived?.level;
