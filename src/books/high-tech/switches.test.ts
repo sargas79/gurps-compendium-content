@@ -126,6 +126,11 @@ const SHOWN_ELSEWHERE: Record<string, string> = {
   // penalty, in the Hearing roll's dialog, so it needs the suppressors switch
   // and a suppressor on the gun.
   cinematicSilencers: "accessories/index.test.ts: doubles or triples the penalty for a cinematic silencer",
+  // The supplement Electricity and Electronics' antennas and shortwave are
+  // options on High-Tech's radios, priced and read in the radio range tool,
+  // so they need the radios switch (HT:EE pp. 28, 30).
+  radioAntennas: "sensors/index.test.ts: offers and prices the dipole and directional antenna, and multiplies the link",
+  shortwaveSkip: "sensors/index.test.ts: offers shortwave, and skips between shortwave sets",
 };
 
 // ── a stand-in for the system ────────────────────────────────────────────────
@@ -497,7 +502,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   it("reads the book's records and its switches, and nothing else registers", async () => {
     expect(docs.length).toBeGreaterThan(1400);
-    expect(switches()).toHaveLength(121);
+    expect(switches()).toHaveLength(124);
     on = new Set();
     baseOffered = await offered();
   });

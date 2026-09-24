@@ -78,6 +78,22 @@ export interface CommPair {
   b: { item: any; comm: Comm };
 }
 
+/** What the comm tool knows when it asks a book about a pair. */
+export interface CommContext {
+  api: GWorldApi;
+  /** The distance between the two characters, in yards. */
+  yards: number;
+  /** The answers to the book's own rows (`commFields`). */
+  answers: Record<string, unknown>;
+}
+
+/** A book's own reading of whether a pair's signal comes through (see `reception`). */
+export interface CommReception {
+  lines: string[];
+  /** The roll the listener (the selected character) makes, or null for none. */
+  roll: { label: string; skill: string; modifiers: Array<{ label: string; value: number }>; tags: string[] } | null;
+}
+
 /** A book's figures and readings for its comms and sensors. */
 export interface SensorFigures {
   /** Every option its sheets offer, each a boolean field. */
@@ -94,8 +110,22 @@ export interface SensorFigures {
   sheet(item: any, data: SensorData, on: SensorParts): { lines: string[]; modes: boolean; options: string[] } | null;
   /** What the options do to price and weight, as factors, or null for nothing. */
   price(item: any, data: SensorData, on: SensorParts): { cost: number; weight: number } | null;
-  /** The range between a pair of the book's comms of one family, and lines to say about it after the cuts. */
-  pairRange(pair: CommPair): { range: number; lines: string[] };
+  /**
+   * The range between a pair of the book's comms of one family, and lines to
+   * say about it after the cuts, with what the book's own rows in the comm
+   * tool's dialog were answered (`commFields`). It may roll first (aiming an
+   * antenna), so it may be a promise.
+   */
+  pairRange(pair: CommPair, context?: CommContext): { range: number; lines: string[] } | Promise<{ range: number; lines: string[] }>;
+  /** Rows of the book's own the comm tool asks for a pair, and how to read them, or null for none. */
+  commFields?(pair: CommPair): { html: string; read(form: HTMLElement): Record<string, unknown> } | null;
+  /**
+   * The roll to pick up the signal, where the book prints its own in place of
+   * stretching the range: given the distance, the pair's range after the cuts
+   * and the stretch penalty (null past double), whether it reaches, lines to
+   * say, and the roll to make; or null to stretch as the shared rule does.
+   */
+  reception?(pair: CommPair, context: CommContext & { range: number; stretch: number | null }): CommReception | null;
   /** Data rates the comm tool offers, as fractions of full speed, where the book prints the rule on the comm tool. */
   dataRates?: readonly number[];
   /** Other things the comm tool checks between the two characters: each returns its lines once the distance is known. */

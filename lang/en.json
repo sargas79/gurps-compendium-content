@@ -5069,7 +5069,7 @@
         },
         "radios": {
           "Name": "Radios and telegraphy",
-          "Hint": "A radio's range by size and TL on its sheet (large, medium, small, tiny), and a GM tool for whether two characters' radios reach each other: the shorter range times 3, 10 or 30 as the other radio is one to three sizes larger, a tenth in a city or underground and again for live video, 2, 10 or 100 times for slowed data, and Electronics Operation (Communications) at -1 per 10% to stretch it to double. Radio options priced (code-only x0.5, direction finder x5, intercept x5, radiotelephone x1.5, receive-only 10% cost and 20% weight, ECCM x2, GPS x2, satellite uplink x2 on medium and large, a long antenna doubling range for a quarter more); a transmitting radio is detected at twice its range, 1.5 times with ECCM. Row buttons for a direction finder's Quick Contest (a margin of 5 gives an exact fix), an intercept, and telegraphy: sending or reading, recognizing a fist, faking one at -6, tapping a line (a Quick Contest from TL6), all at -4 when enciphered. The pocket laser communicator's two beams and the military diver communicator (High-Tech pp. 36-40)."
+          "Hint": "A radio's range by size and TL on its sheet (large, medium, small, tiny), and a GM tool for whether two characters' radios reach each other: two different radios reaching the square root of the product of their ranges, as the supplement Electricity and Electronics revises the rule (p. 28), a tenth in a city or underground and again for live video, 2, 10 or 100 times for slowed data, and Electronics Operation (Communications) at -1 per 10% to stretch it to double. Radio options priced (code-only x0.5, direction finder x5, intercept x5, radiotelephone x1.5, receive-only 10% cost and 20% weight, ECCM x2, GPS x2, satellite uplink x2 on medium and large, a long antenna doubling the link's range for a quarter more); a transmitting radio is detected at twice its range, 1.5 times with ECCM. Row buttons for a direction finder's Quick Contest (a margin of 5 gives an exact fix), an intercept, and telegraphy: sending or reading, recognizing a fist, faking one at -6, tapping a line (a Quick Contest from TL6), all at -4 when enciphered. The pocket laser communicator's two beams and the military diver communicator (High-Tech pp. 36-40; Electricity and Electronics p. 28)."
         },
         "activeSensors": {
           "Name": "Active sensors",
@@ -5082,6 +5082,18 @@
         "passiveSensors": {
           "Name": "Hydrophones and sound detectors",
           "Hint": "A hydrophone's row button rolls Electronics Operation (Sonar) with its bonus (+4 large, +2 medium, +2 per TL after its introduction), the target's size and speed and the range and current's penalties from the Size and Speed/Range Table; success fixes the target, +3 to hit it with an aimed attack (not a search hydrophone, a tenth the price) and +4 to shadow it. Sound-detection gear gives +4 to identify a sound, or rolls to locate one by miles and decibels with the ambient noise. A worn directional microphone is Parabolic Hearing 2 (TL7) or 3 (TL8) (High-Tech pp. 48-50)."
+        },
+        "radioTuning": {
+          "Name": "Radio tuning and interference",
+          "Hint": "The tuning roll to pick up a faint signal or one through interference, from the supplement Electricity and Electronics: Electronics Operation (Communications) at -1 per 10% past the standard range, -1 to -10 for interference (-10 blocks the signal) or up to +4 for a strong, clear one, the listener's Hearing modifiers, or +1 in their place with a galvanometer, and +4 for a software-defined radio (the radio peripheral, 35 miles). A clear signal in range needs no roll. A coil-tuned set drifts, so the listener rolls again every 10 minutes; a TL6 set is taken to be coil-tuned. In the radio range tool and as a row button on a radio (Electricity and Electronics pp. 27, 29-30)."
+        },
+        "radioAntennas": {
+          "Name": "Radio antennas",
+          "Hint": "Needs Radios and telegraphy. The antennas from the supplement Electricity and Electronics as radio options beside the long antenna (the quarter-wave monopole, x2): a half-wave dipole, x1.5 broadside to its wires and nothing off their ends, +10% cost and weight (TL6); a directional antenna, x10 in a narrow beam once aimed with an Electronics Operation (Communications) roll, which TL8 aiming software makes for a known transmitter, +50% cost and weight (TL7). An antenna at either end multiplies the link; at both ends, both count (Electricity and Electronics p. 28)."
+        },
+        "shortwaveSkip": {
+          "Name": "Shortwave skip",
+          "Hint": "Needs Radios and telegraphy. A shortwave option on radios from TL6, at no extra cost, from the supplement Electricity and Electronics: two shortwave sets skip a signal off the upper atmosphere, 2,000 miles a skip and -1 to Electronics Operation (Communications) for each further skip, six reaching anywhere on Earth, with -2 for each of an unfavourable time of day, summer and a solar flare. The transmitter needs a large antenna (Electricity and Electronics p. 30)."
         },
         "rangefindingEmissions": {
           "Name": "Active rangefinding (Electricity and Electronics)",
@@ -7324,7 +7336,7 @@
         "SatelliteUplinkLabel": "Satellite uplink",
         "SatelliteUplinkHint": "Reaches any other radio in the world by satellite. Medium and large radios only, from TL8; twice the cost (High-Tech p. 39).",
         "LongAntennaLabel": "Long-range antenna",
-        "LongAntennaHint": "Doubles the radio's range; 5 minutes to erect and an Electronics Operation (Communications) roll to set up. A quarter of the radio's cost and weight (High-Tech p. 39).",
+        "LongAntennaHint": "Doubles the range of the radio's links; 5 minutes to erect and an Electronics Operation (Communications) roll to set up. A quarter of the radio's cost and weight (High-Tech p. 39; the quarter-wave monopole, Electricity and Electronics p. 28).",
         "WideBeamLabel": "Wide beam",
         "WideBeamHint": "Broadcasts rather than beaming: half a mile, no line of sight needed indoors, but it can be intercepted (High-Tech p. 40).",
         "MilitaryLabel": "Military version",
@@ -7342,9 +7354,9 @@
         "SearchLabel": "Search hydrophone",
         "SearchHint": "A simple hydrophone for research, fishing or perimeter watch: a tenth of the cost, LC4, and no +3 to hit (High-Tech p. 49).",
         "TelegraphLine": "Messages go in code: Electronics Operation (Communications) to send or read one; a failure isn't understood, a critical failure is badly misunderstood. Enciphered messages are at -4 (High-Tech p. 36).",
-        "RadioRange": "Range {range} at TL{tl} to a radio of the same size; from the shorter range, x3, x10 or x30 to a radio one to three sizes larger.",
+        "RadioRange": "Range {range} at TL{tl} to a radio of the same range; to a different one, the square root of the product of the two ranges (Electricity and Electronics p. 28).",
         "LargeSetUp": "Setting up takes about 15 minutes and an Electronics Operation (Communications) roll.",
-        "LongAntennaLine": "Long antenna: range doubled.",
+        "LongAntennaLine": "Long antenna: the link's range doubled.",
         "UplinkLine": "Satellite uplink: reaches any radio in the world.",
         "Detected": "Its transmissions can be detected out to {range}.",
         "RadioInUse": "Stretching range: Electronics Operation (Communications) at -1 per 10% added, to double. A tenth of the range in a city or underground, and a tenth again for live video.",
@@ -7521,7 +7533,65 @@
         "EmissionsOut": "Beyond {range}: too far to detect its emissions.",
         "EmissionLine": "Past twice its range",
         "DwellBonus": "Its operator dwells {time} times as long",
-        "DetectorSkill": "Detector's skill"
+        "DetectorSkill": "Detector's skill",
+        "DipoleAntennaLabel": "Half-wave dipole",
+        "DipoleAntennaHint": "Two long wires strung out: x1.5 range broadside to them, nothing off their ends. +10% cost and weight (Electricity and Electronics p. 28).",
+        "DirectionalAntennaLabel": "Directional antenna",
+        "DirectionalAntennaHint": "A Yagi or a dish: x10 range in a narrow beam, once aimed with an Electronics Operation (Communications) roll; at TL8, software aims it at a known transmitter. +50% cost and weight (Electricity and Electronics p. 28).",
+        "ShortwaveLabel": "Shortwave",
+        "ShortwaveHint": "Skips off the upper atmosphere to another shortwave set: 2,000 miles a skip, -1 each further skip; needs a large antenna to transmit. No change to cost or weight (Electricity and Electronics p. 30).",
+        "DipoleLine": "Dipole: x{factor} broadside to its wires, no signal off their ends.",
+        "DirectionalLine": "Directional antenna: x{factor} in a narrow beam once aimed (an Electronics Operation (Communications) roll).",
+        "DirectionalLineAuto": "Directional antenna: x{factor} in a narrow beam; aiming software holds a known transmitter.",
+        "ShortwaveLine": "Shortwave: skips 2,000 miles at a time to another shortwave set, -1 each further skip.",
+        "ShortwaveNoAntenna": "Shortwave: receives skipped signals, but needs a large antenna (long, dipole or directional) to transmit.",
+        "TuningLine": "Tuning: a roll to pick up a faint signal or one through interference.",
+        "TuningDrift": "Tuning: a roll to pick up a faint signal or one through interference; a coil-tuned set drifts, calling for another every {minutes} minutes.",
+        "PeripheralRange": "A computer as a software-defined radio: range {range}.",
+        "EnhancedTuningLine": "Enhanced tuning: +{bonus} to the tuning roll.",
+        "DipoleBearing": "{name}: the other set lies",
+        "Bearing": {
+          "broadside": "Broadside to the dipole",
+          "endOn": "Off the dipole's ends"
+        },
+        "AimAntenna": "Aim {name}'s directional antenna (a roll)",
+        "Conditions": "Interference or signal",
+        "ConditionsNone": "Ordinary",
+        "ConditionsBlocked": "{value} (blocked)",
+        "Galvanometer": "A galvanometer on the set",
+        "Drift": "Coil-tuned (another roll every {minutes} minutes)",
+        "Skip": {
+          "timeOfDay": "Shortwave: unfavourable time of day (-2)",
+          "summer": "Shortwave: summer (-2)",
+          "solarFlare": "Shortwave: solar flare (-2)"
+        },
+        "DipoleBroadside": "{name}: broadside to its dipole, x{factor}.",
+        "DipoleEndOn": "{name}: off the ends of its dipole, which sends nothing that way.",
+        "AutoAimed": "{name}: aiming software holds the directional antenna on target, x{factor}.",
+        "AimLabel": "Aiming {name}'s directional antenna",
+        "Aimed": "{name}: directional antenna on target, x{factor}.",
+        "AimMissed": "{name}: the directional antenna is off target.",
+        "NotAimed": "{name}: the directional antenna isn't aimed at the other set.",
+        "NoLargeAntenna": "{name} has no large antenna to transmit on shortwave: no skip.",
+        "SkipLine": "Shortwave: {skips} skip(s) off the upper atmosphere.",
+        "DriftLine": "Coil-tuned: the set drifts, and the listener rolls again every {minutes} minutes.",
+        "ClearSignal": "A clear signal in range: no tuning roll needed.",
+        "Blocked": "Interference blocks the signal completely.",
+        "TuningLabel": "Tuning in: {name}",
+        "Tuning": {
+          "range": "-1 per 10% past the standard range",
+          "conditions": "Interference or signal",
+          "hearing": "Hearing modifiers",
+          "galvanometer": "Galvanometer",
+          "enhanced": "Software-defined radio",
+          "skips": "Further skips",
+          "timeOfDay": "Unfavourable time of day",
+          "summer": "Summer",
+          "solarFlare": "Solar flare"
+        },
+        "TuneButton": "Tune in",
+        "TuneTitle": "Tune in: {name}",
+        "SignalRange": "The signal's standard range (yards)"
       },
       "Survival": {
         "Title": "Survival gear",

@@ -12,7 +12,22 @@
  *     receive-only, ECCM, GPS, uplink, long antenna), and the pocket laser
  *     and diver communicators; a row button for telegraphy -- sending,
  *     enciphering, recognizing and faking a fist, tapping a line -- and for a
- *     direction finder's fix and an intercept (pp. 36-40).
+ *     direction finder's fix and an intercept (pp. 36-40). Two different
+ *     radios reach the square root of the product of their ranges, as the
+ *     supplement Electricity and Electronics revises the rule (HT:EE p. 28),
+ *     and an antenna at either end multiplies the link.
+ *   - **radioTuning** (HT:EE pp. 27, 29-30): the tuning roll to pick up a
+ *     faint signal or one through interference -- the range past standard,
+ *     interference or good conditions, the listener's Hearing modifiers or a
+ *     galvanometer, a software-defined radio's +4 -- in the comm tool and as
+ *     a row button, and a coil-tuned set's drift; the radio peripheral.
+ *   - **radioAntennas** (HT:EE p. 28): the dipole and the directional
+ *     antenna beside High-Tech's long antenna (the monopole), priced, and in
+ *     the comm tool the dipole's bearing and the aiming roll.
+ *   - **shortwaveSkip** (HT:EE p. 30): the shortwave option, and in the comm
+ *     tool a signal skipping off the upper atmosphere: 2,000 miles a skip,
+ *     -1 each further skip, -2 for each of a bad time of day, summer and a
+ *     solar flare.
  *   - **activeSensors:** sonar, radar, GPR and thru-wall radar by TL, their
  *     modes priced, and a sweep at -2 per doubling past range, within the
  *     sensor's arc, with sonar's noise, a GPR's medium, and the Quick Contest
@@ -59,8 +74,27 @@ import {
   yardsBetween,
   type SensorTable,
 } from "../../../shared/sensors/index.js";
-import type { Comm, CommPair, SensorData, SensorFigures, SensorParts, SweepContext, WornSenses } from "../../../shared/sensors/data.js";
-import { activeRangePenalty, emissionDetectionRange, slowedRangeFactor, type CommMode } from "../../../shared/sensors/rules.js";
+import type { Comm, CommContext, CommPair, CommReception, SensorData, SensorFigures, SensorParts, SweepContext, WornSenses } from "../../../shared/sensors/data.js";
+import { activeRangePenalty, emissionDetectionRange, rangeExtensionModifier, slowedRangeFactor, type CommMode } from "../../../shared/sensors/rules.js";
+import {
+  ANTENNAS,
+  CONDITIONS,
+  DRIFT_MINUTES,
+  INTERFERENCE,
+  RADIO_PERIPHERALS,
+  SKIP_CONDITIONS,
+  aimsItself,
+  antennaFactor,
+  driftsByDefault,
+  hasLargeAntenna,
+  skipApplies,
+  skipLines,
+  skipsFor,
+  tuningRoll,
+  type AntennaKey,
+  type AntennaSetting,
+  type SkipCondition,
+} from "./reception.js";
 import {
   ACTIVE_SENSORS,
   COUNTERMEASURES,
@@ -115,7 +149,7 @@ const signed = (value: number) => (value > 0 ? `+${value}` : String(value));
 const COMM = "Electronics Operation (Communications)";
 const EW = "Electronics Operation (EW)";
 
-/** The book's four switches, as full keys. */
+/** The book's switches, as full keys: its four, and the three the supplement Electricity and Electronics adds to its radios. */
 export interface SensorSwitches {
   radios: string;
   activeSensors: string;
@@ -123,6 +157,9 @@ export interface SensorSwitches {
   passiveSensors: string;
   /** The supplement's refinements to the active sensors (HT:EE p. 35). */
   rangefindingEmissions?: string;
+  radioTuning?: string;
+  radioAntennas?: string;
+  shortwaveSkip?: string;
 }
 
 /** The supplement's rangefinding switch's full key, once registered. */
@@ -132,16 +169,39 @@ const rangefindingOn = () => rangefindingKey !== null && isRuleOn(rangefindingKe
 /** A sensor whose emissions a detector can pick up: sonar and radar (High-Tech p. 45; HT:EE p. 35). */
 const emits = (figures: ActiveFigures | undefined) => figures?.kind === "sonar" || figures?.kind === "radar";
 
+/** The supplement's radio switches, as full keys, once the table is built. */
+const SUPPLEMENT = { tuning: "", antennas: "", shortwave: "" };
+const supplementOn = (part: keyof typeof SUPPLEMENT) => Boolean(SUPPLEMENT[part]) && isRuleOn(SUPPLEMENT[part]);
+
 const nameOf = (item: any) => String(item?.name ?? "").trim();
 
 /** The radio a record is, at its TL. */
 const radioOf = (item: any) => radioByName(nameOf(item), itemTl(item));
+
+/** The radio peripheral a record is: a computer as a software-defined radio (HT:EE p. 30). */
+const peripheralOf = (item: any) => RADIO_PERIPHERALS[nameOf(item)] ?? null;
+
+/** The antennas a radio was built with that count: the long antenna under `radios`, the dipole and directional antenna under `radioAntennas` from their TLs (HT:EE p. 28). */
+function antennasOf(item: any, data: SensorData = sensorData(item)): Partial<Record<AntennaKey, boolean>> {
+  const tl = itemTl(item);
+  const more = supplementOn("antennas");
+  return {
+    longAntenna: data.options.longAntenna === true,
+    dipoleAntenna: more && tl >= ANTENNAS.dipoleAntenna.tl && data.options.dipoleAntenna === true,
+    directionalAntenna: more && tl >= ANTENNAS.directionalAntenna.tl && data.options.directionalAntenna === true,
+  };
+}
+
+/** A shortwave set, where the switch is on (HT:EE p. 30). */
+const isShortwave = (item: any, data: SensorData = sensorData(item)) => supplementOn("shortwave") && Boolean(radioOf(item)) && itemTl(item) >= 6 && data.options.shortwave === true;
 
 /** A comm's range in yards, with the options that change it: a long antenna's double, the laser's wide beam, the military divecom (pp. 39-40). */
 function commOfItem(item: any): Comm | null {
   const data = sensorData(item);
   const radio = radioOf(item);
   if (radio) return { family: "radio", size: radio.size, range: radio.range, cuts: "radio" };
+  const peripheral = peripheralOf(item);
+  if (peripheral) return { family: "radio", size: "medium", range: peripheral.range, cuts: "radio" };
   const other = OTHER_COMMS[nameOf(item)];
   if (!other) return null;
   let range = other.range;
@@ -168,7 +228,7 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
   if (radio) {
     const antenna = data.options.longAntenna;
     const range = comm.range * (antenna ? 2 : 1);
-    lines.push(F("RadioRange", { range: distance(range), tl: radio.tl }));
+    lines.push(F("RadioRange", { range: distance(comm.range), tl: radio.tl }));
     if (radio.size === "large") lines.push(L("LargeSetUp"));
     if (antenna) lines.push(L("LongAntennaLine"));
     if (data.options.satelliteUplink) lines.push(L("UplinkLine"));
@@ -183,7 +243,13 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
     if (data.options.radiotelephone) lines.push(L("RadiotelephoneLine"));
     if (data.commMode) lines.push(L(`CommMode.${data.commMode}`));
     options.push(...radioOptions(radio.size, tl));
+    supplementLines(item, data, lines, options);
     return true;
+  }
+  if (peripheralOf(item)) {
+    lines.push(F("PeripheralRange", { range: distance(comm.range) }));
+    if (supplementOn("tuning")) lines.push(F("EnhancedTuningLine", { bonus: 4 }));
+    return false;
   }
   lines.push(F(comm.family === "laser" ? "LaserRange" : "DivecomRange", { range: distance(comm.range) }));
   if (comm.family === "laser") {
@@ -194,6 +260,23 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
     options.push("military");
   }
   return false;
+}
+
+/** What the supplement's switches add to a radio's sheet: its antennas, shortwave and tuning (HT:EE pp. 28-30). */
+function supplementLines(item: any, data: SensorData, lines: string[], options: string[]): void {
+  const tl = itemTl(item);
+  if (supplementOn("antennas")) {
+    const has = antennasOf(item, data);
+    if (tl >= ANTENNAS.dipoleAntenna.tl) options.push("dipoleAntenna");
+    if (tl >= ANTENNAS.directionalAntenna.tl) options.push("directionalAntenna");
+    if (has.dipoleAntenna) lines.push(F("DipoleLine", { factor: ANTENNAS.dipoleAntenna.range }));
+    if (has.directionalAntenna) lines.push(F(aimsItself(tl) ? "DirectionalLineAuto" : "DirectionalLine", { factor: ANTENNAS.directionalAntenna.range }));
+  }
+  if (supplementOn("shortwave") && tl >= 6) {
+    options.push("shortwave");
+    if (isShortwave(item, data)) lines.push(L(hasLargeAntenna(antennasOf(item, data)) ? "ShortwaveLine" : "ShortwaveNoAntenna"));
+  }
+  if (supplementOn("tuning")) lines.push(driftsByDefault(tl) ? F("TuningDrift", { minutes: DRIFT_MINUTES }) : L("TuningLine"));
 }
 
 function activeLines(item: any, data: SensorData, lines: string[], options: string[]): void {
@@ -296,6 +379,13 @@ function price(item: any, data: SensorData, on: SensorParts): { cost: number; we
       cost *= RADIO_OPTIONS[key]!.cost;
       weight *= RADIO_OPTIONS[key]!.weight ?? 1;
     }
+    // The dipole and the directional antenna: a tenth and a half more cost and weight (HT:EE p. 28).
+    const has = antennasOf(item, data);
+    for (const key of ["dipoleAntenna", "directionalAntenna"] as const) {
+      if (!has[key]) continue;
+      cost *= ANTENNAS[key].cost;
+      weight *= ANTENNAS[key].weight;
+    }
     if (data.commMode === "receiver") {
       cost *= 0.1;
       weight *= 0.2;
@@ -341,22 +431,179 @@ function senses(item: any, _actor: any, data: SensorData, on: SensorParts): Worn
   return levels ? { parabolicHearing: levels } : null;
 }
 
-/** Two comms' range (p. 38), with the lines about how each was built. */
-function pairRange({ a, b }: CommPair): { range: number; lines: string[] } {
+/** What the listener hears with beyond the set: Hearing modifiers (p. B358), as their Hearing score over Perception. */
+function hearingModifier(api: GWorldApi, actor: any): number {
+  const derived: any = api.actors.derived?.(actor) ?? null;
+  const per = Number(derived?.per);
+  const hearing = Number((derived?.senses ?? []).find((s: any) => s?.sense === "hearing")?.score);
+  return Number.isFinite(per) && Number.isFinite(hearing) ? hearing - per : 0;
+}
+
+/** A character carries a galvanometer to watch a signal's strength (HT:EE pp. 10-11, 29). */
+const carriesGalvanometer = (actor: any) => [...(actor?.items ?? [])].some((i: any) => carried(i) && /^galvanometer\b/i.test(nameOf(i)));
+
+/**
+ * One end's antennas as set for a link (HT:EE p. 28): the dipole's bearing
+ * from the dialog, and the directional antenna aimed -- by aiming software at
+ * TL8, or by an Electronics Operation (Communications) roll its owner makes.
+ */
+async function antennaSetting(item: any, side: "a" | "b", context: CommContext | undefined, lines: string[]): Promise<AntennaSetting> {
+  const has = antennasOf(item);
+  const setting: AntennaSetting = {};
+  if (has.dipoleAntenna) {
+    setting.dipole = context?.answers?.[`dipole-${side}`] === "endOn" ? "endOn" : "broadside";
+    lines.push(F(setting.dipole === "endOn" ? "DipoleEndOn" : "DipoleBroadside", { name: item.name, factor: ANTENNAS.dipoleAntenna.range }));
+  }
+  if (has.directionalAntenna) {
+    if (aimsItself(itemTl(item))) {
+      setting.aimed = true;
+      lines.push(F("AutoAimed", { name: item.name, factor: ANTENNAS.directionalAntenna.range }));
+    } else if (context && context.answers?.[`aim-${side}`] === true) {
+      const owner = item.actor ?? null;
+      const result: any = owner ? await context.api.roll.success({ actor: owner, base: skillBase(context.api, owner, COMM), skill: COMM, label: F("AimLabel", { name: item.name }), tags: ["antennaAim"] } as any) : null;
+      setting.aimed = result?.success === true;
+      lines.push(F(setting.aimed ? "Aimed" : "AimMissed", { name: item.name, factor: ANTENNAS.directionalAntenna.range }));
+    } else lines.push(F("NotAimed", { name: item.name }));
+  }
+  return setting;
+}
+
+/**
+ * Two comms' range, with the lines about how each was built: two radios by
+ * the supplement's square root of the product (HT:EE p. 28, in place of
+ * High-Tech p. 38), each end's antennas multiplying the link; two of the
+ * other comms, alike in size, by the shorter range (p. 38).
+ */
+async function pairRange({ a, b }: CommPair, context?: CommContext): Promise<{ range: number; lines: string[] }> {
   const da = sensorData(a.item);
   const db = sensorData(b.item);
   const radio = a.comm.family === "radio";
-  const side = (item: any, comm: Comm, data: SensorData) => ({
-    size: comm.size,
-    range: comm.range ?? 0,
-    longAntenna: radio && data.options.longAntenna === true,
-    satelliteUplink: radio && data.options.satelliteUplink === true,
-  });
-  const range = radioPairRange(side(a.item, a.comm, da), side(b.item, b.comm, db));
   const lines: string[] = [];
+  let range: number;
+  if (radio) {
+    const side = async (item: any, comm: Comm, data: SensorData, key: "a" | "b") => ({
+      size: comm.size,
+      range: comm.range ?? 0,
+      satelliteUplink: data.options.satelliteUplink === true && Boolean(radioOf(item)),
+      antenna: antennaFactor(antennasOf(item, data), await antennaSetting(item, key, context, lines)),
+    });
+    range = radioPairRange(await side(a.item, a.comm, da, "a"), await side(b.item, b.comm, db, "b"));
+  } else {
+    range = Math.min(a.comm.range ?? 0, b.comm.range ?? 0);
+  }
   if (!Number.isFinite(range)) lines.push(L("UplinkReach"));
+  // A shortwave transmitter needs a large antenna to skip (HT:EE p. 30).
+  if (radio && isShortwave(a.item, da) && isShortwave(b.item, db) && !canSkip(a.item, b.item)) lines.push(F("NoLargeAntenna", { name: b.item.name }));
   for (const [item, data] of [[a.item, da], [b.item, db]] as const) if (data.commMode === "receiver") lines.push(F("ReceiveOnly", { name: item.name }));
   return { range, lines };
+}
+
+/** The comm tool's rows for the supplement's rules: each dipole's bearing, aiming each directional antenna, the tuning roll's conditions, shortwave's (HT:EE pp. 27-30). */
+function commFields({ a, b }: CommPair): { html: string; read(form: HTMLElement): Record<string, unknown> } | null {
+  if (a.comm.family !== "radio") return null;
+  let html = "";
+  for (const [key, item] of [["a", a.item], ["b", b.item]] as const) {
+    const has = antennasOf(item);
+    if (has.dipoleAntenna) html += row(F("DipoleBearing", { name: item.name }), `<select name="dipole-${key}"><option value="broadside">${esc(L("Bearing.broadside"))}</option><option value="endOn">${esc(L("Bearing.endOn"))}</option></select>`);
+    if (has.directionalAntenna && !aimsItself(itemTl(item))) html += row(F("AimAntenna", { name: item.name }), `<input type="checkbox" name="aim-${key}" checked />`);
+  }
+  const tuning = supplementOn("tuning");
+  if (tuning) {
+    html += row(L("Conditions"), `<select name="conditions">${CONDITIONS.map((c) => `<option value="${c}" ${c === 0 ? "selected" : ""}>${esc(c === 0 ? L("ConditionsNone") : c === INTERFERENCE.worst ? F("ConditionsBlocked", { value: c }) : (c > 0 ? `+${c}` : String(c)))}</option>`).join("")}</select>`)
+      + row(L("Galvanometer"), `<input type="checkbox" name="galvanometer" ${carriesGalvanometer(a.item.actor) ? "checked" : ""} />`)
+      + row(F("Drift", { minutes: DRIFT_MINUTES }), `<input type="checkbox" name="drift" ${driftsByDefault(itemTl(a.item)) && !peripheralOf(a.item) ? "checked" : ""} />`);
+  }
+  const shortwave = isShortwave(a.item) && isShortwave(b.item);
+  if (shortwave) for (const c of SKIP_CONDITIONS) html += row(L(`Skip.${c}`), `<input type="checkbox" name="skip-${c}" />`);
+  if (!html) return null;
+  return {
+    html,
+    read: (form) => {
+      const value = (name: string) => form.querySelector<HTMLInputElement | HTMLSelectElement>(`[name="${name}"]`);
+      const checked = (name: string) => (value(name) as HTMLInputElement | null)?.checked === true;
+      const answers: Record<string, unknown> = {
+        "dipole-a": value("dipole-a")?.value ?? "broadside",
+        "dipole-b": value("dipole-b")?.value ?? "broadside",
+        "aim-a": checked("aim-a"),
+        "aim-b": checked("aim-b"),
+      };
+      if (tuning) Object.assign(answers, { conditions: Number(value("conditions")?.value) || 0, galvanometer: checked("galvanometer"), drift: checked("drift") });
+      if (shortwave) answers.skip = Object.fromEntries(SKIP_CONDITIONS.map((c) => [c, checked(`skip-${c}`)]));
+      return answers;
+    },
+  };
+}
+
+/** What goes into picking up a signal on a set, whichever way it's asked for. */
+interface Listening {
+  api: GWorldApi;
+  actor: any;
+  item: any;
+  yards: number;
+  /** The signal's standard range here, in yards, after the cuts. */
+  range: number;
+  conditions: number;
+  galvanometer: boolean;
+  drift: boolean;
+  /** Shortwave's conditions, where both ends are shortwave and the transmitter has a large antenna; null otherwise. */
+  skip: Partial<Record<SkipCondition, boolean>> | null;
+}
+
+/**
+ * Picking up a signal (HT:EE pp. 27, 29-30): by its ground range, or where
+ * both sets are shortwave, by skipping off the upper atmosphere if that is
+ * better; the tuning roll where `radioTuning` is on, or shortwave's penalties
+ * alone where only `shortwaveSkip` is. Null where neither switch has
+ * anything to say, so the shared stretch applies.
+ */
+function listen(input: Listening): CommReception | null {
+  const tuning = supplementOn("tuning");
+  const stretch = Number.isFinite(input.range) ? rangeExtensionModifier(input.yards, input.range) : 0;
+  const skipped = input.skip ? skipLines(input.yards, input.skip) : null;
+  const skip = skipped && Number.isFinite(input.range) && skipApplies(input.yards, input.range, stretch, skipped) ? skipped : undefined;
+  if (!tuning && !skip) return null;
+  const lines: string[] = [];
+  if (skip) lines.push(F("SkipLine", { skips: skipsFor(input.yards) }));
+  const roll = tuningRoll({
+    rangeModifier: stretch,
+    conditions: tuning ? input.conditions : 0,
+    hearing: tuning ? hearingModifier(input.api, input.actor) : 0,
+    galvanometer: tuning && input.galvanometer,
+    enhanced: tuning && Boolean(peripheralOf(input.item)),
+    ...(skip ? { skip } : {}),
+  });
+  if (!roll) {
+    lines.push(L(tuning && input.conditions <= INTERFERENCE.worst ? "Blocked" : "OutOfRange"));
+    return { lines, roll: null };
+  }
+  if (tuning && input.drift) lines.push(F("DriftLine", { minutes: DRIFT_MINUTES }));
+  if (!roll.needed) {
+    lines.push(L("ClearSignal"));
+    return { lines, roll: null };
+  }
+  const modifiers = roll.lines.map((l) => ({ label: L(`Tuning.${l.key}`), value: l.value }));
+  return { lines, roll: { label: F("TuningLabel", { name: input.item.name }), skill: COMM, modifiers, tags: ["radioTuning"] } };
+}
+
+/** Whether a shortwave link can skip: both sets shortwave, and the transmitter with a large antenna (HT:EE p. 30). */
+function canSkip(listener: any, transmitter: any): boolean {
+  return isShortwave(listener) && isShortwave(transmitter) && hasLargeAntenna(antennasOf(transmitter));
+}
+
+/** The comm tool's roll to pick up the signal, where the supplement's switches print one (HT:EE pp. 27-30). */
+function reception({ a, b }: CommPair, context: CommContext & { range: number; stretch: number | null }): CommReception | null {
+  if (a.comm.family !== "radio") return null;
+  return listen({
+    api: context.api,
+    actor: a.item.actor,
+    item: a.item,
+    yards: context.yards,
+    range: context.range,
+    conditions: Number(context.answers.conditions) || 0,
+    galvanometer: context.answers.galvanometer === true,
+    drift: context.answers.drift === true,
+    skip: canSkip(a.item, b.item) ? ((context.answers.skip as Partial<Record<SkipCondition, boolean>> | undefined) ?? {}) : null,
+  });
 }
 
 /** A sweep with an active sensor (pp. 45-47). */
@@ -482,7 +729,7 @@ async function detectEmissions(api: GWorldApi): Promise<void> {
 const MODES: readonly CommMode[] = ["", "receiver"];
 
 const FIGURES: SensorFigures = {
-  options: ["codeOnly", "directionFinder", "intercept", "radiotelephone", "eccm", "gps", "satelliteUplink", "longAntenna", "wideBeam", "military", "tactical", "lpi", "imaging", "lensHood", "irIlluminated", "search"],
+  options: ["codeOnly", "directionFinder", "intercept", "radiotelephone", "eccm", "gps", "satelliteUplink", "longAntenna", "dipoleAntenna", "directionalAntenna", "shortwave", "wideBeam", "military", "tactical", "lpi", "imaging", "lensHood", "irIlluminated", "search"],
   commModes: MODES,
   comm: commOfItem,
   active: (item, data) => {
@@ -493,6 +740,8 @@ const FIGURES: SensorFigures = {
   sheet,
   price,
   pairRange,
+  commFields,
+  reception,
   dataRates: DATA_RATES,
   sweep,
   // Only a tactical sonar or radar has the targeting mode (pp. 45-46).
@@ -502,6 +751,9 @@ const FIGURES: SensorFigures = {
 
 /** High-Tech's comms and sensors table, behind the book's own four switches. */
 export function highTechSensors(switches: SensorSwitches): SensorTable {
+  SUPPLEMENT.tuning = switches.radioTuning ?? "";
+  SUPPLEMENT.antennas = switches.radioAntennas ?? "";
+  SUPPLEMENT.shortwave = switches.shortwaveSkip ?? "";
   return {
     book: "high-tech",
     tls: { min: 0, max: 8 },
@@ -606,6 +858,49 @@ async function intercept(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (eccm) await card(actor, label, [F("EccmSpoofs", { name: theirs.name })]);
 }
 
+/**
+ * Tuning a set in to a signal (HT:EE pp. 27, 29-30): the distance to the
+ * transmitter and its standard range -- the targeted character's radio's
+ * reach to this one where there is one, this set's own otherwise -- the
+ * interference or conditions, a galvanometer, and a coil-tuned set's drift.
+ */
+async function tuneIn(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const target = picked().target;
+  const mine = commOfItem(item);
+  if (!mine || mine.range === null) return;
+  const theirs = target ? [...(target.items ?? [])].find((i: any) => carried(i) && commOfItem(i)?.family === "radio") : null;
+  const pair: CommPair | null = theirs ? { a: { item, comm: mine }, b: { item: theirs, comm: commOfItem(theirs)! } } : null;
+  const standard = pair ? (await pairRange(pair)).range : mine.range * antennaFactor(antennasOf(item));
+  const measured = target ? yardsBetween(actor, target) : null;
+  const shortwave = pair ? isShortwave(item) && isShortwave(theirs) : isShortwave(item);
+  const answer = await ask(F("TuneTitle", { name: item.name }),
+    row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? standard)}" min="0" style="width:90px" />`)
+    + row(L("SignalRange"), `<input type="number" name="range" value="${Number.isFinite(standard) ? Math.round(standard) : 0}" min="0" style="width:90px" />`)
+    + row(L("Conditions"), `<select name="conditions">${CONDITIONS.map((c) => `<option value="${c}" ${c === 0 ? "selected" : ""}>${esc(c === 0 ? L("ConditionsNone") : c === INTERFERENCE.worst ? F("ConditionsBlocked", { value: c }) : (c > 0 ? `+${c}` : String(c)))}</option>`).join("")}</select>`)
+    + row(L("Galvanometer"), `<input type="checkbox" name="galvanometer" ${carriesGalvanometer(actor) ? "checked" : ""} />`)
+    + row(F("Drift", { minutes: DRIFT_MINUTES }), `<input type="checkbox" name="drift" ${driftsByDefault(itemTl(item)) && !peripheralOf(item) ? "checked" : ""} />`)
+    + (shortwave ? SKIP_CONDITIONS.map((c) => row(L(`Skip.${c}`), `<input type="checkbox" name="skip-${c}" />`)).join("") : ""),
+    (form) => ({
+      yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
+      range: Number(form.querySelector<HTMLInputElement>("[name=range]")?.value) || 0,
+      conditions: Number(form.querySelector<HTMLSelectElement>("[name=conditions]")?.value) || 0,
+      galvanometer: Boolean(form.querySelector<HTMLInputElement>("[name=galvanometer]")?.checked),
+      drift: Boolean(form.querySelector<HTMLInputElement>("[name=drift]")?.checked),
+      skip: Object.fromEntries(SKIP_CONDITIONS.map((c) => [c, Boolean(form.querySelector<HTMLInputElement>(`[name=skip-${c}]`)?.checked)])) as Partial<Record<SkipCondition, boolean>>,
+    }));
+  if (!answer) return;
+  const lines: string[] = [];
+  // A shortwave set skips to a shortwave transmitter with a large antenna; with no one targeted, the GM vouches for the far end.
+  if (theirs && shortwave && !canSkip(item, theirs)) lines.push(F("NoLargeAntenna", { name: theirs.name }));
+  const skip = shortwave && (!theirs || canSkip(item, theirs)) ? answer.skip : null;
+  const heard = listen({ api, actor, item, yards: answer.yards, range: answer.range || Infinity, conditions: answer.conditions, galvanometer: answer.galvanometer, drift: answer.drift, skip });
+  if (!heard) return;
+  const title = F("TuningLabel", { name: item.name });
+  if (heard.roll) await api.roll.success({ actor, base: skillBase(api, actor, COMM), skill: COMM, label: heard.roll.label, modifiers: heard.roll.modifiers, tags: heard.roll.tags, ...(target ? { subject: target } : {}) } as any);
+  await card(actor, title, [...lines, ...heard.lines]);
+}
+
 /** Lens shine on a bright day: a Stealth roll, +4 with a hood or anti-reflective screens (p. 47). */
 async function lensShine(api: GWorldApi, item: any, actor: any): Promise<void> {
   if (!actor) return;
@@ -680,7 +975,7 @@ async function soundDetection(api: GWorldApi, item: any, actor: any): Promise<vo
 }
 
 /** Registers the engine's parts, once whichever books ask, and what this book prints alone. */
-export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean; active: () => boolean; visual: () => boolean; passive: () => boolean }): void {
+export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean; active: () => boolean; visual: () => boolean; passive: () => boolean; tuning?: () => boolean }): void {
   readySensors(api);
 
   const radioWith = (item: any, option: string) => on.radios() && Boolean(radioOf(item)) && sensorData(item).options[option] === true;
@@ -688,6 +983,7 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
     { key: "ht-telegraphy", label: L("TelegraphyTitle"), icon: "fa-solid fa-tower-cell", visible: (item) => on.radios() && (isTelegraph(nameOf(item)) || Boolean(radioOf(item))), run: (item, actor) => telegraphy(api, item, actor) },
     { key: "ht-direction-finder", label: L("DirectionFinderTitle"), icon: "fa-solid fa-compass", visible: (item) => radioWith(item, "directionFinder"), run: (item, actor) => directionFinder(api, item, actor) },
     { key: "ht-intercept", label: L("InterceptTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => radioWith(item, "intercept"), run: (item, actor) => intercept(api, item, actor) },
+    { key: "ht-radio-tuning", label: L("TuneButton"), icon: "fa-solid fa-radio", visible: (item) => Boolean(on.tuning?.()) && Boolean(radioOf(item) || peripheralOf(item)), run: (item, actor) => tuneIn(api, item, actor) },
     { key: "ht-lens-shine", label: L("LensShineTitle"), icon: "fa-solid fa-sun", visible: (item) => on.visual() && Boolean(opticOf(item)) && !opticOf(item)!.mounted, run: (item, actor) => lensShine(api, item, actor) },
     { key: "ht-hydrophone", label: L("HydrophoneTitle"), icon: "fa-solid fa-water", visible: (item) => on.passive() && hydrophoneBonus(nameOf(item), itemTl(item)) !== null, run: (item, actor) => hydrophone(api, item, actor) },
     { key: "ht-sound-detection", label: L("SoundTitle"), icon: "fa-solid fa-volume-high", visible: (item) => on.passive() && isSoundDetector(nameOf(item)), run: (item, actor) => soundDetection(api, item, actor) },

@@ -14,7 +14,8 @@
  *     or sensor does at its TL and its options; a GM tool for whether two
  *     characters' comms reach each other (a radio cut in cities and for live
  *     video, slowed data where the book offers it) and the roll to stretch the
- *     range, with whatever else the book checks between them; a GM tool for a
+ *     range (or the book's own roll to pick up the signal, with its own rows
+ *     in the dialog), with whatever else the book checks between them; a GM tool for a
  *     sweep with an active sensor, which the sensor's book runs; a row action
  *     to lock a sensor onto the target, and the lock's +3 to an aimed ranged
  *     attack at it; and worn optics and detectors as senses, with the
@@ -37,6 +38,7 @@ import {
   sensorTableOf,
   storeSensor,
   type ActiveSensor,
+  type CommPair,
   type SensorTable,
   type WornSenses,
 } from "./data.js";
@@ -205,16 +207,21 @@ async function commCheck(api: GWorldApi): Promise<void> {
   const cuts = pair?.[0].found!.comm.cuts ?? null;
   const rates = pair ? table.figures.dataRates ?? [] : [];
   const measured = yardsBetween(selected, target);
+  const pairOf = (p: NonNullable<typeof pair>): CommPair => ({ a: { item: p[0].item, comm: p[0].found!.comm }, b: { item: p[1].item, comm: p[1].found!.comm } });
+  // The book's own rows for this pair, where it prints more than the shared rule.
+  const own = pair ? table.figures.commFields?.(pairOf(pair)) ?? null : null;
   const answer = await ask(L(ns, "CommTitle"),
     row(L(ns, "Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 1000)}" min="0" style="width:90px" />`)
     + (cuts === "radio" ? row(L(ns, "Urban"), `<input type="checkbox" name="urban" />`) + row(L(ns, "AudioVisual"), `<input type="checkbox" name="av" />`) : "")
     + (cuts === "water" ? row(L(ns, "RoughWater"), `<input type="checkbox" name="urban" />`) : "")
-    + (rates.length ? row(L(ns, "DataRate"), `<select name="rate">${rates.map((r) => `<option value="${r}">${esc(r === 1 ? L(ns, "FullSpeed") : F(ns, "Fraction", { denominator: Math.round(1 / r) }))}</option>`).join("")}</select>`) : ""),
+    + (rates.length ? row(L(ns, "DataRate"), `<select name="rate">${rates.map((r) => `<option value="${r}">${esc(r === 1 ? L(ns, "FullSpeed") : F(ns, "Fraction", { denominator: Math.round(1 / r) }))}</option>`).join("")}</select>`) : "")
+    + (own?.html ?? ""),
     (form) => ({
       yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
       urban: Boolean(form.querySelector<HTMLInputElement>("[name=urban]")?.checked),
       audioVisual: Boolean(form.querySelector<HTMLInputElement>("[name=av]")?.checked),
       rate: Number(form.querySelector<HTMLSelectElement>("[name=rate]")?.value) || 1,
+      own: own ? own.read(form) : {},
     }));
   if (!answer) return;
   const yards = answer.yards;
@@ -222,7 +229,8 @@ async function commCheck(api: GWorldApi): Promise<void> {
 
   if (pair) {
     const [a, b] = pair;
-    const reading = table.figures.pairRange({ a: { item: a.item, comm: a.found!.comm }, b: { item: b.item, comm: b.found!.comm } });
+    const context = { api, yards, answers: answer.own ?? {} };
+    const reading = await table.figures.pairRange(pairOf(pair), context);
     let range = reading.range;
     if (cuts) range *= radioRangeFactor(answer);
     if (answer.rate < 1) range *= slowedRangeFactor(answer.rate);
@@ -233,7 +241,13 @@ async function commCheck(api: GWorldApi): Promise<void> {
     if (answer.rate < 1) lines.push(F(ns, "DataRateLine", { denominator: Math.round(1 / answer.rate), factor: slowedRangeFactor(answer.rate) }));
     lines.push(...reading.lines);
     const modifier = Number.isFinite(range) ? rangeExtensionModifier(yards, range) : 0;
-    if (modifier === 0) lines.push(L(ns, "InRange"));
+    // A book that prints its own roll to pick up the signal makes it in place of the stretch.
+    const reception = table.figures.reception?.(pairOf(pair), { ...context, range, stretch: modifier }) ?? null;
+    if (reception) {
+      lines.push(...reception.lines);
+      const roll = reception.roll;
+      if (roll) await api.roll.success({ actor: selected, base: skillBase(api, selected, roll.skill), skill: roll.skill, label: roll.label, modifiers: roll.modifiers, tags: roll.tags } as any);
+    } else if (modifier === 0) lines.push(L(ns, "InRange"));
     else if (modifier === null) lines.push(L(ns, "OutOfRange"));
     else {
       lines.push(F(ns, "Stretch", { modifier }));

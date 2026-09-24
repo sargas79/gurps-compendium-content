@@ -44,20 +44,25 @@ describe("radios (pp. 37-39)", () => {
     expect(radioByName("Cabinet Radio", 6)).toBeNull();
   });
 
-  it("reaches a radio of another size from the shorter range: the book's example is 50 miles", () => {
+  it("reaches a different radio at the square root of the product of the ranges (HT:EE p. 28, in place of p. 38)", () => {
     const large = { size: "large" as const, range: 200 * MILE };
     const small = { size: "small" as const, range: 5 * MILE };
-    expect(radioPairRange(large, small)).toBe(50 * MILE);
+    // High-Tech's size steps gave 50 miles here; the supplement's rule gives about 31.6.
+    expect(radioPairRange(large, small) / MILE).toBeCloseTo(Math.sqrt(1000), 6);
     expect(radioPairRange(small, small)).toBe(5 * MILE);
-    expect(radioPairRange({ size: "medium", range: 35 * MILE }, small)).toBe(15 * MILE);
-    expect(radioPairRange({ size: "large", range: 200 * MILE }, { size: "tiny", range: 2 * MILE })).toBe(60 * MILE);
-    // A shorter-ranged radio that is the larger one takes no steps.
-    expect(radioPairRange({ size: "large", range: 50 * MILE }, { size: "medium", range: 100 * MILE })).toBe(50 * MILE);
+    // The supplement's example: a 50-mile set and a half-mile receiver reach 5 miles.
+    expect(radioPairRange({ size: "large", range: 50 * MILE }, { size: "medium", range: 0.5 * MILE })).toBeCloseTo(5 * MILE, 6);
+    // Size no longer counts, only range.
+    expect(radioPairRange({ size: "large", range: 50 * MILE }, { size: "medium", range: 50 * MILE })).toBe(50 * MILE);
   });
 
-  it("doubles a radio with a long antenna, and reaches anywhere with an uplink", () => {
-    expect(radioPairRange({ size: "small", range: 5 * MILE, longAntenna: true }, { size: "small", range: 5 * MILE })).toBe(5 * MILE);
-    expect(radioPairRange({ size: "small", range: 5 * MILE, longAntenna: true }, { size: "small", range: 5 * MILE, longAntenna: true })).toBe(10 * MILE);
+  it("multiplies the link by the antenna at each end, and reaches anywhere with an uplink", () => {
+    // A long antenna at one end doubles the link, at both ends both count (p. 39; HT:EE p. 28).
+    expect(radioPairRange({ size: "small", range: 5 * MILE, longAntenna: true }, { size: "small", range: 5 * MILE })).toBe(10 * MILE);
+    expect(radioPairRange({ size: "small", range: 5 * MILE, longAntenna: true }, { size: "small", range: 5 * MILE, longAntenna: true })).toBe(20 * MILE);
+    // An antenna factor as set replaces the long antenna's.
+    expect(radioPairRange({ size: "small", range: 5 * MILE, longAntenna: true, antenna: 10 }, { size: "small", range: 5 * MILE, antenna: 1.5 })).toBe(75 * MILE);
+    expect(radioPairRange({ size: "small", range: 5 * MILE, antenna: 0 }, { size: "small", range: 5 * MILE })).toBe(0);
     expect(radioPairRange({ size: "medium", range: 35 * MILE, satelliteUplink: true }, { size: "tiny", range: 2 * MILE })).toBe(Infinity);
   });
 
