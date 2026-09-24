@@ -39,7 +39,14 @@
  *
  * Usage:
  *   node tools/transcribe.mjs <book> <pack> --pdf <file> [--offset N] [--pages A-B] [--write]
+ *   node tools/transcribe.mjs <book> <pack> --source <id> --pdf <volume's file> [--pages A-B] [--write]
  *   node tools/transcribe.mjs <book> <pack> --review [--write]
+ *
+ * A book's other volume (book.json's `sources`, tools/lib/sources.mjs) is
+ * drafted with `--source <id>` and that volume's PDF: its offset and page
+ * label stand in for the book's, and only the entries citing it are drafted.
+ * Without `--source` only the book's own entries are; either way every other
+ * entry keeps the text it has.
  *
  * `--offset` is book page + offset = PDF page. It defaults to the book's
  * `transcription.pdfOffset`, or 2, which is the Basic Set's Characters volume;
@@ -54,6 +61,7 @@ import { join } from "node:path";
 
 import { ACTOR_TYPES, book, packsOf, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
 import { gadgetLines, stripPrice } from "./lib/gadget-text.mjs";
+import { inSource, volumeKey, withSource } from "./lib/sources.mjs";
 
 /**
  * The line under a heading that says what kind of thing the entry is.
@@ -212,7 +220,8 @@ async function layoutPagesOf(pdf, bk, wanted) {
     import("./lib/book-structure.mjs"),
     import("./lib/lexicon.mjs"),
   ]);
-  const dir = join(projectRoot, "extracted", "layout", bk.slug);
+  // Each volume is its own PDF, so each keeps its own pages.
+  const dir = join(projectRoot, "extracted", "layout", volumeKey(bk));
   mkdirSync(dir, { recursive: true });
   let opened = null;
   const pages = [];
@@ -1046,7 +1055,7 @@ async function main() {
     process.exit(1);
   }
 
-  const bk = book(slug);
+  const bk = withSource(book(slug), flag("--source"));
   const target = join(bk.dir, "prose", `${packName}.json`);
 
   if (review) return runReview(bk, packName, target, write);
@@ -1074,7 +1083,7 @@ async function main() {
     const wanted = new Set();
     for (const { entry } of readStatistics(bk, packName)) {
       const cited = citedPage(entry);
-      if (cited === null || (pageRange && (cited < pageRange[0] || cited > pageRange[1]))) continue;
+      if (!inSource(bk, entry) || cited === null || (pageRange && (cited < pageRange[0] || cited > pageRange[1]))) continue;
       for (let delta = -3; delta <= 16; delta++) if (cited + offset - 1 + delta >= 0) wanted.add(cited + offset - 1 + delta);
     }
     pages = await layoutPagesOf(pdf, bk, wanted);
@@ -1097,7 +1106,8 @@ async function main() {
     // A book done a few chapters at a time: an entry cited outside the pages
     // being worked on keeps whatever text it has, and gets none if it has none.
     const cited = citedPage(entry);
-    if (pageRange && (cited === null || cited < pageRange[0] || cited > pageRange[1])) {
+    // Another volume's entry, or one outside the pages asked for, is not drafted here.
+    if (!inSource(bk, entry) || (pageRange && (cited === null || cited < pageRange[0] || cited > pageRange[1]))) {
       if (already) {
         records.push(already);
         tally.kept++;

@@ -28,6 +28,16 @@
  * is in tools/lib/capture.mjs, and a book that says nothing reads as
  * Ultra-Tech.
  *
+ * A book's other volumes (book.json's `sources`, tools/lib/sources.mjs) are read
+ * with `--source <id>`: that volume's PDF offset, reference and `capture`
+ * settings stand in for the book's, each record cites the volume, and its id
+ * hashes the volume in. A name the volume's own records hold is left alone as
+ * above; a name only the book's own records hold is looked up in the volume's
+ * overlap file, and captured only where the decision there is "keep" -- the
+ * volume prints it with other statistics (private #471, E2). An undecided one
+ * is reported, not recorded. A near-duplicate the file lists under this
+ * volume's own name is left out where the decision is "skip".
+ *
  * What comes out is a draft: every record is read against its page, and what
  * reading settles goes into book.json's `capture` rules (`skip` and `set`), not into the output.
  * A `set` rule's new name is the one checked against the packs, so a record a
@@ -35,6 +45,7 @@
  *
  * Usage:
  *   node tools/capture-gear.mjs <book> --pdf <file> --pages 170-221 --file <name> [--write]
+ *   node tools/capture-gear.mjs high-tech --source ee --pdf <file> --pages 10-15 --file ee-laboratory [--write]
  *
  * `--file` names the output in `packs-src/equipment/`, "<book>-<name>.json".
  * Nothing is written without `--write`; the dry run prints every record.
@@ -45,7 +56,8 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 import { book, projectRoot, statisticsDir, systemRoot } from "./lib/books.mjs";
-import { captureSettings, entriesOn, key, nameRepeats, recordKey, recordOf } from "./lib/capture.mjs";
+import { captureSettings, entriesOn, key, nameRepeats, normalise, recordKey, recordOf } from "./lib/capture.mjs";
+import { inSource, readOverlap, withSource } from "./lib/sources.mjs";
 
 function flag(name, fallback = null) {
   const at = process.argv.indexOf(name);
@@ -74,19 +86,38 @@ function pagesOf(pdf, stored = false) {
   return pages;
 }
 
-/** Every name the book's packs already hold, the data file's and those kept by hand. */
+/**
+ * Every name the book's packs already hold, the data file's and those kept by
+ * hand: `held`, the names of the volume being read, and `others`, those of the
+ * book's other volumes, each with the name as its record has it.
+ */
 function namesHeld(bk) {
   const held = new Set();
+  const others = new Map();
   const root = statisticsDir(bk);
   for (const pack of readdirSync(root)) {
     const dir = join(root, pack);
     if (!existsSync(dir) || !readdirSync(dir).length) continue;
     for (const file of readdirSync(dir).filter((f) => f.endsWith(".json"))) {
       if (file === `${bk.slug}-${flag("--file")}.json`) continue;
-      for (const record of JSON.parse(readFileSync(join(dir, file), "utf8"))) held.add(key(record.name));
+      for (const record of JSON.parse(readFileSync(join(dir, file), "utf8"))) {
+        if (inSource(bk, record)) {
+          held.add(key(record.name));
+        } else {
+          others.set(normalise(record.name).toLowerCase(), record.name);
+          if (!others.has(key(record.name))) others.set(key(record.name), record.name);
+        }
+      }
     }
   }
-  return held;
+  return { held, others };
+}
+
+/** The E2 decisions of the volume being read, from its overlap file, or none. */
+function overlapOf(bk) {
+  if (!bk.source?.overlap) return new Map();
+  const path = join(bk.dir, bk.source.overlap);
+  return existsSync(path) ? readOverlap(readFileSync(path, "utf8")) : new Map();
 }
 
 /** The Basic Set's skill names, longest first, for reading what a quality bonus is to. */
@@ -111,8 +142,9 @@ function main() {
     console.error("Usage: node tools/capture-gear.mjs <book> --pdf <file> --pages 170-221 --file <name> [--write]");
     process.exit(1);
   }
-  const bk = book(slug);
-  const held = namesHeld(bk);
+  const bk = withSource(book(slug), flag("--source"));
+  const { held, others } = namesHeld(bk);
+  const overlap = overlapOf(bk);
   const skills = skillNames();
   const settings = captureSettings(bk.capture);
   const offset = Number(bk.transcription.pdfOffset ?? 0);
@@ -135,12 +167,35 @@ function main() {
   const records = [];
   const seen = new Set();
   let skipped = 0;
+  let undecided = 0;
+  let overlapped = 0;
   for (const entry of nameRepeats(entriesOn(pagesOf(pdf), from, to, offset, settings), settings)) {
     // A name book.json's `capture.set` gives the record is what the packs are
     // checked for: High-Tech's by-hand Workshop is not the captured one it
     // renames "Workshop (Electronics Repair)".
-    if (held.has(key(renameOf(entry.name) ?? entry.name)) || seen.has(recordKey(entry, settings))) continue;
+    const name = renameOf(entry.name) ?? entry.name;
+    if (held.has(key(name)) || seen.has(recordKey(entry, settings))) continue;
     if (skip.some((pattern) => pattern.test(entry.name))) continue;
+    // A name the book's own volume holds, read from another volume: the overlap
+    // file says whether this volume's statistics differ enough to keep (E2).
+    // A near-duplicate under another name is decided there too: a "skip" leaves it out.
+    const theirs = others.get(normalise(name).toLowerCase()) ?? others.get(key(name));
+    const decided = overlap.get(normalise(name).toLowerCase());
+    if (decided?.decision === "skip" && !theirs) {
+      overlapped++;
+      continue;
+    }
+    if (theirs) {
+      if (!decided) {
+        undecided++;
+        console.log(`  ?  p.${entry.page} ${name}: the book holds "${theirs}"; decide keep or skip in ${bk.source?.overlap ?? "the overlap file"}`);
+        continue;
+      }
+      if (decided.decision === "skip") {
+        overlapped++;
+        continue;
+      }
+    }
     const out = recordOf(entry, bk, skills, settings);
     if (out.record) {
       // What reading the page settled that the closing line could not say:
@@ -176,7 +231,8 @@ function main() {
     seen.add(recordKey(entry, settings));
     records.push(out.record);
     const s = out.record.system;
-    const power = s.extensions?.["gurps-compendium-content"]?.power?.draw?.raw ?? "";
+    const supply = s.extensions?.["gurps-compendium-content"]?.power;
+    const power = supply?.draw?.raw ?? supply?.raw ?? "";
     console.log(
       `  +  p.${entry.page} ${entry.name} | TL${s.tl} $${s.cost} ${s.weight} lb ${power} LC${s.lc} ${s.category}` +
         (s.equipmentQuality !== "basic" ? ` ${s.equipmentQuality} [${s.forSkills.join(", ")}]` : "") +
@@ -185,6 +241,7 @@ function main() {
     );
   }
   console.log(`\n${records.length} records, ${skipped} entries without a closing line.`);
+  if (bk.source) console.log(`${overlapped} left to the book's own records by the overlap file, ${undecided} undecided.`);
   if (!process.argv.includes("--write")) {
     console.log("Nothing written. Add --write.");
     return;

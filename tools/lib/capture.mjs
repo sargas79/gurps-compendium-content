@@ -18,6 +18,21 @@
  * - `repeatsByTl`: the book prints one name at several TLs, each its own item
  *   ("Magnetic Tape (TL7)." and "Magnetic Tape (TL8)."), so a name printed at
  *   more than one TL is recorded once per TL, named with it.
+ * - `noLegality`: the book prints no legality class at all, so a closing line
+ *   is a price and a weight -- "$20, 0.5lb." or "$4,000; 25lbs." or
+ *   "$3,700, stationary." -- or a price alone ending its sentence ("$100."),
+ *   and saying so on every record would be noise. High-Tech: Electricity and
+ *   Electronics prints its gear this way (HT:EE p. 8).
+ * - `powerBeforePrice`: the book states the power in the sentence before the
+ *   price rather than after it -- "VL/10 hours. $2,500, 100lbs." -- as cells,
+ *   as built-in rechargeable batteries ("rechargeable/120 hours"), or as a
+ *   grade of external power ("Household power"; HT:EE p. 9).
+ * - `years`: the book closes on the year the item went on sale, and where a
+ *   working model came first, that year in brackets: "[1908] 1928." An item
+ *   with no market price is a prototype, priced by its complexity under the
+ *   invention rules (pp. B473-474) instead: "Average complexity. Household
+ *   power. [1900]." (HT:EE p. 8). Both go on the record as its `invention`
+ *   data.
  *
  * Everything here is pure, so a book's reading can be tested without its PDF.
  */
@@ -65,6 +80,97 @@ const BARE_CLOSING = new RegExp(
   "g",
 );
 
+/**
+ * A closing line with no legality class, for a book that prints none: a price,
+ * then a weight after a comma or semicolon -- "0.5lb.", "25lbs.", "20 tons",
+ * "neg.", "stationary" -- or nothing, where the price ends its sentence. A price
+ * followed by anything else is one mentioned in passing. "$5/dozen" is a price
+ * per unit.
+ */
+// Thousands are grouped by commas, so a comma after the figure is the closing line's.
+const PLAIN_PRICE = /\+?\$(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?(?:\s+million)?/g;
+const PLAIN_WEIGHT = /^\s*[,;]\s*(?:weighs?\s+)?(neg\.|negligible|stationary|[\d,]*\.?\d+\s*(?:lbs?|tons?)\b\.?)/i;
+const PLAIN_UNIT = /^\/([a-z]+)/i;
+
+/** The years after a closing line: "1787.", "[1820] 1836.", "(1939) 1970.", "[1800]." */
+const YEARS = /^\s*(?:[[(](\d{4})[\])])?\s*(\d{4})?(?!\d)/;
+
+/** A prototype's closing: its complexity in place of a price (HT:EE p. 8). */
+const PROTOTYPE = /\b(Simple|Average|Complex|Amazing) complexity\.\s*([^$]{0,80}?)(?:\[(\d{4})\]\.?|$)/;
+
+/** The grades of external power, and High-Tech's own "external power" (HT:EE p. 9; High-Tech p. 14). */
+const POWER_GRADE = /\b(?:(?:peripheral|automotive|household|major appliance|industrial)(?:\s+or\s+[a-z]+)?|external)\s+(?:power|current)\b/i;
+
+/** Built-in rechargeable batteries and how long they last: "rechargeable/120 hours" (HT:EE p. 9). */
+const RECHARGEABLE = /\brechargeable\s*\/\s*([\d,.]+\s*(?:hrs?|hours?|min(?:utes?)?|days?|weeks?|months?|years?)\.?)/i;
+
+/**
+ * Every closing line in an entry's text for a book that prints no legality
+ * class, each shaped as CLOSING's matches are: the price, what follows it, and
+ * no class. The years after it come too, where the book prints them.
+ */
+export function plainClosings(text) {
+  const out = [];
+  for (const m of text.matchAll(PLAIN_PRICE)) {
+    let rest = text.slice(m.index + m[0].length);
+    let at = m[0].length;
+    const unit = PLAIN_UNIT.exec(rest);
+    if (unit) {
+      rest = rest.slice(unit[0].length);
+      at += unit[0].length;
+    }
+    const weight = PLAIN_WEIGHT.exec(rest);
+    if (weight) {
+      rest = rest.slice(weight[0].length);
+      at += weight[0].length;
+    } else if (!/^\.(?:\s|$)/.test(rest)) {
+      continue;
+    }
+    // What the weight is followed by before the sentence ends -- ", with HT 12
+    // and DR 4", " (tower cost and weight excluded)" -- stays in the closing.
+    const extra = /^(?:\.?\s*,[^.$[]{0,60}|\.?\s*\([^)$]{0,60}\))?\.?/.exec(rest)[0];
+    rest = rest.slice(extra.length);
+    at += extra.length;
+    const years = YEARS.exec(rest);
+    out.push({
+      index: m.index,
+      price: m[0],
+      unit: unit?.[1] ?? null,
+      after: text.slice(m.index + m[0].length, m.index + at),
+      weight: weight?.[1] ?? null,
+      prototypeYear: years?.[1] ? Number(years[1]) : null,
+      marketYear: years?.[2] ? Number(years[2]) : null,
+      text: text.slice(m.index, m.index + at + (years?.[0].length ?? 0)).trim(),
+    });
+  }
+  return out;
+}
+
+/**
+ * The power a book states before its price, read off the text that comes
+ * before it: the last cells, built-in rechargeable batteries or grade of
+ * external power in the two sentences before the price. The cells win where
+ * the book offers both ("2×XS/120 hours or rechargeable/120 hours"); the
+ * whole statement is kept as printed.
+ */
+export function powerBefore(text, settings) {
+  const sentences = text.replace(/(\d)\s*\ufffd\s*/g, "$1×").split(/(?<=\.)\s+(?=[A-Z\d])/).slice(-2);
+  for (const sentence of sentences.reverse()) {
+    const cells = powerIn(sentence, settings);
+    const recharge = RECHARGEABLE.exec(sentence);
+    const grade = POWER_GRADE.exec(sentence);
+    const raw = sentence.trim().replace(/\.$/, "");
+    // The whole statement is kept only where it says more than the draw: "or rechargeable/120 hours".
+    const more = (drawn) => (raw !== drawn.replace(/\.$/, "") ? { raw } : {});
+    if (cells && cells.cell) return { draw: cells, ...more(cells.raw) };
+    if (recharge) {
+      return { draw: { cell: "", cells: 0, endurance: recharge[1].trim(), raw: recharge[0] }, rechargeable: true, ...more(recharge[0]) };
+    }
+    if (grade) return { raw: grade[0].charAt(0).toUpperCase() + grade[0].slice(1) };
+  }
+  return null;
+}
+
 /** How a book prints its gear, from book.json's `capture`. */
 export function captureSettings(capture = {}) {
   const labelEnd = capture.labelEnd ?? ":";
@@ -78,6 +184,9 @@ export function captureSettings(capture = {}) {
   return {
     cellSizes,
     repeatsByTl: capture.repeatsByTl === true,
+    noLegality: capture.noLegality === true,
+    powerBeforePrice: capture.powerBeforePrice === true,
+    years: capture.years === true,
     /**
      * A gadget's label: a capitalised name, any parentheticals, and its tech
      * level in parentheses. Followed by the book's label end it runs into its
@@ -100,9 +209,10 @@ export function priceOf(text) {
   return Number(text.replace(/million|\s?-\s?\$.*$|[+$,\s]/g, "")) * million;
 }
 
-/** A weight: "1 lb.", "0.5 lbs.", "1/8 lb.", "neg.", "negligible weight", "2 tons". */
+/** A weight: "1 lb.", "0.5 lbs.", "1/8 lb.", "neg.", "negligible weight", "2 tons"; "stationary", too heavy to carry, as none. */
 export function weightOf(text) {
   if (/\bneg(?:\.|ligible)/i.test(text)) return { weight: 0 };
+  if (/^[\s,;]*stationary\b/i.test(text)) return { weight: 0, stationary: true };
   const fraction = /\b(\d+)\/(\d+)\s*lbs?\b/i.exec(text);
   if (fraction) return { weight: Number(fraction[1]) / Number(fraction[2]) };
   const m = /([\d,]*\.?\d+)\s*lbs?\b/i.exec(text);
@@ -132,8 +242,13 @@ export function gradeOf(bonus) {
   return null;
 }
 
-export function ident(slug, name) {
-  return createHash("sha1").update(`${slug}:equipment:${name}`).digest("hex").slice(0, 16);
+/**
+ * A record's id, from its book and name. A record from one of the book's other
+ * volumes (tools/lib/sources.mjs) hashes the volume in as well, so it can share
+ * a name with the book's own record without sharing its id (private #471, E2).
+ */
+export function ident(slug, name, source = null) {
+  return createHash("sha1").update(`${slug}:${source ? `${source}:` : ""}equipment:${name}`).digest("hex").slice(0, 16);
 }
 
 export function key(name) {
@@ -213,16 +328,41 @@ export function entriesOn(pages, from, to, offset, settings) {
 export function recordOf(entry, bk, skills, settings) {
   const notes = [];
   let closings = [...entry.text.matchAll(CLOSING)];
-  if (!closings.length) {
+  let plain = null;
+  let prototype = null;
+  if (!closings.length && settings.noLegality) {
+    // A book with no legality class: a price and a weight, and the years after.
+    const found = plainClosings(entry.text);
+    if (found.length) {
+      plain = found[0];
+      closings = found.map((c) => Object.assign([c.text, c.price, c.after], { index: c.index }));
+      if (plain.unit) notes.push(`price is per ${plain.unit}`);
+    } else {
+      // No price at all: a prototype, priced by its complexity (HT:EE p. 8).
+      const m = PROTOTYPE.exec(entry.text);
+      if (m) {
+        prototype = { complexity: m[1].toLowerCase(), year: m[3] ? Number(m[3]) : null, between: m[2] };
+        closings = [Object.assign([m[0], "$0", ` ${m[2]}`], { index: m.index })];
+        notes.push(`prototype of ${m[1]} complexity: no price`);
+      }
+    }
+  } else if (!closings.length) {
     closings = [...entry.text.matchAll(BARE_CLOSING)];
     if (closings.length) notes.push("no LC printed");
   }
   if (!closings.length) return { skip: "no price" };
   const close = closings[0];
-  const cost = priceOf(close[1]);
+  const cost = prototype ? 0 : priceOf(close[1]);
   const after = close[2];
   const weight = weightOf(after);
-  const power = powerIn(after, settings);
+  if (weight?.stationary) notes.push("stationary: recorded as weightless");
+  // Where the book states power before the price, the sentences before it say it.
+  let power = powerIn(after, settings);
+  let supply = power ? { draw: power } : null;
+  if (!supply && settings.powerBeforePrice) {
+    supply = powerBefore(prototype ? `${entry.text.slice(0, close.index)} ${prototype.between}` : entry.text.slice(0, close.index), settings);
+    power = supply?.draw ?? null;
+  }
   const lc = close[3] === undefined ? null : Number(close[3]);
   const text = entry.text.slice(0, close.index + close[0].length);
 
@@ -234,7 +374,7 @@ export function recordOf(entry, bk, skills, settings) {
   if (close[1].startsWith("+")) notes.push("price is an addition to something else");
   if (/\$.*-/.test(close[1])) notes.push(`price is a range, ${close[1]}: the lower is recorded`);
   if (/^\s*(?:per|\/)/i.test(after)) notes.push(`price is per unit: "${after.trim().split(/[,.]/)[0]}"`);
-  if (!weight) notes.push("no weight read");
+  if (!weight && !prototype) notes.push("no weight read");
   if (closings.length > 1) notes.push(`${closings.length} closing lines: variants or options follow`);
 
   let equipmentQuality = "basic";
@@ -286,9 +426,19 @@ export function recordOf(entry, bk, skills, settings) {
     meleeModes: [],
     rangedModes: [],
   };
-  if (power) system.extensions = { "gurps-compendium-content": { power: { draw: power } } };
+  const extensions = {};
+  if (supply) extensions.power = supply;
+  // The years the book prints, and a prototype's complexity (HT:EE p. 8).
+  if (settings.years && (prototype || plain?.prototypeYear || plain?.marketYear)) {
+    extensions.invention = {
+      complexity: prototype?.complexity ?? "",
+      prototypeYear: prototype?.year ?? plain?.prototypeYear ?? 0,
+      marketYear: plain?.marketYear ?? 0,
+    };
+  }
+  if (Object.keys(extensions).length) system.extensions = { "gurps-compendium-content": extensions };
   return {
-    record: { _id: ident(bk.slug, entry.name), name: entry.name, type: "equipment", system },
+    record: { _id: ident(bk.slug, entry.name, bk.source?.id ?? null), name: entry.name, type: "equipment", system },
     closing: close[0],
     notes,
   };

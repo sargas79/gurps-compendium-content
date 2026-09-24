@@ -17,6 +17,12 @@
  *     sets the item off on (old, sweating dynamite; impure nitro), and what a
  *     home-made batch came out as (#378).
  *
+ *   - `invention`: the years High-Tech: Electricity and Electronics dates a
+ *     device by, the year it went on sale and the year a working model was
+ *     first made, and for a prototype with no market price the complexity it
+ *     is priced by under the invention rules (pp. B473-474; HT:EE p. 8). The
+ *     capture writes them (#476); the rules that read them come later.
+ *
  * The batteries gear runs on are `power`, registered with the shared cell
  * engine (`power/`).
  */
@@ -27,7 +33,11 @@ import { explosive, type ExplosiveRow } from "./explosives/ref.js";
 import { FLAWS, type Flaw } from "./explosives/rules.js";
 
 /** The keys this registers, for anything that needs to know them. */
-export const RECORD_KEYS = ["explosive", "firearmBuild"] as const;
+export const RECORD_KEYS = ["explosive", "firearmBuild", "invention"] as const;
+
+/** A prototype's complexity under the invention rules (pp. B473-474), blank for a device on the market. */
+export const COMPLEXITIES = ["", "simple", "average", "complex", "amazing"] as const;
+export type Complexity = (typeof COMPLEXITIES)[number];
 
 /** A barrel heavier or lighter than usual (p. 86). */
 export const BARRELS = ["", "light", "extraHeavy"] as const;
@@ -62,6 +72,12 @@ export function registerHighTechRecordData(): void {
       barrel: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...BARRELS] }),
       barrelChangeSeconds: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
       underwaterFactor: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+    }),
+    // 0 for a year not printed (HT:EE p. 8).
+    invention: new f.SchemaField({
+      complexity: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...COMPLEXITIES] }),
+      prototypeYear: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
+      marketYear: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0 }),
     }),
   });
 }

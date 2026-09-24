@@ -25,6 +25,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
 import { MODULE_ID, packId, readJson } from "./books.mjs";
+import { citationOf, volumeOfPages, volumeOfReference } from "./sources.mjs";
 
 /**
  * A deterministic 16-character id from a string.
@@ -90,12 +91,24 @@ export async function journalPack(bk) {
     const body = render(readFileSync(file, "utf8"));
     // A page may name its own volume: the Basic Set is two books sharing one
     // run of page numbers, and the book's default reference is only right for
-    // the first of them.
+    // the first of them. A page of one of the book's other volumes -- "HT:EE12",
+    // a supplement's (tools/lib/sources.mjs) -- cites that volume, and a
+    // reference naming another volume than its pages do is refused.
+    const pagesIn = page.pages ? volumeOfPages(bk, page.pages) : undefined;
+    const referenceIn = page.reference ? volumeOfReference(bk, page.reference) : undefined;
+    if (page.pages && page.reference && (pagesIn?.id ?? null) !== (referenceIn?.id ?? null)) {
+      problems.push(
+        `${indexPath} — ${page.id}: its pages "${page.pages}" and its reference "${page.reference}" cite different volumes.`,
+      );
+      continue;
+    }
     const cite = page.reference
       ? page.reference
-      : page.pages
-        ? `${bk.reference} p. ${String(page.pages).replace(/^B/, "")}`
-        : "";
+      : pagesIn?.id
+        ? citationOf(bk, page.pages)
+        : page.pages
+          ? `${bk.reference} p. ${String(page.pages).replace(/^B/, "")}`
+          : "";
     const citation = cite ? `<p class="gcc-source"><em>${cite}</em></p>` : "";
 
     if (page.chapter) chapters.add(page.chapter);

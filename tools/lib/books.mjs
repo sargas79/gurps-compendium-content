@@ -21,6 +21,8 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { readSources } from "./sources.mjs";
+
 export const projectRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const systemRoot = join(projectRoot, "system");
 export const booksRoot = join(projectRoot, "books");
@@ -154,6 +156,10 @@ export function book(slug) {
       runInHeadings: raw.capture?.runInHeadings === true,
       repeatsByTl: raw.capture?.repeatsByTl === true,
     },
+    // The book's other volumes: a supplement printed as its own PDF whose
+    // records join this book's packs, each citing it by its own reference and
+    // page label (tools/lib/sources.mjs).
+    sources: readSources(raw),
     dir: join(booksRoot, slug),
   };
 }
