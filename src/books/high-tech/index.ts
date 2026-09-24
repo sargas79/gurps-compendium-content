@@ -12,7 +12,8 @@
  * bonuses, and TL penalties as unfamiliarity (pp. 7-11), computers,
  * software, manuals and libraries (pp. 17-22), with the Electricity and
  * Electronics supplement's computer eras, interfaces and programming
- * languages (HT:EE pp. 36-41), a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * languages (HT:EE pp. 36-41) and its electric light, light levels and
+ * glare (HT:EE pp. 9, 20-22), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -117,6 +118,7 @@ import { initConveyances, readyConveyances } from "./conveyances/index.js";
 import { initDrugs, readyDrugs } from "./drugs/index.js";
 import { initVehicles, readyVehicles } from "./vehicles/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
+import { readyLighting } from "./lighting/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -228,6 +230,9 @@ const RULES = [
   { key: "radioTuning", pages: "pp. 27, 29-30", reference: EE_REFERENCE, implemented: true },
   { key: "radioAntennas", pages: "p. 28", reference: EE_REFERENCE, implemented: true },
   { key: "shortwaveSkip", pages: "p. 30", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: electric light, light levels and glare.
+  { key: "illumination", pages: "pp. 20-22", reference: EE_REFERENCE, implemented: true },
+  { key: "lightDazzle", pages: "pp. 9, 20-21", reference: EE_REFERENCE, implemented: true },
   // Survival, maritime and parachuting gear, and snacks.
   { key: "survivalGear", pages: "pp. 56-59", implemented: true },
   { key: "maritimeGear", pages: "pp. 59-60", implemented: true },
@@ -412,6 +417,7 @@ function ready(api: GWorldApi): void {
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
+  readyLighting(api, { illumination: rule("illumination"), dazzle: rule("lightDazzle") });
   readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
   // After the reloading rules, whose reload time a fixed bayonet lengthens.
   readyHighTechMelee(api, { bayonets: rule("bayonets"), sheaths: rule("sheaths"), blades: rule("bladeComposition"), stun: rule("stunWeapons"), bows: rule("highTechBows") });
