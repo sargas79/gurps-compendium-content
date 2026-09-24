@@ -17,6 +17,7 @@
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamFamily } from "../beams/rules.js";
 import { loadsOf } from "../warheads/index.js";
@@ -422,7 +423,7 @@ export function readyCybernetics(api: GWorldApi, on: () => boolean): void {
     if (!emp) return;
     const implants = [...(context.actor.items ?? [])].filter(isElectricalImplant);
     if (!implants.length) return;
-    const minutes = Math.max(1, Math.floor(Number(context.margin) || 0));
+    const minutes = Math.max(1, marginOfFailure(context.margin));
     const now = Number((game as any).time?.worldTime) || 0;
     void context.actor.setFlag(MODULE_ID, RECOVERY_FLAG, { ...recoveryOf(context.actor), surgeUntil: now + minutes * 60 });
     void say(context.actor, context.label ?? "", [F("SurgeLine", { name: context.actor.name, list: implants.map((i: any) => i.name).join(", "), minutes })]);

@@ -6,6 +6,7 @@
  */
 
 import { poisonNumbers as poison, protectedByDelivery, type Delivery, type PoisonNumbers } from "../../../shared/drugs/rules.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 
 export type { Delivery };
 
@@ -58,7 +59,7 @@ const minutes = (m: number) => Math.max(1, Math.floor(m)) * 60;
  * failure and whether it was a critical failure.
  */
 export function agentEffects(agent: Agent, margin: number, criticalFailure: boolean): AgentEffect[] {
-  const m = Math.max(0, Math.floor(Number(margin) || 0));
+  const m = marginOfFailure(margin);
   switch (agent) {
     case "riotGas":
       return m >= 5

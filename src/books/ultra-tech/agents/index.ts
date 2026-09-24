@@ -17,6 +17,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import { hasAegis } from "../medical/index.js";
 import {
   AGENTS,
@@ -465,11 +466,11 @@ export function readyAgents(api: GWorldApi, on: AgentSwitches): void {
     if (context.resisted === false) {
       for (const effect of agentEffects(agent, context.margin, context.criticalFailure === true)) {
         if (effect.condition) void api.actors.applyCondition(actor, { key: effect.condition, ...(effect.seconds ? { duration: { seconds: effect.seconds } } : {}) });
-        lines.push(F(`Failed.${effect.note}`, { name, minutes: Math.max(1, Math.floor(context.margin)) }));
+        lines.push(F(`Failed.${effect.note}`, { name, minutes: Math.max(1, marginOfFailure(context.margin)) }));
       }
       if (agent === "paralysisGas") void api.actors.setPosture(actor, "lying");
       // Pheromone spray: Lecherousness (9) for the margin's minutes past the cloud (p. 160).
-      if (agent === "pheromoneSpray") void giveTraitFor(actor, PHEROMONE_TRAIT, -15, Math.max(1, Math.floor(context.margin)) * 60);
+      if (agent === "pheromoneSpray") void giveTraitFor(actor, PHEROMONE_TRAIT, -15, Math.max(1, marginOfFailure(context.margin)) * 60);
       if (agent === "paralysisGas" && context.criticalFailure) {
         void (async () => {
           const roll = new Roll("1d6");

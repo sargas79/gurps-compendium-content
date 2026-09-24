@@ -5,18 +5,22 @@
  * A dazzle beam and a blinding beam are Vision-based afflictions resisted
  * with HT; Protected Vision adds +5 to the roll and a Nictitating Membrane +1
  * a level. A dazzled victim is blind for minutes equal to the margin of
- * failure. What a blinding beam leaves is each book's own: Ultra-Tech's blinds
- * for good, High-Tech's cripples the eyes as a crippling injury does
- * (Campaigns p. 422), for good on a failure by 10 or more. Each book registers
- * its table in `DAZZLE_TABLES` and reads it back by its own slug.
+ * failure. What a blinding beam leaves is each book's own: both books'
+ * cripple the eyes (crippling Blindness, Characters p. 124), which heals as a
+ * crippling injury does (Campaigns p. 422); High-Tech's is for good on a
+ * failure by 10 or more. Each book registers its table in `DAZZLE_TABLES` and
+ * reads it back by its own slug.
  */
 
 import { BookTables, type BookTable } from "../book-tables.js";
+import { marginOfFailure } from "../margin.js";
 
 /** One book's reading of what a laser does to eyes. */
 export interface DazzleTable extends BookTable {
   /** What a failed roll against a blinding beam leaves. */
   blinding: "permanent" | "crippling";
+  /** For a crippling beam, the failure from which the eyes are crippled for good; none where the book gives none. */
+  forGoodFrom?: number;
 }
 
 export const DAZZLE_TABLES = new BookTables<DazzleTable>();
@@ -54,12 +58,11 @@ export const CRITICAL_MARGIN = 10;
 /**
  * What a failed resistance roll leaves: blindness for minutes equal to the
  * margin from a dazzle beam (at least one), and from a blinding beam whatever
- * the book's table says. The margin is taken by its size: the system hands a
- * failure's margin over as a negative number, and a caller may already have
- * made it positive.
+ * the book's table says. The margin is taken by its size, signed or not.
  */
 export function blindnessFrom(table: DazzleTable, beam: EyeBeam, margin: number): Blindness {
-  const by = Math.max(1, Math.floor(Math.abs(Number(margin) || 0)));
+  const by = Math.max(1, marginOfFailure(margin));
   if (beam === "dazzle") return { kind: "dazzled", minutes: by };
-  return { kind: "blinded", permanent: table.blinding === "permanent" || by >= CRITICAL_MARGIN };
+  const forGood = table.blinding === "permanent" || (table.forGoodFrom !== undefined && by >= table.forGoodFrom);
+  return { kind: "blinded", permanent: forGood };
 }

@@ -25,6 +25,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { ENVIRONMENT_FLAG, environmentScene, sceneEnvironment } from "../../../shared/environment/index.js";
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import {
   FORCE_FIELD_PART,
   LETHAL_ELECTROLASER_LC,
@@ -223,7 +224,7 @@ export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment
   Hooks.on(api.combat.hooks.afflictionEffect, (context: any) => {
     if (!on()) return;
     const family = familyOf(context?.item);
-    const margin = Math.max(0, Math.floor(Number(context?.margin) || 0));
+    const margin = marginOfFailure(context?.margin);
     const minutes = { seconds: Math.max(1, margin) * 60 };
     if (family === "electrolaser") {
       context.effects.push({ key: "stunned" });

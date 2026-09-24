@@ -20,6 +20,7 @@
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import { STUNNER_TABLES, readyStunners, wearsMetallicArmor } from "../../../shared/stunners/index.js";
 import { NEURAL_SETTINGS, immunity, neuralOutcome, type BeamSetting } from "../beams/neural.js";
 import {
@@ -547,7 +548,7 @@ export function readyMelee(api: GWorldApi, on: MeleeSwitches): void {
       void say(actor, String(context.label ?? ""), [game.i18n.format(`GCC.UT.Neural.Immune.${blocked}`, { name })]);
       return;
     }
-    const margin = Math.max(0, Math.floor(Number(context.margin) || 0));
+    const margin = marginOfFailure(context.margin);
     const outcomes = neuralOutcome(neuralSetting(item), margin);
     for (const outcome of outcomes) {
       if (outcome.condition) context.effects.push({ key: outcome.condition, ...(outcome.seconds ? { duration: { seconds: outcome.seconds } } : {}) });

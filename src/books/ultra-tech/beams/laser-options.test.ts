@@ -1,12 +1,13 @@
 /**
  * Ultra-Tech's lasers at the eyes, at the table (pp. 113-114): a dazzler, or a
  * laser on its dazzle setting, blinds for minutes equal to the margin of
- * failure; one on its blinding setting blinds for good. The system hands a
- * failure's margin over as a negative number (#535).
+ * failure, read by its size (#535); one on its blinding setting inflicts
+ * crippling Blindness, which heals as a crippling injury does (#539).
  */
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import { DAZZLE_TABLES, blindnessFrom } from "../../../shared/dazzle/rules.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyLaserOptions } from "./laser-options.js";
 
@@ -84,10 +85,16 @@ describe("a laser at the eyes (Ultra-Tech pp. 113-114)", () => {
     }
   });
 
-  it("blinds for good on the blinding setting, whatever the margin", () => {
+  it("cripples the eyes on the blinding setting, whatever the margin", () => {
     for (const margin of [-1, -5, -12]) {
       expect(effectOf(laserOn("blinding"), margin)).toEqual([{ module: MODULE_ID, key: "ut-blinded", label: "GCC.UT.Lasers.Blinded" }]);
     }
+  });
+
+  it("reads crippling Blindness, never for good, from the book's table (p. 113)", () => {
+    const table = DAZZLE_TABLES.forBook("ultra-tech")!;
+    expect(table.blinding).toBe("crippling");
+    for (const margin of [-1, -10, -15]) expect(blindnessFrom(table, "blinding", margin)).toEqual({ kind: "blinded", permanent: false });
   });
 
   it("does nothing with the switch off", () => {

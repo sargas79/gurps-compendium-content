@@ -4,7 +4,8 @@
  * `index.ts` registers them with the system.
  */
 
-import type { DazzleTable, EyeBeam } from "../../../shared/dazzle/rules.js";
+import { CRITICAL_MARGIN, type DazzleTable, type EyeBeam } from "../../../shared/dazzle/rules.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 
 // ── flamethrowers (pp. 178-179) ─────────────────────────────────────────────
 
@@ -105,13 +106,13 @@ export function sprayAgent(name: string): SprayAgent {
 /** Seconds the coughing and blindness last, or null for "until the solution is washed off" (p. 180). */
 export function sprayEffectSeconds(agent: SprayAgent, margin: number): number | null {
   if (agent === "pepper") return null;
-  return Math.max(1, Math.floor(Number(margin) || 0)) * 60;
+  return Math.max(1, marginOfFailure(margin)) * 60;
 }
 
 // ── laser dazzlers (p. 181) ─────────────────────────────────────────────────
 
 /** High-Tech's table for the shared engine: a blinding laser cripples the eyes (p. 181). */
-export const HT_DAZZLE: DazzleTable = { book: "high-tech", blinding: "crippling" };
+export const HT_DAZZLE: DazzleTable = { book: "high-tech", blinding: "crippling", forGoodFrom: CRITICAL_MARGIN };
 
 /** Which of the book's lasers does what, by name (p. 181). */
 const HT_LASERS: ReadonlyArray<{ pattern: RegExp; beam: EyeBeam }> = [

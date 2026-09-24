@@ -341,6 +341,16 @@ describe("spray guns (sprayGuns)", () => {
     fire(HOOKS.afflictionEffect, tear);
     expect(tear.effects).toEqual([{ module: MODULE_ID, key: "ht-spray-blinded", label: "GCC.HT.Projectors.Spray.Blinded", duration: { seconds: 120 } }]);
   });
+
+  it("times tear gas's coughing and blindness by the margin's size, signed or not (#539)", () => {
+    on.sprayGuns = true;
+    const victim = actorWith("Victim");
+    for (const [margin, seconds] of [[-1, 60], [-5, 300], [-12, 720]] as const) {
+      const tear = { actor: victim, item: spray("Tear Gas Spray", -2), label: "Tear Gas Spray spray", margin, effects: [] as any[] };
+      fire(HOOKS.afflictionEffect, tear);
+      expect(tear.effects).toEqual([{ key: "coughing", duration: { seconds } }]);
+    }
+  });
 });
 
 describe("laser dazzlers (laserDazzlers)", () => {

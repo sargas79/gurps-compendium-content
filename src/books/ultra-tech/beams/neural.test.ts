@@ -87,6 +87,20 @@ describe("sonic weapons (Ultra-Tech p. 125)", () => {
   });
 });
 
+describe("a failure's margin, signed or not (#539)", () => {
+  it("reads it by its size for every beam", () => {
+    expect(neuralOutcome("paralysis", -3)).toEqual(neuralOutcome("paralysis", 3));
+    expect(neuralOutcome("agony", -5).map((o) => o.condition)).toEqual(["agony", "heartAttack"]);
+    expect(neuralOutcome("agony", -4).map((o) => o.condition)).toEqual(["agony"]);
+    expect(mindOutcome("hypnogogic", -6)[0]).toMatchObject({ condition: "unconscious", seconds: 360 });
+    expect(mindOutcome("deathBeam", -3)).toEqual([{ condition: "choking", seconds: 6, note: "Mind.deathBeam" }]);
+    expect(mindOutcome("insanity", -7)[0]).toMatchObject({ condition: "coma" });
+    expect(mindripperOutcome(-5)[0]!.note).toBe("Mindripper.worse");
+    expect(nauseatorOutcome(-5).map((o) => o.condition)).toEqual(["moderatePain", "retching"]);
+    expect(nauseatorOutcome(-2)[0]).toMatchObject({ seconds: 120 });
+  });
+});
+
 describe("conditions that follow others (#299)", () => {
   it("leaves pain after agony, euphoria after ecstasy and a daze after a hypnogogic knockout", () => {
     expect(followingCondition("agony", "agony")).toBe("moderatePain");
