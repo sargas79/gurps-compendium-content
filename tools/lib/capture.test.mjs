@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { captureSettings, entriesOn, ident, nameRepeats, plainClosings, priceOf, recordKey, recordOf, weightOf } from "./capture.mjs";
+import { captureSettings, entriesOn, gradesIn, ident, nameRepeats, plainClosings, priceOf, recordKey, recordOf, weightOf } from "./capture.mjs";
 
 /**
  * Reading gear off a book's pages. The text here is made up; the stat lines
@@ -105,7 +105,20 @@ describe("Electricity and Electronics' stat line (#476)", () => {
     const [scope] = read("Stethoscope (TL8). Amplified. Rechargeable/9 hours. $225, 0.5lb. 2000.", EE);
     expect(ext(ee(scope)).power).toMatchObject({ draw: { cell: "", cells: 0, endurance: "9 hours." }, rechargeable: true });
     const [oven] = read("Oven (TL7). Heats food. Household power. $100, 25lbs. [1945] 1967.", EE);
-    expect(ext(ee(oven)).power).toEqual({ raw: "Household power" });
+    expect(ext(ee(oven)).power).toEqual({ raw: "Household power", grades: ["household"] });
+  });
+
+  it("keeps the grades of external power a statement names, beside cells or built-in batteries (HT:EE p. 9)", () => {
+    expect(gradesIn("Major appliance or industrial power")).toEqual(["majorAppliance", "industrial"]);
+    expect(gradesIn("Automotive power, household power, or L/10 hours")).toEqual(["automotive", "household"]);
+    expect(gradesIn("Household current or M/6 hours")).toEqual(["household"]);
+    expect(gradesIn("External power")).toEqual(["external"]);
+    // A statement that names no power names no grade.
+    expect(gradesIn("2×XS/120 hours")).toEqual([]);
+    const [bell] = read("Bell (TL6). Rings. S/200 hours or household power. $5, 1lb. 1900.", EE);
+    expect(ext(ee(bell)).power).toMatchObject({ draw: { cell: "S", cells: 1 }, raw: "S/200 hours or household power", grades: ["household"] });
+    const [hailer] = read("Hailer (TL8). Loud. Rechargeable/4 hours or automotive power. $1,000, 10lbs. 2000.", EE);
+    expect(ext(ee(hailer)).power).toMatchObject({ rechargeable: true, grades: ["automotive"] });
   });
 
   it("records a prototype by its complexity, with no price", () => {
@@ -114,7 +127,7 @@ describe("Electricity and Electronics' stat line (#476)", () => {
     expect(out.record.system).toMatchObject({ cost: 0, weight: 0 });
     expect(out.notes).toContain("prototype of Average complexity: no price");
     expect(ext(out).invention).toEqual({ complexity: "average", prototypeYear: 1891, marketYear: 0 });
-    expect(ext(out).power).toEqual({ raw: "Major appliance or industrial power" });
+    expect(ext(out).power).toEqual({ raw: "Major appliance or industrial power", grades: ["majorAppliance", "industrial"] });
     const [pile] = read("Voltaic Pile (TL5). Copper and zinc. Simple complexity. Stationary. [1800].", EE);
     expect(ee(pile).notes).toContain("stationary: recorded as weightless");
   });

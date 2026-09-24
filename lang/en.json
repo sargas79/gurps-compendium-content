@@ -5003,6 +5003,18 @@
           "Name": "Batteries, generators and fuel",
           "Hint": "Gear that runs on batteries (T to VL) tracks what is left of its endurance on the Inventory tab. Batteries may be rechargeable, at five times the price, and are recharged rather than bought again; throwaway ones are taken from the spare batteries carried. A gadget may take batteries of another size or number, its endurance in proportion to their weight and its weight changed by the difference. A power adapter (the cost and weight of the usual batteries) lets it run on external power; an inverter (the cost and weight of its batteries, M or larger) lets gear built for external power run on batteries. Generators and collectors carried are listed with their fuel: a tank's hours, refilled from the fuel carried; cranking a muscle-powered generator costs 1 FP an hour and recharges about 10 lbs. of batteries an hour; a solar collector gives nothing at a -1 Vision penalty or worse; the TL8 portable gasoline generator weighs 2/3 as much (High-Tech pp. 10, 13-16)."
         },
+        "batteryChemistry": {
+          "Name": "Battery chemistry (Electricity and Electronics)",
+          "Hint": "A battery's chemistry is a field on it: carbon-zinc and wet cells last a quarter as long, lead-acid and NiCad a third, NiMH as long, lithium-ion 10% longer, each at its own price and weight, and the rechargeable ones are recharged at their own price in place of High-Tech's five times. High-Tech's batteries are alkaline to M and lead-acid at L and VL, so no chemistry set keeps the printed figures. A lithium-ion battery can run away (3d burning, a large-area injury from M up) and, confined, is an explosive of REF 0.25; the car-battery recharger's high setting explodes the battery on a critical failure; a voltaic pile rolls HT 10 every half hour (High-Tech: Electricity and Electronics pp. 16-18)."
+        },
+        "energyStorage": {
+          "Name": "Energy storage and generators (Electricity and Electronics)",
+          "Hint": "Capacitors discharge as a nonlethal shock at their HT modifier (the Leyden jar -4), -2 more for a second one wired in and the Speed/Range penalty for the count beyond that. A supercapacitor is a battery choice at twenty times the price, giving the next size's output for a minute. Flywheels come in carbon fibre, or in steel or titanium at L and VL (heavier, cheaper; titanium stores a third more). The supplement's generators join the Gear tab's generators: the hand crank (no FP), the pedal generator's rates, wind generators by the wind (Machine Operation for the TL6 model), the portable solar panel and the fuel cell power supply (High-Tech: Electricity and Electronics pp. 17-18)."
+        },
+        "externalPower": {
+          "Name": "Grades of external power (Electricity and Electronics)",
+          "Hint": "External power comes in five grades: peripheral, automotive, household, major appliance and industrial. A device shows the grades it runs on, and one printed with batteries or a grade can be plugged in without an adapter; built-in rechargeable batteries (an endurance with no battery size) are tracked on the Inventory tab and recharged in place (High-Tech: Electricity and Electronics p. 9)."
+        },
         "booksAndLibraries": {
           "Name": "Books and libraries",
           "Hint": "A manual or reference work, marked on its item sheet with the skill it covers, gets a row button that rolls the skill at its attribute default (Easy -4 to Very Hard -7), even for a character with no default, with extra time's bonus capped at that penalty. A library is Research equipment by its grade (a small collection is improvised, -2), costs 100 times as much on an occult subject, and at the GM's option a good or fine library's bonus also counts for the skill it covers (High-Tech pp. 17-18)."
@@ -6979,7 +6991,8 @@
           "alcohol": "alcohol",
           "wood": "wood",
           "methanol": "methanol",
-          "hydrogen": "hydrogen"
+          "hydrogen": "hydrogen",
+          "compressedHydrogen": "compressed hydrogen"
         },
         "Refuel": "Refuel",
         "Refuelled": "Filled with {amount} gal. of {fuel}, for {hours} hr.",
@@ -7010,7 +7023,33 @@
         "TankCylinder": "a {fuel} cylinder a fill, for {hours} hr.",
         "RefuelledCylinder": "Fitted a fresh {fuel} cylinder, for {hours} hr.",
         "RefuelledFromCylinder": "Fitted a {fuel} cylinder from the {name} carried, for {hours} hr.",
-        "SwapSize": "Size"
+        "SwapSize": "Size",
+        "BuiltIn": "built-in rechargeable batteries",
+        "Or": " or ",
+        "WindOutput": "high wind: {high}, a VL battery in {highHours} hr.; low wind: {low}, {lowHours} hr.; calm: nothing",
+        "WindSkill": "adjusted by {skill}",
+        "Supplies": "supplies {grades}",
+        "StandsForOne": "stands in for one {size} battery",
+        "StandsFor": "stands in for {cells} {size} batteries",
+        "RechargesIn": "recharges {rates}",
+        "Rate": "{size} in {hours} hr.",
+        "FpPerHour": "{fp} FP an hour",
+        "NoFatigue": "no fatigue",
+        "RateRecharged": "{hours} hr. gave the {name} back {back} hr.",
+        "RatePowered": "{hours} hr. powering a device.",
+        "WindTitle": "Run the {name}",
+        "RunWind": "Run",
+        "WindSpeed": "Wind",
+        "Wind": {
+          "high": "High wind",
+          "low": "Low wind",
+          "calm": "Calm",
+          "None": "No wind, no power.",
+          "Failed": "The generator wasn't kept up with the wind: no power this time."
+        },
+        "NoWindSkill": "Nobody here has {skill}, or Electrician or Mechanic to default from.",
+        "WindRoll": "{name}: keeping up with the wind",
+        "WindPowered": "{hours} hr. of {grades}."
       },
       "Computer": {
         "Title": "Computer",
@@ -9758,6 +9797,107 @@
         "Repaired": "The burned-out tube is replaced.",
         "LightPen": "Light pen strain",
         "LightPenRoll": "{name}: HT roll after {minutes} minutes"
+      },
+      "Energy": {
+        "Title": "Power (Electricity and Electronics)",
+        "ChemistryLabel": "Chemistry",
+        "ChemistryHint": "What the batteries are made of. High-Tech prints T to M as alkaline and L and VL as lead-acid; another chemistry changes the price, weight and endurance from there (High-Tech: Electricity and Electronics pp. 16-18).",
+        "PrintedAs": "As printed ({chemistry})",
+        "ChemistryOption": "{chemistry} (TL{tl})",
+        "Chemistry": {
+          "wetCell": "Wet cell",
+          "carbonZinc": "Carbon-zinc",
+          "alkaline": "Alkaline",
+          "leadAcid": "Lead-acid",
+          "nicad": "NiCad",
+          "nimh": "NiMH",
+          "lithiumIon": "Lithium-ion",
+          "supercapacitor": "Supercapacitor"
+        },
+        "ChemistryLine": "Endurance x{endurance}, price x{cost}, weight x{weight} against the printed battery; {recharge}.",
+        "Rechargeable": "rechargeable",
+        "Throwaway": "not rechargeable",
+        "MediumNote": "High-Tech's M battery weighs 2 lbs. against the supplement's 1.5; it is scaled as if it were alkaline.",
+        "LithiumIonHint": "Shorted, or failing HT after crushing or while overcharged, it runs away: 3d burning, a large-area injury from M up, and it may start a fire.",
+        "WetCellHint": "Stationary; the price and weight aren't printed, so they stay the size's.",
+        "SupercapacitorLine": "Gives the output of one {size} battery for {minutes} minute, at twenty times the price.",
+        "SupercapacitorLargest": "Gives ten times the output of one {size} battery for {minutes} minute, at twenty times the price.",
+        "MaterialLabel": "Material",
+        "MaterialHint": "Carbon fibre is the printed flywheel. Steel (x4.5 weight, a third the cost) and titanium (a third more energy, x3 weight, two-thirds the cost) come only in L and VL, at TL7 (High-Tech: Electricity and Electronics p. 18).",
+        "MaterialOption": "{material} (TL{tl})",
+        "Material": {
+          "carbonFiber": "Carbon fibre",
+          "steel": "Steel",
+          "titanium": "Titanium"
+        },
+        "FlywheelLine": "Stores x{energy} the energy of one {size} battery; peak output x{peak} ({grade}) for up to {minutes} minutes.",
+        "FlywheelLineNoGrade": "Stores x{energy} the energy of one {size} battery; peak output x{peak} for up to {minutes} minutes.",
+        "Capacitors": "Capacitors wired together",
+        "CapacitorsHint": "A second capacitor adds -2 to the shock's HT roll; for three or more, the count read as yards on the Size and Speed/Range Table gives a further penalty. A bank is a Simple invention (High-Tech: Electricity and Electronics p. 17).",
+        "CapacitorLine": "Discharges as a nonlethal shock at {modifier} to HT.",
+        "BankLine": "{count} wired together discharge as a nonlethal shock at {modifier} to HT; a bank is a Simple invention from TL{tl}.",
+        "GradeLine": "Runs on {grade} (TL{tl}): {what}.",
+        "GradeLineNoTl": "Runs on {grade}: {what}.",
+        "Grade": {
+          "peripheral": "peripheral power",
+          "automotive": "automotive power",
+          "household": "household power",
+          "majorAppliance": "major appliance power",
+          "industrial": "industrial power",
+          "external": "external power"
+        },
+        "GradeHint": {
+          "peripheral": "a computer's port, 5 volts",
+          "automotive": "a vehicle's outlet, 6 volts at TL6 and 12 from TL7",
+          "household": "a wall outlet, 110-120 volts in North America and Japan, 220-240 elsewhere",
+          "majorAppliance": "a stove's or workshop's outlet, 230-240 volts",
+          "industrial": "heavy-duty equipment, typically 480 volts",
+          "external": "any outside supply, as High-Tech gives it"
+        },
+        "BuiltInLine": "Built-in rechargeable batteries for {endurance}, recharged in place.",
+        "ChemistryPrice": "Battery chemistry",
+        "SupercapacitorPrice": "Supercapacitor",
+        "FlywheelPrice": "Flywheel material",
+        "LithiumIonBomb": "Lithium-ion battery, confined (M or larger)",
+        "Runaway": {
+          "Title": "Lithium-ion runaway",
+          "Hint": "A short circuit sets it off; after crushing injury, or while recharged at too high a voltage, it does on a failed HT roll.",
+          "Cause": "Cause",
+          "short": "Short circuit",
+          "crushed": "Crushing injury",
+          "overcharged": "Overcharged",
+          "HtLabel": "{name}: HT to hold",
+          "Held": "The battery holds.",
+          "LargeArea": "The batteries superheat: a large-area injury in the hexes they fill.",
+          "OneLocation": "The battery superheats: burning damage once, to one hit location.",
+          "Fire": "It may start a fire.",
+          "Label": "{name}: runaway"
+        },
+        "Charger": {
+          "Title": "Charge a battery",
+          "Hint": "Recharges a lead-acid battery. The high setting can start a car or charge in an hour, but has to be watched: Electrician, or Mechanic for the engine or vehicle.",
+          "Setting": "Setting",
+          "medium": "Medium ({hours} hr.)",
+          "high": "High ({hours} hr.)",
+          "Size": "Battery",
+          "Charged": "The battery is charged in {hours} hr.",
+          "NoSkill": "Watching the high setting takes {skills}.",
+          "RollLabel": "{name}: high-amperage charge",
+          "Explodes": "The {size} battery explodes.",
+          "Acid": "Everyone within {yards} yd. is splashed with strong acid.",
+          "BlastLabel": "Exploding {size} battery"
+        },
+        "Pile": {
+          "Title": "Run for half an hour",
+          "Label": "{name}: HT after {minutes} minutes",
+          "Runs": "The pile keeps its current for another {minutes} minutes.",
+          "Blocked": "Hydrogen bubbles cover the copper: the current stops."
+        },
+        "Discharge": {
+          "Title": "Discharge",
+          "Hint": "Into the targeted character, or whoever holds it: a nonlethal shock.",
+          "Count": "Capacitors wired together"
+        }
       },
       "Devices": {
         "Title": "Device (Electricity and Electronics)",

@@ -76,7 +76,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Major appliance or industrial power"
+            "raw": "Major appliance or industrial power",
+            "grades": [
+              "majorAppliance",
+              "industrial"
+            ]
           },
           "invention": {
             "complexity": "average",
@@ -267,7 +271,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -438,7 +445,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -482,7 +492,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -777,6 +790,15 @@
             "complexity": "simple",
             "prototypeYear": 1745,
             "marketYear": 0
+          },
+          "power": {
+            "storage": {
+              "kind": "capacitor",
+              "size": "",
+              "material": "",
+              "count": 1,
+              "shock": -4
+            }
           }
         }
       }
@@ -806,7 +828,20 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "storage": {
+              "kind": "flywheel",
+              "size": "M",
+              "material": "",
+              "count": 1,
+              "shock": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -833,7 +868,20 @@
       "listCost": 7500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "storage": {
+              "kind": "flywheel",
+              "size": "L",
+              "material": "",
+              "count": 1,
+              "shock": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -860,7 +908,20 @@
       "listCost": 37500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "storage": {
+              "kind": "flywheel",
+              "size": "VL",
+              "material": "",
+              "count": 1,
+              "shock": 0
+            }
+          }
+        }
+      }
     }
   },
   {
@@ -1196,7 +1257,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",

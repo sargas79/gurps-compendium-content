@@ -26,7 +26,7 @@
 
 import { isProgram } from "../computers/data.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
-import { CELL_TABLES, cellOf, cellTableOf, isPowered, powerData, registerPowerData, storePower, tableCellOf, usesLeft, type CellTable, type PowerData } from "./data.js";
+import { CELL_TABLES, cellOf, cellTableOf, isPluggable, isPowered, powerData, registerPowerData, storePower, tableCellOf, usesLeft, type CellTable, type PowerData } from "./data.js";
 import {
   cellCost,
   cellLegality,
@@ -42,6 +42,16 @@ import {
 } from "./rules.js";
 
 export { CELL_TABLES, cellTableOf, type CellTable };
+
+/**
+ * A new cell's price: the size's, times its chemistry's factor where a rule
+ * gives it one (in place of the book's rechargeable multiplier), else by the
+ * kind of cell the book prices.
+ */
+export function cellPrice(figures: CellTable["figures"], size: string, data: PowerData): number {
+  if (data.variant) return Math.round(figures.cells[size]!.cost * data.variant.cost * 100) / 100;
+  return cellCost(figures, size, data);
+}
 
 const L = (ns: string, key: string) => game.i18n.localize(`${ns}.Power.${key}`);
 const F = (ns: string, key: string, data: Record<string, unknown>) => game.i18n.format(`${ns}.Power.${key}`, data);
@@ -114,6 +124,8 @@ export function powerPriceChange(item: any): { cost: number; weight: number } | 
       weight += cellsWeight(figures, usual.size, usual.cells);
     }
   }
+  // Cells of another chemistry weigh their own: the gadget's weight includes them.
+  if (data.variant && data.variant.weight !== 1) weight += cellsWeight(figures, loaded.size, loaded.cells) * (data.variant.weight - 1);
   return cost || weight ? { cost, weight: Math.round(weight * 1000) / 1000 } : null;
 }
 
@@ -124,14 +136,16 @@ function cellTl(item: any, data: PowerData): number | null {
   return match ? Number(match[0]) : null;
 }
 
-/** "2 C cells", "a 4-lb. power pack", as the book says it. */
+/** "2 C cells", "a 4-lb. power pack", as the book says it, with the cells' chemistry where a rule gives them one. */
 function supplyText(ns: string, data: PowerData): string {
   const cell = cellOf(data);
   if (cell) {
     const one = cell.cells === 1;
-    return F(ns, data.backpack ? (one ? "SupplyPack" : "SupplyPacks") : one ? "Supply" : "Supplies", { cells: cell.cells, size: cell.size });
+    const text = F(ns, data.backpack ? (one ? "SupplyPack" : "SupplyPacks") : one ? "Supply" : "Supplies", { cells: cell.cells, size: cell.size });
+    return data.variant ? `${text} (${game.i18n.localize(data.variant.label)})` : text;
   }
   if (data.packWeight) return F(ns, "SupplyWeight", { weight: data.packWeight });
+  if (data.builtIn) return L(ns, "BuiltIn");
   return data.raw;
 }
 
@@ -179,11 +193,13 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
   const seconds = cell ? replacementSeconds(table.figures, cell.size) : null;
   const ns = table.i18n;
   const lines = [seconds ? F(ns, "Changed", { supply: supplyText(ns, data), seconds }) : F(ns, "ChangedNoTime", { supply: supplyText(ns, data) })];
-  if (table.figures.rechargeable && cell) {
+  // Built-in batteries are recharged where they sit, never changed.
+  if (data.builtIn) lines[0] = F(ns, "Recharged", { supply: supplyText(ns, data) });
+  else if (table.figures.rechargeable && cell) {
     if (data.rechargeable) lines[0] = F(ns, "Recharged", { supply: supplyText(ns, data) });
     else {
       const spares = await useSpares(item.actor, table.figures.spareRecord, cell);
-      lines.push(spares ? F(ns, "SparesUsed", { cells: cell.cells, name: spares.name, left: spares.left }) : F(ns, "NewCellsCost", { cost: cellCost(table.figures, cell.size, data) * cell.cells }));
+      lines.push(spares ? F(ns, "SparesUsed", { cells: cell.cells, name: spares.name, left: spares.left }) : F(ns, "NewCellsCost", { cost: Math.round(cellPrice(table.figures, cell.size, data) * cell.cells * 100) / 100 }));
     }
   }
   await say(item.actor, item.name, lines);
@@ -266,7 +282,7 @@ function itemContext(item: any, table: CellTable): Record<string, unknown> {
     supply: supplyText(ns, data),
     ranged,
     kinds,
-    price: cell ? F(ns, "CellPrice", { size: cell.size, cost: cellCost(figures, cell.size, data), lc: lc === null ? L(ns, "NoLc") : `LC${lc}` }) : "",
+    price: cell ? F(ns, "CellPrice", { size: cell.size, cost: cellPrice(figures, cell.size, data), lc: lc === null ? L(ns, "NoLc") : `LC${lc}` }) : "",
     endurance: data.draw?.endurance ? F(ns, data.enduranceFactor !== 1 ? "EnduranceScaled" : "Endurance", { endurance: data.draw.endurance, factor: Math.round(data.enduranceFactor * 100) / 100 }) : "",
     shots: ranged ? (shots === null ? L(ns, "ShotsUnlimited") : shots !== 1 ? F(ns, "ShotsTimes", { times: shots }) : "") : "",
     blast: blast ? F(ns, "Blast", { dice: blast.dice, ref: blast.ref, tl }) : "",
@@ -336,13 +352,14 @@ function poweredGear(actor: any): Array<{ item: any; table: CellTable }> {
  * The carried gadgets whose cells can be recharged, with what is left of each
  * and what its cells weigh: what a generator or recharger can top up.
  */
-export function rechargeableGear(actor: any): Array<{ item: any; total: number; left: number; weight: number }> {
+export function rechargeableGear(actor: any): Array<{ item: any; total: number; left: number; weight: number; size: string; cells: number }> {
   return poweredGear(actor).flatMap(({ item, table }) => {
     const data = powerData(item);
     const cell = cellOf(data);
     const left = enduranceLeft(data);
     if (!table.figures.rechargeable || !data.rechargeable || !cell || !left || left === "unlimited") return [];
-    return [{ item, total: left.total, left: left.left, weight: cellsWeight(table.figures, cell.size, cell.cells) }];
+    const weight = cellsWeight(table.figures, cell.size, cell.cells) * (data.variant?.weight ?? 1);
+    return [{ item, total: left.total, left: left.left, weight: Math.round(weight * 1000) / 1000, size: cell.size, cells: cell.cells }];
   });
 }
 
@@ -362,7 +379,7 @@ function gearContext(actor: any): Record<string, unknown> {
     const data = powerData(item);
     const left = enduranceLeft(data);
     const weapon = (item.system?.rangedModes ?? []).length > 0;
-    const pluggable = data.adapter || data.inverter;
+    const pluggable = isPluggable(item, data);
     const ranged = (actor.system?.derived?.ranged ?? []).filter((row: any) => row.itemId === item.id && row.shotsCapacity > 0);
     let charge = "";
     let fraction: number | null = null;
@@ -374,8 +391,8 @@ function gearContext(actor: any): Record<string, unknown> {
     } else if (left === "unlimited" || data.cosmic) charge = L(ns, "Unlimited");
     else if (left) {
       const shown = hoursText(left.left);
-      // Swapped cells last their own time, not the table's.
-      const whole = data.swap ? hoursText(left.total) : null;
+      // Swapped cells, or cells of another chemistry, last their own time, not the table's.
+      const whole = data.swap || data.variant ? hoursText(left.total) : null;
       charge = F(ns, "Left", { value: shown.value, unit: L(ns, `Unit.${shown.unit}`), endurance: whole ? `${whole.value} ${L(ns, `Unit.${whole.unit}`)}` : (data.draw?.endurance ?? "") });
       fraction = left.total ? left.left / left.total : 0;
     } else if (ranged.length) {

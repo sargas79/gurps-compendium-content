@@ -10,12 +10,20 @@
  * and how much of its endurance has been used; and, for a book that allows
  * them, cells of another size swapped in, a power adapter or inverter, and
  * whether the gadget is running on external power.
+ *
+ * A book that prints more about its power keeps it here too: the chemistry
+ * of the cells (a name its own table reads), the grades of external power a
+ * device runs on as printed, and what an energy store is -- a capacitor, a
+ * flywheel -- with its size, material, count and shock. The engine reads the
+ * chemistry only through a registered cell variant (`registerCellVariant`),
+ * and the grades and built-in rechargeable batteries only under the switch a
+ * book's table names for them (`CellTable.externalRule`).
  */
 
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
 import { MODULE_ID } from "../module.js";
-import { cellsWeight, enduranceUses as enduranceUsesOf, isCellSizeOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
+import { cellsWeight, enduranceHours, enduranceUses as enduranceUsesOf, isCellSizeOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
 
 /** One book's cell table. */
 export interface CellTable extends BookTable {
@@ -24,6 +32,66 @@ export interface CellTable extends BookTable {
   rule: string;
   /** Where the book's text for the sheets sits: "GCC.UT" reads "GCC.UT.Power.Title". */
   i18n: string;
+  /**
+   * The full key of the switch under which a device's printed grades of
+   * external power let it be plugged in without an adapter, and its built-in
+   * rechargeable batteries (an endurance with no cell) are tracked; none for
+   * a book that prints neither.
+   */
+  externalRule?: string;
+}
+
+/**
+ * Cells of another chemistry than the book's table prices: what they
+ * multiply the endurance, the price of a new cell and the cells' weight by,
+ * against the size's own figures, and whether they are recharged. The price
+ * factor stands in for the book's own multiplier for rechargeable cells.
+ */
+export interface CellVariant {
+  label: string;
+  endurance: number;
+  cost: number;
+  weight: number;
+  rechargeable: boolean;
+}
+
+/** A rule that says what chemistry an item's cells are, or null for the table's own. */
+export type CellVariantResolver = (item: any, cell: { size: string; cells: number } | null, figures: CellFigures) => CellVariant | null;
+const variantResolvers: CellVariantResolver[] = [];
+
+/** Registers a rule that gives an item's cells another chemistry than its table's. */
+export function registerCellVariant(resolver: CellVariantResolver): void {
+  variantResolvers.push(resolver);
+}
+
+/** The first registered variant that speaks for an item's cells. */
+function variantOf(item: any, cell: { size: string; cells: number } | null, figures: CellFigures | null): CellVariant | null {
+  if (!figures) return null;
+  for (const resolve of variantResolvers) {
+    const variant = resolve(item, cell, figures);
+    if (variant) return variant;
+  }
+  return null;
+}
+
+/** Whether the switch for an item's printed grades of external power and built-in batteries is on. */
+function externalOn(item: any): boolean {
+  const table = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule));
+  return Boolean(table?.externalRule && isRuleOn(table.externalRule));
+}
+
+/** What an energy store is, where the record is one. */
+export interface StorageData {
+  /** "capacitor", "flywheel", or "" for none. */
+  kind: string;
+  /** The cell size it is rated as, where the book rates it so. */
+  size: string;
+  /** What it is made of, as the book's table names it; "" for the figures printed. */
+  material: string;
+  /** How many are wired together, for a bank of capacitors. */
+  count: number;
+  /** The HT modifier to the shock a fully charged one gives; 0 for none. */
+  shock: number;
 }
 
 /** Every book's cell table. */
@@ -67,8 +135,17 @@ export interface PowerData extends Required<CellKind> {
   adapter: boolean;
   /** An inverter, so a gadget built for external power runs on cells. */
   inverter: boolean;
-  /** Whether a gadget with an adapter or inverter is plugged into external power right now. */
+  /** Whether a gadget with an adapter or inverter, or printed with a grade of external power, is plugged in right now. */
   external: boolean;
+  /** The chemistry of the cells, as the book's table names it; "" for the table's own. */
+  chemistry: string;
+  /** The chemistry a registered rule gives the cells, or null for the table's own. */
+  variant: CellVariant | null;
+  /** The grades of external power the device runs on, as printed. */
+  grades: string[];
+  /** Built-in rechargeable batteries: an endurance with no cell, tracked where the book's switch for them is on. */
+  builtIn: boolean;
+  storage: StorageData;
 }
 
 /** A rule that scales a gadget's cells and endurance, such as a compact computer's (Ultra-Tech p. 23). */
@@ -131,6 +208,15 @@ export function registerPowerData(): void {
       adapter: flag(),
       inverter: flag(),
       external: flag(),
+      chemistry: text(),
+      grades: new f.ArrayField(text()),
+      storage: new f.SchemaField({
+        kind: text(),
+        size: text(),
+        material: text(),
+        count: new f.NumberField({ required: true, nullable: false, integer: true, initial: 1, min: 1 }),
+        shock: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0 }),
+      }),
     }),
   });
 }
@@ -153,6 +239,14 @@ export function powerData(item: any): PowerData {
     ? swappedEndurance(figures, table, { size: d.swapCell, cells: swapCells })
     : null;
   const swap = swapRatio !== null ? { cell: String(d.swapCell), cells: swapCells } : null;
+  const loaded = swap ? { size: swap.cell, cells: swap.cells } : table;
+  const variant = variantOf(item, loaded, figures);
+  const grades = Array.isArray(d.grades) ? d.grades.map((g: unknown) => String(g ?? "").trim()).filter(Boolean) : [];
+  const external = externalOn(item);
+  const endurance = String(draw.endurance ?? "");
+  const builtIn = external && Boolean(d.rechargeable) && !cell && !drawCell && (enduranceHours(endurance) !== null || enduranceUsesOf(endurance) !== null);
+  const pluggable = Boolean(figures?.adapters && (d.adapter || d.inverter)) || (external && grades.length > 0);
+  const s = d.storage ?? {};
   return {
     cell,
     cells,
@@ -170,14 +264,30 @@ export function powerData(item: any): PowerData {
     tl: Math.max(0, Math.floor(Number(d.tl) || 0)),
     hoursUsed: Math.max(0, Number(d.hoursUsed) || 0),
     usesUsed: Math.max(0, Math.floor(Number(d.usesUsed) || 0)),
-    enduranceFactor: factor.endurance * (swapRatio ?? 1),
+    enduranceFactor: factor.endurance * (swapRatio ?? 1) * (variant?.endurance ?? 1),
     figures,
-    rechargeable: Boolean(d.rechargeable),
+    rechargeable: variant ? variant.rechargeable : Boolean(d.rechargeable),
     swap,
     adapter: Boolean(figures?.adapters && d.adapter),
     inverter: Boolean(figures?.adapters && d.inverter),
-    external: Boolean(figures?.adapters && (d.adapter || d.inverter) && d.external),
+    external: pluggable && Boolean(d.external),
+    chemistry: String(d.chemistry ?? ""),
+    variant,
+    grades,
+    builtIn,
+    storage: {
+      kind: String(s.kind ?? ""),
+      size: String(s.size ?? ""),
+      material: String(s.material ?? ""),
+      count: Math.max(1, Math.floor(Number(s.count) || 1)),
+      shock: Math.floor(Number(s.shock) || 0),
+    },
   };
+}
+
+/** Whether a gadget can be plugged into external power: through an adapter or inverter, or as printed. */
+export function isPluggable(item: any, data: PowerData = powerData(item)): boolean {
+  return data.adapter || data.inverter || (data.grades.length > 0 && externalOn(item));
 }
 
 /**
@@ -186,7 +296,7 @@ export function powerData(item: any): PowerData {
  * field is filled in.
  */
 export function isPowered(data: PowerData): boolean {
-  return Boolean(data.cell || data.packWeight || data.draw?.cell);
+  return Boolean(data.cell || data.packWeight || data.draw?.cell || data.builtIn);
 }
 
 /** The cells the item runs on: any swapped in, else the table's cell, or the draw's where only that says. */

@@ -26,7 +26,9 @@
  * - `powerBeforePrice`: the book states the power in the sentence before the
  *   price rather than after it -- "VL/10 hours. $2,500, 100lbs." -- as cells,
  *   as built-in rechargeable batteries ("rechargeable/120 hours"), or as a
- *   grade of external power ("Household power"; HT:EE p. 9).
+ *   grade of external power ("Household power"; HT:EE p. 9). The grades the
+ *   statement names go in `power.grades` as keys ("household",
+ *   "majorAppliance"), and the statement as printed in `power.raw`.
  * - `years`: the book closes on the year the item went on sale, and where a
  *   working model came first, that year in brackets: "[1908] 1928." An item
  *   with no market price is a prototype, priced by its complexity under the
@@ -101,6 +103,26 @@ const PROTOTYPE = /\b(Simple|Average|Complex|Amazing) complexity\.\s*([^$]{0,80}
 /** The grades of external power, and High-Tech's own "external power" (HT:EE p. 9; High-Tech p. 14). */
 const POWER_GRADE = /\b(?:(?:peripheral|automotive|household|major appliance|industrial)(?:\s+or\s+[a-z]+)?|external)\s+(?:power|current)\b/i;
 
+/** Each grade's words in a power statement, and the key a record keeps it by (HT:EE p. 9). */
+const GRADE_WORDS = [
+  [/\bperipheral\b/i, "peripheral"],
+  [/\bautomotive\b/i, "automotive"],
+  [/\bhousehold\b/i, "household"],
+  [/\bmajor appliance\b/i, "majorAppliance"],
+  [/\bindustrial\b/i, "industrial"],
+  [/\bexternal\b/i, "external"],
+];
+
+/**
+ * The grades of external power a power statement names, as keys, in the
+ * book's order from least to most: "Automotive or household power" is
+ * automotive and household. None where it names no power or current.
+ */
+export function gradesIn(statement) {
+  if (!/\b(?:power|current)\b/i.test(statement)) return [];
+  return GRADE_WORDS.filter(([words]) => words.test(statement)).map(([, grade]) => grade);
+}
+
 /** Built-in rechargeable batteries and how long they last: "rechargeable/120 hours" (HT:EE p. 9). */
 const RECHARGEABLE = /\brechargeable\s*\/\s*([\d,.]+\s*(?:hrs?|hours?|min(?:utes?)?|days?|weeks?|months?|years?)\.?)/i;
 
@@ -162,11 +184,14 @@ export function powerBefore(text, settings) {
     const raw = sentence.trim().replace(/\.$/, "");
     // The whole statement is kept only where it says more than the draw: "or rechargeable/120 hours".
     const more = (drawn) => (raw !== drawn.replace(/\.$/, "") ? { raw } : {});
-    if (cells && cells.cell) return { draw: cells, ...more(cells.raw) };
+    // The grades of external power it may run on instead, or only.
+    const grades = gradesIn(raw);
+    const graded = grades.length ? { grades } : {};
+    if (cells && cells.cell) return { draw: cells, ...more(cells.raw), ...graded };
     if (recharge) {
-      return { draw: { cell: "", cells: 0, endurance: recharge[1].trim(), raw: recharge[0] }, rechargeable: true, ...more(recharge[0]) };
+      return { draw: { cell: "", cells: 0, endurance: recharge[1].trim(), raw: recharge[0] }, rechargeable: true, ...more(recharge[0]), ...graded };
     }
-    if (grade) return { raw: grade[0].charAt(0).toUpperCase() + grade[0].slice(1) };
+    if (grade) return { raw: grade[0].charAt(0).toUpperCase() + grade[0].slice(1), ...graded };
   }
   return null;
 }

@@ -83,7 +83,9 @@
  * remote control and the emergency stop, power tools' work, diathermy, the
  * heating pad, electroconvulsive therapy and the laser scalpel (HT:EE pp.
  * 13-14, 20-25), with its revision of the defibrillator's revival (HT:EE
- * p. 14).
+ * p. 14), and its power: battery chemistries, capacitors, supercapacitors,
+ * flywheels and generators, and the grades of external power (HT:EE pp. 9,
+ * 16-18).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -213,6 +215,10 @@ const RULES = [
   { key: "explosiveProjectiles", pages: "pp. 169-170, 175", implemented: true },
   { key: "cargoProjectiles", pages: "pp. 143, 171-172", implemented: true },
   { key: "batteries", pages: "pp. 10, 13-16", implemented: true },
+  // Electricity and Electronics: battery chemistry, energy storage and the grades of external power.
+  { key: "batteryChemistry", pages: "pp. 16-18", reference: EE_REFERENCE, implemented: true },
+  { key: "energyStorage", pages: "pp. 17-18", reference: EE_REFERENCE, implemented: true },
+  { key: "externalPower", pages: "p. 9", reference: EE_REFERENCE, implemented: true },
   // The optional wounding rules.
   { key: "vitalsOnTorsoHits", pages: "p. 162", implemented: true },
   { key: "realisticLimbWounds", pages: "p. 162", implemented: true },
@@ -452,7 +458,7 @@ function ready(api: GWorldApi): void {
   });
   readyWeaponFamilies(api, { airGuns: rule("airGunsAndStunners"), revolvers: rule("revolverHandling"), mechanical: rule("mechanicalMachineGuns"), backblast: rule("backblast") });
   readyIndirectFire(api, rule("indirectFire"));
-  readyHighTechPower(api, rule("batteries"));
+  readyHighTechPower(api, { batteries: rule("batteries"), chemistry: rule("batteryChemistry"), storage: rule("energyStorage"), external: rule("externalPower") });
   readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
   // After High-Tech's computers, whose unfamiliar computer type a high-level language lifts.

@@ -117,7 +117,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -216,7 +219,10 @@
               "endurance": "1 month",
               "raw": "2×XS/1 month"
             },
-            "raw": "2×XS/1 month or household power"
+            "raw": "2×XS/1 month or household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -338,7 +344,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "External power"
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -810,7 +819,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -854,7 +866,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Peripheral power"
+            "raw": "Peripheral power",
+            "grades": [
+              "peripheral"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -942,7 +957,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -986,7 +1004,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Automotive or household power"
+            "raw": "Automotive or household power",
+            "grades": [
+              "automotive",
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1384,7 +1406,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1428,7 +1453,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "average",
@@ -1472,7 +1500,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1516,7 +1547,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1609,7 +1643,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1653,7 +1690,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1703,7 +1743,11 @@
               "endurance": "40 hours.",
               "raw": "L/40 hours."
             },
-            "raw": "Automotive power, household power, or L/40 hours"
+            "raw": "Automotive power, household power, or L/40 hours",
+            "grades": [
+              "automotive",
+              "household"
+            ]
           }
         }
       }
@@ -1737,7 +1781,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "automotive",
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -1928,7 +1976,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2067,7 +2118,10 @@
               "raw": "Rechargeable/8 hours"
             },
             "rechargeable": true,
-            "raw": "Rechargeable/8 hours or automotive power"
+            "raw": "Rechargeable/8 hours or automotive power",
+            "grades": [
+              "automotive"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2111,7 +2165,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2237,7 +2294,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2480,7 +2540,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2524,7 +2587,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2568,7 +2634,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2612,7 +2681,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Major appliance power"
+            "raw": "Major appliance power",
+            "grades": [
+              "majorAppliance"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2683,7 +2755,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2777,7 +2852,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Peripheral power"
+            "raw": "Peripheral power",
+            "grades": [
+              "peripheral"
+            ]
           }
         }
       }
@@ -2852,7 +2930,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2896,7 +2977,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -2981,7 +3065,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -3167,7 +3254,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -3211,7 +3301,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -3305,7 +3398,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Automotive power"
+            "raw": "Automotive power",
+            "grades": [
+              "automotive"
+            ]
           },
           "invention": {
             "complexity": "",
@@ -3399,7 +3495,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Automotive power"
+            "raw": "Automotive power",
+            "grades": [
+              "automotive"
+            ]
           }
         }
       }
@@ -3483,7 +3582,10 @@
       "extensions": {
         "gurps-compendium-content": {
           "power": {
-            "raw": "Household power"
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
           },
           "invention": {
             "complexity": "",

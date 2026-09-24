@@ -1,6 +1,7 @@
 {{!-- The generators and energy collectors the character carries (High-Tech
      pp. 14-15): what each runs on, a tank's fuel left and a refill, cranking
-     a muscle-powered one, and a solar recharger. --}}
+     a muscle-powered one, and a solar recharger; and the supplement's
+     generators and rates, with a wind generator run by the wind (HT:EE pp. 17-18). --}}
 <section class="card" data-gcc-generators>
   <div class="card-head"><h3>{{localize "GCC.HT.Power.GeneratorsTitle"}}</h3></div>
   <table class="gtable">
@@ -29,6 +30,7 @@
             {{#if r.tank}}<button type="button" class="ibtn tiny" data-gcc-generator-refuel {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Refuel"}}</button>{{/if}}
             {{#if r.crank}}<button type="button" class="ibtn tiny" data-gcc-generator-crank {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Crank"}}</button>{{/if}}
             {{#if r.recharger}}<button type="button" class="ibtn tiny" data-gcc-generator-solar {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.Recharge"}}</button>{{/if}}
+            {{#if r.wind}}<button type="button" class="ibtn tiny" data-gcc-generator-wind {{#unless ../editable}}disabled{{/unless}}>{{localize "GCC.HT.Power.RunWind"}}</button>{{/if}}
           </td>
         </tr>
       {{/each}}
