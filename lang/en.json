@@ -4553,7 +4553,7 @@
           "respirocytes": "Respirocytes"
         },
         "Resisted": {
-          "morphazine": "{name} falls into a deep, dreamless sleep for {minutes} minutes.",
+          "morphazine": "{name} falls into a deep, dreamless sleep for {value} {unit}.",
           "soothe": "{name} drifts into euphoria, with High Pain Threshold, for {minutes} minutes, and won't remember it.",
           "crediline": "{name} becomes trusting and talkative: Gullibility (9) for {minutes} minutes."
         },
@@ -4708,7 +4708,9 @@
         "Unit": {
           "hours": "hours",
           "days": "days",
-          "weeks": "weeks"
+          "weeks": "weeks",
+          "seconds": "seconds",
+          "minutes": "minutes"
         },
         "ChipCaps": "At TL{tl}: at most {slots} slots and {points} points a chip; skill chips ${perPoint} a point.",
         "CognitiveCap": "At TL{tl}: at most {points} points an operation, ${price} a point.",
