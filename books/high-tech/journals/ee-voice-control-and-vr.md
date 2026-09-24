@@ -1,0 +1,15 @@
+An important application of AI has been understanding human speech. Early experiments, starting in 1952, could take hours to process seconds of speech. Real-time systems appeared in 1987 (TL8), taking advantage of neural-network programming (see Artificial Intelligence, p. 38). Systems capable both of turning speech into text and of recognizing and responding to spoken commands have been available since 2010.
+
+Voice control allows hands-free operation, which benefits users whose hands are occupied or nonfunctional. It’s also beneficial for users with dyslexia, reducing the risk of spelling errors. Voice control became a symbol of high technology in many science-fiction dramas and technothrillers. However, for navigating a screen, it gives -2 to Computer Operation and other skills. An initial training period of 8 hours is needed for the system to become familiar with the user’s voice; until then, rolls to operate devices by spoken commands are at -2.
+
+Smartphones, tablets, and standalone devices may send spoken questions or commands to a remote computer capable of interpreting speech (Digitally Encoded Voice and Video, p. 41), if they have network access. This creates a possibility of gaining access to other people’s conversations with a Computer Hacking roll (or its realistic equivalents; see p. B184) – or a court order!
+
+### Virtual Reality
+
+The first experiments with virtual reality took place in 1968, but it was several decades before commercial release of headsets. Many early systems were used in electronic games to give a more immersive experience, but more practical uses followed. Virtual-reality-display systems allow computers to be used for three-dimensional design; they can also be integrated into remote-control systems (p. 25). The main current limitation of virtual reality is its ability to deal with motion, force, and the sense of touch. Current systems using prototype devices such as wired gloves give -2 to skills based on manual dexterity.
+
+**Virtual Reality Headset (TL8).** A headset that provides separate video images to both eyes, allowing three-dimensional imagery, together with stereo sound. Also provided is a handheld pointer device for selecting and moving virtual objects. If used for Computer Operation, it offsets up to -2 in penalties for tasks that would benefit from wearing a VR headset. Peripheral power or XS/15 hours. $85, 6.5 lbs. [2010] 2016.
+
+### Brain-Computer Interfaces
+
+Experiments with direct control of computers and other devices by the brain began in 1969. In 2015, the BCI Society began holding annual international conferences. Such devices are prototypes at present. Two basic approaches are invasive, using surgically implanted electrodes, and noninvasive, based on electroencephalography, magnetic resonance imaging (MRI), or other methods of scanning brain activity. Noninvasive interfaces based on wireless EEG headsets (p. 12) produce weaker signals, for -2 to skill rolls (which can be compensated for by taking extra time). Applications include control of computers and of wheelchairs and prosthetic limbs. Average complexity.

@@ -2370,6 +2370,758 @@
       "reference": "High-Tech p. 252",
       "file": "gun-fu.md",
       "status": "reviewed"
+    },
+    {
+      "id": "ee-the-progress-of-science",
+      "title": "The Progress of Science",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE4-5",
+      "reference": "High-Tech: Electricity and Electronics pp. 4-5",
+      "file": "ee-the-progress-of-science.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-technologies",
+      "title": "Technologies",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE5-6",
+      "reference": "High-Tech: Electricity and Electronics pp. 5-6",
+      "file": "ee-technologies.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-skills",
+      "title": "Skills",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE6-8",
+      "rule": "gurps-compendium-content.skillSubstitutes",
+      "reference": "High-Tech: Electricity and Electronics pp. 6-8",
+      "file": "ee-skills.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-understanding-the-devices",
+      "title": "Understanding the Devices",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE8-9",
+      "reference": "High-Tech: Electricity and Electronics pp. 8-9",
+      "file": "ee-understanding-the-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-cost-and-cutting-edge",
+      "title": "Cost and Cutting Edge",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE8",
+      "rule": "gurps-compendium-content.cuttingEdgeGear",
+      "reference": "High-Tech: Electricity and Electronics p. 8",
+      "file": "ee-cost-and-cutting-edge.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-breakable-parts",
+      "title": "Breakable!",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE8-9",
+      "rule": "gurps-compendium-content.breakableComponents",
+      "reference": "High-Tech: Electricity and Electronics pp. 8-9",
+      "file": "ee-breakable-parts.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-power",
+      "title": "Power",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE9",
+      "rule": "gurps-compendium-content.externalPower",
+      "reference": "High-Tech: Electricity and Electronics p. 9",
+      "file": "ee-power.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-combined-devices",
+      "title": "Combined Devices",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE9",
+      "rule": "gurps-compendium-content.combinedDevices",
+      "reference": "High-Tech: Electricity and Electronics p. 9",
+      "file": "ee-combined-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electrical-hazards",
+      "title": "Electrical Hazards",
+      "chapter": "E&E 1. Basic Science",
+      "pages": "HT:EE9",
+      "rule": "gurps-compendium-content.electricalHazards",
+      "reference": "High-Tech: Electricity and Electronics p. 9",
+      "file": "ee-electrical-hazards.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-detection-and-measurement",
+      "title": "Detection and Measurement",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE10",
+      "rule": "gurps-compendium-content.electricalMeasurement",
+      "reference": "High-Tech: Electricity and Electronics p. 10",
+      "file": "ee-detection-and-measurement.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-laboratory-instruments",
+      "title": "Laboratory Instruments",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE10-11",
+      "rule": "gurps-compendium-content.labInstruments",
+      "reference": "High-Tech: Electricity and Electronics pp. 10-11",
+      "file": "ee-laboratory-instruments.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-static-electricity-and-tesla-coils",
+      "title": "Static Electricity and Tesla Coils",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE11-12",
+      "rule": "gurps-compendium-content.labInstruments",
+      "reference": "High-Tech: Electricity and Electronics pp. 11-12",
+      "file": "ee-static-electricity-and-tesla-coils.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-scientific-and-medical-electronics",
+      "title": "Scientific and Medical Electronics",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE12-13",
+      "rule": "gurps-compendium-content.labInstruments",
+      "reference": "High-Tech: Electricity and Electronics pp. 12-13",
+      "file": "ee-scientific-and-medical-electronics.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-transducers-and-meters",
+      "title": "Transducers and Meters",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE12-13",
+      "rule": "gurps-compendium-content.labInstruments",
+      "reference": "High-Tech: Electricity and Electronics pp. 12-13",
+      "file": "ee-transducers-and-meters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-analog-computers",
+      "title": "Analog Computers",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE13",
+      "rule": "gurps-compendium-content.labInstruments",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "file": "ee-analog-computers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-medical-and-surgical-tools",
+      "title": "Medical and Surgical Tools",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE13-14",
+      "rule": "gurps-compendium-content.electromedicine",
+      "reference": "High-Tech: Electricity and Electronics pp. 13-14",
+      "file": "ee-medical-and-surgical-tools.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-defibrillators",
+      "title": "Defibrillators",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE14",
+      "rule": "gurps-compendium-content.emergencyMedicine",
+      "reference": "High-Tech: Electricity and Electronics p. 14",
+      "file": "ee-defibrillators.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-construction-and-repair",
+      "title": "Construction and Repair",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE14-15",
+      "rule": "gurps-compendium-content.shockProtection",
+      "reference": "High-Tech: Electricity and Electronics pp. 14-15",
+      "file": "ee-construction-and-repair.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-tool-kits",
+      "title": "Tool Kits",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE14-15",
+      "rule": "gurps-compendium-content.toolKits",
+      "reference": "High-Tech: Electricity and Electronics pp. 14-15",
+      "file": "ee-tool-kits.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-heathkits",
+      "title": "Heathkits",
+      "chapter": "E&E 2. Laboratories and Workshops",
+      "pages": "HT:EE15",
+      "rule": "gurps-compendium-content.kitBuilding",
+      "reference": "High-Tech: Electricity and Electronics p. 15",
+      "file": "ee-heathkits.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-primary-batteries-and-fuel-cells",
+      "title": "Primary Batteries and Fuel Cells",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE16-17",
+      "rule": "gurps-compendium-content.batteryChemistry",
+      "reference": "High-Tech: Electricity and Electronics pp. 16-17",
+      "file": "ee-primary-batteries-and-fuel-cells.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-generators",
+      "title": "Generators and Photovoltaics",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE17",
+      "rule": "gurps-compendium-content.energyStorage",
+      "reference": "High-Tech: Electricity and Electronics p. 17",
+      "file": "ee-generators.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-capacitors-and-flywheels",
+      "title": "Storage: Capacitors and Flywheels",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE17-18",
+      "rule": "gurps-compendium-content.energyStorage",
+      "reference": "High-Tech: Electricity and Electronics pp. 17-18",
+      "file": "ee-capacitors-and-flywheels.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-secondary-batteries",
+      "title": "Secondary Batteries",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE18",
+      "rule": "gurps-compendium-content.batteryChemistry",
+      "reference": "High-Tech: Electricity and Electronics p. 18",
+      "file": "ee-secondary-batteries.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-transmission",
+      "title": "Transmission",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE18-19",
+      "rule": "gurps-compendium-content.powerLines",
+      "reference": "High-Tech: Electricity and Electronics pp. 18-19",
+      "file": "ee-transmission.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-heat-and-light",
+      "title": "Heat and Light",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE20",
+      "rule": "gurps-compendium-content.illumination",
+      "reference": "High-Tech: Electricity and Electronics p. 20",
+      "file": "ee-heat-and-light.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-light-levels",
+      "title": "Light Levels",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE20",
+      "rule": "gurps-compendium-content.illumination",
+      "reference": "High-Tech: Electricity and Electronics p. 20",
+      "file": "ee-light-levels.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-lamps",
+      "title": "Arcs, Bulbs and Lamps",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE20-22",
+      "rule": "gurps-compendium-content.lightDazzle",
+      "reference": "High-Tech: Electricity and Electronics pp. 20-22",
+      "file": "ee-lamps.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electromagnetic-heating",
+      "title": "Electromagnetic Heating",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE21",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics p. 21",
+      "file": "ee-electromagnetic-heating.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electrochemical-processes",
+      "title": "Electrochemical Processes",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE22",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics p. 22",
+      "file": "ee-electrochemical-processes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-magnets",
+      "title": "Magnets",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE22-23",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics pp. 22-23",
+      "file": "ee-magnets.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-motors",
+      "title": "Motors: Household and Office Devices",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE23",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics p. 23",
+      "file": "ee-motors.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-workshop-devices",
+      "title": "Workshop Devices",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE23-24",
+      "rule": "gurps-compendium-content.powerTools",
+      "reference": "High-Tech: Electricity and Electronics pp. 23-24",
+      "file": "ee-workshop-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-mems",
+      "title": "MEMS",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE24",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics p. 24",
+      "file": "ee-mems.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electrical-control",
+      "title": "Electrical Control",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE24-25",
+      "rule": "gurps-compendium-content.electricAppliances",
+      "reference": "High-Tech: Electricity and Electronics pp. 24-25",
+      "file": "ee-electrical-control.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-safety-devices",
+      "title": "Safety Devices",
+      "chapter": "E&E 3. Power and Machinery",
+      "pages": "HT:EE25",
+      "rule": "gurps-compendium-content.shockProtection",
+      "reference": "High-Tech: Electricity and Electronics p. 25",
+      "file": "ee-safety-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-wired-transmission",
+      "title": "Modes of Transmission: Wired",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE26-27",
+      "reference": "High-Tech: Electricity and Electronics pp. 26-27",
+      "file": "ee-wired-transmission.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-radios",
+      "title": "Wireless and Radios",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE27-30",
+      "rule": "gurps-compendium-content.radioTuning",
+      "reference": "High-Tech: Electricity and Electronics pp. 27-30",
+      "file": "ee-radios.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-mix-and-match",
+      "title": "Mix and Match",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE28",
+      "rule": "gurps-compendium-content.radios",
+      "reference": "High-Tech: Electricity and Electronics p. 28",
+      "file": "ee-mix-and-match.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-antennas",
+      "title": "Antennas",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE28",
+      "rule": "gurps-compendium-content.radioAntennas",
+      "reference": "High-Tech: Electricity and Electronics p. 28",
+      "file": "ee-antennas.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-bandwidth",
+      "title": "Bandwidth",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE28",
+      "rule": "gurps-compendium-content.radioDesign",
+      "reference": "High-Tech: Electricity and Electronics p. 28",
+      "file": "ee-bandwidth.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-spark-gap-transmitters",
+      "title": "Spark-Gap Transmitters",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE28-29",
+      "rule": "gurps-compendium-content.radioDesign",
+      "reference": "High-Tech: Electricity and Electronics pp. 28-29",
+      "file": "ee-spark-gap-transmitters.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-oscillators-and-receivers",
+      "title": "Oscillators, Transmitters and Receivers",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE29",
+      "rule": "gurps-compendium-content.radioDesign",
+      "reference": "High-Tech: Electricity and Electronics p. 29",
+      "file": "ee-oscillators-and-receivers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-shortwave-radio",
+      "title": "Shortwave Radio",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE30",
+      "rule": "gurps-compendium-content.shortwaveSkip",
+      "reference": "High-Tech: Electricity and Electronics p. 30",
+      "file": "ee-shortwave-radio.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-optical-transmission",
+      "title": "Optical Transmission",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE30",
+      "reference": "High-Tech: Electricity and Electronics p. 30",
+      "file": "ee-optical-transmission.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-audio-transducers",
+      "title": "Audio Transducers",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE30-31",
+      "rule": "gurps-compendium-content.audioFidelity",
+      "reference": "High-Tech: Electricity and Electronics pp. 30-31",
+      "file": "ee-audio-transducers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-audio-generation",
+      "title": "Audio Generation",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE31-32",
+      "reference": "High-Tech: Electricity and Electronics pp. 31-32",
+      "file": "ee-audio-generation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-audio-amplification",
+      "title": "Audio Amplification",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE32",
+      "rule": "gurps-compendium-content.soundAmplification",
+      "reference": "High-Tech: Electricity and Electronics p. 32",
+      "file": "ee-audio-amplification.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-audio-and-video-radio-options",
+      "title": "Audio and Video Transmission",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE32-34",
+      "rule": "gurps-compendium-content.radioDesign",
+      "reference": "High-Tech: Electricity and Electronics pp. 32-34",
+      "file": "ee-audio-and-video-radio-options.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-active-rangefinding",
+      "title": "Active Rangefinding",
+      "chapter": "E&E 4. Signals and Waves",
+      "pages": "HT:EE35",
+      "rule": "gurps-compendium-content.rangefindingEmissions",
+      "reference": "High-Tech: Electricity and Electronics p. 35",
+      "file": "ee-active-rangefinding.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-computers",
+      "title": "Computers and Processing Power",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE36",
+      "rule": "gurps-compendium-content.computerEras",
+      "reference": "High-Tech: Electricity and Electronics p. 36",
+      "file": "ee-computers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-computer-specifications",
+      "title": "Specifications and Design Options",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE37",
+      "rule": "gurps-compendium-content.computerEras",
+      "reference": "High-Tech: Electricity and Electronics p. 37",
+      "file": "ee-computer-specifications.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-programs-and-languages",
+      "title": "Programs and Languages",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE38",
+      "rule": "gurps-compendium-content.programmingLanguages",
+      "reference": "High-Tech: Electricity and Electronics p. 38",
+      "file": "ee-programs-and-languages.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-special-purpose-devices",
+      "title": "Special-Purpose Devices",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE39",
+      "reference": "High-Tech: Electricity and Electronics p. 39",
+      "file": "ee-special-purpose-devices.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-digital-interfaces",
+      "title": "Digital Interfaces",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE39-40",
+      "rule": "gurps-compendium-content.computerInterfaces",
+      "reference": "High-Tech: Electricity and Electronics pp. 39-40",
+      "file": "ee-digital-interfaces.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-voice-control-and-vr",
+      "title": "Voice Control, Virtual Reality and Brain-Computer Interfaces",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE40-41",
+      "rule": "gurps-compendium-content.computerInterfaces",
+      "reference": "High-Tech: Electricity and Electronics pp. 40-41",
+      "file": "ee-voice-control-and-vr.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-networks",
+      "title": "Networks",
+      "chapter": "E&E 5. Computation",
+      "pages": "HT:EE41",
+      "reference": "High-Tech: Electricity and Electronics p. 41",
+      "file": "ee-networks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electric-fences",
+      "title": "Electric Fences",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE42",
+      "rule": "gurps-compendium-content.stunLethalFences",
+      "reference": "High-Tech: Electricity and Electronics p. 42",
+      "file": "ee-electric-fences.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-locks-and-lockpicks",
+      "title": "Locks and Lockpicks",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE42",
+      "rule": "gurps-compendium-content.electricLocks",
+      "reference": "High-Tech: Electricity and Electronics p. 42",
+      "file": "ee-locks-and-lockpicks.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-screening",
+      "title": "Screening",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE43",
+      "rule": "gurps-compendium-content.alarmSystems",
+      "reference": "High-Tech: Electricity and Electronics p. 43",
+      "file": "ee-screening.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-alarms",
+      "title": "Alarms",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE43",
+      "rule": "gurps-compendium-content.alarmSystems",
+      "reference": "High-Tech: Electricity and Electronics p. 43",
+      "file": "ee-alarms.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-bugs-and-taps",
+      "title": "Bugs and Taps",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE44-45",
+      "rule": "gurps-compendium-content.covertListening",
+      "reference": "High-Tech: Electricity and Electronics pp. 44-45",
+      "file": "ee-bugs-and-taps.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-surveillance",
+      "title": "Surveillance and Countersurveillance",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE45",
+      "rule": "gurps-compendium-content.battlefieldSensors",
+      "reference": "High-Tech: Electricity and Electronics p. 45",
+      "file": "ee-surveillance.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-reconnaissance-uavs",
+      "title": "Reconnaissance UAVs",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE46",
+      "rule": "gurps-compendium-content.reconDrones",
+      "reference": "High-Tech: Electricity and Electronics p. 46",
+      "file": "ee-reconnaissance-uavs.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-spread-spectrum",
+      "title": "Communications and Spread Spectrum",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE46-47",
+      "rule": "gurps-compendium-content.spreadSpectrum",
+      "reference": "High-Tech: Electricity and Electronics pp. 46-47",
+      "file": "ee-spread-spectrum.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-signals-intelligence",
+      "title": "Signals Intelligence",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE47-48",
+      "rule": "gurps-compendium-content.signalsIntelligence",
+      "reference": "High-Tech: Electricity and Electronics pp. 47-48",
+      "file": "ee-signals-intelligence.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-triangulation",
+      "title": "Triangulation",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE47",
+      "rule": "gurps-compendium-content.radios",
+      "reference": "High-Tech: Electricity and Electronics p. 47",
+      "file": "ee-triangulation.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-encryption-and-decryption",
+      "title": "Encryption and Decryption",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE48",
+      "rule": "gurps-compendium-content.cipherMachines",
+      "reference": "High-Tech: Electricity and Electronics p. 48",
+      "file": "ee-encryption-and-decryption.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-fuzes",
+      "title": "Fuzes",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE48",
+      "rule": "gurps-compendium-content.electronicFuzes",
+      "reference": "High-Tech: Electricity and Electronics p. 48",
+      "file": "ee-fuzes.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-guided-and-homing-weapons",
+      "title": "Guided and Homing Weapons",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE48-49",
+      "rule": "gurps-compendium-content.homingSeekers",
+      "reference": "High-Tech: Electricity and Electronics pp. 48-49",
+      "file": "ee-guided-and-homing-weapons.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-electric-stunners",
+      "title": "Electric Stunners",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE49-51",
+      "rule": "gurps-compendium-content.electricStunners",
+      "reference": "High-Tech: Electricity and Electronics pp. 49-51",
+      "file": "ee-electric-stunners.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-jammers",
+      "title": "Jammers",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE49",
+      "rule": "gurps-compendium-content.jammerKinds",
+      "reference": "High-Tech: Electricity and Electronics p. 49",
+      "file": "ee-jammers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-radar-jammers",
+      "title": "Radar Jammers and Spoofers",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE49-50",
+      "rule": "gurps-compendium-content.radarJamming",
+      "reference": "High-Tech: Electricity and Electronics pp. 49-50",
+      "file": "ee-radar-jammers.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-cell-phone-jammer",
+      "title": "Cell-Phone Jammer",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE50",
+      "rule": "gurps-compendium-content.jamming",
+      "reference": "High-Tech: Electricity and Electronics p. 50",
+      "file": "ee-cell-phone-jammer.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-non-nuclear-emp",
+      "title": "EMP",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE50",
+      "rule": "gurps-compendium-content.nonNuclearEmp",
+      "reference": "High-Tech: Electricity and Electronics p. 50",
+      "file": "ee-non-nuclear-emp.md",
+      "status": "reviewed"
+    },
+    {
+      "id": "ee-directed-energy-weapons",
+      "title": "Directed-Energy Weapons",
+      "chapter": "E&E 6. Electronic Warfare",
+      "pages": "HT:EE50-51",
+      "rule": "gurps-compendium-content.directedEnergyWeapons",
+      "reference": "High-Tech: Electricity and Electronics pp. 50-51",
+      "file": "ee-directed-energy-weapons.md",
+      "status": "reviewed"
     }
   ]
 }

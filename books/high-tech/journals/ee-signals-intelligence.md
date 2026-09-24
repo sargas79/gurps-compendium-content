@@ -1,0 +1,29 @@
+Signals intelligence is the detection and tracking of radio messages, using Electronics Operation (EW). The practice emerged during the Russo-Japanese War (1904-1905), contributing to Japanese victory. The process was systematized during World War I, largely by British military intelligence. Most aspects of signals intelligence require specialized equipment (SIGINT Gear, p. 48); a standard radio receiver counts as improvised gear.
+
+Monitoring routine traffic (cell phones, walkie-talkies, etc.) can be done with an ordinary receiver that operates on the correct band. Roll against Electronics Operation (Comm or EW) to see if the operator hears any conversation that might be of interest.
+
+Detecting radio messages from a specific sender requires a radio tuned to the correct frequency. Different rolls are called for in three different cases. For continuous transmission, the signal is detected automatically, unless negative modifiers apply; in that case, roll after 1 minute. For ongoing transmission (such as exchange of messages during combat), the same rules apply, but a skill roll is always required. For rare transmission, roll for signal detection once per 4-hour watch; the GM decides whether there’s any signal to detect. Apply all modifiers for tuning rolls, as discussed under Tuning In (p. 29).
+
+If the frequency isn’t known, monitoring multiple channels either requires one operator and radio per channel, or needs operators to divide their time between channels. For continuous or ongoing transmission, this takes as many minutes as there are channels. For rare transmission, divide the time into equal percentages, and round down to the next lower haste modifier (p. B346) – for example, -5 for two channels (50%) each, but -8 for four channels (25% each). A half-wave dipole or a loop of any size requires two searches per channel, because it needs to do two scans at right angles; a directional antenna requires 10 searches (see Antennas, p. 28). Intuition, p. B63, can reduce the number of channels or directions that need to be monitored.
+
+To scan across a frequency band for continuous or ongoing transmission takes 15 minutes at TL6, 5 minutes at TL7, or 5 seconds at TL8 with computer-controlled scanning. A half-wave dipole or loop requires two scans, and a directional antenna requires 10. Scanning for rare transmissions still involves 4-hour watches, at -10 at TL6 (which doesn’t mean the scan is completed instantly!) or -8 at TL7. Using a half-wave dipole or a loop gives an additional -4; using a directional antenna gives an additional -9.
+
+Once a transmitter is detected, an antenna can be aimed at it – the same antenna, or a new one. Treat this as aiming an area attack (p. B413) for a dipole or loop, or as aiming a cone attack (p. B413) for a directional antenna, subject to the rules for scatter in either case (p. B414); if the transmitter was originally detected with a directional antenna, success is automatic. At TL6, or with improvised equipment, aiming an antenna takes 1 minute; keeping transmissions brief (less than 20 seconds for an encoded message) imposes haste penalties (p. B346). Any roll that places the transmitter within the antenna’s area or cone allows its range multiplier to be applied, reducing or eliminating penalties to future tuning rolls for distance to the transmitter. A successful aiming roll gives the exact direction to the transmitter. Finding the distance as well requires triangulation (above).
+
+If a transmitter’s operator is actively seeking to avoid interception, any of these tasks becomes a Quick Contest of Electronics Operation (EW).
+
+Interpreting the results of signals intelligence often involves traffic analysis, an optional specialty of Intelligence Analysis. This can identify chains of command by analyzing the flow of messages; track changes of location of stations; or recognize heightened activity levels that could indicate tactical operations in progress. Traffic analysis does not require knowing the content of messages.
+
+#### SIGINT Gear (TL7)
+
+A radio-interception facility has a variety of equipment, depending on TL.
+
+**Intercept Unit (TL6).** A specialized receiver designed for picking up radio communications. Treat as a large radio (p. 27) with receive-only (p. 28) and such features as precision tuning, a signal-strength meter, and a large antenna array. At TL8, add computer-controlled frequency scanning. Gives +4 to monitor routine traffic; standard equipment for other operations. ×5 cost. [1905] 1918.
+
+**Radio Direction Finder (TL6).** A radio with receive-only (p. 28) equipped with a directional antenna (p. 28). Can be improvised with a loop of wire or a dipole (two rigid metal rods pointing in opposite directions), giving -5 to skill rolls. Radio direction finding (RDF) indicates the direction to a transmitter, but not its distance; an improvised system doesn’t indicate which of two opposite directions the transmitter is in. Using a transmitter of known location as a beacon takes 1 minute, requires an unopposed roll vs. Electronics Operation (Comm or EW), and gives +1 to Navigation (Air, Land, or Sea). Can also be used to search for concealed transmitters. ×2 cost. [1902] 1919.
+
+**HF/DF (TL7).** High-frequency direction finding, or “huffduff.” An improvised version can be set up with two RDF sys tems and an oscilloscope (p. 11). Determines the direction of a signal source almost instantly, avoiding penalties for haste. ×5 cost. [1926] 1942; cutting edge (p. 8) until 1945.
+
+**Spectrum Analyzer (TL7).** See p. 11. Roll Electronics Operation (EW) at +4 to identify an active frequency.
+
+**Digital Spectrum Analyzer (TL8).** An inexpensive handheld device usable in the field to detect radio transmitters; roll Electronics Operation (EW) at -2. Rechargeable/10 hours. $200, 0.5 lb. 2000.

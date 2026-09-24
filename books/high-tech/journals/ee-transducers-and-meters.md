@@ -1,0 +1,15 @@
+A transducer converts one form of energy into another, such as an electrical signal. Each type of transducer can be combined with a display device – such as a galvanometer (pp. 10-11) or oscilloscope (p. 11) – with a roll vs. Electronics Operation (Scientific) or Electronics Repair (Scientific) at +2, or the appropriate science. A failed roll means the combined device produces no meaningful readings. A critical failure damages the transducer through clumsy handling or incorrect connection – roll vs. its HT to avoid destroying it; if it’s not destroyed, roll vs. Electronics Repair (Scientific) to repair it. Most transducers are later integrated into dedicated special-purpose devices, which require no assembly; dates are given for these as well.
+
+Roll vs. Electronics Operation (Scientific) +2 or the relevant science to operate a dedicated device; roll at -2 for a combined device (p. 9). The rules for detection and measurement (see p. 10) also apply. Roll at +4 to detect most hazardous conditions, such as concentrated acids or alkalis or radiation exposure.
+
+**Metal Detector (TL6).** A handheld device a yard long that generates an oscillating magnetic field that changes frequency in the presence of metal up to 6” deep for small objects such as coins, or 20” for large objects. Manual correction of frequency drift is needed, giving -2 to Electronics Operation rolls. Roll vs. Archaeology, Geology, Prospecting, or Scrounging to interpret rolls. 6×S/8 hours. $100, 12 lbs. [1925] 1931.
+
+**Photodetector (TL6).** In early versions, a selenium-based photovoltaic cell generates a current when bright light shines on it, measuring the illumination level to the nearest step (see p. 20) on a roll vs. Electronics Operation (Scientific), at a penalty equal to the partial darkness penalty. Integrated light meters avoid penalties to Photography for low or excess light. In 1935, they begin to be built into cameras. $28, 0.5 lb. [1879] 1932.
+
+**Metal Detector (TL7).** Automatic correction of frequency drift eliminates the skill penalty. 6×S/8 hours. $100, 12 lbs. 1965. At TL8, halve the weight.
+
+**Digital Thermometer (TL8).** Used with skills such as Chemistry (for laboratory work), Diagnosis (for medical thermometers), or Housekeeping (for food thermometers), normally without a skill roll. Each field requires specially designed thermometers to fit its temperature range and environmental conditions. T/2 years. $15, neg. 1980.
+
+**Electronic Pedometer (TL8).** Based on an accelerometer chip. Usable for Navigation (Land) by dead reckoning or as an aid to training Hiking skill (-10% to required study time). T/1 month. $10, neg. 2000.
+
+**Lab-on-a-Chip (TL8).** A family of chemical and biological devices contained in integrated circuit chips, using MEMS (p. 24) to pump fluids and perform other mechanical processes. The first lab-on-a-chip was a gas chromatograph developed in 1979. Lab-on-a-chip systems can analyze extremely small samples of material, or single living cells, canceling penalties of up to -4 to Chemistry, Biology, or Diagnosis for small quantities. A few systems are Average, but most are Complex.
