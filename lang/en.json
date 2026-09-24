@@ -7576,7 +7576,16 @@
           "Clings": "Napalm clings to {name} and burns for {seconds} seconds, 1d-1 a second; only immersion or burial puts it out, and it eats the air around them.",
           "Second": "{name} burns: {roll} against DR {dr}, {injury} injury.",
           "BurnedOut": "The napalm on {name} has burned out."
-        }
+        },
+        "RecoverButton": "Roll to recover",
+        "RecoverNotYet": "{name} can't roll to recover yet: {minutes} more minute(s).",
+        "RecoverHearing": "{name}: HT to recover their hearing",
+        "RecoverVision": "{name}: HT to recover their sight",
+        "RecoverStill": "{name} hasn't recovered yet: roll again next turn.",
+        "Recovered": "{name} has recovered.",
+        "LastingAdded": "Critical failure: {name} keeps the loss for good, as {trait} (High-Tech p. 182).",
+        "LastingForGm": "Critical failure: {name} keeps the loss for good, as {trait}; the GM adds the trait (High-Tech p. 182).",
+        "LastingBadSight": "Critical failure: {name} keeps the loss for good, as Bad Sight; the GM picks which and adds it (High-Tech p. 182)."
       },
       "Sensor": {
         "Title": "Comms and sensors",

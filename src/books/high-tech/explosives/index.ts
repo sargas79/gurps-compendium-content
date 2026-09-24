@@ -12,7 +12,10 @@
  *     and anyone its crushing or burning damage reaches and who was looking
  *     toward it rolls HT against the flash, from a card the blow leaves:
  *     failure costs Hearing or Vision equal to the margin (the whole sense by
- *     10 or more) for (20 - HT) minutes, and stuns.
+ *     10 or more, as the system's imposed Deafness or Blindness), and stuns;
+ *     after (20 - HT) minutes the card's button rolls HT each turn to recover,
+ *     a critical failure leaving the loss for good (two seconds, and no roll,
+ *     with the sense protected).
  *   - **Demolition charges (demolitionCharges):** the book's REF table as
  *     explosives the system's Demolition tool and `hazards.detonate` offer; a
  *     row action on an explosive record that sets it off (its pounds, packed
@@ -66,6 +69,8 @@ import {
   eyeBonus,
   failedBatch,
   flashModifier,
+  lastingSenseTrait,
+  senseRecovery,
   formatDamage,
   hearingBonus,
   isDynamite,
@@ -309,15 +314,42 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       concussion: async ({ message, data, actor }: any) => {
         if (!actor || data.concussion?.rolled || !on.sideEffects()) return;
         const outcome = await senseRoll(api, actor, "hearing", Number(data.concussion.modifier) || 0);
-        await api.chat.update(message, { ...data, concussion: { ...data.concussion, rolled: true, result: outcome } });
+        await api.chat.update(message, { ...data, concussion: { ...data.concussion, rolled: true, ...outcome } });
       },
       flash: async ({ message, data, actor }: any) => {
         if (!actor || data.flash?.rolled || !(on.sideEffects() || data.always === true)) return;
         const outcome = await senseRoll(api, actor, "vision", Number(data.flash.modifier) || 0);
-        await api.chat.update(message, { ...data, flash: { ...data.flash, rolled: true, result: outcome } });
+        await api.chat.update(message, { ...data, flash: { ...data.flash, rolled: true, ...outcome } });
+      },
+      recoverHearing: async ({ message, data, actor }: any) => {
+        const recover = data.concussion?.recover;
+        if (!actor || !recover || recover.done) return;
+        await api.chat.update(message, { ...data, concussion: { ...data.concussion, recover: await recoverSense(api, actor, "hearing", recover) } });
+      },
+      recoverVision: async ({ message, data, actor }: any) => {
+        const recover = data.flash?.recover;
+        if (!actor || !recover || recover.done) return;
+        await api.chat.update(message, { ...data, flash: { ...data.flash, recover: await recoverSense(api, actor, "vision", recover) } });
       },
     },
   } as any);
+
+  // Deafened or blinded by a blast: the system's imposed Deafness and
+  // Blindness, the latter not yet got used to (API 1.120.0).
+  Hooks.on("gworld.traitEffects", (context: any) => {
+    const effects = context?.effects;
+    if (!effects || !context.actor || !(on.sideEffects() || extras.alwaysFlash)) return;
+    const has = (key: string) => ((api.actors.conditions(context.actor) ?? []) as any[]).some((c) => c?.id === `${MODULE_ID}.${key}`);
+    const sources = Array.isArray(context.sources) ? context.sources : [];
+    if (on.sideEffects() && has("ht-blast-deafened")) {
+      effects.deafness = true;
+      sources.push({ effect: "deafness", label: L("Deafened") });
+    }
+    if (has("ht-flash-blinded")) {
+      effects.blindness = true;
+      sources.push({ effect: "blindness", label: L("FlashBlinded") });
+    }
+  });
 
   // ── demolition charges (pp. 182-183) ──
   const structures = (): Array<{ value: string; label: string }> => [
@@ -675,7 +707,7 @@ const wornNames = (actor: any): string[] => [...(actor?.items ?? [])].filter((i:
  * (20 - HT) minutes (two seconds with the sense protected), and a stun
  * (p. 182).
  */
-async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision", modifier: number): Promise<string> {
+async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision", modifier: number): Promise<{ result: string; recover: SenseRecovery | null }> {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
   const protectedSense = effects.protectedSense?.[sense] === true;
   const worn = wornNames(actor);
@@ -687,16 +719,56 @@ async function senseRoll(api: GWorldApi, actor: any, sense: "hearing" | "vision"
   ];
   const name = String(actor.name ?? "");
   const outcome: any = await api.roll.success({ actor, base: ht, kind: "attribute", label: F(sense === "hearing" ? "ConcussionRoll" : "FlashRoll", { name }), modifiers, tags: ["HT", "resist", sense === "hearing" ? "concussion" : "flash"] } as any);
-  if (!outcome) return "";
-  if (outcome.success) return F("Resisted", { name });
-  const loss = senseLoss({ margin: Number(outcome.margin) || 0, criticalFailure: Boolean(outcome.criticalFailure), ht, protectedSense: bonus >= 5 });
+  if (!outcome) return { result: "", recover: null };
+  if (outcome.success) return { result: F("Resisted", { name }), recover: null };
+  const shielded = bonus >= 5;
+  const loss = senseLoss({ margin: Number(outcome.margin) || 0, criticalFailure: Boolean(outcome.criticalFailure), ht, protectedSense: shielded });
   const key = sense === "hearing" ? (loss.total ? "ht-blast-deafened" : "ht-tinnitus") : loss.total ? "ht-flash-blinded" : "ht-dazzled";
   const label = loss.total ? L(sense === "hearing" ? "Deafened" : "FlashBlinded") : F(sense === "hearing" ? "Tinnitus" : "Dazzled", { penalty: loss.penalty });
+  // With the sense protected it passes by itself; otherwise it lasts until a roll to recover, once the time is up.
   await api.actors.applyCondition(actor, {
-    module: MODULE_ID, key, label, duration: { seconds: loss.seconds },
+    module: MODULE_ID, key, label, ...(shielded ? { duration: { seconds: loss.seconds } } : {}),
     ...(loss.total ? {} : { effects: { modifiers: [{ label, value: -loss.penalty, rolls: [sense] }] } }),
   } as any);
   await api.actors.applyCondition(actor, { key: "stunned" } as any);
   const lasting = loss.seconds < 60 ? F("ForSeconds", { seconds: loss.seconds }) : F("ForMinutes", { minutes: loss.seconds / 60 });
-  return F(loss.total ? (sense === "hearing" ? "DeafenedLine" : "BlindedLine") : sense === "hearing" ? "TinnitusLine" : "DazzledLine", { name, penalty: loss.penalty, lasting });
+  const result = F(loss.total ? (sense === "hearing" ? "DeafenedLine" : "BlindedLine") : sense === "hearing" ? "TinnitusLine" : "DazzledLine", { name, penalty: loss.penalty, lasting });
+  return { result, recover: shielded ? null : { at: worldNow() + loss.seconds, key, total: loss.total, done: false, result: "" } };
+}
+
+/** What a sense lost to a blast waits on: the roll to recover from `at` (world seconds) on. */
+export interface SenseRecovery {
+  at: number;
+  /** The condition's key. */
+  key: string;
+  total: boolean;
+  done: boolean;
+  result: string;
+}
+
+const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+
+/**
+ * The roll vs. HT each turn to recover, once the time is up (p. 182): success
+ * lifts the condition; a critical failure leaves the sense damaged for good,
+ * the disadvantage added where the user is the GM (API 1.124.0).
+ */
+export async function recoverSense(api: GWorldApi, actor: any, sense: "hearing" | "vision", recover: SenseRecovery): Promise<SenseRecovery> {
+  const name = String(actor?.name ?? "");
+  const left = recover.at - worldNow();
+  if (left > 0) {
+    ui.notifications?.warn(F("RecoverNotYet", { name, minutes: Math.ceil(left / 60) }));
+    return recover;
+  }
+  const ht = Number(api.actors.attribute(actor, "HT")) || 10;
+  const outcome: any = await api.roll.success({ actor, base: ht, kind: "attribute", label: F(sense === "hearing" ? "RecoverHearing" : "RecoverVision", { name }), tags: ["HT", "recover", sense === "hearing" ? "concussion" : "flash"] } as any);
+  if (!outcome) return recover;
+  const end = senseRecovery({ success: Boolean(outcome.success), criticalFailure: Boolean(outcome.criticalFailure) });
+  if (end === "still") return { ...recover, result: F("RecoverStill", { name }) };
+  await api.actors.removeCondition(actor, `${MODULE_ID}.${recover.key}`);
+  if (end === "recovered") return { ...recover, done: true, result: F("Recovered", { name }) };
+  const trait = lastingSenseTrait(sense, recover.total);
+  const added = trait && (game as any).user?.isGM ? await api.actors.changeTrait(actor, { add: trait } as any) : null;
+  const lasting = trait ? F(added ? "LastingAdded" : "LastingForGm", { name, trait }) : F("LastingBadSight", { name });
+  return { ...recover, done: true, result: lasting };
 }

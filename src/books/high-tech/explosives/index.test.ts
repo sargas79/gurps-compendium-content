@@ -43,6 +43,8 @@ let successes: any[];
 let outcomes: any[];
 let dialog: Record<string, string> | null;
 let targets: any[];
+let traitsAdded: any[];
+let worldTime: number;
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 20; i += 1) await Promise.resolve(); };
@@ -120,6 +122,7 @@ function fakeApi() {
       },
       removeCondition: async (actor: any, id: string) => { conditions.set(actor.name, (conditions.get(actor.name) ?? []).filter((x) => x.id !== id)); },
       applyInjury: async (actor: any, injury: any) => { injuries.push({ actor: actor.name, ...injury }); return null; },
+      changeTrait: async (actor: any, o: any) => { traitsAdded.push({ actor: actor.name, ...o }); return { itemId: "t1", from: null, to: { name: o.add }, added: true, removed: false }; },
     },
     roll: { success: async (o: any) => { successes.push(o); return outcomes.shift() ?? { success: true, criticalFailure: false, margin: 0 }; } },
   };
@@ -154,9 +157,12 @@ beforeEach(() => {
   outcomes = [];
   dialog = null;
   targets = [];
+  traitsAdded = [];
+  worldTime = 1000;
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
+    get time() { return { worldTime }; },
     user: { isGM: true, get targets() { return new Set(targets); } },
     users: { activeGM: { isSelf: true } },
   });
@@ -275,9 +281,52 @@ describe("side effects of explosions (pp. 181-182)", () => {
     await cards.get("ht-blast-effects").actions.concussion({ message, data: posted[0].data, actor: victim });
     expect(successes[0]).toMatchObject({ base: 12, kind: "attribute", modifiers: [{ value: -2 }] });
     const got = conditions.get("Victim")!;
-    expect(got.find((c) => c.id === `${MODULE_ID}.ht-tinnitus`)).toMatchObject({ duration: { seconds: 480 }, effects: { modifiers: [{ value: -3, rolls: ["hearing"] }] } });
+    const tinnitus = got.find((c) => c.id === `${MODULE_ID}.ht-tinnitus`);
+    // It lasts until the roll to recover, which waits (20 - HT) minutes (p. 182).
+    expect(tinnitus).toMatchObject({ effects: { modifiers: [{ value: -3, rolls: ["hearing"] }] } });
+    expect(tinnitus.duration).toBeUndefined();
     expect(got.some((c) => c.id === "stunned")).toBe(true);
-    expect(message.data.concussion.rolled).toBe(true);
+    expect(message.data.concussion).toMatchObject({ rolled: true, recover: { at: worldTime + 480, key: "ht-tinnitus", total: false, done: false } });
+  });
+
+  it("rolls HT to recover once the time is up: success lifts it, a critical failure leaves it for good (p. 182; API 1.124.0)", async () => {
+    const victim = { ...actorWith("Victim"), attributes: { HT: 12 } };
+    outcomes = [{ success: false, criticalFailure: false, margin: 3 }];
+    const message: any = {};
+    await cards.get("ht-blast-effects").actions.concussion({ message, data: { name: "Victim", concussion: { modifier: 0 } }, actor: victim });
+    const recover = (data: any) => cards.get("ht-blast-effects").actions.recoverHearing({ message, data, actor: victim });
+    // Too soon: nothing rolled.
+    await recover(message.data);
+    expect(successes).toHaveLength(1);
+    worldTime += 480;
+    outcomes = [{ success: false, criticalFailure: false }];
+    await recover(message.data);
+    expect(message.data.concussion.recover).toMatchObject({ done: false, result: expect.stringContaining("RecoverStill") });
+    outcomes = [{ success: true, criticalFailure: false }];
+    await recover(message.data);
+    expect(message.data.concussion.recover).toMatchObject({ done: true, result: expect.stringContaining("Recovered") });
+    expect(conditions.get("Victim")!.some((c) => c.id === `${MODULE_ID}.ht-tinnitus`)).toBe(false);
+
+    // Deafened, and a critical failure on the roll to recover: Deafness for good, added by the GM's client.
+    outcomes = [{ success: false, criticalFailure: true, margin: 1 }];
+    const deaf: any = {};
+    await cards.get("ht-blast-effects").actions.concussion({ message: deaf, data: { name: "Victim", concussion: { modifier: 0 } }, actor: victim });
+    worldTime += 480;
+    outcomes = [{ success: false, criticalFailure: true }];
+    await cards.get("ht-blast-effects").actions.recoverHearing({ message: deaf, data: deaf.data, actor: victim });
+    expect(traitsAdded).toEqual([{ actor: "Victim", add: "Deafness" }]);
+    expect(deaf.data.concussion.recover).toMatchObject({ done: true, result: expect.stringContaining("LastingAdded") });
+  });
+
+  it("imposes the system's Deafness and Blindness while deafened or blinded by a blast (API 1.120.0)", () => {
+    const victim = actorWith("Victim");
+    conditions.set("Victim", [{ id: `${MODULE_ID}.ht-blast-deafened` }, { id: `${MODULE_ID}.ht-flash-blinded` }]);
+    const context: any = { actor: victim, effects: {}, sources: [] };
+    fire("gworld.traitEffects", context);
+    expect(context.effects).toEqual({ deafness: true, blindness: true });
+    const clear: any = { actor: actorWith("Other"), effects: {}, sources: [] };
+    fire("gworld.traitEffects", clear);
+    expect(clear.effects).toEqual({});
   });
 
   it("counts earmuffs, and lasts two seconds with them", async () => {
@@ -286,6 +335,7 @@ describe("side effects of explosions (pp. 181-182)", () => {
     await cards.get("ht-blast-effects").actions.concussion({ message: {}, data: { concussion: { modifier: -3 } }, actor: victim });
     expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-3, 5]);
     expect(conditions.get("Victim")!.find((c) => c.id === `${MODULE_ID}.ht-tinnitus`)?.duration).toEqual({ seconds: 2 });
+    // With the sense protected, recovery is automatic: no roll offered.
   });
 
   it("blinds on a flash failed by 10", async () => {

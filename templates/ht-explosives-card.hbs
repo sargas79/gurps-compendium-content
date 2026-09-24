@@ -4,6 +4,14 @@
 {{#if concussion}}
   {{#if concussion.rolled}}
     <div class="gc-note">{{concussion.result}}</div>
+    {{#if concussion.recover}}
+      {{#if concussion.recover.result}}<div class="gc-note">{{concussion.recover.result}}</div>{{/if}}
+      {{#unless concussion.recover.done}}
+        <div class="gc-apply">
+          <button type="button" class="gc-apply-button" data-addon-card-action="recoverHearing">{{localize "GCC.HT.Explosives.RecoverButton"}} (HT)</button>
+        </div>
+      {{/unless}}
+    {{/if}}
   {{else}}
     <div class="gc-apply">
       <button type="button" class="gc-apply-button" data-addon-card-action="concussion">{{localize "GCC.HT.Explosives.ConcussionButton"}} (HT{{concussion.shown}})</button>
@@ -13,6 +21,14 @@
 {{#if flash}}
   {{#if flash.rolled}}
     <div class="gc-note">{{flash.result}}</div>
+    {{#if flash.recover}}
+      {{#if flash.recover.result}}<div class="gc-note">{{flash.recover.result}}</div>{{/if}}
+      {{#unless flash.recover.done}}
+        <div class="gc-apply">
+          <button type="button" class="gc-apply-button" data-addon-card-action="recoverVision">{{localize "GCC.HT.Explosives.RecoverButton"}} (HT)</button>
+        </div>
+      {{/unless}}
+    {{/if}}
   {{else}}
     <div class="gc-note">{{localize "GCC.HT.Explosives.FlashLooking"}}</div>
     <div class="gc-apply">

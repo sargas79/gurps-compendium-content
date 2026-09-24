@@ -137,6 +137,25 @@ export function senseLoss(options: { margin: number; criticalFailure: boolean; h
   return { total, penalty, seconds: options.protectedSense ? 2 : minutes * 60 };
 }
 
+/**
+ * The roll vs. HT each turn once the time is up (p. 182): success ends it,
+ * and a critical failure leaves it for good -- Hard of Hearing or Bad Sight
+ * for a penalty, Deafness or Blindness for the whole sense.
+ */
+export function senseRecovery(outcome: { success: boolean; criticalFailure: boolean }): "recovered" | "lasting" | "still" {
+  if (outcome.criticalFailure) return "lasting";
+  return outcome.success ? "recovered" : "still";
+}
+
+/**
+ * The disadvantage a lasting loss leaves (p. 182; Campaigns p. 422), by the
+ * system's trait names; null for Bad Sight, whose kind the GM picks.
+ */
+export function lastingSenseTrait(sense: "hearing" | "vision", total: boolean): string | null {
+  if (sense === "hearing") return total ? "Deafness" : "Hard of Hearing";
+  return total ? "Blindness" : null;
+}
+
 // ── explosive destruction of materiel (pp. 182-183) ─────────────────────────
 
 /** The jobs the book gives a charge for (p. 182). */
