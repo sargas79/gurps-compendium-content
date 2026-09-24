@@ -111,6 +111,10 @@ export interface DeviceData {
   emergencyStop: boolean;
   /** An electromagnet's core, and its interior diameter and coil length in inches; no core to read the record's (HT:EE pp. 22-23). */
   magnet: { core: "" | "iron" | "superconducting"; diameter: number; length: number };
+  /** Military electronics, built rugged: HT 12 and DR 8 (HT:EE p. 45). */
+  military: boolean;
+  /** A surveillance camera with pan, tilt and zoom (HT:EE p. 45). */
+  panTiltZoom: boolean;
 }
 
 /** Adds the device fields to this module's data on equipment and armour. */
@@ -150,6 +154,8 @@ export function initDevices(): void {
         diameter: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
         length: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
       }),
+      military: new f.BooleanField({ initial: false }),
+      panTiltZoom: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -186,6 +192,8 @@ export function deviceData(item: any): DeviceData {
       diameter: Math.max(0, Number(d.magnet?.diameter) || 0),
       length: Math.max(0, Number(d.magnet?.length) || 0),
     },
+    military: d.military === true,
+    panTiltZoom: d.panTiltZoom === true,
   };
 }
 

@@ -1,0 +1,9 @@
+{{!-- The electronic battlefield: military gear, surveillance cameras, the seismic ground sensor, chaff (High-Tech: Electricity and Electronics p. 45). --}}
+<div class="isub" data-gcc-ht-battlefield-section>
+  <div class="isub-head">{{localize "GCC.HT.Battlefield.Title"}}</div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{militaryHint}}"><input type="checkbox" data-ht-battlefield="military" {{#if military}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Battlefield.Military"}}</label>
+    {{#if camera}}<label class="icheck" data-tooltip="{{ptzHint}}"><input type="checkbox" data-ht-battlefield="panTiltZoom" {{#if panTiltZoom}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Battlefield.Ptz"}}</label>{{/if}}
+  </div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

@@ -2425,7 +2425,8 @@
             "prototypeYear": 0,
             "marketYear": 1964,
             "ht": 12,
-            "dr": 8
+            "dr": 8,
+            "military": true
           }
         }
       }
@@ -2477,7 +2478,8 @@
             "prototypeYear": 0,
             "marketYear": 2000,
             "ht": 12,
-            "dr": 8
+            "dr": 8,
+            "military": true
           }
         }
       }
@@ -2529,7 +2531,8 @@
             "prototypeYear": 1968,
             "marketYear": 1972,
             "ht": 12,
-            "dr": 8
+            "dr": 8,
+            "military": true
           }
         }
       }
