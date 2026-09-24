@@ -1820,6 +1820,9 @@
             "complexity": "",
             "prototypeYear": 1947,
             "marketYear": 1968
+          },
+          "medical": {
+            "kind": "defibrillator"
           }
         }
       }
@@ -1869,6 +1872,9 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1978
+          },
+          "medical": {
+            "kind": "aed"
           }
         }
       }

@@ -77,7 +77,12 @@
  * device's HP, HT and DR, and building from kits (HT:EE pp. 8-9, 15),
  * and its audio gear: sound quality and the weakest link, microphones,
  * headphones and earbuds, amplifiers' Hearing ranges and the hearing aid
- * (HT:EE pp. 30-32).
+ * (HT:EE pp. 30-32), and its appliances, power tools and electromedicine:
+ * heaters, fans and kitchen gear, shredders and vacuums, electromagnets,
+ * remote control and the emergency stop, power tools' work, diathermy, the
+ * heating pad, electroconvulsive therapy and the laser scalpel (HT:EE pp.
+ * 13-14, 20-25), with its revision of the defibrillator's revival (HT:EE
+ * p. 14).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -130,6 +135,8 @@ import { readyInstruments } from "./instruments/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
 import { readyLighting } from "./lighting/index.js";
 import { readyAudio } from "./audio/index.js";
+import { applianceClimateGear, readyAppliances } from "./appliances/index.js";
+import { readyElectromedicine } from "./electromedicine/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -287,8 +294,8 @@ const RULES = [
   // Covert ops and security: locks, safes, traps and barriers.
   { key: "locksAndSafes", pages: "pp. 202-205, 213", implemented: true },
   { key: "trapsAndBarriers", pages: "pp. 203-205", implemented: true },
-  // Emergency medicine and medical facilities.
-  { key: "emergencyMedicine", pages: "pp. 219-221", implemented: true },
+  // Emergency medicine and medical facilities; the defibrillator's revival as the supplement revises it (E3 in #471).
+  { key: "emergencyMedicine", pages: "p. 14", reference: `${REFERENCE} pp. 219-221; ${EE_REFERENCE}`, implemented: true },
   { key: "medicalFacilities", pages: "pp. 222-225", implemented: true },
   // Encryption and code-breaking; forgery, disguise, smuggling and mule pills.
   { key: "encryption", pages: "pp. 210-211", implemented: true },
@@ -340,6 +347,10 @@ const RULES = [
   // Electricity and Electronics: audio gear.
   { key: "audioFidelity", pages: "pp. 30-31", reference: EE_REFERENCE, implemented: true },
   { key: "soundAmplification", pages: "p. 32", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: appliances, power tools and electromedicine.
+  { key: "electricAppliances", pages: "pp. 21-25", reference: EE_REFERENCE, implemented: true },
+  { key: "powerTools", pages: "pp. 14, 21, 24", reference: EE_REFERENCE, implemented: true },
+  { key: "electromedicine", pages: "pp. 13-14, 21", reference: EE_REFERENCE, implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -385,7 +396,8 @@ function init(): void {
   });
   initSurvival();
   initExpedition();
-  initClothing(ruleKey("climateControl"));
+  // With the supplement's heaters and fans, under its appliances switch.
+  initClothing(ruleKey("climateControl"), applianceClimateGear(ruleKey("electricAppliances")));
   initHighTechMelee();
   initHighTechCamouflage(ruleKey("camouflageGear"));
   initHighTechSecurity();
@@ -467,6 +479,8 @@ function ready(api: GWorldApi): void {
   readyProsthetics(api, rule("prosthetics"));
   // After the prosthetics, whose hearing aid it takes the same way, and after the devices' object figures, which a carbon microphone's HT overrides.
   readyAudio(api, { fidelity: rule("audioFidelity"), amplification: rule("soundAmplification") });
+  readyAppliances(api, { appliances: rule("electricAppliances"), powerTools: rule("powerTools") });
+  readyElectromedicine(api, rule("electromedicine"));
   readyConveyances(api, rule("personalConveyances"));
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
   readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });

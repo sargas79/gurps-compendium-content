@@ -101,6 +101,16 @@ export interface DeviceData {
   inexpensive: boolean;
   /** A public address system's speakers beyond the first (HT:EE p. 32). */
   extraSpeakers: number;
+  /** An early model: a power drill's clumsier grip, a diathermy set's Tesla coil (HT:EE pp. 13, 24). */
+  earlyModel: boolean;
+  /** A circular saw fitted with an abrasive diamond blade (HT:EE p. 24). */
+  diamondBlade: boolean;
+  /** Built to be run by remote control, at 10% more (HT:EE p. 25). */
+  remoteControl: boolean;
+  /** Fitted with an emergency stop (HT:EE p. 25). */
+  emergencyStop: boolean;
+  /** An electromagnet's core, and its interior diameter and coil length in inches; no core to read the record's (HT:EE pp. 22-23). */
+  magnet: { core: "" | "iron" | "superconducting"; diameter: number; length: number };
 }
 
 /** Adds the device fields to this module's data on equipment and armour. */
@@ -131,6 +141,15 @@ export function initDevices(): void {
       carbonMicrophone: new f.BooleanField({ initial: false }),
       inexpensive: new f.BooleanField({ initial: false }),
       extraSpeakers: count(),
+      earlyModel: new f.BooleanField({ initial: false }),
+      diamondBlade: new f.BooleanField({ initial: false }),
+      remoteControl: new f.BooleanField({ initial: false }),
+      emergencyStop: new f.BooleanField({ initial: false }),
+      magnet: new f.SchemaField({
+        core: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", "iron", "superconducting"] }),
+        diameter: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+        length: new f.NumberField({ required: true, nullable: false, initial: 0, min: 0 }),
+      }),
     }),
   });
 }
@@ -158,6 +177,15 @@ export function deviceData(item: any): DeviceData {
     carbonMicrophone: d.carbonMicrophone === true,
     inexpensive: d.inexpensive === true,
     extraSpeakers: whole(d.extraSpeakers),
+    earlyModel: d.earlyModel === true,
+    diamondBlade: d.diamondBlade === true,
+    remoteControl: d.remoteControl === true,
+    emergencyStop: d.emergencyStop === true,
+    magnet: {
+      core: d.magnet?.core === "iron" || d.magnet?.core === "superconducting" ? d.magnet.core : "",
+      diameter: Math.max(0, Number(d.magnet?.diameter) || 0),
+      length: Math.max(0, Number(d.magnet?.length) || 0),
+    },
   };
 }
 

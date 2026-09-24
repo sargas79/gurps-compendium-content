@@ -9,7 +9,9 @@ import {
   PORTABLE_SURGERY_FIRST_AID,
   SUTURING_IMPROVISED,
   cprFatigue,
-  defibrillatorBonus,
+  fibrillationPenalty,
+  revivalBonus,
+  shockRevives,
   depletedGrade,
   firstAidGearWithoutFluids,
   hemostaticLine,
@@ -17,10 +19,12 @@ import {
 } from "./rules.js";
 
 describe("resuscitation (High-Tech p. 220)", () => {
-  it("gives a manual defibrillator +2 at TL7 and +3 at TL8, or the record's own figure", () => {
-    expect(defibrillatorBonus(0, 7)).toBe(2);
-    expect(defibrillatorBonus(0, 8)).toBe(3);
-    expect(defibrillatorBonus(3, 7)).toBe(3);
+  it("revives on HT+1, a point a shock up to HT+5, -1 per 2 full minutes, for a fibrillating heart alone (HT:EE p. 14)", () => {
+    expect([0, 1, 3, 4, 10].map(revivalBonus)).toEqual([1, 2, 4, 5, 5]);
+    expect([0, 1, 2, 3, 7].map(fibrillationPenalty)).toEqual([0, 0, -1, -1, -3]);
+    expect(shockRevives("heartAttack")).toBe(true);
+    expect(shockRevives("drowning")).toBe(false);
+    expect(shockRevives("asphyxiation")).toBe(false);
   });
 
   it("has the AED resuscitate at skill 12 through the shared device engine", () => {

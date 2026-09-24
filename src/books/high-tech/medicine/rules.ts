@@ -28,10 +28,13 @@ export type MedicalKind = (typeof MEDICAL_KINDS)[number];
 
 /**
  * High-Tech's table for the shared device engine: the AED, which once hooked
- * up "performs resuscitation with an effective skill of 12" (p. 220).
+ * up "performs resuscitation with an effective skill of 12" (p. 220). The
+ * supplement Electricity and Electronics calls it the automated external
+ * defibrillator and has the 12 stand for its user's Electronics Operation
+ * (Medical) (HT:EE p. 14): the shock, which the revival below follows.
  */
 export const HT_DEVICES: ReadonlyArray<readonly [RegExp, Device]> = [
-  [/^automatic external defibrillator\b/i, { tl: 8, skills: { resuscitation: 12 }, perTl: 0 }],
+  [/^automat(?:ic|ed) external defibrillator\b/i, { tl: 8, skills: { resuscitation: 12 }, perTl: 0 }],
 ];
 
 /** Hooking an AED up is an IQ+4 roll, following its spoken instructions (p. 220). */
@@ -49,10 +52,34 @@ export const PHYSICIAN_DEFAULT = -7;
 /** Diagnosis is IQ/Hard: IQ-6 unlearned (Characters p. 187). */
 export const DIAGNOSIS_DEFAULT = -6;
 
-/** A manual defibrillator's bonus to resuscitation: +2 at TL7, +3 at TL8 (p. 220), unless the record says. */
-export function defibrillatorBonus(value: number, tl: number): number {
-  if (value > 0) return Math.trunc(value);
-  return tl >= 8 ? 3 : 2;
+/**
+ * The defibrillator's revival, as the supplement Electricity and Electronics
+ * revises it (HT:EE p. 14, decision E3 in #471), in place of High-Tech's +2
+ * or +3 to the resuscitation roll (p. 220): once the Electronics Operation
+ * (Medical) roll succeeds, the heart restarts on the patient's HT+1, a point
+ * higher for each harder shock after the first up to HT+5, at -1 for every 2
+ * full minutes since the fibrillation began.
+ */
+export const REVIVAL = Object.freeze({ first: 1, most: 5, minutesPerPoint: 2 });
+
+/** The bonus to HT on this shock, after so many that got through before it. */
+export function revivalBonus(earlierShocks: number): number {
+  return Math.min(REVIVAL.most, REVIVAL.first + Math.max(0, Math.floor(Number(earlierShocks) || 0)));
+}
+
+/** The penalty for the time the heart has been fibrillating. */
+export function fibrillationPenalty(minutes: number): number {
+  const points = Math.floor(Math.max(0, Number(minutes) || 0) / REVIVAL.minutesPerPoint);
+  return points ? -points : 0;
+}
+
+/**
+ * A shock treats a heart in fibrillation -- the heart attack a lethal
+ * electric shock brings on (HT:EE p. 9) -- and doesn't restart one that has
+ * stopped, so the drowned and the suffocated get nothing from it (HT:EE p. 14).
+ */
+export function shockRevives(cause: string): boolean {
+  return cause === "heartAttack";
 }
 
 /** Manual CPR costs whoever gives it 1 FP per five minutes (p. 220); each resuscitation attempt is a minute (Campaigns p. 425). */
