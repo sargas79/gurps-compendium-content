@@ -425,3 +425,14 @@ export const COPY_PARTS = 0.2;
 export function copyCost(retail: number, labour: boolean): number {
   return Math.round(Math.max(0, Number(retail) || 0) * (labour ? 1 : COPY_PARTS) * 100) / 100;
 }
+
+// ── training aids (HT:EE pp. 12-13; Characters pp. 292-293) ──
+
+/**
+ * An electronic pedometer cuts the study time Hiking needs by 10% (HT:EE
+ * p. 13): each hour of study counts as 1/0.9 of one.
+ */
+export const PEDOMETER = /^electronic pedometer$/i;
+export const PEDOMETER_SKILL = "Hiking";
+export const PEDOMETER_TIME = 0.9;
+export const studyMultiplier = (timeFactor: number): number => 1 / timeFactor;

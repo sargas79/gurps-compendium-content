@@ -110,8 +110,13 @@ function theirRadio(target: any): any {
   return target ? [...(target.items ?? [])].find((i: any) => carried(i) && radioOf(i)) ?? null : null;
 }
 
-/** Rolls a SIGINT task: unopposed, or a Quick Contest of EW with an operator avoiding interception (HT:EE p. 47). */
-async function rollTask(api: GWorldApi, options: { actor: any; base: number; skill: string; label: string; modifiers: Line[]; tags: string[]; item: any; against: any | null }): Promise<{ success: boolean; margin: number } | null> {
+/**
+ * Rolls a SIGINT task: unopposed, or a Quick Contest of EW with an operator
+ * avoiding interception (HT:EE p. 47). A task the system refuses below an
+ * effective 3 (Campaigns p. 344) comes back `refused`, so its card still says
+ * what came of it.
+ */
+async function rollTask(api: GWorldApi, options: { actor: any; base: number; skill: string; label: string; modifiers: Line[]; tags: string[]; item: any; against: any | null }): Promise<{ success: boolean; margin: number; refused?: boolean } | null> {
   const tags = ["sigint", ...options.tags];
   if (options.against) {
     const contest: any = await api.roll.quickContest({
@@ -125,7 +130,8 @@ async function rollTask(api: GWorldApi, options: { actor: any; base: number; ski
     const margin = Number(contest.marginOfVictory) || 0;
     return { success: won, margin: won ? margin : -margin };
   }
-  const result: any = await api.roll.success({ actor: options.actor, base: options.base, skill: options.skill, label: options.label, modifiers: options.modifiers, tags, item: options.item } as any);
+  const result: any = await api.roll.success({ actor: options.actor, base: options.base, skill: options.skill, label: options.label, modifiers: options.modifiers, tags, item: options.item, returnRefusal: true } as any);
+  if (result?.refused) return { success: false, margin: 0, refused: true };
   return result ? { success: Boolean(result.success), margin: Number(result.margin) || 0 } : null;
 }
 
@@ -209,7 +215,7 @@ async function detectSender(api: GWorldApi, item: any, actor: any): Promise<void
   if (answer.transmission === "continuous") lines.push(L("AfterAMinute"));
   const result = await rollTask(api, { actor, base: ewLevel(api, actor), skill: EW, label, modifiers, tags: ["detection"], item, against: answer.avoiding ? target : null });
   if (!result) return;
-  lines.push(L(result.success ? "Found" : "NotFound"));
+  lines.push(L(result.refused ? "Refused" : result.success ? "Found" : "NotFound"));
   await card(actor, label, lines);
 }
 
@@ -261,6 +267,7 @@ async function aimAntenna(api: GWorldApi, item: any, actor: any): Promise<void> 
   if (scope) modifiers.push({ label: F("TracingLine", { name: scope.name }), value: OSCILLOSCOPE });
   const result = await rollTask(api, { actor, base: ewLevel(api, actor), skill: EW, label, modifiers, tags: ["antennaAim", shape], item, against: answer.avoiding ? target : null });
   if (!result) return;
+  if (result.refused) return void card(actor, label, [L("Refused")]);
   if (result.success) return void card(actor, label, [L("AimExact"), beam]);
   const direction = new Roll("1d6");
   await direction.evaluate();
@@ -277,9 +284,9 @@ async function beaconBearing(api: GWorldApi, item: any, actor: any): Promise<voi
   const comm = skillBase(api, actor, COMM);
   const ew = ewLevel(api, actor);
   const label = F("BeaconLabel", { name: item.name });
-  const bearing: any = await api.roll.success({ actor, base: Math.max(comm, ew), skill: ew > comm ? EW : COMM, label, modifiers: [], tags: ["sigint", "beacon"], item } as any);
+  const bearing: any = await api.roll.success({ actor, base: Math.max(comm, ew), skill: ew > comm ? EW : COMM, label, modifiers: [], tags: ["sigint", "beacon"], item, returnRefusal: true } as any);
   if (!bearing) return;
-  if (!bearing.success) return void card(actor, label, [L("BeaconLost")]);
+  if (bearing.refused || !bearing.success) return void card(actor, label, [L(bearing.refused ? "Refused" : "BeaconLost")]);
   await api.roll.success({ actor, base: skillBase(api, actor, answer.navigation), skill: answer.navigation, label: F("NavigationLabel", { name: item.name }), modifiers: [{ label: L("BeaconLine"), value: BEACON.navigation }], tags: ["navigation"] } as any);
 }
 

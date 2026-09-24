@@ -18,6 +18,7 @@ type Listener = (...args: any[]) => unknown;
 
 const HOOKS = {
   attackModifiers: "gworld.attackModifiers",
+  homingAttack: "gworld.homingAttack",
   weaponAttacks: "gworld.weaponAttacks",
   turnStart: "gworld.turnStart",
 };
@@ -38,6 +39,7 @@ let dialog: Record<string, string> | null;
 let targets: any[];
 let combat: any;
 let placeables: any[];
+let quantities: any[];
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
 const flush = async () => { for (let i = 0; i < 30; i += 1) await Promise.resolve(); };
@@ -66,6 +68,7 @@ function fakeApi() {
       getWeaponState: (i: any) => weaponState.get(i) ?? null,
     },
     sheets: { registerRowAction: (a: any) => actions.set(a.key, a) },
+    items: { changeQuantity: async (i: any, delta: number, o: any) => { quantities.push({ item: i.name, delta, ...o }); i.system.quantity = Math.max(0, (Number(i.system.quantity) || 0) + delta); return {}; } },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
@@ -93,6 +96,7 @@ beforeEach(() => {
   targets = [];
   combat = null;
   placeables = [];
+  quantities = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => { hooks.set(name, [...(hooks.get(name) ?? []), fn]); return 1; } });
   vi.stubGlobal("game", {
     i18n: { localize: (k: string) => k, format: (k: string, d: unknown) => `${k} ${JSON.stringify(d)}` },
@@ -141,6 +145,8 @@ describe("electronicFuzes (HT:EE p. 48)", () => {
     actions.get("ee-fit-fuze").run(grenade, mine);
     await flush();
     expect(fittedFuze(api as any, grenade)).toMatchObject({ kind: "proximity", setting: 25, fuze: "Proximity Fuze (TL8)" });
+    // The fuze fitted comes off its stack (#549).
+    expect(quantities).toEqual([{ item: "Proximity Fuze (TL8)", delta: -1, reason: "GCC.HT.Guidance.UsedUp" }]);
 
     const scene: any = { grid: { size: 100, distance: 1 }, tokens: [] };
     token("mine", mine, 0, scene);
@@ -174,6 +180,49 @@ describe("electronicFuzes (HT:EE p. 48)", () => {
     await Promise.all(fire(HOOKS.turnStart, combat, combat.combatants[0]));
     expect(chat.some((c) => c.includes("TimeUp") && c.includes("SetOffCharge"))).toBe(true);
     expect(damage).toHaveLength(0);
+  });
+
+  it("uses a fuze up when fitted, gives it back when taken off unused, and offers none from an empty stack (#549)", async () => {
+    on.electronicFuzes = true;
+    const grenade = item("M67");
+    const impact = Object.assign(item("Impact Fuze (TL7)"), {});
+    impact.system.quantity = 1;
+    const time = item("Time Fuze (TL8)");
+    time.system.quantity = 2;
+    const actor = actorWith("Sapper", [grenade, impact, time]);
+    dialog = { fuze: "0", yards: "25", seconds: "10" };
+    actions.get("ee-fit-fuze").run(grenade, actor);
+    await flush();
+    expect(impact.system.quantity).toBe(0);
+    // The emptied stack is no longer a fuze to fit.
+    expect(carriedFuzes(api as any, actor).map((f) => f.item.name)).toEqual(["Time Fuze (TL8)"]);
+    // Swapping it for a time fuze: the impact fuze goes back, a time fuze comes off.
+    dialog = { fuze: "0", yards: "25", seconds: "10" };
+    actions.get("ee-fit-fuze").run(grenade, actor);
+    await flush();
+    expect(fittedFuze(api as any, grenade)).toMatchObject({ kind: "time", source: "Time Fuze (TL8)" });
+    expect([impact.system.quantity, time.system.quantity]).toEqual([1, 1]);
+    // Taken off: back on its stack.
+    dialog = { fuze: "", yards: "25", seconds: "10" };
+    actions.get("ee-fit-fuze").run(grenade, actor);
+    await flush();
+    expect(fittedFuze(api as any, grenade)).toBeNull();
+    expect(time.system.quantity).toBe(2);
+  });
+
+  it("uses up a clock made into a time fuze, and it is a clock again", async () => {
+    on.electronicFuzes = true;
+    const tnt = item("TNT (per pound)");
+    const clock = item("Electronic Clock");
+    clock.system.quantity = 2;
+    const actor = actorWith("Tinker", [tnt, clock]);
+    weaponState.set(clock, { eeImprovisedFuze: true });
+    dialog = { fuze: "0", yards: "25", seconds: "10" };
+    actions.get("ee-fit-fuze").run(tnt, actor);
+    await flush();
+    expect(fittedFuze(api as any, tnt)).toMatchObject({ kind: "time", improvised: true });
+    expect(clock.system.quantity).toBe(1);
+    expect(carriedFuzes(api as any, actor)).toEqual([]);
   });
 
   it("warns where no fuze is carried", async () => {
@@ -230,22 +279,28 @@ describe("homingSeekers (HT:EE p. 49)", () => {
     expect(tow.rows[0].row.aimingSkill ?? "").toBe("");
   });
 
-  it("adds Acc once locked on, tags the seeker's sense, and leaves the attack alone with the switch off", () => {
+  /** `gworld.homingAttack`'s context as the system starts it. */
+  const homing = (weapon: any, actor: any) => ({ actor, item: weapon, mode: { index: 0, ranged: true }, target: null, rangeYards: 500, seconds: 1, falls: false, lockedOn: false, semiActive: false, designator: actor, skill: "Forward Observer", level: null, rolls: 1 });
+
+  it("tells the system it locked on, tags the seeker's sense, and leaves the attack alone with the switch off", () => {
     const stinger = item("GD FIM-92A Stinger, 70mm");
     const shooter = actorWith("Gunner", [stinger]);
-    const off = attack(stinger, shooter);
-    fire(HOOKS.attackModifiers, off);
-    expect(off.modifiers).toEqual([]);
+    const off = homing(stinger, shooter);
+    fire(HOOKS.homingAttack, off);
+    expect(off.lockedOn).toBe(false);
+    const offAttack = attack(stinger, shooter);
+    fire(HOOKS.attackModifiers, offAttack);
+    expect(offAttack.tags).toEqual([]);
 
     on.homingSeekers = true;
+    // Rolled only once the lock-on roll succeeds: the system adds its Acc (API 1.128.0).
+    const locked = homing(stinger, shooter);
+    fire(HOOKS.homingAttack, locked);
+    expect(locked).toMatchObject({ lockedOn: true, semiActive: false });
     const context = attack(stinger, shooter);
     fire(HOOKS.attackModifiers, context);
-    expect(context.modifiers).toEqual([{ label: expect.any(String), value: 4, key: "accuracy" }]);
+    expect(context.modifiers).toEqual([]);
     expect(context.tags).toEqual(["infrared"]);
-    // Aimed on the sheet: the system's Acc line stands, and isn't doubled.
-    const aimed = attack(stinger, shooter, { modifiers: [{ label: "Accuracy", value: 4, key: "accuracy" }] });
-    fire(HOOKS.attackModifiers, aimed);
-    expect(aimed.modifiers).toHaveLength(1);
   });
 
   it("offers the seeker as an option: -2 on a warm hull, -3 at a torpedo's vital area", () => {
@@ -259,38 +314,43 @@ describe("homingSeekers (HT:EE p. 49)", () => {
     expect(option.apply({ item: stinger }, "acousticVitals").modifiers[0]).toMatchObject({ value: -3, key: "vitalArea" });
   });
 
-  it("refuses a laser-homing attack until someone aiming holds a designator on the target", async () => {
+  it("makes a laser-homing attack semi-active, held by whoever aims a designator at the target, and refuses it with nobody there (#549)", () => {
     on.homingSeekers = true;
     const stinger = item("GD FIM-92A Stinger, 70mm");
     const shooter = actorWith("Gunner", [stinger]);
     const target = { uuid: "Scene.s.Token.tank", name: "Tank", document: { uuid: "Scene.s.Token.tank" } };
-    const laser = { [`${MODULE_ID}.ee-seeker`]: "laser" };
-
-    const bare = attack(stinger, shooter, { options: laser, targetTokens: [target.document] });
-    fire(HOOKS.attackModifiers, bare);
-    expect(bare.refusal).toBe("GCC.HT.Guidance.NotDesignated");
-    expect(bare.tags).toContain("laser");
-
-    const designator = item("Laser Designator");
-    const observer = actorWith("Observer", [designator], { skills: { "Forward Observer": 12 }, attributes: { IQ: 11, DX: 13 } });
-    placeables = [{ actor: observer }];
     targets = [target];
-    actions.get("ee-designate").run(designator, observer);
-    await flush();
-    expect(chat).toContain("warn GCC.HT.Guidance.AimFirst");
+    const option = options.find((o) => o.key === "ee-seeker");
+    // The dialog's choice, as the system applies the option before `gworld.homingAttack`.
+    const laserShot = () => {
+      option.apply({ item: stinger }, "laser");
+      const before = homing(stinger, shooter);
+      fire(HOOKS.homingAttack, before);
+      const after = attack(stinger, shooter, { options: { [`${MODULE_ID}.ee-seeker`]: "laser" }, targetTokens: [target.document] });
+      fire(HOOKS.attackModifiers, after);
+      return { before, after };
+    };
 
+    const bare = laserShot();
+    expect(bare.before.semiActive).toBe(false);
+    expect(bare.after.refusal).toBe("GCC.HT.Guidance.NotDesignated");
+    expect(bare.after.tags).toContain("laser");
+
+    // Carrying a designator but not aiming at the target is not holding the spot.
+    const observer = actorWith("Observer", [item("Laser Designator")], { skills: { "Forward Observer": 12 } });
+    placeables = [{ actor: observer }];
+    expect(laserShot().after.refusal).toBe("GCC.HT.Guidance.NotDesignated");
+
+    // Aiming at it: the system rolls the observer's Forward Observer each turn of flight.
     observer.system = { maneuver: "aim", aim: { turns: 1, target: target.uuid } };
-    actions.get("ee-designate").run(designator, observer);
-    await flush();
-    expect(successes.at(-1)).toMatchObject({ base: 14, skill: "Forward Observer" });
-    const held = attack(stinger, shooter, { options: laser, targetTokens: [target.document] });
-    fire(HOOKS.attackModifiers, held);
-    expect(held.refusal).toBeNull();
+    const held = laserShot();
+    expect(held.before).toMatchObject({ semiActive: true, lockedOn: true, skill: "Forward Observer", level: null });
+    expect(held.before.designator).toBe(observer);
+    expect(held.after.refusal).toBeNull();
 
-    // The aim ends: the spot is gone.
-    observer.system = { maneuver: "move", aim: { turns: 0, target: "" } };
-    const lost = attack(stinger, shooter, { options: laser, targetTokens: [target.document] });
-    fire(HOOKS.attackModifiers, lost);
-    expect(lost.refusal).toBe("GCC.HT.Guidance.NotDesignated");
+    // The choice is read once: a later plain click homes as the record says, infrared.
+    const plain = homing(stinger, shooter);
+    fire(HOOKS.homingAttack, plain);
+    expect(plain.semiActive).toBe(false);
   });
 });

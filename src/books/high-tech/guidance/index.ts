@@ -13,34 +13,36 @@
  *     fuses are. Going off rolls the blast from the item's own explosive
  *     mode, or, for a charge with none, says to set it off with High-Tech's
  *     demolition action. Another row action improvises a time fuze from a
- *     clock or watch, on a roll against Explosives (Demolition).
+ *     clock or watch, on a roll against Explosives (Demolition). A fuze
+ *     fitted is used up: one comes off the stack it was taken from, and goes
+ *     back if it is taken off again unused (`items.changeQuantity`, API
+ *     1.123.0).
  *   - **Homing seekers (homingSeekers, HT:EE p. 49; Campaigns pp. 412-413):**
  *     a homing row with no lock-on roll of its own gets the Basic Set's --
  *     Artillery (Guided Missile) to lock on, then the missile's own skill of
- *     10 -- and, once locked on, its Acc even where the Aim box was left
- *     empty. An attack option says what the seeker homes on (High-Tech's
- *     missiles give their own), which tags the roll with that sense; an
- *     infrared seeker on a warm hull takes -2, and an advanced acoustic
- *     torpedo may home on propulsion and steering as the vital area (-3,
- *     Campaigns p. 554). A laser-homing missile needs someone holding a
- *     laser designator on its target: a row action on the designator rolls
- *     the DX-based Forward Observer roll while its holder aims at the target
- *     (Campaigns p. 412), and the missile's attack is refused while nobody
- *     holds the spot there.
+ *     10 -- and, since it is rolled only once that lock-on succeeds, the
+ *     system's lock-on Acc even where the Aim box was left empty
+ *     (`gworld.homingAttack`, API 1.128.0). An attack option says what the
+ *     seeker homes on (High-Tech's missiles give their own), which tags the
+ *     roll with that sense; an infrared seeker on a warm hull takes -2, and
+ *     an advanced acoustic torpedo may home on propulsion and steering as the
+ *     vital area (-3, Campaigns p. 554). A laser-homing missile is
+ *     semi-active: someone carrying a laser designator and aiming at the
+ *     target holds the spot, and the system rolls their DX-based Forward
+ *     Observer for each turn of flight (Campaigns p. 412); the attack is
+ *     refused while nobody aims a designator there.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { chargeOf } from "../records.js";
 import { ask, clockNow, formulaOf, hint, isActiveGm, mainMode, number, row, say, secondsSince, select, skillRoll, targetedTokens, type ClockStamp } from "../ordnance/common.js";
 import {
-  DESIGNATOR_SKILL,
   HOMING_AIMING_SKILL,
   HOMING_SKILL,
   IMPROVISED_TIME_FUZE,
   PROXIMITY_DETECTION_YARDS,
   SEEKER_CHOICES,
   TIME_FUZE_MAX_SECONDS,
-  dxBased,
   fuzeKind,
   homes,
   isClock,
@@ -74,6 +76,10 @@ export interface FittedFuze {
   /** The fuze's record, or the clock it was improvised from. */
   fuze: string;
   set: ClockStamp;
+  /** The id of the item it came off, to give it back to if it is taken off unused; absent on a fuze fitted before #549. */
+  source?: string;
+  /** Whether it was a clock made into a time fuze. */
+  improvised?: boolean;
 }
 
 const SEEKER_OPTION = "ee-seeker";
@@ -97,7 +103,8 @@ export const isDesignator = (item: any): boolean => /^laser designator\b/i.test(
 export function carriedFuzes(api: GWorldApi, actor: any): Array<{ item: any; kind: FuzeKind; improvised: boolean }> {
   const out: Array<{ item: any; kind: FuzeKind; improvised: boolean }> = [];
   for (const item of [...(actor?.items ?? [])]) {
-    if (item?.type !== "equipment" || item.system?.carried === false) continue;
+    // A stack used up stays on the actor at 0 until it is thrown away.
+    if (item?.type !== "equipment" || item.system?.carried === false || Number(item.system?.quantity ?? 1) <= 0) continue;
     const kind = fuzeKind(nameOf(item));
     if (kind) out.push({ item, kind, improvised: false });
     else if (isClock(nameOf(item)) && (api.combat.getWeaponState(item, MODULE_ID) as any)?.eeImprovisedFuze === true) out.push({ item, kind: "time", improvised: true });
@@ -130,17 +137,15 @@ function yardsApart(a: any, b: any): number | null {
 }
 
 /**
- * Whether someone holds a laser designator's spot on this token: a carried
- * designator whose last Forward Observer roll put it there, in the hands of
- * someone still aiming at it (Campaigns pp. 364, 412).
+ * Who holds a laser designator's spot on this token: someone carrying a
+ * designator and aiming at it, the firer first (Campaigns pp. 364, 412). The
+ * system rolls their Forward Observer for each turn of flight.
  */
-export function designatedBy(api: GWorldApi, targetUuid: string, people: any[]): any | null {
+export function designatedBy(targetUuid: string, people: any[]): any | null {
   if (!targetUuid) return null;
   for (const actor of people) {
     if (actor?.system?.maneuver !== "aim" || !(Number(actor.system?.aim?.turns) > 0) || String(actor.system?.aim?.target ?? "") !== targetUuid) continue;
-    const designator = [...(actor.items ?? [])].find((i: any) => isDesignator(i) && i.system?.carried !== false
-      && (api.combat.getWeaponState(i, MODULE_ID) as any)?.eeDesignating === targetUuid);
-    if (designator) return actor;
+    if ([...(actor.items ?? [])].some((i: any) => isDesignator(i) && i.system?.carried !== false)) return actor;
   }
   return null;
 }
@@ -174,6 +179,20 @@ function readyFuzes(api: GWorldApi, on: () => boolean): void {
     await say(actor, name, [why, L("SetOffCharge")]);
   };
 
+  /** A fuze fitted comes off the stack it was taken from; a clock made into one is a clock again. */
+  const useUp = async (picked: { item: any; improvised: boolean }) => {
+    await api.items.changeQuantity(picked.item, -1, { reason: L("UsedUp") });
+    if (picked.improvised) await api.combat.setWeaponState(picked.item, MODULE_ID, { eeImprovisedFuze: false });
+  };
+
+  /** A fuze taken off unused goes back to its stack, where that is still carried. */
+  const giveBack = async (actor: any, fuze: FittedFuze) => {
+    const source = fuze.source ? actor?.items?.get?.(fuze.source) : null;
+    if (!source) return;
+    await api.items.changeQuantity(source, 1, { reason: L("GivenBack") });
+    if (fuze.improvised) await api.combat.setWeaponState(source, MODULE_ID, { eeImprovisedFuze: true });
+  };
+
   // Fitting a fuze and setting it (HT:EE p. 48).
   api.sheets.registerRowAction({
     module: MODULE_ID,
@@ -201,12 +220,16 @@ function readyFuzes(api: GWorldApi, on: () => boolean): void {
         const picked = fuzes[Number(value("fuze"))];
         if (value("fuze") === "" || !picked) {
           await api.combat.setWeaponState(item, MODULE_ID, { eeFuze: null });
+          if (fitted) await giveBack(actor, fitted);
           await say(actor, name, [F("Removed", { name })]);
           return;
         }
         const setting = picked.kind === "proximity" ? proximitySetting(value("yards")) : picked.kind === "time" ? timeSetting(value("seconds")) : 0;
-        const fuze: FittedFuze = { kind: picked.kind, setting, fuze: nameOf(picked.item), set: clockNow(actor) };
+        const fuze: FittedFuze = { kind: picked.kind, setting, fuze: nameOf(picked.item), set: clockNow(actor), source: String(picked.item.id ?? ""), improvised: picked.improvised };
         await api.combat.setWeaponState(item, MODULE_ID, { eeFuze: fuze });
+        // The one it replaces comes back off; the new one comes off its stack.
+        if (fitted) await giveBack(actor, fitted);
+        await useUp(picked);
         await say(actor, name, [F(`Fitted.${picked.kind}`, { name, fuze: fuze.fuze, yards: setting, seconds: setting, detects: PROXIMITY_DETECTION_YARDS })]);
       })();
     },
@@ -272,7 +295,23 @@ function readyFuzes(api: GWorldApi, on: () => boolean): void {
 
 // ── homing seekers (HT:EE p. 49; Campaigns pp. 412-413) ────────────────────
 
+/** The token an attack is aimed at: the one the user targets. */
+const targetUuid = (): string => {
+  const targets = targetedTokens();
+  return targets.length === 1 ? String(targets[0]?.document?.uuid ?? targets[0]?.uuid ?? "") : "";
+};
+
 function readySeekers(api: GWorldApi, on: () => boolean): void {
+  // The seeker the attack dialog chose, by weapon, for `gworld.homingAttack`, which comes before
+  // `gworld.attackModifiers` and isn't told the options; read once, then gone.
+  const chosen = new Map<string, SeekerChoice | null>();
+  const weaponKey = (item: any) => String(item?.uuid ?? item?.id ?? "");
+  const seekerFor = (item: any): SeekerChoice | null => {
+    const key = weaponKey(item);
+    const picked = chosen.has(key) ? chosen.get(key)! : null;
+    return picked ?? seekersOf(nameOf(item))[0] ?? null;
+  };
+
   // The Basic Set's lock-on and the missile's own skill on a homing row that doesn't say them.
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
     if (!on() || !homingWeapon(context?.item)) return;
@@ -301,23 +340,36 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
     },
     available: (context: any) => on() && homingWeapon(context?.item),
     apply: (context: any, value: unknown) => {
+      chosen.set(weaponKey(context?.item), seekerChoice(value));
       const choice = seekerChoice(value) ?? seekersOf(nameOf(context?.item))[0] ?? null;
       const line = choice ? seekerModifier(choice) : null;
       return line ? { modifiers: [{ label: L(`Lines.${line.key}`), value: line.value, key: line.key }] } : null;
     },
   } as any);
 
+  const people = (actor: any) => [actor, ...sceneActors()].filter((a, i, all) => a && all.indexOf(a) === i);
+
+  // Before the attack: locked on, and who holds a laser seeker's spot (Campaigns pp. 412-413; HT:EE p. 49).
+  Hooks.on(api.combat.hooks.homingAttack, (context: any) => {
+    const item = context?.item;
+    if (!on() || !item || !homingWeapon(item)) return;
+    // The attack is only rolled once the lock-on roll succeeds, so it has locked on: the system adds
+    // its Acc where the Aim box was left empty.
+    context.lockedOn = true;
+    const choice = seekerFor(item);
+    if (!choice || seekerOf(choice) !== "laser") return;
+    const designator = designatedBy(targetUuid(), people(context.actor));
+    // With nobody on the spot the attack is refused below, and there is nothing to roll.
+    context.semiActive = designator !== null;
+    if (designator) context.designator = designator;
+  });
+
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
     if (!on() || !context?.ranged || context.mode?.derived || !item) return;
     const mode = item.system?.rangedModes?.[Number(context.mode?.index) || 0];
+    chosen.delete(weaponKey(item));
     if (!homes(mode)) return;
-
-    // Locked on: the missile adds its Acc (Campaigns p. 413; HT:EE p. 49). The attack is only
-    // rolled once the lock-on roll succeeds, so its Acc is in whether or not the Aim box was ticked.
-    const modifiers: any[] = context.modifiers ?? [];
-    const acc = Math.floor(Number(mode.accuracy) || 0);
-    if (acc > 0 && !modifiers.some((m) => m?.key === "accuracy")) modifiers.push({ label: F("LockOn", { acc }), value: acc, key: "accuracy" });
 
     const choice = chosenSeeker(item, context.options);
     if (!choice) return;
@@ -328,36 +380,7 @@ function readySeekers(api: GWorldApi, on: () => boolean): void {
     // A laser seeker follows the spot someone holds on the target (HT:EE p. 49; Campaigns p. 412).
     if (seeker === "laser" && !context.refusal) {
       const target = (context.targetTokens ?? [])[0];
-      const uuid = String(target?.uuid ?? "");
-      const people = [context.actor, ...sceneActors()].filter((a, i, all) => a && all.indexOf(a) === i);
-      if (!designatedBy(api, uuid, people)) context.refusal = L("NotDesignated");
+      if (!designatedBy(String(target?.uuid ?? ""), people(context.actor))) context.refusal = L("NotDesignated");
     }
   });
-
-  // Holding a laser designator on the target: continued Aim and a DX-based Forward Observer roll (Campaigns p. 412; HT:EE p. 49).
-  api.sheets.registerRowAction({
-    module: MODULE_ID,
-    key: "ee-designate",
-    itemTypes: ["equipment"],
-    label: L("Designate"),
-    icon: "fa-solid fa-crosshairs",
-    visible: (item: any) => on() && isDesignator(item),
-    run: (item: any, actor: any) => {
-      void (async () => {
-        const targets = targetedTokens();
-        if (targets.length !== 1) return void ui.notifications?.warn(L("OneTarget"));
-        const uuid = String(targets[0]?.document?.uuid ?? targets[0]?.uuid ?? "");
-        if (actor?.system?.maneuver !== "aim" || !(Number(actor.system?.aim?.turns) > 0) || String(actor.system?.aim?.target ?? "") !== uuid) {
-          return void ui.notifications?.warn(L("AimFirst"));
-        }
-        const level = api.actors.skillLevel(actor, DESIGNATOR_SKILL);
-        const base = dxBased(typeof level === "number" ? level : null, Number(api.actors.attribute(actor, "IQ")) || 10, Number(api.actors.attribute(actor, "DX")) || 10);
-        const target = String(targets[0]?.name ?? "");
-        const outcome: any = await api.roll.success({ actor, base, label: F("DesignateRoll", { target }), skill: DESIGNATOR_SKILL, tags: ["designation"] } as any);
-        if (!outcome) return;
-        await api.combat.setWeaponState(item, MODULE_ID, { eeDesignating: outcome.success ? uuid : "" });
-        await say(actor, nameOf(item), [F(outcome.success ? "Designated" : "LostSpot", { name: String(actor.name ?? ""), target })]);
-      })();
-    },
-  } as any);
 }

@@ -24,9 +24,11 @@
  *     spray.
  *   - **Laser dazzlers (laserDazzlers):** Protected Vision, a Nictitating
  *     Membrane and anti-laser goggles against the roll to resist; a dazzler
- *     blinds for minutes equal to the margin, a blinding laser cripples the
- *     eyes (for good on a failure by 10 or more). The +3 to resist past 1/2D
- *     is the system's, which gives it to any HT-resisted ranged affliction.
+ *     blinds for minutes equal to the margin, a blinding laser cripples both
+ *     eyes (for good on a failure by 10 or more), recorded as crippled parts
+ *     whose duration the HT roll settles (Campaigns p. 422; API 1.129.0).
+ *     The +3 to resist past 1/2D is the system's, which gives it to any
+ *     HT-resisted ranged affliction.
  */
 
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
@@ -434,6 +436,15 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
       if (blindness.kind === "dazzled") {
         context.effects.push({ module: MODULE_ID, key: "ht-dazzled", label: L("Laser.Dazzled"), duration: { seconds: blindness.minutes * 60 } });
         void say(context.actor, title, [F("Laser.DazzledLine", { name, minutes: blindness.minutes })]);
+      } else if (context.actor?.isOwner) {
+        // Both eyes recorded crippled with no injury behind it (API 1.129.0): the system imposes the
+        // Blindness, and the p. 422 roll on the sheet settles how long, unless it is for good already.
+        const label = L(blindness.permanent ? "Laser.BlindedForGood" : "Laser.Blinded");
+        const duration = blindness.permanent ? "permanent" : "undecided";
+        void (async () => {
+          for (let eye = 0; eye < 2; eye += 1) await api.actors.cripple(context.actor, "eye", { duration, injury: false, label });
+        })();
+        void say(context.actor, title, [F(blindness.permanent ? "Laser.BlindedForGoodLine" : "Laser.BlindedRecordedLine", { name })]);
       } else {
         context.effects.push({ module: MODULE_ID, key: "ht-laser-blinded", label: L(blindness.permanent ? "Laser.BlindedForGood" : "Laser.Blinded") });
         void say(context.actor, title, [F(blindness.permanent ? "Laser.BlindedForGoodLine" : "Laser.BlindedLine", { name })]);

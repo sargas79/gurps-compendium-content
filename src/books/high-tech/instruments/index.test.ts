@@ -35,7 +35,7 @@ const api: any = {
   },
   hazards: { shock: async (options: any) => { shocks.push(options); return {}; } },
   sheets: { registerRowAction: (a: any) => rowActions.push(a) },
-  combat: { hooks: { successRollModifiers: "gworld.successRollModifiers" } },
+  combat: { hooks: { successRollModifiers: "gworld.successRollModifiers", studyModifiers: "gworld.studyModifiers" } },
 };
 
 const action = (key: string) => rowActions.find((a) => a.key === key);
@@ -439,5 +439,30 @@ describe("combined devices (HT:EE p. 9)", () => {
     expect(dialogs[0]).toMatch(/name="combined"\s+\/>/);
     expect(values(rolls[0])).toEqual([-2]);
     expect(cards).toHaveLength(0);
+  });
+});
+
+describe("training aids (HT:EE p. 13)", () => {
+  const study = (actor: any, skill: string, multiplier = 1) => {
+    const context = { actor, skill: { type: "skill", name: skill }, method: "selfTeaching", hours: 90, multiplier, lines: [] as string[] };
+    hooks.get("gworld.studyModifiers")!(context);
+    return context;
+  };
+
+  it("counts Hiking studied with an electronic pedometer carried at 1/0.9 of the hours", () => {
+    const walker = character("Walker", { items: [gear("Electronic Pedometer", { tl: "8" })] });
+    const context = study(walker, "Hiking");
+    expect(context.multiplier).toBeCloseTo(1 / 0.9);
+    expect(context.lines).toEqual(["GCC.HT.Instruments.Pedometer"]);
+    // Another listener's say is kept.
+    expect(study(walker, "Hiking", 2).multiplier).toBeCloseTo(2 / 0.9);
+  });
+
+  it("leaves other skills, a pedometer left behind or of another book, and the switch off alone", () => {
+    expect(study(character("A", { items: [gear("Electronic Pedometer")] }), "Running").multiplier).toBe(1);
+    expect(study(character("B", { items: [gear("Electronic Pedometer", { carried: false })] }), "Hiking").multiplier).toBe(1);
+    expect(study(character("C", { items: [gear("Electronic Pedometer", {}, "ultra-tech")] }), "Hiking").multiplier).toBe(1);
+    switches.instruments = false;
+    expect(study(character("D", { items: [gear("Electronic Pedometer")] }), "Hiking").multiplier).toBe(1);
   });
 });

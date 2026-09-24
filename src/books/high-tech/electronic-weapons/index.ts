@@ -9,12 +9,13 @@
  *     Interrogation (its pain counts as torture), +2 to Intimidation, and a
  *     cattle prod +2 to Animal Handling (HT:EE p. 49). The supplement's cattle
  *     prod pains rather than stuns: Moderate Pain for a minute a point the
- *     roll failed by, Severe Pain where an attack option says it was put to
- *     the face or groin (note [4]). The stun of the stun gun, stun baton and
- *     Tasertron (notes [1] and [6]) is High-Tech's own (`stunWeapons`,
- *     `airGunsAndStunners`), which the supplement repeats; its Air Taser
- *     carries High-Tech's ranged-stunner field, so the Tasertron's rule
- *     holds it.
+ *     roll failed by, Severe Pain where it was put to the face or groin (note
+ *     [4]): the location the blow struck with hit locations in play (API
+ *     1.130.0), an attack option without them. The stun of the stun gun,
+ *     stun baton and Tasertron (notes [1] and [6]) is High-Tech's own
+ *     (`stunWeapons`, `airGunsAndStunners`), which the supplement repeats;
+ *     its Air Taser carries High-Tech's ranged-stunner field, so the
+ *     Tasertron's rule holds it.
  *   - **Directed-energy weapons (directedEnergyWeapons):** the dazzler and
  *     the laser pointer are Vision-based: DR does nothing, Protected Vision
  *     gives +5 and a Nictitating Membrane +1 a level (the shared engine's
@@ -84,6 +85,8 @@ export interface ElectronicWeaponSwitches {
 }
 
 const FACE_OPTION = "ee-prod-face";
+/** Where a cattle prod's blow gives Severe Pain (HT:EE p. 49, note [4]). */
+const PAINFUL_SPOTS: ReadonlySet<string> = new Set(["face", "groin"]);
 const OBSCURED_OPTION = "ee-dazzle-obscured";
 const DAZZLE_BLINDED = "ee-dazzler-blinded";
 const TINNITUS = "ee-tinnitus";
@@ -139,12 +142,13 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     context.modifiers.push({ label: F(`Skill.${bonus.kind}`, { name: nameOf(by) }), value: bonus.value });
   });
 
+  // With hit locations in play the blow's own location says it (API 1.130.0); the option is for play without them.
   api.combat.registerAttackOption({
     module: MODULE_ID,
     key: FACE_OPTION,
     label: L("FaceOption"),
     attack: "melee",
-    available: (context: any) => on.stunners() && isSupplementProd(context?.item),
+    available: (context: any) => on.stunners() && isSupplementProd(context?.item) && !api.registry.isRuleOn("hitLocations"),
     apply: () => ({ notes: [L("FaceNote")] }),
   } as any);
 
@@ -199,7 +203,8 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     const name = String(actor.name ?? "");
     const margin = Number(context.margin) || 0;
     if (on.stunners() && isSupplementProd(item)) {
-      const pain = prodPain(margin, stateOf(api, item).faceOrGroin === true);
+      const struck = typeof context.hitLocation === "string" ? context.hitLocation : null;
+      const pain = prodPain(margin, struck !== null ? PAINFUL_SPOTS.has(struck) : stateOf(api, item).faceOrGroin === true);
       context.effects.push({ key: pain.key, duration: { seconds: pain.minutes * 60 } });
       void say(actor, nameOf(item), [F(pain.key === "severePain" ? "ProdSevere" : "ProdModerate", { name, minutes: pain.minutes })]);
       return;
