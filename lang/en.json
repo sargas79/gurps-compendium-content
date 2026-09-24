@@ -9734,7 +9734,8 @@
           "ButtonedUp": "Buttoned up: {vision} to Vision, nothing seen within {yards} yards; a loader sees nothing, a gunner 60 degrees where the turret faces, a driver 90 degrees ahead, the commander all round.",
           "HatchesOpen": "The hatches are open.",
           "MotorOn": "The motor is running.",
-          "MotorOff": "The motor is off."
+          "MotorOff": "The motor is off.",
+          "RangeYards": "Range ({yards} yd)"
         }
       },
       "Eras": {

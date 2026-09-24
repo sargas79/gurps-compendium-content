@@ -340,6 +340,16 @@ async function fitDialog(vehicle: any): Promise<void> {
   await storeState(vehicle, { fittings: chosen });
 }
 
+/** Yards between two actors' tokens on the map, or null where either has none there. */
+function yardsBetween(a: any, b: any): number | null {
+  const stage = (globalThis as any).canvas;
+  const from = a?.getActiveTokens?.()?.[0];
+  const to = b?.getActiveTokens?.()?.[0];
+  if (!from?.center || !to?.center || !stage?.grid?.measurePath) return null;
+  const distance = Number(stage.grid.measurePath([from.center, to.center])?.distance);
+  return Number.isFinite(distance) ? distance : null;
+}
+
 /** A searchlight's blinding attack on each target (p. 228). */
 async function searchlight(api: GWorldApi, vehicle: any, fit: VehicleFit, answer: Answer, targets: any[]): Promise<void> {
   const lines = [F("Tool.Lit", { miles: answer.miles, radius: searchlightRadius(answer.miles), spotted: answer.miles * SEARCHLIGHT.spottedFactor })];
@@ -349,9 +359,12 @@ async function searchlight(api: GWorldApi, vehicle: any, fit: VehicleFit, answer
   const operator = operatorOf(vehicle);
   if (!operator) return void ui.notifications?.warn(L("Tool.NoOperator"));
   for (const target of targets) {
+    // A ranged attack: the Speed/Range Table's penalty for the distance on the map, unless one was typed in.
+    const yards = answer.range ? null : yardsBetween(vehicle, target);
+    const range = answer.range || (yards === null ? 0 : api.rules.speedRangeModifier(yards));
     const modifiers = [
       ...(answer.aimed ? [{ label: L("Tool.SearchlightAcc"), value: SEARCHLIGHT.accuracy }] : []),
-      ...(answer.range ? [{ label: L("Tool.Range"), value: answer.range }] : []),
+      ...(range ? [{ label: yards === null ? L("Tool.Range") : F("Tool.RangeYards", { yards: Math.round(yards) }), value: range }] : []),
     ];
     const hit: any = await api.roll.success({ actor: operator, base: api.actors.attribute(operator, "DX") ?? 10, kind: "attribute", label: F("Tool.SearchlightLabel", { name: target.name }), modifiers } as any);
     if (!hit?.success) continue;
@@ -444,7 +457,7 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
     key: GUN_PORT_OPTION,
     label: L("GunPort"),
     attack: "ranged",
-    available: (context) => on.components() && Boolean(fitOf(vehicleAboard(context.actor)).gunPorts),
+    available: (context) => on.components() && Boolean(fitOf(vehicleAboard(api, context.actor)).gunPorts),
     refuse: (context) => {
       const bulks = ((context.item?.system?.rangedModes ?? []) as any[]).map((m) => Number(m?.bulk) || 0);
       return bulks.length && !bulks.some((b) => fitsGunPort(b)) ? F("GunPortBulk", { bulk: GUN_PORT.worstBulk }) : null;
@@ -459,7 +472,7 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
     label: L("AtGunPort"),
     attack: "ranged",
     input: { type: "select", choices: [{ value: "", label: "GCC.HT.Vehicles.AtGunPortNone" }, ...[-7, -6, -5, -4].map((v) => ({ value: String(v), label: String(v) }))] },
-    available: (context) => on.components() && (context.targets ?? []).some((t: any) => Boolean(fitOf(vehicleAboard(t?.actor)).gunPorts)),
+    available: (context) => on.components() && (context.targets ?? []).some((t: any) => Boolean(fitOf(vehicleAboard(api, t?.actor)).gunPorts)),
     apply: (_context, value) => ({ modifiers: [{ label: L("AtGunPort"), value: gunPortPenalty(Number(value)) }] }),
   });
 
@@ -470,7 +483,7 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
     label: L("Linked"),
     attack: "ranged",
     input: { type: "number", min: 0, max: 1000 },
-    available: (context) => on.components() && (Boolean(vehicleAboard(context.actor)) || ((context.item?.system?.rangedModes ?? []) as any[]).some((m) => Boolean(m?.mount))),
+    available: (context) => on.components() && (Boolean(vehicleAboard(api, context.actor)) || ((context.item?.system?.rangedModes ?? []) as any[]).some((m) => Boolean(m?.mount))),
     apply: (context, value) => {
       const own = Math.max(1, ...((context.item?.system?.rangedModes ?? []) as any[]).map((m) => Number(m?.rateOfFire) || 1));
       return { rateOfFire: linkedRateOfFire(own, Number(value)), notes: [F("LinkedNote", { rof: linkedRateOfFire(own, Number(value)) })] };
@@ -559,11 +572,11 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
   // Hearing and seeing from inside a tank (p. 234).
   Hooks.on(api.combat.hooks.detectionModifiers, (context: any) => {
     if (!on.crew() || !Array.isArray(context?.modifiers)) return;
-    const vehicle = vehicleAboard(context.observer);
+    const vehicle = vehicleAboard(api, context.observer);
     if (!vehicle) return;
     const fit = fitOf(vehicle);
     if (context.sense === "hearing" && fit.tank) {
-      const outside = !context.subject || vehicleAboard(context.subject) !== vehicle;
+      const outside = !context.subject || vehicleAboard(api, context.subject) !== vehicle;
       const value = tankHearing({ motorRunning: motorRunning(vehicle), intercom: fit.intercom === true, outside });
       if (value) context.modifiers.push({ label: L(outside ? "HearOutside" : "HearCrew"), value });
     }
@@ -573,7 +586,7 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
   // A fight in a tank: 1 FP more every 10 minutes (p. 234).
   Hooks.on(api.combat.hooks.fatigueCost, (context: any) => {
     if (!on.crew() || context?.reason !== "battle") return;
-    const vehicle = vehicleAboard(context.actor);
+    const vehicle = vehicleAboard(api, context.actor);
     if (!vehicle || !fitOf(vehicle).tank) return;
     const extra = combatFatigue(Number(context.details?.seconds) || 0);
     if (extra <= 0) return;

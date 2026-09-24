@@ -262,7 +262,7 @@ export function chaffAround(api: GWorldApi, target: any): number {
   const add = (actor: any) => { if (actor) seen.add(actor); };
   add(target);
   if (target.type === "vehicle") crewOf(target).forEach(add);
-  const aboard = vehicleAboard(target);
+  const aboard = vehicleAboard(api, target);
   if (aboard) {
     add(aboard);
     crewOf(aboard).forEach(add);
