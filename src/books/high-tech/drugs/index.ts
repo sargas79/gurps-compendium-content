@@ -603,7 +603,9 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
   const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
   Hooks.on("updateWorldTime", () => {
     if (!on.poisons() || !isActiveGm()) return;
-    for (const actor of (game as any).actors ?? []) if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+    // World actors, and the unlinked tokens' own on every scene.
+    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+    for (const actor of [...((game as any).actors ?? []), ...unlinked]) if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
   });
   Hooks.on("updateActor", (actor: any, changes: any) => {
     if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;
