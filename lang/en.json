@@ -8578,7 +8578,8 @@
           "neck": "neck",
           "hand": "hand",
           "foot": "foot"
-        }
+        },
+        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)"
       },
       "Melee": {
         "Title": "Melee and muscle-powered weapons (High-Tech)",

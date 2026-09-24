@@ -23,6 +23,7 @@ const HOOKS = {
   successRollModifiers: "gworld.successRollModifiers",
   weatherClothing: "gworld.weatherClothing",
   fatigueCost: "gworld.fatigueCost",
+  afterFatigue: "gworld.afterFatigue",
   armorDr: "gworld.armorDr",
 };
 
@@ -111,8 +112,10 @@ describe("with every switch off", () => {
     expect(tolerance(trekker).effects.temperatureTolerance).toEqual({ coldF: 0, heatF: 0 });
     expect(fire(HOOKS.armorDr, { actor: trekker, hitLocation: "torso", lines: [] }).lines).toEqual([]);
     expect(prices[0].apply(wear("Arctic Clothes", { tl: "8" }), { cost: 100, weight: 15 })).toBeNull();
-    fire(HOOKS.fatigueCost, { actor: trekker, fp: 1, reason: "exposure", exertion: true, details: { heat: false }, sources: [] });
+    fire(HOOKS.afterFatigue, { actor: trekker, fpLost: 1, reason: "exposure", exertion: true, details: { heat: false }, sources: [] });
     expect(damage).toEqual([]);
+    const soldier = person([{ type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } }]);
+    expect(fire(HOOKS.fatigueCost, { actor: soldier, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot: true }, sources: [] }).fp).toBe(1);
   });
 });
 
@@ -159,6 +162,17 @@ describe("clothing against the weather (High-Tech pp. 63-65)", () => {
     expect(apply(wear("Undercover Clothing (Ordinary Clothes, +1)", { tl: "5" }), { cost: 20, weight: 2 })).toBeNull();
   });
 
+  it("adds 2 FP to a hot day's battle for a fighter in body armour (p. 65; Campaigns p. 426)", () => {
+    const flak = (more: Record<string, unknown> = {}) => ({ type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso", "vitals"], ...more } });
+    const battle = (actor: any, hot = true) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, strained: false, temperatureF: 95, hot }, sources: [] });
+    expect(battle(person([flak()]))).toMatchObject({ fp: 3, sources: [expect.stringContaining("Flak Jacket")] });
+    expect(battle(person([flak()]), false).fp).toBe(1);
+    expect(battle(person([flak({ equipped: false })])).fp).toBe(1);
+    expect(battle(person([flak({ locations: ["skull"] })])).fp).toBe(1);
+    expect(battle(person([flak({ locations: [] })])).fp).toBe(3);
+    expect(battle(person([wear("Ordinary Clothes")])).fp).toBe(1);
+  });
+
   it("leaves heated clothing to its own switch", () => {
     expect(clothingOf(person([wear("Heated Clothing")])).clothing).toBeNull();
   });
@@ -167,7 +181,8 @@ describe("clothing against the weather (High-Tech pp. 63-65)", () => {
 describe("frostbite (High-Tech p. 63)", () => {
   beforeEach(() => { on = { clothingAndWeather: true, frostbite: true }; ready(); });
 
-  const lose = (actor: any, fp: number) => fire(HOOKS.fatigueCost, { actor, fp, reason: "exposure", exertion: true, details: { heat: false, temperatureF: -20 }, sources: [] });
+  // What the cold came to once the fatigue was charged (API 1.138.0).
+  const lose = (actor: any, fp: number) => fire(HOOKS.afterFatigue, { actor, fpLost: fp, hpLost: 0, reason: "exposure", exertion: true, details: { heat: false, temperatureF: -20 }, sources: [] });
 
   it("injures each exposed location a point per FP lost to the cold, through no DR", async () => {
     const trekker = person([wear("Winter Clothes", {}, { missing: { gloves: true } })]);
@@ -191,9 +206,20 @@ describe("frostbite (High-Tech p. 63)", () => {
     expect(damage).toEqual([]);
   });
 
+  it("counts the FP the cold came to after Very Fit, not what it was asked", async () => {
+    const trekker = person([wear("Winter Clothes", {}, { missing: { gloves: true } })]);
+    coldRoll(trekker, "winter");
+    fire(HOOKS.fatigueCost, { actor: trekker, fp: 2, reason: "exposure", exertion: true, details: { heat: false }, sources: [] });
+    await flush();
+    expect(damage).toEqual([]);
+    lose(trekker, 1);
+    await flush();
+    expect(damage).toEqual([expect.objectContaining({ formula: "1", calledShot: { hitLocation: "hand", chink: false } })]);
+  });
+
   it("is nothing in the heat, or with no FP lost", async () => {
     const hiker = person([wear("Ordinary Clothes")]);
-    fire(HOOKS.fatigueCost, { actor: hiker, fp: 1, reason: "exposure", exertion: true, details: { heat: true }, sources: [] });
+    fire(HOOKS.afterFatigue, { actor: hiker, fpLost: 1, reason: "exposure", exertion: true, details: { heat: true }, sources: [] });
     coldRoll(hiker, "light");
     lose(hiker, 0);
     await flush();
@@ -226,5 +252,13 @@ describe("climate-controlled clothing (High-Tech p. 74)", () => {
     expect(march(person([wear("Cooling System")]))).toMatchObject({ fp: 8, sources: [expect.stringContaining("Cooling System")] });
     expect(march(person([heated()])).fp).toBe(12);
     expect(fire(HOOKS.fatigueCost, { actor: person([wear("Cooling System")]), fp: 8, reason: "hiking", exertion: true, details: { hours: 4, hot: false }, sources: [] }).fp).toBe(8);
+  });
+
+  it("spares body armour its hot battle's 2 FP while a cooler runs", () => {
+    on = { climateControl: true, clothingAndWeather: true };
+    const flak = { type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } };
+    const battle = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot: true }, sources: [] }).fp;
+    expect(battle(person([flak, wear("Cooling System")]))).toBe(1);
+    expect(battle(person([flak]))).toBe(3);
   });
 });
