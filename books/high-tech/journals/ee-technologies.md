@@ -24,7 +24,7 @@ Early electronic devices were analog: They carried information in the form of va
 
 ### Miniaturization
 
-Over time, electronic devices have gotten smaller. De Forest’s audion (Who Invented Vacuum Tubes?, p. 5) was about as large as a light bulb (SM -7). It was followed in 1938 by the all-glass miniature tube (SM -8) and in 1939 by the subminiature tube (SM -9), used in military equipment and hearing aids. The invention of the transis tor in 1947 allowed a big jump downward (SM -11).
+Over time, electronic devices have gotten smaller. De Forest’s audion (Who Invented Vacuum Tubes?, p. 5) was about as large as a light bulb (SM -7). It was followed in 1938 by the all-glass miniature tube (SM -8) and in 1939 by the subminiature tube (SM -9), used in military equipment and hearing aids. The invention of the transistor in 1947 allowed a big jump downward (SM -11).
 
 Integrated circuits, developed in 1958, started out with two to five transistors as regions of a single block of germanium (later silicon). Integration progressed through medium-scale integration (MSI; up to 500 transistors per chip) in 1968, large-scale integration (LSI; up to 20,000) in 1971, and very large-scale integration (VLSI; up to 1 million) in 1980, at the start of TL8. After this limit was exceeded in 1984, designers stopped coining new acronyms, but the trend continued. It inspired Moore’s Law, the prediction (in 1965) that transistor density would double every two years. Research in nanoelectronics has begun to produce devices on the scale of viruses, in which quantum effects play a significant role.
 

@@ -10,7 +10,7 @@ Science fictional accounts of directed energy weapons go back at least to the Ma
 
 [2] Nictitating Membrane gives +1/level to the roll to resist; obscuring conditions (fog, smoke, etc.) give +1 per -1 Vision penalty; Protected Vision gives +5.
 
-[3] For a green laser pointer, Range is 10/100. [4] On a failed roll, the victim experiences Moderate Pain for the duration of the sound output. After 1 minute of contin ued exposure, they suffer tinnitus lasting 1 minute per point of failure, making them Hard of Hearing. If they then fail a HT roll, this continues for 1d months; on a critical failure, the condition is permanent. Protected Hearing gives +5 to resist these effects, and prevents permanent hearing loss; Deafness grants immunity to them.
+[3] For a green laser pointer, Range is 10/100. [4] On a failed roll, the victim experiences Moderate Pain for the duration of the sound output. After 1 minute of continued exposure, they suffer tinnitus lasting 1 minute per point of failure, making them Hard of Hearing. If they then fail a HT roll, this continues for 1d months; on a critical failure, the condition is permanent. Protected Hearing gives +5 to resist these effects, and prevents permanent hearing loss; Deafness grants immunity to them.
 
 [5] On a failed roll, the victim experiences Agony as long as they remain in the area of effect, and for 1 second afterward; they have the ability to flee.
 
