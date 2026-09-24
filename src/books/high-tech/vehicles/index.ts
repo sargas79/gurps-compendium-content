@@ -22,10 +22,13 @@
  *     laminated armour's x2 against HEAT and HEDP before the armour divisor,
  *     and HESH's spall stopped, on the vehicle's DR where a shot lands
  *     (`gworld.vehicleDr`), armour skirts added on their faces; riveted armour's
- *     flying rivets; on flat run-flat tyres -1 to the control roll and Dodge
- *     and Move less 20% (CTIS ignoring two or three flats); and on the tool, an
- *     extinguisher's or fire-suppression system's roll, airbags in a collision
- *     and getting out from behind one (the shared restraint).
+ *     flying rivets once the shot is worked out (`gworld.afterVehicleHit`); on
+ *     flat run-flat tyres -1 Handling and top speed less 20% while they last
+ *     (`gworld.vehicleStats`, which the control roll and Dodge read; CTIS
+ *     ignoring two or three flats); improved brakes' +1 on a control roll made
+ *     for braking hard; and on the tool, braking hard, an extinguisher's or
+ *     fire-suppression system's roll, airbags in a collision and getting out
+ *     from behind one (the shared restraint).
  *   - **Crew (crewConditions):** in a tank, hearing each other at -4 with the
  *     motor running and no headsets, hearing outside at -10 (-3 with the motor
  *     off), and -2 to Vision buttoned up (`gworld.detectionModifiers`); a
@@ -214,13 +217,13 @@ export function fitLines(vehicle: any, on: VehicleSwitches): string[] {
 
 type Kind =
   | "describe" | "fit" | "turret" | "searchlight" | "smoke" | "baffling"
-  | "extinguish" | "flats" | "airbag" | "free"
+  | "extinguish" | "flats" | "airbag" | "brake" | "free"
   | "ride" | "button" | "motor";
 
 function kindsOn(on: VehicleSwitches): Kind[] {
   const kinds: Kind[] = ["describe", "fit"];
   if (on.components()) kinds.push("turret", "searchlight", "smoke", "baffling");
-  if (on.protection()) kinds.push("extinguish", "flats", "airbag", "free");
+  if (on.protection()) kinds.push("extinguish", "flats", "airbag", "brake", "free");
   if (on.crew()) kinds.push("ride", "button", "motor");
   return kinds;
 }
@@ -287,6 +290,12 @@ export async function runKind(api: GWorldApi, vehicle: any, answer: Answer, targ
     }
     case "extinguish":
       return extinguish(api, vehicle, fit, tl);
+    case "brake": {
+      // Braking hard is a control roll made for that reason (Campaigns p. 466), which improved brakes help.
+      const driver = operatorOf(vehicle);
+      if (!driver) return void ui.notifications?.warn(L("Tool.NoOperator"));
+      return api.hazards.controlVehicle({ actor: driver, vehicle, reason: HARD_BRAKING });
+    }
     case "flats": {
       await storeState(vehicle, { flats: answer.flats });
       const state = flatTyres(fit, answer.flats, wheelsOf(vehicle));
@@ -383,6 +392,9 @@ async function extinguish(api: GWorldApi, vehicle: any, fit: VehicleFit, tl: num
   await say(vehicle, L("Tool.extinguish"), lines);
 }
 
+/** The control roll's reason for braking hard (Campaigns p. 466). */
+const HARD_BRAKING = "hardBraking";
+
 // ── riveted armour's spall (p. 235) ──
 
 async function rivetSpall(api: GWorldApi, vehicle: any): Promise<void> {
@@ -466,6 +478,10 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
 
   // ── protection (pp. 229, 234-235) ──
 
+  // A riveted vehicle's last blow's basic damage, until the hit is worked out.
+  const rivetBlows = new Map<string, number>();
+  const vehicleKey = (vehicle: any) => String(vehicle?.uuid ?? vehicle?.id ?? "");
+
   // Spaced and laminated armour against shaped charges, skirts, riveted spall (pp. 229, 235, 239).
   Hooks.on(api.combat.hooks.vehicleDr, (context: any) => {
     if (!on.protection() || !Array.isArray(context?.lines) || !context.vehicle) return;
@@ -487,33 +503,37 @@ export function readyVehicles(api: GWorldApi, on: VehicleSwitches): void {
       }
     }
     if (kind && charge === "hesh" && own) own.reason = [own.reason, F("HeshReason", { kind: L(`Kind.${kind}`) })].filter(Boolean).join("; ");
-    if (fit.riveted && !context.ignoresDr) {
-      const through = api.rules.vehiclePenetration({ basicDamage: Number(context.basicDamage) || 0, lines: context.lines, armorDivisor: Number(context.armorDivisor) || 1 });
-      if (rivetsMayFly(Number(context.basicDamage) || 0, through.penetrating)) void rivetSpall(api, context.vehicle);
-    }
+    // The blow's basic damage, for the rivets once the shot is worked out.
+    if (fit.riveted && !context.ignoresDr) rivetBlows.set(vehicleKey(context.vehicle), Number(context.basicDamage) || 0);
   });
 
-  // Running on flat run-flat tyres: -1 Handling on the control roll (p. 229).
+  // Riveted armour: a blow of 20+ that didn't get through may send rivets
+  // flying (p. 235), read from the hit as it was worked out (API 1.115.0).
+  Hooks.on(api.combat.hooks.afterVehicleHit, (context: any) => {
+    const key = vehicleKey(context?.vehicle);
+    const basic = rivetBlows.get(key);
+    rivetBlows.delete(key);
+    if (!on.protection() || basic === undefined || !fitOf(context.vehicle).riveted) return;
+    if (rivetsMayFly(basic, Number(context.penetrating) || 0)) void rivetSpall(api, context.vehicle);
+  });
+
+  // Running on flat run-flat tyres: -1 Handling and top speed less 20% while
+  // they last (p. 229), on the figures the rules read (API 1.115.0): the
+  // control roll, Dodge, and speeds follow.
+  Hooks.on(api.data.hooks.vehicleStats, (context: any) => {
+    const vehicle = context?.vehicle;
+    if (!on.protection() || !vehicle || !Array.isArray(context.lines)) return;
+    if (flatTyres(fitOf(vehicle), stateOf(vehicle).flats, wheelsOf(vehicle)) !== "runFlat") return;
+    context.handling = (Number(context.handling) || 0) + RUN_FLAT.handling;
+    context.topSpeed = runFlatMove(Number(context.topSpeed) || 0);
+    context.lines.push({ label: L("RunningFlat"), stat: "handling", value: RUN_FLAT.handling }, { label: L("RunningFlat"), stat: "topSpeed" });
+  });
+
+  // Improved brakes: +1 on a control roll made for braking hard (p. 229).
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on.protection() || !(context?.tags ?? []).includes("vehicleControl") || !Array.isArray(context.modifiers)) return;
-    const vehicle = context.vehicle;
-    if (!vehicle) return;
-    if (flatTyres(fitOf(vehicle), stateOf(vehicle).flats, wheelsOf(vehicle)) === "runFlat") context.modifiers.push({ label: L("RunningFlat"), value: RUN_FLAT.handling });
-  });
-
-  // ... and -1 to Dodge, and Move less 20%, on the vehicle's figures (p. 229).
-  Hooks.on(api.data.hooks.prepareDerivedData, (doc: any) => {
-    if (doc?.documentName !== "Actor" || doc.type !== "vehicle" || !on.protection()) return;
-    const derived = doc.system?.derived;
-    if (!derived?.move) return;
-    if (flatTyres(fitOf(doc), stateOf(doc).flats, wheelsOf(doc)) !== "runFlat") return;
-    const v = doc.system.vehicle ?? {};
-    const move = { ...derived.move, topSpeed: runFlatMove(derived.move.topSpeed) };
-    derived.move = move;
-    if (typeof derived.dodge === "number") derived.dodge += RUN_FLAT.handling;
-    derived.topSpeedMph = Math.round(move.topSpeed * 2 * 10) / 10;
-    derived.cruisingSpeedMph = api.rules.cruisingSpeedMph({ topSpeed: move.topSpeed, acceleration: move.acceleration, locomotion: move.locomotion, roadBound: v.roadBound, onRoad: v.roadBound, terrain: v.roadBound ? "good" : "average" });
-    derived.endurance = api.rules.endurance({ rangeMiles: Number(v.range) || 0, cruisingSpeedMph: derived.cruisingSpeedMph });
+    if (context.reason !== HARD_BRAKING || !context.vehicle || !fitOf(context.vehicle).improvedBrakes) return;
+    context.modifiers.push({ label: L("ImprovedBrakes"), value: IMPROVED_BRAKES });
   });
 
   // ── crew (pp. 234-235) ──
