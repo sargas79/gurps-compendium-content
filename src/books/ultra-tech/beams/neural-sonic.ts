@@ -14,6 +14,7 @@
 
 import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   immunity,
@@ -196,7 +197,7 @@ export function readyNeuralSonic(api: GWorldApi, on: () => boolean): void {
       void say(actor, context.label ?? "", [F(`Immune.${blocked}`, { name })]);
       return;
     }
-    const margin = Math.max(0, Math.floor(Number(context.margin) || 0));
+    const margin = marginOfFailure(context.margin);
     const { setting } = beamSettingOf(context.item);
     let outcomes: BeamOutcome[] = [];
     if (family === "neural" && setting) outcomes = neuralOutcome(setting, margin);

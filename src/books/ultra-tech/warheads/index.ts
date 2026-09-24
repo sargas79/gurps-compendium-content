@@ -15,6 +15,7 @@ import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { launcherOf as loadLauncherOf } from "../../../shared/loads/launcher.js";
 import { registerLoadRows } from "../../../shared/loads/rows.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { beamEnvironment } from "../beams/index.js";
 import { WARHEADS, WARHEAD_KINDS, sizeClass, type WarheadKind } from "./catalogue.js";
@@ -173,7 +174,7 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
     if (!load?.kind) return;
     const actor = context.actor;
     const name = String(actor?.name ?? "");
-    const margin = Math.max(1, Math.floor(Number(context.margin) || 0));
+    const margin = Math.max(1, marginOfFailure(context.margin));
     const traits = traitNames(actor);
     const lines: string[] = [];
     switch (load.kind) {

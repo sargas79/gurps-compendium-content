@@ -66,6 +66,13 @@ describe("spray guns (High-Tech p. 180)", () => {
     expect(sprayEffectSeconds("tearGas", 0)).toBe(60);
     expect(sprayEffectSeconds("pepper", 3)).toBeNull();
   });
+
+  it("reads a failure's margin by its size, signed or not (#539)", () => {
+    expect(sprayEffectSeconds("tearGas", -1)).toBe(60);
+    expect(sprayEffectSeconds("tearGas", -3)).toBe(180);
+    expect(sprayEffectSeconds("tearGas", -12)).toBe(720);
+    expect(sprayEffectSeconds("pepper", -3)).toBeNull();
+  });
 });
 
 describe("laser dazzlers (High-Tech p. 181), through the shared engine", () => {
@@ -85,11 +92,13 @@ describe("laser dazzlers (High-Tech p. 181), through the shared engine", () => {
     expect(blindnessFrom(HT_DAZZLE, "dazzle", 4)).toEqual({ kind: "dazzled", minutes: 4 });
     expect(blindnessFrom(HT_DAZZLE, "blinding", 3)).toEqual({ kind: "blinded", permanent: false });
     expect(blindnessFrom(HT_DAZZLE, "blinding", 10)).toEqual({ kind: "blinded", permanent: true });
-    // Ultra-Tech's blinding beam blinds for good whatever the margin (Ultra-Tech p. 114).
-    expect(blindnessFrom({ book: "ultra-tech", blinding: "permanent" }, "blinding", 1)).toEqual({ kind: "blinded", permanent: true });
+    // A book whose blinding beam blinds for good does so whatever the margin.
+    expect(blindnessFrom({ book: "any", blinding: "permanent" }, "blinding", 1)).toEqual({ kind: "blinded", permanent: true });
+    // One whose crippling names no failure for good never makes it permanent (Ultra-Tech p. 113, #539).
+    expect(blindnessFrom({ book: "any", blinding: "crippling" }, "blinding", -15)).toEqual({ kind: "blinded", permanent: false });
   });
 
-  it("reads a failure's margin by its size, as the system hands it over negative (#535)", () => {
+  it("reads a failure's margin by its size, signed or not (#535)", () => {
     expect(blindnessFrom(HT_DAZZLE, "dazzle", -1)).toEqual({ kind: "dazzled", minutes: 1 });
     expect(blindnessFrom(HT_DAZZLE, "dazzle", -5)).toEqual({ kind: "dazzled", minutes: 5 });
     expect(blindnessFrom(HT_DAZZLE, "dazzle", -12)).toEqual({ kind: "dazzled", minutes: 12 });

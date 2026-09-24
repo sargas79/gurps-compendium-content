@@ -25,6 +25,7 @@
  */
 
 import { parseDice } from "../../../shared/loads/dice.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 import type { LoadRow } from "../../../shared/loads/rows.js";
 import type { SmokeFigures } from "../../../shared/smoke/rules.js";
 import type { CargoProjectile, ExplosiveProjectile } from "./projectiles.js";
@@ -249,7 +250,7 @@ export function gasesOf(vomiting: boolean): Gas[] {
  * minutes a point of margin for the vomiting agent).
  */
 export function gasEffect(gas: Gas, margin: number, cloudSeconds: number): { condition: "coughing" | "blinded" | "retching"; seconds: number } {
-  const m = Math.max(1, Math.floor(Number(margin) || 0));
+  const m = Math.max(1, marginOfFailure(margin));
   const inCloud = Math.max(0, Math.floor(Number(cloudSeconds) || 0));
   if (gas === "vomitingAgent") return { condition: "retching", seconds: inCloud + 5 * m * 60 };
   return { condition: gas === "tearGasCoughing" ? "coughing" : "blinded", seconds: inCloud + m * 60 };

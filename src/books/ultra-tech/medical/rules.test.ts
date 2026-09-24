@@ -128,6 +128,9 @@ describe("drugs and nano (Ultra-Tech pp. 205-206)", () => {
     expect(resistedDrugEffect("morphazine", 2, 10)).toEqual({ condition: "unconscious", minutes: 960 });
     expect(resistedDrugEffect("soothe", 3, 10)).toEqual({ condition: "euphoria", minutes: 15 });
     expect(resistedDrugEffect("crediline", 1, 12)).toEqual({ condition: null, minutes: 13 });
+    // A failure's margin by its size, signed or not (#539).
+    expect(resistedDrugEffect("morphazine", -2, 10)).toEqual({ condition: "unconscious", minutes: 960 });
+    expect(resistedDrugEffect("soothe", -3, 10)).toEqual({ condition: "euphoria", minutes: 15 });
   });
 
   it("times analgine, ascepaline and immune machines", () => {

@@ -5,6 +5,7 @@
  */
 
 import type { BeamFamily } from "./rules.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 
 /** A neural disruptor's settings (pp. 121-122). */
 export const NEURAL_SETTINGS = ["agony", "ecstasy", "neuralStun", "paralysis", "seizure", "deathBeam"] as const;
@@ -46,7 +47,7 @@ export const WORSE_MARGIN = 5;
  * beam's is a heart attack on any failure (p. 122).
  */
 export function neuralOutcome(setting: BeamSetting, margin: number): BeamOutcome[] {
-  const m = Math.max(0, Math.floor(Number(margin) || 0));
+  const m = marginOfFailure(margin);
   const worse = m >= WORSE_MARGIN;
   switch (setting) {
     case "agony":
@@ -70,7 +71,7 @@ export function neuralOutcome(setting: BeamSetting, margin: number): BeamOutcome
  * What a failed Will roll against a mind disruptor does (p. 132).
  */
 export function mindOutcome(setting: BeamSetting, margin: number): BeamOutcome[] {
-  const m = Math.max(0, Math.floor(Number(margin) || 0));
+  const m = marginOfFailure(margin);
   const worse = m >= WORSE_MARGIN;
   switch (setting) {
     case "hypnogogic":
@@ -94,7 +95,7 @@ export function mindOutcome(setting: BeamSetting, margin: number): BeamOutcome[]
 
 /** A mindripper: a coma, and amnesia for good on a failure by 5 or more (p. 122). */
 export function mindripperOutcome(margin: number): BeamOutcome[] {
-  const m = Math.max(0, Math.floor(Number(margin) || 0));
+  const m = marginOfFailure(margin);
   return [{ condition: "coma", seconds: null, note: m >= WORSE_MARGIN ? "Mindripper.worse" : "Mindripper.coma" }];
 }
 
@@ -103,7 +104,7 @@ export function mindripperOutcome(margin: number): BeamOutcome[] {
  * the margin; by 5 or more, Deafness and retching besides.
  */
 export function nauseatorOutcome(margin: number): BeamOutcome[] {
-  const m = Math.max(0, Math.floor(Number(margin) || 0));
+  const m = marginOfFailure(margin);
   return m >= WORSE_MARGIN
     ? [{ condition: "moderatePain", seconds: minutes(m), note: "Nauseator.pain" }, { condition: "retching", seconds: minutes(m), note: "Nauseator.worse" }]
     : [{ condition: "moderatePain", seconds: minutes(m), note: "Nauseator.pain" }];

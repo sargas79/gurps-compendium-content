@@ -173,6 +173,9 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     expect(gasEffect("tearGasCoughing", 3, 20)).toEqual({ condition: "coughing", seconds: 200 });
     expect(gasEffect("tearGasBlinding", 1, 0)).toEqual({ condition: "blinded", seconds: 60 });
     expect(gasEffect("vomitingAgent", 2, 20)).toEqual({ condition: "retching", seconds: 620 });
+    // The margin by its size, signed or not (#539).
+    expect(gasEffect("tearGasCoughing", -3, 20)).toEqual(gasEffect("tearGasCoughing", 3, 20));
+    expect(gasEffect("vomitingAgent", -4, 0)).toEqual({ condition: "retching", seconds: 1200 });
     // A gas mask keeps out what is breathed, not what gets in the eyes; a sealed suit keeps out both.
     const masked = { sealed: false, doesntBreathe: false, filterLungs: true };
     expect(gasReaches("tearGasCoughing", masked)).toBe(false);

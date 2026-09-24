@@ -47,6 +47,15 @@ describe("agents as poisons (Ultra-Tech pp. 159-162)", () => {
     expect(agentEffects("nerveGas", 5, false)).toEqual([]);
   });
 
+  it("reads a failure's margin by its size, signed or not (#539)", () => {
+    expect(agentEffects("riotGas", -5, false)[0]!.condition).toBe("retching");
+    expect(agentEffects("sleepGas", -3, false)).toEqual(agentEffects("sleepGas", 3, false));
+    expect(agentEffects("paralysisGas", -2, false)[0]!.condition).toBe(null);
+    expect(agentEffects("paralysisGas", -4, false)[0]).toMatchObject({ condition: "paralysis", seconds: 240 });
+    expect(agentEffects("sleepPoison", -6, false)[0]).toMatchObject({ condition: "unconscious", seconds: 360 });
+    expect(agentEffects("nanoburn", -2, false)[0]).toMatchObject({ condition: "paralysis", seconds: 360 });
+  });
+
   it("brings the nerve agents' symptoms at a third, a half and two-thirds", () => {
     expect(nerveSymptoms("1/3")).toEqual({ condition: "coughing", disorder: "Mild" });
     expect(nerveSymptoms("1/2")).toEqual({ condition: "nauseated", disorder: "Severe" });

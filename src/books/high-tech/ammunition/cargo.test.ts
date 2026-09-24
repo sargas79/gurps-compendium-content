@@ -228,6 +228,9 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     // A resisted roll does nothing.
     fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: true, margin: 0 });
     expect(conditions).toHaveLength(2);
+    // A failure's margin handed over signed reads by its size (#539).
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: -3 });
+    expect(conditions[2]).toMatchObject({ key: "coughing", duration: { seconds: 25 + 180 } });
   });
 
   it("doses a poison-gas round's Basic Set filler over its burst", async () => {

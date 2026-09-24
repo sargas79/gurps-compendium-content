@@ -44,7 +44,8 @@ const SETTINGS: readonly LaserSetting[] = ["beam", "dazzle", "blinding", "pulse"
 /** Families a dazzle or blinding beam's roll to resist comes from. */
 const EYE_BEAMS: ReadonlySet<BeamFamily> = new Set(["dazzler", ...HIGH_ENERGY]);
 /** Ultra-Tech's table for the shared engine: a blinding beam blinds for good (p. 114). */
-const UT_DAZZLE: DazzleTable = { book: "ultra-tech", blinding: "permanent" };
+// A blinding beam inflicts crippling Blindness (p. 113), which heals as any crippling injury does.
+const UT_DAZZLE: DazzleTable = { book: "ultra-tech", blinding: "crippling" };
 
 /** Families whose burn weather and glass change: every high-energy laser, and an electrolaser's (pp. 114, 119). */
 const WEATHERED: ReadonlySet<BeamFamily> = new Set([...HIGH_ENERGY, "electrolaser"]);
@@ -244,7 +245,7 @@ export function readyLaserOptions(api: GWorldApi, on: () => boolean): void {
     if (bonus) context.modifiers.push({ label: L("VisionProtection"), value: bonus });
   });
 
-  // Blindness for minutes equal to the margin, or for good from a blinding beam (pp. 113-114).
+  // Blindness for minutes equal to the margin, or crippled eyes from a blinding beam (p. 113).
   Hooks.on(api.combat.hooks.afflictionEffect, (context: any) => {
     if (!on()) return;
     const family = familyOf(context?.item);

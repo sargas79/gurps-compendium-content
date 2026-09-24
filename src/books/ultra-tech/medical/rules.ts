@@ -7,6 +7,7 @@
  */
 
 import { deviceIn, deviceSkill, type Device, type DeviceSkill } from "../../../shared/medical/rules.js";
+import { marginOfFailure } from "../../../shared/margin.js";
 
 // The devices' engine is shared with High-Tech's (src/shared/medical); this is Ultra-Tech's table.
 export { deviceSkill, type Device, type DeviceSkill };
@@ -186,7 +187,7 @@ export type ResistedDrug = keyof typeof RESISTED_DRUGS;
 
 /** What a failed roll against a resisted drug does, for minutes (p. 205). */
 export function resistedDrugEffect(drug: ResistedDrug, margin: number, ht: number): { condition: string | null; minutes: number } {
-  const m = Math.max(1, Math.floor(margin));
+  const m = Math.max(1, marginOfFailure(margin));
   if (drug === "morphazine") return { condition: "unconscious", minutes: 8 * 60 * m };
   if (drug === "soothe") return { condition: "euphoria", minutes: 5 * m };
   return { condition: null, minutes: Math.max(1, 25 - Math.floor(ht)) };
