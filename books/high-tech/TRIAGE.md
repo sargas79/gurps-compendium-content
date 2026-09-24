@@ -627,7 +627,7 @@ Two checks make a crossed citation fail the build rather than land:
 | 36-38 | Computers: processing power, the seven sizes, design options, programs and languages | 7 `equipment` (the sizes); the 15 options are fields (#496) | #496 | #480 |
 | 39-41 | Special-purpose devices, digital interfaces, voice control, networks, VR | about 30 `equipment` | #496 | #480 |
 | 42-44 | Security: fences, locks, screening, alarms, bugs and taps | about 40 `equipment`; the magnetic lock's five sizes, the keycard technologies and the biometric kinds as records | #497, #498 | #480 |
-| 45-48 | The electronic battlefield: surveillance, the two UAVs, communications and encryption, spread spectrum, triangulation, SIGINT, fuzes and guidance | about 15 `equipment`; the UAVs as vehicle `equipment` from the table on p. 46, ceiling and controller range in notes | #499, #500, #503; triangulation's scatter is E3 under `radios` | #480 |
+| 45-48 | The electronic battlefield: surveillance, the two UAVs, communications and encryption, spread spectrum, triangulation, SIGINT, fuzes and guidance | about 15 `equipment`; the UAVs as vehicle `equipment` from the table on p. 46, ceiling, controller range and autopilot in the `drone` fields (#499) | #499, #500, #503; triangulation's scatter is E3 under `radios` | #480 |
 | 49-51 | Electronic weapons: stunners, jammers, directed-energy weapons, NNEMP; the weapon tables | about 15 `equipment`; 8 melee and 6 ranged rows as attack modes on their records | #501 (the cell-phone jammer is E3 under `jamming`), #502 | #480 |
 | 52-54 | Index | none | none | |
 

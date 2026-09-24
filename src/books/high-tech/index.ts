@@ -60,8 +60,9 @@
  * armour: partial coverage, concealing it and its materials, security
  * screening, surveillance gear and jamming (with the Electricity and
  * Electronics supplement's bugs, taps and countersurveillance, HT:EE
- * pp. 44-45, and its electric fences, locks, screening and alarms, HT:EE
- * pp. 42-44), and the protective oddments and
+ * pp. 44-45, its electric fences, locks, screening and alarms, HT:EE
+ * pp. 42-44, and its electronic battlefield's sensors and reconnaissance
+ * drones, HT:EE pp. 45-46), and the protective oddments and
  * portable cover: footwear, gloves, ear and eye protection, cups and
  * mouthguards, eyeglasses, homemade armour and blankets over bombs, and
  * lie detection and restraints: polygraphs and voice stress analysers on
@@ -125,6 +126,7 @@ import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 import { initSurveillance, readySurveillance } from "./surveillance/index.js";
 import { readyCovertListening } from "./covert-listening/index.js";
 import { initElectricSecurity, readyElectricSecurity } from "./electric-security/index.js";
+import { initBattlefield, readyBattlefield } from "./battlefield/index.js";
 import { readyOddments } from "./oddments/index.js";
 import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
@@ -320,6 +322,9 @@ const RULES = [
   { key: "stunLethalFences", pages: "pp. 9, 42, 44", reference: EE_REFERENCE, implemented: true },
   { key: "electricLocks", pages: "pp. 14, 42", reference: EE_REFERENCE, implemented: true },
   { key: "alarmSystems", pages: "pp. 43-44", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: the electronic battlefield's sensors, and reconnaissance drones.
+  { key: "battlefieldSensors", pages: "p. 45", reference: EE_REFERENCE, implemented: true },
+  { key: "reconDrones", pages: "p. 46", reference: EE_REFERENCE, implemented: true },
   // Protective oddments and portable cover.
   { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
   { key: "portableCover", pages: "p. 72", implemented: true },
@@ -410,6 +415,7 @@ function init(): void {
   initDrugs();
   initVehicles(ruleKey("vehicleProtection"));
   initDevices();
+  initBattlefield();
 }
 
 function ready(api: GWorldApi): void {
@@ -474,6 +480,8 @@ function ready(api: GWorldApi): void {
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
   readyCovertListening(api, rule("covertListening"));
   readyElectricSecurity(api, electric);
+  // After the devices' object figures, which military gear's HT and DR override.
+  readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones") });
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));
