@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { CALIBRES, calibreRowOf, gunCalibreRows } from "./calibres.js";
+import { CALIBRES, calibreClassOf, calibreRowOf, gunCalibreRows } from "./calibres.js";
 import {
   adjustDamage,
   allowedUpgrades,
@@ -34,6 +34,32 @@ describe("the calibre a gun's name gives (pp. 175-177)", () => {
     expect(calibreRowOf("Martini-Henry Mk I, .450 MH")?.name).toBe(".450 Martini-Henry (11.43×59mmR)");
     expect(calibreRowOf("Tower Blunderbuss, 11G Flintlock")?.notes).toContain("powderAndShot");
     expect(calibreRowOf("Glock 17, 9x19mm")?.name).toBe("9×19mm Parabellum");
+  });
+
+  it("finds a calibre two tables print in the gun's own table (#433)", () => {
+    // ".75 Flintlock" is the Rigby pistol's (p. 176) and the Brown Bess musket's (p. 177).
+    expect(calibreRowOf("Brown Bess, .75 Flintlock", "Guns (Musket)")?.name).toBe(".75 Flintlock (Brown Bess)");
+    expect(calibreRowOf("Rigby Traveling Pistol, .75 Flintlock", "Guns (Pistol)")?.name).toBe(".75 Flintlock (Rigby)");
+    expect(calibreRowOf("Kentucky Rifle, .45 Flintlock", "Guns (Rifle)")?.name).toBe(".45 Flintlock (Kentucky)");
+    expect(calibreRowOf("North West Gun, .50 Flintlock", "Guns (Musket)")?.name).toBe(".50 Flintlock (North West)");
+    expect(calibreRowOf("Collier, .50 Flintlock", "Guns (Pistol)")?.name).toBe(".50 Flintlock (Collier)");
+    // Without a skill, the maker the name holds decides; with neither, the first row.
+    expect(calibreRowOf("Brown Bess, .75 Flintlock")?.name).toBe(".75 Flintlock (Brown Bess)");
+    expect(calibreRowOf("Rigby Traveling Pistol, .75 Flintlock")?.name).toBe(".75 Flintlock (Rigby)");
+    expect(calibreRowOf(".75 Flintlock")?.name).toBe(".75 Flintlock (Rigby)");
+    // A skill whose table doesn't print the calibre leaves the rows as they are.
+    expect(calibreRowOf("Glock 17, 9x19mm", "Guns (Rifle)")?.name).toBe("9×19mm Parabellum");
+  });
+
+  it("reads the table a gun's rounds are in from its skill", () => {
+    expect(calibreClassOf("Guns (Pistol)")).toBe("handgun");
+    expect(calibreClassOf("Guns Sport (Pistol)")).toBe("handgun");
+    expect(calibreClassOf("Guns (Submachine Gun)")).toBe("handgun");
+    expect(calibreClassOf("Guns (Musket)")).toBe("rifle");
+    expect(calibreClassOf("Gunner (Machine Gun)")).toBe("rifle");
+    expect(calibreClassOf("Guns (Shotgun)")).toBe("shotgun");
+    expect(calibreClassOf("Guns (Grenade Launcher)")).toBe("grenadeLauncher");
+    expect(calibreClassOf("Throwing")).toBeNull();
   });
 
   it("gives each round its class", () => {

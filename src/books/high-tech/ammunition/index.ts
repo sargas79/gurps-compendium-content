@@ -294,10 +294,13 @@ export function loadIn(item: any, modeIndex: number): { load: HighTechLoad; box:
 /** The table's row for a round named exactly as the table names it. */
 const rowNamed = (name: string): CalibreRow | null => CALIBRES.find((r) => r.name === name) ?? null;
 
-/** A gun's calibre row: the cartridge it was converted to, or the calibre its name gives. */
+/** The weapon skill a gun's modes name, for the table its rounds are in. */
+const gunSkill = (item: any): string => String(rangedModes(item).find((m) => m?.skill)?.skill ?? "");
+
+/** A gun's calibre row: the cartridge it was converted to, or the calibre its name gives, in its own table. */
 export function gunCalibre(item: any): CalibreRow | null {
   const converted = String(item?.system?.extensions?.[MODULE_ID]?.firearm?.convertedTo ?? "");
-  return (converted && rowNamed(converted)) || calibreRowOf(String(item?.name ?? ""));
+  return (converted && rowNamed(converted)) || calibreRowOf(String(item?.name ?? ""), gunSkill(item));
 }
 
 /** A box's calibre row: its own where set, else what it fits, else its name. */

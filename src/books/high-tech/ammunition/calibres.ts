@@ -293,7 +293,41 @@ export function calibreText(name: string): string {
   return (at < 0 ? text : text.slice(at + 1)).trim();
 }
 
-/** The table row a gun's name, or a box's calibre, names; the first where it names more than one. */
-export function calibreRowOf(text: string): CalibreRow | null {
-  return gunCalibreRows(calibreText(text))[0] ?? null;
+/**
+ * The table a gun's rounds are in, from its weapon skill: handgun rounds for
+ * a pistol, a submachine gun or a Gyroc; the rifle table (which holds the
+ * muskets) for a musket, a rifle or a machine gun; the shotgun, grenade
+ * launcher, light anti-armour and cannon tables for theirs. Null where the
+ * skill doesn't say.
+ */
+export function calibreClassOf(skill: string): CalibreClass | null {
+  const specialty = (/\(([^)]+)\)/.exec(String(skill ?? ""))?.[1] ?? "").trim().toLowerCase();
+  if (["pistol", "submachine gun", "gyroc"].includes(specialty)) return "handgun";
+  if (["musket", "rifle", "light machine gun", "machine gun"].includes(specialty)) return "rifle";
+  if (specialty === "shotgun") return "shotgun";
+  if (specialty === "grenade launcher") return "grenadeLauncher";
+  if (specialty === "light anti-armor weapon") return "lightAntitank";
+  if (specialty === "cannon") return "cannon";
+  return null;
+}
+
+/**
+ * The table row a gun's name, or a box's calibre, names. A calibre can be in
+ * more than one table (".75 Flintlock" is the Rigby pistol's and the Brown
+ * Bess musket's), so a row of the gun's own table (from its skill) comes
+ * first; then one whose bracketed maker the name holds ("Brown Bess,
+ * .75 Flintlock"); then the first.
+ */
+export function calibreRowOf(text: string, skill = ""): CalibreRow | null {
+  const rows = gunCalibreRows(calibreText(text));
+  const cls = calibreClassOf(skill);
+  const own = rows.filter((row) => row.class === cls);
+  const pool = own.length ? own : rows;
+  const at = String(text ?? "").lastIndexOf(",");
+  const named = at < 0 ? "" : calibreKey(String(text).slice(0, at));
+  const maker = named ? pool.find((row) => {
+    const bracketed = /\(([^)]*)\)/.exec(calibreKey(row.name))?.[1] ?? "";
+    return bracketed !== "" && named.includes(bracketed);
+  }) : undefined;
+  return maker ?? pool[0] ?? null;
 }
