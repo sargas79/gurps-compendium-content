@@ -9,6 +9,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
+import { BIOMEDICAL_TABLES, readyBiomedical, resetBiomedical } from "../../../shared/protective-gear/index.js";
 import { gasReaches } from "../ammunition/explosive.js";
 import { airState, airSupply, breathingLines, minutesLeft, readyBreathing, wearsIrritantMask } from "./index.js";
 
@@ -82,6 +83,7 @@ function effectsOf(actor: any): { effects: any; sources: any[] } {
 const switches = () => ({ breathing: () => on.breathingGear === true, suits: () => on.environmentSuits === true });
 
 beforeEach(() => {
+  resetBiomedical();
   hooks = new Map();
   actions = new Map();
   sections = new Map();
@@ -263,6 +265,19 @@ describe("environment suits (High-Tech pp. 74-76)", () => {
     targets = [{ actor: person([piece("Space Suit")]) }];
     expect(fire(HOOKS.successRollModifiers, { actor: medic, skill: "Diagnosis", tags: ["skill"], modifiers: [] }).modifiers).toHaveLength(1);
     expect(fire(HOOKS.successRollModifiers, { actor: medic, skill: "First Aid", tags: ["skill"], modifiers: [], opponent: patient }).modifiers).toEqual([]);
+  });
+
+  it("gives +1 once, not twice, with Ultra-Tech's sensors switched on too (#452)", () => {
+    // Ultra-Tech's armour systems claim a piece of the same name.
+    BIOMEDICAL_TABLES.register({ book: "ultra-tech", tls: { min: 9, max: 12 }, on: () => true, applies: (item) => /^biomedical sensors$/i.test(item.name), label: (item) => `UT ${item.name}` });
+    readyBiomedical(fakeApi() as never);
+    const medic = person([]);
+    const ours = person([piece("Biomedical Sensors", { book: "high-tech" }, "equipment")]);
+    expect(fire(HOOKS.successRollModifiers, { actor: medic, skill: "Diagnosis", tags: ["skill"], modifiers: [], opponent: ours }).modifiers)
+      .toEqual([{ label: 'GCC.HT.Breathing.BiomedicalModifier {"item":"Biomedical Sensors"}', value: 1 }]);
+    // With High-Tech's switch off, High-Tech's record gives nothing, whatever Ultra-Tech's says.
+    on = {};
+    expect(fire(HOOKS.successRollModifiers, { actor: medic, skill: "Diagnosis", tags: ["skill"], modifiers: [], opponent: ours }).modifiers).toEqual([]);
   });
 
   it("seals the Apollo suit with its helmet, breathing from a tank", () => {

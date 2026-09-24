@@ -30,7 +30,7 @@ import { beamEnvironment } from "../beams/index.js";
 import { powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
 import { loadsOf } from "../warheads/index.js";
-import { addProtection, diagnosisPatient, protectionText as sharedProtectionText } from "../../../shared/protective-gear/index.js";
+import { BIOMEDICAL_TABLES, addProtection, protectionText as sharedProtectionText, readyBiomedical } from "../../../shared/protective-gear/index.js";
 import {
   ABLATIVE_FOAM,
   BIOMEDICAL,
@@ -675,13 +675,17 @@ export function readyArmor(api: GWorldApi, on: ArmorSwitches): void {
       const plugs = [...(context.actor.items ?? [])].find((i: any) => worn(i) && /^nasal filter plugs$/i.test(String(i.name)));
       if (gas && plugs) context.modifiers.push({ label: String(plugs.name), value: nasalPlugBonus(0) });
     }
-    // Biomedical sensors on the patient: +1 to Diagnosis (p. 187).
-    if (/^diagnosis\b/i.test(String(context.skill ?? ""))) {
-      const patient = diagnosisPatient(context);
-      const sensors = patient ? [...(patient.items ?? [])].find((i: any) => worn(i) && hasBiomedicalSensors(String(i.name))) : null;
-      if (sensors) context.modifiers.push({ label: F("Systems.BiomedicalModifier", { item: sensors.name }), value: BIOMEDICAL.inPerson });
-    }
   });
+
+  // Biomedical sensors on the patient: +1 to Diagnosis (p. 187), counted once with High-Tech's.
+  BIOMEDICAL_TABLES.register({
+    book: "ultra-tech",
+    tls: { min: 9, max: 12 },
+    on: on.systems,
+    applies: (item) => hasBiomedicalSensors(String(item?.name ?? "")),
+    label: (item) => F("Systems.BiomedicalModifier", { item: item.name }),
+  });
+  readyBiomedical(api);
 }
 
 /** Hours a self-repairing piece takes to regain a point: living metal's hour, bioplas's six; null for anything else. */
