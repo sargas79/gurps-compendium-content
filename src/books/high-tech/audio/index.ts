@@ -335,8 +335,9 @@ export async function address(api: GWorldApi, item: any, actor: any): Promise<vo
       await card(listener, title, [F("Deaf", { name: listener.name })]);
       continue;
     }
-    const yards = yardsBetween(actor, listener) ?? range;
-    await api.roll.success({ actor: listener, base, kind: "attribute", skill: "Hearing", label: title, modifiers, tags: ["hearing", "amplified"], item, distance: { yards: Math.max(yards, 0.01), baseYards: range } } as any);
+    // To a tenth of a yard, as the card shows it.
+    const yards = Math.max(0.1, Math.round((yardsBetween(actor, listener) ?? range) * 10) / 10);
+    await api.roll.success({ actor: listener, base, kind: "attribute", skill: "Hearing", label: title, modifiers, tags: ["hearing", "amplified"], item, distance: { yards, baseYards: range } } as any);
   }
 }
 

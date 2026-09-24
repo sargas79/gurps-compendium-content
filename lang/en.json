@@ -9752,7 +9752,7 @@
         "Deaf": "{name} can't hear.",
         "OwnHeadphones": "Listening to {name} itself",
         "AddressTitle": "Address listeners",
-        "AddressTargets": "{count} targeted listeners each roll Hearing at their distance.",
+        "AddressTargets": "Targeted listeners ({count}) each roll Hearing at their distance.",
         "AddressNobody": "Nobody targeted: the card gives the Hearing modifier at the distance entered.",
         "ArcLabel": "Listeners are",
         "ArcName": {
