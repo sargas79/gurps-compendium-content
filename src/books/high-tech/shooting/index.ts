@@ -363,7 +363,7 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
       const platform = lines.find((l) => l?.key === "movingPlatform");
       if (platform && (platform.mounting ?? "handheld") === "handheld") {
         const vehicle = platform.platform === "vehicle" ? platform.vehicle ?? null : null;
-        const fits = (technique: any) => mountedShootingFits(String(technique?.name ?? ""), vehicle ? { name: String(vehicle.name ?? ""), skill: String(vehicle.system?.skill ?? "") } : null);
+        const fits = (technique: any) => mountedShootingFits(String(technique?.name ?? ""), vehicle ? { name: String(vehicle.name ?? ""), skill: String(vehicle.system?.vehicle?.skill ?? "") } : null);
         const relative = techniqueRelative(api, actor, skill, /^mounted shooting\b/i, MOUNTED_SHOOTING_DEFAULT, fits);
         const value = mountedShootingLine(Number(platform.value) || 0, relative);
         if (value !== platform.value) {

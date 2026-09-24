@@ -431,8 +431,8 @@ describe("Mounted Shooting (p. 251)", () => {
   it("counts only the technique for the vehicle the line names (API 1.141.0)", () => {
     on.gunTechniques = true;
     const actor = shooter({ items: [technique("Mounted Shooting (SMG/Motorcycle)", 11, { prerequisite: "Guns (Submachine Gun)" })] });
-    const zundapp = { name: "Zündapp KS 750", system: { skill: "Driving (Motorcycle)" } };
-    const jeep = { name: "Willys MB", system: { skill: "Driving (Automobile)" } };
+    const zundapp = { name: "Zündapp KS 750", system: { vehicle: { skill: "Driving (Motorcycle)" } } };
+    const jeep = { name: "Willys MB", system: { vehicle: { skill: "Driving (Automobile)" } } };
     const aboard = (vehicle: any) => riding(-4, { platform: "vehicle", vehicle });
     const onBike = attack(tommy(), actor, { modifiers: aboard(zundapp) }).modifiers[0];
     expect(onBike).toMatchObject({ value: -1, label: expect.stringContaining("MountedShootingVehicleLine") });
