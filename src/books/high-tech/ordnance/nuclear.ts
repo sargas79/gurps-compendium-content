@@ -36,9 +36,9 @@ const tlOf = (item: any): number => Number(String(item?.system?.tl ?? "").match(
 /** Whether a character has the Electrical disadvantage. */
 const isElectrical = (actor: any): boolean => [...(actor?.items ?? [])].some((i: any) => i?.type === "trait" && /^electrical\b/i.test(String(i.name ?? "")));
 
-/** Gear the pulse may reach: powered gear is ticked by default. */
-const electronicsOf = (actor: any): any[] => [...(actor?.items ?? [])].filter((i: any) => ["equipment", "armor"].includes(String(i?.type)) && i?.system?.carried !== false);
-const poweredGear = (item: any): boolean => {
+/** Gear the pulse may reach: powered gear is ticked by default. Shared with the supplement's NNEMP (`../electronic-weapons`). */
+export const electronicsOf = (actor: any): any[] => [...(actor?.items ?? [])].filter((i: any) => ["equipment", "armor"].includes(String(i?.type)) && i?.system?.carried !== false);
+export const poweredGear = (item: any): boolean => {
   try {
     if (isPowered(powerData(item))) return true;
   } catch {
