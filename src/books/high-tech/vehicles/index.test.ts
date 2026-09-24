@@ -45,6 +45,7 @@ function fakeApi() {
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor: actor.name, ...c }); actor.conditions = [...(actor.conditions ?? []), { id: `${c.module}.${c.key}` }]; return "c1"; },
       removeCondition: async (actor: any, id: string) => { actor.conditions = (actor.conditions ?? []).filter((c: any) => c.id !== id); },
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor: actor.name, ...o }); return true; },
+      spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor: actor.name, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
     },
     roll: { success: async (o: any) => { successes.push(o); return { success: true, margin: 0 }; } },
   };
@@ -299,6 +300,6 @@ describe("crew, with only High-Tech's switch on", () => {
     const fight = call("gworld.fatigueCost", { actor: driver, reason: "battle", fp: 1, details: { seconds: 1200 }, sources: [] });
     expect(fight.fp).toBe(3);
     await runKind(fakeApi() as never, ft17, { kind: "ride", hours: 2, headOut: false } as any, [], { components: () => false, protection: () => false, crew: () => true });
-    expect(injuries).toEqual([{ actor: "Driver", amount: 2, fatigue: true, label: "GCC.HT.Vehicles.Tool.ride" }]);
+    expect(injuries).toEqual([{ actor: "Driver", amount: 2, spent: true, exertion: false, details: { rule: "ride" } }]);
   });
 });

@@ -12,7 +12,9 @@
  *     a tenth longer, and -2 for an unfamiliar pairing as an attack option.
  *     A shoulder arm's butt and its swing by the barrel as derived rows, the
  *     swing noted where the gun isn't a TL4-5 single-shot built for it; the
- *     spiked tomahawk's spike noted as a pick; the NRS-2 scout knife reversed
+ *     spiked tomahawk's spike noted as a pick (its record marks the mode a
+ *     pick, so the system's picks rule leaves it stuck; Characters p. 405);
+ *     the NRS-2 scout knife reversed
  *     by a row action to shoot, and refused as a knife while it is.
  *   - **Sheaths (sheaths):** a knife's or sword's sheath rigid, flexible or
  *     none: the blade alone weighs two thirds, the HT roll against corrosion

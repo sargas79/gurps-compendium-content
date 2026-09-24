@@ -15,7 +15,7 @@ import { readyMedicine } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
-const HOOKS = { successRollModifiers: "gworld.successRollModifiers" };
+const HOOKS = { successRollModifiers: "gworld.successRollModifiers", firstAid: "gworld.firstAid" };
 
 let hooks: Map<string, Listener[]>;
 let actions: Map<string, any>;
@@ -53,6 +53,7 @@ function fakeApi() {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
+      spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
       // As the system does: the healer's roll passes through the modifiers hook.
       resuscitate: async (o: any) => {
         const context = fire(HOOKS.successRollModifiers, { actor: o.healer, tags: ["resuscitation", o.cause ?? "heartAttack"], modifiers: [], opponent: o.patient });
@@ -246,7 +247,7 @@ describe("resuscitation (High-Tech p. 220)", () => {
     expect(injuries).toEqual([]);
     tools.get("ht-cpr").open();
     await flush();
-    expect(injuries).toEqual([expect.objectContaining({ actor: medic, amount: 1, fatigue: true })]);
+    expect(injuries).toEqual([expect.objectContaining({ actor: medic, amount: 1, spent: true })]);
     // Another patient starts the count again.
     targets = [person("Other")];
     tools.get("ht-cpr").open();
@@ -368,16 +369,36 @@ describe("medical facilities (High-Tech pp. 222-225)", () => {
     expect(roll(surgeon, ["surgery"], { opponent: patient })).toEqual([]);
   });
 
-  it("takes -2 off the infection roll for a wound cleaned with antiseptic, once", async () => {
+  it("takes up to -2 of the dirt off the infection roll for a wound cleaned with antiseptic, once", async () => {
     const patient = person("Patient");
     targets = [patient];
+    // The system's dirt line (Campaigns p. 444; API 1.109.0): antiseptic offsets it, and no more.
+    const dirt = (value: number) => ({ key: "woundDirt", label: "Dirt", value });
     await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
-    expect(roll(patient, ["disease", "infection", "HT"])).toEqual([{ label: "GCC.HT.Medicine.AntisepticLine", value: 2 }]);
+    expect(roll(patient, ["disease", "infection", "HT"], { modifiers: [dirt(-3)] })).toEqual([dirt(-3), { label: "GCC.HT.Medicine.AntisepticLine", value: 2 }]);
+    await flush();
+    expect(roll(patient, ["disease", "infection", "HT"], { modifiers: [dirt(-3)] })).toEqual([dirt(-3)]);
+    await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
+    expect(roll(patient, ["disease", "infection", "HT"], { modifiers: [dirt(-1)] })).toEqual([dirt(-1), { label: "GCC.HT.Medicine.AntisepticLine", value: 1 }]);
+    await flush();
+    await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
+    expect(roll(patient, ["disease", "infection", "HT"], { modifiers: [dirt(0)] })).toEqual([dirt(0)]);
     await flush();
     expect(roll(patient, ["disease", "infection", "HT"])).toEqual([]);
     // Contagion is another roll.
     await run("ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" }), person("Medic"));
     expect(roll(patient, ["disease", "contagion", "HT"])).toEqual([]);
+  });
+
+  it("gives First Aid as at TL5 for a TL6-8 healer with no medical supplies or first aid kit (p. 223)", () => {
+    const firstAid = (healer: any, techLevel: number) => fire(HOOKS.firstAid, { healer, patient: person("Patient"), refusal: null, stopsBleeding: true, techLevel }).techLevel;
+    expect(firstAid(person("Doctor"), 8)).toBe(5);
+    expect(firstAid(person("Doctor", [gear("Medical Supplies (20 patient-days)", {})]), 8)).toBe(8);
+    expect(firstAid(person("Medic", [gear("First Aid Kit", { kind: "firstAidKit" })]), 7)).toBe(7);
+    expect(firstAid(person("Medic", [gear("First Aid Kit", { kind: "firstAidKit", depleted: true })]), 7)).toBe(5);
+    // TL5 and below already work at their own TL; TL9+ isn't this book's.
+    expect(firstAid(person("Doctor"), 5)).toBe(5);
+    expect(firstAid(person("Doctor"), 9)).toBe(9);
   });
 
   it("scans with Electronics Operation (Medical), then Diagnosis; the early X-ray irradiates both", async () => {

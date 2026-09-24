@@ -12,11 +12,13 @@
  *     aid whose battery has run down mitigates nothing. The points stay as
  *     bought: whether a PC pays back the difference is the GM's (p. 225).
  *   - **Elective surgery:** a GM tool that runs the operation through
- *     `actors.operate` (the Basic Set's surgery roll), then asks the GM how it
- *     went, since the roll's card is the system's: a success is recorded on
- *     the patient, with the new build or Appearance for the GM to set on the
- *     sheet, and laser eye surgery on every eye takes Bad Sight out of play
- *     as cured.
+ *     `actors.operate` (the Basic Set's surgery roll) and reads its outcome:
+ *     a success is recorded on the patient, and laser eye surgery on every
+ *     eye takes Bad Sight out of play as cured. Where one trait becomes
+ *     another (Fat to Overweight, Beautiful to Very Beautiful), the new build
+ *     or Appearance is written through `actors.changeTrait`; where a trait
+ *     would be added or taken away, or the book leaves the choice (Attractive
+ *     to Beautiful or Handsome), the card tells the GM what to set.
  *
  * Eyeglasses knocked off or broken by a blow to the head are the protective
  * oddments' (p. 225): glasses knocked off are no longer worn, and broken ones
@@ -32,6 +34,7 @@ import { BROKEN_FLAG } from "../oddments/index.js";
 import {
   BUILDS,
   PROCEDURES,
+  appearanceChange,
   appearanceOf,
   basicMoveRegained,
   buildOf,
@@ -194,18 +197,39 @@ export async function operateElectively(api: GWorldApi, options: {
     return null;
   }
   const label = F("OperationLabel", { procedure: L(`Procedure.${plan.procedure}`), surgeon: String(surgeon.name ?? "") });
-  await api.actors.operate({ surgeon, patient, techLevel: options.techLevel, label, modifier: Number(options.modifier) || 0 });
+  // The system's roll resolves to its outcome (API 1.112.0); null where the patient can't be changed.
+  const outcome: any = await api.actors.operate({ surgeon, patient, techLevel: options.techLevel, label, modifier: Number(options.modifier) || 0 });
+  if (!outcome) return null;
   const eyes = plan.procedure === "vision" ? Math.min(Math.max(1, Math.floor(Number(options.eyes) || 2)), eyesOf(patient)) : 0;
+  const lines = outcome.success ? await recordOperation(patient, plan, eyes, api) : [L(`FailedNote.${plan.procedure}`)];
   await api.chat.post(`${MODULE_ID}.${CARD}`, {
     title: L("Title"),
     text: describe(patient, plan, eyes),
-    lines: [],
-    buttons: [{ action: "worked", label: L("Worked") }, { action: "failed", label: L("Failed") }],
+    lines,
+    buttons: [],
     patient: String(patient.id),
     plan,
     eyes,
   }, { actor: patient, whisper: [...((game as any).users ?? [])].filter((u: any) => u.isGM).map((u: any) => u.id) } as any);
   return plan;
+}
+
+/**
+ * Writes the new build or Appearance through the system's `changeTrait`
+ * (GM only), where one of the character's traits becomes another. False
+ * where the GM must still set it: a trait to add or take away, or a choice
+ * the book leaves open.
+ */
+async function writeTrait(api: GWorldApi, patient: any, plan: Operation): Promise<boolean> {
+  if (plan.procedure === "build") {
+    if (plan.from === "Average" || plan.to === "Average") return false;
+    return (await api.actors.changeTrait(patient, { name: plan.from, replaceWith: plan.to })) !== null;
+  }
+  if (plan.procedure !== "appearance") return false;
+  const traits = [...(patient?.items ?? [])].filter((i: any) => i?.type === "trait").map((i: any) => ({ id: String(i.id ?? ""), name: String(i.name ?? ""), levels: Number(i.system?.levels) || 0 }));
+  const change = appearanceChange(traits);
+  if (!change) return false;
+  return (await api.actors.changeTrait(patient, change)) !== null;
 }
 
 /** The card's first line: who, what, the price and the recovery. */
@@ -216,15 +240,16 @@ function describe(patient: any, plan: Operation, eyes: number): string {
 }
 
 /** Records a successful operation on the patient, returning what the card says next. */
-export async function recordOperation(patient: any, plan: Operation, eyes: number): Promise<string[]> {
+export async function recordOperation(patient: any, plan: Operation, eyes: number, api?: GWorldApi): Promise<string[]> {
   const record = surgeryRecord(patient);
   const time = Number((game as any).time?.worldTime) || 0;
   const operations = [...record.operations, { procedure: plan.procedure, from: plan.from, to: plan.to, cost: plan.cost, recoveryDays: plan.recoveryDays, time }];
   const eyesCured = plan.procedure === "vision" ? record.eyesCured + eyes : record.eyesCured;
   await patient.setFlag(MODULE_ID, SURGERY_FLAG, { operations, eyesCured });
   const name = String(patient.name ?? "");
-  if (plan.procedure === "build") return [F("SetBuild", { name, to: plan.to })];
-  if (plan.procedure === "appearance") return [F("SetAppearance", { name, to: plan.to })];
+  const written = api ? await writeTrait(api, patient, plan) : false;
+  if (plan.procedure === "build") return [F(written ? "BuildChanged" : "SetBuild", { name, to: plan.to })];
+  if (plan.procedure === "appearance") return [F(written ? "AppearanceChanged" : "SetAppearance", { name, to: plan.to })];
   if (plan.procedure === "vision") return [eyesCured >= eyesOf(patient) ? F("SightCured", { name }) : F("OneEyeDone", { name })];
   return [F("FingerprintsGone", { name })];
 }
@@ -251,7 +276,8 @@ export function readyProsthetics(api: GWorldApi, on: () => boolean): void {
   const finish = async ({ message, data }: any, worked: boolean) => {
     const patient = (game as any).actors?.get(String(data?.patient ?? ""));
     if (!patient || !data?.plan) return;
-    const lines = worked ? await recordOperation(patient, data.plan as Operation, Number(data.eyes) || 0) : [L(`FailedNote.${data.plan.procedure}`)];
+    // Cards posted before the operation's outcome was read still ask the GM.
+    const lines = worked ? await recordOperation(patient, data.plan as Operation, Number(data.eyes) || 0, api) : [L(`FailedNote.${data.plan.procedure}`)];
     await api.chat.update(message, { ...data, lines, buttons: [] });
   };
   api.chat.registerChatCard({

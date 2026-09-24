@@ -22,6 +22,7 @@ let prices: any[];
 let damage: any[];
 let successes: any[];
 let injuries: any[];
+let towed: any[];
 let posted: any[];
 let updated: any[];
 let chat: string[];
@@ -51,6 +52,12 @@ function fakeApi() {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? null,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
+      spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
+      tow: async (actor: any, o: any) => { towed.push({ actor, ...o }); actor.flags = { ...(actor.flags ?? {}), gworld: { towing: o } }; return { effective: o.weight / (o.smooth ? 20 : 10), limit: 300, movable: true }; },
+      stopTowing: async (actor: any) => { towed.push({ actor, stopped: true }); return true; },
+    },
+    hazards: {
+      fall: async (actor: any, o: any) => { damage.push({ actor, fall: true, ...o }); return 3; },
     },
     roll: {
       damage: async (o: any) => { damage.push(o); return 0; },
@@ -107,6 +114,7 @@ beforeEach(() => {
   damage = [];
   successes = [];
   injuries = [];
+  towed = [];
   posted = [];
   updated = [];
   chat = [];
@@ -197,6 +205,40 @@ describe("personal conveyances (High-Tech pp. 226, 230-231)", () => {
     expect(at("8")).toMatchObject({ cost: 50, weight: 30 });
   });
 
+  it("gives a surfer water Move 1 paddling, or the wave's Move, and leaves ground Move alone", () => {
+    const board = gear("Foam-Core Surfboard", { kind: "surfboard" });
+    const paddler = rider([board]);
+    const water = fire("gworld.moveModifiers", { actor: paddler, move: 2, medium: "water", lines: [] });
+    expect(water.lines).toEqual([{ label: expect.stringContaining("PaddleLine"), value: -1, medium: "water" }]);
+    const surfer = rider([board], { htSurfMove: 14 });
+    expect(fire("gworld.moveModifiers", { actor: surfer, move: 2, medium: "water", lines: [] }).lines).toEqual([{ label: expect.stringContaining("WaveLine"), value: 12, medium: "water" }]);
+    expect(fire("gworld.moveModifiers", { actor: surfer, move: 5, medium: "ground", lines: [] }).lines).toEqual([]);
+    // A bicycle has no water Move to give.
+    expect(fire("gworld.moveModifiers", { actor: rider([offRoadBike()]), move: 1, medium: "water", lines: [] }).lines).toEqual([]);
+  });
+
+  it("moves cargo on a bicycle as a two-wheeled cart through the system's towing, and stops", async () => {
+    const bike = gear("Bicycle", { kind: "bicycle", enhancedMove: 0.5 }, { weight: 30, equipped: false });
+    const flags: Record<string, unknown> = {};
+    const actor = rider([bike], flags, { unsetFlag: async (_scope: string, key: string) => { delete flags[key]; } });
+    dialogAnswer = { cargo: 170, smooth: true };
+    expect(actions.get("ht-conveyance-cargo").visible(bike, actor)).toBe(true);
+    actions.get("ht-conveyance-cargo").run(bike, actor);
+    await flush();
+    expect(towed[0]).toMatchObject({ weight: 200, conveyance: "cart", smooth: true, label: "Bicycle" });
+    expect(actions.get("ht-conveyance-cargo").visible(bike, actor)).toBe(false);
+    expect(actions.get("ht-conveyance-cargo-stop").visible(bike, actor)).toBe(true);
+    // The bike is in the towed load, not carried as well.
+    const line = { item: bike, counts: true };
+    actor.items.get = (id: string) => (id === bike.id ? bike : undefined);
+    fire("gworld.carriedWeight", { actor, lines: [line] });
+    expect(line.counts).toBe(false);
+    actions.get("ht-conveyance-cargo-stop").run(bike, actor);
+    await flush();
+    expect(towed[1]).toMatchObject({ stopped: true });
+    expect(actions.get("ht-conveyance-cargo").visible(bike, actor)).toBe(true);
+  });
+
   it("rolls a penny-farthing's spill as a two-yard fall, its damage from the card", async () => {
     const actor = rider([pennyFarthing()]);
     expect(actions.get("ht-conveyance-spill").visible(pennyFarthing())).toBe(true);
@@ -208,7 +250,8 @@ describe("personal conveyances (High-Tech pp. 226, 230-231)", () => {
     expect(card.key).toBe(`${MODULE_ID}.ht-conveyance-card`);
     expect(card.data.landing.formula).toBe(rules.formatDiceAdds({ dice: fall.damage.dice, adds: fall.damage.modifier }));
     await cards.get("ht-conveyance-card").actions.landing({ message: {}, data: card.data, actor });
-    expect(damage[0]).toMatchObject({ formula: card.data.landing.formula, damageType: "cr" });
+    // The system's falling procedure takes it from there (API 1.104.0).
+    expect(damage[0]).toMatchObject({ actor, fall: true, yards: 2 });
     expect(updated[0].data.landing.rolled).toBe(true);
   });
 
@@ -219,7 +262,7 @@ describe("personal conveyances (High-Tech pp. 226, 230-231)", () => {
     actions.get("ht-conveyance-long-ride").run(actor.items[0], actor);
     await flush();
     expect(successes[0]).toMatchObject({ base: 14, skill: "Bicycling", kind: "skill", tags: ["longRide", "HT"] });
-    expect(injuries[0]).toMatchObject({ amount: 1, fatigue: true });
+    expect(injuries[0]).toMatchObject({ amount: 1, spent: true });
     expect(chat[0]).toContain("RideTired");
     // Unskilled, HT beats DX-4 based on HT.
     successResult = { success: true };

@@ -210,6 +210,9 @@ export const CORK_JACKET = Object.freeze({ tl: 5, entering: -3 });
 /** Swim fins on land: Move 2 (p. 60). */
 export const FINS_LAND_MOVE = 2;
 
+/** Swim fins' Enhanced Move 0.5 (Water): water Move x1.5 (p. 60; Characters p. 52). */
+export const FINS_WATER_MULTIPLIER = 1.5;
+
 /** The line that takes a Move down to what swim fins leave on land, or 0 where it is already there. */
 export function finsMoveLine(move: number): number {
   return Math.min(0, FINS_LAND_MOVE - Math.max(0, Math.floor(move)));

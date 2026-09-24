@@ -19,6 +19,8 @@ const HOOKS = {
   successRollModifiers: "gworld.successRollModifiers",
   afterSuccessRoll: "gworld.afterSuccessRoll",
   fatigueCost: "gworld.fatigueCost",
+  armorDr: "gworld.armorDr",
+  injury: "gworld.injury",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -298,5 +300,29 @@ describe("environment suits (High-Tech pp. 74-76)", () => {
     expect(effects.temperatureTolerance).toEqual({ coldF: 60, heatF: 60 });
     expect(minutesLeft(suit)).toBe(420);
     expect(effectsOf(person([piece("Space Suit, EVA")])).effects.doesntBreathe).toBeUndefined();
+  });
+});
+
+describe("wet turnout gear (High-Tech p. 75)", () => {
+  beforeEach(() => { on = { environmentSuits: true }; ready(); });
+
+  it("gives +5 DR against burning and doubles the burning that gets through, only while soaked", async () => {
+    const coat = piece("Turnout Gear");
+    const firefighter = person([coat]);
+    const dry = [{ itemId: coat.id, dr: 5 }];
+    fire(HOOKS.armorDr, { actor: firefighter, damageType: "burn", lines: dry });
+    expect(dry[0]!.dr).toBe(5);
+    await sections.get("ht-breathing-item").listeners({ querySelector: () => ({ addEventListener: (_e: string, fn: any) => fn({ currentTarget: { checked: true } }) }) }, coat);
+    await flush();
+    const lines = [{ itemId: coat.id, dr: 5 }];
+    fire(HOOKS.armorDr, { actor: firefighter, damageType: "burn", lines });
+    expect(lines[0]).toMatchObject({ dr: 10, reason: expect.stringContaining("TurnoutWetDr") });
+    const cut = [{ itemId: coat.id, dr: 2 }];
+    fire(HOOKS.armorDr, { actor: firefighter, damageType: "cut", lines: cut });
+    expect(cut[0]!.dr).toBe(2);
+    // The system weighs the vulnerability on what penetrates (Characters p. 161; API 1.106.0).
+    const burn = fire(HOOKS.injury, { actor: firefighter, damage: { type: "burn", basicDamage: 12 } });
+    expect(burn.damage.vulnerabilities).toEqual([{ form: "burn", multiplier: 2, label: expect.stringContaining("TurnoutSteam") }]);
+    expect(fire(HOOKS.injury, { actor: firefighter, damage: { type: "cr", basicDamage: 12 } }).damage.vulnerabilities).toBeUndefined();
   });
 });

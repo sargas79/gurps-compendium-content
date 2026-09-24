@@ -66,6 +66,13 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 /** Item flag: the textbook minutes of a supply used, and the depth it is breathed at. */
 const AIR_FLAG = "htAir";
+/** Item flag: turnout gear soaked with water (p. 75). */
+const WET_FLAG = "htWet";
+
+/** Worn turnout gear that is soaked, or null. */
+function wetTurnout(actor: any): any {
+  return [...(actor?.items ?? [])].find((i: any) => i?.system?.equipped === true && /^turnout gear$/i.test(breathingName(i)) && i.getFlag?.(MODULE_ID, WET_FLAG) === true) ?? null;
+}
 
 export interface BreathingSwitches {
   breathing: () => boolean;
@@ -220,10 +227,14 @@ export function breathingLines(item: any, on: BreathingSwitches): string[] {
 function itemContext(item: any, on: BreathingSwitches): Record<string, unknown> {
   const minutes = supplyMinutes(nameOf(item), tlOf(item));
   const supply = ours(item) && minutes !== null && (/^space suit, eva$/i.test(breathingName(item)) ? on.suits() : on.breathing());
-  return { lines: breathingLines(item, on), supply, depthFeet: airState(item).depthFeet, editable: item?.isOwner === true };
+  const turnout = on.suits() && /^turnout gear$/i.test(breathingName(item));
+  return { lines: breathingLines(item, on), supply, depthFeet: airState(item).depthFeet, turnout, wet: item?.getFlag?.(MODULE_ID, WET_FLAG) === true, editable: item?.isOwner === true };
 }
 
 function itemListeners(element: HTMLElement, item: any): void {
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-turnout-wet]")?.addEventListener("change", async (event) => {
+    await item.setFlag(MODULE_ID, WET_FLAG, (event.currentTarget as HTMLInputElement).checked);
+  });
   element.querySelector<HTMLInputElement>("[data-gcc-ht-dive-depth]")?.addEventListener("change", async (event) => {
     const feet = Math.max(0, Number((event.currentTarget as HTMLInputElement).value) || 0);
     await item.setFlag(MODULE_ID, AIR_FLAG, { ...airState(item), depthFeet: feet });
@@ -246,6 +257,24 @@ export function readyBreathing(api: GWorldApi, on: BreathingSwitches): void {
     visible: (item) => anyOn() && breathingLines(item, on).length > 0,
     context: (item) => itemContext(item, on),
     listeners: (element, item) => itemListeners(element, item),
+  });
+
+  // ── wet turnout gear (p. 75): +5 DR against burning, and the burning that
+  // gets through doubled -- a vulnerability from worn gear (Characters p. 161; API 1.106.0) ──
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on.suits() || String(context?.damageType ?? "") !== "burn") return;
+    const gear = wetTurnout(context.actor);
+    const line = gear ? (context.lines ?? []).find((l: any) => l?.itemId === gear.id) : null;
+    if (!line) return;
+    line.dr = (Number(line.dr) || 0) + WET_TURNOUT.dr;
+    line.reason = [line.reason, F("TurnoutWetDr", { dr: WET_TURNOUT.dr })].filter(Boolean).join("; ");
+  });
+  Hooks.on(api.combat.hooks.injury, (context: any) => {
+    const damage = context?.damage;
+    if (!on.suits() || !damage || String(damage.type ?? "") !== "burn") return;
+    const gear = wetTurnout(context.actor);
+    if (!gear) return;
+    damage.vulnerabilities = [...(Array.isArray(damage.vulnerabilities) ? damage.vulnerabilities : []), { form: "burn", multiplier: WET_TURNOUT.multiplier, label: F("TurnoutSteam", { name: gear.name }) }];
   });
 
   // ── what the gear is, in trait terms (pp. 72-76) ──

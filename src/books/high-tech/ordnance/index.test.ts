@@ -443,12 +443,14 @@ describe("rifle grenades (pp. 193-194)", () => {
     expect(close.refusal).toContain("GCC.HT.Ordnance.Rifle.InsideMinimum");
     const dud = derivedModes.find((m) => m.key === "ht-rifle-grenade-dud");
     expect(dud.applies(grenade)).toBe(true);
-    const row = dud.mode(grenade, soldier, { rows: () => ({ ranged: [{ name: "x", mode: "attack", damage: "4d+1", damageType: "cr", explosive: true, fragmentation: "2d", minRange: 10, bulk: -6 }] }) });
-    expect(row).toMatchObject({ damage: "1d+1", damageType: "cr", explosive: false, fragmentation: "", minRange: 0, bulk: -6 });
+    const row = dud.mode(grenade, soldier, { rows: () => ({ ranged: [{ name: "x", mode: "attack", modeIndex: 0, damage: "4d+1", damageType: "cr", explosive: true, fragmentation: "2d", minRange: 10, bulk: -6 }] }) });
+    // The dud spends the grenade's own round (API 1.101.0).
+    expect(row).toMatchObject({ damage: "1d+1", damageType: "cr", explosive: false, fragmentation: "", minRange: 0, bulk: -6, spendsFrom: 0 });
     expect(row.mode).toBeUndefined();
     const fromDud = attack(soldier, grenade, { mode: { index: -1, ranged: true, derived: `${MODULE_ID}.ht-rifle-grenade-dud` } });
     expect(fromDud.refusal).toBeNull();
-    fire(HOOKS.afterSuccessRoll, { actor: soldier, tags: ["attack"], outcome: { success: true } });
+    // Its shot is spent through the system, which calls afterShots for the grenade.
+    fire(HOOKS.afterShots, { actor: soldier, item: grenade, modeIndex: 0, derivedMode: `${MODULE_ID}.ht-rifle-grenade-dud` });
     await flush();
     expect(weaponState.get(grenade).htOnRifle).toBeNull();
   });

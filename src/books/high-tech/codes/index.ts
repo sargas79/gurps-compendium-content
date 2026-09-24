@@ -76,9 +76,10 @@ export interface CodesSwitches {
   disguise: () => boolean;
 }
 
-async function say(actor: any, title: string, lines: string[]): Promise<void> {
+async function say(actor: any, title: string, lines: string[], gmOnly = false): Promise<void> {
   await ChatMessage.implementation.create({
     speaker: actor ? ChatMessage.implementation.getSpeaker({ actor }) : undefined,
+    ...(gmOnly ? { whisper: ChatMessage.implementation.getWhisperRecipients("GM").map((u: any) => u.id) } : {}),
     content: `<div class="gworld gworld-chat"><div class="gc-head"><span class="gc-label">${esc(title)}</span></div>${lines.map((l) => `<div class="gc-result">${esc(l)}</div>`).join("")}</div>`,
   });
 }
@@ -279,7 +280,12 @@ function best(api: GWorldApi, actor: any, skills: readonly string[], fallback: n
   return found ?? { level: fallback, skill: skills[0]! };
 }
 
-/** Screening the targeted character for swallowed pellets: the selected character is the screener (p. 214). */
+/**
+ * Screening the targeted character for swallowed pellets: the selected
+ * character is the screener (p. 214). The GM rolls it in secret (Campaigns
+ * p. 494; the system's secret rolls and contests since API 1.111.0), and
+ * only the GMs are told what was found.
+ */
 export async function spotMule(api: GWorldApi): Promise<void> {
   const screener = selectedActors()[0] ?? null;
   const mule = targetedActor();
@@ -300,20 +306,21 @@ export async function spotMule(api: GWorldApi): Promise<void> {
       first: { actor: screener, base: spotter.level, note: spotter.skill },
       second: { actor: mule, base: acting, note: "Acting" },
       tags: ["muleSpotting"],
+      secret: true,
     } as any);
     if (!result) return;
     found = result.outcome === "first";
   } else {
     const operator = best(api, screener, XRAY_SKILLS, attribute(api, screener, "IQ") - 5);
-    const scan: any = await api.roll.success({ actor: screener, base: operator.level, skill: operator.skill, label: F("XrayLabel", { name: screener.name }), modifiers: [], tags: ["muleSpotting", "xray"] } as any);
+    const scan: any = await api.roll.success({ actor: screener, base: operator.level, skill: operator.skill, label: F("XrayLabel", { name: screener.name }), modifiers: [], tags: ["muleSpotting", "xray"], secret: true } as any);
     if (!scan) return;
-    if (!scan.success) return void say(screener, title, [L("XrayFailed")]);
+    if (!scan.success) return void say(screener, title, [L("XrayFailed")], true);
     const search = best(api, screener, ["Search"], per - 5);
-    const look: any = await api.roll.success({ actor: screener, base: search.level, skill: "Search", label, modifiers: [], tags: ["muleSpotting", "xray"] } as any);
+    const look: any = await api.roll.success({ actor: screener, base: search.level, skill: "Search", label, modifiers: [], tags: ["muleSpotting", "xray"], secret: true } as any);
     if (!look) return;
     found = Boolean(look.success);
   }
-  await say(screener, title, [found && pellets > 0 ? F("Spotted", { mule: mule.name, count: pellets }) : F("NotSpotted", { mule: mule.name })]);
+  await say(screener, title, [found && pellets > 0 ? F("Spotted", { mule: mule.name, count: pellets }) : F("NotSpotted", { mule: mule.name })], true);
 }
 
 // ── registration ──

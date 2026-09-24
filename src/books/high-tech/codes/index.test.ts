@@ -47,7 +47,7 @@ beforeAll(() => {
   });
   vi.stubGlobal("canvas", { get tokens() { return { controlled: controlled.map((actor) => ({ actor })) }; } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => answer } } } });
-  vi.stubGlobal("ChatMessage", { implementation: { create: vi.fn(async () => ({})), getSpeaker: () => ({}) } });
+  vi.stubGlobal("ChatMessage", { implementation: { create: vi.fn(async () => ({})), getSpeaker: () => ({}), getWhisperRecipients: () => [{ id: "gm" }] } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
   FORGERY_TABLES.clear();
   resetForgery();
@@ -183,5 +183,8 @@ describe("disguise and smuggling (pp. 214-215)", () => {
     await tool("ht-spot-mule").open();
     expect(contests[0].first).toMatchObject({ actor: screener, base: 14, note: "Observation" });
     expect(contests[0].second).toMatchObject({ actor: mule, base: 13, note: "Acting" });
+    // The GM rolls it in secret, and only the GMs hear what was found.
+    expect(contests[0].secret).toBe(true);
+    expect((ChatMessage as any).implementation.create.mock.calls.at(-1)[0].whisper).toEqual(["gm"]);
   });
 });

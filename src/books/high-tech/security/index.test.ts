@@ -44,6 +44,7 @@ function fakeApi() {
       derived: (actor: any) => actor?.derived ?? {},
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor: actor.name, ...c }); return "c1"; },
       setPosture: async (actor: any, posture: string) => { postures.push({ actor: actor.name, posture }); },
+      bind: async (actor: any, o: any) => { conditions.push({ actor: actor.name, bound: true, ...o }); return true; },
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResults.shift() ?? { success: true, margin: 0 }; },
@@ -268,7 +269,9 @@ describe("traps and barriers, with only High-Tech's switch on", () => {
     expect(successes[0].modifiers[0].value).toBe(-5);
     expect(damages[0]).toMatchObject({ formula: "1d-3", damageType: "cut" });
     expect(successes[2].modifiers[0].value).toBe(-3);
-    expect(chat[0]).toContain("GCC.HT.Security.Barrier.Snagged");
+    // The snag is the system's Binding of ST 8, broken free from the sheet (API 1.107.0).
+    expect(conditions).toContainEqual(expect.objectContaining({ actor: "Victim", bound: true, st: 8 }));
+    expect(chat[0]).toContain("GCC.HT.Security.Barrier.SnaggedBound");
   });
 
   it("trips someone who misses a hidden tripwire and fails DX-2", async () => {

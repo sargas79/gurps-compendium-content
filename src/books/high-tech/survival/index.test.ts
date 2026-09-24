@@ -66,6 +66,7 @@ function fakeApi() {
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       encumbrance: (actor: any) => ({ carriedWeight: actor?.carried ?? 0 }),
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
+      spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor, ...c }); return "id"; },
     },
     roll: {
@@ -268,7 +269,7 @@ describe("survival and camping gear (High-Tech pp. 56-59)", () => {
     const castaway = person([pump]);
     actions.get("ht-desalinate").run(pump, castaway);
     await flush();
-    expect(injuries[0]).toMatchObject({ amount: 1, fatigue: true });
+    expect(injuries[0]).toMatchObject({ amount: 1, spent: true });
     expect(chat[0]).toContain("PumpedCup");
     expect(prices[0].apply(pump, { cost: 500, weight: 2.5 })).toBeNull();
     pump.system.extensions[MODULE_ID].survival.large = true;
@@ -293,6 +294,15 @@ describe("maritime gear (High-Tech pp. 59-60)", () => {
     const fins = gear("Swim Fins", { kind: "swimFins" }, { equipped: true });
     expect(fire("gworld.moveModifiers", { actor: person([fins]), move: 6, lines: [] }).lines).toEqual([{ label: expect.any(String), value: -4 }]);
     expect(fire("gworld.moveModifiers", { actor: person([fins]), move: 2, lines: [] }).lines).toEqual([]);
+    expect(fire("gworld.moveModifiers", { actor: person([fins]), move: 6, medium: "ground", lines: [] }).lines).toHaveLength(1);
+  });
+
+  it("gives swim fins Enhanced Move 0.5 (Water) on water Move, and nothing from the land line there", () => {
+    const fins = gear("Swim Fins", { kind: "swimFins" }, { equipped: true });
+    // Water Move 1 x1.5 rounds down to 1; 2 x1.5 is 3 (Campaigns p. 354; Characters p. 52).
+    expect(fire("gworld.moveModifiers", { actor: person([fins]), move: 2, medium: "water", lines: [] }).lines).toEqual([{ label: expect.any(String), multiplier: 1.5, medium: "water" }]);
+    const loose = gear("Swim Fins", { kind: "swimFins" }, { equipped: false });
+    expect(fire("gworld.moveModifiers", { actor: person([loose]), move: 2, medium: "water", lines: [] }).lines).toEqual([]);
   });
 
   it("releases a dye marker: +2 to spot its user for half an hour", async () => {

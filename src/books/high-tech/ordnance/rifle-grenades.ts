@@ -117,22 +117,9 @@ export function readyRifleGrenades(api: GWorldApi, on: () => boolean): void {
     }
   });
 
-  // Fired: the grenade is gone from the rifle (p. 193).
-  const duds = new Map<string, any>();
-  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
-    if (on() && context?.mode?.derived === `${MODULE_ID}.${DUD_MODE}` && !context.refusal) duds.set(String(context.actor?.uuid ?? ""), context.item);
-  });
+  // Fired, as the grenade or its dud (which spends the same round): the grenade is gone from the rifle (p. 193).
   const fired = (item: any) => { if (item?.isOwner && rifleGrenadeOf(item) && rifleOf(item)) void setState(item, { htOnRifle: null }); };
   Hooks.on(api.combat.hooks.afterShots, (context: any) => { if (on()) fired(context?.item); });
-  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
-    // The dud row spends no shots of the record's, so its roll is what takes the grenade off.
-    if (!on() || !(context?.tags ?? []).includes("attack")) return;
-    const pending = duds.get(String(context.actor?.uuid ?? ""));
-    if (!pending) return;
-    duds.delete(String(context.actor?.uuid ?? ""));
-    fired(pending);
-    void say(context.actor, String(pending.name ?? ""), [L("Rifle.DudSpent")]);
-  });
 
   // The grenade's Bulk is added to the rifle's (note [1], p. 194).
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
@@ -145,7 +132,8 @@ export function readyRifleGrenades(api: GWorldApi, on: () => boolean): void {
     }
   });
 
-  // The dud: 1d+1 crushing, no blast, no fragments, and no minimum range.
+  // The dud: 1d+1 crushing, no blast, no fragments, and no minimum range. It
+  // is the same grenade fired, so it spends the record's own round (API 1.101.0).
   api.combat.registerDerivedAttackMode({
     module: MODULE_ID,
     key: DUD_MODE,
@@ -162,6 +150,7 @@ export function readyRifleGrenades(api: GWorldApi, on: () => boolean): void {
         damage: RIFLE_GRENADE_DUD.damage, damageType: RIFLE_GRENADE_DUD.type, armorDivisor: 1, damageRollable: true,
         explosive: false, fragmentation: "", fragmentationType: "", fragmentationDivisor: 1, fragmentationLingerEvery: 0, fragmentationLingerFor: 0,
         blastPlacement: "", affliction: false, afflictionAttribute: "", afflictionModifier: 0, minRange: 0,
+        spendsFrom: Math.max(0, Math.floor(Number(base.modeIndex) || 0)),
         notes: [...(rest.notes ?? []), { label: L("Rifle.Dud"), hint: L("Rifle.DudHint") }],
       };
     },

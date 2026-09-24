@@ -261,7 +261,8 @@ async function poisonCycle(api: GWorldApi, context: any, poison: HtPoison): Prom
   const effect = poisonEffects(poison, cycle, outcome, failedFirst);
   for (const condition of effect.conditions) {
     // Each lasts until the next cycle; botulin's paralysis until it heals.
-    await api.actors.applyCondition(actor, { key: condition.key, ...(condition.lasting || !HT_POISONS[poison].intervalSeconds ? {} : { duration: { seconds: HT_POISONS[poison].intervalSeconds } }) } as any);
+    const conditionId = await api.actors.applyCondition(actor, { key: condition.key, ...(condition.lasting || !HT_POISONS[poison].intervalSeconds ? {} : { duration: { seconds: HT_POISONS[poison].intervalSeconds } }) } as any);
+    if (poison === "botulin" && condition.lasting && conditionId) await crippleByBotulin(api, actor, conditionId, title);
   }
   if (effect.injury) {
     const roll = new Roll(effect.injury.replace(/d$/, "d6"));
@@ -287,6 +288,37 @@ async function poisonCycle(api: GWorldApi, context: any, poison: HtPoison): Prom
   else states[id] = state;
   await actor.setFlag(MODULE_ID, POISON_FLAG, states);
   await say(actor, title, lines);
+}
+
+// ── botulin's paralysis, healing as a lasting crippling injury (p. 227) ──
+
+/** The location botulin's paralysis cripples: the lungs and spine, which no attack aims at. */
+const NERVES_KEY = "ht-lungs-spine";
+/** The paralysis on an actor: the crippled part the system keeps, and the condition that holds them. */
+const BOTULIN_FLAG = "htBotulinParalysis";
+
+/**
+ * Records botulin's paralysis as a lasting crippling injury of the lungs and
+ * spine (p. 227; Campaigns p. 422) through the system's crippled parts
+ * (API 1.114.0), which heals in 1d months less a physician's help. The
+ * paralysis condition stays until that part has healed.
+ */
+async function crippleByBotulin(api: GWorldApi, actor: any, conditionId: string, title: string): Promise<void> {
+  const part: any = await api.actors.cripple(actor, `${MODULE_ID}.${NERVES_KEY}`, { duration: "lasting", label: title });
+  if (!part) return;
+  await actor.setFlag(MODULE_ID, BOTULIN_FLAG, { part: String(part.id), condition: conditionId });
+  await say(actor, title, [F("BotulinCrippled", { name: String(actor.name ?? ""), months: part.months })]);
+}
+
+/** Lifts botulin's paralysis once the crippled part has healed, or the GM has taken it off the sheet. */
+export async function checkBotulinHealed(api: GWorldApi, actor: any): Promise<boolean> {
+  const kept = actor?.getFlag?.(MODULE_ID, BOTULIN_FLAG) as { part?: string; condition?: string } | undefined;
+  if (!kept?.part || !actor?.isOwner) return false;
+  if (api.actors.crippled(actor).some((p: any) => String(p.id) === kept.part)) return false;
+  if (kept.condition) await api.actors.removeCondition(actor, kept.condition);
+  await actor.unsetFlag(MODULE_ID, BOTULIN_FLAG);
+  await say(actor, L("Poison.botulin"), [F("BotulinHealed", { name: String(actor.name ?? "") })]);
+  return true;
 }
 
 /** Administers a dose of a poison to each target: DMSO makes a blood or digestive one a contact agent (p. 227). */
@@ -401,7 +433,8 @@ async function giveDrug(api: GWorldApi, item: any, actor: any): Promise<void> {
       if (!(await useDose(item))) return void ui.notifications?.warn(F("NoneLeft", { name }));
       const roll = new Roll(TRUTH_SERUM.fatigue.replace(/d$/, "d6"));
       await roll.evaluate();
-      await api.actors.applyInjury(patient, { amount: roll.total ?? 0, fatigue: true, label: name });
+      // A drug's FP, not exertion: through the fatigue chart, unhalved (Campaigns p. 426).
+      if ((roll.total ?? 0) > 0) await api.actors.spendFatigue(patient, roll.total ?? 0, { exertion: false, details: { rule: "truthSerum" } });
       const outcome = await resist(api, patient, F("TruthSerumLabel", { name: who }), [{ label: name, value: TRUTH_SERUM.resistanceModifier }], ["drug", "truthSerum"]);
       const lines = [F("TruthSerumFp", { name: who, fp: roll.total ?? 0 })];
       if (!outcome.success) {
@@ -561,6 +594,22 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
     const poison = poisonKeyOf(POISON_TABLE, context?.source);
     if (!poison || !on.poisons() || !context.actor?.isOwner) return;
     void poisonCycle(api, context, poison);
+  });
+
+  // Botulin's paralysis cripples the lungs and spine: a location of this
+  // module's that the system can keep as crippled, and nobody can aim at.
+  api.combat.registerHitLocation({ module: MODULE_ID, key: NERVES_KEY, label: L("LungsAndSpine"), parent: "torso", penalty: 0, available: () => false } as any);
+  // It heals with world time, or when the GM takes it off the sheet: the GM's client lifts the paralysis.
+  const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
+  Hooks.on("updateWorldTime", () => {
+    if (!on.poisons() || !isActiveGm()) return;
+    // World actors, and the unlinked tokens' own on every scene.
+    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+    for (const actor of [...((game as any).actors ?? []), ...unlinked]) if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
+  });
+  Hooks.on("updateActor", (actor: any, changes: any) => {
+    if (!on.poisons() || !isActiveGm() || changes?.flags?.gworld?.crippled === undefined) return;
+    if (actor.getFlag?.(MODULE_ID, BOTULIN_FLAG)) void checkBotulinHealed(api, actor);
   });
 
   // ── row actions ──

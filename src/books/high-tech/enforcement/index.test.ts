@@ -112,6 +112,8 @@ afterAll(() => {
 
 const roll = (actor: any, context: Record<string, unknown>) => fire(HOOKS.successRollModifiers, { actor, modifiers: [], tags: [], ...context }).modifiers;
 const attack = (actor: any, item: any, mode: Record<string, unknown>) => fire(HOOKS.attackModifiers, { actor, item, mode, modifiers: [] }).refusal;
+/** A bare-handed blow, as the system names it since API 1.111.0: no item or mode. */
+const unarmed = (actor: any, blow: "punch" | "kick") => fire(HOOKS.attackModifiers, { actor, item: null, mode: null, unarmed: blow, modifiers: [] }).refusal;
 
 describe("with the switches off", () => {
   it("changes nothing", () => {
@@ -162,6 +164,12 @@ describe("cuffed behind the back (p. 217)", () => {
     expect(attack(prisoner, null, { index: 0, ranged: false })).toBeUndefined();
   });
 
+  it("refuses a punch, and leaves the kick", () => {
+    const prisoner = cuffed();
+    expect(unarmed(prisoner, "punch")).toContain("NoPunch");
+    expect(unarmed(prisoner, "kick")).toBeUndefined();
+  });
+
   it("does nothing while the cuffs are only carried", () => {
     const prisoner = person("Guard", [gear("Handcuffs")]);
     expect(roll(prisoner, { kind: "attack" })).toEqual([]);
@@ -182,6 +190,8 @@ describe("cuffed in front (p. 217)", () => {
     expect(attack(prisoner, gear("Knife", { system: { meleeModes: [{ twoHanded: false }] } }), { index: 0, ranged: false })).toContain("NoOneHanded");
     expect(attack(prisoner, gear("Rifle Butt", { system: { meleeModes: [{ twoHanded: true }] } }), { index: 0, ranged: false })).toBeUndefined();
     expect(attack(prisoner, gear("Pistol"), { index: 0, ranged: true })).toBeUndefined();
+    // Cuffed in front, the hands can still strike together.
+    expect(unarmed(prisoner, "punch")).toBeUndefined();
   });
 });
 
@@ -191,6 +201,7 @@ describe("a straitjacket and leg irons (p. 217)", () => {
     const patient = person("Patient", [jacket]);
     expect(roll(patient, { kind: "attack" }).map((l: any) => l.value)).toEqual([-1]);
     expect(attack(patient, gear("Knife", { system: { meleeModes: [{ twoHanded: false }] } }), { index: 0, ranged: false })).toContain("NoWeapons");
+    expect(unarmed(patient, "punch")).toContain("NoPunch");
     expect(actions.get("restraint-slip").visible(jacket)).toBe(false);
     expect(actions.get("restraint-escape").visible(jacket)).toBe(true);
   });
@@ -201,6 +212,9 @@ describe("a straitjacket and leg irons (p. 217)", () => {
     const context = fire("gworld.traitEffects", { actor: prisoner, effects: { lame: null }, sources: [] });
     expect(context.effects.lame).toBe("crippled");
     expect(context.sources).toEqual([{ effect: "lame", label: "Leg Irons (Ball and Chain)" }]);
+    // No kick in leg irons; the hands are free to punch.
+    expect(unarmed(prisoner, "kick")).toContain("NoKick");
+    expect(unarmed(prisoner, "punch")).toBeUndefined();
     // A worse lameness the character already has stays.
     expect(fire("gworld.traitEffects", { actor: prisoner, effects: { lame: "missing" }, sources: [] }).effects.lame).toBe("missing");
     const lines = sections.get("restraint-item").context(irons).lines as string[];
@@ -269,7 +283,7 @@ describe("lie detection (pp. 215-216)", () => {
   it("runs a Quick Contest of Electronics Operation (Medical) against Will, and puts the margin on Interrogation", async () => {
     const suspect = person("Suspect", [], { attributes: { Will: 11 } });
     const { machine } = await test("Polygraph (TL8)", { outcome: "first", marginOfVictory: 3 }, suspect);
-    expect(contestCalls[0]).toMatchObject({ first: { base: 13 }, second: { actor: suspect, base: 11 } });
+    expect(contestCalls[0]).toMatchObject({ first: { base: 13 }, second: { actor: suspect, base: 11 }, secret: true });
     expect(machine.flags[MODULE_ID].lieReading).toEqual({ subject: "Actor.Suspect", name: "Suspect", margin: 3 });
     // The GM makes these rolls in secret: the reading is told to the GMs alone.
     expect(chat.at(-1)).toMatch(/^whisper:gm .*LieDetection\.Kept/);

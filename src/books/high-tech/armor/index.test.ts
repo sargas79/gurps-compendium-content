@@ -170,21 +170,22 @@ describe("partial coverage (High-Tech p. 69)", () => {
     const attack = fire(HOOKS.attackModifiers, { actor: shooter, item: gun, options: chosen, calledShot: { hitLocation: "leg" }, targets: [pilot], modifiers: [] });
     expect(attack.modifiers).toEqual([{ label: expect.stringContaining("StrikeAroundLine"), value: -2 }]);
     await flush();
-    expect(shooter.getFlag(MODULE_ID, "htStrikeAround")).toEqual({ itemId: "gun", location: "leg", targets: ["Actor.Pilot"] });
+    // Nothing is kept on the attacker: the blow carries its options and called shot (API 1.108.0).
+    expect(shooter.getFlag(MODULE_ID, "htStrikeAround")).toBeUndefined();
 
     dice = [1];
     const lines = [line(legs)];
-    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "leg", damageType: "pi", lines });
+    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "leg", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: chosen, lines });
     expect(lines[0]).toMatchObject({ applies: false, reason: expect.stringContaining("StruckAround") });
-    // Another location: the armour there is rolled for as usual.
-    const torso = [line(legs)];
-    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "arm", damageType: "pi", lines: torso });
-    expect(torso[0]!.applies).toBe(true);
-
-    // The next attack without the option forgets it.
-    fire(HOOKS.attackModifiers, { actor: shooter, item: gun, options: {}, calledShot: null, targets: [pilot], modifiers: [] });
-    await flush();
-    expect(shooter.getFlag(MODULE_ID, "htStrikeAround")).toBeUndefined();
+    // A blow that landed elsewhere (a miss by 1): the armour there is rolled for as usual.
+    const arm = [line(legs)];
+    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "arm", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: chosen, lines: arm });
+    expect(arm[0]!.applies).toBe(true);
+    // A blow without the option rolls for the partial armour.
+    dice = [6];
+    const plain = [line(legs)];
+    fire(HOOKS.armorDr, { actor: pilot, item: gun, hitLocation: "leg", damageType: "pi", calledShot: { hitLocation: "leg", addonLocation: null, chink: false }, options: {}, lines: plain });
+    expect(plain[0]).toMatchObject({ applies: false, reason: expect.stringContaining("PartialMissed") });
   });
 
   it("finds nothing to strike around on a wholly armoured location", () => {

@@ -303,7 +303,8 @@ export async function runKind(api: GWorldApi, vehicle: any, answer: Answer, targ
     case "ride": {
       const fp = rideFatigue(answer.hours, answer.headOut);
       const riders = targets.length ? targets : crewOf(vehicle);
-      for (const rider of riders) if (fp > 0) await api.actors.applyInjury(rider, { amount: fp, fatigue: true, label: L("Tool.ride") } as any);
+      // Being thrown about isn't exertion, so Very Fit doesn't halve it; past 0 FP it still hurts (Campaigns p. 426).
+      for (const rider of riders) if (fp > 0) await api.actors.spendFatigue(rider, fp, { exertion: false, details: { rule: "ride" } });
       return say(vehicle, L("Tool.ride"), [F(answer.headOut ? "Tool.RodeHeadOut" : "Tool.Rode", { hours: answer.hours, fp, count: riders.length })]);
     }
     case "button": {

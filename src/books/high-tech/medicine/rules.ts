@@ -136,5 +136,22 @@ export const ANESTHESIA = Object.freeze({ failed: -2, hours: 4, cooperativeMinut
  */
 export const ANTISEPTIC = Object.freeze({ bonus: 2, hours: 24 });
 
+/** What antiseptic adds against the wound's dirt (its `woundDirt` line): up to +2, never past the dirt's own penalty. */
+export function antisepticLine(dirt: number): number {
+  return Math.max(0, Math.min(ANTISEPTIC.bonus, -Math.min(0, Math.floor(Number(dirt) || 0))));
+}
+
+/** The Medical Supplies record, by name (p. 223). */
+export const MEDICAL_SUPPLIES = /^medical supplies\b/i;
+
+/**
+ * "Without this gear, a TL6-8 doctor functions as if TL5" for Medical Care
+ * (p. 223; the First Aid Table, Campaigns p. 424): the TL to work at, or null
+ * to leave the healer's own.
+ */
+export function withoutSuppliesTl(techLevel: number, supplied: boolean): number | null {
+  return !supplied && techLevel >= 6 && techLevel <= 8 ? 5 : null;
+}
+
 /** An early X-ray machine gives patient and operator 1d rads a photograph (p. 223). */
 export const XRAY_RADS_DICE = 1;

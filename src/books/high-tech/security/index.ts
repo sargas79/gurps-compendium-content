@@ -351,7 +351,12 @@ async function stakePit(api: GWorldApi, victim: any, name: string, answer: TrapA
   await say(victim, name, [F("Trap.FellIn", { name: victim.name, formula }), ...(answer.dirty ? [F("Trap.Dirty", { modifier: DIRTY_INFECTION })] : [])]);
 }
 
-/** Through barbed or razor wire a yard at a time: the first failure tears, snags, and asks the Will roll not to cry out (p. 204). */
+/**
+ * Through barbed or razor wire a yard at a time: the first failure tears,
+ * snags, and asks the Will roll not to cry out (p. 204). The snag is a
+ * Binding of ST 8 on the system's entangled state (API 1.107.0), which the
+ * sheet's Break free button (ST or Escape against 8) ends.
+ */
 async function wire(api: GWorldApi, victim: any, name: string, kind: "barbedWire" | "razorWire", answer: TrapAnswer): Promise<void> {
   const barrier = BARRIERS[kind];
   if (!barrier) return;
@@ -370,7 +375,8 @@ async function wire(api: GWorldApi, victim: any, name: string, kind: "barbedWire
     });
     const result: any = await api.roll.success({ actor: victim, base: api.actors.attribute(victim, "Will") ?? 10, kind: "attribute", label: F("Barrier.CryOut", { name: victim.name }), modifiers: modifier ? [{ label: injury ? F("Barrier.CryOutInjury", { injury }) : L("Barrier.PainThreshold"), value: modifier }] : [], tags: ["Will"] } as any);
     if (result) lines.push(F(result.success ? "Barrier.Silent" : "Barrier.CriedOut", { name: victim.name }));
-    lines.push(F("Barrier.Snagged", { st: WIRE_SNAG_ST }));
+    const bound = await api.actors.bind(victim, { st: WIRE_SNAG_ST, label: name, source: `${MODULE_ID}.wire` });
+    lines.push(F(bound ? "Barrier.SnaggedBound" : "Barrier.Snagged", { st: WIRE_SNAG_ST, name: victim.name }));
     return void say(victim, name, lines);
   }
   await say(victim, name, [F("Barrier.Through", { name: victim.name, yards })]);

@@ -9,7 +9,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../../shared/module.js";
-import { drugData, readyDrugs } from "./index.js";
+import { checkBotulinHealed, drugData, readyDrugs } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -35,12 +35,15 @@ let successResult: any;
 let dialogAnswers: any[];
 let targets: any[];
 let worldTime: number;
+let locations: any[];
+let crippledParts: any[];
+let removedConditions: string[];
 
 function fakeApi() {
   return {
     registry: { isRuleOn: () => false },
     data: { registerPoison: (p: any) => poisons.push(p) },
-    combat: { hooks: HOOKS },
+    combat: { hooks: HOOKS, registerHitLocation: (l: any) => { locations.push(l); return `${l.module}.${l.key}`; } },
     sheets: {
       registerSheetSection: (s: any) => sections.push(s),
       registerRowAction: (a: any) => actions.set(a.key, a),
@@ -55,12 +58,16 @@ function fakeApi() {
         return "id";
       },
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: o.fatigue ? "fp" : "hp" }; },
+      spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
       activePoisons: (actor: any) => actor?.doses ?? [],
       dosePoison: async (actor: any, p: any) => { dosed.push({ actor, poison: p }); return { id: "d1", ...p }; },
       clearPoison: async (actor: any, id: string) => { cleared.push({ actor, id }); },
       treatPoison: async (actor: any, id: string, o: any) => { treated.push({ actor, id, poison: true, ...o }); return o.bonus; },
       treatIllness: async (actor: any, id: string, o: any) => { treated.push({ actor, id, illness: true, ...o }); return o.bonus; },
       undoKnockdown: async (actor: any, o: any) => { woken.push({ actor, ...o }); return true; },
+      cripple: async (actor: any, location: string, o: any) => { crippledParts.push({ id: "part1", location, ...o, months: 3 }); return crippledParts.at(-1); },
+      crippled: () => crippledParts,
+      removeCondition: async (actor: any, id: string) => { removedConditions.push(id); return true; },
     },
     roll: { success: async (o: any) => { successes.push(o); return successResult; } },
   };
@@ -91,6 +98,7 @@ function gear(name: string, more: Record<string, any> = {}, drug: Record<string,
 function person(items: any[] = [], more: Record<string, any> = {}): any {
   const flags: Record<string, unknown> = {};
   return {
+    unsetFlag: async (_scope: string, key: string) => { delete flags[key]; },
     name: "Patient",
     isOwner: true,
     items,
@@ -136,6 +144,9 @@ beforeEach(() => {
   successes = [];
   injuries = [];
   applied = [];
+  locations = [];
+  crippledParts = [];
+  removedConditions = [];
   dosed = [];
   cleared = [];
   treated = [];
@@ -283,7 +294,7 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     targets = [subject];
     successResult = { success: false, margin: 1, criticalFailure: false };
     await run("ht-drug-give", gear("Truth Serum"), person());
-    expect(injuries).toEqual([expect.objectContaining({ actor: subject, amount: 4, fatigue: true })]);
+    expect(injuries).toEqual([expect.objectContaining({ actor: subject, amount: 4, spent: true, exertion: false })]);
     expect(successes[0]).toMatchObject({ actor: subject, modifiers: [{ value: -1 }] });
     expect(applied[0]).toMatchObject({ actor: subject, key: "htTruthSerum", effects: { modifiers: [{ value: -2, rolls: ["Will", "selfControl"] }] }, duration: { seconds: 300 } });
   });
@@ -368,6 +379,17 @@ describe("High-Tech poisons (p. 227)", () => {
     expect(applied).toEqual([expect.objectContaining({ key: "paralysis" })]);
     expect(applied[0].duration).toBeUndefined();
     expect(cleared).toEqual([expect.objectContaining({ id: "b" })]);
+    // A lasting crippling injury of the lungs and spine, kept by the system (API 1.114.0).
+    expect(locations[0]).toMatchObject({ module: MODULE_ID, key: "ht-lungs-spine", parent: "torso" });
+    expect(locations[0].available()).toBe(false);
+    expect(crippledParts).toEqual([expect.objectContaining({ location: `${MODULE_ID}.ht-lungs-spine`, duration: "lasting" })]);
+    expect(victim.getFlag(MODULE_ID, "htBotulinParalysis")).toEqual({ part: "part1", condition: "id" });
+    // While the part is crippled the paralysis stays; once it has healed it goes.
+    expect(await checkBotulinHealed(fakeApi() as never, victim)).toBe(false);
+    crippledParts = [];
+    expect(await checkBotulinHealed(fakeApi() as never, victim)).toBe(true);
+    expect(removedConditions).toEqual(["id"]);
+    expect(victim.getFlag(MODULE_ID, "htBotulinParalysis")).toBeUndefined();
   });
 
   it("rolls strychnine's hours when it strikes and ends it when they're up", async () => {

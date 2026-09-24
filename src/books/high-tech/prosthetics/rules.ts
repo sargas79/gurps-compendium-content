@@ -154,6 +154,29 @@ export function appearanceOf(traits: readonly AppearanceTrait[]): number {
   return 0;
 }
 
+/**
+ * The trait change one step of Appearance surgery makes, as the system's
+ * `changeTrait` takes it, or null where no trait simply becomes another:
+ * Average has no trait to raise, and Attractive's next step is Beautiful or
+ * Handsome, which the book leaves to the character (Characters p. 21).
+ * Beautiful and Handsome go to their "Very" forms.
+ */
+export function appearanceChange(traits: ReadonlyArray<AppearanceTrait & { id: string }>): { id: string; level: number } | { id: string; replaceWith: string } | null {
+  for (const trait of traits) {
+    const name = String(trait.name ?? "").trim().toLowerCase();
+    if (name === "appearance") {
+      // Levels: 2 Beautiful, 3 Handsome, 4 Very Beautiful, 5 Very Handsome.
+      const levels = Math.floor(Number(trait.levels) || 0);
+      return levels === 2 ? { id: trait.id, level: 4 } : levels === 3 ? { id: trait.id, level: 5 } : null;
+    }
+    const named = /^(?:appearance \()?([a-z ]+?)\)?$/.exec(name)?.[1] ?? "";
+    if (named === "beautiful") return { id: trait.id, replaceWith: "Very Beautiful" };
+    if (named === "handsome") return { id: trait.id, replaceWith: "Very Handsome" };
+    if (named in NAMED_STEPS) return null;
+  }
+  return null;
+}
+
 /** An Appearance step's name. */
 export const APPEARANCE_NAMES: Record<number, string> = {
   [-5]: "Horrific", [-4]: "Monstrous", [-3]: "Hideous", [-2]: "Ugly", [-1]: "Unattractive",
