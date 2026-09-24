@@ -49,9 +49,11 @@
 
 import { isRuleOn } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { ask, card, carried, distanceText, esc, itemTl, picked, row, skillBase, worn } from "../../../shared/sensors/index.js";
+import { ask, card, carried, distanceText, esc, itemTl, picked, row, sensorData, skillBase, worn } from "../../../shared/sensors/index.js";
 import { JAMMER_TABLES, bugSweepContest, readyJamming, type Jammable, type Jammer, type JammerTable } from "../../../shared/surveillance/index.js";
-import { ACTIVE_SENSORS, EW_FROM_COMM } from "../sensors/rules.js";
+import type { JammerVariety } from "../../../shared/surveillance/rules.js";
+import { ACTIVE_SENSORS, EW_FROM_COMM, radioByName } from "../sensors/rules.js";
+import { DIRECT_SEQUENCE, FREQUENCY_HOPPING, spreadJammingBonus } from "../sigint/rules.js";
 import {
   BEACON_BATTERY,
   COMMUNICATIONS,
@@ -130,6 +132,8 @@ export interface JammingSwitches {
   jamming: string;
   jammerKinds: string;
   radarJamming: string;
+  /** The supplement's spread spectrum, which helps a radio through a jammer of a variety (HT:EE pp. 46-47). */
+  spreadSpectrum?: string;
 }
 
 /** A character's level with a skill, or the attribute's default at -5 (p. B173). */
@@ -189,6 +193,20 @@ export function analyzerLines(actor: any, jammerKinds: string): Array<{ label: s
   return analyzer ? [{ label: String(analyzer.name), value: SPECTRUM_ANALYZER }] : [];
 }
 
+/**
+ * A spread-spectrum radio against a jammer of a variety (HT:EE pp. 46-47):
+ * +4 with frequency hopping (the ECCM option) against a selective jammer, with
+ * direct sequence against a broad-spectrum one.
+ */
+export function spreadLines(item: any, variety: JammerVariety, spreadSpectrum: string | undefined): Array<{ label: string; value: number }> {
+  if (!spreadSpectrum || !isRuleOn(spreadSpectrum)) return [];
+  const tl = itemTl(item);
+  if (!radioByName(nameOf(item), tl)) return [];
+  const options = sensorData(item).options;
+  const bonus = spreadJammingBonus({ hopping: tl >= FREQUENCY_HOPPING.tl && options.eccm === true, direct: tl >= DIRECT_SEQUENCE.tl && options.directSequence === true }, variety);
+  return bonus ? [{ label: F(variety === "selective" ? "Jammer.Hopping" : "Jammer.DirectSequence", { name: String(item.name) }), value: bonus }] : [];
+}
+
 /** High-Tech's jammers and the gear they hinder, behind the book's jamming switches. */
 export function highTechJammers(switches: JammingSwitches): JammerTable {
   return {
@@ -206,6 +224,7 @@ export function highTechJammers(switches: JammingSwitches): JammerTable {
     },
     varieties: JAMMER_VARIETY_PENALTIES,
     operatorModifiers: (actor) => analyzerLines(actor, switches.jammerKinds),
+    gearModifiers: (item, variety) => spreadLines(item, variety, switches.spreadSpectrum),
   };
 }
 

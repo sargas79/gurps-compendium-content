@@ -36,7 +36,8 @@
  * batteries, generators and fuel, the optional wounding rules, and the
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
  * guns, and household hazards, the communications and sensors: radios,
- * telegraphy, radio reception, antennas, shortwave and how a radio is built
+ * telegraphy, radio reception, antennas, shortwave and how a radio is built,
+ * spread spectrum, signals intelligence, triangulation and cipher machines
  * (from the supplement Electricity and Electronics), active sensors, optics, night vision and thermographs,
  * hydrophones and sound detectors, the expedition gear: lights,
  * navigation instruments and maps, load-bearing gear and packs, and climbing
@@ -145,6 +146,7 @@ import { applianceClimateGear, readyAppliances } from "./appliances/index.js";
 import { readyElectromedicine } from "./electromedicine/index.js";
 import { readySkills } from "./skills/index.js";
 import { readyElectronicWeapons } from "./electronic-weapons/index.js";
+import { readySigint } from "./sigint/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -258,7 +260,7 @@ const RULES = [
   { key: "incendiaryAgents", pages: "p. 188", implemented: true },
   // Communications and sensors.
   // Two different radios by the supplement Electricity and Electronics' rule (decision E3 in #471).
-  { key: "radios", pages: "p. 28", reference: `${REFERENCE} pp. 36-40; ${EE_REFERENCE}`, implemented: true },
+  { key: "radios", pages: "pp. 28, 47", reference: `${REFERENCE} pp. 36-40; ${EE_REFERENCE}`, implemented: true },
   { key: "activeSensors", pages: "pp. 45-47", implemented: true },
   { key: "visualSensors", pages: "pp. 47-48", implemented: true },
   { key: "passiveSensors", pages: "pp. 48-50", implemented: true },
@@ -270,6 +272,10 @@ const RULES = [
   { key: "shortwaveSkip", pages: "p. 30", reference: EE_REFERENCE, implemented: true },
   // Electricity and Electronics: spark-gap, receiver, audio and video options on radios, and the trench radio.
   { key: "radioDesign", pages: "pp. 28-30, 32, 34", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: spread spectrum, signals intelligence and cipher machines (triangulation is under radios, E3).
+  { key: "spreadSpectrum", pages: "pp. 46-47", reference: EE_REFERENCE, implemented: true },
+  { key: "signalsIntelligence", pages: "pp. 47-48", reference: EE_REFERENCE, implemented: true },
+  { key: "cipherMachines", pages: "p. 48", reference: EE_REFERENCE, implemented: true },
   // Electricity and Electronics: electric light, light levels and glare.
   { key: "illumination", pages: "pp. 20-22", reference: EE_REFERENCE, implemented: true },
   { key: "lightDazzle", pages: "pp. 9, 20-21", reference: EE_REFERENCE, implemented: true },
@@ -414,6 +420,7 @@ function init(): void {
     radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors"),
     rangefindingEmissions: ruleKey("rangefindingEmissions"), radioTuning: ruleKey("radioTuning"), radioAntennas: ruleKey("radioAntennas"), shortwaveSkip: ruleKey("shortwaveSkip"),
     radioDesign: ruleKey("radioDesign"),
+    spreadSpectrum: ruleKey("spreadSpectrum"), signalsIntelligence: ruleKey("signalsIntelligence"), cipherMachines: ruleKey("cipherMachines"),
   });
   initSurvival();
   initExpedition();
@@ -425,7 +432,7 @@ function init(): void {
   initElectricSecurity();
   initMedicine();
   initHighTechArmor();
-  initSurveillance({ jamming: ruleKey("jamming"), jammerKinds: ruleKey("jammerKinds"), radarJamming: ruleKey("radarJamming") });
+  initSurveillance({ jamming: ruleKey("jamming"), jammerKinds: ruleKey("jammerKinds"), radarJamming: ruleKey("radarJamming"), spreadSpectrum: ruleKey("spreadSpectrum") });
   initEnforcement({ lieDetection: ruleKey("lieDetection"), restraints: ruleKey("restraintDevices") });
   initConveyances();
   initDrugs();
@@ -491,7 +498,8 @@ function ready(api: GWorldApi): void {
   const electric = { fences: rule("stunLethalFences"), electricLocks: rule("electricLocks"), alarms: rule("alarmSystems") };
   readyHighTechSecurity(api, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers"), ...electric });
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
-  readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
+  readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling"), cipher: rule("cipherMachines") });
+  readySigint(api, { sigint: rule("signalsIntelligence"), cipher: rule("cipherMachines") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
   readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
   readyCovertListening(api, rule("covertListening"));

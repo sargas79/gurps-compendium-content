@@ -19,6 +19,7 @@ const HOOKS = {
   attackModifiers: "gworld.attackModifiers",
   successRollModifiers: "gworld.successRollModifiers",
   defenseModifiers: "gworld.defenseModifiers",
+  afterQuickContest: "gworld.afterQuickContest",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -39,7 +40,8 @@ let successResult: any;
 const key = (k: string) => `${MODULE_ID}.${k}`;
 const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), rangefindingEmissions: key("rangefindingEmissions") };
 /** The supplement Electricity and Electronics' radio switches, which join High-Tech's (E1 in #471). */
-const EE = { radioTuning: key("radioTuning"), radioAntennas: key("radioAntennas"), shortwaveSkip: key("shortwaveSkip"), radioDesign: key("radioDesign") };
+const EE = { radioTuning: key("radioTuning"), radioAntennas: key("radioAntennas"), shortwaveSkip: key("shortwaveSkip"), radioDesign: key("radioDesign"),
+  spreadSpectrum: key("spreadSpectrum"), signalsIntelligence: key("signalsIntelligence"), cipherMachines: key("cipherMachines") };
 const UT = { communicators: key("communicators"), sensors: key("sensors") };
 
 function fakeApi() {
@@ -104,8 +106,18 @@ function traitEffects(actor: any): { effects: any; sources: any[] } {
 let shared: typeof SharedSensors;
 let tables: typeof BookTables;
 
+/** Loads again with the API changed, from a clean slate of registrations. */
+async function reload(change: (api: any) => void): Promise<void> {
+  hooks = new Map();
+  actions = new Map();
+  sections = new Map();
+  tools = new Map();
+  prices = [];
+  await load(change);
+}
+
 /** Loads fresh modules, registers both books' tables, and readies both, as a build with every book does. */
-async function load(): Promise<void> {
+async function load(change: (api: any) => void = () => {}): Promise<void> {
   vi.resetModules();
   tables = await import("../../../shared/book-tables.js");
   shared = await import("../../../shared/sensors/index.js");
@@ -114,7 +126,8 @@ async function load(): Promise<void> {
   tables.setRuleReader((k) => on.has(k));
   ut.initUltraTechSensors(UT);
   ht.initHighTechSensors({ ...HT, ...EE });
-  const api = fakeApi();
+  const api: any = fakeApi();
+  change(api);
   ut.readyUltraTechSensors(api as never, { communicators: () => on.has(UT.communicators), sensors: () => on.has(UT.sensors) });
   ht.readyHighTechSensors(api as never, { radios: () => on.has(HT.radios), active: () => on.has(HT.activeSensors), visual: () => on.has(HT.visualSensors), passive: () => on.has(HT.passiveSensors), tuning: () => on.has(EE.radioTuning), design: () => on.has(EE.radioDesign) });
 }
@@ -142,6 +155,7 @@ beforeEach(async () => {
   vi.stubGlobal("canvas", { get tokens() { return { controlled: controlled.map((actor) => ({ actor })) }; } });
   vi.stubGlobal("foundry", { data: { fields: {} }, utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn(), info: vi.fn() } });
+  vi.stubGlobal("Roll", class { total = 1; async evaluate() { return this; } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
   await load();
 });
@@ -215,13 +229,45 @@ describe("radios (pp. 36-40), with only High-Tech's switch on (D1)", () => {
     expect(successes[0]).toMatchObject({ base: 13, modifiers: [] });
   });
 
-  it("fixes a transmitter with a direction finder, exactly on a margin of 5", async () => {
+  it("fixes a transmitter by the supplement's triangulation (HT:EE p. 47): a Quick Contest where it is concealed, exact on a margin of 6", async () => {
     const rdf = gear("Medium Radio (TL8)", { directionFinder: true });
     expect(actions.get("ht-direction-finder").visible(rdf)).toBe(true);
     expect(actions.get("ht-direction-finder").visible(gear("Medium Radio (TL8)"))).toBe(false);
     targets = [character("Spy", [])];
-    await actions.get("ht-direction-finder").run(rdf, character("Hunter", [rdf]));
+    const hunter = character("Hunter", [rdf], { skills: { "Electronics Operation (EW)": 14, "Mathematics (Surveying)": 13 } });
+    dialogAnswer = { system: "basic", antennas: "two", baseline: 100, yards: 2000, seconds: 30, concealed: true };
+    await actions.get("ht-direction-finder").run(rdf, hunter);
+    // The lesser of Mathematics and EW-2; +6, the baseline and distance from the table, -2 for two antennas, haste for 30 seconds.
+    expect(contests[0].first.base).toBe(12);
+    expect(contests[0].first.modifiers.map((m: any) => m.value)).toEqual([6, -rules.speedRangeModifier(100), rules.speedRangeModifier(2000), -2, -5]);
+    expect(contests[0].tags).toContain("triangulation");
     expect(chat.at(-1)).toContain("GCC.HT.Sensor.Fix.exact");
+  });
+
+  it("finds the general area with scatter on an unopposed roll, and gives only a direction with one antenna", async () => {
+    const rdf = gear("Medium Radio (TL8)", { directionFinder: true });
+    const hunter = character("Hunter", [rdf], { skills: { "Electronics Operation (EW)": 14 } });
+    successResult = { success: true, margin: 2 };
+    dialogAnswer = { system: "hfdf", antennas: "three", baseline: 0, yards: 1000, seconds: 10, concealed: false };
+    await actions.get("ht-direction-finder").run(rdf, hunter);
+    expect(successes[0]).toMatchObject({ base: 14, skill: "Electronics Operation (EW)", modifiers: [{ value: 6 }, { value: rules.speedRangeModifier(1000) }] });
+    // 10% of 1,000 yards.
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.Fix.area");
+    expect(chat.at(-1)).toContain('"yards":100');
+    dialogAnswer = { ...dialogAnswer, antennas: "one" };
+    await actions.get("ht-direction-finder").run(rdf, hunter);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.Fix.directionOnly");
+  });
+
+  it("identifies a wrong location on the plotter's critical failure in the contest", async () => {
+    const rdf = gear("Medium Radio (TL8)", { directionFinder: true });
+    targets = [character("Spy", [])];
+    // The contest's hook reports the plotter's critical failure, as the system's does.
+    const contest = async (o: any) => { contests.push(o); fire(HOOKS.afterQuickContest, { tags: o.tags, first: { outcome: { criticalFailure: true } } }); return { outcome: "second", marginOfVictory: 4 }; };
+    await reload((api) => { api.roll.quickContest = contest; });
+    dialogAnswer = { system: "basic", antennas: "three", baseline: 1000, yards: 1000, seconds: 0, concealed: true };
+    await actions.get("ht-direction-finder").run(rdf, character("Hunter", [rdf]));
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.Fix.wrong");
   });
 });
 
@@ -778,5 +824,91 @@ describe("the shared engine with both books' tables (D1)", () => {
   it("holds every book's options in the one field", () => {
     const data = shared.sensorData(gear("Small Radio (TL8)", { quantum: true, eccm: true }));
     expect(data.options).toMatchObject({ quantum: true, eccm: true, tactical: false, lensHood: false });
+  });
+});
+
+describe("the supplement's electronic warfare on High-Tech's radios (HT:EE pp. 46-48)", () => {
+  const MILE = 1760;
+
+  it("adds nothing with only the radios switch on", () => {
+    on = new Set([HT.radios]);
+    const radio = gear("Medium Radio (TL8)", { eccm: true, directSequence: true, rdf: true, hfdf: true });
+    const context = section().context(radio);
+    expect(context.options.map((o: any) => o.key)).not.toEqual(expect.arrayContaining(["directSequence"]));
+    expect(context.options.map((o: any) => o.key)).not.toContain("rdf");
+    // ECCM alone: twice the cost, and High-Tech's line.
+    expect(price(radio)).toMatchObject({ cost: 200 });
+    expect(context.lines.join(" ")).toContain("GCC.HT.Sensor.EccmLine");
+    expect(actions.get("ht-direction-finder").visible(gear("Medium Radio (TL8)", { rdf: true }))).toBe(false);
+  });
+
+  describe("spreadSpectrum", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.spreadSpectrum]); });
+
+    it("reads ECCM as frequency hopping, offers and prices direct sequence from TL8 as cutting edge", () => {
+      const hopper = gear("Medium Radio (TL7)", { eccm: true }, { tl: "7" });
+      const lines = section().context(hopper).lines.join(" ");
+      expect(lines).toContain("GCC.HT.Sensor.HoppingLine");
+      // Detected at twice its range, 10 miles at TL7: 20 miles.
+      expect(lines).toContain('Miles {\\"value\\":20}');
+      expect(section().context(hopper).options.map((o: any) => o.key)).not.toContain("directSequence");
+      const direct = gear("Medium Radio (TL8)", { directSequence: true });
+      expect(section().context(direct).options.map((o: any) => o.key)).toContain("directSequence");
+      expect(section().context(direct).lines.join(" ")).toContain("GCC.HT.Sensor.DirectSequenceLine");
+      // Twice the cost, and five times as a basic cutting-edge device.
+      expect(price(direct)).toMatchObject({ cost: 1000, weight: 10 });
+      expect(price(gear("Medium Radio (TL7)", { directSequence: true }, { tl: "7" }))).toBeNull();
+    });
+
+    it("is -4 to intercept a hopping radio", async () => {
+      const intercept = gear("Large Radio (TL8)", { intercept: true });
+      targets = [character("Talker", [gear("Small Radio (TL8)", { eccm: true })])];
+      dialogAnswer = { avoiding: false };
+      await actions.get("ht-intercept").run(intercept, character("Listener", [intercept], { skills: { "Electronics Operation (EW)": 12 } }));
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-4]);
+    });
+
+    it("gives direct sequence +4 against interference on the tuning roll, never more than it", async () => {
+      on = new Set([EE.radioTuning, EE.spreadSpectrum]);
+      const radio = gear("Small Radio (TL8)", { directSequence: true });
+      const listener = character("Listener", [radio], { skills: { "Electronics Operation (Communications)": 13 } });
+      dialogAnswer = { yards: 1 * MILE, range: 5 * MILE, conditions: -2, galvanometer: false, drift: false, skip: {} };
+      await actions.get("ht-radio-tuning").run(radio, listener);
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-2, 2]);
+    });
+  });
+
+  describe("signalsIntelligence", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.signalsIntelligence]); });
+
+    it("offers the RDF (x2) and HF/DF (TL7, x5), each of which takes fixes", () => {
+      const keys = (item: any) => section().context(item).options.map((o: any) => o.key);
+      expect(keys(gear("Large Radio (TL6)", {}, { tl: "6" }))).toContain("rdf");
+      expect(keys(gear("Large Radio (TL6)", {}, { tl: "6" }))).not.toContain("hfdf");
+      expect(keys(gear("Large Radio (TL7)", {}, { tl: "7" }))).toEqual(expect.arrayContaining(["rdf", "hfdf"]));
+      expect(price(gear("Large Radio (TL7)", { rdf: true }, { tl: "7" }))).toMatchObject({ cost: 200 });
+      expect(price(gear("Large Radio (TL7)", { hfdf: true }, { tl: "7" }))).toMatchObject({ cost: 500 });
+      expect(actions.get("ht-direction-finder").visible(gear("Large Radio (TL7)", { hfdf: true }, { tl: "7" }))).toBe(true);
+      expect(section().context(gear("Large Radio (TL8)", { intercept: true })).lines.join(" ")).toContain("GCC.HT.Sensor.InterceptUnitLine");
+    });
+
+    it("adds a carried oscilloscope's +1 to a fix, and takes HF/DF's fix at EW with no haste", async () => {
+      const hfdf = gear("Large Radio (TL7)", { hfdf: true }, { tl: "7" });
+      const hunter = character("Hunter", [hfdf, gear("Oscilloscope", {}, { tl: "6" })], { skills: { "Electronics Operation (EW)": 13 } });
+      dialogAnswer = { system: "hfdf", antennas: "three", baseline: 0, yards: 0, seconds: 5, concealed: false };
+      await actions.get("ht-direction-finder").run(hfdf, hunter);
+      expect(successes[0]).toMatchObject({ base: 13, modifiers: [{ value: 6 }, { value: 1 }] });
+    });
+  });
+
+  describe("cipherMachines", () => {
+    it("lets extra time offset the -4 for sending enciphered text", async () => {
+      on = new Set([HT.radios, EE.cipherMachines]);
+      const key = gear("Telegraph Key", {}, { tl: "6" });
+      const operator = character("Operator", [key], { skills: { "Electronics Operation (Communications)": 13 } });
+      dialogAnswer = { task: "send", cipher: true, times: 4 };
+      await actions.get("ht-telegraphy").run(key, operator);
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-4, 2]);
+    });
   });
 });

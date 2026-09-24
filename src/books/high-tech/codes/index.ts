@@ -11,7 +11,10 @@
  *     other selected characters with Cryptography 17+ are the team, +1 each to
  *     the leader (at most +4). The encryption standards are a Cryptography
  *     roll with Time Spent against their base time and the program carried;
- *     secure encryption can't be broken at TL8.
+ *     secure encryption can't be broken at TL8. With the supplement
+ *     Electricity and Electronics' cipher machines (cipherMachines), a
+ *     code-breaking machine joins the attempt: the bombe, +1 against a cipher
+ *     machine's code, or Colossus, +2 (HT:EE p. 48).
  *   - **Disguise and smuggling (disguiseAndSmuggling):** forging with the
  *     book's forgery and counterfeiting tools through the shared forgery
  *     engine (`src/shared/forgery/`), a computer and printer needed from TL7;
@@ -62,6 +65,7 @@ import {
   type Code,
   type ForgeryTool,
 } from "./rules.js";
+import { DECRYPTION_MACHINES, machineBonus, type DecryptionMachine } from "../sigint/rules.js";
 
 const NS = "GCC.HT.Codes";
 const L = (key: string) => game.i18n.localize(`${NS}.${key}`);
@@ -74,7 +78,12 @@ const BURST = "mulePillBurst";
 export interface CodesSwitches {
   encryption: () => boolean;
   disguise: () => boolean;
+  /** The supplement's code-breaking machines (HT:EE p. 48). */
+  cipher?: () => boolean;
 }
+
+/** Whether the supplement's code-breaking machines are on, once registered. */
+let machinesOn: () => boolean = () => false;
 
 async function say(actor: any, title: string, lines: string[], gmOnly = false): Promise<void> {
   await ChatMessage.implementation.create({
@@ -143,13 +152,15 @@ export async function breakCode(api: GWorldApi, breaker: any, program: any = nul
     + (maker ? `<p class="ihint">${esc(F("MakerTargeted", { name: maker.name }))}</p>` : row(L("MakerLevel"), `<input type="number" name="maker" value="5" style="width:70px" />`))
     + row(F("Helpers", { skill: TEAM.skill }), `<input type="number" name="helpers" value="${teamBonus(helpers)}" min="0" max="${TEAM.most}" style="width:70px" />`)
     + row(L("Apparatus"), `<select name="apparatus"><option value="1">1</option><option value="2">2</option></select>`)
-    + row(L("TimeSpent"), `<input type="number" name="spent" value="1" min="0.1" step="0.1" style="width:70px" />`),
+    + row(L("TimeSpent"), `<input type="number" name="spent" value="1" min="0.1" step="0.1" style="width:70px" />`)
+    + (machinesOn() ? row(L("MachineField"), `<select name="machine"><option value="">${esc(L("Machine.none"))}</option>${(Object.keys(DECRYPTION_MACHINES) as DecryptionMachine[]).map((m) => `<option value="${m}">${esc(F(`Machine.${m}`, { bonus: DECRYPTION_MACHINES[m].bonus }))}</option>`).join("")}</select>`) : ""),
     (form) => ({
       code: (form.querySelector<HTMLSelectElement>("[name=code]")?.value ?? "improvised") as Code,
       maker: number(form, "maker"),
       helpers: Math.max(0, Math.floor(number(form, "helpers"))),
       apparatus: number(form, "apparatus") || 1,
       spent: number(form, "spent") || 1,
+      machine: (form.querySelector<HTMLSelectElement>("[name=machine]")?.value ?? "") as DecryptionMachine | "",
     }));
   if (!answer) return;
   const cryptography = level(api, breaker, CRYPTOGRAPHY);
@@ -159,6 +170,9 @@ export async function breakCode(api: GWorldApi, breaker: any, program: any = nul
   const modifiers: Array<{ label: string; value: number }> = [];
   const team = teamHelps(answer.code) ? Math.min(TEAM.most, answer.helpers) : 0;
   if (team) modifiers.push({ label: F("TeamLine", { count: team }), value: team });
+  // A code-breaking machine: the bombe against a cipher machine's code, Colossus against any (HT:EE p. 48).
+  const machine = machinesOn() ? machineBonus(answer.machine, answer.code) : 0;
+  if (machine) modifiers.push({ label: L(`MachineLine.${answer.machine}`), value: machine });
 
   if (isContest(answer.code)) {
     const base = answer.code === "improvised" ? improvisedLevel(attribute(api, breaker, "IQ"), cryptography) : cryptography!;
@@ -326,6 +340,7 @@ export async function spotMule(api: GWorldApi): Promise<void> {
 // ── registration ──
 
 export function readyHighTechCodes(api: GWorldApi, on: CodesSwitches): void {
+  machinesOn = on.cipher ?? (() => false);
   api.data.registerPoison({ module: MODULE_ID, key: BURST, label: `${NS}.BurstPoison`, poison: BURST_PACKET as any, available: () => on.disguise() });
 
   FORGERY_TABLES.register({

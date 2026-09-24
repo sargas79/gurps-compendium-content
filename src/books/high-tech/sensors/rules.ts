@@ -133,14 +133,93 @@ export function radioDetectionRange(range: number, eccm: boolean): number {
   return range * (eccm ? 1.5 : 2);
 }
 
+// ── Triangulation (HT:EE p. 47, revising pp. 38-39) ──
+
 /**
- * A radio direction finder's fix (pp. 38-39), won in a Quick Contest of
- * Electronics Operation (Communications) with the transmitter's operator: a
- * general distance and direction, or with a margin of 5 or more an exact
- * location. The GM may allow a try about once a minute.
+ * A radio direction finder's fix. High-Tech had it won in a Quick Contest of
+ * Electronics Operation (Communications), exact on a margin of 5 (pp.
+ * 38-39); the supplement Electricity and Electronics revises it as
+ * triangulation (HT:EE p. 47), which this follows (decision E3 in #471):
+ *
+ *   - a basic or improvised direction finder plots the lines by hand: the
+ *     lesser of Mathematics (Applied or Surveying) and Electronics Operation
+ *     (EW)-2, with haste penalties for a signal on the air under a minute; a
+ *     sophisticated system (HF/DF) rolls Electronics Operation (EW) as it is,
+ *     with no haste;
+ *   - the roll is at +6, plus the Size and Speed/Range Table's figure for the
+ *     distance between the antennas as a bonus, less its figure for the
+ *     distance to the source (p. B550);
+ *   - three antennas are standard; two are at -2; one gives a direction but no
+ *     distance, unless it is moved while the transmitter keeps sending and the
+ *     two readings plotted alike, which Hobby Skill (Amateur Radio) can also
+ *     do;
+ *   - a Quick Contest with the transmitter's operator's Electronics Operation
+ *     (EW) where the source is concealed, an unopposed roll where it isn't;
+ *   - success finds the general area, with scatter (p. B414) of 20% of the
+ *     range, 10% on a margin of 2, 5% on a margin of 4, and the exact spot on
+ *     a margin of 6 or a critical success; a failure finds nothing, and a
+ *     critical failure a wrong location.
  */
-export function directionFinderFix(margin: number): "general" | "exact" {
-  return margin >= 5 ? "exact" : "general";
+export const TRIANGULATION = Object.freeze({ bonus: 6, twoAntennas: -2, manualEw: -2, improvised: -5, signalSeconds: 60 });
+
+/** The systems a fix is taken with: a basic direction finder, an improvised one (a loop or dipole), or HF/DF (HT:EE pp. 47-48). */
+export type DfSystem = "basic" | "improvised" | "hfdf";
+
+/** The antennas a fix is plotted from: three, two, one moved to a second spot, or one alone (HT:EE p. 47). */
+export type DfAntennas = "three" | "two" | "moved" | "one";
+export const DF_ANTENNAS: readonly DfAntennas[] = ["three", "two", "moved", "one"];
+
+export const MATHEMATICS = ["Mathematics (Applied)", "Mathematics (Surveying)"] as const;
+export const AMATEUR_RADIO = "Hobby Skill (Amateur Radio)";
+
+/**
+ * The level a fix is rolled at (HT:EE p. 47): HF/DF at Electronics Operation
+ * (EW); a basic or improvised system at the lesser of the better Mathematics
+ * and EW-2. A single antenna moved between readings may use Hobby Skill
+ * (Amateur Radio) instead, where that is better. Null where the plotter has
+ * no level to roll.
+ */
+export function triangulationLevel(options: { system: DfSystem; ew: number | null; mathematics: number | null; amateurRadio?: number | null; antennas: DfAntennas }): { level: number; skill: "ew" | "plotting" | "amateurRadio" } | null {
+  const ew = options.ew;
+  let best: { level: number; skill: "ew" | "plotting" | "amateurRadio" } | null = null;
+  if (options.system === "hfdf") best = ew === null ? null : { level: ew, skill: "ew" };
+  else if (ew !== null && options.mathematics !== null) best = { level: Math.min(options.mathematics, ew + TRIANGULATION.manualEw), skill: "plotting" };
+  const hunt = options.antennas === "moved" ? options.amateurRadio ?? null : null;
+  if (hunt !== null && (best === null || hunt > best.level)) best = { level: hunt, skill: "amateurRadio" };
+  return best;
+}
+
+/**
+ * The modifiers on a fix (HT:EE pp. 47-48): +6; the distance between the
+ * antennas as a bonus and the distance to the source as a penalty, from the
+ * Size and Speed/Range Table (`speedRange` gives its figure for yards); -2
+ * for two antennas (or one moved); -5 for an improvised direction finder;
+ * haste for a basic or improvised system when the signal stays on under a
+ * minute (p. B346). `hasteFor` is the Basic Set's modifier for time spent.
+ */
+export function triangulationLines(
+  options: { system: DfSystem; antennas: DfAntennas; baselineYards: number; distanceYards: number; signalSeconds: number },
+  speedRange: (yards: number) => number,
+  hasteFor: (spent: number, base: number) => number,
+): Array<{ key: "bonus" | "baseline" | "distance" | "antennas" | "improvised" | "haste"; value: number }> {
+  const lines: Array<{ key: "bonus" | "baseline" | "distance" | "antennas" | "improvised" | "haste"; value: number }> = [{ key: "bonus", value: TRIANGULATION.bonus }];
+  if (options.baselineYards > 0) lines.push({ key: "baseline", value: -speedRange(options.baselineYards) });
+  if (options.distanceYards > 0) lines.push({ key: "distance", value: speedRange(options.distanceYards) });
+  if (options.antennas === "two" || options.antennas === "moved") lines.push({ key: "antennas", value: TRIANGULATION.twoAntennas });
+  if (options.system === "improvised") lines.push({ key: "improvised", value: TRIANGULATION.improvised });
+  const seconds = Number(options.signalSeconds) || 0;
+  if (options.system !== "hfdf" && seconds > 0 && seconds < TRIANGULATION.signalSeconds) lines.push({ key: "haste", value: hasteFor(seconds, TRIANGULATION.signalSeconds) });
+  return lines.filter((l) => l.value !== 0);
+}
+
+/** What a fix finds: the exact spot, the general area within a share of the range, nothing, or a wrong location (HT:EE p. 47). */
+export type Fix = { kind: "exact" } | { kind: "area"; share: number } | { kind: "none" } | { kind: "wrong" };
+
+/** A fix from its roll: the margin of success or victory, and whether it was a critical. */
+export function triangulationFix(roll: { success: boolean; margin: number; criticalSuccess?: boolean; criticalFailure?: boolean }): Fix {
+  if (!roll.success) return roll.criticalFailure ? { kind: "wrong" } : { kind: "none" };
+  if (roll.criticalSuccess || roll.margin >= 6) return { kind: "exact" };
+  return { kind: "area", share: roll.margin >= 4 ? 0.05 : roll.margin >= 2 ? 0.1 : 0.2 };
 }
 
 /** Electronics Operation (EW), for intercepting, defaults to Electronics Operation (Communications)-4 (p. 209). */
