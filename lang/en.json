@@ -5239,6 +5239,10 @@
           "Name": "Electronic signals jamming",
           "Hint": "A jammer's row button switches it on (everyone near knows, not where it is). Radio gear's row button then rolls against each switched-on jammer on the map: within its range, a Quick Contest of the user's Electronics Operation for the gear against the operator's Electronics Operation (EW) (the expendable jammer's 18); within 10 times its range, an unopposed roll. A cell-phone jammer blocks cellular beacons within 15 yards, and a call through it takes a Hearing roll at -2 to follow, unmodified out to 10 times its range (High-Tech pp. 212-213, as High-Tech: Electricity and Electronics p. 50 revises the cell-phone jammer)."
         },
+        "covertListening": {
+          "Name": "Bugs, taps and countersurveillance (Electricity and Electronics)",
+          "Hint": "The supplement's covert listening. With surveillance gear on, a bug detector's sweep is -5 against a spread-spectrum (ECCM) bug and -2 against one an isolator guards, and a contact mike's roll -4 under white noise. Row buttons: listen with a laser mike (-2 through heavy curtains or triple glazing, -1 to -4 for noise at TL7, -4 under white noise), trace a planted signal with a lock-in amplifier (+6, +10 at TL8), sweep with a nonlinear junction detector (a failure by 4 or more takes a stray object for a bug) and wire a keylogger into a typewriter. A GM tool builds and reads a computer-emissions interceptor (-1 per 100 yards past 300), times acoustic keylogging's typing sample, captures an RFID chip (-2, -1 per yard), makes a booster bag and improvises white noise from an FM receiver (High-Tech: Electricity and Electronics pp. 44-45)."
+        },
         "jammerKinds": {
           "Name": "Broad-spectrum and selective jammers",
           "Hint": "An operated radio jammer (High-Tech's area jammer, the supplement's large and portable jammers) is switched on as one of two varieties. Broad-spectrum: the operator's Electronics Operation (EW) roll to switch it on, then every user of radio gear rolls at -2 within its range and unmodified out to 10 times it. Selective: for each user, an unopposed EW roll where the operator knows the frequency, else a Quick Contest of EW, at -1 per 10% past the jammer's range (no further than double); caught, the user rolls at -4 within its range, -2 beyond. A spectrum analyzer carried gives the operator +4 (High-Tech: Electricity and Electronics p. 49)."
@@ -8772,6 +8776,14 @@
           "Radar": "Radius {range} against radar: the operator's EW roll to switch it on, then a radar's Electronics Operation (Sensors) at -2 within it, unmodified to {shadow} times it (High-Tech: Electricity and Electronics p. 49).",
           "Spoofer": "Radius {range}: a radar within it is used in a Quick Contest of its Sensors against the operator's EW; lost, it shows a false location and size (High-Tech: Electricity and Electronics p. 50).",
           "RadarHindered": "Radar: a switched-on radar jammer or spoofer in reach hinders it (High-Tech: Electricity and Electronics pp. 49-50)."
+        },
+        "Covert": {
+          "SpreadRow": "Spread-spectrum bug ({modifier})",
+          "SpreadLine": "Spread spectrum",
+          "IsolatorRow": "An isolator guards it ({modifier})",
+          "IsolatorLine": "Isolator",
+          "WhiteNoiseRow": "White noise generator running ({modifier})",
+          "WhiteNoiseLine": "White noise"
         }
       },
       "Jamming": {
@@ -9510,6 +9522,74 @@
           "30": "30 times as long (+5)",
           "0_5": "Half the time (-5)"
         }
+      },
+      "Covert": {
+        "Title": "Covert listening",
+        "Detector": "Against a bug using spread spectrum (ECCM), {spread}; against one an isolator guards, {isolator} (HT:EE p. 44).",
+        "WhiteNoise": "Masks talk: {modifier} to eavesdropping through audio bugs and contact, laser or resonant cavity microphones (HT:EE p. 44).",
+        "WhiteNoiseNearby": "People working nearby count as Attentive (p. B163); anyone with a quirk sensitive to it suffers Moderate Pain (p. B428) (HT:EE p. 44).",
+        "LaserTl7": "Listening: {curtains} through heavy curtains or triple glazing, -1 to -{noise} for noise such as running water, {whiteNoise} under white noise; bug detectors can't sense it (HT:EE p. 44).",
+        "LaserTl8": "Listening: {curtains} through heavy curtains or triple glazing, {whiteNoise} under white noise; it filters ordinary noise (High-Tech p. 208), and bug detectors can't sense it (HT:EE p. 44).",
+        "MaskedByWhiteNoise": "A white noise generator gives {modifier} to listening through it (HT:EE p. 44).",
+        "Resonant": "SM {sm}; powered and read by a microwave beam; white noise gives {modifier} to listening through it (HT:EE p. 44).",
+        "Isolator": "Guards a bug against a nonlinear junction detector: {modifier} to rolls to detect it; SM {sm} (HT:EE p. 44).",
+        "LockIn": "Traces a signal a signal generator planted in a facility or line: Electronics Operation (Security) +{bonus}, a minute per 100 square feet (HT:EE p. 44).",
+        "JunctionLine": "Sweeps for any solid-state device on Electronics Operation (Security), {isolator} against an isolator; a failure by 4 or more, or a critical failure, takes a stray object for a bug (HT:EE p. 44).",
+        "Keylogger": "Wired into an electric typewriter with {minutes} minutes' access and Electronics Repair (Surveillance); a built-in transmitter reaches {miles} miles (HT:EE p. 45).",
+        "Wallet": "RFID cards inside can't be read or copied (HT:EE p. 45).",
+        "SpreadBug": "Spread spectrum: {modifier} to a bug detector's sweep for it (HT:EE p. 44).",
+        "LaserTitle": "Listen with the laser mike",
+        "LaserLabel": "Listening with {name}",
+        "Yards": "Distance (yards)",
+        "CurtainsRow": "Heavy curtains or triple glazing ({modifier})",
+        "CurtainsLine": "Curtains or triple glazing",
+        "NoiseRow": "Noise, 0 to {max}",
+        "NoiseLine": "Noise",
+        "WhiteNoiseRow": "White noise generator running ({modifier})",
+        "WhiteNoiseLine": "White noise",
+        "OutOfRange": "Out of range: it reaches {range} yards.",
+        "Area": "Area (square feet)",
+        "Time": "{area} square feet take about {minutes} min.",
+        "LockInTitle": "Trace a planted signal",
+        "LockInLabel": "Tracing with {name}",
+        "LeakFound": "The signal is traced: the leak is found.",
+        "LeakMissed": "No trace of the signal.",
+        "JunctionTitle": "Sweep for solid-state devices",
+        "JunctionLabel": "Sweeping with {name}",
+        "IsolatorRow": "An isolator guards it ({modifier})",
+        "IsolatorLine": "Isolator",
+        "Junction": {
+          "found": "Any solid-state device in the room is found.",
+          "missed": "Nothing found.",
+          "falsePositive": "Something registers, but it's a rusty nail or the like, not a bug."
+        },
+        "WireTitle": "Wire into a typewriter",
+        "WireLabel": "Wiring {name}",
+        "Wired": "Wired in: {minutes} minutes' access.",
+        "NotWired": "Not wired in after {minutes} minutes.",
+        "ToolTitle": "Covert listening",
+        "PickCharacter": "Select the token of the character doing the job.",
+        "TaskLabel": "Job",
+        "Task": {
+          "emissionsBuild": "Build a computer-emissions interceptor",
+          "emissionsRead": "Read a computer's emissions",
+          "acousticKeylog": "Acoustic keylogging: the typing sample",
+          "rfidCapture": "Capture an RFID chip",
+          "boosterBag": "Make a booster bag",
+          "improvisedWhiteNoise": "Improvise white noise from an FM receiver"
+        },
+        "Typing": "Typist's Typing",
+        "TypingOf": "{name}'s Typing",
+        "Manual": "On a manual typewriter",
+        "ShieldedRow": "The card is in a shielded wallet",
+        "JobLabel": "{task} ({skill})",
+        "EmissionsLine": "{yards} yards (past {free})",
+        "SampleTime": "The {characters}-character sample (about {words} words) takes {minutes} min. of the victim's typing.",
+        "NoTyping": "This typist can't type: no sample.",
+        "WalletBlocks": "A shielded wallet blocks the chip: it can't be read.",
+        "RfidLine": "RFID capture",
+        "RfidDistance": "{yards} yards to the chip",
+        "ImprovisedLine": "Improvised generator"
       }
     },
     "Backblast": {
