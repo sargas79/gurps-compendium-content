@@ -78,14 +78,15 @@
  * device's HP, HT and DR, and building from kits (HT:EE pp. 8-9, 15),
  * and its audio gear: sound quality and the weakest link, microphones,
  * headphones and earbuds, amplifiers' Hearing ranges and the hearing aid
- * (HT:EE pp. 30-32), and its appliances, power tools and electromedicine:
+ * (HT:EE pp. 30-32), its appliances, power tools and electromedicine:
  * heaters, fans and kitchen gear, shredders and vacuums, electromagnets,
  * remote control and the emergency stop, power tools' work, diathermy, the
  * heating pad, electroconvulsive therapy and the laser scalpel (HT:EE pp.
  * 13-14, 20-25), with its revision of the defibrillator's revival (HT:EE
- * p. 14), and its power: battery chemistries, capacitors, supercapacitors,
+ * p. 14), its power: battery chemistries, capacitors, supercapacitors,
  * flywheels and generators, and the grades of external power (HT:EE pp. 9,
- * 16-18).
+ * 16-18), and its skills: the new defaults onto the Basic Set's skills and
+ * the skills that stand in for others (HT:EE pp. 6-8).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -141,6 +142,7 @@ import { readyLighting } from "./lighting/index.js";
 import { readyAudio } from "./audio/index.js";
 import { applianceClimateGear, readyAppliances } from "./appliances/index.js";
 import { readyElectromedicine } from "./electromedicine/index.js";
+import { readySkills } from "./skills/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -362,6 +364,8 @@ const RULES = [
   { key: "electricAppliances", pages: "pp. 21-25", reference: EE_REFERENCE, implemented: true },
   { key: "powerTools", pages: "pp. 14, 21, 24", reference: EE_REFERENCE, implemented: true },
   { key: "electromedicine", pages: "pp. 13-14, 21", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: the new skills' defaults onto the Basic Set's, and skills standing in for others.
+  { key: "skillSubstitutes", pages: "pp. 6-8", reference: EE_REFERENCE, implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -496,6 +500,7 @@ function ready(api: GWorldApi): void {
   readyAppliances(api, { appliances: rule("electricAppliances"), powerTools: rule("powerTools") });
   readyElectromedicine(api, rule("electromedicine"));
   readyConveyances(api, rule("personalConveyances"));
+  readySkills(api, { substitutes: rule("skillSubstitutes") });
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
   readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });
   readyInstruments(api, { measurement: rule("electricalMeasurement"), instruments: rule("labInstruments"), combined: rule("combinedDevices") });
