@@ -1,5 +1,37 @@
 # Changelog
 
+## v0.20.0 — High-Tech follow-ups
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.44.0**, which this release requires (add-on API
+1.142.0). It also runs on gworld v1.45.0. On an older system the add-on
+registers no rules, and says so in the console.
+
+- **High-Tech, rules that waited on the system (#555, part of #510):**
+  - Tools: only the tool the system picked lifts a TL line. Armoury, Electrician, Electronics Repair, Machinist and Mechanic take the no-equipment penalty without a kit.
+  - Hearing rolls: the padded grapnel, the whistle and the bowstring silencer. Signal ranges now limit the signals' Vision bonus.
+  - Fatigue: frostbite after Very Fit, and armour's extra FP in a hot day's battle.
+  - Shoulder pads in a slam.
+  - Disarms: the Retain Weapon roll names the gun, and Instant Arsenal Disarm unreadies the foe's weapon.
+  - Vehicles: Mounted Shooting names the vehicle, and loading aboard finds an unlinked vehicle token. Run-flat tyres cover crippled wheels.
+  - Gear and injuries: handload batches add rounds, the flamethrower backpack's facing counts, and a blast's deafness and blindness are imposed with a recovery roll.
+  - Medicine and the searchlight: physician's rounds without supplies are made at TL5, elective surgery adds and removes traits, and searchlight range comes from the map.
+- **Electricity and Electronics, rules that waited on the system (#554, part of #549):**
+  - Devices: a dropped device takes injury on the item, and fitting a fuze uses one up.
+  - Electrical hazards: a strong nonlethal shock stops the heart on a critical failure, a guarded critical failure on stolen power becomes an ordinary failure, and a weak shock's bonus applies to damage under 0.
+  - Rolls: a survey's +2 is held for the skill it helps, and a refused SIGINT task still posts its follow-up card. A pedometer shortens Hiking study.
+  - Weapons: the cattle prod reads the hit location, laser seekers home semi-actively through the system, and High-Tech's blinding laser records crippled eyes.
+- **Fixes (#552):**
+  - Implants knocked out by an EMP warhead stay out for seconds, not minutes (#545).
+  - The GPR medium row shows its label.
+  - Stolen power reads the power grades.
+  - Battery weight counts the chemistry.
+  - The computer sheet's option labels no longer wrap.
+  - Two hazards roll the object's side of a contest without the victim's conditions.
+  - `capture-gear.mjs` reads the PDF as UTF-8.
+
+What the rules don't cover yet is still listed in #510 and #549.
+
 ## v0.19.0 — GURPS High-Tech: Electricity and Electronics
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
