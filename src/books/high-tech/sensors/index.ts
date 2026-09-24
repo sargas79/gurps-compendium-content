@@ -228,7 +228,7 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
   if (radio) {
     const antenna = data.options.longAntenna;
     const range = comm.range * (antenna ? 2 : 1);
-    lines.push(F("RadioRange", { range: distance(range), tl: radio.tl }));
+    lines.push(F("RadioRange", { range: distance(comm.range), tl: radio.tl }));
     if (radio.size === "large") lines.push(L("LargeSetUp"));
     if (antenna) lines.push(L("LongAntennaLine"));
     if (data.options.satelliteUplink) lines.push(L("UplinkLine"));
