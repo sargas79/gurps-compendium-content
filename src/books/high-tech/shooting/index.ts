@@ -44,6 +44,7 @@ import {
   halvedDefault,
   instantArsenalResult,
   isPistolSkill,
+  mountedShootingFits,
   mountedShootingLine,
   nextPrecisionSecond,
   pistoleroBulk,
@@ -357,14 +358,17 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
         if (line) lines.push({ label: L("CloseQuartersLine"), value: line });
       }
 
-      // Mounted Shooting: a moving mount or vehicle can't take a handheld weapon's skill below the technique (p. 251).
+      // Mounted Shooting: a moving mount or vehicle can't take a handheld weapon's skill below the technique (p. 251),
+      // one for that kind of vehicle: the line names the vehicle since API 1.141.0.
       const platform = lines.find((l) => l?.key === "movingPlatform");
       if (platform && (platform.mounting ?? "handheld") === "handheld") {
-        const relative = techniqueRelative(api, actor, skill, /^mounted shooting\b/i, MOUNTED_SHOOTING_DEFAULT);
+        const vehicle = platform.platform === "vehicle" ? platform.vehicle ?? null : null;
+        const fits = (technique: any) => mountedShootingFits(String(technique?.name ?? ""), vehicle ? { name: String(vehicle.name ?? ""), skill: String(vehicle.system?.skill ?? "") } : null);
+        const relative = techniqueRelative(api, actor, skill, /^mounted shooting\b/i, MOUNTED_SHOOTING_DEFAULT, fits);
         const value = mountedShootingLine(Number(platform.value) || 0, relative);
         if (value !== platform.value) {
           platform.value = value;
-          platform.label = F("MountedShootingLine", { label: platform.label });
+          platform.label = vehicle ? F("MountedShootingVehicleLine", { label: platform.label, vehicle: String(vehicle.name ?? "") }) : F("MountedShootingLine", { label: platform.label });
         }
       }
 
@@ -538,10 +542,11 @@ export async function instantArsenalDisarm(api: GWorldApi, technique: any, actor
   const resist = retainWeapon(api, foe, gun);
   const key = String(actor?.uuid ?? "");
   contests.delete(key);
+  // The foe's side names the gun held onto (API 1.136.0), for a retention holster's +2.
   const contest: any = await api.roll.quickContest({
     label: F("IadContest", { gun: String(gun.name ?? "") }),
     first: { actor, base: level, note: String(technique.name ?? "") },
-    second: { actor: foe, base: resist.level, note: resist.name },
+    second: { actor: foe, base: resist.level, note: resist.name, item: gun },
     tags: ["instantArsenalDisarm", "disarm"],
   } as any);
   if (!contest) return null;
@@ -551,6 +556,11 @@ export async function instantArsenalDisarm(api: GWorldApi, technique: any, actor
   if (result === "disabled") {
     const set = gun.isOwner ? await (api.items as any).setMalfunction?.(gun, { kind: DISASSEMBLED, label: L("Disassembled") }) : undefined;
     await say(actor, title, [L("IadDisabled"), ...(gun.isOwner && set !== false ? [] : [L("IadGmMarks")])]);
+  } else if (result === "unready") {
+    // Left unready in the foe's hands, through the GM where the user doesn't own it (API 1.136.0).
+    // The contest's message is the proof a later API asks of a player; this one ignores it.
+    const done = await api.items.setUnready(gun, true, { reason: L("Iad"), attacker: actor, ...(contest.messageId ? { contest: contest.messageId } : {}) } as any);
+    await say(actor, title, [L("IadResult.unready"), ...(done ? [] : [L("IadGmUnready")])]);
   } else {
     await say(actor, title, [L(`IadResult.${result}`)]);
   }

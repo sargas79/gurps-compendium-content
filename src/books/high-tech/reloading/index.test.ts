@@ -33,7 +33,14 @@ function fakeApi() {
     registry: { isRuleOn: () => false },
     combat: { hooks: HOOKS },
     sheets: { registerSheetSection: (s: any) => sections.push(s) },
-    actors: { skillLevel: (_a: any, skill: string) => (skill === "Fast-Draw (Ammo)" ? fastDrawAmmo : skills[skill] ?? null) },
+    actors: {
+      skillLevel: (_a: any, skill: string) => (skill === "Fast-Draw (Ammo)" ? fastDrawAmmo : skills[skill] ?? null),
+      // The system's reading, which finds an unlinked vehicle token's crew as well as a world vehicle's (API 1.141.0).
+      vehicleAboard: (actor: any) => {
+        const vehicle = vehicles.find((v) => (v.system?.crew ?? []).some((seat: any) => seat.uuid === actor?.uuid));
+        return vehicle ? { vehicle, operator: false, moving: (Number(vehicle.system?.speed) || 0) > 0, medium: "ground" } : null;
+      },
+    },
   };
 }
 
@@ -361,7 +368,8 @@ describe("loading in the saddle or on the move (High-Tech pp. 86-87)", () => {
     skills = { "Guns (Musket)": 12, "Riding (Horse)": 14 };
     const bess = (patch: Parameters<typeof gun>[0] = {}) => gun({ name: "Brown Bess, .75 Flintlock", skill: "Guns (Musket)", shots: "1(40)", rof: 1, tl: "5", ...patch });
     expect(entryOf(bess({ mounted: true, items: [{ type: "skill", name: "Riding (Horse)" }] })).requiredRolls).toEqual([{ level: 9, label: expect.stringContaining("MountedRoll") }]);
-    vehicles = [{ type: "vehicle", system: { speed: 10, crew: [{ uuid: "Actor.shooter" }] } }];
+    // A vehicle that is only an unlinked token on the map, as the system finds it.
+    vehicles = [{ type: "vehicle", isToken: true, system: { speed: 10, crew: [{ uuid: "Actor.shooter" }] } }];
     expect(entryOf(bess()).requiredRolls).toEqual([{ level: 10, label: expect.stringContaining("VehicleRoll") }]);
     // Standing still, or fixed ammunition on the move: no roll.
     expect(entryOf(gun()).requiredRolls).toEqual([]);

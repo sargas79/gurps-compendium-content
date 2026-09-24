@@ -6087,7 +6087,9 @@
           "shotAtHand": "Critical failure: the foe keeps the gun and may shoot the disarmer in the hand at full skill."
         },
         "PrecisionLostReason": "the Precision Aiming roll failed",
-        "MountedShootingLine": "{label} (Mounted Shooting)"
+        "MountedShootingLine": "{label} (Mounted Shooting)",
+        "MountedShootingVehicleLine": "{label} (Mounted Shooting, {vehicle})",
+        "IadGmUnready": "The GM marks the gun unready."
       },
       "Sustained": {
         "Title": "Sustained fire",

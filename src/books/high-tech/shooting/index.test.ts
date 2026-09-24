@@ -24,6 +24,7 @@ let rolls: any[];
 let rollOutcome: any;
 let contestOutcome: any;
 let malfunctions: any[];
+let unreadied: any[];
 let prompted: unknown;
 let zenSkills: any[];
 let aimsLost: any[];
@@ -61,13 +62,16 @@ function fakeApi() {
         return true;
       },
     },
-    items: { setMalfunction: async (item: any, m: any) => { malfunctions.push({ item: item.id, ...m }); return true; } },
+    items: {
+      setMalfunction: async (item: any, m: any) => { malfunctions.push({ item: item.id, ...m }); return true; },
+      setUnready: async (item: any, unready: boolean, o: any) => { unreadied.push({ item: item.id, unready, ...o }); return { itemId: item.id, unready, reason: o?.reason ?? "" }; },
+    },
     roll: {
       success: async (r: any) => { rolls.push(r); return rollOutcome; },
       quickContest: async (r: any) => {
         rolls.push(r);
         fire(HOOKS.afterQuickContest, { tags: r.tags, first: { actor: r.first.actor, outcome: { criticalFailure: contestOutcome.critical === true } }, second: {} });
-        return { outcome: contestOutcome.outcome, marginOfVictory: contestOutcome.margin ?? 0 };
+        return { outcome: contestOutcome.outcome, marginOfVictory: contestOutcome.margin ?? 0, messageId: "m1" };
       },
     },
   };
@@ -152,6 +156,7 @@ beforeEach(() => {
   rollOutcome = { success: true, criticalFailure: false };
   contestOutcome = { outcome: "first" };
   malfunctions = [];
+  unreadied = [];
   prompted = 0;
   zenSkills = [];
   aimsLost = [];
@@ -355,11 +360,18 @@ describe("gun techniques (pp. 250-252)", () => {
     const contests = new Map<string, boolean>();
     expect(await instantArsenalDisarm(fakeApi() as never, iad, actor, contests)).toBe("disabled");
     expect(rolls[0]).toMatchObject({ base: 13, modifiers: [{ value: -4 }] });
-    expect(rolls[1]).toMatchObject({ first: { base: 11 }, second: { base: 12, note: "DX" } });
+    // The foe's side names the gun held onto (API 1.136.0).
+    expect(rolls[1]).toMatchObject({ first: { base: 11 }, second: { base: 12, note: "DX", item: pistol }, tags: ["instantArsenalDisarm", "disarm"] });
     expect(malfunctions).toEqual([{ item: pistol.id, kind: `${MODULE_ID}.disassembled`, label: "GCC.HT.Shooting.Disassembled" }]);
+    expect(unreadied).toEqual([]);
 
     contestOutcome = { outcome: "second", margin: 2 };
     expect(await instantArsenalDisarm(fakeApi() as never, iad, actor, contests)).toBe("unready");
+    // Left unready in the foe's hands, through the GM where need be, with the contest as its proof.
+    expect(unreadied).toEqual([{ item: pistol.id, unready: true, reason: "GCC.HT.Shooting.Iad", attacker: actor, contest: "m1" }]);
+    contestOutcome = { outcome: "second", margin: 4 };
+    expect(await instantArsenalDisarm(fakeApi() as never, iad, actor, contests)).toBe("intact");
+    expect(unreadied).toHaveLength(1);
     rollOutcome = { success: false };
     expect(await instantArsenalDisarm(fakeApi() as never, iad, actor, contests)).toBe("missed");
   });
@@ -414,6 +426,25 @@ describe("Mounted Shooting (p. 251)", () => {
     expect(shot.modifiers[0]).toMatchObject({ value: -1, label: "GCC.HT.Shooting.MountedShootingLine {\"label\":\"Moving mount\"}" });
     // A penalty already above the floor is left alone.
     expect(attack(tommy(), actor, { modifiers: riding(-1) }).modifiers[0].value).toBe(-1);
+  });
+
+  it("counts only the technique for the vehicle the line names (API 1.141.0)", () => {
+    on.gunTechniques = true;
+    const actor = shooter({ items: [technique("Mounted Shooting (SMG/Motorcycle)", 11, { prerequisite: "Guns (Submachine Gun)" })] });
+    const zundapp = { name: "Zündapp KS 750", system: { skill: "Driving (Motorcycle)" } };
+    const jeep = { name: "Willys MB", system: { skill: "Driving (Automobile)" } };
+    const aboard = (vehicle: any) => riding(-4, { platform: "vehicle", vehicle });
+    const onBike = attack(tommy(), actor, { modifiers: aboard(zundapp) }).modifiers[0];
+    expect(onBike).toMatchObject({ value: -1, label: expect.stringContaining("MountedShootingVehicleLine") });
+    expect(onBike.label).toContain("Zündapp KS 750");
+    expect(attack(tommy(), actor, { modifiers: aboard(jeep) }).modifiers[0].value).toBe(-4);
+    // Two techniques: the one for this vehicle.
+    const both = shooter({ items: [
+      technique("Mounted Shooting (SMG/Automobile)", 9, { prerequisite: "Guns (Submachine Gun)" }),
+      technique("Mounted Shooting (SMG/Motorcycle)", 11, { prerequisite: "Guns (Submachine Gun)" }),
+    ] });
+    expect(attack(tommy(), both, { modifiers: aboard(zundapp) }).modifiers[0].value).toBe(-1);
+    expect(attack(tommy(), both, { modifiers: aboard(jeep) }).modifiers[0].value).toBe(-3);
   });
 
   it("does nothing at its default, for another weapon skill, or for a weapon on a mount", () => {
