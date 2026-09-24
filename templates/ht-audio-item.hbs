@@ -1,0 +1,28 @@
+{{!-- The Electricity and Electronics supplement's audio gear: sound quality, microphones, earphones and amplifiers (HT:EE pp. 30-32). --}}
+<div class="isub" data-gcc-ht-audio-section>
+  <div class="isub-head">{{localize "GCC.HT.Audio.Title"}}</div>
+  {{#if quality}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Audio.QualityHint'}}">{{localize "GCC.HT.Audio.QualityLabel"}} <input type="number" data-ht-audio="soundQuality" value="{{quality.value}}" min="-10" max="10" step="1" placeholder="{{localize 'GCC.HT.Audio.QualityGrade'}}" {{#unless editable}}disabled{{/unless}} /></label>
+      {{#if speakers}}<label data-tooltip="{{localize 'GCC.HT.Audio.SpeakersHint'}}">{{localize "GCC.HT.Audio.SpeakersLabel"}} <input type="number" data-ht-audio="extraSpeakers" value="{{speakers.value}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>{{/if}}
+      {{#if listening}}
+        <label data-tooltip="{{localize 'GCC.HT.Audio.ListeningHint'}}">{{localize "GCC.HT.Audio.ListeningLabel"}}
+          <select data-ht-audio="listening" {{#unless editable}}disabled{{/unless}}>
+            {{#each listening as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    </div>
+  {{else if speakers}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Audio.SpeakersHint'}}">{{localize "GCC.HT.Audio.SpeakersLabel"}} <input type="number" data-ht-audio="extraSpeakers" value="{{speakers.value}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+  {{/if}}
+  {{#if carbon}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Audio.CarbonHint'}}"><input type="checkbox" data-ht-audio="carbonMicrophone" {{#if carbon.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Audio.Carbon"}}</label>
+      {{#if inexpensive}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Audio.InexpensiveHint'}}"><input type="checkbox" data-ht-audio="inexpensive" {{#if inexpensive.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Audio.Inexpensive"}}</label>{{/if}}
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

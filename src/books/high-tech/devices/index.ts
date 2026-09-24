@@ -89,6 +89,14 @@ export interface DeviceData {
   dr: number | null;
   /** The fragile parts inside it, their HP and HT, and how many are broken. */
   parts: { count: number; label: string; hp: number; ht: number; broken: number };
+  /** Audio gear (HT:EE pp. 30-32): the link's sound quality where the GM states one, null to read it from the grade. */
+  soundQuality: number | null;
+  /** A carbon microphone: improvised for high fidelity, and tougher (HT:EE p. 31). */
+  carbonMicrophone: boolean;
+  /** The cheaper microphone, at a fifth of the price (HT:EE p. 31). */
+  inexpensive: boolean;
+  /** A public address system's speakers beyond the first (HT:EE p. 32). */
+  extraSpeakers: number;
 }
 
 /** Adds the device fields to this module's data on equipment and armour. */
@@ -114,6 +122,10 @@ export function initDevices(): void {
         ht: count(10, 1),
         broken: count(),
       }),
+      soundQuality: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: -10, max: 10 }),
+      carbonMicrophone: new f.BooleanField({ initial: false }),
+      inexpensive: new f.BooleanField({ initial: false }),
+      extraSpeakers: count(),
     }),
   });
 }
@@ -136,11 +148,15 @@ export function deviceData(item: any): DeviceData {
     ht: stated(d.ht),
     dr: stated(d.dr),
     parts: { count, label: String(p.label ?? "").trim(), hp: whole(p.hp, 1), ht: Number(p.ht) >= 1 ? whole(p.ht, 1) : DEVICE_HT, broken: Math.min(count, whole(p.broken)) },
+    soundQuality: typeof d.soundQuality === "number" && Number.isFinite(d.soundQuality) ? Math.max(-10, Math.min(10, Math.trunc(d.soundQuality))) : null,
+    carbonMicrophone: d.carbonMicrophone === true,
+    inexpensive: d.inexpensive === true,
+    extraSpeakers: whole(d.extraSpeakers),
   };
 }
 
 /** Writes part of the device data. */
-function storeDevice(item: any, patch: Record<string, unknown>): Promise<unknown> {
+export function storeDevice(item: any, patch: Record<string, unknown>): Promise<unknown> {
   return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.${FIELD}.${key}`, value])));
 }
 

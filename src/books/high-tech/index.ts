@@ -70,7 +70,10 @@
  * (pp. 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143, 147-217, 219-231,
  * 234-235, 249-252), and the Electricity and Electronics device
  * conventions: cutting-edge prices and prototypes, breakable parts and a
- * device's HP, HT and DR, and building from kits (HT:EE pp. 8-9, 15).
+ * device's HP, HT and DR, and building from kits (HT:EE pp. 8-9, 15),
+ * and its audio gear: sound quality and the weakest link, microphones,
+ * headphones and earbuds, amplifiers' Hearing ranges and the hearing aid
+ * (HT:EE pp. 30-32).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -119,6 +122,7 @@ import { initDrugs, readyDrugs } from "./drugs/index.js";
 import { initVehicles, readyVehicles } from "./vehicles/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
 import { readyLighting } from "./lighting/index.js";
+import { readyAudio } from "./audio/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -312,6 +316,9 @@ const RULES = [
   { key: "cuttingEdgeGear", pages: "p. 8", reference: EE_REFERENCE, implemented: true },
   { key: "breakableComponents", pages: "pp. 8-9", reference: EE_REFERENCE, implemented: true },
   { key: "kitBuilding", pages: "p. 15", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: audio gear.
+  { key: "audioFidelity", pages: "pp. 30-31", reference: EE_REFERENCE, implemented: true },
+  { key: "soundAmplification", pages: "p. 32", reference: EE_REFERENCE, implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -432,6 +439,8 @@ function ready(api: GWorldApi): void {
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));
+  // After the prosthetics, whose hearing aid it takes the same way, and after the devices' object figures, which a carbon microphone's HT overrides.
+  readyAudio(api, { fidelity: rule("audioFidelity"), amplification: rule("soundAmplification") });
   readyConveyances(api, rule("personalConveyances"));
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
   readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });

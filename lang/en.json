@@ -5314,6 +5314,14 @@
         "kitBuilding": {
           "Name": "Building from kits",
           "Hint": "A device bought as a kit costs a quarter of its price (20% for parts, 5% for the instructions). A row action builds it as a single copy, rolled against IQ or a Hobby Skill (the instructions count as One-Task Wonder), with Time Spent against half the prototype time for its grade; once built it's no longer a kit (High-Tech: Electricity and Electronics p. 15; Campaigns pp. 346, 474)."
+        },
+        "audioFidelity": {
+          "Name": "Audio fidelity",
+          "Hint": "From the supplement Electricity and Electronics. A row action listens through a chain of the character's audio gear: Hearing to tell sounds apart, or Connoisseur (Music), at the weakest link's sound quality (a carbon microphone -5, a TL6 guitar amplifier -2, or a figure the GM sets), after an Electronics Operation roll to aim a parabolic microphone (then +2 for high sounds, +1 for speech) or a shotgun microphone (+3 to aim). The later microphones give +1 to Electronics Operation (Media); a carbon microphone has HT 12; the cheaper microphone costs a fifth; a better loudspeaker weighs twice as much a step. Headphones playing leave the wearer Hard of Hearing, -2 turned down, earbuds half that; the tactical headset gives Protected Hearing; the supplement's basic hydrophone rolls Electronics Operation (Sonar), +2 at TL7 and +4 at TL8, and fixes nothing (Electricity and Electronics pp. 30-31)."
+        },
+        "soundAmplification": {
+          "Name": "Sound amplification",
+          "Hint": "From the supplement Electricity and Electronics. A row action addresses the targeted listeners through a public address system (16 yards), guitar amplifier (16 yards at TL6, 32 after), bullhorn (16 yards in front, 8 to the side, 4 behind; -2 to follow the words) or acoustic hailing device (256 yards in a 60-degree cone): each rolls Hearing at his distance against that base range (Campaigns p. 358). A bullhorn in hand gives +1 to Intimidation within 2 yards, a hailing device within 32. A public address system's extra speakers cost $20 and 3 lbs. each and share its battery. A worn hearing aid takes Hard of Hearing out of play as a Mitigator; an early aid's poor sound, set as its sound quality, is on its wearer's Hearing rolls (Electricity and Electronics p. 32)."
         }
       },
       "Codes": {
@@ -9675,6 +9683,99 @@
         "RfidLine": "RFID capture",
         "RfidDistance": "{yards} yards to the chip",
         "ImprovisedLine": "Improvised generator"
+      },
+      "Audio": {
+        "Title": "Audio (Electricity and Electronics)",
+        "QualityLabel": "Sound quality",
+        "QualityHint": "This link's sound quality where it differs from its equipment grade: an early model, a cheap microphone, an early hearing aid (-2). Leave blank to read it from the grade.",
+        "QualityGrade": "from grade",
+        "SpeakersLabel": "Extra speakers",
+        "SpeakersHint": "Speakers beyond the first: $20 and 3 lbs. each, and the battery life divided among all of them (Electricity and Electronics p. 32).",
+        "ListeningLabel": "Playing",
+        "ListeningHint": "Whether the wearer is listening to it, which drowns out other sounds while it is worn (Electricity and Electronics p. 31).",
+        "Listening": {
+          "off": "Off",
+          "loud": "Listening",
+          "low": "Turned down"
+        },
+        "Carbon": "Carbon microphone",
+        "CarbonHint": "A carbon microphone: improvised gear for high fidelity (-5 to sound quality), no +1 to Electronics Operation, and HT 12 (Electricity and Electronics p. 31).",
+        "Inexpensive": "Inexpensive",
+        "InexpensiveHint": "A cheaper microphone of lower signal quality at 20% of the price; set its sound quality above (Electricity and Electronics p. 31).",
+        "QualityLine": "Sound quality {value}: a chain of gear sounds no better than its weakest link.",
+        "CarbonLine": "Carbon microphone: -5 to sound quality, and HT {ht}.",
+        "MicrophoneLine": "{bonus} to Electronics Operation (Media) over a carbon microphone.",
+        "ParabolicLine": "Aimed at a sound with Electronics Operation: +2 to detect or identify high sounds, +1 for speech, nothing for low sounds.",
+        "ShotgunLine": "{bonus} to Electronics Operation to aim it at one sound.",
+        "AsMicrophoneLine": "Can be used as a microphone at {value} to quality.",
+        "HeadphonesLine": "While playing, the wearer is effectively Hard of Hearing; -2 turned down.",
+        "EarbudsLine": "While playing, -2 to the wearer's other Hearing rolls; -1 turned down.",
+        "SpeakerLine": "Twice the weight for each step of quality above basic.",
+        "HeadsetLine": "Protected Hearing while worn.",
+        "HydrophoneLine": "Electronics Operation (Sonar) {bonus} to hear under water; detects moving objects by size, speed and range, but fixes no target.",
+        "Range": "Base Hearing range {yards} yards.",
+        "ArcRange": "Base Hearing range {front} yards in front, {side} to the side, {rear} behind.",
+        "ConeRange": "Base Hearing range {yards} yards in a {cone}-degree cone in front.",
+        "DistortionLine": "Distorted: {value} to recognize a voice or understand speech.",
+        "IntimidationLine": "+1 to Intimidation out to {yards} yards.",
+        "IntimidationArcs": "+1 to Intimidation within {front} yards in front or {side} to the side.",
+        "GuitarEarly": "Sound quality -2 with a conventional guitar; Electronics Operation (Media) to set up; -2 to effective skill to play with distortion.",
+        "GuitarLater": "No extra penalty to play with distortion.",
+        "SpeakersLine": "{count} speakers: the battery life is shared among them.",
+        "HearingAidLine": "Worn and powered, a Mitigator for Hard of Hearing; a Hearing roll is still needed.",
+        "Link": "{name} ({value})",
+        "ListenTitle": "Listen through gear",
+        "ListenHint": "Tick each link between the sound and the ear: the chain is no better than its weakest link.",
+        "OtherLink": "Another link's quality (a phone line, an earphone as microphone {value})",
+        "TaskLabel": "Roll",
+        "Task": {
+          "hearing": "Hearing, to tell sounds apart",
+          "music": "Connoisseur (Music)",
+          "hear": "Hear it",
+          "understand": "Recognize the voice or follow the words"
+        },
+        "Aim": "Aim the microphone at a sound",
+        "Pitch": {
+          "none": "Not aimed",
+          "high": "High sound (1 kHz and up)",
+          "speech": "Human speech",
+          "low": "Low sound"
+        },
+        "SoundYards": "Distance from the microphone to the sound (yards)",
+        "SoundBase": "Heard unaided out to (yards)",
+        "AimRoll": "Aiming {name}",
+        "AimMissed": "{name} isn't picking out the sound.",
+        "ChainLine": "Weakest of {count} links",
+        "ParabolicBonus": "{name} aimed ({pitch})",
+        "HearingRoll": "Hearing through {name}",
+        "MusicRoll": "Connoisseur (Music) through {name}",
+        "Deaf": "{name} can't hear.",
+        "OwnHeadphones": "Listening to {name} itself",
+        "AddressTitle": "Address listeners",
+        "AddressTargets": "{count} targeted listeners each roll Hearing at their distance.",
+        "AddressNobody": "Nobody targeted: the card gives the Hearing modifier at the distance entered.",
+        "ArcLabel": "Listeners are",
+        "ArcName": {
+          "front": "In front",
+          "side": "To the side",
+          "rear": "Behind",
+          "outside": "Outside the cone"
+        },
+        "Yards": "Distance (yards)",
+        "AddressRoll": "Hearing {name}",
+        "OutsideCone": "Outside the cone the device isn't heard at its range.",
+        "Distorted": "{name}'s distortion",
+        "AtDistance": "At {yards} yards against a base range of {range} yards: {value} to Hearing.",
+        "ListeningSource": "Listening to {name}",
+        "ListeningLine": "Listening to {name}",
+        "MicrophoneBonus": "{name}",
+        "EarlyAid": "{name}'s sound",
+        "IntimidationBonus": "{name}",
+        "CarbonNote": "A carbon microphone: HT {ht}.",
+        "InexpensivePrice": "Inexpensive (x0.2)",
+        "SpeakerWeight": "Quality (weight)",
+        "SpeakersPrice": "{count} extra speakers",
+        "HydrophoneTitle": "Listen (hydrophone)"
       }
     },
     "Backblast": {

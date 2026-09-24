@@ -97,17 +97,22 @@ export function sightCured(actor: any): boolean {
 
 /**
  * Takes the mitigated disadvantages out of play, and Bad Sight laser surgery
- * cured. `entries` are the hook's `{ name, inPlay }` rows.
+ * cured. `entries` are the hook's `{ name, inPlay }` rows. `only` limits it
+ * to the prosthetics of that name, and leaves surgery out: the supplement
+ * Electricity and Electronics' audio switch mitigates with hearing aids alone
+ * (HT:EE p. 32). A trait already out of play is left as it is, so running
+ * both is running one.
  */
-export function applyMitigations(actor: any, entries: any[]): void {
+export function applyMitigations(actor: any, entries: any[], only?: RegExp): void {
   const open = entries.filter((e) => e && e.inPlay !== false);
-  for (const m of mitigations(open.map((e) => String(e.name ?? "")), wornProsthetics(actor))) {
+  const worn = wornProsthetics(actor).filter((name) => !only || only.test(name.trim()));
+  for (const m of mitigations(open.map((e) => String(e.name ?? "")), worn)) {
     const entry = open[m.trait];
     entry.inPlay = false;
     entry.reason = F("Mitigated", { item: m.by });
     if (m.leaves.length) entry.restores = m.leaves.map((l) => ({ ...l }));
   }
-  if (!sightCured(actor)) return;
+  if (only || !sightCured(actor)) return;
   for (const entry of open) {
     if (entry.inPlay === false || !isBadSight(String(entry.name ?? ""))) continue;
     entry.inPlay = false;
