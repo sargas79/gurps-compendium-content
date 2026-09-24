@@ -30,6 +30,11 @@
     </div>
     {{#if broken}}<p class="ihint">{{broken}} {{#if editable}}<button type="button" data-ht-device-replace>{{localize "GCC.HT.Devices.ReplaceParts"}}</button>{{/if}}</p>{{/if}}
   {{/if}}
+  {{#if combined}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Devices.CombinedHint'}}"><input type="checkbox" data-ht-device="combined" {{#if data.combined}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Devices.Combined"}}</label>
+    </div>
+  {{/if}}
   {{#if kits}}
     <div class="ichecks">
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Devices.KitHint'}}"><input type="checkbox" data-ht-device="kit" {{#if data.kit}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Devices.KitLabel"}}</label>

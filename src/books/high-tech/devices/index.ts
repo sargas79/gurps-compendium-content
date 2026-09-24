@@ -69,6 +69,8 @@ export interface DeviceSwitches {
   cuttingEdge: () => boolean;
   breakable: () => boolean;
   kits: () => boolean;
+  /** Combined devices (HT:EE p. 9; #487): marks a device built from separate parts. */
+  combined?: () => boolean;
 }
 
 /** What a record says about a device. */
@@ -83,6 +85,8 @@ export interface DeviceData {
   kit: boolean;
   /** A device more fragile than its HP say, DR 0: a bulb, a tube. */
   fragile: boolean;
+  /** An early device combined from separate parts, -2 to use (HT:EE p. 9). */
+  combined: boolean;
   /** HP, HT and DR where the record states them; null to take the supplement's defaults. */
   hp: number | null;
   ht: number | null;
@@ -112,6 +116,7 @@ export function initDevices(): void {
       cuttingEdge: new f.BooleanField({ initial: false }),
       kit: new f.BooleanField({ initial: false }),
       fragile: new f.BooleanField({ initial: false }),
+      combined: new f.BooleanField({ initial: false }),
       hp: stated(),
       ht: stated(),
       dr: stated(),
@@ -144,6 +149,7 @@ export function deviceData(item: any): DeviceData {
     cuttingEdge: d.cuttingEdge === true,
     kit: d.kit === true,
     fragile: d.fragile === true,
+    combined: d.combined === true,
     hp: stated(d.hp),
     ht: stated(d.ht),
     dr: stated(d.dr),
@@ -248,6 +254,7 @@ function itemContext(api: GWorldApi, item: any, on: DeviceSwitches): Record<stri
   const cutting = on.cuttingEdge();
   const breakable = on.breakable();
   const kits = on.kits();
+  const combined = on.combined?.() ?? false;
   const prototype: string[] = [];
   if (cutting) {
     if (data.prototypeYear || data.marketYear) {
@@ -264,6 +271,7 @@ function itemContext(api: GWorldApi, item: any, on: DeviceSwitches): Record<stri
     cutting,
     breakable,
     kits,
+    combined,
     data,
     complexities: ["", ...COMPLEXITIES].map((value) => ({ value, label: L(`Complexity.${value || "none"}`), selected: (data.complexity ?? "") === value })),
     prototype,
@@ -481,7 +489,7 @@ export function readyDevices(api: GWorldApi, on: DeviceSwitches): void {
     key: "ht-device-item",
     sheet: "item",
     template: `modules/${MODULE_ID}/templates/ht-device-item.hbs`,
-    visible: (item) => isDevice(item) && (on.cuttingEdge() || on.breakable() || on.kits()),
+    visible: (item) => isDevice(item) && (on.cuttingEdge() || on.breakable() || on.kits() || (on.combined?.() ?? false)),
     context: (item) => itemContext(api, item, on),
     listeners: (element, item) => itemListeners(element, item),
   });

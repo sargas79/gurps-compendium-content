@@ -139,6 +139,7 @@ import {
   tapIsContested,
   type ActiveFigures,
 } from "./rules.js";
+import { isGalvanometer } from "../instruments/rules.js";
 import { DETECTOR_SKILLS, DWELL, detectorSkill, dwellRange, emissionModifier, emissionReach, rangefindingPenalty, sensorSizeModifier, type Dwell } from "./rangefinding.js";
 
 const NS = "GCC.HT";
@@ -432,7 +433,7 @@ function senses(item: any, _actor: any, data: SensorData, on: SensorParts): Worn
 }
 
 /** What the listener hears with beyond the set: Hearing modifiers (p. B358), as their Hearing score over Perception. */
-function hearingModifier(api: GWorldApi, actor: any): number {
+export function hearingModifier(api: GWorldApi, actor: any): number {
   const derived: any = api.actors.derived?.(actor) ?? null;
   const per = Number(derived?.per);
   const hearing = Number((derived?.senses ?? []).find((s: any) => s?.sense === "hearing")?.score);
@@ -440,7 +441,7 @@ function hearingModifier(api: GWorldApi, actor: any): number {
 }
 
 /** A character carries a galvanometer to watch a signal's strength (HT:EE pp. 10-11, 29). */
-const carriesGalvanometer = (actor: any) => [...(actor?.items ?? [])].some((i: any) => carried(i) && /^galvanometer\b/i.test(nameOf(i)));
+const carriesGalvanometer = (actor: any) => [...(actor?.items ?? [])].some((i: any) => carried(i) && isGalvanometer(nameOf(i)));
 
 /**
  * One end's antennas as set for a link (HT:EE p. 28): the dipole's bearing
