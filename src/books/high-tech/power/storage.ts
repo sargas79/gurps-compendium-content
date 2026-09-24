@@ -15,6 +15,8 @@
  * steel and titanium are heavier and cheaper.
  */
 
+import type { PowerGrade } from "./grades.js";
+
 /** The penalty a second capacitor adds (HT:EE p. 17). */
 export const SECOND_CAPACITOR = -2;
 
@@ -50,7 +52,7 @@ export function supercapacitorStandsFor(size: string, sizes: readonly string[]):
 // ── flywheels (HT:EE p. 18) ─────────────────────────────────────────────────
 
 /** The flywheel sizes printed: the share of the same-size battery's energy stored, and the peak output. */
-export const FLYWHEELS: Readonly<Record<string, { energy: number; peak: number; grade: string | null }>> = Object.freeze({
+export const FLYWHEELS: Readonly<Record<string, { energy: number; peak: number; grade: PowerGrade | null }>> = Object.freeze({
   // Two-thirds of an M battery's energy, at 60 times its output: household power.
   M: { energy: 2 / 3, peak: 60, grade: "household" },
   // An L battery's energy at 100 times its output: industrial power.
@@ -98,7 +100,7 @@ export function flywheelPrice(size: string, material: unknown, price: { cost: nu
 }
 
 /** What a flywheel stores and gives: the share of the same-size battery's energy, its peak, and the grade that peak equals. */
-export function flywheelFigures(size: string, material: unknown): { energy: number; peak: number; grade: string | null; minutes: number } | null {
+export function flywheelFigures(size: string, material: unknown): { energy: number; peak: number; grade: PowerGrade | null; minutes: number } | null {
   const printed = FLYWHEELS[size];
   if (!printed) return null;
   const m = isFlywheelMaterial(material) && materialFits(material, size) ? MATERIALS[material] : MATERIALS.carbonFiber;

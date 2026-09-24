@@ -13,8 +13,9 @@
  * The probes are generic: a hook is handed one context carrying the fields
  * the system's hooks carry, and the answers are compared as a whole. A rule
  * that needs more than a record in a character's hands (a trait, the Aim
- * maneuver, a crippling or bleeding wound, a TL penalty on the roll) has a
- * scenario that sets that up around one record; the comparison is the same.
+ * maneuver, a crippling or bleeding wound, a TL penalty on the roll, an
+ * electric shock) has a scenario that sets that up around one record; the
+ * comparison is the same.
  * A rule of the GM's (the black market, a firefight's aftermath) or of a
  * skill (Zen Marksmanship) shows as the GM tool or skill it offers.
  */
@@ -115,6 +116,20 @@ const SCENARIOS: Record<string, { record: string; arrange: Arrange }> = {
       context.defaults = [{ from: "skill", skill: "Guns (Pistol)", modifier: -6 }];
     },
   },
+  // The system's shock, a strong nonlethal one: it can stop the heart (HT:EE p. 9).
+  electricalHazards: {
+    record: "Stun Gun",
+    arrange: (_actor, _item, context) => {
+      Object.assign(context, { kind: "nonlethal", modifier: -5 });
+    },
+  },
+  // A nonlethal shock to someone in a Faraday suit, who shrugs it off (HT:EE pp. 14-15).
+  shockProtection: {
+    record: "Faraday Suit",
+    arrange: (_actor, _item, context) => {
+      Object.assign(context, { kind: "nonlethal", modifier: 0 });
+    },
+  },
 };
 
 /**
@@ -129,15 +144,15 @@ const SHOWN_ELSEWHERE: Record<string, string> = {
   // The supplement Electricity and Electronics' antennas and shortwave are
   // options on High-Tech's radios, priced and read in the radio range tool,
   // so they need the radios switch (HT:EE pp. 28, 30).
-  radioAntennas: "sensors/index.test.ts: offers and prices the dipole and directional antenna, and multiplies the link",
-  shortwaveSkip: "sensors/index.test.ts: offers shortwave, and skips between shortwave sets",
+  radioAntennas: "sensors/index.test.ts: radioAntennas: offers the dipole from TL6 and the directional antenna from TL7, and prices them",
+  shortwaveSkip: "sensors/index.test.ts: shortwaveSkip: skips between shortwave sets, the transmitter with a large antenna",
   // Frequency hopping and direct sequence are the supplement's reading of
   // High-Tech's radio options, offered on the radio's sheet under the radios
   // switch (HT:EE pp. 46-47).
   spreadSpectrum: "sensors/index.test.ts: reads ECCM as frequency hopping, offers and prices direct sequence",
   // How a radio is built: options on High-Tech's radios and the trench radio's
   // sets, so it needs the radios switch too (HT:EE pp. 28-30, 32, 34).
-  radioDesign: "sensors/index.test.ts: prices the design options, reads the trench radio's sets and wire, and rolls the receivers",
+  radioDesign: "sensors/index.test.ts: with radios and radioDesign on: reads the trench radio's sets as radios, priced as printed, and reprices a changed option (HT:EE p. 29)",
 };
 
 // ── a stand-in for the system ────────────────────────────────────────────────

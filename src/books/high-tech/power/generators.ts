@@ -17,6 +17,8 @@
  * record the supplement alone prints is marked `volume: "ee"`.
  */
 
+import type { PowerGrade } from "./grades.js";
+
 /** The fuels the book prices (p. 16), and the two its fuel cells burn. */
 export type FuelKind = "gasoline" | "diesel" | "kerosene" | "alcohol" | "wood" | "methanol" | "hydrogen" | "compressedHydrogen";
 
@@ -37,7 +39,7 @@ export type PowerSource = "fuel" | "muscle" | "wind" | "water" | "solar";
 /** What the supplement prints for a generator (HT:EE pp. 17-18). */
 export interface SupplementGenerator {
   /** The grades of external power it supplies. */
-  supplies?: readonly string[];
+  supplies?: readonly PowerGrade[];
   /** The batteries it takes the place of while it runs. */
   standsFor?: Readonly<{ size: string; cells: number }>;
   /** Hours to recharge one battery of a size. */
@@ -45,7 +47,7 @@ export interface SupplementGenerator {
   /** FP an hour of work, for one worked by muscle (0: no fatigue). */
   fpPerHour?: number;
   /** A wind generator's output in high and low wind; none in calm. */
-  wind?: Readonly<Record<WindSpeed, Readonly<{ supplies: readonly string[]; recharges: Readonly<Record<string, number>> }>>>;
+  wind?: Readonly<Record<WindSpeed, Readonly<{ supplies: readonly PowerGrade[]; recharges: Readonly<Record<string, number>> }>>>;
   /** The skill its operator rolls as the wind changes; none for one that runs itself. */
   skill?: string;
 }

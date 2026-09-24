@@ -1,4 +1,4 @@
-Electrical energy can be stored, as well as generated. This can be useful for a variety of reasons. Power sources may not work all the time (as with solar energy) or may fail unexpectedly. It may not be convenient to keep adevice connected to a power source. Storage devices provide extra power for times of high demand, or accumulate it for big surges, as in weapon systems.
+Electrical energy can be stored, as well as generated. This can be useful for a variety of reasons. Power sources may not work all the time (as with solar energy) or may fail unexpectedly. It may not be convenient to keep a device connected to a power source. Storage devices provide extra power for times of high demand, or accumulate it for big surges, as in weapon systems.
 
 The vital questions about storage devices are how much energy they store and how fast they deliver it. These determine how long they can supply power.
 

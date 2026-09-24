@@ -26,10 +26,6 @@ export const GRADES: Readonly<Record<PowerGrade, { tl: number | null }>> = Objec
   external: { tl: null },
 });
 
-export function isPowerGrade(value: unknown): value is PowerGrade {
-  return typeof value === "string" && (POWER_GRADES as readonly string[]).includes(value);
-}
-
 /** The grades a record keeps that the table knows, in the book's order. */
 export function gradesOf(values: readonly unknown[]): PowerGrade[] {
   return POWER_GRADES.filter((grade) => values.includes(grade));

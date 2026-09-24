@@ -1,6 +1,6 @@
 Military application of telegraphy began in 1855, during the Crimean War. British field units drove wagons carrying telegraphic apparatus, batteries, and miles of wire, managed by squads of six to eight soldiers; messages could be sent to advance bases a few miles away. Telegraphy remained vital to military operations as late as World War I.
 
-Radiotelegraphy came into use at the start of the 20th century, originally for naval warfare, as radio apparatus was so large and heavy that only a warship could transport it. By World War I, radio apparatus was mounted in aircraft or car ried in wagons. World War II saw the use of voice radio, often small enough to be toted by the operator. Since then, radio gear has grown steadily smaller.
+Radiotelegraphy came into use at the start of the 20th century, originally for naval warfare, as radio apparatus was so large and heavy that only a warship could transport it. By World War I, radio apparatus was mounted in aircraft or carried in wagons. World War II saw the use of voice radio, often small enough to be toted by the operator. Since then, radio gear has grown steadily smaller.
 
 ### Spread Spectrum (TL7)
 

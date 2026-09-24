@@ -22,7 +22,7 @@ A radio-interception facility has a variety of equipment, depending on TL.
 
 **Radio Direction Finder (TL6).** A radio with receive-only (p. 28) equipped with a directional antenna (p. 28). Can be improvised with a loop of wire or a dipole (two rigid metal rods pointing in opposite directions), giving -5 to skill rolls. Radio direction finding (RDF) indicates the direction to a transmitter, but not its distance; an improvised system doesn’t indicate which of two opposite directions the transmitter is in. Using a transmitter of known location as a beacon takes 1 minute, requires an unopposed roll vs. Electronics Operation (Comm or EW), and gives +1 to Navigation (Air, Land, or Sea). Can also be used to search for concealed transmitters. ×2 cost. [1902] 1919.
 
-**HF/DF (TL7).** High-frequency direction finding, or “huffduff.” An improvised version can be set up with two RDF sys tems and an oscilloscope (p. 11). Determines the direction of a signal source almost instantly, avoiding penalties for haste. ×5 cost. [1926] 1942; cutting edge (p. 8) until 1945.
+**HF/DF (TL7).** High-frequency direction finding, or “huffduff.” An improvised version can be set up with two RDF systems and an oscilloscope (p. 11). Determines the direction of a signal source almost instantly, avoiding penalties for haste. ×5 cost. [1926] 1942; cutting edge (p. 8) until 1945.
 
 **Spectrum Analyzer (TL7).** See p. 11. Roll Electronics Operation (EW) at +4 to identify an active frequency.
 
