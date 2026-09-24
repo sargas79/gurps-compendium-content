@@ -234,7 +234,7 @@ export const INSTRUMENTS: Readonly<Record<string, Instrument>> = Object.freeze({
   "compact digital oscilloscope": apparatus("oscilloscope", { display: true }),
   "spectrum analyzer": apparatus("spectrumAnalyzer", { display: true }),
   // The TL8 handheld model (HT:EE p. 48) is a spectrum analyzer too; finding transmitters with it
-  // in the field, at Electronics Operation (EW) -2, is signals intelligence's (#500).
+  // in the field, at Electronics Operation (EW) -2, is signals intelligence's (`../sigint/`).
   "spectrum analyzer (digital)": apparatus("spectrumAnalyzer", { display: true }),
   "digital spectrum analyzer": apparatus("spectrumAnalyzer", { display: true }),
   // Static electricity (pp. 11-12).

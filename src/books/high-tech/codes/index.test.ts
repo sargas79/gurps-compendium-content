@@ -5,7 +5,7 @@ import { MODULE_ID } from "../../../shared/module.js";
 import { readyHighTechCodes } from "./index.js";
 
 let answer: any = null;
-let switches = { encryption: true, disguise: true };
+let switches: { encryption: boolean; disguise: boolean; cipher?: boolean } = { encryption: true, disguise: true };
 const rowActions: any[] = [];
 const gmTools: any[] = [];
 const poisons: any[] = [];
@@ -51,7 +51,7 @@ beforeAll(() => {
   vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
   FORGERY_TABLES.clear();
   resetForgery();
-  readyHighTechCodes(api, { encryption: () => switches.encryption, disguise: () => switches.disguise });
+  readyHighTechCodes(api, { encryption: () => switches.encryption, disguise: () => switches.disguise, cipher: () => switches.cipher === true });
 });
 
 beforeEach(() => {
@@ -114,6 +114,23 @@ describe("breaking codes (pp. 210-211)", () => {
     answer = { code: "secure8", maker: 0, helpers: 0, apparatus: 1, spent: 1 };
     await action("ht-break-code").run(program, expert);
     expect(rolls).toHaveLength(0);
+  });
+});
+
+describe("the supplement's code-breaking machines (HT:EE p. 48)", () => {
+  it("adds the bombe's +1 against a cipher machine's code and Colossus's +2, only under cipherMachines", async () => {
+    const breaker = character("Breaker", { skills: { Cryptography: 14 } });
+    answer = { code: "basic6", maker: 0, helpers: 0, apparatus: 2, spent: 1, machine: "bombe" };
+    await action("ht-break-code").run({ type: "skill", name: "Cryptography" }, breaker);
+    expect(rolls[0].modifiers).toEqual([]);
+    switches.cipher = true;
+    rolls.length = 0;
+    await action("ht-break-code").run({ type: "skill", name: "Cryptography" }, breaker);
+    expect(rolls[0].modifiers.map((m: any) => m.value)).toEqual([1]);
+    rolls.length = 0;
+    answer = { code: "manual", maker: 15, helpers: 0, apparatus: 1, spent: 1, machine: "colossus" };
+    await action("ht-break-code").run({ type: "skill", name: "Cryptography" }, breaker);
+    expect(contests[0].first.modifiers.map((m: any) => m.value)).toEqual([2]);
   });
 });
 

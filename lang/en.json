@@ -5105,7 +5105,7 @@
         },
         "radios": {
           "Name": "Radios and telegraphy",
-          "Hint": "A radio's range by size and TL on its sheet (large, medium, small, tiny), and a GM tool for whether two characters' radios reach each other: two different radios reaching the square root of the product of their ranges, as the supplement Electricity and Electronics revises the rule (p. 28), a tenth in a city or underground and again for live video, 2, 10 or 100 times for slowed data, and Electronics Operation (Communications) at -1 per 10% to stretch it to double. Radio options priced (code-only x0.5, direction finder x5, intercept x5, radiotelephone x1.5, receive-only 10% cost and 20% weight, ECCM x2, GPS x2, satellite uplink x2 on medium and large, a long antenna doubling the link's range for a quarter more); a transmitting radio is detected at twice its range, 1.5 times with ECCM. Row buttons for a direction finder's Quick Contest (a margin of 5 gives an exact fix), an intercept, and telegraphy: sending or reading, recognizing a fist, faking one at -6, tapping a line (a Quick Contest from TL6), all at -4 when enciphered. The pocket laser communicator's two beams and the military diver communicator (High-Tech pp. 36-40; Electricity and Electronics p. 28)."
+          "Hint": "A radio's range by size and TL on its sheet (large, medium, small, tiny), and a GM tool for whether two characters' radios reach each other: two different radios reaching the square root of the product of their ranges, as the supplement Electricity and Electronics revises the rule (p. 28), a tenth in a city or underground and again for live video, 2, 10 or 100 times for slowed data, and Electronics Operation (Communications) at -1 per 10% to stretch it to double. Radio options priced (code-only x0.5, direction finder x5, intercept x5, radiotelephone x1.5, receive-only 10% cost and 20% weight, ECCM x2, GPS x2, satellite uplink x2 on medium and large, a long antenna doubling the link's range for a quarter more); a transmitting radio is detected at twice its range, 1.5 times with ECCM. Row buttons for a direction finder's fix, by the supplement's triangulation (p. 47): the lesser of Mathematics (Applied or Surveying) and Electronics Operation (EW)-2 by hand (-5 improvised, haste for a signal under a minute), or EW with HF/DF, at +6 with the antennas' spacing as a bonus and the distance as a penalty from the Size and Speed/Range Table, -2 for two antennas; a Quick Contest where the source is concealed; success finds the area within 20% of the range (10% on a margin of 2, 5% on 4, exact on 6 or a critical), a critical failure a wrong place; an intercept, and telegraphy: sending or reading, recognizing a fist, faking one at -6, tapping a line (a Quick Contest from TL6), all at -4 when enciphered. The pocket laser communicator's two beams and the military diver communicator (High-Tech pp. 36-40; Electricity and Electronics pp. 28, 47)."
         },
         "activeSensors": {
           "Name": "Active sensors",
@@ -5410,6 +5410,18 @@
         "skillSubstitutes": {
           "Name": "The supplement's skill defaults and substitutes",
           "Hint": "From the supplement Electricity and Electronics. New defaults onto the Basic Set's skills, bought up from like any default and noted on the level: Electronics Operation (Media) from Photography-5 (for editing images), (Medical) from Diagnosis-2, (Scientific) from a natural science at -2 (and (Sensors) and (Sonar), for scientific work), (Security) from Traps-2, and Photography from Electronics Operation (Media)-5. A skill that stands in for another gets a row action that rolls it at its own level in the other's place, when the task fits: Physics (Electromagnetism) for the supplement's Physics rolls and for Engineer (Electrical or Electronics) to invent a proof of concept that can't go into production; a Hobby Skill for operating or repairing small, low-power systems (Amateur Radio for radios, High Fidelity for audio, Computers for home computers, Feats of Science for Electrician's apparatus). The new skills, specialties and the Hot Stick technique are records in High-Tech's skills (Electricity and Electronics pp. 6-8, 15)."
+        },
+        "spreadSpectrum": {
+          "Name": "Spread spectrum",
+          "Hint": "Needs Radios and telegraphy. From the supplement Electricity and Electronics: a radio's ECCM option is frequency hopping, -4 to detect its signal and +4 to get through a selective jammer (in place of detection at 1.5 times its range and immunity); direct sequence (TL8, x2 and cutting edge) can't be detected past 1.5 times the radio's range, gives +4 through a broad-spectrum jammer, and +4 against interference on the tuning roll, never more than the interference (Electricity and Electronics pp. 46-47)."
+        },
+        "signalsIntelligence": {
+          "Name": "Signals intelligence",
+          "Hint": "From the supplement Electricity and Electronics. A row button on radios, the radio peripheral and spectrum analyzers: monitoring routine traffic (Electronics Operation (Communications or EW), +4 with the radio intercept, the intercept unit); listening for a sender with EW, continuous (no roll unless something penalizes it), ongoing or rare (a roll each 4-hour watch), with the tuning roll's modifiers, -5 for a plain receiver, -2 with the handheld spectrum analyzer, -4 against frequency hopping, a minute a channel or the haste of sharing a watch (-5 for two, -8 for four), scanning a band (15 minutes at TL6, 5 at TL7, 5 seconds with a TL8 intercept unit; rare signals at -10 or -8), a dipole doubling the searches and a directional antenna ten times; identifying an active frequency with a spectrum analyzer (+4); aiming an antenna at a transmitter found (as an area attack at +4 or a cone, a minute at TL6 or improvised with haste for a brief transmission, scatter on a miss); a bearing on a beacon for +1 to Navigation. A Quick Contest of EW with an operator avoiding interception. Radio options: the RDF (x2) and HF/DF (TL7, x5); an oscilloscope carried gives +1 to fixes and aiming (Electricity and Electronics pp. 11, 47-48)."
+        },
+        "cipherMachines": {
+          "Name": "Cipher and code-breaking machines",
+          "Hint": "From the supplement Electricity and Electronics: sending enciphered text is -4 to Electronics Operation (Communications), which taking longer offsets (+1 for twice the time, up to the -4), on a cipher machine's row button and in telegraphy; breaking a code can use the bombe, +1 against a cipher machine's code, or Colossus, +2 (Electricity and Electronics p. 48)."
         }
       },
       "Appliances": {
@@ -5569,7 +5581,17 @@
         "XrayLabel": "{name} runs the X-ray machine",
         "XrayFailed": "The X-ray shows nothing useful.",
         "Spotted": "{mule} is carrying pellets ({count}).",
-        "NotSpotted": "Nothing gives {mule} away."
+        "NotSpotted": "Nothing gives {mule} away.",
+        "MachineField": "Code-breaking machine",
+        "Machine": {
+          "none": "None",
+          "bombe": "Bombe (+{bonus} against a cipher machine's code)",
+          "colossus": "Colossus (+{bonus})"
+        },
+        "MachineLine": {
+          "bombe": "Bombe",
+          "colossus": "Colossus"
+        }
       },
       "Forgery": {
         "Title": "Forge a document",
@@ -7705,10 +7727,12 @@
         "TransmitterPick": "Target the transmitting radio's operator.",
         "DirectionFinderRoll": "{name}: a fix on {target}",
         "Fix": {
-          "general": "A fix: the transmitter's general distance and direction.",
           "exact": "A fix: the transmitter's exact location.",
+          "area": "A fix: the transmitter's general area. The true spot is {yards} yards ({share}% of the range) from the plot, {bearing} degrees clockwise from the line of sight.",
           "none": "No fix.",
-          "again": "The GM may allow another try about once a minute."
+          "wrong": "A wrong location, taken for the transmitter's.",
+          "directionOnly": "One antenna gives the direction, not the distance: move it and plot again, or add another.",
+          "ambiguous": "An improvised direction finder can't tell which of two opposite directions the transmitter lies in."
         },
         "InterceptTitle": "Radio intercept",
         "Avoiding": "The operator is avoiding interception (Quick Contest)",
@@ -7824,7 +7848,8 @@
           "summer": "Summer",
           "solarFlare": "Solar flare",
           "crystal": "The crystal's spot",
-          "groundAerial": "Ground aerial"
+          "groundAerial": "Ground aerial",
+          "directSequence": "Direct sequence"
         },
         "TuneButton": "Tune in",
         "TuneTitle": "Tune in: {name}",
@@ -7897,7 +7922,49 @@
         "RegenerativeMissed": "{name}: badly adjusted, its range divided by {divisor}.",
         "RegenerativeOscillates": "{name} oscillates: nothing is received, and other receivers within {yards} yards take {penalty} to receive, 1 less for each doubling of the distance.",
         "SuperhetRoll": "A superheterodyne: tuned with a simple Hearing roll.",
-        "QualityLine": "{name}'s rotary spark gap (quality)"
+        "QualityLine": "{name}'s rotary spark gap (quality)",
+        "HoppingLine": "Frequency hopping: {detect} to detect its signal, {jamming} to get through a selective jammer (Electricity and Electronics p. 46).",
+        "DirectSequenceLabel": "Direct sequence",
+        "DirectSequenceHint": "Spread spectrum from TL8: can't be detected past 1.5 times the radio's range, +4 through a broad-spectrum jammer and against interference; twice the cost, and cutting edge (Electricity and Electronics pp. 8, 47).",
+        "DirectSequenceLine": "Direct sequence: detected no further than {detection} times its range; {jamming} through a broad-spectrum jammer and against interference.",
+        "RdfLabel": "Radio direction finder",
+        "RdfHint": "SIGINT gear: a receive-only radio with a directional antenna that takes fixes; twice the cost. [1902] 1919 (Electricity and Electronics p. 48).",
+        "HfdfLabel": "HF/DF",
+        "HfdfHint": "High-frequency direction finding: fixes at unmodified Electronics Operation (EW), with no haste; five times the cost. From TL7 (Electricity and Electronics p. 48).",
+        "InterceptUnitLine": "Intercept unit: {bonus} to monitor routine traffic, and standard gear for signals intelligence.",
+        "RdfLine": "Radio direction finder: takes fixes (row button).",
+        "HfdfLine": "HF/DF: fixes at Electronics Operation (EW) with no haste (row button).",
+        "SigintLine": "Signals intelligence: the row button.",
+        "HoppingDetect": "Frequency hopping ({name})",
+        "CipherTime": "Time taken (times the usual)",
+        "CipherTimeLine": "Extra time (x{times})",
+        "TracingLine": "Signal tracing ({name})",
+        "DfSystem": "System",
+        "Df": {
+          "basic": "Basic direction finder (plotted by hand)",
+          "improvised": "Improvised (a loop or dipole, -5)",
+          "hfdf": "HF/DF"
+        },
+        "DfAntennas": "Antennas",
+        "DfAntenna": {
+          "three": "Three",
+          "two": "Two (-2)",
+          "moved": "One, moved between readings (-2)",
+          "one": "One"
+        },
+        "DfBaseline": "Distance between the antennas (yards)",
+        "DfSignal": "Seconds the signal stays on (0 for {seconds} or more)",
+        "DfConcealed": "The source is concealed (Quick Contest)",
+        "DfPlotting": "Plotting (Mathematics or EW-2)",
+        "DfLine": {
+          "bonus": "Triangulation",
+          "baseline": "Distance between the antennas",
+          "distance": "Distance to the source",
+          "antennas": "Two antennas",
+          "improvised": "Improvised direction finder",
+          "haste": "Haste: a brief signal"
+        },
+        "DirectionFinderOpen": "{name}: a fix"
       },
       "Survival": {
         "Title": "Survival gear",
@@ -9163,7 +9230,9 @@
           "HinderedVarieties": "Radio gear: a broad-spectrum or selective jammer in reach makes using it a roll at a penalty (High-Tech: Electricity and Electronics p. 49).",
           "Radar": "Radius {range} against radar: the operator's EW roll to switch it on, then a radar's Electronics Operation (Sensors) at -2 within it, unmodified to {shadow} times it (High-Tech: Electricity and Electronics p. 49).",
           "Spoofer": "Radius {range}: a radar within it is used in a Quick Contest of its Sensors against the operator's EW; lost, it shows a false location and size (High-Tech: Electricity and Electronics p. 50).",
-          "RadarHindered": "Radar: a switched-on radar jammer or spoofer in reach hinders it (High-Tech: Electricity and Electronics pp. 49-50)."
+          "RadarHindered": "Radar: a switched-on radar jammer or spoofer in reach hinders it (High-Tech: Electricity and Electronics pp. 49-50).",
+          "Hopping": "Frequency hopping ({name})",
+          "DirectSequence": "Direct sequence ({name})"
         },
         "Covert": {
           "SpreadRow": "Spread-spectrum bug ({modifier})",
@@ -10699,6 +10768,100 @@
           },
           "Improvised": "In improvised use as a security detector: an Electronics Operation (Security) roll, then +1 to Explosives (EOD), Search or Traps (+2 to Search with a pat-down)."
         }
+      },
+      "Sigint": {
+        "Title": "Signals intelligence",
+        "TaskField": "Task",
+        "Task": {
+          "routine": "Monitor routine traffic",
+          "detect": "Listen for a sender",
+          "identify": "Identify an active frequency",
+          "aim": "Aim an antenna at a transmitter",
+          "beacon": "Take a bearing on a beacon"
+        },
+        "TransmissionField": "Transmission",
+        "Transmission": {
+          "continuous": "Continuous",
+          "ongoing": "Ongoing (messages traded)",
+          "rare": "Rare"
+        },
+        "FrequencyField": "Frequency",
+        "Frequency": {
+          "known": "Known: tuned to it",
+          "channels": "Unknown: watching several channels",
+          "scan": "Unknown: scanning the band"
+        },
+        "Channels": "Channels (when watching several)",
+        "AntennaField": "Antenna",
+        "Antenna": {
+          "whip": "Whip or monopole ({searches} search)",
+          "dipole": "Half-wave dipole or loop ({searches} searches)",
+          "directional": "Directional ({searches} searches)"
+        },
+        "Aim": {
+          "dipole": "Dipole or loop (an area)",
+          "directional": "Directional antenna (a cone)"
+        },
+        "Distance": "Distance (yards)",
+        "SignalRange": "The signal's standard range (yards; 0 if in range)",
+        "Conditions": "Interference or signal",
+        "ConditionsNone": "None",
+        "ConditionsBlocked": "{value} (blocked)",
+        "Avoiding": "The operator is avoiding interception (Quick Contest)",
+        "SenderPick": "Target the transmitting radio's operator.",
+        "NoAnalyzer": "Carry a spectrum analyzer.",
+        "DetectTitle": "Listening for a sender",
+        "DetectLabel": "Listening with the {name}",
+        "RoutineLabel": "Monitoring routine traffic on the {name}",
+        "RoutineResult": "On a success, the operator hears any conversation that might be of interest.",
+        "IdentifyLabel": "Identifying an active frequency with the {name}",
+        "InterceptUnit": "Intercept unit",
+        "AnalyzerLine": "Handheld spectrum analyzer ({name})",
+        "ImprovisedLine": "A plain receiver: improvised gear",
+        "HoppingLine": "Frequency hopping ({name})",
+        "ChannelsLine": "Sharing the watch between {count} searches",
+        "ChannelsTime": "Watching the channels takes {minutes} minutes.",
+        "ScanRareLine": "Scanning for rare transmissions (TL{tl})",
+        "ScanSeconds": "The scan takes {value} seconds ({scans} scans).",
+        "ScanMinutes": "The scan takes {value} minutes ({scans} scans).",
+        "RareWatch": "One roll per {hours}-hour watch; the GM says whether there was any signal to find.",
+        "FoundAutomatically": "The continuous signal is picked up with no roll.",
+        "AfterAMinute": "The roll comes after a minute of listening.",
+        "Found": "The signal is found.",
+        "NotFound": "Nothing found.",
+        "Blocked": "The interference blocks the signal.",
+        "OutOfRange": "The signal is out of reach.",
+        "DirectSequenceOut": "{name} uses direct sequence: it can't be detected this far away.",
+        "Tuning": {
+          "range": "-1 per 10% past the standard range",
+          "conditions": "Interference or signal",
+          "hearing": "Hearing modifiers",
+          "galvanometer": "Galvanometer",
+          "enhanced": "Software-defined radio"
+        },
+        "AimTitle": "Aiming an antenna",
+        "AimLabel": "Aiming the {name}'s antenna",
+        "FoundDirectional": "The transmitter was found with a directional antenna",
+        "TransmissionSeconds": "Seconds the transmission lasts (0 for a minute or more)",
+        "AreaLine": "Aiming at an area",
+        "BriefLine": "Haste: a {seconds}-second transmission",
+        "TracingLine": "Signal tracing ({name})",
+        "AimAutomatic": "Found with a directional antenna, the aim is automatic: the exact direction.",
+        "AimExact": "The exact direction to the transmitter.",
+        "AimScatter": "Off target: the aim misses by {yards} yards at the transmitter, {bearing} degrees clockwise from the line of sight.",
+        "BeamDipole": "Within the antenna's pattern, its range multiplier (x1.5) applies to later tuning rolls.",
+        "BeamDirectional": "Within the antenna's beam, its range multiplier (x10) applies to later tuning rolls.",
+        "BeaconTitle": "Bearing on a beacon",
+        "BeaconLabel": "Taking a bearing with the {name}",
+        "BeaconLost": "No bearing.",
+        "BeaconLine": "Bearing on a beacon",
+        "NavigationSkill": "Navigation",
+        "NavigationLabel": "Navigating by the {name}'s bearing",
+        "CipherTitle": "Send enciphered text",
+        "CipherTime": "Time taken (times the usual)",
+        "CipherLine": "Enciphered text",
+        "CipherTimeLine": "Extra time (x{times})",
+        "CipherLabel": "Sending enciphered text on the {name}"
       }
     },
     "Backblast": {

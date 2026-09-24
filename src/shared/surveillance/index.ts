@@ -122,6 +122,8 @@ export interface JammerTable extends BookTable {
   varieties?: Readonly<Record<JammerVariety, VarietyPenalty>>;
   /** The lines on a jammer operator's Electronics Operation (EW) from what he carries, such as a spectrum analyzer. */
   operatorModifiers?(actor: any): Array<{ label: string; value: number }>;
+  /** The lines on a user's roll through a jammer of a variety from how the gear is built, such as a spread-spectrum radio's. */
+  gearModifiers?(item: any, variety: JammerVariety): Array<{ label: string; value: number }>;
 }
 
 export const JAMMER_TABLES = new BookTables<JammerTable>();
@@ -381,7 +383,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
         base,
         skill: gear.skill,
         label: F(ns, "ThroughLabel", { name, jammer: jammerName }),
-        modifiers: penalty ? [{ label: F(ns, `VarietyLine.${variety}`, { jammer: jammerName }), value: penalty }] : [],
+        modifiers: [...(penalty ? [{ label: F(ns, `VarietyLine.${variety}`, { jammer: jammerName }), value: penalty }] : []), ...(table.gearModifiers?.(item, variety) ?? [])],
         tags: ["jamming"],
         item,
       } as any);

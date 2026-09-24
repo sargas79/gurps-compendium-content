@@ -93,7 +93,11 @@ async function load(): Promise<void> {
   tables.setRuleReader((k) => on.has(k));
   shared = await import("../../../shared/surveillance/index.js");
   book = await import("./index.js");
-  book.initSurveillance({ jamming: key("jamming"), jammerKinds: key("jammerKinds"), radarJamming: key("radarJamming") });
+  // High-Tech's radio options, which the spread-spectrum bonus reads (HT:EE p. 46).
+  const sensors = await import("../sensors/index.js");
+  const sensorEngine = await import("../../../shared/sensors/index.js");
+  sensorEngine.SENSOR_TABLES.register(sensors.highTechSensors({ radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), spreadSpectrum: key("spreadSpectrum") }));
+  book.initSurveillance({ jamming: key("jamming"), jammerKinds: key("jammerKinds"), radarJamming: key("radarJamming"), spreadSpectrum: key("spreadSpectrum") });
   const api = fakeApi();
   book.readySurveillance(api as never, {
     screening: () => on.has(key("securityScreening")),
@@ -513,6 +517,25 @@ describe("broad-spectrum and selective jammers (HT:EE p. 49)", () => {
     const past = scene("Area Jammer (TL7)", 2 * 1760 + 1, { jammerVariety: "selective", jammerFrequencyKnown: true });
     expect(await shared.useNearJammers(fakeApi() as never, past.radio, past.user)).toBe("through");
     expect(successes).toEqual([]);
+  });
+
+  it("gives a frequency-hopping radio +4 through a selective jammer under spreadSpectrum (HT:EE p. 46)", async () => {
+    on.add(key("jammerKinds"));
+    const { radio, user } = scene("Area Jammer (TL7)", 100, { jammerVariety: "selective", jammerFrequencyKnown: true });
+    radio.system.extensions = { [MODULE_ID]: { sensor: { eccm: true } } };
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(successes.at(-1).modifiers.map((m: any) => m.value)).toEqual([-4]);
+    on.add(key("spreadSpectrum"));
+    successes = [];
+    await shared.useNearJammers(fakeApi() as never, radio, user);
+    expect(successes.at(-1).modifiers.map((m: any) => m.value)).toEqual([-4, 4]);
+    // Frequency hopping does nothing against a broad-spectrum jammer.
+    tokens = [];
+    const broad = scene("Area Jammer (TL7)", 100, { jammerVariety: "broad" });
+    broad.radio.system.extensions = { [MODULE_ID]: { sensor: { eccm: true } } };
+    successes = [];
+    await shared.useNearJammers(fakeApi() as never, broad.radio, broad.user);
+    expect(successes.at(-1).modifiers.map((m: any) => m.value)).toEqual([-2]);
   });
 
   it("gives the spectrum analyzer's +4 only under jammerKinds, not to High-Tech's own contest", async () => {

@@ -54,6 +54,14 @@
  *   - **passiveSensors:** a hydrophone's detection roll, and its fix's +3 to
  *     hit and +4 to shadow; sound-detection gear identifying or locating a
  *     sound; a directional microphone as Parabolic Hearing (pp. 48-50).
+ *
+ * Under `radios`, the direction finder's fix is the supplement's
+ * triangulation (HT:EE p. 47, revising pp. 38-39; decision E3 in #471). The
+ * supplement's electronic-warfare switches add to the radios here (HT:EE pp.
+ * 46-48): **spreadSpectrum** reads the ECCM option as frequency hopping and
+ * adds direct sequence; **signalsIntelligence** adds the RDF and HF/DF
+ * options, whose rolls are in `../sigint/`; **cipherMachines** lets extra
+ * time offset the -4 for sending enciphered text.
  */
 
 import { isRuleOn } from "../../../shared/book-tables.js";
@@ -128,9 +136,17 @@ import {
   THERMOGRAPH,
   TL8_RADAR_WEIGHT,
   WIDE_BEAM,
+  AMATEUR_RADIO,
+  DF_ANTENNAS,
+  MATHEMATICS,
+  TRIANGULATION,
   activeModes,
-  directionFinderFix,
   directionalMicLevels,
+  triangulationFix,
+  triangulationLevel,
+  triangulationLines,
+  type DfAntennas,
+  type DfSystem,
   hydrophoneBonus,
   hydrophoneModifiers,
   isNightVision,
@@ -146,7 +162,7 @@ import {
   type ActiveFigures,
   type RadioSize,
 } from "./rules.js";
-import { isGalvanometer } from "../instruments/rules.js";
+import { instrumentOf, isGalvanometer } from "../instruments/rules.js";
 import {
   DESIGN_KEYS,
   DISTORTED_AUDIO,
@@ -168,6 +184,19 @@ import {
 import { cuttingEdgeFactor } from "../devices/rules.js";
 import { deviceData } from "../devices/index.js";
 import { registerPowerAdjuster } from "../../../shared/power/data.js";
+import {
+  DIRECT_SEQUENCE,
+  FREQUENCY_HOPPING,
+  INTERCEPT_ROUTINE,
+  OSCILLOSCOPE,
+  SIGINT_OPTIONS,
+  directSequenceTuning,
+  encipheredTimeBonus,
+  spreadDetectModifier,
+  spreadDetectionRange,
+  type Spread,
+} from "../sigint/rules.js";
+import { timeSpentModifier } from "../../../shared/time-spent.js";
 import { DETECTOR_SKILLS, DWELL, detectorSkill, dwellRange, emissionModifier, emissionReach, rangefindingPenalty, sensorSizeModifier, type Dwell } from "./rangefinding.js";
 
 const NS = "GCC.HT";
@@ -190,6 +219,10 @@ export interface SensorSwitches {
   radioAntennas?: string;
   shortwaveSkip?: string;
   radioDesign?: string;
+  /** The supplement's electronic warfare (HT:EE pp. 46-48). */
+  spreadSpectrum?: string;
+  signalsIntelligence?: string;
+  cipherMachines?: string;
 }
 
 /** The supplement's rangefinding switch's full key, once registered. */
@@ -200,8 +233,9 @@ const rangefindingOn = () => rangefindingKey !== null && isRuleOn(rangefindingKe
 const emits = (figures: ActiveFigures | undefined) => figures?.kind === "sonar" || figures?.kind === "radar";
 
 /** The supplement's radio switches, as full keys, once the table is built. */
-const SUPPLEMENT = { tuning: "", antennas: "", shortwave: "", design: "" };
-const supplementOn = (part: keyof typeof SUPPLEMENT) => Boolean(SUPPLEMENT[part]) && isRuleOn(SUPPLEMENT[part]);
+const SUPPLEMENT = { tuning: "", antennas: "", shortwave: "", design: "", spread: "", sigint: "", cipher: "" };
+/** Whether one of the supplement's switches that add to the radios is on. */
+export const supplementOn = (part: keyof typeof SUPPLEMENT) => Boolean(SUPPLEMENT[part]) && isRuleOn(SUPPLEMENT[part]);
 
 const nameOf = (item: any) => String(item?.name ?? "").trim();
 
@@ -210,7 +244,7 @@ const nameOf = (item: any) => String(item?.name ?? "").trim();
  * supplement's design rules are on, one of the trench radio's sets (HT:EE p.
  * 29), read as the set it's built on.
  */
-function radioOf(item: any): { size: RadioSize; tl: number; range: number } | null {
+export function radioOf(item: any): { size: RadioSize; tl: number; range: number } | null {
   const radio = radioByName(nameOf(item), itemTl(item));
   if (radio) return radio;
   const printed = supplementOn("design") ? PRINTED_RADIOS[nameOf(item)] : undefined;
@@ -248,10 +282,34 @@ function carriedAntenna(actor: any): any {
 const isAntenna = (item: any) => sensorData(item).options.dipoleAntenna === true && !radioOf(item) && !peripheralOf(item) && !OTHER_COMMS[nameOf(item)];
 
 /** The radio peripheral a record is: a computer as a software-defined radio (HT:EE p. 30). */
-const peripheralOf = (item: any) => RADIO_PERIPHERALS[nameOf(item)] ?? null;
+export const peripheralOf = (item: any) => RADIO_PERIPHERALS[nameOf(item)] ?? null;
+
+/**
+ * A radio's spread spectrum, where the switch is on (HT:EE pp. 46-47): the
+ * ECCM option as frequency hopping from TL7, direct sequence from TL8.
+ */
+export function spreadOf(item: any, data: SensorData = sensorData(item)): Spread {
+  if (!supplementOn("spread") || !radioOf(item)) return {};
+  const tl = itemTl(item);
+  return { hopping: tl >= FREQUENCY_HOPPING.tl && data.options.eccm === true, direct: tl >= DIRECT_SEQUENCE.tl && data.options.directSequence === true };
+}
+
+/** The SIGINT gear a radio was built with, where the switch is on (HT:EE p. 48): the RDF and HF/DF options from their TLs. */
+export function sigintGearOf(item: any, data: SensorData = sensorData(item)): { rdf: boolean; hfdf: boolean } {
+  if (!supplementOn("sigint") || !radioOf(item)) return { rdf: false, hfdf: false };
+  const tl = itemTl(item);
+  return { rdf: tl >= SIGINT_OPTIONS.rdf.tl && data.options.rdf === true, hfdf: tl >= SIGINT_OPTIONS.hfdf.tl && data.options.hfdf === true };
+}
+
+/** A radio that takes fixes: High-Tech's direction finder, or the supplement's RDF or HF/DF (High-Tech pp. 38-39; HT:EE p. 48). */
+export function findsDirection(item: any): boolean {
+  if (!radioOf(item)) return false;
+  const gear = sigintGearOf(item);
+  return sensorData(item).options.directionFinder === true || gear.rdf || gear.hfdf;
+}
 
 /** The antennas a radio was built with that count: the long antenna under `radios`, the dipole and directional antenna under `radioAntennas` from their TLs (HT:EE p. 28). */
-function antennasOf(item: any, data: SensorData = sensorData(item)): Partial<Record<AntennaKey, boolean>> {
+export function antennasOf(item: any, data: SensorData = sensorData(item)): Partial<Record<AntennaKey, boolean>> {
   const tl = itemTl(item);
   const more = supplementOn("antennas");
   return {
@@ -306,13 +364,15 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
     if (radio.size === "large") lines.push(L("LargeSetUp"));
     if (antenna) lines.push(L("LongAntennaLine"));
     if (data.options.satelliteUplink) lines.push(L("UplinkLine"));
-    lines.push(F("Detected", { range: distance(radioDetectionRange(range, data.options.eccm === true)) }));
+    const spread = spreadOf(item, data);
+    // With spread spectrum, the supplement's detection: twice the range, 1.5 times with direct sequence (HT:EE pp. 46-47).
+    lines.push(F("Detected", { range: distance(supplementOn("spread") ? spreadDetectionRange(range, spread) : radioDetectionRange(range, data.options.eccm === true)) }));
     lines.push(L("RadioInUse"));
     lines.push(F("SlowedData", { quarter: slowedRangeFactor(1 / 4), hundredth: slowedRangeFactor(1 / 100), tenThousandth: slowedRangeFactor(1 / 10000) }));
     if (data.options.codeOnly) lines.push(L("CodeOnlyLine"));
     if (data.options.directionFinder) lines.push(L("DirectionFinderLine"));
     if (data.options.intercept) lines.push(L("InterceptLine"));
-    if (data.options.eccm) lines.push(L("EccmLine"));
+    if (data.options.eccm) lines.push(spread.hopping ? F("HoppingLine", { detect: FREQUENCY_HOPPING.detect, jamming: signed(FREQUENCY_HOPPING.jamming) }) : L("EccmLine"));
     if (data.options.gps) lines.push(L("GpsLine"));
     if (data.options.radiotelephone) lines.push(L("RadiotelephoneLine"));
     if (data.commMode) lines.push(L(`CommMode.${data.commMode}`));
@@ -337,9 +397,21 @@ function commLines(item: any, data: SensorData, lines: string[], options: string
   return false;
 }
 
-/** What the supplement's switches add to a radio's sheet: its antennas, shortwave and tuning (HT:EE pp. 28-30). */
+/** What the supplement's switches add to a radio's sheet: its antennas, shortwave and tuning, spread spectrum and SIGINT gear (HT:EE pp. 28-30, 46-48). */
 function supplementLines(item: any, data: SensorData, lines: string[], options: string[]): void {
   const tl = itemTl(item);
+  if (supplementOn("spread") && tl >= DIRECT_SEQUENCE.tl) {
+    options.push("directSequence");
+    if (spreadOf(item, data).direct) lines.push(F("DirectSequenceLine", { detection: DIRECT_SEQUENCE.detection, jamming: signed(DIRECT_SEQUENCE.jamming) }));
+  }
+  if (supplementOn("sigint")) {
+    const gear = sigintGearOf(item, data);
+    for (const key of ["rdf", "hfdf"] as const) if (tl >= SIGINT_OPTIONS[key].tl) options.push(key);
+    if (data.options.intercept) lines.push(F("InterceptUnitLine", { bonus: signed(INTERCEPT_ROUTINE) }));
+    if (gear.rdf) lines.push(L("RdfLine"));
+    if (gear.hfdf) lines.push(L("HfdfLine"));
+    lines.push(L("SigintLine"));
+  }
   if (supplementOn("antennas")) {
     const has = antennasOf(item, data);
     if (tl >= ANTENNAS.dipoleAntenna.tl) options.push("dipoleAntenna");
@@ -553,6 +625,14 @@ function radioFactors(item: any, data: SensorData, radio: { size: RadioSize }): 
     cost *= ANTENNAS[key].cost;
     weight *= ANTENNAS[key].weight;
   }
+  // Direct sequence, twice the cost and cutting edge (HT:EE pp. 8, 47); the RDF twice and HF/DF five times (HT:EE p. 48).
+  if (spreadOf(item, data).direct) {
+    cost *= DIRECT_SEQUENCE.cost;
+    if (!deviceData(item).cuttingEdge) cost *= cuttingEdgeFactor(String(item?.system?.equipmentQuality ?? "basic")) ?? 1;
+  }
+  const gear = sigintGearOf(item, data);
+  if (gear.rdf) cost *= SIGINT_OPTIONS.rdf.cost;
+  if (gear.hfdf) cost *= SIGINT_OPTIONS.hfdf.cost;
   if (data.commMode === "receiver") {
     cost *= 0.1;
     weight *= 0.2;
@@ -798,6 +878,9 @@ function listen(input: Listening): CommReception | null {
     ...(skip ? { skip } : {}),
     ...(design.length ? { extra: design } : {}),
   });
+  // Direct sequence filters out other signals on the band: +4 against the interference (HT:EE p. 47).
+  const filtered = tuning && roll?.needed && spreadOf(input.item).direct ? directSequenceTuning(input.conditions) : 0;
+  if (roll && filtered) roll.lines.push({ key: "directSequence", value: filtered });
   if (!roll) {
     lines.push(L(tuning && input.conditions <= INTERFERENCE.worst ? "Blocked" : "OutOfRange"));
     return { lines, roll: null };
@@ -961,7 +1044,7 @@ const MODES: readonly CommMode[] = ["", "receiver"];
 const DESIGN_MODES: readonly CommMode[] = ["", "receiver", "transmitter"];
 
 const FIGURES: SensorFigures = {
-  options: ["codeOnly", "directionFinder", "intercept", "radiotelephone", "eccm", "gps", "satelliteUplink", "longAntenna", "dipoleAntenna", "directionalAntenna", "shortwave", ...DESIGN_KEYS, "groundAerial", "wideBeam", "military", "tactical", "lpi", "imaging", "lensHood", "irIlluminated", "search"],
+  options: ["codeOnly", "directionFinder", "intercept", "radiotelephone", "eccm", "gps", "satelliteUplink", "longAntenna", "dipoleAntenna", "directionalAntenna", "shortwave", "directSequence", "rdf", "hfdf", ...DESIGN_KEYS, "groundAerial", "wideBeam", "military", "tactical", "lpi", "imaging", "lensHood", "irIlluminated", "search"],
   // Send-only too, as the supplement builds a set (HT:EE pp. 28-29): the field holds it whichever books are loaded, and a sheet offers it where the design rules are on.
   commModes: DESIGN_MODES,
   commModesFor: (item, data) => (designOf(item, data) ? DESIGN_MODES : MODES),
@@ -989,6 +1072,9 @@ export function highTechSensors(switches: SensorSwitches): SensorTable {
   SUPPLEMENT.antennas = switches.radioAntennas ?? "";
   SUPPLEMENT.shortwave = switches.shortwaveSkip ?? "";
   SUPPLEMENT.design = switches.radioDesign ?? "";
+  SUPPLEMENT.spread = switches.spreadSpectrum ?? "";
+  SUPPLEMENT.sigint = switches.signalsIntelligence ?? "";
+  SUPPLEMENT.cipher = switches.cipherMachines ?? "";
   return {
     book: "high-tech",
     tls: { min: 0, max: 8 },
@@ -1040,13 +1126,18 @@ async function telegraphy(api: GWorldApi, item: any, actor: any): Promise<void> 
   const tasks = ["send", "recognize", "fake", "tap"] as const;
   const answer = await ask(L("TelegraphyTitle"),
     row(L("TaskLabel"), `<select name="task">${tasks.map((t) => `<option value="${t}">${esc(L(`Telegraphy.${t}`))}</option>`).join("")}</select>`)
-    + row(F("Enciphered", { modifier: ENCIPHERED }), `<input type="checkbox" name="cipher" />`),
+    + row(F("Enciphered", { modifier: ENCIPHERED }), `<input type="checkbox" name="cipher" />`)
+    + (supplementOn("cipher") ? row(L("CipherTime"), `<input type="number" name="times" value="1" min="1" step="1" style="width:70px" />`) : ""),
     (form) => ({
       task: (form.querySelector<HTMLSelectElement>("[name=task]")?.value ?? "send") as (typeof tasks)[number],
       cipher: Boolean(form.querySelector<HTMLInputElement>("[name=cipher]")?.checked),
+      times: Number(form.querySelector<HTMLInputElement>("[name=times]")?.value) || 1,
     }));
   if (!answer) return;
   const modifiers: Array<{ label: string; value: number }> = answer.cipher ? [{ label: L("EncipheredLine"), value: ENCIPHERED }] : [];
+  // Sending enciphered text slowly offsets the -4, never beyond it (HT:EE p. 48; p. B346).
+  const slow = answer.cipher && answer.task === "send" && supplementOn("cipher") ? encipheredTimeBonus(answer.times) : 0;
+  if (slow) modifiers.push({ label: F("CipherTimeLine", { times: answer.times }), value: slow });
   // A rotary spark gap's steadier output: a quality bonus to send on it (HT:EE p. 28).
   const quality = answer.task === "send" || answer.task === "fake" ? qualityBonus(designed(item)) : 0;
   const sender = quality ? [...modifiers, { label: F("QualityLine", { name: item.name }), value: quality }] : modifiers;
@@ -1068,21 +1159,100 @@ async function telegraphy(api: GWorldApi, item: any, actor: any): Promise<void> 
   await card(actor, label, [L(`Telegraphy.${answer.task}Result`)]);
 }
 
-/** A radio direction finder's fix on the targeted character's transmitter (pp. 38-39). */
+/** A character's Electronics Operation (EW): known, from Electronics Operation (Communications)-4, or IQ-5 (p. B189; High-Tech p. 209). */
+export function ewLevel(api: GWorldApi, actor: any): number {
+  const comm = api.actors.skillLevel(actor, COMM);
+  return api.actors.skillLevel(actor, EW) ?? (comm !== null && comm !== undefined ? comm + EW_FROM_COMM : skillBase(api, actor, EW));
+}
+
+/** The better Mathematics a fix is plotted with, or the IQ-6 default of a Hard skill (p. B207). */
+function mathematicsLevel(api: GWorldApi, actor: any): number {
+  const known = MATHEMATICS.map((skill) => api.actors.skillLevel(actor, skill)).filter((v): v is number => typeof v === "number");
+  return known.length ? Math.max(...known) : (api.actors.attribute(actor, "IQ") ?? 10) - 6;
+}
+
+/** A carried oscilloscope: +1 to signal tracing, under the supplement's SIGINT switch (HT:EE pp. 11, 47-48). */
+export function tracingOscilloscope(actor: any): any {
+  if (!supplementOn("sigint")) return null;
+  return [...(actor?.items ?? [])].find((i: any) => carried(i) && instrumentOf(nameOf(i))?.kind === "oscilloscope") ?? null;
+}
+
+/** The first side's roll in the last fix's Quick Contest, for its criticals: the contest reports only who won. */
+let lastFixRoll: { criticalSuccess?: boolean; criticalFailure?: boolean } | null = null;
+
+/**
+ * A fix on a transmitter: the supplement's triangulation (HT:EE p. 47, in
+ * place of High-Tech pp. 38-39; E3 in #471). The operator plots the lines by
+ * hand with a basic or improvised direction finder, or rolls Electronics
+ * Operation (EW) with HF/DF; +6, the antennas' spacing and the source's
+ * distance from the Size and Speed/Range Table, -2 for two antennas, -5
+ * improvised, and haste for a signal under a minute; a Quick Contest with the
+ * targeted operator where the source is concealed. The general area comes
+ * with scatter of a share of the range (p. B414), rolled for direction.
+ */
 async function directionFinder(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
   const target = picked().target;
-  if (!actor || !target) return void ui.notifications?.warn(L("TransmitterPick"));
-  const label = F("DirectionFinderRoll", { name: item.name, target: target.name });
-  const contest: any = await api.roll.quickContest({
-    label,
-    first: { actor, base: skillBase(api, actor, COMM), note: COMM },
-    second: { actor: target, base: skillBase(api, target, COMM), note: COMM },
-    tags: ["directionFinder"],
-  } as any);
-  if (!contest) return;
-  const won = contest.outcome === "first";
-  const margin = Number(contest.marginOfVictory) || 0;
-  await card(actor, label, [won ? L(`Fix.${directionFinderFix(margin)}`) : L("Fix.none"), L("Fix.again")]);
+  const gear = sigintGearOf(item);
+  const system: DfSystem = gear.hfdf ? "hfdf" : sensorData(item).options.directionFinder || gear.rdf ? "basic" : "improvised";
+  const measured = target ? yardsBetween(actor, target) : null;
+  const systems: DfSystem[] = ["basic", "improvised", "hfdf"];
+  const answer = await ask(L("DirectionFinderTitle"),
+    row(L("DfSystem"), `<select name="system">${systems.map((s) => `<option value="${s}" ${s === system ? "selected" : ""}>${esc(L(`Df.${s}`))}</option>`).join("")}</select>`)
+    + row(L("DfAntennas"), `<select name="antennas">${DF_ANTENNAS.map((a) => `<option value="${a}">${esc(L(`DfAntenna.${a}`))}</option>`).join("")}</select>`)
+    + row(L("DfBaseline"), `<input type="number" name="baseline" value="1760" min="0" style="width:90px" />`)
+    + row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 1760)}" min="0" style="width:90px" />`)
+    + row(F("DfSignal", { seconds: TRIANGULATION.signalSeconds }), `<input type="number" name="seconds" value="0" min="0" style="width:70px" />`)
+    + row(L("DfConcealed"), `<input type="checkbox" name="concealed" ${target ? "checked" : ""} />`),
+    (form) => ({
+      system: (form.querySelector<HTMLSelectElement>("[name=system]")?.value ?? system) as DfSystem,
+      antennas: (form.querySelector<HTMLSelectElement>("[name=antennas]")?.value ?? "three") as DfAntennas,
+      baseline: Number(form.querySelector<HTMLInputElement>("[name=baseline]")?.value) || 0,
+      yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
+      seconds: Number(form.querySelector<HTMLInputElement>("[name=seconds]")?.value) || 0,
+      concealed: Boolean(form.querySelector<HTMLInputElement>("[name=concealed]")?.checked),
+    }));
+  if (!answer) return;
+  const label = F(target ? "DirectionFinderRoll" : "DirectionFinderOpen", { name: item.name, target: target?.name ?? "" });
+  // A single antenna gives the direction only (HT:EE p. 47).
+  if (answer.antennas === "one") return void card(actor, label, [L("Fix.directionOnly")]);
+  if (answer.concealed && !target) return void ui.notifications?.warn(L("TransmitterPick"));
+  const amateur = api.actors.skillLevel(actor, AMATEUR_RADIO);
+  const plotted = triangulationLevel({ system: answer.system, ew: ewLevel(api, actor), mathematics: mathematicsLevel(api, actor), amateurRadio: amateur ?? null, antennas: answer.antennas })!;
+  const note = plotted.skill === "ew" ? EW : plotted.skill === "amateurRadio" ? AMATEUR_RADIO : L("DfPlotting");
+  const modifiers = triangulationLines({ system: answer.system, antennas: answer.antennas, baselineYards: answer.baseline, distanceYards: answer.yards, signalSeconds: answer.seconds }, (yards) => api.rules.speedRangeModifier(yards), timeSpentModifier)
+    .map((l) => ({ label: L(`DfLine.${l.key}`), value: l.value }));
+  const scope = tracingOscilloscope(actor);
+  if (scope) modifiers.push({ label: F("TracingLine", { name: scope.name }), value: OSCILLOSCOPE });
+  const lines: string[] = [];
+  if (answer.system === "improvised") lines.push(L("Fix.ambiguous"));
+  let roll: { success: boolean; margin: number; criticalSuccess?: boolean; criticalFailure?: boolean };
+  if (answer.concealed && target) {
+    lastFixRoll = null;
+    const contest: any = await api.roll.quickContest({
+      label,
+      first: { actor, base: plotted.level, modifiers, note },
+      second: { actor: target, base: ewLevel(api, target), note: EW },
+      tags: ["directionFinder", "triangulation"],
+    } as any);
+    if (!contest) return;
+    const won = contest.outcome === "first";
+    // Heard from the contest's hook while it ran.
+    const own = lastFixRoll as { criticalSuccess?: boolean; criticalFailure?: boolean } | null;
+    roll = { success: won, margin: won ? Number(contest.marginOfVictory) || 0 : 0, criticalSuccess: won && own?.criticalSuccess === true, criticalFailure: !won && own?.criticalFailure === true };
+  } else {
+    const result: any = await api.roll.success({ actor, base: plotted.level, skill: plotted.skill === "ew" ? EW : plotted.skill === "amateurRadio" ? AMATEUR_RADIO : note, label, modifiers, tags: ["directionFinder", "triangulation"], item, ...(target ? { subject: target } : {}) } as any);
+    if (!result) return;
+    roll = { success: Boolean(result.success), margin: Number(result.margin) || 0, criticalSuccess: result.criticalSuccess === true, criticalFailure: result.criticalFailure === true };
+  }
+  const fix = triangulationFix(roll);
+  if (fix.kind === "area") {
+    const direction = new Roll("1d6");
+    await direction.evaluate();
+    const bearing = api.rules.scatterBearing(Number(direction.total) || 1);
+    lines.push(F("Fix.area", { share: Math.round(fix.share * 100), yards: Math.round(answer.yards * fix.share), bearing }));
+  } else lines.push(L(`Fix.${fix.kind}`));
+  await card(actor, label, lines);
 }
 
 /** Intercepting the targeted character's transmissions with a radio intercept (pp. 39, 209). */
@@ -1095,12 +1265,15 @@ async function intercept(api: GWorldApi, item: any, actor: any): Promise<void> {
     row(L("Avoiding"), `<input type="checkbox" name="avoiding" ${eccm ? "checked" : ""} />`),
     (form) => ({ avoiding: Boolean(form.querySelector<HTMLInputElement>("[name=avoiding]")?.checked) }));
   if (!answer) return;
-  const own = api.actors.skillLevel(actor, EW) ?? (api.actors.skillLevel(actor, COMM) !== null ? api.actors.skillLevel(actor, COMM)! + EW_FROM_COMM : skillBase(api, actor, EW));
+  const own = ewLevel(api, actor);
   const label = F("InterceptRoll", { name: item.name });
+  // A frequency-hopping signal is -4 to detect (HT:EE p. 46).
+  const hop = theirs ? spreadDetectModifier(spreadOf(theirs)) : 0;
+  const modifiers = hop ? [{ label: F("HoppingDetect", { name: theirs.name }), value: hop }] : [];
   if (answer.avoiding && target) {
-    await api.roll.quickContest({ label, first: { actor, base: own, note: EW }, second: { actor: target, base: skillBase(api, target, EW), note: EW }, tags: ["intercept"] } as any);
+    await api.roll.quickContest({ label, first: { actor, base: own, modifiers, note: EW }, second: { actor: target, base: skillBase(api, target, EW), note: EW }, tags: ["intercept"] } as any);
   } else {
-    await api.roll.success({ actor, base: own, skill: EW, label, tags: ["intercept"] } as any);
+    await api.roll.success({ actor, base: own, skill: EW, label, modifiers, tags: ["intercept"] } as any);
   }
   if (eccm) await card(actor, label, [F("EccmSpoofs", { name: theirs.name })]);
 }
@@ -1242,7 +1415,7 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
   const radioWith = (item: any, option: string) => on.radios() && Boolean(radioOf(item)) && sensorData(item).options[option] === true;
   const actions: Array<{ key: string; label: string; icon: string; visible: (item: any) => boolean; run: (item: any, actor: any) => Promise<void> }> = [
     { key: "ht-telegraphy", label: L("TelegraphyTitle"), icon: "fa-solid fa-tower-cell", visible: (item) => on.radios() && (isTelegraph(nameOf(item)) || Boolean(radioOf(item))), run: (item, actor) => telegraphy(api, item, actor) },
-    { key: "ht-direction-finder", label: L("DirectionFinderTitle"), icon: "fa-solid fa-compass", visible: (item) => radioWith(item, "directionFinder"), run: (item, actor) => directionFinder(api, item, actor) },
+    { key: "ht-direction-finder", label: L("DirectionFinderTitle"), icon: "fa-solid fa-compass", visible: (item) => on.radios() && findsDirection(item), run: (item, actor) => directionFinder(api, item, actor) },
     { key: "ht-intercept", label: L("InterceptTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => radioWith(item, "intercept"), run: (item, actor) => intercept(api, item, actor) },
     { key: "ht-radio-tuning", label: L("TuneButton"), icon: "fa-solid fa-radio", visible: (item) => Boolean(on.tuning?.()) && Boolean(radioOf(item) || peripheralOf(item)), run: (item, actor) => tuneIn(api, item, actor) },
     { key: "ht-lens-shine", label: L("LensShineTitle"), icon: "fa-solid fa-sun", visible: (item) => on.visual() && Boolean(opticOf(item)) && !opticOf(item)!.mounted, run: (item, actor) => lensShine(api, item, actor) },
@@ -1251,6 +1424,11 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-emissions", label: L("EmissionsTitle"), icon: "fa-solid fa-wave-square", visible: rangefindingOn, open: () => detectEmissions(api) });
+
+  // The plotter's own roll in a fix's Quick Contest, for its criticals (HT:EE p. 47).
+  Hooks.on(api.combat.hooks.afterQuickContest, (context: any) => {
+    if (Array.isArray(context?.tags) && context.tags.includes("triangulation")) lastFixRoll = context.first?.outcome ?? null;
+  });
 
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;

@@ -1,13 +1,16 @@
 import { describe, expect, it } from "vitest";
 
 import { speedRangeModifier } from "../../../../system/src/rules/ranged.js";
+import { timeSpentModifier } from "../../../shared/time-spent.js";
 import { activeRangePenalty, emissionDetectionRange, rangeExtensionModifier, slowedRangeFactor } from "../../../shared/sensors/rules.js";
 import {
   ACTIVE_SENSORS,
   GPR_MEDIUM,
   OPTICS,
   activeModes,
-  directionFinderFix,
+  triangulationFix,
+  triangulationLevel,
+  triangulationLines,
   directionalMicLevels,
   hydrophoneBonus,
   hydrophoneModifiers,
@@ -82,11 +85,43 @@ describe("radios (pp. 37-39)", () => {
     expect(radioOptions("tiny", 7)).toContain("eccm");
   });
 
-  it("is detected at twice its range, 1.5 times with ECCM; a margin of 5 fixes a transmitter exactly", () => {
+  it("is detected at twice its range, 1.5 times with ECCM", () => {
     expect(radioDetectionRange(1000, false)).toBe(2000);
     expect(radioDetectionRange(1000, true)).toBe(1500);
-    expect(directionFinderFix(0)).toBe("general");
-    expect(directionFinderFix(5)).toBe("exact");
+  });
+});
+
+describe("triangulation (HT:EE p. 47, revising High-Tech pp. 38-39)", () => {
+  it("plots by hand at the lesser of Mathematics and EW-2, with HF/DF at EW, and lets a moved antenna use Amateur Radio", () => {
+    expect(triangulationLevel({ system: "basic", ew: 14, mathematics: 13, antennas: "three" })).toEqual({ level: 12, skill: "plotting" });
+    expect(triangulationLevel({ system: "improvised", ew: 14, mathematics: 10, antennas: "three" })).toEqual({ level: 10, skill: "plotting" });
+    expect(triangulationLevel({ system: "hfdf", ew: 14, mathematics: 10, antennas: "three" })).toEqual({ level: 14, skill: "ew" });
+    expect(triangulationLevel({ system: "basic", ew: 12, mathematics: 12, amateurRadio: 15, antennas: "moved" })).toEqual({ level: 15, skill: "amateurRadio" });
+    expect(triangulationLevel({ system: "basic", ew: 12, mathematics: 12, amateurRadio: 15, antennas: "two" })).toEqual({ level: 10, skill: "plotting" });
+  });
+
+  it("is at +6, the baseline's bonus, the distance's penalty, -2 for two antennas, -5 improvised, and haste only without HF/DF", () => {
+    const lines = triangulationLines({ system: "improvised", antennas: "two", baselineYards: 100, distanceYards: 2000, signalSeconds: 30 }, speedRangeModifier, timeSpentModifier);
+    expect(lines).toEqual([
+      { key: "bonus", value: 6 },
+      { key: "baseline", value: -speedRangeModifier(100) },
+      { key: "distance", value: speedRangeModifier(2000) },
+      { key: "antennas", value: -2 },
+      { key: "improvised", value: -5 },
+      { key: "haste", value: -5 },
+    ]);
+    const hfdf = triangulationLines({ system: "hfdf", antennas: "three", baselineYards: 0, distanceYards: 0, signalSeconds: 10 }, speedRangeModifier, timeSpentModifier);
+    expect(hfdf).toEqual([{ key: "bonus", value: 6 }]);
+  });
+
+  it("scatters by 20%, 10% or 5% of the range, exact on a margin of 6 or a critical, wrong on a critical failure", () => {
+    expect(triangulationFix({ success: true, margin: 0 })).toEqual({ kind: "area", share: 0.2 });
+    expect(triangulationFix({ success: true, margin: 2 })).toEqual({ kind: "area", share: 0.1 });
+    expect(triangulationFix({ success: true, margin: 5 })).toEqual({ kind: "area", share: 0.05 });
+    expect(triangulationFix({ success: true, margin: 6 })).toEqual({ kind: "exact" });
+    expect(triangulationFix({ success: true, margin: 1, criticalSuccess: true })).toEqual({ kind: "exact" });
+    expect(triangulationFix({ success: false, margin: -3 })).toEqual({ kind: "none" });
+    expect(triangulationFix({ success: false, margin: -3, criticalFailure: true })).toEqual({ kind: "wrong" });
   });
 });
 
