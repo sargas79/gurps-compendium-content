@@ -7445,7 +7445,17 @@
       "listCost": 150,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8971,7 +8981,17 @@
       "listCost": 80,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power",
+            "grades": [
+              "household"
+            ]
+          }
+        }
+      }
     }
   },
   {

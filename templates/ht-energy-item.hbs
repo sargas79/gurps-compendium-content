@@ -1,0 +1,32 @@
+{{!-- The Electricity and Electronics supplement's power on an item: a battery's chemistry (or a
+     supercapacitor), a flywheel's material, a bank of capacitors, and the grades of external power
+     it runs on (HT:EE pp. 9, 16-18). --}}
+<div class="isub" data-gcc-ee-energy-section>
+  <div class="isub-head">{{localize "GCC.HT.Energy.Title"}}</div>
+  {{#if chemistry}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Energy.ChemistryHint'}}">{{localize "GCC.HT.Energy.ChemistryLabel"}}
+        <select data-ee-chemistry {{#unless editable}}disabled{{/unless}}>
+          {{#each chemistry.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if flywheel}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Energy.MaterialHint'}}">{{localize "GCC.HT.Energy.MaterialLabel"}}
+        <select data-ee-material {{#unless editable}}disabled{{/unless}}>
+          {{#each flywheel.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+  {{/if}}
+  {{#if capacitor}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Energy.CapacitorsHint'}}">{{localize "GCC.HT.Energy.Capacitors"}}
+        <input type="number" data-ee-capacitors value="{{capacitor.count}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} />
+      </label>
+    </div>
+  {{/if}}
+  {{#each lines}}<p class="ihint">{{this}}</p>{{/each}}
+</div>

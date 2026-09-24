@@ -3975,6 +3975,30 @@
           "system.extensions.gurps-compendium-content.conveyance.stairs": true
         },
         "reason": "Move 3 while in use, climbs stairs a step a second (p. 226) (#394)"
+      },
+      {
+        "pattern": "^Reel-to-Reel Tape Recorder$",
+        "set": {
+          "system.extensions.gurps-compendium-content.power.raw": "Household power",
+          "system.extensions.gurps-compendium-content.power.grades": ["household"]
+        },
+        "reason": "runs on household power, as High-Tech: Electricity and Electronics p. 33 prints it (overlap-ee.txt) (#488)"
+      },
+      {
+        "pattern": "^DVD Player$",
+        "set": {
+          "system.extensions.gurps-compendium-content.power.raw": "Household power",
+          "system.extensions.gurps-compendium-content.power.grades": ["household"]
+        },
+        "reason": "runs on household power, as High-Tech: Electricity and Electronics p. 34 prints it (overlap-ee.txt) (#488)"
+      },
+      {
+        "pattern": "^Portable X-Ray Machine \\(TL8\\)$",
+        "set": {
+          "system.extensions.gurps-compendium-content.power.draw": { "cell": "", "cells": 0, "endurance": "3 hours", "raw": "rechargeable/3 hours" },
+          "system.extensions.gurps-compendium-content.power.rechargeable": true
+        },
+        "reason": "built-in rechargeable batteries for 3 hours, as High-Tech: Electricity and Electronics p. 43 prints them (overlap-ee.txt) (#488)"
       }
     ]
   },

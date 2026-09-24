@@ -19,6 +19,12 @@
  * to recharge batteries; a solar recharger that gives nothing in the dark,
  * read from the scene's lighting where the character's token stands --
  * and the price and weight adapters, inverters and swapped batteries come to.
+ *
+ * The Electricity and Electronics supplement's power (HT:EE pp. 9, 16-18)
+ * builds on this table: battery chemistries, energy storage and the grades
+ * of external power, in `electricity.ts`, under their own switches; its
+ * generators join the table in `generators.ts`, shown here under its
+ * energyStorage switch.
  */
 
 import { CELL_TABLES, initPower, powerPriceChange, readyPower, recharge, rechargeableGear, type CellTable } from "../../../shared/power/index.js";
@@ -26,7 +32,8 @@ import { storePower } from "../../../shared/power/data.js";
 import type { Cell, CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { bookOf } from "../../../shared/book-tables.js";
-import { crankFatigue, crankedShare, fuelOf, generatorOf, palmCrankMinutes, solarPowered, tankLeft, type GeneratorFigures } from "./generators.js";
+import { crankFatigue, crankedShare, fuelOf, generatorOf, palmCrankMinutes, rechargeHours, rechargedShare, solarPowered, tankLeft, type GeneratorFigures, type WindSpeed } from "./generators.js";
+import { readyElectricity, registerChemistryVariant, type ElectricSwitches } from "./electricity.js";
 
 /** The battery sizes the book lists, smallest first (p. 13). */
 export const BATTERY_SIZES = ["T", "XS", "S", "M", "L", "VL"] as const;
@@ -73,15 +80,34 @@ export const HIGH_TECH_BATTERIES: CellFigures = Object.freeze({
 /** The book's battery switch. */
 export const BATTERIES_RULE = `${MODULE_ID}.batteries`;
 
-/** High-Tech's battery table, for the book's gear at TL5-8. */
+/** The supplement's switches for chemistries and for the grades of external power (HT:EE pp. 9, 16-18). */
+export const CHEMISTRY_RULE = `${MODULE_ID}.batteryChemistry`;
+export const EXTERNAL_POWER_RULE = `${MODULE_ID}.externalPower`;
+
+/**
+ * High-Tech's battery table, for the book's gear at TL5-8. Its grades of
+ * external power and built-in rechargeable batteries are the supplement's
+ * (HT:EE p. 9), under that switch.
+ */
 export function highTechBatteries(): CellTable {
-  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT" };
+  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT", externalRule: EXTERNAL_POWER_RULE };
 }
 
-/** Registers the table and the power fields, so the book's records keep their batteries. */
+let variantRegistered = false;
+
+/** Registers the table and the power fields, so the book's records keep their batteries, and the supplement's chemistries. */
 export function initHighTechPower(): void {
   CELL_TABLES.register(highTechBatteries());
   initPower();
+  if (!variantRegistered) {
+    variantRegistered = true;
+    registerChemistryVariant(HIGH_TECH_BATTERIES, CHEMISTRY_RULE);
+  }
+}
+
+/** The switches the power rules read: High-Tech's batteries, and the supplement's three. */
+export interface PowerSwitches extends ElectricSwitches {
+  batteries: () => boolean;
 }
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Power.${key}`);
@@ -100,16 +126,60 @@ function hoursRun(item: any): number {
   return Math.max(0, Number(item?.system?.extensions?.[MODULE_ID]?.power?.hoursUsed) || 0);
 }
 
-/** The carried generators and collectors. */
-function generators(actor: any): Array<{ item: any; figures: GeneratorFigures }> {
+/**
+ * Whether a generator's row shows: High-Tech's under its batteries switch,
+ * the supplement's own under energyStorage (HT:EE pp. 17-18).
+ */
+export function generatorShown(figures: GeneratorFigures, on: PowerSwitches): boolean {
+  return figures.volume === "ee" ? on.storage() : on.batteries();
+}
+
+/** The carried generators and collectors whose switch is on. */
+function generators(actor: any, on: PowerSwitches): Array<{ item: any; figures: GeneratorFigures }> {
   return [...(actor?.items ?? [])]
     .filter((item: any) => item.system?.carried !== false)
     .map((item: any) => ({ item, figures: generatorFor(item) }))
-    .filter((row): row is { item: any; figures: GeneratorFigures } => row.figures !== null);
+    .filter((row): row is { item: any; figures: GeneratorFigures } => row.figures !== null && generatorShown(row.figures, on));
 }
 
-/** What a generator does, in a line. */
-function whatItDoes(figures: GeneratorFigures): string {
+/** The grades of external power, as the supplement names them. */
+function gradeNames(grades: readonly string[]): string {
+  return grades.map((grade) => game.i18n.localize(`GCC.HT.Energy.Grade.${grade}`)).join(L("Or"));
+}
+
+/** Hours to recharge a gadget's batteries at a rate the supplement prints, or null (HT:EE pp. 17-18). */
+export function hoursToRecharge(rates: Readonly<Record<string, number>> | undefined, target: { size: string; cells: number }): number | null {
+  return rechargeHours(rates, target, BATTERY_SIZES, (size) => BATTERIES[size as (typeof BATTERY_SIZES)[number]]?.weight ?? 0);
+}
+
+/** What the supplement says a generator does, in a line (HT:EE pp. 17-18). */
+function supplementDoes(figures: GeneratorFigures): string {
+  const ee = figures.ee!;
+  const parts: string[] = [];
+  if (ee.wind) {
+    parts.push(F("WindOutput", { high: gradeNames(ee.wind.high.supplies), highHours: ee.wind.high.recharges.VL, low: gradeNames(ee.wind.low.supplies), lowHours: ee.wind.low.recharges.VL }));
+    if (ee.skill) parts.push(F("WindSkill", { skill: ee.skill }));
+  }
+  if (ee.supplies?.length) parts.push(F("Supplies", { grades: gradeNames(ee.supplies) }));
+  if (ee.standsFor) parts.push(F(ee.standsFor.cells === 1 ? "StandsForOne" : "StandsFor", { ...ee.standsFor }));
+  if (ee.recharges) parts.push(F("RechargesIn", { rates: Object.entries(ee.recharges).map(([size, hours]) => F("Rate", { size, hours })).join(", ") }));
+  if (ee.fpPerHour !== undefined && !ee.wind) parts.push(ee.fpPerHour ? F("FpPerHour", { fp: ee.fpPerHour }) : L("NoFatigue"));
+  return parts.join("; ");
+}
+
+/**
+ * What a generator does, in a line. Where the supplement's switch is on, its
+ * figures stand in for High-Tech's own rate: the pedal generator is its
+ * source and the supplement's rates (HT:EE p. 17).
+ */
+function whatItDoes(figures: GeneratorFigures, on: PowerSwitches): string {
+  const supplement = figures.ee && on.storage() ? supplementDoes(figures) : "";
+  if (figures.volume === "ee") return [figures.tank ? highTechDoes(figures) : "", supplement].filter(Boolean).join("; ");
+  return supplement ? `${L(`Source.${figures.source}`)}; ${supplement}` : highTechDoes(figures);
+}
+
+/** What High-Tech says a generator does. */
+function highTechDoes(figures: GeneratorFigures): string {
   if (figures.burns) return F(figures.burns.coal ? "BurnsOrCoal" : "Burns", { ...figures.burns, output: L(figures.mechanical ? "Mechanical" : "ExternalOutput") });
   if (figures.tank) return F(figures.tank.cylinder ? "TankCylinder" : "Tank", { amount: figures.tank.amount, fuel: L(`Fuel.${figures.tank.fuel}`), hours: figures.tank.hours });
   if (figures.cranked) return F("Cranked", { ...figures.cranked });
@@ -119,20 +189,21 @@ function whatItDoes(figures: GeneratorFigures): string {
 }
 
 /** The Gear tab section's data. */
-function generatorContext(actor: any): Record<string, unknown> {
+function generatorContext(actor: any, on: PowerSwitches): Record<string, unknown> {
   return {
-    rows: generators(actor).map(({ item, figures }) => {
+    rows: generators(actor, on).map(({ item, figures }) => {
       const tank = figures.tank;
       const left = tank ? tankLeft(tank, hoursRun(item)) : null;
       return {
         id: item.id,
         name: item.name,
-        does: whatItDoes(figures),
+        does: whatItDoes(figures, on),
         tank: Boolean(tank),
         left: left === null ? "" : F("TankLeft", { left: Math.round(left * 10) / 10, hours: tank!.hours }),
         run: Math.round(hoursRun(item) * 10) / 10,
-        crank: Boolean(figures.cranked || figures.palmCrank),
-        recharger: Boolean(figures.recharger),
+        crank: Boolean(figures.cranked || figures.palmCrank || (figures.source === "muscle" && figures.ee?.recharges && on.storage())),
+        recharger: Boolean(figures.recharger || (figures.source === "solar" && figures.ee?.recharges && on.storage())),
+        wind: Boolean(figures.ee?.wind && on.storage()),
       };
     }),
   };
@@ -162,8 +233,8 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
   });
 }
 
-/** Asks which rechargeable gadget to top up, and the time or the light. */
-async function ask(title: string, targets: ReturnType<typeof rechargeableGear>, field: string): Promise<{ target: string; amount: number } | null> {
+/** Asks which rechargeable gadget to top up, and the time, the light or the wind (a second field, `extra`). */
+async function ask(title: string, targets: ReturnType<typeof rechargeableGear>, field: string): Promise<{ target: string; amount: number; extra: string } | null> {
   const options = targets.map((t) => `<option value="${esc(t.item.id)}">${esc(F("TargetOption", { name: t.item.name, left: Math.round(t.left * 10) / 10, total: Math.round(t.total * 10) / 10 }))}</option>`).join("");
   const asked = await foundry.applications.api.DialogV2.prompt({
     window: { title },
@@ -176,39 +247,65 @@ async function ask(title: string, targets: ReturnType<typeof rechargeableGear>, 
       callback: (_e: Event, button: HTMLElement) => {
         const form = button.closest<HTMLElement>(".application");
         const get = (name: string) => form?.querySelector<HTMLInputElement>(`[name="${name}"]`);
-        return { target: String(get("target")?.value ?? ""), amount: Number(get("amount")?.value) || 0 };
+        return { target: String(get("target")?.value ?? ""), amount: Number(get("amount")?.value) || 0, extra: String(get("extra")?.value ?? "") };
       },
     },
     rejectClose: false,
-  }) as { target: string; amount: number } | null;
+  }) as { target: string; amount: number; extra: string } | null;
   return asked;
+}
+
+const labelled = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(label)}</span>${input}</label>`;
+const hoursInput = (name: string, value = 1, step = 1) => `<input type="number" name="${name}" value="${value}" min="${step}" step="${step}" style="width:80px">`;
+
+/**
+ * Recharges a gadget at a rate the supplement prints (HT:EE pp. 17-18):
+ * the share of its batteries' full charge the hours give, from the hours
+ * one battery of its size takes. What it got back, in hours of use.
+ */
+async function rechargeAtRate(target: ReturnType<typeof rechargeableGear>[number], rates: Readonly<Record<string, number>> | undefined, hours: number): Promise<number> {
+  const share = rechargedShare(hoursToRecharge(rates, target), hours);
+  return recharge(target.item, share * target.total);
 }
 
 /**
  * Cranks a muscle-powered generator (p. 14): 1 FP an hour, recharging about
  * 10 lbs. of batteries an hour, or powering a device meanwhile; a miniature
- * one gives five minutes of use for two of cranking, with no fatigue.
+ * one gives five minutes of use for two of cranking, with no fatigue. Under
+ * the supplement's switch, one it prints rates for recharges at those
+ * instead: the pedal generator an S battery in 1.5 hours or an M in 12, for
+ * 1 FP an hour; the hand crank an XS in an hour or an S in 3, with no
+ * fatigue (HT:EE p. 17).
  */
-async function crank(api: GWorldApi, item: any, figures: GeneratorFigures): Promise<void> {
+async function crank(api: GWorldApi, item: any, figures: GeneratorFigures, on: PowerSwitches): Promise<void> {
   const actor = item.actor;
   if (!actor) return;
   const targets = rechargeableGear(actor);
   const palm = figures.palmCrank;
-  const field = palm
-    ? `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(L("Minutes"))}</span><input type="number" name="amount" value="${palm.crankMinutes}" min="1" step="1" style="width:80px"></label>`
-    : `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(L("Hours"))}</span><input type="number" name="amount" value="1" min="1" step="1" style="width:80px"></label>`;
+  const supplement = on.storage() && figures.ee?.recharges ? figures.ee : null;
+  const field = palm && !supplement
+    ? labelled(L("Minutes"), hoursInput("amount", palm.crankMinutes))
+    : labelled(L("Hours"), hoursInput("amount", 1, supplement ? 0.5 : 1));
   const asked = await ask(F("CrankTitle", { name: item.name }), targets, field);
   if (!asked || asked.amount <= 0) return;
   const target = targets.find((t) => t.item.id === asked.target) ?? null;
   const lines: string[] = [];
-  if (palm) {
+  if (supplement) {
+    const hours = asked.amount;
+    const fp = Math.floor(hours) * (supplement.fpPerHour ?? 0);
+    // Cranking is exertion, through the fatigue chart (Campaigns p. 426).
+    if (fp) await api.actors.spendFatigue(actor, fp, { details: { rule: "crank", item: String(item.name ?? "") } });
+    if (target) {
+      const back = await rechargeAtRate(target, supplement.recharges, hours);
+      lines.push(F("CrankRecharged", { hours, fp, name: target.item.name, back: Math.round(back * 10) / 10 }));
+    } else lines.push(F("CrankPowered", { hours, fp }));
+  } else if (palm) {
     const minutes = palmCrankMinutes(palm, asked.amount);
     const back = target ? await recharge(target.item, minutes / 60) : 0;
     lines.push(target ? F("PalmRecharged", { cranked: asked.amount, name: target.item.name, minutes: Math.round(back * 600) / 10 }) : F("PalmPowered", { cranked: asked.amount, minutes }));
   } else if (figures.cranked) {
     const hours = Math.floor(asked.amount);
     const fp = crankFatigue(figures.cranked, hours);
-    // Cranking is exertion, through the fatigue chart (Campaigns p. 426).
     if (fp) await api.actors.spendFatigue(actor, fp, { details: { rule: "crank", item: String(item.name ?? "") } });
     if (target) {
       const share = crankedShare(figures.cranked, hours, target.weight);
@@ -234,30 +331,86 @@ export function darknessAtCarrier(api: GWorldApi, actor: any): number | null {
 /**
  * Recharges batteries with a solar recharger (p. 15): nothing at all in the
  * dark. The darkness is read at the character's token; without one on a
- * scene, the dialog asks for it.
+ * scene, the dialog asks for it. The supplement's portable solar panel
+ * recharges at its own rates, an M battery in an hour or an L in a day
+ * (HT:EE p. 17), in the hours asked.
  */
-async function solarRecharge(api: GWorldApi, item: any): Promise<void> {
+async function solarRecharge(api: GWorldApi, item: any, figures: GeneratorFigures, on: PowerSwitches): Promise<void> {
   const actor = item.actor;
   if (!actor) return;
   const targets = rechargeableGear(actor);
   const read = darknessAtCarrier(api, actor);
+  const rates = on.storage() ? figures.ee?.recharges : undefined;
   const darkness = [0, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10].map((v) => `<option value="${v}">${v === 0 ? esc(L("GoodLight")) : v}</option>`).join("");
-  const field = read === null
-    ? `<label style="display:flex;justify-content:space-between;gap:8px"><span>${esc(L("Darkness"))}</span><select name="amount">${darkness}</select></label>`
+  const light = read === null
+    ? labelled(L("Darkness"), `<select name="${rates ? "extra" : "amount"}">${darkness}</select>`)
     : `<p class="ihint">${esc(read ? F("DarknessRead", { darkness: read }) : L("LightRead"))}</p>`;
+  const field = rates ? labelled(L("Hours"), hoursInput("amount", 1, 0.5)) + light : light;
   const asked = await ask(F("SolarTitle", { name: item.name }), targets, field);
   if (!asked) return;
-  const penalty = read ?? asked.amount;
+  const penalty = read ?? (rates ? Number(asked.extra) || 0 : asked.amount);
   if (!solarPowered(penalty)) {
     await say(actor, item.name, [F("SolarDark", { darkness: penalty })]);
     return;
   }
   const target = targets.find((t) => t.item.id === asked.target) ?? null;
+  if (rates) {
+    const back = target ? await rechargeAtRate(target, rates, asked.amount) : 0;
+    await say(actor, item.name, [target ? F("RateRecharged", { hours: asked.amount, name: target.item.name, back: Math.round(back * 10) / 10 }) : F("RatePowered", { hours: asked.amount })]);
+    return;
+  }
   if (target) await recharge(target.item, target.total);
   await say(actor, item.name, [target ? F("SolarRecharged", { name: target.item.name }) : L("SolarPowered")]);
 }
 
-function generatorListeners(api: GWorldApi, element: HTMLElement, actor: any): void {
+/**
+ * Runs a wind generator for some hours (HT:EE p. 17): in high wind it gives
+ * household power or recharges a VL battery in 2 hours, in low wind
+ * automotive power or 10 hours, and in calm nothing. The TL6 model is
+ * adjusted as the wind changes, by Machine Operation (Wind Generator) --
+ * a failure gives no power for the spell -- and the TL8 model runs itself
+ * at twice the output. The skill defaults to Electrician-5 or Mechanic
+ * (Wind Generator)-5 (HT:EE p. 6).
+ */
+async function runWind(api: GWorldApi, item: any, figures: GeneratorFigures): Promise<void> {
+  const actor = item.actor;
+  const wind = figures.ee?.wind;
+  if (!actor || !wind) return;
+  const targets = rechargeableGear(actor);
+  const speeds = ([["high", L("Wind.high")], ["low", L("Wind.low")], ["calm", L("Wind.calm")]] as Array<[string, string]>)
+    .map(([value, label]) => `<option value="${value}">${esc(label)}</option>`).join("");
+  const asked = await ask(F("WindTitle", { name: item.name }), targets, labelled(L("Hours"), hoursInput("amount", 1, 0.5)) + labelled(L("WindSpeed"), `<select name="extra">${speeds}</select>`));
+  if (!asked || asked.amount <= 0) return;
+  if (asked.extra !== "high" && asked.extra !== "low") {
+    await say(actor, item.name, [L("Wind.None")]);
+    return;
+  }
+  const speed = asked.extra as WindSpeed;
+  const skill = figures.ee?.skill;
+  if (skill) {
+    const own = api.actors.skillLevel(actor, skill);
+    const defaults = ["Electrician", "Mechanic (Wind Generator)"].map((name) => api.actors.skillLevel(actor, name)).filter((v): v is number => typeof v === "number").map((v) => v - 5);
+    const level = typeof own === "number" ? own : defaults.length ? Math.max(...defaults) : null;
+    if (level === null) {
+      ui.notifications?.warn(F("NoWindSkill", { skill }));
+      return;
+    }
+    const result: any = await api.roll.success({ actor, base: level, skill, item, label: F("WindRoll", { name: item.name }), modifiers: [], tags: ["machineOperation"] } as any);
+    if (!result || "refused" in result) return;
+    if (!result.success) {
+      await say(actor, item.name, [L("Wind.Failed")]);
+      return;
+    }
+  }
+  const output = wind[speed];
+  const target = targets.find((t) => t.item.id === asked.target) ?? null;
+  const back = target ? await rechargeAtRate(target, output.recharges, asked.amount) : 0;
+  await say(actor, item.name, [target
+    ? F("RateRecharged", { hours: asked.amount, name: target.item.name, back: Math.round(back * 10) / 10 })
+    : F("WindPowered", { hours: asked.amount, grades: gradeNames(output.supplies) })]);
+}
+
+function generatorListeners(api: GWorldApi, element: HTMLElement, actor: any, switches: PowerSwitches): void {
   const rowOf = (el: HTMLElement) => {
     const item = actor.items.get(el.closest<HTMLElement>("[data-item-id]")?.dataset.itemId ?? "");
     const figures = item ? generatorFor(item) : null;
@@ -275,8 +428,9 @@ function generatorListeners(api: GWorldApi, element: HTMLElement, actor: any): v
       if (row) void run(row);
     }));
   on("[data-gcc-generator-refuel]", ({ item, figures }) => refuel(item, figures));
-  on("[data-gcc-generator-crank]", ({ item, figures }) => crank(api, item, figures));
-  on("[data-gcc-generator-solar]", ({ item }) => solarRecharge(api, item));
+  on("[data-gcc-generator-crank]", ({ item, figures }) => crank(api, item, figures, switches));
+  on("[data-gcc-generator-solar]", ({ item, figures }) => solarRecharge(api, item, figures, switches));
+  on("[data-gcc-generator-wind]", ({ item, figures }) => runWind(api, item, figures));
 }
 
 /**
@@ -298,9 +452,15 @@ export function highTechPowerPrice(item: any, price: { cost: number; weight: num
   return cost !== price.cost || weight !== price.weight ? { cost, weight: Math.round(weight * 1000) / 1000 } : null;
 }
 
-/** Registers the engine's sheet parts, the generators section and the price change. */
-export function readyHighTechPower(api: GWorldApi, on: () => boolean): void {
+/**
+ * Registers the engine's sheet parts, the generators section and the price
+ * change, and the supplement's chemistries, storage and grades of external
+ * power (HT:EE pp. 9, 16-18).
+ */
+export function readyHighTechPower(api: GWorldApi, switches: PowerSwitches): void {
+  const on = switches.batteries;
   readyPower(api);
+  readyElectricity(api, HIGH_TECH_BATTERIES, switches);
 
   api.sheets.registerSheetSection({
     module: MODULE_ID,
@@ -309,9 +469,9 @@ export function readyHighTechPower(api: GWorldApi, on: () => boolean): void {
     tab: "gear",
     position: "start",
     template: `modules/${MODULE_ID}/templates/ht-generators.hbs`,
-    visible: (actor) => on() && generators(actor).length > 0,
-    context: (actor) => generatorContext(actor),
-    listeners: (element, actor) => generatorListeners(api, element, actor),
+    visible: (actor) => generators(actor, switches).length > 0,
+    context: (actor) => generatorContext(actor, switches),
+    listeners: (element, actor) => generatorListeners(api, element, actor, switches),
   });
 
   api.data.registerPriceModifier({

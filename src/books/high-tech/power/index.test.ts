@@ -167,7 +167,7 @@ describe("recharging", () => {
 });
 
 describe("generators, collectors and fuel (pp. 14-16)", () => {
-  const records = ["high-tech-captured-core-general.json", "high-tech-by-hand.json"]
+  const records = ["high-tech-captured-core-general.json", "high-tech-by-hand.json", "high-tech-ee-laboratory-power.json", "high-tech-ee-laboratory-power-by-hand.json"]
     .flatMap((file) => JSON.parse(readFileSync(new URL(`../../../../books/high-tech/packs-src/equipment/${file}`, import.meta.url), "utf-8")) as Array<{ name: string }>)
     .map((r) => r.name);
 

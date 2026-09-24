@@ -3551,7 +3551,20 @@
       "listCost": 50000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "",
+              "cells": 0,
+              "endurance": "3 hours",
+              "raw": "rechargeable/3 hours"
+            },
+            "rechargeable": true
+          }
+        }
+      }
     }
   },
   {
