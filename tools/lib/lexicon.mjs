@@ -47,7 +47,8 @@ export async function lexiconOf(paths) {
       let brokenBefore = false;
       for (const line of await textLines(book, number)) {
         const tokens = line.match(/[A-Za-z]+(?:-[A-Za-z]+)*-?/g) ?? [];
-        const brokenAfter = /[A-Za-z]-$/.test(line);
+        // A justified line can set its closing hyphen apart: "sig -".
+        const brokenAfter = /[A-Za-z] ?-$/.test(line);
         tokens.forEach((token, i) => {
           // The two halves of a broken word are not words the book prints.
           if (i === 0 && brokenBefore) return;
