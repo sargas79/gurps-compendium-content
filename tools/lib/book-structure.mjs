@@ -62,6 +62,11 @@ function keepsHyphen(stem, rest) {
 
 /** Joins a line's text onto the text before it, mending a broken word. */
 export function joinText(before, after) {
+  // A justified line can set its closing hyphen apart from the word it breaks,
+  // "sig -" and "nal", and the half-word was left standing with the hyphen
+  // stuck to the next line's first word (HT:EE pp. 27, 32, 34). A lone hyphen
+  // before a lower-case word breaks a word the way an attached one does.
+  if (/[A-Za-z] -$/.test(before) && /^[a-z]/.test(after)) before = before.slice(0, -2) + "-";
   const hyphen = /([A-Za-z]+)-$/.exec(before);
   // "one- or two-wheeled": a hyphen left hanging for the word after the "or".
   if (hyphen && /^(or|and|to)\b/.test(after)) return `${before} ${after}`;

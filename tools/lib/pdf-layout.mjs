@@ -55,7 +55,16 @@ async function runsOf(page, { fonts = true } = {}) {
   const runs = [];
 
   for (const item of content.items) {
-    if (!item.str || !item.str.trim()) continue;
+    if (!item.str) continue;
+    if (!item.str.trim()) {
+      // A space the page sets as a run of its own, flush against the run before
+      // it. The next run can stand closer than a gap reads as a space, so the
+      // space itself is what keeps two words apart: an italic "a" and the
+      // abbreviation after it came out as one word (HT:EE p. 34).
+      const before = runs[runs.length - 1];
+      if (before && Math.abs(before.y - (view.height - item.transform[5])) < 1 && Math.abs(item.transform[4] - before.x1) < 1) before.spaceAfter = true;
+      continue;
+    }
     const [, , c, d, x, y] = item.transform;
     if (!names.has(item.fontName)) {
       let name = item.fontName;
@@ -93,18 +102,16 @@ async function runsOf(page, { fonts = true } = {}) {
  * that, "is +1. Just a loincloth" arrives as "is+1.Justaloincloth".
  */
 function linesOf(runs) {
+  // Whether a run, or a line, carries on a line: on its baseline and close
+  // after it. Justified text spreads its words up to ten points apart; a
+  // column gutter is eighteen. Twelve joins the one and never the other.
+  const follows = (line, next) =>
+    Math.abs(line.y - next.y) < Math.max(2, (next.size ?? next.runs[0].size) * 0.3) && next.x >= line.x1 - 2 && next.x - line.x1 < 12;
   const sorted = [...runs].sort((a, b) => a.y - b.y || a.x - b.x);
   const lines = [];
 
   for (const run of sorted) {
-    const line = lines.find(
-      (l) =>
-        Math.abs(l.y - run.y) < Math.max(2, run.size * 0.3) &&
-        run.x >= l.x1 - 2 &&
-        // Justified text spreads its words up to ten points apart; a column
-        // gutter is eighteen. Twelve joins the one and never the other.
-        run.x - l.x1 < 12,
-    );
+    const line = lines.find((l) => follows(l, run));
     if (!line) {
       lines.push({ x: run.x, x1: run.x1, y: run.y, runs: [run] });
       continue;
@@ -113,15 +120,39 @@ function linesOf(runs) {
     line.x1 = Math.max(line.x1, run.x1);
   }
 
+  // A run on the same baseline set a hair higher is sorted ahead of the runs
+  // to its left, and starts a line of its own that they can't join: a
+  // line-end hyphen stood alone and its word lost it (HT:EE p. 32). Such a
+  // line is joined onto the one it carries on.
+  for (let merged = true; merged; ) {
+    merged = false;
+    for (const [i, before] of lines.entries()) {
+      const at = lines.findIndex((after, j) => j !== i && follows(before, after));
+      if (at < 0) continue;
+      const after = lines[at];
+      before.runs.push(...after.runs);
+      before.x1 = Math.max(before.x1, after.x1);
+      lines.splice(at, 1);
+      merged = true;
+      break;
+    }
+  }
+
   for (const line of lines) {
     line.runs.sort((a, b) => a.x - b.x);
     let text = "";
     let end = null;
+    let spaced = false;
     for (const run of line.runs) {
       const gap = end === null ? 0 : run.x - end;
-      if (text && gap > run.size * 0.1 && !/\s$/.test(text) && !/^\s/.test(run.text)) text += " ";
+      // A set space counts where it takes some room (a small-capital heading
+      // sets empty runs between the letters of a word with none), and never
+      // inside a bracket.
+      const set = spaced && gap > run.size * 0.03 && !/[([“"]$/.test(text);
+      if (text && (gap > run.size * 0.1 || set) && !/\s$/.test(text) && !/^\s/.test(run.text)) text += " ";
       text += run.text;
       end = run.x1;
+      spaced = Boolean(run.spaceAfter);
     }
     line.text = text.replace(/\s+/g, " ").trim();
     // The line is set in whatever most of its characters are set in.
