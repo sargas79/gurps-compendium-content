@@ -1002,7 +1002,7 @@ const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (EO
 
 /** The dialog row naming the skill a survey helps: blank leaves the bonus to the GM. */
 function surveyRow(): string {
-  return row(L("SurveySkill"), `<input type="text" name="survey" value="${SURVEY_SKILLS[0]}" list="ht-survey-skills" style="width:140px" />`
+  return row(L("SurveySkill"), `<input type="text" name="survey" value="" list="ht-survey-skills" style="width:140px" />`
     + `<datalist id="ht-survey-skills">${SURVEY_SKILLS.map((s) => `<option value="${esc(s)}"></option>`).join("")}</datalist>`);
 }
 
