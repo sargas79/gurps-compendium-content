@@ -8,9 +8,14 @@
  * that Ultra-Tech's automeds are in too.
  *
  *   - **Emergency medicine (emergencyMedicine):** a manual defibrillator's
- *     row button rolls Electronics Operation (Medical), then resuscitates at
- *     +2 (TL7) or +3 (TL8); the AED's rolls IQ+4 to hook it up, then
- *     resuscitates at its own skill 12; CPR given with either, or from the
+ *     row button rolls Electronics Operation (Medical); the AED's rolls IQ+4
+ *     to hook it up, then shocks at its own skill 12. A shock that gets
+ *     through restarts a fibrillating heart on the patient's HT+1, a point
+ *     more for each shock after it up to HT+5, -1 per 2 full minutes since
+ *     the fibrillation began, as the supplement Electricity and Electronics
+ *     revises High-Tech's +2 or +3 to resuscitation (HT:EE p. 14; decision E3
+ *     in #471); a drowned or suffocated patient's stopped heart it can't
+ *     restart. CPR given with either, or from the
  *     GM's "Give CPR" tool, costs the rescuer 1 FP per five minutes; first aid
  *     gear gives +1 at best without blood or IV fluids to hand (a crash kit
  *     carries its own until depleted), and a kit marked depleted works a grade
@@ -35,6 +40,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { toolsFor } from "../equipment/index.js";
 import {
   AED_HOOKUP,
+  REVIVAL,
   ANESTHESIA,
   ANTISEPTIC,
   MEDICAL_SUPPLIES,
@@ -53,8 +59,10 @@ import {
   WITHOUT_FLUIDS_BEST,
   XRAY_RADS_DICE,
   cprFatigue,
-  defibrillatorBonus,
   depletedGrade,
+  fibrillationPenalty,
+  revivalBonus,
+  shockRevives,
   firstAidGearWithoutFluids,
   hemostaticLine,
   surgicalKitLine,
@@ -193,14 +201,6 @@ function askResuscitation(title: string): Promise<Resuscitation | null> {
     }));
 }
 
-/** The defibrillator's line, for the one resuscitation roll being made with it. */
-let shock: { healer: any; line: { label: string; value: number } } | null = null;
-
-/** The line a resuscitation roll takes from a defibrillator in use, or null. */
-export function shockLine(context: any): { label: string; value: number } | null {
-  return shock && context?.actor === shock.healer && (context?.tags ?? []).includes("resuscitation") ? shock.line : null;
-}
-
 /** Charges the rescuer for a minute of manual CPR on this patient: 1 FP per five minutes (p. 220). */
 async function chargeCpr(api: GWorldApi, healer: any, patient: any): Promise<void> {
   const kept = healer?.getFlag?.(MODULE_ID, CPR_FLAG) as { patient?: string; minutes?: number } | undefined;
@@ -214,27 +214,82 @@ async function chargeCpr(api: GWorldApi, healer: any, patient: any): Promise<voi
   if (spent) await say(healer, L("Cpr"), [F("CprFatigue", { name: healer.name, fp, minutes: before + 1 })]);
 }
 
-/** One minute's resuscitation, with a defibrillator's line or a device's own skill, and the CPR that went with it. */
-async function resuscitate(api: GWorldApi, healer: any, patient: any, answer: Resuscitation, options: { line?: { label: string; value: number }; skill?: number; techLevel?: number; label?: string } = {}): Promise<void> {
-  shock = options.line ? { healer, line: options.line } : null;
-  try {
-    await api.actors.resuscitate({
-      healer, patient, cause: answer.cause, cpr: answer.cpr, modifier: answer.modifier,
-      ...(typeof options.skill === "number" ? { skill: options.skill, skillKind: "physician" as const } : {}),
-      ...(typeof options.techLevel === "number" ? { techLevel: options.techLevel } : {}),
-      ...(options.label ? { label: options.label } : {}),
-    });
-  } finally {
-    shock = null;
-  }
+/** One minute's resuscitation, the healer's or a stand-in figure's, and the CPR that went with it. */
+async function resuscitate(api: GWorldApi, healer: any, patient: any, answer: Resuscitation, options: { skill?: number; techLevel?: number; label?: string; modifier?: number } = {}): Promise<void> {
+  await api.actors.resuscitate({
+    healer, patient, cause: answer.cause, cpr: answer.cpr, modifier: answer.modifier + (options.modifier ?? 0),
+    ...(typeof options.skill === "number" ? { skill: options.skill, skillKind: "physician" as const } : {}),
+    ...(typeof options.techLevel === "number" ? { techLevel: options.techLevel } : {}),
+    ...(options.label ? { label: options.label } : {}),
+  });
   if (answer.cpr) await chargeCpr(api, healer, patient);
 }
 
-/** A manual defibrillator: Electronics Operation (Medical), then the resuscitation roll at its bonus (p. 220). */
+// ── the defibrillator's revival (HT:EE p. 14; p. 220) ──
+
+/** The shocks one defibrillator has given one patient, and when the fibrillation began. */
+export const SHOCKS_FLAG = "eeShocks";
+
+interface Shocking extends Resuscitation {
+  /** Minutes since the fibrillation began. */
+  minutes: number;
+  /** Shocks that got through before this one. */
+  shocks: number;
+}
+
+/** What the defibrillator knows of this patient: the shocks it gave and when the fibrillation began. */
+function shocksGiven(item: any, patient: any): { shocks: number; minutes: number } {
+  const kept = item?.getFlag?.(MODULE_ID, SHOCKS_FLAG) as { patient?: string; shocks?: number; since?: number } | undefined;
+  if (!kept || kept.patient !== String(patient?.uuid ?? patient?.id ?? "")) return { shocks: 0, minutes: 0 };
+  return { shocks: Math.max(0, Number(kept.shocks) || 0), minutes: Math.max(0, Math.floor((worldNow() - (Number(kept.since) || worldNow())) / 60)) };
+}
+
+/** The resuscitation dialog, with the fibrillation's minutes and the shocks already given. */
+function askShock(title: string, item: any, patient: any): Promise<Shocking | null> {
+  const causes = CAUSES.map((c) => `<option value="${c}">${esc(game.i18n.localize(`GWORLD.Recovery.Cause.${c}`))}</option>`).join("");
+  const given = shocksGiven(item, patient);
+  const whole = (form: HTMLElement, name: string) => Math.max(0, Math.floor(Number(form.querySelector<HTMLInputElement>(`[name=${name}]`)?.value) || 0));
+  return ask(title,
+    row(L("Cause"), `<select name="cause">${causes}</select>`)
+    + row(L("WithCpr"), `<input type="checkbox" name="cpr" checked />`)
+    + row(L("Minutes"), `<input type="number" name="minutes" value="${given.minutes}" min="0" step="1" style="width:60px" />`)
+    + row(L("Shocks"), `<input type="number" name="shocks" value="${given.shocks}" min="0" step="1" style="width:60px" />`)
+    + row(L("Modifier"), `<input type="number" name="modifier" value="0" step="1" style="width:60px" />`),
+    (form) => ({
+      cause: (form.querySelector<HTMLSelectElement>("[name=cause]")?.value ?? "heartAttack") as Cause,
+      cpr: Boolean(form.querySelector<HTMLInputElement>("[name=cpr]")?.checked),
+      modifier: Math.trunc(Number(form.querySelector<HTMLInputElement>("[name=modifier]")?.value) || 0),
+      minutes: whole(form, "minutes"),
+      shocks: whole(form, "shocks"),
+    }));
+}
+
+/**
+ * A shock that got through: the heart restarts on the patient's HT+1, a
+ * point more for each earlier shock up to HT+5, less a point per 2 full
+ * minutes of fibrillation -- the system's resuscitation roll against that
+ * figure (HT:EE p. 14). A stopped heart, drowned or suffocated, it can't
+ * restart: CPR alone goes on.
+ */
+async function revive(api: GWorldApi, item: any, healer: any, patient: any, answer: Shocking, techLevel: number): Promise<void> {
+  if (!shockRevives(answer.cause)) {
+    await say(patient, nameOf(item), [F("NoFibrillation", { name: nameOf(item) })]);
+    if (answer.cpr) await resuscitate(api, healer, patient, answer);
+    return;
+  }
+  const bonus = revivalBonus(answer.shocks);
+  const penalty = fibrillationPenalty(answer.minutes);
+  await item?.setFlag?.(MODULE_ID, SHOCKS_FLAG, { patient: String(patient?.uuid ?? patient?.id ?? ""), shocks: answer.shocks + 1, since: worldNow() - answer.minutes * 60 });
+  const ht = Number(api.actors.attribute(patient, "HT")) || 10;
+  if (penalty) await say(patient, nameOf(item), [F("Fibrillating", { minutes: answer.minutes, penalty })]);
+  await resuscitate(api, healer, patient, answer, { skill: ht + bonus, techLevel, modifier: penalty, label: F("HeartLabel", { patient: patient.name, bonus, name: nameOf(item) }) });
+}
+
+/** A manual defibrillator: Electronics Operation (Medical), then the revival (p. 220; HT:EE p. 14). */
 async function defibrillate(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor();
   if (!patient) return void ui.notifications?.warn(L("OneTarget"));
-  const answer = await askResuscitation(nameOf(item));
+  const answer = await askShock(nameOf(item), item, patient);
   if (!answer) return;
   const base = skillOrDefault(api, actor, MEDICAL_ELECTRONICS, ELECTRONICS_DEFAULT);
   const worked: any = await api.roll.success({ actor, base, skill: MEDICAL_ELECTRONICS, label: F("ShockLabel", { name: nameOf(item), patient: patient.name }), tags: ["defibrillator"], item } as any);
@@ -244,11 +299,10 @@ async function defibrillate(api: GWorldApi, item: any, actor: any): Promise<void
     if (answer.cpr) await resuscitate(api, actor, patient, answer);
     return;
   }
-  const value = defibrillatorBonus(medicalData(item).value, tlOf(item));
-  await resuscitate(api, actor, patient, answer, { line: { label: nameOf(item), value } });
+  await revive(api, item, actor, patient, answer, Math.max(7, tlOf(item)));
 }
 
-/** An AED: IQ+4 to hook it up, then it resuscitates on its own skill (p. 220). */
+/** An AED: IQ+4 to hook it up, then it shocks on its own skill (p. 220), and the revival follows (HT:EE p. 14). */
 async function useAed(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor();
   if (!patient) return void ui.notifications?.warn(L("OneTarget"));
@@ -256,7 +310,7 @@ async function useAed(api: GWorldApi, item: any, actor: any): Promise<void> {
   const tl = tlOf(item) || device?.tl || 8;
   const skill = device ? deviceSkill(device, "resuscitation", tl) : null;
   if (skill === null) return;
-  const answer = await askResuscitation(nameOf(item));
+  const answer = await askShock(nameOf(item), item, patient);
   if (!answer) return;
   const iq = Number(api.actors.attribute(actor, "IQ")) || 10;
   const hooked: any = await api.roll.success({ actor, base: iq, kind: "attribute", skill: "IQ", label: F("HookUpLabel", { name: nameOf(item), patient: patient.name }), modifiers: [{ label: L("AedInstructions"), value: AED_HOOKUP }], tags: ["aed", "IQ"], item } as any);
@@ -266,7 +320,15 @@ async function useAed(api: GWorldApi, item: any, actor: any): Promise<void> {
     if (answer.cpr) await resuscitate(api, actor, patient, answer);
     return;
   }
-  await resuscitate(api, actor, patient, answer, { skill, techLevel: tl, label: F("DeviceLabel", { name: nameOf(item), skill }) });
+  // The AED's 12 stands for its user's Electronics Operation (Medical) (HT:EE p. 14).
+  const shocked: any = await api.roll.success({ actor, base: skill, skill: MEDICAL_ELECTRONICS, label: F("AedShockLabel", { name: nameOf(item), patient: patient.name, skill }), tags: ["defibrillator", "aed"], item } as any);
+  if (!shocked) return;
+  if (!shocked.success) {
+    await say(patient, nameOf(item), [F("ShockFailed", { name: nameOf(item) })]);
+    if (answer.cpr) await resuscitate(api, actor, patient, answer);
+    return;
+  }
+  await revive(api, item, actor, patient, answer, tl);
 }
 
 /** The GM's CPR: the selected character works on the targeted one, a minute at a time. */
@@ -467,7 +529,7 @@ function itemLines(item: any, on: MedicineSwitches): string[] {
   if (on.emergency()) {
     switch (data.kind) {
       case "airway": lines.push(L("AirwayItem")); break;
-      case "defibrillator": lines.push(F("DefibrillatorItem", { bonus: defibrillatorBonus(data.value, tl) })); break;
+      case "defibrillator": lines.push(F("DefibrillatorItem", { first: REVIVAL.first, most: REVIVAL.most, minutes: REVIVAL.minutesPerPoint })); break;
       case "aed": {
         const device = deviceFor(item);
         const skill = device ? deviceSkill(device, "resuscitation", tl || device.tl) : null;
@@ -540,10 +602,6 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const tags: string[] = context?.tags ?? [];
     if (!Array.isArray(context?.modifiers)) return;
-
-    // The defibrillator in use (p. 220).
-    const line = on.emergency() ? shockLine(context) : null;
-    if (line) context.modifiers.push(line);
 
     // Hemostatic bandages on a bleeding wound, one used (p. 221).
     if (on.emergency() && tags.includes("firstAid")) {

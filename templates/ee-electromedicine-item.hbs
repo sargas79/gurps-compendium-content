@@ -1,0 +1,10 @@
+{{!-- The Electricity and Electronics supplement's electromedicine: diathermy, the heating pad, electroconvulsive therapy and the laser scalpel (HT:EE pp. 13-14, 21). --}}
+<div class="isub" data-gcc-ee-electromedicine-section>
+  <div class="isub-head">{{localize "GCC.HT.Electromedicine.Title"}}</div>
+  {{#if early}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Electromedicine.EarlyHint'}}"><input type="checkbox" data-ee-electromedicine="earlyModel" {{#if early.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Electromedicine.Early"}}</label>
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

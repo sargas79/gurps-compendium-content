@@ -1,0 +1,24 @@
+{{!-- The Electricity and Electronics supplement's appliances and power tools: heaters, fans, kitchen gear, magnets, remote control, the emergency stop and power tools' work (HT:EE pp. 14, 20-25). --}}
+<div class="isub" data-gcc-ee-appliances-section>
+  <div class="isub-head">{{localize "GCC.HT.Appliances.Title"}}</div>
+  {{#if magnet}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Appliances.CoreHint'}}">{{localize "GCC.HT.Appliances.CoreLabel"}}
+        <select data-ee-appliance="magnet.core" {{#unless editable}}disabled{{/unless}}>
+          {{#each magnet.cores as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label data-tooltip="{{localize 'GCC.HT.Appliances.DiameterHint'}}">{{localize "GCC.HT.Appliances.DiameterLabel"}} <input type="number" data-ee-appliance="magnet.diameter" value="{{magnet.diameter}}" min="0" step="any" {{#unless editable}}disabled{{/unless}} /></label>
+      <label data-tooltip="{{localize 'GCC.HT.Appliances.LengthHint'}}">{{localize "GCC.HT.Appliances.LengthLabel"}} <input type="number" data-ee-appliance="magnet.length" value="{{magnet.length}}" min="0" step="any" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+  {{/if}}
+  {{#if (or remote early diamond)}}
+    <div class="ichecks">
+      {{#if remote}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.RemoteHint'}}"><input type="checkbox" data-ee-appliance="remoteControl" {{#if remote.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Remote"}}</label>{{/if}}
+      {{#if stop}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.StopHint'}}"><input type="checkbox" data-ee-appliance="emergencyStop" {{#if stop.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Stop"}}</label>{{/if}}
+      {{#if early}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.EarlyHint'}}"><input type="checkbox" data-ee-appliance="earlyModel" {{#if early.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Early"}}</label>{{/if}}
+      {{#if diamond}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.DiamondHint'}}"><input type="checkbox" data-ee-appliance="diamondBlade" {{#if diamond.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Diamond"}}</label>{{/if}}
+    </div>
+  {{/if}}
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>

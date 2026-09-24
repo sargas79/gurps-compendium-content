@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it } from "vitest";
 
 import { MODULE_ID } from "../module.js";
-import { CLIMATE_TABLES, climateGearOf, climateTolerance, widenComfortZone } from "./index.js";
+import { CLIMATE_TABLES, climateGearOf, climateTolerance, resistLine, widenComfortZone } from "./index.js";
 
 const item = (name: string, book: string | null, tl = "8") => ({ name, system: { tl }, flags: book ? { [MODULE_ID]: { book } } : {} });
 
@@ -27,5 +27,28 @@ describe("the shared climate engine", () => {
     expect(climateGearOf(item("Heated Clothing", "high-tech"), on([]))).toBeNull();
     // Made by hand: a switched-on book's.
     expect(climateGearOf(item("Heated Clothing", null), on(["ht"]))?.powered).toBe(true);
+  });
+
+  it("takes a piece under a switch of its own where it names one, and adds the best one's bonus to the roll against the weather", () => {
+    const none = { coldF: 0, heatF: 0 };
+    CLIMATE_TABLES.register({
+      book: "high-tech", tls: { min: 5, max: 8 }, rule: "ht",
+      gear: [
+        { pattern: /^heated clothing$/i, zone: { coldF: 60, heatF: 0 }, powered: true },
+        { pattern: /^large fan$/i, zone: none, rule: "appliances", resist: { heat: 2 } },
+        { pattern: /^small fan$/i, zone: none, rule: "appliances", resist: { heat: 1 } },
+      ],
+    });
+    const on = (keys: string[]) => (key: string) => keys.includes(key);
+    expect(climateGearOf(item("Large Fan", "high-tech"), on(["ht"]))).toBeNull();
+    expect(climateGearOf(item("Large Fan", "high-tech"), on(["appliances"]))?.resist).toEqual({ heat: 2 });
+    expect(climateGearOf(item("Heated Clothing", "high-tech"), on(["appliances"]))).toBeNull();
+    const inUse = (name: string, equipped = true) => ({ ...item(name, "high-tech"), system: { tl: "8", carried: true, equipped } });
+    const actor = { items: [inUse("Small Fan (TL8)"), inUse("Large Fan")] };
+    expect(resistLine(actor, true, on(["appliances"]))).toEqual({ label: "Large Fan", value: 2 });
+    expect(resistLine(actor, false, on(["appliances"]))).toBeNull();
+    expect(resistLine(actor, true, on(["ht"]))).toBeNull();
+    // Not in use: nothing.
+    expect(resistLine({ items: [inUse("Large Fan", false)] }, true, on(["appliances"]))).toBeNull();
   });
 });

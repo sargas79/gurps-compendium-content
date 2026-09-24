@@ -84,6 +84,8 @@ function gear(name: string, medical: Record<string, unknown> | null, more: Recor
   item.update = async (changes: Record<string, unknown>) => {
     for (const [path, value] of Object.entries(changes)) setPath(item, path, value);
   };
+  item.getFlag = (_scope: string, key: string) => item.flags[MODULE_ID]?.[key];
+  item.setFlag = async (_scope: string, key: string, value: unknown) => { (item.flags[MODULE_ID] ??= {})[key] = value; };
   return item;
 }
 
@@ -177,54 +179,79 @@ describe("with both switches off", () => {
   });
 });
 
-describe("resuscitation (High-Tech p. 220)", () => {
+describe("resuscitation (High-Tech p. 220; HT:EE p. 14)", () => {
   beforeEach(() => { on = { emergencyMedicine: true }; ready(); });
 
-  it("puts a manual defibrillator's +3 on the resuscitation roll once Electronics Operation (Medical) succeeds", async () => {
+  it("restarts a fibrillating heart on the patient's HT+1 once Electronics Operation (Medical) succeeds (E3 in #471)", async () => {
     const medic = person("Medic", [], { skills: { "Electronics Operation (Medical)": 12 } });
-    const patient = person("Patient");
+    const patient = person("Patient", [], { attributes: { IQ: 10, HT: 11 } });
     targets = [patient];
-    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 0, shocks: 0 };
     const defibrillator = gear("Manual Defibrillator (TL8)", { kind: "defibrillator", value: 3 });
     await run("ht-defibrillate", defibrillator, medic);
     expect(successes[0]).toMatchObject({ actor: medic, base: 12, skill: "Electronics Operation (Medical)", item: defibrillator });
     expect(resuscitations).toHaveLength(1);
-    expect(resuscitations[0]).toMatchObject({ healer: medic, patient, cause: "heartAttack", cpr: false });
-    expect(resuscitations[0].lines).toEqual([{ label: "Manual Defibrillator (TL8)", value: 3 }]);
-    // The line is for that roll alone.
-    expect(roll(medic, ["resuscitation", "heartAttack"])).toEqual([]);
+    // The patient's HT+1 stands in for the healer's skill; High-Tech's +3 is gone.
+    expect(resuscitations[0]).toMatchObject({ healer: medic, patient, cause: "heartAttack", cpr: false, skill: 12, skillKind: "physician", techLevel: 8, modifier: 0, lines: [] });
+    expect(defibrillator.getFlag(MODULE_ID, "eeShocks")).toEqual({ patient: "Actor.Patient", shocks: 1, since: 1000 });
   });
 
-  it("gives the TL7 model +2, and no roll at all without the shock unless CPR goes on", async () => {
+  it("raises it a point a shock up to HT+5, at -1 per 2 full minutes of fibrillation", async () => {
+    const medic = person("Medic");
+    const patient = person("Patient");
+    targets = [patient];
+    const defibrillator = gear("Defibrillator", { kind: "defibrillator" }, { tl: "7" });
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 1, minutes: 5, shocks: 2 };
+    await run("ht-defibrillate", defibrillator, medic);
+    expect(resuscitations[0]).toMatchObject({ skill: 13, modifier: -1, techLevel: 7 });
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 1, shocks: 9 };
+    await run("ht-defibrillate", defibrillator, medic);
+    expect(resuscitations[1]).toMatchObject({ skill: 15, modifier: 0 });
+  });
+
+  it("does nothing for a stopped heart, and gives no revival without the shock unless CPR goes on", async () => {
     const medic = person("Medic");
     targets = [person("Patient")];
-    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
-    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 0, shocks: 0 };
     // Electronics Operation at IQ-5 unlearned.
+    successResults = [{ success: false }];
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
     expect(successes[0].base).toBe(6);
-    expect(resuscitations[0].lines).toEqual([{ label: "Manual Defibrillator (TL7)", value: 2 }]);
+    expect(resuscitations).toHaveLength(0);
     successResults = [{ success: false }];
+    dialogAnswer = { cause: "drowning", cpr: true, modifier: 0, minutes: 0, shocks: 0 };
     await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
-    expect(resuscitations).toHaveLength(1);
-    successResults = [{ success: false }];
-    dialogAnswer = { cause: "drowning", cpr: true, modifier: 0 };
+    expect(resuscitations[0]).toMatchObject({ cause: "drowning", cpr: true, lines: [] });
+    expect(resuscitations[0].skill).toBeUndefined();
+    // The shock gets through, but a drowned heart has stopped: the CPR alone.
     await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
-    expect(resuscitations[1]).toMatchObject({ cause: "drowning", cpr: true, lines: [] });
+    expect(resuscitations[1]).toMatchObject({ cause: "drowning", cpr: true });
+    expect(resuscitations[1].skill).toBeUndefined();
+    expect(chat.at(-1)).toContain("NoFibrillation");
   });
 
-  it("hooks an AED up at IQ+4, then resuscitates at its own skill 12", async () => {
+  it("hooks an AED up at IQ+4, shocks at its own 12, then revives on HT+1", async () => {
     const operator = person("Bystander");
     const patient = person("Patient");
     targets = [patient];
-    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0 };
+    dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 0, shocks: 0 };
     const aed = gear("Automatic External Defibrillator (AED)", { kind: "aed" });
     await run("ht-aed", aed, operator);
     expect(successes[0]).toMatchObject({ base: 11, kind: "attribute", modifiers: [{ label: "GCC.HT.Medicine.AedInstructions", value: 4 }], item: aed });
-    expect(resuscitations[0]).toMatchObject({ healer: operator, patient, skill: 12, skillKind: "physician", techLevel: 8, lines: [] });
+    expect(successes[1]).toMatchObject({ base: 12, skill: "Electronics Operation (Medical)", item: aed });
+    expect(resuscitations[0]).toMatchObject({ healer: operator, patient, skill: 11, skillKind: "physician", techLevel: 8, lines: [] });
     // Not hooked up: nothing.
     successResults = [{ success: false }];
     await run("ht-aed", aed, operator);
     expect(resuscitations).toHaveLength(1);
+    // Hooked up, but the shock fails: nothing either.
+    successResults = [{ success: true }, { success: false }];
+    await run("ht-aed", aed, operator);
+    expect(resuscitations).toHaveLength(1);
+  });
+
+  it("takes the supplement's automated external defibrillator as the AED", () => {
+    expect(deviceFor(gear("Automated External Defibrillator", { kind: "aed" }))).toMatchObject({ skills: { resuscitation: 12 } });
   });
 
   it("needs only High-Tech's switch for the AED, whatever Ultra-Tech's table says (D1)", () => {

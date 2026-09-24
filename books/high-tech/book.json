@@ -4258,6 +4258,20 @@
             "reason": "the years follow the extra receiver's price, kept by hand (HT:EE p. 25)"
           },
           {
+            "pattern": "^Defibrillator$",
+            "set": {
+              "system.extensions.gurps-compendium-content.medical.kind": "defibrillator"
+            },
+            "reason": "a manual defibrillator: Electronics Operation (Medical), then the revival roll (HT:EE p. 14; High-Tech p. 220) (#491)"
+          },
+          {
+            "pattern": "^Automated External Defibrillator$",
+            "set": {
+              "system.extensions.gurps-compendium-content.medical.kind": "aed"
+            },
+            "reason": "the AED under the supplement's name: IQ+4 to hook up, then its own Electronics Operation (Medical) of 12 (HT:EE p. 14; High-Tech p. 220) (#491)"
+          },
+          {
             "pattern": "^Mirror Galvanometer$",
             "set": {
               "system.extensions.gurps-compendium-content.device.cuttingEdge": true

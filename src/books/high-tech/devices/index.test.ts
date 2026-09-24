@@ -144,6 +144,7 @@ describe("which gear the conventions reach", () => {
       complexity: null, prototypeYear: null, marketYear: null, cuttingEdge: false, kit: false, fragile: false, combined: false,
       hp: null, ht: null, dr: null, parts: { count: 0, label: "", hp: 1, ht: 10, broken: 0 },
       soundQuality: null, carbonMicrophone: false, inexpensive: false, extraSpeakers: 0,
+      earlyModel: false, diamondBlade: false, remoteControl: false, emergencyStop: false, magnet: { core: "", diameter: 0, length: 0 },
     });
   });
 });

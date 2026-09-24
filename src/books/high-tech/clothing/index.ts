@@ -23,7 +23,7 @@
  *     extra fatigue.
  */
 
-import { CLIMATE_TABLES, readyClimate, workingClimateGear } from "../../../shared/climate/index.js";
+import { CLIMATE_TABLES, readyClimate, workingClimateGear, type ClimateGear } from "../../../shared/climate/index.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -72,8 +72,12 @@ export interface ClothingData {
   fur: boolean;
 }
 
-/** Registers the fields this module keeps on an outfit, and the book's climate-control table. */
-export function initClothing(climateRule: string): void {
+/**
+ * Registers the fields this module keeps on an outfit, and the book's
+ * climate-control table, with any pieces another of the book's switches
+ * covers (the supplement Electricity and Electronics' heaters and fans).
+ */
+export function initClothing(climateRule: string, more: readonly ClimateGear[] = []): void {
   const f = foundry.data.fields as any;
   const flag = () => new f.BooleanField({ initial: false });
   addExtensionFields("Item", ITEM_EXTENSION_TYPES, {
@@ -83,7 +87,7 @@ export function initClothing(climateRule: string): void {
       fur: flag(),
     }),
   });
-  CLIMATE_TABLES.register({ book: "high-tech", tls: { min: 5, max: 8 }, rule: climateRule, gear: HIGH_TECH_CLIMATE_GEAR });
+  CLIMATE_TABLES.register({ book: "high-tech", tls: { min: 5, max: 8 }, rule: climateRule, gear: [...HIGH_TECH_CLIMATE_GEAR, ...more] });
 }
 
 /** An outfit's clothing data, with nothing missing. */
