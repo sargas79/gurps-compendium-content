@@ -60,7 +60,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 import { ACTOR_TYPES, book, packsOf, projectRoot, readProse, readStatistics } from "./lib/books.mjs";
-import { gadgetLines, stripPrice } from "./lib/gadget-text.mjs";
+import { gadgetLines, stripPlainClosing, stripPrice } from "./lib/gadget-text.mjs";
 import { inSource, volumeKey, withSource } from "./lib/sources.mjs";
 
 /**
@@ -114,6 +114,22 @@ const TEMPLATE_STATS = /^(Attribute Modifiers|Attributes|Secondary Characteristi
 
 /** The legality class an Ultra-Tech gadget's closing line ends on: "... LC3." */
 const GADGET_CLOSE = /\bLC\s*\d\.?$/;
+
+/**
+ * The years a closing line with no legality class ends on, after a price and
+ * weight: "$52, 10 lbs. [1922] 1936." High-Tech: Electricity and Electronics
+ * closes every gadget so (HT:EE p. 8).
+ */
+const PLAIN_CLOSE = /\$[\d,]+(?:\.\d+)?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+\s*lbs?\.)\s*(?:\[\d{4}\]\s*)?\d{4}\.$/;
+
+/**
+ * How a gadget's closing line is dropped: High-Tech's and Ultra-Tech's end on
+ * a legality class, and a book whose capture says `noLegality` ends on its
+ * power, price, weight and years instead (tools/lib/capture.mjs). Set once the
+ * book, or the volume of it being drafted, is known.
+ */
+let closingOf = stripPrice;
+let closes = (line) => GADGET_CLOSE.test(line);
 
 /**
  * What ends an Ultra-Tech gadget's text that has no closing price: the next
@@ -236,7 +252,7 @@ async function layoutPagesOf(pdf, bk, wanted) {
       opened = await openBook(pdf);
     }
     if (index + 1 > opened.pages) continue;
-    const s = structureOf(await readPage(opened, index + 1));
+    const s = structureOf(await readPage(opened, index + 1), { top: bk.transcription.topMargin });
     const lines = [];
     const seen = new Set();
     const take = (text) => {
@@ -702,7 +718,7 @@ function scopedMember(pages, cited, heading, member) {
       if (/[.!?"')]$/.test(text) || MEMBER_SPLIT.test(` . ${next}`) || /^[A-Z][^:()]{0,40}\(TL/.test(next)) break;
       text = `${text} ${next}`;
     }
-    const own = withoutTrailingCost(stripPrice(text)).trim();
+    const own = withoutTrailingCost(closingOf(text)).trim();
     return own.length ? own : null;
   }
   return null;
@@ -825,8 +841,8 @@ function capture(entry, pages, offset, names, bk) {
         if (STATS.test(line) || TEMPLATE_STATS.test(line) || GADGET_STOP.test(line)) break;
         // An Ultra-Tech gadget closes on its price and legality class: "$20,000,
         // 5 lbs., B/10 hr. LC3." That line is the record's, and the gadget ends.
-        if (GADGET_CLOSE.test(line)) {
-          const own = stripPrice(line).replace(GADGET_CLOSE, "").trim();
+        if (closes(line)) {
+          const own = closingOf(line).replace(GADGET_CLOSE, "").trim();
           if (own) body.push(own);
           closed = true;
           break;
@@ -843,8 +859,8 @@ function capture(entry, pages, offset, names, bk) {
           if (built && !AFTER_STATISTICS.test(line)) break;
           if (isHeading(line, names, following[k + 1]) || SUBHEADING.test(line)) break;
           if (COST.test(line) || STATS.test(line) || TEMPLATE_STATS.test(line) || GADGET_STOP.test(line)) break;
-          if (GADGET_CLOSE.test(line)) {
-            const own = stripPrice(line).replace(GADGET_CLOSE, "").trim();
+          if (closes(line)) {
+            const own = closingOf(line).replace(GADGET_CLOSE, "").trim();
             if (own) body.push(own);
             break;
           }
@@ -882,7 +898,7 @@ function capture(entry, pages, offset, names, bk) {
           if (!match) continue;
           // Only the last piece of a line can run on to the next.
           const last = whole.endsWith(line);
-          const text = withoutTrailingCost(stripPrice(last ? continued(match[2], scoped, at, pages, index, names) : match[2]));
+          const text = withoutTrailingCost(closingOf(last ? continued(match[2], scoped, at, pages, index, names) : match[2]));
           if (lensScoped(entry)) {
             const own = withoutStatistics(text);
             if (own.length < 15) return { kind: "statistics", paragraphs: [], page: cited + delta };
@@ -955,7 +971,7 @@ function capture(entry, pages, offset, names, bk) {
           const level = /\)$/.test(candidate) ? "?" : "";
           const run = new RegExp(`^${escapeRegExp(candidate)}(?:\\s*\\((?:TL[\\d\\s^/-]+|var\\.)\\))${level}\\s+(?=["A-Z])`).exec(line);
           if (run) {
-            const own = stripPrice(line.slice(run[0].length).replace(/(\bLC\s?\d\.).*$/, "$1"));
+            const own = closingOf(line.slice(run[0].length).replace(/(\bLC\s?\d\.).*$/, "$1"));
             if (own) return { kind: "sub-entry", paragraphs: [own], page: cited + delta };
           }
           return { kind: candidate === name ? "sub-entry" : "variant", paragraphs: [line], page: cited + delta };
@@ -1057,6 +1073,10 @@ async function main() {
 
   const bk = withSource(book(slug), flag("--source"));
   const target = join(bk.dir, "prose", `${packName}.json`);
+  if (bk.capture?.noLegality) {
+    closingOf = stripPlainClosing;
+    closes = (line) => GADGET_CLOSE.test(line) || PLAIN_CLOSE.test(line);
+  }
 
   if (review) return runReview(bk, packName, target, write);
 

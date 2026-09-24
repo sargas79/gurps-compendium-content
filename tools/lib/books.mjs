@@ -132,6 +132,8 @@ export function book(slug) {
       asidesAsText: raw.transcription?.asidesAsText === true,
       // Pages read a column at a time from their layout, not as pdftotext's stream.
       layout: raw.transcription?.layout === true,
+      // Where the text block starts, in points from the top, when it isn't 45.
+      ...(raw.transcription?.topMargin ? { topMargin: Number(raw.transcription.topMargin) } : {}),
       // Data-file names the book prints differently: a typo, or a shorter name.
       aliases: raw.transcription?.aliases ?? {},      // Weapons a book describes once for a whole family: "These weapons are
       // available in the same models as TL10 high-energy lasers". Each rule turns

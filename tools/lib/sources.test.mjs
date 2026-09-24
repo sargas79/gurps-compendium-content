@@ -57,6 +57,15 @@ describe("a book's other volumes", () => {
     expect(citationOf(ee, "HT6")).toBe("High-Tech p. 6");
   });
 
+  it("reads a volume's text from where its own page starts it, and the book's from the usual margin", () => {
+    // The supplement sets its first line at 44 points, under the usual margin
+    // of 45 (HT:EE pp. 26-51): its source says where its text starts.
+    const topped = { ...HIGH_TECH, sources: readSources({ sources: [{ ...raw.sources[0], transcription: { pdfOffset: 0, pageLabel: "HT:EE", topMargin: 40 } }] }) };
+    expect(withSource(topped, "ee").transcription.topMargin).toBe(40);
+    expect(withSource(topped, null).transcription.topMargin).toBeUndefined();
+    expect(withSource(HIGH_TECH, "ee").transcription).not.toHaveProperty("topMargin");
+  });
+
   it("reads the book as itself with no source, and a record citing nothing as the book's", () => {
     const own = withSource(HIGH_TECH, null);
     expect(own.source).toBeNull();

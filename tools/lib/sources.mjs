@@ -123,6 +123,8 @@ export function withSource(bk, id) {
       // How the PDF is read is the volume's own; unsaid, it is read as the book is.
       asidesAsText: t.asidesAsText ?? bk.transcription.asidesAsText,
       layout: t.layout ?? bk.transcription.layout,
+      // Where its text block starts, when its running head isn't at the top.
+      ...(t.topMargin ?? bk.transcription.topMargin ? { topMargin: Number(t.topMargin ?? bk.transcription.topMargin) } : {}),
       // Names and families are the volume's own: the book's are for its own headings.
       aliases: t.aliases ?? {},
       families: (t.families ?? []).map((rule) => ({
