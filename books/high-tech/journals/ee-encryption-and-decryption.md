@@ -1,0 +1,5 @@
+As early as the Civil War, military forces tapped each other’s telegraph lines. To prevent this, text messages were encrypted, at first manually. After 1900, cipher machines became available (High-Tech, p. 211). Sending encrypted text is more difficult than sending plain text, since errors aren’t obvious (“hte” could be what was meant just as well as a missent “the”): -4 to Electronics Operation (Comm) skill. This penalty can be reduced or avoided by taking extra time (p. B346).
+
+### Decryption (TL7)
+
+Decrypting intercepted coded messages became important to military strategy during World War II. At first, specialized electromechanical machines, known as bombes, carried it out. These gave +1 to breaking codes created on Enigma machines (see Cipher Machines, High-Tech, p. 211), starting in 1940 (TL7). The bombe is a stationary device (1 ton and 100 cubic feet) and counts as a Complex invention. In 1944, Colossus, a dedicated vacuum-tube macroframe (see p. 37), came into use, giving +2 to Cryptography for codebreaking. This was followed by general-purpose digital computers (p. 13), which are now standard equipment for Cryptography (p. B186).

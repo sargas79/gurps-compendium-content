@@ -1,0 +1,5 @@
+**Defibrillator (TL7).** Applies a brief high-voltage shock (effectively a very powerful nonlethal shock) to restore normal beating of the heart. Realistically, this treats ventricular fibrillation (random twitching of the heart, caused for example by lethal AC shock; see p. 9) but doesn’t restart a stopped heart. Roll vs. Electronics Operation (Medical). On a success, the heart restarts on a roll vs. HT+1; this can be raised as high as HT+5 by repeated tries at higher energy, but is at -1 per 2 full minutes since fibrillation began. Early experiments applied current directly to the heart, requiring surgery to open the chest. Large stationary models allowing external application are available starting 1959. A portable version was developed later for paramedics. 2×XS/4 years. $900, 7 lbs. [1947] 1968.
+
+**Automated External Defibrillator (TL8).** The automated external defibrillator (AED) provides effective Electronics Operation (Medical)-12 to users who can follow written instructions. 2×XS/4 years. $1,250, 5 lbs. 1978.
+
+Cautery Pen (1991). A battery-operated device for cauterization. Disposable after use. XS/10 minutes. $10, 0.2 lb. 1991.

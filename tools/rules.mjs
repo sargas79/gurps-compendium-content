@@ -235,7 +235,9 @@ function library(paths) {
     if (page < first || page > last) return null;
     if (!open.has(volume)) open.set(volume, await openBook(paths[volume]));
     const laid = await readPage(open.get(volume), pdfPage(page));
-    const structured = structureOf(laid);
+    // Where the page's text block starts, when the book says (`transcription.topMargin`):
+    // a page read from its first line down, not from a margin that cuts it off.
+    const structured = structureOf(laid, { top: book("basic-set").transcription.topMargin });
     // Keep the book's page number, not the file's.
     for (const block of structured.blocks) block.page = page;
     for (const aside of structured.asides) {

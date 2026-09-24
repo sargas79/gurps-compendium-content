@@ -337,3 +337,193 @@ overview, or a rule no switch implements.
 | #392 prosthetics and elective surgery | 2 |
 | #393 vehicle components, protection and crew | 2 |
 | #394 personal conveyances | 3 |
+
+## Electricity and Electronics (#485)
+
+The supplement is part of High-Tech (E1 in #471), so its rules pages are in the same journal
+and pack: `journals/ee-<key>.md`, listed in the same `index.json`, in six chapter folders of
+their own (`E&E 1. Basic Science` … `E&E 6. Electronic Warfare`), which sort after High-Tech's.
+Every page cites `HT:EE<n>` with the supplement's reference, and `tools/lib/journals.mjs`
+refuses a page whose pages and reference name different books.
+
+A page a switch implements carries that switch as `"rule"`. Where the supplement revises a
+High-Tech rule (E3), its page takes High-Tech's switch: Mix and Match and Triangulation
+`radios`, the defibrillators `emergencyMedicine`, the cell-phone jammer `jamming`. The tool
+kits the supplement reprints take High-Tech's `toolKits`. A page with no switch is text only.
+
+Item entries are records (#477-#480, their text #482), so a group of items keeps its general
+text, and an entry stays only where it carries the rule its page's switch plays (a modifier,
+a roll, DR, damage). The supplement's weapon, vehicle and UAV tables are records too; their
+notes stay with the stunners, directed-energy weapons and UAVs. Tables of rules (voltage,
+light levels and sources, bandwidths, computer-design options) are on their pages.
+
+76 pages, 0 by hand; 68 carry one of 48 switches, and 8 are text only.
+
+
+### E&E 1. Basic Science
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-the-progress-of-science` | The Progress of Science | 4-5 | – |
+| `ee-technologies` | Technologies | 5-6 | – |
+| `ee-skills` | Skills | 6-8 | `skillSubstitutes` |
+| `ee-understanding-the-devices` | Understanding the Devices | 8-9 | – |
+| `ee-cost-and-cutting-edge` | Cost and Cutting Edge | 8 | `cuttingEdgeGear` |
+| `ee-breakable-parts` | Breakable! | 8-9 | `breakableComponents` |
+| `ee-power` | Power | 9 | `externalPower` |
+| `ee-combined-devices` | Combined Devices | 9 | `combinedDevices` |
+| `ee-electrical-hazards` | Electrical Hazards | 9 | `electricalHazards` |
+
+### E&E 2. Laboratories and Workshops
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-detection-and-measurement` | Detection and Measurement | 10 | `electricalMeasurement` |
+| `ee-laboratory-instruments` | Laboratory Instruments | 10-11 | `labInstruments` |
+| `ee-static-electricity-and-tesla-coils` | Static Electricity and Tesla Coils | 11-12 | `labInstruments` |
+| `ee-scientific-and-medical-electronics` | Scientific and Medical Electronics | 12-13 | `labInstruments` |
+| `ee-transducers-and-meters` | Transducers and Meters | 12-13 | `labInstruments` |
+| `ee-analog-computers` | Analog Computers | 13 | `labInstruments` |
+| `ee-medical-and-surgical-tools` | Medical and Surgical Tools | 13-14 | `electromedicine` |
+| `ee-defibrillators` | Defibrillators | 14 | `emergencyMedicine` |
+| `ee-construction-and-repair` | Construction and Repair | 14-15 | `shockProtection` |
+| `ee-tool-kits` | Tool Kits | 14-15 | `toolKits` |
+| `ee-heathkits` | Heathkits | 15 | `kitBuilding` |
+
+### E&E 3. Power and Machinery
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-primary-batteries-and-fuel-cells` | Primary Batteries and Fuel Cells | 16-17 | `batteryChemistry` |
+| `ee-generators` | Generators and Photovoltaics | 17 | `energyStorage` |
+| `ee-capacitors-and-flywheels` | Storage: Capacitors and Flywheels | 17-18 | `energyStorage` |
+| `ee-secondary-batteries` | Secondary Batteries | 18 | `batteryChemistry` |
+| `ee-transmission` | Transmission | 18-19 | `powerLines` |
+| `ee-heat-and-light` | Heat and Light | 20 | `illumination` |
+| `ee-light-levels` | Light Levels | 20 | `illumination` |
+| `ee-lamps` | Arcs, Bulbs and Lamps | 20-22 | `lightDazzle` |
+| `ee-electromagnetic-heating` | Electromagnetic Heating | 21 | `electricAppliances` |
+| `ee-electrochemical-processes` | Electrochemical Processes | 22 | `electricAppliances` |
+| `ee-magnets` | Magnets | 22-23 | `electricAppliances` |
+| `ee-motors` | Motors: Household and Office Devices | 23 | `electricAppliances` |
+| `ee-workshop-devices` | Workshop Devices | 23-24 | `powerTools` |
+| `ee-mems` | MEMS | 24 | `electricAppliances` |
+| `ee-electrical-control` | Electrical Control | 24-25 | `electricAppliances` |
+| `ee-safety-devices` | Safety Devices | 25 | `shockProtection` |
+
+### E&E 4. Signals and Waves
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-wired-transmission` | Modes of Transmission: Wired | 26-27 | – |
+| `ee-radios` | Wireless and Radios | 27-30 | `radioTuning` |
+| `ee-mix-and-match` | Mix and Match | 28 | `radios` |
+| `ee-antennas` | Antennas | 28 | `radioAntennas` |
+| `ee-bandwidth` | Bandwidth | 28 | `radioDesign` |
+| `ee-spark-gap-transmitters` | Spark-Gap Transmitters | 28-29 | `radioDesign` |
+| `ee-oscillators-and-receivers` | Oscillators, Transmitters and Receivers | 29 | `radioDesign` |
+| `ee-shortwave-radio` | Shortwave Radio | 30 | `shortwaveSkip` |
+| `ee-optical-transmission` | Optical Transmission | 30 | – |
+| `ee-audio-transducers` | Audio Transducers | 30-31 | `audioFidelity` |
+| `ee-audio-generation` | Audio Generation | 31-32 | – |
+| `ee-audio-amplification` | Audio Amplification | 32 | `soundAmplification` |
+| `ee-audio-and-video-radio-options` | Audio and Video Transmission | 32-34 | `radioDesign` |
+| `ee-active-rangefinding` | Active Rangefinding | 35 | `rangefindingEmissions` |
+
+### E&E 5. Computation
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-computers` | Computers and Processing Power | 36 | `computerEras` |
+| `ee-computer-specifications` | Specifications and Design Options | 37 | `computerEras` |
+| `ee-programs-and-languages` | Programs and Languages | 38 | `programmingLanguages` |
+| `ee-special-purpose-devices` | Special-Purpose Devices | 39 | – |
+| `ee-digital-interfaces` | Digital Interfaces | 39-40 | `computerInterfaces` |
+| `ee-voice-control-and-vr` | Voice Control, Virtual Reality and Brain-Computer Interfaces | 40-41 | `computerInterfaces` |
+| `ee-networks` | Networks | 41 | – |
+
+### E&E 6. Electronic Warfare
+
+| Key | Page | Pages | Switch |
+|---|---|---|---|
+| `ee-electric-fences` | Electric Fences | 42 | `stunLethalFences` |
+| `ee-locks-and-lockpicks` | Locks and Lockpicks | 42 | `electricLocks` |
+| `ee-screening` | Screening | 43 | `alarmSystems` |
+| `ee-alarms` | Alarms | 43 | `alarmSystems` |
+| `ee-bugs-and-taps` | Bugs and Taps | 44-45 | `covertListening` |
+| `ee-surveillance` | Surveillance and Countersurveillance | 45 | `battlefieldSensors` |
+| `ee-reconnaissance-uavs` | Reconnaissance UAVs | 46 | `reconDrones` |
+| `ee-spread-spectrum` | Communications and Spread Spectrum | 46-47 | `spreadSpectrum` |
+| `ee-signals-intelligence` | Signals Intelligence | 47-48 | `signalsIntelligence` |
+| `ee-triangulation` | Triangulation | 47 | `radios` |
+| `ee-encryption-and-decryption` | Encryption and Decryption | 48 | `cipherMachines` |
+| `ee-fuzes` | Fuzes | 48 | `electronicFuzes` |
+| `ee-guided-and-homing-weapons` | Guided and Homing Weapons | 48-49 | `homingSeekers` |
+| `ee-electric-stunners` | Electric Stunners | 49-51 | `electricStunners` |
+| `ee-jammers` | Jammers | 49 | `jammerKinds` |
+| `ee-radar-jammers` | Radar Jammers and Spoofers | 49-50 | `radarJamming` |
+| `ee-cell-phone-jammer` | Cell-Phone Jammer | 50 | `jamming` |
+| `ee-non-nuclear-emp` | EMP | 50 | `nonNuclearEmp` |
+| `ee-directed-energy-weapons` | Directed-Energy Weapons | 50-51 | `directedEnergyWeapons` |
+
+### Left out
+
+Sections left out as history, flavour or catalogue: the chapter openings (pp. 4, 10, 16, 26,
+36, 42); the boxes The Battle of the Currents (p. 19), Who Invented Radio? (p. 27), From
+High-Tech to Ultra-Tech (p. 38), Communications Satellites (p. 30) and Psychotronics (p. 50);
+and the catalogue sections whose text is their items' entries: Vehicles (p. 24), Audio Recording,
+Scanners and Printers, Cameras and Displays (p. 33) and Video Recording (p. 34). The
+introduction and the front matter (p. 3) and the index (pp. 52-54) are not rules.
+
+### Switches
+
+| Switch | Pages |
+|---|---|
+| `alarmSystems` | 2 |
+| `audioFidelity` | 1 |
+| `batteryChemistry` | 2 |
+| `battlefieldSensors` | 1 |
+| `breakableComponents` | 1 |
+| `cipherMachines` | 1 |
+| `combinedDevices` | 1 |
+| `computerEras` | 2 |
+| `computerInterfaces` | 2 |
+| `covertListening` | 1 |
+| `cuttingEdgeGear` | 1 |
+| `directedEnergyWeapons` | 1 |
+| `electricalHazards` | 1 |
+| `electricalMeasurement` | 1 |
+| `electricAppliances` | 6 |
+| `electricLocks` | 1 |
+| `electricStunners` | 1 |
+| `electromedicine` | 1 |
+| `electronicFuzes` | 1 |
+| `emergencyMedicine` | 1 |
+| `energyStorage` | 2 |
+| `externalPower` | 1 |
+| `homingSeekers` | 1 |
+| `illumination` | 2 |
+| `jammerKinds` | 1 |
+| `jamming` | 1 |
+| `kitBuilding` | 1 |
+| `labInstruments` | 5 |
+| `lightDazzle` | 1 |
+| `nonNuclearEmp` | 1 |
+| `powerLines` | 1 |
+| `powerTools` | 1 |
+| `programmingLanguages` | 1 |
+| `radarJamming` | 1 |
+| `radioAntennas` | 1 |
+| `radioDesign` | 4 |
+| `radios` | 2 |
+| `radioTuning` | 1 |
+| `rangefindingEmissions` | 1 |
+| `reconDrones` | 1 |
+| `shockProtection` | 2 |
+| `shortwaveSkip` | 1 |
+| `signalsIntelligence` | 1 |
+| `skillSubstitutes` | 1 |
+| `soundAmplification` | 1 |
+| `spreadSpectrum` | 1 |
+| `stunLethalFences` | 1 |
+| `toolKits` | 1 |

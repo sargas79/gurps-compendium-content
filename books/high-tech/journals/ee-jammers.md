@@ -1,0 +1,7 @@
+A jammer is directed not against personnel, but against electronic communications and/or sensors. Requires a roll vs. Electronics Operation (EW). A Tesla coil (p. 12) or spark-gap transmitter (pp. 28-29) can be adapted for jamming at -2 to Electronics Operation (EW) with 4 hours either in a workshop, or using a tool kit and a Scrounging roll.
+
+Jammers come in two varieties: broad-spectrum and selective. A broad-spectrum jammer spreads its output over an entire frequency band. Anyone in the affected area must roll vs. Electronics Operation (Comm) at -2 to receive a signal; at up to 10× the jammer’s range, this roll is unmodified. A selective jammer puts all its output onto a single frequency. If the frequency is known and fixed, this requires an unopposed Electronics Operation (EW) roll; otherwise, it requires a Quick Contest of Electronics Operation (EW). A spectrum analyzer (pp. 11, 48) gives +4 to Electronics Operation (EW) skill; each 10% of increased range beyond the transmitter’s effective range (see Radios, pp. 27-28) gives -1. Success indicates that the jamming is successful, giving -4 to Electronics Operation (Comm) to receive a signal, or -2 at up to 10× the jammer’s range.
+
+**Large Jammer (TL6-8).** A large jammer is normally operated in a fixed location with major appliance power. Treat it as a large radio (p. 27) with ×0.5 cost and ×2 weight.
+
+**Portable Jammer (TL6-8).** A portable jammer can be treated as a medium radio (p. 27) with ×5 power consumption (or automotive or better power), ×0.5 cost, and ×2 weight.

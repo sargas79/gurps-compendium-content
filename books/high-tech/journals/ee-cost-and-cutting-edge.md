@@ -1,0 +1,5 @@
+The cost of a device is the price to buy it new. Used devices may be available for less, from 50% to 80% for recent models down to 10% or less for older ones that still work. Prices for earlier TLs are given in dollars circa 2004 (as in the GURPS Basic Set), not in currency of the period (for example, a dollar in 1920 had the purchasing power of $9.40 as of 2004). Cost includes batteries if they’re permanently built in, but not if the user is expected to replace them (Secondary Batteries, p. 18).
+
+#### Cutting Edge
+
+Newly developed devices commonly sell at high prices, well above the “retail price” (p. B474) that’s listed as the device’s cost. The same is true for new versions of existing devices with higher-end capabilities; for example, FM radio (see Audio Transmission and Reception, p. 32) started out as the domain of audiophiles. To represent this, treat them as priced one quality grade higher (see p. B345): basic quality is 5× cost and good quality is 20× cost; fine quality isn’t normally available. Some new technologies are explicitly called out as cutting edge, but this guideline can be applied to any device that’s just past the prototype stage.
