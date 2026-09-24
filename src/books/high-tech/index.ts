@@ -10,7 +10,9 @@
  * the equipment options, combination gadgets, gear for other sizes, the
  * Legality Class of antiques, the black market, Equipment Bond and intrinsic
  * bonuses, and TL penalties as unfamiliarity (pp. 7-11), computers,
- * software, manuals and libraries (pp. 17-22), a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * software, manuals and libraries (pp. 17-22), with the Electricity and
+ * Electronics supplement's computer eras, interfaces and programming
+ * languages (HT:EE pp. 36-41), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -78,6 +80,7 @@ import { readyIndirectFire } from "./indirect-fire/index.js";
 import { initFirearms, readyFirearms } from "./firearms/index.js";
 import { initHighTechPower, readyHighTechPower } from "./power/index.js";
 import { initInformation, readyInformation } from "./information/index.js";
+import { readyComputing } from "./computing/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
@@ -110,6 +113,8 @@ import { initVehicles, readyVehicles } from "./vehicles/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
+/** The supplement added to the book (E1 in #471), whose switches cite its own pages. */
+const EE_REFERENCE = "High-Tech: Electricity and Electronics";
 
 /**
  * Switch keys are one namespace across this module's books, so where High-Tech
@@ -186,6 +191,10 @@ const RULES = [
   { key: "woundFrightChecks", pages: "p. 162", implemented: true },
   { key: "booksAndLibraries", pages: "pp. 17-18", implemented: true },
   { key: "computerSystems", pages: "pp. 19-22", implemented: true },
+  // Electricity and Electronics: computer eras, interfaces and programming.
+  { key: "computerEras", pages: "pp. 36-37", reference: EE_REFERENCE, implemented: true },
+  { key: "computerInterfaces", pages: "pp. 39-41", reference: EE_REFERENCE, implemented: true },
+  { key: "programmingLanguages", pages: "p. 38", reference: EE_REFERENCE, implemented: true },
   // General equipment: tool kits, forced entry, chainsaws and nail guns, household hazards.
   { key: "toolKits", pages: "pp. 24, 29, 50", implemented: true },
   { key: "forcedEntryTools", pages: "pp. 25-30", implemented: true },
@@ -289,7 +298,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
       // the translations are loaded.
       name: `GCC.HT.Rules.${rule.key}.Name`,
       hint: `GCC.HT.Rules.${rule.key}.Hint`,
-      reference: `${REFERENCE} ${rule.pages}`,
+      reference: `${"reference" in rule ? rule.reference : REFERENCE} ${rule.pages}`,
       default: false,
       implemented: rule.implemented,
     });
@@ -305,7 +314,7 @@ function registerRules(registry: RuleRegistry, group: string): void {
 function init(): void {
   initHighTechPower();
   initHighTechEquipment({ options: ruleKey("equipmentOptions"), sm: ruleKey("gearForSm"), legality: ruleKey("antiqueLegality") });
-  initInformation(ruleKey("computerSystems"));
+  initInformation(ruleKey("computerSystems"), ruleKey("computerEras"));
   registerHighTechRecordData();
   initFirearms((f) => ({ ...rateOfFireFields(f), ...sustainedFireFields(f), ...reloadingFields(f), ...weaponFamilyFields(f), ...accessoryGunFields(f), ...ammunitionGunFields(f), ...projectorFields(f), ...meleeGunFields(f) }));
   initAmmunition();
@@ -363,6 +372,8 @@ function ready(api: GWorldApi): void {
   readyHighTechPower(api, rule("batteries"));
   readyWounding(api, { vitals: rule("vitalsOnTorsoHits"), limbs: rule("realisticLimbWounds"), bleeding: rule("vitalBleeding"), fright: rule("woundFrightChecks") });
   readyInformation(api, { computers: rule("computerSystems"), books: rule("booksAndLibraries") });
+  // After High-Tech's computers, whose unfamiliar computer type a high-level language lifts.
+  readyComputing(api, { eras: rule("computerEras"), interfaces: rule("computerInterfaces"), languages: rule("programmingLanguages") });
   readyTools(api, { kits: rule("toolKits"), forcedEntry: rule("forcedEntryTools"), chainsaws: rule("chainsaws"), hazards: rule("householdHazards") });
   readyProjectors(api, { flamethrowers: rule("flamethrowers"), sprayGuns: rule("sprayGuns"), laserDazzlers: rule("laserDazzlers") });
   const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };

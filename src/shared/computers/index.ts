@@ -6,7 +6,9 @@
  * Each book registers its table in `COMPUTER_TABLES` -- its figures, its
  * switch and its text -- then calls `initComputers` and `readyComputers`,
  * which register once however many books call them. What they register reads
- * the item's own book's table on every call:
+ * the item's own book's table on every call -- its variant's figures and
+ * words, where the book prints a second set (a supplement's computer eras)
+ * and that set's switch is on:
  *
  *   - **init:** the computer and program fields on equipment.
  *   - **ready:** the price of a computer built with options, and of a program
@@ -19,10 +21,10 @@
 
 import { registerPowerAdjuster } from "../power/data.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
-import { COMPUTER_TABLES, DIFFICULTIES, computerData, computerTableOf, isProgram, modelOf, registerComputerData, storeComputer, type ComputerData, type ComputerTable } from "./data.js";
+import { COMPUTER_TABLES, DIFFICULTIES, computerData, computerTableOf, isProgram, modelOf, registerComputerData, storeComputer, withVariant, type ComputerData, type ComputerTable } from "./data.js";
 import { computerFigures, conflictingOptions, programLoad, programsAtOnce, toolComplexity, toolQuality, type Computer } from "./rules.js";
 
-export { COMPUTER_TABLES, computerTableOf, type ComputerTable };
+export { COMPUTER_TABLES, computerTableOf, withVariant, type ComputerTable };
 
 const L = (ns: string, key: string) => game.i18n.localize(`${ns}.Computer.${key}`);
 const F = (ns: string, key: string, data: Record<string, unknown>) => game.i18n.format(`${ns}.Computer.${key}`, data);
@@ -48,13 +50,19 @@ function buyingTl(item: any, table: ComputerTable): number {
   return Math.max(itemTl(item, table), tlOf(item?.actor?.system?.tl) ?? 0);
 }
 
-/** A computer item's table and worked-out figures, or null for an item that isn't one or whose book's switch is off. */
-export function computerOf(item: any, data: ComputerData = computerData(item)): { table: ComputerTable; computer: Computer } | null {
-  const table = computerTableOf(item);
+/** A computer item's figures in a table, whatever the switches, or null for an item that isn't one of its models. */
+export function computerIn(table: ComputerTable | null, item: any, data: ComputerData = computerData(item)): Computer | null {
   const model = modelOf(item, table, data);
   if (!table || !model) return null;
   const lc = typeof item?.system?.lc === "number" ? Number(item.system.lc) : null;
-  return { table, computer: computerFigures(table.figures, { model, tl: itemTl(item, table), options: data.options, extraStorage: data.extraStorage, lc }) };
+  return computerFigures(table.figures, { model, tl: itemTl(item, table), options: data.options, extraStorage: data.extraStorage, lc });
+}
+
+/** A computer item's table and worked-out figures, or null for an item that isn't one or whose book's switch is off. */
+export function computerOf(item: any, data: ComputerData = computerData(item)): { table: ComputerTable; computer: Computer } | null {
+  const table = computerTableOf(item);
+  const computer = computerIn(table, item, data);
+  return table && computer ? { table, computer } : null;
 }
 
 /** A program's table, or null for an item that isn't one or whose book's switch is off. */
