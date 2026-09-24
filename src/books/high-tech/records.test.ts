@@ -553,8 +553,8 @@ describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
     const medical = (name: string) => sys(name).extensions?.["gurps-compendium-content"]?.medical;
     // pp. 219-221.
     expect(medical("Tracheotomy Kit")).toEqual({ kind: "airway" });
-    expect(medical("Manual Defibrillator (TL7)")).toEqual({ kind: "defibrillator", value: 2 });
-    expect(medical("Manual Defibrillator (TL8)")).toEqual({ kind: "defibrillator", value: 3 });
+    expect(medical("Manual Defibrillator (TL7)")).toEqual({ kind: "defibrillator" });
+    expect(medical("Manual Defibrillator (TL8)")).toEqual({ kind: "defibrillator" });
     expect(draw("Manual Defibrillator (TL8)")).toMatchObject({ cell: "L", cells: 1 });
     expect(medical("Automatic External Defibrillator (AED)")).toEqual({ kind: "aed" });
     expect(medical("IV Kit")).toEqual({ kind: "ivKit" });

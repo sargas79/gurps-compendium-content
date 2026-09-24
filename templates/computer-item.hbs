@@ -41,7 +41,8 @@
   </div>
 
   {{#if isComputer}}
-    <div class="ichecks">
+    {{!-- Wide enough for "Electromechanical" on one line beside its box. --}}
+    <div class="ichecks" style="grid-template-columns:repeat(auto-fit, minmax(128px, 1fr))">
       {{#each options as |o|}}
         <label class="icheck" data-tooltip="{{o.hint}}"><input type="checkbox" data-gcc-computer="options.{{o.value}}" {{#if o.checked}}checked{{/if}} {{#unless ../editable}}disabled{{/unless}} /> {{o.label}}{{#if o.conflict}} ({{localize (concat @root.ns ".Computer.Excluded")}}){{/if}}</label>
       {{/each}}

@@ -4708,7 +4708,9 @@
         "Unit": {
           "hours": "hours",
           "days": "days",
-          "weeks": "weeks"
+          "weeks": "weeks",
+          "seconds": "seconds",
+          "minutes": "minutes"
         },
         "ChipCaps": "At TL{tl}: at most {slots} slots and {points} points a chip; skill chips ${perPoint} a point.",
         "CognitiveCap": "At TL{tl}: at most {points} points an operation, ${price} a point.",
@@ -4731,7 +4733,7 @@
         "DisadvantagePoints": "Disadvantage points",
         "Recovering": "recovering from surgery",
         "SurgeDown": "knocked out by a surge",
-        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {minutes} minutes.",
+        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {value} {unit}.",
         "PsychTitle": "Implant removed",
         "PsychMonths": "Months it was worn",
         "PsychTooSoon": "Worn less than three months: the disadvantage ends with the implant.",
@@ -7696,6 +7698,7 @@
         "NoNoise": "None",
         "NoiseLine": "Ambient noise",
         "ImagingMode": "Imaging mode (a tenth the range)",
+        "MediumLabel": "Medium",
         "Medium": {
           "soil": "Soil",
           "ice": "Ice (x20 range)",
@@ -8966,7 +8969,6 @@
         "HookUpLabel": "Hooking {name} up to {patient}",
         "AedInstructions": "Following the instructions",
         "NotHookedUp": "{name} isn't hooked up yet.",
-        "DeviceLabel": "{name} (skill {skill})",
         "DepletedReason": "{name} is depleted: a grade lower",
         "PortableSurgeryReason": "{name}: +2 (quality) to First Aid",
         "NoFluidsReason": "No blood or IV fluids: +1 at best",

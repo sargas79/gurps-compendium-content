@@ -330,13 +330,16 @@ export function listedCellWeight(item: any): number | null {
 }
 
 /**
- * What the batteries in a gadget weigh as it is now: any swapped in, and as
- * many as its size takes. Null where the cell switch is off or it has none.
+ * What the batteries in a gadget weigh as it is now: any swapped in, as many
+ * as its size takes, in their chemistry's weight. Null where the cell switch
+ * is off or it has none.
  */
 export function loadedCellWeight(item: any): number | null {
   const table = cellTableOf(item);
-  const cell = table ? cellOf(powerData(item)) : null;
-  return table && cell ? cellsWeight(table.figures, cell.size, cell.cells) : null;
+  const data = table ? powerData(item) : null;
+  const cell = data ? cellOf(data) : null;
+  if (!table || !data || !cell) return null;
+  return Math.round(cellsWeight(table.figures, cell.size, cell.cells) * (data.variant?.weight ?? 1) * 1000) / 1000;
 }
 
 /** Writes part of this module's power data. */

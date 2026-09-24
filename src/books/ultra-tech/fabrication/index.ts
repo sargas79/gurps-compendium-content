@@ -218,7 +218,8 @@ async function hazardsTool(api: GWorldApi): Promise<void> {
       if (result && !result.success) await api.actors.setPosture(victim, "lyingProne").catch(() => false);
       if (result) await say(victim, L("Hazard.slipspray"), [F(result.success ? "Hazard.Stays" : "Hazard.Falls", { name: victim.name, vehicle: SLIPSPRAY_VEHICLE })]);
     } else if (answer.kind === "adhesive") {
-      const outcome: any = await api.roll.regularContest({ label: L("Hazard.AdhesiveLabel"), first: { actor: victim, base: st }, second: { actor: victim, base: ADHESIVE.st, note: L("Hazard.adhesive") } });
+      // The glue's side and the beam's below are no one's: the victim's conditions and bonuses count on their own side only.
+      const outcome: any = await api.roll.regularContest({ label: L("Hazard.AdhesiveLabel"), first: { actor: victim, base: st }, second: { actor: null, base: ADHESIVE.st, note: L("Hazard.adhesive") } });
       const lines = [F(outcome?.outcome === "first" ? "Hazard.PulledFree" : "Hazard.Stuck", { name: victim.name })];
       if (outcome?.outcome === "first" && answer.flesh) {
         const roll = new Roll("1d6-4");
@@ -231,7 +232,7 @@ async function hazardsTool(api: GWorldApi): Promise<void> {
     } else {
       const beam = tractorBeam(answer.beam, answer.tl);
       if (!beam) continue;
-      const outcome: any = await api.roll.quickContest({ label: L("Hazard.TractorLabel"), first: { actor: victim, base: st }, second: { actor: victim, base: beam.st, note: L(`Hazard.${answer.beam}`) }, tags: ["ut-tractor"] });
+      const outcome: any = await api.roll.quickContest({ label: L("Hazard.TractorLabel"), first: { actor: victim, base: st }, second: { actor: null, base: beam.st, note: L(`Hazard.${answer.beam}`) }, tags: ["ut-tractor"] });
       await say(victim, L("Hazard.tractor"), [F(outcome?.outcome === "first" ? "Hazard.Breaks" : "Hazard.Held", { name: victim.name, st: beam.st, range: beam.range })]);
     }
   }
