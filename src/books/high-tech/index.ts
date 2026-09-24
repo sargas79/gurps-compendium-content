@@ -65,7 +65,9 @@
  * turrets, linked weapons, extinguishers, run-flat tyres, airbags, spaced
  * and laminated armour, riveted armour's spall, and riding in a tank
  * (pp. 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143, 147-217, 219-231,
- * 234-235, 249-252).
+ * 234-235, 249-252), and the Electricity and Electronics device
+ * conventions: cutting-edge prices and prototypes, breakable parts and a
+ * device's HP, HT and DR, and building from kits (HT:EE pp. 8-9, 15).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -111,6 +113,7 @@ import { readyProsthetics } from "./prosthetics/index.js";
 import { initConveyances, readyConveyances } from "./conveyances/index.js";
 import { initDrugs, readyDrugs } from "./drugs/index.js";
 import { initVehicles, readyVehicles } from "./vehicles/index.js";
+import { initDevices, readyDevices } from "./devices/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -295,6 +298,10 @@ const RULES = [
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
   // Cinematic: Zen Archery for guns.
   { key: "zenMarksmanship", pages: "p. 250", implemented: true },
+  // Electricity and Electronics: the device conventions.
+  { key: "cuttingEdgeGear", pages: "p. 8", reference: EE_REFERENCE, implemented: true },
+  { key: "breakableComponents", pages: "pp. 8-9", reference: EE_REFERENCE, implemented: true },
+  { key: "kitBuilding", pages: "p. 15", reference: EE_REFERENCE, implemented: true },
 ] as const;
 
 /** A switch's full key, as the system stores it. */
@@ -350,10 +357,13 @@ function init(): void {
   initConveyances();
   initDrugs();
   initVehicles(ruleKey("vehicleProtection"));
+  initDevices();
 }
 
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
+  // First: a device's default object figures, which the book's own gear (locks, guns) then overrides.
+  readyDevices(api, { cuttingEdge: rule("cuttingEdgeGear"), breakable: rule("breakableComponents"), kits: rule("kitBuilding") });
   readyHighTechEquipment(api, { combination: rule("combinationGadgets"), bonuses: rule("equipmentBonuses"), familiarity: rule("tlFamiliarity") });
   readyBlackMarket(api, rule("blackMarket"));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });

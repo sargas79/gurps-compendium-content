@@ -1,0 +1,39 @@
+{{!-- The Electricity and Electronics supplement's device conventions: cutting edge and prototypes, breakable parts, kits (HT:EE pp. 8-9, 15). --}}
+<div class="isub" data-gcc-ht-device-section>
+  <div class="isub-head">{{localize "GCC.HT.Devices.Title"}}</div>
+  {{#if cutting}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Devices.CuttingEdgeHint'}}"><input type="checkbox" data-ht-device="cuttingEdge" {{#if data.cuttingEdge}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Devices.CuttingEdge"}}</label>
+    </div>
+    {{#if cuttingEdgeLine}}<p class="ihint">{{cuttingEdgeLine}}</p>{{/if}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Devices.ComplexityHint'}}">{{localize "GCC.HT.Devices.ComplexityLabel"}}
+        <select data-ht-device="complexity" {{#unless editable}}disabled{{/unless}}>
+          {{#each complexities as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      <label>{{localize "GCC.HT.Devices.PrototypeYear"}} <input type="number" data-ht-device="prototypeYear" value="{{data.prototypeYear}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      <label>{{localize "GCC.HT.Devices.MarketYear"}} <input type="number" data-ht-device="marketYear" value="{{data.marketYear}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+    {{#each prototype}}<p class="ihint">{{this}}</p>{{/each}}
+  {{/if}}
+  {{#if breakable}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Devices.FragileHint'}}"><input type="checkbox" data-ht-device="fragile" {{#if data.fragile}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Devices.Fragile"}}</label>
+    </div>
+    {{#if statistics}}<p class="ihint">{{statistics}}</p>{{/if}}
+    <div class="ifields" data-tooltip="{{localize 'GCC.HT.Devices.PartsHint'}}">
+      <label>{{localize "GCC.HT.Devices.PartsCount"}} <input type="number" data-ht-device="parts.count" value="{{data.parts.count}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      <label>{{localize "GCC.HT.Devices.PartsLabel"}} <input type="text" data-ht-device="parts.label" value="{{data.parts.label}}" placeholder="{{localize 'GCC.HT.Devices.PartsDefault'}}" {{#unless editable}}disabled{{/unless}} /></label>
+      <label>{{localize "GCC.HT.Devices.PartsHp"}} <input type="number" data-ht-device="parts.hp" value="{{data.parts.hp}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+      <label>{{localize "GCC.HT.Devices.PartsHt"}} <input type="number" data-ht-device="parts.ht" value="{{data.parts.ht}}" min="1" step="1" {{#unless editable}}disabled{{/unless}} /></label>
+    </div>
+    {{#if broken}}<p class="ihint">{{broken}} {{#if editable}}<button type="button" data-ht-device-replace>{{localize "GCC.HT.Devices.ReplaceParts"}}</button>{{/if}}</p>{{/if}}
+  {{/if}}
+  {{#if kits}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Devices.KitHint'}}"><input type="checkbox" data-ht-device="kit" {{#if data.kit}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Devices.KitLabel"}}</label>
+    </div>
+    {{#if kitLine}}<p class="ihint">{{kitLine}}</p>{{/if}}
+  {{/if}}
+</div>
