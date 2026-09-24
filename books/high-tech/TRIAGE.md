@@ -805,3 +805,36 @@ A second `CellTable` for the supplement isn't needed and would split one book's 
 4. Read the tables (pp. 20, 24, 46, 50-51) with pdf.js, not pdftotext: minus signs.
 5. Text records (#482) cite `HT:EE<n>`, and `transcribe.mjs --source ee` writes them so; the
    merge fails a crossed citation.
+
+## The text, chapters 1-3 (#483)
+
+Every record and skill citing pp. 4-25 has text: 149 equipment records and 15 skills
+(with the Hot Stick technique), all `reviewed`, none `no-entry`.
+
+- **The closing line.** `transcribe.mjs` drops the supplement's closing line when the
+  volume's capture says `noLegality` (`stripPlainClosing` in `lib/gadget-text.mjs`): the power
+  statement or a prototype's complexity, the price and weight, and the years, which the record
+  holds as its power, cost, weight and `invention` data. An entry pricing a second model
+  (a second model after the first one's price) loses both closings and keeps what it says of each, and a line of
+  gear is one entry rather than items split at each price.
+- **Records priced inside another's entry** share its text through `sources[0].transcription`:
+  aliases (the two gloves, the two hot sticks, the Tesla coils, the Electrobat II) and families
+  (the compact digital oscilloscope, the TL6 pH meter and Geiger counter, the large analog
+  computer, the hydrogen supplies, the flywheels, the microwave rectenna, the arc welder's
+  electrode, the miniature bulbs, the rugged flashlight, the telautograph receiver). A test
+  (`tools/lib/transcription-names.test.mjs`) checks every name they point at is a record.
+- **Where the layout reading fails.** Before #541's `topMargin` it dropped a column's first
+  line where a paragraph runs on from the column before (the defibrillator, the lock-in
+  amplifier, the Electrobat, Physics); with it the photodetector reads whole. It still loses an italic label at a column's head (the moving magnet
+  galvanometer, the electroconvulsive therapy device, the arc welder, the induction furnace,
+  the power drill, the lithium-ion recharger), runs an italic word into "a", and splits the
+  diathermy apparatus and electrocautery round a pull quote. Those 31 records and the 15
+  skills were assembled from named lines of pdftotext's stream or pdf.js's lines, stripped
+  the same way, and say so in their `notes`; the transcriber keeps them, being `reviewed`.
+- **How it was reviewed.** Structurally, without collating by eye: 112 of the equipment texts
+  match a third reading (pdf.js's lines from the label down the column to the record's own
+  price) exactly, and the rest differ only where that reading is the wrong one (a pull quote,
+  a stray dash, a line-end hyphen); no line of pp. 6-25 is missing between two lines one
+  record holds; every word is one the stream prints; and the pages that read badly were
+  rendered and looked at. Three texts keep a price: the fuel cell's entry prices its hydrogen
+  in running prose, and the two hydrogen records share it.

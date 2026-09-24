@@ -127,7 +127,12 @@ const PLAIN_CLOSE = /\$[\d,]+(?:\.\d+)?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+
  * a legality class, and a book whose capture says `noLegality` ends on its
  * power, price, weight and years instead (tools/lib/capture.mjs). Set once the
  * book, or the volume of it being drafted, is known.
+ *
+ * Such a book prices a second model inside the first one's entry ("...$20,
+ * 1.25 lb. A sturdier one... $40, 2 lbs."), so its line of gear is one entry,
+ * not a list of items split at each price, and the closings inside it go too.
  */
+let plainClosings = false;
 let closingOf = stripPrice;
 let closes = (line) => GADGET_CLOSE.test(line);
 
@@ -612,6 +617,7 @@ function labelledParts(line, names) {
 }
 
 function itemsOf(line) {
+  if (plainClosings) return [line];
   // "$10, neg.", "$2, 0.5 lb.", and a running time after the weight: "$250,
   // 0.25 lb., 10 hrs."
   return line.split(/(?<=\$[\d,]+(?:\.\d+)?\s*,\s*(?:neg|[\d.,/]+\s*lbs?)\.(?:,\s*[\d.]+\s*hrs?\.)?)\s+(?=[A-Z])/);
@@ -680,7 +686,7 @@ function captureFamily(entry, pages, offset, names, bk, byName) {
         if (/^[^:]{0,80}\(TL[\d\s^/-]+\):/.test(line) || /^[^.:]{0,80}\(TL[\d\s^/-]+\)\.\s/.test(line)) break;
         // Or the skill line over a weapon table.
         if (GADGET_STOP.test(line)) break;
-        opening.push(line);
+        opening.push(plainClosings ? closingOf(line) : line);
       }
       if (!opening.length) continue;
       return { kind: "family", paragraphs: [...rejoin(opening), ...own.paragraphs], page: cited + delta };
@@ -1074,6 +1080,7 @@ async function main() {
   const bk = withSource(book(slug), flag("--source"));
   const target = join(bk.dir, "prose", `${packName}.json`);
   if (bk.capture?.noLegality) {
+    plainClosings = true;
     closingOf = stripPlainClosing;
     closes = (line) => GADGET_CLOSE.test(line) || PLAIN_CLOSE.test(line);
   }
