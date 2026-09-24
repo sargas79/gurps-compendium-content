@@ -931,7 +931,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
     + row(F("OutsideArc", { arc: SENSOR_ARC }), `<input type="checkbox" name="arc" />`)
     + (kinds.has("sonar") ? row(L("Noise"), `<select name="noise">${SONAR_NOISE.map((n) => `<option value="${n}">${n === 0 ? esc(L("NoNoise")) : n}</option>`).join("")}</select>`) : "")
     + (imagingAny ? row(L("ImagingMode"), `<input type="checkbox" name="imaging" />`) : "")
-    + (kinds.has("gpr") ? row(L("Medium"), `<select name="medium">${Object.keys(GPR_MEDIUM).map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`) : "")
+    + (kinds.has("gpr") ? row(L("MediumLabel"), `<select name="medium">${Object.keys(GPR_MEDIUM).map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`) : "")
     + (kinds.has("radar") && target ? row(L("Countermeasures"), `<select name="counter"><option value="">${esc(L("Counter.none"))}</option>${Object.keys(COUNTERMEASURES).map((c) => `<option value="${c}">${esc(L(`Counter.${c}`))}</option>`).join("")}</select>`) : "")
     + (refined ? row(L("TargetSm"), `<input type="number" name="sm" value="${Number(target?.system?.sm) || 0}" step="1" style="width:70px" />`) + dwellRow() : ""),
     (form) => ({

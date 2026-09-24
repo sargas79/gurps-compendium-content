@@ -7698,6 +7698,7 @@
         "NoNoise": "None",
         "NoiseLine": "Ambient noise",
         "ImagingMode": "Imaging mode (a tenth the range)",
+        "MediumLabel": "Medium",
         "Medium": {
           "soil": "Soil",
           "ice": "Ice (x20 range)",
