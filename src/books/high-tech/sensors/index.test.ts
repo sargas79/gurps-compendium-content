@@ -37,7 +37,7 @@ let controlled: any[];
 let successResult: any;
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
-const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors") };
+const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), rangefindingEmissions: key("rangefindingEmissions") };
 const UT = { communicators: key("communicators"), sensors: key("sensors") };
 
 function fakeApi() {
@@ -264,6 +264,124 @@ describe("active sensors (pp. 45-47)", () => {
     dialogAnswer = { index: 0, yards: 100, arc: false, noise: 0, imaging: false, medium: "soil", counter: "jammer" };
     await tools.get("sensor-sweep").open();
     expect(contests[0]).toMatchObject({ first: { base: 13 }, second: { base: 14, note: "Electronics Operation (EW)" } });
+  });
+
+  it("ignores the size and dwelling asked of the sweep while the supplement's switch is off", async () => {
+    controlled = [character("Diver", [gear("Small Sonar")], { skills: { "Electronics Operation (Sonar)": 12 } })];
+    targets = [character("Whale", [], { system: { sm: 5 } })];
+    dialogAnswer = { index: 0, yards: 150, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 5, dwell: "x4" };
+    await tools.get("sensor-sweep").open();
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-2]);
+    expect(tools.get("ht-emissions").visible()).toBe(false);
+  });
+});
+
+describe("active rangefinding (HT:EE p. 35)", () => {
+  beforeEach(() => { on = new Set([HT.activeSensors, HT.rangefindingEmissions]); });
+
+  it("sweeps in half steps past range, with the target's size at half its SM", async () => {
+    controlled = [character("Diver", [gear("Small Sonar")], { skills: { "Electronics Operation (Sonar)": 12 } })];
+    targets = [character("Whale", [], { system: { sm: 5 } })];
+    // 150 yards on a 100-yard sonar: -1 at 1.5 times; SM +5 counts +2.
+    dialogAnswer = { index: 0, yards: 150, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 5, dwell: "" };
+    await tools.get("sensor-sweep").open();
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-1, 2]);
+    expect(successes[0].modifiers[1].label).toContain("GCC.HT.Sensor.SizeLine");
+  });
+
+  it("dwells 4 times as long to reach twice as far, and warns the target is helped to detect it", async () => {
+    controlled = [character("Diver", [gear("Small Sonar")], { skills: { "Electronics Operation (Sonar)": 12 } })];
+    targets = [character("Sub", [])];
+    // 300 yards: twice the range is 200, so 1.5 times that: -1.
+    dialogAnswer = { index: 0, yards: 300, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 0, dwell: "x4" };
+    await tools.get("sensor-sweep").open();
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-1]);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.DwellLine");
+    expect(chat.at(-1)).toContain('"bonus":"+2"');
+  });
+
+  it("shows the refinements and how far the emissions carry on a sensor's sheet", () => {
+    const lines: string[] = section().context(gear("Medium Radar")).lines;
+    expect(lines.some((l) => l.includes("GCC.HT.Sensor.Rangefinding"))).toBe(true);
+    // 30 miles at TL8, read to four times that: 120 miles.
+    expect(lines.find((l) => l.includes("GCC.HT.Sensor.EmissionReach"))).toContain('Miles {\\"value\\":120}');
+    // No emissions to reach on a GPR.
+    expect(section().context(gear("Portable GPR")).lines.some((l: string) => l.includes("EmissionReach"))).toBe(false);
+  });
+
+  // A fixture shaped as the supplement's catalogue will write the record (#479): named as printed, High-Tech's book flag, its TL.
+  it("gives +2 to a skill from the supplement's ground-penetrating radar's successful sweep", async () => {
+    const gpr = gear("Ground-Penetrating Radar", {}, { tl: "7" });
+    expect(section().context(gpr).lines.some((l: string) => l.includes("GCC.HT.Sensor.SurveyLine"))).toBe(true);
+    controlled = [character("Surveyor", [gpr], { skills: { "Electronics Operation (Scientific)": 13 } })];
+    dialogAnswer = { index: 0, yards: 30, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 0, dwell: "" };
+    await tools.get("sensor-sweep").open();
+    expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Scientific)", base: 13, modifiers: [] });
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.SurveyResult");
+    // Not on a failure, and not from High-Tech's own GPRs.
+    successResult = { success: false, margin: -1 };
+    chat = [];
+    await tools.get("sensor-sweep").open();
+    expect(chat).toEqual([]);
+    expect(section().context(gear("Portable GPR")).lines.some((l: string) => l.includes("SurveyLine"))).toBe(false);
+  });
+
+  it("sweeps with the supplement's handheld sonar at its 10 yards", async () => {
+    controlled = [character("Diver", [gear("Handheld Sonar")], { skills: { "Electronics Operation (Sonar)": 12 } })];
+    dialogAnswer = { index: 0, yards: 20, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 0, dwell: "" };
+    await tools.get("sensor-sweep").open();
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-2]);
+  });
+});
+
+describe("detecting a sensor's emissions (HT:EE p. 35), with only the supplement's switch on (D1)", () => {
+  beforeEach(() => { on = new Set([HT.rangefindingEmissions]); });
+
+  // A TL8 medium radar: 30 miles, so 60 free and 120 at the most.
+  const MILE = 1760;
+  const setUp = () => {
+    controlled = [character("Listener", [], { skills: { "Electronics Operation (EW)": 13 } })];
+    targets = [character("Ship", [gear("Medium Radar")])];
+  };
+
+  it("offers the tool with the switch on, not the sweep", () => {
+    expect(tools.get("ht-emissions").visible()).toBe(true);
+    expect(tools.get("sensor-sweep").visible()).toBe(false);
+  });
+
+  it("detects without a roll within twice the range, and nothing outside the arc", async () => {
+    setUp();
+    dialogAnswer = { index: 0, yards: 60 * MILE, arc: false, dwell: "", skill: "Electronics Operation (EW)" };
+    await tools.get("ht-emissions").open();
+    expect(successes).toEqual([]);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.EmissionsDetected");
+    dialogAnswer = { ...dialogAnswer, arc: true };
+    await tools.get("ht-emissions").open();
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.EmitterArcMiss");
+  });
+
+  it("rolls at -1 per further 20% of the range, +4 while its operator dwells 15 times as long", async () => {
+    setUp();
+    // 72 miles: 12 past 60, two-fifths of the range: -2.
+    dialogAnswer = { index: 0, yards: 72 * MILE, arc: false, dwell: "x15", skill: "Electronics Operation (EW)" };
+    await tools.get("ht-emissions").open();
+    expect(successes[0]).toMatchObject({ skill: "Electronics Operation (EW)", base: 13, tags: ["detection", "emissions", "radar"] });
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-2, 4]);
+  });
+
+  it("can't detect past four times the range", async () => {
+    setUp();
+    dialogAnswer = { index: 0, yards: 121 * MILE, arc: false, dwell: "", skill: "Electronics Operation (EW)" };
+    await tools.get("ht-emissions").open();
+    expect(successes).toEqual([]);
+    expect(chat.at(-1)).toContain("GCC.HT.Sensor.EmissionsOut");
+  });
+
+  it("wants a target carrying a sonar or radar", async () => {
+    controlled = [character("Listener", [])];
+    targets = [character("Digger", [gear("Portable GPR")])];
+    await tools.get("ht-emissions").open();
+    expect(ui.notifications!.warn).toHaveBeenCalledWith("GCC.HT.Sensor.NoEmitter");
   });
 });
 

@@ -18,6 +18,12 @@
  *     sensor's arc, with sonar's noise, a GPR's medium, and the Quick Contest
  *     against a jammer or an infiltrator; a tactical sensor locks on for +3,
  *     on top of any targeting software (pp. 45-47).
+ *   - **rangefindingEmissions:** the supplement's refinements (HT:EE p. 35):
+ *     the sweep's penalty in half steps, the target's size at half its SM,
+ *     and dwelling 4 or 15 times as long to reach 2 or 4 times as far, which
+ *     helps the target detect the emissions; a GM tool for detecting a
+ *     sonar's or radar's emissions, past twice its range at -1 per 20% of it
+ *     to -10; and the supplement's ground-penetrating radar's +2 to a skill.
  *   - **visualSensors:** optics as Telescopic Vision, night-vision optics and
  *     thermographs as Night Vision and Infravision with the Colorblindness,
  *     No Depth Perception and No Peripheral Vision they impose while in use;
@@ -29,6 +35,7 @@
  *     sound; a directional microphone as Parabolic Hearing (pp. 48-50).
  */
 
+import { isRuleOn } from "../../../shared/book-tables.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   F as SF,
@@ -98,6 +105,7 @@ import {
   tapIsContested,
   type ActiveFigures,
 } from "./rules.js";
+import { DETECTOR_SKILLS, DWELL, detectorSkill, dwellRange, emissionModifier, emissionReach, rangefindingPenalty, sensorSizeModifier, type Dwell } from "./rangefinding.js";
 
 const NS = "GCC.HT";
 const L = (key: string) => game.i18n.localize(`${NS}.Sensor.${key}`);
@@ -113,7 +121,16 @@ export interface SensorSwitches {
   activeSensors: string;
   visualSensors: string;
   passiveSensors: string;
+  /** The supplement's refinements to the active sensors (HT:EE p. 35). */
+  rangefindingEmissions?: string;
 }
+
+/** The supplement's rangefinding switch's full key, once registered. */
+let rangefindingKey: string | null = null;
+const rangefindingOn = () => rangefindingKey !== null && isRuleOn(rangefindingKey);
+
+/** A sensor whose emissions a detector can pick up: sonar and radar (High-Tech p. 45; HT:EE p. 35). */
+const emits = (figures: ActiveFigures | undefined) => figures?.kind === "sonar" || figures?.kind === "radar";
 
 const nameOf = (item: any) => String(item?.name ?? "").trim();
 
@@ -192,6 +209,11 @@ function activeLines(item: any, data: SensorData, lines: string[], options: stri
   if (figures.kind === "gpr") lines.push(L("GprLine"));
   if (figures.kind === "thruWall") lines.push(L("ThruWallLine"));
   if (data.options.tactical) lines.push(F(figures.kind === "radar" ? "TacticalRadar" : "TacticalSonar", { range: distance(range * TACTICAL_IDENTIFY) }));
+  if (rangefindingOn()) {
+    lines.push(F("Rangefinding", { x4: DWELL.x4.time, x15: DWELL.x15.time, d4: DWELL.x4.detect, d15: DWELL.x15.detect }));
+    if (emits(figures)) lines.push(F("EmissionReach", { range: distance(emissionReach(range, lpi)) }));
+    if (figures.survey) lines.push(F("SurveyLine", { bonus: signed(figures.survey) }));
+  }
   options.push(...activeModes(figures, tl));
 }
 
@@ -341,6 +363,7 @@ function pairRange({ a, b }: CommPair): { range: number; lines: string[] } {
 async function sweep({ api, selected, target, sensors, measured }: SweepContext): Promise<void> {
   const kinds = new Set(sensors.map((s) => activeFigures(s.item)?.kind));
   const imagingAny = sensors.some((s) => sensorData(s.item).options.imaging);
+  const refined = rangefindingOn();
   const answer = await ask(L("SweepTitle"),
     row(L("Sensor"), `<select name="sensor">${sensors.map((s, i) => `<option value="${i}">${esc(s.item.name)}</option>`).join("")}</select>`)
     + row(L("Distance"), `<input type="number" name="yards" value="${Math.round((measured ?? 100) * 10) / 10}" min="0" step="any" style="width:90px" />`)
@@ -348,7 +371,8 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
     + (kinds.has("sonar") ? row(L("Noise"), `<select name="noise">${SONAR_NOISE.map((n) => `<option value="${n}">${n === 0 ? esc(L("NoNoise")) : n}</option>`).join("")}</select>`) : "")
     + (imagingAny ? row(L("ImagingMode"), `<input type="checkbox" name="imaging" />`) : "")
     + (kinds.has("gpr") ? row(L("Medium"), `<select name="medium">${Object.keys(GPR_MEDIUM).map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`) : "")
-    + (kinds.has("radar") && target ? row(L("Countermeasures"), `<select name="counter"><option value="">${esc(L("Counter.none"))}</option>${Object.keys(COUNTERMEASURES).map((c) => `<option value="${c}">${esc(L(`Counter.${c}`))}</option>`).join("")}</select>`) : ""),
+    + (kinds.has("radar") && target ? row(L("Countermeasures"), `<select name="counter"><option value="">${esc(L("Counter.none"))}</option>${Object.keys(COUNTERMEASURES).map((c) => `<option value="${c}">${esc(L(`Counter.${c}`))}</option>`).join("")}</select>`) : "")
+    + (refined ? row(L("TargetSm"), `<input type="number" name="sm" value="${Number(target?.system?.sm) || 0}" step="1" style="width:70px" />`) + dwellRow() : ""),
     (form) => ({
       index: Number(form.querySelector<HTMLSelectElement>("[name=sensor]")?.value) || 0,
       yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
@@ -357,6 +381,8 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
       imaging: Boolean(form.querySelector<HTMLInputElement>("[name=imaging]")?.checked),
       medium: (form.querySelector<HTMLSelectElement>("[name=medium]")?.value ?? "soil") as keyof typeof GPR_MEDIUM,
       counter: (form.querySelector<HTMLSelectElement>("[name=counter]")?.value ?? "") as "" | keyof typeof COUNTERMEASURES,
+      sm: Number(form.querySelector<HTMLInputElement>("[name=sm]")?.value) || 0,
+      dwell: readDwell(form),
     }));
   if (!answer) return;
   const chosen = sensors[answer.index] ?? sensors[0]!;
@@ -370,10 +396,17 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
   if (figures.kind === "gpr") base *= GPR_MEDIUM[answer.medium] ?? 1;
   const lpi = data.options.lpi === true;
   const modifiers: Array<{ label: string; value: number }> = [];
-  const penalty = activeRangePenalty(answer.yards, base, lpi);
-  if (penalty) modifiers.push({ label: F("RangeLine", { range: distance(lpi ? base / 2 : base) }), value: penalty });
+  // The supplement's half steps, from the range dwelling reaches (HT:EE p. 35); High-Tech's -2 per doubling otherwise.
+  const dwell = refined ? answer.dwell ?? "" : "";
+  const reach = dwellRange(lpi ? base / 2 : base, dwell);
+  const penalty = refined ? rangefindingPenalty(answer.yards, reach) : activeRangePenalty(answer.yards, base, lpi);
+  if (penalty) modifiers.push({ label: F("RangeLine", { range: distance(reach) }), value: penalty });
   if (figures.kind === "sonar" && answer.noise) modifiers.push({ label: L("NoiseLine"), value: answer.noise });
+  // The target's size at half its SM (HT:EE p. 35).
+  const size = refined ? sensorSizeModifier(answer.sm ?? 0) : 0;
+  if (size) modifiers.push({ label: F("SizeLine", { sm: answer.sm }), value: size });
   const lines: string[] = [];
+  if (dwell) lines.push(F("DwellLine", { time: DWELL[dwell].time, bonus: signed(DWELL[dwell].detect) }));
   if (figures.kind === "gpr" && answer.medium !== "soil") lines.push(F("MediumLine", { medium: L(`Medium.${answer.medium}`), range: distance(base) }));
   if (data.options.tactical) lines.push(F(figures.kind === "radar" ? "TacticalRadar" : "TacticalSonar", { range: distance(figures.range(itemTl(chosen.item)) * TACTICAL_IDENTIFY) }));
   const tags = ["detection", figures.kind];
@@ -387,9 +420,63 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
       tags,
     } as any);
   } else {
-    await api.roll.success({ actor: selected, base: skillBase(api, selected, figures.skill), skill: figures.skill, label: title, modifiers, tags, ...(target ? { subject: target } : {}) } as any);
+    const result: any = await api.roll.success({ actor: selected, base: skillBase(api, selected, figures.skill), skill: figures.skill, label: title, modifiers, tags, ...(target ? { subject: target } : {}) } as any);
+    // The supplement's ground-penetrating radar: success is +2 to a skill the survey serves (HT:EE p. 35).
+    if (refined && figures.survey && result?.success) lines.push(F("SurveyResult", { bonus: signed(figures.survey) }));
   }
   if (lines.length) await card(selected, title, lines);
+}
+
+/** The dialog row for dwelling on a target (HT:EE p. 35). */
+function dwellRow(): string {
+  return row(L("Dwell"), `<select name="dwell"><option value="">${esc(L("DwellOption.none"))}</option>${(Object.keys(DWELL) as Dwell[]).map((d) => `<option value="${d}">${esc(F(`DwellOption.${d}`, { time: DWELL[d].time, range: DWELL[d].range }))}</option>`).join("")}</select>`);
+}
+const readDwell = (form: HTMLElement): Dwell | "" => {
+  const value = form.querySelector<HTMLSelectElement>("[name=dwell]")?.value ?? "";
+  return value in DWELL ? (value as Dwell) : "";
+};
+
+/**
+ * Detecting an active sensor's emissions (HT:EE p. 35; High-Tech p. 45): the
+ * selected character detects the targeted character's sonar or radar. Inside
+ * its arc and within twice its range (1.5 times the halved range with LPI)
+ * there is nothing to roll; past that, a roll at -1 per further 20% of its
+ * range, to -10; and +2 or +4 while its operator dwells on a target.
+ */
+async function detectEmissions(api: GWorldApi): Promise<void> {
+  const { selected, target } = picked();
+  if (!selected || !target) return void ui.notifications?.warn(L("EmissionsPick"));
+  const found = [...(target.items ?? [])].filter((item: any) => carried(item) && emits(activeFigures(item)));
+  if (!found.length) return void ui.notifications?.warn(L("NoEmitter"));
+  const measured = yardsBetween(selected, target);
+  const first = detectorSkill(activeFigures(found[0])!.kind);
+  const answer = await ask(L("EmissionsTitle"),
+    row(L("Sensor"), `<select name="sensor">${found.map((item: any, i) => `<option value="${i}">${esc(item.name)}</option>`).join("")}</select>`)
+    + row(L("Distance"), `<input type="number" name="yards" value="${Math.round(measured ?? 1000)}" min="0" step="any" style="width:90px" />`)
+    + row(F("OutsideArcEmitter", { arc: SENSOR_ARC }), `<input type="checkbox" name="arc" />`)
+    + dwellRow()
+    + row(L("DetectorSkill"), `<select name="skill">${DETECTOR_SKILLS.map((k) => `<option value="${k}" ${k === first ? "selected" : ""}>${esc(k)}</option>`).join("")}</select>`),
+    (form) => ({
+      index: Number(form.querySelector<HTMLSelectElement>("[name=sensor]")?.value) || 0,
+      yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
+      arc: Boolean(form.querySelector<HTMLInputElement>("[name=arc]")?.checked),
+      dwell: readDwell(form),
+      skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value || first,
+    }));
+  if (!answer) return;
+  const item = found[answer.index] ?? found[0];
+  const figures = activeFigures(item)!;
+  const range = figures.range(itemTl(item));
+  const lpi = sensorData(item).options.lpi === true;
+  const title = F("EmissionsLabel", { sensor: item.name, name: target.name });
+  // Only a detector within the sensor's arc (High-Tech p. 45).
+  if (answer.arc) return void card(selected, title, [F("EmitterArcMiss", { arc: SENSOR_ARC })]);
+  const modifier = emissionModifier(answer.yards, range, lpi);
+  if (modifier === null) return void card(selected, title, [F("EmissionsOut", { range: distance(emissionReach(range, lpi)) })]);
+  if (modifier === 0) return void card(selected, title, [F("EmissionsDetected", { range: distance(emissionDetectionRange(range, lpi)) })]);
+  const modifiers = [{ label: L("EmissionLine"), value: modifier }];
+  if (answer.dwell) modifiers.push({ label: F("DwellBonus", { time: DWELL[answer.dwell].time }), value: DWELL[answer.dwell].detect });
+  await api.roll.success({ actor: selected, base: skillBase(api, selected, answer.skill), skill: answer.skill, label: title, modifiers, tags: ["detection", "emissions", figures.kind], subject: target } as any);
 }
 
 const MODES: readonly CommMode[] = ["", "receiver"];
@@ -426,6 +513,7 @@ export function highTechSensors(switches: SensorSwitches): SensorTable {
 
 /** Registers the table, and what must exist before the world's data is read. */
 export function initHighTechSensors(switches: SensorSwitches): void {
+  rangefindingKey = switches.rangefindingEmissions ?? null;
   SENSOR_TABLES.register(highTechSensors(switches));
   initSensors();
 }
@@ -605,6 +693,7 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
     { key: "ht-sound-detection", label: L("SoundTitle"), icon: "fa-solid fa-volume-high", visible: (item) => on.passive() && isSoundDetector(nameOf(item)), run: (item, actor) => soundDetection(api, item, actor) },
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
+  api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-emissions", label: L("EmissionsTitle"), icon: "fa-solid fa-wave-square", visible: rangefindingOn, open: () => detectEmissions(api) });
 
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;
