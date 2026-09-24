@@ -212,6 +212,15 @@ export function recoveryText(seconds: number): { value: number; unit: "hours" | 
   return { value: days / 7, unit: "weeks" };
 }
 
+/**
+ * How long a surge keeps electrical implants out, by margin of failure: seconds for an EMP
+ * warhead (p. 157), minutes for a microwave disruptor (p. 121). At least 1.
+ */
+export function surgeOutage(source: "emp" | "microwave", margin: number): { seconds: number; value: number; unit: "seconds" | "minutes" } {
+  const value = Math.max(1, Math.floor(margin));
+  return source === "emp" ? { seconds: value, value, unit: "seconds" } : { seconds: value * 60, value, unit: "minutes" };
+}
+
 // ── parts and prices (pp. 208, 216-219) ──────────────────────────────────────
 
 /** Second-hand parts are (1d+1) × 10% of the price, salvaged ones (1d+1) × 5% (p. 208). */

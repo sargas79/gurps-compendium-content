@@ -172,7 +172,7 @@ describe("with both switches off", () => {
     const patient = person("Patient", [], { statuses: ["bleeding"], flags: { htAntiseptic: 1000, htAnesthesia: { ok: false, at: 1000 } } });
     expect(roll(medic, ["firstAid"], { opponent: patient })).toEqual([]);
     expect(roll(patient, ["disease", "infection", "HT"])).toEqual([]);
-    for (const [key, item] of [["ht-defibrillate", gear("Manual Defibrillator (TL8)", { kind: "defibrillator", value: 3 })], ["ht-aed", gear("Automatic External Defibrillator (AED)", { kind: "aed" })], ["ht-scan", gear("X-Ray Machine", { kind: "imaging", value: 1 })], ["ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" })]] as const) {
+    for (const [key, item] of [["ht-defibrillate", gear("Manual Defibrillator (TL8)", { kind: "defibrillator" })], ["ht-aed", gear("Automatic External Defibrillator (AED)", { kind: "aed" })], ["ht-scan", gear("X-Ray Machine", { kind: "imaging", value: 1 })], ["ht-antiseptic", gear("Antiseptic (10 uses)", { kind: "antiseptic" })]] as const) {
       expect(actions.get(key).visible(item), key).toBe(false);
     }
     expect(tools.get("ht-cpr").visible()).toBe(false);
@@ -187,7 +187,7 @@ describe("resuscitation (High-Tech p. 220; HT:EE p. 14)", () => {
     const patient = person("Patient", [], { attributes: { IQ: 10, HT: 11 } });
     targets = [patient];
     dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 0, shocks: 0 };
-    const defibrillator = gear("Manual Defibrillator (TL8)", { kind: "defibrillator", value: 3 });
+    const defibrillator = gear("Manual Defibrillator (TL8)", { kind: "defibrillator" });
     await run("ht-defibrillate", defibrillator, medic);
     expect(successes[0]).toMatchObject({ actor: medic, base: 12, skill: "Electronics Operation (Medical)", item: defibrillator });
     expect(resuscitations).toHaveLength(1);
@@ -215,16 +215,16 @@ describe("resuscitation (High-Tech p. 220; HT:EE p. 14)", () => {
     dialogAnswer = { cause: "heartAttack", cpr: false, modifier: 0, minutes: 0, shocks: 0 };
     // Electronics Operation at IQ-5 unlearned.
     successResults = [{ success: false }];
-    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator" }, { tl: "7" }), medic);
     expect(successes[0].base).toBe(6);
     expect(resuscitations).toHaveLength(0);
     successResults = [{ success: false }];
     dialogAnswer = { cause: "drowning", cpr: true, modifier: 0, minutes: 0, shocks: 0 };
-    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator" }, { tl: "7" }), medic);
     expect(resuscitations[0]).toMatchObject({ cause: "drowning", cpr: true, lines: [] });
     expect(resuscitations[0].skill).toBeUndefined();
     // The shock gets through, but a drowned heart has stopped: the CPR alone.
-    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator", value: 2 }, { tl: "7" }), medic);
+    await run("ht-defibrillate", gear("Manual Defibrillator (TL7)", { kind: "defibrillator" }, { tl: "7" }), medic);
     expect(resuscitations[1]).toMatchObject({ cause: "drowning", cpr: true });
     expect(resuscitations[1].skill).toBeUndefined();
     expect(chat.at(-1)).toContain("NoFibrillation");

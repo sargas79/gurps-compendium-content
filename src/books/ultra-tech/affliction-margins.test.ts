@@ -5,6 +5,9 @@
  * (#539). The system's rolls report the size; its own tests pass it signed.
  */
 
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { MODULE_ID } from "../../shared/module.js";
@@ -168,21 +171,44 @@ describe("energy warheads (Ultra-Tech pp. 157-159)", () => {
   });
 });
 
-describe("electrical implants after a surge (Ultra-Tech p. 208; Characters p. 134)", () => {
+describe("electrical implants after a surge (Ultra-Tech pp. 121, 157, 208; Characters p. 134)", () => {
   beforeEach(() => readyCybernetics(fakeApi(), on));
 
-  it("keeps them out of play for minutes equal to the margin of failure", () => {
+  const cyborg = (flags: any[]) => ({
+    name: "Cyborg",
+    isOwner: true,
+    getFlag: () => undefined,
+    setFlag: (_scope: string, _key: string, value: any) => void flags.push(value),
+    items: [{ type: "trait", name: "Bionic Hand", system: { modifiers: [{ name: "Temporary Disadvantage, Electrical" }] } }],
+  });
+
+  it("keeps them out of play for minutes equal to a microwave disruptor's margin of failure", () => {
     const flags: any[] = [];
-    const cyborg = {
-      name: "Cyborg",
-      isOwner: true,
-      getFlag: () => undefined,
-      setFlag: (_scope: string, _key: string, value: any) => void flags.push(value),
-      items: [{ type: "trait", name: "Bionic Hand", system: { modifiers: [{ name: "Temporary Disadvantage, Electrical" }] } }],
-    };
-    effectsFor(equipment("Tactical Disruptor"), -4, cyborg);
-    effectsFor(equipment("Tactical Disruptor"), 4, cyborg);
+    effectsFor(equipment("Tactical Disruptor"), -4, cyborg(flags));
+    effectsFor(equipment("Tactical Disruptor"), 4, cyborg(flags));
     expect(flags.map((f) => f.surgeUntil)).toEqual([1000 + 240, 1000 + 240]);
+  });
+
+  it("keeps them out of play for seconds equal to an EMP warhead's margin of failure", () => {
+    const flags: any[] = [];
+    const launcher = equipment("Test Launcher", { utLoads: [{ mode: 0, kind: "emp", variant: "" }] }, { rangedModes: [{}] });
+    effectsFor(launcher, -4, cyborg(flags), { index: 0, ranged: true });
+    effectsFor(launcher, 4, cyborg(flags), { index: 0, ranged: true });
+    expect(flags.map((f) => f.surgeUntil)).toEqual([1000 + 4, 1000 + 4]);
+  });
+
+  it("says how long in the unit the rule gives, which the translation reads", async () => {
+    const chat: string[] = [];
+    vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => void chat.push(m.content) } });
+    const launcher = equipment("Test Launcher", { utLoads: [{ mode: 0, kind: "emp", variant: "" }] }, { rangedModes: [{}] });
+    effectsFor(launcher, 3, cyborg([]), { index: 0, ranged: true });
+    effectsFor(equipment("Tactical Disruptor"), 2, cyborg([]));
+    await Promise.resolve();
+    expect(chat[0]).toContain('"value":3,"unit":"GCC.UT.Cyber.Unit.seconds"');
+    expect(chat[1]).toContain('"value":2,"unit":"GCC.UT.Cyber.Unit.minutes"');
+    const cyber = JSON.parse(readFileSync(join(import.meta.dirname, "../../../lang/en.json"), "utf8")).GCC.UT.Cyber;
+    expect(cyber.SurgeLine).toContain("for {value} {unit}.");
+    expect([cyber.Unit.seconds, cyber.Unit.minutes]).toEqual(["seconds", "minutes"]);
   });
 });
 

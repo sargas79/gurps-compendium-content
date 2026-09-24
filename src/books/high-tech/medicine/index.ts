@@ -89,7 +89,7 @@ export interface MedicineSwitches {
 /** What this module keeps on a piece of medical gear. */
 export interface MedicalData {
   kind: MedicalKind;
-  /** A defibrillator's bonus, an anaesthesia machine's bonus, an X-ray's dice of rads. */
+  /** An anaesthesia machine's bonus, an X-ray's dice of rads. */
   value: number;
   /** A first aid kit used until it works a grade lower (p. 221). */
   depleted: boolean;

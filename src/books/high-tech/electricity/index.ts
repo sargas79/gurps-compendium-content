@@ -676,13 +676,14 @@ async function workDialog(api: GWorldApi, workers: any[], on: ElectricitySwitche
 
 // ── stolen power (HT:EE p. 19) ──
 
-const EXTERNAL_POWER = /\b(?:household|appliance|industrial|automotive|external)\s+(?:power|current)\b/i;
+/** The printed grades of external power a line can be tapped for; not a computer's peripheral power. */
+const TAPPABLE_GRADES: ReadonlySet<string> = new Set(["household", "majorAppliance", "industrial", "automotive", "external"]);
 
-/** Whether a device runs on mains power that could be stolen. */
+/** Whether a device runs on mains power that could be stolen, by the grades of external power it is printed with. */
 export function runsOnMains(item: any): boolean {
   if (item?.type !== "equipment" || !ours(item)) return false;
-  const power = item.system?.extensions?.[MODULE_ID]?.power;
-  return EXTERNAL_POWER.test(String(power?.raw ?? ""));
+  const grades = item.system?.extensions?.[MODULE_ID]?.power?.grades;
+  return Array.isArray(grades) && grades.some((g: unknown) => TAPPABLE_GRADES.has(String(g ?? "").trim()));
 }
 
 /** A device's daily roll on stolen power: HT-2 as an equipment failure roll, a critical failure perhaps a fire (HT:EE pp. 9, 19). */
