@@ -13,8 +13,10 @@
  * The probes are generic: a hook is handed one context carrying the fields
  * the system's hooks carry, and the answers are compared as a whole. A rule
  * that needs more than a record in a character's hands (a trait, the Aim
- * maneuver, a crippling blow, a TL penalty on the roll) has a scenario that
- * sets that up around one record; the comparison is the same.
+ * maneuver, a crippling or bleeding wound, a TL penalty on the roll) has a
+ * scenario that sets that up around one record; the comparison is the same.
+ * A rule of the GM's (the black market, a firefight's aftermath) or of a
+ * skill (Zen Marksmanship) shows as the GM tool or skill it offers.
  */
 
 import { readdirSync, readFileSync } from "node:fs";
@@ -86,6 +88,23 @@ const SCENARIOS: Record<string, { record: string; arrange: Arrange }> = {
       context.actor.system.hp = { max: 10, value: -2 };
       context.result = { hitLocation: "arm", crippled: true, injury: 6, uncappedInjury: 12 };
       context.damage = { ...context.damage, type: "pi+", hitLocation: "arm" };
+    },
+  },
+  // A bullet in the neck that bleeds (p. 162).
+  vitalBleeding: {
+    record: "Springfield M1873, .45-70",
+    arrange: (_actor, _item, context) => {
+      context.result = { hitLocation: "neck", bleeds: true, injury: 5, uncappedInjury: 5 };
+      context.damage = { ...context.damage, type: "pi+", hitLocation: "neck" };
+    },
+  },
+  // A hearing aid worn by someone hard of hearing: a Mitigator (p. 225).
+  prosthetics: {
+    record: "Hearing Aid",
+    arrange: (actor, _item, context) => {
+      const trait = { id: "hoh", type: "trait", name: "Hard of Hearing", system: {} };
+      actor.items.push(trait);
+      context.traits = [{ item: trait, name: trait.name, inPlay: true }];
     },
   },
   // A gunslinger's default for a gun technique (p. 249).
@@ -252,6 +271,7 @@ function character(id: string): any {
     effects: [],
     items: new Items(),
     system: { posture: "standing", hp: { max: 10, value: 10 }, fp: { max: 10, value: 10 }, tl: 8 },
+    flags,
     getFlag: (scope: string, key: string) => flags[scope]?.[key],
     setFlag: async (scope: string, key: string, value: unknown) => { (flags[scope] ??= {})[key] = value; },
     unsetFlag: async (scope: string, key: string) => { delete flags[scope]?.[key]; },
@@ -410,7 +430,7 @@ async function probe(doc: Doc, arrange?: Arrange, hooks = true): Promise<Record<
     out[`hook ${hook}`] = [after === before(hook) ? "same" : after, results.filter((r) => r !== undefined)];
   }
   out.log = log;
-  out.carrier = actor.system;
+  out.carrier = [actor.system, actor.flags];
   const text: Record<string, string> = {};
   for (const [k, v] of Object.entries(out)) text[k] = picture(v, item);
   return text;
@@ -446,6 +466,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
   const baselines = [new Map<string, Record<string, string>>(), new Map<string, Record<string, string>>()];
   let baseOffered: string[] = [];
   const found = new Map<string, string>();
+  const offers = new Map<string, string>();
 
   /** A record's probe with every switch off, kept. */
   const base = async (doc: Doc, hooks: boolean) => {
@@ -468,7 +489,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   afterAll(() => {
     if (process.env.GCC_SWITCH_REPORT) {
-      for (const key of switches()) console.info(`${key}\t${found.get(key) ?? (SHOWN_ELSEWHERE[key] ? `elsewhere: ${SHOWN_ELSEWHERE[key]}` : "NOTHING")}`);
+      for (const key of switches()) console.info(`${key}\t${found.get(key) ?? (SHOWN_ELSEWHERE[key] ? `elsewhere: ${SHOWN_ELSEWHERE[key]}` : "no record")}\t${offers.get(key) ?? ""}`);
     }
     vi.unstubAllGlobals();
     vi.restoreAllMocks();
@@ -495,7 +516,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
       } else if (!SHOWN_ELSEWHERE[key]) {
         on = new Set([own]);
         const shown = (await offered()).filter((t) => !baseOffered.includes(t));
-        if (shown.length) found.set(key, shown.join(", "));
+        if (shown.length) offers.set(key, shown.join(", "));
         // The sheet first, over every record; the hooks only where the sheet shows nothing.
         for (const hooks of [false, true]) {
           for (let i = 0; i < docs.length && !found.has(key); i += 1) {
@@ -517,6 +538,6 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
       on = new Set();
     }
     if (SHOWN_ELSEWHERE[key]) return;
-    expect(found.get(key), `${key} changes nothing on any High-Tech record`).toBeTruthy();
+    expect(found.get(key) ?? offers.get(key), `${key} changes nothing on any High-Tech record`).toBeTruthy();
   }, 120_000);
 });
