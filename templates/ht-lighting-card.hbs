@@ -1,0 +1,11 @@
+{{!-- Glare (High-Tech: Electricity and Electronics p. 20): the HT roll against being dazzled. --}}
+<div class="gc-head"><span class="gc-label">{{localize "GCC.HT.Lighting.GlareCard"}}</span></div>
+<div class="gc-result">{{source}} &rarr; {{victim}}{{#if modifier}} ({{modifier}}){{/if}}</div>
+{{#if result}}
+  <div class="gc-note">{{result}}</div>
+{{else}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="resist">{{localize "GCC.HT.Lighting.Resist"}}</button>
+    {{#if lookingAt}}<button type="button" class="gc-apply-button" data-addon-card-action="resistLooking">{{localize "GCC.HT.Lighting.ResistLooking"}}</button>{{/if}}
+  </div>
+{{/if}}

@@ -1,0 +1,18 @@
+{{!-- A lamp (High-Tech: Electricity and Electronics pp. 20-22): its wattage, element and light. --}}
+<div class="isub" data-gcc-ee-lamp-section>
+  <div class="isub-head">{{localize "GCC.HT.Lighting.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.HT.Lighting.WattsHint'}}">{{localize "GCC.HT.Lighting.Watts"}}
+      <input type="number" min="0" step="any" data-gcc-ee-lamp-watts value="{{watts}}" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    <label>{{localize "GCC.HT.Lighting.ElementLabel"}}
+      <select data-gcc-ee-lamp-element {{#unless editable}}disabled{{/unless}}>
+        {{#each elements as |e|}}<option value="{{e.key}}" {{#if e.selected}}selected{{/if}}>{{e.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Lighting.BrighterHint'}}"><input type="checkbox" data-gcc-ee-lamp-brighter {{#if brighter}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Lighting.Brighter"}}</label>
+  </div>
+  {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
+</div>
