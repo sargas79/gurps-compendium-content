@@ -240,8 +240,3 @@ export function readyJamming(api: GWorldApi): void {
   });
 }
 
-/** Forgets that the engine was readied. For tests. */
-export function resetJamming(): void {
-  readied = false;
-}
-

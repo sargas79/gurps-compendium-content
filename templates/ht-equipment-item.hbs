@@ -1,4 +1,4 @@
-{{!-- A tool's intrinsic bonus, which adds to its quality's (High-Tech p. 11), and what a combination gadget was made from (p. 10). --}}
+{{!-- A tool's intrinsic bonus, which adds to its quality's (High-Tech p. 11), and what a combination gadget was made from and how long each part runs on its shared batteries (p. 10). --}}
 <div class="isub" data-gcc-ht-equipment-section>
   <div class="isub-head">{{localize "GCC.HT.Equipment.ItemTitle"}}</div>
   {{#if bonuses}}
@@ -10,4 +10,5 @@
     {{#if bonded}}<p class="ihint">{{bonded}}</p>{{/if}}
   {{/if}}
   {{#if combination}}<p class="ihint">{{combination}}</p>{{/if}}
+  {{#each endurance}}<p class="ihint">{{this}}</p>{{/each}}
 </div>

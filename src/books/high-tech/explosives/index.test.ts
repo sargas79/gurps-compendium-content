@@ -321,6 +321,18 @@ describe("unstable explosives (pp. 184-187)", () => {
     expect(detonations).toHaveLength(1);
   });
 
+  it("asks for the jolt's number only on an explosive with nitro in it, or one already given one (pp. 184-185)", () => {
+    const section = sections.find((s) => s.key === "ht-explosives-item");
+    const sweats = (item: any) => (section.visible(item) ? section.context(item).sweats : null);
+    expect(sweats(record("Dynamite, 80% (per pound)", "Dynamite (80%)"))).toBe(true);
+    expect(sweats(record("Blasting Gelatin (per pound)", "Blasting Gelatin (60%)"))).toBe(true);
+    expect(sweats(record("Nitroglycerin (per pound)", "Nitroglycerin (NG)"))).toBe(true);
+    // Military dynamite has no nitro in it; TNT neither, unless the GM has set a number.
+    expect(sweats(record("Military Dynamite (per pound)", "Military Dynamite"))).toBe(false);
+    expect(sweats(record("TNT (per pound)", "TNT"))).toBe(false);
+    expect(sweats(record("TNT (per pound)", "TNT", 1, { shockOn: 14 }))).toBe(true);
+  });
+
   it("jolts sweating dynamite carried by someone who is hit", async () => {
     const sweating = record("Dynamite, 80% (per pound)", "Dynamite (80%)", 1, { shockOn: 9 });
     const carrier = actorWith("Carrier", [sweating]);

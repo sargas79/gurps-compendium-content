@@ -20,20 +20,10 @@ export function wearsMetallicArmor(actor: any): boolean {
 }
 
 /**
- * What armour adds to the roll to resist a stunner's contact: its DR,
- * metallic armour's held to 1, divided by the weapon's armour divisor --
- * +2 a point at (0.5), as both books' stunners are.
- */
-export function contactDrBonus(dr: number, armorDivisor: number, metallic: boolean): number {
-  const armour = Math.max(0, Math.floor(Number(dr) || 0));
-  const counted = metallic ? Math.min(armour, METALLIC_SHOCK_DR) : armour;
-  const divisor = Number(armorDivisor) > 0 ? Number(armorDivisor) : 1;
-  return Math.floor(counted / divisor);
-}
-
-/**
- * The same, from all the DR the system found at the spot (`met`: worn armour,
- * the victim's own DR, a force field) of which `worn` is his worn armour's.
+ * What DR adds to the roll to resist a stunner's contact, divided by the
+ * weapon's armour divisor -- +2 a point at (0.5), as both books' stunners
+ * are: all the DR the system found at the spot (`met`: worn armour, the
+ * victim's own DR, a force field), of which `worn` is his worn armour's.
  * Only worn metallic armour is held to DR 1; the rest counts in full.
  */
 export function contactDrBonusAt(met: number, worn: number, armorDivisor: number, metallic: boolean): number {

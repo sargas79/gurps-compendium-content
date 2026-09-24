@@ -96,10 +96,3 @@ export function readyCarry(api: GWorldApi): void {
     },
   });
 }
-
-/** Forgets what was registered. For tests. */
-export function resetCarry(): void {
-  fieldAdded = false;
-  sectionRegistered = false;
-  CARRY_TABLES.clear();
-}

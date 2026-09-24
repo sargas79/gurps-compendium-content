@@ -5408,7 +5408,8 @@
         "CombinedOneAtATime": "One part works at a time: the heaviest and costliest in full, 50% of the others (High-Tech p. 10).",
         "PartsKept": "The parts are still on the sheet; remove the ones now built in.",
         "MadeAllAtOnce": "Combination gadget of {parts}, all usable at once (High-Tech p. 10).",
-        "MadeOneAtATime": "Combination gadget of {parts}, one working at a time (High-Tech p. 10)."
+        "MadeOneAtATime": "Combination gadget of {parts}, one working at a time (High-Tech p. 10).",
+        "SharedEndurance": "{name} runs {hours} hr. on the shared batteries (High-Tech p. 10)."
       },
       "BlackMarket": {
         "Title": "Black market",
