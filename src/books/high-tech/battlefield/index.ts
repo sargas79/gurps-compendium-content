@@ -27,7 +27,7 @@
  *     the controller's range and the ceiling -- edited on its sheet and set
  *     on the two UAVs (HT:EE p. 46). The operator's control roll takes the
  *     remote control's bonus while he is within the controller's range; the
- *     figures show on the vehicle as lines (`gworld.vehicleStats`); a row
+ *     figures show on the vehicle actor's Hnd/SR (`gworld.vehicleStats`); a row
  *     button, or a GM tool for a drone on the map, rolls the autopilot's
  *     Piloting or Dodge, and the tool checks the controller's range and the
  *     ceiling against the map.
@@ -414,7 +414,7 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
     }
   });
 
-  // The drone's figures on the vehicle's Hnd/SR and its Gear-tab row (HT:EE p. 46).
+  // The drone's figures on the vehicle actor's Hnd/SR hint (HT:EE p. 46).
   Hooks.on(api.data.hooks.vehicleStats, (context: any) => {
     if (!on.drones() || !context?.vehicle || !Array.isArray(context.lines) || !isHighTechDrone(context.vehicle)) return;
     for (const label of droneLines(context.vehicle)) context.lines.push({ label });
