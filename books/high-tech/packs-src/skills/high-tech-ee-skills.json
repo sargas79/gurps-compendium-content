@@ -1,0 +1,456 @@
+[
+  {
+    "_id": "d7ffd5d121f1a18c",
+    "name": "Artist (Neon)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -6
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 21"
+    }
+  },
+  {
+    "_id": "b73806115f0675a7",
+    "name": "Engineer/TL (Analog Computers)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Mechanic (Analog Computers)",
+          "modifier": -6
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13"
+    }
+  },
+  {
+    "_id": "034dfbe3c3608cce",
+    "name": "Hobby Skill (Feats of Science)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "E",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "491dc444a6653e90",
+    "name": "Machine Operation/TL (Analog Computers)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Mechanic (Analog Computers)",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Analog Computers)",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 6"
+    }
+  },
+  {
+    "_id": "b89877f5226410f2",
+    "name": "Machine Operation/TL (Printing Presses)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Electrician",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Electrical)",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 6"
+    }
+  },
+  {
+    "_id": "63aafe0c3491cf02",
+    "name": "Machine Operation/TL (Water Pumps)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Electrician",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Electrical)",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 6"
+    }
+  },
+  {
+    "_id": "38c4e35022561349",
+    "name": "Machine Operation/TL (Wind Generator)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Electrician",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Electrical)",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 17"
+    }
+  },
+  {
+    "_id": "cbc2dfa5a5a2cbe6",
+    "name": "Mechanic/TL (Analog Computers)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Analog Computers)",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Machinist",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Mechanic",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "47dcd448816e9c48",
+    "name": "Mechanic/TL (Electric Motor)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Engineer (Electrical)",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Machinist",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Mechanic",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "adfdf4aa8e8971ed",
+    "name": "Mechanic/TL (Robotics)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "A",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Machinist",
+          "modifier": -5
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Mechanic",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "874b00fc625699d4",
+    "name": "Musical Instrument (Stylophone)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Dulcimer)",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Mbira)",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Tuned Percussion)",
+          "modifier": -4
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Keyboard)",
+          "modifier": -5
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "28996fcc1e62118a",
+    "name": "Musical Instrument (Theremin)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Trautonium)",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "ec9cec1d973adcf0",
+    "name": "Musical Instrument (Trautonium)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Fiddle)",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Rebab)",
+          "modifier": -3
+        },
+        {
+          "from": "skill",
+          "attribute": "DX",
+          "skill": "Musical Instrument (Theremin)",
+          "modifier": -4
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 7"
+    }
+  },
+  {
+    "_id": "7e33ee0e20c88ae1",
+    "name": "Physics/TL (Electromagnetism)",
+    "type": "skill",
+    "system": {
+      "attribute": "IQ",
+      "difficulty": "H",
+      "points": 0,
+      "bonus": 0,
+      "defaults": [
+        {
+          "from": "attribute",
+          "attribute": "IQ",
+          "skill": "",
+          "modifier": -6
+        }
+      ],
+      "techLevel": "",
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 8"
+    }
+  },
+  {
+    "_id": "94b24a0b19e21ac4",
+    "name": "Hot Stick",
+    "type": "technique",
+    "system": {
+      "difficulty": "H",
+      "prerequisite": "Electrician",
+      "defaultModifier": -2,
+      "points": 0,
+      "maxRelativeToPrerequisite": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 15"
+    }
+  }
+]

@@ -5394,6 +5394,10 @@
         "electromedicine": {
           "Name": "Electromedicine",
           "Hint": "From the supplement Electricity and Electronics. After half an hour, the diathermy apparatus (the healer's Physician roll; -2 on an early machine, whose critical failure burns the patient 1d-3) or a heating pad (the patient's HT roll) eases the patient's pain one step. Electroconvulsive therapy gives the patient a Seizure; the healer's Physician roll for the course takes Chronic Depression or Manic-Depressive out of play for a year, as a Mitigator; the patient rolls HT-2 or loses the memory of the 1d days before. A laser scalpel carried gives +2 to Surgery on an operation (Electricity and Electronics pp. 13-14, 21; Campaigns pp. 428-429)."
+        },
+        "skillSubstitutes": {
+          "Name": "The supplement's skill defaults and substitutes",
+          "Hint": "From the supplement Electricity and Electronics. New defaults onto the Basic Set's skills, bought up from like any default and noted on the level: Electronics Operation (Media) from Photography-5 (for editing images), (Medical) from Diagnosis-2, (Scientific) from a natural science at -2 (and (Sensors) and (Sonar), for scientific work), (Security) from Traps-2, and Photography from Electronics Operation (Media)-5. A skill that stands in for another gets a row action that rolls it at its own level in the other's place, when the task fits: Physics (Electromagnetism) for the supplement's Physics rolls and for Engineer (Electrical or Electronics) to invent a proof of concept that can't go into production; a Hobby Skill for operating or repairing small, low-power systems (Amateur Radio for radios, High Fidelity for audio, Computers for home computers, Feats of Science for Electrician's apparatus). The new skills, specialties and the Hot Stick technique are records in High-Tech's skills (Electricity and Electronics pp. 6-8, 15)."
         }
       },
       "Appliances": {
@@ -10125,6 +10129,20 @@
         "InRange": "{name} is {miles} miles away: within the controller's range.",
         "OutOfRange": "{name} is {miles} miles away: beyond the controller's range. The drone flies on its autopilot.",
         "AboveCeiling": "At {feet} feet, the drone is above its ceiling."
+      },
+      "Skills": {
+        "Default": "Default: {skill} (HT:EE p. {page})",
+        "StandInTitle": "Roll in another skill's place",
+        "StandInHint": "{skill} ({level}) may be rolled in place of another skill, at its own level, only for the task the supplement allows. Pick the skill it stands in for.",
+        "StandInFor": "In place of",
+        "StandInLabel": "{skill} in place of {target}, {scope} (HT:EE p. {page})",
+        "Scope": {
+          "scientific": "for scientific work only",
+          "imageEditing": "for editing images",
+          "lowPower": "for small, low-power systems only",
+          "supplementPhysics": "for the supplement's Physics rolls",
+          "proofOfConcept": "to invent a proof of concept, not a production design"
+        }
       },
       "Audio": {
         "Title": "Audio (Electricity and Electronics)",

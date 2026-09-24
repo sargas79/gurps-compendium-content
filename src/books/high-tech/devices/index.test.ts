@@ -8,6 +8,9 @@
  * flag "high-tech", "neg." weight as 0.
  */
 
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
@@ -276,6 +279,18 @@ describe("kits (HT:EE p. 15)", () => {
     expect(successes[0]).toMatchObject({ base: 13, kind: "skill", skill: "Hobby Skill (Amateur Radio)", modifiers: [{ value: 1 }] });
     expect(deviceData(item).kit).toBe(false);
     expect(chat[0]).toContain("GCC.HT.Devices.Kit.Built");
+  });
+
+  it("offers the supplement's own Hobby Skill record, Feats of Science (#481)", async () => {
+    const pack = JSON.parse(readFileSync(join(import.meta.dirname, "../../../../books/high-tech/packs-src/skills/high-tech-ee-skills.json"), "utf8")) as any[];
+    const feats = pack.find((r) => r.name === "Hobby Skill (Feats of Science)");
+    expect(feats).toBeDefined();
+    const item = record("Kit Oscilloscope", { cost: 400 }, { kit: true });
+    const actor = owner([item, { type: "skill", name: feats.name, system: feats.system }], { skills: { [feats.name]: 14 } });
+    dialogAnswer = { with: feats.name, time: 1 };
+    actions.get("ht-kit-build")!.run(item, actor);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 14, kind: "skill", skill: "Hobby Skill (Feats of Science)" });
   });
 
   it("builds with IQ as a One-Task Wonder, and a failure leaves the kit", async () => {
