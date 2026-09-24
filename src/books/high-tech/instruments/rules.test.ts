@@ -52,6 +52,8 @@ const CATALOGUE: Array<[string, string]> = [
   ["Digital Oscilloscope", "oscilloscope"],
   ["Compact Digital Oscilloscope", "oscilloscope"],
   ["Spectrum Analyzer", "spectrumAnalyzer"],
+  // The TL8 handheld model, from p. 48 (#480's record).
+  ["Spectrum Analyzer (Digital)", "spectrumAnalyzer"],
   ["Wimshurst Generator", "staticMachine"],
   ["Van de Graaff Generator", "staticMachine"],
   ["Large Tesla Coil", "teslaCoil"],

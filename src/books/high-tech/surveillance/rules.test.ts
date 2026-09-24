@@ -144,6 +144,8 @@ describe("the supplement's jammers (HT:EE pp. 49-50)", () => {
   it("gives the varieties' penalties and the spectrum analyzer", () => {
     expect(JAMMER_VARIETY_PENALTIES).toEqual({ broad: { within: -2, shadow: 0 }, selective: { within: -4, shadow: -2 } });
     expect(isSpectrumAnalyzer("Spectrum Analyzer")).toBe(true);
+    expect(isSpectrumAnalyzer("Spectrum Analyzer (Digital)")).toBe(true);
+    expect(isSpectrumAnalyzer("Digital Spectrum Analyzer")).toBe(true);
     expect(isSpectrumAnalyzer("Spectrum Vision")).toBe(false);
   });
 });

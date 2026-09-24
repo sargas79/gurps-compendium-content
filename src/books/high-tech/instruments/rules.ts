@@ -233,6 +233,10 @@ export const INSTRUMENTS: Readonly<Record<string, Instrument>> = Object.freeze({
   "digital oscilloscope": apparatus("oscilloscope", { display: true }),
   "compact digital oscilloscope": apparatus("oscilloscope", { display: true }),
   "spectrum analyzer": apparatus("spectrumAnalyzer", { display: true }),
+  // The TL8 handheld model (HT:EE p. 48) is a spectrum analyzer too; finding transmitters with it
+  // in the field, at Electronics Operation (EW) -2, is signals intelligence's (#500).
+  "spectrum analyzer (digital)": apparatus("spectrumAnalyzer", { display: true }),
+  "digital spectrum analyzer": apparatus("spectrumAnalyzer", { display: true }),
   // Static electricity (pp. 11-12).
   "wimshurst generator": { kind: "staticMachine", skills: STATIC, tasks: OPERATING },
   "van de graaff generator": { kind: "staticMachine", skills: STATIC, tasks: OPERATING, sphere: 9 },

@@ -119,6 +119,7 @@ describe("the rows, by switch", () => {
     expect(action("ht-instrument-telegraph").visible(gear("Mirror Galvanometer"))).toBe(true);
     expect(action("ht-instrument-telegraph").visible(gear("D'Arsonval Moving Coil Galvanometer"))).toBe(false);
     expect(action("ht-instrument-analyze").visible(gear("Spectrum Analyzer"))).toBe(true);
+    expect(action("ht-instrument-analyze").visible(gear("Spectrum Analyzer (Digital)", { tl: "8" }))).toBe(true);
     expect(action("ht-instrument-connect").visible(gear("Thermistor"))).toBe(true);
     expect(action("ht-instrument-connect").visible(gear("Geiger Counter (TL8)"))).toBe(false);
     expect(action("ht-instrument-discharge").visible(gear("Van de Graaff Generator"))).toBe(true);

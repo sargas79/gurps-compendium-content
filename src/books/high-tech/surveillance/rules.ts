@@ -287,9 +287,13 @@ export const JAMMER_VARIETY_PENALTIES = Object.freeze({
   selective: Object.freeze({ within: -4, shadow: -2 }),
 });
 
-/** A spectrum analyzer: +4 to Electronics Operation (EW) for jamming (HT:EE p. 49). */
+/**
+ * A spectrum analyzer: +4 to Electronics Operation (EW) for jamming (HT:EE
+ * p. 49, which points to both models: the TL7 laboratory one, p. 11, and the
+ * TL8 handheld one, p. 48, recorded as "Spectrum Analyzer (Digital)").
+ */
 export const SPECTRUM_ANALYZER = 4;
-export const isSpectrumAnalyzer = (name: unknown): boolean => /^spectrum analyzer\b/i.test(String(name ?? "").trim());
+export const isSpectrumAnalyzer = (name: unknown): boolean => /^(digital )?spectrum analyzer\b/i.test(String(name ?? "").trim());
 
 /** Radar gear, and the skill it is used with, for a radar jammer (HT:EE p. 49). */
 export const SENSORS = "Electronics Operation (Sensors)";
