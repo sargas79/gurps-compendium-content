@@ -33,3 +33,26 @@ export function jammingReach(yards: number, range: number, shadow: number): Jamm
 
 /** Whether a side won a Quick Contest: `first` is the side that asked. */
 export const wonContest = (outcome: unknown): boolean => outcome === "first";
+
+/**
+ * The two ways a jammer may spread its output, where a book prints them
+ * (HT:EE p. 49): over a whole band, which everyone in reach must fight
+ * through, or onto one frequency, which the operator must first catch.
+ */
+export type JammerVariety = "broad" | "selective";
+export const JAMMER_VARIETIES: readonly JammerVariety[] = ["broad", "selective"];
+
+/** What a jammer of a variety does to a user's roll: within its range, and out to its shadow. */
+export interface VarietyPenalty {
+  within: number;
+  shadow: number;
+}
+
+/**
+ * The modifier to a user's roll to get through a jammer of a variety: the
+ * book's figure within its range, the other out to its shadow; none where it
+ * doesn't reach.
+ */
+export function varietyPenalty(reach: JammingReach, penalty: VarietyPenalty): number {
+  return reach === "contest" ? penalty.within : reach === "roll" ? penalty.shadow : 0;
+}

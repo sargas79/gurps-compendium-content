@@ -230,31 +230,106 @@ export function qualityBonus(grade: unknown): number {
 export const JAMMER_SHADOW = 10;
 const MILE = 1760;
 
+/** A jammer's figures, as the shared engine reads them. */
+export interface JammerFigures {
+  range: number;
+  skill: number | null;
+  blocks?: string;
+  hinders?: readonly string[];
+  hearing?: number;
+}
+
+/** What a radio jammer hinders: radio gear, and what rides the cell network. */
+const RADIO_GEAR = Object.freeze(["radio", "cellPhone"]);
+
+/**
+ * Following a call through a cell-phone jammer: a Hearing roll at -2 to make
+ * out what is said, within its range, where High-Tech blocked the call
+ * outright (HT:EE p. 50, revising High-Tech p. 213). The supplement makes it a
+ * broad-spectrum jammer on the cell band, so out to 10 times its range the
+ * Hearing roll is unmodified; data on the band -- a cellular beacon -- is
+ * still blocked within its range.
+ */
+export const CELL_PHONE_HEARING = -2;
+
 /**
  * The jammers by record (pp. 212-213): the area jammer's half mile, mile and
  * two miles with an operator; the expendable jammer's 50 yards at an effective
- * EW 18 with none; the cell-phone jammer, which blocks cell phones outright
- * within 15 yards.
+ * EW 18 with none; the cell-phone jammer, which blocks cell-phone traffic
+ * within 15 yards, save a call a listener follows by ear (HT:EE p. 50).
  */
-export const JAMMERS: Readonly<Record<string, { range: number; skill: number | null; blocks?: string }>> = Object.freeze({
-  "area jammer (tl6)": { range: MILE / 2, skill: null },
-  "area jammer (tl7)": { range: MILE, skill: null },
-  "area jammer (tl8)": { range: 2 * MILE, skill: null },
-  "expendable radio jammer": { range: 50, skill: 18 },
-  "cell-phone jammer": { range: 15, skill: null, blocks: "cellPhone" },
+export const JAMMERS: Readonly<Record<string, JammerFigures>> = Object.freeze({
+  "area jammer (tl6)": { range: MILE / 2, skill: null, hinders: RADIO_GEAR },
+  "area jammer (tl7)": { range: MILE, skill: null, hinders: RADIO_GEAR },
+  "area jammer (tl8)": { range: 2 * MILE, skill: null, hinders: RADIO_GEAR },
+  "expendable radio jammer": { range: 50, skill: 18, hinders: RADIO_GEAR },
+  "cell-phone jammer": { range: 15, skill: null, blocks: "cellPhone", hearing: CELL_PHONE_HEARING },
 });
 export const jammerByName = (name: unknown) => JAMMERS[nameKey(name)] ?? null;
+
+// ── the supplement's jammers (HT:EE pp. 49-50) ──
+
+/**
+ * The varieties' penalties to the user's roll (HT:EE p. 49): a
+ * broad-spectrum jammer, -2 within its range and a plain roll out to 10 times
+ * it; a selective jammer that has caught the frequency, -4 and -2.
+ */
+export const JAMMER_VARIETY_PENALTIES = Object.freeze({
+  broad: Object.freeze({ within: -2, shadow: 0 }),
+  selective: Object.freeze({ within: -4, shadow: -2 }),
+});
+
+/** A spectrum analyzer: +4 to Electronics Operation (EW) for jamming (HT:EE p. 49). */
+export const SPECTRUM_ANALYZER = 4;
+export const isSpectrumAnalyzer = (name: unknown): boolean => /^spectrum analyzer\b/i.test(String(name ?? "").trim());
+
+/** Radar gear, and the skill it is used with, for a radar jammer (HT:EE p. 49). */
+export const SENSORS = "Electronics Operation (Sensors)";
+
+/** A supplement jammer's figures, and which of its rules runs it. */
+export interface SupplementJammer extends JammerFigures {
+  rule: "jammerKinds" | "radarJamming";
+  /** Operated either way, the operator picking; or broad-spectrum always. */
+  variety: "choose" | "broad" | null;
+  spoofs?: boolean;
+}
+
+/** The radar jammer's radius: 15 miles, doubled at TL8 (HT:EE p. 49). */
+const radarJammerRange = (tl: number) => 15 * MILE * (tl >= 8 ? 2 : 1);
+
+/**
+ * The supplement's jammers by record (HT:EE pp. 49-50), at the TL their name
+ * gives or the record's own:
+ *   - a large jammer ranges as a large radio of its TL (High-Tech p. 38's
+ *     table, which the supplement's radios repeat), a portable jammer as a
+ *     medium radio; either runs broad-spectrum or selective;
+ *   - a radar jammer blinds radar out to 15 miles, 30 at TL8, as a
+ *     broad-spectrum jammer against Electronics Operation (Sensors);
+ *   - a radar spoofer is a TL8 radar jammer that feeds the radar a false
+ *     picture in a Quick Contest instead of blinding it.
+ */
+export function supplementJammerByName(name: unknown, itemTl: number): SupplementJammer | null {
+  const match = /^(large jammer|portable jammer|radar jammer|radar spoofer)(?: \(TL(\d+)\))?$/i.exec(String(name ?? "").trim());
+  if (!match) return null;
+  const kind = match[1]!.toLowerCase();
+  const tl = match[2] ? Number(match[2]) : itemTl;
+  if (kind === "radar spoofer") return { rule: "radarJamming", variety: null, spoofs: true, range: radarJammerRange(8), skill: null, hinders: ["radar"] };
+  if (kind === "radar jammer") return { rule: "radarJamming", variety: "broad", range: radarJammerRange(tl), skill: null, hinders: ["radar"] };
+  const radio = radioByName(`${kind === "large jammer" ? "Large" : "Medium"} Radio (TL${Math.max(6, Math.min(8, tl))})`, tl);
+  return radio ? { rule: "jammerKinds", variety: "choose", range: radio.range, skill: null, hinders: RADIO_GEAR } : null;
+}
 
 /**
  * The radio gear a jammer hinders (p. 212), and the Electronics Operation
  * specialty each is used with: radios and phones with Communications, bugs,
  * transmitters and tracking beacons with Surveillance. Cell phones and
- * cellular beacons ride the cell network, which a cell-phone jammer blocks.
+ * cellular beacons ride the cell network, which a cell-phone jammer blocks;
+ * a phone carries a voice a listener may follow through it (HT:EE p. 50).
  */
-export function jammableByName(name: unknown, tl: number): { skill: string; kind: string } | null {
+export function jammableByName(name: unknown, tl: number): { skill: string; kind: string; voice?: boolean } | null {
   const text = String(name ?? "").trim();
   if (radioByName(text, tl)) return { skill: COMMUNICATIONS, kind: "radio" };
-  if (/^(early )?cellular phone$|^cell phone$/i.test(text)) return { skill: COMMUNICATIONS, kind: "cellPhone" };
+  if (/^(early )?cellular phone$|^cell phone$/i.test(text)) return { skill: COMMUNICATIONS, kind: "cellPhone", voice: true };
   if (/^satellite phone$/i.test(text)) return { skill: COMMUNICATIONS, kind: "radio" };
   if (/^(personal )?cellular beacon$/i.test(text)) return { skill: SURVEILLANCE, kind: "cellPhone" };
   if (/^(audio bug|radio beacon|a\/v transmitter|a\/v transceiver)\b|^(miniature |subminiature )?video bug$/i.test(text)) return { skill: SURVEILLANCE, kind: "radio" };

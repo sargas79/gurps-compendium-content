@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { jammingReach, wonContest } from "./rules.js";
+import { jammingReach, varietyPenalty, wonContest } from "./rules.js";
 
 describe("a jammer's reach (High-Tech p. 212)", () => {
   it("is a Quick Contest within its range, an unopposed roll within the shadow, and nothing beyond", () => {
@@ -21,5 +21,14 @@ describe("a jammer's reach (High-Tech p. 212)", () => {
     expect(wonContest("first")).toBe(true);
     expect(wonContest("second")).toBe(false);
     expect(wonContest("tie")).toBe(false);
+  });
+});
+
+describe("a jammer variety's penalty (HT:EE p. 49)", () => {
+  it("takes the figure within range, the other out to the shadow, and none beyond", () => {
+    const penalty = { within: -4, shadow: -2 };
+    expect(varietyPenalty("contest", penalty)).toBe(-4);
+    expect(varietyPenalty("roll", penalty)).toBe(-2);
+    expect(varietyPenalty("clear", penalty)).toBe(0);
   });
 });

@@ -2,17 +2,20 @@ import { describe, expect, it } from "vitest";
 
 import {
   EOD,
+  JAMMER_VARIETY_PENALTIES,
   bugOf,
   contactMikePenalty,
   homemadeBugPenalty,
   jammableByName,
   jammerByName,
+  isSpectrumAnalyzer,
   negatesUndercoverClothing,
   qualityBonus,
   rebased,
   screenerOf,
   screeningBonus,
   spikeMikeLevels,
+  supplementJammerByName,
   sweepMinutes,
   type ScreeningSearch,
 } from "./rules.js";
@@ -99,18 +102,48 @@ describe("surveillance gear (High-Tech pp. 208-212)", () => {
 
 describe("jammers (High-Tech pp. 212-213)", () => {
   it("knows each jammer's range and skill", () => {
-    expect(jammerByName("Area Jammer (TL6)")).toEqual({ range: 880, skill: null });
-    expect(jammerByName("Area Jammer (TL8)")).toEqual({ range: 3520, skill: null });
-    expect(jammerByName("Expendable Radio Jammer")).toEqual({ range: 50, skill: 18 });
-    expect(jammerByName("Cell-Phone Jammer")).toEqual({ range: 15, skill: null, blocks: "cellPhone" });
+    expect(jammerByName("Area Jammer (TL6)")).toEqual({ range: 880, skill: null, hinders: ["radio", "cellPhone"] });
+    expect(jammerByName("Area Jammer (TL8)")).toEqual({ range: 3520, skill: null, hinders: ["radio", "cellPhone"] });
+    expect(jammerByName("Expendable Radio Jammer")).toEqual({ range: 50, skill: 18, hinders: ["radio", "cellPhone"] });
+    // The supplement's revision: a call through it is followed on Hearing-2 (HT:EE p. 50).
+    expect(jammerByName("Cell-Phone Jammer")).toEqual({ range: 15, skill: null, blocks: "cellPhone", hearing: -2 });
   });
 
   it("knows the gear a jammer hinders and the skill it's used with", () => {
     expect(jammableByName("Small Radio (TL8)", 8)).toEqual({ skill: "Electronics Operation (Communications)", kind: "radio" });
-    expect(jammableByName("Cellular Phone", 8)).toEqual({ skill: "Electronics Operation (Communications)", kind: "cellPhone" });
+    expect(jammableByName("Cellular Phone", 8)).toEqual({ skill: "Electronics Operation (Communications)", kind: "cellPhone", voice: true });
     expect(jammableByName("Personal Cellular Beacon", 8)).toEqual({ skill: "Electronics Operation (Surveillance)", kind: "cellPhone" });
     expect(jammableByName("Audio Bug (TL7)", 7)?.skill).toBe("Electronics Operation (Surveillance)");
     expect(jammableByName("Miniature Video Bug", 8)?.kind).toBe("radio");
     expect(jammableByName("Phone Tap", 6)).toBeNull();
+  });
+});
+
+describe("the supplement's jammers (HT:EE pp. 49-50)", () => {
+  const MILE = 1760;
+
+  it("ranges a large jammer as a large radio and a portable one as a medium radio, by the TL in the name or the record's", () => {
+    expect(supplementJammerByName("Large Jammer (TL6)", 6)).toEqual({ rule: "jammerKinds", variety: "choose", range: 50 * MILE, skill: null, hinders: ["radio", "cellPhone"] });
+    expect(supplementJammerByName("Large Jammer (TL8)", 8)?.range).toBe(200 * MILE);
+    expect(supplementJammerByName("Portable Jammer (TL7)", 7)?.range).toBe(10 * MILE);
+    expect(supplementJammerByName("Portable Jammer", 8)?.range).toBe(35 * MILE);
+  });
+
+  it("blinds radar out to 15 miles, 30 at TL8, and the spoofer is a TL8 radar jammer", () => {
+    expect(supplementJammerByName("Radar Jammer (TL7)", 7)).toEqual({ rule: "radarJamming", variety: "broad", range: 15 * MILE, skill: null, hinders: ["radar"] });
+    expect(supplementJammerByName("Radar Jammer", 8)?.range).toBe(30 * MILE);
+    expect(supplementJammerByName("Radar Spoofer", 8)).toEqual({ rule: "radarJamming", variety: null, spoofs: true, range: 30 * MILE, skill: null, hinders: ["radar"] });
+  });
+
+  it("knows none of High-Tech's own, nor anything else", () => {
+    expect(supplementJammerByName("Area Jammer (TL7)", 7)).toBeNull();
+    expect(supplementJammerByName("Cell-Phone Jammer", 8)).toBeNull();
+    expect(supplementJammerByName("Large Radio (TL7)", 7)).toBeNull();
+  });
+
+  it("gives the varieties' penalties and the spectrum analyzer", () => {
+    expect(JAMMER_VARIETY_PENALTIES).toEqual({ broad: { within: -2, shadow: 0 }, selective: { within: -4, shadow: -2 } });
+    expect(isSpectrumAnalyzer("Spectrum Analyzer")).toBe(true);
+    expect(isSpectrumAnalyzer("Spectrum Vision")).toBe(false);
   });
 });
