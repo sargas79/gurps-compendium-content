@@ -7387,7 +7387,9 @@
           "explodes": "The tank exploded",
           "disabled": "Disabled",
           "explodesLine": "Damage got through {name}'s DR: 1d rolled {roll}, and the tank explodes!",
-          "disabledLine": "Damage got through {name}'s DR: 1d rolled {roll}, and it is disabled."
+          "disabledLine": "Damage got through {name}'s DR: 1d rolled {roll}, and it is disabled.",
+          "TargetFacing": "{name} (backpack, its carrier facing you)",
+          "TargetBehind": "{name} (backpack, from behind or the side)"
         },
         "Spray": {
           "Note": "Spray",

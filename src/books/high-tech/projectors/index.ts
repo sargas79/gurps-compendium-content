@@ -352,12 +352,18 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     context.dr = TANK_DR;
     context.notes?.push?.(L("Tank.Note"));
   });
-  // "An attack on an exposed weapon is at no penalty" (p. 179); a backpack's -4 while facing is the GM's.
+  // "An attack on an exposed weapon is at no penalty", and one on the backpack
+  // at -4 while its carrier faces the attacker (p. 179): the arc the attack
+  // comes from (API 1.137.0), or a note where there is none to read.
   Hooks.on(api.combat.hooks.weaponTargets, (context: any) => {
     if (!on.flamethrowers() || !context?.foe) return;
+    const arc = typeof context.arc === "string" ? context.arc : null;
     for (const item of [...(context.foe.items ?? [])].filter((i: any) => isFlamethrower(i) && i.system?.equipped)) {
+      const name = String(item.name ?? "");
       const target = {
-        id: String(item.id), name: F("Tank.Target", { name: String(item.name ?? ""), penalty: BACKPACK_FACING_PENALTY }), penalty: 0,
+        id: String(item.id),
+        name: arc ? F(arc === "front" ? "Tank.TargetFacing" : "Tank.TargetBehind", { name }) : F("Tank.Target", { name, penalty: BACKPACK_FACING_PENALTY }),
+        penalty: arc === "front" ? BACKPACK_FACING_PENALTY : 0,
         canDisarm: false, noParry: true, noDefenseBonus: false, disarmPenaltyForAll: false,
       };
       context.targets = [...(context.targets ?? []).filter((t: any) => t.id !== target.id), target];

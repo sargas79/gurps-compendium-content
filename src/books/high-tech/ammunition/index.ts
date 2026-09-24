@@ -20,7 +20,8 @@
  *     to fire cartridges, on an Armoury (Small Arms)-4 roll.
  *   - **Handloading (handloading):** rounds handloaded or reloaded cost
  *     their materials; a batch is timed by its tools and rolled for, a
- *     critical failure costing the batch a point of Malf.; a load developed
+ *     critical failure costing the batch a point of Malf., and loaded into a
+ *     box its rounds are added to the box's count; a load developed
  *     for the gun on Armoury and IQ-based Guns rolls makes its match-grade
  *     rounds a perfect match.
  *   - **Misloading (misloading):** a round that isn't the gun's, nor one down
