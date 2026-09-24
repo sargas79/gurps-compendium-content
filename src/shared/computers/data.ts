@@ -27,24 +27,47 @@ export interface ComputerTable extends BookTable {
   notes?: (complexity: number) => string;
   /** Whether an attack is one a hardened computer resists: the book's EMP and microwave weapons. */
   electricalAttack?: (item: any, modeIndex: number) => boolean;
+  /**
+   * Another set of figures the book prints for its computers -- a supplement's
+   * eras and models -- behind a switch of its own, in its own words. While
+   * that switch is on, the book's computers take these figures in place of
+   * the table's, and the engine runs for the book's items even with the
+   * table's own switch off.
+   */
+  variant?: { rule: string; figures: ComputerFigures; i18n: string };
 }
 
 /** Every book's computer table. */
 export const COMPUTER_TABLES = new BookTables<ComputerTable>();
 
-/** The computer table whose rule applies to an item, where its book's switch is on. */
+/**
+ * A table as it stands with the switches: with its variant's figures and
+ * words in place of its own while the variant's switch is on.
+ */
+export function withVariant(table: ComputerTable, on: (key: string) => boolean = isRuleOn): ComputerTable {
+  const variant = table.variant;
+  return variant && on(variant.rule) ? { ...table, figures: variant.figures, i18n: variant.i18n } : table;
+}
+
+/** The computer table whose rule applies to an item, where its book's switch (or its variant's) is on. */
 export function computerTableOf(item: any, on: (key: string) => boolean = isRuleOn): ComputerTable | null {
-  return COMPUTER_TABLES.forItem(item, (t) => on(t.rule));
+  const table = COMPUTER_TABLES.forItem(item, (t) => on(t.rule) || Boolean(t.variant && on(t.variant.rule)));
+  return table ? withVariant(table, on) : null;
+}
+
+/** Every set of figures any book's table holds, its variant's included. */
+function allFigures(): ComputerFigures[] {
+  return COMPUTER_TABLES.all.flatMap((t) => (t.variant ? [t.figures, t.variant.figures] : [t.figures]));
 }
 
 /** Every model any book's table lists. */
 function allModels(): string[] {
-  return [...new Set(COMPUTER_TABLES.all.flatMap((t) => t.figures.models))];
+  return [...new Set(allFigures().flatMap((f) => f.models))];
 }
 
 /** Every option any book's table lists. */
 function allOptions(): string[] {
-  return [...new Set(COMPUTER_TABLES.all.flatMap((t) => t.figures.options))];
+  return [...new Set(allFigures().flatMap((f) => f.options))];
 }
 
 export interface ComputerData {

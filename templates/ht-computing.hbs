@@ -1,0 +1,46 @@
+{{!-- A High-Tech computer's interface, programming language and tubes, from
+     High-Tech: Electricity and Electronics (pp. 37-41). --}}
+<div class="isub" data-ht-computing-section>
+  <div class="isub-head">{{localize "GCC.HT.Computing.Title"}}</div>
+  {{#if interfaces}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Computing.InterfaceHint'}}">{{localize "GCC.HT.Computing.InterfaceLabel"}}
+        <select data-ht-computing="interface" {{#unless editable}}disabled{{/unless}}>
+          {{#each interfaces.kinds as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+      {{#if interfaces.touch}}
+        <label data-tooltip="{{localize 'GCC.HT.Computing.TouchHint'}}">{{localize "GCC.HT.Computing.TouchLabel"}}
+          <select data-ht-computing="touch" {{#unless editable}}disabled{{/unless}}>
+            {{#each interfaces.sizes as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+          </select>
+        </label>
+      {{/if}}
+    </div>
+    <div class="ichecks">
+      {{#if interfaces.touch}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.MultitouchHint'}}"><input type="checkbox" data-ht-computing="multitouch" {{#if setup.multitouch}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.Multitouch"}}</label>
+      {{/if}}
+      {{#if interfaces.voice}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.VoiceTrainedHint'}}"><input type="checkbox" data-ht-computing="voiceTrained" {{#if setup.voiceTrained}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.VoiceTrained"}}</label>
+      {{/if}}
+      {{#if interfaces.canLearn}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.FamiliarHint'}}"><input type="checkbox" data-ht-computing="familiar" data-name="{{interfaces.familiarName}}" {{#if interfaces.familiar}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.Familiar"}} ({{interfaces.familiarName}})</label>
+      {{/if}}
+    </div>
+    {{#if interfaces.tooLow}}<p class="ihint gc-bad">{{interfaces.tooLow}}</p>{{/if}}
+    {{#if interfaces.note}}<p class="ihint">{{interfaces.note}}</p>{{/if}}
+  {{/if}}
+  {{#if languages}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Computing.LanguageHint'}}">{{localize "GCC.HT.Computing.LanguageLabel"}}
+        <select data-ht-computing="language" {{#unless editable}}disabled{{/unless}}>
+          {{#each languages.options as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    <p class="ihint">{{languages.note}}</p>
+    {{#if languages.dedicated}}<p class="ihint">{{languages.dedicated}}</p>{{/if}}
+  {{/if}}
+  {{#if burnout}}<p class="ihint {{#if setup.burntOut}}gc-bad{{/if}}">{{burnout}}</p>{{/if}}
+</div>

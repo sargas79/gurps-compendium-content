@@ -5011,6 +5011,18 @@
           "Name": "Computers and software",
           "Hint": "The TL8 computer models with their Complexity and storage, the options (compact, hardened, high-capacity, fast, slow) and, for a TL6-7 computer, one early technology (mechanical -5, vacuum tube -4 and hardened, transistor -3), repricing the computer. A program is priced from the Program Cost Table by Complexity and TL where its record has no price; a software tool shows the grade its Complexity reaches, and whether it is too simple for the skill at all. A worn head-up display gives +1 to Driving and Piloting (High-Tech pp. 19-22)."
         },
+        "computerEras": {
+          "Name": "Computer eras (Electricity and Electronics)",
+          "Hint": "The supplement's computer figures for High-Tech's computers: seven sizes (tiny to megacomputer, with the workstation and minicomputer), Complexity shifted by the basic technology a computer is built with (electromechanical -5, vacuum tube and transistor -4, MSI -3, LSI -2, early VLSI -1, late VLSI +1, advanced VLSI +2), and the customized hardware, dedicated included, as fields that reprice it. A transistor computer is compact, and an electromechanical or vacuum-tube one hardened, at no extra cost. A vacuum-tube computer rolls HT daily against a burned-out tube, which takes a minor repair (High-Tech: Electricity and Electronics pp. 36-37)."
+        },
+        "computerInterfaces": {
+          "Name": "Computer interfaces (Electricity and Electronics)",
+          "Hint": "The interface a High-Tech computer is worked through: text, graphic, touch screen, VR, voice or brain-computer. Each is a familiarity, -2 until learned under the familiarity rule, and needs a computer of Complexity 1, 2, 2, 3, 4 or 6 to drive it. A touch screen's modifier to Computer Operation by size and multitouch, a carried stylus's +1, voice control's -2 (and -2 more until trained to its user), and a brain-computer interface's -2 go on rolls made with the computer or a program on it. A light pen calls for an HT roll every 10 minutes: 1 FP on a failure, and 1 HP too on a critical failure (High-Tech: Electricity and Electronics pp. 39-41)."
+        },
+        "programmingLanguages": {
+          "Name": "Programming languages (Electricity and Electronics)",
+          "Hint": "How a High-Tech computer is programmed, set on its sheet. On a Computer Programming roll with it or a program on it, machine code is -5 (none with Eidetic or Photographic Memory; time spent can buy it off), and a high-level language lifts the penalty for an unfamiliar computer type. A row button rolls Computer Operation as a complementary skill (+1, +2 on a critical success, -1 on a failure, -2 on a critical failure) for the next Computer Programming roll with the machine; another \"programs\" a dedicated or hard-wired machine with Engineer (Electronics), -2 without familiarity with digital circuits, Electronics Repair (Computers) or Computer Operation (High-Tech: Electricity and Electronics p. 38)."
+        },
         "toolKits": {
           "Name": "Tool kits and workshops",
           "Hint": "A portable kit carried for another specialty of the same skill is -2; a workshop is -2 for another specialty or a close craft and -5 for a distant one, where no kit of the skill's own is carried. Kits for light crafts cost a quarter and weigh a tenth; a vehicle kit or shop for more than 10 tons costs and weighs (tons)/10 times as much. Labs show their set-up time, machine shops their output (High-Tech pp. 24, 29, 50)."
@@ -9067,6 +9079,193 @@
           "MotorOn": "The motor is running.",
           "MotorOff": "The motor is off."
         }
+      },
+      "Eras": {
+        "Computer": {
+          "Title": "Computer",
+          "SoftwareTitle": "Software",
+          "KindLabel": "Is a",
+          "KindHint": "A computer is one of the supplement's size categories; a program is rated by its Complexity (High-Tech: Electricity and Electronics p. 37; High-Tech p. 22).",
+          "Kind": {
+            "none": "Neither",
+            "computer": "Computer",
+            "program": "Program"
+          },
+          "ModelLabel": "Model",
+          "ModelHint": "The size category, with its Complexity as a standard-VLSI machine of TL8. A TL7 computer is a size built with one of the TL7 technologies (High-Tech: Electricity and Electronics p. 37). Storage follows High-Tech's model of the same Complexity (High-Tech p. 20).",
+          "Model": {
+            "tiny": "Tiny (Complexity 1, TL8)",
+            "small": "Small (Complexity 2, TL8)",
+            "medium": "Medium (Complexity 3, TL7)",
+            "workstation": "Workstation (Complexity 4, TL7)",
+            "microframe": "Microframe, as a workstation (Complexity 4, TL7)",
+            "minicomputer": "Minicomputer (Complexity 5, TL7)",
+            "mainframe": "Mainframe, as a minicomputer (Complexity 5, TL7)",
+            "macroframe": "Macroframe (Complexity 6, TL7)",
+            "megacomputer": "Megacomputer (Complexity 7, TL7)"
+          },
+          "Excluded": "not with the other, or not yet at its TL",
+          "Option": {
+            "electromechanical": "Electromechanical",
+            "electromechanicalHint": "Basic technology, TL7 (1940): -5 Complexity; hardened at no extra cost.",
+            "vacuumTube": "Vacuum tube",
+            "vacuumTubeHint": "Basic technology, TL7 (1939): -4 Complexity; hardened at no extra cost. Roll HT daily against a burned-out tube.",
+            "transistor": "Transistor",
+            "transistorHint": "Basic technology, TL7 (1947): -4 Complexity; compact at no extra cost.",
+            "msi": "MSI",
+            "msiHint": "Basic technology, TL7 (1968): medium-scale integration, -3 Complexity.",
+            "lsi": "LSI",
+            "lsiHint": "Basic technology, TL7 (1971): large-scale integration, -2 Complexity.",
+            "earlyVlsi": "Early VLSI",
+            "earlyVlsiHint": "Basic technology, TL8 (1980): -1 Complexity.",
+            "standardVlsi": "Standard VLSI",
+            "standardVlsiHint": "Basic technology, TL8 (1990): the sizes' own Complexity. A TL8 computer with no other technology is standard.",
+            "lateVlsi": "Late VLSI",
+            "lateVlsiHint": "Basic technology, TL8 (2000): +1 Complexity.",
+            "advancedVlsi": "Advanced VLSI",
+            "advancedVlsiHint": "Basic technology, TL8 (2010): +2 Complexity.",
+            "compact": "Compact",
+            "compactHint": "TL7: twice the cost, half the weight. A transistor computer already is.",
+            "dedicated": "Dedicated",
+            "dedicatedHint": "TL7: its programs are built in and can't be changed; half the cost, a fifth of the weight.",
+            "hardened": "Hardened",
+            "hardenedHint": "TL7: +3 HT against electromagnetic pulse; twice the cost and weight. An electromechanical or vacuum-tube computer already is.",
+            "highCapacity": "High-capacity",
+            "highCapacityHint": "TL7: runs half again as many programs at once, at 1.5 times the cost.",
+            "fast": "Fast",
+            "fastHint": "TL8: +1 Complexity at 20 times the cost. Not with Slow.",
+            "slow": "Slow",
+            "slowHint": "TL8: -1 Complexity at a twentieth the cost. Not with Fast."
+          },
+          "Figures": "Complexity {complexity}, {storage} {unit}. Runs {own} programs of Complexity {complexity} at once, or {below} one level below.",
+          "Problem": {
+            "belowZero": "Its Complexity comes to less than 0: design a larger computer.",
+            "needsEarly": "A TL{tl} computer must be built with one of the TL7 technologies: electromechanical, vacuum tube, transistor, MSI or LSI.",
+            "modelTooLate": "This model isn't built yet at TL{built}."
+          },
+          "Legality": "LC{lc} with its options.",
+          "CompactCells": "Compact: half the batteries and half the operating time.",
+          "Hardened": "Hardened: +{bonus} HT against EMP, microwaves and the like.",
+          "HardenedLine": "{name} (hardened)",
+          "ComplexityLabel": "Complexity",
+          "ComplexityHint": "The least Complexity a computer must have to run the program (High-Tech p. 22).",
+          "DifficultyLabel": "Skill difficulty",
+          "DifficultyHint": "The difficulty of the skill a software tool is for: an Easy skill needs one level less Complexity for each grade (High-Tech p. 22).",
+          "RunsOnLabel": "Runs on",
+          "RunsOnHint": "Which of the character's computers the program is running on.",
+          "NotRunning": "Not running",
+          "ComplexityShort": "Complexity {complexity}",
+          "MassMarket": "Mass-market",
+          "MassMarketHint": "Software sold to a huge user base costs as little as a tenth of the table's price (High-Tech p. 22).",
+          "TablePrice": "${cost}: Complexity {complexity} at TL{tl} on the Program Cost Table.",
+          "Unavailable": "The Program Cost Table has no Complexity {complexity} program at TL{tl}.",
+          "Tool": {
+            "none": "Too simple for {skills}: at TL7+ a skill that needs software takes at least a basic program, Complexity {basic}.",
+            "basic": "A basic tool for {skills}, no bonus: good needs Complexity {good}, fine {fine}.",
+            "good": "A good tool for {skills} (+1); fine needs Complexity {fine}.",
+            "fine": "A fine tool for {skills} (+2)."
+          },
+          "SetQuality": "Set its quality",
+          "GearTitle": "Computers",
+          "Computer": "Computer",
+          "ComplexityShortHead": "Complexity",
+          "Storage": "Storage",
+          "Programs": "Running",
+          "TooComplex": "Too complex for this computer to run.",
+          "Overloaded": "Over capacity",
+          "OverloadedHint": "More programs than the computer runs at once: two of its own Complexity, ten times as many per level below."
+        }
+      },
+      "Computing": {
+        "Title": "Interface and programming",
+        "InterfaceLabel": "Interface",
+        "InterfaceHint": "How the computer is worked. Each interface is a familiarity of its own, -2 until learned (8 hours), and the computer must reach its Complexity to drive it (High-Tech: Electricity and Electronics p. 39).",
+        "InterfaceOption": "{name} (Complexity {complexity})",
+        "Interface": {
+          "none": "Not set",
+          "text": "Text",
+          "graphic": "Graphic, with a pointer",
+          "touch": "Touch screen",
+          "vr": "Virtual reality",
+          "voice": "Voice control",
+          "bci": "Brain-computer interface"
+        },
+        "TouchLabel": "Screen",
+        "TouchHint": "The touch screen's size, which sets its modifier to Computer Operation (High-Tech: Electricity and Electronics p. 40).",
+        "Touch": {
+          "desktop": "Desktop",
+          "tablet": "Tablet",
+          "phone": "Phone"
+        },
+        "Multitouch": "Multitouch",
+        "MultitouchHint": "Multitouch: a desktop screen +1, a tablet +0, a phone -1 to Computer Operation; single-touch: +0, -1 and -2. A carried stylus makes it single-touch at +1, where that is better (High-Tech: Electricity and Electronics p. 40).",
+        "SingleTouch": "single-touch",
+        "VoiceTrained": "Trained to its user's voice",
+        "VoiceTrainedHint": "Until 8 hours of training, rolls to work it by spoken command are at -2 more (High-Tech: Electricity and Electronics p. 40).",
+        "Familiar": "Familiar",
+        "FamiliarHint": "Whether the character's familiarities list this interface. Unfamiliar, it is -2 to skill for the first 8 hours of use (High-Tech: Electricity and Electronics p. 39).",
+        "TooLow": "{name} needs Complexity {needs}; this computer is Complexity {complexity} and can't drive it.",
+        "Note": {
+          "text": "Navigating a display with the arrow keys alone is -1, which extra time can make up (High-Tech: Electricity and Electronics p. 40).",
+          "graphic": "A light pen held to the screen calls for an HT roll every 10 minutes (its row button) (High-Tech: Electricity and Electronics p. 40).",
+          "touch": "Typing on the touch screen is -1 unless a keyboard is added (High-Tech: Electricity and Electronics p. 40).",
+          "vr": "A VR headset offsets up to -2 of penalties on tasks it helps with; prototype wired gloves are -2 to skills of manual dexterity (High-Tech: Electricity and Electronics p. 41).",
+          "voice": "Voice control is -2 to Computer Operation and other skills for navigating a screen (High-Tech: Electricity and Electronics p. 40).",
+          "bci": "A noninvasive interface's weak signals are -2 to skill, which extra time can make up (High-Tech: Electricity and Electronics p. 41)."
+        },
+        "TouchLine": "Touch screen ({size}, {touch})",
+        "Line": {
+          "unfamiliar": "Unfamiliar interface: {name}",
+          "stylus": "Stylus",
+          "voice": "Voice control",
+          "voiceUntrained": "Voice control not yet trained",
+          "bci": "Brain-computer interface"
+        },
+        "LanguageLabel": "Programmed in",
+        "LanguageHint": "What programs for the computer are written in, for Computer Programming rolls made with it or a program on it (High-Tech: Electricity and Electronics p. 38).",
+        "Language": {
+          "none": "Not set",
+          "highLevel": "A high-level language",
+          "assembly": "Assembly language",
+          "machineCode": "Machine code",
+          "wired": "Hard-wired"
+        },
+        "LanguageNote": {
+          "none": "Set the language for its Computer Programming penalties.",
+          "highLevel": "A high-level language runs on machines of any type: no penalty on Computer Programming for an unfamiliar computer type.",
+          "assembly": "An assembly language belongs to its machine: an unfamiliar computer type is -2 to Computer Programming.",
+          "machineCode": "Machine code is -5 to Computer Programming, bought off by taking extra time, and avoided with Eidetic Memory.",
+          "wired": "A hard-wired machine has no Computer Programming: its row button designs, rewires or sets it up."
+        },
+        "Dedicated": "Dedicated hardware: its programs are built in and can't be changed.",
+        "MachineCodeLine": "Machine code",
+        "ComplementaryLine": "Computer Operation (complementary)",
+        "Complementary": "Complementary roll",
+        "ComplementaryRoll": "Computer Operation, complementary to programming {name}",
+        "ComplementaryKept": "{value} on the next Computer Programming roll with this computer.",
+        "Wire": "Program by wiring",
+        "WireTitle": "Program {name}",
+        "WireHint": "A dedicated or hard-wired machine is programmed by designing its circuits, rewired to carry out a program designed for its class, or set up by its jacks and switches (High-Tech: Electricity and Electronics p. 38).",
+        "WireHow": "How",
+        "Wiring": {
+          "design": "Design its circuits: {skill}",
+          "rewire": "Rewire it for a program: {skill}",
+          "configure": "Set its jacks and switches: {skill}"
+        },
+        "WireRoll": "Programming {name}",
+        "UnfamiliarCircuits": "Unfamiliar with digital circuits",
+        "Roll": "Roll",
+        "NoSkill": "The character can't attempt {skill}.",
+        "Burnout": "Tube burnout roll",
+        "BurnoutRoll": "{name}: daily HT roll against tube burnout",
+        "BurntOut": "A tube has burned out: the computer needs a minor repair (Campaigns p. 484).",
+        "Tubes": "Vacuum tubes: roll HT daily against burnout (High-Tech: Electricity and Electronics p. 37).",
+        "Repair": "Repair the tube",
+        "RepairRoll": "{name}: replacing a burned-out tube",
+        "PriceModifier": "The computer's price",
+        "Repaired": "The burned-out tube is replaced.",
+        "LightPen": "Light pen strain",
+        "LightPenRoll": "{name}: HT roll after {minutes} minutes"
       }
     },
     "Backblast": {

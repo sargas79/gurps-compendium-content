@@ -27,6 +27,7 @@ import type { SkillDifficulty } from "../../../shared/computers/rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
+import { ERA_COMPUTERS, INTERFACES, LANGUAGES, TOUCH_SIZES, type InterfaceSetup, type Language } from "../computing/rules.js";
 import {
   COMPUTERS,
   HUD_BONUS,
@@ -58,9 +59,20 @@ const signed = (value: number) => (value > 0 ? `+${value}` : String(value));
 const C = (key: string) => game.i18n.localize(`GCC.HT.ComputerUse.${key}`);
 const CF = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.ComputerUse.${key}`, data);
 
-/** High-Tech's computer table, behind the book's own switch (its full key). */
-export function highTechComputers(rule: string): ComputerTable {
-  return { book: "high-tech", tls: { min: 0, max: 8 }, figures: COMPUTERS, rule, i18n: "GCC.HT" };
+/**
+ * High-Tech's computer table, behind the book's own switch (its full key),
+ * with the Electricity and Electronics supplement's eras and models behind
+ * theirs (HT:EE pp. 36-37).
+ */
+export function highTechComputers(rule: string, erasRule?: string): ComputerTable {
+  return {
+    book: "high-tech",
+    tls: { min: 0, max: 8 },
+    figures: COMPUTERS,
+    rule,
+    i18n: "GCC.HT",
+    ...(erasRule ? { variant: { rule: erasRule, figures: ERA_COMPUTERS, i18n: "GCC.HT.Eras" } } : {}),
+  };
 }
 
 /** What this module keeps on a manual or a library. */
@@ -78,8 +90,8 @@ export interface ReferenceData {
 }
 
 /** Registers the table, the engine, and the reference fields. */
-export function initInformation(computerRule: string): void {
-  COMPUTER_TABLES.register(highTechComputers(computerRule));
+export function initInformation(computerRule: string, erasRule?: string): void {
+  COMPUTER_TABLES.register(highTechComputers(computerRule, erasRule));
   initComputers();
   const f = foundry.data.fields as any;
   const flag = () => new f.BooleanField({ initial: false });
@@ -95,17 +107,45 @@ export function initInformation(computerRule: string): void {
     [COMPUTER_FIELD]: new f.SchemaField({
       operatingSystem: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
       terminal: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...TERMINALS] }),
+      // The supplement's: the interface it is worked through (HT:EE pp. 39-41),
+      // how it is programmed (p. 38), and a burned-out tube (p. 37).
+      interface: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...INTERFACES] }),
+      touch: new f.StringField({ required: true, nullable: false, blank: false, initial: "desktop", choices: [...TOUCH_SIZES] }),
+      multitouch: new f.BooleanField({ initial: true }),
+      voiceTrained: flag(),
+      language: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...LANGUAGES] }),
+      burntOut: flag(),
     }),
   });
 }
 
-/** A High-Tech computer's operating system and terminal, with nothing missing. */
-export function computerSetup(item: any): { operatingSystem: string; terminal: Terminal } {
+/** What this module keeps on a High-Tech computer. */
+export interface ComputerSetup extends InterfaceSetup {
+  operatingSystem: string;
+  terminal: Terminal;
+  language: Language;
+  burntOut: boolean;
+}
+
+/** A High-Tech computer's operating system, terminal, interface and language, with nothing missing. */
+export function computerSetup(item: any): ComputerSetup {
   const data = item?.system?.extensions?.[MODULE_ID]?.[COMPUTER_FIELD] ?? {};
+  const among = <T extends string>(list: readonly T[], value: unknown, fallback: T): T => ((list as readonly unknown[]).includes(value) ? (value as T) : fallback);
   return {
     operatingSystem: String(data.operatingSystem ?? "").trim(),
-    terminal: (TERMINALS as readonly string[]).includes(data.terminal) ? data.terminal : "",
+    terminal: among(TERMINALS, data.terminal, ""),
+    interface: among(INTERFACES, data.interface, ""),
+    touch: among(TOUCH_SIZES, data.touch, "desktop"),
+    multitouch: data.multitouch !== false,
+    voiceTrained: Boolean(data.voiceTrained),
+    language: among(LANGUAGES, data.language, ""),
+    burntOut: Boolean(data.burntOut),
   };
+}
+
+/** Writes part of what this module keeps on a High-Tech computer. */
+export function storeSetup(item: any, patch: Partial<ComputerSetup>): Promise<unknown> {
+  return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.${COMPUTER_FIELD}.${key}`, value])));
 }
 
 /** A High-Tech computer, where the item is one and the switch is on. */
@@ -136,14 +176,18 @@ export function computerUseOf(item: any): ComputerUse | null {
   };
 }
 
+/** The key each line goes by on the roll: `ht.computerType` and so on, for a rule that changes one. */
+export const lineKey = (key: string) => `ht.${key}`;
+
 /** The lines a roll with a High-Tech computer or program takes, labelled. */
-export function computerRollLines(api: GWorldApi, actor: any, item: any): Array<{ label: string; value: number }> {
+export function computerRollLines(api: GWorldApi, actor: any, item: any): Array<{ key: string; label: string; value: number }> {
   const use = computerUseOf(item);
   if (!use) return [];
   // The familiarity rule is the system's, and a character without a list (an NPC) takes none of it.
   const list = actor?.system?.familiarities;
   const familiar = api.registry.isRuleOn("familiarity") && Array.isArray(list) ? (name: string) => api.rules.isFamiliar(list.map(String), name) : null;
   return computerUseLines(use, familiar).map((line) => ({
+    key: lineKey(line.key),
     label: line.key === "terminal" ? CF("TerminalLine", { terminal: C(`Terminal.${line.name}`) }) : CF(`Unfamiliar.${line.key}`, { name: line.name }),
     value: line.value,
   }));
