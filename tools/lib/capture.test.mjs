@@ -81,6 +81,8 @@ describe("Electricity and Electronics' stat line (#476)", () => {
     expect(out.record.system).toMatchObject({ cost: 20, weight: 0.5, lc: null, reference: "High-Tech: Electricity and Electronics p. 1" });
     expect(out.notes).toEqual([]);
     expect(ext(out).invention).toEqual({ complexity: "", prototypeYear: 1786, marketYear: 1787 });
+    // The device conventions read the same years from `device` (#490).
+    expect(ext(out).device).toEqual({ complexity: "", prototypeYear: 1786, marketYear: 1787 });
   });
 
   it("reads a semicolon, neg., stationary, and a price that ends its sentence", () => {

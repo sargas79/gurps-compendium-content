@@ -32,7 +32,7 @@
  *   with no market price is a prototype, priced by its complexity under the
  *   invention rules (pp. B473-474) instead: "Average complexity. Household
  *   power. [1900]." (HT:EE p. 8). Both go on the record as its `invention`
- *   data.
+ *   data, and as its `device` data, which the device conventions read (#490).
  *
  * Everything here is pure, so a book's reading can be tested without its PDF.
  */
@@ -428,13 +428,17 @@ export function recordOf(entry, bk, skills, settings) {
   };
   const extensions = {};
   if (supply) extensions.power = supply;
-  // The years the book prints, and a prototype's complexity (HT:EE p. 8).
+  // The years the book prints, and a prototype's complexity (HT:EE p. 8):
+  // written as `invention` and as the device conventions' `device` (#490),
+  // whose other fields (cutting edge, kit, fragile parts, stated HP, HT and
+  // DR) a record gets from book.json's `capture.set` where its entry states them.
   if (settings.years && (prototype || plain?.prototypeYear || plain?.marketYear)) {
     extensions.invention = {
       complexity: prototype?.complexity ?? "",
       prototypeYear: prototype?.year ?? plain?.prototypeYear ?? 0,
       marketYear: plain?.marketYear ?? 0,
     };
+    extensions.device = { ...extensions.invention };
   }
   if (Object.keys(extensions).length) system.extensions = { "gurps-compendium-content": extensions };
   return {

@@ -200,13 +200,15 @@ function main() {
     if (out.record) {
       // What reading the page settled that the closing line could not say:
       // book.json's `capture.set`, each a name pattern, fields by path, a reason.
+      // A null removes the field: a power source's supply read as a draw.
       for (const rule of bk.capture?.set ?? []) {
         if (!new RegExp(rule.pattern).test(entry.name)) continue;
         for (const [path, value] of Object.entries(rule.set)) {
           const parts = path.split(".");
           let at = out.record;
           for (const part of parts.slice(0, -1)) at = at[part] ??= {};
-          at[parts.at(-1)] = value;
+          if (value === null) delete at[parts.at(-1)];
+          else at[parts.at(-1)] = value;
         }
         out.notes = [];
       }

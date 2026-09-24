@@ -1,0 +1,1215 @@
+[
+  {
+    "_id": "79f391f4ea29d690",
+    "name": "Compact Digital Oscilloscope",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 150,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 11",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 1,
+              "endurance": "4 hours",
+              "raw": "XS/4 hours"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1985
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1985
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e374ae287aa26c08",
+    "name": "Large Tesla Coil",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 12",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Major appliance or industrial power"
+          },
+          "invention": {
+            "complexity": "average",
+            "prototypeYear": 1891,
+            "marketYear": 0
+          },
+          "device": {
+            "complexity": "average",
+            "prototypeYear": 1891,
+            "marketYear": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "0c98eb0bcbd6951c",
+    "name": "Metal Detector (TL6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 12,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 12",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 6,
+              "endurance": "8 hours",
+              "raw": "6×S/8 hours"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1925,
+            "marketYear": 1931
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1925,
+            "marketYear": 1931
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1f0606f119dc90e2",
+    "name": "Geiger Counter (TL8)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.25,
+      "cost": 260,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 260,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "",
+              "raw": "2×XS"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1993
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1993
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "3c2ca6c796d12ffe",
+    "name": "Geiger Counter (TL6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2.5,
+      "cost": 200,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 12",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 200,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 3,
+              "endurance": "12 hours",
+              "raw": "3×S/12 hours"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1928
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1928
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "b38576a6b5080680",
+    "name": "pH Meter (TL6)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 960,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 12",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 960,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power"
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1935
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1935
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "9545a4f3decb6134",
+    "name": "Metal Detector (TL8)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 6,
+              "endurance": "8 hours",
+              "raw": "6×S/8 hours"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "333fab8bfb758c22",
+    "name": "pH Meter (TL7)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1,
+      "cost": 700,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 700,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 1,
+              "endurance": "12 hours",
+              "raw": "S/12 hours"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1956
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1956
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "e698618662e30d30",
+    "name": "pH Meter (TL8)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.75,
+      "cost": 375,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 375,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 2,
+              "endurance": "24 hours",
+              "raw": "2×XS/24 hours"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "da640432e13b2e73",
+    "name": "Large General-Purpose Analog Computer",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 330,
+      "cost": 150000,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 150000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power"
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1960
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1960
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "fb7a1979ac662133",
+    "name": "Autoclave",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 550,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 13",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 550,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power"
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1940
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1940
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "400fea7a8fa1f11e",
+    "name": "Cautery Pen",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.2,
+      "cost": 10,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 14",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 10,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "XS",
+              "cells": 1,
+              "endurance": "10 minutes",
+              "raw": "XS/10 minutes"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1991
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1991
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "90eca604c83d9755",
+    "name": "Electrical Gloves (Standard)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1.2,
+      "cost": 35,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 15",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "8bf676d7c1ee72e7",
+    "name": "Electrical Gloves (High-End)",
+    "type": "armor",
+    "system": {
+      "quantity": 1,
+      "weight": 1.2,
+      "cost": 135,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 15",
+      "dr": 1,
+      "drSplit": null,
+      "drSplitAppliesTo": [],
+      "locations": [
+        "hand"
+      ],
+      "flexible": true,
+      "frontOnly": false,
+      "concealable": false,
+      "blocksPeripheralVision": false,
+      "soleDr": null,
+      "environmentSuit": ""
+    }
+  },
+  {
+    "_id": "13b0bb6d73f0245d",
+    "name": "Hot Stick (Fiberglass)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.75,
+      "cost": 130,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 15",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 130,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1955
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1955
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "66aa8c06e991fcba",
+    "name": "Insulation Resistance Tester",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 130,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 15",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 130,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f354f13f5d3e7a81",
+    "name": "Compressed Hydrogen (8 hours)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6,
+      "cost": 27,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 17",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 27,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "64b194aa46f2edb5",
+    "name": "Composite Hydrogen Tank",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 400,
+      "cost": 1500,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 17",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "1b5de68984be34fe",
+    "name": "Leyden Jar",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0.75,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "5",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 18",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "simple",
+            "prototypeYear": 1745,
+            "marketYear": 0
+          },
+          "device": {
+            "complexity": "simple",
+            "prototypeYear": 1745,
+            "marketYear": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "215d10c6675cdd66",
+    "name": "Medium Flywheel",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 18",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "7a7a48913132bf1a",
+    "name": "Large Flywheel",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 15,
+      "cost": 7500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 18",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 7500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "dee2e5dd3f0d5d2f",
+    "name": "Very Large Flywheel",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 75,
+      "cost": 37500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 18",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 37500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
+    "_id": "25455092ab87fc36",
+    "name": "Microwave Rectenna",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 0,
+      "carried": true,
+      "equipped": false,
+      "tl": "7",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 19",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 0,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "average",
+            "prototypeYear": 1964,
+            "marketYear": 0
+          },
+          "device": {
+            "complexity": "average",
+            "prototypeYear": 1964,
+            "marketYear": 0
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "9e48e6f636c40e1c",
+    "name": "Replacement Arc Welder Electrode",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 1,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 21",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 1,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1881
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1881
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "76e7ea56fa832df6",
+    "name": "Miniature Tungsten Bulbs (dozen)",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 0,
+      "cost": 5,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 21",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 5,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1906,
+            "marketYear": 1911
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1906,
+            "marketYear": 1911,
+            "fragile": true
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "f01077c01017c7d5",
+    "name": "Rugged Flashlight",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 1.5,
+      "cost": 40,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 22",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 40,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "draw": {
+              "cell": "S",
+              "cells": 3,
+              "endurance": "30 hours",
+              "raw": "3×S/30 hours"
+            }
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1899,
+            "marketYear": 1911
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1899,
+            "marketYear": 1911,
+            "ht": 12,
+            "dr": 4
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "260359075edcb294",
+    "name": "Electrobat II",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 2300,
+      "cost": 30000,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 24",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 30000,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 47,
+        "handling": 0,
+        "stability": 4,
+        "ht": 10,
+        "fragility": "",
+        "acceleration": 2,
+        "topSpeed": 10,
+        "loadedWeight": 1.15,
+        "load": 0.325,
+        "sm": 2,
+        "occupants": "1+2",
+        "dr": 7,
+        "range": 25,
+        "skill": "Driving (Automobile)",
+        "locations": "O4W",
+        "locomotion": "wheels",
+        "roadBound": true,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895,
+            "hp": 47,
+            "ht": 10,
+            "dr": 7
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "1ea0851cdeb89f4b",
+    "name": "Tesla Model S",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 6200,
+      "cost": 74500,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 24",
+      "category": "vehicle",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 74500,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "vehicle": {
+        "stHp": 67,
+        "handling": 1,
+        "stability": 4,
+        "ht": 12,
+        "fragility": "",
+        "acceleration": 7,
+        "topSpeed": 70,
+        "loadedWeight": 3.1,
+        "load": 0.8,
+        "sm": 4,
+        "occupants": "1+4",
+        "dr": 5,
+        "range": 260,
+        "skill": "Driving (Automobile)",
+        "locations": "G4W",
+        "locomotion": "wheels",
+        "roadBound": true,
+        "draft": 0,
+        "stall": 0
+      },
+      "extensions": {
+        "gurps-compendium-content": {
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 2012
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 2012,
+            "hp": 67,
+            "ht": 12,
+            "dr": 5
+          }
+        }
+      }
+    }
+  },
+  {
+    "_id": "a95e7acb647c4044",
+    "name": "Telautograph Receiver",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 10,
+      "cost": 375,
+      "carried": true,
+      "equipped": false,
+      "tl": "6",
+      "lc": null,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech: Electricity and Electronics p. 25",
+      "category": "misc",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 375,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "Household power"
+          },
+          "invention": {
+            "complexity": "",
+            "prototypeYear": 1888,
+            "marketYear": 1900
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1888,
+            "marketYear": 1900
+          }
+        }
+      }
+    }
+  }
+]
