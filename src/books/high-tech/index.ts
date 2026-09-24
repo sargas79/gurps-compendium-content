@@ -57,9 +57,12 @@
  * lie detection and restraints: polygraphs and voice stress analysers on
  * Interrogation, cuffs, leg irons and straitjackets, and prosthetics and
  * elective surgery, the personal conveyances: bicycles, skateboards,
- * surfboards and wheelchairs, and the hygiene supplies, drugs and poisons
+ * surfboards and wheelchairs, the hygiene supplies, drugs and poisons, and
+ * vehicle components, protection and crew: gun ports, searchlights,
+ * turrets, linked weapons, extinguishers, run-flat tyres, airbags, spaced
+ * and laminated armour, riveted armour's spall, and riding in a tank
  * (pp. 7-11, 13-16, 17-77, 79-93, 109, 127-141, 143, 147-217, 219-231,
- * 249-252).
+ * 234-235, 249-252).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -103,6 +106,7 @@ import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
 import { initConveyances, readyConveyances } from "./conveyances/index.js";
 import { initDrugs, readyDrugs } from "./drugs/index.js";
+import { initVehicles, readyVehicles } from "./vehicles/index.js";
 
 const SLUG = "high-tech";
 const REFERENCE = "High-Tech";
@@ -261,6 +265,10 @@ const RULES = [
   // Hygiene, drugs and poisons.
   { key: "hygieneAndDrugs", pages: "pp. 221, 226-227", implemented: true },
   { key: "highTechPoisons", pages: "p. 227", implemented: true },
+  // Vehicle components, protection and crew.
+  { key: "vehicleComponents", pages: "pp. 228-229", implemented: true },
+  { key: "vehicleProtection", pages: "pp. 229, 234-235", implemented: true },
+  { key: "crewConditions", pages: "pp. 234-235", implemented: true },
   // Cinematic: the optional additions to Gunslinger, and silencers that nearly silence.
   { key: "gunslingerExpanded", pages: "p. 249", implemented: true },
   { key: "cinematicSilencers", pages: "p. 159", implemented: true },
@@ -317,6 +325,7 @@ function init(): void {
   initEnforcement({ lieDetection: ruleKey("lieDetection"), restraints: ruleKey("restraintDevices") });
   initConveyances();
   initDrugs();
+  initVehicles(ruleKey("vehicleProtection"));
 }
 
 function ready(api: GWorldApi): void {
@@ -377,6 +386,7 @@ function ready(api: GWorldApi): void {
   readyProsthetics(api, rule("prosthetics"));
   readyConveyances(api, rule("personalConveyances"));
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
+  readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });
 }
 
 export const book: BookRules = {

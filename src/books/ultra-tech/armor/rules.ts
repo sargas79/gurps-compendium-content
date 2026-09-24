@@ -7,6 +7,7 @@
 
 import type { BeamFamily } from "../beams/rules.js";
 import { baseName, figureAtTl, gearIn, protectionWornIn, type GearTable, type Protection, type ProtectiveGear } from "../../../shared/protective-gear/rules.js";
+import { shapedArmourMultiplier, type ShapedArmourTable } from "../../../shared/vehicles/rules.js";
 
 // The trait terms, the merging and the climate figures are every book's (src/shared/protective-gear).
 export {
@@ -305,10 +306,19 @@ export function tailoredLc(lc: number | null, style: TailoredStyle): number | nu
 
 // ── armour systems (pp. 187-190) ─────────────────────────────────────────────
 
-/** Electromagnetic armour: its DR doubled, or tripled for laminate, against shaped charges and plasma (p. 187). */
+/**
+ * Electromagnetic armour: its DR doubled, or tripled for laminate, against
+ * shaped charges and plasma (p. 187). Ultra-Tech's table in the shared
+ * engine for armour made against shaped charges, which High-Tech's spaced
+ * and laminated armour use too.
+ */
 export type Ema = "" | "standard" | "laminate";
+export const UT_SHAPED_ARMOUR: ShapedArmourTable = Object.freeze({
+  book: "ultra-tech",
+  kinds: Object.freeze({ standard: { multiplier: 2 }, laminate: { multiplier: 3 } }),
+});
 export function emaMultiplier(ema: Ema): number {
-  return ema === "laminate" ? 3 : ema === "standard" ? 2 : 1;
+  return shapedArmourMultiplier(UT_SHAPED_ARMOUR, ema);
 }
 
 /** Warheads that are shaped charges (pp. 154-155). */

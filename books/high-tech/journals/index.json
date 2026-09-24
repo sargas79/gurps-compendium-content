@@ -2260,6 +2260,7 @@
       "title": "Vehicle Components",
       "chapter": "8. Transportation",
       "pages": "HT228-229",
+      "rule": "gurps-compendium-content.vehicleComponents",
       "reference": "High-Tech pp. 228-229",
       "file": "vehicle-components.md",
       "status": "reviewed"
@@ -2307,6 +2308,7 @@
       "title": "Inside a TL6 Tank",
       "chapter": "8. Transportation",
       "pages": "HT234",
+      "rule": "gurps-compendium-content.crewConditions",
       "reference": "High-Tech p. 234",
       "file": "inside-a-tl6-tank.md",
       "status": "reviewed"

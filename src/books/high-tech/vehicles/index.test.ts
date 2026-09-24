@@ -1,0 +1,304 @@
+/**
+ * Vehicle components, protection and crew as the system meets them: the
+ * vehicle's DR where a shot lands, the control roll, the vehicle's figures,
+ * the attack options, the crew's senses and fatigue, and the airbag in the
+ * shared restraint engine -- with only High-Tech's switches on (decision D1).
+ */
+
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+
+import * as rules from "../../../../system/src/rules/index.js";
+import { setRuleReader } from "../../../shared/book-tables.js";
+import { MODULE_ID } from "../../../shared/module.js";
+import { RESTRAINT_TABLES, resetRestraints } from "../../../shared/vehicles/index.js";
+import { UT_RESTRAINTS } from "../../ultra-tech/transport/index.js";
+import { initVehicles, readyVehicles, runKind } from "./index.js";
+
+let hooks: Map<string, Array<(...args: any[]) => void>>;
+let options: Map<string, any>;
+let sections: Map<string, any>;
+let tools: Map<string, any>;
+let conditions: any[];
+let injuries: any[];
+let successes: any[];
+let chat: string[];
+let on: Record<string, boolean>;
+let rolls: number[];
+let actors: any[];
+
+function fakeApi() {
+  return {
+    rules,
+    combat: {
+      hooks: {
+        vehicleDr: "gworld.vehicleDr", successRollModifiers: "gworld.successRollModifiers", detectionModifiers: "gworld.detectionModifiers",
+        fatigueCost: "gworld.fatigueCost", injury: "gworld.injury",
+      },
+      registerAttackOption: (o: any) => options.set(o.key, o),
+    },
+    data: { hooks: { prepareDerivedData: "gworld.prepareDerivedData" } },
+    sheets: { registerGmTool: (t: any) => tools.set(t.key, t), registerSheetSection: (s: any) => sections.set(s.key, s) },
+    actors: {
+      attribute: () => 10,
+      derived: () => ({}),
+      conditions: (actor: any) => actor.conditions ?? [],
+      applyCondition: async (actor: any, c: any) => { conditions.push({ actor: actor.name, ...c }); actor.conditions = [...(actor.conditions ?? []), { id: `${c.module}.${c.key}` }]; return "c1"; },
+      removeCondition: async (actor: any, id: string) => { actor.conditions = (actor.conditions ?? []).filter((c: any) => c.id !== id); },
+      applyInjury: async (actor: any, o: any) => { injuries.push({ actor: actor.name, ...o }); return true; },
+    },
+    roll: { success: async (o: any) => { successes.push(o); return { success: true, margin: 0 }; } },
+  };
+}
+
+function vehicleActor(name: string, vehicle: Record<string, any>, more: Record<string, any> = {}): any {
+  const flags: Record<string, any> = {};
+  return {
+    documentName: "Actor", type: "vehicle", name, id: name, uuid: `Actor.${name}`, flags,
+    system: { tl: "7", speed: 0, crew: [], vehicle: { locations: "", ...vehicle }, derived: {} },
+    setFlag: async (module: string, key: string, value: any) => { flags[module] = { ...(flags[module] ?? {}), [key]: value }; },
+    getFlag: (module: string, key: string) => flags[module]?.[key],
+    ...more,
+  };
+}
+
+function person(name: string): any {
+  const flags: Record<string, any> = {};
+  return {
+    documentName: "Actor", type: "character", name, id: name, uuid: `Actor.${name}`, conditions: [] as any[], flags,
+    setFlag: async (module: string, key: string, value: any) => { flags[module] = { ...(flags[module] ?? {}), [key]: value }; },
+    getFlag: (module: string, key: string) => flags[module]?.[key],
+  };
+}
+
+const call = (name: string, context: any) => { for (const fn of hooks.get(name) ?? []) fn(context); return context; };
+const drLines = (dr: number) => [{ label: "Vehicle DR", dr, applies: true, hardened: 0 } as any];
+
+function ready(): void {
+  const rule = (key: string) => () => on[key] === true;
+  setRuleReader((key) => on[key.replace(`${MODULE_ID}.`, "")] === true);
+  initVehicles(`${MODULE_ID}.vehicleProtection`);
+  RESTRAINT_TABLES.register(UT_RESTRAINTS);
+  readyVehicles(fakeApi() as never, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });
+}
+
+beforeEach(() => {
+  hooks = new Map();
+  options = new Map();
+  sections = new Map();
+  tools = new Map();
+  conditions = [];
+  injuries = [];
+  successes = [];
+  chat = [];
+  on = {};
+  rolls = [];
+  actors = [];
+  resetRestraints();
+  vi.stubGlobal("Hooks", { on: (name: string, fn: (...args: any[]) => void) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
+  vi.stubGlobal("game", {
+    i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
+    user: { targets: new Set() },
+    get actors() { return actors; },
+  });
+  vi.stubGlobal("fromUuidSync", (uuid: string) => actors.find((a) => a.uuid === uuid) ?? null);
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => null } } } });
+  vi.stubGlobal("ui", { notifications: { warn: vi.fn(), info: vi.fn() } });
+  vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
+  vi.stubGlobal("Roll", class {
+    total = 0;
+    constructor(public formula: string) {}
+    async evaluate() { this.total = rolls.shift() ?? 10; return this; }
+  });
+});
+
+afterEach(() => {
+  vi.unstubAllGlobals();
+  RESTRAINT_TABLES.clear();
+});
+
+describe("with every switch off", () => {
+  it("changes nothing", () => {
+    ready();
+    const t72 = vehicleActor("Uralvagonzavod T-72A", { dr: 1155 });
+    const context = call("gworld.vehicleDr", { vehicle: t72, location: "mainTurret", arc: "front", damageType: "cr", armorDivisor: 10, basicDamage: 1000, lines: drLines(1375) });
+    expect(context.lines).toEqual(drLines(1375));
+    expect(tools.get("ht-vehicle-components").visible()).toBe(false);
+    expect(options.get("ht-gun-port").available({ actor: person("Ivan"), targets: [] })).toBe(false);
+  });
+});
+
+describe("protection, with only High-Tech's switch on", () => {
+  beforeEach(() => {
+    on = { vehicleProtection: true };
+    ready();
+  });
+
+  it("multiplies the T-72A's turret front by 1.5 against a HEAT round, but not its side or an AP shot (pp. 229, 244)", () => {
+    const t72 = vehicleActor("Uralvagonzavod T-72A", { dr: 1155 });
+    const heat = call("gworld.vehicleDr", { vehicle: t72, location: "mainTurret", arc: "front", damageType: "cr", armorDivisor: 10, basicDamage: 1000, lines: drLines(1375) });
+    expect(heat.lines[0].dr).toBe(2062);
+    expect(heat.lines[0].reason).toContain("ShapedReason");
+    const side = call("gworld.vehicleDr", { vehicle: t72, location: "mainTurret", arc: "side", damageType: "cr", armorDivisor: 10, basicDamage: 1000, lines: drLines(420) });
+    expect(side.lines[0].dr).toBe(420);
+    const ap = call("gworld.vehicleDr", { vehicle: t72, location: "mainTurret", arc: "front", damageType: "pi++", armorDivisor: 3, basicDamage: 1000, lines: drLines(1375) });
+    expect(ap.lines[0].dr).toBe(1375);
+  });
+
+  it("reads the round from the weapon's HEAT load, and stops HESH's spall", () => {
+    const t72 = vehicleActor("Uralvagonzavod T-72A", { dr: 1155 });
+    const gun = { name: "Motovilikha D-81TM", system: { rangedModes: [{ name: "APFSDS", damageType: "pi++", explosive: false }, { name: "HESH", explosive: true }], extensions: { [MODULE_ID]: { htLoads: [{ mode: 0, projectile: "heat" }] } } } };
+    const loaded = call("gworld.vehicleDr", { vehicle: t72, item: gun, mode: { index: 0, ranged: true }, location: "body", arc: "front", damageType: "cr", armorDivisor: 10, basicDamage: 500, lines: drLines(1155) });
+    expect(loaded.lines[0].dr).toBe(1732);
+    const hesh = call("gworld.vehicleDr", { vehicle: t72, item: gun, mode: { index: 1, ranged: true }, location: "body", arc: "front", damageType: "cr", armorDivisor: 1, basicDamage: 500, lines: drLines(1155) });
+    expect(hesh.lines[0].dr).toBe(1155);
+    expect(hesh.lines[0].reason).toContain("HeshReason");
+  });
+
+  it("adds the Panzer IV's skirts on its sides, spaced against HEAT (p. 239)", () => {
+    const panzer = vehicleActor("Krupp Panzer IV Ausf H", { dr: 280 });
+    const context = call("gworld.vehicleDr", { vehicle: panzer, location: "body", arc: "side", damageType: "cr", armorDivisor: 10, basicDamage: 300, lines: drLines(105) });
+    expect(context.lines.map((l: any) => l.dr)).toEqual([157, 15]);
+    const plain = call("gworld.vehicleDr", { vehicle: panzer, location: "mainTurret", arc: "side", damageType: "pi", armorDivisor: 1, basicDamage: 30, lines: drLines(155) });
+    expect(plain.lines.map((l: any) => l.dr)).toEqual([155, 15]);
+  });
+
+  it("sends the FT17's rivets flying from a blow of 20 that didn't get through (p. 235)", async () => {
+    const ft17 = vehicleActor("Renault FT17", { dr: 45, occupants: "2", sm: 3 });
+    rolls = [2, 5, 7];
+    call("gworld.vehicleDr", { vehicle: ft17, location: "body", arc: "front", damageType: "pi", armorDivisor: 1, basicDamage: 30, lines: drLines(45) });
+    await vi.waitFor(() => expect(chat.join("")).toContain("Spall.Hit"));
+    chat = [];
+    call("gworld.vehicleDr", { vehicle: ft17, location: "body", arc: "front", damageType: "pi", armorDivisor: 1, basicDamage: 60, lines: drLines(45) });
+    await Promise.resolve();
+    expect(chat).toEqual([]);
+  });
+
+  it("runs on flat run-flat tyres at -1 to the control roll and Dodge, and Move less 20% (p. 229)", async () => {
+    const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W", range: 375, roadBound: false });
+    await aml.setFlag(MODULE_ID, "htVehicle", { flats: 1 });
+    const roll = call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: aml, modifiers: [] });
+    expect(roll.modifiers).toEqual([{ label: "GCC.HT.Vehicles.RunningFlat", value: -1 }]);
+    aml.system.derived = { dodge: 7, move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, topSpeedMph: 56, cruisingSpeedMph: 14 };
+    call("gworld.prepareDerivedData", aml);
+    expect(aml.system.derived).toMatchObject({ dodge: 6, move: { topSpeed: 22.4 }, topSpeedMph: 44.8, cruisingSpeedMph: 11.2 });
+    // CTIS copes with the BRDM-2's two flats.
+    const brdm = vehicleActor("GAZ BRDM-2", { dr: 40, locations: "t4W" });
+    await brdm.setFlag(MODULE_ID, "htVehicle", { flats: 2 });
+    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: brdm, modifiers: [] }).modifiers).toEqual([]);
+  });
+
+  it("puts an airbag in the shared restraint engine: DR 10 against the crash while Ultra-Tech's switch is off (D1)", async () => {
+    const driver = person("Driver");
+    actors = [driver];
+    const car = vehicleActor("AM General M1025", { dr: 8 }, {});
+    car.system.crew = [{ uuid: driver.uuid, operator: true }];
+    await car.setFlag(MODULE_ID, "htVehicle", { fittings: ["airbags"] });
+    await runKind(fakeApi() as never, car, { kind: "airbag", speed: 20 } as any, [], { components: () => false, protection: () => true, crew: () => false });
+    expect(conditions[0]).toMatchObject({ actor: "Driver", key: "ht-airbag" });
+    const injury = call("gworld.injury", { actor: driver, damage: { type: "cr", basicDamage: 14 } });
+    expect(injury.damage.basicDamage).toBe(4);
+    // Not ablative: the next blow meets DR 10 too.
+    expect(call("gworld.injury", { actor: driver, damage: { type: "cr", basicDamage: 12 } }).damage.basicDamage).toBe(2);
+    // A crashweb's condition does nothing with Ultra-Tech's switch off.
+    const other = person("Other");
+    other.conditions = [{ id: `${MODULE_ID}.ut-crashweb` }];
+    await other.setFlag(MODULE_ID, "utCrashwebDr", 10);
+    expect(call("gworld.injury", { actor: other, damage: { type: "cr", basicDamage: 14 } }).damage.basicDamage).toBe(14);
+  });
+
+  it("rolls an extinguisher at TL+2 and a suppression system twice at TL+4, and puts the fire out (p. 229)", async () => {
+    const panzer = vehicleActor("Krupp Panzer IV Ausf H", { dr: 280 }, { conditions: [{ id: "burning" }] });
+    panzer.system.tl = "6";
+    rolls = [9];
+    await runKind(fakeApi() as never, panzer, { kind: "extinguish" } as any, [], { components: () => false, protection: () => true, crew: () => false });
+    expect(chat.join("")).toContain("\"target\":8");
+    expect(chat.join("")).toContain("StillBurning");
+    const t72 = vehicleActor("Uralvagonzavod T-72A", { dr: 1155 }, { conditions: [{ id: "burning" }] });
+    rolls = [12, 11];
+    chat = [];
+    await runKind(fakeApi() as never, t72, { kind: "extinguish" } as any, [], { components: () => false, protection: () => true, crew: () => false });
+    expect(chat.join("")).toContain("FireOut");
+    expect(t72.conditions).toEqual([]);
+  });
+});
+
+describe("components, with only High-Tech's switch on", () => {
+  beforeEach(() => {
+    on = { vehicleComponents: true };
+    ready();
+  });
+
+  it("offers a gun port to the BRDM-2's crew: -1, refused for a weapon bulkier than -5 (p. 228)", () => {
+    const rifleman = person("Rifleman");
+    const brdm = vehicleActor("GAZ BRDM-2", { dr: 40 });
+    brdm.system.crew = [{ uuid: rifleman.uuid }];
+    actors = [brdm, rifleman];
+    const port = options.get("ht-gun-port");
+    const rifle = { system: { rangedModes: [{ bulk: -5 }] } };
+    const launcher = { system: { rangedModes: [{ bulk: -7 }] } };
+    expect(port.available({ actor: rifleman, item: rifle, targets: [] })).toBe(true);
+    expect(port.available({ actor: person("Walker"), item: rifle, targets: [] })).toBe(false);
+    expect(port.refuse({ actor: rifleman, item: rifle })).toBeNull();
+    expect(port.refuse({ actor: rifleman, item: launcher })).toContain("GunPortBulk");
+    expect(port.apply({ actor: rifleman, item: rifle }).modifiers).toEqual([{ label: "GCC.HT.Vehicles.GunPort", value: -1 }]);
+    const at = options.get("ht-at-gun-port");
+    expect(at.available({ actor: person("Outside"), targets: [{ actor: rifleman }] })).toBe(true);
+    expect(at.apply({}, "-7").modifiers[0].value).toBe(-7);
+  });
+
+  it("fires linked weapons at the sum of their RoF (p. 229)", () => {
+    const mg = { system: { rangedModes: [{ rateOfFire: 20, mount: "mounted" }] } };
+    expect(options.get("ht-linked-weapons").available({ actor: person("Gunner"), item: mg, targets: [] })).toBe(true);
+    expect(options.get("ht-linked-weapons").apply({ item: mg }, 20).rateOfFire).toBe(40);
+  });
+
+  it("turns a turret in Ready maneuvers by the facing (p. 228)", async () => {
+    await runKind(fakeApi() as never, vehicleActor("Uralvagonzavod T-72A", { dr: 1155 }), { kind: "turret", degrees: 120 } as any, [], { components: () => true, protection: () => false, crew: () => false });
+    expect(chat.join("")).toContain("\"readies\":6");
+  });
+
+  it("shows a vehicle's components on its item sheet", () => {
+    const item = { type: "equipment", name: "GAZ BRDM-2", system: { category: "vehicle", tl: "7", vehicle: { locations: "t4W" } } };
+    const section = sections.get("ht-vehicles-item");
+    expect(section.visible(item)).toBe(true);
+    expect(section.context(item).lines.join(" ")).toContain("Line.gunPorts");
+    expect(section.context(item).lines.join(" ")).not.toContain("Line.ctis");
+  });
+});
+
+describe("crew, with only High-Tech's switch on", () => {
+  beforeEach(() => {
+    on = { crewConditions: true };
+    ready();
+  });
+
+  it("hears a crewmate at -4 in an FT17 with the motor running, and outside at -10 (p. 234)", async () => {
+    const driver = person("Driver");
+    const commander = person("Commander");
+    const ft17 = vehicleActor("Renault FT17", { dr: 45 });
+    ft17.system.crew = [{ uuid: driver.uuid, operator: true }, { uuid: commander.uuid }];
+    actors = [ft17, driver, commander];
+    await ft17.setFlag(MODULE_ID, "htVehicle", { motorRunning: true });
+    expect(call("gworld.detectionModifiers", { observer: commander, subject: driver, sense: "hearing", modifiers: [] }).modifiers).toEqual([{ label: "GCC.HT.Vehicles.HearCrew", value: -4 }]);
+    expect(call("gworld.detectionModifiers", { observer: commander, subject: person("Outside"), sense: "hearing", modifiers: [] }).modifiers).toEqual([{ label: "GCC.HT.Vehicles.HearOutside", value: -10 }]);
+    // The Panzer IV's crew have headsets.
+    const panzer = vehicleActor("Krupp Panzer IV Ausf H", { dr: 280 });
+    panzer.system.crew = [{ uuid: driver.uuid }, { uuid: commander.uuid }];
+    actors = [panzer, driver, commander];
+    await panzer.setFlag(MODULE_ID, "htVehicle", { motorRunning: true });
+    expect(call("gworld.detectionModifiers", { observer: commander, subject: driver, sense: "hearing", modifiers: [] }).modifiers).toEqual([]);
+  });
+
+  it("sees at -2 buttoned up, and charges the fight's and the ride's fatigue (p. 234)", async () => {
+    const driver = person("Driver");
+    const ft17 = vehicleActor("Renault FT17", { dr: 45 });
+    ft17.system.crew = [{ uuid: driver.uuid, operator: true }];
+    actors = [ft17, driver];
+    await ft17.setFlag(MODULE_ID, "htVehicle", { buttonedUp: true });
+    expect(call("gworld.detectionModifiers", { observer: driver, sense: "vision", modifiers: [] }).modifiers[0].value).toBe(-2);
+    const fight = call("gworld.fatigueCost", { actor: driver, reason: "battle", fp: 1, details: { seconds: 1200 }, sources: [] });
+    expect(fight.fp).toBe(3);
+    await runKind(fakeApi() as never, ft17, { kind: "ride", hours: 2, headOut: false } as any, [], { components: () => false, protection: () => false, crew: () => true });
+    expect(injuries).toEqual([{ actor: "Driver", amount: 2, fatigue: true, label: "GCC.HT.Vehicles.Tool.ride" }]);
+  });
+});

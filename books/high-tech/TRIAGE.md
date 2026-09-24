@@ -312,15 +312,19 @@ everything the tables print, split DR included, so none of them needs Ultra-Tech
 of a split, and the text's top and underbody armour, turrets, windows and gun tubs are
 `drTop`, `drUnderbody` and `drByLocation` (GWorldVTT #622, API 1.79.0). As Ultra-Tech's
 vehicles do, weight is the loaded weight and LC is left empty (the tables have none);
-Range "F" (muscle-powered) and "-" are 0, and "fx" is kept as "x", since the field holds
-one code.
+Range "F" (muscle-powered) and "-" are 0.
 
-Not representable, and left out: a turret's DR by face (the Panzer IV's 175/155/55, the
-M4A1's 210/140/70, the T-72A's 1,375/420/180; `mainTurret` holds the front's), armour
-that protects from one direction only (the fighters' canopies and cockpit armour, p. 237
-and p. 238), spaced armour and skirts (p. 229), gun shields on one of several mounts, an
-amphibian's Water Move (Ford GPA, BRDM-2), the kayaks' sail. The first and the last two
-are book-neutral questions for the system.
+Since gworld 1.92-1.93 (#393) the records also carry what #346 had to leave out: a turret's
+DR by face (the Panzer IV's 175/155/55, the M4A1's 210/140/70, the T-72A's 1,375/420/180,
+the AML's and BRDM-2's all round with 20 on top, the FT17's with the top armour's 20 on top)
+in `drByLocationOther` and `drByLocationTop`; the fighters' canopies armoured against the
+front only (p. 237 and p. 238) in `drByLocationArcs`; the open-topped PBR gun tub; the
+amphibians' Water Move 1/3 (Ford GPA, BRDM-2) as their second Move; and "fx" whole (FT17,
+Panzer IV, AML60-7: the table's 10fx row on p. 240 is the AML's). Spaced armour and skirts
+(p. 229), and the components the text gives a vehicle, are the `vehicleProtection` and
+`vehicleComponents` rules' table (`src/books/high-tech/vehicles/rules.ts`), by name. Still
+left out: the cockpit armour on an occupant hit (pp. 237-238, 242), gun shields on one of
+several mounts, and the kayaks' sail.
 
 **Conveyances in the text (#394).** The conveyances pp. 230-231 describe without a table
 row -- the velocipede, penny-farthing, safety bicycle, racing and off-road bikes, the
