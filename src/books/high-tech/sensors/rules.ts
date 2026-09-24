@@ -6,15 +6,17 @@
  * senses, with what they impose while in use; hydrophones, sound-detection
  * gear and the directional microphone.
  *
- * The rules Ultra-Tech prints too -- reaching a radio of another size,
- * stretching range, slowed data, the cuts in cities and for live video, the
- * active sensors' range penalty and emissions, magnification as Telescopic
- * Vision -- are the shared engine's (`src/shared/sensors/`); this is the
- * book's gear and figures for it, and what it prints alone.
+ * The rules Ultra-Tech prints too -- stretching range, slowed data, the cuts
+ * in cities and for live video, the active sensors' range penalty and
+ * emissions, magnification as Telescopic Vision -- are the shared engine's (`src/shared/sensors/`); this is the
+ * book's gear and figures for it, and what it prints alone. Reaching a radio
+ * of another range follows the supplement Electricity and Electronics
+ * (`reception.ts`), which replaces High-Tech's size steps.
  */
 
-import { COMM_SIZES, sizeStepFactor, telescopicLevels, type CommSize } from "../../../shared/sensors/rules.js";
+import { telescopicLevels, type CommSize } from "../../../shared/sensors/rules.js";
 import { GPR_SURVEY } from "./rangefinding.js";
+import { mismatchedRange } from "./reception.js";
 
 const MILE = 1760;
 
@@ -98,7 +100,7 @@ export function radioOptions(size: RadioSize, tl: number): string[] {
   return Object.entries(RADIO_OPTIONS).filter(([, o]) => tl >= o.tl && (!o.sizes || o.sizes.includes(size))).map(([key]) => key);
 }
 
-/** A long antenna doubles the radio's range (p. 39). */
+/** A long antenna doubles the radio's range (p. 39): the supplement's quarter-wave monopole (HT:EE p. 28). */
 export const LONG_ANTENNA = 2;
 
 /** One radio of a pair: its size and range, and what it was built with. */
@@ -107,21 +109,23 @@ export interface PairRadio {
   range: number;
   longAntenna?: boolean;
   satelliteUplink?: boolean;
+  /** What this end's antennas do for the link, as set (`antennaFactor`); where it's missing, the long antenna's double or nothing. */
+  antenna?: number;
 }
 
 /**
- * The range between two radios (p. 38): start from the shorter-ranged one's
- * range, times 3, 10 or 30 as the other is one, two or three sizes greater
- * (nothing where the other is smaller or the same size). A long antenna
- * doubles its radio's range first (p. 39); a satellite uplink on either
+ * The range between two radios. High-Tech started from the shorter range and
+ * multiplied it by the size steps (p. 38); the supplement replaces that with
+ * the square root of the product of the two ranges (HT:EE p. 28), which is
+ * the same for two radios alike and more plausible across TLs. An antenna
+ * at either end multiplies the link, and at both ends both count (HT:EE p.
+ * 28): the long antenna doubles it (p. 39). A satellite uplink on either
  * reaches anywhere in the world (p. 39).
  */
 export function radioPairRange(a: PairRadio, b: PairRadio): number {
   if (a.satelliteUplink || b.satelliteUplink) return Infinity;
-  const own = (r: PairRadio) => r.range * (r.longAntenna ? LONG_ANTENNA : 1);
-  const [shorter, other] = own(a) <= own(b) ? [a, b] : [b, a];
-  const steps = Math.max(0, COMM_SIZES.indexOf(other.size) - COMM_SIZES.indexOf(shorter.size));
-  return own(shorter) * sizeStepFactor(steps);
+  const factor = (r: PairRadio) => r.antenna ?? (r.longAntenna ? LONG_ANTENNA : 1);
+  return mismatchedRange(a.range, b.range) * factor(a) * factor(b);
 }
 
 /** How far away a transmitting radio can be detected: twice its range, 1.5 times with ECCM (p. 39). */

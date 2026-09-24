@@ -38,6 +38,8 @@ let successResult: any;
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
 const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), rangefindingEmissions: key("rangefindingEmissions") };
+/** The supplement Electricity and Electronics' radio switches, which join High-Tech's (E1 in #471). */
+const EE = { radioTuning: key("radioTuning"), radioAntennas: key("radioAntennas"), shortwaveSkip: key("shortwaveSkip") };
 const UT = { communicators: key("communicators"), sensors: key("sensors") };
 
 function fakeApi() {
@@ -58,6 +60,7 @@ function fakeApi() {
     actors: {
       attribute: (actor: any, k: string) => actor?.attributes?.[k] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
+      derived: (actor: any) => actor?.derived ?? null,
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -110,10 +113,10 @@ async function load(): Promise<void> {
   const ht = await import("./index.js");
   tables.setRuleReader((k) => on.has(k));
   ut.initUltraTechSensors(UT);
-  ht.initHighTechSensors(HT);
+  ht.initHighTechSensors({ ...HT, ...EE });
   const api = fakeApi();
   ut.readyUltraTechSensors(api as never, { communicators: () => on.has(UT.communicators), sensors: () => on.has(UT.sensors) });
-  ht.readyHighTechSensors(api as never, { radios: () => on.has(HT.radios), active: () => on.has(HT.activeSensors), visual: () => on.has(HT.visualSensors), passive: () => on.has(HT.passiveSensors) });
+  ht.readyHighTechSensors(api as never, { radios: () => on.has(HT.radios), active: () => on.has(HT.activeSensors), visual: () => on.has(HT.visualSensors), passive: () => on.has(HT.passiveSensors), tuning: () => on.has(EE.radioTuning) });
 }
 
 beforeEach(async () => {
@@ -179,19 +182,20 @@ describe("radios (pp. 36-40), with only High-Tech's switch on (D1)", () => {
     expect(price(gear("Large Radio (TL8)", { longAntenna: true }))).toMatchObject({ cost: 125, weight: 12.5 });
   });
 
-  it("reaches another character's radio of another size, and stretches it with a roll", async () => {
-    const mine = gear("Large Radio (TL8)");
-    const theirs = gear("Small Radio (TL8)");
+  it("reaches another character's different radio at the square root of the product, and stretches it with a roll", async () => {
+    // The supplement's example (HT:EE p. 28): a 50-mile set and a half-mile one reach 5 miles.
+    const mine = gear("Large Radio (TL6)", {}, { tl: "6" });
+    const theirs = gear("Tiny Radio (TL7)", {}, { tl: "7" });
     controlled = [character("Nat", [mine])];
     targets = [character("Airk", [theirs])];
-    // The book's example: 50 miles; at 55 miles, -1.
-    dialogAnswer = { yards: 55 * 1760, urban: false, audioVisual: false, rate: 1 };
+    // At 5.5 miles, -1.
+    dialogAnswer = { yards: 5.5 * 1760, urban: false, audioVisual: false, rate: 1, own: {} };
     await tools.get("comm-range").open();
     expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)", modifiers: [{ value: -1 }] });
-    expect(chat[0]).toContain('Miles {\\"value\\":50}');
+    expect(chat[0]).toContain('Miles {\\"value\\":5}');
     // Slowed to a quarter speed, the same distance is in range.
     successes = [];
-    dialogAnswer = { yards: 55 * 1760, urban: false, audioVisual: false, rate: 1 / 4 };
+    dialogAnswer = { yards: 5.5 * 1760, urban: false, audioVisual: false, rate: 1 / 4, own: {} };
     await tools.get("comm-range").open();
     expect(successes).toEqual([]);
     expect(chat[1]).toContain("GCC.HT.Sensor.InRange");
@@ -218,6 +222,143 @@ describe("radios (pp. 36-40), with only High-Tech's switch on (D1)", () => {
     targets = [character("Spy", [])];
     await actions.get("ht-direction-finder").run(rdf, character("Hunter", [rdf]));
     expect(chat.at(-1)).toContain("GCC.HT.Sensor.Fix.exact");
+  });
+});
+
+describe("the supplement's radio reception, antennas and shortwave (HT:EE pp. 27-30)", () => {
+  const MILE = 1760;
+  /** The comm tool between the selected Nat's radio and the targeted Airk's, at a distance, with the book's own rows answered. */
+  async function link(mine: any, theirs: any, miles: number, own: Record<string, unknown> = {}, listener: Record<string, any> = {}): Promise<void> {
+    controlled = [character("Nat", [mine], listener)];
+    targets = [character("Airk", [theirs])];
+    dialogAnswer = { yards: miles * MILE, urban: false, audioVisual: false, rate: 1, own };
+    await tools.get("comm-range").open();
+  }
+  const values = (roll: any) => roll.modifiers.map((m: any) => m.value);
+
+  it("adds nothing with only High-Tech's radios on", async () => {
+    on = new Set([HT.radios]);
+    const radio = gear("Small Radio (TL8)", { dipoleAntenna: true, directionalAntenna: true, shortwave: true });
+    expect(section().context(radio).options.map((o: any) => o.key)).not.toContain("dipoleAntenna");
+    expect(price(radio)).toBeNull();
+    expect(actions.get("ht-radio-tuning").visible(radio)).toBe(false);
+  });
+
+  describe("radioAntennas (HT:EE p. 28)", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.radioAntennas]); });
+
+    it("offers the dipole from TL6 and the directional antenna from TL7, and prices them", () => {
+      const keys = (item: any) => section().context(item).options.map((o: any) => o.key);
+      expect(keys(gear("Small Radio (TL6)", {}, { tl: "6" }))).toEqual(expect.arrayContaining(["longAntenna", "dipoleAntenna"]));
+      expect(keys(gear("Small Radio (TL6)", {}, { tl: "6" }))).not.toContain("directionalAntenna");
+      expect(keys(gear("Small Radio (TL8)"))).toEqual(expect.arrayContaining(["dipoleAntenna", "directionalAntenna"]));
+      // +10% and +50% cost and weight, each.
+      expect(price(gear("Small Radio (TL8)", { dipoleAntenna: true, directionalAntenna: true }))).toMatchObject({ cost: 165, weight: 16.5 });
+      expect(price(gear("Small Radio (TL6)", { directionalAntenna: true }, { tl: "6" }))).toBeNull();
+      expect(section().context(gear("Small Radio (TL8)", { directionalAntenna: true })).lines.join(" ")).toContain("GCC.HT.Sensor.DirectionalLineAuto");
+    });
+
+    it("multiplies the link by a dipole broadside, and cuts it off its ends", async () => {
+      await link(gear("Small Radio (TL8)", { dipoleAntenna: true }), gear("Small Radio (TL8)"), 7, { "dipole-a": "broadside" });
+      expect(chat[0]).toContain('Miles {\\"value\\":7.5}');
+      expect(chat[0]).toContain("GCC.HT.Sensor.InRange");
+      await link(gear("Small Radio (TL8)", { dipoleAntenna: true }), gear("Small Radio (TL8)"), 1, { "dipole-a": "endOn" });
+      expect(chat[1]).toContain("GCC.HT.Sensor.DipoleEndOn");
+      expect(chat[1]).toContain("GCC.HT.Sensor.OutOfRange");
+    });
+
+    it("rolls to aim a TL7 directional antenna, and lets TL8 software aim one", async () => {
+      const dish = gear("Medium Radio (TL7)", { directionalAntenna: true }, { tl: "7" });
+      await link(dish, gear("Medium Radio (TL7)", {}, { tl: "7" }), 90, { "aim-a": true });
+      // The aiming roll, then in range at x10: 100 miles.
+      expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)", tags: ["antennaAim"] });
+      expect(chat[0]).toContain('Miles {\\"value\\":100}');
+      successResult = { success: false, margin: -2 };
+      await link(gear("Medium Radio (TL7)", { directionalAntenna: true }, { tl: "7" }), gear("Medium Radio (TL7)", {}, { tl: "7" }), 90, { "aim-a": true });
+      expect(chat[1]).toContain("GCC.HT.Sensor.AimMissed");
+      expect(chat[1]).toContain("GCC.HT.Sensor.OutOfRange");
+      successes = [];
+      await link(gear("Medium Radio (TL8)", { directionalAntenna: true }), gear("Medium Radio (TL8)"), 300);
+      expect(successes).toEqual([]);
+      expect(chat[2]).toContain("GCC.HT.Sensor.AutoAimed");
+      expect(chat[2]).toContain('Miles {\\"value\\":350}');
+    });
+  });
+
+  describe("radioTuning (HT:EE pp. 27, 29-30)", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.radioTuning]); });
+
+    it("needs no roll for a clear signal in range, and rolls through interference with the listener's Hearing", async () => {
+      await link(gear("Small Radio (TL8)"), gear("Small Radio (TL8)"), 4, { conditions: 0 });
+      expect(successes).toEqual([]);
+      expect(chat[0]).toContain("GCC.HT.Sensor.ClearSignal");
+      // Acute Hearing 2: a Hearing score of 14 on Perception 12.
+      await link(gear("Small Radio (TL8)"), gear("Small Radio (TL8)"), 5.5, { conditions: -3 }, { derived: { per: 12, senses: [{ sense: "hearing", score: 14 }] } });
+      expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)", tags: ["radioTuning"] });
+      expect(values(successes[0])).toEqual([-1, -3, 2]);
+      // A galvanometer's +1 in place of the Hearing modifiers.
+      successes = [];
+      await link(gear("Small Radio (TL8)"), gear("Small Radio (TL8)"), 4, { conditions: -3, galvanometer: true }, { derived: { per: 12, senses: [{ sense: "hearing", score: 8 }] } });
+      expect(values(successes[0])).toEqual([-3, 1]);
+    });
+
+    it("is blocked at -10, and says a coil-tuned set drifts", async () => {
+      await link(gear("Small Radio (TL6)", {}, { tl: "6" }), gear("Small Radio (TL6)", {}, { tl: "6" }), 0.5, { conditions: -10, drift: true });
+      expect(chat[0]).toContain("GCC.HT.Sensor.Blocked");
+      await link(gear("Small Radio (TL6)", {}, { tl: "6" }), gear("Small Radio (TL6)", {}, { tl: "6" }), 0.5, { conditions: -1, drift: true });
+      expect(chat[1]).toContain("GCC.HT.Sensor.DriftLine");
+    });
+
+    it("gives a radio peripheral +4 and its 35-mile range (a fixture shaped as #479 will write it)", async () => {
+      const peripheral = gear("Radio Peripheral");
+      expect(section().visible(peripheral)).toBe(true);
+      expect(section().context(peripheral).lines.join(" ")).toContain("GCC.HT.Sensor.EnhancedTuningLine");
+      // To a medium TL8 set (35 miles): the same range.
+      await link(peripheral, gear("Medium Radio (TL8)"), 40, { conditions: 0 });
+      expect(values(successes[0])).toEqual([-2, 4]);
+    });
+
+    it("tunes in from a radio's row with only the tuning switch on", async () => {
+      on = new Set([EE.radioTuning]);
+      const radio = gear("Small Radio (TL8)");
+      expect(actions.get("ht-radio-tuning").visible(radio)).toBe(true);
+      expect(actions.get("ht-radio-tuning").visible(gear("Radio Peripheral"))).toBe(true);
+      expect(actions.get("ht-radio-tuning").visible(gear("Small Sonar"))).toBe(false);
+      const listener = character("Listener", [radio, gear("Galvanometer")], { skills: { "Electronics Operation (Communications)": 13 } });
+      dialogAnswer = { yards: 6 * MILE, range: 5 * MILE, conditions: -2, galvanometer: true, drift: false, skip: {} };
+      await actions.get("ht-radio-tuning").run(radio, listener);
+      expect(successes[0]).toMatchObject({ base: 13, skill: "Electronics Operation (Communications)" });
+      expect(values(successes[0])).toEqual([-2, -2, 1]);
+    });
+  });
+
+  describe("shortwaveSkip (HT:EE p. 30)", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.shortwaveSkip]); });
+
+    it("offers shortwave from TL6 at no cost", () => {
+      expect(section().context(gear("Large Radio (TL6)", {}, { tl: "6" })).options.map((o: any) => o.key)).toContain("shortwave");
+      expect(price(gear("Large Radio (TL6)", { shortwave: true }, { tl: "6" }))).toBeNull();
+    });
+
+    it("skips between shortwave sets, the transmitter with a large antenna", async () => {
+      const set = () => gear("Large Radio (TL7)", { shortwave: true, longAntenna: true }, { tl: "7" });
+      // 5,000 miles: three skips, -2; summer, -2.
+      await link(set(), set(), 5000, { skip: { summer: true } });
+      expect(chat[0]).toContain('GCC.HT.Sensor.SkipLine {"skips":3}');
+      expect(successes[0]).toMatchObject({ tags: ["radioTuning"] });
+      expect(values(successes[0])).toEqual([-2, -2]);
+      // One skip in fair conditions: no roll.
+      successes = [];
+      await link(set(), set(), 1500, { skip: {} });
+      expect(successes).toEqual([]);
+      expect(chat[1]).toContain("GCC.HT.Sensor.ClearSignal");
+    });
+
+    it("can't skip to a transmitter with no large antenna", async () => {
+      await link(gear("Large Radio (TL7)", { shortwave: true }, { tl: "7" }), gear("Large Radio (TL7)", { shortwave: true }, { tl: "7" }), 5000, { skip: {} });
+      expect(chat[0]).toContain("GCC.HT.Sensor.NoLargeAntenna");
+      expect(chat[0]).toContain("GCC.HT.Sensor.OutOfRange");
+    });
   });
 });
 

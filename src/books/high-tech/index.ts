@@ -32,7 +32,8 @@
  * batteries, generators and fuel, the optional wounding rules, and the
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
  * guns, and household hazards, the communications and sensors: radios,
- * telegraphy, active sensors, optics, night vision and thermographs,
+ * telegraphy, radio reception, antennas and shortwave (from the supplement
+ * Electricity and Electronics), active sensors, optics, night vision and thermographs,
  * hydrophones and sound detectors, the expedition gear: lights,
  * navigation instruments and maps, load-bearing gear and packs, and climbing
  * gear, the survival and camping gear, life
@@ -210,12 +211,17 @@ const RULES = [
   { key: "unstableExplosives", pages: "pp. 184-187", implemented: true },
   { key: "incendiaryAgents", pages: "p. 188", implemented: true },
   // Communications and sensors.
-  { key: "radios", pages: "pp. 36-40", implemented: true },
+  // Two different radios by the supplement Electricity and Electronics' rule (decision E3 in #471).
+  { key: "radios", pages: "p. 28", reference: `${REFERENCE} pp. 36-40; ${EE_REFERENCE}`, implemented: true },
   { key: "activeSensors", pages: "pp. 45-47", implemented: true },
   { key: "visualSensors", pages: "pp. 47-48", implemented: true },
   { key: "passiveSensors", pages: "pp. 48-50", implemented: true },
   // The Electricity and Electronics supplement's refinements to active rangefinding.
   { key: "rangefindingEmissions", pages: "p. 35", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: radio reception, antennas and shortwave.
+  { key: "radioTuning", pages: "pp. 27, 29-30", reference: EE_REFERENCE, implemented: true },
+  { key: "radioAntennas", pages: "p. 28", reference: EE_REFERENCE, implemented: true },
+  { key: "shortwaveSkip", pages: "p. 30", reference: EE_REFERENCE, implemented: true },
   // Survival, maritime and parachuting gear, and snacks.
   { key: "survivalGear", pages: "pp. 56-59", implemented: true },
   { key: "maritimeGear", pages: "pp. 59-60", implemented: true },
@@ -327,7 +333,10 @@ function init(): void {
   initAccessories();
   initDrawing([ruleKey("gunDrawing"), ruleKey("gunfightStandoff")]);
   initTools();
-  initHighTechSensors({ radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors"), rangefindingEmissions: ruleKey("rangefindingEmissions") });
+  initHighTechSensors({
+    radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors"),
+    rangefindingEmissions: ruleKey("rangefindingEmissions"), radioTuning: ruleKey("radioTuning"), radioAntennas: ruleKey("radioAntennas"), shortwaveSkip: ruleKey("shortwaveSkip"),
+  });
   initSurvival();
   initExpedition();
   initClothing(ruleKey("climateControl"));
@@ -385,7 +394,7 @@ function ready(api: GWorldApi): void {
   const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };
   readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") }, ordnanceExtras(ordnance));
   readyOrdnance(api, ordnance);
-  readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors") });
+  readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
   readyClothing(api, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
