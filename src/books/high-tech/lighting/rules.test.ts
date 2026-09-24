@@ -1,3 +1,5 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import {
@@ -150,5 +152,13 @@ describe("glare (HT:EE pp. 9, 20-21)", () => {
     expect(glareOutcome({ success: true, margin: 0 })).toEqual({ kind: "readapt" });
     expect(glareOutcome({ success: false, margin: -4 })).toEqual({ kind: "dazzled", minutes: 4 });
     expect(glareOutcome({ success: false, margin: -6, criticalFailure: true })).toEqual({ kind: "blinded", seconds: 6, minutes: 6 });
+  });
+});
+
+describe("the supplement's lamp records (#478)", () => {
+  it("names every lamp, and the flashbulb, as a record of the book's packs", () => {
+    const dir = join(import.meta.dirname, "../../../../books/high-tech/packs-src/equipment");
+    const names = new Set(readdirSync(dir).filter((f) => f.endsWith(".json")).flatMap((f) => (JSON.parse(readFileSync(join(dir, f), "utf8")) as Array<{ name: string }>).map((d) => d.name)));
+    expect([...Object.keys(LAMPS), "Flashbulb"].filter((name) => !names.has(name))).toEqual([]);
   });
 });
