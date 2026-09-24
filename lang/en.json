@@ -3400,7 +3400,6 @@
           "Unaffected": "{name} isn't Electrical: a microwave disruptor has no effect (Ultra-Tech p. 121)."
         },
         "Resist": {
-          "Dr": "DR at the beam's divisor",
           "Sm": "Size Modifier"
         },
         "ForceField": "Against this beam at {part} of its DR",
@@ -3482,7 +3481,6 @@
           "psionicNeutralizer": "Psionic powers lost for minutes equal to the margin (Ultra-Tech p. 132)."
         },
         "Resist": {
-          "Dr": "DR against the beam",
           "MindShield": "Mind Shield",
           "ProtectedHearing": "Protected Hearing"
         },
@@ -3823,7 +3821,6 @@
           "Label": "Proximity detonation",
           "Note": "Proximity-fused: attack an area at +4; fragments only (Ultra-Tech p. 154; Campaigns p. 414)"
         },
-        "EmpDr": "DR at the warhead's (2)",
         "Fading": "Fading ({yards} yd from the centre)",
         "PsiStun": "Psi-bomb stun",
         "WarblerHearing": "Warbler: Hearing ({total} here)"
@@ -7857,6 +7854,7 @@
         },
         "GrapnelLoad": "Holds {lbs} lbs.",
         "SnowshoeMove": "-1 Move while worn.",
+        "CramponKick": "+{bonus} kicking damage from the spikes",
         "SnowshoeFast": "No Move lost, but no sprinting.",
         "Rappelling": "Shooting while rappelling",
         "RappellingSure": "Shooting while rappelling (Sure-Footed)",

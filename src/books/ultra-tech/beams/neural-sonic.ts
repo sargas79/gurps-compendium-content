@@ -5,12 +5,14 @@
  *   - **init:** the settings a neural or mind disruptor is built with, and the
  *     one it is on.
  *   - **ready:** the price the extra settings add; an item sheet section to
- *     choose them; resistance (DR in full against a MAD beam, a fifth of it
- *     against a sonic stunner, Mind Shield against a mind disruptor, Protected
- *     Hearing against a nauseator); what each failure does, and who is out of
+ *     choose them; resistance (the system's DR line, in full against a MAD
+ *     beam and a fifth of it against a sonic stunner as the row's divisor
+ *     has it, taken out where DR does nothing; Mind Shield against a mind
+ *     disruptor, Protected Hearing against a nauseator); what each failure does, and who is out of
  *     reach; and a screamer taking its victim's hearing.
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -27,7 +29,7 @@ import {
   type BeamSetting,
   followingCondition,
 } from "./neural.js";
-import { beamFamily, drResistBonus, type BeamFamily } from "./rules.js";
+import { beamFamily, drResists, type BeamFamily } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.UT.Neural.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.UT.Neural.${key}`, data);
@@ -167,12 +169,10 @@ export function readyNeuralSonic(api: GWorldApi, on: () => boolean): void {
     const family = familyOf(context.attack.item);
     if (!family || !FAMILIES.has(family)) return;
     const actor = context.actor;
-    // MAD beams add the target's DR; a sonic stunner a point per 5 (pp. 120, 125).
-    if (family === "mad" || family === "sonicStun") {
-      const mode = context.attack.item.system?.rangedModes?.[Number(context.attack.mode?.index) || 0];
-      const bonus = drResistBonus(family, context.attack.dr, Number(mode?.armorDivisor) || 1);
-      if (bonus) context.modifiers.push({ label: L("Resist.Dr"), value: bonus });
-    }
+    // MAD beams add the target's DR, a sonic stunner a point per 5: the system's
+    // line at the row's (1) and (5) (pp. 120, 125). Neural and mind beams and
+    // nauseators get past DR, so their line goes (pp. 121-122, 125, 132).
+    if (!drResists(family)) dropAfflictionDr(context);
     const effects = actor?.system?.derived?.traitEffects ?? {};
     const bonus = senseResistBonus(family, { traits: traitNames(actor), protectedHearing: effects.protectedSense?.hearing === true });
     if (bonus) context.modifiers.push({ label: L(family === "mindDisruptor" ? "Resist.MindShield" : "Resist.ProtectedHearing"), value: bonus });

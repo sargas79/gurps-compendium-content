@@ -12,7 +12,7 @@ import { lightOver, navigationLines, readyExpedition } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
-const HOOKS = { attackModifiers: "gworld.attackModifiers", successRollModifiers: "gworld.successRollModifiers" };
+const HOOKS = { attackModifiers: "gworld.attackModifiers", successRollModifiers: "gworld.successRollModifiers", unarmedAttacks: "gworld.unarmedAttacks" };
 
 let hooks: Map<string, Listener[]>;
 let actions: Map<string, any>;
@@ -379,5 +379,21 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
     expect(context.lines).toEqual([{ label: "Snowshoes", value: -1 }]);
     const fast = gear("Snowshoes", { climbing: "snowshoes" }, { tl: "8", equipped: true });
     expect(fire("gworld.moveModifiers", { actor: person("Walker", [fast]), lines: [] }).lines).toEqual([]);
+  });
+
+  it("adds crampons' +2 to the kick, on top of the system's boots, and nothing to the punch", () => {
+    const crampons = gear("Crampons", { climbing: "crampons" }, { equipped: true });
+    // The system has already put the boots' +1 in the kick (API 1.110.0).
+    const rows = [
+      { mode: { naturalKey: "punch" }, row: { damage: "1d-2", notes: [] } },
+      { mode: { naturalKey: "kick" }, row: { damage: "1d", boots: true, notes: [] } },
+    ];
+    const addToDamage = (formula: string, bonus: number) => `${formula}+${bonus}`;
+    fire(HOOKS.unarmedAttacks, { actor: person("Climber", [crampons]), rows, addToDamage });
+    expect(rows[0]!.row.damage).toBe("1d-2");
+    expect(rows[1]!.row.damage).toBe("1d+2");
+    const loose = [{ mode: { naturalKey: "kick" }, row: { damage: "1d-1", notes: [] } }];
+    fire(HOOKS.unarmedAttacks, { actor: person("Climber", [gear("Crampons", { climbing: "crampons" }, { equipped: false })]), rows: loose, addToDamage });
+    expect(loose[0]!.row.damage).toBe("1d-1");
   });
 });

@@ -1143,7 +1143,8 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "boots": true
     }
   },
   {
@@ -1172,7 +1173,8 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "boots": true
     }
   },
   {
@@ -1201,7 +1203,8 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": null,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "boots": true
     }
   },
   {
@@ -1317,7 +1320,8 @@
       "concealable": true,
       "blocksPeripheralVision": false,
       "soleDr": 3,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "boots": true
     }
   },
   {
@@ -1346,7 +1350,8 @@
       "concealable": false,
       "blocksPeripheralVision": false,
       "soleDr": 15,
-      "environmentSuit": ""
+      "environmentSuit": "",
+      "boots": true
     }
   },
   {
@@ -1382,7 +1387,8 @@
             "toeDr": 6
           }
         }
-      }
+      },
+      "boots": true
     }
   },
   {

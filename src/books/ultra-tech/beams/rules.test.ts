@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   STANDARD_ENVIRONMENT,
   beamFamily,
-  drResistBonus,
+  drResists,
   inEnvironment,
   isDisintegrated,
   isVacuum,
@@ -114,15 +114,12 @@ describe("beams and the environment", () => {
 });
 
 describe("resisting a beam's affliction", () => {
-  it("adds DR at the row's divisor for electrolasers, omni-blaster stun and sonic stunners", () => {
-    expect(drResistBonus("electrolaser", 7, 2)).toBe(3);
-    expect(drResistBonus("omniBlaster", 7, 3)).toBe(2);
-    expect(drResistBonus("sonicStun", 12, 5)).toBe(2);
+  it("leaves DR to the system's line for electrolasers, omni-blaster stun, sonic stunners and MAD beams", () => {
+    for (const family of ["electrolaser", "omniBlaster", "sonicStun", "mad"] as const) expect(drResists(family)).toBe(true);
   });
 
-  it("adds a MAD beam's DR in full, and nothing for a contact beam", () => {
-    expect(drResistBonus("mad", 7, 1)).toBe(7);
-    expect(drResistBonus("neural", 7, 1)).toBe(0);
+  it("gives no DR against dazzlers, contact beams, nauseators and mind disruptors", () => {
+    for (const family of ["dazzler", "microwave", "neural", "mindripper", "mindDisruptor", "nauseator"] as const) expect(drResists(family)).toBe(false);
   });
 });
 

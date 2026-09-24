@@ -171,20 +171,23 @@ export function inEnvironment(family: BeamFamily, row: BeamRow, environment: Bea
   return { row: next, skill, chargeLost, notes };
 }
 
-/** The families whose affliction DR resists at the row's armour divisor (pp. 119, 124, 125). */
-export const DR_RESISTS: ReadonlySet<BeamFamily> = new Set(["electrolaser", "omniBlaster", "sonicStun"]);
-
 /**
- * What the victim's DR adds to the roll to resist: DR divided by the row's
- * armour divisor, as the book puts each ("each 2 DR ... provides +1 to HT";
- * "one-third of his DR"; "+1 per 5 DR"), and a MAD beam's DR in full (p. 120).
+ * The families whose affliction DR does nothing against: a dazzler's light
+ * (p. 113), microwave and neural disruptors, contact agents that get past it
+ * (pp. 120-121), a nauseator's sound (p. 125), and mind disruptors and
+ * mindrippers (pp. 122, 132). The system gives every affliction's roll to
+ * resist a DR line (Characters p. 35); against these it is taken out.
+ *
+ * Against the rest DR counts as the system counts it, at the row's armour
+ * divisor: "each 2 DR" against an electrolaser (2), a third against an
+ * omni-blaster's stun (3), "+1 per 5 DR" against a sonic stunner (5), and a
+ * MAD beam's DR in full (1) (pp. 119-125).
  */
-export function drResistBonus(family: BeamFamily, dr: number, armorDivisor: number): number {
-  const armour = Math.max(0, Math.floor(Number(dr) || 0));
-  if (family === "mad") return armour;
-  if (!DR_RESISTS.has(family)) return 0;
-  const divisor = Math.max(1, Number(armorDivisor) || 1);
-  return Math.floor(armour / divisor);
+export const DR_IGNORED: ReadonlySet<BeamFamily> = new Set(["dazzler", "microwave", "neural", "mindripper", "mindDisruptor", "nauseator"]);
+
+/** Whether a beam family's affliction leaves the victim's DR a bonus to resist it. */
+export function drResists(family: BeamFamily): boolean {
+  return !DR_IGNORED.has(family);
 }
 
 /** Against a DR-ignoring beam, the part of a force field that still stands (pp. 129-130). */

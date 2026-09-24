@@ -2980,6 +2980,14 @@
         "system.equipmentModifier": -2
       },
       "reason": "a -2 (quality) equipment modifier for the skill it is made for (p. 82)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Assault Boots \\(TL +\\d+\\)$",
+      "set": {
+        "system.boots": true
+      },
+      "reason": "boots add +1 to a kick (Characters p. 271); the system reads system.boots (API 1.110.0)"
     }
   ]
 }

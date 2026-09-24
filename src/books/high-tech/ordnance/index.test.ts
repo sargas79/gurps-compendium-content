@@ -292,7 +292,8 @@ describe("hand grenades (pp. 190-192)", () => {
     const stun = item("Schermuly Stun");
     const earmuffs = { name: "Electronic Earmuffs", system: { equipped: true } };
     const operator = actorWith("Operator", [earmuffs], { derived: { traitEffects: { protectedSense: { vision: true } } } });
-    const resist = { actor: operator, tags: ["resist", "affliction"], attack: { item: stun }, modifiers: [] as any[] };
+    // The system's DR line goes: a flash and a bang are sense-based (Characters p. 35).
+    const resist = { actor: operator, tags: ["resist", "affliction"], attack: { item: stun }, modifiers: [{ key: "afflictionDr", label: "DR", value: 4 }] as any[] };
     fire(HOOKS.successRollModifiers, resist);
     expect(resist.modifiers.map((m) => m.value)).toEqual([5, 5]);
     const effect = { actor: operator, item: stun, effects: [] as any[] };

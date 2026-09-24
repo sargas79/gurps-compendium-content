@@ -29,7 +29,8 @@
  *     and backpacks cost double; the hourly march.
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
  *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
- *     throwing a grapnel, and snowshoes' -1 Move.
+ *     throwing a grapnel, snowshoes' -1 Move, and crampons' +2 to a kick
+ *     (beside the system's +1 for boots, which they are worn over).
  */
 
 import { placeArea } from "../../../shared/areas.js";
@@ -39,6 +40,7 @@ import {
   BLINDED_PENALTY,
   CARRY_KINDS,
   CLIMBING_KINDS,
+  CRAMPON_KICK,
   FITS,
   GLASS_LANTERN_FIRE_YARDS,
   LIGHT_KINDS,
@@ -649,5 +651,18 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     if (!on.climbing()) return;
     const shoes = gearOf(context?.actor).find((i) => expeditionData(i).climbing === "snowshoes" && i.system?.equipped === true && snowshoeMove(tlOf(i)) !== 0);
     if (shoes) context.lines?.push?.({ label: String(shoes.name ?? ""), value: snowshoeMove(tlOf(shoes)) });
+  });
+
+  // Crampons' spikes: +2 to kicking damage while worn (p. 56). They go on
+  // over boots, so the system's +1 for the boots (Characters p. 271) stays.
+  Hooks.on(api.combat.hooks.unarmedAttacks, (context: any) => {
+    if (!on.climbing()) return;
+    const crampons = gearOf(context?.actor).find((i) => expeditionData(i).climbing === "crampons" && i.system?.equipped === true);
+    if (!crampons) return;
+    for (const entry of context.rows ?? []) {
+      if (entry.mode?.naturalKey !== "kick" || !entry.row) continue;
+      entry.row.damage = context.addToDamage(String(entry.row.damage ?? ""), CRAMPON_KICK);
+      entry.row.notes?.push?.({ label: String(crampons.name ?? ""), hint: F("CramponKick", { bonus: CRAMPON_KICK }) });
+    }
   });
 }

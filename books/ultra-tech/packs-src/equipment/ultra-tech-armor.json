@@ -906,7 +906,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": 12
+      "soleDr": 12,
+      "boots": true
     }
   },
   {
@@ -934,7 +935,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": 18
+      "soleDr": 18,
+      "boots": true
     }
   },
   {
@@ -962,7 +964,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": 30
+      "soleDr": 30,
+      "boots": true
     }
   },
   {
@@ -990,7 +993,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": null
+      "soleDr": null,
+      "boots": true
     }
   },
   {

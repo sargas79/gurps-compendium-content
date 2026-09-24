@@ -24,7 +24,8 @@
       "frontOnly": false,
       "concealable": false,
       "blocksPeripheralVision": false,
-      "soleDr": 3
+      "soleDr": 3,
+      "boots": true
     }
   },
   {

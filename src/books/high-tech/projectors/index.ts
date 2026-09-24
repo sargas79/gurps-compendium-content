@@ -29,6 +29,7 @@
  *     is the system's, which gives it to any HT-resisted ranged affliction.
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { bookOf } from "../../../shared/book-tables.js";
 import { DAZZLE_TABLES, blindnessFrom, eyeProtection } from "../../../shared/dazzle/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -385,10 +386,21 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     if (outcome === "explodes") await explode(actor, item, 0);
   });
 
+  // ── what DR does against a spray (p. 180) ──
+  // A spray's agent is tear gas or pepper (p. 171): a gas breathed and in the
+  // eyes, which armour doesn't keep out, so the system's DR line goes (see
+  // Poison Examples, Campaigns p. 439; Characters p. 35).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.sprayGuns() || !context?.tags?.includes?.("resist") || !isGasSpray(context.attack?.item)) return;
+    dropAfflictionDr(context);
+  });
+
   // ── laser dazzlers (p. 181) ──
-  // Protected Vision, a Nictitating Membrane and anti-laser goggles against a laser at the eyes (p. 181).
+  // Protected Vision, a Nictitating Membrane and anti-laser goggles against a
+  // laser at the eyes; "DR has no effect", so the system's DR line goes (p. 181).
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on.laserDazzlers() || !context?.tags?.includes?.("resist") || !laserBeamOf(context.attack?.item)) return;
+    dropAfflictionDr(context);
     const effects = (api.actors.derived(context.actor) as any)?.traitEffects ?? {};
     const goggles = [...(context.actor?.items ?? [])].some((i: any) => i?.system?.equipped && ANTI_LASER_GOGGLES.pattern.test(String(i.name ?? "")));
     const bonus = eyeProtection({
