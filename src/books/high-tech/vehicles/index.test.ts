@@ -25,6 +25,7 @@ let chat: string[];
 let on: Record<string, boolean>;
 let rolls: number[];
 let actors: any[];
+let controls: any[];
 
 function fakeApi() {
   return {
@@ -32,11 +33,12 @@ function fakeApi() {
     combat: {
       hooks: {
         vehicleDr: "gworld.vehicleDr", successRollModifiers: "gworld.successRollModifiers", detectionModifiers: "gworld.detectionModifiers",
-        fatigueCost: "gworld.fatigueCost", injury: "gworld.injury",
+        fatigueCost: "gworld.fatigueCost", injury: "gworld.injury", afterVehicleHit: "gworld.afterVehicleHit",
       },
       registerAttackOption: (o: any) => options.set(o.key, o),
     },
-    data: { hooks: { prepareDerivedData: "gworld.prepareDerivedData" } },
+    data: { hooks: { prepareDerivedData: "gworld.prepareDerivedData", vehicleStats: "gworld.vehicleStats" } },
+    hazards: { controlVehicle: async (o: any) => { controls.push(o); } },
     sheets: { registerGmTool: (t: any) => tools.set(t.key, t), registerSheetSection: (s: any) => sections.set(s.key, s) },
     actors: {
       attribute: () => 10,
@@ -94,6 +96,7 @@ beforeEach(() => {
   on = {};
   rolls = [];
   actors = [];
+  controls = [];
   resetRestraints();
   vi.stubGlobal("Hooks", { on: (name: string, fn: (...args: any[]) => void) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
@@ -166,26 +169,50 @@ describe("protection, with only High-Tech's switch on", () => {
   it("sends the FT17's rivets flying from a blow of 20 that didn't get through (p. 235)", async () => {
     const ft17 = vehicleActor("Renault FT17", { dr: 45, occupants: "2", sm: 3 });
     rolls = [2, 5, 7];
+    // The blow is weighed once the shot is worked out (API 1.115.0): nothing flies before.
     call("gworld.vehicleDr", { vehicle: ft17, location: "body", arc: "front", damageType: "pi", armorDivisor: 1, basicDamage: 30, lines: drLines(45) });
+    await Promise.resolve();
+    expect(chat).toEqual([]);
+    call("gworld.afterVehicleHit", { vehicle: ft17, location: "body", penetrating: 0, injury: 0 });
     await vi.waitFor(() => expect(chat.join("")).toContain("Spall.Hit"));
     chat = [];
+    // A blow that got through sends no rivets flying.
     call("gworld.vehicleDr", { vehicle: ft17, location: "body", arc: "front", damageType: "pi", armorDivisor: 1, basicDamage: 60, lines: drLines(45) });
+    call("gworld.afterVehicleHit", { vehicle: ft17, location: "body", penetrating: 15, injury: 15 });
+    await Promise.resolve();
+    expect(chat).toEqual([]);
+    // Nor does a hit with no blow weighed first.
+    call("gworld.afterVehicleHit", { vehicle: ft17, location: "body", penetrating: 0, injury: 0 });
     await Promise.resolve();
     expect(chat).toEqual([]);
   });
 
-  it("runs on flat run-flat tyres at -1 to the control roll and Dodge, and Move less 20% (p. 229)", async () => {
+  it("runs on flat run-flat tyres at -1 Handling and top speed less 20%, on the figures the rules read (p. 229)", async () => {
     const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W", range: 375, roadBound: false });
+    const stats = (vehicle: any) => call("gworld.vehicleStats", { vehicle, handling: 1, stability: 4, acceleration: 3, topSpeed: 28, move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, lines: [] });
+    expect(stats(aml)).toMatchObject({ handling: 1, topSpeed: 28, lines: [] });
     await aml.setFlag(MODULE_ID, "htVehicle", { flats: 1 });
-    const roll = call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: aml, modifiers: [] });
-    expect(roll.modifiers).toEqual([{ label: "GCC.HT.Vehicles.RunningFlat", value: -1 }]);
-    aml.system.derived = { dodge: 7, move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, topSpeedMph: 56, cruisingSpeedMph: 14 };
-    call("gworld.prepareDerivedData", aml);
-    expect(aml.system.derived).toMatchObject({ dodge: 6, move: { topSpeed: 22.4 }, topSpeedMph: 44.8, cruisingSpeedMph: 11.2 });
+    // The system's control roll and Dodge read the Handling (API 1.115.0): no line of the add-on's own on the roll.
+    expect(stats(aml)).toMatchObject({ handling: 0, topSpeed: 22.4, acceleration: 3 });
+    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: aml, modifiers: [] }).modifiers).toEqual([]);
     // CTIS copes with the BRDM-2's two flats.
     const brdm = vehicleActor("GAZ BRDM-2", { dr: 40, locations: "t4W" });
     await brdm.setFlag(MODULE_ID, "htVehicle", { flats: 2 });
-    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: brdm, modifiers: [] }).modifiers).toEqual([]);
+    expect(stats(brdm)).toMatchObject({ handling: 1, topSpeed: 28 });
+  });
+
+  it("gives improved brakes +1 on a control roll made for braking hard, from the tool (p. 229)", async () => {
+    const driver = person("Driver");
+    actors = [driver];
+    const car = vehicleActor("Car", { dr: 4, locations: "4W" });
+    car.system.crew = [{ uuid: driver.uuid, operator: true }];
+    await car.setFlag(MODULE_ID, "htVehicle", { fittings: ["improvedBrakes"] });
+    await runKind(fakeApi() as never, car, { kind: "brake" } as any, [], { components: () => false, protection: () => true, crew: () => false });
+    expect(controls).toEqual([{ actor: driver, vehicle: car, reason: "hardBraking" }]);
+    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: car, reason: "hardBraking", modifiers: [] }).modifiers).toEqual([{ label: "GCC.HT.Vehicles.ImprovedBrakes", value: 1 }]);
+    // Any other control roll, or no such brakes: nothing.
+    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: car, modifiers: [] }).modifiers).toEqual([]);
+    expect(call("gworld.successRollModifiers", { tags: ["vehicleControl"], vehicle: vehicleActor("Other", { dr: 4 }), reason: "hardBraking", modifiers: [] }).modifiers).toEqual([]);
   });
 
   it("puts an airbag in the shared restraint engine: DR 10 against the crash while Ultra-Tech's switch is off (D1)", async () => {
