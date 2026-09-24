@@ -88,7 +88,9 @@
  * p. 14), its power: battery chemistries, capacitors, supercapacitors,
  * flywheels and generators, and the grades of external power (HT:EE pp. 9,
  * 16-18), and its skills: the new defaults onto the Basic Set's skills and
- * the skills that stand in for others (HT:EE pp. 6-8).
+ * the skills that stand in for others (HT:EE pp. 6-8), and its fuzes and
+ * homing weapons: impact, proximity and time fuzes, seekers and laser
+ * designators (HT:EE pp. 48-49).
  */
 
 import type { BookRules } from "../../shared/book.js";
@@ -142,6 +144,7 @@ import { readyInstruments } from "./instruments/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
 import { readyLighting } from "./lighting/index.js";
 import { readyAudio } from "./audio/index.js";
+import { readyGuidance } from "./guidance/index.js";
 import { applianceClimateGear, readyAppliances } from "./appliances/index.js";
 import { readyElectromedicine } from "./electromedicine/index.js";
 import { readySkills } from "./skills/index.js";
@@ -338,6 +341,9 @@ const RULES = [
   { key: "stunLethalFences", pages: "pp. 9, 42, 44", reference: EE_REFERENCE, implemented: true },
   { key: "electricLocks", pages: "pp. 14, 42", reference: EE_REFERENCE, implemented: true },
   { key: "alarmSystems", pages: "pp. 43-44", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: fuzes and homing weapons.
+  { key: "electronicFuzes", pages: "p. 48", reference: EE_REFERENCE, implemented: true },
+  { key: "homingSeekers", pages: "p. 49", reference: EE_REFERENCE, implemented: true },
   // Electricity and Electronics: the electronic battlefield's sensors, and reconnaissance drones.
   { key: "battlefieldSensors", pages: "p. 45", reference: EE_REFERENCE, implemented: true },
   { key: "reconDrones", pages: "p. 46", reference: EE_REFERENCE, implemented: true },
@@ -486,6 +492,7 @@ function ready(api: GWorldApi): void {
   const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };
   readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") }, ordnanceExtras(ordnance));
   readyOrdnance(api, ordnance);
+  readyGuidance(api, { fuzes: rule("electronicFuzes"), seekers: rule("homingSeekers") });
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning"), design: rule("radioDesign") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });

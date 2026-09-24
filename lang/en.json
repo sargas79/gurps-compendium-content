@@ -5303,6 +5303,14 @@
           "Name": "Screening and alarms (Electricity and Electronics)",
           "Hint": "Keycard readers (x2 with a log of the cards) and the biometric systems join High-Tech's identity verifiers: bypassed with Electronics Repair (Security) at +5, 0 or -5 by grade (x1, x5, x20), a portable unit $5 and 0.2 lb. more; a signature pad by Forgery at -3. The security metal detector, and a general-purpose one in improvised use, screen as High-Tech's handheld detector. A GM tool spots an alarm (Vision-5, Observation or Per-based Traps, or against Camouflage), identifies it (Electronics Operation (Security)), disables it (Electronics Repair (Security); Traps for an electric alarm) or cuts its power (Electrician; a professional system goes off); each alarm's figures are on its sheet (High-Tech: Electricity and Electronics pp. 43-44)."
         },
+        "electronicFuzes": {
+          "Name": "Electronic fuzes (Electricity and Electronics)",
+          "Hint": "A row action fits a carried impact, proximity or time fuze to a grenade, mine or charge of explosive. A proximity fuze is set to go off within up to 25 yards, the most its radar detects, and does when a token comes that close to the token holding it; a time fuze is set to up to three minutes and goes off when they have passed, a combat round a second. Going off rolls the item's own blast, or says to set off a bare charge with the demolition action. Another row action improvises a time fuze from a clock or watch on a roll against Explosives (Demolition) (High-Tech: Electricity and Electronics p. 48)."
+        },
+        "homingSeekers": {
+          "Name": "Homing seekers (Electricity and Electronics)",
+          "Hint": "A homing missile locks on with the firer's Artillery (Guided Missile) and then attacks at its own skill of 10, adding its Acc once locked on, whether or not the Aim box was ticked. An attack option says what its seeker homes on (High-Tech's missiles give their own), which tags the roll with that sense: an infrared seeker tracking a warm hull takes -2, and an advanced acoustic torpedo may home on propulsion and steering as the vital area (-3). A laser-homing missile needs someone aiming a laser designator at its target: a row action on the designator rolls DX-based Forward Observer while its holder aims, and the missile's attack is refused while nobody holds the spot (High-Tech: Electricity and Electronics p. 49; Campaigns pp. 412-413, 554)."
+        },
         "battlefieldSensors": {
           "Name": "Battlefield sensors (Electricity and Electronics)",
           "Hint": "The supplement's electronic battlefield. A device ticked as military gear is built rugged, HT 12 and DR 8 as an object, save what its record states. A row button watches through a surveillance camera: Observation at -4 (TL7) or -2 (TL8), in a Quick Contest with the targeted character's Stealth, Shadowing or Camouflage; pan/tilt/zoom, ticked on its sheet for $300 more, makes it -2 or no penalty, but an intruder who makes a Vision roll spots the camera. A row button listens with the seismic ground sensor: Electronics Operation (Surveillance) with the source's Size Modifier and speed as bonuses and the range as a penalty, off the Size and Speed/Range Table. A row button dumps chaff: until the dumper's next turn, -2 per package to a ranged attack at the craft made with a radar lock and to an Electronics Operation (Sensors) roll against it (High-Tech: Electricity and Electronics p. 45)."
@@ -10224,6 +10232,57 @@
           "supplementPhysics": "for the supplement's Physics rolls",
           "proofOfConcept": "to invent a proof of concept, not a production design"
         }
+      },
+      "Guidance": {
+        "Fit": "Fit a fuze",
+        "Fuze": "Fuze",
+        "Remove": "Remove the fitted fuze",
+        "Improvised": "Time fuze made from {clock}",
+        "ProximityYards": "Proximity: set distance (yards)",
+        "TimeSeconds": "Time: seconds after firing",
+        "FitHint": "A proximity fuze detects out to {yards} yards and goes off at the distance set; a time fuze runs for up to {seconds} seconds. An impact fuze goes off on impact once armed (High-Tech: Electricity and Electronics p. 48). A charge left on the map needs a token of its own for a proximity fuze to watch around it.",
+        "NoFuze": "No fuze carried: an impact, proximity or time fuze, or a clock made into one.",
+        "Removed": "The fuze is taken off {name}.",
+        "Fitted": {
+          "impact": "{fuze} fitted to {name}: it goes off on impact, arming itself a moment after its safety wire is pulled (HT:EE p. 48).",
+          "proximity": "{fuze} fitted to {name}, set to {yards} yards: it goes off when anything comes that close (it detects out to {detects}) (HT:EE p. 48).",
+          "time": "{fuze} fitted to {name}, set to {seconds} seconds: it goes off when they have passed (HT:EE p. 48)."
+        },
+        "Improvise": "Improvise a time fuze",
+        "ImproviseRoll": "Time fuze from {clock}",
+        "ImprovisedMade": "{clock} is wired up as a time fuze (HT:EE p. 48).",
+        "ImprovisedFailed": "{clock} doesn't work as a time fuze.",
+        "TimeUp": "The time fuze on {name} runs out after {seconds} seconds.",
+        "ProximityTriggered": "The proximity fuze on {name} detects {who} at {yards} yards.",
+        "GoesOffLabel": "{name} goes off",
+        "SetOffCharge": "It goes off: set off the charge with its Detonate action.",
+        "HomingNote": "Homing, skill {skill}",
+        "HomingHint": "Lock on with Artillery (Guided Missile); the missile then attacks at its own skill, plus its Acc (Campaigns p. 413; HT:EE p. 49).",
+        "SeekerHint": "Lock on with Artillery (Guided Missile); the missile then attacks at its own skill, plus its Acc, homing by {seeker} (Campaigns p. 413; HT:EE p. 49).",
+        "Seeker": "Seeker",
+        "Seekers": {
+          "none": "As the weapon's record says",
+          "acoustic": "Acoustic",
+          "acousticVitals": "Acoustic: propulsion and steering (vital area)",
+          "infrared": "Infrared: hot exhaust",
+          "infraredHull": "Infrared: warm hull",
+          "lidar": "Lidar",
+          "radar": "Radar",
+          "rdf": "Radio emissions (RDF)",
+          "laser": "Laser designator"
+        },
+        "Lines": {
+          "warmHull": "Infrared seeker on a warm hull",
+          "vitalArea": "Homing on propulsion and steering (vital area)"
+        },
+        "LockOn": "Locked on: Acc {acc}",
+        "NotDesignated": "Nobody holds a laser designator's spot on this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412).",
+        "Designate": "Hold the laser on the target",
+        "DesignateRoll": "Laser designator on {target}",
+        "Designated": "{name} holds the laser designator's spot on {target}.",
+        "LostSpot": "{name} fails to hold the spot on {target}: a laser-homing missile now misses it.",
+        "OneTarget": "Target exactly one token to designate.",
+        "AimFirst": "Take the Aim maneuver at the target first: holding the spot is a series of Aim maneuvers."
       },
       "Audio": {
         "Title": "Audio (Electricity and Electronics)",
