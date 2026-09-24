@@ -5,20 +5,12 @@
  * the nanomachine contests.
  */
 
-export type Delivery = "blood" | "contact" | "digestive" | "followUp" | "respiratory";
+import { poisonNumbers as poison, protectedByDelivery, type Delivery, type PoisonNumbers } from "../../../shared/drugs/rules.js";
 
-/** The poison numbers the system's dose machinery takes. */
-export interface AgentPoison {
-  delivery: Delivery[];
-  delaySeconds: number;
-  resistanceModifier: number | null;
-  damage: "toxic" | "fatigue" | "none";
-  dice: number;
-  adds: number;
-  intervalSeconds: number;
-  cycles: number;
-  reference: string;
-}
+export type { Delivery };
+
+/** The poison numbers the system's dose machinery takes: the shared engine's (`src/shared/drugs/`). */
+export type AgentPoison = PoisonNumbers;
 
 export const AGENTS = [
   "riotGas", "nerveGas", "nerveGasResidue", "sleepGas", "paralysisGas", "pheromoneSpray", "radiantPrism",
@@ -26,10 +18,6 @@ export const AGENTS = [
   "nanoburn", "nanoburnDamage", "dominator", "dominatorSuperscience", "parasiteSeed",
 ] as const;
 export type Agent = (typeof AGENTS)[number];
-
-const poison = (p: Partial<AgentPoison> & { reference: string }): AgentPoison => ({
-  delivery: [], delaySeconds: 0, resistanceModifier: null, damage: "none", dice: 0, adds: 0, intervalSeconds: 0, cycles: 1, ...p,
-});
 
 /**
  * Each agent as poison numbers (pp. 159-162). A cloud's agents are dosed
@@ -121,13 +109,7 @@ export const NERVE_AGENTS: ReadonlySet<Agent> = new Set(["nerveGas", "nerveGasRe
 
 /** Whether a victim's traits keep an agent out: a sealed suit, no breath, filtered air, or no metabolism. */
 export function protectedFrom(agent: Agent, victim: { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; metabolicImmunity: boolean }): "sealed" | "breath" | "metabolic" | null {
-  const p = AGENT_POISONS[agent];
-  if (victim.metabolicImmunity) return "metabolic";
-  const respiratory = p.delivery.includes("respiratory");
-  const contact = p.delivery.includes("contact");
-  if ((respiratory || contact) && victim.sealed) return "sealed";
-  if (respiratory && (victim.doesntBreathe || victim.filterLungs)) return "breath";
-  return null;
+  return protectedByDelivery(AGENT_POISONS[agent].delivery, victim);
 }
 
 /** A chemical cloud lasts 300 seconds; in a wind of 1 mph or more, 300 divided by the wind (p. 159). */
