@@ -8969,7 +8969,6 @@
         "HookUpLabel": "Hooking {name} up to {patient}",
         "AedInstructions": "Following the instructions",
         "NotHookedUp": "{name} isn't hooked up yet.",
-        "DeviceLabel": "{name} (skill {skill})",
         "DepletedReason": "{name} is depleted: a grade lower",
         "PortableSurgeryReason": "{name}: +2 (quality) to First Aid",
         "NoFluidsReason": "No blood or IV fluids: +1 at best",
