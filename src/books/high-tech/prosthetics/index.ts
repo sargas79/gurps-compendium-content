@@ -14,11 +14,12 @@
  *   - **Elective surgery:** a GM tool that runs the operation through
  *     `actors.operate` (the Basic Set's surgery roll) and reads its outcome:
  *     a success is recorded on the patient, and laser eye surgery on every
- *     eye takes Bad Sight out of play as cured. Where one trait becomes
- *     another (Fat to Overweight, Beautiful to Very Beautiful), the new build
- *     or Appearance is written through `actors.changeTrait`; where a trait
- *     would be added or taken away, or the book leaves the choice (Attractive
- *     to Beautiful or Handsome), the card tells the GM what to set.
+ *     eye takes Bad Sight out of play as cured. The new build or Appearance
+ *     is written through `actors.changeTrait`: one trait becoming another (Fat
+ *     to Overweight, Beautiful to Very Beautiful), a trait added (Average to
+ *     Overweight, Skinny or Attractive) or taken away (back to Average); where
+ *     the book leaves the choice (Attractive to Beautiful or Handsome), the
+ *     card tells the GM what to set.
  *
  * Eyeglasses knocked off or broken by a blow to the head are the protective
  * oddments' (p. 225): glasses knocked off are no longer worn, and broken ones
@@ -32,6 +33,8 @@ import { powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
 import { BROKEN_FLAG } from "../oddments/index.js";
 import {
+  APPEARANCE_NAMES,
+  ATTRACTIVE_TRAIT,
   BUILDS,
   PROCEDURES,
   appearanceChange,
@@ -221,16 +224,19 @@ export async function operateElectively(api: GWorldApi, options: {
 
 /**
  * Writes the new build or Appearance through the system's `changeTrait`
- * (GM only), where one of the character's traits becomes another. False
- * where the GM must still set it: a trait to add or take away, or a choice
- * the book leaves open.
+ * (GM only): one of the character's traits becoming another, or, since API
+ * 1.124.0, a trait added (Average to Overweight or Skinny, or to Attractive)
+ * or taken away (back to Average). False where the GM must still set it: a
+ * choice the book leaves open.
  */
 async function writeTrait(api: GWorldApi, patient: any, plan: Operation): Promise<boolean> {
   if (plan.procedure === "build") {
-    if (plan.from === "Average" || plan.to === "Average") return false;
+    if (plan.from === "Average") return (await api.actors.changeTrait(patient, { add: plan.to } as any)) !== null;
+    if (plan.to === "Average") return (await api.actors.changeTrait(patient, { name: plan.from, remove: true } as any)) !== null;
     return (await api.actors.changeTrait(patient, { name: plan.from, replaceWith: plan.to })) !== null;
   }
   if (plan.procedure !== "appearance") return false;
+  if (plan.from === APPEARANCE_NAMES[0]) return (await api.actors.changeTrait(patient, { add: ATTRACTIVE_TRAIT } as any)) !== null;
   const traits = [...(patient?.items ?? [])].filter((i: any) => i?.type === "trait").map((i: any) => ({ id: String(i.id ?? ""), name: String(i.name ?? ""), levels: Number(i.system?.levels) || 0 }));
   const change = appearanceChange(traits);
   if (!change) return false;
