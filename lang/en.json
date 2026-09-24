@@ -6958,7 +6958,8 @@
         "Blinded": "Blinded (tear gas)",
         "GasFailed": "{name} is {what} for {minutes} minutes.",
         "UnderFlare": "under a flare",
-        "ScentMarked": "{name} reeks of the scent marker for an hour."
+        "ScentMarked": "{name} reeks of the scent marker for an hour.",
+        "BatchAdded": "{rounds} rounds put in the box: {total} now."
       },
       "Power": {
         "Title": "Batteries",
