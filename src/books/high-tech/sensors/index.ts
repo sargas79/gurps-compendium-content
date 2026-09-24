@@ -917,10 +917,20 @@ async function lensShine(api: GWorldApi, item: any, actor: any): Promise<void> {
  * current. Success fixes the target: +8 to identify, +4 to shadow, and --
  * except with a search hydrophone -- +3 to hit it with an aimed attack.
  */
-async function hydrophone(api: GWorldApi, item: any, actor: any): Promise<void> {
+function hydrophone(api: GWorldApi, item: any, actor: any): Promise<void> {
+  return hydrophoneRoll(api, item, actor, { bonus: hydrophoneBonus(nameOf(item), itemTl(item)) ?? 0, fix: true });
+}
+
+/**
+ * The hydrophone's detection roll, for High-Tech's tactical hydrophones
+ * (`fix`: success fixes the target) and for the supplement Electricity and
+ * Electronics' basic one, which hears and detects but fixes nothing (HT:EE
+ * p. 31).
+ */
+export async function hydrophoneRoll(api: GWorldApi, item: any, actor: any, options: { bonus: number; fix: boolean }): Promise<void> {
   if (!actor) return;
   const target = picked().target;
-  const bonus = hydrophoneBonus(nameOf(item), itemTl(item)) ?? 0;
+  const bonus = options.bonus;
   const sm = Number(target?.system?.sm) || 0;
   const measured = target ? yardsBetween(actor, target) : null;
   const answer = await ask(L("HydrophoneTitle"),
@@ -941,7 +951,7 @@ async function hydrophone(api: GWorldApi, item: any, actor: any): Promise<void> 
   ];
   const skill = "Electronics Operation (Sonar)";
   const result: any = await api.roll.success({ actor, base: skillBase(api, actor, skill), skill, label: F("HydrophoneRoll", { name: item.name }), modifiers, tags: ["detection", "hydrophone"], ...(target ? { subject: target } : {}) } as any);
-  if (!result?.success) return;
+  if (!result?.success || !options.fix) return;
   const search = sensorData(item).options.search === true;
   if (target && !search) await setLock(api, actor, item, target);
   await card(actor, F("HydrophoneRoll", { name: item.name }), [F(search ? "FixSearch" : "HydrophoneFix", { identify: HYDROPHONE_FIX.identify, shadow: HYDROPHONE_FIX.shadow, hit: HYDROPHONE_FIX.hit })]);
