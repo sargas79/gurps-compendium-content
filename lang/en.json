@@ -8076,10 +8076,7 @@
         "ReadNone": "Select one or more tokens first.",
         "ReadOff": "{name}: not on the map.",
         "ReadLine": "{name}: about {lux} lux; darkness {penalty}.",
-        "Task": {
-          "reading": "Reading light",
-          "surgery": "Surgical light"
-        },
+        "Task": { "reading": "Reading light", "surgery": "Surgical light" },
         "TaskMet": "{task} ({lux} lux): enough",
         "TaskShort": "{task} ({lux} lux): {penalty} to tasks that need it",
         "AimAction": "Aim the beam",
@@ -8089,10 +8086,7 @@
         "AimHit": "The beam lights {name}.",
         "AimMiss": "The beam misses {name}: it lights a spot {yards} yards to the {side}.",
         "AimHeard": "Had the aimer won a Quick Contest of Hearing against the target's Stealth, the darkness would count as {penalty}, the roll no better than {cap}.",
-        "Side": {
-          "left": "left",
-          "right": "right"
-        },
+        "Side": { "left": "left", "right": "right" },
         "FlashAction": "Fire the flashbulb",
         "FlashTarget": "Target the tokens that see the flash.",
         "GlareTitle": "Glare",
