@@ -9720,6 +9720,1198 @@
     "description": "<p>A transmitter operating at millimeter wavelengths. Aimed with a video screen and joystick. The beam from its antenna heats living tissue to a depth of less than 1/20\", causing painful burning sensations but no injury. The number of shots reflects the time required to select a new target; it can continue to fire as long as it's supplied with power. Prototype versions weigh 4,500 lbs. and can be transported on a truck or similar vehicle.</p>"
   },
   {
+    "_id": "79f391f4ea29d690",
+    "name": "Compact Digital Oscilloscope",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses analog-to-digital conversion and can store and play back signals. A compact model is XS/4 hours.</p>"
+  },
+  {
+    "_id": "e374ae287aa26c08",
+    "name": "Large Tesla Coil",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Tesla Coils section, which prices both coils under one entry (the large coil is its prototype)",
+    "description": "<p>Used in experiments with wireless power transmission (p. 19), for special effects in films, and to perform demonstrations at public events.</p><p>Tesla Coil (TL6). A source of high-frequency current that can jump wide air gaps, producing spectacular sparks. Roll vs. Electrician, Hobby Skill (Feats of Science), or Physics to construct and operate. The output causes 1d-3 burn on a critically failed operation roll; on an unmodified roll of 18, a spark may contact the power line (if unshielded), conducting low-frequency AC with potentially lethal effects (Electrical Hazards, p. 9). Average complexity. Major appliance or industrial power. [1891]. More recently, small Tesla coils have come on the market for teachers and hobbyists, producing comparatively low power (1 point burn).</p>"
+  },
+  {
+    "_id": "0c98eb0bcbd6951c",
+    "name": "Metal Detector (TL6)",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld device a yard long that generates an oscillating magnetic field that changes frequency in the presence of metal up to 6\" deep for small objects such as coins, or 20\" for large objects. Manual correction of frequency drift is needed, giving -2 to Electronics Operation rolls. Roll vs. Archaeology, Geology, Prospecting, or Scrounging to interpret rolls.</p>"
+  },
+  {
+    "_id": "1f0606f119dc90e2",
+    "name": "Geiger Counter (TL8)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller device with a digital display.</p>"
+  },
+  {
+    "_id": "3c2ca6c796d12ffe",
+    "name": "Geiger Counter (TL6)",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces an electrical signal when exposed to radiation, with an automatic counter. Requires a high-voltage power supply that can inflict 5d lethal electrical damage; this can be built as a Simple complexity invention using household power. The standard tube is built into portable Geiger counters.</p>"
+  },
+  {
+    "_id": "b38576a6b5080680",
+    "name": "pH Meter (TL6)",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Measure a solution's acidity or alkalinity, described by pH. Pure water has pH 7; lower pH indicates acidity, and higher pH indicates alkalinity. An integrated pH meter was developed in 1935.</p>"
+  },
+  {
+    "_id": "9545a4f3decb6134",
+    "name": "Metal Detector (TL8)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Automatic correction of frequency drift eliminates the skill penalty.</p>"
+  },
+  {
+    "_id": "333fab8bfb758c22",
+    "name": "pH Meter (TL7)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "read: the book gives the TL7 meter one short sentence; checked against the page",
+    "description": "<p>A compact model.</p>"
+  },
+  {
+    "_id": "e698618662e30d30",
+    "name": "pH Meter (TL8)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller device with a digital display.</p>"
+  },
+  {
+    "_id": "da640432e13b2e73",
+    "name": "Large General-Purpose Analog Computer",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "assembled from the page: priced in the general-purpose analog computer's entry",
+    "description": "<p>A desktop model designed for easy reconfiguration; roll vs. Electronics Operation (Scientific). Solves scientific equations numerically within 0.1% accuracy. A larger model can solve systems of equations and run simulations.</p>"
+  },
+  {
+    "_id": "fb7a1979ac662133",
+    "name": "Autoclave",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sterilization at high pressure was discovered in Pasteur's laboratories. This electrically heated autoclave holds 25 quarts and provides sterile instruments for Surgery or Artist (Body Art).</p>"
+  },
+  {
+    "_id": "400fea7a8fa1f11e",
+    "name": "Cautery Pen",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A battery-operated device for cauterization. Disposable after use.</p>"
+  },
+  {
+    "_id": "90eca604c83d9755",
+    "name": "Electrical Gloves (Standard)",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "read: one entry prices both grades of glove, so both share its text",
+    "description": "<p>Gloves made of electrically nonconductive material. DR 1, flexible; against lethal electric shock, DR 25 (standard) or DR 75 (high-end).</p>"
+  },
+  {
+    "_id": "8bf676d7c1ee72e7",
+    "name": "Electrical Gloves (High-End)",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "read: one entry prices both grades of glove, so both share its text",
+    "description": "<p>Gloves made of electrically nonconductive material. DR 1, flexible; against lethal electric shock, DR 25 (standard) or DR 75 (high-end).</p>"
+  },
+  {
+    "_id": "13b0bb6d73f0245d",
+    "name": "Hot Stick (Fiberglass)",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Hot Stick entry, which prices both sticks; it runs on to the head of the next column",
+    "description": "<p>A pole of nonconductive material on which tools can be mounted, making it possible to work on high-voltage systems such as power lines from a safe distance. A typical length is 1 yard, but hot sticks as long as 10 yards have been used. Tool use is at -2 to the relevant skill; this penalty can be bought off as a Hard technique. Early hot sticks, made of wood treated with wax or shellac, were used at up to 220,000 volts. More recently, fiberglass hot sticks have been used at up to 750,000 volts.</p>"
+  },
+  {
+    "_id": "66aa8c06e991fcba",
+    "name": "Insulation Resistance Tester",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A specialized ohmmeter designed for measuring very high resistances (a widely used model is named the Wee Megger). Turning a hand crank produces DC test voltage between a conductor and the outside of its insulation.</p>"
+  },
+  {
+    "_id": "f354f13f5d3e7a81",
+    "name": "Compressed Hydrogen (8 hours)",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "read: priced in running prose inside the fuel cell's entry, whose text it shares; the price stays in its sentence",
+    "description": "<p>An uninterruptible power supply providing major appliance power for one device, or household power for six to 10 devices. Fuel for 8 hours is 2.7 cubic feet of compressed hydrogen, weighing 6 lb. and costing $27. A composite tank to store it weighs 400 lbs., takes up 4.2 cubic feet, and costs $1,500. If stored oxygen is needed (in submarines or spacecraft), a tank half that size and cost can store 48 lbs. of compressed oxygen.</p>"
+  },
+  {
+    "_id": "64b194aa46f2edb5",
+    "name": "Composite Hydrogen Tank",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "read: priced in running prose inside the fuel cell's entry, whose text it shares; the price stays in its sentence",
+    "description": "<p>An uninterruptible power supply providing major appliance power for one device, or household power for six to 10 devices. Fuel for 8 hours is 2.7 cubic feet of compressed hydrogen, weighing 6 lb. and costing $27. A composite tank to store it weighs 400 lbs., takes up 4.2 cubic feet, and costs $1,500. If stored oxygen is needed (in submarines or spacecraft), a tank half that size and cost can store 48 lbs. of compressed oxygen.</p>"
+  },
+  {
+    "_id": "1b5de68984be34fe",
+    "name": "Leyden Jar",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The original capacitor, a glass jar with both the interior and exterior covered with metal foil. A metal rod passes through an insulated stopper to connect with the interior. Size varies; the size defined here is based on a pint jar and delivers a nonlethal shock with -4 to HT when fully charged.</p>"
+  },
+  {
+    "_id": "215d10c6675cdd66",
+    "name": "Medium Flywheel",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Flywheels section, which prices the three sizes and the materials under one entry",
+    "description": "<p>A flywheel stores energy in dense material spinning extremely fast. A set of coils acts as a motor when power is fed in, speeding it up, or as a generator when power is taken out, slowing it down. Peak output lasts up to 2 minutes. The power cells in GURPS Ultra-Tech might be advanced flywheels.</p><p>Flywheels come in weights comparable to larger batteries, though volume is greater.</p><p>Medium. Stores 2/3 the energy of an M battery, but peak output is 60× as high (equal to household power).</p><p>Large. Stores as much energy as an L battery, but peak output is 100× as high (equal to industrial power).</p><p>Very Large. Stores as much energy as a VL battery, but peak output is 100× as high.</p><p>Steel (TL7). Only available in L and VL. ×4.5 weight; onethird cost.</p><p>Titanium (TL7). Only available in L and VL. One-third greater energy; ×3 weight; two-thirds cost.</p><p>Carbon Fiber Composite (TL8). Available in all sizes with statistics above.</p>"
+  },
+  {
+    "_id": "7a7a48913132bf1a",
+    "name": "Large Flywheel",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Flywheels section, which prices the three sizes and the materials under one entry",
+    "description": "<p>A flywheel stores energy in dense material spinning extremely fast. A set of coils acts as a motor when power is fed in, speeding it up, or as a generator when power is taken out, slowing it down. Peak output lasts up to 2 minutes. The power cells in GURPS Ultra-Tech might be advanced flywheels.</p><p>Flywheels come in weights comparable to larger batteries, though volume is greater.</p><p>Medium. Stores 2/3 the energy of an M battery, but peak output is 60× as high (equal to household power).</p><p>Large. Stores as much energy as an L battery, but peak output is 100× as high (equal to industrial power).</p><p>Very Large. Stores as much energy as a VL battery, but peak output is 100× as high.</p><p>Steel (TL7). Only available in L and VL. ×4.5 weight; onethird cost.</p><p>Titanium (TL7). Only available in L and VL. One-third greater energy; ×3 weight; two-thirds cost.</p><p>Carbon Fiber Composite (TL8). Available in all sizes with statistics above.</p>"
+  },
+  {
+    "_id": "dee2e5dd3f0d5d2f",
+    "name": "Very Large Flywheel",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Flywheels section, which prices the three sizes and the materials under one entry",
+    "description": "<p>A flywheel stores energy in dense material spinning extremely fast. A set of coils acts as a motor when power is fed in, speeding it up, or as a generator when power is taken out, slowing it down. Peak output lasts up to 2 minutes. The power cells in GURPS Ultra-Tech might be advanced flywheels.</p><p>Flywheels come in weights comparable to larger batteries, though volume is greater.</p><p>Medium. Stores 2/3 the energy of an M battery, but peak output is 60× as high (equal to household power).</p><p>Large. Stores as much energy as an L battery, but peak output is 100× as high (equal to industrial power).</p><p>Very Large. Stores as much energy as a VL battery, but peak output is 100× as high.</p><p>Steel (TL7). Only available in L and VL. ×4.5 weight; onethird cost.</p><p>Titanium (TL7). Only available in L and VL. One-third greater energy; ×3 weight; two-thirds cost.</p><p>Carbon Fiber Composite (TL8). Available in all sizes with statistics above.</p>"
+  },
+  {
+    "_id": "25455092ab87fc36",
+    "name": "Microwave Rectenna",
+    "pages": "HT:EE19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Proposals to send power wirelessly began with Tesla's work in the 1890s, leading to the Tesla coil (p. 12). However, long-distance wireless power transmission proved unworkable. Recently developed technologies provide much lower power levels at shorter ranges.</p><p>Inductive charging, a near-field effect, uses oscillating magnetic fields to transmit power. Devices such as cordless phones and electric toothbrushes now have wireless chargers; free-standing chargers are becoming increasingly available for cell phones.</p><p>Other devices use radio waves to transmit power, going back to the resonant cavity microphone (p. 44). Radio-frequency identification (RFID) tags (p. 43) are a widespread application of this method, based on the rectenna (\"rectifying antenna\"). Large-scale rectennas have been used experimentally to transmit household or major appliance power via microwaves at a 1-mile range, with possible application to drone aircraft (p. 46).</p>"
+  },
+  {
+    "_id": "9e48e6f636c40e1c",
+    "name": "Replacement Arc Welder Electrode",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: priced in the arc welder's entry",
+    "description": "<p>Uses the heat from a carbon arc to weld or cut metal. Inflicts 3d(2) burning damage per second.</p>"
+  },
+  {
+    "_id": "76e7ea56fa832df6",
+    "name": "Miniature Tungsten Bulbs (dozen)",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tungsten bulbs had longer lives and better durability. Miniature bulbs are used in flashlights (p. 22) and as indicators.</p>"
+  },
+  {
+    "_id": "f01077c01017c7d5",
+    "name": "Rugged Flashlight",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses dry cells and a miniature bulb as a portable light source. It didn't take off commercially until the development of the tungsten filament bulb (p. 21). Typically uses a 1.5-watt bulb. Conical beam range 10 yards.</p>"
+  },
+  {
+    "_id": "260359075edcb294",
+    "name": "Electrobat II",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Electrobat entry, which runs on to the next column; the layout reading lost a line",
+    "description": "<p>A line of automobiles powered by lead-acid batteries. The first model was impractically heavy (4,250 lbs.); statistics are given here for the second model, used for cab service in several eastern U.S. cities. It had two seats in front and a raised platform at the rear for the driver. Recharged by driving into a charging station and swapping the batteries for a new set. 75 minutes/64L.</p>"
+  },
+  {
+    "_id": "1ea0851cdeb89f4b",
+    "name": "Tesla Model S",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A five-door liftback automobile; the statistics given here are for the 75-kWh model with all-wheel drive. A full recharge with major appliance power takes 8 hours; an optional second charger reduces this to 4 hours, if power is available.</p>"
+  },
+  {
+    "_id": "a95e7acb647c4044",
+    "name": "Telautograph Receiver",
+    "pages": "HT:EE25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for sending messages to a remote location as they are written. The sender moves a stylus over a sheet of paper; vertical and horizontal position sensors control the motion of another pen at a receiving station. This allows legally valid signatures to be made at a distance.</p>"
+  },
+  {
+    "_id": "ae396c184771ae98",
+    "name": "Gold Leaf Electroscope",
+    "pages": "HT:EE10",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electric charge causes two pieces of gold foil suspended from a conductor to repel each other and separate. After being charged, it can be used for detecting radiation, which causes the charge to leak off; roll vs. Physics.</p>"
+  },
+  {
+    "_id": "739ecdfab90ad339",
+    "name": "Quadrant Electrometer",
+    "pages": "HT:EE10",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for detecting and measuring the voltage difference between two objects. A metal vane rotates at an angle proportional to the difference. Power comes from a Daniell cell (see Wet Cell, pp. 16-17) built into the meter.</p>"
+  },
+  {
+    "_id": "9da0e7f24aa0a517",
+    "name": "Vacuum-Tube Electrometer",
+    "pages": "HT:EE10",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A specialized vacuum-tube voltmeter (p. 11) with an input resistance so high that almost no current flows when it's connected to charged bodies, leaving the charge nearly unchanged. Can be improvised from a standard voltmeter and resistors.</p>"
+  },
+  {
+    "_id": "b41edb3a1c357fbe",
+    "name": "Solid-State Electrometer",
+    "pages": "HT:EE10",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A more compact device using transistors.</p>"
+  },
+  {
+    "_id": "c696d967bc855c8c",
+    "name": "Moving Magnet Galvanometer",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading; read from the page as a stream",
+    "description": "<p>Reveals the presence of electric current by the movement of a pointer. Can be improvised from a compass and a length of wire. Subject to disturbance by magnetic fields or ferrous metals - apply a penalty of -1 to -10.</p>"
+  },
+  {
+    "_id": "f0193a35f2bf7bce",
+    "name": "Mirror Galvanometer",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tiny mirror that deflects a beam of light replaces the pointer, for greatly increased sensitivity (treat as cutting edge; see p. 8). Developed during the transatlantic cable project, it could be connected to a telegraph line to detect weak signals; roll vs. Electronics Operation (Comm)+4 to read messages.</p>"
+  },
+  {
+    "_id": "9973be93a9a75b5b",
+    "name": "D'Arsonval Moving Coil Galvanometer",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>As sensitive as the mirror galvanometer and unaffected by magnetic fields.</p>"
+  },
+  {
+    "_id": "2dba5bfd90fb26c1",
+    "name": "Strip Chart Recorder",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Inspired by automatic recorders for telegraph messages; one or more galvanometers move pens up and down on a steadily moving paper strip. This records current or voltage from a source, as in an electrocardiograph (p. 12).</p>"
+  },
+  {
+    "_id": "9d0f6bf032e06992",
+    "name": "Multimeter",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Also known as a volt-ohm-milliammeter (VOM). Combines the functions of a voltmeter (which measures voltage), an ammeter (which measures current), and an ohmmeter (which measures resistance) - all invented and available separately after 1900. Can also be used with Electrician or Electronics Repair. Originally worked only for DC; from 1931 on, includes a rectifier that allows use with AC.</p>"
+  },
+  {
+    "_id": "7646fd4804dbf473",
+    "name": "Vacuum-Tube Voltmeter (VTVM)",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A voltmeter that amplifies weak signals and allows readings that are more accurate. Early models have poor stability (-2 to effective skill).</p>"
+  },
+  {
+    "_id": "e2fe633866c48e80",
+    "name": "Field Effect Transistor Voltmeter (FET-VM)",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A more compact device using transistors.</p>"
+  },
+  {
+    "_id": "bf9339d393fea622",
+    "name": "Audio Signal Generator",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Generates standard audio-frequency waveforms such as sine waves and square waves. Walt Disney Studios bought eight of the first models to test sound equipment used in filming Fantasia.</p>"
+  },
+  {
+    "_id": "412756fbc9ea5fe9",
+    "name": "Radio Signal Generator",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Generates modulated radio-frequency waveforms for testing radio circuits.</p>"
+  },
+  {
+    "_id": "c86f5da36e566998",
+    "name": "Signal Tracer",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The complement to a signal generator. Probes connected to a circuit pick up the signal. The amplified signal is output to a small loudspeaker. Contains a crystal detector for radio-frequency signals; no modifier for audio or AM, but -5 to skill for FM. Modified for good or bad hearing.</p>"
+  },
+  {
+    "_id": "a9a7db383d3be497",
+    "name": "Lock-In Amplifier (TL7)",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading lost a line",
+    "description": "<p>A sophisticated device that can tune to a signal at an exact frequency (within 1 hertz) and measure its intensity, despite interference; disregard penalties of up to -6 for electrical \"noise.\" Can be used to synchronize two signals, making possible exact timing of measurements.</p>"
+  },
+  {
+    "_id": "6ed251b371e8c0a9",
+    "name": "Lock-In Amplifier (TL8)",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A digital version that cancels up to -9 of interference penalties!</p>"
+  },
+  {
+    "_id": "88777bdb3b7223b9",
+    "name": "Oscillograph",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Traces waveforms of signals on a strip chart (above). A switching mechanism samples a repetitive waveform at intervals, tracing one small section at a time.</p>"
+  },
+  {
+    "_id": "c5e6ca9c5d2c28b7",
+    "name": "High-Frequency Oscillograph",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A later design with a mirror galvanometer (above) and photographic paper traces actual waveforms at frequencies of a few kilohertz.</p>"
+  },
+  {
+    "_id": "415e6af391077794",
+    "name": "Oscilloscope",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses a cathode-ray tube (which scans an electron beam over a photoelectric screen) as a display device, with amplifiers. +1 to signal tracing (pp. 47-48). Electronics Operation (Scientific) allows analysis and comparison of signals; for example, it can determine if two voices are from the same person.</p>"
+  },
+  {
+    "_id": "c7cf63bb3f3381d7",
+    "name": "Spectrum Analyzer",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading split a word",
+    "description": "<p>A special-purpose variation on the oscilloscope, which shows relative energy at different frequencies in a signal. Usable as a signal tracer (p. 48) at +2 for both AM and FM signals and in electronic warfare (see Signals Intelligence, pp. 47-48, and Jammers, p. 49-50). Audio-frequency applications range from analyzing vibration patterns in machinery (+2 to Mechanics rolls to diagnose problems; requires an accelerometer, p. 13) to analyzing speech sounds (+2 to Linguistics; requires a microphone, p. 31). The device is equivalent to gaining Discriminatory Hearing (p. B49).</p>"
+  },
+  {
+    "_id": "394b072aad6e5e8a",
+    "name": "Digital Oscilloscope",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses analog-to-digital conversion and can store and play back signals. A compact model is XS/4 hours.</p>"
+  },
+  {
+    "_id": "f443bd42717b7dc6",
+    "name": "Wimshurst Generator",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Two wheels holding multiple electrodes, rotating in opposite directions, accumulate charges in Leyden jars (p. 18) through electrostatic induction, starting from an initial small charge.</p>"
+  },
+  {
+    "_id": "7b109815234fd4b2",
+    "name": "Van de Graaff Generator",
+    "pages": "HT:EE11",
+    "status": "reviewed",
+    "notes": "assembled from the page: runs on to the top of p. 12",
+    "description": "<p>A moving belt takes on charge outside a hollow sphere and deposits it in the interior, from which it moves to the surface. This small model, suited for classroom demonstrations, has a 9\"-diameter sphere and can get up to 340,000 volts, with a charging time of 10 seconds. It comes with a discharge wand. If not discharged, it can deliver a nonlethal shock to an uninsulated person (+2 to HT to resist; see Electrical Hazards, p. 9). Larger generators can be built, and they deliver stronger shocks (-6 to the HT roll for each ×2 diameter, or -3 for ×1.5).</p>"
+  },
+  {
+    "_id": "517847740cec15c0",
+    "name": "Small Tesla Coil",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Tesla Coils section, which prices both coils under one entry",
+    "description": "<p>Used in experiments with wireless power transmission (p. 19), for special effects in films, and to perform demonstrations at public events.</p><p>Tesla Coil (TL6). A source of high-frequency current that can jump wide air gaps, producing spectacular sparks. Roll vs. Electrician, Hobby Skill (Feats of Science), or Physics to construct and operate. The output causes 1d-3 burn on a critically failed operation roll; on an unmodified roll of 18, a spark may contact the power line (if unshielded), conducting low-frequency AC with potentially lethal effects (Electrical Hazards, p. 9). Average complexity. Major appliance or industrial power. [1891]. More recently, small Tesla coils have come on the market for teachers and hobbyists, producing comparatively low power (1 point burn).</p>"
+  },
+  {
+    "_id": "65bb0bac2e2264e3",
+    "name": "Heart Monitor",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small electrocardiograph, typically with only three electrodes, designed to transmit heart activity by radio to a recorder over a full day or more for diagnostic use (-2 to Diagnosis for briefer use, -4 for less than half an hour).</p>"
+  },
+  {
+    "_id": "ac4363d0de43e256",
+    "name": "Digital Heart Monitor",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Can be used in physical training for HT or fitness, allowing exercise at an optimized rate that reduces training time by 10%.</p>"
+  },
+  {
+    "_id": "585edeada572a201",
+    "name": "Wireless EEG Headset",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A headset with multiple electrodes that reach through hair to contact the scalp, with an analog-to-digital converter for EEG readings, providing input to a computer (Brain-Computer Interfaces, p. 41).</p>"
+  },
+  {
+    "_id": "a51c80dad7152350",
+    "name": "Geiger-Müller Tube",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces an electrical signal when exposed to radiation, with an automatic counter. Requires a high-voltage power supply that can inflict 5d lethal electrical damage; this can be built as a Simple complexity invention using household power. The standard tube is built into portable Geiger counters.</p>"
+  },
+  {
+    "_id": "1e49b6fe5fc5ad74",
+    "name": "Glass Electrode",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Measure a solution's acidity or alkalinity, described by pH. Pure water has pH 7; lower pH indicates acidity, and higher pH indicates alkalinity. An integrated pH meter was developed in 1935.</p>"
+  },
+  {
+    "_id": "61adc26b7525a34c",
+    "name": "Thermistor",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A temperature sensor based on changes in the resistance of a material with temperature.</p>"
+  },
+  {
+    "_id": "530d8444efdbbb70",
+    "name": "Photodetector",
+    "pages": "HT:EE12",
+    "status": "reviewed",
+    "notes": "assembled from the page: runs on to the top of p. 13",
+    "description": "<p>In early versions, a selenium-based photovoltaic cell generates a current when bright light shines on it, measuring the illumination level to the nearest step (see p. 20) on a roll vs. Electronics Operation (Scientific), at a penalty equal to the partial darkness penalty. Integrated light meters avoid penalties to Photography for low or excess light. In 1935, they begin to be built into cameras.</p>"
+  },
+  {
+    "_id": "c5c94534b1692a52",
+    "name": "Accelerometer (TL7)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Produces an electrical signal when accelerated, either by its own weight when resting on a surface (no response in free fall), or by being pushed, pulled, or vibrated. Came into widespread use in the World War II aviation industry.</p>"
+  },
+  {
+    "_id": "5c68c5b7df43ff95",
+    "name": "Light Meter",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Works like the TL6 light meter, but silicon-based cells eliminate the partial darkness penalty.</p>"
+  },
+  {
+    "_id": "f637492b1c75919e",
+    "name": "Accelerometer (TL8)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The invention of MEMS (p. 24) made possible much smaller, cheaper, usually digital accelerometers implemented on chips. Since 2000, such chips have been incorporated into smartphones, tablets, and game controllers.</p>"
+  },
+  {
+    "_id": "4577d0844c27d7bb",
+    "name": "Digital Thermometer",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Used with skills such as Chemistry (for laboratory work), Diagnosis (for medical thermometers), or Housekeeping (for food thermometers), normally without a skill roll. Each field requires specially designed thermometers to fit its temperature range and environmental conditions.</p>"
+  },
+  {
+    "_id": "530e72d1840d690f",
+    "name": "Electronic Pedometer",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Based on an accelerometer chip. Usable for Navigation (Land) by dead reckoning or as an aid to training Hiking skill (-10% to required study time).</p>"
+  },
+  {
+    "_id": "dd0158f2c1a961bc",
+    "name": "General-Purpose Analog Computer",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "assembled from the page: its entry, which prices the larger model too; the layout reading split it",
+    "description": "<p>A desktop model designed for easy reconfiguration; roll vs. Electronics Operation (Scientific). Solves scientific equations numerically within 0.1% accuracy. A larger model can solve systems of equations and run simulations.</p>"
+  },
+  {
+    "_id": "aa0f04b6b959b515",
+    "name": "Portable Diathermy Apparatus",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "assembled from the page: wraps round a pull quote, read line by line",
+    "description": "<p>D'Arsonval and Tesla independently showed that high-frequency currents didn't produce electric shock, but could warm living tissues. Shortwave diathermy uses this effect to relieve deep muscle pain or inflammation. After 30 minutes, roll vs. Physician to reduce the intensity of pain by one step (see p. B428 for definitions of steps). Early models, using Tesla coils and lower frequencies, give -2 to effective skill and can cause burns (1d-3) on a critical failure.</p>"
+  },
+  {
+    "_id": "460f9cc27d1ee353",
+    "name": "Electrocautery",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "assembled from the page: wraps round a pull quote, read line by line",
+    "description": "<p>Uses a heated wire to cauterize a small area of body tissue. Roll vs. Surgery to stop superficial bleeding (p. B420) or destroy small growths such as warts. Can also be used for Artist (Body Art). Normally used under local anesthesia, as the heat causes Severe Pain (p. B428).</p>"
+  },
+  {
+    "_id": "86aec9d5b1dbe22b",
+    "name": "Electroconvulsive Therapy Device",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading; read from the page as a stream",
+    "description": "<p>Experiments with electrical treatment of mental illness go back to the 1700s, but systematic use began shortly before World War II. A brief current through the brain triggers convulsions (treat as Seizure, p. B429); patients occasionally suffered broken limbs, but muscle relaxants avoided this after 1951. A course of treatments requires a roll vs. Physician, normally by a specialist in psychiatry. Successful treatment acts as a Mitigator for Chronic Depression or Manic-Depressive for 1 year. On a failed roll vs. HT-2, it produces quirk-level Amnesia affecting the 1d days immediately before its use; in a horror campaign, this may be beneficial!</p>"
+  },
+  {
+    "_id": "1333804a176b5b1c",
+    "name": "Defibrillator",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "assembled from the page: runs from the foot of one column to the head of the next; the layout reading lost a line",
+    "description": "<p>Applies a brief high-voltage shock (effectively a very powerful nonlethal shock) to restore normal beating of the heart. Realistically, this treats ventricular fibrillation (random twitching of the heart, caused for example by lethal AC shock; see p. 9) but doesn't restart a stopped heart. Roll vs. Electronics Operation (Medical). On a success, the heart restarts on a roll vs. HT+1; this can be raised as high as HT+5 by repeated tries at higher energy, but is at -1 per 2 full minutes since fibrillation began. Early experiments applied current directly to the heart, requiring surgery to open the chest. Large stationary models allowing external application are available starting 1959. A portable version was developed later for paramedics.</p>"
+  },
+  {
+    "_id": "d536656a42413d66",
+    "name": "Automated External Defibrillator",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The automated external defibrillator (AED) provides effective Electronics Operation (Medical)-12 to users who can follow written instructions.</p>"
+  },
+  {
+    "_id": "aa51441a263db833",
+    "name": "Digital Stethoscope",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electronically enhanced stethoscope giving +1 to hear faint sounds, canceling -1 to hearing from noise, and giving +1 to Diagnosis - or Lockpicking, for safecracking (see p. 42).</p>"
+  },
+  {
+    "_id": "5bf25bb6bb09d3f5",
+    "name": "Laser Scalpel",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A laser-based cutting tool designed for surgical use. Very common in eye surgery. +2 to Surgery rolls that benefit from High Manual Dexterity. Different specialties of Surgery call for different designs.</p>"
+  },
+  {
+    "_id": "6951ad5a74e5678b",
+    "name": "Lineman's Pliers",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading broke its label from its text",
+    "description": "<p>Heavy pliers shaped to be helpful in electrical tasks; basic equipment for Electrician. Gives +2 to activities that require a secure grip. Can be used as wire cutters.</p>"
+  },
+  {
+    "_id": "21b229f21c72b765",
+    "name": "Needle Nose Pliers",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pliers with a long, pointed working surface able to reach into tight spaces. Cancels up to -2 in penalties for working in such environments.</p>"
+  },
+  {
+    "_id": "fc3ef052d7acae6b",
+    "name": "Screwdrivers",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A set of half a dozen screwdrivers for use with screws of varied types and sizes. Can be used to discharge capacitors safely (pp. 17-18).</p>"
+  },
+  {
+    "_id": "ac92ef4ec621aec1",
+    "name": "Wire Cutters",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tool resembling pliers, with blades able to cut electric wire (2d(2) cut). Can be used to cut power lines (Low-Voltage Systems, p. 19). Substitutes for a wire stripper with a DX-based roll vs. Electrician or Electronics Repair.</p>"
+  },
+  {
+    "_id": "4e037205a464f7b2",
+    "name": "Wire Stripper",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A tool resembling pliers, having a pair of blades with a round notch. Used to cut through insulation on wires and pull it off.</p>"
+  },
+  {
+    "_id": "6f4e2592898ad492",
+    "name": "Soldering Iron (TL6)",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The iconic tool of the electronics technician or radio hobbyist, using resistance heating (Resistive Elements, p. 21) to heat a metal tip to 190°F or above. Inflicts 1 point burn per second.</p>"
+  },
+  {
+    "_id": "298f7d862e3724d3",
+    "name": "Soldering Iron (TL7)",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "read: the book gives the TL7 iron one short sentence; checked against the page",
+    "description": "<p>A smaller model of soldering iron.</p>"
+  },
+  {
+    "_id": "f35133fbac9da8a3",
+    "name": "Antistatic Wrist Strap",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The development of integrated circuits (p. 6) led to the discovery that many circuit boards failed to work after being handled, as a result of static discharge from human hands. The antistatic wrist strap protects against this problem, and against electric sparks igniting Super-Flammable materials (Electrical Hazards, p. 9). Must be grounded, using an attached cord ending in an alligator clip. Without this, failure by 2 or more under dry conditions, or critical failure under humid conditions, results in electrostatic discharge.</p>"
+  },
+  {
+    "_id": "0d3fb5a863b66944",
+    "name": "Soldering Laser",
+    "pages": "HT:EE14",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A soldering device using infrared light from a diode laser for extremely precise placement; +2 to DX-based rolls.</p>"
+  },
+  {
+    "_id": "4c4f9cf1ced88f17",
+    "name": "Faraday Suit",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Clothing with conductive wires or fibers woven in, worn by Tesla coil hobbyists and in barehand work on power lines at 220,000 volts or above. (For safe power-line work, the wearer must not be grounded; the suit is electrically connected to the power line.) Provides immunity to nonlethal electric shocks; DR 20 against burning damage from lightning and lethal electric shocks; blocks radio waves, including microwave area-denial attacks (see Active Denial System, p. 50).</p>"
+  },
+  {
+    "_id": "b5d4394789346212",
+    "name": "Hot Stick (Wood)",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Hot Stick entry, which prices both sticks; it runs on to the head of the next column",
+    "description": "<p>A pole of nonconductive material on which tools can be mounted, making it possible to work on high-voltage systems such as power lines from a safe distance. A typical length is 1 yard, but hot sticks as long as 10 yards have been used. Tool use is at -2 to the relevant skill; this penalty can be bought off as a Hard technique. Early hot sticks, made of wood treated with wax or shellac, were used at up to 220,000 volts. More recently, fiberglass hot sticks have been used at up to 750,000 volts.</p>"
+  },
+  {
+    "_id": "cb0a0e054fcec44e",
+    "name": "Test Light",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for determining if a wire or outlet is live. The end of one insulated lead is touched to a grounded surface, while the end of another is touched to the point being tested. A neon light glows if there's voltage.</p>"
+  },
+  {
+    "_id": "f161ed6780a2deca",
+    "name": "Voltage Tester",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for determining if a wire or outlet is live without an electrical connection, by capacitive coupling between the circuit and a probe tip, and between the user's body and ground. A small amplifier causes a light to glow if AC voltage is present.</p>"
+  },
+  {
+    "_id": "3a1091525fd88f99",
+    "name": "Voltaic Pile",
+    "pages": "HT:EE16",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The original laboratory apparatus for supplying electric current. Roll vs. Chemistry or Physics to construct. Typical electrodes are copper and zinc. Roll vs. HT 10 after each 30 minutes of use; after a failed roll, the copper is covered with hydrogen bubbles, blocking current flow. It could have as many cells as needed for an experiment; the first arc light (p. 20) was powered by a 2,000-cell pile.</p>"
+  },
+  {
+    "_id": "6bf59f165636d196",
+    "name": "Fuel Cell Power Supply",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "read: the entry runs on into the hydrogen supply it burns, priced in running prose; those prices are the hydrogen records'",
+    "description": "<p>An uninterruptible power supply providing major appliance power for one device, or household power for six to 10 devices. Fuel for 8 hours is 2.7 cubic feet of compressed hydrogen, weighing 6 lb. and costing $27. A composite tank to store it weighs 400 lbs., takes up 4.2 cubic feet, and costs $1,500. If stored oxygen is needed (in submarines or spacecraft), a tank half that size and cost can store 48 lbs. of compressed oxygen.</p>"
+  },
+  {
+    "_id": "39c411a8444b1f22",
+    "name": "Hand Crank Generator",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld generator that operates when a crank is turned; no FP are expended in doing so. Takes the place of one S battery, or recharges one XS battery in 1 hour or one S battery in 3 hours. May be built into a device such as a flashlight or emergency radio, instead of or in addition to batteries.</p>"
+  },
+  {
+    "_id": "7657740c9dae4d6e",
+    "name": "Wind Generator (TL6)",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "assembled from the page: runs on to the head of the next column; the layout reading ran words together",
+    "description": "<p>A generator driven by a wind turbine, mounted on a tower to provide clearance for the 8'-diameter blades. Adjusting its operation as wind changes calls for rolls vs. Machine Operation (Wind Generator); see p. 6. Power depends on wind speed: at high speeds, it supplies household power or can recharge a VL battery in 2 hours; at low speeds, it supplies automotive power or can recharge a VL battery in 10 hours. If there's no wind, it provides no power!</p>"
+  },
+  {
+    "_id": "d90829bb441fb093",
+    "name": "Wind Generator (TL8)",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>More efficient turbines supply twice the output, use lighter materials, and operate automatically.</p>"
+  },
+  {
+    "_id": "8063b7e7bd99dbe9",
+    "name": "Portable Solar Panel",
+    "pages": "HT:EE17",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A compact, foldable solar panel, the size of a briefcase when carried; folds out to a yard on a side. Equivalent to automotive power or three M batteries; can recharge an M battery in an hour or an L battery in a day.</p>"
+  },
+  {
+    "_id": "f5c6ecb2b90cc31b",
+    "name": "Lithium-Ion Battery Recharger",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading",
+    "description": "<p>A compact device that recharges a lithium-ion battery plugged into it.</p>"
+  },
+  {
+    "_id": "27a6f068710bb1ef",
+    "name": "Car-Battery Recharger",
+    "pages": "HT:EE18",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Supplies DC to recharge a lead-acid battery. A medium-amperage setting recharges a battery in 5 hours. A high-amperage setting can start a car, or can recharge a battery in 1 hour, but has to be monitored for safety; roll vs. Electrician or Mechanic (Gasoline Engine or vehicle type). On a critical failure, the battery explodes with REF 0.05 (see p. B415), causing explosive crushing damage - 6d for an L battery or 6d×3 for an XL battery. Anyone within 1 yard for an L battery or 3 yards for an XL battery is splashed with strong acid (p. B428).</p>"
+  },
+  {
+    "_id": "99de9a9a14e32068",
+    "name": "Power Outlets (10-pack)",
+    "pages": "HT:EE19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A socket that can be installed in a wall to provide household or major appliance power with an Electrician+4 roll. Grounded outlets become standard during the 20th century.</p>"
+  },
+  {
+    "_id": "e912be2e7db503aa",
+    "name": "Wattmeter",
+    "pages": "HT:EE19",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A portable device that measures current power consumption. Roll vs. Electrician or any Electronics Repair skill to use. It can identify which power lines in a building are in use, or locate equipment drawing large amounts of power.</p>"
+  },
+  {
+    "_id": "df12d8c9d0b8fac8",
+    "name": "Yablochkov Candle",
+    "pages": "HT:EE20",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Two parallel carbon rods 12\" long separated by insulation, joined at the top by a fuse. When power is supplied, an arc forms at the top, and progressively erodes the rods, taking 2 hours. If extinguished, it cannot be restarted. Used mainly in spotlights, but also in streetlights (360° field).</p>"
+  },
+  {
+    "_id": "d9030f2348e66d60",
+    "name": "Arc Welder",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading",
+    "description": "<p>Uses the heat from a carbon arc to weld or cut metal. Inflicts 3d(2) burning damage per second.</p>"
+  },
+  {
+    "_id": "c0af04673c7b8458",
+    "name": "Carbon Filament Bulb",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The first incandescent light. The filament is fragile, giving the bulb HT 8. Cooler and dimmer than modern bulbs.</p>"
+  },
+  {
+    "_id": "8fb52b5bd6da3245",
+    "name": "Incandescent Bulb Heater",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Four incandescent bulbs with a copper reflector that directs their heat outward. Gives too little heat to warm a room, but can lessen the chill for one person or warm the hands; +1 to HT to resist cold.</p>"
+  },
+  {
+    "_id": "7f62bbc08fb4fa9d",
+    "name": "Hot Plate",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device using chromel inside a hollow steel tube as a cooking surface. Improvised equipment for Cooking or Housekeeping. Inflicts 1d-3 burn per second.</p>"
+  },
+  {
+    "_id": "8f87c45514af986e",
+    "name": "Resistance Wire Heater",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A heater that can warm a moderate-sized room; +2 to HT to resist cold. Early models often had inadequate screening and could inflict 1d-3 burn per second.</p>"
+  },
+  {
+    "_id": "474fec7b6d395593",
+    "name": "Tungsten Filament Bulb",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Tungsten bulbs had longer lives and better durability. Miniature bulbs are used in flashlights (p. 22) and as indicators.</p>"
+  },
+  {
+    "_id": "6f8a0b4be5cb7466",
+    "name": "Heating Pad",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Provides moderate heat controlled by a thermostat. After 30 minutes, roll vs. HT to reduce the intensity of persistent pain one step (see p. B428 for definitions of steps).</p>"
+  },
+  {
+    "_id": "b1e904557378d22a",
+    "name": "Flashbulb",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>An electric current from a camera heats and ignites a magnesium wire, illuminating a 180° hemisphere with 900,000 lux at 1 yard. Roll vs. HT to avoid being dazzled, at -5 if looking directly at the bulb.</p>"
+  },
+  {
+    "_id": "4341943792e66aea",
+    "name": "Fluorescent Light",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Experiments with fluorescent lighting go back to 1859. The modern form, in which ultraviolet light emitted by mercury vapor activates a fluorescent coating, came into use in 1939. Compact fluorescent lights can replace incandescent bulbs.</p>"
+  },
+  {
+    "_id": "21a8064783088d09",
+    "name": "Handheld Induction Furnace",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading",
+    "description": "<p>Uses magnetic induction to heat metals. This is a small model, with a crucible holding up to 4.5 lbs. of metal at the end of a long handle that can lift and tip it. Molten metal inflicts 3d burning damage at first contact!</p>"
+  },
+  {
+    "_id": "443c9bc541c97c9a",
+    "name": "Microwave Oven",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses microwaves to heat water and organic molecules in food inside a shielded enclosure, allowing rapid cooking, defrosting, and reheating. Control of heating is less precise: -1 to Housekeeping, -2 to Cooking.</p>"
+  },
+  {
+    "_id": "682c59c36ef9715e",
+    "name": "Induction Cooker",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Originally patented in 1909; early commercial models appeared in 1972. A high-frequency magnetic field produces current flow in a ferrous metal pan. The surface the pan rests on is not heated, nor is spilled food. Heating is almost instantaneous, providing precise control: +1 to Cooking and Housekeeping, but with initial unfamiliarity penalties. This countertop model uses household power.</p>"
+  },
+  {
+    "_id": "8eedcc69076c33aa",
+    "name": "Laser Pointer",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small (often pocket-sized) device containing a diode laser whose beam shows up on a distant surface as a point of light. Used as a pointer or a cat toy - or an improvised weapon to dazzle a foe by targeting the face (Ranged Weapons Table, p. 51). After 2000, green laser pointers are available that have greater effective range.</p>"
+  },
+  {
+    "_id": "5d4946d6d05b381b",
+    "name": "Solid-State Heat Pump",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading ran two words together",
+    "description": "<p>In the Peltier effect, electric current flowing through a junction of two different metals results in heat flow across the junction. Heat pumps are less efficient than refrigerators, but have neither moving parts nor fluids, make no noise, and almost never need repair. An insulated chest 18\" on a side holds 2.5 cubic feet of food or canned drinks and cools to 20°F below the surrounding temperature. Reversing the current with a built-in switch makes it a warmer.</p>"
+  },
+  {
+    "_id": "3f3b288b263532be",
+    "name": "Light-Emitting Diode Bulb",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A semiconductor device that emits light when current passes through it. LEDs for display became commercially available in 1968 (TL7). Bulbs using multiple LEDs appeared at TL8.</p>"
+  },
+  {
+    "_id": "d9c1401372ba46a8",
+    "name": "Spotlight",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: runs on to the top of p. 22",
+    "description": "<p>Designed for use in theaters or other public venues or on movie sets to light performers or speakers (rugged models have other applications). Can be clamped to a rail or bracket. Conical beam range 100 yards.</p>"
+  },
+  {
+    "_id": "eb24ccd1ba16fff8",
+    "name": "Floor Lamp",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A freestanding upright lamp between 5' and 6' tall, with a weighted base and usually a shade to diffuse the light. Often decoratively styled. Exposed lamp.</p>"
+  },
+  {
+    "_id": "7ecfaecda2abce11",
+    "name": "Table Lamp",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A lamp that stands on a table, usually with a shade to diffuse the light. Often decoratively styled. Exposed lamp.</p>"
+  },
+  {
+    "_id": "771f4a24db9707b0",
+    "name": "Desk Lamp",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small fixture with a heavy base that sits on a desktop or a clamp that attaches to its side. A flexible neck or a floating arm lets the user aim the light. Close-range beam.</p>"
+  },
+  {
+    "_id": "7c588bde8a5b4291",
+    "name": "Flashlight",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses dry cells and a miniature bulb as a portable light source. It didn't take off commercially until the development of the tungsten filament bulb (p. 21). Typically uses a 1.5-watt bulb. Conical beam range 10 yards.</p>"
+  },
+  {
+    "_id": "f5b9f172863355ff",
+    "name": "Penlight",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A smaller flashlight; users include theater ushers and doctors checking pupil reflexes. Typically uses a 1-watt bulb. Conical beam range 1 yard or close-range beam.</p>"
+  },
+  {
+    "_id": "02ba97fbfdd7e970",
+    "name": "Ceiling Lamp",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A fixture mounted on, or recessed into, a ceiling. Recessed lamp.</p>"
+  },
+  {
+    "_id": "ad05b1e94448e767",
+    "name": "Brush Electroplating System",
+    "pages": "HT:EE22",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A relatively small system, suited for a home workshop or small business. Uses an electrified brush to apply a metal solution at a precise thickness. Roll vs. Artist (Sculpting), Jeweler, or Machinist. On a failure, the coating is uneven; on a failure by 5 or more, the surface wasn't properly cleaned and parts remain uncoated. Can be used with gold, silver, copper, zinc, tin, or nickel - or with brass or bronze at -2 to skill.</p>"
+  },
+  {
+    "_id": "3ba211442c7fe085",
+    "name": "Portable Electromagnet",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small but powerful electromagnet, 2\" in diameter (1\" interior diameter) and 1\" thick (SM -7), able to lift 130 lbs. (effective ST 8).</p>"
+  },
+  {
+    "_id": "a768e29376a0bc2f",
+    "name": "Bell or Buzzer",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Bells and Buzzers section, both paragraphs",
+    "description": "<p>The force of a small electromagnet can be used in a telegraph sounder (p. 26) or a bell or buzzer. When current flows, a hammer strikes a metal bell, once or repeatedly, or a piece of metal moves back and forth, making a buzz (Hearing distance is 4 yards). A buzzer can be improvised from a relay (see p. 24) with an Electrician roll.</p><p>Motors are another type of electromagnetic device, more widely used than all the others together.</p>"
+  },
+  {
+    "_id": "f52eb27893f55508",
+    "name": "Large Fan",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for moving air, often used for cooling; +2 to the user's HT to withstand ordinary heat.</p>"
+  },
+  {
+    "_id": "bf09b76d8468a120",
+    "name": "Small Fan (TL6)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Stands on a desk, table, or other surface, or is clamped in place; the bonus to the user's HT is only +1.</p>"
+  },
+  {
+    "_id": "40cd5c1eba52ffb4",
+    "name": "Vacuum Cleaner",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Uses a motor-driven fan to suck air, dirt, and tiny things into a bag. Can be run over the floor or used with nozzle attachments that reach into tight spaces.</p>"
+  },
+  {
+    "_id": "a2df11212fafb67a",
+    "name": "Sewing Machine (TL6)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Sewing machines, invented at TL5, were quickly adapted to use electric motors. Machine sewing is 5× as fast as hand sewing.</p>"
+  },
+  {
+    "_id": "4884b321b607291c",
+    "name": "Cyclonic Vacuum Cleaner",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A vacuum cleaner with a detachable filtered collection vessel in place of a bag; filters must be cleaned after use.</p>"
+  },
+  {
+    "_id": "ac5ef7eefefeef02",
+    "name": "Handheld Vacuum Cleaner",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading ran the next entry into it",
+    "description": "<p>A small vacuum cleaner, sometimes powered by batteries. Household power or 2×XS/13.5 hours.</p>"
+  },
+  {
+    "_id": "636e3081a946b14b",
+    "name": "Sewing Machine (TL8)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "assembled from the page: the layout reading ran it into the handheld vacuum cleaner",
+    "description": "<p>A programmable machine that carries out complex decorative stitches automatically without a skill roll.</p>"
+  },
+  {
+    "_id": "a3102df51506c66c",
+    "name": "Small Fan (TL8)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A small fan powered by rechargeable batteries.</p>"
+  },
+  {
+    "_id": "354536e7b7d9abde",
+    "name": "Electric Typewriter (TL6)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Pressing the keys directs mechanical energy from a motor to a typebar, producing more even impressions on the page and increasing typing speed (Typing, p. B228).</p>"
+  },
+  {
+    "_id": "2926cd01223c40b8",
+    "name": "Mimeograph",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Presses a stencil cut by hand or by a typewriter (without a ribbon) onto sheets of paper, letting ink through to make impressions. The standard model places the paper on a revolving drum, allowing up to 45 copies per minute.</p>"
+  },
+  {
+    "_id": "8720ac2820fe9b6c",
+    "name": "Shredder",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>First used in Germany during World War II; the now standard crosscut shredder (which cuts paper into small pieces rather than long strips) was invented later. Came into widespread use in the late 1980s. Roll vs. Forensics to reconstruct shredded documents, at -5 if they have been through a crosscut shredder.</p>"
+  },
+  {
+    "_id": "3e4a811f7e7ae126",
+    "name": "Electric Typewriter (TL7)",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A design introduced at TL7 with letters mounted on the surface of a metal ball about the size of a golf ball; allows changing typefaces.</p>"
+  },
+  {
+    "_id": "53f6fb747231a1fe",
+    "name": "Photocopier",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Early photocopiers were stationary devices using chemically based photography, taking 5 minutes per copy (starting 1907), or electrostatically based xerography, capable of seven copies per minute (invented in 1937; commercially available 1960). Desktop models are suitable for smaller offices. At TL8, similar functions are incorporated into multifunction printers (below).</p>"
+  },
+  {
+    "_id": "a452c29c3f6d3d79",
+    "name": "Daisy Wheel Printer",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A computer-controlled text output device in which a disk rotates to impress a selected character on a sheet of paper (similarly to the metal ball in a TL7 electric typewriter). Capable of five words per second.</p>"
+  },
+  {
+    "_id": "f0d183c496350cda",
+    "name": "Dot Matrix Printer",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The first pixel-based printer, capable of outputting images as well as text. Poor resolution gives -5 to Artist rolls.</p>"
+  },
+  {
+    "_id": "d41d743bb8aa1919",
+    "name": "Multifunction Printer",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Combines the functions of an inkjet (p. 24) or laser (p. 33) printer, a scanner (p. 33), a photocopier (above), and a fax machine (p. 27).</p>"
+  },
+  {
+    "_id": "356c9cb2b2c0326b",
+    "name": "Shopvac",
+    "pages": "HT:EE23",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A larger vacuum cleaner able to clean up wet areas (including crime scenes, if it's carried away after use; -2 to subsequent Forensics rolls).</p>"
+  },
+  {
+    "_id": "9a03f2b091fa5552",
+    "name": "Power Drill",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "assembled from the page: its label is lost from the layout reading",
+    "description": "<p>A handheld tool in which a small electric motor turns a drill tip. A typical model inflicts 1d+2(2) pi++ damage on materials such as wood and plaster. The standard design has a trigger switch and pistol grip; early models have clumsier arrangements (-2 to skill).</p>"
+  },
+  {
+    "_id": "45a95a108c57f156",
+    "name": "Circular Saw",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A handheld saw with a rotating blade; also called a \"buzzsaw.\" A typical model inflicts sw+3(2) cut damage on wood or other materials; for hard materials such as concrete or brick, an abrasive diamond blade inflicts sw+3(5) cut damage.</p>"
+  },
+  {
+    "_id": "610e4de9e5aba335",
+    "name": "Compact Circular Saw",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Powered by internal batteries; inflicts sw+1(2) cut damage per second, or sw+1(5) cut damage with an abrasive diamond blade.</p>"
+  },
+  {
+    "_id": "f84de5d6479b4cc6",
+    "name": "Compact Power Drill",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>Powered by internal batteries. 3S/1 hour.</p>"
+  },
+  {
+    "_id": "c175cf83212965fc",
+    "name": "Inkjet Printer",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A MEMS-based device that deposits pigment directly onto paper. Allows Artist rolls at no penalty. May be incorporated into a multifunction printer (p. 23).</p>"
+  },
+  {
+    "_id": "3aeee36fe64c7c5a",
+    "name": "3D Printer",
+    "pages": "HT:EE24",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for fabricating models or small parts by laying down successive layers of polymers according to a design stored in a computer (pp. 36-38); often used for making prototypes. To use, roll vs. Machinist or vs. Artist (Sculpting), at -2 until familiar with this design method. Larger industrial-scale versions used for additive manufacture of small parts may work with metals rather than polymers.</p>"
+  },
+  {
+    "_id": "f1b96ca75074672e",
+    "name": "Telautograph",
+    "pages": "HT:EE25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A device for sending messages to a remote location as they are written. The sender moves a stylus over a sheet of paper; vertical and horizontal position sensors control the motion of another pen at a receiving station. This allows legally valid signatures to be made at a distance.</p>"
+  },
+  {
+    "_id": "35be155c80ada634",
+    "name": "Telepresence Robot",
+    "pages": "HT:EE25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A wheeled platform that supports a teleconferencing unit at a height of 4'6\", allowing a remote operator to view and navigate an indoor environment at Move 2 and interact with people there.</p>"
+  },
+  {
+    "_id": "e8e4a5faa6a18aa9",
+    "name": "Smart Plug",
+    "pages": "HT:EE25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>A remote-controllable switch inserted between a three-pronged plug and a grounded household outlet, letting a device be turned on and off at up to 30 yards or via a network (p. 41).</p>"
+  },
+  {
+    "_id": "65af704d7a63349f",
+    "name": "Robovac",
+    "pages": "HT:EE25",
+    "status": "reviewed",
+    "notes": "",
+    "description": "<p>The autonomous robotic vacuum cleaner travels about a floor, using built-in sensors to navigate and select suitable cleaning modes without human control. It takes longer than a human being would, but works all day unsupervised. Later models (since 2007) can find their way to charging stations when their batteries are running down.</p>"
+  },
+  {
     "_id": "d718a98b314a60c8",
     "name": "Fax Machine",
     "pages": "HT:EE27",

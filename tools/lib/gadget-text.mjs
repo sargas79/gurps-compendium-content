@@ -57,44 +57,85 @@ const PLAIN_YEARS = /\s*(?:[[(]\d{4}[\])]\s*)?\d{4}\.?\s*$|\s*\[\d{4}\]\.?\s*$/;
  * The sentence before the price that says what powers the item, or a
  * prototype's complexity: "2×XS/120 hours or rechargeable/120 hours.",
  * "Household power or S/6 hours.", "Major appliance power.", "Average
- * complexity." (HT:EE pp. 8-9). The record holds both.
+ * complexity." (HT:EE pp. 8-9), and a prototype's "Stationary." with no
+ * price. The record holds them all.
  */
 const PLAIN_POWER = new RegExp(
-  String.raw`(?:^|(?<=[.!?)]\s))(?:(?:\d+\s*×\s*)?(?:T|XS|S|M|L|VL)(?:\/[\d,.]+\s*[a-z]+)?|rechargeable\/[\d,.]+\s*[a-z]+|(?:peripheral|automotive|household|major appliance|industrial|external)[a-z ]{0,30}?(?:power|current))(?:\s+or\s+[^.$]{1,40})?[.,]?\s*$|(?:^|(?<=[.!?)]\s))(?:simple|average|complex|amazing) complexity\.\s*$`,
+  String.raw`(?:^|(?<=[.!?)]\s))(?:(?:\d+\s*×\s*)?(?:T|XS|S|M|L|VL)(?:\/[\d,.]+\s*[a-z]+)?|rechargeable\/[\d,.]+\s*[a-z]+|(?:peripheral|automotive|household|major appliance|industrial|external)[a-z ]{0,30}?(?:power|current))(?:\s+or\s+[^.$]{1,40})?[.,]?\s*$|(?:^|(?<=[.!?)]\s))(?:(?:simple|average|complex|amazing) complexity|stationary)\.\s*$`,
   "i",
 );
 
 /**
  * Where one item's closing line ends and more of the entry follows: after its
- * years. "...$280, 7.5 lbs. 1980. A compact model..." prices one model and
- * goes on to the next under the same entry.
+ * years, or after a price and weight that a new sentence follows. "...$280,
+ * 7.5 lbs. 1980. A second model..." prices one model and goes on to the next
+ * under the same entry; "...$1.50, neg. Miniature bulbs..." does the same with
+ * no year, and the weight may come first: "0.5 lb., $100. [1909] 1929."
  */
-const PLAIN_SEAM = /(?<=\$[\d,]+(?:\.\d+)?(?:\s*\([^)$]{1,20}\))?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+\s*lbs?\.)\s*(?:\[\d{4}\]\s*)?\d{4}\.)\s+(?=["A-Z])/;
+const PLAIN_SEAM = new RegExp(
+  String.raw`(?<=(?:\$[\d,]+(?:\.\d+)?(?:\/[a-z]+)?(?:\s*\([^)$]{1,20}\))?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+\s*lbs?\.)|[\d,]*\.?\d+\s*lbs?\.,\s*\$[\d,]+(?:\.\d+)?\.)(?:\s*(?:\[\d{4}\]\s*)?\d{4}\.)?)\s+(?=["A-Z])`,
+);
+
+/** A sentence that is only a year or two, which a closing line ends on: "1923.", "[1826] 1858." */
+const YEAR_ALONE = /(?:^|(?<=[.!?)]\s))(?:[[(]\d{4}[\])]\s*)?\d{4}\.\s*$/;
+
+/**
+ * The closing line inside an entry's last sentence, from its price on: "...a
+ * sturdier version costs $40, 2 lbs., with DR 3." What led up to the price
+ * goes too, as withoutPriceStub takes it.
+ */
+function withoutPriceTail(text) {
+  const last = text.search(/(?:^|(?<=[.!?)]\s))[^.!?]*(?:\.(?!\s+["A-Z])[^.!?]*)*[.!?]?\s*$/);
+  const at = text.indexOf("$", Math.max(last, 0));
+  return at === -1 ? text : text.slice(0, at).trim();
+}
+
+/**
+ * A closing line whose years say what each is for: "$30, 3 lbs. 1878 for one
+ * lamp (p. 20); 1904 for the other."
+ */
+const PLAIN_YEARS_NOTED = /(?:^|(?<=[.!?)]\s))\$[\d,]+(?:\.\d+)?[,;]\s*(?:neg\.|stationary\.|[\d,]*\.?\d+\s*lbs?\.)\s*(?:\[\d{4}\]\s*)?\d{4}\s[^$]*$/;
 
 /** One closing line dropped from the end of a piece of an entry. */
 function withoutPlainClosing(text) {
   let out = text.trim();
   const noYears = out.replace(PLAIN_YEARS, "");
-  if (PLAIN_PRICE_WEIGHT.test(noYears)) out = noYears.replace(PLAIN_PRICE_WEIGHT, "").trim();
-  else if (noYears !== out && PLAIN_POWER.test(noYears)) out = noYears.trim();
+  const dated = noYears !== out;
+  if (PLAIN_YEARS_NOTED.test(out)) out = out.replace(PLAIN_YEARS_NOTED, "").trim();
+  else if (PLAIN_PRICE_WEIGHT.test(noYears)) out = noYears.replace(PLAIN_PRICE_WEIGHT, "").trim();
+  // "$750, 15 lbs.; $375, 10 lbs. for each extra unit. [1888] 1900." and "$1,100,
+  // 100 lbs. (stand not included). [1887] 1930.": the years say the sentence
+  // before them holds the closing line, whatever it adds to the price.
+  else if (dated && withoutPriceTail(noYears) !== noYears) out = withoutPriceTail(noYears);
+  else if (dated && PLAIN_POWER.test(noYears)) out = noYears.trim();
+  else if (YEAR_ALONE.test(out)) out = out.replace(YEAR_ALONE, "").trim();
   for (let previous = null; previous !== out; ) {
     previous = out;
     out = out.replace(PLAIN_POWER, "").trim();
   }
-  return out;
+  // What only led up to the price goes with it: "A box of ten is", "The usual make is:".
+  // A piece that lost nothing is left as it is, for the doubts to flag if it stops short.
+  if (out === text.trim()) return out;
+  const kept = withoutPriceStub(out);
+  // A second model's closing can be the whole of its sentence's piece: "...$70,
+  // 2.25 lbs. Spare tips are $1, neg. 1881." leaves a stub with no
+  // sentence before it to fall back to.
+  return /[.!?"')\]]$/.test(kept) || kept.length > 120 || /[.!?]\s/.test(kept) ? kept : "";
 }
 
 /**
  * Drops the closing lines of a book that prints no legality class: the power,
  * the price and weight, and the years, which the record holds as its power,
- * cost, weight and `invention` data (HT:EE pp. 8-9). "...a steady reading.
- * Household power. $52, 10 lbs. [1922] 1936." keeps "...a steady reading."
+ * cost, weight and `invention` data (HT:EE pp. 8-9). "...a small current.
+ * Household power. $52, 10 lbs. [1922] 1936." keeps "...a small current."
  *
- * An entry pricing two models ("...$280, 7.5 lbs. 1980. A compact model...
+ * An entry pricing two models ("...$280, 7.5 lbs. 1980. A second model...
  * $150, 6 lbs. 1985.") loses both closings and keeps what it says of each, so
- * the two records it prices can share its text. Nothing is dropped from a
- * piece that doesn't end on a price, a weight, or a power statement or
- * complexity before them, so a sentence ending on a year stays whole.
+ * the two records it prices can share its text; so does an entry whose years
+ * come a sentence after its price ("$26, 4 lbs. Later models... 1923."). Nothing
+ * is dropped from a piece that doesn't end on a price, a weight, a power
+ * statement or complexity before them, or a year standing alone, so a
+ * sentence ending on a year stays whole.
  */
 export function stripPlainClosing(text) {
   return text
@@ -129,8 +170,9 @@ export function withoutPriceStub(text) {
  * from the gadget before it: "...$50, 0.5 lb. LC4. Magnetic Diskettes (TL7)".
  * The class ends a gadget, so a line breaks after it; and before a label with
  * its tech level, which a gadget of no price ("Dive Mask (TL6). See Goggles
- * (p. 71).") runs into as well.
+ * (p. 71).") runs into as well. A label may open on a unit in lower case:
+ * "pH Meter (TL7)." (HT:EE p. 13).
  */
 export function gadgetLines(line) {
-  return line.split(/(?<=\bLC\s?\d\.)\s+(?=["A-Z0-9])|(?<=[.!?)]\s)(?=[A-Z0-9][^.:()]{0,50}\*?\s\(TL[\d^/-]+\)\.\s)/);
+  return line.split(/(?<=\bLC\s?\d\.)\s+(?=["A-Z0-9])|(?<=[.!?)]\s)(?=(?:[A-Z0-9]|[a-z][A-Z])[^.:()]{0,50}\*?\s\(TL[\d^/-]+\)\.\s)/);
 }

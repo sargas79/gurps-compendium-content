@@ -4016,8 +4016,28 @@
         "asidesAsText": true,
         "topMargin": 40,
         "aliases": {
-          "Chaff (per package)": "Chaff"
-        }
+          "Chaff (per package)": "Chaff",
+          "Electrical Gloves (Standard)": "Electrical Gloves",
+          "Electrical Gloves (High-End)": "Electrical Gloves",
+          "Hot Stick (Wood)": "Hot Stick",
+          "Hot Stick (Fiberglass)": "Hot Stick",
+          "Small Tesla Coil": "Tesla Coil",
+          "Large Tesla Coil": "Tesla Coil",
+          "Electrobat II": "Electrobat"
+        },
+        "families": [
+          { "pattern": "^Compact Digital Oscilloscope$", "replace": "Digital Oscilloscope" },
+          { "pattern": "^pH Meter \\(TL6\\)$", "replace": "Glass Electrode" },
+          { "pattern": "^Geiger Counter \\(TL6\\)$", "replace": "Geiger-M\u00fcller Tube" },
+          { "pattern": "^Large General-Purpose Analog Computer$", "replace": "General-Purpose Analog Computer" },
+          { "pattern": "^(?:Compressed Hydrogen \\(8 hours\\)|Composite Hydrogen Tank)$", "replace": "Fuel Cell Power Supply" },
+          { "pattern": "^(?:Medium|Large|Very Large) Flywheel$", "heading": "Flywheels", "headingOnly": true },
+          { "pattern": "^Microwave Rectenna$", "heading": "Wireless Power", "headingOnly": true },
+          { "pattern": "^Replacement Arc Welder Electrode$", "replace": "Arc Welder" },
+          { "pattern": "^Miniature Tungsten Bulbs \\(dozen\\)$", "replace": "Tungsten Filament Bulb" },
+          { "pattern": "^Rugged Flashlight$", "replace": "Flashlight" },
+          { "pattern": "^Telautograph Receiver$", "replace": "Telautograph" }
+        ]
       },
       "capture": {
         "labelEnd": ".:",
@@ -4039,7 +4059,8 @@
           {
             "pattern": "^Color Television$",
             "reason": "one entry prices the set at TL7 (cutting edge) and again at TL8; both kept by hand (HT:EE p. 34)"
-          },
+          }
+,
           {
             "pattern": "^(?:Workstation Terminal|Radar Jammer|Fuze)$",
             "reason": "each is printed at two TLs or as several kinds, all kept by hand, since the capture leaves a name held at any TL alone (HT:EE pp. 40, 48, 49)"
@@ -4482,7 +4503,8 @@
               }
             },
             "reason": "one XS cell for 10,000 readings, printed before the price and not read (HT:EE p. 35)"
-          },
+          }
+,
           {
             "pattern": "^Desktop Calculator$",
             "set": {

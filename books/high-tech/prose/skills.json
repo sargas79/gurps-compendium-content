@@ -96,6 +96,126 @@
     "description": "<p>A speargun is for hunting fish and defense against aquatic predators. It most commonly relies on thick rubber bands to propel the spear, but some models use compressed air. Divide range by 10 in water; however, line length is usually the more stringent limit, as the spear is normally fastened to the gun by no more than 30' (10 yards) of line. See Harpoons (p. B411) for rules for tethered spears. Spearguns use the Crossbow (Speargun) skill, a new specialty of Crossbow (p. B186).</p>"
   },
   {
+    "_id": "d7ffd5d121f1a18c",
+    "name": "Artist (Neon)",
+    "pages": "HT:EE21",
+    "status": "reviewed",
+    "notes": "assembled from the page: Luminous Gases and the neon light's entry, which names the specialty",
+    "description": "<p>Some forms of lighting involve the flow of electric current through ionized gases.</p><p>Neon Light (TL6). Brightly colored neon signs appeared in Paris before World War I. Designing a sign calls for a roll vs. Artist (Neon). Major appliance power. Cost and size are not standardized.</p>"
+  },
+  {
+    "_id": "b73806115f0675a7",
+    "name": "Engineer/TL (Analog Computers)",
+    "pages": "HT:EE13",
+    "status": "reviewed",
+    "notes": "assembled from the page: the analog computers paragraph that names the specialty",
+    "description": "<p>In GURPS terms, an analog computer is a modified copy of an invention, requiring a roll vs. Engineer (Analog Computers) to create. It has the cost of a single copy. Basic devices are Average inventions and typically fit on a desktop; the differential analyzer and comparable devices are Complex inventions as large as a megacomputer (p. 37). To \"program\" a prototype flexible analog computer, roll vs. Mathematics (Applied) to define the problem and vs. Mechanic (Analog Computers) or Electronics Repair (Scientific) to set up the machine.</p>"
+  },
+  {
+    "_id": "034dfbe3c3608cce",
+    "name": "Hobby Skill (Feats of Science)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Hobby Skill section: electrical hobbies, then Feats of Science",
+    "description": "<p>Several IQ-based Hobby Skills involve electrical or electronic devices. Examples include model railroading (after Lionel Corporation released the first electric model trains in 1900) and amateur radio (which became an organized hobby in 1909) at TL6; high fidelity (based on World War II advances in electronics) at TL7; and computers, beginning a few years before TL8. Hobby Skills can substitute for operation or repair skills, but only for small, lowpower systems.</p><p>A new IQ-based Hobby Skill is Feats of Science, based on practical knowledge of experiments and demonstrations that illustrate scientific principles in a visually dramatic or surprising way, similar to Feats of Strength (GURPS Martial Arts, p. 57). Given a room full of the right equipment, you can roll to keep intelligent non-scientists entertained for an hour or two with electrical sparks, startling mechanical operations, and trivial explosions. New effects are at -4 for lack of familiarity. You have a basic working knowledge of the current state of the physical sciences, though it isn't terribly deep; you can roll to answer simple questions of fact (or current belief) that someone with an actual relevant scientific skill would get +6 or more to answer. At TL 7 and up, specialized variants become common; for example, \"coilers\" show off spectacular electrical displays from Tesla coils.</p>"
+  },
+  {
+    "_id": "491dc444a6653e90",
+    "name": "Machine Operation/TL (Analog Computers)",
+    "pages": "HT:EE6",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Machine Operation paragraph, which names the specialty",
+    "description": "<p>The skill of operating a class of devices whose primary function is not electronic, and which aren't already covered by vehicle skills, weapon skills, or other specialized skills such as Photography. Some examples include industrial water pumps, mechanical analog computers, and printing presses. Depending on the type of device, the skill defaults to Electrician-5 or Mechanic (same)-5, as well as to Engineer (Electrical)-5 or Engineer (same)-5.</p>"
+  },
+  {
+    "_id": "b89877f5226410f2",
+    "name": "Machine Operation/TL (Printing Presses)",
+    "pages": "HT:EE6",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Machine Operation paragraph, which names the specialty",
+    "description": "<p>The skill of operating a class of devices whose primary function is not electronic, and which aren't already covered by vehicle skills, weapon skills, or other specialized skills such as Photography. Some examples include industrial water pumps, mechanical analog computers, and printing presses. Depending on the type of device, the skill defaults to Electrician-5 or Mechanic (same)-5, as well as to Engineer (Electrical)-5 or Engineer (same)-5.</p>"
+  },
+  {
+    "_id": "63aafe0c3491cf02",
+    "name": "Machine Operation/TL (Water Pumps)",
+    "pages": "HT:EE6",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Machine Operation paragraph, which names the specialty",
+    "description": "<p>The skill of operating a class of devices whose primary function is not electronic, and which aren't already covered by vehicle skills, weapon skills, or other specialized skills such as Photography. Some examples include industrial water pumps, mechanical analog computers, and printing presses. Depending on the type of device, the skill defaults to Electrician-5 or Mechanic (same)-5, as well as to Engineer (Electrical)-5 or Engineer (same)-5.</p>"
+  },
+  {
+    "_id": "38c4e35022561349",
+    "name": "Machine Operation/TL (Wind Generator)",
+    "pages": "HT:EE6",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Machine Operation paragraph and the wind generator's entry, which names the specialty (p. 17)",
+    "description": "<p>The skill of operating a class of devices whose primary function is not electronic, and which aren't already covered by vehicle skills, weapon skills, or other specialized skills such as Photography. Some examples include industrial water pumps, mechanical analog computers, and printing presses. Depending on the type of device, the skill defaults to Electrician-5 or Mechanic (same)-5, as well as to Engineer (Electrical)-5 or Engineer (same)-5.</p><p>Wind Generator (TL6). A generator driven by a wind turbine, mounted on a tower to provide clearance for the 8'-diameter blades. Adjusting its operation as wind changes calls for rolls vs. Machine Operation (Wind Generator); see p. 6. Power depends on wind speed: at high speeds, it supplies household power or can recharge a VL battery in 2 hours; at low speeds, it supplies automotive power or can recharge a VL battery in 10 hours. If there's no wind, it provides no power!</p>"
+  },
+  {
+    "_id": "cbc2dfa5a5a2cbe6",
+    "name": "Mechanic/TL (Analog Computers)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Mechanic paragraph and the analog computers paragraph that names the specialty (p. 13)",
+    "description": "<p>Maintenance and repair of some electrical devices involves specialties of Mechanic, either by device type, such as Analog Computers or Robotics, or by power-plant type, such as Electric Motor.</p><p>In GURPS terms, an analog computer is a modified copy of an invention, requiring a roll vs. Engineer (Analog Computers) to create. It has the cost of a single copy. Basic devices are Average inventions and typically fit on a desktop; the differential analyzer and comparable devices are Complex inventions as large as a megacomputer (p. 37). To \"program\" a prototype flexible analog computer, roll vs. Mathematics (Applied) to define the problem and vs. Mechanic (Analog Computers) or Electronics Repair (Scientific) to set up the machine.</p>"
+  },
+  {
+    "_id": "47dcd448816e9c48",
+    "name": "Mechanic/TL (Electric Motor)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Mechanic paragraph, which names the specialty",
+    "description": "<p>Maintenance and repair of some electrical devices involves specialties of Mechanic, either by device type, such as Analog Computers or Robotics, or by power-plant type, such as Electric Motor.</p>"
+  },
+  {
+    "_id": "adfdf4aa8e8971ed",
+    "name": "Mechanic/TL (Robotics)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Mechanic paragraph, which names the specialty",
+    "description": "<p>Maintenance and repair of some electrical devices involves specialties of Mechanic, either by device type, such as Analog Computers or Robotics, or by power-plant type, such as Electric Motor.</p>"
+  },
+  {
+    "_id": "874b00fc625699d4",
+    "name": "Musical Instrument (Stylophone)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the section's opening on electrophones and the instrument's own paragraph",
+    "description": "<p>GURPS Low-Tech Companion 1: Philosophers and Kings, pp. 17-19, lists required specialties for this skill, based on how an instrument is played. Electronics offers some new specialties, which fall into the new broad category of electrophones, based on the interface that controls the electronic circuits.</p><p>Stylophone: Played by touching a conductive stylus to a grid of contacts that complete circuits. Example: stylophone. Defaults: Dulcimer, Mbira, and Tuned Percussion at -4; Keyboard at -5.</p>"
+  },
+  {
+    "_id": "28996fcc1e62118a",
+    "name": "Musical Instrument (Theremin)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the section's opening on electrophones and the instrument's own paragraph",
+    "description": "<p>GURPS Low-Tech Companion 1: Philosophers and Kings, pp. 17-19, lists required specialties for this skill, based on how an instrument is played. Electronics offers some new specialties, which fall into the new broad category of electrophones, based on the interface that controls the electronic circuits.</p><p>Theremin: Played by moving the hands near antennas to control circuits through body capacitance. Examples: ondes Martenot, theremin. The ondes Martenot also has a keyboard that is played with Musical Instrument (Keyboard). Default: Trautonium at -4.</p>"
+  },
+  {
+    "_id": "ec9cec1d973adcf0",
+    "name": "Musical Instrument (Trautonium)",
+    "pages": "HT:EE7",
+    "status": "reviewed",
+    "notes": "assembled from the page: the section's opening on electrophones and the instrument's own paragraph",
+    "description": "<p>GURPS Low-Tech Companion 1: Philosophers and Kings, pp. 17-19, lists required specialties for this skill, based on how an instrument is played. Electronics offers some new specialties, which fall into the new broad category of electrophones, based on the interface that controls the electronic circuits.</p><p>Trautonium: Played by pressing a resistive wire to a conductive plate with a finger. Example: Trautonium. Defaults: Fiddle and Rebab at -3; Theremin at -4.</p>"
+  },
+  {
+    "_id": "7e33ee0e20c88ae1",
+    "name": "Physics/TL (Electromagnetism)",
+    "pages": "HT:EE8",
+    "status": "reviewed",
+    "notes": "assembled from the page: the Physics paragraph, which runs on to the next column",
+    "description": "<p>Physics includes the scientific study of electricity. At TL6+, one of its optional specialties is electromagnetism, which studies electric and magnetic fields and electromagnetic radiation. Physics (Electromagnetism) can substitute for any Physics roll in this supplement. Roll against Physics to detect and measure electromagnetic effects, to produce them in the laboratory, and to create and use experimental apparatus (pp. 10-12). Physics can substitute for Engineer (Electrical or Electronic) to invent new devices, but these are \"proof of concept\" designs that cannot be put into production. Setting up a production line requires a prototype created with an Engineer roll.</p>"
+  },
+  {
+    "_id": "94b24a0b19e21ac4",
+    "name": "Hot Stick",
+    "pages": "HT:EE15",
+    "status": "reviewed",
+    "notes": "assembled from the page: the hot stick's entry, whose penalty the technique buys off",
+    "description": "<p>A pole of nonconductive material on which tools can be mounted, making it possible to work on high-voltage systems such as power lines from a safe distance. A typical length is 1 yard, but hot sticks as long as 10 yards have been used. Tool use is at -2 to the relevant skill; this penalty can be bought off as a Hard technique. Early hot sticks, made of wood treated with wax or shellac, were used at up to 220,000 volts. More recently, fiberglass hot sticks have been used at up to 750,000 volts.</p>"
+  },
+  {
     "_id": "b88352bd5c71eed1",
     "name": "Close-Quarters Battle",
     "pages": "HT250",
