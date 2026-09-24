@@ -158,7 +158,7 @@ function itemContext(item: any, table: SensorTable): Record<string, unknown> {
     lines: shown.lines,
     modeLabel: L(ns, "CommModeLabel"),
     modeHint: L(ns, "CommModeHint"),
-    modes: shown.modes ? table.figures.commModes.map((value) => ({ value, label: L(ns, `CommMode.${value || "both"}`), selected: value === data.commMode })) : null,
+    modes: shown.modes ? (table.figures.commModesFor?.(item, data) ?? table.figures.commModes).map((value) => ({ value, label: L(ns, `CommMode.${value || "both"}`), selected: value === data.commMode })) : null,
     options: shown.options.map((key) => ({ key, label: L(ns, `${cap(key)}Label`), hint: L(ns, `${cap(key)}Hint`), checked: data.options[key] === true })),
   };
 }
@@ -246,7 +246,7 @@ async function commCheck(api: GWorldApi): Promise<void> {
     if (reception) {
       lines.push(...reception.lines);
       const roll = reception.roll;
-      if (roll) await api.roll.success({ actor: selected, base: skillBase(api, selected, roll.skill), skill: roll.skill, label: roll.label, modifiers: roll.modifiers, tags: roll.tags } as any);
+      if (roll) await api.roll.success({ actor: selected, base: roll.base ?? skillBase(api, selected, roll.skill), skill: roll.skill, label: roll.label, modifiers: roll.modifiers, tags: roll.tags } as any);
     } else if (modifier === 0) lines.push(L(ns, "InRange"));
     else if (modifier === null) lines.push(L(ns, "OutOfRange"));
     else {

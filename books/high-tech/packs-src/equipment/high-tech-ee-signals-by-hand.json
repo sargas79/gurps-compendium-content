@@ -57,7 +57,16 @@
       "listCost": 250,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "sensor": {
+            "commMode": "receiver",
+            "sparkGap": true,
+            "crystalDetector": true
+          }
+        }
+      }
     }
   },
   {
@@ -84,7 +93,14 @@
       "listCost": 300,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "sensor": {
+            "dipoleAntenna": true
+          }
+        }
+      }
     }
   },
   {

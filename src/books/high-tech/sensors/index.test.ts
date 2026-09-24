@@ -39,7 +39,7 @@ let successResult: any;
 const key = (k: string) => `${MODULE_ID}.${k}`;
 const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), rangefindingEmissions: key("rangefindingEmissions") };
 /** The supplement Electricity and Electronics' radio switches, which join High-Tech's (E1 in #471). */
-const EE = { radioTuning: key("radioTuning"), radioAntennas: key("radioAntennas"), shortwaveSkip: key("shortwaveSkip") };
+const EE = { radioTuning: key("radioTuning"), radioAntennas: key("radioAntennas"), shortwaveSkip: key("shortwaveSkip"), radioDesign: key("radioDesign") };
 const UT = { communicators: key("communicators"), sensors: key("sensors") };
 
 function fakeApi() {
@@ -116,7 +116,7 @@ async function load(): Promise<void> {
   ht.initHighTechSensors({ ...HT, ...EE });
   const api = fakeApi();
   ut.readyUltraTechSensors(api as never, { communicators: () => on.has(UT.communicators), sensors: () => on.has(UT.sensors) });
-  ht.readyHighTechSensors(api as never, { radios: () => on.has(HT.radios), active: () => on.has(HT.activeSensors), visual: () => on.has(HT.visualSensors), passive: () => on.has(HT.passiveSensors), tuning: () => on.has(EE.radioTuning) });
+  ht.readyHighTechSensors(api as never, { radios: () => on.has(HT.radios), active: () => on.has(HT.activeSensors), visual: () => on.has(HT.visualSensors), passive: () => on.has(HT.passiveSensors), tuning: () => on.has(EE.radioTuning), design: () => on.has(EE.radioDesign) });
 }
 
 beforeEach(async () => {
@@ -358,6 +358,160 @@ describe("the supplement's radio reception, antennas and shortwave (HT:EE pp. 27
       await link(gear("Large Radio (TL7)", { shortwave: true }, { tl: "7" }), gear("Large Radio (TL7)", { shortwave: true }, { tl: "7" }), 5000, { skip: {} });
       expect(chat[0]).toContain("GCC.HT.Sensor.NoLargeAntenna");
       expect(chat[0]).toContain("GCC.HT.Sensor.OutOfRange");
+    });
+  });
+});
+
+describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
+  const MILE = 1760;
+  const EE_PAGE = "High-Tech: Electricity and Electronics p. 27";
+  /** One of the supplement's radios, printed for code at half price (HT:EE p. 27). */
+  const eeRadio = (name: string, tl: string, sensor: Record<string, unknown> = {}) => gear(name, sensor, { tl, reference: EE_PAGE });
+  /** The trench radio kit's parts as the records hold them (HT:EE p. 29). */
+  const transmitter = (sensor: Record<string, unknown> = { commMode: "transmitter", sparkGap: true, wideband: true }) => gear("Trench Radio Transmitter", sensor, { tl: "6", reference: "High-Tech: Electricity and Electronics p. 29" });
+  const receiver = (sensor: Record<string, unknown> = { commMode: "receiver", sparkGap: true, crystalDetector: true }) => gear("Trench Radio Receiver", sensor, { tl: "6", reference: "High-Tech: Electricity and Electronics p. 29" });
+  const wire = (sensor: Record<string, unknown> = { dipoleAntenna: true }) => gear("Trench Radio Antenna Wire (1,000 feet)", sensor, { tl: "6", reference: "High-Tech: Electricity and Electronics p. 29" });
+  const keys = (item: any) => section().context(item).options.map((o: any) => o.key);
+  async function link(mine: any[], theirs: any[], miles: number, own: Record<string, unknown> = {}, listener: Record<string, any> = {}): Promise<void> {
+    controlled = [character("Nat", mine, listener)];
+    targets = [character("Airk", theirs)];
+    dialogAnswer = { yards: miles * MILE, urban: false, audioVisual: false, rate: 1, own };
+    await tools.get("comm-range").open();
+  }
+
+  it("adds nothing with only High-Tech's radios on: the trench sets aren't radios, and no design options", () => {
+    on = new Set([HT.radios]);
+    expect(section().visible(transmitter())).toBe(false);
+    expect(price(transmitter())).toBeNull();
+    expect(keys(eeRadio("Large Radio (TL6)", "6"))).not.toContain("sparkGap");
+    expect(price(eeRadio("Large Radio (TL6)", "6", { audio: true }))).toBeNull();
+    // The supplement's radios are printed for code already: no code-only option to halve them again.
+    expect(keys(eeRadio("Large Radio (TL6)", "6"))).not.toContain("codeOnly");
+    expect(price(eeRadio("Large Radio (TL6)", "6", { codeOnly: true }))).toBeNull();
+    expect(keys(gear("Large Radio (TL6)", {}, { tl: "6" }))).toContain("codeOnly");
+  });
+
+  describe("with radios and radioDesign on", () => {
+    beforeEach(() => { on = new Set([HT.radios, EE.radioDesign]); });
+
+    it("offers audio on the supplement's code sets at x2, and send-only at x0.9", () => {
+      const radio = eeRadio("Large Radio (TL6)", "6");
+      expect(keys(radio)).toEqual(expect.arrayContaining(["sparkGap", "audio", "quartzTuning"]));
+      expect(section().context(radio).lines.join(" ")).toContain("GCC.HT.Sensor.CodePrinted");
+      expect(section().context(radio).modes.map((m: any) => m.value)).toEqual(["", "receiver", "transmitter"]);
+      expect(price(eeRadio("Large Radio (TL6)", "6", { audio: true }))).toMatchObject({ cost: 200, weight: 10 });
+      expect(price(eeRadio("Large Radio (TL6)", "6", { commMode: "transmitter" }))).toMatchObject({ cost: 90, weight: 9 });
+      // High-Tech's own radios carry audio already: no audio option, and send-only only where the design rules are on.
+      expect(keys(gear("Large Radio (TL6)", {}, { tl: "6" }))).not.toContain("audio");
+    });
+
+    it("prices video against what the set is printed for (HT:EE p. 34)", () => {
+      expect(price(eeRadio("Medium Radio (TL7)", "7", { video: true }))).toMatchObject({ cost: 400, weight: 20 });
+      expect(price(gear("Medium Radio (TL7)", { video: true }, { tl: "7" }))).toMatchObject({ cost: 200, weight: 20 });
+      // Video on a High-Tech set replaces its code-only option.
+      expect(price(gear("Medium Radio (TL7)", { video: true, codeOnly: true }, { tl: "7" }))).toMatchObject({ cost: 200, weight: 20 });
+      expect(price(gear("Tiny Radio (TL8)", { digitalVideo: true }))).toMatchObject({ cost: 200, weight: 20 });
+    });
+
+    it("prices quartz tuning at TL6 as cutting edge, unless the device is marked so", () => {
+      expect(price(gear("Medium Radio (TL6)", { quartzTuning: true }, { tl: "6", equipmentQuality: "basic" }))).toMatchObject({ cost: 500 });
+      const marked = gear("Medium Radio (TL6)", { quartzTuning: true }, { tl: "6", equipmentQuality: "basic" });
+      marked.system.extensions[MODULE_ID].device = { cuttingEdge: true };
+      expect(price(marked)).toBeNull();
+      expect(section().context(marked).lines.join(" ")).toContain("GCC.HT.Sensor.DesignCuttingEdgeMarked");
+    });
+
+    it("reads the trench radio's sets as radios, priced as printed, and reprices a changed option (HT:EE p. 29)", () => {
+      const tx = transmitter();
+      expect(section().visible(tx)).toBe(true);
+      const context = section().context(tx);
+      expect(context.lines.join(" ")).toContain("GCC.HT.Sensor.PrintedBuild");
+      expect(context.lines[0]).toContain('Miles {\\"value\\":50}');
+      expect(context.options.map((o: any) => o.key)).toEqual(expect.arrayContaining(["sparkGap", "wideband", "rotarySparkGap"]));
+      // As printed: no change to its $1,575 and 112.5 lbs.
+      expect(price(tx, 1575, 112.5)).toBeNull();
+      expect(price(receiver(), 250, 4.5)).toBeNull();
+      // A rotary spark gap added: x5.
+      expect(price(transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, rotarySparkGap: true }), 1575, 112.5)).toMatchObject({ cost: 7875, weight: 112.5 });
+      // Built without the wideband it must have: 90 lbs.
+      expect(price(transmitter({ commMode: "transmitter", sparkGap: true }), 1575, 112.5)).toMatchObject({ weight: 90 });
+      expect(section().context(transmitter({ commMode: "transmitter", sparkGap: true })).lines.join(" ")).toContain("GCC.HT.Sensor.WidebandRequired");
+      // The receiver reads 0.5 mile (880 yards): a 5-mile set with a crystal.
+      expect(section().context(receiver()).lines[0]).toContain('Yards {\\"value\\":880}');
+    });
+
+    it("links the trench sets at 5 miles, after the crystal's roll for a sensitive spot (HT:EE p. 28)", async () => {
+      await link([receiver()], [transmitter()], 4.5);
+      expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Communications)", tags: ["crystalSpot"] });
+      expect(chat[0]).toContain('Miles {\\"value\\":5}');
+      expect(chat[0]).toContain("GCC.HT.Sensor.CrystalFound");
+      expect(chat[0]).toContain('GCC.HT.Sensor.SendOnly {"name":"Trench Radio Transmitter"}');
+      // A failure: -2 to receive, so the signal in range takes a roll with it.
+      successes = [];
+      successResult = { success: false, margin: -1 };
+      await link([receiver()], [transmitter()], 4.5);
+      expect(successes[1]).toMatchObject({ skill: "Electronics Operation (Communications)", modifiers: [{ value: -2 }] });
+      // A critical failure: nothing is received.
+      successResult = { success: false, criticalFailure: true, margin: -6 };
+      await link([receiver()], [transmitter()], 1);
+      expect(chat[2]).toContain("GCC.HT.Sensor.CrystalLost");
+      expect(chat[2]).toContain("GCC.HT.Sensor.OutOfRange");
+    });
+
+    it("strings the kit's wire as a dipole for its owner's sets, priced apart (HT:EE pp. 28-29)", async () => {
+      const rx = receiver();
+      await link([rx, wire()], [transmitter()], 7, { "dipole-a": "broadside" });
+      // 5 miles x1.5.
+      expect(chat[0]).toContain('Miles {\\"value\\":7.5}');
+      expect(chat[0]).toContain("GCC.HT.Sensor.DipoleBroadside");
+      expect(price(rx, 250, 4.5)).toBeNull();
+      // The wire's own sheet, and the ground aerial's -2.
+      const laid = wire({ dipoleAntenna: true, groundAerial: true });
+      expect(section().visible(laid)).toBe(true);
+      expect(keys(laid)).toEqual(["groundAerial"]);
+      expect(price(laid)).toBeNull();
+      successes = [];
+      await link([receiver(), laid], [transmitter()], 7.4, { "dipole-a": "broadside" });
+      expect(successes[1].modifiers.map((m: any) => m.value)).toEqual([2, -2]);
+    });
+
+    it("adjusts a regenerative receiver: a fifth the range on a failure, oscillating on a critical failure (HT:EE p. 29)", async () => {
+      const regen = () => gear("Medium Radio (TL6)", { regenerative: true }, { tl: "6" });
+      successResult = { success: false, margin: -2 };
+      await link([regen()], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(successes[0]).toMatchObject({ tags: ["regenerative"] });
+      // 5 miles each end, the listener's cut to 1: the root of 5 is 2.2 miles.
+      expect(chat[0]).toContain('Miles {\\"value\\":2.2}');
+      expect(chat[0]).toContain("GCC.HT.Sensor.RegenerativeMissed");
+      successResult = { success: false, criticalFailure: true, margin: -8 };
+      await link([regen()], [gear("Medium Radio (TL6)", {}, { tl: "6" })], 1);
+      expect(chat[1]).toContain("GCC.HT.Sensor.RegenerativeOscillates");
+      expect(chat[1]).toContain("GCC.HT.Sensor.OutOfRange");
+    });
+
+    it("tunes a superheterodyne with a simple Hearing roll, where the tuning roll is on (HT:EE p. 29)", async () => {
+      on = new Set([HT.radios, EE.radioDesign, EE.radioTuning]);
+      const superhet = gear("Small Radio (TL6)", { superheterodyne: true }, { tl: "6" });
+      expect(section().context(superhet).lines.join(" ")).toContain("GCC.HT.Sensor.TuningLine");
+      await link([superhet], [gear("Small Radio (TL6)", {}, { tl: "6" })], 0.5, { conditions: -3 }, { derived: { per: 12, senses: [{ sense: "hearing", score: 14 }] } });
+      expect(successes[0]).toMatchObject({ skill: "Hearing", base: 14, tags: ["radioTuning", "hearing"] });
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-3]);
+    });
+
+    it("gives a rotary spark gap's quality to sending on it, and says its ultra-high-speed audio is distorted", async () => {
+      const rotary = transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, rotarySparkGap: true });
+      dialogAnswer = { task: "send", cipher: false };
+      await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary]));
+      expect(successes[0].modifiers).toEqual([{ label: expect.stringContaining("GCC.HT.Sensor.QualityLine"), value: 1 }]);
+      successResult = { success: true, margin: 3 };
+      await link([gear("Large Radio (TL6)", {}, { tl: "6" })], [transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, ultraRotarySparkGap: true })], 10);
+      expect(chat.join(" ")).toContain("GCC.HT.Sensor.DistortedAudio");
+    });
+
+    it("cuts a wideband set's endurance to a fifth, against what a printed set counts already", async () => {
+      const power = await import("../../../shared/power/data.js");
+      expect(power.powerData(gear("Large Radio (TL6)", { commMode: "transmitter", sparkGap: true, wideband: true }, { tl: "6" })).enduranceFactor).toBeCloseTo(0.2);
+      expect(power.powerData(transmitter()).enduranceFactor).toBe(1);
     });
   });
 });

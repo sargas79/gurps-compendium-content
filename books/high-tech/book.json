@@ -4304,9 +4304,14 @@
                   "endurance": "35 minutes",
                   "raw": "3×M/35 minutes"
                 }
+              },
+              "system.extensions.gurps-compendium-content.sensor": {
+                "commMode": "transmitter",
+                "sparkGap": true,
+                "wideband": true
               }
             },
-            "reason": "the kit's first part, a large send-only wideband spark-gap transmitter with its three lead-acid M cells included; the receiver, the antenna wire and the spare cells are kept by hand (HT:EE p. 29)"
+            "reason": "the kit's first part, a large send-only wideband spark-gap transmitter with its three lead-acid M cells included, its build set as radio options (#493); the receiver, the antenna wire and the spare cells are kept by hand (HT:EE p. 29)"
           },
           {
             "pattern": "^Photophone$",

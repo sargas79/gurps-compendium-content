@@ -36,8 +36,8 @@
  * batteries, generators and fuel, the optional wounding rules, and the
  * general equipment: tool kits, forced-entry tools, chainsaws and nail
  * guns, and household hazards, the communications and sensors: radios,
- * telegraphy, radio reception, antennas and shortwave (from the supplement
- * Electricity and Electronics), active sensors, optics, night vision and thermographs,
+ * telegraphy, radio reception, antennas, shortwave and how a radio is built
+ * (from the supplement Electricity and Electronics), active sensors, optics, night vision and thermographs,
  * hydrophones and sound detectors, the expedition gear: lights,
  * navigation instruments and maps, load-bearing gear and packs, and climbing
  * gear, the survival and camping gear, life
@@ -247,6 +247,8 @@ const RULES = [
   { key: "radioTuning", pages: "pp. 27, 29-30", reference: EE_REFERENCE, implemented: true },
   { key: "radioAntennas", pages: "p. 28", reference: EE_REFERENCE, implemented: true },
   { key: "shortwaveSkip", pages: "p. 30", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: spark-gap, receiver, audio and video options on radios, and the trench radio.
+  { key: "radioDesign", pages: "pp. 28-30, 32, 34", reference: EE_REFERENCE, implemented: true },
   // Electricity and Electronics: electric light, light levels and glare.
   { key: "illumination", pages: "pp. 20-22", reference: EE_REFERENCE, implemented: true },
   { key: "lightDazzle", pages: "pp. 9, 20-21", reference: EE_REFERENCE, implemented: true },
@@ -373,6 +375,7 @@ function init(): void {
   initHighTechSensors({
     radios: ruleKey("radios"), activeSensors: ruleKey("activeSensors"), visualSensors: ruleKey("visualSensors"), passiveSensors: ruleKey("passiveSensors"),
     rangefindingEmissions: ruleKey("rangefindingEmissions"), radioTuning: ruleKey("radioTuning"), radioAntennas: ruleKey("radioAntennas"), shortwaveSkip: ruleKey("shortwaveSkip"),
+    radioDesign: ruleKey("radioDesign"),
   });
   initSurvival();
   initExpedition();
@@ -435,7 +438,7 @@ function ready(api: GWorldApi): void {
   const ordnance = { grenades: rule("grenadeHandling"), mines: rule("landMines"), rifleGrenades: rule("rifleGrenades"), nuclear: rule("nuclearEffects") };
   readyExplosives(api, { sideEffects: rule("explosionSideEffects"), demolition: rule("demolitionCharges"), unstable: rule("unstableExplosives"), incendiaries: rule("incendiaryAgents") }, ordnanceExtras(ordnance));
   readyOrdnance(api, ordnance);
-  readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning") });
+  readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning"), design: rule("radioDesign") });
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
   readyLighting(api, { illumination: rule("illumination"), dazzle: rule("lightDazzle") });

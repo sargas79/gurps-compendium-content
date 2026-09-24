@@ -131,6 +131,9 @@ const SHOWN_ELSEWHERE: Record<string, string> = {
   // so they need the radios switch (HT:EE pp. 28, 30).
   radioAntennas: "sensors/index.test.ts: offers and prices the dipole and directional antenna, and multiplies the link",
   shortwaveSkip: "sensors/index.test.ts: offers shortwave, and skips between shortwave sets",
+  // How a radio is built: options on High-Tech's radios and the trench radio's
+  // sets, so it needs the radios switch too (HT:EE pp. 28-30, 32, 34).
+  radioDesign: "sensors/index.test.ts: prices the design options, reads the trench radio's sets and wire, and rolls the receivers",
 };
 
 // ── a stand-in for the system ────────────────────────────────────────────────
@@ -502,7 +505,7 @@ describe("each High-Tech switch, on alone over the book's records (#397)", () =>
 
   it("reads the book's records and its switches, and nothing else registers", async () => {
     expect(docs.length).toBeGreaterThan(1400);
-    expect(switches()).toHaveLength(138);
+    expect(switches()).toHaveLength(139);
     on = new Set();
     baseOffered = await offered();
   });
