@@ -690,6 +690,11 @@
               "endurance": "35 minutes",
               "raw": "3×M/35 minutes"
             }
+          },
+          "sensor": {
+            "commMode": "transmitter",
+            "sparkGap": true,
+            "wideband": true
           }
         }
       }

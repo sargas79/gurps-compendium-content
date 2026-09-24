@@ -122,6 +122,8 @@ export interface TuningInput {
   enhanced: boolean;
   /** Shortwave's penalties, where the signal skips (see `skipLines`). */
   skip?: Array<{ key: string; value: number }>;
+  /** What the listener's set takes to receive, as it was built and set up: a crystal's spot, a ground aerial (HT:EE pp. 28-29). */
+  extra?: Array<{ key: string; value: number }>;
 }
 
 export type TuningKey = "range" | "conditions" | "hearing" | "galvanometer" | "enhanced";
@@ -142,6 +144,7 @@ export function tuningRoll(input: TuningInput): { needed: boolean; lines: Array<
   if (skip) lines.push(...skip.filter((l) => l.value !== 0));
   else if (input.rangeModifier) lines.push({ key: "range", value: input.rangeModifier });
   if (input.conditions) lines.push({ key: "conditions", value: input.conditions });
+  lines.push(...(input.extra ?? []).filter((l) => l.value !== 0));
   const needed = lines.some((l) => l.value < 0);
   if (!needed) return { needed, lines: [] };
   if (input.galvanometer) lines.push({ key: "galvanometer", value: GALVANOMETER });

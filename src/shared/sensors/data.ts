@@ -90,8 +90,8 @@ export interface CommContext {
 /** A book's own reading of whether a pair's signal comes through (see `reception`). */
 export interface CommReception {
   lines: string[];
-  /** The roll the listener (the selected character) makes, or null for none. */
-  roll: { label: string; skill: string; modifiers: Array<{ label: string; value: number }>; tags: string[] } | null;
+  /** The roll the listener (the selected character) makes, or null for none; against `base` where the book gives one (a Hearing roll), the skill's level otherwise. */
+  roll: { label: string; skill: string; base?: number; modifiers: Array<{ label: string; value: number }>; tags: string[] } | null;
 }
 
 /** A book's figures and readings for its comms and sensors. */
@@ -100,6 +100,8 @@ export interface SensorFigures {
   options: readonly string[];
   /** The ways it builds a comm, two-way first. */
   commModes: readonly CommMode[];
+  /** The ways this item's sheet offers, where a rule narrows `commModes` or widens it within them; `commModes` where missing. */
+  commModesFor?(item: any, data: SensorData): readonly CommMode[];
   /** The comm a record is, or null. */
   comm(item: any): Comm | null;
   /** The active sensor a record is, with the item's options, or null. */
