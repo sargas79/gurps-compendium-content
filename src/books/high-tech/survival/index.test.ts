@@ -68,6 +68,7 @@ function fakeApi() {
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
       spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor, ...c }); return "id"; },
+      derived: (actor: any) => actor?.derived ?? null,
     },
     roll: {
       damage: async (o: any) => { damage.push(o); return 0; },
@@ -231,6 +232,29 @@ describe("survival and camping gear (High-Tech pp. 56-59)", () => {
     expect(context.modifiers).toEqual([{ label: expect.stringContaining("Hand Flare"), value: 2 }]);
     const heard = fire(HOOKS.detectionModifiers, { observer: person(), subject: person([flare]), sense: "hearing", modifiers: [] });
     expect(heard.modifiers).toEqual([]);
+  });
+
+  it("counts a signal only out to the range it is seen at, where the map gives the distance (p. 58)", () => {
+    const at = (x: number) => ({ getActiveTokens: () => [{ center: { x, y: 0 } }] });
+    vi.stubGlobal("canvas", { grid: { measurePath: ([a, b]: any[]) => ({ distance: Math.abs(b.x - a.x) }) } });
+    const strobe = gear("Strobe Marker", { kind: "signal", value: 3520 }, { equipped: true });
+    const look = (yards: number) => fire(HOOKS.detectionModifiers, { observer: person([], at(0)), subject: person([strobe], at(yards)), sense: "vision", modifiers: [] }).modifiers;
+    expect(look(3000)).toEqual([{ label: expect.stringContaining("Strobe Marker"), value: 2 }]);
+    expect(look(4000)).toEqual([]);
+    const flare = gear("Hand Flare", { kind: "signal" }, { equipped: true });
+    expect(fire(HOOKS.detectionModifiers, { observer: person([], at(0)), subject: person([flare], at(9000)), sense: "vision", modifiers: [] }).modifiers).toHaveLength(1);
+  });
+
+  it("rolls a targeted listener's Hearing for a whistle heard at 128 yards (p. 58; API 1.117.0)", async () => {
+    const whistle = gear("Whistle", { kind: "whistle" });
+    const listener = person([], { name: "Rescuer", derived: { senses: [{ sense: "hearing", score: 12 }] } });
+    targets = [{ actor: listener }];
+    dialogAnswer = { yards: 300, other: -1 };
+    expect(actions.get("ht-whistle").visible(whistle)).toBe(true);
+    expect(actions.get("ht-whistle").visible(gear("Hand Flare", { kind: "signal" }))).toBe(false);
+    actions.get("ht-whistle").run(whistle, person());
+    await flush();
+    expect(successes[0]).toMatchObject({ actor: listener, base: 12, skill: "Hearing", distance: { yards: 300, baseYards: 128 }, modifiers: [{ value: -1 }] });
   });
 
   it("builds a fire on DX-based Survival with the starter's bonus", async () => {

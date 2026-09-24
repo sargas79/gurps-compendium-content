@@ -196,6 +196,18 @@ export const DESALINATOR = Object.freeze({ minutes: 10, fp: 1, largeMultiplier: 
 /** What a rescue signal or a dye marker gives the rescuer's Vision roll (pp. 58, 60). */
 export const SIGNAL_VISION = 2;
 
+/**
+ * Whether a rescue signal seen out to `range` yards (0 where the book gives
+ * none) reaches a rescuer `yards` away (null where the distance isn't known):
+ * a signal mirror 50 miles, a strobe 2, a laser flare 10 (p. 58).
+ */
+export function signalSeen(range: number, yards: number | null): boolean {
+  return !(range > 0) || yards === null || yards <= range;
+}
+
+/** A whistle is heard on an unmodified Hearing roll at 128 yards (p. 58). */
+export const WHISTLE_HEARD_AT = 128;
+
 /** How long a dye marker's patch lasts in ordinary seas: about half an hour (p. 60). */
 export const DYE_MARKER_SECONDS = 1800;
 

@@ -12,8 +12,9 @@
  *     survival kit carried for another environment as the Survival roll's
  *     equipment line (`gworld.skillBonuses`); a water filter's +(TL-2) on the
  *     HT roll against a digestive disease; the hand-pumped desalinator's
- *     pumping and the solar still's Survival roll as row actions; and a rescue
- *     signal in use as +2 to a rescuer's Vision roll.
+ *     pumping and the solar still's Survival roll as row actions; a rescue
+ *     signal in use as +2 to a rescuer's Vision roll, out to the range it is
+ *     seen at; and who hears a whistle, heard at 128 yards.
  *   - **Maritime gear (maritimeGear):** a life jacket worn gives +6 to
  *     Swimming rolls (the drowning rolls among them) and -3 in a Quick Contest
  *     of Swimming; swim fins worn are Enhanced Move 0.5 (Water) on water
@@ -30,6 +31,7 @@
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { hearSound } from "../hearing.js";
 import { toolsFor } from "../equipment/index.js";
 import {
   CORK_JACKET,
@@ -46,6 +48,7 @@ import {
   PARACHUTING_DEFAULT,
   PARACHUTING_IQ_DEFAULT,
   SIGNAL_VISION,
+  WHISTLE_HEARD_AT,
   SNACK_REST_FP,
   SURVIVAL_ATTRIBUTE,
   TRAP_DAMAGE_ADDS,
@@ -57,6 +60,7 @@ import {
   ratedWeight,
   shelterLine,
   shelterModifier,
+  signalSeen,
   specialtyList,
   survivalKitLine,
   survivalOf,
@@ -88,6 +92,7 @@ export const SURVIVAL_KINDS = [
   "desalinator",
   "solarStill",
   "signal",
+  "whistle",
   "lifeJacket",
   "swimFins",
   "dyeMarker",
@@ -108,7 +113,7 @@ export interface SurvivalSwitches {
 /** What this module keeps on a piece of survival gear. */
 export interface SurvivalData {
   kind: SurvivalKindKey;
-  /** A shelter's cold-roll modifier, or a trap's ST. */
+  /** A shelter's cold-roll modifier, a trap's ST, or the yards a rescue signal is seen at (0 for no limit given). */
   value: number;
   /** A shelter's modifier at TL8, where it differs (the sleeping bag, p. 56). */
   valueAtTl8: number | null;
@@ -161,6 +166,20 @@ const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ??
 const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
 const isCarried = (item: any): boolean => item?.type === "equipment" && item.system?.carried !== false;
 const inUse = (item: any): boolean => isCarried(item) && item.system?.equipped === true;
+
+function yardsBetween(a: any, b: any): number | null {
+  const stage = (globalThis as any).canvas;
+  const from = a?.getActiveTokens?.()?.[0];
+  const to = b?.getActiveTokens?.()?.[0];
+  if (!from?.center || !to?.center || !stage?.grid?.measurePath) return null;
+  const distance = Number(stage.grid.measurePath([from.center, to.center])?.distance);
+  return Number.isFinite(distance) ? distance : null;
+}
+
+/** A rescue signal's range for the item sheet, in miles past one. */
+function signalRange(yards: number): string {
+  return yards >= 1760 ? F("Miles", { miles: Math.round((yards / 1760) * 10) / 10 }) : F("Yards", { yards });
+}
 
 /** The character's carried gear of a kind. */
 function gearOf(actor: any, kind: SurvivalKindKey, worn = false): any[] {
@@ -465,6 +484,10 @@ function itemLines(item: any, on: SurvivalSwitches): string[] {
         break;
       case "signal":
         lines.push(F("SignalItem", { bonus: SIGNAL_VISION }));
+        if (data.value > 0) lines.push(F("SignalRangeItem", { range: signalRange(data.value) }));
+        break;
+      case "whistle":
+        lines.push(F("WhistleItem", { yards: WHISTLE_HEARD_AT }));
         break;
       default:
     }
@@ -608,7 +631,9 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
   Hooks.on(api.combat.hooks.detectionModifiers, (context: any) => {
     const subject = context?.subject;
     if (!subject || context.sense !== "vision" || !Array.isArray(context.modifiers)) return;
-    const signal = on.survival() ? gearOf(subject, "signal", true)[0] : null;
+    // A signal counts only as far as it can be seen (p. 58), where the map gives the distance.
+    const yards = yardsBetween(context.observer, subject);
+    const signal = on.survival() ? gearOf(subject, "signal", true).find((item) => signalSeen(survivalData(item).value, yards)) : null;
     if (signal) context.modifiers.push({ label: F("SignalLine", { name: signal.name }), value: SIGNAL_VISION });
     if (on.maritime() && dyeActive(subject)) context.modifiers.push({ label: L("DyeLine"), value: SIGNAL_VISION });
   });
@@ -650,6 +675,7 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
   action("ht-trap", "TrapAction", "fa-solid fa-bear-trap", (item) => on.survival() && kindIs("trap")(item) && survivalData(item).value > 0, (item, actor) => springTrap(api, item, actor));
   action("ht-desalinate", "PumpAction", "fa-solid fa-droplet", (item) => on.survival() && kindIs("desalinator")(item), (item, actor) => pumpWater(api, item, actor));
   action("ht-solar-still", "StillAction", "fa-solid fa-sun", (item) => on.survival() && kindIs("solarStill")(item), (item, actor) => useStill(api, item, actor));
+  action("ht-whistle", "WhistleAction", "fa-solid fa-ear-listen", (item) => on.survival() && kindIs("whistle")(item), async (item, actor) => hearSound(api, actor, { name: String(item.name ?? ""), heardAt: WHISTLE_HEARD_AT }));
   action("ht-dye-marker", "DyeAction", "fa-solid fa-fill-drip", (item) => on.maritime() && kindIs("dyeMarker")(item), (item, actor) => releaseDye(item, actor));
   action("ht-jump", "JumpAction", "fa-solid fa-parachute-box", (item) => on.parachuting() && kindIs("parachute")(item), (item, actor) => jump(api, item, actor));
   action("ht-eat", "EatAction", "fa-solid fa-utensils", (item) => on.rations() && (kindIs("snack")(item) || kindIs("sportsDrink")(item)), (item, actor) => eat(item, actor));

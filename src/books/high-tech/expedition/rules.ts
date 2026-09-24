@@ -248,6 +248,12 @@ export const grapnelRange = (st: number): number => 2 * Math.max(0, Number(st) |
 /** A grapnel holds 300 lbs., doubled at TL7 (p. 55). */
 export const grapnelLoad = (tl: number): number => (tl >= 7 ? 600 : 300);
 
+/** A grapnel ringing on stone is heard on an unmodified Hearing roll at 1 yard (p. 55). */
+export const GRAPNEL_RING_YARDS = 1;
+
+/** A padded grapnel: +1 lb., and -2 to hear it (p. 55). */
+export const PADDED_GRAPNEL = Object.freeze({ weight: 1, hearing: -2 });
+
 /**
  * Whether a piece of climbing gear cancels the penalty of the climb the roll
  * is tagged with (`climb-<kind>`, Campaigns p. 349): an ascender the -2 up a

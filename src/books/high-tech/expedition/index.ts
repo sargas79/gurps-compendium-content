@@ -29,7 +29,8 @@
  *     and backpacks cost double; the hourly march.
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
  *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
- *     throwing a grapnel, snowshoes' -1 Move, and crampons' +2 to a kick
+ *     throwing a grapnel and who hears it land (a padded one, +1 lb., at
+ *     -2), snowshoes' -1 Move, and crampons' +2 to a kick
  *     (beside the system's +1 for boots, which they are worn over); an
  *     ascender, descender or suction cups cancelling the climb's own penalty
  *     on the Climb roll (its `climbKind` line).
@@ -38,6 +39,7 @@
 import { placeArea } from "../../../shared/areas.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { hearSound, type Sound } from "../hearing.js";
 import {
   BLINDED_PENALTY,
   CARRY_KINDS,
@@ -57,6 +59,8 @@ import {
   breaksWhenDropped,
   drawsFromLbe,
   fittingRoll,
+  GRAPNEL_RING_YARDS,
+  PADDED_GRAPNEL,
   grapnelLoad,
   grapnelRange,
   grapnelRoll,
@@ -105,6 +109,8 @@ export interface ExpeditionData {
   mapPenalty: number;
   carry: CarryKind;
   climbing: ClimbingKind;
+  /** A padded grapnel: +1 lb., -2 to hear it land (p. 55). */
+  padded: boolean;
 }
 
 /** What the character did with it, kept in this module's flags. */
@@ -128,6 +134,7 @@ export function initExpedition(): void {
       mapPenalty: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: -5, max: 0 }),
       carry: choice(CARRY_KINDS),
       climbing: choice(CLIMBING_KINDS),
+      padded: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -144,6 +151,7 @@ export function expeditionData(item: any): ExpeditionData {
     mapPenalty: Math.max(-5, Math.min(0, Math.trunc(Number(d.mapPenalty) || 0))),
     carry: CARRY_KINDS.includes(d.carry) ? d.carry : "",
     climbing: CLIMBING_KINDS.includes(d.climbing) ? d.climbing : "",
+    padded: d.padded === true,
   };
 }
 
@@ -161,6 +169,16 @@ export function expeditionState(item: any): ExpeditionState {
 
 async function setState(item: any, patch: Partial<ExpeditionState>): Promise<void> {
   await item.update(Object.fromEntries(Object.entries(patch).map(([k, v]) => [`flags.${MODULE_ID}.${FIELD}.${k}`, v])));
+}
+
+/** The sound a grapnel makes landing on stone, as `hearSound` takes it. */
+export function grapnelSound(item: any): Sound {
+  return {
+    name: String(item?.name ?? ""),
+    heardAt: GRAPNEL_RING_YARDS,
+    lines: expeditionData(item).padded ? [{ label: L("PaddedLine"), value: PADDED_GRAPNEL.hearing }] : [],
+    note: L("GrapnelHeardNote"),
+  };
 }
 
 const tlOf = (item: any): number => Number(/\d+/.exec(String(item?.system?.tl ?? ""))?.[0]) || 0;
@@ -437,7 +455,10 @@ function itemContext(api: GWorldApi, item: any, on: ExpeditionSwitches): Record<
   }
   if (on.climbing() && data.climbing) {
     lines.push(L(`ClimbLine.${data.climbing}`));
-    if (data.climbing === "grapnel") lines.push(F("GrapnelLoad", { lbs: grapnelLoad(tlOf(item)) }));
+    if (data.climbing === "grapnel") {
+      lines.push(F("GrapnelLoad", { lbs: grapnelLoad(tlOf(item)) }));
+      context.grapnel = { padded: data.padded };
+    }
     if (data.climbing === "snowshoes") lines.push(L(snowshoeMove(tlOf(item)) ? "SnowshoeMove" : "SnowshoeFast"));
   }
   context.lines = lines;
@@ -448,6 +469,9 @@ function itemListeners(element: HTMLElement, item: any): void {
   element.querySelector<HTMLInputElement>("[data-gcc-ht-map]")?.addEventListener("change", async (event) => {
     const value = Math.max(-5, Math.min(0, Math.trunc(Number((event.currentTarget as HTMLInputElement).value) || 0)));
     await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.mapPenalty`]: value });
+  });
+  element.querySelector<HTMLInputElement>("[data-gcc-ht-padded]")?.addEventListener("change", async (event) => {
+    await item.update({ [`system.extensions.${MODULE_ID}.${FIELD}.padded`]: (event.currentTarget as HTMLInputElement).checked });
   });
   element.querySelector<HTMLInputElement>("[data-gcc-ht-gps]")?.addEventListener("change", async (event) => {
     await setState(item, { noSignal: (event.currentTarget as HTMLInputElement).checked });
@@ -635,6 +659,18 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     },
   });
 
+  // A padded grapnel's extra pound (p. 55).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-padded-grapnel",
+    types: ["equipment"],
+    apply: (item, price) => {
+      const data = expeditionData(item);
+      if (!on.climbing() || data.climbing !== "grapnel" || !data.padded) return null;
+      return { cost: price.cost, weight: Math.round((price.weight + PADDED_GRAPNEL.weight) * 1000) / 1000, label: L("PaddedPrice") };
+    },
+  });
+
   // ── climbing gear (pp. 55-56) ──
   const ropeGear = (actor: any) => gearOf(actor).some((i) => ROPE_GEAR.includes(expeditionData(i).climbing));
   const sureFooted = (actor: any) => [...(actor?.items ?? [])].some((i: any) => i?.type === "trait" && /^sure-footed\b/i.test(String(i.name ?? "")));
@@ -691,6 +727,18 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
         await api.roll.success({ actor, base: use.level, label: F("GrapnelRoll", { skill: use.skill === "DX" ? "DX-3" : "Throwing" }), skill: use.skill, kind: use.skill === "DX" ? "attribute" : "skill", tags: ["grapnel"] } as any);
       })();
     },
+  });
+
+  // A grapnel landing on stone or concrete rings: heard on an unmodified
+  // roll at 1 yard, a padded one at -2 (p. 55; Campaigns p. 358).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-grapnel-heard",
+    itemTypes: ["equipment"],
+    label: L("GrapnelHeardAction"),
+    icon: "fa-solid fa-ear-listen",
+    visible: (item) => on.climbing() && expeditionData(item).climbing === "grapnel",
+    run: (item, actor) => void hearSound(api, actor, grapnelSound(item)),
   });
 
   // Snowshoes' bulk: -1 Move while worn, but for TL8 ones (p. 56).

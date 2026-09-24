@@ -8064,7 +8064,12 @@
         "SportsDrinkItem": "Counts as a decent meal when resting (+{fp} FP), and as a quart of water for the day's rations.",
         "EatAction": "Eat or drink",
         "SnackEaten": "{name} has a {item}: it counts as a decent meal on the next rest, +{fp} FP.",
-        "DrinkWater": "It also counts as a quart of water for the day's rations."
+        "DrinkWater": "It also counts as a quart of water for the day's rations.",
+        "SignalRangeItem": "Seen out to {range}.",
+        "Miles": "{miles} miles",
+        "Yards": "{yards} yards",
+        "WhistleItem": "Heard on an unmodified Hearing roll at {yards} yards; the row's button rolls a targeted listener's Hearing.",
+        "WhistleAction": "Who hears the whistle"
       },
       "Ordnance": {
         "NoSkill": "Knows none of: {skills}.",
@@ -8370,7 +8375,13 @@
         "GrapnelAction": "Throw the grapnel",
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",
-        "GrapnelRoll": "Throwing the grapnel ({skill})"
+        "GrapnelRoll": "Throwing the grapnel ({skill})",
+        "Padded": "Padded (+1 lb., -2 to hear it)",
+        "PaddedHint": "A padded grapnel weighs a pound more and gives -2 to Hearing rolls to hear it land (High-Tech p. 55).",
+        "PaddedPrice": "Padded grapnel",
+        "PaddedLine": "Padded grapnel",
+        "GrapnelHeardAction": "Who hears it land",
+        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55)."
       },
       "Lighting": {
         "Title": "Lamp",
@@ -8676,7 +8687,9 @@
         "MetalShotHint": "Lead or steel shot: +1 damage, double range (High-Tech p. 201).",
         "SpeargunLine": "Range a tenth ({divisor}) under water; the spear is on {line} yards of line.",
         "LineNote": "{yards}-yd. line",
-        "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201)."
+        "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201).",
+        "HeardAction": "Who hears the shot",
+        "SilencerHeard": "String silencers"
       },
       "Camouflage": {
         "Title": "Camouflage",
@@ -10921,6 +10934,15 @@
         "CipherLine": "Enciphered text",
         "CipherTimeLine": "Extra time (x{times})",
         "CipherLabel": "Sending enciphered text on the {name}"
+      },
+      "Hearing": {
+        "NoListener": "Target the token of whoever might hear it.",
+        "Deaf": "{name} can't make a Hearing roll.",
+        "Title": "Who hears {name}",
+        "HeardAt": "{name}: heard on an unmodified Hearing roll at {yards} yards; +1 a range step nearer, -1 a step farther (High-Tech p. 158).",
+        "Yards": "Listener's distance (yards)",
+        "Other": "Background noise, terrain, distraction, clothing",
+        "Roll": "{name}: Hearing, {sound}"
       }
     },
     "Backblast": {
