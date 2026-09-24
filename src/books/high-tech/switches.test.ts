@@ -174,7 +174,7 @@ function namespace(name: string, known: Record<string, unknown> = {}): any {
 const weaponState = new Map<string, unknown>();
 
 const api: any = {
-  version: "1.115.0",
+  version: "1.120.0",
   satisfies: () => true,
   registry: namespace("registry", { isRuleOn: (key: string) => on.has(key) }),
   rules: lenient({ ...systemRules }),
