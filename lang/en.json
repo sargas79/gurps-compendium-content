@@ -5023,6 +5023,18 @@
           "Name": "Programming languages (Electricity and Electronics)",
           "Hint": "How a High-Tech computer is programmed, set on its sheet. On a Computer Programming roll with it or a program on it, machine code is -5 (none with Eidetic or Photographic Memory; time spent can buy it off), and a high-level language lifts the penalty for an unfamiliar computer type. A row button rolls Computer Operation as a complementary skill (+1, +2 on a critical success, -1 on a failure, -2 on a critical failure) for the next Computer Programming roll with the machine; another \"programs\" a dedicated or hard-wired machine with Engineer (Electronics), -2 without familiarity with digital circuits, Electronics Repair (Computers) or Computer Operation (High-Tech: Electricity and Electronics p. 38)."
         },
+        "electricalMeasurement": {
+          "Name": "Detecting and measuring electricity",
+          "Hint": "From the supplement Electricity and Electronics: an instrument's row asks whether it is to detect, measure or just be operated. Detecting is at +4 for a voltage high enough to harm (or a hazard such as radiation or strong acid, on a scientific instrument) and -4 for a weak source; a professional's routine checks succeed unless the monthly job roll fails. A failed measurement is off by 5% per point of failure, 1% with good gear and 0.25% with fine; a critical failure stops the instrument or gives an absurd reading. The instrument's quality gives its usual bonus. Physics' row improvises a spark-gap voltmeter at -5 (Electricity and Electronics pp. 10, 12)."
+        },
+        "labInstruments": {
+          "Name": "Laboratory instruments",
+          "Hint": "Each instrument's own modifiers, from the supplement Electricity and Electronics, in its row's dialog: a moving-magnet or mirror galvanometer's magnetic disturbance (-1 to -10); electrical noise, which a lock-in amplifier disregards (-6 at TL7, -9 at TL8); an early vacuum-tube voltmeter's -2; a signal tracer's -5 on FM and the listener's Hearing; a complex scientific device's -1 to -5, doubled against a science; a dedicated device at +2; a transducer only with a display carried; the TL6 photodetector's darkness penalty; the TL6 metal detector's -2 and the field skill that reads its find; a heart monitor worn briefly (-2, or -4 under half an hour); a Tesla coil's burn on a critical failure and its spark to an unshielded power line on an 18. Rows of their own: a mirror galvanometer on a telegraph line (+4), the spectrum analyzer (+2 to Mechanic with an accelerometer or Linguistics with a microphone, a sound signature as Discriminatory Hearing, tracing at +2 on AM and FM), connecting a transducer to a display (+2; a critical failure risks the transducer), a Van de Graaff generator's shock (+2 to resist, -6 per doubling of the sphere), setting up or building an analog computer as a copy of an invention, and a waveform plotted by hand at -2 from Physics or Mathematics (Applied) (Electricity and Electronics pp. 10-13)."
+        },
+        "combinedDevices": {
+          "Name": "Combined devices",
+          "Hint": "From the supplement Electricity and Electronics: a device combined from separate parts, as early versions often were, is at -2 to use. A device's sheet marks it as one, and every roll made with it takes the -2; a transducer read through a display is one, and the instrument dialog lets any other be marked as one for a single use. Not the same as combination gadgets (Electricity and Electronics pp. 9, 12)."
+        },
         "electricalHazards": {
           "Name": "Electrical hazards (Electricity and Electronics)",
           "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 points of injury, AC -5 per 2, radio frequency none, lightning -1 per 5. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
@@ -8076,7 +8088,10 @@
         "ReadNone": "Select one or more tokens first.",
         "ReadOff": "{name}: not on the map.",
         "ReadLine": "{name}: about {lux} lux; darkness {penalty}.",
-        "Task": { "reading": "Reading light", "surgery": "Surgical light" },
+        "Task": {
+          "reading": "Reading light",
+          "surgery": "Surgical light"
+        },
         "TaskMet": "{task} ({lux} lux): enough",
         "TaskShort": "{task} ({lux} lux): {penalty} to tasks that need it",
         "AimAction": "Aim the beam",
@@ -8086,7 +8101,10 @@
         "AimHit": "The beam lights {name}.",
         "AimMiss": "The beam misses {name}: it lights a spot {yards} yards to the {side}.",
         "AimHeard": "Had the aimer won a Quick Contest of Hearing against the target's Stealth, the darkness would count as {penalty}, the roll no better than {cap}.",
-        "Side": { "left": "left", "right": "right" },
+        "Side": {
+          "left": "left",
+          "right": "right"
+        },
         "FlashAction": "Fire the flashbulb",
         "FlashTarget": "Target the tokens that see the flash.",
         "GlareTitle": "Glare",
@@ -9626,7 +9644,9 @@
           "15": "15 times as long (+4)",
           "30": "30 times as long (+5)",
           "0_5": "Half the time (-5)"
-        }
+        },
+        "Combined": "Combined from separate parts",
+        "CombinedHint": "An early device put together from separate parts, such as a sensor read through a display: -2 to the skill that uses it (Electricity and Electronics p. 9)."
       },
       "Covert": {
         "Title": "Covert listening",
@@ -9925,6 +9945,145 @@
           "Fire": "A critical failure on stolen power: it may start a fire (High-Tech: Electricity and Electronics pp. 9, 19).",
           "Guarded": "A critical failure, but the circuit's guard turns it into an ordinary one: no fire (High-Tech: Electricity and Electronics p. 25)."
         }
+      },
+      "Instruments": {
+        "Use": "Use",
+        "UseTitle": "Use: {name}",
+        "UseLabel": "{name}: {task}",
+        "Skill": "Skill",
+        "Default": "default",
+        "SkillModifier": "{skill}",
+        "NoSkill": "Needs one of: {skills}.",
+        "TaskField": "Task",
+        "Task": {
+          "operate": "Operate",
+          "detect": "Detect",
+          "measure": "Measure"
+        },
+        "SourceField": "Source",
+        "Source": {
+          "ordinary": "An ordinary source",
+          "dangerous": "A dangerous voltage or hazard",
+          "weak": "A weak source"
+        },
+        "Routine": "A professional's routine checks find a dangerous source without a roll, unless the monthly job roll failed (HT:EE p. 10).",
+        "Reading": {
+          "detected": "Something is there: a charge, current or signal.",
+          "missed": "Nothing detected.",
+          "exact": "An exact reading.",
+          "off": "The reading is off by up to {percent}% either way.",
+          "broken": "Critical failure: the instrument stops working, or reads something absurd."
+        },
+        "QualityLine": "{quality} instrument",
+        "Quality": {
+          "none": "No",
+          "improvised": "Improvised",
+          "basic": "Basic",
+          "good": "Good",
+          "fine": "Fine",
+          "best": "Best"
+        },
+        "TimeSpent": "Time taken",
+        "TimeUsual": "The usual time",
+        "Times": "×{times} ({bonus})",
+        "TimeLine": "Time spent ×{times}",
+        "Magnetic": "Magnetic disturbance (0-{worst})",
+        "MagneticLine": "Magnetic disturbance",
+        "Noise": "Electrical noise (0-10)",
+        "NoiseLockIn": "Electrical noise (0-10; a lock-in amplifier disregards {cancels})",
+        "NoiseLine": "Electrical noise -{noise}",
+        "NoiseLineLockIn": "Electrical noise -{noise}, {cancels} disregarded",
+        "EarlyModel": "An early model ({value})",
+        "EarlyModelLine": "Early model, poor stability",
+        "SignalField": "Signal",
+        "Signal": {
+          "audio": "Audio",
+          "am": "AM",
+          "fm": "FM"
+        },
+        "HearingLine": "Hearing",
+        "Complexity": "Unusually complex device (0-5)",
+        "ComplexityLine": "Complex device",
+        "Darkness": "Partial darkness penalty (0-9)",
+        "DarknessLine": "Partial darkness",
+        "DriftLine": "Frequency drift, corrected by hand",
+        "WearField": "Worn for",
+        "Wear": {
+          "day": "A full day or more",
+          "brief": "Less than a day",
+          "halfHour": "Under half an hour"
+        },
+        "Supply": "Power supply",
+        "Line": {
+          "household": "Household, 110-120V",
+          "major": "Household abroad or major appliance, 220-240V",
+          "industrial": "Industrial, 480V"
+        },
+        "Shielded": "Shielded from the power line",
+        "Combined": "Combined from separate parts ({value})",
+        "CombinedLine": "Combined device",
+        "NeedsDisplay": "A transducer is read through a display: carry a galvanometer, meter, recorder or oscilloscope.",
+        "CoilBurn": "Critical failure: the coil's output burns the operator ({burn}).",
+        "CoilBurnLabel": "{name}: the coil's output",
+        "CoilLine": "A roll of 18: a spark reaches the unshielded power line, and its current follows ({damage} lethal).",
+        "InterpretLabel": "{name}: what was found",
+        "InterpretNone": "What it finds is read with {skills}.",
+        "Telegraph": "Read a telegraph line",
+        "TelegraphLabel": "{name}: a telegraph line",
+        "AnalyzeButton": "Analyze a signal",
+        "AnalyzeTitle": "Analyze a signal: {name}",
+        "AnalyzeLabel": "{name}: {use}",
+        "Analyze": {
+          "vibration": "Machinery vibration",
+          "speech": "Speech sounds",
+          "signature": "A sound signature",
+          "tracing": "Signal tracing"
+        },
+        "NeedsAccelerometer": "Analyzing vibration needs an accelerometer.",
+        "NeedsMicrophone": "Analyzing speech needs a microphone.",
+        "Signature": "The analyzer tells sounds apart as Discriminatory Hearing does: people by their voices, machines by their sound (HT:EE p. 11).",
+        "Connect": "Connect to a display",
+        "ConnectTitle": "Connect to a display: {name}",
+        "ConnectLabel": "{name}: connecting a display",
+        "Connected": "Connected: the combined device gives readings.",
+        "NoReadings": "The combined device gives no meaningful readings.",
+        "TransducerHt": "{name}: HT against clumsy handling",
+        "Fate": {
+          "destroyed": "The transducer is destroyed.",
+          "damaged": "The transducer is damaged, and needs Electronics Repair (Scientific)."
+        },
+        "RepairLabel": "{name}: repair",
+        "Discharge": "Discharge",
+        "DischargeTitle": "Discharge: {name}",
+        "DischargeVictim": "{name} takes the shock (target another token to change who).",
+        "Sphere": "Sphere diameter (inches)",
+        "Build": "Build as an invention",
+        "BuildTitle": "Build as an invention: {name}",
+        "BuildLabel": "{name}: building a copy",
+        "GradeField": "Grade",
+        "Grade": {
+          "average": "Average",
+          "complex": "Complex"
+        },
+        "Labour": "Paying for labour as well as parts",
+        "Built": "Built: a working copy.",
+        "NotBuilt": "Not built.",
+        "CopyCost": "A single copy ({grade}) costs ${cost}.",
+        "CopyTime": "It takes {time} {unit}.",
+        "Unit": {
+          "days": "days",
+          "months": "months"
+        },
+        "DefineLabel": "{name}: defining the problem",
+        "SetUpLabel": "{name}: setting up the machine",
+        "ProblemUndefined": "The problem isn't defined well enough to set the machine up.",
+        "SparkGap": "Spark-gap voltmeter",
+        "SparkGapLabel": "A spark-gap voltmeter",
+        "SparkGapLine": "Improvised",
+        "PlotTitle": "Plot a waveform by hand",
+        "PlotLabel": "A waveform plotted by hand",
+        "PlotLine": "Timed meter readings",
+        "CombinedRecord": "Combined device"
       }
     },
     "Backblast": {

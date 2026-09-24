@@ -14,7 +14,9 @@
  * Electronics supplement's computer eras, interfaces and programming
  * languages (HT:EE pp. 36-41), its electric light, light levels and
  * glare (HT:EE pp. 9, 20-22), and its electrical hazards, shock protection
- * and power lines (HT:EE pp. 9, 14-15, 18-19, 25), a gun's quality, its care, clearing a stoppage by Immediate Action,
+ * and power lines (HT:EE pp. 9, 14-15, 18-19, 25), and its laboratory
+ * instruments: detecting and measuring electricity, each instrument's own
+ * modifiers, and devices combined from separate parts (HT:EE pp. 9-13), a gun's quality, its care, clearing a stoppage by Immediate Action,
  * drawing guns, holsters and Who Draws First? with guns, how fast a gun
  * fires: triggers, fire selectors and bursts, fast-firing, fanning and
  * thumbing, and the shooting options and gun techniques: the two-handed
@@ -122,6 +124,7 @@ import { readyProsthetics } from "./prosthetics/index.js";
 import { initConveyances, readyConveyances } from "./conveyances/index.js";
 import { initDrugs, readyDrugs } from "./drugs/index.js";
 import { initVehicles, readyVehicles } from "./vehicles/index.js";
+import { readyInstruments } from "./instruments/index.js";
 import { initDevices, readyDevices } from "./devices/index.js";
 import { readyLighting } from "./lighting/index.js";
 import { readyAudio } from "./audio/index.js";
@@ -214,6 +217,10 @@ const RULES = [
   { key: "electricalHazards", pages: "p. 9", reference: EE_REFERENCE, implemented: true },
   { key: "shockProtection", pages: "pp. 9, 14-15, 19, 25", reference: EE_REFERENCE, implemented: true },
   { key: "powerLines", pages: "pp. 18-19", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: laboratory instruments, detecting and measuring, and combined devices.
+  { key: "electricalMeasurement", pages: "pp. 10, 12", reference: EE_REFERENCE, implemented: true },
+  { key: "labInstruments", pages: "pp. 10-13", reference: EE_REFERENCE, implemented: true },
+  { key: "combinedDevices", pages: "pp. 9, 12", reference: EE_REFERENCE, implemented: true },
   // General equipment: tool kits, forced entry, chainsaws and nail guns, household hazards.
   { key: "toolKits", pages: "pp. 24, 29, 50", implemented: true },
   { key: "forcedEntryTools", pages: "pp. 25-30", implemented: true },
@@ -386,7 +393,7 @@ function init(): void {
 function ready(api: GWorldApi): void {
   const rule = (key: (typeof RULES)[number]["key"]) => () => api.registry.isRuleOn(ruleKey(key));
   // First: a device's default object figures, which the book's own gear (locks, guns) then overrides.
-  readyDevices(api, { cuttingEdge: rule("cuttingEdgeGear"), breakable: rule("breakableComponents"), kits: rule("kitBuilding") });
+  readyDevices(api, { cuttingEdge: rule("cuttingEdgeGear"), breakable: rule("breakableComponents"), kits: rule("kitBuilding"), combined: rule("combinedDevices") });
   readyHighTechEquipment(api, { combination: rule("combinationGadgets"), bonuses: rule("equipmentBonuses"), familiarity: rule("tlFamiliarity") });
   readyBlackMarket(api, rule("blackMarket"));
   readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
@@ -451,6 +458,7 @@ function ready(api: GWorldApi): void {
   readyConveyances(api, rule("personalConveyances"));
   readyDrugs(api, { hygiene: rule("hygieneAndDrugs"), poisons: rule("highTechPoisons") });
   readyVehicles(api, { components: rule("vehicleComponents"), protection: rule("vehicleProtection"), crew: rule("crewConditions") });
+  readyInstruments(api, { measurement: rule("electricalMeasurement"), instruments: rule("labInstruments"), combined: rule("combinedDevices") });
 }
 
 export const book: BookRules = {
