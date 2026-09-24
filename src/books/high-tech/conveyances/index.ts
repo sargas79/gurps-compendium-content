@@ -16,10 +16,14 @@
  *   - **Weight (`gworld.carriedWeight`):** the conveyance ridden is not carried.
  *   - **Price (`data.registerPriceModifier`):** the safety bicycle is lighter
  *     at TL7 and TL8.
- *   - **Row actions:** a spill from a penny-farthing (a two-yard fall, its
- *     damage rolled from the card), and a long ride's fatigue roll under the
- *     running rules, a failure costing 1 FP.
- * The surfboard's Move on a wave is a water Move, which the item sheet states.
+ *   - **Water Move (`gworld.moveModifiers`, `medium` water):** a surfer
+ *     paddles at Move 1, or rides a wave at the Move the Riding box sets
+ *     (12-15 on the best waves).
+ *   - **Row actions:** a spill from a penny-farthing (a two-yard fall, run
+ *     through the system's falling procedure from the card), a long ride's
+ *     fatigue roll under the running rules, a failure costing 1 FP through
+ *     the fatigue chart, and a bicycle moving cargo as a two-wheeled cart
+ *     (the system's towing, Campaigns p. 353) until it is stopped.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -46,6 +50,10 @@ const FIELD = "conveyance";
 const CARD = "ht-conveyance-card";
 const SLOPE_FLAG = "htSlope";
 const OFF_ROAD_FLAG = "htOffRoad";
+/** The surfer's water Move on a wave, 0 while paddling. */
+const SURF_FLAG = "htSurfMove";
+/** The bicycle moving cargo, by item id, while the system tows it. */
+const CARGO_FLAG = "htCargoBike";
 
 /** What this module keeps on a conveyance. */
 export interface ConveyanceData {
@@ -119,6 +127,15 @@ export function slopeOf(actor: any): number {
 
 const offRoad = (actor: any): boolean => actor?.getFlag?.(MODULE_ID, OFF_ROAD_FLAG) === true;
 
+/** The water Move a surfer's wave gives, or 0 while paddling (the Gear tab's "Riding" box). */
+export function surfMoveOf(actor: any): number {
+  const move = Math.floor(Number(actor?.getFlag?.(MODULE_ID, SURF_FLAG)) || 0);
+  return move >= SURFING.bestWaves.least && move <= SURFING.bestWaves.most ? move : 0;
+}
+
+/** The bicycle moving cargo, while the system is towing it. */
+const cargoBikeId = (actor: any): string => String(actor?.getFlag?.(MODULE_ID, CARGO_FLAG) ?? "");
+
 /**
  * The rider's level in a conveyance's skill relative to DX (p. 230), with
  * everything added to it -- the bike's quality, the penny-farthing's -1.
@@ -156,7 +173,7 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 // ── a spill (p. 230) ──
 
-type SpillData = { title: string; lines: string[]; landing: { formula: string; label: string; rolled: boolean } };
+type SpillData = { title: string; lines: string[]; landing: { formula: string; label: string; yards?: number; rolled: boolean } };
 
 async function spill(api: GWorldApi, item: any, actor: any): Promise<void> {
   const yards = Math.max(conveyanceData(item).spillYards, 0);
@@ -166,7 +183,7 @@ async function spill(api: GWorldApi, item: any, actor: any): Promise<void> {
   await api.chat.post(`${MODULE_ID}.${CARD}`, {
     title: String(item.name ?? ""),
     lines: [F("SpillLine", { name, yards, velocity: fall.velocity })],
-    landing: { formula: api.rules.formatDiceAdds({ dice: fall.damage.dice, adds: fall.damage.modifier }), label: F("SpillLanding", { name }), rolled: false },
+    landing: { formula: api.rules.formatDiceAdds({ dice: fall.damage.dice, adds: fall.damage.modifier }), label: F("SpillLanding", { name }), yards, rolled: false },
   } satisfies SpillData, { actor } as any);
 }
 
@@ -199,8 +216,45 @@ async function longRide(api: GWorldApi, item: any, actor: any): Promise<void> {
     skill: bySkill ? skill : "HT", kind: bySkill ? "skill" : "attribute", tags: ["longRide", "HT"],
   } as any);
   if (!outcome || outcome.success) return;
-  const spent: any = await api.actors.applyInjury(actor, { amount: 1, fatigue: true, label: L("LongRide") });
-  await say(actor, String(item.name ?? ""), [F("RideTired", { name: actor.name, fp: spent ? 1 : 0 })]);
+  // Exertion through the fatigue chart: Very Fit halves it, and past 0 FP it hurts (Campaigns p. 426).
+  const spent: any = await api.actors.spendFatigue(actor, 1, { details: { rule: "longRide", item: String(item.name ?? "") } });
+  await say(actor, String(item.name ?? ""), [F("RideTired", { name: actor.name, fp: Number(spent?.fpLost) || 0 })]);
+}
+
+// ── moving cargo (p. 230; Campaigns p. 353) ──
+
+/** A bicycle moving cargo counts as a two-wheeled cart: the system tows the bike and its load until stopped. */
+async function moveCargo(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: String(item.name ?? "") },
+    content: `<div class="gworld"><p class="ihint">${esc(F("CargoHint", { divisor: TOWING.divisor, smooth: TOWING.smoothDivisor }))}</p>
+      <div class="ifields"><label>${esc(L("CargoWeight"))} <input type="number" name="cargo" min="0" step="any" value="0" /></label></div>
+      <div class="ichecks"><label class="icheck"><input type="checkbox" name="smooth" /> ${esc(L("CargoSmooth"))}</label></div></div>`,
+    ok: {
+      label: L("CargoStart"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const form = button.closest<HTMLElement>(".application");
+        return {
+          cargo: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="cargo"]')?.value) || 0),
+          smooth: form?.querySelector<HTMLInputElement>('[name="smooth"]')?.checked === true,
+        };
+      },
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
+  const bike = Math.max(0, Number(item.system?.weight) || 0);
+  const towed: any = await api.actors.tow(actor, { weight: bike + answer.cargo, conveyance: "cart", smooth: answer.smooth, label: String(item.name ?? "") });
+  if (!towed) return;
+  await actor.setFlag(MODULE_ID, CARGO_FLAG, String(item.id ?? ""));
+  const lines = [F("CargoLine", { name: actor.name, weight: bike + answer.cargo, effective: towed.effective })];
+  if (towed.movable === false) lines.push(F("CargoTooHeavy", { limit: towed.limit }));
+  await say(actor, String(item.name ?? ""), lines);
+}
+
+async function stopCargo(api: GWorldApi, actor: any): Promise<void> {
+  await api.actors.stopTowing(actor);
+  await actor.unsetFlag(MODULE_ID, CARGO_FLAG);
 }
 
 // ── the sheets ──
@@ -247,7 +301,15 @@ function ridingContext(api: GWorldApi, actor: any): Record<string, unknown> {
     downhill: data.kind === "bicycle" || data.kind === "skateboard",
     roadBound: data.roadBound,
     offRoad: offRoad(actor),
-    surf: data.kind === "surfboard" ? F("SurfingNow", { least: SURFING.bestWaves.least, most: SURFING.bestWaves.most, paddling: SURFING.paddling }) : null,
+    surf: data.kind === "surfboard",
+    surfMoves: data.kind === "surfboard"
+      ? [0, ...Array.from({ length: SURFING.bestWaves.most - SURFING.bestWaves.least + 1 }, (_, i) => SURFING.bestWaves.least + i)].map((value) => ({
+          value,
+          label: value ? F("OnAWave", { move: value }) : F("Paddling", { move: SURFING.paddling }),
+          selected: value === surfMoveOf(actor),
+        }))
+      : [],
+    waterMove: data.kind === "surfboard" ? F("WaterMoveNow", { move: Number(derived.feats?.swimming?.move) || 0 }) : null,
     moveLine,
   };
 }
@@ -258,6 +320,9 @@ function ridingListeners(element: HTMLElement, actor: any): void {
   });
   element.querySelector<HTMLInputElement>("[data-gcc-ht-off-road]")?.addEventListener("change", async (event) => {
     await actor.setFlag(MODULE_ID, OFF_ROAD_FLAG, (event.currentTarget as HTMLInputElement).checked);
+  });
+  element.querySelector<HTMLSelectElement>("[data-gcc-ht-surf]")?.addEventListener("change", async (event) => {
+    await actor.setFlag(MODULE_ID, SURF_FLAG, Number((event.currentTarget as HTMLSelectElement).value) || 0);
   });
 }
 
@@ -296,13 +361,22 @@ export function readyConveyances(api: GWorldApi, on: () => boolean): void {
     },
   });
 
-  // Move on the conveyance ridden (pp. 226, 230).
+  // Move on the conveyance ridden (pp. 226, 230), and a surfer's in the water (p. 231).
   Hooks.on(api.data.hooks.moveModifiers, (context: any) => {
     if (!on() || !Array.isArray(context?.lines)) return;
     const item = riddenConveyance(context.actor);
     if (!item) return;
     const move = Number(context.move) || 0;
     const data = conveyanceData(item);
+    if (context.medium === "water") {
+      if (data.kind !== "surfboard") return;
+      // Paddling is seldom faster than Move 1; the best waves carry a surfer at 12-15.
+      const wave = surfMoveOf(context.actor);
+      const target = wave || SURFING.paddling;
+      if (target !== move) context.lines.push({ label: F(wave ? "WaveLine" : "PaddleLine", { name: item.name }), value: target - move, medium: "water" });
+      return;
+    }
+    if (context.medium && context.medium !== "ground") return;
     if (data.kind === "wheelchair") {
       if (data.move > 0 && data.move !== move) context.lines.push({ label: String(item.name ?? ""), value: data.move - move });
       return;
@@ -326,14 +400,22 @@ export function readyConveyances(api: GWorldApi, on: () => boolean): void {
     context.lines.push({ key: "conveyance", label: String(item.name ?? ""), value: data.skillModifier, source: MODULE_ID });
   });
 
-  // The conveyance ridden carries its rider, not the other way round.
+  // The conveyance ridden carries its rider, not the other way round; a
+  // bicycle moving cargo is in the towed load, not carried as well.
   Hooks.on(api.data.hooks.carriedWeight, (context: any) => {
     if (!on() || !Array.isArray(context?.lines)) return;
-    const item = riddenConveyance(context.actor);
-    const line = item ? context.lines.find((l: any) => l?.item === item || (l?.item?.id && l.item.id === item.id)) : null;
-    if (line) {
-      line.counts = false;
-      line.reason = L("Ridden");
+    const lineOf = (item: any) => (item ? context.lines.find((l: any) => l?.item === item || (l?.item?.id && l.item.id === item.id)) : null);
+    const ridden = lineOf(riddenConveyance(context.actor));
+    if (ridden) {
+      ridden.counts = false;
+      ridden.reason = L("Ridden");
+    }
+    const cargoId = cargoBikeId(context.actor);
+    // The system keeps the towed load in its own flag (flags.gworld.towing) until it stops.
+    const cargo = cargoId && context.actor?.flags?.gworld?.towing ? lineOf(context.actor?.items?.get?.(cargoId)) : null;
+    if (cargo) {
+      cargo.counts = false;
+      cargo.reason = L("Towed");
     }
   });
 
@@ -348,6 +430,16 @@ export function readyConveyances(api: GWorldApi, on: () => boolean): void {
     visible: (item) => on() && conveyanceData(item).kind === "bicycle",
     run: (item, actor) => { void longRide(api, item, actor); },
   });
+  api.sheets.registerRowAction({
+    module: MODULE_ID, key: "ht-conveyance-cargo", itemTypes: ["equipment"], label: L("CargoAction"), icon: "fa-solid fa-dolly",
+    visible: (item, actor) => on() && conveyanceData(item).kind === "bicycle" && cargoBikeId(actor) !== String(item.id ?? ""),
+    run: (item, actor) => { void moveCargo(api, item, actor); },
+  });
+  api.sheets.registerRowAction({
+    module: MODULE_ID, key: "ht-conveyance-cargo-stop", itemTypes: ["equipment"], label: L("CargoStop"), icon: "fa-solid fa-hand",
+    visible: (item, actor) => on() && cargoBikeId(actor) === String(item.id ?? ""),
+    run: (_item, actor) => { void stopCargo(api, actor); },
+  });
 
   api.chat.registerChatCard({
     module: MODULE_ID,
@@ -357,7 +449,9 @@ export function readyConveyances(api: GWorldApi, on: () => boolean): void {
       landing: async ({ message, data, actor }: any) => {
         const landing = (data as SpillData).landing;
         if (!on() || !landing || landing.rolled) return;
-        await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "fall" });
+        // The system's falling procedure: a random location, armour as flexible, the card (Campaigns pp. 430-431).
+        if (landing.yards) await api.hazards.fall(actor, { yards: landing.yards });
+        else await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "fall" });
         await api.chat.update(message, { ...data, landing: { ...landing, rolled: true } });
       },
     },

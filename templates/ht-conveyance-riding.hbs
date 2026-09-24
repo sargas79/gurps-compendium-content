@@ -15,6 +15,15 @@
       </div>
     {{/if}}
   {{/if}}
-  {{#if surf}}<p class="ihint">{{surf}}</p>{{/if}}
+  {{#if surf}}
+    <div class="ifields">
+      <label data-tooltip="{{localize 'GCC.HT.Conveyance.SurfHint'}}">{{localize "GCC.HT.Conveyance.Surf"}}
+        <select data-gcc-ht-surf {{#unless editable}}disabled{{/unless}}>
+          {{#each surfMoves as |wave|}}<option value="{{wave.value}}" {{#if wave.selected}}selected{{/if}}>{{wave.label}}</option>{{/each}}
+        </select>
+      </label>
+    </div>
+    {{#if waterMove}}<p class="ihint">{{waterMove}}</p>{{/if}}
+  {{/if}}
   {{#if moveLine}}<p class="ihint">{{moveLine}}</p>{{/if}}
 </section>

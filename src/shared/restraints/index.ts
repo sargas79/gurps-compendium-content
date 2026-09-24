@@ -15,13 +15,14 @@
  *
  *   - **Wrists behind the back, or a straitjacket:** the table's DX line on
  *     DX-based rolls and attacks, the hands-only line in its place on the
- *     skills done with the hands alone, and no attack with a weapon
- *     (`gworld.attackModifiers` refuses it).
+ *     skills done with the hands alone, and no attack with a weapon or a
+ *     punch (`gworld.attackModifiers` refuses it; the system names a punch
+ *     since API 1.111.0).
  *   - **Wrists in front:** the table's hands-only line on those skills, and no
  *     one-handed melee blow; two-handed blows and guns are unhindered.
  *   - **Legs:** Lame (crippled legs) through `gworld.traitEffects`, which the
  *     system turns into half Basic Speed as Move and -3 on skills that need
- *     the legs (Characters p. 141).
+ *     the legs (Characters p. 141), and no kick.
  *   - Row buttons: Escape at the restraint's modifier (freed on a success),
  *     and Acrobatics or Escape to slip cuffed wrists round to the front.
  *
@@ -173,6 +174,21 @@ export function cuffedRefusal(actor: any, item: any, mode: { index?: number; ran
   return melee && !melee.twoHanded ? F(table.i18n, "NoOneHanded", { name: wrists.held.item.name }) : null;
 }
 
+/**
+ * Why a restrained character can't make a bare-handed blow, or null: no
+ * punch with the wrists held where no weapon can be used (behind the back, a
+ * straitjacket), no kick in leg irons. Cuffed in front, a punch is allowed.
+ */
+export function unarmedRefusal(actor: any, unarmed: unknown): string | null {
+  if (unarmed !== "punch" && unarmed !== "kick") return null;
+  const { wrists, legs } = restrainedBy(actor);
+  if (unarmed === "punch" && wrists && wrists.held.table.cuffed[wrists.position].weapons === "none") {
+    return F(wrists.held.table.i18n, "NoPunch", { name: wrists.held.item.name });
+  }
+  if (unarmed === "kick" && legs) return F(legs.table.i18n, "NoKick", { name: legs.item.name });
+  return null;
+}
+
 async function say(actor: any, title: string, lines: string[]): Promise<void> {
   await ChatMessage.implementation.create({
     speaker: actor ? ChatMessage.implementation.getSpeaker({ actor }) : undefined,
@@ -319,7 +335,7 @@ export function readyRestraints(api: GWorldApi): void {
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const actor = context?.actor;
     if (!actor || context.refusal) return;
-    const refusal = cuffedRefusal(actor, context.item ?? null, context.mode ?? null);
+    const refusal = cuffedRefusal(actor, context.item ?? null, context.mode ?? null) ?? unarmedRefusal(actor, context.unarmed);
     if (refusal) context.refusal = refusal;
   });
 }

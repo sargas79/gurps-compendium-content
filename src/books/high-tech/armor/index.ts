@@ -57,7 +57,7 @@ const FIELD = "htArmor";
 const SHIELD_FIELD = "htMaterial";
 /** Item flag: DR a semi-ablative plate has lost. */
 const PLATE_FLAG = "htPlateLost";
-/** Actor flag: the attacker's last attack struck around partial armour. */
+/** Actor flag an older version kept for the attacker's strike around partial armour; cleared when met. */
 const AROUND_FLAG = "htStrikeAround";
 /** The attack option's key. */
 export const STRIKE_AROUND_OPTION = "ht-strike-around";
@@ -161,12 +161,14 @@ export function sixthsAt(actor: any, location: string): number {
   return combinedSixths(partialPiecesAt(actor, location).map((p) => p.sixths));
 }
 
-/** Whether the blow is the attacker's strike around partial armour, as their last attack recorded it. */
+/**
+ * Whether the blow struck around partial armour: the attack chose the option
+ * and was aimed at the location it landed on. The blow carries its attack
+ * options and called shot to `gworld.armorDr` (API 1.108.0).
+ */
 function struckAround(context: any, location: string): boolean {
-  const weapon = context.item;
-  const around = weapon?.actor?.getFlag?.(MODULE_ID, AROUND_FLAG);
-  if (!around || !weapon?.id || around.itemId !== weapon.id || around.location !== location) return false;
-  return Array.isArray(around.targets) && around.targets.includes(String(context.actor?.uuid ?? ""));
+  if (context.options?.[`${MODULE_ID}.${STRIKE_AROUND_OPTION}`] !== true) return false;
+  return String(context.calledShot?.hitLocation ?? "") === location;
 }
 
 /** The line a piece's own DR makes where the piece isn't listed: high boots' tops over the leg. */
@@ -381,26 +383,16 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const actor = context?.actor;
     if (!actor || !Array.isArray(context.modifiers)) return;
-    const recorded = actor.getFlag?.(MODULE_ID, AROUND_FLAG);
+    // The flag an older version kept; the blow now carries the option itself.
+    if (actor.getFlag?.(MODULE_ID, AROUND_FLAG) && actor.isOwner) void actor.unsetFlag(MODULE_ID, AROUND_FLAG);
     const chosen = on.partial() && Boolean(context.options?.[`${MODULE_ID}.${STRIKE_AROUND_OPTION}`]);
+    if (!chosen) return;
     const location = String(context.calledShot?.hitLocation ?? "torso");
     const target = (context.targets ?? []).find(Boolean);
-    const sixths = chosen && target ? sixthsAt(target, location) : 0;
+    const sixths = target ? sixthsAt(target, location) : 0;
     const penalty = strikeAroundPenalty(sixths);
-    if (!chosen || penalty === null) {
-      if (chosen) context.modifiers.push({ label: F("StrikeAroundNothing", { location }), value: 0 });
-      if (recorded && actor.isOwner) void actor.unsetFlag(MODULE_ID, AROUND_FLAG);
-      return;
-    }
-    context.modifiers.push({ label: F("StrikeAroundLine", { n: sixths }), value: penalty });
-    // What the blow that follows is told: the damage is applied from another card, perhaps on another client.
-    if (actor.isOwner) {
-      void actor.setFlag(MODULE_ID, AROUND_FLAG, {
-        itemId: context.item?.id ?? null,
-        location,
-        targets: (context.targets ?? []).filter(Boolean).map((t: any) => String(t.uuid ?? "")),
-      });
-    }
+    if (penalty === null) context.modifiers.push({ label: F("StrikeAroundNothing", { location }), value: 0 });
+    else context.modifiers.push({ label: F("StrikeAroundLine", { n: sixths }), value: penalty });
   });
 
   // What each piece is worth against the blow.

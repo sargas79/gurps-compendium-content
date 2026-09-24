@@ -23,8 +23,10 @@
  *     surgical kit's own TL modifier in place of the Basic Set table's on an
  *     operation, and a suturing kit improvised (-5) for one; putting a patient
  *     under with a chloroform mask or an anaesthesia machine (+2), -2 to
- *     Surgery if it failed; antiseptic cleaning a wound, +2 on the infection
- *     roll.
+ *     Surgery if it failed; antiseptic cleaning a wound, taking up to 2 of
+ *     the dirt's penalty off the infection roll (its `woundDirt` line); and
+ *     a TL6-8 healer with no medical supplies or first aid kit giving First
+ *     Aid as at TL5 (`gworld.firstAid`'s `techLevel`).
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -35,6 +37,9 @@ import {
   AED_HOOKUP,
   ANESTHESIA,
   ANTISEPTIC,
+  MEDICAL_SUPPLIES,
+  antisepticLine,
+  withoutSuppliesTl,
   DIAGNOSIS_DEFAULT,
   ELECTRONICS_DEFAULT,
   HEMOSTATIC,
@@ -204,7 +209,8 @@ async function chargeCpr(api: GWorldApi, healer: any, patient: any): Promise<voi
   const fp = cprFatigue(before, 1);
   await healer?.setFlag?.(MODULE_ID, CPR_FLAG, { patient: who, minutes: before + 1 });
   if (!fp) return;
-  const spent = await api.actors.applyInjury(healer, { amount: fp, fatigue: true, label: L("Cpr") });
+  // Exertion through the fatigue chart: Very Fit halves it, and past 0 FP it hurts (Campaigns p. 426).
+  const spent = await api.actors.spendFatigue(healer, fp, { details: { rule: "cpr" } });
   if (spent) await say(healer, L("Cpr"), [F("CprFatigue", { name: healer.name, fp, minutes: before + 1 })]);
 }
 
@@ -437,6 +443,15 @@ async function cleanWound(item: any, actor: any): Promise<void> {
   await say(patient, nameOf(item), [F("Cleaned", { name: patient.name, bonus: ANTISEPTIC.bonus })]);
 }
 
+/**
+ * Whether a healer has consumable medical supplies to hand: the Medical
+ * Supplies record (p. 223), or a first aid kit or crash kit not yet depleted.
+ */
+export function hasMedicalSupplies(actor: any): boolean {
+  const carried = [...(actor?.items ?? [])].filter((i: any) => i?.type === "equipment" && i.system?.carried !== false && (Number(i.system?.quantity ?? 1) || 0) > 0);
+  return carried.some((i: any) => MEDICAL_SUPPLIES.test(String(i.name ?? "")) || (medicalData(i).kind === "firstAidKit" && !medicalData(i).depleted));
+}
+
 /** Whether the patient's wound was cleaned with antiseptic lately. */
 export function cleanedWith(actor: any): boolean {
   const at = actor?.getFlag?.(MODULE_ID, ANTISEPTIC_FLAG);
@@ -546,11 +561,21 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
       if (anesthesia) context.modifiers.push(anesthesia);
     }
 
-    // Antiseptic on the wound, and spent on this roll (p. 225).
+    // Antiseptic on the wound, and spent on this roll: it removes up to -2 of
+    // the dirt's penalty (p. 225), the system's line keyed woundDirt (Campaigns p. 444).
     if (on.facilities() && tags.includes("infection") && cleanedWith(context.actor)) {
-      context.modifiers.push({ label: L("AntisepticLine"), value: ANTISEPTIC.bonus });
+      const dirt = (context.modifiers as any[]).find((m) => m?.key === "woundDirt");
+      const value = antisepticLine(Number(dirt?.value) || 0);
+      if (value) context.modifiers.push({ label: L("AntisepticLine"), value });
       if (context.actor?.isOwner) void context.actor.unsetFlag?.(MODULE_ID, ANTISEPTIC_FLAG);
     }
+  });
+
+  // Without consumable supplies, a TL6-8 healer works as TL5 on the First Aid Table (p. 223; Campaigns p. 424).
+  Hooks.on(api.combat.hooks.firstAid, (context: any) => {
+    if (!on.facilities() || !context?.healer) return;
+    const tl = withoutSuppliesTl(Number(context.techLevel) || 0, hasMedicalSupplies(context.healer));
+    if (tl !== null) context.techLevel = tl;
   });
 
   const action = (key: string, label: string, icon: string, visible: (item: any) => boolean, run: (item: any, actor: any) => Promise<void>) =>

@@ -2,6 +2,14 @@
 <div class="gc-head"><span class="gc-label">{{localize "GCC.HT.Expedition.EyesTitle"}}</span></div>
 <div class="gc-result">{{light}} &rarr; {{victim}}</div>
 <div class="gc-note">{{localize "GCC.HT.Expedition.EyesSurprise"}}</div>
+{{#if surprised}}
+  <div class="gc-note">{{surprised}}</div>
+{{else}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="surprisePartial">{{localize "GCC.HT.Expedition.EyesSurprisePartial"}}</button>
+    <button type="button" class="gc-apply-button" data-addon-card-action="surpriseTotal">{{localize "GCC.HT.Expedition.EyesSurpriseTotal"}}</button>
+  </div>
+{{/if}}
 {{#if result}}
   <div class="gc-note">{{result}}</div>
 {{else}}

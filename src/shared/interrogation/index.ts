@@ -14,8 +14,9 @@
  *     Quick Contest of the operator's skill against the subject's Will. The
  *     margin (plus for a win, minus for a loss) is kept on the machine as its
  *     reading of that subject until the next test or until it is cleared.
- *     The reading is told to the GMs alone; the contest's own card is the
- *     system's, posted openly.
+ *     The contest is the GM's secret roll (Campaigns p. 494; the system's
+ *     secret contest since API 1.111.0), and the reading is told to the GMs
+ *     alone.
  *   - An Interrogation roll against a subject a machine has a reading of --
  *     the contest's other side, or the one token targeted -- gets the
  *     reading, times the machine's share, as a line
@@ -160,6 +161,8 @@ async function runTest(api: GWorldApi, machine: Machine, operator: any): Promise
     first: { actor: operator, base, note: skill },
     second: { actor: subject, base: api.actors.attribute(subject, "Will") ?? 10, note: "Will" },
     tags: ["lieDetector"],
+    // The GM makes these rolls in secret: neither side sees the card.
+    secret: true,
   } as any);
   if (!outcome) return;
   const margin = contestMargin(outcome);

@@ -15,8 +15,9 @@
  *     pumping and the solar still's Survival roll as row actions; and a rescue
  *     signal in use as +2 to a rescuer's Vision roll.
  *   - **Maritime gear (maritimeGear):** a life jacket worn gives +6 to
- *     Swimming rolls and -3 in a Quick Contest of Swimming; swim fins worn
- *     take Move on land to 2; a released dye marker is +2 to Vision rolls to
+ *     Swimming rolls (the drowning rolls among them) and -3 in a Quick Contest
+ *     of Swimming; swim fins worn are Enhanced Move 0.5 (Water) on water
+ *     Move and take Move on land to 2; a released dye marker is +2 to Vision rolls to
  *     spot its user for half an hour.
  *   - **Parachuting (parachuting):** a jump as a row action -- the
  *     Parachuting roll, where the canopy opens, the landing speed for the
@@ -37,6 +38,7 @@ import {
   DOFF_SECONDS,
   DYE_MARKER_SECONDS,
   FINS_LAND_MOVE,
+  FINS_WATER_MULTIPLIER,
   FIRE_STARTER_BONUS,
   FORAGING_ROLLS_A_DAY,
   LIFE_JACKET,
@@ -311,7 +313,8 @@ async function breakFree(api: GWorldApi, message: any, data: TrapData): Promise<
 // ── water (p. 59) ──
 
 async function pumpWater(api: GWorldApi, item: any, actor: any): Promise<void> {
-  const spent = await api.actors.applyInjury(actor, { amount: DESALINATOR.fp, fatigue: true, label: String(item.name ?? "") });
+  // Pumping is exertion, charged through the fatigue chart (Campaigns p. 426).
+  const spent = await api.actors.spendFatigue(actor, DESALINATOR.fp, { details: { rule: "desalinator", item: String(item.name ?? "") } });
   if (!spent) return;
   await say(actor, String(item.name ?? ""), [F(survivalData(item).large ? "PumpedQuart" : "PumpedCup", { name: actor.name, minutes: DESALINATOR.minutes, fp: DESALINATOR.fp })]);
 }
@@ -610,11 +613,17 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
     if (on.maritime() && dyeActive(subject)) context.modifiers.push({ label: L("DyeLine"), value: SIGNAL_VISION });
   });
 
-  // Swim fins on land (p. 60).
+  // Swim fins: Enhanced Move 0.5 (Water) in the water, Move 2 on land (p. 60).
   Hooks.on(api.data.hooks.moveModifiers, (context: any) => {
     if (!on.maritime() || !Array.isArray(context?.lines)) return;
     const fins = gearOf(context.actor, "swimFins", true)[0];
-    const value = fins ? finsMoveLine(Number(context.move) || 0) : 0;
+    if (!fins) return;
+    if (context.medium === "water") {
+      context.lines.push({ label: F("FinsWaterLine", { name: fins.name }), multiplier: FINS_WATER_MULTIPLIER, medium: "water" });
+      return;
+    }
+    if (context.medium && context.medium !== "ground") return;
+    const value = finsMoveLine(Number(context.move) || 0);
     if (value) context.lines.push({ label: F("FinsLine", { name: fins.name }), value });
   });
 

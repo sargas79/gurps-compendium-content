@@ -208,7 +208,8 @@ async function crank(api: GWorldApi, item: any, figures: GeneratorFigures): Prom
   } else if (figures.cranked) {
     const hours = Math.floor(asked.amount);
     const fp = crankFatigue(figures.cranked, hours);
-    if (fp) await api.actors.applyInjury(actor, { amount: fp, fatigue: true, label: F("CrankFatigue", { name: item.name }) } as any);
+    // Cranking is exertion, through the fatigue chart (Campaigns p. 426).
+    if (fp) await api.actors.spendFatigue(actor, fp, { details: { rule: "crank", item: String(item.name ?? "") } });
     if (target) {
       const share = crankedShare(figures.cranked, hours, target.weight);
       const back = await recharge(target.item, share * target.total);

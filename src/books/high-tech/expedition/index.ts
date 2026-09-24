@@ -30,7 +30,9 @@
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
  *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
  *     throwing a grapnel, snowshoes' -1 Move, and crampons' +2 to a kick
- *     (beside the system's +1 for boots, which they are worn over).
+ *     (beside the system's +1 for boots, which they are worn over); an
+ *     ascender, descender or suction cups cancelling the climb's own penalty
+ *     on the Climb roll (its `climbKind` line).
  */
 
 import { placeArea } from "../../../shared/areas.js";
@@ -41,6 +43,8 @@ import {
   CARRY_KINDS,
   CLIMBING_KINDS,
   CRAMPON_KICK,
+  cancelsClimb,
+  lbeStealth,
   FITS,
   GLASS_LANTERN_FIRE_YARDS,
   LIGHT_KINDS,
@@ -292,7 +296,7 @@ async function pickUp(api: GWorldApi, item: any): Promise<void> {
   if (expeditionState(item).placed) await setState(item, { placed: false });
 }
 
-type EyesData = { victimUuid: string; victim: string; light: string; result: string };
+type EyesData = { victimUuid: string; victim: string; light: string; result: string; surprised?: string };
 
 /** Shines a tactical light in the eyes of each targeted token within its beam (p. 52). */
 async function shineInEyes(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -309,6 +313,19 @@ async function shineInEyes(api: GWorldApi, item: any, actor: any): Promise<void>
     const data: EyesData = { victimUuid: String(victim.uuid ?? ""), victim: String(victim.name ?? ""), light: String(item.name ?? ""), result: "" };
     await api.chat.post(`${MODULE_ID}.${EYES_CARD}`, data, { actor: victim } as any);
   }
+}
+
+/**
+ * In a surprise situation the light stuns (p. 52): the GM says whether the
+ * victim was surprised, partly or totally, and the system's surprise stuns
+ * them mentally (Campaigns p. 393; API 1.104.0).
+ */
+async function surpriseWithLight(api: GWorldApi, message: any, data: EyesData, total: boolean): Promise<void> {
+  const victim: any = data.victimUuid ? await fromUuid(data.victimUuid) : null;
+  if (!victim || data.surprised) return;
+  const result: any = await api.actors.surprise(victim, { total });
+  if (!result) return;
+  await api.chat.update(message, { ...data, surprised: F(result.kind === "total" ? "EyesSurprisedTotal" : "EyesSurprisedPartial", { name: victim.name, seconds: result.freezeSeconds }) });
 }
 
 async function resistLight(api: GWorldApi, message: any, data: EyesData): Promise<void> {
@@ -501,6 +518,8 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
     template: `modules/${MODULE_ID}/templates/ht-expedition-card.hbs`,
     actions: {
       resist: async ({ message, data }: any) => { if (on.lights()) await resistLight(api, message, data as EyesData); },
+      surprisePartial: { permission: "gm", run: async ({ message, data }: any) => { if (on.lights()) await surpriseWithLight(api, message, data as EyesData, false); } },
+      surpriseTotal: { permission: "gm", run: async ({ message, data }: any) => { if (on.lights()) await surpriseWithLight(api, message, data as EyesData, true); } },
     },
   } as any);
 
@@ -566,6 +585,34 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
         await say(actor, String(item.name ?? ""), [F("PackPain", { name: actor?.name ?? "" })]);
       })();
     },
+  });
+
+  // Climbing gear cancels the climb's own penalty (pp. 55-56): the system's
+  // line keyed climbKind on the Climb roll (Campaigns p. 349; API 1.103.0).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    const tags: string[] = context?.tags ?? [];
+    if (!on.climbing() || !tags.includes("climbing") || !Array.isArray(context.modifiers)) return;
+    const line = context.modifiers.find((m: any) => m?.key === "climbKind");
+    if (!line || !(Number(line.value) < 0)) return;
+    const gear = gearOf(context.actor).find((i) => cancelsClimb(expeditionData(i).climbing, String(i.name ?? ""), tags));
+    if (!gear) return;
+    line.value = 0;
+    line.label = F("ClimbCancelled", { label: line.label ?? "", name: gear.name });
+  });
+
+  // Quality LBE at TL6+ lightens Stealth's encumbrance penalty by its
+  // quality (p. 54): the system's line keyed encumbrance (Characters p. 222; API 1.103.0).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.loadBearing() || !Array.isArray(context?.modifiers) || !/^stealth\b/i.test(String(context.skill ?? ""))) return;
+    const line = context.modifiers.find((m: any) => m?.key === "encumbrance");
+    if (!line || !(Number(line.value) < 0)) return;
+    const best = gearOf(context.actor)
+      .filter((i) => expeditionData(i).carry === "lbe")
+      .map((i) => ({ name: String(i.name ?? ""), bonus: lbeStealth(String(i.system?.equipmentQuality ?? "basic"), tlOf(i)) }))
+      .sort((a, b) => b.bonus - a.bonus)[0];
+    if (!best?.bonus) return;
+    line.value = Math.min(0, Number(line.value) + best.bonus);
+    line.label = F("LbeStealth", { label: line.label ?? "", name: best.name, bonus: best.bonus });
   });
 
   // Fast-Draw from set-up LBE takes its quality (p. 54).

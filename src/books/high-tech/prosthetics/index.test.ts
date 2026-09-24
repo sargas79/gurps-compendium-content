@@ -16,6 +16,8 @@ let hooks: Map<string, Listener[]>;
 let cards: Map<string, any>;
 let tools: any[];
 let operated: any[];
+let changed: any[];
+let outcome: any;
 let posted: any[];
 let updated: any[];
 let warnings: string[];
@@ -23,7 +25,10 @@ let on: boolean;
 
 function fakeApi() {
   return {
-    actors: { operate: async (o: any) => { operated.push(o); } },
+    actors: {
+      operate: async (o: any) => { operated.push(o); return outcome; },
+      changeTrait: async (actor: any, o: any) => { changed.push({ actor, ...o }); return { itemId: "t", from: {}, to: {}, replaced: Boolean(o.replaceWith) }; },
+    },
     chat: {
       registerChatCard: (c: any) => cards.set(c.key, c),
       post: async (key: string, data: any, options: any) => { posted.push({ key, data, options }); },
@@ -64,6 +69,8 @@ beforeEach(() => {
   cards = new Map();
   tools = [];
   operated = [];
+  changed = [];
+  outcome = { success: true, margin: 2 };
   posted = [];
   updated = [];
   warnings = [];
@@ -133,13 +140,40 @@ describe("elective surgery", () => {
     expect(tools[0]!.visible()).toBe(false);
   });
 
-  it("runs the operation through the system and posts the card for the GM", async () => {
+  it("runs the operation through the system and records its outcome on the card for the GM", async () => {
     const pat = person([item("Appearance", "trait", { levels: 1 })]);
     const surgeon = { name: "Doc", system: { tl: 8 } };
     const plan = await operateElectively(fakeApi() as never, { patient: pat, surgeon, techLevel: 8, procedure: "appearance", modifier: 1 });
     expect(plan).toMatchObject({ from: "Attractive", to: "Handsome/Beautiful", cost: 8000 });
     expect(operated).toEqual([{ surgeon, patient: pat, techLevel: 8, label: expect.any(String), modifier: 1 }]);
-    expect(posted[0]).toMatchObject({ key: `${MODULE_ID}.ht-elective-surgery`, data: { patient: "p1", buttons: [{ action: "worked" }, { action: "failed" }] } });
+    // Attractive to Beautiful or Handsome is the character's choice: the GM sets it.
+    expect(changed).toEqual([]);
+    expect(posted[0]).toMatchObject({ key: `${MODULE_ID}.ht-elective-surgery`, data: { patient: "p1", buttons: [] } });
+    expect(posted[0].data.lines[0]).toContain("SetAppearance");
+    expect(pat.getFlag(MODULE_ID, SURGERY_FLAG).operations[0]).toMatchObject({ procedure: "appearance" });
+  });
+
+  it("writes Beautiful to Very Beautiful, and Fat to Overweight, through changeTrait", async () => {
+    const beauty = person([{ ...item("Appearance", "trait", { levels: 2 }), id: "app" }]);
+    await operateElectively(fakeApi() as never, { patient: beauty, surgeon: { name: "Doc" }, techLevel: 8, procedure: "appearance" });
+    expect(changed[0]).toMatchObject({ actor: beauty, id: "app", level: 4 });
+    expect(posted[0].data.lines[0]).toContain("AppearanceChanged");
+    const fat = person([item("Fat", "trait")]);
+    await operateElectively(fakeApi() as never, { patient: fat, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: true });
+    expect(changed[1]).toMatchObject({ actor: fat, name: "Fat", replaceWith: "Overweight" });
+    expect(posted[1].data.lines[0]).toContain("BuildChanged");
+  });
+
+  it("records nothing on a failed roll, and nothing at all where the system rolled nothing", async () => {
+    outcome = { success: false, margin: -3 };
+    const pat = person([item("Fat", "trait")]);
+    await operateElectively(fakeApi() as never, { patient: pat, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: true });
+    expect(changed).toEqual([]);
+    expect(posted[0].data.lines).toEqual(["GCC.HT.Prosthetics.FailedNote.build"]);
+    expect(pat.getFlag(MODULE_ID, SURGERY_FLAG)).toBeUndefined();
+    outcome = null;
+    expect(await operateElectively(fakeApi() as never, { patient: pat, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: true })).toBeNull();
+    expect(posted).toHaveLength(1);
   });
 
   it("refuses an operation the book doesn't price, without rolling", async () => {
@@ -151,8 +185,8 @@ describe("elective surgery", () => {
 
   it("records a success and, once every eye is done, cures Bad Sight", async () => {
     const pat = person([item("Bad Sight (Farsighted)", "trait")]);
+    // The operation's success is read from the system's roll and recorded: one eye done.
     const plan = await operateElectively(fakeApi() as never, { patient: pat, surgeon: { name: "Doc" }, techLevel: 8, procedure: "vision", eyes: 1 });
-    await recordOperation(pat, plan!, 1);
     expect(sightCured(pat)).toBe(false);
     expect(inPlay(pat)[0].inPlay).toBe(true);
     await recordOperation(pat, plan!, 1);
@@ -160,12 +194,12 @@ describe("elective surgery", () => {
     expect(inPlay(pat)[0]).toMatchObject({ inPlay: false, reason: "GCC.HT.Prosthetics.Cured" });
   });
 
-  it("records the card's answer when the GM gives it", async () => {
+  it("still records an older card's answer when the GM gives it", async () => {
     const pat = person([]);
     (globalThis as any).game.actors.get = () => pat;
     const plan = await operateElectively(fakeApi() as never, { patient: pat, surgeon: { name: "Doc" }, techLevel: 8, procedure: "build", lighter: false });
     expect(plan).toMatchObject({ from: "Average", to: "Overweight" });
-    await cards.get("ht-elective-surgery").actions.worked.run({ message: "m", data: posted[0].data });
+    await cards.get("ht-elective-surgery").actions.worked.run({ message: "m", data: { ...posted[0].data, buttons: [{ action: "worked" }, { action: "failed" }] } });
     expect(updated[0].data.buttons).toEqual([]);
     expect(updated[0].data.lines[0]).toContain("SetBuild");
     expect(pat.getFlag(MODULE_ID, SURGERY_FLAG).operations[0]).toMatchObject({ procedure: "build", from: "Average", to: "Overweight" });

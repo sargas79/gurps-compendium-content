@@ -63,6 +63,7 @@ function fakeApi() {
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       derived: (actor: any) => actor?.derived ?? {},
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor, ...c }); return "c1"; },
+      surprise: async (actor: any, o: any) => { conditions.push({ actor, surprise: true, ...o }); return { kind: o.total ? "total" : "partial", freezeSeconds: o.total ? 4 : 0 }; },
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -274,6 +275,20 @@ describe("light sources (High-Tech pp. 51-52)", () => {
     expect(conditions.at(-1)).toMatchObject({ key: "htLightBlinded", duration: { seconds: 30 } });
     expect(conditions.at(-1).effects.modifiers[0]).toMatchObject({ value: -10, rolls: ["vision", "attack"] });
   });
+
+  it("stuns a victim the GM says was surprised by the light, through the system's surprise", async () => {
+    const victim = person("Guard");
+    vi.stubGlobal("fromUuid", async () => victim);
+    const card = cards.get("ht-light-eyes");
+    expect(card.actions.surpriseTotal.permission).toBe("gm");
+    await card.actions.surpriseTotal.run({ message: {}, data: { victimUuid: "Actor.Guard", victim: "Guard", light: "Light", result: "" } });
+    expect(conditions.at(-1)).toMatchObject({ actor: victim, surprise: true, total: true });
+    expect(updated.at(-1).surprised).toContain("EyesSurprisedTotal");
+    // Once said, not again.
+    const count = conditions.length;
+    await card.actions.surprisePartial.run({ message: {}, data: { victimUuid: "Actor.Guard", victim: "Guard", light: "Light", result: "", surprised: "done" } });
+    expect(conditions).toHaveLength(count);
+  });
 });
 
 describe("navigation gear (High-Tech pp. 52-53)", () => {
@@ -395,5 +410,43 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
     const loose = [{ mode: { naturalKey: "kick" }, row: { damage: "1d-1", notes: [] } }];
     fire(HOOKS.unarmedAttacks, { actor: person("Climber", [gear("Crampons", { climbing: "crampons" }, { equipped: false })]), rows: loose, addToDamage });
     expect(loose[0]!.row.damage).toBe("1d-1");
+  });
+});
+
+describe("climbing gear on the Climb roll (High-Tech pp. 55-56)", () => {
+  beforeEach(() => { on = { climbingGear: true }; ready(); });
+
+  // The system's Climb roll: tagged with the climb, its own penalty keyed climbKind (API 1.103.0).
+  const climb = (actor: any, kind: string, value: number) =>
+    fire(HOOKS.successRollModifiers, { actor, skill: "Climbing", tags: ["climbing", `climb-${kind}`], modifiers: [{ key: "climbKind", label: "Climb", value }] }).modifiers;
+
+  it("cancels the rope's and the building's penalties with the right gear", () => {
+    expect(climb(person("A", [gear("Ascender", { climbing: "ascender" })]), "ropeUp", -2)[0]).toMatchObject({ key: "climbKind", value: 0 });
+    expect(climb(person("D", [gear("Descender", { climbing: "descender" })]), "ropeDown", -1)[0]).toMatchObject({ value: 0 });
+    expect(climb(person("K", [gear("Mini-Rappel Kit", { climbing: "rappelKit" })]), "ropeDown", -1)[0]).toMatchObject({ value: 0 });
+    expect(climb(person("K", [gear("Climbing Kit", { climbing: "rappelKit" })]), "ropeUp", -2)[0]).toMatchObject({ value: 0 });
+    expect(climb(person("S", [gear("Suction Cups", { climbing: "suctionCup" })]), "modernBuilding", -3)[0]).toMatchObject({ value: 0 });
+  });
+
+  it("leaves the penalty where the gear is for another climb", () => {
+    expect(climb(person("K", [gear("Mini-Rappel Kit", { climbing: "rappelKit" })]), "ropeUp", -2)[0]).toMatchObject({ value: -2 });
+    expect(climb(person("A", [gear("Ascender", { climbing: "ascender" })]), "modernBuilding", -3)[0]).toMatchObject({ value: -3 });
+    expect(climb(person("N", []), "ropeUp", -2)[0]).toMatchObject({ value: -2 });
+  });
+});
+
+describe("quality LBE and Stealth (High-Tech p. 54)", () => {
+  beforeEach(() => { on = { loadBearingEquipment: true }; ready(); });
+
+  const stealth = (actor: any, value: number) =>
+    fire(HOOKS.successRollModifiers, { actor, skill: "Stealth", tags: ["DX"], modifiers: [{ key: "encumbrance", label: "Encumbrance", value }] }).modifiers[0];
+
+  it("takes the LBE's quality off the encumbrance line, from TL6, never past 0", () => {
+    const fine = gear("Tactical Vest", { carry: "lbe" }, { tl: "8", equipmentQuality: "fine" });
+    expect(stealth(person("Soldier", [fine]), -3)).toMatchObject({ key: "encumbrance", value: -1 });
+    expect(stealth(person("Soldier", [fine]), -1)).toMatchObject({ value: 0 });
+    const old = gear("Haversack", { carry: "lbe" }, { tl: "5", equipmentQuality: "fine" });
+    expect(stealth(person("Soldier", [old]), -3)).toMatchObject({ value: -3 });
+    expect(stealth(person("Soldier", []), -2)).toMatchObject({ value: -2 });
   });
 });

@@ -174,6 +174,11 @@ export function qualityBonus(quality: string, tl = 0): number {
   return quality === "good" ? 1 : quality === "fine" ? 2 : 0;
 }
 
+/** What quality LBE takes off Stealth's encumbrance penalty: its quality bonus, from TL6 (p. 54). */
+export function lbeStealth(quality: string, tl: number): number {
+  return tl >= 6 ? qualityBonus(quality, tl) : 0;
+}
+
 /** What set-up LBE adds to reaching gear and Fast-Draw from it (p. 54): its quality, or -2 set up badly. */
 export function lbeBonus(fit: Fit, quality: string, tl = 0): number | null {
   if (fit === "ok") return qualityBonus(quality, tl);
@@ -242,6 +247,20 @@ export const grapnelRange = (st: number): number => 2 * Math.max(0, Number(st) |
 
 /** A grapnel holds 300 lbs., doubled at TL7 (p. 55). */
 export const grapnelLoad = (tl: number): number => (tl >= 7 ? 600 : 300);
+
+/**
+ * Whether a piece of climbing gear cancels the penalty of the climb the roll
+ * is tagged with (`climb-<kind>`, Campaigns p. 349): an ascender the -2 up a
+ * rope, a descender the -1 down one, and suction cups the -3 up a modern
+ * building (pp. 55-56). The Climbing Kit holds an ascender and a descender,
+ * the Mini-Rappel Kit a descender.
+ */
+export function cancelsClimb(kind: ClimbingKind, name: string, tags: readonly string[]): boolean {
+  if (tags.includes("climb-ropeUp")) return kind === "ascender" || (kind === "rappelKit" && /\bclimbing kit\b/i.test(name));
+  if (tags.includes("climb-ropeDown") || tags.includes("climb-ropeDownRigged")) return kind === "descender" || kind === "rappelKit";
+  if (tags.includes("climb-modernBuilding")) return kind === "suctionCup";
+  return false;
+}
 
 /** Crampons' spikes add +2 to kicking damage (p. 56). */
 export const CRAMPON_KICK = 2;
