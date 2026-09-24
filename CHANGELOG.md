@@ -1,5 +1,27 @@
 # Changelog
 
+## v0.18.0 — GURPS High-Tech: the rest of the book
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.42.0**, which this release requires (add-on API
+1.115.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+The last release of the High-Tech plan (#335). All 115 High-Tech switches sit in
+the "GURPS High-Tech" group, are off by default, and work without Ultra-Tech or
+Martial Arts in the world.
+
+- **Covert ops, medicine and transport (#389, #391-#394):** lie detection and restraints; drugs, hygiene and poisons; prosthetics and elective surgery; vehicle components, protection and crew; personal conveyances.
+- **Through the new system API (#470):**
+  - **DR against afflictions** is counted once. The system now adds it itself; the add-on adjusts or removes that line where a book counts DR differently, instead of adding a second one.
+  - **Boots** use the system's +1 to kick.
+  - **Gear:** water Move for swim fins and surfboards; towing and the manual wheelchair; restraints that stop punches and kicks; secret polygraph and spotting rolls; the real outcome of elective surgery; botulin as a lasting crippled part that lifts when it heals; wire that binds; fatigue through the chart; First Aid at a lower TL without supplies; antiseptic against a dirty wound.
+  - **Vehicles:** run-flat tyres, a GM tool for improved brakes, and rivet spall after a hit.
+- **Fixes (#419, #433, #452):** a boot draws at +0 from a crouch, kneeling or sitting; a calibre printed in two tables is read from the gun's own table; biomedical sensors give +1 once with Ultra-Tech and High-Tech both on.
+- **Checks (#397):** a test turns each High-Tech switch on alone over every book record. Combination gadgets show each part's endurance on a shared battery, and only explosives with nitro in them ask for a jolt number.
+
+What the rules don't cover yet is listed in #510.
+
 ## v0.17.0 — GURPS High-Tech: firearms, ammunition, explosives, armour and gear
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
