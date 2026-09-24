@@ -54,7 +54,9 @@
  * emergency medicine and medical facilities: defibrillators, CPR, first aid
  * kits, IVs, imaging, surgical kits, anaesthesia and antiseptic, and
  * armour: partial coverage, concealing it and its materials, security
- * screening, surveillance gear and jamming, and the protective oddments and
+ * screening, surveillance gear and jamming (with the Electricity and
+ * Electronics supplement's bugs, taps and countersurveillance, HT:EE
+ * pp. 44-45), and the protective oddments and
  * portable cover: footwear, gloves, ear and eye protection, cups and
  * mouthguards, eyeglasses, homemade armour and blankets over bombs, and
  * lie detection and restraints: polygraphs and voice stress analysers on
@@ -107,6 +109,7 @@ import { initMedicine, readyMedicine } from "./medicine/index.js";
 import { readyHighTechCodes } from "./codes/index.js";
 import { initHighTechArmor, readyHighTechArmor } from "./armor/index.js";
 import { initSurveillance, readySurveillance } from "./surveillance/index.js";
+import { readyCovertListening } from "./covert-listening/index.js";
 import { readyOddments } from "./oddments/index.js";
 import { initEnforcement, readyEnforcement } from "./enforcement/index.js";
 import { readyProsthetics } from "./prosthetics/index.js";
@@ -278,6 +281,8 @@ const RULES = [
   // Electricity and Electronics: broad-spectrum and selective jammers, radar jammers and spoofers.
   { key: "jammerKinds", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
   { key: "radarJamming", pages: "pp. 49-50", reference: EE_REFERENCE, implemented: true },
+  // Electricity and Electronics: bugs, taps and countersurveillance.
+  { key: "covertListening", pages: "pp. 44-45", reference: EE_REFERENCE, implemented: true },
   // Protective oddments and portable cover.
   { key: "protectiveOddments", pages: "pp. 68-71, 225", implemented: true },
   { key: "portableCover", pages: "p. 72", implemented: true },
@@ -416,7 +421,8 @@ function ready(api: GWorldApi): void {
   readyMedicine(api, { emergency: rule("emergencyMedicine"), facilities: rule("medicalFacilities") });
   readyHighTechCodes(api, { encryption: rule("encryption"), disguise: rule("disguiseAndSmuggling") });
   readyHighTechArmor(api, { partial: rule("partialCoverage"), conceal: rule("concealedArmor"), materials: rule("armorMaterials") });
-  readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming") });
+  readySurveillance(api, { screening: rule("securityScreening"), surveillance: rule("surveillanceGear"), jamming: rule("jamming"), jammerKinds: rule("jammerKinds"), radarJamming: rule("radarJamming"), covert: rule("covertListening") });
+  readyCovertListening(api, rule("covertListening"));
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));

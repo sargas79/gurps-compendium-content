@@ -147,7 +147,13 @@ export function spikeMikeLevels(name: unknown, tl: number): number | null {
   return Math.max(0, tl - 4) || null;
 }
 
-/** A contact mike hears through a barrier at -(DR + HP)/5, rounded down (p. 208). */
+/**
+ * A contact mike, or the supplement's contact microphone, which prints the
+ * same rule (HT:EE p. 44), by its record's name.
+ */
+export const isContactMike = (name: unknown): boolean => /^contact (mike|microphone)$/i.test(String(name ?? "").trim());
+
+/** A contact mike hears through a barrier at -(DR + HP)/5, rounded down (p. 208; HT:EE p. 44). */
 export function contactMikePenalty(dr: number, hp: number): number {
   const total = Math.max(0, Number(dr) || 0) + Math.max(0, Number(hp) || 0);
   return total >= 5 ? -Math.floor(total / 5) : 0;
@@ -181,6 +187,8 @@ export const BUGS: Readonly<Record<string, { sm: number | null; sweep: "normal" 
   "audio bug (tl7)": { sm: -9, sweep: "normal" },
   "audio bug (tl8)": { sm: -13, sweep: "normal" },
   "contact mike": { sm: -11, sweep: "normal" },
+  // The supplement's contact microphone, SM -11 as well (HT:EE p. 44).
+  "contact microphone": { sm: -11, sweep: "normal" },
   "pinhead mike": { sm: -16, sweep: "normal" },
   "miniature video bug": { sm: -11, sweep: "normal" },
   "subminiature video bug": { sm: -13, sweep: "normal" },

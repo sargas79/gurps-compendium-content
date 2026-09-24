@@ -99,11 +99,13 @@ import {
   spikeMikeLevels,
   supplementJammerByName,
   sweepMinutes,
+  isContactMike,
   type ScreeningSearch,
   type SecurityTask,
   type SpotWay,
   type SweepKind,
 } from "./rules.js";
+import { ISOLATOR, SPREAD_SPECTRUM, WHITE_NOISE, guardsOf } from "../covert-listening/rules.js";
 
 const NS = "GCC.HT";
 const L = (key: string) => game.i18n.localize(`${NS}.Surveillance.${key}`);
@@ -118,6 +120,8 @@ export interface SurveillanceSwitches {
   jamming: () => boolean;
   jammerKinds: () => boolean;
   radarJamming: () => boolean;
+  /** The supplement's covert listening (HT:EE pp. 44-45), which adds to the bug sweep and the contact mike. */
+  covert?: () => boolean;
 }
 
 /** The switches the jammer table answers to, as full keys. */
@@ -237,7 +241,7 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
     const levels = spikeMikeLevels(name, tl);
     if (levels) lines.push(F("Mike.Spike", { levels, factor: 2 ** levels }));
     if (isPinheadMike(name)) lines.push(L("Mike.Pinhead"));
-    if (/^contact mike$/i.test(name)) lines.push(L("Mike.Contact"));
+    if (isContactMike(name)) lines.push(L("Mike.Contact"));
     if (/^laser mike$/i.test(name)) lines.push(F(tl >= 8 ? "Mike.LaserTl8" : "Mike.LaserTl7", { range: LASER_MIKE_RANGE[Math.min(8, Math.max(7, tl))] }));
     const bug = bugOf(name);
     if (bug?.sweep === "undetectable") lines.push(L("Bug.Undetectable"));
@@ -450,19 +454,25 @@ export async function runSecurityTask(api: GWorldApi, actor: any, answer: { task
 
 // ── surveillance ──
 
-/** Listening through a barrier with a contact mike: -(DR+HP)/5, and -5 more in a shielded room (pp. 208, 212). */
-async function contactMike(api: GWorldApi, item: any, actor: any): Promise<void> {
+/**
+ * Listening through a barrier with a contact mike: -(DR+HP)/5, and -5 more in
+ * a shielded room (pp. 208, 212); with the supplement's covert listening, -4
+ * where a white noise generator masks the talk (HT:EE p. 44).
+ */
+export async function contactMike(api: GWorldApi, item: any, actor: any, covert = false): Promise<void> {
   if (!actor) return;
   const answer = await ask(L("Mike.ContactTitle"),
     row(L("Mike.BarrierDr"), `<input type="number" name="dr" value="2" min="0" step="1" style="width:70px" />`)
     + row(L("Mike.BarrierHp"), `<input type="number" name="hp" value="10" min="0" step="1" style="width:70px" />`)
-    + row(F("Mike.Shielded", { modifier: SHIELDED_ROOM }), `<input type="checkbox" name="shielded" />`),
-    (form) => ({ dr: number(form, "dr"), hp: number(form, "hp"), shielded: check(form, "shielded") }));
+    + row(F("Mike.Shielded", { modifier: SHIELDED_ROOM }), `<input type="checkbox" name="shielded" />`)
+    + (covert ? row(F("Covert.WhiteNoiseRow", { modifier: WHITE_NOISE }), `<input type="checkbox" name="whiteNoise" />`) : ""),
+    (form) => ({ dr: number(form, "dr"), hp: number(form, "hp"), shielded: check(form, "shielded"), whiteNoise: covert && check(form, "whiteNoise") }));
   if (!answer) return;
   const barrier = contactMikePenalty(answer.dr, answer.hp);
   const modifiers = [
     ...(barrier ? [{ label: F("Mike.BarrierLine", { dr: answer.dr, hp: answer.hp }), value: barrier }] : []),
     ...(answer.shielded ? [{ label: L("Mike.ShieldedLine"), value: SHIELDED_ROOM }] : []),
+    ...(covert && answer.whiteNoise ? [{ label: L("Covert.WhiteNoiseLine"), value: WHITE_NOISE }] : []),
   ];
   await api.roll.success({ actor, base: skillBase(api, actor, SURVEILLANCE), skill: SURVEILLANCE, label: F("Mike.ContactLabel", { name: item.name }), modifiers, tags: ["hearing", "surveillance"], item } as any);
 }
@@ -509,17 +519,28 @@ async function homemadeBug(api: GWorldApi, item: any, actor: any): Promise<void>
  * Electronics Operation (Surveillance) with whoever hid the bug, a minute per
  * 100 square feet, at the detector's quality (good +1, fine +2); +4 for a
  * radio beacon (p. 210); a phone tap, laser mike or laser pinhead mike it
- * can't sense at all (pp. 208-209).
+ * can't sense at all (pp. 208-209). With the supplement's covert listening,
+ * -5 for a bug using spread spectrum and -2 for one an isolator guards,
+ * ticked to start with where the targeted hider carries such a bug or an
+ * isolator (HT:EE p. 44).
  */
-export async function sweepForBugs(api: GWorldApi, item: any, actor: any): Promise<void> {
+export async function sweepForBugs(api: GWorldApi, item: any, actor: any, covert = false): Promise<void> {
   if (!actor) return;
   const target = picked().target;
   const hiderLevel = target ? skillBase(api, target, SURVEILLANCE) : 12;
+  const guards = covert && target ? guardsOf(target) : { spreadSpectrum: false, isolator: false };
   const answer = await ask(L("Sweep.Title"),
     row(target ? F("Sweep.HiderIs", { name: target.name }) : L("Sweep.Hider"), `<input type="number" name="hider" value="${hiderLevel}" min="0" step="1" style="width:70px" />`)
     + row(L("Sweep.KindLabel"), `<select name="kind">${options(SWEEP_KINDS, (k) => F(`Sweep.Kind.${k}`, { bonus: signed(NOISY_BUG) }))}</select>`)
-    + row(L("Sweep.Area"), `<input type="number" name="area" value="100" min="0" step="10" style="width:90px" />`),
-    (form) => ({ hider: number(form, "hider"), kind: (value(form, "kind") || "normal") as SweepKind, area: number(form, "area") }));
+    + row(L("Sweep.Area"), `<input type="number" name="area" value="100" min="0" step="10" style="width:90px" />`)
+    + (covert
+      ? row(F("Covert.SpreadRow", { modifier: SPREAD_SPECTRUM }), `<input type="checkbox" name="spread" ${guards.spreadSpectrum ? "checked" : ""} />`)
+        + row(F("Covert.IsolatorRow", { modifier: ISOLATOR }), `<input type="checkbox" name="isolator" ${guards.isolator ? "checked" : ""} />`)
+      : ""),
+    (form) => ({
+      hider: number(form, "hider"), kind: (value(form, "kind") || "normal") as SweepKind, area: number(form, "area"),
+      spread: covert && check(form, "spread"), isolator: covert && check(form, "isolator"),
+    }));
   if (!answer) return;
   const label = F("Sweep.Label", { name: item.name });
   const time = F("Sweep.Time", { minutes: sweepMinutes(answer.area), area: answer.area });
@@ -530,6 +551,8 @@ export async function sweepForBugs(api: GWorldApi, item: any, actor: any): Promi
   const modifiers = [
     ...(quality ? [{ label: F("Sweep.Quality", { name: item.name }), value: quality }] : []),
     ...(answer.kind === "noisy" ? [{ label: L("Sweep.NoisyLine"), value: NOISY_BUG }] : []),
+    ...(covert && answer.spread ? [{ label: L("Covert.SpreadLine"), value: SPREAD_SPECTRUM }] : []),
+    ...(covert && answer.isolator ? [{ label: L("Covert.IsolatorLine"), value: ISOLATOR }] : []),
   ];
   const found = await bugSweepContest(api, {
     label,
@@ -557,12 +580,12 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
   const actions: Array<{ key: string; label: string; icon: string; visible: (item: any) => boolean; run: (item: any, actor: any) => Promise<void> }> = [
     { key: "ht-screen", label: L("Screen.Action"), icon: "fa-solid fa-magnifying-glass", visible: (item) => on.screening() && isGear(item) && screenerOf(nameOf(item)) !== null, run: (item, actor) => screen(api, item, actor) },
     { key: "ht-countersniper", label: L("Security.CountersniperTitle"), icon: "fa-solid fa-crosshairs", visible: (item) => on.screening() && named(/^acoustic countersniper system$/i)(item), run: (item, actor) => countersniper(api, item, actor) },
-    { key: "ht-contact-mike", label: L("Mike.ContactTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => on.surveillance() && named(/^contact mike$/i)(item), run: (item, actor) => contactMike(api, item, actor) },
+    { key: "ht-contact-mike", label: L("Mike.ContactTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => on.surveillance() && isGear(item) && isContactMike(nameOf(item)), run: (item, actor) => contactMike(api, item, actor, on.covert?.() ?? false) },
     { key: "ht-pinhead-mike", label: L("Mike.PinheadTitle"), icon: "fa-solid fa-microphone", visible: (item) => on.surveillance() && isGear(item) && isPinheadMike(nameOf(item)), run: (item, actor) => pinheadMike(api, item, actor) },
     { key: "ht-endoscope", label: L("Endoscope.Title"), icon: "fa-solid fa-eye", visible: (item) => on.surveillance() && named(/^search endoscope$/i)(item), run: (item, actor) => endoscope(api, item, actor) },
     { key: "ht-document-scanner", label: L("DocumentTitle"), icon: "fa-solid fa-envelope-open-text", visible: (item) => on.surveillance() && named(/^security document scanner$/i)(item), run: (item, actor) => documentScanner(api, item, actor) },
     { key: "ht-homemade-bug", label: L("Bug.HomemadeTitle"), icon: "fa-solid fa-screwdriver-wrench", visible: (item) => on.surveillance() && isGear(item) && typeof bugOf(nameOf(item))?.sm === "number", run: (item, actor) => homemadeBug(api, item, actor) },
-    { key: "ht-bug-sweep", label: L("Sweep.Title"), icon: "fa-solid fa-bug", visible: (item) => on.surveillance() && named(/^bug detector$/i)(item), run: (item, actor) => sweepForBugs(api, item, actor) },
+    { key: "ht-bug-sweep", label: L("Sweep.Title"), icon: "fa-solid fa-bug", visible: (item) => on.surveillance() && named(/^bug detector$/i)(item), run: (item, actor) => sweepForBugs(api, item, actor, on.covert?.() ?? false) },
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
 
