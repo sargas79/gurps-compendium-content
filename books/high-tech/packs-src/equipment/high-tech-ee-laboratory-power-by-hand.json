@@ -38,6 +38,11 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1985
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1985
           }
         }
       }
@@ -74,6 +79,11 @@
             "raw": "Major appliance or industrial power"
           },
           "invention": {
+            "complexity": "average",
+            "prototypeYear": 1891,
+            "marketYear": 0
+          },
+          "device": {
             "complexity": "average",
             "prototypeYear": 1891,
             "marketYear": 0
@@ -121,6 +131,11 @@
             "complexity": "",
             "prototypeYear": 1925,
             "marketYear": 1931
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1925,
+            "marketYear": 1931
           }
         }
       }
@@ -162,6 +177,11 @@
             }
           },
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1993
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1993
@@ -209,6 +229,11 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1928
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1928
           }
         }
       }
@@ -245,6 +270,11 @@
             "raw": "Household power"
           },
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1935
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1935
@@ -331,6 +361,11 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1956
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1956
           }
         }
       }
@@ -409,6 +444,11 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1960
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1960
           }
         }
       }
@@ -445,6 +485,11 @@
             "raw": "Household power"
           },
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1940
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1940
@@ -489,6 +534,11 @@
             }
           },
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1991
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1991
@@ -586,6 +636,11 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1955
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1955
           }
         }
       }
@@ -619,6 +674,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1895
@@ -709,6 +769,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "invention": {
+            "complexity": "simple",
+            "prototypeYear": 1745,
+            "marketYear": 0
+          },
+          "device": {
             "complexity": "simple",
             "prototypeYear": 1745,
             "marketYear": 0
@@ -829,6 +894,11 @@
             "complexity": "average",
             "prototypeYear": 1964,
             "marketYear": 0
+          },
+          "device": {
+            "complexity": "average",
+            "prototypeYear": 1964,
+            "marketYear": 0
           }
         }
       }
@@ -862,6 +932,11 @@
       "extensions": {
         "gurps-compendium-content": {
           "invention": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1881
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1881
@@ -901,6 +976,12 @@
             "complexity": "",
             "prototypeYear": 1906,
             "marketYear": 1911
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1906,
+            "marketYear": 1911,
+            "fragile": true
           }
         }
       }
@@ -945,6 +1026,13 @@
             "complexity": "",
             "prototypeYear": 1899,
             "marketYear": 1911
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 1899,
+            "marketYear": 1911,
+            "ht": 12,
+            "dr": 4
           }
         }
       }
@@ -1002,6 +1090,14 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 1895
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 1895,
+            "hp": 47,
+            "ht": 10,
+            "dr": 7
           }
         }
       }
@@ -1059,6 +1155,14 @@
             "complexity": "",
             "prototypeYear": 0,
             "marketYear": 2012
+          },
+          "device": {
+            "complexity": "",
+            "prototypeYear": 0,
+            "marketYear": 2012,
+            "hp": 67,
+            "ht": 12,
+            "dr": 5
           }
         }
       }
@@ -1095,6 +1199,11 @@
             "raw": "Household power"
           },
           "invention": {
+            "complexity": "",
+            "prototypeYear": 1888,
+            "marketYear": 1900
+          },
+          "device": {
             "complexity": "",
             "prototypeYear": 1888,
             "marketYear": 1900

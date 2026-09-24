@@ -4013,6 +4013,11 @@
                 "complexity": "",
                 "prototypeYear": 0,
                 "marketYear": 1923
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1923
               }
             },
             "reason": "the year closes the entry after a sentence on AC use, past the closing line (HT:EE p. 11)"
@@ -4066,6 +4071,11 @@
                 "complexity": "",
                 "prototypeYear": 1890,
                 "marketYear": 1920
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1890,
+                "marketYear": 1920
               }
             },
             "reason": "reading order took the TL8 pH meter's closing line from the next column; the apparatus is $3,700, 15 lbs., household current, [1890] 1920 (HT:EE p. 13)"
@@ -4083,6 +4093,11 @@
                 "complexity": "",
                 "prototypeYear": 0,
                 "marketYear": 1960
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1960
               }
             },
             "reason": "reading order took the electrician's workshop's closing line and quality bonus; the suit is $1,500, 12 lbs., 1960 (HT:EE p. 15)"
@@ -4095,6 +4110,11 @@
               "system.listCost": 55,
               "system.weight": 1,
               "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1913,
+                "marketYear": 1916
+              },
+              "system.extensions.gurps-compendium-content.device": {
                 "complexity": "",
                 "prototypeYear": 1913,
                 "marketYear": 1916
@@ -4132,6 +4152,11 @@
                 "complexity": "",
                 "prototypeYear": 0,
                 "marketYear": 1881
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 0,
+                "marketYear": 1881
               }
             },
             "reason": "the year follows the replacement electrodes' price, kept by hand (HT:EE p. 21)"
@@ -4143,9 +4168,15 @@
                 "complexity": "",
                 "prototypeYear": 1906,
                 "marketYear": 1911
-              }
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1906,
+                "marketYear": 1911
+              },
+              "system.extensions.gurps-compendium-content.device.fragile": true
             },
-            "reason": "the years follow the miniature bulbs' price, kept by hand (HT:EE p. 21)"
+            "reason": "the years follow the miniature bulbs' price, kept by hand; a light bulb is more fragile than its HP (HT:EE pp. 8, 21)"
           },
           {
             "pattern": "^LEDs for display",
@@ -4159,6 +4190,11 @@
             "pattern": "^Flashlight$",
             "set": {
               "system.extensions.gurps-compendium-content.invention": {
+                "complexity": "",
+                "prototypeYear": 1899,
+                "marketYear": 1911
+              },
+              "system.extensions.gurps-compendium-content.device": {
                 "complexity": "",
                 "prototypeYear": 1899,
                 "marketYear": 1911
@@ -4180,6 +4216,11 @@
                 "complexity": "",
                 "prototypeYear": 1939,
                 "marketYear": 1970
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1939,
+                "marketYear": 1970
               }
             },
             "reason": "the working model's year is printed in parentheses rather than brackets (HT:EE p. 23)"
@@ -4191,9 +4232,36 @@
                 "complexity": "",
                 "prototypeYear": 1888,
                 "marketYear": 1900
+              },
+              "system.extensions.gurps-compendium-content.device": {
+                "complexity": "",
+                "prototypeYear": 1888,
+                "marketYear": 1900
               }
             },
             "reason": "the years follow the extra receiver's price, kept by hand (HT:EE p. 25)"
+          },
+          {
+            "pattern": "^Mirror Galvanometer$",
+            "set": {
+              "system.extensions.gurps-compendium-content.device.cuttingEdge": true
+            },
+            "reason": "the entry says to treat it as cutting edge (HT:EE pp. 8, 11)"
+          },
+          {
+            "pattern": "^Carbon Filament Bulb$",
+            "set": {
+              "system.extensions.gurps-compendium-content.device.fragile": true,
+              "system.extensions.gurps-compendium-content.device.ht": 8
+            },
+            "reason": "the entry states the fragile filament gives the bulb HT 8 (HT:EE pp. 8, 21)"
+          },
+          {
+            "pattern": "^(?:Flashbulb|Fluorescent Light)$",
+            "set": {
+              "system.extensions.gurps-compendium-content.device.fragile": true
+            },
+            "reason": "a light bulb, more fragile than its HP (HT:EE pp. 8, 21)"
           }
         ]
       },
