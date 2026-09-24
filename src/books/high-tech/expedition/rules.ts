@@ -243,6 +243,9 @@ export const grapnelRange = (st: number): number => 2 * Math.max(0, Number(st) |
 /** A grapnel holds 300 lbs., doubled at TL7 (p. 55). */
 export const grapnelLoad = (tl: number): number => (tl >= 7 ? 600 : 300);
 
+/** Crampons' spikes add +2 to kicking damage (p. 56). */
+export const CRAMPON_KICK = 2;
+
 /** Snowshoes' -1 Move, which TL8 high-performance ones don't take (p. 56). */
 export function snowshoeMove(tl: number): number {
   return tl >= 8 ? 0 : -1;

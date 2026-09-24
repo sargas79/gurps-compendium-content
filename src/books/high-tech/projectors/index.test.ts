@@ -324,6 +324,13 @@ describe("spray guns (sprayGuns)", () => {
     expect(torso.modifiers).toEqual([]);
   });
 
+  it("takes the system's DR line off the roll to resist a gas spray", () => {
+    on.sprayGuns = true;
+    const resist = { actor: actorWith("Victim"), tags: ["attribute", "resist", "affliction"], attack: { item: spray("Pepper Spray", -4), dr: 2 }, modifiers: [{ key: "afflictionDr", label: "DR", value: 2 }] as any[] };
+    fire(HOOKS.successRollModifiers, resist);
+    expect(resist.modifiers).toEqual([]);
+  });
+
   it("leaves pepper spray's coughing until washed off, and tear gas's blindness for the margin in minutes", () => {
     on.sprayGuns = true;
     const victim = actorWith("Victim");
@@ -341,7 +348,8 @@ describe("laser dazzlers (laserDazzlers)", () => {
     on.laserDazzlers = true;
     const item = laser("NORINCO QXJ04", -5);
     derived.traitEffects = { protectedSense: { vision: true }, nictitatingMembrane: 2 };
-    const eyes = { actor: actorWith("Guard"), tags: ["attribute", "resist", "affliction"], attack: { item }, modifiers: [] as any[] };
+    // "DR has no effect" (p. 181): the system's DR line goes.
+    const eyes = { actor: actorWith("Guard"), tags: ["attribute", "resist", "affliction"], attack: { item }, modifiers: [{ key: "afflictionDr", label: "DR", value: 3 }] as any[] };
     fire(HOOKS.successRollModifiers, eyes);
     expect(eyes.modifiers).toEqual([{ label: "GCC.HT.Projectors.Laser.Protection", value: 7 }]);
 

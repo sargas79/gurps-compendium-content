@@ -10,6 +10,7 @@
  *     a laser crippled, which is crippled for good.
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { DAZZLE_TABLES, blindnessFrom, type DazzleTable } from "../../../shared/dazzle/rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -237,6 +238,8 @@ export function readyLaserOptions(api: GWorldApi, on: () => boolean): void {
     const family = familyOf(context.attack.item);
     if (!family || !EYE_BEAMS.has(family)) return;
     if (family !== "dazzler" && !["dazzle", "blinding"].includes(activeSetting(laserOptionsOf(context.attack.item)))) return;
+    // "DR has no effect" against light at the eyes (p. 113): the system's DR line goes.
+    dropAfflictionDr(context);
     const bonus = visionResistBonus(traitNames(context.actor));
     if (bonus) context.modifiers.push({ label: L("VisionProtection"), value: bonus });
   });

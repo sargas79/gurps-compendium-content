@@ -5340,6 +5340,14 @@
         "system.rangedModes.*.skill": "Liquid Projector (Flamethrower)"
       },
       "reason": "the file names the skill Liquid Projector (Flamethrowers); the Basic Set's specialty is Flamethrower (p. B205), and only that name finds the skill and its DX-4 default (table p. 179) (#377)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Boots(, (Arctic|High|Jungle|Blast|Firefighter|Steel-Toed))?( \\(TL\\d+\\))?$",
+      "set": {
+        "system.boots": true
+      },
+      "reason": "boots add +1 to a kick (Characters p. 271), which the system reads from system.boots since API 1.110.0; shoes, sneakers and cleats aren't boots (p. 68)"
     }
   ]
 }

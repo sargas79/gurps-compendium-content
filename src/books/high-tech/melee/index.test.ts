@@ -259,13 +259,34 @@ describe("stun weapons (p. 199)", () => {
     expect(removed).toEqual([`${MODULE_ID}.ht-contact-shock`]);
   });
 
-  it("puts the victim's armour on the roll to resist, metallic armour as DR 1", () => {
-    const gun = weapon("Stun Gun");
-    const plain = fire(HOOKS.successRollModifiers, { actor: { items: [] }, tags: ["resist"], attack: { item: gun, dr: 3 }, modifiers: [] });
-    expect(plain.modifiers[0]).toMatchObject({ value: 6 });
+  // The system's own line on the roll to resist (Characters p. 35; API 1.105.0): DR over the row's divisor.
+  const drLine = (value: number) => ({ key: "afflictionDr", label: "DR", value });
+  const resist = (actor: any, item: any, dr: number, lines: any[]) =>
+    fire(HOOKS.successRollModifiers, { actor, tags: ["resist", "affliction"], attack: { item, mode: { index: 0, ranged: false }, dr, drBonus: lines[0]?.value ?? 0, drCounted: lines.length > 0 }, modifiers: lines }).modifiers;
+
+  it("counts the victim's armour once, on the system's DR line, metallic armour as DR 1", () => {
+    const gun = weapon("Stun Gun", { meleeModes: [{ skill: "Shortsword", affliction: true, armorDivisor: 0.5 }] });
+    // DR 3 at (0.5): the system's +6 is the book's +6, and stays the only line.
+    expect(resist({ items: [] }, gun, 3, [drLine(6)])).toEqual([drLine(6)]);
+    // Mail's DR 4 is DR 1 against the shock: +2, not the system's +8 and not a second line.
     const mail = { items: [{ type: "armor", name: "Mail Shirt", system: { equipped: true } }] };
-    expect(fire(HOOKS.successRollModifiers, { actor: mail, tags: ["resist"], attack: { item: gun, dr: 4 }, modifiers: [] }).modifiers[0].value).toBe(2);
-    expect(fire(HOOKS.successRollModifiers, { actor: mail, tags: ["resist"], attack: { item: weapon("Stun Wand"), dr: 4 }, modifiers: [] }).modifiers).toEqual([]);
+    const held = resist(mail, gun, 4, [drLine(8)]);
+    expect(held).toHaveLength(1);
+    expect(held[0]).toMatchObject({ key: "afflictionDr", value: 2 });
+    // The victim's own DR 1 still counts in full beside the mail's DR 1: +4.
+    expect(resist(mail, gun, 4, [drLine(10)])[0]).toMatchObject({ key: "afflictionDr", value: 4 });
+  });
+
+  it("adds no DR where the system gave none, and leaves another book's stunner alone", () => {
+    const gun = weapon("Stun Gun", { meleeModes: [{ skill: "Shortsword", affliction: true, armorDivisor: 0.5 }] });
+    expect(resist({ items: [] }, gun, 3, [])).toEqual([]);
+    const mail = { items: [{ type: "armor", name: "Mail Shirt", system: { equipped: true } }] };
+    expect(resist(mail, weapon("Stun Wand"), 4, [drLine(8)])).toEqual([drLine(8)]);
+  });
+
+  it("gives the shock's (0.5) where a record's row carries no divisor", () => {
+    const prod = weapon("Cattle Prod", { meleeModes: [{ skill: "Spear", linked: { affliction: true } }] });
+    expect(resist({ items: [] }, prod, 3, [drLine(3)])[0]).toMatchObject({ key: "afflictionDr", value: 6 });
   });
 });
 

@@ -8,9 +8,10 @@
  *     atmosphere limits of X-ray lasers, grasers, ultraviolet and rainbow
  *     lasers and pulsars, blasters in vacuum, lasers underwater, sonic range by
  *     pressure, an electrolaser's charge lost in vacuum and its aim in the wet.
- *   - **Resistance**, through `gworld.successRollModifiers`: DR at the row's
- *     divisor against an electrolaser or an omni-blaster's stun, and a target's
- *     SM against a microwave disruptor.
+ *   - **Resistance**, through `gworld.successRollModifiers`: the system's DR
+ *     line (at the row's divisor, as the book counts it against an
+ *     electrolaser or an omni-blaster's stun) taken out against a microwave
+ *     disruptor, which gets past DR, and a target's SM against one.
  *   - **Effects**, through `gworld.afflictionEffect`: an electrolaser stuns,
  *     and on its kill setting a failure by 5 is a heart attack; an omni-blaster's
  *     stun and a microwave disruptor put someone out for minutes equal to the
@@ -23,13 +24,14 @@
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { ENVIRONMENT_FLAG, environmentScene, sceneEnvironment } from "../../../shared/environment/index.js";
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import {
   FORCE_FIELD_PART,
   LETHAL_ELECTROLASER_LC,
   stabilizedScreenPart,
   KILL_SETTING,
   beamFamily,
-  drResistBonus,
+  drResists,
   inEnvironment,
   isDisintegrated,
   type BeamEnvironment,
@@ -66,13 +68,6 @@ export function beamEnvironment(): BeamEnvironment {
 /** The family of the item an attack was made with. */
 function familyOf(item: any): BeamFamily | null {
   return item ? beamFamily(String(item.name ?? "")) : null;
-}
-
-/** The stored mode an attack was made with. */
-function modeOf(item: any, mode: any): any {
-  if (!item || !mode) return null;
-  const list = mode.ranged === false ? item.system?.meleeModes : item.system?.rangedModes;
-  return list?.[Number(mode.index) || 0] ?? null;
 }
 
 function traitNames(actor: any): string[] {
@@ -211,14 +206,13 @@ export function readyBeams(api: GWorldApi, on: () => boolean, ignoresEnvironment
     },
   } as any);
 
-  // DR at the row's divisor, and a target's SM against a microwave disruptor.
+  // DR is the system's line, at the row's divisor as the book has it; a
+  // microwave disruptor gets past DR (p. 120), and a target's SM counts against it.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on() || !context?.tags?.includes?.("resist") || !context.attack) return;
     const family = familyOf(context.attack.item);
     if (!family) return;
-    const mode = modeOf(context.attack.item, context.attack.mode);
-    const bonus = drResistBonus(family, context.attack.dr, Number(mode?.armorDivisor) || 1);
-    if (bonus && (family === "electrolaser" || family === "omniBlaster")) context.modifiers.push({ label: L("Resist.Dr"), value: bonus });
+    if (family === "microwave" && !drResists(family)) dropAfflictionDr(context);
     if (family === "microwave") {
       const sm = Math.round(Number(context.actor?.system?.sm) || 0);
       if (sm) context.modifiers.push({ label: L("Resist.Sm"), value: sm });

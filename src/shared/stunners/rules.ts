@@ -30,3 +30,16 @@ export function contactDrBonus(dr: number, armorDivisor: number, metallic: boole
   const divisor = Number(armorDivisor) > 0 ? Number(armorDivisor) : 1;
   return Math.floor(counted / divisor);
 }
+
+/**
+ * The same, from all the DR the system found at the spot (`met`: worn armour,
+ * the victim's own DR, a force field) of which `worn` is his worn armour's.
+ * Only worn metallic armour is held to DR 1; the rest counts in full.
+ */
+export function contactDrBonusAt(met: number, worn: number, armorDivisor: number, metallic: boolean): number {
+  const all = Math.max(0, Math.floor(Number(met) || 0));
+  const armour = Math.min(all, Math.max(0, Math.floor(Number(worn) || 0)));
+  const counted = all - armour + (metallic ? Math.min(armour, METALLIC_SHOCK_DR) : armour);
+  const divisor = Number(armorDivisor) > 0 ? Number(armorDivisor) : 1;
+  return Math.floor(counted / divisor);
+}

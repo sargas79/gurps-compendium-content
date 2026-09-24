@@ -228,7 +228,7 @@ async function juryRig(api: GWorldApi, item: any, table: CellTable, smaller: str
     skill: rig.skill,
     modifiers: [{ label: L(ns, "RigPenalty"), value: rig.modifier }],
   } as any);
-  if (!result) return;
+  if (!result || "refused" in result) return;
   const needed = perCell * cell.cells;
   const outcome = result.criticalFailure ? "RigDamaged" : result.success ? "RigDone" : "RigFailed";
   await say(actor, item.name, [F(ns, outcome, { cells: needed, smaller, size: cell.size, minutes: rig.minutes })]);

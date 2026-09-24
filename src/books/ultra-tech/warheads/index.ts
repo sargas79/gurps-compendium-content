@@ -11,6 +11,7 @@
  *     proximity detonation as an attack option.
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { launcherOf as loadLauncherOf } from "../../../shared/loads/launcher.js";
 import { registerLoadRows } from "../../../shared/loads/rows.js";
@@ -226,15 +227,14 @@ export function readyWarheads(api: GWorldApi, on: () => boolean): void {
     void say(actor, context.label ?? "", lines);
   });
 
-  // An EMP's (2): DR at half against it; Mind Shield against a psi-bomb (pp. 157-158).
+  // An EMP's (2): DR at half against it, the system's line at the row's divisor.
+  // A strobe or warbler is sense-based and a psi-bomb's "DR has no effect", so
+  // their DR line goes; Mind Shield against a psi-bomb (pp. 157-158).
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on() || !context?.tags?.includes?.("resist") || !isRanged(context.attack?.item)) return;
     const load = loadFor(context.attack.item, Number(context.attack.mode?.index) || 0);
-    if (load?.kind === "emp") {
-      const bonus = Math.floor((Number(context.attack.dr) || 0) / (WARHEADS.emp.affliction?.divisor ?? 1));
-      if (bonus) context.modifiers.push({ label: L("EmpDr"), value: bonus });
-      return;
-    }
+    if (load?.kind === "emp") return;
+    if (load?.kind === "strobe" || load?.kind === "warbler" || load?.kind === "psiBomb") dropAfflictionDr(context);
     // Strobe, warbler and psi-bomb effects fade: +1 to resist a yard from the centre (pp. 157-159).
     const fade = fadingBonus(String(load?.kind ?? ""), context.attack.distance);
     if (fade) context.modifiers.push({ label: F("Fading", { yards: fade }), value: fade });

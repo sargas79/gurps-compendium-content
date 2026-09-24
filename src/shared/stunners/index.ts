@@ -4,16 +4,19 @@
  *
  * Each book registers a table: its switch, which of its items are contact
  * stunners, the armour divisor their shock has, and the label the armour's
- * bonus goes on the roll under. One `gworld.successRollModifiers` listener
- * then puts the victim's armour on the roll to resist: its DR at the spot
- * struck, metallic armour held to DR 1, divided by the divisor. An item from
+ * bonus goes on the roll under. The system already gives the roll to resist
+ * a bonus for DR (Characters p. 35; API 1.105.0), one line keyed
+ * `afflictionDr`. One `gworld.successRollModifiers` listener makes that line
+ * the books' count: the DR at the spot struck, worn metallic armour held to
+ * DR 1, divided by the divisor. It is never a second line. An item from
  * a book with a table takes that book's, and only while that book's switch
  * is on; any other takes the first switched-on table that claims it.
  */
 
 import { BookTables, bookOf, type BookTable } from "../book-tables.js";
+import { afflictionDrLine, afflictionDrMet, afflictionRowDivisor, setAfflictionDr } from "../affliction-dr.js";
 import type { GWorldApi } from "../module.js";
-import { contactDrBonus, wearsMetallicArmor } from "./rules.js";
+import { contactDrBonusAt, wearsMetallicArmor } from "./rules.js";
 
 export * from "./rules.js";
 
@@ -42,7 +45,7 @@ export function stunnerTableOf(item: any): StunnerTable | null {
 
 let readied = false;
 
-/** Puts the armour on the roll to resist, once whichever books ask. */
+/** Makes the system's DR line on the roll to resist the books' count, once whichever books ask. */
 export function readyStunners(api: GWorldApi): void {
   if (readied) return;
   readied = true;
@@ -50,8 +53,12 @@ export function readyStunners(api: GWorldApi): void {
     if (!context?.tags?.includes?.("resist")) return;
     const table = stunnerTableOf(context.attack?.item);
     if (!table) return;
-    const bonus = contactDrBonus(Number(context.attack.dr) || 0, table.armorDivisor, wearsMetallicArmor(context.actor));
-    if (bonus) context.modifiers.push({ label: table.label(), value: bonus });
+    // No line: no DR at the spot, or the attack gets past it. Nothing to count.
+    const line = afflictionDrLine(context);
+    if (!line) return;
+    const met = afflictionDrMet(context, afflictionRowDivisor(context.attack.item, context.attack.mode));
+    const bonus = contactDrBonusAt(met, Number(context.attack.dr) || 0, table.armorDivisor, wearsMetallicArmor(context.actor));
+    if (bonus !== line.value) setAfflictionDr(context, bonus, table.label());
   });
 }
 

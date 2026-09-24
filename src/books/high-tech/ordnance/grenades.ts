@@ -25,6 +25,7 @@
  *     Protected Vision, and its stun recovered at HT-5.
  */
 
+import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { placeArea } from "../../../shared/areas.js";
 import { smokeAreaLines } from "../../../shared/smoke/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -342,7 +343,9 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     }
   });
 
-  // A flashbang: +5 for each of Protected Hearing and Protected Vision, or their gear (note [7], p. 192).
+  // A flashbang: +5 for each of Protected Hearing and Protected Vision, or
+  // their gear (note [7], p. 192). Its flash and bang are sense-based, which
+  // DR does nothing against, so the system's DR line goes (Characters p. 35).
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on()) return;
     if ((context?.tags ?? []).includes("stunRecovery") && context.actor?.getFlag?.(MODULE_ID, FLASHBANG_FLAG)) {
@@ -350,6 +353,7 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
       return;
     }
     if (!(context?.tags ?? []).includes("resist") || !grenadeOf(context.attack?.item)?.flashbang) return;
+    dropAfflictionDr(context);
     const effects = (api.actors.derived(context.actor) as any)?.traitEffects ?? {};
     const worn = [...(context.actor?.items ?? [])].filter((i: any) => i?.system?.equipped).map((i: any) => String(i.name ?? ""));
     if (hearingBonus(worn, effects.protectedSense?.hearing === true) > 0) context.modifiers.push({ label: L("FlashbangHearing"), value: FLASHBANG.protectedBonus });
