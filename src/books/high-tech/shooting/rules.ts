@@ -221,6 +221,23 @@ export function instantArsenalResult(options: { outcome: "first" | "second" | "t
 
 // ── Mounted Shooting (p. 251) ──
 
+/**
+ * Whether a Mounted Shooting technique, "Mounted Shooting (SMG/Motorcycle)",
+ * is for the vehicle being shot from (p. 251): its second specialty against
+ * the vehicle's control skill -- the skill's own specialty, "Driving
+ * (Motorcycle)", or a skill with none, "Bicycling" -- or its name. A
+ * technique that names no vehicle, or a shot from a mount or a vehicle not
+ * known, takes it as it is.
+ */
+export function mountedShootingFits(technique: string, vehicle: { name: string; skill: string } | null): boolean {
+  const kind = /\(([^)]*)\)\s*$/.exec(String(technique ?? ""))?.[1]?.split("/")[1]?.trim().toLowerCase() ?? "";
+  if (!kind || !vehicle) return true;
+  const skill = String(vehicle.skill ?? "").trim().toLowerCase();
+  const specialty = /\(([^)]*)\)\s*$/.exec(skill)?.[1]?.trim() ?? "";
+  if (specialty ? specialty === kind : skill.replace(/\s*\(.*$/, "") === kind) return true;
+  return String(vehicle.name ?? "").toLowerCase().includes(kind);
+}
+
 /** Mounted Shooting's default: the ranged weapon skill -4. */
 export const MOUNTED_SHOOTING_DEFAULT = -4;
 

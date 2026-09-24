@@ -9,6 +9,7 @@ import {
   halvedDefault,
   instantArsenalResult,
   isPistolSkill,
+  mountedShootingFits,
   nextPrecisionSecond,
   pistoleroBulk,
   pistoleroMinSt,
@@ -134,5 +135,18 @@ describe("Instant Arsenal Disarm (p. 251)", () => {
     expect(instantArsenalResult({ outcome: "second", marginOfVictory: 3, criticalFailure: false })).toBe("intact");
     expect(instantArsenalResult({ outcome: "tie", marginOfVictory: 0, criticalFailure: false })).toBe("intact");
     expect(instantArsenalResult({ outcome: "second", marginOfVictory: 5, criticalFailure: true })).toBe("shotAtHand");
+  });
+});
+
+describe("Mounted Shooting's vehicle (p. 251)", () => {
+  it("matches the technique's second specialty to the vehicle's control skill or its name", () => {
+    const bike = { name: "Zündapp KS 750", skill: "Driving (Motorcycle)" };
+    expect(mountedShootingFits("Mounted Shooting (SMG/Motorcycle)", bike)).toBe(true);
+    expect(mountedShootingFits("Mounted Shooting (SMG/Automobile)", bike)).toBe(false);
+    expect(mountedShootingFits("Mounted Shooting (Pistol/Bicycling)", { name: "Safety Bicycle", skill: "Bicycling" })).toBe(true);
+    expect(mountedShootingFits("Mounted Shooting (Rifle/Stagecoach)", { name: "Concord Stagecoach", skill: "Teamster (Equines)" })).toBe(true);
+    // No vehicle named, or none known: as it is.
+    expect(mountedShootingFits("Mounted Shooting (SMG)", bike)).toBe(true);
+    expect(mountedShootingFits("Mounted Shooting (SMG/Motorcycle)", null)).toBe(true);
   });
 });

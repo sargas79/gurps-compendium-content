@@ -229,6 +229,9 @@ export const BOW_SIGHTS = Object.freeze({ accuracy: 1, cost: 100, unfamiliar: -1
 /** Bowstring silencers: -2 to Hearing rolls to hear the twang, $1 the pair (p. 201). */
 export const BOW_SILENCERS = Object.freeze({ hearing: -2, cost: 1 });
 
+/** The yards at which a bow and a crossbow are heard on an unmodified Hearing roll (p. 158). */
+export const BOW_HEARD_AT = Object.freeze({ bow: 4, crossbow: 8 });
+
 /** A slingshot's lead or steel shot: +1 damage and double range over stones (p. 201). */
 export const METAL_SHOT = Object.freeze({ damage: 1, range: 2 });
 

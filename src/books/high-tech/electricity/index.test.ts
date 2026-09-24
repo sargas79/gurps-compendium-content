@@ -146,7 +146,7 @@ afterEach(() => {
 describe("with every switch off", () => {
   it("offers nothing and leaves the system's shocks alone", async () => {
     expect(tools.get("ht-electricity").visible()).toBe(false);
-    expect(actions.get("ht-stolen-power").visible(gear("Vacuum Cleaner", { extensions: { [MODULE_ID]: { power: { raw: "Household power" } } } }))).toBe(false);
+    expect(actions.get("ht-stolen-power").visible(gear("Vacuum Cleaner", { extensions: { [MODULE_ID]: { power: { raw: "Household power", grades: ["household"] } } } }))).toBe(false);
     const suit = gear("Faraday Suit", { equipped: true });
     const outcome = await systemShock({ actor: person("Tesla", [suit]), kind: "nonlethal", modifier: -6, formula: "" });
     expect(outcome.immune).toBe(false);
@@ -437,9 +437,13 @@ describe("power lines (HT:EE pp. 18-19)", () => {
   });
 
   it("rolls a stolen-power device's daily HT-2, a critical failure a fire", async () => {
-    const vacuum = gear("Vacuum Cleaner", { extensions: { [MODULE_ID]: { power: { raw: "Household power" } } } });
+    const vacuum = gear("Vacuum Cleaner", { extensions: { [MODULE_ID]: { power: { raw: "Household power", grades: ["household"] } } } });
     expect(runsOnMains(vacuum)).toBe(true);
     expect(runsOnMains(gear("Penlight", { extensions: { [MODULE_ID]: { power: { raw: "XS/5 hours" } } } }))).toBe(false);
+    // The grades, not the text: a computer's peripheral power isn't a line to tap, and the text alone isn't read.
+    expect(runsOnMains(gear("Mouse", { extensions: { [MODULE_ID]: { power: { raw: "Peripheral power", grades: ["peripheral"] } } } }))).toBe(false);
+    expect(runsOnMains(gear("Car Radio", { extensions: { [MODULE_ID]: { power: { raw: "2×M/6 hours or automotive power", grades: ["automotive"] } } } }))).toBe(true);
+    expect(runsOnMains(gear("Old Record", { extensions: { [MODULE_ID]: { power: { raw: "Household power" } } } }))).toBe(false);
     expect(actions.get("ht-stolen-power").visible(vacuum)).toBe(true);
     failureResult = { outcome: "criticalFailure" };
     const owner = person("Thief");

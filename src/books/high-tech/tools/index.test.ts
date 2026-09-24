@@ -37,6 +37,7 @@ let dieRoll: number;
 let successResult: any;
 let dialogAnswer: any;
 let targets: any[];
+let needsEquipment: any[];
 
 function fakeApi() {
   return {
@@ -46,6 +47,7 @@ function fakeApi() {
       hooks: { skillBonuses: "gworld.skillBonuses" },
       registerPriceModifier: (m: any) => prices.push(m),
       registerPoison: (p: any) => poisons.push(p),
+      registerNeedsEquipment: (r: any) => { needsEquipment.push(r); return `${r.module}.${r.key}`; },
     },
     combat: {
       hooks: HOOKS,
@@ -137,6 +139,7 @@ beforeEach(() => {
   successResult = { success: true, criticalFailure: false };
   dialogAnswer = null;
   targets = [];
+  needsEquipment = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -175,6 +178,24 @@ describe("tool kits (High-Tech p. 24)", () => {
     expect(lines[0]).toMatchObject({ key: "tools", value: -2, reason: "GCC.HT.Tools.WrongKitReason" });
     const moto = equipment("Mini-Tool Kit", { kit: "mini" }, { forSkills: ["Mechanic (Motorcycle)"] });
     expect(wrongKitLine(fakeApi() as never, worker([auto, moto]), "Mechanic/TL7 (Motorcycle)")).toBeNull();
+  });
+
+  it("marks the repair skills as needing a kit, for the system's no-equipment line (API 1.135.0)", () => {
+    const [needs] = needsEquipment;
+    expect(needs).toMatchObject({ module: MODULE_ID, key: "ht-repair-kits" });
+    expect(needs.test({ name: "Mechanic/TL7 (Automobile)" }, worker())).toBe(true);
+    expect(needs.test({ name: "Electronics Repair/TL8 (Computers)" }, worker())).toBe(true);
+    expect(needs.test({ name: "Armoury/TL6 (Small Arms)" }, worker())).toBe(true);
+    expect(needs.test({ name: "Carpentry" }, worker())).toBe(false);
+    on = {};
+    expect(needs.test({ name: "Machinist/TL7" }, worker())).toBe(false);
+  });
+
+  it("puts another specialty's kit in place of the system's no-equipment line", () => {
+    const auto = equipment("Portable Tool Kit", { kit: "portable" }, { forSkills: ["Mechanic (Automobile)"] });
+    const context = { actor: worker([auto]), name: "Mechanic/TL7 (Motorcycle)", lines: [{ key: "tools", label: "No equipment", value: -10, source: "system" }] };
+    fire("gworld.skillBonuses", context);
+    expect(context.lines).toEqual([expect.objectContaining({ key: "tools", label: "GCC.HT.Tools.WrongKit", value: -2, reason: "GCC.HT.Tools.WrongKitReason" })]);
   });
 
   it("gives a workshop its close and distant crafts", () => {

@@ -34,7 +34,7 @@
  *   - **High-tech bows (highTechBows):** a bow or crossbow built compound
  *     (double cost, two ST more for damage and range), bow sights (+$100,
  *     +1 Acc to a skilled user, -1 to one unfamiliar with them) and string
- *     silencers, a slingshot's lead or steel shot, and a speargun's range a
+ *     silencers, and who hears a bow or crossbow loosed (the silencers' -2), a slingshot's lead or steel shot, and a speargun's range a
  *     tenth under water, on its 10-yard line.
  */
 
@@ -43,6 +43,7 @@ import { sceneEnvironment } from "../../../shared/environment/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { STUNNER_TABLES, readyStunners } from "../../../shared/stunners/index.js";
 import { isFirearm } from "../firearms/index.js";
+import { hearSound, type Sound } from "../hearing.js";
 import { loadingOf } from "../reloading/index.js";
 import {
   BAYONET,
@@ -50,6 +51,7 @@ import {
   BLADE_MATERIALS,
   BLADE_TL,
   BOW_SIGHTS,
+  BOW_HEARD_AT,
   BOW_SILENCERS,
   COMPOUND,
   CONTACT_STUN,
@@ -207,6 +209,15 @@ const bowSkill = (m: any) => /^bow\b(?! \(slingshot\))/i.test(String(m?.skill ??
 const crossbowSkill = (m: any) => /^crossbow\b(?! \(speargun\))/i.test(String(m?.skill ?? ""));
 const isBow = (item: any) => isEquipment(item) && rangedModes(item).some(bowSkill);
 const isBowOrCrossbow = (item: any) => isEquipment(item) && rangedModes(item).some((m) => bowSkill(m) || crossbowSkill(m));
+/** The twang of a bow (heard at 4 yards) or a crossbow (8), as `hearSound` takes it, with a bow's string silencers. */
+export function bowSound(item: any): Sound {
+  const bow = isBow(item);
+  return {
+    name: nameOf(item),
+    heardAt: bow ? BOW_HEARD_AT.bow : BOW_HEARD_AT.crossbow,
+    lines: bow && weaponData(item).silencers ? [{ label: L("SilencerHeard"), value: BOW_SILENCERS.hearing }] : [],
+  };
+}
 const isSlingshot = (item: any) => isEquipment(item) && rangedModes(item).some((m) => /^bow \(slingshot\)/i.test(String(m?.skill ?? "")));
 const isSpeargun = (item: any) => isEquipment(item) && rangedModes(item).some((m) => /^crossbow \(speargun\)/i.test(String(m?.skill ?? "")));
 const isSpikedTomahawk = (item: any) => /spiked tomahawk/i.test(nameOf(item));
@@ -533,6 +544,18 @@ export function readyHighTechMelee(api: GWorldApi, on: MeleeSwitches): void {
     icon: "fa-solid fa-khanda",
     visible: (item) => on.bayonets() && isFirearm(api, item) && bayonetOf(item).fitted,
     run: (item, actor) => { void fixBayonet(api, item, actor); },
+  });
+
+  // Who hears a bow or crossbow loosed, silencers on a bow's string at -2
+  // (p. 201; High-Tech's Hearing Distance Table, p. 158).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-bow-heard",
+    itemTypes: ["equipment"],
+    label: L("HeardAction"),
+    icon: "fa-solid fa-ear-listen",
+    visible: (item) => on.bows() && isBowOrCrossbow(item),
+    run: (item, actor) => void hearSound(api, actor, bowSound(item)),
   });
 
   api.sheets.registerRowAction({

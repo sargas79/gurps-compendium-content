@@ -150,6 +150,20 @@ describe("a retention holster", () => {
     weaponState.set("colt", { drawn: true });
     expect(roll()).toEqual([]);
   });
+
+  it("counts only the gun the roll names, where it names one (API 1.136.0)", () => {
+    readyDrawing(fakeApi() as never, { drawing: () => true, standoff: () => false });
+    const kept = pistol("colt", { holster: { item: "rh" } });
+    const loose = pistol("glock");
+    const actor = gunman("Doc", kept, [holster("rh", "Retention Holster"), loose]);
+    const roll = (item: any) => {
+      const context = { actor, skill: "Retain Weapon (Pistol)", item, modifiers: [] as any[] };
+      for (const l of hooks.get("gworld.successRollModifiers") ?? []) l(context);
+      return context.modifiers;
+    };
+    expect(roll(kept)).toEqual([{ label: "Retention Holster", value: 2 }]);
+    expect(roll(loose)).toEqual([]);
+  });
 });
 
 describe("who draws first with guns", () => {

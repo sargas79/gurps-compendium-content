@@ -4708,7 +4708,9 @@
         "Unit": {
           "hours": "hours",
           "days": "days",
-          "weeks": "weeks"
+          "weeks": "weeks",
+          "seconds": "seconds",
+          "minutes": "minutes"
         },
         "ChipCaps": "At TL{tl}: at most {slots} slots and {points} points a chip; skill chips ${perPoint} a point.",
         "CognitiveCap": "At TL{tl}: at most {points} points an operation, ${price} a point.",
@@ -4731,7 +4733,7 @@
         "DisadvantagePoints": "Disadvantage points",
         "Recovering": "recovering from surgery",
         "SurgeDown": "knocked out by a surge",
-        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {minutes} minutes.",
+        "SurgeLine": "The surge knocks out {name}'s electrical implants ({list}) for {value} {unit}.",
         "PsychTitle": "Implant removed",
         "PsychMonths": "Months it was worn",
         "PsychTooSoon": "Worn less than three months: the disadvantage ends with the implant.",
@@ -6087,7 +6089,9 @@
           "shotAtHand": "Critical failure: the foe keeps the gun and may shoot the disarmer in the hand at full skill."
         },
         "PrecisionLostReason": "the Precision Aiming roll failed",
-        "MountedShootingLine": "{label} (Mounted Shooting)"
+        "MountedShootingLine": "{label} (Mounted Shooting)",
+        "MountedShootingVehicleLine": "{label} (Mounted Shooting, {vehicle})",
+        "IadGmUnready": "The GM marks the gun unready."
       },
       "Sustained": {
         "Title": "Sustained fire",
@@ -6956,7 +6960,8 @@
         "Blinded": "Blinded (tear gas)",
         "GasFailed": "{name} is {what} for {minutes} minutes.",
         "UnderFlare": "under a flare",
-        "ScentMarked": "{name} reeks of the scent marker for an hour."
+        "ScentMarked": "{name} reeks of the scent marker for an hour.",
+        "BatchAdded": "{rounds} rounds put in the box: {total} now."
       },
       "Power": {
         "Title": "Batteries",
@@ -7384,7 +7389,9 @@
           "explodes": "The tank exploded",
           "disabled": "Disabled",
           "explodesLine": "Damage got through {name}'s DR: 1d rolled {roll}, and the tank explodes!",
-          "disabledLine": "Damage got through {name}'s DR: 1d rolled {roll}, and it is disabled."
+          "disabledLine": "Damage got through {name}'s DR: 1d rolled {roll}, and it is disabled.",
+          "TargetFacing": "{name} (backpack, its carrier facing you)",
+          "TargetBehind": "{name} (backpack, from behind or the side)"
         },
         "Spray": {
           "Note": "Spray",
@@ -7572,7 +7579,16 @@
           "Clings": "Napalm clings to {name} and burns for {seconds} seconds, 1d-1 a second; only immersion or burial puts it out, and it eats the air around them.",
           "Second": "{name} burns: {roll} against DR {dr}, {injury} injury.",
           "BurnedOut": "The napalm on {name} has burned out."
-        }
+        },
+        "RecoverButton": "Roll to recover",
+        "RecoverNotYet": "{name} can't roll to recover yet: {minutes} more minute(s).",
+        "RecoverHearing": "{name}: HT to recover their hearing",
+        "RecoverVision": "{name}: HT to recover their sight",
+        "RecoverStill": "{name} hasn't recovered yet: roll again next turn.",
+        "Recovered": "{name} has recovered.",
+        "LastingAdded": "Critical failure: {name} keeps the loss for good, as {trait} (High-Tech p. 182).",
+        "LastingForGm": "Critical failure: {name} keeps the loss for good, as {trait}; the GM adds the trait (High-Tech p. 182).",
+        "LastingBadSight": "Critical failure: {name} keeps the loss for good, as Bad Sight; the GM picks which and adds it (High-Tech p. 182)."
       },
       "Sensor": {
         "Title": "Comms and sensors",
@@ -7697,6 +7713,7 @@
         "NoNoise": "None",
         "NoiseLine": "Ambient noise",
         "ImagingMode": "Imaging mode (a tenth the range)",
+        "MediumLabel": "Medium",
         "Medium": {
           "soil": "Soil",
           "ice": "Ice (x20 range)",
@@ -8068,7 +8085,12 @@
         "SportsDrinkItem": "Counts as a decent meal when resting (+{fp} FP), and as a quart of water for the day's rations.",
         "EatAction": "Eat or drink",
         "SnackEaten": "{name} has a {item}: it counts as a decent meal on the next rest, +{fp} FP.",
-        "DrinkWater": "It also counts as a quart of water for the day's rations."
+        "DrinkWater": "It also counts as a quart of water for the day's rations.",
+        "SignalRangeItem": "Seen out to {range}.",
+        "Miles": "{miles} miles",
+        "Yards": "{yards} yards",
+        "WhistleItem": "Heard on an unmodified Hearing roll at {yards} yards; the row's button rolls a targeted listener's Hearing.",
+        "WhistleAction": "Who hears the whistle"
       },
       "Ordnance": {
         "NoSkill": "Knows none of: {skills}.",
@@ -8374,7 +8396,13 @@
         "GrapnelAction": "Throw the grapnel",
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",
-        "GrapnelRoll": "Throwing the grapnel ({skill})"
+        "GrapnelRoll": "Throwing the grapnel ({skill})",
+        "Padded": "Padded (+1 lb., -2 to hear it)",
+        "PaddedHint": "A padded grapnel weighs a pound more and gives -2 to Hearing rolls to hear it land (High-Tech p. 55).",
+        "PaddedPrice": "Padded grapnel",
+        "PaddedLine": "Padded grapnel",
+        "GrapnelHeardAction": "Who hears it land",
+        "GrapnelHeardNote": "Only where it lands on stone, concrete or the like (High-Tech p. 55)."
       },
       "Lighting": {
         "Title": "Lamp",
@@ -8571,7 +8599,8 @@
           "neck": "neck",
           "hand": "hand",
           "foot": "foot"
-        }
+        },
+        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)"
       },
       "Melee": {
         "Title": "Melee and muscle-powered weapons (High-Tech)",
@@ -8680,7 +8709,9 @@
         "MetalShotHint": "Lead or steel shot: +1 damage, double range (High-Tech p. 201).",
         "SpeargunLine": "Range a tenth ({divisor}) under water; the spear is on {line} yards of line.",
         "LineNote": "{yards}-yd. line",
-        "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201)."
+        "LineHint": "The spear is tethered by its line; see Harpoons (Campaigns p. 411). Range is a tenth under water (High-Tech p. 201).",
+        "HeardAction": "Who hears the shot",
+        "SilencerHeard": "String silencers"
       },
       "Camouflage": {
         "Title": "Camouflage",
@@ -8970,7 +9001,6 @@
         "HookUpLabel": "Hooking {name} up to {patient}",
         "AedInstructions": "Following the instructions",
         "NotHookedUp": "{name} isn't hooked up yet.",
-        "DeviceLabel": "{name} (skill {skill})",
         "DepletedReason": "{name} is depleted: a grade lower",
         "PortableSurgeryReason": "{name}: +2 (quality) to First Aid",
         "NoFluidsReason": "No blood or IV fluids: +1 at best",
@@ -9023,7 +9053,8 @@
         "AnesthesiaAction": "Put under",
         "AntisepticAction": "Clean a wound",
         "Depleted": "Depleted",
-        "DepletedHint": "Used for several treatments: the reusable tools left work a grade lower (High-Tech p. 221)."
+        "DepletedHint": "Used for several treatments: the reusable tools left work a grade lower (High-Tech p. 221).",
+        "RoundsWithoutSupplies": "No medical supplies: Medical Care as at TL5 (High-Tech p. 223)."
       },
       "Armor": {
         "Title": "High-Tech armour",
@@ -9098,7 +9129,11 @@
         "PlateReason": "plate cracked, -{lost}",
         "PlateWorn": "{item} loses {lost} DR ({total} in all).",
         "PlateReplace": "Replace the plate",
-        "PlateReplaced": "{item} is replaced: its DR is whole again."
+        "PlateReplaced": "{item} is replaced: its DR is whole again.",
+        "SlamPadsDamage": "{name}: worn to slam with (High-Tech p. 66)",
+        "SlamPadsReason": "DR 3 against a slam's damage, the whole piece (High-Tech p. 66)",
+        "PartialPreview": "covers {n} in 6: a blow rolls whether it stands (High-Tech p. 69)",
+        "ToePreview": "steel toe box DR {dr} on {n} in 6 foot hits (High-Tech p. 68)"
       },
       "Surveillance": {
         "Title": "Security and surveillance",
@@ -9693,7 +9728,7 @@
             "none": "No tyres flat.",
             "ctis": "{flats} flat: the CTIS keeps them up; no effect.",
             "runFlat": "{flats} flat: on its run-flat tyres, {handling} Handling and Move less 20%, for {miles} miles.",
-            "flat": "{flats} flat, with no run-flat tyres: see the wheel hit location (Campaigns p. 555)."
+            "flat": "{flats} flat, with no run-flat tyres: count them as crippled wheels on the vehicle's Condition panel, which slows it (Campaigns p. 555)."
           },
           "NoAirbags": "It has no airbags.",
           "AirbagsStay": "The airbags fire only above Move {move}.",
@@ -9705,7 +9740,8 @@
           "ButtonedUp": "Buttoned up: {vision} to Vision, nothing seen within {yards} yards; a loader sees nothing, a gunner 60 degrees where the turret faces, a driver 90 degrees ahead, the commander all round.",
           "HatchesOpen": "The hatches are open.",
           "MotorOn": "The motor is running.",
-          "MotorOff": "The motor is off."
+          "MotorOff": "The motor is off.",
+          "RangeYards": "Range ({yards} yd)"
         }
       },
       "Eras": {
@@ -10923,6 +10959,15 @@
         "CipherLine": "Enciphered text",
         "CipherTimeLine": "Extra time (x{times})",
         "CipherLabel": "Sending enciphered text on the {name}"
+      },
+      "Hearing": {
+        "NoListener": "Target the token of whoever might hear it.",
+        "Deaf": "{name} can't make a Hearing roll.",
+        "Title": "Who hears {name}",
+        "HeardAt": "{name}: heard on an unmodified Hearing roll at {yards} yards; +1 a range step nearer, -1 a step farther (High-Tech p. 158).",
+        "Yards": "Listener's distance (yards)",
+        "Other": "Background noise, terrain, distraction, clothing",
+        "Roll": "{name}: Hearing, {sound}"
       }
     },
     "Backblast": {

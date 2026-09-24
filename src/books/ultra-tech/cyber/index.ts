@@ -41,6 +41,7 @@ import {
   psychPermanenceModifier,
   recoveryText,
   skillChipPricePerPoint,
+  surgeOutage,
   usedPercent,
   type Operation,
   BOMB_CALIBRES,
@@ -414,18 +415,22 @@ export function readyCybernetics(api: GWorldApi, on: () => boolean): void {
     }
   });
 
-  // An EMP warhead or a microwave beam that affects a character knocks out their electrical implants (p. B134).
+  // An EMP warhead or a microwave beam that affects a character knocks out their electrical implants (p. B134):
+  // for seconds equal to the margin of failure after an EMP (p. 157), for minutes after a microwave disruptor (p. 121).
   Hooks.on(api.combat.hooks.afflictionEffect, (context: any) => {
     if (!on() || !context?.actor?.isOwner) return;
     const item = context.item;
     const index = Math.max(0, Math.floor(Number(context.mode?.index) || 0));
-    const emp = item && (loadsOf(item).some((l) => l.mode === index && l.kind === "emp") || beamFamily(String(item.name ?? "")) === "microwave");
-    if (!emp) return;
+    const source = !item ? undefined
+      : loadsOf(item).some((l) => l.mode === index && l.kind === "emp") ? "emp"
+      : beamFamily(String(item.name ?? "")) === "microwave" ? "microwave"
+      : undefined;
+    if (!source) return;
     const implants = [...(context.actor.items ?? [])].filter(isElectricalImplant);
     if (!implants.length) return;
-    const minutes = Math.max(1, marginOfFailure(context.margin));
+    const outage = surgeOutage(source, marginOfFailure(context.margin));
     const now = Number((game as any).time?.worldTime) || 0;
-    void context.actor.setFlag(MODULE_ID, RECOVERY_FLAG, { ...recoveryOf(context.actor), surgeUntil: now + minutes * 60 });
-    void say(context.actor, context.label ?? "", [F("SurgeLine", { name: context.actor.name, list: implants.map((i: any) => i.name).join(", "), minutes })]);
+    void context.actor.setFlag(MODULE_ID, RECOVERY_FLAG, { ...recoveryOf(context.actor), surgeUntil: now + outage.seconds });
+    void say(context.actor, context.label ?? "", [F("SurgeLine", { name: context.actor.name, list: implants.map((i: any) => i.name).join(", "), value: outage.value, unit: L(`Unit.${outage.unit}`) })]);
   });
 }

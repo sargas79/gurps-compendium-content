@@ -346,15 +346,20 @@ export function readyDrawing(api: GWorldApi, on: DrawingSwitches): void {
     },
   });
 
-  // A retention holster: +2 to Retain Weapon while the gun is in it (p. 154).
+  // A retention holster: +2 to Retain Weapon while the gun is in it (p. 154):
+  // the gun the roll names (a contest side's item, API 1.136.0), or else any
+  // of the specialty's.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!on.drawing() || !/^retain weapon/i.test(String(context?.skill ?? ""))) return;
     const wanted = specialtyOf(String(context.skill));
-    const kept = gunsOf(api, context.actor).find((gun: any) => {
+    const inRetention = (gun: any) => {
       const holster = holsterOf(gun);
-      if (!holster || !HOLSTERS[holster.kind].retain || gunState(api, gun).drawn) return false;
-      return !wanted || !["pistol", "longarm"].includes(wanted) || wanted === specialtyOfGun(gun);
-    });
+      return Boolean(holster) && HOLSTERS[holster!.kind].retain !== 0 && !gunState(api, gun).drawn;
+    };
+    const named = context.item && isFirearm(api, context.item) ? context.item : null;
+    const kept = named
+      ? (inRetention(named) ? named : null)
+      : gunsOf(api, context.actor).find((gun: any) => inRetention(gun) && (!wanted || !["pistol", "longarm"].includes(wanted) || wanted === specialtyOfGun(gun)));
     if (kept) context.modifiers.push({ label: String(holsterOf(kept)!.item.name), value: HOLSTERS[holsterOf(kept)!.kind].retain });
   });
 

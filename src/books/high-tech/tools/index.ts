@@ -8,7 +8,8 @@
  *   - **Tool kits (toolKits):** a portable kit or workshop carried for
  *     another specialty of a skill, and a workshop for a close or distant
  *     craft, as the skill's equipment line where the character has no kit of
- *     its own for it (`gworld.skillBonuses`); light crafts' kits and large
+ *     its own for it (`gworld.skillBonuses`); the repair skills marked as
+ *     needing a kit, for the system's no-equipment line; light crafts' kits and large
  *     vehicles' repriced; a lab's set-up time and a machine shop's output
  *     shown on the item.
  *   - **Forced-entry tools (forcedEntryTools):** a derived attack row for
@@ -53,6 +54,7 @@ import {
   leadSymptomsWorsen,
   listOf,
   nailGunLevel,
+  needsKit,
   readiesNeeded,
   snapStrikesWielder,
   workDamage,
@@ -431,9 +433,19 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
     if (value === null) return;
     const line = (context.lines ?? []).find((l: any) => l?.key === "tools");
     if (line) {
+      // The system's own line: "Equipment" at the kit's grade, or "No equipment" where a repair skill has none of its own.
       line.value = value;
+      line.label = L("WrongKit");
       line.reason = L("WrongKitReason");
     } else context.lines?.push?.({ key: "tools", label: L("WrongKit"), value, source: MODULE_ID });
+  });
+
+  // Tool kits are essential to the repair skills (p. 24): without one, the
+  // system gives the skill the Basic Set's no-equipment line (API 1.135.0).
+  api.data.registerNeedsEquipment({
+    module: MODULE_ID,
+    key: "ht-repair-kits",
+    test: (skill) => on.kits() && needsKit(String(skill?.name ?? "")),
   });
 
   // A kit for a light craft, or for vehicles over 10 tons; a chainsaw's carbide chain.

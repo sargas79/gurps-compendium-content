@@ -14301,7 +14301,14 @@
       "listCost": 5,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "survival": {
+            "kind": "whistle"
+          }
+        }
+      }
     }
   },
   {
@@ -14366,7 +14373,8 @@
       "extensions": {
         "gurps-compendium-content": {
           "survival": {
-            "kind": "signal"
+            "kind": "signal",
+            "value": 88000
           }
         }
       }
@@ -14442,7 +14450,8 @@
             }
           },
           "survival": {
-            "kind": "signal"
+            "kind": "signal",
+            "value": 3520
           }
         }
       }
@@ -14484,7 +14493,8 @@
             }
           },
           "survival": {
-            "kind": "signal"
+            "kind": "signal",
+            "value": 17600
           }
         }
       }

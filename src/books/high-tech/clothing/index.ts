@@ -10,11 +10,13 @@
  *     worn outfits (arctic clothes worn as winter or ordinary with layers
  *     off); -1 on the cold roll for each piece a worn winter or arctic outfit
  *     is missing; a worn wicking undergarment's +1 on the heat roll; DR 1 for
- *     fur winter or arctic clothes, through `gworld.armorDr`; and an outfit's
- *     weight by TL, as a price modifier.
+ *     fur winter or arctic clothes, through `gworld.armorDr`; an outfit's
+ *     weight by TL, as a price modifier; and body armour's 2 FP on a hot
+ *     day's battle (`gworld.fatigueCost`, the day's temperature since API
+ *     1.138.0).
  *   - **Frostbite (frostbite):** where the cold costs FP, a damage card for
- *     each exposed hit location, a point of injury per FP, through no DR
- *     (`gworld.fatigueCost`).
+ *     each exposed hit location, a point of injury per FP it came to after
+ *     Very Fit, through no DR (`gworld.afterFatigue`).
  *   - **Climate control (climateControl):** worn heated clothing, a
  *     climate-control system or a cooling vest widens the comfort zone
  *     (`temperatureTolerance`) through the shared climate engine, the powered
@@ -30,6 +32,7 @@ import {
   COOLING_VEST,
   FUR_DR,
   HEATED_CLOTHING,
+  HOT_BATTLE_ARMOUR_FP,
   HIGH_TECH_CLIMATE_GEAR,
   PIECES,
   WICKING,
@@ -129,6 +132,12 @@ function missingFor(actor: any, clothing: ClothingClass, on: ClothingSwitches): 
   const worn = wornClothing(actor, on);
   if (!worn?.outfit?.pieces || worn.clothing !== clothing || clothing === "light") return [];
   return clothingData(worn.item).missing;
+}
+
+/** The worn armour that covers the torso (a piece with no locations covers the whole body), or null. */
+function bodyArmour(actor: any): any {
+  return [...(actor?.items ?? [])].find((i: any) => i?.type === "armor" && i.system?.equipped === true && i.system?.carried !== false
+    && (!(i.system?.locations?.length) || i.system.locations.includes("torso"))) ?? null;
 }
 
 // ── frostbite (p. 63) ──
@@ -269,12 +278,14 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
     if (!actor) return;
     const details = context.details ?? {};
 
-    // Frostbite: a point to each exposed location per FP lost to the cold (p. 63).
-    if (context.reason === "exposure" && details.heat === false) {
-      const clothing = lastColdRoll.get(actorKey(actor)) ?? "winter";
-      lastColdRoll.delete(actorKey(actor));
-      const fp = Number(context.fp) || 0;
-      if (on.frostbite() && fp > 0) void frostbite(api, actor, fp, clothing, on);
+    // Body armour on a hot day's battle: the Basic Set's 2 FP for anyone in
+    // plate or an overcoat (p. 65; Campaigns p. 426), unless worn gear cools.
+    if (on.clothing() && context.reason === "battle" && details.hot === true) {
+      const armour = bodyArmour(actor);
+      if (armour && !workingClimateGear(actor).some(({ gear }) => gear.zone.heatF > 0)) {
+        context.fp = (Number(context.fp) || 0) + HOT_BATTLE_ARMOUR_FP;
+        context.sources.push(F("HotBattleLine", { name: armour.name, fp: HOT_BATTLE_ARMOUR_FP }));
+      }
     }
 
     // Gear that widens the hot end spares a march its hot-weather point an hour (p. 74; Campaigns p. 426).
@@ -286,6 +297,17 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
       context.fp = fp;
       context.sources.push(F("HotMarchLine", { name: cooler.item.name }));
     }
+  });
+
+  // Frostbite: a point to each exposed location per FP the cold took, once
+  // Very Fit and the fatigue chart have had their say (p. 63; API 1.138.0).
+  Hooks.on(api.combat.hooks.afterFatigue, (context: any) => {
+    const actor = context?.actor;
+    if (!actor || context.reason !== "exposure" || context.details?.heat !== false) return;
+    const clothing = lastColdRoll.get(actorKey(actor)) ?? "winter";
+    lastColdRoll.delete(actorKey(actor));
+    const fp = Number(context.fpLost) || 0;
+    if (on.frostbite() && fp > 0) void frostbite(api, actor, fp, clothing, on);
   });
 
   // Fur winter or arctic clothes: DR 1 wherever the outfit covers (p. 64).

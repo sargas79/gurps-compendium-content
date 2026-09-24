@@ -73,17 +73,27 @@ function flag(name, fallback = null) {
  * its text keeps tables apart but can put a sidebar's lines inside a paragraph.
  * So the gear is read both ways, and a record the two disagree on is marked for
  * a person to settle against the page.
+ *
+ * Read as UTF-8, into the same cache tools/transcribe.mjs keeps: pdftotext's
+ * default is Latin-1 on some builds, and read back as UTF-8 every accent and
+ * multiplication sign became a replacement character ("Attach\ufffd Case").
+ * The books' symbol font puts its multiplication sign where Latin-1 has the
+ * yen sign, as tools/transcribe.mjs also finds, so a "2¥L" reads "2×L".
  */
 function pagesOf(pdf, stored = false) {
   const prefix = stored ? "raw-pages-" : "pages-";
-  const cache = join(projectRoot, "extracted", prefix + pdf.replace(/\W+/g, "-").slice(-60) + ".json");
-  if (existsSync(cache)) return JSON.parse(readFileSync(cache, "utf8"));
-  const result = spawnSync("pdftotext", [...(stored ? ["-raw"] : []), pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
+  const cache = join(projectRoot, "extracted", prefix + pdf.replace(/\W+/g, "-").slice(-60) + "-utf8.json");
+  if (!existsSync(cache)) extract(pdf, stored, cache);
+  return JSON.parse(readFileSync(cache, "utf8")).map((page) => page.replace(/¥/g, "×"));
+}
+
+/** Writes the book's pages, as pdftotext reads them, to the cache. */
+function extract(pdf, stored, cache) {
+  const result = spawnSync("pdftotext", [...(stored ? ["-raw"] : []), "-enc", "UTF-8", pdf, "-"], { encoding: "utf8", maxBuffer: 1 << 28 });
   if (result.status !== 0) throw new Error(`pdftotext failed on ${pdf}.`);
   const pages = result.stdout.split("\f");
   mkdirSync(join(projectRoot, "extracted"), { recursive: true });
   writeFileSync(cache, JSON.stringify(pages), "utf8");
-  return pages;
 }
 
 /**

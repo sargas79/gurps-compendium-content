@@ -31,7 +31,8 @@
  *     Surgery if it failed; antiseptic cleaning a wound, taking up to 2 of
  *     the dirt's penalty off the infection roll (its `woundDirt` line); and
  *     a TL6-8 healer with no medical supplies or first aid kit giving First
- *     Aid as at TL5 (`gworld.firstAid`'s `techLevel`).
+ *     Aid, and a physician's rounds, as at TL5 (`gworld.firstAid`'s and
+ *     `gworld.physicianRounds`' `techLevel`).
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -88,7 +89,7 @@ export interface MedicineSwitches {
 /** What this module keeps on a piece of medical gear. */
 export interface MedicalData {
   kind: MedicalKind;
-  /** A defibrillator's bonus, an anaesthesia machine's bonus, an X-ray's dice of rads. */
+  /** An anaesthesia machine's bonus, an X-ray's dice of rads. */
   value: number;
   /** A first aid kit used until it works a grade lower (p. 221). */
   depleted: boolean;
@@ -634,6 +635,15 @@ export function readyMedicine(api: GWorldApi, on: MedicineSwitches): void {
     if (!on.facilities() || !context?.healer) return;
     const tl = withoutSuppliesTl(Number(context.techLevel) || 0, hasMedicalSupplies(context.healer));
     if (tl !== null) context.techLevel = tl;
+  });
+  // And on a physician's rounds, the rest of Medical Care (p. 223; Campaigns
+  // p. 424): the system takes the Tech-Level Modifiers line for it (API 1.142.0).
+  Hooks.on(api.combat.hooks.physicianRounds, (context: any) => {
+    if (!on.facilities() || !context?.healer) return;
+    const tl = withoutSuppliesTl(Number(context.techLevel) || 0, hasMedicalSupplies(context.healer));
+    if (tl === null) return;
+    context.techLevel = tl;
+    if (Array.isArray(context.lines)) context.lines.push(L("RoundsWithoutSupplies"));
   });
 
   const action = (key: string, label: string, icon: string, visible: (item: any) => boolean, run: (item: any, actor: any) => Promise<void>) =>

@@ -58,6 +58,15 @@ export function skillBase(key: string): string {
   return key.replace(/\s*\(.*$/, "").trim();
 }
 
+/** The repair skills a kit is essential to, each specialty needing its own (p. 24). */
+export const KIT_SKILLS = Object.freeze(["Armoury", "Electrician", "Electronics Repair", "Machinist", "Mechanic"]);
+
+/** Whether a skill, named as the sheet has it ("Mechanic/TL7 (Automobile)"), is one a kit is essential to (p. 24). */
+export function needsKit(skill: string): boolean {
+  const base = skillBase(String(skill ?? "")).replace(/\/TL\s*\d+.*$/i, "").trim().toLowerCase();
+  return KIT_SKILLS.some((name) => name.toLowerCase() === base);
+}
+
 /** A comma- or semicolon-separated list, as a person types one. */
 export function listOf(text: unknown): string[] {
   return String(text ?? "").split(/[,;]/).map((s) => s.trim()).filter(Boolean);

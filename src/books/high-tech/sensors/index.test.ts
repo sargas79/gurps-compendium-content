@@ -6,6 +6,9 @@
  * beside Ultra-Tech's table, whose gear keeps its own figures.
  */
 
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
@@ -33,6 +36,7 @@ let chat: string[];
 let combatState: Map<string, any>;
 let on: Set<string>;
 let dialogAnswer: any;
+let dialogs: string[];
 let targets: any[];
 let controlled: any[];
 let successResult: any;
@@ -146,6 +150,7 @@ beforeEach(async () => {
   combatState = new Map();
   on = new Set();
   dialogAnswer = null;
+  dialogs = [];
   targets = [];
   controlled = [];
   successResult = { success: true, margin: 3 };
@@ -156,7 +161,7 @@ beforeEach(async () => {
     user: { get targets() { return new Set(targets.map((actor) => ({ actor }))); } },
   });
   vi.stubGlobal("canvas", { get tokens() { return { controlled: controlled.map((actor) => ({ actor })) }; } });
-  vi.stubGlobal("foundry", { data: { fields: {} }, utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
+  vi.stubGlobal("foundry", { data: { fields: {} }, utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async (o: any) => { dialogs.push(o.content); return dialogAnswer; } } } } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn(), info: vi.fn() } });
   vi.stubGlobal("Roll", class { total = 1; async evaluate() { return this; } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
@@ -608,6 +613,16 @@ describe("active sensors (pp. 45-47)", () => {
     dialogAnswer = { index: 0, yards: 100, arc: false, noise: 0, imaging: false, medium: "soil", counter: "jammer" };
     await tools.get("sensor-sweep").open();
     expect(contests[0]).toMatchObject({ first: { base: 13 }, second: { base: 14, note: "Electronics Operation (EW)" } });
+  });
+
+  it("labels every row of a GPR's sweep with a translation, not a key (#549)", async () => {
+    const translations = JSON.parse(readFileSync(join(import.meta.dirname, "../../../../lang/en.json"), "utf8"));
+    const text = (k: string) => k.split(".").reduce((node: any, part) => node?.[part], translations);
+    controlled = [character("Surveyor", [gear("Portable GPR")])];
+    await tools.get("sensor-sweep").open();
+    const keys = [...dialogs[0]!.matchAll(/GCC\.[\w.]+/g)].map((m) => m[0]);
+    expect(keys).toContain("GCC.HT.Sensor.MediumLabel");
+    expect(keys.filter((k) => typeof text(k) !== "string")).toEqual([]);
   });
 
   it("ignores the size and dwelling asked of the sweep while the supplement's switch is off", async () => {

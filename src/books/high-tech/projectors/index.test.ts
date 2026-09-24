@@ -293,7 +293,12 @@ describe("flamethrowers (flamethrowers)", () => {
     const targets = { foe: actorWith("Carrier", [item]), targets: [{ id: "flame", penalty: -3 }] };
     fire(HOOKS.weaponTargets, targets);
     expect(targets.targets).toHaveLength(1);
-    expect(targets.targets[0]).toMatchObject({ id: "flame", penalty: 0 });
+    expect(targets.targets[0]).toMatchObject({ id: "flame", penalty: 0, name: expect.stringContaining("Tank.Target ") });
+    // The backpack at -4 from the front, at no penalty from the side or behind (API 1.137.0).
+    const from = (arc: string) => { const context: any = { foe: actorWith("Carrier", [item]), arc, side: null, targets: [] }; fire(HOOKS.weaponTargets, context); return context.targets[0]; };
+    expect(from("front")).toMatchObject({ penalty: -4, name: expect.stringContaining("TargetFacing") });
+    expect(from("back")).toMatchObject({ penalty: 0, name: expect.stringContaining("TargetBehind") });
+    expect(from("side").penalty).toBe(0);
 
     const opts: Record<string, unknown> = {};
     fire("preUpdateItem", item, { system: { hpLost: 3 } }, opts);

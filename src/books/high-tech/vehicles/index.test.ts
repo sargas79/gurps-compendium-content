@@ -48,6 +48,11 @@ function fakeApi() {
       removeCondition: async (actor: any, id: string) => { actor.conditions = (actor.conditions ?? []).filter((c: any) => c.id !== id); },
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor: actor.name, ...o }); return true; },
       spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor: actor.name, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
+      // The system's reading of the vehicle a character is aboard (API 1.141.0), over the world's vehicles here.
+      vehicleAboard: (actor: any) => {
+        const vehicle = [...((globalThis as any).game?.actors ?? [])].find((v: any) => v?.type === "vehicle" && (v.system?.crew ?? []).some((seat: any) => seat?.uuid === actor?.uuid));
+        return vehicle ? { vehicle, operator: false, moving: (Number(vehicle.system?.speed) || 0) > 0, medium: "ground" } : null;
+      },
     },
     roll: { success: async (o: any) => { successes.push(o); return { success: true, margin: 0 }; } },
   };
@@ -201,6 +206,22 @@ describe("protection, with only High-Tech's switch on", () => {
     expect(stats(brdm)).toMatchObject({ handling: 1, topSpeed: 28 });
   });
 
+  it("takes the system's crippled wheels as flat tyres the run-flats or CTIS carry (API 1.134.0)", () => {
+    // As the system hands it over: one of four wheels crippled, Move 28 down to 14 with its line.
+    const lamed = (vehicle: any) => call("gworld.vehicleStats", {
+      vehicle, handling: 1, stability: 4, acceleration: 1.5, topSpeed: 14,
+      move: { locomotion: "wheels", acceleration: 3, topSpeed: 28 }, crippled: { wheel: 1 },
+      lines: [{ label: "Crippled wheel", stat: "topSpeed", value: -14 }],
+    });
+    const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W", range: 375, roadBound: false });
+    expect(lamed(aml)).toMatchObject({ handling: 0, acceleration: 3, topSpeed: 22.4, lines: [{ label: "GCC.HT.Vehicles.RunningFlat", stat: "handling" }, { label: "GCC.HT.Vehicles.RunningFlat", stat: "topSpeed" }] });
+    const brdm = vehicleActor("GAZ BRDM-2", { dr: 40, locations: "t4W" });
+    expect(lamed(brdm)).toMatchObject({ handling: 1, acceleration: 3, topSpeed: 28, lines: [] });
+    // A car with neither keeps the system's figures.
+    const car = vehicleActor("Car", { dr: 4, locations: "4W" });
+    expect(lamed(car)).toMatchObject({ handling: 1, acceleration: 1.5, topSpeed: 14, lines: [{ label: "Crippled wheel" }] });
+  });
+
   it("gives improved brakes +1 on a control roll made for braking hard, from the tool (p. 229)", async () => {
     const driver = person("Driver");
     actors = [driver];
@@ -283,6 +304,22 @@ describe("components, with only High-Tech's switch on", () => {
   it("turns a turret in Ready maneuvers by the facing (p. 228)", async () => {
     await runKind(fakeApi() as never, vehicleActor("Uralvagonzavod T-72A", { dr: 1155 }), { kind: "turret", degrees: 120 } as any, [], { components: () => true, protection: () => false, crew: () => false });
     expect(chat.join("")).toContain("\"readies\":6");
+  });
+
+  it("takes the searchlight's range penalty from the map, unless one is typed in (p. 228)", async () => {
+    const at = (x: number) => ({ getActiveTokens: () => [{ center: { x, y: 0 } }] });
+    vi.stubGlobal("canvas", { grid: { measurePath: ([a, b]: any[]) => ({ distance: Math.abs(b.x - a.x) }) } });
+    const gunner = person("Gunner");
+    actors = [gunner];
+    const aml = vehicleActor("Panhard AML60-7", { dr: 35, locations: "T4W" }, at(0));
+    aml.system.crew = [{ uuid: gunner.uuid, operator: true }];
+    const target = { ...person("Sentry"), ...at(100) };
+    const light = (range: number) => runKind(fakeApi() as never, aml, { kind: "searchlight", miles: 0.25, aimed: true, night: false, range } as any, [target], { components: () => true, protection: () => false, crew: () => false });
+    await light(0);
+    // 100 yards: -10 on the Speed/Range Table.
+    expect(successes[0].modifiers).toEqual([{ label: "GCC.HT.Vehicles.Tool.SearchlightAcc", value: 12 }, { label: expect.stringContaining("RangeYards"), value: -10 }]);
+    await light(-4);
+    expect(successes.at(-1).modifiers.at(-1)).toEqual({ label: "GCC.HT.Vehicles.Tool.Range", value: -4 });
   });
 
   it("shows a vehicle's components on its item sheet", () => {

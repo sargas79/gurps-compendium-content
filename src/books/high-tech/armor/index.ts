@@ -11,7 +11,9 @@
  *     in 6 foot hits; high boots with their tops turned up over 3 in 6 of the
  *     legs; and the better DR a piece gives some locations from the front (the
  *     TL7 fragmentation vest's vitals, the bomb disposal suit's torso), all
- *     through `gworld.armorDr` (p. 69; pp. 66-68, 75).
+ *     through `gworld.armorDr` (p. 69; pp. 66-68, 75), none of them rolled
+ *     for the sheet's figures; and shoulder pads' +1 to a slam's damage and DR
+ *     3 against what the slammer takes back (p. 66 note 4).
  *   - **Concealing armour (concealedArmor):** a row action on a worn piece
  *     rolls a Quick Contest of Holdout, less the piece's DR (a third of it for
  *     flexible armour) and plus up to 4 for a concealable design, against the
@@ -31,6 +33,7 @@ import {
   DESIGN_MAX,
   MATERIALS,
   MATERIAL_EFFECTS,
+  SLAM_PADS,
   TOE_BOX_SIXTHS,
   TOPS_UP,
   armorHoldoutPenalty,
@@ -84,6 +87,8 @@ export interface HtArmorData {
   semiAblative: boolean;
   /** High boots worn with the tops turned up. */
   topsUp: boolean;
+  /** Worn to slam with: +1 to the slam's damage, DR 3 against what the slammer takes back (p. 66 note 4). */
+  slamPads: boolean;
 }
 
 /** Registers the fields this module keeps on armour and on shields. */
@@ -101,6 +106,7 @@ export function initHighTechArmor(): void {
       material: material(),
       semiAblative: new f.BooleanField({ initial: false }),
       topsUp: new f.BooleanField({ initial: false }),
+      slamPads: new f.BooleanField({ initial: false }),
     }),
   });
   addExtensionFields("Item", ["shield"], { [SHIELD_FIELD]: material() });
@@ -121,11 +127,14 @@ export function htArmorData(item: any): HtArmorData {
     material: MATERIALS.includes(material) ? material : "",
     semiAblative: d.semiAblative === true,
     topsUp: d.topsUp === true,
+    slamPads: d.slamPads === true,
   };
 }
 
 const isArmor = (item: any) => item?.type === "armor";
 const isWorn = (item: any) => isArmor(item) && item.system?.equipped === true;
+/** The worn pads a character slams with (p. 66 note 4), or null. */
+const slamPadsOn = (actor: any): any => [...(actor?.items ?? [])].find((i: any) => isWorn(i) && htArmorData(i).slamPads) ?? null;
 const locationsOf = (item: any): string[] => item?.system?.locations ?? [];
 /** Whether a piece covers a location by its own list (an empty list is the whole body). */
 const covers = (item: any, location: string) => locationsOf(item).length === 0 || locationsOf(item).includes(location);
@@ -395,6 +404,13 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     else context.modifiers.push({ label: F("StrikeAroundLine", { n: sixths }), value: penalty });
   });
 
+  // Pads worn to slam with: +1 to the slammer's blow (p. 66 note 4; the slam's source, API 1.139.0).
+  Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
+    if (!on.partial() || context?.source !== "slam" || !Array.isArray(context.modifiers)) return;
+    const pads = slamPadsOn(context.actor);
+    if (pads) context.modifiers.push({ label: F("SlamPadsDamage", { name: pads.name }), value: SLAM_PADS.damage });
+  });
+
   // What each piece is worth against the blow.
   Hooks.on(api.combat.hooks.armorDr, (context: any) => {
     if (!(on.partial() || on.materials()) || !context?.actor || !Array.isArray(context.lines)) return;
@@ -403,12 +419,26 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     const damageType = String(context.damageType ?? "");
     const partial: Array<{ line: any; sixths: number }> = [];
     const note = (line: any, reason: string) => { line.reason = [line.reason, reason].filter(Boolean).join("; "); };
+    // The sheet's figures (API 1.140.0): no blow, so nothing is rolled for it.
+    const preview = context.preview === true;
+    // What a slammer takes back, against pads worn to slam with (p. 66 note 4).
+    const slammed = on.partial() && context.source === "slammed";
+    const pads = slammed ? slamPadsOn(actor) : null;
+    if (pads && !context.lines.some((l: any) => l.itemId === pads.id)) {
+      context.lines.push({ label: String(pads.name ?? ""), dr: SLAM_PADS.dr, applies: true, forceField: false, flexible: false, hardened: 0, itemId: pads.id, source: "armor", reason: L("SlamPadsReason") });
+    }
 
     for (const line of context.lines) {
       if (line.source === "natural" || !line.itemId) continue;
       const item = actor.items?.get?.(line.itemId);
       if (!isArmor(item)) continue;
       const data = htArmorData(item);
+      if (pads && item.id === pads.id) {
+        // All of the pads, whatever their coverage, at their DR against crushing.
+        if (line.dr < SLAM_PADS.dr) line.dr = SLAM_PADS.dr;
+        if (!line.reason) note(line, L("SlamPadsReason"));
+        continue;
+      }
       if (on.materials()) {
         const dr = materialDr(line.dr, data.material, damageType);
         if (dr !== line.dr) { line.dr = dr; note(line, L(`Material.${data.material}`)); }
@@ -419,6 +449,7 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
       const front = frontDrAt({ dr: data.frontDr, locations: data.frontLocations }, location, context.arc);
       if (front !== null && front > line.dr) { line.dr = front; note(line, F("FrontReason", { dr: front })); }
       if (location === "foot" && data.toeDr > line.dr && context.fromBelow !== true) {
+        if (preview) { note(line, F("ToePreview", { dr: data.toeDr, n: TOE_BOX_SIXTHS })); continue; }
         const roll = d6();
         if (partialStands(TOE_BOX_SIXTHS, roll)) { line.dr = data.toeDr; note(line, F("ToeHit", { roll, n: TOE_BOX_SIXTHS })); }
         else note(line, F("ToeMissed", { roll, n: TOE_BOX_SIXTHS }));
@@ -440,6 +471,10 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
       return;
     }
     if (sixths >= 6) return;
+    if (preview) {
+      for (const p of partial) note(p.line, F("PartialPreview", { n: sixths }));
+      return;
+    }
     const roll = d6();
     const stands = partialStands(sixths, roll);
     for (const p of partial) {

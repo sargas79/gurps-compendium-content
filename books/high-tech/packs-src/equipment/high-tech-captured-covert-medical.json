@@ -3910,8 +3910,7 @@
             }
           },
           "medical": {
-            "kind": "defibrillator",
-            "value": 2
+            "kind": "defibrillator"
           }
         }
       }
@@ -3953,8 +3952,7 @@
             }
           },
           "medical": {
-            "kind": "defibrillator",
-            "value": 3
+            "kind": "defibrillator"
           }
         }
       }

@@ -430,7 +430,8 @@
       "extensions": {
         "gurps-compendium-content": {
           "htArmor": {
-            "coverage": 1
+            "coverage": 1,
+            "slamPads": true
           }
         }
       }
