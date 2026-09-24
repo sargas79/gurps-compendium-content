@@ -5023,6 +5023,18 @@
           "Name": "Programming languages (Electricity and Electronics)",
           "Hint": "How a High-Tech computer is programmed, set on its sheet. On a Computer Programming roll with it or a program on it, machine code is -5 (none with Eidetic or Photographic Memory; time spent can buy it off), and a high-level language lifts the penalty for an unfamiliar computer type. A row button rolls Computer Operation as a complementary skill (+1, +2 on a critical success, -1 on a failure, -2 on a critical failure) for the next Computer Programming roll with the machine; another \"programs\" a dedicated or hard-wired machine with Engineer (Electronics), -2 without familiarity with digital circuits, Electronics Repair (Computers) or Computer Operation (High-Tech: Electricity and Electronics p. 38)."
         },
+        "electricalHazards": {
+          "Name": "Electrical hazards (Electricity and Electronics)",
+          "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 points of injury, AC -5 per 2, radio frequency none, lightning -1 per 5. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
+        },
+        "shockProtection": {
+          "Name": "Shock protection (Electricity and Electronics)",
+          "Hint": "A worn Faraday suit makes its wearer immune to nonlethal shocks and gives DR 20 against lethal ones and lightning, on any shock. On the GM tool's shocks, worn electrical gloves (DR 25, high-end 75), an insulated tool's handle (DR 18, to 1,000 volts) and electrical tape (DR 10) count as DR against the shock only, and a hot stick keeps the worker clear of a line within its rating, at -2 to the roll that the Hot Stick technique buys off. A fuse, circuit breaker or ground fault interrupter on the circuit turns a critical failure on power work, or on a stolen-power device's daily roll, into an ordinary one. A lightning rod carries a bolt to ground on 14 or less (16 from 1888 on), or the building takes half (High-Tech: Electricity and Electronics pp. 9, 14-15, 19, 25)."
+        },
+        "powerLines": {
+          "Name": "Power lines (Electricity and Electronics)",
+          "Hint": "The voltage table as the electrical GM tool's sources: 1 point for a radio battery, 1d-3 for U.S. household current, 1d+1 elsewhere, 3d industrial, 5d at 1,000 volts, 6d at 1,500, and 6d more per tenfold rise; the electric chair's 1,800 volts AC. Cutting or tapping a line is an Electrician roll, -1 with insulated tools but no safety gear and -5 with improvised ones; a failure by 5 or a critical failure is a lethal shock at the line's voltage, and a tap is hidden with Camouflage. A device on stolen power gets a row button for its daily HT-2 reliability roll, a critical failure perhaps starting a fire. Within a yard of a line over 150,000 volts, an HT roll: its margin of failure a penalty to skill rolls, stunned on a critical failure, none in a Faraday suit (High-Tech: Electricity and Electronics pp. 18-19)."
+        },
         "toolKits": {
           "Name": "Tool kits and workshops",
           "Hint": "A portable kit carried for another specialty of the same skill is -2; a workshop is -2 for another specialty or a close craft and -5 for a distant one, where no kit of the skill's own is carried. Kits for light crafts cost a quarter and weigh a tenth; a vehicle kit or shop for more than 10 tons costs and weighs (tons)/10 times as much. Labs show their set-up time, machine shops their output (High-Tech pp. 24, 29, 50)."
@@ -9776,6 +9788,143 @@
         "SpeakerWeight": "Quality (weight)",
         "SpeakersPrice": "{count} extra speakers",
         "HydrophoneTitle": "Listen (hydrophone)"
+      },
+      "Electricity": {
+        "Tool": "Electrical hazards",
+        "Target": "Target the characters first.",
+        "Mode": {
+          "Label": "What happens",
+          "shock": "Contact with a source",
+          "work": "Cutting or tapping a line",
+          "field": "Near a line over 150,000 volts",
+          "lightning": "Struck by lightning",
+          "arcFlash": "Arc flash",
+          "rod": "Lightning on a building with a rod"
+        },
+        "Source": {
+          "Label": "Source",
+          "Row": "{source} ({volts} V)",
+          "Volts": "A line at {volts} V",
+          "radioBattery": "Radio battery",
+          "householdUs": "Household (U.S. and Japan)",
+          "household": "Household elsewhere; major appliance",
+          "industrial": "Industrial",
+          "highVoltageSupply": "High-voltage power supply",
+          "thirdRail": "Third rail; overhead line",
+          "higher": "A line at the voltage below",
+          "chair": "The electric chair (1,800 V AC)",
+          "formula": "Lethal, the damage below",
+          "nonlethal": "Nonlethal (static, a capacitor, a stunner)",
+          "lightning": "Lightning",
+          "VoltsField": "Volts",
+          "FormulaField": "Damage",
+          "ModifierField": "HT modifier (nonlethal)"
+        },
+        "Current": {
+          "Label": "Current",
+          "dc": "Direct (DC)",
+          "ac": "Alternating (AC)",
+          "rf": "Radio frequency"
+        },
+        "Material": {
+          "Label": "At hand to catch fire",
+          "none": "Nothing",
+          "superFlammable": "Super-Flammable",
+          "highlyFlammable": "Highly flammable",
+          "flammable": "Flammable",
+          "resistant": "Resistant",
+          "highlyResistant": "Highly resistant"
+        },
+        "Seconds": "Seconds until the current is cut",
+        "Hands": "Through the hands (gloves count)",
+        "HandTool": "Through an insulated tool",
+        "Taped": "The conductor is taped",
+        "Metal": "Wearing metal armour",
+        "Torso": "Current crosses the torso",
+        "Guarded": "A fuse, breaker or ground fault interrupter guards the circuit",
+        "BadSource": "No damage to roll for \"{formula}\".",
+        "SourceLine": "Source: {source}.",
+        "Rolled": "Damage {formula}: rolled {rolled}.",
+        "PullFree": "Jerk free of the source",
+        "PulledFree": "Jerked free with a DX roll: no injury (High-Tech: Electricity and Electronics p. 9).",
+        "CantLetGo": "Can't let go of the source: more than 1 point of injury (High-Tech: Electricity and Electronics p. 9).",
+        "HeldCondition": "Can't let go of the source",
+        "Step": {
+          "ac": "Alternating current: -5 to HT per 2 points of injury (High-Tech: Electricity and Electronics p. 9).",
+          "rf": "Radio-frequency current: no penalty to HT for the injury (High-Tech: Electricity and Electronics p. 9).",
+          "lightning": "Lightning: -1 to HT per 5 points of injury (High-Tech: Electricity and Electronics p. 9)."
+        },
+        "StrongNonlethal": "A strong discharge: a failure by {margin} or more, or a critical failure, stops the heart (High-Tech: Electricity and Electronics p. 9).",
+        "HeartCritical": "Critical failure against a strong discharge: the heart stops (High-Tech: Electricity and Electronics p. 9).",
+        "WeakShock": "A weak shock: the HT roll is made even with no injury, at {bonus} (High-Tech: Electricity and Electronics p. 9).",
+        "Ignites": "The current sets what is at hand ({material}) alight (Campaigns p. 433).",
+        "NoFire": "Not enough to set what is at hand ({material}) alight.",
+        "SparkIgnites": "A spark lights the Super-Flammable material: rolled {rolled} against {target}.",
+        "SparkFails": "No spark catches: rolled {rolled} against {target}.",
+        "FaradayImmune": "The Faraday suit makes the wearer immune to a nonlethal shock (High-Tech: Electricity and Electronics p. 15).",
+        "HotStickClear": "Working through a hot stick: the current doesn't reach the worker (High-Tech: Electricity and Electronics p. 15).",
+        "ShockDr": "DR {dr} against the shock from safety gear (High-Tech: Electricity and Electronics pp. 14-15).",
+        "Lightning": {
+          "Large": "A large bolt (damage times 1d-2)"
+        },
+        "ArcFlash": {
+          "Title": "Arc flash",
+          "Label": "Arc flash: {name}",
+          "Burn": "{formula} burning damage for 1 second.",
+          "Light": "A dazzling light as bright as a million lux (with the light and glare rule on, it calls for the glare roll; High-Tech: Electricity and Electronics pp. 9, 20).",
+          "Glare": "A dazzling light as bright as a million lux: the glare roll follows (High-Tech: Electricity and Electronics pp. 9, 20).",
+          "GogglesField": "Eyes behind welder's goggles",
+          "Goggles": "Welder's goggles guard the eyes against the flash's ultraviolet.",
+          "Eyes": "Eyes against the arc flash (HT, as for crippling)",
+          "EyeLabel": "Arc flash: sight impaired",
+          "EyesLasting": "The flash impairs the sight for months: a lasting crippling of the eyes (High-Tech: Electricity and Electronics p. 9; Campaigns p. 422).",
+          "EyesPermanent": "The flash impairs the sight for good: a permanent crippling of the eyes (High-Tech: Electricity and Electronics p. 9; Campaigns p. 422).",
+          "EyesSpared": "No lasting harm to the eyes."
+        },
+        "Rod": {
+          "Title": "Lightning rod",
+          "Label": "Rod",
+          "tl5": "TL5 rod (14 or less)",
+          "inductive": "Inductive design, 1888 on (16 or less)",
+          "Bolt": "The bolt: {formula}, rolled {rolled}.",
+          "Roll": "{rod}: rolled {roll}.",
+          "Grounded": "The rod carries the bolt to ground.",
+          "Failed": "The rod fails: the structure beside it takes {damage} damage."
+        },
+        "Work": {
+          "Action": "Work",
+          "Cut": "Cut the power",
+          "Tap": "Tap the power",
+          "ToolsLabel": "Tools",
+          "Tools": {
+            "safe": "Insulated tools and safety gear",
+            "insulated": "Insulated tools, no safety gear",
+            "improvised": "Improvised tools"
+          },
+          "HotStick": "Through a hot stick",
+          "NoSource": "Choose a line to work on.",
+          "CutDone": "{name} cuts the power.",
+          "Tapped": "{name} taps the power.",
+          "Hide": "Hide the tap",
+          "Hidden": "The added connections are hidden.",
+          "Visible": "The added connections can be seen.",
+          "Failed": "The work fails.",
+          "Guarded": "A critical failure, but the circuit's guard turns it into an ordinary one (High-Tech: Electricity and Electronics p. 25).",
+          "Shocked": "A bad failure: a lethal shock at the line's voltage (High-Tech: Electricity and Electronics p. 19)."
+        },
+        "Field": {
+          "Title": "Induced current",
+          "Condition": "Induced current",
+          "Faraday": "The Faraday suit keeps the line's field off (High-Tech: Electricity and Electronics p. 19).",
+          "Resisted": "{name} shrugs off the tingling.",
+          "Numb": "{name} is numbed: {penalty} to skill rolls while near the line.",
+          "Stunned": "{name} is stunned."
+        },
+        "Stolen": {
+          "Label": "Daily roll on stolen power",
+          "Fire": "A critical failure on stolen power: it may start a fire (High-Tech: Electricity and Electronics pp. 9, 19).",
+          "Guarded": "A critical failure, but the circuit's guard turns it into an ordinary one: no fire (High-Tech: Electricity and Electronics p. 25)."
+        }
       }
     },
     "Backblast": {
