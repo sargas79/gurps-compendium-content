@@ -4,7 +4,8 @@
  * the system through the add-on API under three High-Tech switches. The
  * figures are in `rules.ts`. The shock is always the system's
  * (`hazards.shock`, Campaigns pp. 432-433); these rules reach into it through
- * the `gworld.shockModifiers` and `gworld.afterShock` hooks (API 1.119.0).
+ * the `gworld.shockModifiers` and `gworld.afterShock` hooks (API 1.119.0),
+ * `gworld.shockDamage` and a critical failure's heart (API 1.127.0).
  *
  *   - **Electrical hazards (electricalHazards):** a GM tool that puts its
  *     targets in contact with a source -- a row of the voltage table, a
@@ -19,8 +20,10 @@
  *     current lighting what is at hand; arc flash (3d burn, the light rules'
  *     glare roll, and lasting harm to eyes without welder's goggles);
  *     lightning. On any shock the system runs, a nonlethal one at -5 or
- *     worse stops the heart on a failure by 10, and a lethal one that does
- *     more than 1 point holds on.
+ *     worse stops the heart on a failure by 10 or a critical failure, a
+ *     lethal one that does more than 1 point holds on, and a weak one whose
+ *     damage roll came to 0 or less still calls for the HT roll, with the
+ *     roll under 0 as a bonus.
  *   - **Shock protection (shockProtection):** on any shock, a worn Faraday
  *     suit's immunity to nonlethal shocks and DR 20 against lethal ones; on
  *     the GM tool's shocks, electrical gloves, an insulated tool's handle and
@@ -198,7 +201,7 @@ async function shockWith(api: GWorldApi, actor: any, options: Record<string, unk
 }
 
 /** The shock's HT step and heart, and the weak-shock rule (HT:EE p. 9). */
-function hazardModifiers(api: GWorldApi, context: any, shock: PendingShock | null): void {
+function hazardModifiers(context: any, shock: PendingShock | null): void {
   const kind = context.kind;
   if (shock?.current && kind !== "nonlethal") {
     context.injuryStep = INJURY_STEP[shock.current];
@@ -206,19 +209,30 @@ function hazardModifiers(api: GWorldApi, context: any, shock: PendingShock | nul
   }
   if (kind === "nonlethal" && nonlethalCanStopHeart(Number(context.modifier) || 0)) {
     context.heartAttackMargin = NONLETHAL_HEART_MARGIN;
+    // The book counts a critical failure too, as the Basic Set does only for a lethal shock.
+    context.heartAttackOnCritical = true;
     context.lines.push(F("StrongNonlethal", { margin: NONLETHAL_HEART_MARGIN }));
   }
-  if (kind !== "lethal") return;
-  if (shock) {
-    if (shock.weak) {
-      context.rollOnZeroInjury = true;
-      if (shock.weak.bonus) context.modifier = (Number(context.modifier) || 0) + shock.weak.bonus;
-      context.lines.push(F("WeakShock", { bonus: signed(shock.weak.bonus) }));
-    }
-  } else if (weakShock(api.rules.parseDiceAdds(String(context.formula ?? "")) as any)) {
-    context.rollOnZeroInjury = true;
-    context.lines.push(F("WeakShock", { bonus: "+0" }));
-  }
+  if (kind !== "lethal" || !shock?.weak) return;
+  // The tool rolled the damage itself; the system's own shocks are answered once theirs is rolled (weakShockRolled).
+  context.rollOnZeroInjury = true;
+  if (shock.weak.bonus) context.modifier = (Number(context.modifier) || 0) + shock.weak.bonus;
+  context.lines.push(F("WeakShock", { bonus: signed(shock.weak.bonus) }));
+}
+
+/**
+ * The weak-shock rule on a lethal shock the system rolled (HT:EE p. 9): a
+ * formula under 1d whose roll came to 0 or less still calls for the HT roll,
+ * with the roll under 0 as a bonus (`gworld.shockDamage`, API 1.127.0).
+ */
+function weakShockRolled(api: GWorldApi, context: any): void {
+  if (context.kind !== "lethal" || !weakShock(api.rules.parseDiceAdds(String(context.formula ?? "")) as any)) return;
+  const rolled = Number(context.damageRoll);
+  if (!Number.isFinite(rolled) || rolled > 0) return;
+  const bonus = weakShockBonus(rolled);
+  context.rollOnZeroInjury = true;
+  if (bonus) context.modifier = (Number(context.modifier) || 0) + bonus;
+  context.lines.push(F("WeakShock", { bonus: signed(bonus) }));
 }
 
 /** DR against the shock only, or immunity (HT:EE pp. 14-15). */
@@ -685,10 +699,27 @@ export function runsOnMains(item: any): boolean {
   return EXTERNAL_POWER.test(String(power?.raw ?? ""));
 }
 
-/** A device's daily roll on stolen power: HT-2 as an equipment failure roll, a critical failure perhaps a fire (HT:EE pp. 9, 19). */
+/** The items whose stolen-power roll a fuse, breaker or GFI guards, while it is rolled. */
+const guardedRolls = new Set<string>();
+const itemKey = (item: any) => String(item?.uuid ?? item?.id ?? "");
+
+/**
+ * A device's daily roll on stolen power: HT-2 as an equipment failure roll, a
+ * critical failure perhaps a fire (HT:EE pp. 9, 19). A guard on the circuit
+ * holds a critical failure to an ordinary one before the system marks the
+ * device (HT:EE p. 25; `downgradeCriticalFailure`, API 1.127.0): no fire, and
+ * a minor repair rather than a major one.
+ */
 export async function stolenPowerCheck(api: GWorldApi, item: any, actor: any, guarded: boolean): Promise<any> {
-  const result: any = await (api.items as any).equipmentFailure({ actor, item, modifier: STOLEN_POWER_MODIFIER, label: L("Stolen.Label") });
-  if (result?.outcome === "criticalFailure") await say(actor, L("Stolen.Label"), [L(guarded ? "Stolen.Guarded" : "Stolen.Fire")]);
+  const key = itemKey(item);
+  if (guarded) guardedRolls.add(key);
+  let result: any;
+  try {
+    result = await api.items.equipmentFailure({ actor, item, modifier: STOLEN_POWER_MODIFIER, label: L("Stolen.Label") });
+  } finally {
+    guardedRolls.delete(key);
+  }
+  if (result?.outcome === "criticalFailure") await say(actor, L("Stolen.Label"), [L("Stolen.Fire")]);
   return result;
 }
 
@@ -738,10 +769,17 @@ export function readyElectricity(api: GWorldApi, on: ElectricitySwitches): void 
       return;
     }
     if (on.protection()) protectionModifiers(context, actor, shock);
-    if (on.hazards() && !context.immune) hazardModifiers(api, context, shock);
+    if (on.hazards() && !context.immune) hazardModifiers(context, shock);
   });
 
-  // Once it is worked out: held to the source past 1 point of injury, and a strong nonlethal shock's heart (HT:EE p. 9).
+  // Once the system's damage is rolled: the weak-shock rule on a roll of 0 or less (HT:EE p. 9).
+  Hooks.on(api.combat.hooks.shockDamage, (context: any) => {
+    if (!on.hazards() || !context || typeof context !== "object" || pending.has(keyOf(context.actor))) return;
+    if (!Array.isArray(context.lines)) context.lines = [];
+    weakShockRolled(api, context);
+  });
+
+  // Once it is worked out: held to the source past 1 point of injury (HT:EE p. 9).
   Hooks.on(api.combat.hooks.afterShock, (context: any) => {
     const key = keyOf(context?.actor);
     const was = noted.get(key);
@@ -749,9 +787,12 @@ export function readyElectricity(api: GWorldApi, on: ElectricitySwitches): void 
     if (!on.hazards() || !context || context.immune || !Array.isArray(context.lines)) return;
     // A bolt of lightning is over at once: nothing to hold on to.
     if (context.kind === "lethal" && !was?.lightning && Number(context.injury) > HOLDING_INJURY) context.contact = { held: true, label: L("CantLetGo") };
-    // The system counts a critical failure only for a lethal shock's heart; the book counts it for a strong nonlethal one too.
-    if (context.kind === "nonlethal" && context.criticalFailure && !context.heartAttack && was && nonlethalCanStopHeart(was.modifier)) {
-      context.lines.push(L("HeartCritical"));
-    }
+  });
+
+  // A guard on the circuit holds a stolen-power device's critical failure to an ordinary one (HT:EE p. 25).
+  Hooks.on(api.combat.hooks.equipmentFailure, (context: any) => {
+    if (!context || !guardedRolls.has(itemKey(context.item))) return;
+    context.downgradeCriticalFailure = true;
+    context.downgradeLabel = L("Stolen.Guarded");
   });
 }

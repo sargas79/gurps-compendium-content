@@ -28,6 +28,7 @@ let successResult: any;
 let darkness: number | null;
 let targets: any[];
 let dialogAnswer: any;
+let hitLocations: boolean;
 
 function fakeApi() {
   return {
@@ -42,6 +43,7 @@ function fakeApi() {
       getWeaponState: (item: any) => state.get(item.id),
       setWeaponState: async (item: any, _m: string, v: any) => { state.set(item.id, v); },
     },
+    registry: { isRuleOn: (key: string) => key === "hitLocations" && hitLocations },
     sheets: { registerRowAction: (a: any) => actions.set(a.key, a) },
     actors: {
       derived: (actor: any) => actor?.derived ?? null,
@@ -116,6 +118,7 @@ beforeEach(() => {
   darkness = 5;
   targets = [];
   dialogAnswer = null;
+  hitLocations = false;
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
@@ -159,6 +162,24 @@ describe("electric stunners (HT:EE pp. 49, 51)", () => {
     expect(options.get("ee-prod-face").available({ item: prod })).toBe(true);
     // High-Tech's own prod stuns under its own switch instead.
     expect(effectsOf(victim, record("Cattle Prod", { reference: "High-Tech p. 200" }))).toEqual([]);
+  });
+
+  it("reads the face or groin from where the blow struck, with hit locations in play (#549)", () => {
+    const prod = record("Cattle Prod");
+    const victim = person("Victim");
+    on.stunners = true;
+    hitLocations = true;
+    // No option to tick: the blow's location says it.
+    expect(options.get("ee-prod-face").available({ item: prod })).toBe(false);
+    const struck = (hitLocation: string | null) => fire("gworld.afflictionEffect", { actor: victim, item: prod, margin: -2, hitLocation, effects: [] }).effects[0].key;
+    expect(struck("face")).toBe("severePain");
+    expect(struck("groin")).toBe("severePain");
+    expect(struck("torso")).toBe("moderatePain");
+    // A location read wins over an option left from before.
+    fire("gworld.attackModifiers", { item: prod, options: { [`${MODULE_ID}.ee-prod-face`]: true }, modifiers: [] });
+    expect(struck("arm")).toBe("moderatePain");
+    // No location (hit locations off, or an area): the option's word.
+    expect(struck(null)).toBe("severePain");
   });
 });
 

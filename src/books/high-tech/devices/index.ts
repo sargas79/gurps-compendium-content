@@ -15,11 +15,13 @@
  *   - **Breakable parts (breakableComponents):** a device's HP, HT and DR
  *     where its record states none -- HP from its weight as an Unliving
  *     object, 1 at negligible weight, HT 10, DR 2 or 0 for a fragile one --
- *     as the object the system breaks (`gworld.objectStats`); and a row
- *     action for a device with fragile parts (tubes, bulbs) that is dropped
- *     or thrown: the collision damage at its speed, rolled once, taken whole
+ *     as the object the system breaks (`gworld.objectStats`), hurt as a
+ *     machine (Unliving) is; and a row action for a device with fragile
+ *     parts (tubes, bulbs) that is dropped or thrown: the collision damage
+ *     at its speed, rolled once, taken whole
  *     by each part with no DR, the parts at -1xHP rolling HT or breaking, and
- *     the device's own injury past its DR (HT:EE pp. 8-9).
+ *     the device's own injury past its DR (HT:EE pp. 8-9), put on the item
+ *     through `items.applyDamage` (#549).
  *   - **Kits (kitBuilding):** a device bought as a kit at a quarter of its
  *     price (20% for the parts, 5% for the instructions), and a row action
  *     that builds it as a single copy, rolled against IQ or a Hobby Skill as
@@ -437,9 +439,16 @@ export async function dropDevice(api: GWorldApi, item: any, actor: any): Promise
     }
   }
   const injury = deviceInjury(rolled, dr);
+  // The system puts the blow on a thing that keeps hit points, rolling its HT
+  // at each multiple of -HP (Campaigns pp. 483-484); anything else is marked
+  // by hand.
+  const recorded = injury > 0 && item?.isOwner && item?.system?.hpLost !== undefined;
   const state = api.rules.objectState(hp - injury, hp) as PartState;
-  lines.push(injury > 0 ? F("Drop.Injured", { injury, dr, state: L(`State.${state}`) }) : F("Drop.Unhurt", { dr }));
+  lines.push(injury <= 0 ? F("Drop.Unhurt", { dr })
+    : recorded ? F("Drop.Recorded", { injury, dr })
+      : F("Drop.Injured", { injury, dr, state: L(`State.${state}`) }));
   await say(actor, F("Drop.Card", { name: item.name }), lines, rolls);
+  if (recorded) await api.items.applyDamage({ item, damage: rolled, type: "cr", label: F("Drop.DamageLabel", { name: item.name }) });
 }
 
 // ── building a kit (HT:EE p. 15) ────────────────────────────────────────────
@@ -491,6 +500,8 @@ export function readyDevices(api: GWorldApi, on: DeviceSwitches): void {
   Hooks.on(api.data.hooks.objectStats, (context: any) => {
     if (!on.breakable() || !takesDeviceStatistics(context?.item)) return;
     const stats = statisticsOf(api, context.item);
+    // HP by the Unliving/Machine column, and hurt as a machine is (API 1.126.0).
+    context.kind = "unliving";
     context.hp = stats.hp;
     context.ht = stats.ht;
     context.dr = stats.dr;

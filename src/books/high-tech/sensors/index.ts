@@ -925,6 +925,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
   const kinds = new Set(sensors.map((s) => activeFigures(s.item)?.kind));
   const imagingAny = sensors.some((s) => sensorData(s.item).options.imaging);
   const refined = rangefindingOn();
+  const surveying = refined && sensors.some((s) => activeFigures(s.item)?.survey);
   const answer = await ask(L("SweepTitle"),
     row(L("Sensor"), `<select name="sensor">${sensors.map((s, i) => `<option value="${i}">${esc(s.item.name)}</option>`).join("")}</select>`)
     + row(L("Distance"), `<input type="number" name="yards" value="${Math.round((measured ?? 100) * 10) / 10}" min="0" step="any" style="width:90px" />`)
@@ -933,8 +934,10 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
     + (imagingAny ? row(L("ImagingMode"), `<input type="checkbox" name="imaging" />`) : "")
     + (kinds.has("gpr") ? row(L("Medium"), `<select name="medium">${Object.keys(GPR_MEDIUM).map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`) : "")
     + (kinds.has("radar") && target ? row(L("Countermeasures"), `<select name="counter"><option value="">${esc(L("Counter.none"))}</option>${Object.keys(COUNTERMEASURES).map((c) => `<option value="${c}">${esc(L(`Counter.${c}`))}</option>`).join("")}</select>`) : "")
-    + (refined ? row(L("TargetSm"), `<input type="number" name="sm" value="${Number(target?.system?.sm) || 0}" step="1" style="width:70px" />`) + dwellRow() : ""),
+    + (refined ? row(L("TargetSm"), `<input type="number" name="sm" value="${Number(target?.system?.sm) || 0}" step="1" style="width:70px" />`) + dwellRow() : "")
+    + (surveying ? surveyRow() : ""),
     (form) => ({
+      survey: String(form.querySelector<HTMLInputElement>("[name=survey]")?.value ?? "").trim(),
       index: Number(form.querySelector<HTMLSelectElement>("[name=sensor]")?.value) || 0,
       yards: Number(form.querySelector<HTMLInputElement>("[name=yards]")?.value) || 0,
       arc: Boolean(form.querySelector<HTMLInputElement>("[name=arc]")?.checked),
@@ -982,10 +985,25 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
     } as any);
   } else {
     const result: any = await api.roll.success({ actor: selected, base: skillBase(api, selected, figures.skill), skill: figures.skill, label: title, modifiers, tags, ...(target ? { subject: target } : {}) } as any);
-    // The supplement's ground-penetrating radar: success is +2 to a skill the survey serves (HT:EE p. 35).
-    if (refined && figures.survey && result?.success) lines.push(F("SurveyResult", { bonus: signed(figures.survey) }));
+    // The supplement's ground-penetrating radar: success is +2 to a skill the survey serves (HT:EE p. 35),
+    // held for the operator's next roll of the skill the dialog names (API 1.132.0).
+    if (refined && figures.survey && result?.success) {
+      const held = answer.survey
+        ? await api.actors.addPendingModifier(selected, { label: F("SurveyHeldLabel", { sensor: chosen.item.name }), value: figures.survey, skill: answer.survey })
+        : null;
+      lines.push(held ? F("SurveyHeld", { bonus: signed(figures.survey), name: selected.name, skill: answer.survey }) : F("SurveyResult", { bonus: signed(figures.survey) }));
+    }
   }
   if (lines.length) await card(selected, title, lines);
+}
+
+/** The skills the book names a ground-penetrating radar's survey serving (HT:EE p. 35), offered for the one it helps. */
+const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (EOD)"] as const;
+
+/** The dialog row naming the skill a survey helps: blank leaves the bonus to the GM. */
+function surveyRow(): string {
+  return row(L("SurveySkill"), `<input type="text" name="survey" value="${SURVEY_SKILLS[0]}" list="ht-survey-skills" style="width:140px" />`
+    + `<datalist id="ht-survey-skills">${SURVEY_SKILLS.map((s) => `<option value="${esc(s)}"></option>`).join("")}</datalist>`);
 }
 
 /** The dialog row for dwelling on a target (HT:EE p. 35). */

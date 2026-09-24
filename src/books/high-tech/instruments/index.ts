@@ -31,7 +31,9 @@
  *     transducer), a Van de Graaff generator's shock (+2 to resist from the
  *     classroom model, -6 per doubling of its sphere), an analog computer
  *     set up or built as a copy of an invention, and a waveform plotted by
- *     hand from Physics' or Mathematics (Applied)'s row at -2.
+ *     hand from Physics' or Mathematics (Applied)'s row at -2. Studying
+ *     Hiking with an electronic pedometer carried takes 10% less time
+ *     (p. 13), through the Study tool's `gworld.studyModifiers`.
  *   - **combinedDevices** (HT:EE p. 9): a device combined from separate
  *     parts is at -2 to use. A High-Tech device's sheet marks it as one (the
  *     `device.combined` field, beside #490's), and every roll made with it
@@ -65,6 +67,9 @@ import {
   LINES,
   LINE_DAMAGE,
   MAGNETIC_WORST,
+  PEDOMETER,
+  PEDOMETER_SKILL,
+  PEDOMETER_TIME,
   PHYSICS,
   REPAIR_ANY,
   REPAIR_SCIENTIFIC,
@@ -88,6 +93,7 @@ import {
   magneticPenalty,
   noisePenalty,
   reading,
+  studyMultiplier,
   tracingModifier,
   transducerFate,
   vanDeGraaffModifier,
@@ -124,10 +130,14 @@ const carriedGear = (actor: any): any[] => [...(actor?.items ?? [])].filter(carr
 
 /** The instrument an item is, where it is High-Tech's (the supplement's are, decision E1) or names no book. */
 export function instrumentItem(item: any): Instrument | null {
-  if (item?.type !== "equipment") return null;
-  const book = bookOf(item);
-  if (book !== null && book !== "high-tech") return null;
+  if (item?.type !== "equipment" || !ourBook(item)) return null;
   return instrumentOf(item.name);
+}
+
+/** High-Tech's gear (the supplement's is, decision E1), or gear that names no book. */
+function ourBook(item: any): boolean {
+  const book = bookOf(item);
+  return book === null || book === "high-tech";
 }
 
 // ── skills ──
@@ -506,6 +516,15 @@ export function readyInstruments(api: GWorldApi, on: InstrumentSwitches): void {
 
   const any = () => on.measurement() || on.instruments() || on.combined();
   const sameSkill = (item: any, name: string) => item?.type === "skill" && api.rules.toolSkillKey(String(item.name ?? "")) === api.rules.toolSkillKey(name);
+
+  // Studying Hiking with an electronic pedometer carried: 10% less study time (HT:EE p. 13; API 1.133.0).
+  Hooks.on(api.combat.hooks.studyModifiers, (context: any) => {
+    if (!on.instruments() || !context || !sameSkill(context.skill, PEDOMETER_SKILL)) return;
+    if (!carriedGear(context.actor).some((item) => PEDOMETER.test(nameOf(item).trim()) && ourBook(item))) return;
+    const multiplier = Number(context.multiplier);
+    context.multiplier = (Number.isFinite(multiplier) && multiplier >= 0 ? multiplier : 1) * studyMultiplier(PEDOMETER_TIME);
+    if (Array.isArray(context.lines)) context.lines.push(L("Pedometer"));
+  });
   const kindIs = (item: any, test: (inst: Instrument) => boolean) => {
     const inst = instrumentItem(item);
     return inst !== null && test(inst);

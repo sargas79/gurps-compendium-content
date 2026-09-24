@@ -117,9 +117,6 @@ export const WARM_HULL_PENALTY = -2;
  */
 export const VITAL_AREA_PENALTY = -3;
 
-/** The skill a laser designator is held on the target with: Forward Observer, DX-based (Campaigns p. 412). */
-export const DESIGNATOR_SKILL = "Forward Observer";
-
 /**
  * The seekers of High-Tech's homing missiles, by record (High-Tech p. 152):
  * the Sidewinder and Stinger home on infrared, the Javelin on an infrared
@@ -171,11 +168,3 @@ export function seekerChoice(value: unknown): SeekerChoice | null {
 
 /** Whether a stored or derived mode homes: the system's `guidance`. */
 export const homes = (mode: any): boolean => String(mode?.guidance ?? "") === "homing";
-
-/**
- * A DX-based roll on an IQ-based skill (Campaigns p. 172): the level less IQ
- * plus DX; the default, IQ-5, becomes DX-5.
- */
-export function dxBased(level: number | null, iq: number, dx: number): number {
-  return level === null ? dx - 5 : level - iq + dx;
-}

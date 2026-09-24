@@ -44,6 +44,9 @@ async function systemShock(o: any): Promise<any> {
   fire("gworld.shockModifiers", context);
   modifiersSeen.push(structuredClone({ ...context, actor: undefined }));
   const rolled = Number(o.formula) || 0;
+  if (o.kind !== "nonlethal" && !context.immune && o.formula) {
+    fire("gworld.shockDamage", { actor: o.actor, kind: o.kind, formula: o.formula, damageRoll: rolled, dr: context.dr, modifier: context.modifier, rollOnZeroInjury: context.rollOnZeroInjury, lines: context.lines });
+  }
   const injury = context.immune || o.kind === "nonlethal" ? 0 : Math.max(0, rolled - (typeof context.dr === "number" ? context.dr : 0));
   const given = outcomes.shift() ?? {};
   const outcome: any = {
@@ -59,7 +62,7 @@ async function systemShock(o: any): Promise<any> {
 function fakeApi() {
   return {
     rules,
-    combat: { hooks: { shockModifiers: "gworld.shockModifiers", afterShock: "gworld.afterShock" } },
+    combat: { hooks: { shockModifiers: "gworld.shockModifiers", shockDamage: "gworld.shockDamage", afterShock: "gworld.afterShock", equipmentFailure: "gworld.equipmentFailure" } },
     sheets: {
       registerGmTool: (t: any) => tools.set(t.key, t),
       registerRowAction: (a: any) => actions.set(a.key, a),
@@ -74,7 +77,16 @@ function fakeApi() {
       success: async (o: any) => { successes.push(o); return successResults.shift() ?? { success: true, margin: 0 }; },
       damage: async () => 7,
     },
-    items: { equipmentFailure: async (o: any) => { failures.push(o); return failureResult; } },
+    items: {
+      // The system's roll: the hook, then a critical failure held to an ordinary one where a listener asks.
+      equipmentFailure: async (o: any) => {
+        failures.push(o);
+        const context: any = { actor: o.actor, item: o.item, label: o.label, modifiers: [], downgradeCriticalFailure: false, downgradeLabel: "" };
+        fire("gworld.equipmentFailure", context);
+        const downgraded = failureResult?.outcome === "criticalFailure" && context.downgradeCriticalFailure;
+        return downgraded ? { ...failureResult, outcome: "failure", downgraded: true, downgradeLabel: context.downgradeLabel } : { ...failureResult, downgraded: false };
+      },
+    },
     hazards: { shock: systemShock },
   };
 }
@@ -199,30 +211,43 @@ describe("electrical hazards (HT:EE p. 9)", () => {
     expect(modifiersSeen[0].rollOnZeroInjury).toBe(false);
   });
 
-  it("lets the system's own weak lethal shocks roll too", () => {
-    const context: any = { actor: person("X"), kind: "lethal", formula: "1d-3", modifier: 0, rollOnZeroInjury: false, lines: [] };
-    fire("gworld.shockModifiers", context);
-    expect(context.rollOnZeroInjury).toBe(true);
-    const strong: any = { actor: person("Y"), kind: "lethal", formula: "3d", modifier: 0, rollOnZeroInjury: false, lines: [] };
-    fire("gworld.shockModifiers", strong);
-    expect(strong.rollOnZeroInjury).toBe(false);
+  it("lets the system's own weak lethal shocks roll once their damage comes to 0 or less, a roll under 0 a bonus", () => {
+    const shock = (formula: string, damageRoll: number): any => {
+      const context: any = { actor: person("X"), kind: "lethal", formula, damageRoll, modifier: -1, rollOnZeroInjury: false, lines: [] };
+      fire("gworld.shockModifiers", { ...context, lines: [] });
+      fire("gworld.shockDamage", context);
+      return context;
+    };
+    expect(shock("1d-3", -2)).toMatchObject({ rollOnZeroInjury: true, modifier: 1, lines: ['GCC.HT.Electricity.WeakShock {"bonus":"+2"}'] });
+    expect(shock("1d-3", 0)).toMatchObject({ rollOnZeroInjury: true, modifier: -1, lines: ['GCC.HT.Electricity.WeakShock {"bonus":"+0"}'] });
+    // A weak shock that did roll damage, and a strong one, are the Basic Set's.
+    expect(shock("1d-3", 2)).toMatchObject({ rollOnZeroInjury: false, modifier: -1, lines: [] });
+    expect(shock("3d", 0)).toMatchObject({ rollOnZeroInjury: false, lines: [] });
+  });
+
+  it("leaves the tool's own weak shocks to the tool", async () => {
+    dice = [-2];
+    await shockOn(api, [person("Cook")], answer({ source: "formula", formula: "1d-3", current: "ac" }), switches());
+    // The tool gave +2 before the roll; the damage hook adds nothing more.
+    expect(modifiersSeen[0]).toMatchObject({ rollOnZeroInjury: true, modifier: 2 });
+    expect(modifiersSeen[0].lines.filter((l: string) => l.startsWith("GCC.HT.Electricity.WeakShock"))).toHaveLength(1);
   });
 
   it("stops the heart on a strong nonlethal shock failed by 10, or critically", async () => {
     await shockOn(api, [person("Frank")], answer({ source: "nonlethal", modifier: -5, seconds: 4 }), switches());
     expect(calls).toEqual([expect.objectContaining({ kind: "nonlethal", formula: "", continuous: false })]);
-    expect(modifiersSeen[0].heartAttackMargin).toBe(10);
-    const weak: any = { actor: person("Y"), kind: "nonlethal", modifier: -4, heartAttackMargin: null, lines: [] };
+    expect(modifiersSeen[0]).toMatchObject({ heartAttackMargin: 10, heartAttackOnCritical: true });
+    const weak: any = { actor: person("Y"), kind: "nonlethal", modifier: -4, heartAttackMargin: null, heartAttackOnCritical: false, lines: [] };
     fire("gworld.shockModifiers", weak);
-    expect(weak.heartAttackMargin).toBeNull();
+    expect(weak).toMatchObject({ heartAttackMargin: null, heartAttackOnCritical: false });
   });
 
-  it("adds the heart's critical failure a strong nonlethal shock's card lacks", () => {
+  it("leaves the system's outcome to say a critical failure stopped the heart", () => {
     const actor = person("Frank");
     fire("gworld.shockModifiers", { actor, kind: "nonlethal", modifier: -6, lines: [] });
-    const after: any = { actor, kind: "nonlethal", immune: false, criticalFailure: true, heartAttack: false, injury: 0, lines: [] };
+    const after: any = { actor, kind: "nonlethal", immune: false, criticalFailure: true, heartAttack: true, injury: 0, lines: [] };
     fire("gworld.afterShock", after);
-    expect(after.lines).toEqual(["GCC.HT.Electricity.HeartCritical"]);
+    expect(after.lines).toEqual([]);
   });
 
   it("holds the system's own lethal shocks past 1 point", () => {
@@ -421,7 +446,11 @@ describe("power lines (HT:EE pp. 18-19)", () => {
     await stolenPowerCheck(api, vacuum, owner, false);
     expect(failures[0]).toMatchObject({ item: vacuum, modifier: -2 });
     expect(chat[0]).toContain("GCC.HT.Electricity.Stolen.Fire");
-    await stolenPowerCheck(api, vacuum, owner, true);
-    expect(chat[1]).toContain("GCC.HT.Electricity.Stolen.Guarded");
+    // A guard on the circuit holds the critical failure to an ordinary one before the system marks the device.
+    const held = await stolenPowerCheck(api, vacuum, owner, true);
+    expect(held).toMatchObject({ outcome: "failure", downgraded: true, downgradeLabel: "GCC.HT.Electricity.Stolen.Guarded" });
+    expect(chat).toHaveLength(1);
+    // The guard is for that roll only.
+    expect(await stolenPowerCheck(api, vacuum, owner, false)).toMatchObject({ outcome: "criticalFailure", downgraded: false });
   });
 });

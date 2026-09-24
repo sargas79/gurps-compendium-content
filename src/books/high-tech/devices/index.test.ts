@@ -29,6 +29,7 @@ let on: { cuttingEdge: boolean; breakable: boolean; kits: boolean };
 let successResult: any;
 let dialogAnswer: any;
 let dice: number[];
+let damaged: any[];
 
 function fakeApi() {
   return {
@@ -44,6 +45,7 @@ function fakeApi() {
     items: {
       // What the system gives, once the listeners have had their say.
       objectStats: (item: any) => fire("gworld.objectStats", { item, kind: "homogenous", dr: 4, hp: 16, ht: 12, notes: [] }),
+      applyDamage: async (o: any) => { damaged.push(o); return {}; },
     },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? null,
@@ -110,6 +112,7 @@ beforeEach(() => {
   successResult = { success: true };
   dialogAnswer = null;
   dice = [];
+  damaged = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", { i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
@@ -210,7 +213,7 @@ describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
 
   it("gives a device HP from its weight, HT 10 and DR 2, and a fragile one of negligible weight 1 HP and DR 0", () => {
     const stats = fire("gworld.objectStats", { item: radio(), dr: 4, hp: 16, ht: 12, notes: [] });
-    expect(stats).toMatchObject({ hp: 8, ht: 10, dr: 2, notes: ["GCC.HT.Devices.StatisticsNote"] });
+    expect(stats).toMatchObject({ kind: "unliving", hp: 8, ht: 10, dr: 2, notes: ["GCC.HT.Devices.StatisticsNote"] });
     expect(fire("gworld.objectStats", { item: bulb(), dr: 4, hp: 16, ht: 12, notes: [] })).toMatchObject({ hp: 1, ht: 10, dr: 0 });
     // A record's stated figure wins.
     expect(fire("gworld.objectStats", { item: record("Stated", { weight: 8 }, { dr: 5 }), dr: 4, hp: 16, ht: 12, notes: [] })).toMatchObject({ dr: 5 });
@@ -254,6 +257,32 @@ describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
     // 7 points: every 1-HP tube past -5xHP, and 5 through the radio's DR 2.
     expect(deviceData(item).parts.broken).toBe(5);
     expect(chat[0]).toContain('GCC.HT.Devices.Drop.Injured {"injury":5,"dr":2');
+    expect(damaged).toEqual([]);
+  });
+
+  it("puts the device's injury on an item that keeps hit points, through the system (#549)", async () => {
+    const item = radio();
+    item.system.hpLost = 0;
+    const actor = owner([item]);
+    dialogAnswer = { yards: 0, speed: 30, surface: "hard" };
+    dice = [7];
+    actions.get("ht-device-drop")!.run(item, actor);
+    await flush();
+    expect(chat[0]).toContain('GCC.HT.Devices.Drop.Recorded {"injury":5,"dr":2}');
+    // The whole blow as crushing: the system takes its DR off and rolls its HT.
+    expect(damaged).toEqual([{ item, damage: 7, type: "cr", label: 'GCC.HT.Devices.Drop.DamageLabel {"name":"Tube Radio"}' }]);
+  });
+
+  it("puts nothing on the item when its DR stops the blow", async () => {
+    const item = radio();
+    item.system.hpLost = 0;
+    const actor = owner([item]);
+    dialogAnswer = { yards: 1, speed: 0, surface: "hard" };
+    dice = [2, 11, 9, 12, 13, 10];
+    actions.get("ht-device-drop")!.run(item, actor);
+    await flush();
+    expect(chat[0]).toContain("GCC.HT.Devices.Drop.Unhurt");
+    expect(damaged).toEqual([]);
   });
 });
 

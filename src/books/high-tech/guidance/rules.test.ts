@@ -13,7 +13,6 @@ import {
   MISSILE_SEEKERS,
   PROXIMITY_DETECTION_YARDS,
   TIME_FUZE_MAX_SECONDS,
-  dxBased,
   fuzeKind,
   homes,
   isClock,
@@ -109,10 +108,5 @@ describe("homing seekers (HT:EE p. 49)", () => {
     expect(seekerChoice("laser")).toBe("laser");
     expect(seekerChoice("")).toBeNull();
     expect(seekerChoice("sonar")).toBeNull();
-  });
-
-  it("makes Forward Observer DX-based, and its default DX-5 (Campaigns pp. 172, 196)", () => {
-    expect(dxBased(12, 11, 13)).toBe(14);
-    expect(dxBased(null, 11, 13)).toBe(8);
   });
 });

@@ -36,6 +36,7 @@ let dialogAnswer: any;
 let targets: any[];
 let controlled: any[];
 let successResult: any;
+let held: any[];
 
 const key = (k: string) => `${MODULE_ID}.${k}`;
 const HT = { radios: key("radios"), activeSensors: key("activeSensors"), visualSensors: key("visualSensors"), passiveSensors: key("passiveSensors"), rangefindingEmissions: key("rangefindingEmissions") };
@@ -63,6 +64,7 @@ function fakeApi() {
       attribute: (actor: any, k: string) => actor?.attributes?.[k] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       derived: (actor: any) => actor?.derived ?? null,
+      addPendingModifier: async (actor: any, request: any) => { held.push({ actor: actor.name, ...request }); return "p1"; },
     },
     roll: {
       success: async (o: any) => { successes.push(o); return successResult; },
@@ -147,6 +149,7 @@ beforeEach(async () => {
   targets = [];
   controlled = [];
   successResult = { success: true, margin: 3 };
+  held = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (k: string) => k, format: (k: string, data: Record<string, unknown>) => `${k} ${JSON.stringify(data)}` },
@@ -658,12 +661,20 @@ describe("active rangefinding (HT:EE p. 35)", () => {
     dialogAnswer = { index: 0, yards: 30, arc: false, noise: 0, imaging: false, medium: "soil", counter: "", sm: 0, dwell: "" };
     await tools.get("sensor-sweep").open();
     expect(successes[0]).toMatchObject({ skill: "Electronics Operation (Scientific)", base: 13, modifiers: [] });
+    // With no skill named, the bonus is the GM's to give.
     expect(chat.at(-1)).toContain("GCC.HT.Sensor.SurveyResult");
+    expect(held).toEqual([]);
+    // Naming one holds it for the operator's next roll of it (#549).
+    dialogAnswer = { ...dialogAnswer, survey: "Archaeology" };
+    await tools.get("sensor-sweep").open();
+    expect(held).toEqual([{ actor: "Surveyor", label: 'GCC.HT.Sensor.SurveyHeldLabel {"sensor":"Ground-Penetrating Radar"}', value: 2, skill: "Archaeology" }]);
+    expect(chat.at(-1)).toContain('GCC.HT.Sensor.SurveyHeld {"bonus":"+2","name":"Surveyor","skill":"Archaeology"}');
     // Not on a failure, and not from High-Tech's own GPRs.
     successResult = { success: false, margin: -1 };
     chat = [];
     await tools.get("sensor-sweep").open();
     expect(chat).toEqual([]);
+    expect(held).toHaveLength(1);
     expect(section().context(gear("Portable GPR")).lines.some((l: string) => l.includes("SurveyLine"))).toBe(false);
   });
 

@@ -178,6 +178,29 @@ describe("signalsIntelligence alone (HT:EE pp. 47-48)", () => {
     await actions.get("ht-sigint").run(rdf, navigator);
     expect(successes[1]).toMatchObject({ base: 13, skill: "Navigation (Air)", modifiers: [{ value: 1 }] });
   });
+
+  it("still posts its card when the system refuses a task below an effective 3 (#549)", async () => {
+    // The system's refusal, as `returnRefusal` has it.
+    successResult = { refused: true, reason: "below 3", base: 4, effective: 2, modifiers: [] };
+    const radio = gear("Small Radio (TL8)", { dipoleAntenna: true });
+    const listener = character("Ear", [radio], { "Electronics Operation (EW)": 7 });
+    answers = [{ task: "detect" }, { transmission: "rare", frequency: "channels", channels: 2, antenna: "dipole", yards: 100, range: 0, conditions: 0, avoiding: false }];
+    await actions.get("ht-sigint").run(radio, listener);
+    expect(successes[0].returnRefusal).toBe(true);
+    expect(chat.at(-1)).toContain("GCC.HT.Sigint.RareWatch");
+    expect(chat.at(-1)).toContain("GCC.HT.Sigint.Refused");
+    answers = [{ task: "aim" }, { antenna: "dipole", found: false, yards: 500, seconds: 30, avoiding: false }];
+    await actions.get("ht-sigint").run(radio, listener);
+    expect(chat.at(-1)).toContain("GCC.HT.Sigint.Refused");
+    const rdf = gear("Medium Radio (TL7)", { rdf: true }, { tl: "7" });
+    const navigator = character("Nav", [rdf], { "Electronics Operation (Communications)": 2 });
+    answers = [{ task: "beacon" }, { navigation: "Navigation (Air)" }];
+    const before = successes.length;
+    await actions.get("ht-sigint").run(rdf, navigator);
+    // No bearing, so no Navigation roll after it.
+    expect(successes).toHaveLength(before + 1);
+    expect(chat.at(-1)).toContain("GCC.HT.Sigint.Refused");
+  });
 });
 
 describe("cipherMachines alone (HT:EE p. 48)", () => {

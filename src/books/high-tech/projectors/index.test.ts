@@ -36,6 +36,7 @@ let dice: number[];
 let options: any[];
 let damageRolls: any[];
 let injuries: any[];
+let crippled: any[];
 let conditions: Map<string, any[]>;
 let malfunctions: any[];
 let weaponState: Map<any, any>;
@@ -110,6 +111,7 @@ function fakeApi() {
       },
       removeCondition: async (actor: any, id: string) => { conditions.set(actor.name, (conditions.get(actor.name) ?? []).filter((x) => x.id !== id)); },
       applyInjury: async (actor: any, injury: any) => { injuries.push({ actor: actor.name, ...injury }); return null; },
+      cripple: async (actor: any, location: string, o: any) => { crippled.push({ actor: actor.name, location, ...o }); return {}; },
     },
     items: { setMalfunction: async (item: any, m: any) => { malfunctions.push({ item: item.name, ...m }); return true; } },
     roll: { damage: async (o: any) => { damageRolls.push(o); return 0; } },
@@ -141,6 +143,7 @@ beforeEach(() => {
   options = [];
   damageRolls = [];
   injuries = [];
+  crippled = [];
   conditions = new Map();
   malfunctions = [];
   weaponState = new Map();
@@ -370,23 +373,38 @@ describe("laser dazzlers (laserDazzlers)", () => {
   });
 
   // The system hands a failure's margin over as a negative number (#535).
-  it("dazzles for the margin in minutes, and a blinding laser cripples the eyes, for good at 10+", () => {
+  it("dazzles for the margin in minutes, and a blinding laser cripples both eyes, for good at 10+", async () => {
     on.laserDazzlers = true;
     const victim = actorWith("Guard");
     const dazzled = { actor: victim, item: laser("NORINCO QXJ04", -5), label: "", margin: -3, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, dazzled);
     expect(dazzled.effects).toEqual([{ module: MODULE_ID, key: "ht-dazzled", label: "GCC.HT.Projectors.Laser.Dazzled", duration: { seconds: 180 } }]);
+    // The eyes are recorded as crippled parts with no injury behind them, their duration left to the HT roll (#549).
     const blinded = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: -4, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, blinded);
-    expect(blinded.effects[0]).toMatchObject({ key: "ht-laser-blinded", label: "GCC.HT.Projectors.Laser.Blinded" });
+    await flush();
+    expect(blinded.effects).toEqual([]);
+    const eye = { actor: "Guard", location: "eye", duration: "undecided", injury: false, label: "GCC.HT.Projectors.Laser.Blinded" };
+    expect(crippled).toEqual([eye, eye]);
+    expect(chat.at(-1)).toContain("GCC.HT.Projectors.Laser.BlindedRecordedLine");
+    crippled = [];
     const lost = { actor: victim, item: laser("NORINCO ZM87", -10), label: "", margin: -11, effects: [] as any[] };
     fire(HOOKS.afflictionEffect, lost);
-    expect(lost.effects[0]).toMatchObject({ label: "GCC.HT.Projectors.Laser.BlindedForGood" });
+    await flush();
+    expect(crippled).toEqual([0, 1].map(() => ({ ...eye, duration: "permanent", label: "GCC.HT.Projectors.Laser.BlindedForGood" })));
+  });
+
+  it("marks a victim the user can't change with the condition instead", () => {
+    on.laserDazzlers = true;
+    const blinded = { actor: { ...actorWith("Guard"), isOwner: false }, item: laser("NORINCO ZM87", -10), label: "", margin: -4, effects: [] as any[] };
+    fire(HOOKS.afflictionEffect, blinded);
+    expect(blinded.effects[0]).toMatchObject({ key: "ht-laser-blinded", label: "GCC.HT.Projectors.Laser.Blinded" });
+    expect(crippled).toEqual([]);
   });
 
   it("dazzles for 1, 5 and 12 minutes on failures by 1, 5 and 12; a blinding laser cripples for good only from 10 (#535)", () => {
     on.laserDazzlers = true;
-    const victim = actorWith("Guard");
+    const victim = { ...actorWith("Guard"), isOwner: false };
     const hit = (name: string, modifier: number, margin: number) => {
       const context = { actor: victim, item: laser(name, modifier), label: "", margin, effects: [] as any[] };
       fire(HOOKS.afflictionEffect, context);

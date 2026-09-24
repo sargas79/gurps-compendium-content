@@ -5305,11 +5305,11 @@
         },
         "electronicFuzes": {
           "Name": "Electronic fuzes (Electricity and Electronics)",
-          "Hint": "A row action fits a carried impact, proximity or time fuze to a grenade, mine or charge of explosive. A proximity fuze is set to go off within up to 25 yards, the most its radar detects, and does when a token comes that close to the token holding it; a time fuze is set to up to three minutes and goes off when they have passed, a combat round a second. Going off rolls the item's own blast, or says to set off a bare charge with the demolition action. Another row action improvises a time fuze from a clock or watch on a roll against Explosives (Demolition) (High-Tech: Electricity and Electronics p. 48)."
+          "Hint": "A row action fits a carried impact, proximity or time fuze to a grenade, mine or charge of explosive. A proximity fuze is set to go off within up to 25 yards, the most its radar detects, and does when a token comes that close to the token holding it; a time fuze is set to up to three minutes and goes off when they have passed, a combat round a second. Going off rolls the item's own blast, or says to set off a bare charge with the demolition action. Another row action improvises a time fuze from a clock or watch on a roll against Explosives (Demolition). A fuze fitted comes off its stack, and goes back if it is taken off unused (High-Tech: Electricity and Electronics p. 48)."
         },
         "homingSeekers": {
           "Name": "Homing seekers (Electricity and Electronics)",
-          "Hint": "A homing missile locks on with the firer's Artillery (Guided Missile) and then attacks at its own skill of 10, adding its Acc once locked on, whether or not the Aim box was ticked. An attack option says what its seeker homes on (High-Tech's missiles give their own), which tags the roll with that sense: an infrared seeker tracking a warm hull takes -2, and an advanced acoustic torpedo may home on propulsion and steering as the vital area (-3). A laser-homing missile needs someone aiming a laser designator at its target: a row action on the designator rolls DX-based Forward Observer while its holder aims, and the missile's attack is refused while nobody holds the spot (High-Tech: Electricity and Electronics p. 49; Campaigns pp. 412-413, 554)."
+          "Hint": "A homing missile locks on with the firer's Artillery (Guided Missile) and then attacks at its own skill of 10, adding its Acc once locked on, whether or not the Aim box was ticked. An attack option says what its seeker homes on (High-Tech's missiles give their own), which tags the roll with that sense: an infrared seeker tracking a warm hull takes -2, and an advanced acoustic torpedo may home on propulsion and steering as the vital area (-3). A laser-homing missile is semi-active: someone carrying a laser designator must be aiming at its target, and the system rolls their DX-based Forward Observer for each turn of flight, the missile missing once the spot is lost; the attack is refused while nobody aims a designator there (High-Tech: Electricity and Electronics p. 49; Campaigns pp. 412-413, 554)."
         },
         "battlefieldSensors": {
           "Name": "Battlefield sensors (Electricity and Electronics)",
@@ -7412,6 +7412,7 @@
           "BlindedForGood": "Blinded for good",
           "DazzledLine": "{name} is blinded for {minutes} minutes.",
           "BlindedLine": "{name}'s eyes are crippled: roll for how long as for any crippling injury (Campaigns p. 422).",
+          "BlindedRecordedLine": "{name}'s eyes are crippled: both are marked on the sheet, and its HT roll says for how long, as for any crippling injury (Campaigns p. 422).",
           "BlindedForGoodLine": "{name} failed by 10 or more: the eyes are crippled for good."
         }
       },
@@ -7782,6 +7783,9 @@
         "EmissionReach": "A detector past twice the range rolls at -1 per 20% of it more, out to {range}.",
         "SurveyLine": "A successful roll with it gives {bonus} to a skill the survey serves: archaeology, prospecting, engineering, finding buried threats.",
         "SurveyResult": "The survey gives {bonus} to a skill it serves (archaeology, prospecting, engineering, finding buried threats).",
+        "SurveySkill": "Skill the survey serves (blank: the GM decides)",
+        "SurveyHeldLabel": "Survey with the {sensor}",
+        "SurveyHeld": "The survey gives {bonus}, held for {name}'s next {skill} roll (High-Tech: Electricity and Electronics p. 35).",
         "Dwell": "Dwelling on the target",
         "DwellOption": {
           "none": "No",
@@ -10059,6 +10063,8 @@
           },
           "Replace": "{broken} {label} are broken: the device won't work until they're replaced.",
           "Injured": "The device takes {injury} injury past its DR {dr} ({state}); mark it on the item.",
+          "Recorded": "The device takes {injury} injury past its DR {dr}: the damage card that follows records it on the item.",
+          "DamageLabel": "{name} is damaged in the fall",
           "Unhurt": "Its DR {dr} stops the rest: the device itself is unharmed."
         },
         "State": {
@@ -10243,6 +10249,8 @@
         "FitHint": "A proximity fuze detects out to {yards} yards and goes off at the distance set; a time fuze runs for up to {seconds} seconds. An impact fuze goes off on impact once armed (High-Tech: Electricity and Electronics p. 48). A charge left on the map needs a token of its own for a proximity fuze to watch around it.",
         "NoFuze": "No fuze carried: an impact, proximity or time fuze, or a clock made into one.",
         "Removed": "The fuze is taken off {name}.",
+        "UsedUp": "Fitted to a charge",
+        "GivenBack": "Taken off a charge unused",
         "Fitted": {
           "impact": "{fuze} fitted to {name}: it goes off on impact, arming itself a moment after its safety wire is pulled (HT:EE p. 48).",
           "proximity": "{fuze} fitted to {name}, set to {yards} yards: it goes off when anything comes that close (it detects out to {detects}) (HT:EE p. 48).",
@@ -10275,14 +10283,7 @@
           "warmHull": "Infrared seeker on a warm hull",
           "vitalArea": "Homing on propulsion and steering (vital area)"
         },
-        "LockOn": "Locked on: Acc {acc}",
-        "NotDesignated": "Nobody holds a laser designator's spot on this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412).",
-        "Designate": "Hold the laser on the target",
-        "DesignateRoll": "Laser designator on {target}",
-        "Designated": "{name} holds the laser designator's spot on {target}.",
-        "LostSpot": "{name} fails to hold the spot on {target}: a laser-homing missile now misses it.",
-        "OneTarget": "Target exactly one token to designate.",
-        "AimFirst": "Take the Aim maneuver at the target first: holding the spot is a series of Aim maneuvers."
+        "NotDesignated": "Nobody carrying a laser designator is aiming at this target: a laser-homing missile would miss (HT:EE p. 49; Campaigns p. 412)."
       },
       "Audio": {
         "Title": "Audio (Electricity and Electronics)",
@@ -10504,7 +10505,6 @@
           "lightning": "Lightning: -1 to HT per 5 points of injury (High-Tech: Electricity and Electronics p. 9)."
         },
         "StrongNonlethal": "A strong discharge: a failure by {margin} or more, or a critical failure, stops the heart (High-Tech: Electricity and Electronics p. 9).",
-        "HeartCritical": "Critical failure against a strong discharge: the heart stops (High-Tech: Electricity and Electronics p. 9).",
         "WeakShock": "A weak shock: the HT roll is made even with no injury, at {bonus} (High-Tech: Electricity and Electronics p. 9).",
         "Ignites": "The current sets what is at hand ({material}) alight (Campaigns p. 433).",
         "NoFire": "Not enough to set what is at hand ({material}) alight.",
@@ -10572,7 +10572,7 @@
         "Stolen": {
           "Label": "Daily roll on stolen power",
           "Fire": "A critical failure on stolen power: it may start a fire (High-Tech: Electricity and Electronics pp. 9, 19).",
-          "Guarded": "A critical failure, but the circuit's guard turns it into an ordinary one: no fire (High-Tech: Electricity and Electronics p. 25)."
+          "Guarded": "A critical failure, but the circuit's guard turns it into an ordinary one: no fire, and only a minor repair (High-Tech: Electricity and Electronics p. 25)."
         }
       },
       "Instruments": {
@@ -10712,6 +10712,7 @@
         "PlotTitle": "Plot a waveform by hand",
         "PlotLabel": "A waveform plotted by hand",
         "PlotLine": "Timed meter readings",
+        "Pedometer": "An electronic pedometer: Hiking needs 10% less study time (High-Tech: Electricity and Electronics p. 13).",
         "CombinedRecord": "Combined device"
       },
       "ElectricSecurity": {
@@ -10888,6 +10889,7 @@
         "AfterAMinute": "The roll comes after a minute of listening.",
         "Found": "The signal is found.",
         "NotFound": "Nothing found.",
+        "Refused": "The task can't be attempted below an effective skill of 3, so nothing comes of it (Campaigns p. 344).",
         "Blocked": "The interference blocks the signal.",
         "OutOfRange": "The signal is out of reach.",
         "DirectSequenceOut": "{name} uses direct sequence: it can't be detected this far away.",
