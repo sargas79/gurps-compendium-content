@@ -12,12 +12,12 @@
  *     Unfazeable and euphoria for the margin's hours), aspirin taking 1 or 2
  *     off pain's penalty on the rolls it reaches, antibiotics' +TL/2 against
  *     an illness (through `actors.treatIllness`) or a wound's infection,
- *     castor oil, activated
- *     charcoal, chelating agents and antitoxins as a treatment of a dose
+ *     castor oil, activated charcoal, chelating agents and antitoxins as a
+ *     treatment of a dose
  *     (`actors.treatPoison`), truth serum's FP and its -2 to Will and
  *     self-control, DMSO mixed into a blood or digestive poison to make it a
- *     contact agent, and a day's psychiatric drug holding its disadvantages
- *     at bay (the self-control roll that fails says so) -- a multi-dose
+ *     contact agent, and a day's psychiatric drug as a Mitigator, its
+ *     disadvantages out of play (`gworld.traitsInPlay`) -- a multi-dose
  *     bottle counting its doses before one comes off the count.
  *   - **High-Tech poisons (highTechPoisons):** curare, ricin, strychnine,
  *     botulin and irradiated thallium as poisons the system doses and cycles
@@ -543,14 +543,17 @@ export function readyDrugs(api: GWorldApi, on: DrugSwitches): void {
     }
   });
 
-  // A psychiatric drug taken today: its disadvantages don't trouble the character (p. 227; a Mitigator, Characters p. 112).
-  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
-    const actor = context?.actor;
-    if (!on.hygiene() || !actor?.isOwner || !(context.tags ?? []).includes("selfControl")) return;
-    if (context.outcome?.success !== false) return;
-    const dose = psychiatricDose(actor);
-    if (!dose || !mitigates(dose.mitigates, String(context.skill ?? ""))) return;
-    void say(actor, dose.name, [F("PsychiatricHolds", { name: actor.name, trait: context.skill })]);
+  // A psychiatric drug taken today is a Mitigator (p. 227; Characters p. 112): the disadvantages it
+  // treats are out of play while the dose works, their points still counted (API 1.61.0).
+  Hooks.on("gworld.traitsInPlay", (context: any) => {
+    if (!on.hygiene() || !context?.actor || !Array.isArray(context.traits)) return;
+    const dose = psychiatricDose(context.actor);
+    if (!dose) return;
+    for (const entry of context.traits) {
+      if (!entry || entry.inPlay === false || !mitigates(dose.mitigates, String(entry.name ?? ""))) continue;
+      entry.inPlay = false;
+      entry.reason = F("PsychiatricMitigates", { item: dose.name });
+    }
   });
 
   // What a cycle of one of this book's poisons does beyond its damage.

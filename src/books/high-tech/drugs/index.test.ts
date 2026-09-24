@@ -15,7 +15,6 @@ type Listener = (...args: any[]) => void;
 
 const HOOKS = {
   successRollModifiers: "gworld.successRollModifiers",
-  afterSuccessRoll: "gworld.afterSuccessRoll",
   poisonCycle: "gworld.poisonCycle",
 };
 
@@ -303,17 +302,16 @@ describe("hygiene and drugs (High-Tech pp. 221, 226-227)", () => {
     expect(strychnine.system.extensions[MODULE_ID].htDrug.dmso).toBe(true);
   });
 
-  it("says so when a self-control roll fails for a disadvantage the day's psychiatric drug treats", async () => {
+  it("takes the disadvantages a day's psychiatric drug treats out of play while it works", async () => {
     const patient = person();
     await run("ht-drug-give", gear("Psychiatric Drugs", {}, { mitigates: "Paranoia" }), patient);
-    fire(HOOKS.afterSuccessRoll, { actor: patient, tags: ["selfControl"], skill: "Paranoia", outcome: { success: false } });
-    fire(HOOKS.afterSuccessRoll, { actor: patient, tags: ["selfControl"], skill: "Bad Temper", outcome: { success: false } });
-    await flush();
-    expect(chat.filter((c) => c.includes("PsychiatricHolds"))).toHaveLength(1);
+    const gather = () => fire("gworld.traitsInPlay", { actor: patient, traits: [{ name: "Paranoia", inPlay: true }, { name: "Bad Temper (12)", inPlay: true }] }).traits;
+    expect(gather()).toEqual([
+      { name: "Paranoia", inPlay: false, reason: expect.stringContaining("PsychiatricMitigates") },
+      { name: "Bad Temper (12)", inPlay: true },
+    ]);
     worldTime += 86401;
-    fire(HOOKS.afterSuccessRoll, { actor: patient, tags: ["selfControl"], skill: "Paranoia", outcome: { success: false } });
-    await flush();
-    expect(chat.filter((c) => c.includes("PsychiatricHolds"))).toHaveLength(1);
+    expect(gather().every((t: any) => t.inPlay)).toBe(true);
   });
 });
 
