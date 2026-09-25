@@ -373,6 +373,16 @@ describe("hand grenades (pp. 190-192)", () => {
     throwIt(true, false);
     await flush();
     expect(chat).toEqual([]);
+    // A throw whose roll is refused after the modifiers (no roll follows) leaves nothing behind: the punch that follows sets no engine alight.
+    attack(rioter, molotov, { options: { [`${MODULE_ID}.ht-molotov-grating`]: true }, targetTokens: [{ actor: truck }] });
+    attack(rioter, null, { mode: { index: 0, ranged: false } });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: null, tags: ["attack"], outcome: { success: true } });
+    // Nor does another weapon's roll pick up a throw's entry.
+    attack(rioter, molotov, { options: { [`${MODULE_ID}.ht-molotov-grating`]: true }, targetTokens: [{ actor: truck }] });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: item("M67"), tags: ["attack"], outcome: { success: true } });
+    fire(HOOKS.afterSuccessRoll, { actor: rioter, item: molotov, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    expect(chat).toEqual([]);
     // A hit: the truck's own HT 10, no dialog. 2d = 2: ten seconds, four checks; 11 and 12 fail.
     dice = [1, 1, 4, 4, 3, 5, 5, 1, 6, 5, 6, 6];
     throwIt(true);

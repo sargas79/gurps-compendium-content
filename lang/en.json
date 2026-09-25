@@ -5580,8 +5580,8 @@
           "burst": "A packet bursts!",
           "dosed": "The contents are dosed as an overdose: 1 point of toxic damage every 15 minutes for 24 cycles, HT-4 to resist.",
           "tells": "Cramps and sweating can tip off observers.",
-          "cramps": "The pills' pressure brings cramps: moderate pain until they pass (the GM may make it worse).",
-          "out": "Overdose: unconscious for {hours} hours (Campaigns p. 441)."
+          "cramps": "The pills' pressure brings cramps: moderate pain while they're carried. The GM removes it once they pass, or makes it worse.",
+          "out": "Overdose, as heroin (a depressant): unconscious for {hours} hours (Campaigns p. 441). If the packet held cocaine, the GM uses a stimulant's overdose instead: a HT roll, a heart attack on a critical failure (Campaigns p. 440)."
         },
         "BurstPoison": "Burst mule pill",
         "SpotTitle": "Spot a mule",

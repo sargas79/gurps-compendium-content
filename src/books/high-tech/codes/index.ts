@@ -281,13 +281,17 @@ export async function runMule(api: GWorldApi, item: any, actor: any): Promise<vo
   if (!outcome) return;
   const result = muleOutcome(outcome);
   const lines = [L(`Mule.${result}`)];
-  // The pills' pressure brings cramps (p. 214): moderate pain (Campaigns p. 428), the GM's to make worse.
+  // The pills in the stomach bring cramps for as long as they're carried, whatever
+  // the roll (p. 214): moderate pain (Campaigns p. 428), the GM's to make worse. The
+  // book gives no time for passing them, so the GM takes it off; the card says so.
   if (pellets > 0 && !PAINS.some((key) => actor.statuses?.has?.(key))) {
     await api.actors.applyCondition(actor, { key: "moderatePain" } as any);
     lines.push(L("Mule.cramps"));
   }
   if (result === "burst") {
-    // An overdose (Campaigns p. 441): out for the margin's hours, and the drug as a poison.
+    // An overdose: the packet "often" holds cocaine or heroin (p. 214), and the book's
+    // figures are heroin's, a depressant's (Campaigns p. 441): out for the margin's hours,
+    // and the drug as a poison. For cocaine the card sends the GM to a stimulant's.
     const seconds = overdoseSeconds(Number(outcome.margin) || 0);
     await api.actors.applyCondition(actor, { key: "unconscious", duration: { seconds } } as any);
     await api.actors.dosePoison(actor, { ...BURST_PACKET, source: `${MODULE_ID}.${BURST}` } as any);

@@ -318,14 +318,21 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
     available: (context: any) => on() && isMolotov(context?.item),
     apply: () => ({ modifiers: [{ label: L("Engine.Option"), value: MOLOTOV_ENGINE.toHit }] }),
   } as any);
+  // The throw at the grating, kept from the attack's modifiers to its roll. Every attack
+  // clears what an earlier one left, so a refused throw is never picked up by the next.
+  // The fire starts on the attack roll's success: the API tells nothing after a vehicle's
+  // defense, so a Molotov the vehicle dodges still burns (the GM ignores the card).
   const molotovs = new Map<string, any>();
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const key = String(context?.actor?.uuid ?? "");
+    molotovs.delete(key);
     if (!on() || !isMolotov(context?.item) || context.options?.[`${MODULE_ID}.${MOLOTOV_OPTION}`] !== true || context.refusal) return;
-    molotovs.set(String(context.actor?.uuid ?? ""), context.targetTokens?.[0]?.actor ?? context.targets?.[0] ?? null);
+    molotovs.set(key, context.targetTokens?.[0]?.actor ?? context.targets?.[0] ?? null);
   });
   Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
     const key = String(context?.actor?.uuid ?? "");
     if (!(context?.tags ?? []).includes("attack") || !molotovs.has(key)) return;
+    if (context.item && !isMolotov(context.item)) return void molotovs.delete(key);
     const target = molotovs.get(key);
     molotovs.delete(key);
     if (!on() || !context.outcome?.success || !context.actor?.isOwner) return;
