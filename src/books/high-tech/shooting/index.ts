@@ -71,6 +71,9 @@ const RAPID_STATE = "ht-ranged-rapid-strike-state";
 const TA_KIND = "ht-targeted-attack";
 const PRECISION_KEY = "precisionAiming";
 const WEAPON_BOND_KEY = `${MODULE_ID}.weaponBond`;
+const ACROBATIC = "ht-acrobatic-movement";
+/** The line's key, for any rule that eases or ignores the penalty. */
+export const ACROBATIC_KEY = `${MODULE_ID}.acrobaticMovement`;
 const DISASSEMBLED = `${MODULE_ID}.disassembled`;
 const option = (key: string) => `${MODULE_ID}.${key}`;
 
@@ -268,6 +271,24 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
         row.minStPenalty = after;
       }
     }
+  });
+
+  // ── Shooting while leaping or on the move acrobatically (p. 249) ──
+
+  // The book sets no figure for the penalty: the GM gives it, and the expanded Gunslinger shoots at full skill.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: ACROBATIC,
+    label: L("Acrobatic"),
+    attack: "ranged",
+    input: { type: "number", max: 0 },
+    available: (context) => on.gunslinger() && isFirearm(api, context.item),
+    apply: (context, value) => {
+      const penalty = Math.min(0, Math.floor(Number(value) || 0));
+      if (!penalty) return null;
+      const ignored = traitNamed(context.actor, /^gunslinger\b/i);
+      return { modifiers: [{ label: ignored ? L("AcrobaticIgnored") : L("AcrobaticLine"), value: ignored ? 0 : penalty, key: ACROBATIC_KEY }] };
+    },
   });
 
   // ── Ranged Rapid Strike (p. 85) ──

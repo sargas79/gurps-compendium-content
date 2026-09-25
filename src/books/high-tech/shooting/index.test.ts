@@ -396,6 +396,17 @@ describe("the expanded Gunslinger (p. 249)", () => {
     expect(attack(tommy(), shooter(), { modifiers: [{ label: "Bulk", value: -5, key: "bulk", situation: "closeCombat" }] }).modifiers[0].value).toBe(-5);
   });
 
+  it("takes the GM's penalty for leaping or acrobatic movement, which a Gunslinger ignores", () => {
+    const option = options.get("ht-acrobatic-movement");
+    expect(option.available(optionContext(colt(), shooter()))).toBe(false);
+    on.gunslinger = true;
+    expect(option.available(optionContext(colt(), shooter()))).toBe(true);
+    const key = `${MODULE_ID}.acrobaticMovement`;
+    expect(option.apply(optionContext(colt(), shooter()), -4).modifiers).toEqual([{ label: "GCC.HT.Shooting.AcrobaticLine", value: -4, key }]);
+    expect(option.apply(optionContext(colt(), shooter({ items: [trait("Gunslinger")] })), -4).modifiers).toEqual([{ label: "GCC.HT.Shooting.AcrobaticIgnored", value: 0, key }]);
+    expect(option.apply(optionContext(colt(), shooter()), 0)).toBeNull();
+  });
+
   it("halves the default of the five techniques it names", () => {
     on.gunslinger = true;
     const actor = shooter({ items: [trait("Gunslinger")] });

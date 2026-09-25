@@ -4891,7 +4891,7 @@
         },
         "gunslingerExpanded": {
           "Name": "Expanded Gunslinger (cinematic)",
-          "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant, and the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved (High-Tech p. 249)."
+          "Hint": "The optional additions to Gunslinger: Bulk ignored on Move and Attack and in close combat (no Acc bonus there), which makes Close-Quarters Battle redundant; the default penalties of Fanning, Fast-Firing, Quick-Shot, Thumbing and Two-Handed Thumbing halved; and the penalty for leaping or acrobatic movement on foot, which the GM enters in the attack dialog, ignored (High-Tech p. 249)."
         },
         "shootingEnvironments": {
           "Name": "Special shooting situations",
@@ -6076,6 +6076,9 @@
         },
         "RapidSecond": "The second attack of the Ranged Rapid Strike: tick the option again.",
         "GunslingerBulk": "{label} (Gunslinger: ignored)",
+        "Acrobatic": "Leaping or acrobatic movement (GM's penalty)",
+        "AcrobaticLine": "Leaping or acrobatic movement",
+        "AcrobaticIgnored": "Leaping or acrobatic movement (Gunslinger: ignored)",
         "CloseQuartersLine": "Close-Quarters Battle",
         "WeaponBondLine": "Weapon Bond ({item})",
         "TargetedAttack": "Targeted Attack (guns)",
