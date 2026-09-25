@@ -12,10 +12,10 @@
  *     is missing, unless boots, gloves, a hat or a scarf worn as items of
  *     their own fill it; a worn wicking undergarment's +1 on the heat roll; DR 1 for
  *     fur winter or arctic clothes, through `gworld.armorDr`; an outfit's
- *     weight by TL, as a price modifier; and body armour's 2 FP on a hot
- *     day's battle (`gworld.fatigueCost`, the day's temperature since API
- *     1.138.0), which a worn ghillie suit costs too, as an overcoat, under
- *     the camouflage switch (p. 77).
+ *     weight by TL, as a price modifier; and body armour's 2 FP, not 1, on a
+ *     hot day's battle (`gworld.fatigueCost`: the system's `hotDay` part set
+ *     to 2, API 1.147.0), which a worn ghillie suit costs too, as an
+ *     overcoat, under the camouflage switch (p. 77).
  *   - **Frostbite (frostbite):** where the cold costs FP, a damage card for
  *     each exposed hit location, a point of injury per FP it came to after
  *     Very Fit, through no DR (`gworld.afterFatigue`).
@@ -25,7 +25,8 @@
  *     ones while their cells last and the cooling vest for four hours from
  *     when it is first put on, then again after a row action's quarter hour
  *     in ice water; heated clothing counts as winter clothes either way; and
- *     gear that widens the hot end spares a hot march its extra fatigue --
+ *     gear that widens the hot end spares a hot battle or march its hot-day
+ *     fatigue (the `hotDay` part taken out) --
  *     each piece under its own switch, so the environment suits' climate
  *     control (`../breathing/`) counts too.
  */
@@ -41,6 +42,7 @@ import {
   FUR_DR,
   HEATED_CLOTHING,
   HOT_BATTLE_ARMOUR_FP,
+  HOT_DAY_PART,
   HIGH_TECH_CLIMATE_GEAR,
   PIECES,
   WICKING,
@@ -53,7 +55,6 @@ import {
   exposedLocations,
   frostbiteInjury,
   furCovers,
-  hikingWithoutHeat,
   missingPiecesPenalty,
   outfitOf,
   outfitWeightFactor,
@@ -382,31 +383,33 @@ export function readyClothing(api: GWorldApi, on: ClothingSwitches): void {
     if (!actor) return;
     const details = context.details ?? {};
 
-    // Body armour on a hot day's battle: the Basic Set's 2 FP for anyone in
-    // plate or an overcoat (p. 65; Campaigns p. 426), unless worn gear cools.
-    // A ghillie suit is hot and heavy: an overcoat for this (p. 77). Once,
-    // whatever else is worn.
-    if (context.reason === "battle" && details.hot === true) {
-      const armour = on.clothing() ? bodyArmour(actor) : null;
-      const ghillie = !armour && on.ghillie?.() ? wornGhillie(actor) : null;
-      const garment = armour ?? ghillie;
-      if (garment && !workingClimateGear(actor).some(({ gear }) => gear.zone.heatF > 0)) {
-        context.fp = (Number(context.fp) || 0) + HOT_BATTLE_ARMOUR_FP;
-        context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp: HOT_BATTLE_ARMOUR_FP }));
-      }
+    // The system charges a hot day's battle and march as the `hotDay` part of
+    // the cost (API 1.147.0; Campaigns p. 426), where the day is hot and the
+    // heat rule is on; these change that part, never add to it.
+    if ((context.reason !== "battle" && context.reason !== "hiking") || details.hot !== true || !Array.isArray(context.parts)) return;
+    const at = context.parts.findIndex((part: any) => part?.key === HOT_DAY_PART);
+    if (at < 0) return;
+
+    // Gear that widens the hot end spares a battle or a march its hot-day
+    // fatigue (p. 74): each piece under its own switch, so an EVA suit's
+    // climate control counts with the suits' switch alone.
+    const cooler = workingClimateGear(actor).find(({ gear }) => gear.zone.heatF > 0);
+    if (cooler) {
+      context.parts.splice(at, 1);
+      context.sources.push(F("HotMarchLine", { name: cooler.item.name }));
+      return;
     }
 
-    // Gear that widens the hot end spares a march its hot-weather point an
-    // hour (p. 74; Campaigns p. 426): each piece under its own switch, so an
-    // EVA suit's climate control counts with the suits' switch alone.
-    if (context.reason === "hiking" && details.hot === true) {
-      const cooler = workingClimateGear(actor).find(({ gear }) => gear.zone.heatF > 0);
-      if (!cooler) return;
-      const fp = hikingWithoutHeat(Number(context.fp) || 0, Number(details.hours) || 0);
-      if (fp === context.fp) return;
-      context.fp = fp;
-      context.sources.push(F("HotMarchLine", { name: cooler.item.name }));
-    }
+    // Body armour on a hot day's battle: the Basic Set's 2 FP, not 1, for
+    // anyone in plate or an overcoat (p. 65; Campaigns p. 426). A ghillie suit
+    // is hot and heavy: an overcoat for this (p. 77). Once, whatever else is worn.
+    if (context.reason !== "battle") return;
+    const armour = on.clothing() ? bodyArmour(actor) : null;
+    const ghillie = !armour && on.ghillie?.() ? wornGhillie(actor) : null;
+    const garment = armour ?? ghillie;
+    if (!garment) return;
+    context.parts[at].fp = HOT_BATTLE_ARMOUR_FP;
+    context.sources.push(F(armour ? "HotBattleLine" : "HotGhillieLine", { name: garment.name, fp: HOT_BATTLE_ARMOUR_FP }));
   });
 
   // Frostbite: a point to each exposed location per FP the cold took, once

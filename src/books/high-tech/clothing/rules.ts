@@ -153,9 +153,14 @@ export const WICKING_BONUS = 1;
 
 /**
  * Body armour on a hot day adds to a battle's fatigue (p. 65): the Basic
- * Set's 2 FP for anyone in plate armour or an overcoat (Campaigns p. 426).
+ * Set's 2 FP, rather than 1, for anyone in plate armour or an overcoat
+ * (Campaigns p. 426). It is the whole of the hot day's charge, the figure the
+ * system's `hotDay` part is set to (API 1.147.0), not a point on top of it.
  */
 export const HOT_BATTLE_ARMOUR_FP = 2;
+
+/** The key of the hot day's piece of a battle's or a march's fatigue (API 1.147.0). */
+export const HOT_DAY_PART = "hotDay";
 
 /** The Clothing Technology Table (p. 65): the TL7 weight's multiple at TL5-8. */
 const WEIGHT_BY_TL: Readonly<Record<Outfit["weightRow"], Readonly<Record<number, number>>>> = Object.freeze({
@@ -208,13 +213,4 @@ export function coolingCharge(until: number | null, now: number): { state: "fres
   if (left <= 0) return { state: "spent", seconds: 0 };
   if (left > COOLING_VEST.hours * 3600) return { state: "soaking", seconds: left - COOLING_VEST.hours * 3600 };
   return { state: "charged", seconds: left };
-}
-
-/**
- * A march's fatigue in the heat without the hot weather's extra point an
- * hour (Campaigns p. 426), for a hiker whose gear widens the hot end of the
- * comfort zone (p. 74).
- */
-export function hikingWithoutHeat(fp: number, hours: number): number {
-  return Math.max(0, fp - Math.max(0, Math.floor(hours)));
 }

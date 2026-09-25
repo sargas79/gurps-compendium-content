@@ -7,7 +7,6 @@ import {
   exposedLocations,
   frostbiteInjury,
   furCovers,
-  hikingWithoutHeat,
   missingPiecesPenalty,
   outfitOf,
   outfitWeightFactor,
@@ -84,11 +83,6 @@ describe("the Clothing Technology Table (High-Tech p. 65)", () => {
 });
 
 describe("climate control and a hot march (High-Tech p. 74)", () => {
-  it("takes off the hot weather's point an hour", () => {
-    expect(hikingWithoutHeat(12, 4)).toBe(8);
-    expect(hikingWithoutHeat(2, 4)).toBe(0);
-  });
-
   it("runs a cooling vest's charge four hours, after a quarter hour's soak (p. 74)", () => {
     expect(coolingUntil(100, false)).toBe(100 + 14400);
     expect(coolingUntil(100, true)).toBe(100 + 900 + 14400);

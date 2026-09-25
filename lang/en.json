@@ -8929,8 +8929,8 @@
           "hand": "hand",
           "foot": "foot"
         },
-        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)",
-        "HotGhillieLine": "{name}: a ghillie suit is an overcoat on a hot day, +{fp} FP (High-Tech p. 77; Campaigns p. 426)",
+        "HotBattleLine": "{name}: body armour on a hot day, {fp} FP for the heat (High-Tech p. 65; Campaigns p. 426)",
+        "HotGhillieLine": "{name}: a ghillie suit is an overcoat on a hot day, {fp} FP for the heat (High-Tech p. 77; Campaigns p. 426)",
         "FilledItem": "Worn apart from the outfit, filling its gaps: {names}.",
         "SoakAction": "Soak in ice water",
         "SoakedLine": "Soaked in ice-cold water: it cools again after {minutes} minutes, for {hours} hours.",

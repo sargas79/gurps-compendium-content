@@ -81,6 +81,22 @@ function fire(hook: string, context: any, ...more: any[]): any {
   return context;
 }
 
+/**
+ * A battle's or a march's fatigue as the system charges it (API 1.147.0):
+ * keyed parts -- a battle's 1 FP, a march's 2 an hour, and on a hot day the
+ * `hotDay` part, 1 for the battle or 1 an hour -- and `fp` their sum once the
+ * listeners have changed them.
+ */
+function fatigue(actor: any, reason: "battle" | "hiking", { hot = true, hours = 4 } = {}): any {
+  const parts = reason === "battle"
+    ? [{ key: "battle", label: "Battle", fp: 1 }, ...(hot ? [{ key: "hotDay", label: "Hot day", fp: 1 }] : [])]
+    : [{ key: "hiking", label: "Hiking", fp: 2 * hours }, ...(hot ? [{ key: "hotDay", label: "Hot day", fp: hours }] : [])];
+  const sum = () => parts.reduce((total, part) => total + part.fp, 0);
+  const details = reason === "battle" ? { seconds: 30, strained: false, temperatureF: hot ? 95 : 70, hot } : { hours, hot };
+  const context = fire(HOOKS.fatigueCost, { actor, fp: sum(), reason, exertion: true, details, sources: [], parts });
+  return { ...context, fp: sum() };
+}
+
 const coldRoll = (actor: any, clothing: string, tags = ["exposure", "cold", "HT"]) =>
   fire(HOOKS.successRollModifiers, { actor, tags, modifiers: [], weather: { heat: false, temperatureF: -20, clothing } }).modifiers;
 const clothingOf = (actor: any) => fire(HOOKS.weatherClothing, { actor, clothing: null, label: "" });
@@ -138,7 +154,7 @@ describe("with every switch off", () => {
     fire(HOOKS.afterFatigue, { actor: trekker, fpLost: 1, reason: "exposure", exertion: true, details: { heat: false }, sources: [] });
     expect(damage).toEqual([]);
     const soldier = person([{ type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } }]);
-    expect(fire(HOOKS.fatigueCost, { actor: soldier, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot: true }, sources: [] }).fp).toBe(1);
+    expect(fatigue(soldier, "battle").fp).toBe(2);
   });
 });
 
@@ -185,15 +201,19 @@ describe("clothing against the weather (High-Tech pp. 63-65)", () => {
     expect(apply(wear("Undercover Clothing (Ordinary Clothes, +1)", { tl: "5" }), { cost: 20, weight: 2 })).toBeNull();
   });
 
-  it("adds 2 FP to a hot day's battle for a fighter in body armour (p. 65; Campaigns p. 426)", () => {
+  it("makes a hot day's battle 2 FP, not 1, for a fighter in body armour (p. 65; Campaigns p. 426; API 1.147.0)", () => {
     const flak = (more: Record<string, unknown> = {}) => ({ type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso", "vitals"], ...more } });
-    const battle = (actor: any, hot = true) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, strained: false, temperatureF: 95, hot }, sources: [] });
-    expect(battle(person([flak()]))).toMatchObject({ fp: 3, sources: [expect.stringContaining("Flak Jacket")] });
+    const battle = (actor: any, hot = true) => fatigue(actor, "battle", { hot });
+    // The system's hot-day part raised to 2, not a point added on top: 1 + 2.
+    const armoured = battle(person([flak()]));
+    expect(armoured).toMatchObject({ fp: 3, sources: [expect.stringContaining("Flak Jacket")] });
+    expect(armoured.parts).toEqual([expect.objectContaining({ key: "battle", fp: 1 }), expect.objectContaining({ key: "hotDay", fp: 2 })]);
+    // No hot-day part, nothing to raise.
     expect(battle(person([flak()]), false).fp).toBe(1);
-    expect(battle(person([flak({ equipped: false })])).fp).toBe(1);
-    expect(battle(person([flak({ locations: ["skull"] })])).fp).toBe(1);
+    expect(battle(person([flak({ equipped: false })])).fp).toBe(2);
+    expect(battle(person([flak({ locations: ["skull"] })])).fp).toBe(2);
     expect(battle(person([flak({ locations: [] })])).fp).toBe(3);
-    expect(battle(person([wear("Ordinary Clothes")])).fp).toBe(1);
+    expect(battle(person([wear("Ordinary Clothes")])).fp).toBe(2);
   });
 
   it("leaves heated clothing to its own switch", () => {
@@ -270,18 +290,22 @@ describe("climate-controlled clothing (High-Tech p. 74)", () => {
     expect(wornClothing(person([heated()]), { clothing: () => false, frostbite: () => false, climate: () => true })?.clothing).toBe("winter");
   });
 
-  it("spares a hot march its extra point an hour while a cooler runs", () => {
-    const march = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 12, reason: "hiking", exertion: true, details: { hours: 4, hot: true }, sources: [] });
-    expect(march(person([wear("Cooling System")]))).toMatchObject({ fp: 8, sources: [expect.stringContaining("Cooling System")] });
+  it("spares a hot march its extra point an hour while a cooler runs: the hot-day part taken out", () => {
+    const march = (actor: any) => fatigue(actor, "hiking");
+    const cooled = march(person([wear("Cooling System")]));
+    expect(cooled).toMatchObject({ fp: 8, sources: [expect.stringContaining("Cooling System")] });
+    expect(cooled.parts.map((p: any) => p.key)).toEqual(["hiking"]);
     expect(march(person([heated()])).fp).toBe(12);
-    expect(fire(HOOKS.fatigueCost, { actor: person([wear("Cooling System")]), fp: 8, reason: "hiking", exertion: true, details: { hours: 4, hot: false }, sources: [] }).fp).toBe(8);
+    expect(fatigue(person([wear("Cooling System")]), "hiking", { hot: false }).fp).toBe(8);
   });
 
   it("spares body armour its hot battle's 2 FP while a cooler runs", () => {
     on = { climateControl: true, clothingAndWeather: true };
     const flak = { type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } };
-    const battle = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot: true }, sources: [] }).fp;
+    const battle = (actor: any) => fatigue(actor, "battle").fp;
+    // Climate-controlled: no hot-day fatigue at all, armour or not (Campaigns p. 426).
     expect(battle(person([flak, wear("Cooling System")]))).toBe(1);
+    expect(battle(person([wear("Cooling System")]))).toBe(1);
     expect(battle(person([flak]))).toBe(3);
   });
 });
@@ -364,7 +388,7 @@ describe("the cooling vest's charge (High-Tech p. 74)", () => {
 describe("environment suits' climate control (High-Tech pp. 74-76)", () => {
   beforeEach(() => { on = { environmentSuits: true }; ready(); });
 
-  const march = (actor: any) => fire(HOOKS.fatigueCost, { actor, fp: 12, reason: "hiking", exertion: true, details: { hours: 4, hot: true }, sources: [] }).fp;
+  const march = (actor: any) => fatigue(actor, "hiking").fp;
   const suit = (name: string, flags: Record<string, unknown> = {}) => {
     const item = wear(name);
     item.type = "armor";
@@ -385,24 +409,26 @@ describe("environment suits' climate control (High-Tech pp. 74-76)", () => {
 describe("a ghillie suit as an overcoat (High-Tech p. 77)", () => {
   const ghillie = (more: Record<string, unknown> = {}) => ({ id: "g", type: "equipment", name: "Ghillie Suit", system: { equipped: true, carried: true, extensions: { [MODULE_ID]: { camouflage: { pattern: "ghillie", ...more } } } } });
   const flak = { type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } };
-  const battle = (actor: any, hot = true) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot }, sources: [] });
+  const battle = (actor: any, hot = true) => fatigue(actor, "battle", { hot });
 
-  it("costs a hot day's battle the overcoat's 2 FP, under the camouflage switch", () => {
+  it("makes a hot day's battle the overcoat's 2 FP, not 1, under the camouflage switch", () => {
     on = { camouflageGear: true };
     ready();
     expect(battle(person([ghillie()]))).toMatchObject({ fp: 3, sources: [expect.stringContaining("HotGhillieLine")] });
     expect(battle(person([ghillie()]), false).fp).toBe(1);
-    expect(battle(person([ghillie({ net: true })])).fp).toBe(1);
-    expect(battle(person([{ ...ghillie(), system: { ...ghillie().system, equipped: false } }])).fp).toBe(1);
-    // Without the clothing switch, body armour alone costs nothing here.
-    expect(battle(person([flak])).fp).toBe(1);
+    expect(battle(person([ghillie({ net: true })])).fp).toBe(2);
+    expect(battle(person([{ ...ghillie(), system: { ...ghillie().system, equipped: false } }])).fp).toBe(2);
+    // Without the clothing switch, body armour is left at the system's 1.
+    expect(battle(person([flak])).fp).toBe(2);
   });
 
   it("counts once beside body armour, and not at all with the switch off", () => {
     on = { camouflageGear: true, clothingAndWeather: true };
     ready();
-    expect(battle(person([flak, ghillie()])).fp).toBe(3);
+    const both = battle(person([flak, ghillie()]));
+    expect(both.fp).toBe(3);
+    expect(both.sources).toHaveLength(1);
     on = { clothingAndWeather: true };
-    expect(battle(person([ghillie()])).fp).toBe(1);
+    expect(battle(person([ghillie()])).fp).toBe(2);
   });
 });
