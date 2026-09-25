@@ -7,6 +7,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
+import { clearFirearmGradeClaims, firearmGradeClaimedBy } from "../../../shared/firearm-grade.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyFirearms, type FirearmSwitches } from "./index.js";
 
@@ -23,6 +24,7 @@ const HOOKS = {
   clearMalfunction: "gworld.clearMalfunction",
   equipmentFailure: "gworld.equipmentFailure",
   objectStats: "gworld.objectStats",
+  techniqueDefaults: "gworld.techniqueDefaults",
 };
 
 function fakeApi(systemRules: Record<string, boolean> = { weaponQuality: true }) {
@@ -244,5 +246,54 @@ describe("Immediate Action", () => {
     const context = clearing({ items: [] });
     expect(context.rolls.map((r: any) => r.modifier)).toEqual([0, -4]);
     expect(context.readyManeuvers).toBe(3);
+  });
+
+  it("defaults the technique to the Armoury specialty of its weapon skill", () => {
+    readyFirearms(fakeApi() as never, switches);
+    const defaults = (prerequisite: string) => fire(HOOKS.techniqueDefaults, {
+      actor: null,
+      item: { name: "Immediate Action", system: { prerequisite } },
+      defaults: [{ from: "skill", skill: prerequisite, modifier: -4 }, { from: "skill", skill: "Armoury (Small Arms)", modifier: -4 }],
+    }).defaults;
+    expect(defaults("Gunner (Machine Gun)")).toHaveLength(2);
+    on.immediateAction = true;
+    expect(defaults("Gunner (Machine Gun)")).toEqual([
+      { from: "skill", skill: "Gunner (Machine Gun)", modifier: -4 },
+      { from: "skill", skill: "Armoury (Heavy Weapons)", modifier: -4 },
+    ]);
+    expect(defaults("Guns (Pistol)")).toEqual([
+      { from: "skill", skill: "Guns (Pistol)", modifier: -4 },
+      { from: "skill", skill: "Armoury (Small Arms)", modifier: -4 },
+    ]);
+  });
+
+  it("lets a multi-barrel gun's misfire clear itself, as a revolver's does, by firing another barrel", () => {
+    const multiBarrel = vi.fn((item: any) => item.name === "Double");
+    readyFirearms(fakeApi() as never, { ...switches, multiBarrel });
+    on.immediateAction = true;
+    const misfire = (item: any, extra: Record<string, unknown> = {}) =>
+      fire(HOOKS.malfunction, { actor: null, item, modeIndex: 0, kind: "misfire", techLevel: 5, revolver: false, clears: false, jams: true, repair: "", ...extra });
+    const double = { ...gun(), name: "Double" };
+    expect(misfire(double)).toMatchObject({ kind: "misfire", clears: true, jams: false, repair: "GCC.HT.Firearm.OtherBarrel" });
+    // A single barrel, a stoppage, and a revolver the system already clears are left as they are.
+    expect(misfire(gun())).toMatchObject({ clears: false, jams: true });
+    expect(misfire(double, { kind: "stoppage" })).toMatchObject({ clears: false, jams: true });
+    expect(misfire(double, { revolver: true })).toMatchObject({ clears: false });
+    on.immediateAction = false;
+    expect(misfire(double)).toMatchObject({ clears: false, jams: true });
+  });
+});
+
+describe("the gun's grade, claimed from other books", () => {
+  it("claims a gun's quality while the switch is on, so another book's reading of the grade stands aside", () => {
+    clearFirearmGradeClaims();
+    readyFirearms(fakeApi() as never, switches);
+    expect(firearmGradeClaimedBy(gun(), "monster-hunters-1")).toBeNull();
+    on.quality = true;
+    expect(firearmGradeClaimedBy(gun(), "monster-hunters-1")).toBe("high-tech");
+    // Only guns, and never for itself.
+    expect(firearmGradeClaimedBy({ ...gun(), system: { ...gun().system, rangedModes: [] } }, "monster-hunters-1")).toBeNull();
+    expect(firearmGradeClaimedBy(gun(), "high-tech")).toBeNull();
+    clearFirearmGradeClaims();
   });
 });

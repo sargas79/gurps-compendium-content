@@ -12,6 +12,7 @@ import {
   loadingRolls,
   loadingSeconds,
   loadsLoose,
+  multiBarrelled,
   SPEEDLOADER,
   workedOutLoading,
   type LoadingType,
@@ -95,6 +96,29 @@ describe("Double-Loading (High-Tech pp. 87, 251)", () => {
     expect(doubleLoadingSaving("magazine", 30)).toBe(0);
     expect(doubleLoadingSaving("gate", 1)).toBe(0);
     expect(doubleLoadingSaving("gate", 5)).toBe(4);
+  });
+});
+
+describe("multi-barrel guns (High-Tech p. 81)", () => {
+  const barrels = (name: string, skill: string, shots: string, rateOfFire = 1) => {
+    const gun = facts(name, skill, shots, rateOfFire);
+    return multiBarrelled(workedOutLoading(gun), gun);
+  };
+
+  it("reads doubles, derringers and howdah pistols as more than one barrel", () => {
+    expect(barrels("Remington Hammer Lifter, 12G 2.5''", "Guns (Shotgun)", "2(4i)", 2)).toBe(true);
+    expect(barrels("H&H Royal Double-Express, .600 NE", "Guns (Rifle)", "2(3i)")).toBe(true);
+    expect(barrels("Manton Double, 16G Flintlock", "Guns (Shotgun)", "2(40i)", 2)).toBe(true);
+    expect(barrels("Remington Model 95, .41 Remington", "Guns (Pistol)", "2(3i)")).toBe(true);
+    expect(barrels("Lancaster Howdah, .476 Enfield", "Guns (Pistol)", "4(3i)", 3)).toBe(true);
+  });
+
+  it("reads revolvers, tubes, magazines and single shots as one", () => {
+    expect(barrels("Colt M1851 Navy, .36 Caplock", "Guns (Pistol)", "6(10i)")).toBe(false);
+    expect(barrels("S&W Model 10 M&P, .38 Special", "Guns (Pistol)", "6(3i)", 3)).toBe(false);
+    expect(barrels("Winchester Model 1897, 12G 2.75''", "Guns (Shotgun)", "5+1(2i)", 2)).toBe(false);
+    expect(barrels("Colt Government, .45 ACP", "Guns (Pistol)", "7+1(3)", 3)).toBe(false);
+    expect(barrels("Brown Bess, .75 Flintlock", "Guns (Musket)", "1(40)")).toBe(false);
   });
 });
 

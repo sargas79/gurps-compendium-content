@@ -10272,7 +10272,14 @@
           "recoil": 2,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "rugged": "rugged"
+          }
+        }
+      }
     }
   },
   {
@@ -11684,7 +11691,14 @@
           "recoil": 3,
           "malfunction": 17
         }
-      ]
+      ],
+      "extensions": {
+        "gurps-compendium-content": {
+          "firearm": {
+            "precision": true
+          }
+        }
+      }
     }
   },
   {

@@ -233,6 +233,23 @@ export function doubleLoadingSaving(type: LoadingType, rounds: number): number {
   return 0;
 }
 
+/** The most barrels the book's multi-barrel guns have: the Lancaster howdah pistol's four (p. 91). */
+export const MOST_BARRELS = 4;
+
+/**
+ * Whether a gun has more than one barrel (p. 81), from how it loads: a
+ * double rifle or shotgun loaded as a breechloader, or a gun of two to four
+ * shots loaded a chamber at a time that is no revolver and fills no tube --
+ * a double-barrelled flintlock, a derringer, a howdah pistol. A revolver's
+ * cylinder, a tube, a box and a single shot aren't barrels.
+ */
+export function multiBarrelled(type: LoadingType, gun: { capacity: number | null; perShot: boolean }): boolean {
+  const capacity = gun.capacity ?? 0;
+  if (capacity < 2) return false;
+  if (type === "breech" || type === "breechEjector") return true;
+  return (type === "muzzleloader" || type === "breechBlackPowder" || type === "other") && gun.perShot && capacity <= MOST_BARRELS;
+}
+
 /** Whether Double-Loading can help this gun: a revolver, or a breechloader with barrels to pair. */
 export function doubleLoads(type: LoadingType, rounds: number): boolean {
   return doubleLoadingSaving(type, rounds) > 0;

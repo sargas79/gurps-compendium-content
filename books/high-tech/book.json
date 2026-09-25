@@ -6601,6 +6601,36 @@
         "system.boots": true
       },
       "reason": "boots add +1 to a kick (Characters p. 271), which the system reads from system.boots since API 1.110.0; shoes, sneakers and cleats aren't boots (p. 68)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^AI AW, 7\\.62x51mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.precision": true
+      },
+      "reason": "a purpose-built sniper rifle, which rolls HT rather than HT+4 against abuse (pp. 80, 118) (#364)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Izhmash AK-47, 7\\.62x39mm$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.rugged": "rugged"
+      },
+      "reason": "the book's example of a famously rugged gun: ruggedized at no extra cost, DR 8, HT 12 (p. 80) (#364)"
+    },
+    {
+      "pack": "skills",
+      "pattern": "^Immediate Action$",
+      "set": {
+        "system.alternateDefaults": [
+          {
+            "from": "skill",
+            "skill": "Armoury (Small Arms)",
+            "modifier": -4
+          }
+        ]
+      },
+      "reason": "the file's alternate default is a GCA placeholder, Armoury (%Gun SkillsAliasList%); Guns versions default to Armoury (Small Arms)-4, and the Immediate Action switch gives a Gunner version Armoury (Heavy Weapons)-4 (p. 251) (#364)"
     }
   ]
 }

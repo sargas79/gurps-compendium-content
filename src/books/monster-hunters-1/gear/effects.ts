@@ -9,6 +9,7 @@ import type { GWorldApi } from "../../../shared/module.js";
 import { isHoly } from "../holy.js";
 import { gearData, loadFor, type GearData } from "./data.js";
 import { bestConcealment, wornArticle } from "../../../shared/concealment/rules.js";
+import { firearmGradeClaimedBy } from "../../../shared/firearm-grade.js";
 import { gadgetCostFactor, gadgetWeightFactor, improvedGadget, SCENT_MASKING_PENALTY, signatureGearPointCost } from "./gadgets.js";
 import { isShotgun, specialAmmunitionEffect } from "./special-ammunition.js";
 import {
@@ -131,9 +132,11 @@ export function adjustWeaponRows(api: GWorldApi, context: any, noteText: NoteTex
     }
 
     if (!ranged) continue;
-    const basicAccuracy = api.registry.isRuleOn("weaponQuality") ? api.rules.qualityAccuracyBonus(weapon.weaponClass as never, basicGrade as never, Boolean(mode.thrown)) : 0;
+    // A gun whose quality another book's rule sets (High-Tech's accuracy work) keeps that rule's Acc, never both.
+    const gradeElsewhere = firearm && firearmGradeClaimedBy(item, "monster-hunters-1") !== null;
+    const basicAccuracy = gradeElsewhere ? 0 : api.registry.isRuleOn("weaponQuality") ? api.rules.qualityAccuracyBonus(weapon.weaponClass as never, basicGrade as never, Boolean(mode.thrown)) : 0;
     const basicRange = api.registry.isRuleOn("weaponQuality") ? api.rules.qualityRangeMultiplier(weapon.weaponClass as never, basicGrade as never) : 1;
-    row.accuracy = (Number(row.accuracy) || 0) - basicAccuracy + fx.accuracy;
+    row.accuracy = (Number(row.accuracy) || 0) - basicAccuracy + (gradeElsewhere ? 0 : fx.accuracy);
     if (fx.st) {
       const at = context.rangeAt(entry, basis.st + fx.st);
       row.halfDamageRange = at.halfDamageRange * fx.rangeMultiplier;
@@ -159,7 +162,8 @@ export function adjustWeaponRows(api: GWorldApi, context: any, noteText: NoteTex
     row.damage = special.noDamage ? "—" : special.damage;
     row.damageType = special.damageType;
     row.armorDivisor = special.armorDivisor;
-    row.accuracy = basis.accuracy + fx.accuracy + special.accuracy;
+    // On the Acc worked out above, and whatever another rule did to it.
+    row.accuracy = (Number(row.accuracy) || 0) + special.accuracy;
     if (special.fixedRange) {
       row.halfDamageRange = 0;
       row.maxRange = special.fixedRange;

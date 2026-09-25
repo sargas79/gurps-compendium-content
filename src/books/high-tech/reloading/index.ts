@@ -52,6 +52,7 @@ import {
   helpedSeconds,
   isLongArm,
   loadingSeconds,
+  multiBarrelled,
   workedOutLoading,
   type LoadingType,
 } from "./rules.js";
@@ -117,6 +118,12 @@ export function loadingOf(api: GWorldApi, item: any, modeIndex = 0): LoadingType
 function workedOutLoadingOf(api: GWorldApi, item: any, modeIndex: number): LoadingType {
   const mode = rangedModes(item)[modeIndex] ?? rangedModes(item)[0];
   return workedOutLoading({ name: String(item?.name ?? ""), skill: String(mode?.skill ?? ""), rateOfFire: Number(mode?.rateOfFire) || 0, ...shotsOf(api, mode) });
+}
+
+/** Whether a gun's mode has more than one barrel (p. 81), from how it loads and its Shots. */
+export function isMultiBarrelled(api: GWorldApi, item: any, modeIndex = 0): boolean {
+  const mode = rangedModes(item)[modeIndex] ?? rangedModes(item)[0];
+  return isFirearm(api, item) && multiBarrelled(loadingOf(api, item, modeIndex), shotsOf(api, mode));
 }
 
 /** Whether a gun fires black powder: as its data says, or by how it loads and its TL. Never a rocket. */

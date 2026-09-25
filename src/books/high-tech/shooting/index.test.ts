@@ -329,6 +329,14 @@ describe("gun techniques (pp. 250-252)", () => {
     expect(attack(tommy(), actor, { modifiers: bulk(), rangeYards: 13 }).modifiers).toHaveLength(1);
   });
 
+  it("gives +1 on every shot with the gun Weapon Bond names, and none with another", () => {
+    const actor = shooter({ items: [trait("Weapon Bond (Colt Government)")] });
+    expect(attack(colt(), actor).modifiers).toEqual([]);
+    on.gunTechniques = true;
+    expect(attack(colt(), actor).modifiers).toEqual([{ label: "GCC.HT.Shooting.WeaponBondLine {\"item\":\"Colt Government\"}", value: 1, key: `${MODULE_ID}.weaponBond` }]);
+    expect(attack(deagle(), actor).modifiers).toEqual([]);
+  });
+
   it("takes a gun TA's bought levels on a shot aimed where it aims", () => {
     on.gunTechniques = true;
     const ta = technique("TA (Rifle/Skull)", 9, { points: 3 });

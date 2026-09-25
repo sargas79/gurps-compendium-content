@@ -108,7 +108,7 @@
       "alternateDefaults": [
         {
           "from": "skill",
-          "skill": "Armoury (%Gun SkillsAliasList%)",
+          "skill": "Armoury (Small Arms)",
           "modifier": -4
         }
       ],

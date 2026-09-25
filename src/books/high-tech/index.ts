@@ -111,7 +111,7 @@ import { readyElectricity } from "./electricity/index.js";
 import { rateOfFireFields, readyRateOfFire } from "./rate-of-fire/index.js";
 import { gunslingerDefault, inPistoleroStance, readyShooting } from "./shooting/index.js";
 import { registerHighTechRecordData } from "./records.js";
-import { readyReloading, reloadingFields } from "./reloading/index.js";
+import { isMultiBarrelled, readyReloading, reloadingFields } from "./reloading/index.js";
 import { readySustainedFire, sustainedFireFields } from "./sustained-fire/index.js";
 import { initTools, readyTools } from "./tools/index.js";
 import { readyWeaponFamilies, weaponFamilyFields } from "./weapon-families/index.js";
@@ -453,7 +453,7 @@ function ready(api: GWorldApi): void {
   readyDevices(api, { cuttingEdge: rule("cuttingEdgeGear"), breakable: rule("breakableComponents"), kits: rule("kitBuilding"), combined: rule("combinedDevices") });
   readyHighTechEquipment(api, { combination: rule("combinationGadgets"), bonuses: rule("equipmentBonuses"), familiarity: rule("tlFamiliarity") });
   readyBlackMarket(api, rule("blackMarket"));
-  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire") });
+  readyFirearms(api, { quality: rule("firearmQuality"), care: rule("gunCare"), immediateAction: rule("immediateAction"), sustainedFire: rule("sustainedFire"), multiBarrel: (item, modeIndex) => isMultiBarrelled(api, item, modeIndex) });
   readyDrawing(api, { drawing: rule("gunDrawing"), standoff: rule("gunfightStandoff") });
   const accessories = { magazines: rule("gunMagazines"), sights: rule("gunSights"), suppressors: rule("suppressors"), cinematic: rule("cinematicSilencers"), stocks: rule("stocksAndMounts") };
   const ammunition = {
