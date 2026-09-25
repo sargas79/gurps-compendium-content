@@ -16,8 +16,10 @@
  *     in the hand.
  *   - **Booby traps and improvised grenades** (pp. 190-191): the rolls to rig
  *     one and to make one.
- *   - **A Molotov cocktail through an engine grating** (p. 191): the vehicle's
- *     HT rolls while the fire burns, and what they cost its engine.
+ *   - **A Molotov cocktail through an engine grating** (p. 191): an attack
+ *     option aims it there, a vital area at -3; a hit runs the vehicle's HT
+ *     rolls while the fire burns, and what they cost its engine (the row
+ *     action runs them for a hit the table settled otherwise).
  *   - **Smoke, white phosphorus, thermite and flashbangs** (pp. 192-193): the
  *     cloud a smoke or WP grenade leaves, and the M7's tear gas, rolled for
  *     everyone in it as a tear-gas round's is; the canister's burn to bare
@@ -52,6 +54,8 @@ import {
 import { F, L, ask, checkbox, clockNow, d6, formulaOf, hint, isActiveGm, mainMode, number, roll3d, row, say, secondsSince, skillRoll, targetedTokens, type ClockStamp } from "./common.js";
 
 const RPG43_OPTION = "ht-rpg43-technique";
+const MOLOTOV_OPTION = "ht-molotov-grating";
+const isMolotov = (item: any): boolean => /\bmolotov\b/i.test(String(item?.name ?? ""));
 const FLASHBANG_FLAG = "htFlashbangStun";
 
 /** What a grenade stack keeps: primed, armed, and when its fuse started. */
@@ -288,33 +292,70 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
   } as any);
 
   // ── a Molotov cocktail through an engine grating (p. 191) ──
+  /** The fire in a vehicle's engine: its HT rolled at once and every 3 seconds until it burns out. */
+  const engineFireCard = async (actor: any, target: any, ht: number) => {
+    let burn = 0;
+    for (let i = 0; i < MOLOTOV_ENGINE.burnDice; i += 1) burn += d6();
+    const seconds = burn * MOLOTOV_ENGINE.burnTimes;
+    const result = engineFire(ht, seconds, Array.from({ length: engineChecks(seconds) }, roll3d));
+    const vehicle = String(target?.name ?? L("Engine.TheVehicle"));
+    await say(actor, L("Engine.Title"), [
+      F("Engine.Burns", { vehicle, seconds }),
+      ...result.checks.map((c) => F(c.success ? "Engine.CheckMade" : "Engine.CheckFailed", { second: c.second, roll: c.roll, ht })),
+      F(`Engine.${result.fate}`, { vehicle }),
+    ]);
+  };
+  const vehicleHtOf = (target: any): number | null => {
+    const ht = Number(target?.system?.vehicle?.ht);
+    return Number.isFinite(ht) && ht > 0 ? ht : null;
+  };
+
+  // Aimed at the grating: a vital area, -3 to hit (p. B554); a hit sets the engine burning.
+  api.combat.registerAttackOption({
+    module: MODULE_ID,
+    key: MOLOTOV_OPTION,
+    label: L("Engine.Option"),
+    available: (context: any) => on() && isMolotov(context?.item),
+    apply: () => ({ modifiers: [{ label: L("Engine.Option"), value: MOLOTOV_ENGINE.toHit }] }),
+  } as any);
+  const molotovs = new Map<string, any>();
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on() || !isMolotov(context?.item) || context.options?.[`${MODULE_ID}.${MOLOTOV_OPTION}`] !== true || context.refusal) return;
+    molotovs.set(String(context.actor?.uuid ?? ""), context.targetTokens?.[0]?.actor ?? context.targets?.[0] ?? null);
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    const key = String(context?.actor?.uuid ?? "");
+    if (!(context?.tags ?? []).includes("attack") || !molotovs.has(key)) return;
+    const target = molotovs.get(key);
+    molotovs.delete(key);
+    if (!on() || !context.outcome?.success || !context.actor?.isOwner) return;
+    void (async () => {
+      let ht = vehicleHtOf(target);
+      if (ht === null) {
+        const value = await ask(L("Engine.Title"), [row(L("Engine.Ht"), number("ht", 10, "1")), hint(L("Engine.HitHint"))].join(""), L("Engine.Action"));
+        if (!value) return;
+        ht = Math.max(1, Math.floor(Number(value("ht")) || 10));
+      }
+      await engineFireCard(context.actor, target, ht);
+    })();
+  });
+
   api.sheets.registerRowAction({
     module: MODULE_ID,
     key: "ht-molotov-engine",
     itemTypes: ["equipment"],
     label: L("Engine.Action"),
     icon: "fa-solid fa-car-burst",
-    visible: (item: any) => on() && /\bmolotov\b/i.test(String(item?.name ?? "")),
-    run: (item: any, actor: any) => {
+    visible: (item: any) => on() && isMolotov(item),
+    run: (_item: any, actor: any) => {
       void (async () => {
         const target = targetedTokens()[0]?.actor ?? null;
-        const vehicleHt = Number(target?.system?.vehicle?.ht);
         const value = await ask(L("Engine.Title"), [
-          row(L("Engine.Ht"), number("ht", Number.isFinite(vehicleHt) && vehicleHt > 0 ? vehicleHt : 10, "1")),
+          row(L("Engine.Ht"), number("ht", vehicleHtOf(target) ?? 10, "1")),
           hint(F("Engine.Hint", { penalty: MOLOTOV_ENGINE.toHit })),
         ].join(""), L("Engine.Action"));
         if (!value) return;
-        const ht = Math.max(1, Math.floor(Number(value("ht")) || 10));
-        let burn = 0;
-        for (let i = 0; i < MOLOTOV_ENGINE.burnDice; i += 1) burn += d6();
-        const seconds = burn * MOLOTOV_ENGINE.burnTimes;
-        const result = engineFire(ht, seconds, Array.from({ length: engineChecks(seconds) }, roll3d));
-        const vehicle = String(target?.name ?? L("Engine.TheVehicle"));
-        await say(actor, L("Engine.Title"), [
-          F("Engine.Burns", { vehicle, seconds }),
-          ...result.checks.map((c) => F(c.success ? "Engine.CheckMade" : "Engine.CheckFailed", { second: c.second, roll: c.roll, ht })),
-          F(`Engine.${result.fate}`, { vehicle }),
-        ]);
+        await engineFireCard(actor, target, Math.max(1, Math.floor(Number(value("ht")) || 10)));
       })();
     },
   } as any);

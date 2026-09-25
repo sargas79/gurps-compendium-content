@@ -355,6 +355,30 @@ describe("hand grenades (pp. 190-192)", () => {
     expect(chat.at(-1)).toContain('"seconds":10');
     expect(chat.at(-1)).toContain("GCC.HT.Ordnance.Engine.destroyed");
   });
+
+  it("aims a Molotov at the engine grating at -3, and sets the engine burning on a hit (p. 191)", async () => {
+    const molotov = { id: "m", name: "Molotov Cocktail", type: "equipment", system: { rangedModes: [{ thrown: true }] } };
+    const option = options.find((o) => o.key === "ht-molotov-grating");
+    expect(option.available({ item: molotov })).toBe(true);
+    expect(option.available({ item: item("M67") })).toBe(false);
+    expect(option.apply({}, true)).toEqual({ modifiers: [{ label: "GCC.HT.Ordnance.Engine.Option", value: -3 }] });
+    const rioter = actorWith("Rioter", [molotov]);
+    const truck = { name: "Truck", system: { vehicle: { ht: 10 } } };
+    const throwIt = (success: boolean, chosen = true) => {
+      attack(rioter, molotov, { options: chosen ? { [`${MODULE_ID}.ht-molotov-grating`]: true } : {}, targetTokens: [{ actor: truck }] });
+      fire(HOOKS.afterSuccessRoll, { actor: rioter, item: molotov, tags: ["attack"], outcome: { success } });
+    };
+    // A miss, or a throw not aimed at the grating: no fire in the engine.
+    throwIt(false);
+    throwIt(true, false);
+    await flush();
+    expect(chat).toEqual([]);
+    // A hit: the truck's own HT 10, no dialog. 2d = 2: ten seconds, four checks; 11 and 12 fail.
+    dice = [1, 1, 4, 4, 3, 5, 5, 1, 6, 5, 6, 6];
+    throwIt(true);
+    await flush();
+    expect(chat.at(-1)).toContain("GCC.HT.Ordnance.Engine.destroyed");
+  });
 });
 
 describe("land mines (p. 189)", () => {

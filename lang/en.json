@@ -8144,6 +8144,8 @@
         "ImproviseFailed": "The {name} is a dud ({minutes} minutes spent).",
         "Engine": {
           "Action": "Engine fire",
+          "Option": "Through the engine grating (vital area)",
+          "HitHint": "The Molotov went through the engine grating: the vehicle rolls HT at once and every 3 seconds until the fire burns out.",
           "Title": "Molotov through the engine grating",
           "Ht": "Vehicle's HT",
           "Hint": "A hit through an unprotected engine grating is a vital-area hit, at {penalty} to hit. The vehicle rolls HT at once and every 3 seconds until the fire burns out.",
