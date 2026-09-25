@@ -465,9 +465,9 @@ function liftLine(api: GWorldApi, lift: Lifting): string {
   return F("Lift.StLine", { st: lift.st, bl: Math.round(bl), lift: loadText(bl * 8), shift: loadText(bl * 50) });
 }
 
-/** A load in tons from a ton up, else in pounds. */
+/** A load in tons from two tons up, else in pounds. */
 function loadText(lbs: number): string {
-  return lbs >= TON_LBS ? F("Lift.Tons", { tons: Math.round((lbs / TON_LBS) * 10) / 10 }) : F("Lift.Lbs", { lbs: Math.round(lbs) });
+  return lbs >= 2 * TON_LBS ? F("Lift.Tons", { tons: Math.round((lbs / TON_LBS) * 10) / 10 }) : F("Lift.Lbs", { lbs: Math.round(lbs).toLocaleString("en-US") });
 }
 
 /** Asks a load's weight and says whether the tool manages it. */
