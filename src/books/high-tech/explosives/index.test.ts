@@ -34,6 +34,7 @@ let sections: any[];
 let posted: any[];
 let registered: any[];
 let detonations: any[];
+let detonateRefused: boolean;
 let rolledFormulas: string[];
 let injuries: any[];
 let worn: any[];
@@ -94,7 +95,7 @@ function fakeApi() {
         const context = { actor: o.actor, item: null, mode: null, label: o.label, formula: "6dx2", modifiers: [] };
         fire(HOOKS.damageModifiers, context);
         rolledFormulas.push(context.formula);
-        return Promise.resolve({ basicDamage: 20 });
+        return Promise.resolve(detonateRefused ? null : { basicDamage: 20 });
       },
     },
     combat: {
@@ -165,6 +166,7 @@ beforeEach(() => {
   posted = [];
   registered = [];
   detonations = [];
+  detonateRefused = false;
   rolledFormulas = [];
   injuries = [];
   worn = [];
@@ -279,6 +281,15 @@ describe("demolition charges (pp. 182-183)", () => {
     actions.get("ht-detonate").run(tnt, sapper);
     await flush();
     expect(detonations[1].structure).toMatchObject({ dr: 50, hp: 50 });
+
+    // A charge a listener refused doesn't go off (API 1.154.0): no flat blow either.
+    const before = chat.length;
+    detonateRefused = true;
+    dialog = { ...dialog, dr: "100" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations).toHaveLength(3);
+    expect(chat.slice(before).join()).not.toContain("Flat.Hit");
   });
 
   it("cuts with cutting cord: a pound per 2', 4dx2 nearby, and 24 against a fifth of the DR (p. 188)", async () => {

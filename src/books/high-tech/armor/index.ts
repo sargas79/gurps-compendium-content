@@ -20,15 +20,15 @@
  *     rolls a Quick Contest of Holdout, less the piece's DR (a third of it for
  *     flexible armour) and plus up to 4 for a concealable design, against the
  *     Search of each targeted searcher, at the range penalty; and a long coat's,
- *     poncho's or undercover clothing's bonus on Holdout while worn (pp. 64,
- *     66).
+ *     poncho's or undercover clothing's bonus on a Holdout roll while worn, as
+ *     the roll's clothing line (pp. 64, 66; Characters p. 200, API 1.152.0).
  *   - **Materials (armorMaterials):** steel, smart foam and titanium as a
  *     field that reprices a piece or a shield and changes its DR, and trauma
  *     plates as semi-ablative DR, worn down a point for every 10 points of
  *     basic damage and put right by replacing the plate (pp. 65, 67).
  */
 
-import { bestConcealment } from "../../../shared/concealment/rules.js";
+import { bestConcealment, isHoldoutRoll, wearClothingLine } from "../../../shared/concealment/rules.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -254,11 +254,7 @@ export async function concealFromSearch(api: GWorldApi, item: any, actor: any, o
   const hiding: Array<{ label: string; value: number }> = [];
   if (penalty) hiding.push({ label: F(flexible ? "ConcealFlexible" : "ConcealRigid", { dr }), value: penalty });
   if (design) hiding.push({ label: L("ConcealDesign"), value: design });
-  // At default the skill's bonus lines don't reach the roll, so the clothes are counted here.
-  if (holdout === null) {
-    const clothes = clothingConcealment(actor);
-    if (clothes.holdout) hiding.push({ label: F("ClothesLine", { name: clothes.source }), value: clothes.holdout });
-  }
+  // The clothes come in on the roll itself, as its clothing line (`gworld.successRollModifiers`).
   const outcomes: string[] = [];
   for (const searcher of searchers) {
     const search = api.actors.skillLevel(searcher, "Search");
@@ -564,10 +560,12 @@ export function readyHighTechArmor(api: GWorldApi, switches: ArmorSwitches): voi
     if (cards.length) void say(actor, context.item?.name ?? L("Title"), cards);
   });
 
-  // A long coat's, poncho's or undercover clothing's bonus on Holdout (p. 64).
-  Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
-    if (!on.conceal() || String(context?.name ?? "").trim().toLowerCase() !== "holdout" || !Array.isArray(context.lines)) return;
+  // A long coat's, poncho's or undercover clothing's bonus on a Holdout roll (p. 64): what the
+  // character wears, the roll's `clothing` line (Characters p. 200; API 1.152.0), the better of it
+  // and one already there. At default as well as with the skill.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.conceal() || !isHoldoutRoll(context) || !Array.isArray(context.modifiers)) return;
     const clothes = clothingConcealment(context.actor);
-    if (clothes.holdout) context.lines.push({ label: F("ClothesLine", { name: clothes.source }), value: clothes.holdout, source: MODULE_ID });
+    if (clothes.holdout) wearClothingLine(context.modifiers, clothes.holdout, F("ClothesLine", { name: clothes.source }));
   });
 }

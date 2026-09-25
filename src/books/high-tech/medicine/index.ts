@@ -467,11 +467,12 @@ async function scan(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor();
   if (!patient) return void ui.notifications?.warn(L("OneTarget"));
   const data = medicalData(item);
-  // The early X-ray machine: 1d rads a photograph, to patient and operator alike (p. 223).
+  // The early X-ray machine: 1d rads a photograph, to patient and operator alike (p. 223); a
+  // patient the user doesn't own takes it through the GM's client, from the operator (API 1.155.0).
   if (data.value > 0) {
     for (const who of new Set([patient, actor])) {
       const rads = await rollDice(`${data.value * XRAY_RADS_DICE}d6`);
-      await api.hazards.irradiate({ actor: who, rads, protectionFactor: 1, modifier: 0 });
+      await api.hazards.irradiate({ actor: who, rads, protectionFactor: 1, modifier: 0, ...(who !== actor && actor ? { sourceActor: actor } : {}) } as any);
     }
   }
   const base = skillOrDefault(api, actor, MEDICAL_ELECTRONICS, ELECTRONICS_DEFAULT);
@@ -485,8 +486,8 @@ async function scan(api: GWorldApi, item: any, actor: any): Promise<void> {
 
 /**
  * The portable X-ray machine turned on the targeted victim at maximum
- * intensity: 1,000 rads an hour (p. 223). A victim this user can't change is
- * the GM's to dose.
+ * intensity: 1,000 rads an hour (p. 223). A victim this user doesn't own is
+ * dosed through the GM's client, from the operator (API 1.155.0).
  */
 async function irradiateAtMaximum(api: GWorldApi, item: any, actor: any): Promise<void> {
   const victim = targetedActor();
@@ -503,8 +504,7 @@ async function irradiateAtMaximum(api: GWorldApi, item: any, actor: any): Promis
   });
   const rads = maximumIntensityRads(Number(minutes) || 0);
   if (!(rads > 0)) return;
-  if (!victim.isOwner) return void say(victim, nameOf(item), [F("XrayMaximumGm", { name: victim.name, rads, minutes })]);
-  await api.hazards.irradiate({ actor: victim, rads, protectionFactor: 1, modifier: 0 });
+  await api.hazards.irradiate({ actor: victim, rads, protectionFactor: 1, modifier: 0, ...(actor ? { sourceActor: actor } : {}) } as any);
   await say(victim, nameOf(item), [F("XrayMaximumDone", { name: victim.name, rads, minutes, operator: String(actor?.name ?? "") })]);
 }
 

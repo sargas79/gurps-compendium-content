@@ -24,7 +24,9 @@
  *   - **Spray guns (sprayGuns):** +2 to hit the face with the wide jet; a hit
  *     forces two rolls, one against coughing and one against blindness, each
  *     lasting minutes equal to the margin, or until washed off for pepper
- *     spray.
+ *     spray. A squirt gun's row button runs Liquids in the Face with its load
+ *     (`combat.liquidInTheFace`, API 1.155.0): water's flinch at -1, and paint
+ *     blinding a victim in goggles or a visor until wiped off.
  *   - **Laser dazzlers (laserDazzlers):** Protected Vision, a Nictitating
  *     Membrane and anti-laser goggles against the roll to resist; a dazzler
  *     blinds for minutes equal to the margin, a blinding laser cripples both
@@ -45,8 +47,11 @@ import {
   BURN_PER_SECOND,
   CLEARING_SECONDS,
   EXPLOSION_YARDS,
+  EYEWEAR,
   FLAMETHROWER_SKILL,
   HT_DAZZLE,
+  PAINT_WIPE_READIES,
+  SQUIRT_LOADS,
   SPRAYER_SKILL,
   SPRAY_TARGETS,
   SQUIRT_GUN_SKILL,
@@ -60,12 +65,16 @@ import {
   eyeBeamOf,
   flameDr,
   flameMalfunction,
+  paintBlinds,
   sprayAgent,
   sprayEffectSeconds,
+  squirtLoad,
+  squirtPenalty,
   sweepWidth,
   sweptDamage,
   tankStruck,
   unthickenedRange,
+  waterOnly,
   type FlameMalfunction,
 } from "./rules.js";
 
@@ -177,6 +186,91 @@ function burningDr(api: GWorldApi, actor: any): number {
   return flameDr(large, sealed(api, actor));
 }
 
+/** Whether an item is a squirt gun of this book's (p. 180). */
+export function isSquirtGun(item: any): boolean {
+  return ownBook(item) && rangedModes(item).some((m) => SQUIRT_GUN_SKILL.test(String(m?.skill ?? "")));
+}
+
+/** Whether a character wears goggles or a visor that paint can cover (p. 180). */
+function wearsEyewear(actor: any): boolean {
+  return [...(actor?.items ?? [])].some((i: any) => i?.system?.equipped === true && EYEWEAR.test(String(i?.name ?? "")));
+}
+
+interface SquirtAnswer { load: string; result: string; defense: string; eyewear: boolean }
+
+async function askSquirt(victim: any): Promise<SquirtAnswer | null> {
+  const option = (value: string, label: string, selected = false) => `<option value="${value}"${selected ? " selected" : ""}>${esc(label)}</option>`;
+  const select = (name: string, options: string) => `<select name="${name}">${options}</select>`;
+  const row = (label: string, input: string) => `<label style="display:flex;justify-content:space-between;gap:8px;align-items:center"><span>${esc(label)}</span>${input}</label>`;
+  const fields = [
+    row(L("Squirt.Load"), select("load", SQUIRT_LOADS.map((k) => option(k, L(`Squirt.Loads.${k}`))).join(""))),
+    row(L("Squirt.Result"), select("result", ["hit", "critical", "miss"].map((k) => option(k, L(`Squirt.Results.${k}`))).join(""))),
+    row(L("Squirt.Defense"), select("defense", ["none", "dodge", "block", "parry"].map((k) => option(k, L(`Squirt.Defenses.${k}`))).join(""))),
+    row(F("Squirt.Eyewear", { name: String(victim?.name ?? "") }), `<input type="checkbox" name="eyewear"${wearsEyewear(victim) ? " checked" : ""} />`),
+  ].join("");
+  return foundry.applications.api.DialogV2.prompt({
+    window: { title: L("Squirt.Title") },
+    content: `<div class="gworld" style="display:grid;gap:6px"><p>${esc(L("Squirt.Hint"))}</p>${fields}</div>`,
+    ok: {
+      label: L("Squirt.Title"),
+      callback: (_event: Event, button: HTMLElement) => {
+        const form = button.closest<HTMLElement>(".application")!;
+        const value = (name: string) => form.querySelector<HTMLSelectElement>(`[name=${name}]`)?.value ?? "";
+        return { load: value("load"), result: value("result"), defense: value("defense"), eyewear: form.querySelector<HTMLInputElement>("[name=eyewear]")?.checked === true };
+      },
+    },
+    rejectClose: false,
+  }) as Promise<SquirtAnswer | null>;
+}
+
+/**
+ * What a squirt gun's jet did to the face it was aimed at (p. 180): Liquids
+ * in the Face (Campaigns p. 405), through the system's procedure (API
+ * 1.155.0), which rolls the victim's Will and leaves a flinch or blindness on
+ * them, through the GM's client for a victim the user doesn't own. Water is
+ * merely distracting, its penalties halved to -1: the module leaves its own
+ * halved conditions in the system's place. Paint blinds a victim in goggles
+ * or a visor until it is wiped off.
+ */
+export async function squirtInTheFace(api: GWorldApi, item: any, attacker: any, answered?: SquirtAnswer | null): Promise<void> {
+  if (!attacker) return;
+  const victim = [...((game as any).user?.targets ?? [])][0]?.actor ?? null;
+  if (!victim) return void ui.notifications?.warn(L("Squirt.PickTarget"));
+  const answer = answered ?? (await askSquirt(victim));
+  if (!answer) return;
+  const load = squirtLoad(answer.load);
+  const water = waterOnly(load);
+  const hit = answer.result === "hit" || answer.result === "critical";
+  const criticalHit = answer.result === "critical";
+  const defense = ["dodge", "block", "parry"].includes(answer.defense) ? answer.defense : "none";
+  const combat = api.combat as any;
+  const outcome = await combat.liquidInTheFace({
+    attacker, victim, hit, criticalHit, defense: defense as never,
+    liquid: F("Squirt.Liquid", { load: L(`Squirt.Loads.${load}`), weapon: String(item?.name ?? "") }),
+    apply: !water, source: attacker,
+  });
+  if (!outcome) return;
+  const lines: string[] = [];
+  if (water) {
+    // The system's flinch at half its penalty (p. 180); blindness is as it was.
+    const effects: any[] = (api.rules as any).liquidEffects?.(outcome) ?? [];
+    for (const effect of effects) {
+      const label = L(`Squirt.Effects.${effect.key}`);
+      const value = squirtPenalty(load, Number(effect.value) || 0);
+      await api.actors.applyCondition(victim, {
+        module: MODULE_ID, key: `ht-squirt-${effect.key}`, label,
+        effects: { modifiers: value === 0 ? [] : [{ label, value, rolls: effect.rolls }] },
+        duration: { ...(effect.turns !== null ? { turns: effect.turns } : {}), seconds: effect.seconds },
+      } as any, { source: attacker } as any);
+    }
+    if (outcome.flinched) lines.push(F("Squirt.WaterLine", { name: String(victim.name ?? "") }));
+  }
+  if (paintBlinds(load, { hit, defended: outcome.defended === true }, answer.eyewear)) {
+    await api.actors.applyCondition(victim, { module: MODULE_ID, key: "ht-squirt-painted", label: L("Squirt.Painted") } as any, { source: attacker } as any);
+    lines.push(F("Squirt.PaintLine", { name: String(victim.name ?? ""), readies: PAINT_WIPE_READIES }));
+  }
+  if (lines.length) await say(attacker, L("Squirt.Title"), lines);
+}
 
 export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
   DAZZLE_TABLES.register(HT_DAZZLE);
@@ -204,6 +298,17 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     context: (item) => itemContext(item),
     listeners: (element, item) => itemListeners(element, item),
   });
+
+  // A squirt gun's jet in the face: Liquids in the Face with its load (p. 180).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-squirt-face",
+    itemTypes: ["equipment"],
+    label: L("Squirt.Title"),
+    icon: "fa-solid fa-droplet",
+    visible: (item: any) => on.sprayGuns() && isSquirtGun(item),
+    run: (item: any, actor: any) => squirtInTheFace(api, item, actor),
+  } as any);
 
   // ── the rows ──
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {

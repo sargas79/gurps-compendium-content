@@ -40,3 +40,25 @@ export function bestConcealment(items: Iterable<any>, bonusOf: ArticleBonus, wor
   }
   return out;
 }
+
+/** Whether a success roll is a Holdout roll: the skill, or a default rolled in its place (API 1.152.0). */
+export function isHoldoutRoll(context: { skill?: unknown } | null | undefined): boolean {
+  return String(context?.skill ?? "").trim().toLowerCase() === "holdout";
+}
+
+/**
+ * Puts the best worn article's Holdout bonus on a Holdout roll as what the
+ * character wears: the line keyed `clothing` (Characters p. 200; the system's
+ * `roll.holdout` keys the caller's clothing so since API 1.152.0). A clothing
+ * line already there -- the caller's, or another book's article -- is the
+ * same thing, so the better of the two stands, never both.
+ */
+export function wearClothingLine(modifiers: Array<{ label: string; value: number; key?: string }>, bonus: number, label: string): void {
+  if (!Array.isArray(modifiers) || !(bonus > 0)) return;
+  const kept = modifiers.find((line) => line?.key === "clothing");
+  if (!kept) {
+    modifiers.push({ key: "clothing", label, value: bonus });
+    return;
+  }
+  if (bonus > (Number(kept.value) || 0)) Object.assign(kept, { label, value: bonus });
+}
