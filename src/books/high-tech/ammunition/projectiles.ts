@@ -191,6 +191,8 @@ export interface ProjectileLoad {
   hitDamage?: string;
   /** What a liquid round carries, which sets its LC (p. 172). */
   liquid?: string;
+  /** A round the book prints with its own statistics (pp. 103, 143), by its key; its figures replace the projectile's. */
+  printed?: string;
 }
 
 /** What the projectile rules need to know of a gun's mode. */

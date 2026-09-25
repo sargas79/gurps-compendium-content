@@ -21,7 +21,9 @@
  *     Gatling's Broadwell drum, fitted from the gun's sheet: its rounds fed
  *     a cell at a time, a fired-out cell refusing the shot until the drum is
  *     turned from the gun's row. A canister row from the same feed for a gun
- *     whose record gives the round (the Hotchkiss 1-pdr).
+ *     whose record gives the round (the Hotchkiss 1-pdr). The Nordenfelt's
+ *     upper hopper, which feeds first, replaced alone from the gun's row once
+ *     its rounds are fired.
  *   - **Backblast (backblast):** the dice the book prints for each launcher
  *     and missile, the cone behind the firer at full and half damage (the
  *     tokens standing in it found through the system's cone areas), and
@@ -50,6 +52,7 @@ import {
   stunAfterSeconds,
   suppressorWorks,
   unsafeRevolver,
+  upperHopperRounds,
   type AirBand,
   type CanisterRound,
   type SafetySetting,
@@ -99,6 +102,8 @@ export function weaponFamilyFields(f: any): Record<string, unknown> {
     drumCells: whole(100),
     drumCellRounds: whole(100),
     drumFitted: new f.BooleanField({ initial: false }),
+    // The rounds in the upper of two stacked hoppers, which can be replaced alone (p. 128); 0 for none.
+    upperHopper: whole(100),
     // A canister round the gun fires from the same feed (pp. 127-128).
     canister: new f.SchemaField({
       damage: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
@@ -134,6 +139,7 @@ export interface FamilyData {
   drumCells: number;
   drumCellRounds: number;
   drumFitted: boolean;
+  upperHopper: number;
   canister: CanisterRound;
 }
 
@@ -155,6 +161,7 @@ export function familyData(item: any): FamilyData {
     drumCells: count(d.drumCells),
     drumCellRounds: count(d.drumCellRounds),
     drumFitted: d.drumFitted === true,
+    upperHopper: count(d.upperHopper),
     canister: {
       damage: String(d.canister?.damage ?? "").trim(),
       accuracy: count(d.canister?.accuracy),
@@ -503,6 +510,31 @@ export function readyWeaponFamilies(api: GWorldApi, on: FamilySwitches): void {
     run: (item, actor) => {
       void api.combat.setWeaponState(item, MODULE_ID, { drumCellFired: 0 })
         .then(() => say(actor, String(item?.name ?? ""), [F("DrumTurned", { readies: BROADWELL.rotateReadies, assisted: BROADWELL.rotateAssisted, cell: familyData(item).drumCellRounds })]));
+    },
+  });
+
+  // The Nordenfelt's upper hopper, replaced alone once its rounds are fired (p. 128).
+  const upperHopperGain = (item: any): number => {
+    const mode = rangedModes(item)[0];
+    const capacity = api.rules.parseShots(String(mode?.shots ?? "")).capacity;
+    if (!mode || typeof capacity !== "number") return 0;
+    return upperHopperRounds(Number(mode.loaded) || 0, capacity, familyData(item).upperHopper);
+  };
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-upper-hopper",
+    itemTypes: ["equipment"],
+    label: L("UpperHopperAction"),
+    icon: "fa-solid fa-layer-group",
+    visible: (item) => on.mechanical() && familyData(item).upperHopper > 0 && upperHopperGain(item) > 0,
+    run: (item, actor) => {
+      void (async () => {
+        const gain = upperHopperGain(item);
+        if (!gain) return;
+        const loaded = await api.items.load(item, 0, gain);
+        if (loaded === null) return;
+        await say(actor, String(item?.name ?? ""), [F("UpperHopperReplaced", { rounds: gain, loaded })]);
+      })();
     },
   });
 

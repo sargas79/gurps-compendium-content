@@ -254,13 +254,53 @@ export function shapedDr(dr: number): number {
   return Math.floor(Math.max(0, Number(dr) || 0) / SHAPED_DIVISOR);
 }
 
+/**
+ * A flat or "pancake" charge (p. 183): where its blast can't get through the
+ * target's DR, a tenth of the damage, now cutting, against a hundredth of
+ * the DR. Null where the blast gets through, and it is an ordinary charge.
+ */
+export const FLAT_CHARGE = Object.freeze({ damageDivisor: 10, drDivisor: 100 });
+
+export function flatCharge(damage: number, dr: number): { damage: number; dr: number } | null {
+  const blast = Math.max(0, Math.floor(Number(damage) || 0));
+  const armour = Math.max(0, Math.floor(Number(dr) || 0));
+  if (blast > armour) return null;
+  return { damage: Math.floor(blast / FLAT_CHARGE.damageDivisor), dr: Math.floor(armour / FLAT_CHARGE.drDivisor) };
+}
+
+/** The most a formula's dice can do: 6 a die and the adds, times any multiplier. */
+export function maxDamage(d: DiceAdds): number {
+  return Math.max(0, (d.dice * 6 + d.adds) * (d.multiplier && d.multiplier > 1 ? d.multiplier : 1));
+}
+
+/**
+ * Cutting cord, a flexible linear shaped charge (p. 188): a 2' length weighs
+ * a pound and does 4dx2 cr ex to anyone nearby, but against the thing it is
+ * laid on to cut, 4d(5) cr ex at its maximum.
+ */
+export const CUTTING_CORD = Object.freeze({ feetPerPound: 2, blast: "4dx2", cutDice: 4, cutDivisor: 5 });
+
+/** A record of cutting cord, by its name. */
+export const isCuttingCord = (item: any): boolean => item?.type === "equipment" && /^cutting cord\b/i.test(String(item?.name ?? ""));
+
+/** The pounds of cord a cut this many feet long takes, a part of a 2' length counting as the whole of it. */
+export function cordPounds(feet: number): number {
+  return Math.ceil(Math.max(0, Number(feet) || 0) / CUTTING_CORD.feetPerPound);
+}
+
+/** What the cord does to the thing it cuts: 4d at its maximum, against a fifth of the DR (p. 188). */
+export function cordCut(dr: number): { damage: number; dr: number } {
+  return { damage: CUTTING_CORD.cutDice * 6, dr: Math.floor(Math.max(0, Number(dr) || 0) / CUTTING_CORD.cutDivisor) };
+}
+
 // ── unstable and home-made explosives (pp. 184-187) ─────────────────────────
 
 /** Nitroglycerin that is dropped or jolted goes off on 12+ on 3d; impure nitro, on 10+ (p. 184). */
 export const NITRO_SHOCK = 12;
 export const IMPURE_NITRO_SHOCK = 10;
 
-const isNitro = (row: ExplosiveRow | null) => /^nitroglycerin\b/i.test(String(row?.type ?? ""));
+/** Nitroglycerin itself, the liquid a yegg carries in a rubber ball (pp. 184-185). */
+export const isNitro = (row: ExplosiveRow | null) => /^nitroglycerin\b/i.test(String(row?.type ?? ""));
 /** An explosive with nitroglycerin in it: nitro itself, dynamite and blasting gelatin (pp. 183-185). */
 export const carriesNitro = (row: ExplosiveRow | null) => /\(NG\)|^Dynamite\b|^Blasting Gelatin\b/i.test(`${row?.type ?? ""} ${row?.use ?? ""}`);
 /** Dynamite -- which can be boiled for its nitro (p. 185). Military dynamite has none. */
@@ -371,6 +411,12 @@ export const isFuelAir = (row: ExplosiveRow | null) => /^fuel-air/i.test(String(
  */
 export const THERMITE = { dice: 3, adds: 0, secondsPerPound: 25, damagePerDr: 10 } as const;
 export const THERMITE_SPARKS = [{ yards: 1, damage: 3 }, { yards: 2, damage: 1 }] as const;
+
+/** A second of thermite's sparks and heat on someone this many yards from it: 3 within a yard, 1 at two, none past (p. 188). */
+export function sparksAt(yards: number): number {
+  const distance = Math.max(0, Number(yards) || 0);
+  return THERMITE_SPARKS.find((band) => distance <= band.yards)?.damage ?? 0;
+}
 
 export function thermiteSeconds(pounds: number): number {
   return Math.floor(Math.max(0, Number(pounds) || 0) * THERMITE.secondsPerPound);

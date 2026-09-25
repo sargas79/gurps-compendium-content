@@ -407,6 +407,21 @@ export function batchTime(tool: HandloadingTool, rounds: number, matched: boolea
   return { minutes, rolls: Math.max(1, Math.ceil(minutes / figures.rollEvery)) };
 }
 
+/**
+ * Casting the projectiles at home (p. 174): lead-alloy bullets and shot as
+ * they come, complex projectiles at the GM's modifier -- the book's examples
+ * are jacketed bullets at -1 (-3 in silver, which `SILVER_ARMOURY` already
+ * takes) and APHC at -2. Flechettes need an ammunition factory's machining.
+ * The modifier the batch's Armoury rolls start from, or "factory".
+ */
+export function castingModifier(projectile: string, material: string): number | "factory" {
+  if (["sapfsds", "multiFlechette", "apfsds", "apfsdsdu"].includes(projectile)) return "factory";
+  if (projectile === "aphc") return -2;
+  // Silver's -3 is the jacketed bullet's -1 made worse, and is counted on its own.
+  if (material === "silver") return 0;
+  return ["hollowPoint", "poison", "ap", "frangible", "duplex", "triplex"].includes(projectile) ? -1 : 0;
+}
+
 /** Handloading is for cased ammunition (p. 174). */
 export function canHandload(row: CalibreRow | null): boolean {
   return ammunitionClass(row) === "cased";

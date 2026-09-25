@@ -4,8 +4,8 @@
  * under the switch `covertListening`. The figures are in `rules.ts`.
  *
  *   - **High-Tech's own gear:** the bug detector's sweep takes -5 for a bug
- *     using spread spectrum and -2 for one an isolator guards, and the
- *     contact mike's roll -4 under white noise (both High-Tech's buttons,
+ *     using spread spectrum (an isolator hides a bug only from the junction
+ *     detector), and the contact mike's roll -4 under white noise (both High-Tech's buttons,
  *     under `surveillanceGear`, with this switch adding the lines). A row
  *     button listens with the laser mike: in range, -2 through heavy curtains
  *     or triple glazing, -1 to -4 for noise at TL7, -4 under white noise. The
@@ -19,7 +19,8 @@
  *     show their figures on their sheets.
  *   - **A GM tool** runs the jobs the supplement prints with no record:
  *     building and reading a computer-emissions interceptor, the typing sample
- *     acoustic keylogging needs, capturing an RFID chip, making a booster bag,
+ *     acoustic keylogging needs and then its analysis on Electronics
+ *     Operation (Surveillance), capturing an RFID chip, making a booster bag,
  *     and an FM receiver as a white noise generator.
  */
 
@@ -88,7 +89,7 @@ export function covertLines(item: any): string[] {
   const name = nameOf(item);
   const tl = itemTl(item);
   const lines: string[] = [];
-  if (/^bug detector$/i.test(name)) lines.push(F("Detector", { spread: SPREAD_SPECTRUM, isolator: ISOLATOR }));
+  if (/^bug detector$/i.test(name)) lines.push(F("Detector", { spread: SPREAD_SPECTRUM }));
   if (isWhiteNoiseGenerator(name)) lines.push(F("WhiteNoise", { modifier: WHITE_NOISE }), L("WhiteNoiseNearby"));
   if (isLaserMike(name)) lines.push(F(tl >= 8 ? "LaserTl8" : "LaserTl7", { curtains: CURTAINS, noise: MAX_NOISE, whiteNoise: WHITE_NOISE }));
   if (isContactMike(name) || /^audio bug\b/i.test(name)) lines.push(F("MaskedByWhiteNoise", { modifier: WHITE_NOISE }));
@@ -202,7 +203,7 @@ export async function runCovertJob(api: GWorldApi, actor: any, answer: { task: C
   const title = L(`Task.${answer.task}`);
   const skill = TASK_SKILL[answer.task];
   const roll = (modifiers: Array<{ label: string; value: number }> = [], base?: number) =>
-    api.roll.success({ actor, base: base ?? skillBase(api, actor, skill!), skill, label: F("JobLabel", { task: title, skill }), modifiers, tags: ["surveillance"] } as any);
+    api.roll.success({ actor, base: base ?? skillBase(api, actor, skill), skill, label: F("JobLabel", { task: title, skill }), modifiers, tags: ["surveillance"] } as any);
   switch (answer.task) {
     case "emissionsBuild":
       await roll();
@@ -214,7 +215,10 @@ export async function runCovertJob(api: GWorldApi, actor: any, answer: { task: C
     }
     case "acousticKeylog": {
       const minutes = keylogMinutes(answer.typing, answer.manual);
-      await card(actor, title, [minutes === null ? L("NoTyping") : F("SampleTime", { minutes, characters: KEYLOG_SAMPLE.characters, words: KEYLOG_SAMPLE.words })]);
+      if (minutes === null) return void (await card(actor, title, [L("NoTyping")]));
+      await card(actor, title, [F("SampleTime", { minutes, characters: KEYLOG_SAMPLE.characters, words: KEYLOG_SAMPLE.words })]);
+      // The sample in, the analysis is rolled.
+      await roll();
       return;
     }
     case "rfidCapture": {

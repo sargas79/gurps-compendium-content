@@ -64,6 +64,12 @@
       <div class="ichecks">
         <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.UnreliableHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineUnreliable" {{#if magazine.unreliable}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Unreliable"}}</label>
         {{#if magazine.grip}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.InGripHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineInGrip" {{#if magazine.inGrip}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.InGrip"}}</label>{{/if}}
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.RestrictedHint'}}"><input type="checkbox" data-gcc-ht-gun="magazineRestricted" {{#if magazine.restricted}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Restricted"}}</label>
+      </div>
+    {{/if}}
+    {{#if magazine.joinable}}
+      <div class="ichecks">
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Accessories.JoinedHint'}}"><input type="checkbox" data-gcc-ht-gun="magazinesJoined" {{#if magazine.joined}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Accessories.Joined"}}</label>
       </div>
     {{/if}}
   {{/if}}

@@ -12,7 +12,10 @@
  *     magazine on the gun: its capacity through `gworld.shotsEntry`, its
  *     weight and cost from the calibre's WPS, -1 Bulk past 1.5 (extended) or
  *     3 (drum) times the normal capacity, -1 Malf. for a drum or where the GM
- *     says it's unreliable.
+ *     says it's unreliable, and -1 Malf. for magazines clamped or taped
+ *     together where the GM finds the conditions harsh; a gun with a
+ *     high-capacity magazine where the law restricts one counts as LC1-2
+ *     rather than LC3-4 (`gworld.legalityClass`).
  *   - **Sights (gunSights):** the best magnifying sight -- a scope by the +1
  *     Acc, a night or thermal sight's +2, a computer sight's magnification --
  *     goes on the gun's rows as their scope (`scopeBonus`, and `scopeFixed`
@@ -31,7 +34,9 @@
  *     Looking through a night, thermal or computer sight (toggled from the
  *     gun's row) gives its Night Vision or Infravision and leaves the shooter
  *     colorblind with tunnel vision, through `gworld.traitEffects`. A
- *     targeting laser's colour reprices it.
+ *     targeting laser's colour reprices it. A bow takes these sights
+ *     as a gun does, and a crossbow its scopes, collimating sights and
+ *     targeting lasers (p. 201).
  *   - **Suppressors (suppressors):** fitted only to a gun that takes one
  *     (never an ordinary revolver: the weapon families' `gunTakesSuppressor`);
  *     their Bulk; a wiper design's damage and range, for its 40 shots; a
@@ -65,14 +70,17 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
 import { shineTacticalLight, shinesInfrared } from "../expedition/index.js";
+import { laserBlocked } from "../ammunition/cargo.js";
 import { isFirearm } from "../firearms/index.js";
 import { modernMalfunction } from "../firearms/rules.js";
+import { loadingOf } from "../reloading/index.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
 import {
   ADD_ON_HOSTS,
   BIPOD,
   FOLDED_STOCK,
   accessoryFits,
+  bowSightKinds,
   HEARD_AT,
   HOME_BUILT,
   LASER_COLOUR,
@@ -99,6 +107,8 @@ import {
   magazinePriceChange,
   modeMatches,
   modeSetup,
+  JOINED_MAGAZINES_MALFUNCTION,
+  restrictedMagazineClass,
   overSightCap,
   rangefinderBonus,
   reflexBonus,
@@ -187,6 +197,8 @@ export function accessoryGunFields(f: any): Record<string, unknown> {
     magazineRounds: whole(1000),
     magazineUnreliable: new f.BooleanField({ initial: false }),
     magazineInGrip: new f.BooleanField({ initial: false }),
+    magazinesJoined: new f.BooleanField({ initial: false }),
+    magazineRestricted: new f.BooleanField({ initial: false }),
     report: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", ...REPORTS] }),
     sealedBreech: new f.BooleanField({ initial: false }),
   };
@@ -233,6 +245,10 @@ interface GunData {
   magazineUnreliable: boolean;
   /** A high-density magazine in the grip, where the gun's own design has one (p. 155). */
   magazineInGrip: boolean;
+  /** Its magazines clamped or taped together, in conditions the GM finds harsh enough for -1 Malf. (p. 155). */
+  magazinesJoined: boolean;
+  /** A high-capacity magazine where the law restricts one: an LC3-4 gun counts as LC1-2 (p. 155). */
+  magazineRestricted: boolean;
   report: Report | "";
   sealedBreech: boolean;
 }
@@ -245,6 +261,8 @@ function gunData(item: any): GunData {
     magazineRounds: Math.max(0, Math.floor(Number(d.magazineRounds) || 0)),
     magazineUnreliable: d.magazineUnreliable === true,
     magazineInGrip: d.magazineInGrip === true,
+    magazinesJoined: d.magazinesJoined === true,
+    magazineRestricted: d.magazineRestricted === true,
     report: REPORTS.includes(d.report) ? d.report : "",
     sealedBreech: d.sealedBreech === true,
   };
@@ -289,6 +307,9 @@ export function fittedTo(gun: any, on: AccessorySwitches, kinds?: readonly Acces
     // A suppressor on a gun it doesn't work on does nothing (p. 159), nor a sidearm's or shoulder arm's gear on the other.
     if (known.figures.kind === "suppressor" && !gunTakesSuppressor(gun)) continue;
     if (!accessoryFits(known.figures.fits, gunSkill(gun))) continue;
+    // A bow or crossbow takes the sights alone (p. 201).
+    const bow = bowSightKinds(gunSkill(gun));
+    if (bow && !bow.includes(known.figures.kind)) continue;
     out.push({ item, figures: known.figures, data });
   }
   return out;
@@ -345,6 +366,17 @@ export function gunMagazine(item: any): GunMagazine | null {
   // Not in a grip, unless the gun was designed for one there (p. 155).
   const refused = data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")) && !data.magazineInGrip ? L("HighDensityGrip") : null;
   return { kind: data.magazine, rounds, normal, wps, figures: magazineFigures({ kind: data.magazine, material: data.magazineMaterial, rounds, normal, wps, unreliable: data.magazineUnreliable }), refused };
+}
+
+/** Whether a gun feeds from a detachable magazine, the kind that can be clamped or taped to another (p. 155). */
+function feedsFromMagazine(api: GWorldApi, item: any): boolean {
+  return loadingOf(api, item) === "magazine";
+}
+
+/** Whether a gun's mode is fed from its magazine: its Shots are the standard magazine's. */
+function fedFromMagazine(item: any, mode: any): boolean {
+  const normal = magazineCapacity(String(rangedModes(item)[0]?.shots ?? ""));
+  return normal > 0 && magazineCapacity(String(mode?.shots ?? "")) === normal;
 }
 
 // ── what the gun's Bulk comes to ──
@@ -581,11 +613,22 @@ async function say(actor: any, title: string, lines: string[]): Promise<void> {
 
 // ── item sheets ──
 
-/** The guns an accessory can be fitted to: the character's firearms, less the revolvers a suppressor won't fit. */
+/**
+ * The guns an accessory can be fitted to: the character's firearms, less the
+ * revolvers a suppressor won't fit; and for a sight, bows and crossbows that
+ * take it (p. 201).
+ */
 function gunsFor(api: GWorldApi, accessory: any, figures: AccessoryFigures): any[] {
   const actor = accessory?.actor ?? accessory?.parent;
-  return [...(actor?.items ?? [])].filter((i: any) => i.id !== accessory.id && isFirearm(api, i) && (figures.kind !== "suppressor" || gunTakesSuppressor(i)) && accessoryFits(figures.fits, gunSkill(i)));
+  return [...(actor?.items ?? [])].filter((i: any) => {
+    if (i.id === accessory.id || i?.type !== "equipment") return false;
+    if (!isFirearm(api, i)) return bowSightKinds(gunSkill(i))?.includes(figures.kind) === true;
+    return (figures.kind !== "suppressor" || gunTakesSuppressor(i)) && accessoryFits(figures.fits, gunSkill(i));
+  });
 }
+
+/** A bow or crossbow that takes firearm sights (p. 201). */
+const sightedBow = (item: any): boolean => item?.type === "equipment" && (bowSightKinds(gunSkill(item))?.length ?? 0) > 0;
 
 function accessoryContext(api: GWorldApi, item: any, figures: AccessoryFigures, on: AccessorySwitches): Record<string, unknown> {
   const data = accessoryData(item);
@@ -687,7 +730,11 @@ function gunContext(api: GWorldApi, item: any, on: AccessorySwitches): Record<st
       chosen: Boolean(data.magazine),
       grip: data.magazine === "highDensity" && !highDensityFits(String(mode.skill ?? "")),
       inGrip: data.magazineInGrip,
+      joinable: feedsFromMagazine(api, item),
+      joined: data.magazinesJoined,
+      restricted: data.magazineRestricted,
     };
+    if (data.magazinesJoined && feedsFromMagazine(api, item)) lines.push(F("JoinedLine", { malf: JOINED_MAGAZINES_MALFUNCTION }));
     if (magazine) {
       if (magazine.refused) lines.push(magazine.refused);
       else if (!magazine.wps) lines.push(L("MagazineNoCalibre"));
@@ -877,6 +924,8 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   });
 
   const firearm = (item: any) => isFirearm(api, item);
+  /** A gun, or a bow or crossbow with firearm sights (p. 201): what the sights work on. */
+  const sighted = (item: any) => firearm(item) || (on.sights() && sightedBow(item));
 
   // An accessory's own price: by the level, by the laser's colour, by a computer sight's vision, by a home-built grade (pp. 155-159).
   api.data.registerPriceModifier({
@@ -917,6 +966,16 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     },
   });
 
+  // A high-capacity magazine where the law restricts one: an LC3-4 gun counts as LC1-2 (p. 155).
+  Hooks.on(api.data.hooks.legalityClass, (context: any) => {
+    const item = context?.item;
+    if (!on.magazines() || !firearm(item) || !gunData(item).magazineRestricted) return;
+    const magazine = gunMagazine(item);
+    if (!magazine || magazine.refused) return;
+    const lc = restrictedMagazineClass(typeof context.lc === "number" ? context.lc : null);
+    if (lc !== null) context.lc = lc;
+  });
+
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-accessories-item",
@@ -946,11 +1005,12 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   // The rows: magazine Malf., suppressors, stocks and bipods (pp. 155-160).
   Hooks.on(api.combat.hooks.weaponAttacks, (context: any) => {
     const item = context?.item;
-    if (!firearm(item)) return;
+    if (!sighted(item)) return;
     const actor = context.actor;
     const st = Number(api.actors.attribute(actor, "ST")) || 10;
     const minimumSt = api.registry.isRuleOn("minimumSt");
     const magazine = on.magazines() ? gunMagazine(item) : null;
+    const joined = on.magazines() && gunData(item).magazinesJoined && feedsFromMagazine(api, item);
     const suppressor = on.suppressors() ? fittedTo(item, on, ["suppressor"])[0] ?? null : null;
     const suppressing = suppressor && suppressorOn(item, on) ? suppressor : null;
     const state = gunState(api, item);
@@ -976,6 +1036,11 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
       if (magazine && !magazine.refused && magazine.figures.malfunction && typeof row.malfunction === "number") {
         row.malfunction += magazine.figures.malfunction;
         row.notes.push({ label: L(`Magazine.${magazine.kind}`), hint: F("MagazineHint", { rounds: magazine.rounds }) });
+      }
+      // Clamped or taped magazines in harsh conditions, as the GM says (p. 155).
+      if (joined && fedFromMagazine(item, mode) && typeof row.malfunction === "number") {
+        row.malfunction += JOINED_MAGAZINES_MALFUNCTION;
+        row.notes.push({ label: L("Joined"), hint: L("JoinedHint") });
       }
 
       if (suppressing) {
@@ -1056,7 +1121,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   // The shot: the setup, Bulk, the sights and their cap, bracing (pp. 155-160).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
-    if (context?.mode?.ranged !== true || !firearm(item)) return;
+    if (context?.mode?.ranged !== true || !sighted(item)) return;
     const actor = context.actor;
     const modeIndex = Number(context.mode.index) || 0;
     const mode = rangedModes(item)[modeIndex] ?? {};
@@ -1115,7 +1180,8 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     const laser = laserOn ? fittedTo(item, on, ["targetingLaser"])[0] : undefined;
     if (laser && context.laser) {
       const reach = laserReach(laser.figures.yards ?? 0, laser.data.colour, !dark);
-      const within = yards === null || yards <= reach;
+      // Prism smoke between the gun and the target stops the beam (p. 171).
+      const within = (yards === null || yards <= reach) && !laserBlocked(api, context);
       const sees = seesLaserDot(laser.data.colour, (api.actors.derived(actor) as any)?.traitEffects ?? {});
       const line = lineOf("laser");
       if (within && sees) {
@@ -1149,7 +1215,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     key: LIGHT_OPTION,
     label: L("TacticalLight"),
     attack: "ranged",
-    available: (context: any) => on.sights() && firearm(context?.item) && fittedTo(context.item, on, ["tacticalLight"]).length > 0,
+    available: (context: any) => on.sights() && sighted(context?.item) && fittedTo(context.item, on, ["tacticalLight"]).length > 0,
     apply: (context: any) => {
       const light = fittedTo(context?.item, on, ["tacticalLight"])[0];
       return light ? { notes: [F("TacticalLightNote", { name: light.item.name, yards: light.figures.yards ?? 0 })] } : null;
@@ -1164,7 +1230,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     label: L("TacticalLightEyes"),
     icon: "fa-solid fa-eye-slash",
     // An infrared light blinds nobody (p. 52): no dazzle from it.
-    visible: (item) => on.sights() && firearm(item) && dazzlingLight(item) !== undefined,
+    visible: (item) => on.sights() && sighted(item) && dazzlingLight(item) !== undefined,
     run: (item, actor) => {
       const light = dazzlingLight(item);
       if (light) void shineTacticalLight(api, String(light.item.name ?? ""), light.figures.yards ?? 0, actor);
@@ -1227,7 +1293,7 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
   };
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-fold-stock", itemTypes: ["equipment"], label: L("FoldStock"), icon: "fa-solid fa-arrows-left-right-to-line", visible: (item) => on.stocks() && firearm(item) && hasFoldingStock(item, on), run: (item, actor) => toggle("stockFolded", item, actor, "StockFoldedSaid", "StockUnfoldedSaid") });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-bipod", itemTypes: ["equipment"], label: L("Bipod"), icon: "fa-solid fa-person-rifle", visible: (item) => on.stocks() && firearm(item) && hasBipod(item, on), run: (item, actor) => toggle("bipodDeployed", item, actor, "BipodDeployedSaid", "BipodFoldedSaid") });
-  api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-sight", itemTypes: ["equipment"], label: L("UseSight"), icon: "fa-solid fa-binoculars", visible: (item) => on.sights() && firearm(item) && fittedTo(item, on).some((f) => f.figures.imposesTunnelVision), run: (item, actor) => toggle("sightInUse", item, actor, "SightOnSaid", "SightOffSaid") });
+  api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-sight", itemTypes: ["equipment"], label: L("UseSight"), icon: "fa-solid fa-binoculars", visible: (item) => on.sights() && sighted(item) && fittedTo(item, on).some((f) => f.figures.imposesTunnelVision), run: (item, actor) => toggle("sightInUse", item, actor, "SightOnSaid", "SightOffSaid") });
   api.sheets.registerRowAction({ module: MODULE_ID, key: "ht-hear-shot", itemTypes: ["equipment"], label: L("HearTitleShort"), icon: "fa-solid fa-ear-listen", visible: (item) => on.suppressors() && firearm(item), run: (item, actor) => hearTheShot(api, item, actor, on) });
 }
 

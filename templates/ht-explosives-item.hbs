@@ -1,10 +1,15 @@
-{{!-- An unstable or home-made explosive (High-Tech pp. 184-187): the 3d roll a jolt sets it off on (for one with nitro in it), and what a home-made batch came out as. --}}
+{{!-- An unstable or home-made explosive (High-Tech pp. 184-187): the 3d roll a jolt sets it off on (for one with nitro in it, and for the GM's eyes), nitro carried in a rubber ball, and what a home-made batch came out as. --}}
 <div class="isub" data-gcc-ht-explosives-section>
   <div class="isub-head">{{localize "GCC.HT.Rules.unstableExplosives.Name"}}</div>
   <div class="ifields">
     {{#if sweats}}
     <label data-tooltip="{{localize 'GCC.HT.Explosives.ShockOnHint'}}">{{localize "GCC.HT.Explosives.ShockOn"}}
       <input type="number" min="0" max="18" step="1" name="{{field}}.shockOn" value="{{shockOn}}" {{#unless editable}}disabled{{/unless}} />
+    </label>
+    {{/if}}
+    {{#if nitro}}
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Explosives.CushionedHint'}}">
+      <input type="checkbox" name="{{field}}.cushioned" {{#if cushioned}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Explosives.CushionedLabel"}}
     </label>
     {{/if}}
     <label data-tooltip="{{localize 'GCC.HT.Explosives.HomeMadeHint'}}">{{localize "GCC.HT.Explosives.HomeMade"}}

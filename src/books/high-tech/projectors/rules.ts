@@ -89,6 +89,40 @@ export function tankStruck(d6: number): "explodes" | "disabled" {
   return Math.floor(Number(d6) || 0) === 1 ? "explodes" : "disabled";
 }
 
+/** A vehicle's engine under burning fuel is rolled for again every 3 seconds (p. 179). */
+export const ENGINE_CHECK_EVERY = 3;
+
+/**
+ * Whether a vehicle has an air-breathing engine for burning fuel to choke
+ * (p. 179): one that burns fuel, which its HT code marks flammable,
+ * combustible or explosive (Characters p. 462). Electric and muscle-powered
+ * vehicles, and anything with no ST, don't.
+ */
+export function airBreathing(vehicle: { stHp?: unknown; fragility?: unknown } | null | undefined): boolean {
+  if (!vehicle || !(Number(vehicle.stHp) > 0)) return false;
+  return /[fcx]/i.test(String(vehicle.fragility ?? ""));
+}
+
+/**
+ * The engine's HT rolls while the fuel burns (p. 179): at once and every 3
+ * seconds after, until one fails -- it breaks down -- or the fuel burns out.
+ * A 3d roll of 3-4 always succeeds and 17-18 always fails.
+ */
+export function engineUnderFire(ht: number, seconds: number, rolls: readonly number[]): { brokenDown: boolean; checks: Array<{ second: number; roll: number; success: boolean }> } {
+  const checks: Array<{ second: number; roll: number; success: boolean }> = [];
+  const target = Math.floor(Number(ht) || 0);
+  for (let second = 0, i = 0; second < Math.max(1, seconds) && i < rolls.length; second += ENGINE_CHECK_EVERY, i += 1) {
+    const roll = Math.floor(Number(rolls[i]) || 0);
+    const success = roll <= 4 || (roll <= 16 && roll <= target);
+    checks.push({ second, roll, success });
+    if (!success) return { brokenDown: true, checks };
+  }
+  return { brokenDown: false, checks };
+}
+
+/** How many rolls a fire of `seconds` may call for. */
+export const engineRollsFor = (seconds: number): number => Math.max(1, Math.ceil(Math.max(1, seconds) / ENGINE_CHECK_EVERY));
+
 // ── spray guns and aerosols (p. 180) ────────────────────────────────────────
 
 /** The wide jet: +2 to hit the face, as blowpipe powders get (p. 180; Characters p. 180). */

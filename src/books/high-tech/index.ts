@@ -119,6 +119,7 @@ import { readyWounding } from "./wounding/index.js";
 import { projectorFields, readyProjectors } from "./projectors/index.js";
 import { readyExplosives } from "./explosives/index.js";
 import { initHighTechSensors, readyHighTechSensors } from "./sensors/index.js";
+import { readyScreens } from "./sensors/screens.js";
 import { initSurvival, readySurvival } from "./survival/index.js";
 import { initHighTechMelee, meleeGunFields, readyHighTechMelee } from "./melee/index.js";
 import { initClothing, readyClothing } from "./clothing/index.js";
@@ -499,6 +500,7 @@ function ready(api: GWorldApi): void {
   readyOrdnance(api, ordnance);
   readyGuidance(api, { fuzes: rule("electronicFuzes"), seekers: rule("homingSeekers") });
   readyHighTechSensors(api, { radios: rule("radios"), active: rule("activeSensors"), visual: rule("visualSensors"), passive: rule("passiveSensors"), tuning: rule("radioTuning"), design: rule("radioDesign") });
+  readyScreens(api, rule("radioDesign"));
   readySurvival(api, { survival: rule("survivalGear"), maritime: rule("maritimeGear"), parachuting: rule("parachuting"), rations: rule("rations") });
   readyExpedition(api, { lights: rule("lightSources"), navigation: rule("navigationGear"), loadBearing: rule("loadBearingEquipment"), climbing: rule("climbingGear") });
   readyLighting(api, { illumination: rule("illumination"), dazzle: rule("lightDazzle") });
@@ -517,7 +519,7 @@ function ready(api: GWorldApi): void {
   readyCovertListening(api, rule("covertListening"));
   readyElectricSecurity(api, electric);
   // After the devices' object figures, which military gear's HT and DR override.
-  readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones") });
+  readyBattlefield(api, { sensors: rule("battlefieldSensors"), drones: rule("reconDrones"), seekers: rule("homingSeekers") });
   readyOddments(api, { oddments: rule("protectiveOddments"), cover: rule("portableCover") });
   readyEnforcement(api);
   readyProsthetics(api, rule("prosthetics"));

@@ -184,6 +184,9 @@ export const TOUCH_MODIFIER: Readonly<Record<TouchSize, { multi: number; single:
   phone: { multi: -1, single: -2 },
 });
 
+/** An early touch screen, before 1988: -2 to effective skill (HT:EE p. 40). */
+export const EARLY_TOUCH = -2;
+
 /** A stylus is a +1 quality modifier, but gives no multitouch (HT:EE p. 40). */
 export const STYLUS_BONUS = 1;
 
@@ -200,11 +203,13 @@ export interface InterfaceSetup {
   touch: TouchSize;
   multitouch: boolean;
   voiceTrained: boolean;
+  /** A touch screen from before 1988, which can't tell exactly where a finger is (HT:EE p. 40). */
+  earlyTouch?: boolean;
 }
 
 /** One line an interface puts on a roll. */
 export interface InterfaceLine {
-  key: "unfamiliar" | "touch" | "stylus" | "voice" | "voiceUntrained" | "bci";
+  key: "unfamiliar" | "touch" | "earlyTouch" | "stylus" | "voice" | "voiceUntrained" | "bci";
   value: number;
 }
 
@@ -213,7 +218,7 @@ export interface InterfaceLine {
  * through (HT:EE pp. 39-41): -2 where the user isn't familiar with it (under
  * the familiarity rule, `familiar` null without it); a touch screen's
  * modifier on Computer Operation, or with a stylus the single-touch figure
- * +1; voice control's -2, and -2 more before it is trained; a
+ * +1, and an early screen's -2 on every roll; voice control's -2, and -2 more before it is trained; a
  * brain-computer interface's -2. None where the computer's Complexity is too
  * low to drive the interface at all.
  */
@@ -237,6 +242,8 @@ export function interfaceLines(
       lines.push({ key: "stylus", value: STYLUS_BONUS });
     } else if (bare) lines.push({ key: "touch", value: bare });
   }
+  // Before 1988 a touch screen couldn't find the finger exactly: -2 to effective skill (HT:EE p. 40).
+  if (kind === "touch" && setup.earlyTouch) lines.push({ key: "earlyTouch", value: EARLY_TOUCH });
   if (kind === "voice") {
     lines.push({ key: "voice", value: VOICE_NAVIGATION });
     if (!setup.voiceTrained) lines.push({ key: "voiceUntrained", value: VOICE_UNTRAINED });

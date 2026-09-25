@@ -54,6 +54,23 @@ export interface LingeringBurn {
   burnedOutLine: (name: string) => string;
 }
 
+/**
+ * The victim's DR at each hit location against burning damage: where a
+ * location's DR is split, the band that names burning, else its headline
+ * figure (the sheet's `hitLocations`, API 1.140.0); the plain
+ * `drByLocation` where that isn't there.
+ */
+export function burnDrByLocation(api: GWorldApi, actor: any): Record<string, number> {
+  const derived = (api.actors.derived(actor) as any) ?? {};
+  const out: Record<string, number> = { ...(derived.drByLocation ?? {}) };
+  for (const entry of (derived.hitLocations ?? []) as any[]) {
+    if (!entry?.key) continue;
+    const band = ((entry.exceptions ?? []) as any[]).find((b) => (b?.types ?? []).includes("burn"));
+    out[String(entry.key)] = Number(band ? band.dr : entry.dr) || 0;
+  }
+  return out;
+}
+
 const d6 = (): number => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
 const isActiveGm = () => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
 const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));

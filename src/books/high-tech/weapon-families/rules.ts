@@ -106,6 +106,20 @@ export const MECHANICAL_MG = Object.freeze({
  */
 export const BROADWELL = Object.freeze({ rotateReadies: 2, rotateAssisted: 1, fitSeconds: 10 });
 
+/**
+ * A gun fed from two hoppers, one stacked on the other (the Nordenfelt, p.
+ * 128): the upper one feeds first, so once its rounds are fired it can be
+ * replaced alone. The rounds a fresh upper hopper adds: all of it once the
+ * gun holds no more than the lower hopper's, and none while the upper still
+ * has rounds in it.
+ */
+export function upperHopperRounds(loaded: number, capacity: number, upper: number): number {
+  const hopper = Math.max(0, Math.floor(Number(upper) || 0));
+  const full = Math.max(0, Math.floor(Number(capacity) || 0));
+  if (!hopper || hopper >= full) return 0;
+  return Math.max(0, Math.floor(Number(loaded) || 0)) <= full - hopper ? hopper : 0;
+}
+
 /** The rounds left in the drum's cell at the feed. */
 export function cellRoundsLeft(cellRounds: number, firedFromCell: number): number {
   return Math.max(0, Math.floor(Number(cellRounds) || 0) - Math.max(0, Math.floor(Number(firedFromCell) || 0)));

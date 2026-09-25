@@ -35,7 +35,7 @@ function fakeApi() {
   return {
     rules,
     registry: { isRuleOn: (key: string) => key === "minimumSt" },
-    data: { registerPriceModifier: (m: any) => prices.push(m) },
+    data: { hooks: { legalityClass: "gworld.legalityClass" }, registerPriceModifier: (m: any) => prices.push(m) },
     combat: {
       hooks: HOOKS,
       registerAttackOption: (o: any) => { options.set(o.key, o); return `${o.module}.${o.key}`; },
@@ -203,6 +203,75 @@ describe("magazines (p. 155)", () => {
     const entry = fire(HOOKS.shotsEntry, { actor, item: glock, modeIndex: 0, mode: glock.system.rangedModes[0], entry: { capacity: 17 } }).entry;
     expect(entry.capacity).toBe(17);
     expect(prices.map((p) => p.apply(glock, { cost: 600, weight: 2 })).find(Boolean)).toBeUndefined();
+  });
+
+  it("costs -1 Malf. for magazines clamped or taped in harsh conditions, on a gun fed from a detachable magazine", () => {
+    on = { gunMagazines: true };
+    ready();
+    const actor = character();
+    const m16 = gun(actor, { name: "Colt M16A1, .223 Remington", skill: "Guns (Rifle)", shots: "20+1(3)", firearm: { magazinesJoined: true } });
+    expect(rows(m16)[0]).toMatchObject({ malfunction: 16 });
+    expect(rows(m16)[0].notes.map((n: any) => n.label)).toContain("GCC.HT.Accessories.Joined");
+    // A revolver's cylinder is no magazine to tape.
+    const revolver = gun(actor, { name: "Colt Python, .357 Magnum", shots: "6(3i)", firearm: { magazinesJoined: true } });
+    expect(rows(revolver)[0].malfunction).toBe(17);
+    on = {};
+    expect(rows(m16)[0].malfunction).toBe(17);
+  });
+
+  it("counts an LC3-4 gun with a high-capacity magazine as LC1-2 where the law restricts one", () => {
+    on = { gunMagazines: true };
+    ready();
+    const actor = character();
+    const glock = gun(actor, { firearm: { magazine: "extended", magazineRounds: 31, magazineRestricted: true } });
+    const legality = (item: any, lc: number | null) => fire("gworld.legalityClass", { item, actor, lc }).lc;
+    expect(legality(glock, 3)).toBe(1);
+    expect(legality(glock, 4)).toBe(2);
+    expect(legality(glock, 2)).toBe(2);
+    // The standard magazine, or a gun the law isn't said to reach, keeps its own.
+    glock.system.extensions[MODULE_ID].firearm.magazine = "";
+    expect(legality(glock, 3)).toBe(3);
+    const free = gun(actor, { firearm: { magazine: "extended", magazineRounds: 31 } });
+    expect(legality(free, 3)).toBe(3);
+  });
+});
+
+describe("sights on bows and crossbows (p. 201)", () => {
+  function launcher(actor: any, name: string, skill: string): any {
+    const item = gun(actor, { name, skill, accuracy: 4, bulk: -6, shots: "1(4)" });
+    item.system.weaponClass = "bow";
+    item.system.rangedModes[0].malfunction = null;
+    return item;
+  }
+
+  it("fits a crossbow with a scope, a collimating sight and a laser, and nothing else", () => {
+    on = { gunSights: true, suppressors: true };
+    ready();
+    const actor = character();
+    const crossbow = launcher(actor, "Crossbow", "Crossbow");
+    const scope = accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", crossbow, { level: 2 });
+    accessory(actor, "Detachable Baffle Suppressor, Pistol", crossbow, { level: 2 });
+    accessory(actor, "Night Sight (TL8)", crossbow);
+    expect(fittedTo(crossbow, switches()).map((f) => f.item.name)).toEqual([scope.name]);
+    expect(rows(crossbow)[0]).toMatchObject({ scopeBonus: 2, scopeFixed: true });
+    // Held to the crossbow's own Acc 4, as a gun's sights are.
+    expect(valueOf(attack(crossbow, aimedAt(4, 2)).modifiers, "SightCap")).toBeUndefined();
+    // A speargun takes none.
+    const speargun = launcher(actor, "Speargun", "Crossbow (Speargun)");
+    accessory(actor, "Fixed-Power Scope (TL7, per +1 Acc)", speargun, { level: 2 });
+    expect(fittedTo(speargun, switches())).toEqual([]);
+  });
+
+  it("lets a bow take a night sight, as a gun would, and leaves it all alone with the sights switch off", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const bow = launcher(actor, "Compound Bow", "Bow");
+    const night = accessory(actor, "Night Sight (TL8)", bow);
+    expect(fittedTo(bow, switches()).map((f) => f.item.name)).toEqual([night.name]);
+    expect(rows(bow)[0].scopeBonus).toBe(2);
+    on = {};
+    expect(rows(bow)[0].scopeBonus).toBe(0);
   });
 });
 
