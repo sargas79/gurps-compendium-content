@@ -48,7 +48,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
+import { burnDrByLocation, registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
 import { chargeOf } from "../records.js";
 import { EXPLOSIVES, type ExplosiveRow } from "./ref.js";
 import {
@@ -705,7 +705,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     dice: { dice: THERMITE.dice, adds: THERMITE.adds },
     // Its 3d burning a second touches one spot: injury there, with the place's wounding modifier (API 1.148.0).
     location: (state) => String(state.location ?? "torso"),
-    dr: (a, actor, state) => thermiteDrOnVictim(Number((a.actors.derived(actor) as any)?.drByLocation?.[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
+    dr: (a, actor, state) => thermiteDrOnVictim(Number(burnDrByLocation(a, actor)[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
     // Every 10 points destroy a point of DR for good, even on armour (p. 188): worn off the
     // armour on the spot (`items.wearDr`), and counted against the rest of the DR there.
     after: async (state, rolled, actor) => {
@@ -820,7 +820,8 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
 
 /** A victim's large-area DR: the torso's and the least-protected location's, averaged (Campaigns p. 400). */
 function largeAreaDr(api: GWorldApi, actor: any): number {
-  const byLocation = (api.actors.derived(actor) as any)?.drByLocation ?? {};
+  // Against burning, where a location's DR is split.
+  const byLocation = burnDrByLocation(api, actor);
   const rules = api.rules as any;
   const locations: readonly string[] = rules.LARGE_AREA_LOCATIONS ?? ["torso"];
   const exposed = locations.map((location) => ({ location, dr: Number(byLocation[location]) || 0 }));

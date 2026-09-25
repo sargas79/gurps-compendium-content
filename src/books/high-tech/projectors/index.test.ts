@@ -238,6 +238,25 @@ describe("flamethrowers (flamethrowers)", () => {
     expect(victim.flags.htFlameBurn).toEqual({ seconds: 9 });
   });
 
+  it("burns against the DR a split piece gives against burning, not its headline figure", async () => {
+    on.flamethrowers = true;
+    const item = flamethrower();
+    const victim = actorWith("Victim");
+    fire(HOOKS.damageModifiers, { item, mode: { index: 0, ranged: true }, distanceYards: 30, modifiers: [] });
+    await flush();
+    dice = [2];
+    fire(HOOKS.afterDamage, { actor: victim, item, damage: { basicDamage: 10 }, result: { injury: 8 } });
+    await flush();
+    // Everywhere DR 10, but only 5 against burning: large-area DR 5, a fifth of it 1. A 4 does 3.
+    const keys = ["torso", "skull", "face", "eye", "neck", "groin", "arm", "hand", "leg", "foot"];
+    derived.drByLocation = Object.fromEntries(keys.map((k) => [k, 10]));
+    derived.hitLocations = keys.map((key) => ({ key, dr: 10, exceptions: [{ dr: 5, types: ["burn", "cor"] }] }));
+    dice = [4];
+    fire(HOOKS.turnStart, null, { actor: victim });
+    await flush();
+    expect(injuries).toEqual([{ actor: "Victim", amount: 3, label: "GCC.HT.Projectors.Flame.Title" }]);
+  });
+
   it("rolls an air-breathing engine's HT every 3 seconds after a hit in its vital area, until it breaks down (p. 179)", async () => {
     on.flamethrowers = true;
     const item = flamethrower();

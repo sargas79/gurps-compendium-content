@@ -38,7 +38,7 @@ import { dropAfflictionDr } from "../../../shared/affliction-dr.js";
 import { bookOf } from "../../../shared/book-tables.js";
 import { DAZZLE_TABLES, blindnessFrom, eyeProtection } from "../../../shared/dazzle/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
+import { burnDrByLocation, registerLingeringBurn, startBurn, type LingeringBurn } from "../burning.js";
 import {
   ANTI_LASER_GOGGLES,
   BACKPACK_FACING_PENALTY,
@@ -168,7 +168,8 @@ function sealed(api: GWorldApi, actor: any): boolean {
 
 /** The DR the burning fuel meets each second: the large-area figure, at a fifth unless sealed. */
 function burningDr(api: GWorldApi, actor: any): number {
-  const byLocation = (api.actors.derived(actor) as any)?.drByLocation ?? {};
+  // Its DR against burning, where a location's DR is split (p. 178).
+  const byLocation = burnDrByLocation(api, actor);
   const rules = api.rules as any;
   const locations: readonly string[] = rules.LARGE_AREA_LOCATIONS ?? ["torso"];
   const exposed = locations.map((location) => ({ location, dr: Number(byLocation[location]) || 0 }));
