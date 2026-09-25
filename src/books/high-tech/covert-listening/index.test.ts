@@ -148,7 +148,7 @@ describe("the switch (D1: High-Tech's alone)", () => {
 });
 
 describe("High-Tech's bug sweep and contact mike, with the supplement's lines", () => {
-  it("sweeps at -5 for spread spectrum and -2 for an isolator, only under the switch", async () => {
+  it("sweeps at -5 for spread spectrum, only under the switch; an isolator guards only against the junction detector", async () => {
     on.add(key("surveillanceGear"));
     const detector = gear("Bug Detector");
     const sweeper = character("Sweeper", [detector], { skills: { "Electronics Operation (Surveillance)": 13 } });
@@ -157,7 +157,7 @@ describe("High-Tech's bug sweep and contact mike, with the supplement's lines", 
     expect(lines(contests[0].first.modifiers)).toEqual([]);
     on.add(key("covertListening"));
     await actions.get("ht-bug-sweep").run(detector, sweeper);
-    expect(lines(contests[1].first.modifiers)).toEqual([-5, -2]);
+    expect(lines(contests[1].first.modifiers)).toEqual([-5]);
   });
 
   it("ticks the boxes where the targeted hider carries a hopping bug and an isolator", async () => {
@@ -241,10 +241,14 @@ describe("the GM tool", () => {
     expect(lines(successes[0].modifiers)).toEqual([-3]);
   });
 
-  it("times the keylogging sample without a roll", async () => {
+  it("times the keylogging sample, then rolls the analysis on Electronics Operation (Surveillance)", async () => {
     await covert.runCovertJob(fakeApi() as never, character("Spy"), job("acousticKeylog", { typing: 10 }) as never);
-    expect(successes).toHaveLength(0);
     expect(chat.at(-1).content).toContain('"minutes":4');
+    expect(successes).toHaveLength(1);
+    expect(successes[0].skill).toBe("Electronics Operation (Surveillance)");
+    await covert.runCovertJob(fakeApi() as never, character("Spy"), job("acousticKeylog", { typing: 0 }) as never);
+    expect(successes).toHaveLength(1);
+    expect(chat.at(-1).content).toContain("NoTyping");
   });
 
   it("captures an RFID chip at -2 and -1 per yard, and not at all through a shielded wallet", async () => {

@@ -115,6 +115,40 @@ export function kitchenModifier(gear: KitchenGear, skill: KitchenSkill, options:
   return base + (gear.unfamiliar && !options.familiar ? UNFAMILIAR : 0);
 }
 
+// ── printers, scanners and the 3D printer (HT:EE pp. 23-24, 33) ──
+
+/**
+ * What a printer does to the Artist roll behind a printed picture: the dot
+ * matrix printer's poor resolution -5, an inkjet's none, a laser printer's
+ * high resolution +1 (quality); a multifunction printer is an inkjet or a
+ * laser one (HT:EE pp. 23-24, 33).
+ */
+export const PRINTERS: Readonly<Record<string, number>> = Object.freeze({
+  "dot matrix printer": -5,
+  "inkjet printer": 0,
+  "laser printer": 1,
+  "multifunction printer": 0,
+});
+export const printerModifier = (name: unknown): number | null => PRINTERS[baseName(name).toLowerCase()] ?? null;
+
+/**
+ * A flatbed scanner captures documents easily, but artistic images, or
+ * pictures that must be enlarged, at -2 (quality) to Electronics Operation
+ * (Media) (HT:EE p. 33).
+ */
+export const FLATBED_SCANNER = -2;
+export const isFlatbedScanner = (name: unknown) => /^flatbed scanner$/i.test(baseName(name));
+
+/**
+ * A 3D printer makes a model or a part on Machinist or Artist (Sculpting),
+ * at -2 until the user is familiar with the design method (HT:EE p. 24).
+ */
+export const PRINT_3D_SKILLS = Object.freeze([
+  { skill: "Machinist", attribute: "IQ" as const, default: -5 },
+  { skill: "Artist (Sculpting)", attribute: "IQ" as const, default: -6 },
+]);
+export const is3dPrinter = (name: unknown) => /^3d printer$/i.test(baseName(name));
+
 // ── Forensics (HT:EE p. 23) ──
 
 /** Reconstructing shredded documents: strips, or a cross-cut shredder's small pieces. */

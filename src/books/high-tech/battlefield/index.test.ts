@@ -122,7 +122,7 @@ beforeEach(async () => {
   const tables = await import("../../../shared/book-tables.js");
   tables.setRuleReader((k) => on.has(k));
   battlefield = await import("./index.js");
-  battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")) });
+  battlefield.readyBattlefield(fakeApi() as never, { sensors: () => on.has(key("battlefieldSensors")), drones: () => on.has(key("reconDrones")), seekers: () => on.has(key("homingSeekers")) });
 });
 
 afterEach(() => {
@@ -252,6 +252,22 @@ describe("chaff (HT:EE p. 45)", () => {
     expect(sweep.modifiers.map((m: any) => m.value)).toEqual([-4]);
   });
 
+  it("reaches a missile homing by radar, and not one homing by infrared (HT:EE p. 49)", () => {
+    const pilot = character("Pilot");
+    states.set(pilot, { eeChaff: { packages: 2 } });
+    const missile = gear("Missile", {}, { rangedModes: [{ guidance: "homing" }] });
+    const firer = character("Firer", [missile]);
+    const shot = (seeker: string) => fire("gworld.attackModifiers", { actor: firer, item: missile, mode: { ranged: true, index: 0 }, options: { [`${MODULE_ID}.ee-seeker`]: seeker }, targets: [pilot], modifiers: [] });
+    // Seekers are the homing seekers switch's.
+    expect(shot("radar").modifiers).toEqual([]);
+    on.add(key("homingSeekers"));
+    expect(shot("radar").modifiers.map((m: any) => m.value)).toEqual([-4]);
+    expect(shot("infrared").modifiers).toEqual([]);
+    // A gun that doesn't home takes nothing, whatever the option says.
+    const gun = gear("Rifle", {}, { rangedModes: [{}] });
+    expect(fire("gworld.attackModifiers", { actor: firer, item: gun, mode: { ranged: true, index: 0 }, options: { [`${MODULE_ID}.ee-seeker`]: "radar" }, targets: [pilot], modifiers: [] }).modifiers).toEqual([]);
+  });
+
   it("covers the aircraft the dumper crews", () => {
     const pilot = character("Pilot");
     const plane = character("Plane", [], { type: "vehicle", system: { crew: [{ uuid: pilot.uuid, operator: true }] } });
@@ -307,6 +323,15 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null }).refusal).toBeNull();
     // A drone off the map, whose distance isn't known, is flown.
     expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: drone(), modifiers: [], refusal: null }).refusal).toBeNull();
+  });
+
+  it("refuses the control roll while the drone flies above its ceiling (HT:EE p. 46)", () => {
+    const operator = character("Operator");
+    const at = (elevation: number) => ({ ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 }, document: { elevation } }] });
+    distance = 100;
+    // 600 yards is 1,800 feet, above the Phantom's 1,640.
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: at(600), modifiers: [], refusal: null }).refusal).toContain("AboveCeilingRefusal");
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: at(500), modifiers: [], refusal: null }).refusal).toBeNull();
   });
 
   it("rolls the autopilot's Piloting or Dodge", async () => {

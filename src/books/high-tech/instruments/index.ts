@@ -267,6 +267,8 @@ interface UseAnswer {
   combined: boolean;
   shielded: boolean;
   line: Line;
+  /** A professional's routine check, this month's job roll made: found without a roll (HT:EE p. 10). */
+  routine: boolean;
 }
 
 /** The dialog for using an instrument: its skill, task and each switch's modifiers. */
@@ -281,7 +283,10 @@ async function askUse(api: GWorldApi, item: any, actor: any, inst: Instrument, o
   const tasks = measuring ? inst.tasks : (["operate"] as const);
   let html = skillSelect(rolls);
   if (tasks.length > 1) html += row(L("TaskField"), select("task", tasks.map((t) => ({ value: t, label: L(`Task.${t}`) }))));
-  if (measuring && inst.tasks.includes("detect")) html += row(L("SourceField"), select("source", SOURCES.map((s) => ({ value: s, label: `${L(`Source.${s}`)} (${signed(SOURCE_MODIFIER[s])})` }))));
+  if (measuring && inst.tasks.includes("detect")) {
+    html += row(L("SourceField"), select("source", SOURCES.map((s) => ({ value: s, label: `${L(`Source.${s}`)} (${signed(SOURCE_MODIFIER[s])})` }))));
+    html += row(L("RoutineField"), checkbox("routine", false));
+  }
   if (lab) {
     if (inst.magnetic) html += row(F("Magnetic", { worst: MAGNETIC_WORST }), numberInput("magnetic", 0, MAGNETIC_WORST));
     if (inst.tasks.includes("measure") || inst.kind === "signalTracer") {
@@ -336,7 +341,7 @@ async function askUse(api: GWorldApi, item: any, actor: any, inst: Instrument, o
     const combined = on.combined() && checked(form, "combined");
     if (combined) lines.push({ label: L("CombinedLine"), value: COMBINED });
     lines.push(...timeLine(form));
-    return { used, task, lines, combined, shielded: checked(form, "shielded"), line: (value(form, "line") || (inst.coil ? COIL_LINE[inst.coil] : "household")) as Line };
+    return { used, task, lines, combined, shielded: checked(form, "shielded"), line: (value(form, "line") || (inst.coil ? COIL_LINE[inst.coil] : "household")) as Line, routine: measuring && task === "detect" && checked(form, "routine") };
   });
 }
 
@@ -349,6 +354,8 @@ export async function useInstrument(api: GWorldApi, item: any, actor: any, on: I
   if (on.instruments() && inst.kind === "analogComputer" && !inst.generalPurpose) return programAnalog(api, item, actor);
   const answer = await askUse(api, item, actor, inst, on);
   if (!answer) return;
+  // Routine professional use finds what is there without a roll, unless the month's job roll failed (HT:EE p. 10).
+  if (answer.routine) return void (await say(actor, nameOf(item), [L("RoutineFound")]));
   const outcome: any = await roll(api, actor, answer.used, F("UseLabel", { name: nameOf(item), task: L(`Task.${answer.task}`) }), answer.lines, [answer.task], item);
   if (!outcome) return;
   const title = nameOf(item);

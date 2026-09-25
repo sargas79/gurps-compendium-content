@@ -214,6 +214,21 @@ describe("breathing gear (High-Tech pp. 72-74, 76)", () => {
     expect(breathingLines(small, switches())).toContain('GCC.HT.Breathing.LeftAtDepth {"left":15,"feet":66,"pressure":3}');
   });
 
+  it("gives nothing from a mask its wearer has had to take off to retch: filter, air or immunity (p. 171)", () => {
+    const masked = person([piece("Gas Mask (TL 8)", { system: { tl: "8" } })]);
+    const diver = person([piece("SCBA Mask (TL 8)", { system: { tl: "8" } }), tank()]);
+    expect(effectsOf(diver).effects.doesntBreathe).toBe(true);
+    for (const actor of [masked, diver]) actor.flags[MODULE_ID].htMaskOff = worldTime + 60;
+    expect(wearsIrritantMask(masked)).toBe(false);
+    expect(effectsOf(masked).effects.filterLungs).toBeUndefined();
+    expect(effectsOf(diver).effects.doesntBreathe).toBeUndefined();
+    // The retching over, the mask goes back on.
+    worldTime += 61;
+    expect(wearsIrritantMask(masked)).toBe(true);
+    expect(effectsOf(diver).effects.doesntBreathe).toBe(true);
+    worldTime = 1000;
+  });
+
   it("takes a minute of air for every FP spent and every failed Fright Check", async () => {
     const small = tank();
     const diver = person([piece("SCBA Mask (TL 8)", { system: { tl: "8" } }), small]);

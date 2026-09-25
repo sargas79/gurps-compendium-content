@@ -86,3 +86,12 @@ export const GPR_SURVEY = 2;
  */
 export const DETECTOR_SKILLS = ["Electronics Operation (EW)", "Electronics Operation (Sensors)", "Electronics Operation (Sonar)"] as const;
 export const detectorSkill = (kind: string): (typeof DETECTOR_SKILLS)[number] => (kind === "sonar" ? "Electronics Operation (Sonar)" : "Electronics Operation (EW)");
+
+/**
+ * The laser measuring tool: +1 to effective skill for Cartography, Engineer
+ * or other tasks that involve measurement, out to 100 yards (HT:EE p. 35).
+ * The book names those two skills; any other measuring task is the GM's to
+ * add.
+ */
+export const LASER_MEASURE = Object.freeze({ bonus: 1, yards: 100, skills: /^(cartography|engineer)\b/i });
+export const isLaserMeasure = (name: unknown): boolean => /^laser measuring tool\b/i.test(String(name ?? "").trim());

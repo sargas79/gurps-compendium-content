@@ -58,6 +58,14 @@ export interface LoadRow {
   fragmentationLingerEvery?: number;
   fragmentationLingerFor?: number;
   blastPlacement?: string;
+  /**
+   * The least range in yards (GWorld API 1.69.0), and an area attack's cone
+   * width at its base (API 1.53.0): a round the book prints with its own
+   * minimum range, or that sprays a cone.
+   */
+  minRange?: number;
+  areaAttack?: boolean;
+  coneMaxWidth?: number;
 }
 
 /** The figures of a row as a load starts from them. */
@@ -80,13 +88,16 @@ export function rowIn(row: any): LoadRow {
     fragmentationLingerEvery: Number(row.fragmentationLingerEvery) || 0,
     fragmentationLingerFor: Number(row.fragmentationLingerFor) || 0,
     blastPlacement: String(row.blastPlacement ?? ""),
+    minRange: Number(row.minRange) || 0,
+    areaAttack: row.areaAttack === true,
+    coneMaxWidth: Number(row.coneMaxWidth) || 0,
   };
 }
 
 /**
  * Writes what a load made of a row back onto it. Acc, Malf., ST, Rcl, the
- * first hit, overpenetration, scatter and the fragments' type, divisor and
- * lingering are only written where the load changed them, so a load that never touches them leaves the row's own as
+ * first hit, overpenetration, scatter, the fragments' type, divisor and
+ * lingering, the minimum range and a cone are only written where the load changed them, so a load that never touches them leaves the row's own as
  * they were.
  */
 export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel: (label: string) => string = (label) => label): void {
@@ -104,7 +115,7 @@ export function rowOut(row: any, before: LoadRow, after: LoadRow, followUpLabel:
   if (after.firstHit !== undefined && after.firstHit !== before.firstHit) row.firstHit = after.firstHit;
   if (after.noOverpenetration !== undefined && after.noOverpenetration !== before.noOverpenetration) row.noOverpenetration = after.noOverpenetration;
   if (after.scatterSquared !== undefined && after.scatterSquared !== before.scatterSquared) row.scatterSquared = after.scatterSquared;
-  for (const key of ["fragmentationType", "fragmentationDivisor", "fragmentationLingerEvery", "fragmentationLingerFor", "blastPlacement"] as const) {
+  for (const key of ["fragmentationType", "fragmentationDivisor", "fragmentationLingerEvery", "fragmentationLingerFor", "blastPlacement", "minRange", "areaAttack", "coneMaxWidth"] as const) {
     if (after[key] !== undefined && after[key] !== before[key]) row[key] = after[key];
   }
   if (after.skillBonus && typeof row.skillLevel === "number") row.skillLevel += after.skillBonus;

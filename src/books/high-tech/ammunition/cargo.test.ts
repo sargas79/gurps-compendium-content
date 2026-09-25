@@ -338,8 +338,8 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     expect(areas[1].light).toEqual({ radius: 50, darknessCap: 5 });
   });
 
-  it("registers tear gas's and the vomiting agent's rolls as poisons, offered while the switch is on", () => {
-    expect(poisons.map((p) => p.key)).toEqual(["tearGasCoughing", "tearGasBlinding", "vomitingAgent"]);
+  it("registers tear gas's, the vomiting agent's and smoke's rolls as poisons, offered while the switch is on", () => {
+    expect(poisons.map((p) => p.key)).toEqual(["tearGasCoughing", "tearGasBlinding", "vomitingAgent", "smokeIrritant"]);
     expect(poisons[0].available()).toBe(false);
     on.cargoProjectiles = true;
     expect(poisons[0].available()).toBe(true);

@@ -1,0 +1,11 @@
+{{!-- A flatscreen television's screen size (High-Tech: Electricity and Electronics p. 34). --}}
+<div class="isub" data-gcc-ee-screen-section>
+  <div class="isub-head">{{localize "GCC.HT.Screens.Title"}}</div>
+  <div class="ifields">
+    <label data-tooltip="{{localize 'GCC.HT.Screens.Hint'}}">{{localize "GCC.HT.Screens.Label"}}
+      <select data-gcc-ee-screen {{#unless editable}}disabled{{/unless}}>
+        {{#each sizes as |s|}}<option value="{{s.value}}" {{#if s.selected}}selected{{/if}}>{{s.label}}</option>{{/each}}
+      </select>
+    </label>
+  </div>
+</div>

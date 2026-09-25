@@ -21,13 +21,15 @@
  *       (`rules.speedRangeModifier`, as High-Tech's hydrophone reads it).
  *     - *Chaff*: a row button dumps packages, and until the dumper's next
  *       turn each gives -2 to a ranged attack at the craft made with a radar
- *       lock, and to an Electronics Operation (Sensors) roll against it.
+ *       lock or by a missile homing by radar (HT:EE p. 49), and to an
+ *       Electronics Operation (Sensors) roll against it.
  *   - **Reconnaissance drones (reconDrones):** a vehicle record's drone
  *     data -- the autopilot's skill and Dodge, the remote control's bonus,
  *     the controller's range and the ceiling -- edited on its sheet and set
  *     on the two UAVs (HT:EE p. 46). The operator's control roll takes the
  *     remote control's bonus while he is within the controller's range, and
- *     is refused past it (API 1.144.0); the
+ *     is refused past it (API 1.144.0), and while the drone flies above its
+ *     ceiling; the
  *     figures show on the vehicle actor's Hnd/SR (`gworld.vehicleStats`); a row
  *     button, or a GM tool for a drone on the map, rolls the autopilot's
  *     Piloting or Dodge, and the tool checks the controller's range and the
@@ -42,6 +44,8 @@ import { crewOf, isVehicle, vehicleAboard } from "../../../shared/vehicles/index
 import { deviceData, storeDevice, takesDeviceStatistics } from "../devices/index.js";
 import { ACTIVE_SENSORS } from "../sensors/rules.js";
 import { SENSORS } from "../surveillance/rules.js";
+import { chosenSeeker } from "../guidance/index.js";
+import { homes, seekerOf } from "../guidance/rules.js";
 import {
   CHAFF_PER_PACKAGE,
   HIDING_SKILLS,
@@ -79,6 +83,8 @@ const CHAFF_STATE = "eeChaff";
 export interface BattlefieldSwitches {
   sensors: () => boolean;
   drones: () => boolean;
+  /** The homing seekers switch, which chaff against a radar-homing missile needs too (HT:EE p. 49). */
+  seekers?: () => boolean;
 }
 
 // ── data ─────────────────────────────────────────────────────────────────────
@@ -288,6 +294,19 @@ export async function dumpChaff(api: GWorldApi, item: any, actor: any): Promise<
 /** Whether an item is a radar of High-Tech's (pp. 45-46). */
 const isRadar = (item: any) => ACTIVE_SENSORS[nameOf(item)]?.kind === "radar";
 
+/**
+ * Whether an attack is made by a missile homing on its target by radar
+ * (HT:EE p. 49): the seeker the attack option chose, or the record's own.
+ */
+function homesByRadar(context: any): boolean {
+  const item = context?.item;
+  if (!item) return false;
+  const mode = item.system?.rangedModes?.[Number(context.mode?.index) || 0];
+  if (!homes(mode)) return false;
+  const choice = chosenSeeker(item, context.options);
+  return choice !== null && seekerOf(choice) === "radar";
+}
+
 // ── reconnaissance drones (HT:EE p. 46) ─────────────────────────────────────
 
 /** Rolls a drone's autopilot: its Piloting, or its Dodge for avoiding an obstacle (HT:EE p. 46). */
@@ -385,13 +404,16 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
     context.notes?.push?.(L("MilitaryNote"));
   });
 
-  // Chaff: -2 per package to a ranged attack at the craft made with a radar lock (HT:EE p. 45).
+  // Chaff: -2 per package to a ranged attack at the craft made with a radar lock, or by a missile
+  // homing on it by radar (HT:EE pp. 45, 49: chaff is cut to a targeting radar's wavelength).
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     if (!on.sensors() || context?.mode?.ranged !== true || !Array.isArray(context?.modifiers)) return;
     const locked = lockedSensor(api, context.actor, context.targets ?? []);
-    if (!locked || !isRadar(locked.item)) return;
-    const uuid = lockTargetOf(api, context.actor);
-    const target = (context.targets ?? []).find((t: any) => String(t?.uuid) === uuid);
+    let target: any = null;
+    if (locked && isRadar(locked.item)) {
+      const uuid = lockTargetOf(api, context.actor);
+      target = (context.targets ?? []).find((t: any) => String(t?.uuid) === uuid) ?? null;
+    } else if (on.seekers?.() && homesByRadar(context)) target = (context.targets ?? [])[0] ?? null;
     if (!target) return;
     const penalty = chaffPenalty(chaffAround(api, target));
     if (penalty) context.modifiers.push({ label: F("ChaffModifier", { name: target.name }), value: penalty });
@@ -414,6 +436,14 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
       if (!withinControlRange(data, yards)) {
         if (typeof context.refusal !== "string" || !context.refusal.trim()) {
           context.refusal = F("OutOfRangeRefusal", { name: context.vehicle.name, miles: Math.round(((yards ?? 0) / 1760) * 10) / 10 });
+        }
+        return;
+      }
+      // Above its ceiling the controls can't reach it (HT:EE p. 46): the GM brings the token down.
+      const feet = context.vehicle.documentName === "Actor" ? heightFeet(context.vehicle) : null;
+      if (aboveCeiling(data, feet)) {
+        if (typeof context.refusal !== "string" || !context.refusal.trim()) {
+          context.refusal = F("AboveCeilingRefusal", { name: context.vehicle.name, feet: Math.round(feet ?? 0).toLocaleString("en-US"), ceiling: data.ceilingFeet.toLocaleString("en-US") });
         }
         return;
       }
