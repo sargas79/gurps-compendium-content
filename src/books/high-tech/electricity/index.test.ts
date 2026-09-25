@@ -21,6 +21,7 @@ let tools: Map<string, any>;
 let actions: Map<string, any>;
 let on: Record<string, boolean>;
 let modifiersSeen: any[];
+let damageSeen: any[];
 let outcomes: any[];
 let calls: any[];
 let successes: any[];
@@ -44,10 +45,12 @@ async function systemShock(o: any): Promise<any> {
   fire("gworld.shockModifiers", context);
   modifiersSeen.push(structuredClone({ ...context, actor: undefined }));
   const rolled = Number(o.formula) || 0;
-  if (o.kind !== "nonlethal" && !context.immune && o.formula) {
-    fire("gworld.shockDamage", { actor: o.actor, kind: o.kind, formula: o.formula, damageRoll: rolled, dr: context.dr, modifier: context.modifier, rollOnZeroInjury: context.rollOnZeroInjury, lines: context.lines });
-  }
   const injury = context.immune || o.kind === "nonlethal" ? 0 : Math.max(0, rolled - (typeof context.dr === "number" ? context.dr : 0));
+  if (o.kind !== "nonlethal" && !context.immune && o.formula) {
+    const damage: any = { actor: o.actor, kind: o.kind, formula: o.formula, damageRoll: rolled, dr: context.dr, injury, modifier: context.modifier, rollOnZeroInjury: context.rollOnZeroInjury, lines: context.lines };
+    fire("gworld.shockDamage", damage);
+    damageSeen.push({ injury, modifier: damage.modifier });
+  }
   const given = outcomes.shift() ?? {};
   const outcome: any = {
     kind: o.kind, immune: context.immune, injury, dr: context.dr, rolled: true, target: 10, roll: 10, success: true, criticalFailure: false,
@@ -113,6 +116,7 @@ beforeEach(() => {
   actions = new Map();
   on = {};
   modifiersSeen = [];
+  damageSeen = [];
   outcomes = [];
   calls = [];
   successes = [];
@@ -167,8 +171,15 @@ describe("electrical hazards (HT:EE p. 9)", () => {
     await shockOn(api, [person("A")], answer({ current: "ac" }), switches());
     await shockOn(api, [person("B")], answer({ current: "rf" }), switches());
     await shockOn(api, [person("C")], answer({ current: "dc" }), switches());
-    expect(modifiersSeen.map((m) => m.injuryStep)).toEqual([0.4, 0, 2]);
+    expect(modifiersSeen.map((m) => m.injuryStep)).toEqual([2, 0, 2]);
     expect(modifiersSeen[0].lines).toContain("GCC.HT.Electricity.Step.ac");
+    // AC in whole steps: the system's -1 per 2 points and -4 more, so -5 at 2-3 points, -10 at 4-5.
+    expect(damageSeen[0].injury).toBeGreaterThan(1);
+    expect(damageSeen[0].modifier - (modifiersSeen[0].modifier ?? 0)).toBe(-4 * Math.floor(damageSeen[0].injury / 2));
+    expect(damageSeen[2].modifier).toBe(modifiersSeen[2].modifier);
+    // RF disregards the effect: no heart stoppage at all.
+    expect(modifiersSeen[1]).toMatchObject({ heartAttackMargin: null, heartAttackOnCritical: false });
+    expect(modifiersSeen[2].heartAttackMargin).toBe(5);
   });
 
   it("holds a victim past 1 point, a second at a time, until the current is cut", async () => {
@@ -432,7 +443,7 @@ describe("power lines (HT:EE pp. 18-19)", () => {
     on.electricalHazards = true;
     dice = [25];
     await shockOn(api, [person("Condemned")], answer({ source: "chair", current: "dc" }), switches());
-    expect(modifiersSeen[0].injuryStep).toBe(0.4);
+    expect(modifiersSeen[0].injuryStep).toBe(2);
     expect(modifiersSeen[0].lines).toContain('GCC.HT.Electricity.Rolled {"formula":"6d×2","rolled":25}');
   });
 

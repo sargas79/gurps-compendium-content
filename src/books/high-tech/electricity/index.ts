@@ -59,6 +59,7 @@ import {
   VOLTAGE_ROWS,
   WORK_TOOLS,
   WORK_TOOL_MODIFIER,
+  acExtraModifier,
   inducedPenalty,
   largeBoltMultiplier,
   lightningRodDamage,
@@ -66,6 +67,7 @@ import {
   shieldDr,
   shockGear,
   sparkTarget,
+  stopsHeart,
   voltageDamage,
   weakShock,
   weakShockBonus,
@@ -186,7 +188,7 @@ export interface PendingShock {
 
 const pending = new Map<string, PendingShock>();
 /** What `gworld.shockModifiers` saw of a shock, for `gworld.afterShock`. */
-const noted = new Map<string, { kind: string; modifier: number; lightning: boolean }>();
+const noted = new Map<string, { kind: string; modifier: number; lightning: boolean; current: Current | null }>();
 const keyOf = (actor: any) => String(actor?.uuid ?? actor?.id ?? "");
 
 /** Runs the system's shock with the tool's word on it for the hooks. */
@@ -206,6 +208,11 @@ function hazardModifiers(context: any, shock: PendingShock | null): void {
   if (shock?.current && kind !== "nonlethal") {
     context.injuryStep = INJURY_STEP[shock.current];
     if (shock.current !== "dc") context.lines.push(L(`Step.${shock.current}`));
+    // Radio-frequency current: the effect is disregarded, heart and all.
+    if (!stopsHeart(shock.current)) {
+      context.heartAttackMargin = null;
+      context.heartAttackOnCritical = false;
+    }
   }
   if (kind === "nonlethal" && nonlethalCanStopHeart(Number(context.modifier) || 0)) {
     context.heartAttackMargin = NONLETHAL_HEART_MARGIN;
@@ -760,7 +767,7 @@ export function readyElectricity(api: GWorldApi, on: ElectricitySwitches): void 
     if (!actor || typeof context !== "object") return;
     const key = keyOf(actor);
     const shock = pending.get(key) ?? null;
-    noted.set(key, { kind: String(context.kind ?? ""), modifier: Number(context.modifier) || 0, lightning: shock?.current === "lightning" });
+    noted.set(key, { kind: String(context.kind ?? ""), modifier: Number(context.modifier) || 0, lightning: shock?.current === "lightning", current: shock?.current ?? null });
     if (!Array.isArray(context.lines)) context.lines = [];
     if (shock?.lines.length) context.lines.push(...shock.lines);
     // Jerked free first, then the gear (which may make the victim immune), then what the current does.
@@ -775,8 +782,14 @@ export function readyElectricity(api: GWorldApi, on: ElectricitySwitches): void 
 
   // Once the system's damage is rolled: the weak-shock rule on a roll of 0 or less (HT:EE p. 9).
   Hooks.on(api.combat.hooks.shockDamage, (context: any) => {
-    if (!on.hazards() || !context || typeof context !== "object" || pending.has(keyOf(context.actor))) return;
+    if (!on.hazards() || !context || typeof context !== "object") return;
     if (!Array.isArray(context.lines)) context.lines = [];
+    // AC's whole steps: the system's -1 per 2 points, and -4 more with each (HT:EE p. 9).
+    if (context.kind !== "nonlethal" && noted.get(keyOf(context.actor))?.current === "ac") {
+      const extra = acExtraModifier(Number(context.injury) || 0);
+      if (extra) context.modifier = (Number(context.modifier) || 0) + extra;
+    }
+    if (pending.has(keyOf(context.actor))) return;
     weakShockRolled(api, context);
   });
 

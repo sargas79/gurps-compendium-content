@@ -5051,7 +5051,7 @@
         },
         "electricalHazards": {
           "Name": "Electrical hazards (Electricity and Electronics)",
-          "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 points of injury, AC -5 per 2, radio frequency none, lightning -1 per 5. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
+          "Hint": "A GM tool puts its targets in contact with a source and runs the system's shock a second at a time. The kind of current sets the HT roll's step: DC -1 per 2 full points of injury, AC -5 per 2 full points, lightning -1 per 5; radio-frequency current's effect is disregarded, with no penalty and no heart stoppage. A source doing 1 point can be jerked away from with a DX roll; more than 1 point holds the victim until the current is cut, the stun or unconsciousness held with it. A shock rolled under 1d can do no burn and still call for the HT roll through the torso, a roll under 0 a bonus. Lethal current lights materials by its rolled damage; a nonlethal spark lights Super-Flammable ones on 3d against 12 less its modifier. Arc flash does 3d burn; lightning is a 6d shock, a large bolt times 1d-2. On any shock, a nonlethal one at -5 or worse stops the heart on a failure by 10, and a lethal one doing more than 1 point holds on (High-Tech: Electricity and Electronics p. 9)."
         },
         "shockProtection": {
           "Name": "Shock protection (Electricity and Electronics)",
@@ -10591,8 +10591,8 @@
         "CantLetGo": "Can't let go of the source: more than 1 point of injury (High-Tech: Electricity and Electronics p. 9).",
         "HeldCondition": "Can't let go of the source",
         "Step": {
-          "ac": "Alternating current: -5 to HT per 2 points of injury (High-Tech: Electricity and Electronics p. 9).",
-          "rf": "Radio-frequency current: no penalty to HT for the injury (High-Tech: Electricity and Electronics p. 9).",
+          "ac": "Alternating current: -5 to HT for each full 2 points of injury (High-Tech: Electricity and Electronics p. 9).",
+          "rf": "Radio-frequency current: its effect is disregarded, no penalty to HT and no heart stoppage (High-Tech: Electricity and Electronics p. 9).",
           "lightning": "Lightning: -1 to HT per 5 points of injury (High-Tech: Electricity and Electronics p. 9)."
         },
         "StrongNonlethal": "A strong discharge: a failure by {margin} or more, or a critical failure, stops the heart (High-Tech: Electricity and Electronics p. 9).",
