@@ -30,6 +30,8 @@ const HOOKS = {
 let hooks: Map<string, Listener[]>;
 let on: Record<string, boolean>;
 let areas: any[];
+let placed: any[];
+let advanced: any[];
 let inArea: any[];
 let litFor: Map<string, (observer: any) => boolean>;
 let doses: any[];
@@ -50,7 +52,7 @@ function fakeApi() {
     data: { registerPriceModifier: () => undefined, registerPoison: (p: any) => poisons.push(p) },
     items: { setMalfunction: async () => undefined },
     areas: {
-      add: async (_scene: any, area: any) => { areas.push(area); return area.id; },
+      add: async (scene: any, area: any, options?: any) => { areas.push(area); placed.push({ scene, source: options?.source }); return area.id; },
       list: () => areas,
       standsIn: () => inArea,
       registerLitFor: (r: any) => { litFor.set(`${r.module}.${r.key}`, r.test); return `${r.module}.${r.key}`; },
@@ -59,8 +61,8 @@ function fakeApi() {
       skillLevel: () => null,
       attribute: () => 10,
       derived: (actor: any) => actor.derived ?? {},
-      dosePoison: async (actor: any, poison: any) => { doses.push({ actor: actor.name, ...poison }); return { id: `d${doses.length}`, delaySeconds: poison.delaySeconds ?? 0 }; },
-      advancePoison: async () => undefined,
+      dosePoison: async (actor: any, poison: any, options?: any) => { doses.push({ actor: actor.name, ...poison, by: options?.source?.name }); return { id: `d${doses.length}`, delaySeconds: poison.delaySeconds ?? 0 }; },
+      advancePoison: async (actor: any, id: string, options?: any) => { advanced.push({ actor: actor.name, id, by: options?.source?.name }); },
       applyCondition: async (actor: any, application: any) => { conditions.push({ actor: actor.name, ...application }); return "c1"; },
       pendingModifiers: () => pending,
       addPendingModifier: async (_actor: any, bonus: any) => { pending.push({ id: `p${pending.length + 1}`, ...bonus }); return `p${pending.length}`; },
@@ -133,6 +135,8 @@ beforeEach(() => {
   hooks = new Map();
   on = {};
   areas = [];
+  placed = [];
+  advanced = [];
   inArea = [];
   litFor = new Map();
   doses = [];
@@ -233,20 +237,21 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     await flush();
     // The dialog asked: 8 yards for 25 seconds.
     expect(areas[0]).toMatchObject({ radius: 8, lines: [{ value: -10 }] });
+    // The cloud's 25 seconds ride in the dose's source, which the system hands to the cycle.
     expect(doses.map((d) => `${d.actor}:${d.source}`)).toEqual([
-      `Rioter:${MODULE_ID}.tearGasCoughing`, `Rioter:${MODULE_ID}.tearGasBlinding`, `Masked:${MODULE_ID}.tearGasBlinding`,
+      `Rioter:${MODULE_ID}.tearGasCoughing@25`, `Rioter:${MODULE_ID}.tearGasBlinding@25`, `Masked:${MODULE_ID}.tearGasBlinding@25`,
     ]);
     expect(doses[0]).toMatchObject({ resistanceModifier: -2, delivery: ["respiratory"] });
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: 3 });
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasBlinding`, resisted: false, margin: 1 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: false, margin: 3 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[1].source, resisted: false, margin: 1 });
     expect(conditions[0]).toMatchObject({ actor: "Rioter", key: "coughing", duration: { seconds: 25 + 180 } });
     expect(conditions[1]).toMatchObject({ key: "htTearGasBlinded", module: MODULE_ID, duration: { seconds: 85 } });
     expect(conditions[1].effects.modifiers[0]).toMatchObject({ value: -10 });
     // A resisted roll does nothing.
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: true, margin: 0 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: true, margin: 0 });
     expect(conditions).toHaveLength(2);
     // A failure's margin handed over signed reads by its size (#539).
-    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: -3 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: doses[0].source, resisted: false, margin: -3 });
     expect(conditions[2]).toMatchObject({ key: "coughing", duration: { seconds: 25 + 180 } });
   });
 
@@ -258,6 +263,38 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     fire(HOOKS.afterShots, { actor: shell.actor, item: shell, modeIndex: 0 });
     await flush();
     expect(doses[0]).toMatchObject({ actor: "Soldier", name: "Mustard Gas", source: `${MODULE_ID}.poisonGas` });
+  });
+
+  it("places a round's cloud on the viewed scene by its id and doses those in it from the shooter, for a player (API 1.149.0, 1.150.0)", async () => {
+    on.cargoProjectiles = true;
+    inArea = [{ actor: { id: "v1", name: "Rioter", isOwner: false, derived: {} } }];
+    const gas = m79([load({ projectile: "tearGas" })]);
+    fire(HOOKS.afterShots, { actor: gas.actor, item: gas, modeIndex: 0 });
+    await flush();
+    expect(placed).toEqual([{ scene: "s1", source: gas.actor }]);
+    expect(doses.map((d) => d.by)).toEqual(["Shooter", "Shooter"]);
+    expect(advanced.map((a) => a.by)).toEqual(["Shooter", "Shooter"]);
+    doses = [];
+    inArea = [{ actor: { id: "v2", name: "Soldier", isOwner: false } }];
+    const shell = hotchkiss([load({ projectile: "poisonGas", poisonFiller: "Mustard Gas", radius: 5, seconds: 60 })]);
+    fire(HOOKS.afterShots, { actor: shell.actor, item: shell, modeIndex: 0 });
+    await flush();
+    expect(doses[0]).toMatchObject({ actor: "Soldier", by: "Shooter" });
+  });
+
+  it("times a cloud's effect by the seconds its dose carries, on whichever client the cycle runs (API 1.149.0)", () => {
+    on.cargoProjectiles = true;
+    // Nothing kept on this client, no map read: only the dose's source.
+    const victim = { id: "v9", name: "Bystander", isOwner: true, derived: {} };
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing@40`, resisted: false, margin: 1 });
+    expect(conditions[0]).toMatchObject({ actor: "Bystander", key: "coughing", duration: { seconds: 40 + 60 } });
+    // A dose from the sheet's Poison button carries no cloud: the margin's minutes alone.
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.vomitingAgent`, resisted: false, margin: 1 });
+    expect(conditions[1]).toMatchObject({ key: "retching", duration: { seconds: 300 } });
+    // Another module's source, or an unknown gas, is left alone.
+    fire(HOOKS.poisonCycle, { actor: victim, source: "other.tearGasCoughing@40", resisted: false, margin: 1 });
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.mustard@40`, resisted: false, margin: 1 });
+    expect(conditions).toHaveLength(2);
   });
 
   it("bursts white phosphorus into burning fragments that linger, and leaves its minute of smoke", async () => {

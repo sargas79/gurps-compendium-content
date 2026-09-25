@@ -30,6 +30,7 @@ let successResult: any;
 let dialogAnswer: any;
 let dice: number[];
 let damaged: any[];
+let graders: any[];
 
 function fakeApi() {
   return {
@@ -37,6 +38,7 @@ function fakeApi() {
     data: {
       hooks: { objectStats: "gworld.objectStats" },
       registerPriceModifier: (m: any) => prices.set(m.key, m),
+      registerToolGrade: (r: any) => { graders.push(r); return `${r.module}.${r.key}`; },
     },
     combat: { hooks: { successRollModifiers: "gworld.successRollModifiers", afterSuccessRoll: "gworld.afterSuccessRoll" } },
     sheets: {
@@ -109,6 +111,7 @@ beforeEach(() => {
   prices = new Map();
   successes = [];
   chat = [];
+  graders = [];
   on = { cuttingEdge: false, breakable: false, kits: false };
   successResult = { success: true };
   dialogAnswer = null;
@@ -294,18 +297,24 @@ describe("breakable parts and device statistics (HT:EE pp. 8-9)", () => {
     expect(actions.get("ht-device-run")!.visible(item)).toBe(false);
   });
 
-  it("doesn't refuse the roll where another carried, unbroken tool serves the same skill", () => {
+  it("grades a broken device as serving no skill, so the system picks a working tool (API 1.145.0)", () => {
+    const [grader] = graders;
+    expect(grader).toMatchObject({ module: MODULE_ID, key: "ht-broken-device" });
     const broken = record("Tube Radio", { cost: 200, weight: 8, forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 5, broken: 1 } });
-    const spare = record("Spare Radio", { cost: 200, weight: 8, carried: true, forSkills: ["Electronics Operation/TL (Communications)"] }, { parts: { count: 5, broken: 0 } });
-    const stowed = record("Stowed Radio", { cost: 200, weight: 8, carried: false, forSkills: ["Electronics Operation (Communications)"] });
-    const roll = (actor: any) => fire("gworld.successRollModifiers", { actor, item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: null }).refusal;
-    expect(roll(owner([broken, spare]))).toBeNull();
-    // A stowed one, another broken one, or one for another skill doesn't serve.
-    expect(roll(owner([broken, stowed]))).toContain("GCC.HT.Devices.BrokenRefusal");
-    const alsoBroken = record("Other Radio", { forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 2, broken: 2 } });
-    expect(roll(owner([broken, alsoBroken]))).toContain("GCC.HT.Devices.BrokenRefusal");
-    const scope = record("Oscilloscope", { forSkills: ["Electronics Operation (Scientific)"] });
-    expect(roll(owner([broken, scope]))).toContain("GCC.HT.Devices.BrokenRefusal");
+    const sound = record("Spare Radio", { cost: 200, weight: 8, forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 5, broken: 0, failing: 2 } });
+    const skill = { name: "Electronics Operation/TL8 (Communications)" };
+    expect(grader.grade(broken, skill, owner([broken, sound]))).toBe(false);
+    // A sound device, even with parts below 0 HP, and gear that isn't a device are left to the system.
+    expect(grader.grade(sound, skill, owner([broken, sound]))).toBeNull();
+    expect(grader.grade({ type: "skill", name: "Radio" }, skill, owner())).toBeNull();
+    on.breakable = false;
+    expect(grader.grade(broken, skill, owner([broken]))).toBeNull();
+  });
+
+  it("refuses a roll still made with a broken device, keeping an earlier rule's reason", () => {
+    const broken = record("Tube Radio", { cost: 200, weight: 8, forSkills: ["Electronics Operation (Communications)"] }, { parts: { count: 5, broken: 1 } });
+    const roll = fire("gworld.successRollModifiers", { actor: owner([broken]), item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: null });
+    expect(roll.refusal).toContain("GCC.HT.Devices.BrokenRefusal");
     // An earlier rule's refusal keeps its reason.
     const earlier = fire("gworld.successRollModifiers", { actor: owner([broken]), item: broken, skill: "Electronics Operation (Communications)", modifiers: [], refusal: "Burned out" });
     expect(earlier.refusal).toBe("Burned out");

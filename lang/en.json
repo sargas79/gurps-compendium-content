@@ -5533,7 +5533,6 @@
         "CauteryPain": "Without an anaesthetic the heat puts {name} in Severe Pain; the GM takes it off when the treatment ends.",
         "PenUsed": "The cautery pen is used up.",
         "NoSurgery": "Cauterizing needs Surgery, or a skill it defaults to (Physician, Veterinary, Physiology or First Aid).",
-        "NotYourPatient": "You can't change {name}: ask the GM to cauterize them (nothing was rolled).",
         "Burned": "Diathermy burn",
         "Burn": "{name} is burned for {amount} ({dice}).",
         "NotEased": "{name}'s pain is no better.",
@@ -7406,8 +7405,6 @@
         "LightCraftHint": "A kit for an art or light craft (drawing, painting, sewing): a quarter of the cost, a tenth of the weight (High-Tech p. 24).",
         "LightCraftPrice": "Light craft",
         "VehiclePrice": "Vehicle size",
-        "WrongKit": "Kit for another specialty",
-        "WrongKitReason": "a kit or workshop made for another specialty or craft (High-Tech p. 24)",
         "SetupLine": "Takes at least {time} to set up or pack (High-Tech p. 50).",
         "Minutes": "{minutes} minute(s)",
         "Seconds": "{seconds} second(s)",
@@ -8932,8 +8929,8 @@
           "hand": "hand",
           "foot": "foot"
         },
-        "HotBattleLine": "{name}: body armour on a hot day, +{fp} FP (High-Tech p. 65; Campaigns p. 426)",
-        "HotGhillieLine": "{name}: a ghillie suit is an overcoat on a hot day, +{fp} FP (High-Tech p. 77; Campaigns p. 426)",
+        "HotBattleLine": "{name}: body armour on a hot day, {fp} FP for the heat (High-Tech p. 65; Campaigns p. 426)",
+        "HotGhillieLine": "{name}: a ghillie suit is an overcoat on a hot day, {fp} FP for the heat (High-Tech p. 77; Campaigns p. 426)",
         "FilledItem": "Worn apart from the outfit, filling its gaps: {names}.",
         "SoakAction": "Soak in ice water",
         "SoakedLine": "Soaked in ice-cold water: it cools again after {minutes} minutes, for {hours} hours.",
@@ -10339,7 +10336,6 @@
         "BurnoutRoll": "{name}: daily HT roll against tube burnout",
         "BurntOut": "A tube has burned out: the computer needs a minor repair (Campaigns p. 484).",
         "BurntOutRefusal": "{name} has a burned-out tube and won't run until it's repaired.",
-        "BurntOutProgram": "{name} can't help: {computer} has a burned-out tube",
         "Tubes": "Vacuum tubes: roll HT daily against burnout (High-Tech: Electricity and Electronics p. 37).",
         "Repair": "Repair the tube",
         "RepairRoll": "{name}: replacing a burned-out tube",
@@ -10709,6 +10705,7 @@
         "DroneCard": "{name}",
         "InRange": "{name} is {miles} miles away: within the controller's range.",
         "OutOfRange": "{name} is {miles} miles away: beyond the controller's range. The drone flies on its autopilot.",
+        "OutOfRangeRefusal": "{name} is {miles} miles away, beyond the controller's range: its operator can't fly it. It flies on its autopilot.",
         "AboveCeiling": "At {feet} feet, the drone is above its ceiling."
       },
       "Skills": {
@@ -11154,7 +11151,6 @@
         "NotCompared": "The comparison proves nothing either way.",
         "SupplyShock": "Shock from its high-voltage supply",
         "GeigerSupply": "The tube runs on a high-voltage supply that can do {damage} lethal electrical damage; building one is a Simple invention on household power (HT:EE p. 12).",
-        "NotYourVictim": "You can't change {name}: ask the GM to run the shock (nothing was done).",
         "AnalyzeButton": "Analyze a signal",
         "AnalyzeTitle": "Analyze a signal: {name}",
         "AnalyzeLabel": "{name}: {use}",
@@ -11209,6 +11205,7 @@
         "PlotLabel": "A waveform plotted by hand",
         "PlotLine": "Timed meter readings",
         "Pedometer": "An electronic pedometer: Hiking needs 10% less study time (High-Tech: Electricity and Electronics p. 13).",
+        "HeartMonitorTraining": "A digital heart monitor: training for HT or fitness needs 10% less time (High-Tech: Electricity and Electronics p. 12).",
         "CombinedRecord": "Combined device"
       },
       "ElectricSecurity": {

@@ -36,7 +36,8 @@
  *     (Analog Computers), or Mechanic (Analog Computers)-6), and a waveform plotted by
  *     hand from Physics' or Mathematics (Applied)'s row at -2. Studying
  *     Hiking with an electronic pedometer carried takes 10% less time
- *     (p. 13), through the Study tool's `gworld.studyModifiers`.
+ *     (p. 13), and studying HT, Fit or Very Fit with a digital heart monitor
+ *     carried the same (p. 12), through the Study tool's `gworld.studyModifiers`.
  *   - **combinedDevices** (HT:EE p. 9): a device combined from separate
  *     parts is at -2 to use. A High-Tech device's sheet marks it as one (the
  *     `device.combined` field, beside #490's), and every roll made with it
@@ -69,6 +70,8 @@ import {
   CONNECT_BONUS,
   GEIGER_SUPPLY,
   HAND_PLOT,
+  HEART_MONITOR,
+  HEART_MONITOR_TIME,
   LINES,
   LINE_DAMAGE,
   MAGNETIC_WORST,
@@ -92,6 +95,7 @@ import {
   complexityPenalty,
   copyCost,
   darknessPenalty,
+  fitnessStudy,
   instrumentOf,
   isAccelerometer,
   isDisplay,
@@ -406,14 +410,13 @@ async function compareSignals(api: GWorldApi, item: any, actor: any): Promise<vo
 /**
  * A shock from the Geiger-Müller tube's high-voltage supply (HT:EE p. 12):
  * 5d lethal electrical damage to the targeted character, or the one holding
- * the tube, through the system's shock.
+ * the tube, through the system's shock -- given by the GM's client where the
+ * user doesn't own the victim (`sourceActor`, API 1.149.0).
  */
 async function supplyShock(api: GWorldApi, actor: any): Promise<void> {
   const victim = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean)[0] ?? actor;
   if (!victim) return;
-  // The shock is written to the victim: only their owner (or the GM) can run it.
-  if (!victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
-  await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply" } as any);
+  await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply", sourceActor: actor } as any);
 }
 
 /** The spectrum analyzer's uses (HT:EE p. 11). */
@@ -470,19 +473,22 @@ async function connect(api: GWorldApi, item: any, actor: any): Promise<void> {
   }
 }
 
-/** A Van de Graaff generator's charge, discharged into whoever touches it: a nonlethal shock (HT:EE p. 11; Campaigns p. 432). */
+/**
+ * A Van de Graaff generator's charge, discharged into whoever touches it: a
+ * nonlethal shock (HT:EE p. 11; Campaigns p. 432), given by the GM's client
+ * where the user doesn't own the victim (`sourceActor`, API 1.149.0).
+ */
 async function discharge(api: GWorldApi, item: any, actor: any): Promise<void> {
   const inst = instrumentItem(item);
   if (!inst?.sphere) return;
   const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
   const victim = targets[0] ?? actor;
-  if (victim && !victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
   const answer = await ask(F("DischargeTitle", { name: nameOf(item) }),
     `<p class="ihint">${esc(F("DischargeVictim", { name: victim?.name ?? "" }))}</p>`
     + row(L("Sphere"), `<input type="number" name="sphere" value="${inst.sphere}" min="${inst.sphere}" step="1" style="width:70px" />`),
     (form) => ({ sphere: number(form, "sphere") || inst.sphere! }));
   if (!answer || !victim) return;
-  await api.hazards.shock({ actor: victim, kind: "nonlethal", modifier: vanDeGraaffModifier(answer.sphere, inst.sphere), continuous: false, metalArmor: false } as any);
+  await api.hazards.shock({ actor: victim, kind: "nonlethal", modifier: vanDeGraaffModifier(answer.sphere, inst.sphere), continuous: false, metalArmor: false, sourceActor: actor } as any);
 }
 
 /**
@@ -564,13 +570,19 @@ export function readyInstruments(api: GWorldApi, on: InstrumentSwitches): void {
   const any = () => on.measurement() || on.instruments() || on.combined();
   const sameSkill = (item: any, name: string) => item?.type === "skill" && api.rules.toolSkillKey(String(item.name ?? "")) === api.rules.toolSkillKey(name);
 
-  // Studying Hiking with an electronic pedometer carried: 10% less study time (HT:EE p. 13; API 1.133.0).
-  Hooks.on(api.combat.hooks.studyModifiers, (context: any) => {
-    if (!on.instruments() || !context || !sameSkill(context.skill, PEDOMETER_SKILL)) return;
-    if (!carriedGear(context.actor).some((item) => PEDOMETER.test(nameOf(item).trim()) && ourBook(item))) return;
+  // Studying Hiking with an electronic pedometer carried: 10% less study time (HT:EE p. 13; API
+  // 1.133.0). Studying HT, Fit or Very Fit with a digital heart monitor: the same (HT:EE p. 12;
+  // attributes and traits reach the Study tool since API 1.146.0, with `skill` null for them).
+  const carries = (actor: any, name: RegExp) => carriedGear(actor).some((item) => name.test(nameOf(item).trim()) && ourBook(item));
+  const speedUp = (context: any, timeFactor: number, line: string) => {
     const multiplier = Number(context.multiplier);
-    context.multiplier = (Number.isFinite(multiplier) && multiplier >= 0 ? multiplier : 1) * studyMultiplier(PEDOMETER_TIME);
-    if (Array.isArray(context.lines)) context.lines.push(L("Pedometer"));
+    context.multiplier = (Number.isFinite(multiplier) && multiplier >= 0 ? multiplier : 1) * studyMultiplier(timeFactor);
+    if (Array.isArray(context.lines)) context.lines.push(L(line));
+  };
+  Hooks.on(api.combat.hooks.studyModifiers, (context: any) => {
+    if (!on.instruments() || !context) return;
+    if (sameSkill(context.skill, PEDOMETER_SKILL) && carries(context.actor, PEDOMETER)) speedUp(context, PEDOMETER_TIME, "Pedometer");
+    else if (fitnessStudy(context.studied) && carries(context.actor, HEART_MONITOR)) speedUp(context, HEART_MONITOR_TIME, "HeartMonitorTraining");
   });
   const kindIs = (item: any, test: (inst: Instrument) => boolean) => {
     const inst = instrumentItem(item);

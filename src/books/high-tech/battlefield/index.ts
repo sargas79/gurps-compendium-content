@@ -26,7 +26,8 @@
  *     data -- the autopilot's skill and Dodge, the remote control's bonus,
  *     the controller's range and the ceiling -- edited on its sheet and set
  *     on the two UAVs (HT:EE p. 46). The operator's control roll takes the
- *     remote control's bonus while he is within the controller's range; the
+ *     remote control's bonus while he is within the controller's range, and
+ *     is refused past it (API 1.144.0); the
  *     figures show on the vehicle actor's Hnd/SR (`gworld.vehicleStats`); a row
  *     button, or a GM tool for a drone on the map, rolls the autopilot's
  *     Piloting or Dodge, and the tool checks the controller's range and the
@@ -404,13 +405,19 @@ export function readyBattlefield(api: GWorldApi, on: BattlefieldSwitches): void 
       const penalty = chaffPenalty(chaffAround(api, subject));
       if (penalty) context.modifiers.push({ label: F("ChaffModifier", { name: subject?.name ?? "" }), value: penalty });
     }
-    // The remote control's bonus to the operator's Piloting, within the controller's range (HT:EE p. 46).
+    // The remote control's bonus to the operator's Piloting, within the controller's range; past
+    // it the operator can't fly the drone at all, and the roll is refused (HT:EE p. 46; a vehicle
+    // control roll can be refused since API 1.144.0).
     if (on.drones() && (context.tags ?? []).includes("vehicleControl") && context.vehicle && isHighTechDrone(context.vehicle)) {
       const data = droneData(context.vehicle);
-      if (data.remoteBonus <= 0) return;
       const yards = context.vehicle.documentName === "Actor" ? yardsBetween(context.vehicle, context.actor) : null;
-      if (!withinControlRange(data, yards)) return;
-      context.modifiers.push({ label: L("RemoteModifier"), value: data.remoteBonus });
+      if (!withinControlRange(data, yards)) {
+        if (typeof context.refusal !== "string" || !context.refusal.trim()) {
+          context.refusal = F("OutOfRangeRefusal", { name: context.vehicle.name, miles: Math.round(((yards ?? 0) / 1760) * 10) / 10 });
+        }
+        return;
+      }
+      if (data.remoteBonus > 0) context.modifiers.push({ label: L("RemoteModifier"), value: data.remoteBonus });
     }
   });
 

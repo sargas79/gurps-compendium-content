@@ -24,7 +24,9 @@
  *     by each part with no DR, the parts at -1xHP rolling HT or breaking, and
  *     the device's own injury past its DR (HT:EE pp. 8-9), put on the item
  *     through `items.applyDamage` (#549). A broken part stops the device:
- *     a roll made with it is refused until the parts are replaced. Parts
+ *     it serves no skill as a tool (`data.registerToolGrade`), so the system
+ *     picks a working one, and a roll a caller still makes with it is
+ *     refused until the parts are replaced. Parts
  *     left at 0 HP or less work, but roll HT for each second of use
  *     (Campaigns p. 484) -- after each roll made with the device, or from a
  *     row action for a use no roll covers -- and each that fails stops.
@@ -492,15 +494,6 @@ export function partsOut(item: any): boolean {
   return deviceData(item).parts.broken > 0;
 }
 
-/** Another carried piece of gear, with no broken parts, that serves the skill rolled. */
-export function otherToolFor(api: GWorldApi, actor: any, item: any, skill: unknown): any {
-  const wanted = api.rules.toolSkillKey(String(skill ?? ""));
-  if (!wanted) return null;
-  return [...(actor?.items ?? [])].find((other: any) => other !== item && other?.id !== item?.id
-    && other?.type === "equipment" && other.system?.carried !== false && !partsOut(other)
-    && (other.system?.forSkills ?? []).some((s: unknown) => api.rules.toolSkillKey(String(s ?? "")) === wanted)) ?? null;
-}
-
 /**
  * A second of use with parts below 0 HP: each rolls HT, and each that fails
  * stops working, out until replaced as a broken part is. Rolled for each
@@ -609,15 +602,19 @@ export function readyDevices(api: GWorldApi, on: DeviceSwitches): void {
   });
 
   // A broken part stops the device; parts below 0 HP roll HT for each use (HT:EE p. 8; Campaigns p. 484).
+  // A broken device serves no skill as a tool (API 1.145.0), so the system passes it over for
+  // a working one when it picks a skill's tool, or takes the roll without it. Registered
+  // before the tool kits' grader, so a broken kit isn't graded for another specialty.
+  api.data.registerToolGrade({
+    module: MODULE_ID,
+    key: "ht-broken-device",
+    grade: (item) => (on.breakable() && isDevice(item) && partsOut(item) ? false : null),
+  });
+  // A roll still made with a broken device -- one its caller names -- is refused.
   // `context.item` is the tool the roll is made with, never a device under repair.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const item = context?.item;
     if (!on.breakable() || !isDevice(item) || !partsOut(item)) return;
-    // The system picks the roll's item itself: where the character carries another,
-    // unbroken piece of gear for the same skill, the roll can be made with that one,
-    // so it isn't refused. The clean fix is a system way to mark a tool unusable,
-    // so the system passes the broken one over when it chooses.
-    if (otherToolFor(api, context.actor, item, context.skill)) return;
     const data = deviceData(item);
     context.refusal ??= F("BrokenRefusal", { name: item.name, broken: data.parts.broken, label: data.parts.label || L("PartsDefault") });
   });

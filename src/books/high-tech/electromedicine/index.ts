@@ -179,11 +179,6 @@ const laserScalpel = (actor: any, skill: unknown) =>
 export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor() ?? actor;
   if (!actor || !patient) return;
-  // Stopping the bleeding and the pain are written to the patient: a user who
-  // doesn't own the patient can't, and the module has no relay to the GM, so
-  // nothing is rolled and the GM is asked to run it (as for any change to a
-  // character this user can't edit).
-  if (!patient.isOwner) return void ui.notifications?.warn(F("NotYourPatient", { name: patient.name }));
   const level = surgeryLevel((skill) => api.actors.skillLevel(actor, skill) ?? null);
   if (level === null) return void ui.notifications?.warn(L("NoSurgery"));
   const answer = await foundry.applications.api.DialogV2.prompt({
@@ -197,13 +192,17 @@ export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<
   const result: any = await api.roll.success({ actor, base: level, skill: CAUTERY.skill, label: title, tags: ["cautery"], item, opponent: patient } as any);
   if (!result || "refused" in result) return;
   const lines: string[] = [];
+  // A patient the healer's user doesn't own is changed through the GM's client (API 1.149.0).
+  // The card says only what was done: the pain where the condition went on, the bleeding
+  // stopped where this user owns the patient or a GM is there to stop it (`stopBleeding`
+  // resolves to nothing either way, and with no GM the system tells the user).
   if (!answer.anaesthetic) {
-    await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any);
-    lines.push(F("CauteryPain", { name: patient.name }));
+    const pain = await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any, { source: actor });
+    if (pain) lines.push(F("CauteryPain", { name: patient.name }));
   }
   if (result.success) {
-    await api.actors.stopBleeding(patient);
-    lines.push(F("Cauterized", { name: patient.name }));
+    await api.actors.stopBleeding(patient, { source: actor });
+    if (patient.isOwner || (game as any).users?.activeGM) lines.push(F("Cauterized", { name: patient.name }));
   } else lines.push(F("NotCauterized", { name: patient.name }));
   if (kindOf(item) === "cauteryPen") {
     await api.items.changeQuantity(item, -1, { reason: L("PenUsed") });

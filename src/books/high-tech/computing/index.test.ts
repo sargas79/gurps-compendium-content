@@ -34,6 +34,7 @@ const api = (): any => ({
   data: {
     hooks: { skillBonuses: "gworld.skillBonuses" },
     registerPriceModifier: (m: any) => prices.push(m),
+    registerToolGrade: (r: any) => { (registered.grader ??= []).push(r); return `${r.module}.${r.key}`; },
   },
   sheets: {
     registerSheetSection: (s: any) => (registered.section ??= []).push(s),
@@ -216,19 +217,30 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     on = new Set([key("computerEras")]);
     expect(roll(tube).refusal).toContain("BurntOutRefusal");
     expect(roll(app).refusal).toContain("BurntOutRefusal");
-    // A Research program picked as the skill's tool isn't refused: its bonus is taken back, with a line that says why.
-    const research = record("Research Database", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
-    actor.items.push(research, { id: "skill", name: "Research/TL7", type: "skill", system: { derived: { toolItemId: research.id, toolBonus: 2 } } });
-    research.actor = actor;
-    const study = fire("gworld.successRollModifiers", { actor, item: research, skill: "Research/TL7", modifiers: [], refusal: null });
-    expect(study.refusal).toBeNull();
-    expect(study.modifiers).toEqual([{ key: "ht.burntOut", label: expect.stringContaining("BurntOutProgram"), value: -2 }]);
     // A transistor machine has no tubes to burn out, whatever its flag says.
     const transistor = record("Minicomputer", { tl: "7" }, { options: { transistor: true } }, { burntOut: true });
     character([transistor]);
     expect(roll(transistor).refusal).toBeNull();
     tube.system.extensions[MODULE_ID].htComputer.burntOut = false;
     expect(roll(tube).refusal).toBeNull();
+  });
+
+  it("grades a burned-out computer and the programs on it as serving no skill (API 1.145.0)", () => {
+    const [grader] = registered.grader!;
+    expect(grader).toMatchObject({ module: MODULE_ID, key: "ht-burnt-out-computer" });
+    const tube = record("Minicomputer", { tl: "7", cost: 100_000 }, { options: { vacuumTube: true } }, { burntOut: true });
+    const research = record("Research Database", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    const actor = character([tube, research]);
+    const skill = { name: "Research/TL7" };
+    // The eras' switch alone holds the rule.
+    expect(grader.grade(tube, skill, actor)).toBeNull();
+    on = new Set([key("computerEras")]);
+    expect(grader.grade(tube, skill, actor)).toBe(false);
+    expect(grader.grade(research, skill, actor)).toBe(false);
+    tube.system.extensions[MODULE_ID].htComputer.burntOut = false;
+    expect(grader.grade(tube, skill, actor)).toBeNull();
+    expect(grader.grade(research, skill, actor)).toBeNull();
+    expect(grader.grade({ type: "skill", name: "Research" }, skill, actor)).toBeNull();
   });
 });
 

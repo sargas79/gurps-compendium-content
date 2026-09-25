@@ -331,7 +331,7 @@ describe("hand grenades (pp. 190-192)", () => {
     await flush();
     expect(placed[0]).toMatchObject({ radius: 7, center: { x: 100, y: 100 } });
     // Tear gas's two HT-2 rolls, dosed as a tear-gas round's are (p. 171).
-    expect(dosed.map((d) => d.source)).toEqual([`${MODULE_ID}.tearGasCoughing`, `${MODULE_ID}.tearGasBlinding`]);
+    expect(dosed.map((d) => d.source)).toEqual([`${MODULE_ID}.tearGasCoughing@25`, `${MODULE_ID}.tearGasBlinding@25`]);
     expect(dosed.every((d) => d.actor === "Victim")).toBe(true);
     expect(chat.at(-1)).toContain("HotCanister");
     // The smoke grenade: a smoke cloud and the hot canister, nobody dosed.

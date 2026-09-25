@@ -292,7 +292,21 @@ describe("reconnaissance drones (HT:EE p. 46)", () => {
     distance = 4 * 1760;
     expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [] }).modifiers).toHaveLength(1);
     distance = 5 * 1760;
-    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [] }).modifiers).toEqual([]);
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null }).modifiers).toEqual([]);
+  });
+
+  it("refuses the operator's vehicle control roll past the controller's range (API 1.144.0)", () => {
+    const operator = character("Operator");
+    const flying = { ...drone(), documentName: "Actor", type: "vehicle", getActiveTokens: () => [{ center: { x: 0, y: 0 } }] };
+    distance = 5 * 1760;
+    const refused = fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null });
+    expect(refused.refusal).toBe('GCC.HT.Battlefield.OutOfRangeRefusal {"name":"Phantom 4 Pro","miles":5}');
+    // Another listener's refusal is kept.
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: "No" }).refusal).toBe("No");
+    distance = 4 * 1760;
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: flying, modifiers: [], refusal: null }).refusal).toBeNull();
+    // A drone off the map, whose distance isn't known, is flown.
+    expect(fire("gworld.successRollModifiers", { actor: operator, tags: ["vehicleControl"], vehicle: drone(), modifiers: [], refusal: null }).refusal).toBeNull();
   });
 
   it("rolls the autopilot's Piloting or Dodge", async () => {

@@ -7,8 +7,8 @@
  *
  *   - **Tool kits (toolKits):** a portable kit or workshop carried for
  *     another specialty of a skill, and a workshop for a close or distant
- *     craft, as the skill's equipment line where the character has no kit of
- *     its own for it (`gworld.skillBonuses`); the repair skills marked as
+ *     craft, as a tool of the skill at that figure (`data.registerToolGrade`,
+ *     so the system weighs its TL and picks the best tool); the repair skills marked as
  *     needing a kit, for the system's no-equipment line; light crafts' kits and large
  *     vehicles' repriced; a lab's set-up time and a machine shop's output
  *     shown on the item.
@@ -36,7 +36,6 @@
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { toolsFor } from "../equipment/index.js";
 import {
   CARBIDE_CHAIN_COST,
   GLASS_CUTTER_REALISTIC,
@@ -59,6 +58,7 @@ import {
   FIRE_SHELTER_DR,
   diceRange,
   glassCutterOutcome,
+  kitFor,
   kitPriceMultipliers,
   leadSymptomsWorsen,
   listOf,
@@ -67,7 +67,6 @@ import {
   readiesNeeded,
   snapStrikesWielder,
   workDamage,
-  wrongKitModifier,
   type CarriedKit,
   type HazardKind,
   type KitSize,
@@ -224,20 +223,24 @@ function targetedActor(): any {
 
 // ── tool kits (p. 24) ──
 
-/** The kits a character carries, as the wrong-specialty rule reads them. */
-function carriedKits(actor: any): CarriedKit[] {
-  return [...(actor?.items ?? [])]
-    .filter((item: any) => item?.type === "equipment" && item.system?.carried !== false && toolData(item).kit)
-    .map((item: any) => {
-      const data = toolData(item);
-      return { size: data.kit, skills: (item.system?.forSkills ?? []).map(String), close: data.closeCrafts, distant: data.distantCrafts };
-    });
+/** A kit as the wrong-specialty rule reads it, or null for gear that isn't one. */
+function kitOf(item: any): CarriedKit | null {
+  if (item?.type !== "equipment") return null;
+  const data = toolData(item);
+  if (!data.kit) return null;
+  return { size: data.kit, skills: (item.system?.forSkills ?? []).map(String), close: data.closeCrafts, distant: data.distantCrafts };
 }
 
-/** The skill's equipment line from a kit made for something else, or null where the rule has nothing to say. */
-export function wrongKitLine(api: GWorldApi, actor: any, skill: string): number | null {
-  if (!actor || !skill || toolsFor(api, actor, skill).length) return null;
-  return wrongKitModifier(carriedKits(actor), skill, (name) => api.rules.toolSkillKey(name));
+/**
+ * What a kit made for something else is worth to a skill (p. 24), as a
+ * stated tool modifier for the system's grader, or null where the rule has
+ * nothing to say: the kit's own skill, or one it has nothing to do with.
+ */
+export function wrongKitGrade(api: GWorldApi, item: any, skill: string): { modifier: number } | null {
+  const kit = kitOf(item);
+  if (!kit || !skill) return null;
+  const value = kitFor(kit, skill, (name) => api.rules.toolSkillKey(name));
+  return value === null ? null : { modifier: value };
 }
 
 // ── the chainsaw's state (p. 27) ──
@@ -507,18 +510,14 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
   });
 
   // ── tool kits (p. 24) ──
-  // A kit made for another specialty, or a workshop for another craft, where none is carried for this one.
-  Hooks.on(api.data.hooks.skillBonuses, (context: any) => {
-    if (!on.kits() || !api.registry.isRuleOn("equipmentModifiers")) return;
-    const value = wrongKitLine(api, context?.actor, String(context?.name ?? ""));
-    if (value === null) return;
-    const line = (context.lines ?? []).find((l: any) => l?.key === "tools");
-    if (line) {
-      // The system's own line: "Equipment" at the kit's grade, or "No equipment" where a repair skill has none of its own.
-      line.value = value;
-      line.label = L("WrongKit");
-      line.reason = L("WrongKitReason");
-    } else context.lines?.push?.({ key: "tools", label: L("WrongKit"), value, source: MODULE_ID });
+  // A kit made for another specialty, or a workshop for another craft, serves the skill at that
+  // figure (API 1.145.0): the system weighs the kit's TL against the skill's, and picks it only
+  // where it is worth more than the skill's own tools. Registered after the devices' and
+  // computers' graders, whose `false` for broken gear must come first.
+  api.data.registerToolGrade({
+    module: MODULE_ID,
+    key: "ht-wrong-kit",
+    grade: (item, skill) => (on.kits() ? wrongKitGrade(api, item, String(skill?.name ?? "")) : null),
   });
 
   // Tool kits are essential to the repair skills (p. 24): without one, the

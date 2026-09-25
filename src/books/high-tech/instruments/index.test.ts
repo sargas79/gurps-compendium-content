@@ -420,17 +420,18 @@ describe("the laboratory instruments (HT:EE pp. 10-13)", () => {
     expect(shocks[0]).toMatchObject({ actor: victim, kind: "lethal", formula: "5d", continuous: true, source: "geigerSupply" });
   });
 
-  it("shocks no one the user doesn't own, from the Geiger supply or the Van de Graaff, and warns", async () => {
+  it("shocks one the user doesn't own through the GM, from the Geiger supply or the Van de Graaff (API 1.149.0)", async () => {
     const stranger = { ...character("Stranger"), isOwner: false };
     targets = [stranger];
     const tube = gear("Geiger-Müller Tube");
-    await action("ht-geiger-supply").run(tube, character("Physicist", { items: [tube] }));
+    const physicist = character("Physicist", { items: [tube] });
+    await action("ht-geiger-supply").run(tube, physicist);
     const generator = gear("Van de Graaff Generator");
+    const teacher = character("Teacher", { items: [generator] });
     form = { sphere: "9" };
-    await action("ht-instrument-discharge").run(generator, character("Teacher", { items: [generator] }));
-    expect(shocks).toEqual([]);
-    expect(ui.notifications!.warn).toHaveBeenCalledTimes(2);
-    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourVictim"));
+    await action("ht-instrument-discharge").run(generator, teacher);
+    expect(shocks.map((s) => [s.actor.name, s.sourceActor])).toEqual([["Stranger", physicist], ["Stranger", teacher]]);
+    expect(ui.notifications!.warn).not.toHaveBeenCalled();
   });
 
   it("builds an analog computer from Mechanic (Analog Computers)-6 for one without the Engineer skill", async () => {
@@ -516,5 +517,36 @@ describe("training aids (HT:EE p. 13)", () => {
     expect(study(character("C", { items: [gear("Electronic Pedometer", {}, "ultra-tech")] }), "Hiking").multiplier).toBe(1);
     switches.instruments = false;
     expect(study(character("D", { items: [gear("Electronic Pedometer")] }), "Hiking").multiplier).toBe(1);
+  });
+
+  // Since API 1.146.0 the Study tool reaches attributes and traits, `skill` null for them.
+  const train = (actor: any, studied: any) => {
+    const context = { actor, skill: studied.kind === "skill" ? studied.item : null, studied, method: "selfTeaching", hours: 90, multiplier: 1, lines: [] as string[] };
+    hooks.get("gworld.studyModifiers")!(context);
+    return context;
+  };
+  const ht = { kind: "attribute", item: null, attribute: "HT", name: "HT" };
+  const trait = (name: string) => ({ kind: "trait", item: { type: "trait", name }, attribute: null, name });
+
+  it("counts HT, Fit and Very Fit studied with a digital heart monitor carried at 1/0.9 of the hours (HT:EE p. 12)", () => {
+    const runner = character("Runner", { items: [gear("Digital Heart Monitor", { tl: "8" })] });
+    const context = train(runner, ht);
+    expect(context.multiplier).toBeCloseTo(1 / 0.9);
+    expect(context.lines).toEqual(["GCC.HT.Instruments.HeartMonitorTraining"]);
+    expect(train(runner, trait("Fit")).multiplier).toBeCloseTo(1 / 0.9);
+    expect(train(runner, trait("Very Fit")).multiplier).toBeCloseTo(1 / 0.9);
+  });
+
+  it("leaves other attributes and traits, a monitor left behind, and the pedometer on HT alone", () => {
+    const runner = character("Runner", { items: [gear("Digital Heart Monitor")] });
+    expect(train(runner, { kind: "attribute", item: null, attribute: "ST", name: "ST" }).multiplier).toBe(1);
+    expect(train(runner, trait("Fitness Freak")).multiplier).toBe(1);
+    expect(train(runner, trait("Combat Reflexes")).multiplier).toBe(1);
+    expect(train(runner, { kind: "skill", item: { type: "skill", name: "Running" }, attribute: null, name: "Running" }).multiplier).toBe(1);
+    expect(train(character("A", { items: [gear("Digital Heart Monitor", { carried: false })] }), ht).multiplier).toBe(1);
+    // The pedometer is Hiking's alone: an attribute's or a trait's study, with no skill, isn't.
+    const walker = character("Walker", { items: [gear("Electronic Pedometer")] });
+    expect(train(walker, ht).multiplier).toBe(1);
+    expect(train(walker, trait("Fit")).multiplier).toBe(1);
   });
 });

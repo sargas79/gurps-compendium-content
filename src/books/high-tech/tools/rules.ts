@@ -107,12 +107,6 @@ export function kitFor(kit: CarriedKit, skill: string, key: (name: string) => st
   return best;
 }
 
-/** The best any of the kits is worth to a skill none is made for, or null for none. */
-export function wrongKitModifier(kits: readonly CarriedKit[], skill: string, key: (name: string) => string): number | null {
-  const values = kits.map((kit) => kitFor(kit, skill, key)).filter((v): v is number => v !== null);
-  return values.length ? Math.max(...values) : null;
-}
-
 /** What a kit's price is multiplied by: a light craft's, and a large vehicle's (p. 24). */
 export function kitPriceMultipliers(kit: { lightCraft: boolean; vehicleTons: number }): { cost: number; weight: number } {
   const tons = Number(kit.vehicleTons) || 0;

@@ -496,7 +496,8 @@ describe("incendiaries (p. 188)", () => {
     dice = [4, 4, 4];
     fire(HOOKS.turnStart, null, { actor: victim });
     await flush();
-    expect(injuries).toEqual([{ actor: "Victim", amount: 6, label: "GCC.HT.Explosives.Thermite.Title" }]);
+    // Burning damage at the spot it touches, for its wounding modifier there (API 1.148.0).
+    expect(injuries).toEqual([{ actor: "Victim", amount: 6, label: "GCC.HT.Explosives.Thermite.Title", location: "torso", damageType: "burn" }]);
     expect(victim.flags.htThermite).toEqual({ seconds: 24, damage: 12, location: "torso" });
     dice = [4, 4, 4];
     fire(HOOKS.turnStart, null, { actor: victim });
