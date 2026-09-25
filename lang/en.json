@@ -7674,7 +7674,7 @@
         "Imposed": "While in use: Colorblindness, No Depth Perception and No Peripheral Vision.",
         "Mounted": "A camera or vehicle sensor: not worn as a sense.",
         "ProtectedVisionLine": "Coated lenses: Protected Vision against laser light.",
-        "StabilizedLine": "Stabilized: cancels up to -{penalty} in movement penalties when observing (the GM applies it).",
+        "StabilizedLine": "Stabilized: cancels up to -{penalty} of the movement penalty on a Vision roll made through it from a moving vehicle.",
         "IlluminatorLine": "Has its own IR illuminator.",
         "LensShine": "On a bright day its glint can be seen on a Vision roll; avoiding it takes a Stealth roll (row button).",
         "LensShineHooded": "On a bright day its glint can be seen on a Vision roll; avoiding it takes a Stealth roll at {bonus} (row button).",
@@ -7719,7 +7719,10 @@
         "Medium": {
           "soil": "Soil",
           "ice": "Ice (x20 range)",
-          "rock": "Concrete or rock (range /10)"
+          "rock": "Concrete or rock (range /10)",
+          "air": "In air",
+          "water": "Underwater",
+          "vacuum": "In vacuum"
         },
         "MediumLine": "In {medium}: range {range}.",
         "Countermeasures": "Target's countermeasures",
@@ -7995,7 +7998,39 @@
           "improvised": "Improvised direction finder",
           "haste": "Haste: a brief signal"
         },
-        "DirectionFinderOpen": "{name}: a fix"
+        "DirectionFinderOpen": "{name}: a fix",
+        "EyeDrLine": "In use, it protects the eyes behind it with DR {dr}.",
+        "EyeDr": "{name} over the eyes",
+        "ObservingMoving": "Observing through {name} from a moving vehicle ({penalty})",
+        "ObservingStabilized": "Observing through {name} from a moving vehicle ({penalty}, up to -{stabilized} cancelled)",
+        "FixPenalty": "Hydrophone fix ({name}): the detection's modifiers, never a bonus",
+        "SoundMedium": "Where",
+        "AirOnly": {
+          "water": "Sound-detection gear works only in air: underwater, use a hydrophone.",
+          "vacuum": "Sound-detection gear works only in air: in vacuum there is nothing to hear."
+        },
+        "OtherSites": "Other sites",
+        "Sites": {
+          "none": "None yet",
+          "success": "A success at one",
+          "critical": "A critical success at one",
+          "twoSuccesses": "Successes at two"
+        },
+        "Triangulated": "With the other sites' results, the source is triangulated: found to within two yards.",
+        "Detector": {
+          "testKit": "50 treated strips for a wide range of chemicals: a positive test in a minute or two at TL6, at once at TL8.",
+          "handheld": "Senses chemical weapons, drugs or explosives within about a foot.",
+          "nbc": "Sounds an alarm at any known NBC agent; can be linked to other sensors or watched from a laptop.",
+          "geiger": "Measures the type and level of radiation: {skill} reads a clue to its source (row button).",
+          "badge": "Its colour strip shows the total dose it has been exposed to.",
+          "dosimeter": "Tracks the total dose, and sounds an alarm when it reaches dangerous levels.",
+          "metal": "Beeps over metal up to {inches}\" underground ({small}\" for small things like coins and rings)."
+        },
+        "MetalDetectorTl8": "At TL8, a screen shows the find's general shape and composition, and it weighs half as much.",
+        "GeigerTitle": "Read the radiation",
+        "GeigerRoll": "Reading the {name}",
+        "GeigerClue": "A clue to the radiation's source: the GM says what the readings suggest.",
+        "GeigerNothing": "The readings say nothing about where it comes from."
       },
       "Survival": {
         "Title": "Survival gear",

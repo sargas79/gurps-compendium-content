@@ -8,6 +8,10 @@ import {
   GPR_MEDIUM,
   OPTICS,
   activeModes,
+  detectorOf,
+  hydrophoneFixPenalty,
+  soundTriangulated,
+  stabilizedPenalty,
   triangulationFix,
   triangulationLevel,
   triangulationLines,
@@ -202,5 +206,29 @@ describe("indirect passive sensors (pp. 48-50)", () => {
     expect(directionalMicLevels("Directional Microphone", 7)).toBe(2);
     expect(directionalMicLevels("Directional Microphone", 8)).toBe(3);
     expect(directionalMicLevels("Microphone", 8)).toBeNull();
+  });
+
+  it("cancels up to -3 of movement with stabilization, never past 0", () => {
+    expect(stabilizedPenalty(-4, true)).toBe(-1);
+    expect(stabilizedPenalty(-2, true)).toBe(0);
+    expect(stabilizedPenalty(-3, false)).toBe(-3);
+  });
+
+  it("carries a hydrophone detection's penalties to the attack, never a bonus", () => {
+    expect(hydrophoneFixPenalty([{ value: 7 }, { value: 4 }, { value: -15 }])).toBe(-4);
+    expect(hydrophoneFixPenalty([{ value: 12 }, { value: -10 }])).toBe(0);
+  });
+
+  it("triangulates a sound from three successes, or a success and a critical", () => {
+    expect(soundTriangulated(["success", "success", "success"])).toBe(true);
+    expect(soundTriangulated(["success", "critical"])).toBe(true);
+    expect(soundTriangulated(["success", "success"])).toBe(false);
+    expect(soundTriangulated(["critical", "failure"])).toBe(false);
+  });
+
+  it("knows the detectors by name", () => {
+    expect(detectorOf("Geiger Counter (TL6)")).toBe("geiger");
+    expect(detectorOf("Metal Detector")).toBe("metal");
+    expect(detectorOf("Handheld Metal Detector (TL7)")).toBeNull();
   });
 });

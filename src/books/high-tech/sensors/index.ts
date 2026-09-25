@@ -48,12 +48,18 @@
  *   - **visualSensors:** optics as Telescopic Vision, night-vision optics and
  *     thermographs as Night Vision and Infravision with the Colorblindness,
  *     No Depth Perception and No Peripheral Vision they impose while in use;
- *     IR illumination; a thermograph's +2 to spot a warm target and +3 to
- *     Tracking; and a row button for the Stealth roll against lens shine
- *     (pp. 47-48).
+ *     DR 1 over the eyes behind a worn optic; IR illumination; a thermograph's
+ *     +2 to spot a warm target and +3 to Tracking; a Vision roll through a
+ *     magnifying optic from a moving vehicle at the moving-platform penalty
+ *     (Campaigns p. 548), up to -3 of it cancelled by stabilized binoculars;
+ *     and a row button for the Stealth roll against lens shine (pp. 47-48).
  *   - **passiveSensors:** a hydrophone's detection roll, and its fix's +3 to
- *     hit and +4 to shadow; sound-detection gear identifying or locating a
- *     sound; a directional microphone as Parabolic Hearing (pp. 48-50).
+ *     hit -- with the detection's own penalties, never a bonus -- and +4 to
+ *     shadow; sound-detection gear identifying or locating a sound, in air
+ *     only, and triangulating it with the other sites' results; a
+ *     directional microphone as Parabolic Hearing; the chemical, radiation
+ *     and metal detectors on their sheets, a Geiger counter's reading, and
+ *     the TL8 metal detector's half weight (pp. 48-50).
  *
  * Under `radios`, the direction finder's fix is the supplement's
  * triangulation (HT:EE p. 47, revising pp. 38-39; decision E3 in #471). The
@@ -113,6 +119,16 @@ import {
   ACTIVE_SENSORS,
   COUNTERMEASURES,
   DATA_RATES,
+  GEIGER_SKILL,
+  METAL_DETECTOR,
+  OBSERVING_RIDE,
+  OPTIC_EYE_DR,
+  SOUND_MEDIA,
+  detectorOf,
+  hydrophoneFixPenalty,
+  soundTriangulated,
+  stabilizedPenalty,
+  type SoundMedium,
   ENCIPHERED,
   EW_FROM_COMM,
   FAKE_FIST,
@@ -502,6 +518,7 @@ function visualLines(item: any, data: SensorData, lines: string[], options: stri
   if (optic.mounted) lines.push(L("Mounted"));
   if (optic.protectedVision) lines.push(L("ProtectedVisionLine"));
   if (optic.stabilized) lines.push(F("StabilizedLine", { penalty: STABILIZED }));
+  if (!optic.mounted) lines.push(F("EyeDrLine", { dr: OPTIC_EYE_DR }));
   if (optic.illuminator) lines.push(L("IlluminatorLine"));
   lines.push(F(optic.antiReflective || data.options.lensHood ? "LensShineHooded" : "LensShine", { bonus: signed(LENS_HOOD) }));
   if (isNightVision(optic)) options.push("irIlluminated");
@@ -520,6 +537,13 @@ function passiveLines(item: any, data: SensorData, lines: string[], options: str
   }
   if (isSoundDetector(name)) {
     lines.push(F("SoundDetector", { bonus: SOUND_IDENTIFY }));
+    return true;
+  }
+  // The chemical, radiation and metal detectors: what each finds, on the sheet (pp. 48-50).
+  const detector = detectorOf(name);
+  if (detector) {
+    lines.push(F(`Detector.${detector}`, { skill: GEIGER_SKILL, inches: METAL_DETECTOR.inches, small: METAL_DETECTOR.smallInches }));
+    if (detector === "metal" && tl >= 8) lines.push(L("MetalDetectorTl8"));
     return true;
   }
   const levels = directionalMicLevels(name, tl);
@@ -588,6 +612,11 @@ function price(item: any, data: SensorData, on: SensorParts): { cost: number; we
   if (on.passive && hydrophoneBonus(nameOf(item), tl) !== null && data.options.search) {
     applies = true;
     cost *= SEARCH_HYDROPHONE_COST;
+  }
+  // The metal detector weighs half at TL8 (p. 50).
+  if (on.passive && tl >= 8 && detectorOf(nameOf(item)) === "metal") {
+    applies = true;
+    weight *= METAL_DETECTOR.tl8Weight;
   }
   return applies ? { cost, weight } : null;
 }
@@ -1120,6 +1149,33 @@ export function initHighTechSensors(switches: SensorSwitches): void {
 
 // ── What the book prints alone ──
 
+/** A combat-state key: the fix a hydrophone made, and the penalty it carries to the attack (p. 49). */
+const HYDROPHONE_FIX_STATE = "htHydrophoneFix";
+
+/**
+ * The movement line on a Vision roll made through a worn magnifying optic
+ * from a moving vehicle (p. 47): the moving-platform penalty for a handheld
+ * piece on a bad road or calm water (Campaigns p. 548), which stabilized
+ * binoculars cancel up to -3. Null where the roller isn't aboard a moving
+ * vehicle or has no optic up.
+ */
+export function observingLine(api: GWorldApi, actor: any): { label: string; value: number; key: string } | null {
+  const optics = [...(actor?.items ?? [])].filter((i: any) => worn(i) && opticOf(i) && !opticOf(i)!.mounted && opticOf(i)!.magnification > 1);
+  if (!optics.length) return null;
+  const aboard = api.actors.vehicleAboard?.(actor);
+  if (!aboard?.moving) return null;
+  const penalty = api.rules.movingPlatformPenalty({ medium: aboard.medium as never, ride: OBSERVING_RIDE, mounting: "handheld" });
+  if (!penalty) return null;
+  // The steadiest optic up counts.
+  const best = optics.map((item: any) => ({ item, stabilized: opticOf(item)!.stabilized === true }))
+    .sort((a, b) => stabilizedPenalty(penalty, b.stabilized) - stabilizedPenalty(penalty, a.stabilized))[0]!;
+  return {
+    key: `${MODULE_ID}.observingMoving`,
+    label: F(best.stabilized ? "ObservingStabilized" : "ObservingMoving", { name: String(best.item.name ?? ""), penalty, stabilized: STABILIZED }),
+    value: stabilizedPenalty(penalty, best.stabilized),
+  };
+}
+
 /** An optic's IR illuminator is on: the wearer is a light to night-vision gear and thermographs (p. 47). */
 function shinesInfrared(actor: any): boolean {
   return [...(actor?.items ?? [])].some((i: any) => worn(i) && OPTICS[nameOf(i)]?.illuminator === true && sensorData(i).options.irIlluminated === true);
@@ -1387,15 +1443,17 @@ export async function hydrophoneRoll(api: GWorldApi, item: any, actor: any, opti
       current: Number(form.querySelector<HTMLInputElement>("[name=current]")?.value) || 0,
     }));
   if (!answer) return;
-  const modifiers = [
-    ...(bonus ? [{ label: item.name, value: bonus }] : []),
-    ...hydrophoneModifiers(answer, (yards) => api.rules.speedRangeModifier(yards)).map((l) => ({ label: L(`HydrophoneLine.${l.key}`), value: l.value })),
-  ];
+  const situation = hydrophoneModifiers(answer, (yards) => api.rules.speedRangeModifier(yards)).map((l) => ({ label: L(`HydrophoneLine.${l.key}`), value: l.value }));
+  const modifiers = [...(bonus ? [{ label: item.name, value: bonus }] : []), ...situation];
   const skill = "Electronics Operation (Sonar)";
   const result: any = await api.roll.success({ actor, base: skillBase(api, actor, skill), skill, label: F("HydrophoneRoll", { name: item.name }), modifiers, tags: ["detection", "hydrophone"], ...(target ? { subject: target } : {}) } as any);
   if (!result?.success || !options.fix) return;
   const search = sensorData(item).options.search === true;
-  if (target && !search) await setLock(api, actor, item, target);
+  if (target && !search) {
+    await setLock(api, actor, item, target);
+    // The detection roll's modifiers go with the fix to the attack it directs, never as a bonus (p. 49).
+    await api.combat.setCombatState(actor, MODULE_ID, HYDROPHONE_FIX_STATE, { targetUuid: String(target.uuid), itemId: String(item.id), penalty: hydrophoneFixPenalty(situation) }, "combat");
+  }
   await card(actor, F("HydrophoneRoll", { name: item.name }), [F(search ? "FixSearch" : "HydrophoneFix", { identify: HYDROPHONE_FIX.identify, shadow: HYDROPHONE_FIX.shadow, hit: HYDROPHONE_FIX.hit })]);
 }
 
@@ -1406,14 +1464,23 @@ async function soundDetection(api: GWorldApi, item: any, actor: any): Promise<vo
     row(L("TaskLabel"), `<select name="task"><option value="identify">${esc(F("Sound.identify", { bonus: SOUND_IDENTIFY }))}</option><option value="locate">${esc(L("Sound.locate"))}</option></select>`)
     + row(L("SoundMiles"), `<input type="number" name="miles" value="10" min="0" step="any" style="width:70px" />`)
     + row(L("SoundDecibels"), `<input type="number" name="db" value="100" min="0" step="10" style="width:70px" />`)
-    + row(L("Ambient"), `<input type="number" name="ambient" value="0" min="-10" max="0" step="1" style="width:70px" />`),
+    + row(L("Ambient"), `<input type="number" name="ambient" value="0" min="-10" max="0" step="1" style="width:70px" />`)
+    + row(L("SoundMedium"), `<select name="medium">${SOUND_MEDIA.map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`)
+    + row(L("OtherSites"), `<select name="sites">${OTHER_SITES.map((s) => `<option value="${s}">${esc(L(`Sites.${s}`))}</option>`).join("")}</select>`),
     (form) => ({
       task: form.querySelector<HTMLSelectElement>("[name=task]")?.value === "locate" ? "locate" : "identify",
       miles: Number(form.querySelector<HTMLInputElement>("[name=miles]")?.value) || 0,
       db: Number(form.querySelector<HTMLInputElement>("[name=db]")?.value) || 0,
       ambient: Math.max(-10, Math.min(0, Number(form.querySelector<HTMLInputElement>("[name=ambient]")?.value) || 0)),
+      medium: (SOUND_MEDIA as readonly string[]).includes(String(form.querySelector<HTMLSelectElement>("[name=medium]")?.value)) ? String(form.querySelector<HTMLSelectElement>("[name=medium]")?.value) as SoundMedium : "air",
+      sites: (OTHER_SITES as readonly string[]).includes(String(form.querySelector<HTMLSelectElement>("[name=sites]")?.value)) ? String(form.querySelector<HTMLSelectElement>("[name=sites]")?.value) as OtherSites : "none",
     }));
   if (!answer) return;
+  // Sound detectors work only in air (p. 49).
+  if (answer.medium !== "air") {
+    await card(actor, F("SoundRoll", { name: item.name }), [L(`AirOnly.${answer.medium}`)]);
+    return;
+  }
   const modifiers: Array<{ label: string; value: number }> = [];
   if (answer.task === "identify") modifiers.push({ label: item.name, value: SOUND_IDENTIFY });
   else {
@@ -1422,8 +1489,30 @@ async function soundDetection(api: GWorldApi, item: any, actor: any): Promise<vo
   }
   if (answer.ambient) modifiers.push({ label: L("AmbientLine"), value: answer.ambient });
   const skill = "Electronics Operation (Sensors)";
-  await api.roll.success({ actor, base: skillBase(api, actor, skill), skill, label: F("SoundRoll", { name: item.name }), modifiers, tags: ["hearing"] } as any);
-  if (answer.task === "locate") await card(actor, F("SoundRoll", { name: item.name }), [L("Triangulate")]);
+  const result: any = await api.roll.success({ actor, base: skillBase(api, actor, skill), skill, label: F("SoundRoll", { name: item.name }), modifiers, tags: ["hearing"] } as any);
+  if (answer.task !== "locate" || !result || "refused" in result) return;
+  // A fix takes three sites, or a success at one and a critical success at another (p. 49).
+  const here = result.criticalSuccess ? "critical" : result.success ? "success" : "failure";
+  const results = [here, ...SITE_RESULTS[answer.sites]] as Array<"success" | "critical" | "failure">;
+  await card(actor, F("SoundRoll", { name: item.name }), [L(soundTriangulated(results) ? "Triangulated" : "Triangulate")]);
+}
+
+/** What the other observation sites have found, as the sound detection dialog asks it (p. 49). */
+const OTHER_SITES = ["none", "success", "critical", "twoSuccesses"] as const;
+type OtherSites = (typeof OTHER_SITES)[number];
+const SITE_RESULTS: Readonly<Record<OtherSites, ReadonlyArray<"success" | "critical">>> = {
+  none: [],
+  success: ["success"],
+  critical: ["critical"],
+  twoSuccesses: ["success", "success"],
+};
+
+/** A Geiger counter's reading: Electronics Operation (Scientific) for a clue to the source (p. 49). */
+async function readRadiation(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const result: any = await api.roll.success({ actor, base: skillBase(api, actor, GEIGER_SKILL), skill: GEIGER_SKILL, label: F("GeigerRoll", { name: item.name }), tags: ["radiation", "detection"] } as any);
+  if (!result || "refused" in result) return;
+  await card(actor, F("GeigerRoll", { name: item.name }), [L(result.success ? "GeigerClue" : "GeigerNothing")]);
 }
 
 /** Registers the engine's parts, once whichever books ask, and what this book prints alone. */
@@ -1439,6 +1528,8 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
     { key: "ht-lens-shine", label: L("LensShineTitle"), icon: "fa-solid fa-sun", visible: (item) => on.visual() && Boolean(opticOf(item)) && !opticOf(item)!.mounted, run: (item, actor) => lensShine(api, item, actor) },
     { key: "ht-hydrophone", label: L("HydrophoneTitle"), icon: "fa-solid fa-water", visible: (item) => on.passive() && hydrophoneBonus(nameOf(item), itemTl(item)) !== null, run: (item, actor) => hydrophone(api, item, actor) },
     { key: "ht-sound-detection", label: L("SoundTitle"), icon: "fa-solid fa-volume-high", visible: (item) => on.passive() && isSoundDetector(nameOf(item)), run: (item, actor) => soundDetection(api, item, actor) },
+    // The supplement's instrument rules read a Geiger counter from their own "Use" (HT:EE p. 12); without them, this.
+    { key: "ht-geiger", label: L("GeigerTitle"), icon: "fa-solid fa-radiation", visible: (item) => on.passive() && detectorOf(nameOf(item)) === "geiger" && !isRuleOn(`${MODULE_ID}.electricalMeasurement`), run: (item, actor) => readRadiation(api, item, actor) },
   ];
   for (const action of actions) api.sheets.registerRowAction({ module: MODULE_ID, itemTypes: ["equipment"], ...action });
   api.sheets.registerGmTool({ module: MODULE_ID, key: "ht-emissions", label: L("EmissionsTitle"), icon: "fa-solid fa-wave-square", visible: rangefindingOn, open: () => detectEmissions(api) });
@@ -1468,5 +1559,29 @@ export function readyHighTechSensors(api: GWorldApi, on: { radios: () => boolean
       const fix = lockedSensor(api, actor, [subject]);
       if (fix && hydrophoneBonus(nameOf(fix.item), itemTl(fix.item)) !== null) context.modifiers.push({ label: F("FixLine", { name: fix.item.name }), value: HYDROPHONE_FIX.shadow });
     }
+    // Observing through a magnifying optic from a moving vehicle: the
+    // movement's penalty, which stabilized binoculars cancel up to -3 (p. 47).
+    if (on.visual() && tags.includes("vision") && Array.isArray(context.modifiers)) {
+      const line = observingLine(api, actor);
+      if (line) context.modifiers.push(line);
+    }
+  });
+
+  // A hydrophone fix directing the attack: the detection roll's modifiers, never a bonus (p. 49).
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.passive() || !context?.actor || context?.mode?.ranged !== true || !Array.isArray(context.modifiers)) return;
+    const fix = api.combat.getCombatState(context.actor, MODULE_ID, HYDROPHONE_FIX_STATE) as { targetUuid?: string; itemId?: string; penalty?: number } | undefined;
+    const locked = lockedSensor(api, context.actor, context.targets ?? []);
+    if (!fix || !locked || String(locked.item.id) !== fix.itemId || lockTargetOf(api, context.actor) !== fix.targetUuid) return;
+    const penalty = Math.min(0, Number(fix.penalty) || 0);
+    if (penalty) context.modifiers.push({ label: F("FixPenalty", { name: locked.item.name }), value: penalty });
+  });
+
+  // Every optic protects the eye behind it with DR 1 while in use (p. 47).
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on.visual() || !context?.actor || String(context.hitLocation ?? "") !== "eye" || !Array.isArray(context.lines)) return;
+    const optic = [...(context.actor.items ?? [])].find((i: any) => worn(i) && opticOf(i) && !opticOf(i)!.mounted);
+    if (!optic) return;
+    context.lines.push({ label: F("EyeDr", { name: optic.name }), dr: OPTIC_EYE_DR, applies: true, forceField: false, flexible: false, hardened: 0, itemId: optic.id, source: "armor" });
   });
 }
