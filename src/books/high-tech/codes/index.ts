@@ -22,13 +22,16 @@
  *     kit); a disguise kit's row rolls Disguise with it, the advanced kit's
  *     day of preparation and hours of fitting on the card; smuggler's luggage
  *     rolls Smuggling for what its secret area holds; a mule's HT roll at -1
- *     per 50 pellets from the mule pills' row, a packet bursting on a critical
- *     failure as a dose of the registered poison; and, from the GM's token
+ *     per 50 pellets from the mule pills' row, the pills' cramps as moderate
+ *     pain, a packet bursting on a critical failure as an overdose (the
+ *     margin's hours unconscious, and a dose of the registered poison;
+ *     Campaigns p. 441); and, from the GM's token
  *     controls, spotting a mule: a Quick Contest of Search or Observation
  *     against Acting, or an X-ray machine's Electronics Operation roll and
  *     then a Search roll.
  */
 
+import { overdoseSeconds } from "../../../shared/drugs/rules.js";
 import { FORGERY_TABLES, readyForgery, type ForgeryOutcome } from "../../../shared/forgery/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { timeSpentModifier } from "../../../shared/time-spent.js";
@@ -74,6 +77,8 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 const CRYPTOGRAPHY = "Cryptography";
 const BURST = "mulePillBurst";
+/** Pain already as bad as the cramps or worse (Campaigns p. 428). */
+const PAINS = ["moderatePain", "severePain", "terriblePain", "agony"];
 
 export interface CodesSwitches {
   encryption: () => boolean;
@@ -276,9 +281,17 @@ export async function runMule(api: GWorldApi, item: any, actor: any): Promise<vo
   if (!outcome) return;
   const result = muleOutcome(outcome);
   const lines = [L(`Mule.${result}`)];
+  // The pills' pressure brings cramps (p. 214): moderate pain (Campaigns p. 428), the GM's to make worse.
+  if (pellets > 0 && !PAINS.some((key) => actor.statuses?.has?.(key))) {
+    await api.actors.applyCondition(actor, { key: "moderatePain" } as any);
+    lines.push(L("Mule.cramps"));
+  }
   if (result === "burst") {
+    // An overdose (Campaigns p. 441): out for the margin's hours, and the drug as a poison.
+    const seconds = overdoseSeconds(Number(outcome.margin) || 0);
+    await api.actors.applyCondition(actor, { key: "unconscious", duration: { seconds } } as any);
     await api.actors.dosePoison(actor, { ...BURST_PACKET, source: `${MODULE_ID}.${BURST}` } as any);
-    lines.push(L("Mule.dosed"));
+    lines.push(L("Mule.dosed"), F("Mule.out", { hours: seconds / 3600 }));
   }
   lines.push(L("Mule.tells"));
   await say(actor, String(item.name), lines);
