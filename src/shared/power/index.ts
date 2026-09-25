@@ -209,7 +209,7 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
   else if (table.figures.rechargeable && cell) {
     if (data.rechargeable) lines[0] = F(ns, "Recharged", { supply: supplyText(ns, data) });
     else {
-      const spares = await useSpares(item.actor, table.figures.spareRecord, cell, data.variant ? data.chemistry : null);
+      const spares = await useSpares(item.actor, table.figures.spareRecord, cell, table.chemistryOf ? (spare) => table.chemistryOf!(spare, cell.size) === table.chemistryOf!(item, cell.size) : null);
       lines.push(spares ? F(ns, "SparesUsed", { cells: cell.cells, name: spares.name, left: spares.left }) : F(ns, "NewCellsCost", { cost: Math.round(cellPrice(table.figures, cell.size, data) * cell.cells * 100) / 100 }));
     }
   }
@@ -218,24 +218,20 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
 
 /**
  * Takes the new cells from the spares the actor carries, where the book has
- * a record for them and there are enough: what was used, or null. Where a
- * rule gives the gadget's cells a chemistry (`chemistry`, "" for the table's
- * own), only spares of the same chemistry will do; null takes any.
+ * a record for them and there are enough: what was used, or null. Where the
+ * book's cells have chemistries, only a spare `matches` accepts will do --
+ * one of the gadget's chemistry, each read as the table prints it where none
+ * is chosen; null takes any.
  */
-export async function useSpares(actor: any, record: string | undefined, cell: { size: string; cells: number }, chemistry: string | null = null): Promise<{ name: string; left: number } | null> {
+export async function useSpares(actor: any, record: string | undefined, cell: { size: string; cells: number }, matches: ((spare: any) => boolean) | null = null): Promise<{ name: string; left: number } | null> {
   if (!actor || !record) return null;
   const name = record.replace("{size}", cell.size);
   const spare = [...(actor.items ?? [])].find((i: any) => i.name === name && i.system?.carried !== false && (Number(i.system?.quantity) || 0) >= cell.cells
-    && (chemistry === null || spareChemistry(i) === chemistry));
+    && (matches === null || matches(i)));
   if (!spare) return null;
   const left = (Number(spare.system.quantity) || 0) - cell.cells;
   await spare.update({ "system.quantity": left });
   return { name, left };
-}
-
-/** The chemistry a spare cell's record keeps, "" for its table's own. */
-export function spareChemistry(item: any): string {
-  return String(item?.system?.extensions?.[MODULE_ID]?.power?.chemistry ?? "");
 }
 
 /**

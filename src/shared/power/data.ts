@@ -46,6 +46,12 @@ export interface CellTable extends BookTable {
    * that prints none.
    */
   ownGrade?: string;
+  /**
+   * The chemistry a gadget's or a spare's cells of a size are, the one the
+   * book's table prints where none is chosen, for matching spares to a
+   * gadget; none for a book whose cells have no chemistries.
+   */
+  chemistryOf?: (item: any, size: string) => string;
 }
 
 /**

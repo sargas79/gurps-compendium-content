@@ -29,7 +29,7 @@
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { powerData, storePower, tableCellOf } from "../../../shared/power/data.js";
+import { powerData, tableCellOf } from "../../../shared/power/data.js";
 import { registerPowerSource, type PowerSource } from "../../../shared/power/index.js";
 import { cellsWeight, enduranceHours } from "../../../shared/power/rules.js";
 import { tankLeft, type GeneratorFigures, type WindSpeed } from "./generators.js";
@@ -242,8 +242,9 @@ export function highTechSources(actor: any, gadget: any, deps: SourceDeps): Powe
       });
       continue;
     }
+    if (!deps.storageOn() || item.id === gadget?.id) continue;
     const stored = powerData(item).storage;
-    if (deps.storageOn() && stored.kind === "flywheel" && item.id !== gadget?.id) {
+    if (stored.kind === "flywheel") {
       const hours = flywheelHours(stored, {
         endurance: enduranceHours(gadgetData.draw?.endurance),
         cellWeight: usual && figures ? cellsWeight(figures, usual.size, usual.cells) : null,
@@ -279,13 +280,14 @@ export function registerHighTechSources(deps: SourceDeps, on: () => boolean): vo
  * Runs every running generator an actor carries for some hours of world
  * time, and says so where one stops. Only the active GM's client calls it.
  */
-export async function advanceGenerators(actor: any, hours: number, deps: Pick<SourceDeps, "generatorFor" | "shown">, say: (actor: any, item: any, line: string) => Promise<void>, api: GWorldApi | null, lines: { empty: (item: any) => string; noWood: (item: any) => string }): Promise<void> {
+export async function advanceGenerators(actor: any, hours: number, deps: Pick<SourceDeps, "generatorFor" | "shown">, say: (actor: any, item: any, line: string) => Promise<void>, api: GWorldApi | null, lines: { empty: (item: any) => string; noWood: (item: any) => string; woodReason: (item: any) => string }): Promise<void> {
   if (!(hours > 0)) return;
   for (const item of carried(actor)) {
+    // Nothing else is read for an item that isn't a generator switched on.
+    if (item?.flags?.[MODULE_ID]?.generator?.running !== true) continue;
     const figures = deps.generatorFor(item);
-    if (!figures || !deps.shown(figures) || !runs(figures)) continue;
+    if (!figures || !deps.shown(figures) || !runs(figures) || (!figures.tank && !figures.burns)) continue;
     const state = generatorState(item);
-    if (!state.running || (!figures.tank && !figures.burns)) continue;
     const cords = cordsOf(actor);
     const count = cords.reduce((n, c) => n + (Number(c.system?.quantity) || 0), 0);
     const cordWeight = Number(cords[0]?.system?.weight) || CORD_WEIGHT;
@@ -294,12 +296,17 @@ export async function advanceGenerators(actor: any, hours: number, deps: Pick<So
     for (const cord of cords) {
       if (taken <= 0) break;
       const take = Math.min(taken, Number(cord.system?.quantity) || 0);
-      if (api?.items?.changeQuantity) await api.items.changeQuantity(cord, -take, { reason: "steamEngine" } as never);
+      if (api?.items?.changeQuantity) await api.items.changeQuantity(cord, -take, { reason: lines.woodReason(item) } as never);
       else await cord.update({ "system.quantity": (Number(cord.system?.quantity) || 0) - take });
       taken -= take;
     }
-    if (figures.tank) await storePower(item, { hoursUsed: result.hoursRun });
-    await storeGeneratorState(item, { wood: result.wood, water: result.water, ...(result.stopped ? { running: false } : {}) });
+    // The tank's hours and the firebox in one write.
+    await item.update({
+      ...(figures.tank ? { [`system.extensions.${MODULE_ID}.power.hoursUsed`]: result.hoursRun } : {}),
+      [`flags.${MODULE_ID}.generator.wood`]: result.wood,
+      [`flags.${MODULE_ID}.generator.water`]: result.water,
+      ...(result.stopped ? { [`flags.${MODULE_ID}.generator.running`]: false } : {}),
+    });
     if (result.stopped) await say(actor, item, figures.tank ? lines.empty(item) : lines.noWood(item));
   }
 }

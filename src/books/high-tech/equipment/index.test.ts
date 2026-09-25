@@ -13,8 +13,10 @@ import { setRuleReader } from "../../../shared/book-tables.js";
 import { GADGET_TABLES, failureLines, gadgetPriceOf, gadgetTables, sizedCells, stylingLine } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { CELL_TABLES } from "../../../shared/power/index.js";
-import { highTechBatteries } from "../power/index.js";
+import { CELL_TABLES, enduranceLeft } from "../../../shared/power/index.js";
+import { powerData } from "../../../shared/power/data.js";
+import { HIGH_TECH_BATTERIES, highTechBatteries } from "../power/index.js";
+import { registerChemistryVariant } from "../power/electricity.js";
 import { ultraTechGadgets } from "../../ultra-tech/gadgets/index.js";
 import { combinationSource, familiarityLine, highTechGadgets, isMerchantInfluence, readyHighTechEquipment, successRollFamiliarity, type EquipmentSwitches } from "./index.js";
 
@@ -209,6 +211,37 @@ describe("combination gadgets (p. 10)", () => {
         'GCC.HT.Equipment.SharedEndurance {"name":"GPS","hours":33}',
         'GCC.HT.Equipment.SharedEndurance {"name":"Thermograph","hours":5}',
       ]);
+    } finally {
+      CELL_TABLES.clear();
+    }
+  });
+
+  it("counts a part's chemistry once: in the endurance and in the weight (p. 10; HT:EE pp. 16-18)", () => {
+    CELL_TABLES.register(highTechBatteries());
+    only(key("batteries"), `${MODULE_ID}.batteryChemistry`);
+    registerChemistryVariant(HIGH_TECH_BATTERIES, `${MODULE_ID}.batteryChemistry`);
+    try {
+      const part = (name: string, cell: string, endurance: string, chemistry = "") => {
+        const g = gear({ name, system: { cost: 100, weight: 2, lc: 4 } });
+        g.system.extensions[MODULE_ID] = { ...g.system.extensions[MODULE_ID], power: { cell, cells: 1, draw: { cell, cells: 1, endurance }, chemistry } };
+        return g;
+      };
+      // A lithium-ion S battery lasts 1.1 times as long: 5.5 hours for the thermograph.
+      const gps = part("GPS", "XS", "10 hr.");
+      const thermograph = part("Thermograph", "S", "5 hr.", "lithiumIon");
+      const source: any = combinationSource([gps, thermograph], "Scout", true);
+      const power = source.system.extensions[MODULE_ID].power;
+      // Kept in the printed chemistry, with lithium-ion on it: the Gear tab gives 5.5 hours, not 6.05.
+      expect(power).toMatchObject({ chemistry: "lithiumIon", draw: { endurance: "5 hr." } });
+      expect(enduranceLeft(powerData({ ...source, flags: { [MODULE_ID]: { book: "high-tech" } } }))).toMatchObject({ total: 5.5 });
+      // Each part on the shared lithium-ion battery, once: the GPS 33 x 1.1.
+      expect(source.flags[MODULE_ID].combination.endurance).toEqual([{ name: "GPS", hours: 36.3 }, { name: "Thermograph", hours: 5.5 }]);
+
+      // An alkaline L weighs half again the printed lead-acid one: the combination holds the printed weight, and the price modifier adds the half once.
+      const lamp = part("Lamp", "L", "20 hr.", "alkaline");
+      const made: any = combinationSource([lamp, part("Radio", "S", "10 hr.")], "Camp Set", true);
+      expect(made.system.extensions[MODULE_ID].ultraTech.cellWeight).toBe(10);
+      expect(made.system.extensions[MODULE_ID].power.chemistry).toBe("alkaline");
     } finally {
       CELL_TABLES.clear();
     }

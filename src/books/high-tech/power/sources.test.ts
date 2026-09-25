@@ -14,7 +14,7 @@ import { isPluggable, loadedCellWeight, powerData } from "../../../shared/power/
 import { sourceFits } from "../../../shared/power/sources.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechCells } from "../../ultra-tech/power/index.js";
-import { BATTERIES_RULE, CHEMISTRY_RULE, ENERGY_STORAGE_RULE, EXTERNAL_POWER_RULE, HIGH_TECH_BATTERIES, generatorFor, highTechBatteries } from "./index.js";
+import { BATTERIES_RULE, CHEMISTRY_RULE, ENERGY_STORAGE_RULE, EXTERNAL_POWER_RULE, HIGH_TECH_BATTERIES, batteryChemistryOf, generatorFor, highTechBatteries } from "./index.js";
 import { chargeableGear, registerChemistryVariant, registerSupercapacitorVariant } from "./electricity.js";
 import { FUELS, GENERATORS, fuelOf } from "./generators.js";
 import { advanceGenerators, availability, flywheelHours, generatorState, highTechSources, runGenerator, supplyOf, type SourceDeps } from "./sources.js";
@@ -67,22 +67,50 @@ describe("batteries swapped into a battery weapon (pp. 10, 13)", () => {
 });
 
 describe("spare batteries of the gadget's chemistry (HT:EE pp. 16-18)", () => {
-  const spare = (chemistry: string, quantity = 4) => {
-    const item: any = gear("S Battery", { chemistry }, { quantity });
+  const spare = (size: string, chemistry: string, quantity = 4) => {
+    const item: any = gear(`${size} Battery`, { chemistry }, { quantity });
     item.update = vi.fn(async () => undefined);
     return item;
   };
+  const matching = (gadget: any, size: string) => (s: any) => batteryChemistryOf(s, size) === batteryChemistryOf(gadget, size);
 
-  it("takes spares of the same chemistry only, where a rule gives the gadget one", async () => {
-    const alkaline = spare("");
-    const nimh = spare("nimh");
-    const actor = { items: [alkaline, nimh] };
-    expect(await useSpares(actor, "{size} Battery", { size: "S", cells: 2 }, "nimh")).toEqual({ name: "S Battery", left: 2 });
-    expect(nimh.update).toHaveBeenCalled();
+  it("reads a blank chemistry as the one the table prints the size as", () => {
+    only(BATTERIES_RULE, CHEMISTRY_RULE);
+    expect(batteryChemistryOf(spare("S", ""), "S")).toBe("alkaline");
+    expect(batteryChemistryOf(spare("L", ""), "L")).toBe("leadAcid");
+    expect(batteryChemistryOf(spare("S", "nimh"), "S")).toBe("nimh");
+    // With the switch off, every battery is the printed kind.
+    only(BATTERIES_RULE);
+    expect(batteryChemistryOf(spare("S", "nimh"), "S")).toBe("alkaline");
+  });
+
+  it("gives a gadget marked with the printed chemistry the blank spares, and not others", async () => {
+    only(BATTERIES_RULE, CHEMISTRY_RULE);
+    const gadget = gear("Radio", { draw: { cell: "S", cells: 2, endurance: "10 hrs." }, chemistry: "alkaline" });
+    const nimh = spare("S", "nimh");
+    const blank = spare("S", "");
+    expect(await useSpares({ items: [nimh, blank] }, "{size} Battery", { size: "S", cells: 2 }, matching(gadget, "S"))).toEqual({ name: "S Battery", left: 2 });
+    expect(blank.update).toHaveBeenCalled();
+    expect(nimh.update).not.toHaveBeenCalled();
+  });
+
+  it("gives a blank gadget spares marked with the printed chemistry, and not others", async () => {
+    only(BATTERIES_RULE, CHEMISTRY_RULE);
+    const truck = gear("Base Radio", { draw: { cell: "L", cells: 1, endurance: "20 hrs." } });
+    const lead = spare("L", "leadAcid");
+    const alkaline = spare("L", "alkaline");
+    expect(await useSpares({ items: [alkaline, lead] }, "{size} Battery", { size: "L", cells: 1 }, matching(truck, "L"))).toMatchObject({ left: 3 });
+    expect(lead.update).toHaveBeenCalled();
     expect(alkaline.update).not.toHaveBeenCalled();
-    expect(await useSpares(actor, "{size} Battery", { size: "S", cells: 2 }, "lithiumIon")).toBeNull();
-    // With no chemistry in play, any will do.
-    expect(await useSpares({ items: [spare("nicad")] }, "{size} Battery", { size: "S", cells: 2 }, null)).toMatchObject({ left: 2 });
+    // A lithium-ion gadget finds none of theirs.
+    const phone = gear("Phone", { draw: { cell: "L", cells: 1, endurance: "8 hrs." }, chemistry: "lithiumIon" });
+    expect(await useSpares({ items: [alkaline, lead] }, "{size} Battery", { size: "L", cells: 1 }, matching(phone, "L"))).toBeNull();
+    // With no chemistries in play, any will do.
+    expect(await useSpares({ items: [spare("S", "nicad")] }, "{size} Battery", { size: "S", cells: 2 }, null)).toMatchObject({ left: 2 });
+  });
+
+  it("is what High-Tech's table gives the engine", () => {
+    expect(highTechBatteries().chemistryOf).toBe(batteryChemistryOf);
   });
 });
 
@@ -140,8 +168,10 @@ describe("what a generator supplies (p. 14; HT:EE pp. 9, 17)", () => {
     const automotive = { supplies: ["automotive"], standsForWeight: null };
     expect(sourceFits({ grades: ["household"] }, null, automotive)).toBe(false);
     expect(sourceFits({ grades: ["automotive", "household"] }, null, automotive)).toBe(true);
-    // High-Tech's own "external power" device takes any.
+    // High-Tech's own "external power" device takes any grade, but not a source that only stands in for batteries.
     expect(sourceFits({ grades: ["external"] }, null, automotive)).toBe(true);
+    expect(sourceFits({ grades: ["external"] }, null, { supplies: null, standsForWeight: null })).toBe(true);
+    expect(sourceFits({ grades: ["external"] }, null, { supplies: [], standsForWeight: 0.33 })).toBe(false);
     // A battery gadget on its adapter takes one standing in for batteries as heavy as its own.
     expect(sourceFits({ grades: [] }, 0.33, { supplies: [], standsForWeight: 0.33 })).toBe(true);
     expect(sourceFits({ grades: [] }, 2, { supplies: [], standsForWeight: 0.33 })).toBe(false);
@@ -191,14 +221,26 @@ describe("running a generator (pp. 14-16)", () => {
     const gas: any = gear("Portable Gasoline Generator", { hoursUsed: 9 }, {}, { generator: { running: true } });
     gas.update = vi.fn(async () => undefined);
     const api: any = { items: { changeQuantity: vi.fn(async () => ({})) } };
-    const deps = { generatorFor, shown: () => true };
-    await advanceGenerators({ items: [steam, cord, gas] }, 2, deps, say, api, { empty: () => "dry", noWood: () => "no wood" });
-    expect(api.items.changeQuantity).toHaveBeenCalledWith(cord, -1, { reason: "steamEngine" });
+    const deps = { generatorFor: vi.fn(generatorFor), shown: () => true };
+    const idle: any = gear("Portable Gasoline Generator", {}, {}, { generator: { running: false } });
+    idle.update = vi.fn(async () => undefined);
+    await advanceGenerators({ items: [steam, cord, gas, idle] }, 2, deps, say, api, { empty: () => "dry", noWood: () => "no wood", woodReason: () => "burned" });
+    expect(api.items.changeQuantity).toHaveBeenCalledWith(cord, -1, { reason: "burned" });
+    expect(steam.update).toHaveBeenCalledTimes(1);
     expect(steam.update).toHaveBeenCalledWith({ [`flags.${MODULE_ID}.generator.wood`]: 1970, [`flags.${MODULE_ID}.generator.water`]: 2 });
-    // The gasoline generator had an hour left: it runs dry and stops.
-    expect(gas.update).toHaveBeenCalledWith({ [`system.extensions.${MODULE_ID}.power.hoursUsed`]: 10 });
-    expect(gas.update).toHaveBeenCalledWith(expect.objectContaining({ [`flags.${MODULE_ID}.generator.running`]: false }));
+    // The gasoline generator had an hour left: it runs dry and stops, in one write.
+    expect(gas.update).toHaveBeenCalledTimes(1);
+    expect(gas.update).toHaveBeenCalledWith({
+      [`system.extensions.${MODULE_ID}.power.hoursUsed`]: 10,
+      [`flags.${MODULE_ID}.generator.wood`]: 0,
+      [`flags.${MODULE_ID}.generator.water`]: 0,
+      [`flags.${MODULE_ID}.generator.running`]: false,
+    });
     expect(say).toHaveBeenCalledWith(expect.anything(), gas, "dry");
+    // What isn't switched on is passed over before anything else is read.
+    expect(idle.update).not.toHaveBeenCalled();
+    expect(deps.generatorFor).not.toHaveBeenCalledWith(idle);
+    expect(deps.generatorFor).not.toHaveBeenCalledWith(cord);
   });
 
   it("names only records the book's packs carry, the hydrogen cylinder among them (p. 15)", () => {

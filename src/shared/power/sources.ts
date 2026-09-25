@@ -55,13 +55,16 @@ export function powerSources(actor: any, gadget: any): PowerSource[] {
 /**
  * Whether a source can power a gadget. A device printed with grades of
  * external power takes a source that supplies one of them, or power of no
- * named grade; High-Tech's own "external power" grade takes any. A gadget
+ * named grade; High-Tech's own "external power" grade takes any grade, but
+ * not a source that only stands in for batteries. A gadget
  * built for batteries, on its adapter, takes any source but one that stands
  * in for lighter batteries than its own (`cellWeight`, its table's cells).
  */
 export function sourceFits(data: Pick<PowerData, "grades">, cellWeight: number | null, source: Pick<PowerSource, "supplies" | "standsForWeight">): boolean {
   if (data.grades.length) {
-    if (source.supplies === null || data.grades.includes("external")) return true;
+    if (source.supplies === null) return true;
+    // High-Tech's unsplit grade takes any grade supplied, never a source that only stands in for batteries.
+    if (data.grades.includes("external")) return source.supplies.length > 0;
     return source.supplies.some((grade) => data.grades.includes(grade));
   }
   if (source.standsForWeight !== null && cellWeight !== null) return cellWeight <= source.standsForWeight + 1e-9;

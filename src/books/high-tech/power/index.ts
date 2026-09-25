@@ -31,11 +31,12 @@ import { CELL_TABLES, initPower, powerPriceChange, readyPower, recharge, recharg
 import { powerData, storePower } from "../../../shared/power/data.js";
 import type { Cell, CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { bookOf } from "../../../shared/book-tables.js";
+import { bookOf, isRuleOn } from "../../../shared/book-tables.js";
+import { PRINTED_CHEMISTRY, isChemistry } from "./chemistry.js";
 import { crankFatigue, crankedShare, fuelOf, generatorOf, palmCrankMinutes, rechargeHours, rechargedShare, solarPowered, tankLeft, type GeneratorFigures, type WindSpeed } from "./generators.js";
 import { readyElectricity, registerChemistryVariant, registerSupercapacitorVariant, type ElectricSwitches } from "./electricity.js";
 import { advanceGenerators, generatorState, registerHighTechSources, runs, storeGeneratorState, type Availability } from "./sources.js";
-import { flywheelFigures } from "./storage.js";
+import { SUPERCAPACITOR, flywheelFigures } from "./storage.js";
 
 /** The battery sizes the book lists, smallest first (p. 13). */
 export const BATTERY_SIZES = ["T", "XS", "S", "M", "L", "VL"] as const;
@@ -94,7 +95,19 @@ export const ENERGY_STORAGE_RULE = `${MODULE_ID}.energyStorage`;
  * on "external power" (p. 14) is plugged in under the book's own switch.
  */
 export function highTechBatteries(): CellTable {
-  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT", externalRule: EXTERNAL_POWER_RULE, ownGrade: "external" };
+  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT", externalRule: EXTERNAL_POWER_RULE, ownGrade: "external", chemistryOf: batteryChemistryOf };
+}
+
+/**
+ * The chemistry a gadget's or a spare battery's cells of a size are (HT:EE
+ * pp. 16-18): the one chosen, under the chemistry switch (a supercapacitor
+ * under energy storage), else the one High-Tech's table prints the size as.
+ */
+export function batteryChemistryOf(item: any, size: string): string {
+  const chosen = String(item?.system?.extensions?.[MODULE_ID]?.power?.chemistry ?? "");
+  if (chosen === SUPERCAPACITOR.key && isRuleOn(ENERGY_STORAGE_RULE)) return chosen;
+  if (isChemistry(chosen) && isRuleOn(CHEMISTRY_RULE)) return chosen;
+  return PRINTED_CHEMISTRY[size] ?? "";
 }
 
 let variantRegistered = false;
@@ -254,6 +267,21 @@ function generatorContext(actor: any, on: PowerSwitches): Record<string, unknown
     });
   }
   return { rows };
+}
+
+/**
+ * The world's actors, each once: an unlinked token's copy of an actor shares
+ * its id and is left out, so its base actor's generators run once a tick.
+ */
+function actorsOnce(): any[] {
+  const seen = new Set<string>();
+  const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+  return [...((game as any).actors ?? []), ...unlinked].filter((actor: any) => {
+    const id = String(actor?.id ?? "");
+    if (!id || seen.has(id)) return false;
+    seen.add(id);
+    return true;
+  });
 }
 
 /** Spins a flywheel up again on external power: a full store (HT:EE p. 18). */
@@ -561,17 +589,22 @@ export function readyHighTechPower(api: GWorldApi, switches: PowerSwitches): voi
     flywheelStatus,
   }, () => on() || switches.storage());
 
-  // A running generator burns its fuel as world time passes: the active GM's client keeps the count (pp. 14, 16).
+  // A running generator burns its fuel as world time passes: the active GM's client keeps the count (pp. 14, 16),
+  // one tick after another, so two quick advances never read the same state.
   const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
+  let ticks: Promise<void> = Promise.resolve();
   Hooks.on("updateWorldTime", (_time: number, delta: number) => {
     if (!(on() || switches.storage()) || !isActiveGm() || !(Number(delta) > 0)) return;
-    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
-    for (const actor of [...((game as any).actors ?? []), ...unlinked]) {
-      void advanceGenerators(actor, Number(delta) / 3600, { generatorFor, shown }, (a, item, line) => say(a, item.name, [line]), api, {
-        empty: (item) => F("RanDry", { name: item.name }),
-        noWood: (item) => F("RanOutOfWood", { name: item.name }),
-      });
-    }
+    const hours = Number(delta) / 3600;
+    ticks = ticks.then(async () => {
+      for (const actor of actorsOnce()) {
+        await advanceGenerators(actor, hours, { generatorFor, shown }, (a, item, line) => say(a, item.name, [line]), api, {
+          empty: (item) => F("RanDry", { name: item.name }),
+          noWood: (item) => F("RanOutOfWood", { name: item.name }),
+          woodReason: (item) => F("WoodBurned", { name: item.name }),
+        });
+      }
+    }).catch((error) => console.error(`${MODULE_ID} | generators`, error));
   });
 
   api.data.registerPriceModifier({

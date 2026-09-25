@@ -7252,6 +7252,7 @@
         "SpunUp": "Spun up again on external power: a full store.",
         "RanDry": "The {name}'s tank runs dry: it stops.",
         "RanOutOfWood": "The {name} has burned the last of its wood: it stops.",
+        "WoodBurned": "Burned in the {name}'s firebox",
         "SourceStatus": {
           "cranked": "while someone cranks it",
           "off": "not running",
