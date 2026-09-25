@@ -4076,6 +4076,33 @@
     }
   },
   {
+    "_id": "ff33b4cdf5bef27e",
+    "name": "Hydrogen Cylinder",
+    "type": "equipment",
+    "system": {
+      "quantity": 1,
+      "weight": 65,
+      "cost": 100,
+      "carried": true,
+      "equipped": false,
+      "tl": "8",
+      "lc": 4,
+      "costOfLivingPercent": 0,
+      "description": "",
+      "reference": "High-Tech p. 15",
+      "category": "consumable",
+      "equipmentQuality": "basic",
+      "forSkills": [],
+      "quality": "good",
+      "material": "",
+      "weaponClass": "",
+      "listCost": 100,
+      "hpLost": 0,
+      "meleeModes": [],
+      "rangedModes": []
+    }
+  },
+  {
     "_id": "81263c91c6a73714",
     "name": "Small Collection (per skill)",
     "type": "equipment",

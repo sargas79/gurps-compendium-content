@@ -668,7 +668,17 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {

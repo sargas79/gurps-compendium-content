@@ -29,6 +29,8 @@ export const FUELS: Readonly<Record<string, FuelKind>> = Object.freeze({
   "Kerosene (per gallon)": "kerosene",
   "Alcohol (per gallon)": "alcohol",
   "Wood (per cord)": "wood",
+  // "Extra cylinders are $100, 65 lbs." for the hydrogen fuel cell (p. 15).
+  "Hydrogen Cylinder": "hydrogen",
   // The fuel cell power supply's 8 hours of compressed hydrogen (HT:EE p. 17).
   "Compressed Hydrogen (8 hours)": "compressedHydrogen",
 });
