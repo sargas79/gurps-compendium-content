@@ -21,8 +21,9 @@
  *   - **A cloud in play:** smoke (white phosphorus's too) is a mild irritant,
  *     the Basic Set's ordinary smoke; whoever walks into a cloud later rolls
  *     its gas for the seconds left in it (the active GM's client watches the
- *     tokens move); and a victim retching from a vomiting agent has to take a
- *     gas mask off until the retching ends.
+ *     tokens move); a victim retching from a vomiting agent has to take a
+ *     gas mask off until the retching ends; and prism smoke between a
+ *     shooter and the target stops a laser sight's dot.
  */
 
 import { placeArea, type AreaLine } from "../../../shared/areas.js";
@@ -149,6 +150,7 @@ function areaLines(load: CargoLoad, radius: number): AreaLine[] {
 /** The key an area of this cargo is placed under, to be found again: a tear-gas cloud says whether a vomiting agent is in it. */
 function areaKey(load: CargoLoad): string {
   if (load.projectile === "illumination") return `ht-illumination-${load.illumination}`;
+  if (load.projectile === "smoke" && HT_SMOKE_TABLE[load.smoke].blocks.includes("lasers")) return "ht-cloud-prismSmoke";
   return `ht-cloud-${load.projectile === "tearGas" && load.vomiting ? "tearGasVomiting" : load.projectile}`;
 }
 
@@ -343,6 +345,37 @@ export function paintedLens(actor: any, hitLocation: string): any | null {
   return [...(actor?.items ?? [])].find((i: any) => i?.system?.equipped === true && lens.test(String(i.name ?? ""))) ?? null;
 }
 
+/** The shortest distance from a point to a segment, in the same units. */
+function toSegment(p: { x: number; y: number }, a: { x: number; y: number }, b: { x: number; y: number }): number {
+  const dx = b.x - a.x;
+  const dy = b.y - a.y;
+  const length = dx * dx + dy * dy;
+  const t = length > 0 ? Math.max(0, Math.min(1, ((p.x - a.x) * dx + (p.y - a.y) * dy) / length)) : 0;
+  return Math.hypot(p.x - (a.x + t * dx), p.y - (a.y + t * dy));
+}
+
+/**
+ * Whether prism smoke lies between two points on the scene, or round either
+ * (p. 171): it blocks lasers, so no laser sight's dot or beam gets through.
+ */
+export function prismSmokeBetween(api: GWorldApi, scene: any, from: { x: number; y: number } | null, to: { x: number; y: number } | null): boolean {
+  if (!scene || !from || !to) return false;
+  const now = worldNow();
+  return (api.areas.list(scene) as any[]).some((area) => cloudOf(area?.id) === "prismSmoke"
+    && !(typeof area.expires === "number" && now >= area.expires)
+    && area.center && Number(area.radius) > 0
+    && toSegment(area.center, from, to) <= Number(area.radius));
+}
+
+/** Whether an attack's laser is blocked by prism smoke between the shooter and the one token targeted. */
+export function laserBlocked(api: GWorldApi, context: any): boolean {
+  const target = context?.targetTokens?.[0];
+  const shooter = context?.actor?.getActiveTokens?.()?.[0];
+  const scene = (globalThis as any).canvas?.scene;
+  const centre = (t: any) => t?.object?.center ?? t?.center ?? null;
+  return prismSmokeBetween(api, scene, centre(shooter), centre(target));
+}
+
 /** Whether a character still carries a scent marker's mark. */
 const scented = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, SCENT_FLAG)) > worldNow();
 
@@ -409,6 +442,15 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     const item: any = fromUuidSync(String(context.itemUuid));
     const load = item ? loadOf(item, Number(context.flag?.mode?.index) || 0) : null;
     if (load?.projectile === "thermobaric") context.divisorPerYard = THERMOBARIC_DIVISOR_PER_YARD;
+  });
+
+  // Prism smoke blocks lasers (p. 171): a laser sight's dot doesn't get through it.
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.cargo() || !context?.laser?.on || !laserBlocked(api, context)) return;
+    const modifiers: any[] = context.modifiers ?? [];
+    const line = modifiers.find((m: any) => m?.key === "laser");
+    if (line) modifiers.splice(modifiers.indexOf(line), 1);
+    context.laser.dodgeBonus = 0;
   });
 
   // Under a flare the darkness penalty is no worse than -3, or -5 under a signal flare (p. 171).

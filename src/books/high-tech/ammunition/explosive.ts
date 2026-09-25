@@ -248,7 +248,7 @@ export function gasesOf(vomiting: boolean): Gas[] {
 }
 
 /** The kinds of cloud a round leaves that someone can walk into, as their areas are keyed. */
-export const CLOUDS = ["tearGas", "tearGasVomiting", "smoke", "whitePhosphorus"] as const;
+export const CLOUDS = ["tearGas", "tearGasVomiting", "smoke", "prismSmoke", "whitePhosphorus"] as const;
 export type Cloud = (typeof CLOUDS)[number];
 
 /** The gases a cloud holds: tear gas's, with the vomiting agent's where it is mixed in, or smoke's irritant (white phosphorus's smoke too). */

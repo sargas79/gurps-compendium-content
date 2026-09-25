@@ -65,6 +65,7 @@ import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extens
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { calibreRowOf } from "../ammunition/calibres.js";
 import { shineTacticalLight, shinesInfrared } from "../expedition/index.js";
+import { laserBlocked } from "../ammunition/cargo.js";
 import { isFirearm } from "../firearms/index.js";
 import { modernMalfunction } from "../firearms/rules.js";
 import { familyData, gunTakesSuppressor } from "../weapon-families/index.js";
@@ -1115,7 +1116,8 @@ export function readyAccessories(api: GWorldApi, on: AccessorySwitches, ammuniti
     const laser = laserOn ? fittedTo(item, on, ["targetingLaser"])[0] : undefined;
     if (laser && context.laser) {
       const reach = laserReach(laser.figures.yards ?? 0, laser.data.colour, !dark);
-      const within = yards === null || yards <= reach;
+      // Prism smoke between the gun and the target stops the beam (p. 171).
+      const within = (yards === null || yards <= reach) && !laserBlocked(api, context);
       const sees = seesLaserDot(laser.data.colour, (api.actors.derived(actor) as any)?.traitEffects ?? {});
       const line = lineOf("laser");
       if (within && sees) {

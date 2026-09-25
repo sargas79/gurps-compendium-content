@@ -213,3 +213,52 @@ describe("a paint round (p. 172)", () => {
     expect(chat.join(" ")).toContain("PaintBlindedLine");
   });
 });
+
+describe("cargo from a box of rounds (pp. 171-172)", () => {
+  it("fires the white phosphorus and tear gas a launcher was loaded with from a box", async () => {
+    const sections: any[] = [];
+    const api: any = { ...fakeApi(), sheets: { registerSheetSection: (s: any) => sections.push(s) } };
+    hooks = new Map();
+    readyAmmunition(api as never, switches);
+    const box = (loads: any[]) => ({ id: "b1", name: "Grenades", type: "equipment", isOwner: true, system: { category: "ammunition", quantity: 6, tl: "7", ammunition: { kind: "", fits: "40x46mmSR" }, extensions: { [MODULE_ID]: { htLoads: loads } } } });
+    const fromBox = (rounds: any) => {
+      const launcher = m79([]);
+      launcher.system.rangedModes[0].loadedFrom = "b1";
+      launcher.actor.items = Object.assign([rounds], { get: (id: string) => (id === "b1" ? rounds : undefined) });
+      return launcher;
+    };
+    const wp = box([load({ projectile: "whitePhosphorus", radius: 10 })]);
+    // The box's sheet offers the bursting round.
+    const context = sections[0].context(wp);
+    expect(context.modes[0].projectiles.map((o: any) => o.value)).toContain("whitePhosphorus");
+    const launcher = fromBox(wp);
+    fire(HOOKS.afterShots, { actor: launcher.actor, item: launcher, modeIndex: 0 });
+    await flush();
+    expect(areas[0]).toMatchObject({ radius: 1000, expires: 1060 });
+    expect(areas[0].id).toContain(`${MODULE_ID}-ht-cloud-whitePhosphorus-`);
+    const gas = fromBox(box([load({ projectile: "tearGas", vomiting: true, radius: 8, seconds: 20 })]));
+    fire(HOOKS.afterShots, { actor: gas.actor, item: gas, modeIndex: 0 });
+    await flush();
+    expect(areas[1].id).toContain(`${MODULE_ID}-ht-cloud-tearGasVomiting-`);
+  });
+});
+
+describe("prism smoke (p. 171)", () => {
+  it("stops a laser sight's dot across the cloud, and names its own cloud", async () => {
+    const smoke = m79([load({ projectile: "smoke", smoke: "prism", radius: 2, seconds: 60 })]);
+    smoke.system.tl = "8";
+    fire(HOOKS.afterShots, { actor: smoke.actor, item: smoke, modeIndex: 0 });
+    await flush();
+    expect(areas[0].id).toContain(`${MODULE_ID}-ht-cloud-prismSmoke-`);
+    const shooter = { getActiveTokens: () => [{ center: { x: 0, y: 500 } }] };
+    const shot = (to: { x: number; y: number }) => fire(HOOKS.attackModifiers, {
+      actor: shooter, targetTokens: [{ object: { center: to } }], laser: { on: true, targetSees: true, dodgeBonus: 1 },
+      modifiers: [{ key: "laser", label: "Laser sight", value: 1 }],
+    });
+    const across = shot({ x: 1000, y: 500 });
+    expect(across.modifiers).toEqual([]);
+    expect(across.laser.dodgeBonus).toBe(0);
+    // Off to one side, the dot shows.
+    expect(shot({ x: 0, y: 1500 }).modifiers).toHaveLength(1);
+  });
+});

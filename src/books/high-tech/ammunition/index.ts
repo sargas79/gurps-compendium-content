@@ -379,19 +379,28 @@ export function projectileGun(item: any, modeIndex: number): ProjectileGun {
   };
 }
 
-/** What the projectile rules need of a box: its round, and its own TL where it states one. */
+/**
+ * What the projectile rules need of a box: its round, and its own TL where it
+ * states one. A box of shells for a gun that fires a blast (a grenade
+ * launcher's, a mortar's, a cannon's, a LAW's) may hold explosive and
+ * bursting-cargo rounds, and a grenade launcher's or an air gun's liquid
+ * ones (pp. 169-172); the gun it is loaded into still has to fire them.
+ */
 function boxProjectileGun(box: any, load: HighTechLoad): ProjectileGun {
   const calibre = boxCalibre(box, load);
   const tl = tlOf(box);
+  const cls = String(calibre?.class ?? "");
   return {
     calibre,
     boreMm: boreOf(calibre, String(box?.system?.ammunition?.fits || box?.name || "")),
     tl: tl || 12,
     automatic: false,
-    shotgun: calibre?.class === "shotgun",
+    shotgun: cls === "shotgun",
     muzzleLoadingRifle: false,
     underwater: Boolean(calibre?.notes.includes("underwaterDart")),
-    explosive: false,
+    explosive: ["grenadeLauncher", "mortar", "cannon", "lightAntitank"].includes(cls),
+    lowVelocity: ["shotgun", "grenadeLauncher", "mortar"].includes(cls),
+    lowPowered: cls === "grenadeLauncher" || Boolean(calibre?.notes.includes("airGun")),
     projectiles: 1,
   };
 }
