@@ -5262,7 +5262,7 @@
         },
         "medicalFacilities": {
           "Name": "Medical facilities",
-          "Hint": "An imaging instrument's row button rolls Electronics Operation (Medical), then Diagnosis with its bonus (the TL6 X-ray machine giving patient and operator 1d rads). Portable surgery gives +2 to First Aid. On an operation, a surgical kit's own TL modifier (-2 at TL5 to +2 at TL8) stands in for the Basic Set table's by the surgeon's TL, and a suturing kit is improvised (-5). A chloroform mask's button rolls Physician to put the targeted patient under (a portable anaesthesia machine at +2); if it failed, the operation is at -2. Antiseptic cleans the targeted patient's wound: +2 on the next infection roll (High-Tech pp. 222-225)."
+          "Hint": "An imaging instrument's row button rolls Electronics Operation (Medical), then Diagnosis with its bonus (the TL6 X-ray machine giving patient and operator 1d rads; the portable one at maximum intensity 1,000 rads an hour). Portable surgery gives +2 to First Aid; a specialized operating theater is +TL/2 to Surgery in its specialty, set on its row, and basic equipment otherwise. On an operation, a surgical kit's own TL modifier (-2 at TL5 to +2 at TL8) stands in for the Basic Set table's by the surgeon's TL, and a suturing kit is improvised (-5). A chloroform mask's button rolls Physician to put the targeted patient under (a portable anaesthesia machine at +2); if it failed, the operation is at -2. Antiseptic cleans the targeted patient's wound: +2 on the next infection roll (High-Tech pp. 222-225)."
         },
         "encryption": {
           "Name": "Encryption and code-breaking",
@@ -9496,7 +9496,16 @@
         "AntisepticAction": "Clean a wound",
         "Depleted": "Depleted",
         "DepletedHint": "Used for several treatments: the reusable tools left work a grade lower (High-Tech p. 221).",
-        "RoundsWithoutSupplies": "No medical supplies: Medical Care as at TL5 (High-Tech p. 223)."
+        "RoundsWithoutSupplies": "No medical supplies: Medical Care as at TL5 (High-Tech p. 223).",
+        "XrayMaximumItem": "Deliberately set to maximum intensity, it exposes a victim to {rads} rads an hour (p. 223).",
+        "XrayMaximumAction": "Maximum intensity",
+        "XrayMaximumHint": "Turned on the targeted victim at maximum intensity, the machine gives {rads} rads an hour (High-Tech p. 223).",
+        "XrayMinutes": "Minutes",
+        "XrayMaximumDone": "{operator} turns the X-ray machine on {name} at maximum intensity for {minutes} minute(s): {rads} rads.",
+        "XrayMaximumGm": "{name} takes {rads} rads from {minutes} minute(s) at maximum intensity: the GM applies the dose.",
+        "TheaterAction": "Operation in its specialty",
+        "TheaterInSpecialty": "In use for an operation in its own specialty: +TL/2 (quality) to Surgery (p. 224). Switch it off for any other operation.",
+        "TheaterOtherSpecialty": "Basic equipment for Surgery outside its specialty; switch it on for an operation in its specialty, +TL/2 (quality) (p. 224)."
       },
       "Armor": {
         "Title": "High-Tech armour",

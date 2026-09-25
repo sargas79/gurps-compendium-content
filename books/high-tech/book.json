@@ -7204,6 +7204,16 @@
         }
       },
       "reason": "Arm ST 45, BL 405, as a spreader (p. 30)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Specialized Operating Theater$",
+      "set": {
+        "system.extensions.gurps-compendium-content.medical": {
+          "kind": "specialtyTheater"
+        }
+      },
+      "reason": "+TL/2 (quality) to Surgery in its own specialty, basic equipment for other operations (p. 224)"
     }
   ]
 }

@@ -23,6 +23,7 @@ export const MEDICAL_KINDS = [
   "suturingKit",
   "anesthesia",
   "antiseptic",
+  "specialtyTheater",
 ] as const;
 export type MedicalKind = (typeof MEDICAL_KINDS)[number];
 
@@ -196,3 +197,23 @@ export function withoutSuppliesTl(techLevel: number, supplied: boolean): number 
 
 /** An early X-ray machine gives patient and operator 1d rads a photograph (p. 223). */
 export const XRAY_RADS_DICE = 1;
+
+/**
+ * The portable X-ray machine (p. 223) deliberately set to maximum intensity:
+ * 1,000 rads an hour to whoever it is turned on.
+ */
+export const XRAY_MAXIMUM = Object.freeze({ pattern: /^portable x-ray machine \(tl7\)$/i, radsPerHour: 1000 });
+
+/** The rads a victim takes from the machine at maximum intensity for so many minutes. */
+export function maximumIntensityRads(minutes: number): number {
+  return Math.round((Math.max(0, Number(minutes) || 0) / 60) * XRAY_MAXIMUM.radsPerHour * 100) / 100;
+}
+
+/**
+ * A specialized operating theater (p. 224): +TL/2 (quality) to Surgery in its
+ * own specialty, basic equipment for any other operation. The Basic Set's
+ * Surgery has no specialties, so the surgeon says which it is.
+ */
+export function specialtyTheaterGrade(inSpecialty: boolean): "best" | "basic" {
+  return inSpecialty ? "best" : "basic";
+}

@@ -5277,7 +5277,14 @@
       "listCost": 1000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "medical": {
+            "kind": "specialtyTheater"
+          }
+        }
+      }
     }
   },
   {
