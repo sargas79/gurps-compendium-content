@@ -8688,6 +8688,7 @@
         "HoldLabel": "Held in contact (seconds)",
         "HoldNote": "Held in contact for {seconds} s.",
         "StunDr": "Armour against the shock",
+        "ProdProtected": "The prod's burn needs bare skin: {armour} covers it",
         "ShockLabel": "{weapon}: recovery at {penalty}",
         "ShockLine": "{weapon}'s shock",
         "Stunned": "{name} is stunned: {held} s in contact, {seconds} s in all before the first roll to recover at HT{recovery}.",
