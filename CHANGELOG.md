@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.22.0 — The High-Tech backlogs, finished
+
+Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
+High-Tech against **gworld v1.52.0**, which this release requires (add-on API
+1.156.0). On an older system the add-on registers no rules, and says so in the
+console.
+
+This finishes the High-Tech (#510) and Electricity and Electronics (#549) backlogs: every item is now built, or left to the GM with a reason given in the issue.
+
+- **Power (#567):**
+  - Generators, windmills, turbines, solar arrays and flywheels are power sources, and their fuel runs down with world time.
+  - Also: supercapacitors, chargers for a particular gadget, spare batteries of the right chemistry, and a combination gadget's weight and batteries.
+  - External-power gear is marked, so only it offers the inverter.
+- **Ammunition (#568, #574, #575):**
+  - The printed 12-gauge and 40mm rounds, limited production, and home-cast projectiles.
+  - Clouds dose people who walk in later. The vomiting agent forces a mask off. Paint hits goggles, and prism smoke blocks laser dots.
+  - SAPLE duds, and airburst cones from the burst point.
+  - Depleted uranium is incendiary only through rigid DR 10+, and buck-and-ball's ball keeps its own range.
+- **Guns and ordnance (#570, #574):**
+  - The LC note and taped magazines. Flat charges, cutting cord, tamped charges, sweating dynamite, thermite sparks, and dropped grenades.
+  - Crossbow sights, parrying sheaths, flamethrower engine hits, and the Nordenfelt hopper.
+  - Thumbing two revolvers, and TA at a weapon. Holster Holdout and weather protection, and the impact fuze.
+  - Fire missions spend their rounds, and the stun grenades have an area.
+- **Gear, medicine and covert ops (#571, #573, #576):**
+  - Power tools and torches, lift capacities, propane and lead, maintenance checks, restraints, the X-ray dose and theatre specialties.
+  - Remote drone operators and the squirt carbine. Phone monitoring, wireless cameras, computer intrusion gear and code-breaking computers.
+  - TL8 counterfeiting, delayed drug doses, and vehicle fittings kept on the record, including the diesel AML.
+- **Electricity and Electronics (#569, #577):**
+  - Adapted jammers, selective jammer frequencies, beam cones and the -9 cap, chaff against radar missiles, and the drone ceiling.
+  - Seekers per record, printers and 3D printers, flatscreen sizes, and early touch screens.
+  - The TV tuner as a radio, crystal and diode sets, coherer and FM, bullhorn arcs, recording chains, and VR and keyboard tasks.
+  - The supplement's own bug sweep, the surveillance rules, hailing and Active Denial timing, NNEMP repair, and saw amputation.
+- **Fixes found in review:**
+  - Lamps and beams no longer darken a lit lantern.
+  - The EOD skill name is corrected.
+  - Maintenance finds specialised repair skills.
+  - The Mind Disruptor no longer adds Mind Shield twice.
+  - Secret rolls stay secret.
+
 ## v0.21.0 — High-Tech backlog
 
 Built from the Basic Set, Monster Hunters 1, Magic, Martial Arts, Ultra-Tech and
