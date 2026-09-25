@@ -10678,6 +10678,7 @@
         "DroneCard": "{name}",
         "InRange": "{name} is {miles} miles away: within the controller's range.",
         "OutOfRange": "{name} is {miles} miles away: beyond the controller's range. The drone flies on its autopilot.",
+        "OutOfRangeRefusal": "{name} is {miles} miles away, beyond the controller's range: its operator can't fly it. It flies on its autopilot.",
         "AboveCeiling": "At {feet} feet, the drone is above its ceiling."
       },
       "Skills": {
