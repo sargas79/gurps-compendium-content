@@ -675,6 +675,28 @@ describe("radar jammers and spoofers (HT:EE pp. 49-50)", () => {
     expect(contests.length).toBe(2);
   });
 
+  it("carries on past a lost spoof as past a won one, and tells the GMs only at the end", async () => {
+    on.add(key("radarJamming"));
+    const { radar, user } = scene("Radar Spoofer", 20 * 1760);
+    // A radar jammer further off, reached after the spoofer.
+    character("Blinder", [gear("Radar Jammer (TL7)", {}, { jammerOn: true })], { skills: { [EW]: 14 } }, -5 * 1760);
+    contestOutcome = "second";
+    successResult = { success: true };
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("spoofed");
+    // The jammer's roll was made all the same, and the user's card reads as an unspoofed one would.
+    expect(successes).toHaveLength(1);
+    expect(chat.filter((m) => !m.whisper).map((m) => m.content).join(" ")).not.toContain("Spoofed");
+    expect(chat.at(-2).content).toContain("Jamming.GetsThrough");
+    expect(chat.at(-1)).toMatchObject({ whisper: ["gm"] });
+    expect(chat.at(-1).content).toContain("Jamming.Spoofed");
+    // Jammed by the next one: the user sees the jamming, the GMs still hear of the spoof.
+    chat = [];
+    successResult = { success: false };
+    expect(await shared.useNearJammers(fakeApi() as never, radar, user)).toBe("jammed");
+    expect(chat.at(-2).content).toContain("Jamming.Jammed");
+    expect(chat.at(-1)).toMatchObject({ whisper: ["gm"] });
+  });
+
   it("puts the radar jammer, the spoofer and the radar's hindrance on the sheet", () => {
     const section = sections.get("ht-surveillance-item");
     on.add(key("radarJamming"));

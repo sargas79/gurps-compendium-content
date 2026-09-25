@@ -336,14 +336,21 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
     return "clear";
   }
   const base = skillBase(api, actor, gear.skill);
+  // A spoofer the gear lost to, told to the GMs alone once the rest is settled, however it ends.
+  let spoofedBy: string | null = null;
+  const tellGm = async () => {
+    if (spoofedBy !== null) await gmCard(title, [F(ns, "Spoofed", { jammer: spoofedBy })]);
+  };
   const jammed = async (near: JammerInReach) => {
     await card(actor, title, [F(ns, "Jammed", { jammer: near.item.name ?? "" })]);
+    await tellGm();
     return "jammed" as const;
   };
   for (const near of reaching) {
     const jammerName = String(near.item.name ?? "");
     if (near.reach === "blocked") {
       await card(actor, title, [F(ns, "Blocked", { jammer: jammerName })]);
+      await tellGm();
       return "jammed";
     }
     // Following a call by ear through a jammer that blocks the gear (HT:EE p. 50).
@@ -363,7 +370,8 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
       continue;
     }
     // A spoofer's Quick Contest against the gear's own skill (HT:EE p. 50), rolled in secret: the user
-    // mustn't learn from the card that the picture is false, so the GMs alone are told.
+    // mustn't learn that the picture is false, so a lost contest carries on as a won one would, and the
+    // GMs alone are told at the end.
     if (near.jammer.spoofs) {
       const result: any = await api.roll.quickContest({
         label: F(ns, "SpoofLabel", { name, jammer: jammerName }),
@@ -373,11 +381,7 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
         secret: true,
       } as any);
       if (!result) return null;
-      if (!wonContest(result.outcome)) {
-        await card(actor, title, [L(ns, "GetsThrough")]);
-        await gmCard(title, [F(ns, "Spoofed", { jammer: jammerName })]);
-        return "spoofed";
-      }
+      if (!wonContest(result.outcome)) spoofedBy ??= jammerName;
       continue;
     }
     // A jammer of the varieties: the user's roll at its penalty (HT:EE p. 49).
@@ -432,7 +436,8 @@ export async function useNearJammers(api: GWorldApi, item: any, actor: any, acto
     if (!result.success) return jammed(near);
   }
   await card(actor, title, [L(ns, "GetsThrough")]);
-  return "through";
+  await tellGm();
+  return spoofedBy !== null ? "spoofed" : "through";
 }
 
 let readied = false;

@@ -198,6 +198,13 @@ describe("computerEras (HT:EE pp. 36-37)", () => {
     on = new Set([key("computerEras")]);
     expect(roll(tube).refusal).toContain("BurntOutRefusal");
     expect(roll(app).refusal).toContain("BurntOutRefusal");
+    // A Research program picked as the skill's tool isn't refused: its bonus is taken back, with a line that says why.
+    const research = record("Research Database", { tl: "7" }, { complexity: 1, program: true, runsOn: "Minicomputer" });
+    actor.items.push(research, { id: "skill", name: "Research/TL7", type: "skill", system: { derived: { toolItemId: research.id, toolBonus: 2 } } });
+    research.actor = actor;
+    const study = fire("gworld.successRollModifiers", { actor, item: research, skill: "Research/TL7", modifiers: [], refusal: null });
+    expect(study.refusal).toBeNull();
+    expect(study.modifiers).toEqual([{ key: "ht.burntOut", label: expect.stringContaining("BurntOutProgram"), value: -2 }]);
     // A transistor machine has no tubes to burn out, whatever its flag says.
     const transistor = record("Minicomputer", { tl: "7" }, { options: { transistor: true } }, { burntOut: true });
     character([transistor]);

@@ -9936,6 +9936,7 @@
         "BurnoutRoll": "{name}: daily HT roll against tube burnout",
         "BurntOut": "A tube has burned out: the computer needs a minor repair (Campaigns p. 484).",
         "BurntOutRefusal": "{name} has a burned-out tube and won't run until it's repaired.",
+        "BurntOutProgram": "{name} can't help: {computer} has a burned-out tube",
         "Tubes": "Vacuum tubes: roll HT daily against burnout (High-Tech: Electricity and Electronics p. 37).",
         "Repair": "Repair the tube",
         "RepairRoll": "{name}: replacing a burned-out tube",
