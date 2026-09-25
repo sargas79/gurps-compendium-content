@@ -516,6 +516,9 @@ describe("High-Tech's covert-ops, security and medical gear (#350)", () => {
     expect(draw("Audio Bug (TL8)")).toEqual({ cell: "T", cells: 1, endurance: "1 month", raw: "T/month" });
     expect(draw("Electronic Stethoscope")).toMatchObject({ cell: "T", cells: 4, endurance: "1 week" });
     expect(sys("Portable X-Ray Machine (TL8)")).toMatchObject({ cost: 50000, weight: 25, lc: 3 });
+    // The advanced prosthetics' hours between recharges, as built-in batteries (p. 226).
+    expect(draw("Advanced Arm Prosthetic")).toEqual({ cell: "", cells: 0, endurance: "8 hours", raw: "8 hours between recharges" });
+    expect(draw("Advanced Leg Prosthetic")).toMatchObject({ endurance: "30 hours" });
   });
 
   it("settles the kits' figures and quality against the page (pp. 220-221)", () => {
