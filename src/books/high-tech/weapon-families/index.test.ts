@@ -37,6 +37,7 @@ let conditions: any[];
 let chat: string[];
 let weaponState: Map<any, any>;
 let on: Record<string, boolean>;
+let rowActions: any[] = [];
 
 function fakeApi() {
   return {
@@ -49,7 +50,7 @@ function fakeApi() {
       getWeaponState: (item: any) => weaponState.get(item),
       setWeaponState: async (item: any, _m: string, patch: any) => { weaponState.set(item, { ...weaponState.get(item), ...patch }); },
     },
-    sheets: { registerSheetSection: () => undefined },
+    sheets: { registerSheetSection: () => undefined, registerRowAction: (a: any) => rowActions.push(a) },
     areas: { standsIn: (scene: any, area: any) => scene.tokens.filter((t: any) => inShape(t.center, area)) },
     actors: {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
@@ -278,6 +279,39 @@ describe("mechanical machine guns (High-Tech p. 127)", () => {
     const offMount = options.find((o) => o.key === "ht-off-mount");
     expect(offMount.available({ item: gatling() })).toBe(true);
     expect(offMount.apply({}, true).modifiers[0].value).toBe(-8);
+  });
+
+  it("feeds a Gatling from its Broadwell drum a cell at a time, turned from its row", async () => {
+    on = { mechanicalMachineGuns: true };
+    rowActions = [];
+    ready();
+    const drummed = gun({ name: "Gatling M1874, .45-70", skill: "Gunner (Machine Gun)", rof: 15, shots: "40(5)", firearm: { mechanicalMg: true, drumCells: 20, drumCellRounds: 20, drumFitted: true } });
+    const entry = fire(HOOKS.shotsEntry, { item: drummed, entry: { capacity: 40, reloadSeconds: 5, fastDrawSeconds: 1 } }).entry;
+    expect(entry).toMatchObject({ capacity: 400, reloadSeconds: 10, fastDrawSeconds: 0 });
+    expect(attack(drummed, { shots: 15 }).refusal).toBeNull();
+    await shoot(drummed, 15);
+    expect(attack(drummed, { shots: 10 }).refusal).toContain("DrumCellShort");
+    expect(attack(drummed, { shots: 5 }).refusal).toBeNull();
+    await shoot(drummed, 5);
+    expect(attack(drummed, { shots: 1 }).refusal).toContain("DrumTurn");
+    rowActions.find((a) => a.key === "ht-turn-drum").run(drummed, shooter);
+    await flush();
+    expect(attack(drummed, { shots: 15 }).refusal).toBeNull();
+    // Not fitted: the hopper, as the table has it.
+    const hopper = gun({ name: "Gatling M1874, .45-70", skill: "Gunner (Machine Gun)", rof: 15, shots: "40(5)", firearm: { mechanicalMg: true, drumCells: 20, drumCellRounds: 20 } });
+    expect(fire(HOOKS.shotsEntry, { item: hopper, entry: { capacity: 40, reloadSeconds: 5 } }).entry.capacity).toBe(40);
+  });
+
+  it("gives a gun that fires canister a canister row from its own feed", () => {
+    on = { mechanicalMachineGuns: true };
+    ready();
+    const canister = derived.find((d) => d.key === "ht-canister");
+    const hotchkiss = gun({ name: "Hotchkiss 1-pdr, 37x94mmR", skill: "Gunner (Machine Gun)", rof: 2, shots: "10(5)", firearm: { mechanicalMg: true, canister: { damage: "1d+1", accuracy: 3, halfDamageRange: 60, maxRange: 1200, projectiles: 75, rateOfFire: 1 } } });
+    expect(canister.applies(hotchkiss)).toBe(true);
+    expect(canister.applies(gun())).toBe(false);
+    const base = { itemId: "g1", modeIndex: 0, damage: "5dx2", damageType: "pi++", armorDivisor: 0.5, accuracy: 4, halfDamageRange: 570, maxRange: 3600, rateOfFire: 2, projectiles: 1, recoil: 2, notes: [] };
+    const row = canister.mode(hotchkiss, shooter, { rows: () => ({ ranged: [base], melee: [] }) });
+    expect(row).toMatchObject({ damage: "1d+1", damageType: "pi++", armorDivisor: 1, accuracy: 3, halfDamageRange: 60, maxRange: 1200, projectiles: 75, rateOfFire: 1, recoil: 1, spendsFrom: 0, damageRollable: true });
   });
 
   it("leaves other machine guns alone", () => {

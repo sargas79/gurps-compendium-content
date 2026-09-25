@@ -6,8 +6,8 @@
  *
  *   - **Flamethrowers (flamethrowers):** the jet is a large-area injury
  *     (Campaigns p. 400) and sets clothes alight as the Basic Set's Catching
- *     Fire does (Campaigns p. 434); worn DR that isn't sealed counts at a
- *     fifth. The fuel then burns on the victim for 2d x 5 seconds (1d x 5 past
+ *     Fire does (Campaigns p. 434); DR that isn't sealed counts at a fifth,
+ *     the victim's own (the system's natural lines) as well as worn. The fuel then burns on the victim for 2d x 5 seconds (1d x 5 past
  *     1/2D), 1d burn a second on each of the victim's turns against the same
  *     fifth of their large-area DR, until it burns out or the GM takes the
  *     condition off (the lingering burn is `../burning.ts`'s). Played over an area up to three yards wide, as an
@@ -278,7 +278,8 @@ export function readyProjectors(api: GWorldApi, on: ProjectorSwitches): void {
     if (width > 1) damage.basicDamage = sweptDamage(Number(damage.basicDamage) || 0, width);
   });
 
-  // "Unsealed DR protects at 1/5 value; sealed armor protects completely" (p. 178).
+  // "Unsealed DR protects at 1/5 value; sealed armor protects completely" (p. 178): every
+  // line, natural DR (`source: "natural"`, API 1.98.0) as well as worn pieces.
   Hooks.on(api.combat.hooks.armorDr, (context: any) => {
     if (!on.flamethrowers() || !isFlamethrower(context?.item) || sealed(api, context.actor)) return;
     for (const line of context.lines ?? []) {

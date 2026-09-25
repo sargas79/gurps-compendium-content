@@ -37,7 +37,9 @@ import {
   stylingReaction,
   takesBuildOptions,
   type GadgetFigures,
+  type GadgetOptions,
   type GearKind,
+  type Grade,
 } from "./rules.js";
 
 /** One book's gadget table. */
@@ -47,6 +49,35 @@ export interface GadgetTable extends BookTable {
   switches: { options: string; sm: string; legality: string };
   /** Where the book's text for the sheet sits: "GCC.UT" reads "GCC.UT.Gadget.Title". */
   i18n: string;
+  /**
+   * The options a piece of the book's gear is built with as listed, which its
+   * list price already pays for (High-Tech p. 52: tactical lights are rugged
+   * and expensive to begin with): never charged again, always counted in its
+   * statistics. Null or left out for gear built plain.
+   */
+  builtIn?: (item: any) => BuiltIn | null;
+}
+
+/** Options a piece is built with as listed. */
+export interface BuiltIn {
+  rugged?: boolean;
+  grade?: Grade;
+}
+
+/** The options a table says a piece is built with as listed, or null. */
+function builtInOf(table: GadgetTable | null, item: any): BuiltIn | null {
+  try {
+    const built = table?.builtIn?.(item) ?? null;
+    return built && (built.rugged || built.grade) ? built : null;
+  } catch {
+    return null;
+  }
+}
+
+/** The options as they count for the piece's statistics: what was chosen, and what it is built with as listed. */
+function withBuiltIn(options: GadgetOptions, built: BuiltIn | null): GadgetOptions {
+  if (!built) return options;
+  return { ...options, rugged: options.rugged || built.rugged === true, grade: built.grade || options.grade };
 }
 
 /** Every book's gadget table. */
@@ -127,9 +158,16 @@ export function gadgetCellWeight(item: any, data: GadgetItem, figures: GadgetFig
   return listed ?? data.cellWeight;
 }
 
-/** The options a gadget counts as built with under a table: what that book allows on this kind of gear. */
+/**
+ * The options a gadget is priced with under a table: what that book allows
+ * on this kind of gear, less those it is built with as listed, whose price is
+ * already in the list's -- they aren't added again.
+ */
 function optionsUnder(table: GadgetTable, item: any, data: GadgetItem): GadgetItem {
-  return { ...data, options: allowedOptions(table.figures, data.options, gearKinds(item)) };
+  const allowed = allowedOptions(table.figures, data.options, gearKinds(item));
+  const built = builtInOf(table, item);
+  if (!built) return { ...data, options: allowed };
+  return { ...data, options: { ...allowed, rugged: built.rugged ? false : allowed.rugged, grade: built.grade ? "" : allowed.grade } };
 }
 
 /**
@@ -157,10 +195,10 @@ export function gadgetPriceOf(item: any, data: GadgetItem, on: (key: string) => 
   };
 }
 
-/** The statistics the book assumes for a gadget that states none. */
-export function gadgetStatistics(api: GWorldApi, figures: GadgetFigures, item: any, data: GadgetItem, weight: number): { hp: number; ht: number; dr: number } {
+/** The statistics the book assumes for a gadget that states none, with the options its table says it is built with as listed. */
+export function gadgetStatistics(api: GWorldApi, figures: GadgetFigures, item: any, data: GadgetItem, weight: number, table: GadgetTable | null = null): { hp: number; ht: number; dr: number } {
   const own = item?.type === "armor" ? Number(item?.system?.dr) || null : null;
-  const options = allowedOptions(figures, data.options, gearKinds(item));
+  const options = withBuiltIn(allowedOptions(figures, data.options, gearKinds(item)), builtInOf(table, item));
   return {
     hp: api.rules.objectHitPoints(Math.max(0, weight), "unliving"),
     ht: gadgetHealth(figures, { rugged: options.rugged, own: data.health || null, grade: options.grade, quality: String(item?.system?.equipmentQuality ?? "") }),
@@ -171,7 +209,7 @@ export function gadgetStatistics(api: GWorldApi, figures: GadgetFigures, item: a
 /** The lines a gadget's build puts on its equipment failure roll, under its book's table. */
 export function failureLines(table: GadgetTable, item: any): Array<{ label: string; value: number }> {
   const figures = table.figures;
-  const options = allowedOptions(figures, gadgetItem(item).options, gearKinds(item));
+  const options = withBuiltIn(allowedOptions(figures, gadgetItem(item).options, gearKinds(item)), builtInOf(table, item));
   const lines: Array<{ label: string; value: number }> = [];
   if (options.rugged) lines.push({ label: L(table.i18n, "Rugged"), value: figures.rugged.health });
   const graded = options.grade ? (figures.gradeHealth?.[options.grade] ?? 0) : 0;
@@ -215,7 +253,8 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
   const data = gadgetItem(item);
   const priced = gadgetPriceOf(item, data);
   const weight = priced?.weight ?? listOf(item).weight;
-  const statistics = gadgetStatistics(api, figures, item, data, weight);
+  const built = builtInOf(tables.options, item);
+  const statistics = gadgetStatistics(api, figures, item, data, weight, tables.options);
   const campaign = campaignTl(item);
   const lc = typeof item?.system?.lc === "number" ? Number(item.system.lc) : null;
   const antique = tables.legality ? antiqueClassOf(item, tables.legality) : { lc, steps: 0 };
@@ -232,6 +271,10 @@ function itemContext(api: GWorldApi, item: any): Record<string, unknown> {
     listedCells: listedCells === null ? null : { weight: Math.round(listedCells * 100) / 100 },
     options: tables.options !== null,
     buildOptions: takesBuildOptions(figures, gearKinds(item)),
+    // Built rugged or to a grade as listed: those aren't offered again.
+    builtIn: built ? F(ns, "BuiltIn", { options: [built.rugged ? L(ns, "RuggedLabel") : "", built.grade ? L(ns, `Grade.${built.grade}`) : ""].filter(Boolean).join(", ") }) : "",
+    builtRugged: built?.rugged === true,
+    builtGrade: Boolean(built?.grade),
     sizeAdjusted: tables.sm !== null,
     legality: tables.legality !== null,
     controlledOffered: tables.legality?.figures.antique.exemptControlled === true,

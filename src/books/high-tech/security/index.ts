@@ -18,8 +18,11 @@
  *     or barrier against its targets -- caltrops' Vision roll and thrust-3
  *     to the foot, a tripwire, a stake pit, barbed and razor wire yard by
  *     yard, a cattle fence's stun held while the victim touches it, a lethal
- *     fence's shocks, and a car stopper -- and each record's figures on the
- *     item sheet.
+ *     fence's shocks, a spike strip, and a car stopper -- and each record's
+ *     figures on the item sheet. A vehicle run over a spike strip has its
+ *     tire flat five seconds later: -4 on its control rolls and half its Top
+ *     Speed (`gworld.vehicleStats`), until the tool's "tires changed"; one a
+ *     car stopper puts out of action can't accelerate for the seconds.
  *
  * The supplement Electricity and Electronics extends both (HT:EE pp. 42-43,
  * `../electric-security/`): its electric locks and screening systems are lock
@@ -65,6 +68,8 @@ import {
   pickGunModifier,
   pickSeconds,
   pickSkill,
+  spikeStripFlat,
+  spikeStripTopSpeed,
   wireLayingMinutes,
   type LockKind,
   type LockQuality,
@@ -308,7 +313,17 @@ async function pickLock(api: GWorldApi, item: any, actor: any, on: SecuritySwitc
 
 // ── traps and barriers (pp. 203-205) ──
 
-const TRAP_KINDS = ["caltrops", "tripwire", "stakePit", "barbedWire", "razorWire", "cattleFence", "lethalFence", "carStopper"] as const;
+const TRAP_KINDS = ["caltrops", "tripwire", "stakePit", "barbedWire", "razorWire", "cattleFence", "lethalFence", "spikeStrip", "tiresChanged", "carStopper"] as const;
+
+/** A vehicle's tire a spike strip punctured, `{ at }` in world seconds; and a car stopper's `{ until }`. */
+const SPIKE_FLAG = "htSpikeStrip";
+const STOPPED_FLAG = "htCarStopped";
+const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+/** Whether a vehicle is on a spike strip's flat tire now. */
+const onFlatTire = (vehicle: any): boolean => {
+  const spiked = vehicle?.getFlag?.(MODULE_ID, SPIKE_FLAG);
+  return Boolean(spiked) && spikeStripFlat(Number(spiked.at) || 0, worldNow());
+};
 /** The supplement's fences, under `stunLethalFences` (HT:EE p. 42). */
 const FENCE_KINDS = ["lowVoltageFence", "stunLethalFence"] as const;
 type TrapKind = (typeof TRAP_KINDS)[number] | (typeof FENCE_KINDS)[number];
@@ -461,7 +476,24 @@ async function carStopper(api: GWorldApi, victim: any, name: string): Promise<vo
   if (result.success) return void say(victim, name, [F("Barrier.Resisted", { name: victim.name })]);
   const seconds = Math.max(1, Math.abs(Number(result.margin) || 0));
   if (!vehicle) await api.actors.applyCondition(victim, { key: "unconscious", duration: { seconds } } as any);
+  // The engine's controls are out: it can't accelerate until then (`gworld.vehicleStats`).
+  else if (victim.isOwner) await victim.setFlag(MODULE_ID, STOPPED_FLAG, { until: worldNow() + seconds });
   await say(victim, name, [F("Barrier.KnockedOut", { name: victim.name, seconds })]);
+}
+
+/** A spike strip (p. 204): a vehicle driven over it has a tire flat five seconds later. */
+async function spikeStrip(victim: any, name: string): Promise<void> {
+  if (victim?.type !== "vehicle") return void say(victim, name, [F("Barrier.NoTires", { name: victim?.name })]);
+  if (!victim.isOwner) return;
+  await victim.setFlag(MODULE_ID, SPIKE_FLAG, { at: worldNow() });
+  await say(victim, name, [F("Barrier.Punctured", { name: victim.name, seconds: SPIKE_STRIP.seconds, driving: SPIKE_STRIP.driving })]);
+}
+
+/** The punctured tire changed or mended: the spike strip's effects end. */
+async function tiresChanged(victim: any, name: string): Promise<void> {
+  if (!victim?.isOwner || !victim.getFlag?.(MODULE_ID, SPIKE_FLAG)) return;
+  await victim.unsetFlag(MODULE_ID, SPIKE_FLAG);
+  await say(victim, name, [F("Barrier.TiresChanged", { name: victim.name })]);
 }
 
 async function runTrap(api: GWorldApi, on: SecuritySwitches): Promise<void> {
@@ -510,6 +542,8 @@ export async function runTrapOn(api: GWorldApi, victims: any[], answer: TrapAnsw
     else if (answer.kind === "cattleFence") await cattleFence(api, victim, name, answer);
     else if (answer.kind === "lethalFence") await lethalFence(api, victim, answer);
     else if (answer.kind === "carStopper") await carStopper(api, victim, name);
+    else if (answer.kind === "spikeStrip") await spikeStrip(victim, name);
+    else if (answer.kind === "tiresChanged") await tiresChanged(victim, name);
     else if (answer.kind === "lowVoltageFence" || answer.kind === "stunLethalFence") {
       await touchFence(api, victim, name, {
         fence: answer.kind === "lowVoltageFence" ? "lowVoltage" : "stunLethal",
@@ -605,6 +639,26 @@ export function readyHighTechSecurity(api: GWorldApi, on: SecuritySwitches): voi
       if (multiple === 1) return null;
       return { cost: Math.round(price.cost * multiple * 100) / 100, weight: price.weight, label: F("QualityPrice", { quality: L(`Quality.${quality}`) }) };
     },
+  });
+
+  // A spike strip's flat tire (p. 204): half Top Speed, and -4 to Driving on the control rolls;
+  // a car stopper's dead engine, no acceleration while it lasts (pp. 203-204). API 1.115.0.
+  Hooks.on(api.data.hooks.vehicleStats, (context: any) => {
+    const vehicle = context?.vehicle;
+    if (!on.traps() || !vehicle || !Array.isArray(context.lines)) return;
+    if (onFlatTire(vehicle)) {
+      context.topSpeed = spikeStripTopSpeed(Number(context.topSpeed) || 0);
+      context.lines.push({ label: L("Trap.FlatTire"), stat: "topSpeed" });
+    }
+    const stopped = vehicle.getFlag?.(MODULE_ID, STOPPED_FLAG);
+    if (stopped && worldNow() < (Number(stopped.until) || 0)) {
+      context.acceleration = 0;
+      context.lines.push({ label: L("Trap.EngineOut"), stat: "acceleration" });
+    }
+  });
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.traps() || !(context?.tags ?? []).includes("vehicleControl") || !Array.isArray(context.modifiers)) return;
+    if (onFlatTire(context.vehicle)) context.modifiers.push({ label: L("Trap.FlatTire"), value: SPIKE_STRIP.driving });
   });
 
   // A lock's toughness, or a safe's own DR and HP in place of its lock's, as the object the system breaks (p. 203).

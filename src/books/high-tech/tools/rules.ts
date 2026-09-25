@@ -29,6 +29,10 @@
  *     wielder for 1d cutting; at TL8 the saw is broken until repaired). A
  *     carbide chain costs double and drops the divisor and the mishaps.
  *   - **Nail guns (p. 28):** fired at DX-4 or Guns (Pistol)-4.
+ *   - **Rescue tools (pp. 29-30):** a fire extinguisher's one-second bursts
+ *     (20 from a large one out to 3 yards, 8 from a small one out to 2) each
+ *     put a fire out on 3d of TL+2 or less; a fire shelter gives those inside
+ *     DR 10 against burning.
  *   - **Household hazards (pp. 31-33):** a ruptured propane cylinder is a
  *     burning explosion with 1d cutting fragments; stoves, blenders, coffee,
  *     hotplates, toasters and waffle irons burn or cut; an institutional
@@ -212,6 +216,22 @@ export const NAIL_GUN_PENALTY = -4;
 export function nailGunLevel(level: number, atDefault: boolean): number {
   return atDefault ? level : level + NAIL_GUN_PENALTY;
 }
+
+/** A fire extinguisher's bursts and range (p. 29), by its record's name, or null for anything else. */
+export function extinguisherOf(name: string): { bursts: number; yards: number } | null {
+  const m = /^fire extinguisher, (large|small)$/i.exec(String(name ?? "").trim());
+  if (!m) return null;
+  return m[1]!.toLowerCase() === "large" ? { bursts: 20, yards: 3 } : { bursts: 8, yards: 2 };
+}
+
+/** What a burst of an extinguisher puts a fire out on: 3d of its TL+2 or less (p. 29). */
+export function extinguishes(roll: number, tl: number): boolean {
+  return Math.floor(Number(roll) || 0) <= Math.floor(Number(tl) || 0) + 2;
+}
+
+/** A fire shelter's DR against burning damage for those inside it (p. 30). */
+export const FIRE_SHELTER_DR = 10;
+export const isFireShelter = (name: string): boolean => /^fire shelter$/i.test(String(name ?? "").trim());
 
 /** The glass cutter (p. 26): -6 in a realistic game; a critical failure cuts the hand. */
 export const GLASS_CUTTER_REALISTIC = -6;

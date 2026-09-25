@@ -16,7 +16,9 @@
  *     computer's cells; a hardened computer's HT against an attack on
  *     electrical gadgets; an item sheet section for the model, the options
  *     and a program's Complexity; and a Gear tab section with each computer's
- *     Complexity and what it runs at once.
+ *     Complexity and what it runs at once. Editing a computer on the sheet
+ *     writes its worked-out Complexity to the system's own `complexity`
+ *     (Campaigns p. 472), which the system's item sheet and inventing read.
  */
 
 import { registerPowerAdjuster } from "../power/data.js";
@@ -63,6 +65,21 @@ export function computerOf(item: any, data: ComputerData = computerData(item)): 
   const table = computerTableOf(item);
   const computer = computerIn(table, item, data);
   return table && computer ? { table, computer } : null;
+}
+
+/**
+ * Writes a computer's worked-out Complexity to the system's `complexity`
+ * field (Campaigns p. 472), where it differs. Only for an item that is one of
+ * a switched-on book's computers; anything else keeps what it has. Returns
+ * whether it wrote.
+ */
+export async function syncComplexity(item: any): Promise<boolean> {
+  const found = computerOf(item);
+  if (!found || !item?.isOwner) return false;
+  const complexity = Math.max(0, Math.floor(Number(found.computer.complexity) || 0));
+  if ((Number(item.system?.complexity) || 0) === complexity) return false;
+  await item.update({ "system.complexity": complexity });
+  return true;
 }
 
 /** A program's table, or null for an item that isn't one or whose book's switch is off. */
@@ -173,6 +190,8 @@ function itemListeners(element: HTMLElement, item: any): void {
       else if (field === "extraStorage") await storeComputer(item, { extraStorage: Math.max(0, Number(input.value) || 0) });
       else if (field === "complexity") await storeComputer(item, { complexity: Math.max(lowest, Math.min(20, Math.floor(Number(input.value) || lowest))) });
       else if (field === "model" || field === "runsOn" || field === "difficulty") await storeComputer(item, { [field]: input.value });
+      // The model and options set the computer's Complexity: the system's own field follows.
+      await syncComplexity(item);
     });
   });
   element.querySelector("[data-gcc-computer-quality]")?.addEventListener("click", async () => {

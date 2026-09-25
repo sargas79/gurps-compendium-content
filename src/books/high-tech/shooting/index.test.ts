@@ -329,6 +329,14 @@ describe("gun techniques (pp. 250-252)", () => {
     expect(attack(tommy(), actor, { modifiers: bulk(), rangeYards: 13 }).modifiers).toHaveLength(1);
   });
 
+  it("gives +1 on every shot with the gun Weapon Bond names, and none with another", () => {
+    const actor = shooter({ items: [trait("Weapon Bond (Colt Government)")] });
+    expect(attack(colt(), actor).modifiers).toEqual([]);
+    on.gunTechniques = true;
+    expect(attack(colt(), actor).modifiers).toEqual([{ label: "GCC.HT.Shooting.WeaponBondLine {\"item\":\"Colt Government\"}", value: 1, key: `${MODULE_ID}.weaponBond` }]);
+    expect(attack(deagle(), actor).modifiers).toEqual([]);
+  });
+
   it("takes a gun TA's bought levels on a shot aimed where it aims", () => {
     on.gunTechniques = true;
     const ta = technique("TA (Rifle/Skull)", 9, { points: 3 });
@@ -386,6 +394,17 @@ describe("the expanded Gunslinger (p. 249)", () => {
     const close = attack(tommy(), actor, { modifiers: [{ label: "Bulk", value: -5, key: "bulk", situation: "closeCombat" }] });
     expect(close.modifiers[0].value).toBe(0);
     expect(attack(tommy(), shooter(), { modifiers: [{ label: "Bulk", value: -5, key: "bulk", situation: "closeCombat" }] }).modifiers[0].value).toBe(-5);
+  });
+
+  it("takes the GM's penalty for leaping or acrobatic movement, which a Gunslinger ignores", () => {
+    const option = options.get("ht-acrobatic-movement");
+    expect(option.available(optionContext(colt(), shooter()))).toBe(false);
+    on.gunslinger = true;
+    expect(option.available(optionContext(colt(), shooter()))).toBe(true);
+    const key = `${MODULE_ID}.acrobaticMovement`;
+    expect(option.apply(optionContext(colt(), shooter()), -4).modifiers).toEqual([{ label: "GCC.HT.Shooting.AcrobaticLine", value: -4, key }]);
+    expect(option.apply(optionContext(colt(), shooter({ items: [trait("Gunslinger")] })), -4).modifiers).toEqual([{ label: "GCC.HT.Shooting.AcrobaticIgnored", value: 0, key }]);
+    expect(option.apply(optionContext(colt(), shooter()), 0)).toBeNull();
   });
 
   it("halves the default of the five techniques it names", () => {

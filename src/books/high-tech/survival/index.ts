@@ -7,11 +7,14 @@
  *
  *   - **Survival gear (survivalGear):** a camper's shelter or sleeping gear on
  *     the cold roll (or -5 with none), from the "Camping out" box on the
- *     Inventory tab; fire starters' +5 to +10 on a DX-based Survival roll; a
- *     spring trap's blow and the Quick Contest of ST to break free; a
+ *     Inventory tab; fire starters' +5 to +10 on a DX-based Survival roll;
+ *     foraging from a fishing kit's, trap's or snare's row -- Fishing, or the
+ *     best land Survival with the trap's own quality, up to five a day, an
+ *     hour each; a spring trap's blow and the Quick Contest of ST to break free; a
  *     survival kit carried for another environment as the Survival roll's
- *     equipment line (`gworld.skillBonuses`); a water filter's +(TL-2) on the
- *     HT roll against a digestive disease; the hand-pumped desalinator's
+ *     equipment line (`gworld.skillBonuses`); a water filter's +(TL-2), or a
+ *     charcoal-filtered canteen's +2, on the HT roll against a digestive
+ *     disease (the Illness dialog's own among them); the hand-pumped desalinator's
  *     pumping and the solar still's Survival roll as row actions; a rescue
  *     signal in use as +2 to a rescuer's Vision roll, out to the range it is
  *     seen at; and who hears a whistle, heard at 128 yards.
@@ -21,12 +24,17 @@
  *     Move and take Move on land to 2; a released dye marker is +2 to Vision rolls to
  *     spot its user for half an hour.
  *   - **Parachuting (parachuting):** a jump as a row action -- the
- *     Parachuting roll, where the canopy opens, the landing speed for the
- *     load and a chute that fails under it, the half-velocity landing of a
- *     jumper who hits first, the earliest chutes' nausea -- with the landing
- *     rolled from the card; and Death from Above as an attack option.
+ *     Parachuting roll, where the canopy opens (by itself at 1,000' from TL8,
+ *     for a jumper who never pulls), the landing speed for the load and a
+ *     chute that fails under it, the drift in the wind, the half-velocity
+ *     landing of a jumper who hits first, the earliest chutes' nausea -- with
+ *     the landing rolled from the card; Death from Above as an attack option,
+ *     only while under the open canopy; a reserve chute priced; and notes for
+ *     the ram-air chute's glide and the guided delivery gear.
  *   - **Rations (rations):** a snack or sports drink eaten from its row,
- *     one taken off the count, and the card saying what it counts as.
+ *     one taken off the count, and the card saying what it counts as; eaten
+ *     on the move, 1 FP back now and 2 FP gone two hours later, charged by the
+ *     active GM's client as world time passes.
  */
 
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
@@ -34,6 +42,9 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { hearSound } from "../hearing.js";
 import { toolsFor } from "../equipment/index.js";
 import {
+  AUTO_DEPLOY,
+  CHARCOAL_CANTEEN,
+  CHARCOAL_CANTEEN_BONUS,
   CORK_JACKET,
   DESALINATOR,
   DON_SECONDS,
@@ -42,21 +53,32 @@ import {
   FINS_LAND_MOVE,
   FINS_WATER_MULTIPLIER,
   FIRE_STARTER_BONUS,
+  FORAGING_HOURS,
   FORAGING_ROLLS_A_DAY,
+  GUIDED_DELIVERY,
+  INFILTRATION_POD_LBS,
   LIFE_JACKET,
   NO_SHELTER,
   PARACHUTING_DEFAULT,
   PARACHUTING_IQ_DEFAULT,
+  RAM_AIR_GLIDE,
+  RESERVE_CHUTE,
   SIGNAL_VISION,
+  SNACK_ON_THE_MOVE,
   WHISTLE_HEARD_AT,
   SNACK_REST_FP,
   SURVIVAL_ATTRIBUTE,
   TRAP_DAMAGE_ADDS,
   deathFromAboveLine,
+  descentSeconds,
+  driftYards,
+  dueCrashes,
   finsMoveLine,
   fireBuildingLevel,
+  foragingAttempt,
   jumpOutcome,
   landingSpeed,
+  pullHeight,
   ratedWeight,
   shelterLine,
   shelterModifier,
@@ -79,6 +101,12 @@ const CARD = "ht-survival-card";
 const CAMPING_FLAG = "htCamping";
 const DYE_FLAG = "htDyeMarker";
 const DEATH_FROM_ABOVE = "ht-death-from-above";
+/** Actor flag: the day's foraging rolls, `{ day, rolls }` (p. 58). */
+const FORAGE_FLAG = "htForaging";
+/** Actor flag: the FP a snack eaten on the move takes back later, `[{ at, fp, item }]` (p. 35). */
+const CRASH_FLAG = "htSnackCrash";
+/** Actor flag: the jumper is under an open canopy, until they land (p. 61). */
+const CANOPY_FLAG = "htUnderCanopy";
 
 /** What a record is to these rules. */
 export const SURVIVAL_KINDS = [
@@ -124,6 +152,8 @@ export interface SurvivalData {
   chute: Chute;
   /** The HT modifier against nausea on a jump, or null for none (p. 61). */
   nausea: number | null;
+  /** A parachute packed with a reserve (p. 61). */
+  reserve: boolean;
 }
 
 /** Registers the fields this module keeps on survival gear. */
@@ -143,6 +173,7 @@ export function initSurvival(): void {
       openingYards: number(),
       descent: number(),
       nausea: new f.NumberField({ required: false, nullable: true, integer: true, initial: null }),
+      reserve: new f.BooleanField({ initial: false }),
     }),
   });
 }
@@ -159,6 +190,7 @@ export function survivalData(item: any): SurvivalData {
     large: d.large === true,
     chute: { maxLbs: whole(d.maxLbs), maxLbsTl7: whole(d.maxLbsTl7), maxLbsTl8: whole(d.maxLbsTl8), openingYards: whole(d.openingYards), descent: whole(d.descent) },
     nausea: typeof d.nausea === "number" ? Math.trunc(d.nausea) : null,
+    reserve: d.reserve === true,
   };
 }
 
@@ -254,10 +286,11 @@ export function survivalKitEquipment(api: GWorldApi, actor: any, skill: string):
 // ── fire starters (p. 57) ──
 
 /** The character's best Survival specialty's level, or null for none. */
-function bestSurvival(api: GWorldApi, actor: any): { name: string; level: number } | null {
+function bestSurvival(api: GWorldApi, actor: any, landOnly = false): { name: string; level: number } | null {
   let best: { name: string; level: number } | null = null;
   for (const item of actor?.items ?? []) {
-    if (item?.type !== "skill" || !survivalOf(String(item.name ?? ""))) continue;
+    const survival = item?.type === "skill" ? survivalOf(String(item.name ?? "")) : null;
+    if (!survival || (landOnly && survival.kind !== "land")) continue;
     const level = api.actors.skillLevel(actor, String(item.name));
     if (typeof level === "number" && (!best || level > best.level)) best = { name: String(item.name), level };
   }
@@ -330,6 +363,45 @@ async function breakFree(api: GWorldApi, message: any, data: TrapData): Promise<
   if (result?.outcome === "first") await api.chat.update(message, { ...data, trap: { ...trap, freed: F("TrapFreed", { victim: victim.name }) } });
 }
 
+// ── foraging (pp. 55, 58) ──
+
+/** Whether gear forages with Fishing (a kit or an outfit) rather than Survival (traps and snares). */
+const fishes = (item: any): boolean => (item?.system?.forSkills ?? []).some((s: unknown) => /^fishing\b/i.test(String(s ?? "")));
+
+/**
+ * A foraging roll with fishing or trapping gear (p. 58; Foraging, Campaigns
+ * p. 427): Fishing, with the kit or outfit the system already counts for it;
+ * or the best Survival specialty, with the trap's or snare's own quality --
+ * the book gives it to plain "Survival", which the system matches to no
+ * specialty. Up to five a day, each an hour's work (p. 55).
+ */
+async function forage(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const day = Math.floor(worldNow() / 86400);
+  const stored = actor.getFlag?.(MODULE_ID, FORAGE_FLAG);
+  const attempt = foragingAttempt(stored && typeof stored === "object" ? { day: Number(stored.day), rolls: Number(stored.rolls) || 0 } : null, day);
+  if (attempt === null) return void ui.notifications?.warn(F("ForageSpent", { rolls: FORAGING_ROLLS_A_DAY }));
+  const per = Number(api.actors.attribute(actor, SURVIVAL_ATTRIBUTE as never)) || 10;
+  const modifiers: Array<{ label: string; value: number }> = [];
+  let skill: string;
+  let base: number;
+  if (fishes(item)) {
+    skill = "Fishing";
+    base = api.actors.skillLevel(actor, skill) ?? per - 4;
+  } else {
+    // Traps and snares are staked on land.
+    const survival = bestSurvival(api, actor, true);
+    skill = survival?.name ?? "Survival";
+    base = survival?.level ?? per - 5;
+    const quality = Number(api.rules.toolModifier(item.system?.equipmentQuality ?? "basic", item.system?.equipmentModifier)) || 0;
+    if (quality) modifiers.push({ label: F("ForageGear", { name: item.name }), value: quality });
+  }
+  const outcome: any = await api.roll.success({ actor, base, label: F("ForageRoll", { name: item.name, attempt, rolls: FORAGING_ROLLS_A_DAY }), skill, kind: "skill", modifiers, tags: ["foraging", SURVIVAL_ATTRIBUTE], item } as any);
+  if (!outcome || "refused" in outcome) return;
+  await actor.setFlag(MODULE_ID, FORAGE_FLAG, { day, rolls: attempt });
+  await say(actor, String(item.name ?? ""), [F(outcome.success ? "ForageFound" : "ForageNothing", { name: String(actor.name ?? ""), hours: FORAGING_HOURS, left: FORAGING_ROLLS_A_DAY - attempt })]);
+}
+
 // ── water (p. 59) ──
 
 async function pumpWater(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -362,7 +434,18 @@ async function releaseDye(api: GWorldApi, item: any, actor: any): Promise<void> 
 
 // ── parachutes (p. 61) ──
 
-type JumpData = { title: string; lines: string[]; trap: null; landing: { formula: string; label: string; rolled: boolean } | null };
+type JumpData = { title: string; lines: string[]; trap: null; landing: { formula: string; label: string; rolled: boolean } | null; canopy?: { landed: boolean } | null };
+
+/** Whether a jumper is coming down under an open canopy, for Death from Above (p. 61). */
+export function underCanopy(actor: any): boolean {
+  return actor?.getFlag?.(MODULE_ID, CANOPY_FLAG) === true;
+}
+
+async function setCanopy(actor: any, open: boolean): Promise<void> {
+  if (!actor?.isOwner) return;
+  if (open) await actor.setFlag(MODULE_ID, CANOPY_FLAG, true);
+  else if (underCanopy(actor)) await actor.unsetFlag(MODULE_ID, CANOPY_FLAG);
+}
 
 /** The character's Parachuting level: the skill, or the better of DX-4 and IQ-6. */
 export function parachutingLevel(api: GWorldApi, actor: any): number {
@@ -383,13 +466,16 @@ const damageFormula = (api: GWorldApi, d: { dice: number; modifier: number }) =>
 async function jump(api: GWorldApi, item: any, actor: any): Promise<void> {
   const data = survivalData(item);
   const carried = Number(api.actors.encumbrance(actor)?.carriedWeight) || 0;
+  const autoDeploy = tlOf(item) >= AUTO_DEPLOY.tl;
   const answer: any = await foundry.applications.api.DialogV2.prompt({
     window: { title: String(item.name ?? "") },
     content: `<div class="gworld"><p class="ihint">${esc(F("JumpHint", { yards: data.chute.openingYards }))}</p>
       <div class="ifields">
         <label>${esc(L("PullHeight"))} <input type="number" name="height" value="${Math.max(data.chute.openingYards * 2, 100)}" min="0" step="10" style="width:80px"></label>
         <label>${esc(L("Load"))} <input type="number" name="load" value="${Math.round(bodyWeight(actor) + carried)}" min="0" step="5" style="width:80px"></label>
-      </div></div>`,
+        <label>${esc(L("Wind"))} <input type="number" name="wind" value="0" min="0" step="1" style="width:60px"></label>
+      </div>
+      <div class="ichecks"><label class="icheck" data-tooltip="${esc(F(autoDeploy ? "NoPullAutoHint" : "NoPullHint", { yards: AUTO_DEPLOY.yards }))}"><input type="checkbox" name="noPull"> ${esc(L("NoPull"))}</label></div></div>`,
     ok: {
       label: L("Jump"),
       callback: (_event: Event, button: HTMLElement) => {
@@ -397,22 +483,32 @@ async function jump(api: GWorldApi, item: any, actor: any): Promise<void> {
         return {
           height: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="height"]')?.value) || 0),
           load: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="load"]')?.value) || 0),
+          wind: Math.max(0, Number(form?.querySelector<HTMLInputElement>('[name="wind"]')?.value) || 0),
+          noPull: form?.querySelector<HTMLInputElement>('[name="noPull"]')?.checked === true,
         };
       },
     },
     rejectClose: false,
   });
   if (!answer) return;
-  await api.roll.success({ actor, base: parachutingLevel(api, actor), label: F("JumpRoll", { name: item.name }), skill: "Parachuting", kind: "skill", tags: ["parachuting", "DX"], item } as any);
+  // A jumper who pulls the ripcord rolls Parachuting to use the chute right (p. 61).
+  if (!answer.noPull) await api.roll.success({ actor, base: parachutingLevel(api, actor), label: F("JumpRoll", { name: item.name }), skill: "Parachuting", kind: "skill", tags: ["parachuting", "DX"], item } as any);
 
   const name = String(actor?.name ?? "");
   const hp = Number(actor?.system?.hp?.max) || Number(api.actors.attribute(actor, "HT")) || 10;
   const rated = ratedWeight(data.chute, tlOf(item));
   const speed = landingSpeed(data.chute.descent, rated, answer.load);
-  const outcome = jumpOutcome(answer.height, data.chute.openingYards, (yards) => api.rules.fallingVelocity(yards));
+  // Nobody pulls: the barometric device opens it from TL8, or nothing does (p. 61).
+  const pulled = pullHeight(answer.height, !answer.noPull, autoDeploy);
+  const outcome = jumpOutcome(pulled, data.chute.openingYards, (yards) => api.rules.fallingVelocity(yards));
   const lines: string[] = [];
   let landing: JumpData["landing"] = null;
-  if (speed === null) {
+  let canopy = false;
+  if (answer.noPull) lines.push(autoDeploy && pulled > 0 ? F("AutoDeploys", { yards: pulled }) : L("NeverOpens"));
+  if (answer.noPull && pulled <= 0) {
+    const fall = api.rules.fallingDamage({ hitPoints: hp, yardsFallen: answer.height });
+    landing = { formula: damageFormula(api, fall.damage), label: F("FallLanding", { name, velocity: fall.velocity }), rolled: false };
+  } else if (speed === null) {
     // Past 120% of its rating the chute simply fails: the whole fall.
     const fall = api.rules.fallingDamage({ hitPoints: hp, yardsFallen: answer.height });
     lines.push(F("ChuteFails", { load: answer.load, rated }));
@@ -422,14 +518,21 @@ async function jump(api: GWorldApi, item: any, actor: any): Promise<void> {
     lines.push(F("HitFirst", { yards: data.chute.openingYards, velocity: outcome.velocity }));
     landing = { formula: damageFormula(api, hit), label: F("FallLanding", { name, velocity: outcome.velocity }), rolled: false };
   } else {
+    canopy = true;
     lines.push(F("Opens", { yards: data.chute.openingYards }));
     if (data.chute.descent > 0) {
       const hit = api.rules.slamDamage(hp * 2, speed);
       lines.push(F(rated <= 0 ? "DescentUnrated" : answer.load > rated ? "DescentOver" : "Descent", { speed, load: answer.load, rated }));
+      // It drifts with the wind all the way down (p. 61).
+      const seconds = descentSeconds(pulled, data.chute.openingYards, speed);
+      const drift = driftYards(seconds, answer.wind);
+      if (drift > 0) lines.push(F("Drift", { yards: drift, seconds: Math.round(seconds), wind: answer.wind }));
       landing = { formula: damageFormula(api, hit), label: F("HardLanding", { name, velocity: speed }), rolled: false };
-    } else lines.push(F("Flies", { rated }));
+    } else lines.push(F("Flies", { rated, move: RAM_AIR_GLIDE.move, tailwind: RAM_AIR_GLIDE.tailwind }));
   }
-  await api.chat.post(`${MODULE_ID}.${CARD}`, { title: String(item.name ?? ""), lines, trap: null, landing } satisfies JumpData, { actor } as any);
+  // Coming down under the canopy until the landing: when Death from Above is possible (p. 61).
+  await setCanopy(actor, canopy);
+  await api.chat.post(`${MODULE_ID}.${CARD}`, { title: String(item.name ?? ""), lines, trap: null, landing, canopy: canopy ? { landed: false } : null } satisfies JumpData, { actor } as any);
 
   // The earliest chutes swing about badly (p. 61).
   if (data.nausea !== null) {
@@ -441,15 +544,74 @@ async function jump(api: GWorldApi, item: any, actor: any): Promise<void> {
 
 // ── snacks (p. 35) ──
 
+/**
+ * A snack or sports drink: a decent meal on the next rest (p. 35); or, at the
+ * GM's option, on the move -- 1 FP back now, and 2 FP gone two hours later.
+ */
 async function eat(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const answer: any = await foundry.applications.api.DialogV2.prompt({
+    window: { title: String(item.name ?? "") },
+    content: `<div class="gworld"><p class="ihint">${esc(F("EatHint", { fp: SNACK_ON_THE_MOVE.fp, crash: SNACK_ON_THE_MOVE.crashFp, hours: SNACK_ON_THE_MOVE.crashHours }))}</p>
+      <div class="ichecks"><label class="icheck"><input type="checkbox" name="moving"> ${esc(L("OnTheMove"))}</label></div></div>`,
+    ok: {
+      label: L("EatAction"),
+      callback: (_event: Event, button: HTMLElement) => ({ moving: button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="moving"]')?.checked === true }),
+    },
+    rejectClose: false,
+  });
+  if (!answer) return;
   if (!(await useOne(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
   const data = survivalData(item);
-  const lines = [F("SnackEaten", { name: actor.name, item: item.name, fp: SNACK_REST_FP })];
+  const lines: string[] = [];
+  if (answer.moving) {
+    const restored: any = await api.actors.restoreFatigue(actor, SNACK_ON_THE_MOVE.fp, { reason: String(item.name ?? "") });
+    const pending = crashesOf(actor);
+    await actor.setFlag(MODULE_ID, CRASH_FLAG, [...pending, { at: worldNow() + SNACK_ON_THE_MOVE.crashHours * 3600, fp: SNACK_ON_THE_MOVE.crashFp, item: String(item.name ?? "") }]);
+    lines.push(F("SnackOnTheMove", { name: actor.name, item: item.name, fp: restored ? restored.to - restored.from : 0, crash: SNACK_ON_THE_MOVE.crashFp, hours: SNACK_ON_THE_MOVE.crashHours }));
+  } else lines.push(F("SnackEaten", { name: actor.name, item: item.name, fp: SNACK_REST_FP }));
   if (data.kind === "sportsDrink") lines.push(L("DrinkWater"));
   await say(actor, String(item.name ?? ""), lines);
 }
 
+type Crash = { at: number; fp: number; item: string };
+
+function crashesOf(actor: any): Crash[] {
+  const stored = actor?.getFlag?.(MODULE_ID, CRASH_FLAG);
+  return Array.isArray(stored) ? stored.filter((c: any) => Number.isFinite(Number(c?.at))).map((c: any) => ({ at: Number(c.at), fp: Math.max(0, Math.trunc(Number(c.fp) || 0)), item: String(c.item ?? "") })) : [];
+}
+
+/** The characters whose crashes are being settled now, by uuid: a second tick before the flag is written skips them. */
+const settling = new Set<string>();
+
+/** The FP a snack eaten on the move takes back when its two hours are up: not exertion, so Very Fit doesn't halve it. */
+async function settleCrashes(api: GWorldApi, actor: any): Promise<void> {
+  const key = String(actor?.uuid ?? "");
+  if (!key || settling.has(key)) return;
+  settling.add(key);
+  try {
+    const { due, later } = dueCrashes(crashesOf(actor), worldNow());
+    if (!due.length) return;
+    if (later.length) await actor.setFlag(MODULE_ID, CRASH_FLAG, later);
+    else await actor.unsetFlag(MODULE_ID, CRASH_FLAG);
+    for (const crash of due) {
+      if (crash.fp > 0) await api.actors.spendFatigue(actor, crash.fp, { reason: "module", exertion: false, details: { rule: "snackCrash", item: crash.item } } as any);
+      await say(actor, crash.item, [F("SnackCrash", { name: String(actor.name ?? ""), fp: crash.fp, item: crash.item })]);
+    }
+  } finally {
+    settling.delete(key);
+  }
+}
+
 // ── the sheets ──
+
+/** The maritime gear with no roll of its own, and its sheet note (p. 60; scuba's air is the breathing gear's, pp. 72-74). */
+const MARITIME_NOTES: ReadonlyArray<[RegExp, string]> = [
+  [/^snorkel$/i, "snorkel"],
+  [/^life raft$/i, "raft"],
+  [/^dive cage$/i, "cage"],
+  [/^emergency beacon$/i, "beacon"],
+  [/^scuba gear$/i, "scuba"],
+];
 
 function itemLines(item: any, on: SurvivalSwitches): string[] {
   const data = survivalData(item);
@@ -500,6 +662,9 @@ function itemLines(item: any, on: SurvivalSwitches): string[] {
     }
     if (data.kind === "swimFins") lines.push(F("FinsItem", { move: FINS_LAND_MOVE }));
     if (data.kind === "dyeMarker") lines.push(F("DyeItem", { bonus: SIGNAL_VISION, minutes: DYE_MARKER_SECONDS / 60 }));
+    // The rest of the maritime gear prints no roll: what it is for, on the sheet (p. 60).
+    const maritime = MARITIME_NOTES.find(([pattern]) => pattern.test(String(item?.name ?? "").trim()));
+    if (maritime) lines.push(L(`Maritime.${maritime[1]}`));
   }
   if (on.parachuting()) {
     if (data.kind === "parachute") {
@@ -507,8 +672,14 @@ function itemLines(item: any, on: SurvivalSwitches): string[] {
       lines.push(F(rated > 0 ? "ChuteItem" : "ChuteItemUnrated", { rated, yards: data.chute.openingYards, don: DON_SECONDS, doff: DOFF_SECONDS }));
       if (data.chute.descent > 0) lines.push(F("ChuteDescentItem", { speed: data.chute.descent }));
       if (data.nausea !== null) lines.push(F("NauseaItem", { modifier: data.nausea }));
+      if (tl >= AUTO_DEPLOY.tl) lines.push(F("AutoDeployItem", { yards: AUTO_DEPLOY.yards }));
+      if (data.chute.descent <= 0) lines.push(F("GlideItem", { move: RAM_AIR_GLIDE.move, tailwind: RAM_AIR_GLIDE.tailwind }));
+      if (data.reserve) lines.push(F("ReserveItem", { cost: RESERVE_CHUTE.cost, weight: RESERVE_CHUTE.weight }));
     }
     if (data.kind === "cargoChute") lines.push(F("CargoChuteItem", { rated: data.chute.maxLbs, speed: data.chute.descent }));
+    const base = String(item?.name ?? "").trim();
+    if (/^guided parachute delivery$/i.test(base)) lines.push(F("GuidedItem", { low: GUIDED_DELIVERY.moveLow, high: GUIDED_DELIVERY.moveHigh, tons: GUIDED_DELIVERY.tons }));
+    if (/^infiltration pod$/i.test(base)) lines.push(F("PodItem", { lbs: INFILTRATION_POD_LBS }));
   }
   if (on.rations()) {
     if (data.kind === "snack") lines.push(F("SnackItem", { fp: SNACK_REST_FP }));
@@ -524,6 +695,7 @@ function itemContext(item: any, on: SurvivalSwitches): Record<string, unknown> {
     lines: itemLines(item, on),
     kit: kit ? { similar: data.similar.join(", ") } : null,
     desalinator: on.survival() && data.kind === "desalinator" ? { large: data.large } : null,
+    reserve: on.parachuting() && data.kind === "parachute" ? { checked: data.reserve } : null,
     editable: item.isOwner,
   };
 }
@@ -587,6 +759,18 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
     },
   });
 
+  // A reserve chute: +$250, 15 lbs. (p. 61).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-reserve-chute",
+    types: ["equipment"],
+    apply: (item, price) => {
+      const data = survivalData(item);
+      if (!on.parachuting() || data.kind !== "parachute" || !data.reserve) return null;
+      return { cost: price.cost + RESERVE_CHUTE.cost, weight: Math.round((price.weight + RESERVE_CHUTE.weight) * 1000) / 1000, label: L("Reserve") };
+    },
+  });
+
   // ── the rolls the gear changes ──
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     const actor = context?.actor;
@@ -599,11 +783,16 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
       if (line) context.modifiers.push(line);
     }
 
-    // A water filter against what is in the water (p. 59): a disease caught by drinking.
+    // A water filter against what is in the water (p. 59), or a
+    // charcoal-filtered canteen's +2 (p. 53): a disease caught by drinking,
+    // as the Illness dialog's digestive vector gives it (API 1.104.0).
     if (on.survival() && tags.includes("contagion") && context.disease?.vector === "digestive") {
-      const filter = gearOf(actor, "waterFilter", true).sort((a, b) => tlOf(b) - tlOf(a))[0];
-      const bonus = filter ? waterFilterBonus(tlOf(filter)) : 0;
-      if (bonus) context.modifiers.push({ label: F("FilterLine", { name: filter.name }), value: bonus });
+      const filters = [
+        ...gearOf(actor, "waterFilter", true).map((item) => ({ item, bonus: waterFilterBonus(tlOf(item)) })),
+        ...[...(actor.items ?? [])].filter((item: any) => isCarried(item) && CHARCOAL_CANTEEN.test(String(item.name ?? "").trim())).map((item: any) => ({ item, bonus: CHARCOAL_CANTEEN_BONUS })),
+      ].sort((a, b) => b.bonus - a.bonus);
+      const best = filters[0];
+      if (best && best.bonus) context.modifiers.push({ label: F("FilterLine", { name: best.item.name }), value: best.bonus });
     }
 
     // A life jacket on Swimming rolls: +6 against drowning, -3 in a race (p. 59).
@@ -660,7 +849,8 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
     label: L("DeathFromAbove"),
     attack: "ranged",
     available: (context) => on.parachuting() && gearOf(context.actor, "parachute").length > 0,
-    refuse: (context) => (String(context.maneuver ?? "") === "moveAndAttack" ? null : L("DeathFromAboveRefusal")),
+    // Coming down under an open canopy, on a Move and Attack (p. 61).
+    refuse: (context) => (String(context.maneuver ?? "") === "moveAndAttack" && underCanopy(context.actor) ? null : L("DeathFromAboveRefusal")),
     apply: (context) => {
       const value = deathFromAboveLine(Number(context.effectiveSkill) || 0, parachutingLevel(api, context.actor));
       return { modifiers: value ? [{ label: L("DeathFromAboveLine"), value }] : [], notes: [L("DeathFromAboveNote")] };
@@ -680,6 +870,15 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
   action("ht-dye-marker", "DyeAction", "fa-solid fa-fill-drip", (item) => on.maritime() && kindIs("dyeMarker")(item), (item, actor) => releaseDye(api, item, actor));
   action("ht-jump", "JumpAction", "fa-solid fa-parachute-box", (item) => on.parachuting() && kindIs("parachute")(item), (item, actor) => jump(api, item, actor));
   action("ht-eat", "EatAction", "fa-solid fa-utensils", (item) => on.rations() && (kindIs("snack")(item) || kindIs("sportsDrink")(item)), (item, actor) => eat(api, item, actor));
+  action("ht-forage", "ForageAction", "fa-solid fa-fish", (item) => on.survival() && (kindIs("fishing")(item) || kindIs("trap")(item)), (item, actor) => forage(api, item, actor));
+
+  // A snack's crash, two hours on: the active GM's client charges it as world time passes (p. 35).
+  const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
+  Hooks.on("updateWorldTime", () => {
+    if (!on.rations() || !isActiveGm()) return;
+    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+    for (const actor of [...((game as any).actors ?? []), ...unlinked]) if (crashesOf(actor).length) void settleCrashes(api, actor);
+  });
 
   api.chat.registerChatCard({
     module: MODULE_ID,
@@ -691,7 +890,14 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
         const landing = (data as JumpData).landing;
         if (!on.parachuting() || !landing || landing.rolled) return;
         await api.roll.damage({ actor, label: landing.label, formula: landing.formula, damageType: "cr" as never, source: "parachuteLanding" });
-        await api.chat.update(message, { ...data, landing: { ...landing, rolled: true } });
+        await setCanopy(actor, false);
+        await api.chat.update(message, { ...data, landing: { ...landing, rolled: true }, ...(data.canopy ? { canopy: { landed: true } } : {}) });
+      },
+      // Down without a hard landing to roll: off the canopy (p. 61).
+      landed: async ({ message, data, actor }: any) => {
+        if (!on.parachuting() || !data?.canopy || data.canopy.landed) return;
+        await setCanopy(actor, false);
+        await api.chat.update(message, { ...data, canopy: { landed: true }, ...(data.landing ? { landing: { ...data.landing, rolled: true } } : {}) });
       },
     },
   } as any);

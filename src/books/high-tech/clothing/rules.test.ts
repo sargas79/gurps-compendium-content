@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import {
   betterClass,
+  coolingCharge,
+  coolingUntil,
   exposedLocations,
   frostbiteInjury,
   furCovers,
@@ -9,6 +11,8 @@ import {
   missingPiecesPenalty,
   outfitOf,
   outfitWeightFactor,
+  piecesOf,
+  stillMissing,
   wornClass,
 } from "./rules.js";
 
@@ -83,5 +87,27 @@ describe("climate control and a hot march (High-Tech p. 74)", () => {
   it("takes off the hot weather's point an hour", () => {
     expect(hikingWithoutHeat(12, 4)).toBe(8);
     expect(hikingWithoutHeat(2, 4)).toBe(0);
+  });
+
+  it("runs a cooling vest's charge four hours, after a quarter hour's soak (p. 74)", () => {
+    expect(coolingUntil(100, false)).toBe(100 + 14400);
+    expect(coolingUntil(100, true)).toBe(100 + 900 + 14400);
+    expect(coolingCharge(null, 0)).toEqual({ state: "fresh", seconds: 14400 });
+    expect(coolingCharge(100 + 900 + 14400, 100)).toEqual({ state: "soaking", seconds: 900 });
+    expect(coolingCharge(14400, 3600)).toEqual({ state: "charged", seconds: 10800 });
+    expect(coolingCharge(14400, 14400)).toEqual({ state: "spent", seconds: 0 });
+  });
+});
+
+describe("outfit pieces worn apart (p. 63)", () => {
+  it("reads boots, gloves, a warm hat and a scarf by name", () => {
+    expect(piecesOf("Boots, Arctic (TL7)")).toEqual(["boots"]);
+    expect(piecesOf("Hockey Glove")).toEqual(["gloves"]);
+    expect(piecesOf("Electrical Gloves (Standard)")).toEqual(["gloves"]);
+    expect(piecesOf("Hat, Cloth")).toEqual(["hat"]);
+    expect(piecesOf("Balaclava")).toEqual(["hat", "scarf"]);
+    expect(piecesOf("Hard Hat (TL8)")).toEqual([]);
+    expect(piecesOf("Sedgley Glove Pistol MK 2, .38 S&W")).toEqual([]);
+    expect(stillMissing(["boots", "gloves"], ["boots"])).toEqual(["gloves"]);
   });
 });

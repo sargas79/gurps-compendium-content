@@ -12,7 +12,9 @@
  *     HT-2 rolls (and a vomiting agent's) rolled for everyone standing in it;
  *     poison gas dosing its Basic Set filler; white phosphorus's smoke for its
  *     minute; a flare's light, which lifts the darkness penalty on an attack
- *     at somebody standing under it (the keyed `darkness` line). A scent
+ *     at somebody standing under it (the keyed `darkness` line), and lights
+ *     its radius for the system's `darknessAt` (API 1.102.0) -- an infrared
+ *     flare only for eyes that see infrared (`../infrared.ts`). A scent
  *     marker's hit marks its victim for an hour: -4 to reactions to him, +4 to
  *     Smell rolls to find him within four yards.
  */
@@ -21,11 +23,13 @@ import { placeArea, type AreaLine } from "../../../shared/areas.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { smokeAreaLines, smokeFormSeconds } from "../../../shared/smoke/rules.js";
 import { wearsIrritantMask } from "../breathing/index.js";
+import { infraredLight, seesInfrared } from "../infrared.js";
 import {
   BLINDED_PENALTY,
   GASES,
   GAS_POISONS,
   HT_SMOKE_TABLE,
+  ILLUMINATION_FLOOR,
   SCENT_MARKER,
   THERMOBARIC_DIVISOR_PER_YARD,
   WP_SMOKE_SECONDS,
@@ -204,7 +208,11 @@ async function releaseCargo(api: GWorldApi, actor: any, load: CargoLoad): Promis
   const asked = await askArea(load, fixed);
   if (!asked) return;
   const lines = areaLines(load, asked.radius);
-  const id = await placeArea(api, { key: areaKey(load), label: title, actor, radiusYards: asked.radius, seconds: asked.seconds, lines, bare: true });
+  // A flare's light: darkness no worse than its floor, for everyone or (infrared) for those who see it (p. 171).
+  const light = load.projectile === "illumination"
+    ? { darknessCap: -ILLUMINATION_FLOOR[load.illumination], litFor: load.illumination === "infrared" ? infraredLight(api) : null }
+    : undefined;
+  const id = await placeArea(api, { key: areaKey(load), label: title, actor, radiusYards: asked.radius, seconds: asked.seconds, lines, bare: true, ...(light ? { light } : {}) });
   if (!id) return void ui.notifications?.warn(L("AreaNoPlace"));
   const said = [F(load.projectile === "illumination" ? "LightPlaced" : "CloudPlaced", { radius: asked.radius, seconds: asked.seconds })];
   if (load.projectile !== "illumination") said.push(F("CloudForms", { seconds: smokeFormSeconds(asked.radius) }));
@@ -212,11 +220,6 @@ async function releaseCargo(api: GWorldApi, actor: any, load: CargoLoad): Promis
   if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actorsIn(api, id), gasesOf(load.vomiting), asked.seconds)));
   if (load.projectile === "poisonGas") said.push(...(await exposeToPoison(api, actorsIn(api, id), load.poisonFiller)));
   await say(actor, title, said);
-}
-
-/** Whether a character sees by infrared: an infrared flare lights only for them (p. 171). */
-function seesInfrared(actor: any): boolean {
-  return [...(actor?.items ?? [])].some((i: any) => i?.type === "trait" && /^(infravision|night vision|hyperspectral vision)\b/i.test(String(i.name ?? "")));
 }
 
 /** The flares whose light a token stands in: the kinds of the unexpired illumination areas round it. */
@@ -239,6 +242,8 @@ function flaresOver(api: GWorldApi, tokenId: string): Illumination[] {
 const scented = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, SCENT_FLAG)) > worldNow();
 
 export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any, modeIndex: number) => CargoLoad | null): void {
+  // The infrared kind of light an infrared flare gives out, registered while the system is readying.
+  infraredLight(api);
   const gasOn = () => on.cargo() || on.gas?.() === true;
   // Tear gas's two rolls and the vomiting agent's, as poisons the system doses (p. 171).
   for (const gas of GASES) {
@@ -295,7 +300,7 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     const line = (context?.modifiers ?? []).find((m: any) => m?.key === "darkness");
     const target = context?.targetTokens?.[0];
     if (!line || !target) return;
-    const kinds = flaresOver(api, String(target.id ?? "")).filter((k) => k !== "infrared" || seesInfrared(context.actor));
+    const kinds = flaresOver(api, String(target.id ?? "")).filter((k) => k !== "infrared" || seesInfrared(api, context.actor));
     if (!kinds.length) return;
     const best = Math.max(...kinds.map((k) => illuminatedDarkness(Number(line.value) || 0, k)));
     if (best > (Number(line.value) || 0)) {

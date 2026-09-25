@@ -11,7 +11,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import * as rules from "../../../../system/src/rules/index.js";
 import { ACCESSORY_TABLES } from "../../../shared/accessories/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
-import { accessoryBulk, fittedMagnifier, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
+import { accessoryBulk, botchedFirstShot, fittedMagnifier, fittedScopeBonus, fittedTo, hearingLines, readyAccessories, reportOfGun, type AccessorySwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
 
@@ -360,6 +360,80 @@ describe("suppressors (pp. 158-159)", () => {
   });
 });
 
+describe("the follow-ups (#372)", () => {
+  it("gives an add-on night sight its vision only in front of a scope or collimating sight", async () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    accessory(actor, "Advanced Night Sight, Add-On", rifle);
+    await actions.find((a) => a.key === "ht-sight").run(rifle, actor);
+    const effects = () => fire("gworld.traitEffects", { actor, effects: { nightVision: 0, infravision: false, restrictedVision: null, colorblindness: false }, sources: [] }).effects;
+    expect(effects().nightVision).toBe(0);
+    accessory(actor, "Reflex Sight", rifle);
+    expect(effects().nightVision).toBe(7);
+  });
+
+  it("fits a shoulder arm's laser to no pistol", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor);
+    accessory(actor, "Targeting Laser (Shoulder Arm)", pistol);
+    expect(fittedTo(pistol, switches())).toEqual([]);
+    const rifle = gun(actor, { skill: "Guns (Rifle)" });
+    accessory(actor, "Targeting Laser (Shoulder Arm)", rifle);
+    expect(fittedTo(rifle, switches())).toHaveLength(1);
+  });
+
+  it("braces a shooter who isn't prone on an open bipod rested on a wall, as the GM allows", async () => {
+    on = { stocksAndMounts: true };
+    ready();
+    const actor = character();
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    accessory(actor, "Bipod", rifle);
+    await actions.find((a) => a.key === "ht-bipod").run(rifle, actor);
+    const rest = options.get("ht-bipod-rest");
+    expect(rest.available({ actor, item: rifle })).toBe(true);
+    expect(attack(rifle, aimedAt(4)).modifiers.some((m: any) => m.key === "braced")).toBe(false);
+    expect(attack(rifle, aimedAt(4), { options: { [`${MODULE_ID}.ht-bipod-rest`]: true } }).modifiers.some((m: any) => m.key === "braced")).toBe(true);
+  });
+
+  it("rolls the Malfunction Table on the first shot through a botched home-built suppressor", async () => {
+    on = { suppressors: true };
+    const set: any[] = [];
+    const api: any = { ...fakeApi(), items: { setMalfunction: async (_g: any, m: any) => { set.push(m); } } };
+    readyAccessories(api, switches());
+    vi.stubGlobal("Roll", class { total = 18; async evaluate() { return this; } });
+    const actor = character();
+    const pistol = gun(actor);
+    const can = accessory(actor, "Detachable Baffle Suppressor, Pistol or SMG", pistol, { grade: "average", level: 2, lifetime: 10, buildFailed: true });
+    fire(HOOKS.afterShots, { actor, item: pistol, modeIndex: 1, shots: 1, fired: 1 });
+    await new Promise((r) => setTimeout(r, 0));
+    // 18 on the table: an explosion, which a TL8 gun can't do -- mechanical, on the mode fired.
+    expect(set).toEqual([{ kind: "mechanical", modeIndex: 1 }]);
+    expect(can.system.extensions[MODULE_ID].gunAccessory.buildFailed).toBe(false);
+  });
+
+  it("reads the table as the system and gun care do: explosions below TL5, misfires and stoppages swapped at TL6-8", async () => {
+    const set: any[] = [];
+    const api: any = { ...fakeApi(), items: { setMalfunction: async (_g: any, m: any) => { set.push(m); } } };
+    let total = 18;
+    vi.stubGlobal("Roll", class { total = total; async evaluate() { return this; } });
+    const actor = character();
+    const old = gun(actor);
+    old.system.tl = "4";
+    const suppressor = { name: "Suppressor" };
+    expect(await botchedFirstShot(api, old, actor, suppressor, 0)).toBe("explosion");
+    const pistol = gun(actor);
+    pistol.system.tl = "7";
+    total = 5; // a misfire on the table
+    expect(await botchedFirstShot(api, pistol, actor, suppressor, 0, () => false)).toBe("misfire");
+    expect(await botchedFirstShot(api, pistol, actor, suppressor, 0, () => true)).toBe("stoppage");
+    expect(set.map((m) => m.kind)).toEqual(["explosion", "misfire", "stoppage"]);
+  });
+});
+
 describe("stocks and bipods (p. 160)", () => {
   it("folds a fitted stock: -1 Acc, +1 Recoil, ST x1.2 and Bulk a step better", async () => {
     on = { stocksAndMounts: true };
@@ -487,6 +561,27 @@ describe("darkness and lasers (pp. 155-157)", () => {
     expect(valueOf(attack(pistol, [darkness(-7)], { rangeYards: 20 }).modifiers, "Darkness")).toBe(-7);
     // A milder darkness is left as it is.
     expect(valueOf(attack(pistol, [darkness(-2)], { ...lit, rangeYards: 20 }).modifiers, "Darkness")).toBe(-2);
+  });
+
+  it("offers the fitted tactical light's dazzle from the gun's row (p. 52)", async () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor);
+    const eyes = actions.find((a) => a.key === "ht-tactical-light-eyes");
+    expect(eyes.visible(pistol)).toBe(false);
+    const light = accessory(actor, "Small Tactical Light (TL8)", pistol);
+    expect(eyes.visible(pistol)).toBe(true);
+    // Filtered to infrared, it blinds nobody: no dazzle from the gun's row.
+    light.system.extensions[MODULE_ID].expedition = { light: { kind: "tactical", radius: 0, beam: 25, infrared: true } };
+    expect(eyes.visible(pistol)).toBe(false);
+    light.system.extensions[MODULE_ID].expedition.light.infrared = false;
+    expect(eyes.visible(pistol)).toBe(true);
+    // No target: nothing posted, a warning.
+    const warn = vi.fn();
+    vi.stubGlobal("ui", { notifications: { warn } });
+    await eyes.run(pistol, actor);
+    expect(warn).toHaveBeenCalled();
   });
 
   it("gives a targeting laser its reach by colour, in daylight or low light, and an infrared dot only to eyes that see it", () => {

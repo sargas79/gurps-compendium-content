@@ -68,6 +68,7 @@ function fakeApi() {
       encumbrance: (actor: any) => ({ carriedWeight: actor?.carried ?? 0 }),
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return { pool: "fp" }; },
       spendFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, amount: fp, spent: true, ...o }); return { fpLost: fp }; },
+      restoreFatigue: async (actor: any, fp: number, o: any = {}) => { injuries.push({ actor, restored: fp, ...o }); return { from: 5, to: 5 + fp, max: 10 }; },
       applyCondition: async (actor: any, c: any) => { conditions.push({ actor, ...c }); return "id"; },
       derived: (actor: any) => actor?.derived ?? null,
     },
@@ -112,6 +113,7 @@ function person(items: any[] = [], more: Record<string, any> = {}): any {
     system: { hp: { max: 10 }, details: { weight: "150 lbs." } },
     getFlag: (_scope: string, key: string) => flags[key],
     setFlag: async (_scope: string, key: string, value: unknown) => { flags[key] = value; },
+    unsetFlag: async (_scope: string, key: string) => { delete flags[key]; },
     ...more,
   };
 }
@@ -215,6 +217,50 @@ describe("survival and camping gear (High-Tech pp. 56-59)", () => {
     expect(roll(drinker, ["disease", "contagion", "HT"], { disease: { vector: "digestive" } })).toEqual([]);
   });
 
+  it("reaches the Illness dialog's own disease caught by drinking, and counts a charcoal-filtered canteen's +2 (pp. 53, 59)", () => {
+    // Since API 1.104.0 the dialog's "Custom" disease carries the vector the GM picks.
+    const custom = { disease: { name: "Custom", vector: "digestive", resistanceModifier: 0 } };
+    const canteen = gear("Charcoal-Filtered Canteen", {}, { tl: "5" });
+    const drinker = person([canteen]);
+    expect(roll(drinker, ["disease", "contagion", "HT"], custom)).toEqual([{ label: expect.stringContaining("Charcoal-Filtered Canteen"), value: 2 }]);
+    // A better filter in use wins; they don't add.
+    drinker.items.push(gear("Water Filter", { kind: "waterFilter" }, { tl: "7", equipped: true }));
+    expect(roll(drinker, ["disease", "contagion", "HT"], custom)).toEqual([{ label: expect.stringContaining("Water Filter"), value: 5 }]);
+  });
+
+  it("forages with fishing gear on Fishing, and with a trap on the best land Survival with its quality (pp. 55, 58)", async () => {
+    const outfit = gear("Fishing Outfit", { kind: "fishing" }, { forSkills: ["Fishing"], equipmentQuality: "fine" });
+    const trap = gear("Trap, Beaver", { kind: "trap", value: 8 }, { forSkills: ["Survival"], equipmentQuality: "good" });
+    const woodsman = person([outfit, trap, skill("Survival (Open Ocean)"), skill("Survival (Woodlands)")], { skills: { Fishing: 14, "Survival (Open Ocean)": 15, "Survival (Woodlands)": 12 } });
+    expect(actions.get("ht-forage").visible(outfit)).toBe(true);
+    expect(actions.get("ht-forage").visible(gear("Matches", { kind: "fireStarter" }))).toBe(false);
+    actions.get("ht-forage").run(outfit, woodsman);
+    await flush();
+    // The outfit's +2 is the system's own tools line on Fishing.
+    expect(successes[0]).toMatchObject({ base: 14, skill: "Fishing", modifiers: [], tags: ["foraging", "Per"] });
+    actions.get("ht-forage").run(trap, woodsman);
+    await flush();
+    expect(successes[1]).toMatchObject({ base: 12, skill: "Survival (Woodlands)", modifiers: [{ label: expect.stringContaining("Trap, Beaver"), value: 1 }] });
+    expect(chat.at(-1)).toContain("ForageFound");
+    expect(woodsman.getFlag(MODULE_ID, "htForaging")).toEqual({ day: 0, rolls: 2 });
+  });
+
+  it("forages five times a day at most, and afresh the next day", async () => {
+    const kit = gear("Fishing Kit", { kind: "fishing" }, { forSkills: ["Fishing"] });
+    const angler = person([kit]);
+    for (let i = 0; i < 6; i += 1) {
+      actions.get("ht-forage").run(kit, angler);
+      await flush();
+    }
+    expect(successes).toHaveLength(5);
+    expect(successes[0]).toMatchObject({ base: 6, skill: "Fishing" });
+    expect((globalThis as any).ui.notifications.warn).toHaveBeenCalledTimes(1);
+    worldTime += 86400;
+    actions.get("ht-forage").run(kit, angler);
+    await flush();
+    expect(successes).toHaveLength(6);
+  });
+
   it("makes a kit for another environment the Survival roll's equipment line", () => {
     const vest = gear("Pilot's Survival Vest", { kind: "survivalKit" }, { forSkills: ["Survival (Jungle)"], equipmentQuality: "good" });
     const lost = person([vest]);
@@ -311,6 +357,8 @@ describe("maritime gear (High-Tech pp. 59-60)", () => {
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: 6 }]);
     expect(roll(swimmer, ["contest", "quickContest"], { kind: "contest", skill: "Swimming" })).toEqual([{ label: expect.any(String), value: -3 }]);
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Climbing" })).toEqual([]);
+    // The system's Swimming rolls while drowning (Campaigns p. 436; API 1.103.0) take it too.
+    expect(roll(swimmer, ["skill", "swimming", "drowning"], { kind: "skill", skill: "Swimming" })).toEqual([{ label: expect.stringContaining("JacketLine"), value: 6 }]);
     jacket.system.equipped = false;
     expect(roll(swimmer, ["skill"], { kind: "skill", skill: "Swimming" })).toEqual([]);
   });
@@ -401,9 +449,73 @@ describe("parachuting (High-Tech p. 61)", () => {
     expect(option.available({ actor: jumper })).toBe(true);
     expect(option.available({ actor: person() })).toBe(false);
     expect(option.refuse({ actor: jumper, maneuver: "attack" })).toBe("GCC.HT.Survival.DeathFromAboveRefusal");
+    // Only coming down under an open canopy.
+    expect(option.refuse({ actor: jumper, maneuver: "moveAndAttack" })).toBe("GCC.HT.Survival.DeathFromAboveRefusal");
+    jumper.getFlag = (_scope: string, key: string) => key === "htUnderCanopy";
     expect(option.refuse({ actor: jumper, maneuver: "moveAndAttack" })).toBeNull();
     expect(option.apply({ actor: jumper, effectiveSkill: 14 }).modifiers).toEqual([{ label: expect.any(String), value: -3 }]);
     expect(option.apply({ actor: jumper, effectiveSkill: 10 }).modifiers).toEqual([]);
+  });
+
+  it("keeps the jumper under the canopy until the landing, for Death from Above", async () => {
+    const jumper = person([chute()]);
+    dialogAnswer = { height: 300, load: 150, wind: 0 };
+    actions.get("ht-jump").run(jumper.items[0], jumper);
+    await flush();
+    expect(jumper.getFlag(MODULE_ID, "htUnderCanopy")).toBe(true);
+    expect(posted[0].data.canopy).toEqual({ landed: false });
+    expect(options.get("ht-death-from-above").refuse({ actor: jumper, maneuver: "moveAndAttack" })).toBeNull();
+    await cards.get("ht-survival-card").actions.landing({ message: "m", data: posted[0].data, actor: jumper });
+    expect(jumper.getFlag(MODULE_ID, "htUnderCanopy")).toBeUndefined();
+    expect(updated[0].data.canopy).toEqual({ landed: true });
+    // A ram-air chute has no hard landing to roll: "Landed" ends it.
+    const ramAir = gear("Ram-Air Parachute", { kind: "parachute", maxLbs: 400, openingYards: 80 }, { tl: "8" });
+    const flyer = person([ramAir]);
+    actions.get("ht-jump").run(ramAir, flyer);
+    await flush();
+    expect(posted[1].data.lines.join(" ")).toContain('"move":15');
+    expect(posted[1].data.landing).toBeNull();
+    await cards.get("ht-survival-card").actions.landed({ message: "m", data: posted[1].data, actor: flyer });
+    expect(flyer.getFlag(MODULE_ID, "htUnderCanopy")).toBeUndefined();
+    // The ground before the canopy: no canopy at all.
+    const low = person([chute()]);
+    dialogAnswer = { height: 20, load: 150, wind: 0 };
+    actions.get("ht-jump").run(low.items[0], low);
+    await flush();
+    expect(low.getFlag(MODULE_ID, "htUnderCanopy")).toBeUndefined();
+    expect(posted[2].data.canopy).toBeNull();
+  });
+
+  it("drifts with the wind on the way down", async () => {
+    const jumper = person([chute()]);
+    dialogAnswer = { height: 580, load: 150, wind: 10 };
+    actions.get("ht-jump").run(jumper.items[0], jumper);
+    await flush();
+    // 500 yards at 5 a second: 100 seconds, at 10 mph about 489 yards.
+    expect(posted[0].data.lines.join(" ")).toContain('Drift {"yards":489,"seconds":100,"wind":10}');
+  });
+
+  it("opens a TL8 chute by itself for a jumper who never pulls, and lets an older one fall", async () => {
+    const jumper = person([chute("8")]);
+    dialogAnswer = { height: 1000, load: 150, wind: 0, noPull: true };
+    actions.get("ht-jump").run(jumper.items[0], jumper);
+    await flush();
+    expect(successes).toEqual([]);
+    expect(posted[0].data.lines[0]).toContain('AutoDeploys {"yards":333}');
+    expect(posted[0].data.canopy).toEqual({ landed: false });
+    const old = person([chute("7")]);
+    actions.get("ht-jump").run(old.items[0], old);
+    await flush();
+    expect(posted[1].data.lines[0]).toContain("NeverOpens");
+    expect(posted[1].data.canopy).toBeNull();
+    expect(posted[1].data.landing.label).toContain("FallLanding");
+  });
+
+  it("prices a reserve chute and names the guided gear", () => {
+    const withReserve = gear("Parachute (TL6)", { kind: "parachute", reserve: true });
+    const price = prices.find((p) => p.key === "ht-reserve-chute").apply;
+    expect(price(withReserve, { cost: 750, weight: 30 })).toMatchObject({ cost: 1000, weight: 45 });
+    expect(price(chute(), { cost: 750, weight: 30 })).toBeNull();
   });
 
   it("defaults Parachuting to the better of DX-4 and IQ-6", () => {
@@ -419,11 +531,60 @@ describe("rations (High-Tech p. 35)", () => {
     const drink = gear("Sports Drink", { kind: "sportsDrink" }, { quantity: 2 });
     const hiker = person([drink]);
     expect(actions.get("ht-eat").visible(drink)).toBe(true);
+    dialogAnswer = { moving: false };
     actions.get("ht-eat").run(drink, hiker);
     await flush();
     expect(drink.system.quantity).toBe(1);
     expect(chat[0]).toContain("SnackEaten");
     expect(chat[0]).toContain("DrinkWater");
+    expect(injuries).toEqual([]);
+  });
+
+  it("gives 1 FP back for a snack on the move, and takes 2 two hours later (p. 35)", async () => {
+    const bar = gear("Snack", { kind: "snack" }, { quantity: 3 });
+    const hiker = person([bar]);
+    dialogAnswer = { moving: true };
+    actions.get("ht-eat").run(bar, hiker);
+    await flush();
+    expect(bar.system.quantity).toBe(2);
+    expect(injuries).toEqual([expect.objectContaining({ restored: 1 })]);
+    expect(chat[0]).toContain("SnackOnTheMove");
+    expect(hiker.getFlag(MODULE_ID, "htSnackCrash")).toEqual([{ at: 1000 + 7200, fp: 2, item: "Snack" }]);
+    // The active GM's client charges it once the two hours are up.
+    const world = (game as any);
+    vi.stubGlobal("game", { ...world, actors: [hiker], scenes: [], user: { id: "gm", isGM: true }, users: { activeGM: { id: "gm" } }, get time() { return { worldTime }; } });
+    worldTime += 3600;
+    fire("updateWorldTime");
+    await flush();
+    expect(injuries).toHaveLength(1);
+    worldTime += 3600;
+    fire("updateWorldTime");
+    await flush();
+    expect(injuries[1]).toMatchObject({ amount: 2, spent: true, exertion: false, details: { rule: "snackCrash", item: "Snack" } });
+    expect(hiker.getFlag(MODULE_ID, "htSnackCrash")).toBeUndefined();
+    expect(chat.at(-1)).toContain("SnackCrash");
+  });
+
+  it("charges a snack's crash once, however many ticks come before it is settled", async () => {
+    const hiker = person([], { flags: { htSnackCrash: [{ at: 1000, fp: 2, item: "Snack" }] } });
+    // The flag is written only after a round trip to the server, as in Foundry.
+    const clear = hiker.unsetFlag;
+    hiker.unsetFlag = async (scope: string, key: string) => { await Promise.resolve(); await clear(scope, key); };
+    const world = (game as any);
+    vi.stubGlobal("game", { ...world, actors: [hiker], scenes: [], user: { id: "gm", isGM: true }, users: { activeGM: { id: "gm" } }, get time() { return { worldTime }; } });
+    // Two ticks in a row, the second before the first has cleared the flag.
+    fire("updateWorldTime");
+    fire("updateWorldTime");
+    await flush();
+    expect(injuries.filter((i) => i.spent)).toHaveLength(1);
+    expect(hiker.getFlag(MODULE_ID, "htSnackCrash")).toBeUndefined();
+  });
+
+  it("eats nothing when the dialog is closed", async () => {
+    const bar = gear("Snack", { kind: "snack" }, { quantity: 3 });
+    actions.get("ht-eat").run(bar, person([bar]));
+    await flush();
+    expect(bar.system.quantity).toBe(3);
   });
 
   it("reads missing data as nothing", () => {

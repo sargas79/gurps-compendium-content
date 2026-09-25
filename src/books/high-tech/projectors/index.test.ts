@@ -178,12 +178,13 @@ describe("flamethrowers (flamethrowers)", () => {
     expect(tl6).toMatchObject({ halfDamageRange: 25, maxRange: 40 });
   });
 
-  it("counts unsealed worn DR at a fifth, sealed in full", () => {
+  it("counts unsealed DR at a fifth, the victim's own as well as worn, sealed in full", () => {
     on.flamethrowers = true;
     const item = flamethrower();
-    const context = { actor: actorWith("Victim"), item, lines: [{ dr: 12 }, { dr: 3 }] };
+    // The system's natural line (API 1.98.0): Damage Resistance 10, against this one attack.
+    const context = { actor: actorWith("Victim"), item, lines: [{ dr: 12, source: "armor" }, { dr: 3, source: "armor" }, { dr: 10, source: "natural" }] };
     fire(HOOKS.armorDr, context);
-    expect(context.lines.map((l) => l.dr)).toEqual([2, 0]);
+    expect(context.lines.map((l) => l.dr)).toEqual([2, 0, 2]);
     derived.traitEffects.sealed = true;
     const suited = { actor: actorWith("Suited"), item, lines: [{ dr: 12 }] };
     fire(HOOKS.armorDr, suited);

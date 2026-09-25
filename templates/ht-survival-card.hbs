@@ -18,3 +18,13 @@
     </div>
   {{/unless}}
 {{/if}}
+{{#if canopy}}
+  {{#if canopy.landed}}
+    <div class="gc-note">{{localize "GCC.HT.Survival.Landed"}}</div>
+  {{else}}
+    <div class="gc-note">{{localize "GCC.HT.Survival.UnderCanopy"}}</div>
+    <div class="gc-apply">
+      <button type="button" class="gc-apply-button" data-addon-card-action="landed">{{localize "GCC.HT.Survival.LandedAction"}}</button>
+    </div>
+  {{/if}}
+{{/if}}

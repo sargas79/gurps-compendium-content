@@ -14,6 +14,7 @@ import {
   substituteCells,
   enduranceUses,
 } from "./rules.js";
+import { enduranceUnit } from "../../../shared/power/rules.js";
 
 describe("power cells (Ultra-Tech pp. 18-19)", () => {
   it("prices each size", () => {
@@ -113,5 +114,10 @@ describe("endurance in uses (#299)", () => {
     expect(enduranceUses("10 uses.")).toBe(10);
     expect(enduranceUses("1 use")).toBe(1);
     expect(enduranceUses("10 hr.")).toBeNull();
+    // High-Tech's gadgets that count what they do (pp. 59, 222-223).
+    expect(enduranceUses("300 tests")).toBe(300);
+    expect(enduranceUses("1,000 readings")).toBe(1000);
+    expect(enduranceUses("200 quarts")).toBe(200);
+    expect([enduranceUnit("300 tests"), enduranceUnit("1 reading"), enduranceUnit("20 quarts"), enduranceUnit("10 uses."), enduranceUnit("5 hrs.")]).toEqual(["tests", "readings", "quarts", "uses", null]);
   });
 });

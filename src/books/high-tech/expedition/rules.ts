@@ -20,7 +20,26 @@ export interface Light {
   kind: LightKind;
   radius: number;
   beam: number;
+  /** Infrared only: a filter snapped on, an IR mode or an IR chemlight (p. 52), seen only by eyes that see infrared. */
+  infrared?: boolean;
 }
+
+/** A flashlight's snap-on IR filter (p. 52). */
+export const IR_FILTER_COST = 25;
+
+/**
+ * What an infrared light costs over the record's price (p. 52): $25 for the
+ * filter on an electric or tactical light; nothing for a chemlight (the IR
+ * one costs the same) or a light with an IR mode of its own (the smart
+ * flashlight).
+ */
+export function infraredCost(light: Light | null, builtInMode: boolean): number {
+  if (!light?.infrared || builtInMode) return 0;
+  return light.kind === "electric" || light.kind === "tactical" ? IR_FILTER_COST : 0;
+}
+
+/** The lights that can give out infrared: electric and tactical lights with a filter, and chemlights (p. 52). */
+export const canBeInfrared = (kind: LightKind): boolean => kind === "electric" || kind === "tactical" || kind === "chemical";
 
 /**
  * The darkness a light leaves where it reaches, at worst (Campaigns p. 394,
@@ -67,6 +86,67 @@ export function reaches(light: Light, yards: number, aimed: boolean): boolean {
   if (!Number.isFinite(d) || d < 0) return false;
   if (light.radius > 0 && d <= light.radius) return true;
   return aimed && light.beam > 0 && d <= light.beam;
+}
+
+/**
+ * A beam set down lights a cone ahead of it, its reach long. The book gives
+ * no width: a fifth of the reach, and never under 2 yards, keeps a
+ * flashlight's pool of light narrow and a floodlight's broad.
+ */
+export function beamWidth(beamYards: number): number {
+  return Math.max(2, Math.round(Math.max(0, Number(beamYards) || 0) / 5));
+}
+
+/**
+ * A broken glass lantern's fire (p. 51, sending the reader to the Molotov
+ * cocktail, p. 191, and so Campaigns p. 411): 1d-1 burning a second in a
+ * 1-yard radius, which most DR stops at only a fifth of its value, for 10d
+ * seconds.
+ */
+export const LANTERN_FIRE = Object.freeze({ dice: 1, adds: -1, armorDivisor: 5, burnsForDice: 10 });
+
+/** How long a light burns on its fuel, where the book says (pp. 51-52), and what renews it. */
+export interface Burn {
+  /** Seconds of light from a fill, a charge or a stick. */
+  seconds: number;
+  /** A pint of oil, a charge of carbide, an ounce of candle, a chemlight snapped, or 30 seconds' winding. */
+  fuel: "pint" | "carbide" | "ounce" | "snap" | "wind";
+}
+
+/**
+ * The lights whose burning time the book prints, by record name: the
+ * lanterns a pint each, the carbide lamp 5 hours on a charge, candles by the
+ * ounce, a chemlight's 12 hours, and the survival flashlight's 3 minutes for
+ * 30 seconds' winding (6 at TL8).
+ */
+export function burnOf(name: string, tl: number): Burn | null {
+  const base = String(name ?? "").replace(/\s*\(TL\s*\d+\^?\)\s*$/i, "").trim();
+  const hours = (h: number) => h * 3600;
+  if (/^bull's-eye lantern$/i.test(base)) return { seconds: hours(6), fuel: "pint" };
+  if (/^glass lantern$/i.test(base)) return { seconds: hours(10), fuel: "pint" };
+  if (/^kerosene lantern$/i.test(base)) return { seconds: hours(12), fuel: "pint" };
+  if (/^carbide lamp$/i.test(base)) return { seconds: hours(5), fuel: "carbide" };
+  if (/^tallow candles\b/i.test(base)) return { seconds: hours(4), fuel: "ounce" };
+  if (/^wax candles\b/i.test(base)) return { seconds: hours(8), fuel: "ounce" };
+  if (/^chemlight$/i.test(base)) return { seconds: hours(12), fuel: "snap" };
+  if (/^survival flashlight$/i.test(base)) return { seconds: (tl >= 8 ? 6 : 3) * 60, fuel: "wind" };
+  return null;
+}
+
+/** Winding or shaking a survival flashlight takes 30 seconds (p. 52). */
+export const WINDING_SECONDS = 30;
+
+/** Seconds of burning left: the fill less what has burned, and what is burning now since it was lit. */
+export function burnLeft(burn: Burn, burned: number, litAt: number | null, now: number): number {
+  const since = litAt === null ? 0 : Math.max(0, now - litAt);
+  return Math.max(0, burn.seconds - Math.max(0, burned) - since);
+}
+
+/** A flashlight's batteries last ten times as long at TL8 (p. 52). */
+export const TL8_BATTERY_FACTOR = 10;
+export function tl8BatteryFactor(name: string, tl: number): number | null {
+  if (tl < 8) return null;
+  return /^(flashlight|micro-flashlight|mini-flashlight)$/i.test(String(name ?? "").trim()) ? TL8_BATTERY_FACTOR : null;
 }
 
 /** Looking into a tactical light: HT-4 or blinded (p. 52). */
@@ -204,6 +284,26 @@ export function drawsFromLbe(skill: string): boolean {
   return !/^(pistol|long arm|longarm|sword|two-handed sword|force sword)$/i.test(m[1]!.trim());
 }
 
+/**
+ * Getting at something crammed into a pack or cargo pocket is a long action
+ * of 1d or 2d seconds, with no Fast-Draw (p. 54, after Campaigns p. 383): a
+ * bag or pocket 1d, a backpack 2d.
+ */
+export function retrieveDice(kind: CarryKind): number {
+  return kind === "backpack" ? 2 : 1;
+}
+
+/** Opening a pouch's secured flap adds a Ready maneuver (p. 54). */
+export const FLAP_READY = 1;
+
+/**
+ * The canteens that slosh when not full to the brim, undoing LBE's Stealth
+ * benefit: all but the water pack (p. 53).
+ */
+export function sloshes(name: string): boolean {
+  return /^(canteen|charcoal-filtered canteen|water bottle)$/i.test(String(name ?? "").trim());
+}
+
 /** At TL8 packs weigh half, and backpacks cost double (p. 54). */
 export function packPrice(kind: CarryKind, tl: number): { cost: number; weight: number } | null {
   if (tl < 8 || (kind !== "backpack" && kind !== "bag")) return null;
@@ -270,6 +370,43 @@ export function cancelsClimb(kind: ClimbingKind, name: string, tags: readonly st
 
 /** Crampons' spikes add +2 to kicking damage (p. 56). */
 export const CRAMPON_KICK = 2;
+
+/** Crampons give +1 to Climbing on ice (p. 56). */
+export const CRAMPON_ICE = 1;
+
+/** A hand drill takes 30 minutes to drill a 3" bolt hole in normal rock (p. 55). */
+export const HAND_DRILL_MINUTES = 30;
+
+/**
+ * The personal lifting device (p. 56): 3 yards a second up or down a rope, a
+ * fuel cartridge for 200 yards of ascent, 300 lbs. at most.
+ */
+export const LIFTING_DEVICE = Object.freeze({ yardsPerSecond: 3, cartridgeYards: 200, lbs: 300 });
+
+/** The seconds a climb of so many yards takes on the lifting device, and whether it lifts the load. */
+export function liftingClimb(yards: number, load: number): { seconds: number; lifts: boolean } {
+  return { seconds: Math.ceil(Math.max(0, yards) / LIFTING_DEVICE.yardsPerSecond), lifts: Math.max(0, load) <= LIFTING_DEVICE.lbs };
+}
+
+/** The working load of each rope and cord the book prints, in lbs. (pp. 55-56); null for another. */
+export function ropeLoad(name: string): number | null {
+  const base = String(name ?? "").trim();
+  const loads: ReadonlyArray<[RegExp, number]> = [
+    [/^cord, hemp\b/i, 50],
+    [/^rope, 1\/2", hemp\b/i, 300],
+    [/^rope, 2 1\/2", hemp\b/i, 2000],
+    [/^rope, 1\/2", manila\b/i, 350],
+    [/^rope, 1 1\/2", manila\b/i, 2000],
+    [/^cord, synthetic\b/i, 55],
+    [/^rope, 1\/4", synthetic\b/i, 500],
+    [/^rope, 3\/8", synthetic\b/i, 650],
+    [/^rope, 1\/2", synthetic\b/i, 4000],
+  ];
+  return loads.find(([pattern]) => pattern.test(base))?.[1] ?? null;
+}
+
+/** An avalanche transceiver is a rescue beacon found at 20-50 yards under snow (p. 56). */
+export const AVALANCHE_RANGE = Object.freeze({ least: 20, most: 50 });
 
 /** Snowshoes' -1 Move, which TL8 high-performance ones don't take (p. 56). */
 export function snowshoeMove(tl: number): number {

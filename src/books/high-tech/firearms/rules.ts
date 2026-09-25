@@ -215,6 +215,19 @@ export function immediateActionModifier(relativeLevel: number | null): number {
   return Math.max(IMMEDIATE_ACTION_PENALTY, Math.min(0, Math.round(relativeLevel)));
 }
 
+/**
+ * The Armoury specialty the Immediate Action technique defaults to at -4,
+ * by the weapon skill it is learned for (p. 251): Small Arms for a Guns
+ * version, Heavy Weapons for a Gunner one. Null for anything else: the
+ * technique is always learned for a Guns or Gunner specialty.
+ */
+export function immediateActionArmoury(prerequisite: string): string | null {
+  const skill = String(prerequisite ?? "").trim();
+  if (/^guns\b/i.test(skill)) return "Armoury (Small Arms)";
+  if (/^gunner\b/i.test(skill)) return "Armoury (Heavy Weapons)";
+  return null;
+}
+
 /** Armorer's Gift: +2 on Immediate Action rolls with its Guns specialty (p. 249). */
 export const ARMORERS_GIFT_BONUS = 2;
 

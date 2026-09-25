@@ -22,6 +22,7 @@ let chat: string[];
 let posted: Array<{ key: string; data: any; actor: any }>;
 let frightChecks: Array<{ actor: any; modifier: number }>;
 let die: number;
+let crippled: Array<{ location: string; duration: string; label: string }>;
 let combat: any;
 
 const fire = (name: string, ...args: any[]) => (hooks.get(name) ?? []).map((fn) => fn(...args));
@@ -50,6 +51,7 @@ function fakeApi() {
     actors: {
       derived: () => ({ traitEffects: {} }),
       stopBleeding: vi.fn(),
+      cripple: async (_actor: any, location: string, o: any) => { crippled.push({ location, ...o }); return { id: "p1", location, ...o }; },
       skillLevel: () => 12,
     },
     roll: {
@@ -93,6 +95,7 @@ beforeEach(() => {
   posted = [];
   frightChecks = [];
   die = 3;
+  crippled = [];
   combat = null;
   resetSevereBleeding();
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
@@ -157,6 +160,17 @@ describe("body hits (High-Tech p. 162)", () => {
     expect(incoming(victim(11), { type: "imp", hitLocation: "torso", injuryCap: 5 }).injuryCap).toBe(5);
     expect(incoming(victim(11), { type: "cr", hitLocation: "torso" }).injuryCap).toBeUndefined();
   });
+
+  it("rolls for the vitals on a tight-beam burn, and not on another burn", () => {
+    on = { vitalsOnTorsoHits: true };
+    die = 1;
+    ready();
+    expect(incoming(victim(11), { type: "burn", tightBeam: true, hitLocation: "torso" }).hitLocation).toBe("vitals");
+    expect(incoming(victim(11), { type: "burn", hitLocation: "torso" })).toMatchObject({ hitLocation: "torso" });
+    expect(incoming(victim(11), { type: "burn", hitLocation: "torso" }).injuryCap).toBeUndefined();
+    die = 4;
+    expect(incoming(victim(11), { type: "burn", tightBeam: true, hitLocation: "torso" }).injuryCap).toBe(22);
+  });
 });
 
 describe("limb hits (High-Tech p. 162)", () => {
@@ -167,10 +181,24 @@ describe("limb hits (High-Tech p. 162)", () => {
     await land(guard, { type: "pi", hitLocation: "arm" }, { injury: 6, uncappedInjury: 12, crippled: true });
     expect(chat.join()).toContain("GCC.HT.Wounding.LimbPermanent");
     expect(chat.join()).toContain("\"least\":6");
+    expect(crippled).toEqual([{ location: "arm", duration: "permanent", label: expect.stringContaining("PermanentLabel") }]);
     chat = [];
     await land(guard, { type: "pi", hitLocation: "arm" }, { injury: 6, uncappedInjury: 11, crippled: true });
     expect(chat).toEqual([]);
+    expect(crippled).toHaveLength(1);
     await land(guard, { type: "pi", hitLocation: "arm" }, { injury: 6, uncappedInjury: 24, crippled: true });
+    expect(chat.join()).toContain("GCC.HT.Wounding.LimbSevered");
+    expect(crippled[1]).toEqual({ location: "arm", duration: "permanent", label: expect.stringContaining("SeveredLabel") });
+  });
+
+  it("holds a tight-beam burn to the piercing blow's figure, and any other burn severs at twice", async () => {
+    on = { realisticLimbWounds: true };
+    ready();
+    const guard = victim(10);
+    await land(guard, { type: "burn", tightBeam: true, hitLocation: "arm" }, { injury: 6, uncappedInjury: 12, crippled: true });
+    expect(chat.join()).toContain("GCC.HT.Wounding.LimbPermanent");
+    chat = [];
+    await land(guard, { type: "burn", hitLocation: "arm" }, { injury: 6, uncappedInjury: 12, crippled: true });
     expect(chat.join()).toContain("GCC.HT.Wounding.LimbSevered");
   });
 });

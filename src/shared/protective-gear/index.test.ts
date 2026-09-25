@@ -1,7 +1,8 @@
 /**
  * The shared biomedical sensors listener: each book's pieces take their own
  * book's table and need only that book's switch (decision D1), and a patient's
- * sensors are +1 to Diagnosis once, whichever books are on (#452).
+ * sensors are +1 to Diagnosis once, whichever books are on (#452), or -2
+ * from afar.
  */
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -66,6 +67,23 @@ describe("biomedical sensors (Ultra-Tech p. 187, High-Tech p. 75)", () => {
     expect(diagnose([piece("Biomedical Sensors", "high-tech")])).toHaveLength(1);
     // A piece from no book takes the first switched-on table that claims it.
     expect(biomedicalTableOf(piece("Biomedical Sensors"))?.book).toBe("high-tech");
+  });
+
+  it("gives -2 instead where the medic reads the sensors from afar (Ultra-Tech p. 187)", () => {
+    on = { "high-tech": true };
+    const at = (x: number) => ({ center: { x, y: 0 } });
+    const medic = { items: [], getActiveTokens: () => [at(0)] };
+    const patient = (x: number) => ({ items: [piece("Biomedical Sensors", "high-tech")], getActiveTokens: () => [at(x)] });
+    vi.stubGlobal("canvas", { grid: { measurePath: ([a, b]: any[]) => ({ distance: Math.abs(b.x - a.x) }) } });
+    const roll = (opponent: any) => {
+      const context = { actor: medic, skill: "Diagnosis", tags: ["skill"], modifiers: [] as any[], opponent };
+      for (const listener of hooks.get(ROLL) ?? []) listener(context);
+      return context.modifiers.map((m) => m.value);
+    };
+    expect(roll(patient(1))).toEqual([1]);
+    expect(roll(patient(40))).toEqual([-2]);
+    // Off the map, the examination is in person.
+    expect(roll({ items: [piece("Biomedical Sensors", "high-tech")] })).toEqual([1]);
   });
 
   it("needs the sensors worn, and a Diagnosis roll", () => {

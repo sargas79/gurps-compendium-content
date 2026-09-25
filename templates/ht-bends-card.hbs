@@ -1,0 +1,10 @@
+{{!-- A diver back at the surface after pure oxygen below 30', and the roll against the bends (High-Tech p. 76; Campaigns p. 435). --}}
+<div class="gc-head"><span class="gc-label">{{title}}</span></div>
+<div class="gc-result">{{text}}</div>
+{{#if result}}
+  <div class="gc-note">{{result}}</div>
+{{else}}
+  <div class="gc-apply">
+    <button type="button" class="gc-apply-button" data-addon-card-action="roll">{{localize "GCC.HT.Breathing.BendsRoll"}}</button>
+  </div>
+{{/if}}

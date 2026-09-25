@@ -118,6 +118,10 @@ export function workedOutLoading(gun: LoadingFacts): LoadingType {
 
 const clipSeconds = (rounds: number) => loadingSeconds("clip", rounds);
 
+/** A gate revolver's ejector rod pushes a case out in a second; without one it takes at least two (p. 87). */
+export const EJECTOR_ROD_SECONDS = 1;
+export const NO_EJECTOR_ROD_SECONDS = 2;
+
 /** A reload's time, and the time with a successful Fast-Draw (Ammo) roll. */
 export interface LoadTime {
   seconds: number;
@@ -144,17 +148,23 @@ export interface LoadTime {
  *   - detachable magazine: out, fetch, in: 3 (2); a drum, a magazine that is
  *     awkward to reach, or a belt or strip: 5 (3).
  *
+ * A gate revolver with no ejector rod takes longer over each case (p. 87):
+ * `caseSeconds`, at least 2 -- the Sheriff's model's 5 seconds a round is 3
+ * (p. 95). Fast-Draw still saves a second a round.
+ *
  * Null for a gun loaded some other way.
  */
-export function loadingSeconds(type: LoadingType, rounds: number): LoadTime | null {
+export function loadingSeconds(type: LoadingType, rounds: number, options: { caseSeconds?: number } = {}): LoadTime | null {
   const n = Math.max(1, Math.floor(Number(rounds) || 0));
   switch (type) {
     case "breech":
       return { seconds: 5 + 3 * (n - 1), fastDraw: 4 + 2 * (n - 1) };
     case "breechEjector":
       return { seconds: 4 + 2 * (n - 1), fastDraw: 3 + (n - 1) };
-    case "gate":
-      return { seconds: 2 + 3 * n, fastDraw: 2 + 2 * n };
+    case "gate": {
+      const eject = Math.max(EJECTOR_ROD_SECONDS, Math.floor(Number(options.caseSeconds) || 0));
+      return { seconds: 2 + (2 + eject) * n, fastDraw: 2 + (1 + eject) * n };
+    }
     case "breakOpen":
       return { seconds: 2 + 2 * n, fastDraw: 2 + n };
     case "swingOut":
@@ -189,10 +199,10 @@ const BY_THE_ROUND: readonly LoadingType[] = ["breech", "breechEjector", "gate",
  * Fast-Draw saving comes in threes, a clip's time in clips, and a magazine,
  * drum or belt goes in whole.
  */
-export function loadingByTheRound(type: LoadingType): { seconds: number; perRound: number; fastDrawPerRound: number } | null {
+export function loadingByTheRound(type: LoadingType, options: { caseSeconds?: number } = {}): { seconds: number; perRound: number; fastDrawPerRound: number } | null {
   if (!BY_THE_ROUND.includes(type)) return null;
-  const one = loadingSeconds(type, 1);
-  const two = loadingSeconds(type, 2);
+  const one = loadingSeconds(type, 1, options);
+  const two = loadingSeconds(type, 2, options);
   if (!one || !two) return null;
   const perRound = two.seconds - one.seconds;
   return { seconds: one.seconds - perRound, perRound, fastDrawPerRound: (two.seconds - two.fastDraw) - (one.seconds - one.fastDraw) };
@@ -231,6 +241,23 @@ export function doubleLoadingSaving(type: LoadingType, rounds: number): number {
   if (type === "breakOpen" || type === "swingOut" || type === "breechEjector") return pairs;
   if (type === "gate" || type === "breech") return 2 * pairs;
   return 0;
+}
+
+/** The most barrels the book's multi-barrel guns have: the Lancaster howdah pistol's four (p. 91). */
+export const MOST_BARRELS = 4;
+
+/**
+ * Whether a gun has more than one barrel (p. 81), from how it loads: a
+ * double rifle or shotgun loaded as a breechloader, or a gun of two to four
+ * shots loaded a chamber at a time that is no revolver and fills no tube --
+ * a double-barrelled flintlock, a derringer, a howdah pistol. A revolver's
+ * cylinder, a tube, a box and a single shot aren't barrels.
+ */
+export function multiBarrelled(type: LoadingType, gun: { capacity: number | null; perShot: boolean }): boolean {
+  const capacity = gun.capacity ?? 0;
+  if (capacity < 2) return false;
+  if (type === "breech" || type === "breechEjector") return true;
+  return (type === "muzzleloader" || type === "breechBlackPowder" || type === "other") && gun.perShot && capacity <= MOST_BARRELS;
 }
 
 /** Whether Double-Loading can help this gun: a revolver, or a breechloader with barrels to pair. */
@@ -315,7 +342,7 @@ export const CAREFUL_LOADING_ACC = 1;
  * Fast-Draw saves with it. Aids sharing a group are used one at a time.
  */
 export interface AidEffect {
-  key: "flask" | "paperCartridges" | "greasedPatch";
+  key: "flask" | "paperCartridges" | "greasedPatch" | "flaskAndPatch" | "cartridgesAndPatch";
   seconds: number;
   multiplier?: number;
   exclusiveGroup?: string;
@@ -360,8 +387,14 @@ export interface BlackPowderLoad {
  * off, as that example has it, so it is the seconds it saves on this gun's
  * time rather than a multiple, which the system would take after the
  * flask's seconds (60 - 5 = 55, x0.7 = 39, not 37). The cartridges halve
- * what is left, after every other aid (GWorld API 1.88.0), and share a
- * group with the flask.
+ * what is left, after every other aid (GWorld API 1.88.0).
+ *
+ * The cartridges supersede the flask, and a patch goes with either, so a
+ * rifle's aids are one group of choices: the flask, the cartridges, the
+ * patch, the flask with the patch, and the cartridges with the patch --
+ * each with its own Fast-Draw saving, which one aid's replaces. The
+ * Kentucky rifle with patched paper cartridges: 21 seconds, 18 with
+ * Fast-Draw.
  */
 export function blackPowderLoad(load: BlackPowderLoad): { seconds: number; fastDraw: number; aids: AidEffect[]; cls: BlackPowderClass } {
   const own = blackPowderClass(load.type, load.skill, load.tableSeconds);
@@ -378,13 +411,25 @@ export function blackPowderLoad(load: BlackPowderLoad): { seconds: number; fastD
   const fastDraw = Math.ceil((seconds * table.fastDraw) / table.seconds);
   const aids: AidEffect[] = [];
   if (loadsLoose(cls, tableSeconds)) {
-    aids.push({ key: "flask", seconds: -FLASK_SECONDS, exclusiveGroup: POWDER_GROUP });
-    if (cls === "rifle" && load.type === "muzzleloader") {
-      const patched = Math.ceil(seconds * GREASED_PATCH_FACTOR);
-      aids.push({ key: "greasedPatch", seconds: patched - seconds, fastDrawSeconds: patched - Math.ceil(fastDraw * GREASED_PATCH_FACTOR) });
-    }
     const halved = Math.ceil(seconds * PAPER_CARTRIDGE_FACTOR);
-    aids.push({ key: "paperCartridges", seconds: 0, multiplier: PAPER_CARTRIDGE_FACTOR, exclusiveGroup: POWDER_GROUP, fastDrawSeconds: halved - Math.ceil(fastDraw * PAPER_CARTRIDGE_FACTOR) });
+    const halvedFastDraw = Math.ceil(fastDraw * PAPER_CARTRIDGE_FACTOR);
+    aids.push({ key: "flask", seconds: -FLASK_SECONDS, exclusiveGroup: POWDER_GROUP });
+    aids.push({ key: "paperCartridges", seconds: 0, multiplier: PAPER_CARTRIDGE_FACTOR, exclusiveGroup: POWDER_GROUP, fastDrawSeconds: halved - halvedFastDraw });
+    if (cls === "rifle" && load.type === "muzzleloader") {
+      // The patch goes with the flask or with the cartridges, so each pairing is an aid of its own, one of the group.
+      const patched = Math.ceil(seconds * GREASED_PATCH_FACTOR);
+      const patchedFastDraw = Math.ceil(fastDraw * GREASED_PATCH_FACTOR);
+      aids.push({ key: "greasedPatch", seconds: patched - seconds, exclusiveGroup: POWDER_GROUP, fastDrawSeconds: patched - patchedFastDraw });
+      aids.push({ key: "flaskAndPatch", seconds: patched - FLASK_SECONDS - seconds, exclusiveGroup: POWDER_GROUP, fastDrawSeconds: patched - patchedFastDraw });
+      const both = Math.ceil(halved * GREASED_PATCH_FACTOR);
+      aids.push({
+        key: "cartridgesAndPatch",
+        seconds: patched - seconds,
+        multiplier: PAPER_CARTRIDGE_FACTOR,
+        exclusiveGroup: POWDER_GROUP,
+        fastDrawSeconds: both - Math.ceil(halvedFastDraw * GREASED_PATCH_FACTOR),
+      });
+    }
   }
   return { seconds, fastDraw, aids, cls };
 }

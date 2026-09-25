@@ -20,6 +20,7 @@ import {
   isLanyard,
   quickSheatheSpecialties,
   readiesAfterFastDraw,
+  slingBraceReadies,
 } from "./rules.js";
 
 const sum = (lines: Array<{ value: number }>) => lines.reduce((s, l) => s + l.value, 0);
@@ -101,6 +102,18 @@ describe("holsters and slings", () => {
     expect(holsterFits("sleeve", -1)).toBe(true);
     expect(holsterFits("sleeve", -2)).toBe(false);
     expect(holsterFits("belt", -3)).toBe(true);
+  });
+
+  it("takes only a gun of Bulk -1 or 0 in an undercover holster at the ankle", () => {
+    expect(holsterFits("undercover", -2, "ankle")).toBe(false);
+    expect(holsterFits("undercover", -1, "ankle")).toBe(true);
+    expect(holsterFits("undercover", -3, "belt")).toBe(true);
+    expect(holsterFits("undercover", -3)).toBe(true);
+  });
+
+  it("braces on a rifle sling in a Ready per -1 Bulk, at least one", () => {
+    expect(slingBraceReadies(-5)).toBe(5);
+    expect(slingBraceReadies(0)).toBe(1);
   });
 
   it("reads Quick-Sheathe's specialty", () => {

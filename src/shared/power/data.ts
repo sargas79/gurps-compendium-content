@@ -23,7 +23,7 @@
 import { BookTables, isRuleOn, type BookTable } from "../book-tables.js";
 import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../extensions.js";
 import { MODULE_ID } from "../module.js";
-import { cellsWeight, enduranceHours, enduranceUses as enduranceUsesOf, isCellSizeOf, swappedEndurance, type CellFigures, type CellKind } from "./rules.js";
+import { cellsWeight, enduranceHours, enduranceUnit, enduranceUses as enduranceUsesOf, isCellSizeOf, swappedEndurance, type CellFigures, type CellKind, type CountedUnit } from "./rules.js";
 
 /** One book's cell table. */
 export interface CellTable extends BookTable {
@@ -347,8 +347,8 @@ export function storePower(item: any, patch: Partial<Record<keyof PowerData, unk
   return item.update(Object.fromEntries(Object.entries(patch).map(([key, value]) => [`system.extensions.${MODULE_ID}.power.${key}`, value])));
 }
 
-/** Uses left for a gadget whose endurance is counted in uses, or null. */
-export function usesLeft(data: PowerData): { total: number; left: number } | null {
+/** Uses left for a gadget whose endurance is counted in uses (or tests, readings, quarts), and what it counts; or null. */
+export function usesLeft(data: PowerData): { total: number; left: number; unit: CountedUnit } | null {
   const total = enduranceUsesOf(data.draw?.endurance);
-  return total === null ? null : { total, left: Math.max(0, total - data.usesUsed) };
+  return total === null ? null : { total, left: Math.max(0, total - data.usesUsed), unit: enduranceUnit(data.draw?.endurance) ?? "uses" };
 }

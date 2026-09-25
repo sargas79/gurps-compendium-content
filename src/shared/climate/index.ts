@@ -31,6 +31,8 @@ export interface ClimateGear {
   rule?: string;
   /** What it adds to the HT roll against the cold or the heat while in use. */
   resist?: { cold?: number; heat?: number };
+  /** Whether it is working apart from its power: a vest's charge, a fitting the GM ticks. Left out, it is. */
+  running?: (item: any) => boolean;
 }
 
 /** One book's climate-control gear. */
@@ -77,7 +79,7 @@ export function workingClimateGear(actor: any, on: (key: string) => boolean = is
   for (const item of actor?.items ?? []) {
     if (!isWorn(item)) continue;
     const gear = climateGearOf(item, on);
-    if (gear && (!gear.powered || isRunning(item))) working.push({ item, gear });
+    if (gear && (!gear.powered || isRunning(item)) && (gear.running?.(item) ?? true)) working.push({ item, gear });
   }
   return working;
 }
