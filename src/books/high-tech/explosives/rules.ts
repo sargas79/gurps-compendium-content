@@ -393,6 +393,12 @@ export const isFuelAir = (row: ExplosiveRow | null) => /^fuel-air/i.test(String(
 export const THERMITE = { dice: 3, adds: 0, secondsPerPound: 25, damagePerDr: 10 } as const;
 export const THERMITE_SPARKS = [{ yards: 1, damage: 3 }, { yards: 2, damage: 1 }] as const;
 
+/** A second of thermite's sparks and heat on someone this many yards from it: 3 within a yard, 1 at two, none past (p. 188). */
+export function sparksAt(yards: number): number {
+  const distance = Math.max(0, Number(yards) || 0);
+  return THERMITE_SPARKS.find((band) => distance <= band.yards)?.damage ?? 0;
+}
+
 export function thermiteSeconds(pounds: number): number {
   return Math.floor(Math.max(0, Number(pounds) || 0) * THERMITE.secondsPerPound);
 }

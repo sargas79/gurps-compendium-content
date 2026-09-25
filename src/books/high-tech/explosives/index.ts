@@ -37,7 +37,8 @@
  *     black powder, plastique, ANFO and fuel-air devices, with what a failed
  *     batch comes out as; and a fuel-air blast's slower falloff.
  *   - **Incendiaries (incendiaryAgents):** thermite set burning on a victim
- *     (3d a second against the DR where it burns, which it wears down) or on
+ *     (3d a second against the DR where it burns, which it wears down; its
+ *     sparks and heat 3 a second on anyone else within a yard, 1 at two) or on
  *     an object, and napalm that clings and burns for a minute, both through
  *     the lingering-burn engine (`../burning.ts`) the flamethrower's fuel
  *     uses.
@@ -63,6 +64,7 @@ import {
   SKIM_MODIFIER,
   THERMITE,
   THERMITE_SPARKS,
+  sparksAt,
   UNSTABLE_PENALTY,
   WEAK_FACTOR,
   blowsUpOnCriticalFailure,
@@ -696,6 +698,21 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     }
     return points - left;
   };
+  // A second of its sparks and heat on everyone else near the burning victim: 3 burn within a
+  // yard, 1 at two, against their DR against burning, which it doesn't wear down (p. 188). The
+  // burn ticks on the GM's client, which may hurt anyone.
+  const sparks = async (victim: any) => {
+    const lines: string[] = [];
+    for (const { actor, yards } of actorsNear(victim, THERMITE_SPARKS[THERMITE_SPARKS.length - 1].yards)) {
+      const damage = sparksAt(yards);
+      if (!damage) continue;
+      const injury = Math.max(0, damage - largeAreaDr(api, actor));
+      if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: L("Thermite.SparksTitle") } as any);
+      lines.push(F("Thermite.SparksSecond", { name: String(actor.name ?? ""), yards, damage, injury }));
+    }
+    if (lines.length) await say(victim, L("Thermite.SparksTitle"), lines);
+  };
+
   const thermite: LingeringBurn = {
     flag: THERMITE_FLAG,
     condition: THERMITE_CONDITION,
@@ -712,6 +729,7 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       const before = Number(state.damage) || 0;
       const destroyed = thermiteDrDestroyed(before, before + rolled);
       const worn = destroyed > 0 ? await wearArmor(actor, String(state.location ?? "torso"), destroyed) : 0;
+      await sparks(actor);
       return { ...state, damage: before + rolled, ...(worn > 0 ? { worn: (Number(state.worn) || 0) + worn } : {}) };
     },
     secondLine: ({ name, roll, dr, injury, state }) => F("Thermite.Second", { name, roll, dr, injury, location: String(state.location ?? "torso") }),
@@ -816,6 +834,21 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
       if (seconds > 0) await say(victim, L("Napalm.Title"), [F("Napalm.Clings", { name: String(victim.name ?? ""), seconds })]);
     }
   });
+}
+
+/** Everyone else with a token within `yards` of the actor's on the scene, and how far away, in whole yards. */
+function actorsNear(actor: any, yards: number): Array<{ actor: any; yards: number }> {
+  const stage = (globalThis as any).canvas;
+  const from = actor?.getActiveTokens?.()?.[0];
+  if (!from?.center || !stage?.grid?.measurePath) return [];
+  const out: Array<{ actor: any; yards: number }> = [];
+  for (const token of stage.tokens?.placeables ?? []) {
+    const other = token?.actor;
+    if (!other || other === actor || (actor.id && other.id === actor.id) || !token.center) continue;
+    const distance = Number(stage.grid.measurePath([from.center, token.center])?.distance);
+    if (Number.isFinite(distance) && distance <= yards) out.push({ actor: other, yards: Math.round(distance) });
+  }
+  return out;
 }
 
 /** A victim's large-area DR: the torso's and the least-protected location's, averaged (Campaigns p. 400). */

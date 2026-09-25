@@ -583,6 +583,35 @@ describe("incendiaries (p. 188)", () => {
     expect(injuries[1].amount).toBe(7);
   });
 
+  it("throws sparks and heat on everyone within two yards of a burning victim each second (p. 188)", async () => {
+    const at = (name: string, x: number) => {
+      const actor: any = actorWith(name);
+      actor.id = name;
+      const token = { actor, center: { x, y: 0 } };
+      actor.getActiveTokens = () => [token];
+      return token;
+    };
+    const victim = at("Victim", 0);
+    const near = at("Near", 1);
+    const far = at("Far", 2);
+    const away = at("Away", 5);
+    vi.stubGlobal("canvas", { tokens: { placeables: [victim, near, far, away] }, grid: { measurePath: ([a, b]: any[]) => ({ distance: Math.abs(a.x - b.x) }) } });
+    targets = [{ actor: victim.actor }];
+    derived.drByLocation = { torso: 0 };
+    dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
+    actions.get("ht-thermite").run(thermiteRecord(), actorWith("Saboteur"));
+    await flush();
+    dice = [1, 1, 1];
+    fire(HOOKS.turnStart, null, { actor: victim.actor });
+    await flush();
+    // 3 a yard off, 1 at two, nothing at five; the victim's own 3d is its own line.
+    expect(injuries.filter((i) => i.label === "GCC.HT.Explosives.Thermite.SparksTitle")).toEqual([
+      { actor: "Near", amount: 3, label: "GCC.HT.Explosives.Thermite.SparksTitle" },
+      { actor: "Far", amount: 1, label: "GCC.HT.Explosives.Thermite.SparksTitle" },
+    ]);
+    expect(chat.some((c) => c.includes('"name":"Near","yards":1,"damage":3,"injury":3'))).toBe(true);
+  });
+
   it("wears the armour it burns through for good, 1 DR in 10 points", async () => {
     const vest = { id: "v", name: "Vest", type: "armor", system: { dr: 4, drLost: 0, equipped: true, locations: ["torso"] } };
     const victim = actorWith("Victim", [vest]);

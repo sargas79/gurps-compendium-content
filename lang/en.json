@@ -7759,6 +7759,8 @@
           "Second": "{name} burns ({location}): {roll} against DR {dr}, {injury} injury.",
           "BurnedOut": "The thermite on {name} has burned out.",
           "Sparks": "Sparks and heat: {near} burn a second within a yard, {far} at two yards (no harm to DR).",
+          "SparksTitle": "Thermite's sparks and heat",
+          "SparksSecond": "{name}, {yards} yd. away: {damage} burn, {injury} injury.",
           "Through": "The thermite burns through {label} in {seconds} of its {of} seconds: {injury} injury against HP {hp}; its DR there went from {dr} to {drLeft}.",
           "NotThrough": "The thermite burns out on {label} after {of} seconds: {injury} injury against HP {hp}; its DR there went from {dr} to {drLeft}.",
           "NoObject": "Choose an object with some HP.",
