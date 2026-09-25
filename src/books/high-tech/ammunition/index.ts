@@ -117,6 +117,7 @@ import {
   type Liquid,
 } from "./explosive.js";
 import { readyCargo, type CargoLoad } from "./cargo.js";
+import { bulletPoisonChoices, readyRounds } from "./rounds.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Ammunition.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Ammunition.${key}`, data);
@@ -142,6 +143,8 @@ export interface AmmunitionSwitches {
   explosive?: () => boolean;
   /** Ejecting- and bursting-cargo projectiles (pp. 171-172). */
   cargo?: () => boolean;
+  /** Hollow-points failing to expand, the GM's option (p. 167). */
+  expansion?: () => boolean;
 }
 
 /** Whether any of the projectile switches is on. */
@@ -694,6 +697,9 @@ function projectileChoices(load: HighTechLoad, gun: ProjectileGun, on: Ammunitio
     .map(({ p, why }) => ({ value: p, label: L(`Projectile.${p || "solid"}`) + (why ? ` (${L(`ProjectileRefusal.${why}`)})` : ""), selected: p === load.projectile }));
 }
 
+/** The poisons a poison bullet may carry, as the sheet offers them; set once the API is ready. */
+let poisonChoices: (chosen: string) => Array<{ value: string; label: string; selected: boolean }> = () => [];
+
 /** The Basic Set's named poisons a poison-gas round may carry: those breathed in or taking effect on the skin; set once the API is ready. */
 let gasFillers: () => string[] = () => [];
 
@@ -729,7 +735,7 @@ function projectileContext(load: HighTechLoad, gun: ProjectileGun, on: Ammunitio
     cargo: cargoContext(load, fired, gun),
     projectileHint: L(`ProjectileHint.${fired.projectile || "solid"}`),
     shot: filled ? { mm: load.shotMm || "", count: load.shotCount || "", mmPlaceholder: filled.mm, countPlaceholder: filled.count, sizes: SHOT_SIZES } : null,
-    poison: fired.projectile === "poison" ? { cost: load.poisonCost || "" } : null,
+    poison: fired.projectile === "poison" ? { cost: load.poisonCost || "", fillers: poisonChoices(load.poisonFiller) } : null,
     materials: on.exotic?.() ? MATERIALS.map((m) => ({ value: m, label: L(`Material.${m || "lead"}`), selected: m === load.material })) : [],
     materialHint: L(`MaterialHint.${load.material || "lead"}`),
     projectileUpgrades: on.projectileUpgrades?.()
@@ -986,6 +992,19 @@ export function readyAmmunition(api: GWorldApi, on: AmmunitionSwitches): void {
   gasFillers = () => ((api.rules as any).POISON_EXAMPLES ?? [])
     .filter((p: any) => (p.delivery ?? []).some((d: string) => d === "respiratory" || d === "contact"))
     .map((p: any) => String(p.name));
+  poisonChoices = (chosen) => bulletPoisonChoices(api, chosen);
+  // What the projectiles and their upgrades do as they are fired and as they hit (pp. 167, 174-175).
+  readyRounds(api, {
+    projectiles: () => on.projectiles?.() === true,
+    multiple: () => on.multiple?.() === true,
+    projectileUpgrades: () => on.projectileUpgrades?.() === true,
+    expansion: () => on.expansion?.() === true,
+  }, (item, modeIndex) => {
+    if (!isFirearmItem(item)) return null;
+    const load = loadIn(item, modeIndex).load;
+    const gun = projectileGun(item, modeIndex);
+    return { fired: firedProjectile(load, gun, on), gun, poison: load.poisonFiller };
+  });
   readyCargo(api, { explosive: () => on.explosive?.() === true, cargo: () => on.cargo?.() === true }, (item, modeIndex) => cargoLoadIn(item, modeIndex, on));
   api.sheets.registerSheetSection({
     module: MODULE_ID,

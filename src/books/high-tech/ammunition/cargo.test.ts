@@ -9,6 +9,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { receive } from "../../../shared/relay.js";
 import { readyAmmunition, type AmmunitionSwitches } from "./index.js";
 
 type Listener = (...args: any[]) => void;
@@ -23,6 +24,7 @@ const HOOKS = {
   afterDamage: "gworld.afterDamage",
   reactionModifiers: "gworld.reactionModifiers",
   detectionModifiers: "gworld.detectionModifiers",
+  injury: "gworld.injury",
 };
 
 let hooks: Map<string, Listener[]>;
@@ -34,12 +36,15 @@ let conditions: any[];
 let chat: string[];
 let poisons: any[];
 let items: Map<string, any>;
+let attackOptions: Map<string, any>;
+let pending: any[];
+let dice: number[];
 
 function fakeApi() {
   return {
     rules: { ...rules, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
-    combat: { hooks: HOOKS },
+    combat: { hooks: HOOKS, registerAttackOption: (o: any) => { attackOptions.set(o.key, o); return `${o.module}.${o.key}`; } },
     sheets: { registerSheetSection: () => undefined },
     data: { registerPriceModifier: () => undefined, registerPoison: (p: any) => poisons.push(p) },
     items: { setMalfunction: async () => undefined },
@@ -55,6 +60,9 @@ function fakeApi() {
       dosePoison: async (actor: any, poison: any) => { doses.push({ actor: actor.name, ...poison }); return { id: `d${doses.length}`, delaySeconds: poison.delaySeconds ?? 0 }; },
       advancePoison: async () => undefined,
       applyCondition: async (actor: any, application: any) => { conditions.push({ actor: actor.name, ...application }); return "c1"; },
+      pendingModifiers: () => pending,
+      addPendingModifier: async (_actor: any, bonus: any) => { pending.push({ id: `p${pending.length + 1}`, ...bonus }); return `p${pending.length}`; },
+      removePendingModifier: async (_actor: any, id: string) => { pending = pending.filter((p) => p.id !== id); return true; },
     },
   };
 }
@@ -72,10 +80,11 @@ const switches: AmmunitionSwitches = {
   misloading: () => false,
   projectiles: () => on.projectileOptions === true,
   exotic: () => false,
-  multiple: () => false,
+  multiple: () => on.multipleProjectileLoads === true,
   projectileUpgrades: () => on.projectileUpgrades === true,
   explosive: () => on.explosiveProjectiles === true,
   cargo: () => on.cargoProjectiles === true,
+  expansion: () => on.hollowPointExpansion === true,
 };
 
 const load = (patch: Record<string, unknown>) => ({ mode: 0, calibre: "", upgrades: [], source: "", matched: false, batchMalfunction: 0, discount: 0, projectile: "", material: "", shotMm: 0, shotCount: 0, projectileUpgrades: [], poisonCost: 0, ...patch });
@@ -127,6 +136,9 @@ beforeEach(() => {
   chat = [];
   poisons = [];
   items = new Map();
+  attackOptions = new Map();
+  pending = [];
+  dice = [];
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", { user: { id: "u1", isGM: true, targets: new Set() }, time: { worldTime: 1000 }, i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s, randomID: () => "r1" }, applications: { api: { DialogV2: { prompt: async () => ({ radius: 8, seconds: 25 }) } } } });
@@ -134,6 +146,7 @@ beforeEach(() => {
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
   vi.stubGlobal("CONST", { CHAT_MESSAGE_STYLES: { OTHER: 0 } });
   vi.stubGlobal("fromUuidSync", (uuid: string) => items.get(uuid) ?? null);
+  vi.stubGlobal("CONFIG", { Dice: { randomUniform: () => ((dice.shift() ?? 1) - 0.5) / 6 }, time: { roundTime: 1 } });
   vi.stubGlobal("Roll", class { total = 5; async evaluate() { return this; } });
   readyAmmunition(fakeApi() as never, switches);
 });
@@ -273,5 +286,124 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     expect(poisons[0].available()).toBe(false);
     on.cargoProjectiles = true;
     expect(poisons[0].available()).toBe(true);
+  });
+});
+
+describe("a player's round through the GM's client (the module's relay)", () => {
+  it("has the GM's client place a player's cloud and dose those in it, at the point the player's client found", async () => {
+    on.cargoProjectiles = true;
+    const gm = { id: "gm", isGM: true };
+    const player = { id: "u1", isGM: false };
+    const sent: any[] = [];
+    const usersSeenBy = (self: "gm" | "u1") => Object.assign([gm, player], { activeGM: { ...gm, isSelf: self === "gm" }, get: (id: string) => (id === "u1" ? player : id === "gm" ? gm : undefined) });
+    (game as any).user = { ...player, targets: new Set() };
+    (game as any).users = usersSeenBy("u1");
+    (game as any).socket = { emit: (channel: string, message: any) => sent.push({ channel, message }) };
+    inArea = [{ actor: { id: "v1", name: "Rioter", isOwner: false, derived: {} } }];
+    const gas = m79([load({ projectile: "tearGas", radius: 4, seconds: 30 })]);
+    gas.actor.uuid = "Actor.a0";
+    gas.actor.testUserPermission = (user: any) => user.id === "u1";
+    items.set("Actor.a0", gas.actor);
+    fire(HOOKS.afterShots, { actor: gas.actor, item: gas, modeIndex: 0 });
+    await flush();
+    // The player's client asks; it writes nothing itself.
+    expect(areas).toHaveLength(0);
+    expect(sent[0]).toMatchObject({ channel: `module.${MODULE_ID}`, message: { key: "ht-cargo", payload: { radius: 4, seconds: 30, center: { x: 500, y: 500 } } } });
+    // The GM's client takes the request up.
+    (game as any).user = { ...gm, targets: new Set() };
+    (game as any).users = usersSeenBy("gm");
+    expect(await receive(sent[0].message, "u1")).toBe(true);
+    await flush();
+    expect(areas[0]).toMatchObject({ radius: 4, center: { x: 500, y: 500 } });
+    expect(doses.map((d) => d.actor)).toEqual(["Rioter", "Rioter"]);
+    // Nothing for a user who can't fire for that character.
+    areas = [];
+    await receive(sent[0].message, "someone-else");
+    await flush();
+    expect(areas).toHaveLength(0);
+  });
+});
+
+describe("the projectile options and upgrades in play (pp. 167, 174-175)", () => {
+  const glock = (loads: any[]) => gun("Glock 17, 9x19mm", { skill: "Guns (Pistol)", damageFormula: "2d+2", damageType: "pi" }, loads);
+
+  it("rolls a handgun hollow-point's expansion under its own switch, a failure hitting as the solid bullet", () => {
+    on.projectileOptions = true;
+    const hp = glock([load({ projectile: "hollowPoint" })]);
+    const blow = () => fire(HOOKS.injury, { actor: { name: "Target" }, item: hp, mode: { index: 0, ranged: true }, damage: { type: "pi+", armorDivisor: 0.5 } }).damage;
+    // Off, it always expands.
+    expect(blow()).toMatchObject({ type: "pi+", armorDivisor: 0.5 });
+    on.hollowPointExpansion = true;
+    // TL7: it expands on 4 or less.
+    dice = [4];
+    expect(blow()).toMatchObject({ type: "pi+", armorDivisor: 0.5 });
+    dice = [5];
+    expect(blow()).toMatchObject({ type: "pi", armorDivisor: 1 });
+  });
+
+  it("doses a poison bullet's poison when the hit gets through DR", async () => {
+    on.projectileOptions = true;
+    const bullet = glock([load({ projectile: "poison", poisonFiller: "Cyanide" })]);
+    const victim = { id: "v1", name: "Target", isOwner: true };
+    fire(HOOKS.afterDamage, { actor: victim, item: bullet, mode: { index: 0, ranged: true }, result: { penetrating: 0 } });
+    await flush();
+    expect(doses).toHaveLength(0);
+    fire(HOOKS.afterDamage, { actor: victim, item: bullet, mode: { index: 0, ranged: true }, result: { penetrating: 3, touchEffectsReach: true } });
+    await flush();
+    expect(doses[0]).toMatchObject({ actor: "Target", name: "Cyanide", source: `${MODULE_ID}.poisonBullet` });
+    // High-Tech's own ricin, by its key.
+    const ricin = glock([load({ projectile: "poison", poisonFiller: "ht:ricin" })]);
+    fire(HOOKS.afterDamage, { actor: victim, item: ricin, mode: { index: 0, ranged: true }, result: { penetrating: 3 } });
+    await flush();
+    expect(doses[1]).toMatchObject({ source: `${MODULE_ID}.ricin`, dice: 3 });
+  });
+
+  it("offers an airburst round's fuse as an attack option: +4 at TL7, +3 or +1 on a TL6 time fuse", () => {
+    on.explosiveProjectiles = true;
+    on.projectileUpgrades = true;
+    const option = attackOptions.get("ht-airburst");
+    const he = m79([load({ projectile: "he", projectileUpgrades: ["airburst"] })]);
+    const context = { item: he, ranged: true, mode: { index: 0, ranged: true } };
+    expect(option.available(context)).toBe(true);
+    expect(option.apply(context, "area").modifiers[0].value).toBe(4);
+    expect(option.apply(context, "")).toBeNull();
+    const old = gun("Colt M79, 40x46mmSR", { skill: "Guns (Grenade Launcher)", damageFormula: "4d-1", explosive: true }, [load({ projectile: "he", projectileUpgrades: ["airburst"] })], "6");
+    expect(option.apply({ ...context, item: old }, "area").modifiers[0].value).toBe(3);
+    expect(option.apply({ ...context, item: old }, "flier").modifiers[0].value).toBe(1);
+    expect(option.available({ ...context, item: m79([load({ projectile: "he" })]) })).toBe(false);
+  });
+
+  it("refuses a self-destructing round's shot past its 1/2D", () => {
+    on.explosiveProjectiles = true;
+    on.projectileUpgrades = true;
+    const sd = m79([load({ projectile: "he", projectileUpgrades: ["selfDestruct"] })]);
+    const shot = (rangeYards: number) => fire(HOOKS.attackModifiers, { actor: sd.actor, item: sd, ranged: true, mode: { index: 0, ranged: true }, rangeYards, dataset: { halfDamageRange: "0", maxRange: "440" }, modifiers: [], refusal: null }).refusal;
+    expect(shot(300)).toBeNull();
+    expect(shot(500)).toContain("SelfDestructRefusal");
+  });
+
+  it("gives tracers +1 to the next attack after a burst of the gun's full RoF, not cumulative", async () => {
+    on.projectileUpgrades = true;
+    const mg = gun("M60, 7.62x51mm", { skill: "Guns (Light Machine Gun)", damageFormula: "7d", rateOfFire: 10 }, [load({ projectileUpgrades: ["tracer"] })]);
+    mg.actor.isOwner = true;
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "rapidFire", fired: 3 });
+    await flush();
+    expect(pending).toHaveLength(0);
+    expect(chat.join(" ")).toContain("TracerSeen");
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "rapidFire", fired: 10 });
+    await flush();
+    fire(HOOKS.afterShots, { actor: mg.actor, item: mg, modeIndex: 0, kind: "rapidFire", fired: 10 });
+    await flush();
+    expect(pending).toHaveLength(1);
+    expect(pending[0]).toMatchObject({ value: 1, tags: ["attack"], skill: "Guns (Light Machine Gun)", expires: 1002 });
+  });
+
+  it("drops a beehive shell's 1/2D", () => {
+    on.multipleProjectileLoads = true;
+    const cannon = gun("M102, 105mm", { skill: "Artillery (Cannon)", damageFormula: "6dx5", explosive: true }, [load({ projectile: "beehive" })]);
+    const mode = cannon.system.rangedModes[0];
+    const figures = { damage: "6dx5", damageType: "cr", armorDivisor: 1, halfDamageRange: 500, maxRange: 12000, accuracy: 2, malfunction: 17, minSt: 8, projectiles: 1, recoil: 2, explosive: true, fragmentation: "", followUp: null, firstHit: null, noOverpenetration: false, scatterSquared: false };
+    const shown = fire(HOOKS.weaponAttacks, { actor: cannon.actor, item: cannon, rows: [{ kind: "ranged", mode, basis: { ...figures }, row: { ...figures, notes: [] } }] }).rows[0].row;
+    expect(shown.halfDamageRange).toBe(0);
   });
 });

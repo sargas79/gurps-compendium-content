@@ -50,6 +50,11 @@
           <label data-tooltip="{{localize 'GCC.HT.Ammunition.PoisonCostHint'}}">{{localize "GCC.HT.Ammunition.PoisonCost"}}
             <input type="number" min="0" step="0.01" data-gcc-ht-ammo="poisonCost" data-mode="{{m.index}}" value="{{m.poison.cost}}" style="width:80px" {{#unless ../editable}}disabled{{/unless}} />
           </label>
+          <label data-tooltip="{{localize 'GCC.HT.Ammunition.BulletPoisonHint'}}">{{localize "GCC.HT.Ammunition.BulletPoison"}}
+            <select data-gcc-ht-ammo="poisonFiller" data-mode="{{m.index}}" {{#unless ../editable}}disabled{{/unless}}>
+              {{#each m.poison.fillers as |o|}}<option value="{{o.value}}" {{#if o.selected}}selected{{/if}}>{{o.label}}</option>{{/each}}
+            </select>
+          </label>
         {{/if}}
       </div>
     {{/if}}

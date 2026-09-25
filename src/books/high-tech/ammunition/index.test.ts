@@ -32,7 +32,7 @@ function fakeApi() {
   return {
     rules: { ...rules, weaponClassOf: () => "firearm" },
     registry: { isRuleOn: () => false },
-    combat: { hooks: HOOKS },
+    combat: { hooks: HOOKS, registerAttackOption: () => undefined },
     sheets: { registerSheetSection: () => undefined },
     data: { registerPriceModifier: (m: any) => prices.push(m), registerPoison: () => undefined },
     items: { setMalfunction: async (item: any, malfunction: any) => { malfunctions.push({ item: item.name, ...malfunction }); } },

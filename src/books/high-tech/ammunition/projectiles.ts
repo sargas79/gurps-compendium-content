@@ -716,6 +716,8 @@ function multipleRow(out: ProjectileEffect, load: ProjectileLoad, gun: Projectil
       out.notes.push({ key: "shell" });
       break;
     case "beehive":
+      // It bursts at its Max, and has no 1/2D (p. 173).
+      r.halfDamageRange = 0;
       out.notes.push({ key: "beehive" });
       break;
     default:

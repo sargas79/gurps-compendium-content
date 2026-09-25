@@ -33,12 +33,13 @@ export function areaCentre(actor: any): { x: number; y: number } | null {
 
 /**
  * Places an area of `radiusYards` round the centre for `seconds`; the key names
- * what it is. An area with no lines is refused unless `bare` says it is kept
+ * what it is. The centre is `center` where given (worked out on the client
+ * that fired, for an area the GM's client places), else `areaCentre`'s. An area with no lines is refused unless `bare` says it is kept
  * only to be found again (a flare's light). Returns its id or null.
  */
-export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean }): Promise<string | null> {
+export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean; center?: { x: number; y: number } | null }): Promise<string | null> {
   const scene = sceneNow();
-  const center = areaCentre(options.actor);
+  const center = options.center ?? areaCentre(options.actor);
   if (!scene || !center || !(options.radiusYards > 0) || (!options.lines.length && !options.bare)) return null;
   const now = Number((game as any).time?.worldTime) || 0;
   return api.areas.add(scene, {
