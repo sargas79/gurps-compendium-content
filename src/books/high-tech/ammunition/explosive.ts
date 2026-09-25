@@ -227,21 +227,34 @@ export { smokeFormSeconds } from "../../../shared/smoke/rules.js";
 /**
  * The resistance rolls a cloud's gas calls for (p. 171; Campaigns pp. 428-429,
  * 439), as poisons the system doses: tear gas's two HT-2 rolls, against
- * coughing and against blindness, and a vomiting agent's HT-2 against
- * retching. What a failure does, and how long, is `gasEffect`.
+ * coughing and against blindness; a vomiting agent's HT-2 against retching;
+ * and smoke's, a mild irritant (p. 171): the Basic Set's ordinary smoke, a HT
+ * roll after 10 seconds against coughing. What a failure does, and how long,
+ * is `gasEffect`.
  */
-export const GASES = ["tearGasCoughing", "tearGasBlinding", "vomitingAgent"] as const;
+export const GASES = ["tearGasCoughing", "tearGasBlinding", "vomitingAgent", "smokeIrritant"] as const;
 export type Gas = (typeof GASES)[number];
 
 export const GAS_POISONS: Readonly<Record<Gas, { delivery: string[]; delaySeconds: number; resistanceModifier: number; damage: "none"; dice: 0; adds: 0; intervalSeconds: 0; cycles: 1; reference: string }>> = Object.freeze({
   tearGasCoughing: { delivery: ["respiratory"], delaySeconds: 0, resistanceModifier: -2, damage: "none", dice: 0, adds: 0, intervalSeconds: 0, cycles: 1, reference: "High-Tech p. 171" },
   tearGasBlinding: { delivery: ["senseBased"], delaySeconds: 0, resistanceModifier: -2, damage: "none", dice: 0, adds: 0, intervalSeconds: 0, cycles: 1, reference: "High-Tech p. 171" },
   vomitingAgent: { delivery: ["respiratory"], delaySeconds: 0, resistanceModifier: -2, damage: "none", dice: 0, adds: 0, intervalSeconds: 0, cycles: 1, reference: "High-Tech p. 171" },
+  smokeIrritant: { delivery: ["respiratory"], delaySeconds: 10, resistanceModifier: 0, damage: "none", dice: 0, adds: 0, intervalSeconds: 0, cycles: 1, reference: "High-Tech p. 171; Campaigns p. 439" },
 });
 
 /** The gases a cloud of tear gas holds: both of tear gas's, and the vomiting agent's where one is mixed in. */
 export function gasesOf(vomiting: boolean): Gas[] {
   return vomiting ? ["tearGasCoughing", "tearGasBlinding", "vomitingAgent"] : ["tearGasCoughing", "tearGasBlinding"];
+}
+
+/** The kinds of cloud a round leaves that someone can walk into, as their areas are keyed. */
+export const CLOUDS = ["tearGas", "tearGasVomiting", "smoke", "whitePhosphorus"] as const;
+export type Cloud = (typeof CLOUDS)[number];
+
+/** The gases a cloud holds: tear gas's, with the vomiting agent's where it is mixed in, or smoke's irritant (white phosphorus's smoke too). */
+export function cloudGases(cloud: Cloud): Gas[] {
+  if (cloud === "tearGas" || cloud === "tearGasVomiting") return gasesOf(cloud === "tearGasVomiting");
+  return ["smokeIrritant"];
 }
 
 /**
@@ -253,7 +266,7 @@ export function gasEffect(gas: Gas, margin: number, cloudSeconds: number): { con
   const m = Math.max(1, marginOfFailure(margin));
   const inCloud = Math.max(0, Math.floor(Number(cloudSeconds) || 0));
   if (gas === "vomitingAgent") return { condition: "retching", seconds: inCloud + 5 * m * 60 };
-  return { condition: gas === "tearGasCoughing" ? "coughing" : "blinded", seconds: inCloud + m * 60 };
+  return { condition: gas === "tearGasBlinding" ? "blinded" : "coughing", seconds: inCloud + m * 60 };
 }
 
 /** Blindness (Campaigns p. 124): -10 to anything done by sight in combat. */
@@ -263,11 +276,11 @@ export const BLINDED_PENALTY = -10;
  * Who a gas can't reach (Campaigns pp. 82, 429): a sealed suit keeps out
  * both; a body that doesn't breathe, or filters its air, keeps out what is
  * breathed in, but tear gas still reaches the eyes -- unless a mask makes the
- * wearer immune to eye and nose irritants (pp. 72-73).
+ * wearer immune to eye and nose irritants (pp. 72-73), smoke's among them.
  */
 export function gasReaches(gas: Gas, victim: { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune?: boolean }): boolean {
   if (victim.sealed) return false;
-  if (victim.irritantImmune && (gas === "tearGasBlinding" || gas === "tearGasCoughing")) return false;
+  if (victim.irritantImmune && gas !== "vomitingAgent") return false;
   if (gas === "tearGasBlinding") return true;
   return !(victim.doesntBreathe || victim.filterLungs);
 }

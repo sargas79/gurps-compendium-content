@@ -16,7 +16,13 @@
  *     its radius for the system's `darknessAt` (API 1.102.0) -- an infrared
  *     flare only for eyes that see infrared (`../infrared.ts`). A scent
  *     marker's hit marks its victim for an hour: -4 to reactions to him, +4 to
- *     Smell rolls to find him within four yards.
+ *     Smell rolls to find him within four yards; a paint hit blinds goggles
+ *     at the eyes, or a visor at the eyes or face.
+ *   - **A cloud in play:** smoke (white phosphorus's too) is a mild irritant,
+ *     the Basic Set's ordinary smoke; whoever walks into a cloud later rolls
+ *     its gas for the seconds left in it (the active GM's client watches the
+ *     tokens move); and a victim retching from a vomiting agent has to take a
+ *     gas mask off until the retching ends.
  */
 
 import { placeArea, type AreaLine } from "../../../shared/areas.js";
@@ -26,6 +32,7 @@ import { wearsIrritantMask } from "../breathing/index.js";
 import { infraredLight, seesInfrared } from "../infrared.js";
 import {
   BLINDED_PENALTY,
+  CLOUDS,
   GASES,
   GAS_POISONS,
   HT_SMOKE_TABLE,
@@ -33,6 +40,7 @@ import {
   SCENT_MARKER,
   THERMOBARIC_DIVISOR_PER_YARD,
   WP_SMOKE_SECONDS,
+  cloudGases,
   gasEffect,
   gasReaches,
   gasesOf,
@@ -40,6 +48,7 @@ import {
   sapleExplodes,
   sapleMayDud,
   tearGasVision,
+  type Cloud,
   type Gas,
   type HighTechSmoke,
   type Illumination,
@@ -52,6 +61,10 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 
 /** An actor marked by a scent round: the world time the mark wears off. */
 const SCENT_FLAG = "htScentMarker";
+/** The condition of a wearer whose goggles or visor a paint round covered (p. 172). */
+const PAINT_BLINDED = "htPaintBlinded";
+/** An actor retching from a vomiting agent, who must keep a gas mask off until then (p. 171): the world time it ends. */
+const MASK_OFF_FLAG = "htMaskOff";
 
 /** What a mode fires, as the cargo rules need it. */
 export interface CargoLoad {
@@ -133,8 +146,20 @@ function areaLines(load: CargoLoad, radius: number): AreaLine[] {
   }
 }
 
-/** The key an area of this cargo is placed under, to be found again. */
-const areaKey = (load: CargoLoad): string => (load.projectile === "illumination" ? `ht-illumination-${load.illumination}` : `ht-cloud-${load.projectile}`);
+/** The key an area of this cargo is placed under, to be found again: a tear-gas cloud says whether a vomiting agent is in it. */
+function areaKey(load: CargoLoad): string {
+  if (load.projectile === "illumination") return `ht-illumination-${load.illumination}`;
+  return `ht-cloud-${load.projectile === "tearGas" && load.vomiting ? "tearGasVomiting" : load.projectile}`;
+}
+
+/** The kind of cloud an area is, from its id, or null for anything else. */
+export function cloudOf(id: unknown): Cloud | null {
+  const prefix = `${MODULE_ID}-ht-cloud-`;
+  const text = String(id ?? "");
+  if (!text.startsWith(prefix)) return null;
+  const kind = text.slice(prefix.length).split("-")[0];
+  return (CLOUDS as readonly string[]).includes(kind!) ? (kind as Cloud) : null;
+}
 
 /** Who stands in an area: the actors of the tokens there (GWorld API 1.89.0). */
 function actorsIn(api: GWorldApi, id: string): any[] {
@@ -166,10 +191,19 @@ export function gasOfSource(source: unknown): { gas: Gas; seconds: number } | nu
   return { gas: key as Gas, seconds: Math.max(0, Math.floor(Number(seconds) || 0)) };
 }
 
-/** Whether a body keeps a gas out (Campaigns pp. 82, 429). */
+/** Whether a victim of a vomiting agent must still keep a gas mask off (p. 171). */
+const maskForcedOff = (actor: any): boolean => Number(actor?.getFlag?.(MODULE_ID, MASK_OFF_FLAG)) > worldNow();
+
+/**
+ * Whether a body keeps a gas out (Campaigns pp. 82, 429). A mask its wearer
+ * has had to take off to retch keeps nothing out, and the Filter Lungs it gave
+ * goes with it.
+ */
 function victimOf(api: GWorldApi, actor: any): { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune: boolean } {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
-  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true, irritantImmune: wearsIrritantMask(actor) };
+  const masked = wearsIrritantMask(actor);
+  const off = masked && maskForcedOff(actor);
+  return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true && !off, irritantImmune: masked && !off };
 }
 
 /**
@@ -186,8 +220,10 @@ async function exposeToGas(api: GWorldApi, source: any, victims: any[], gases: G
         continue;
       }
       const dose: any = await api.actors.dosePoison(actor, { ...GAS_POISONS[gas], name: L(`Gas.${gas}`), source: gasSource(gas, seconds) } as any, { source });
-      if (dose) await api.actors.advancePoison(actor, dose.id, { source });
-      else lines.push(F("GasNoDose", { name: actor.name }));
+      if (!dose) lines.push(F("GasNoDose", { name: actor.name }));
+      // Smoke's irritant takes 10 seconds, which the system counts; the others are rolled at once.
+      else if (!dose.delaySeconds) await api.actors.advancePoison(actor, dose.id, { source });
+      else lines.push(F("PoisonDelayed", { name: actor.name, seconds: dose.delaySeconds }));
     }
   }
   return lines;
@@ -240,6 +276,8 @@ async function releaseCargo(api: GWorldApi, actor: any, load: CargoLoad): Promis
   if (load.projectile !== "illumination") said.push(F("CloudForms", { seconds: smokeFormSeconds(asked.radius) }));
   if (load.projectile === "smoke" && HT_SMOKE_TABLE[load.smoke].blocks.includes("lasers")) said.push(L("PrismLasers"));
   if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actor, actorsIn(api, id), gasesOf(load.vomiting), asked.seconds)));
+  // Smoke is a mild irritant (p. 171; Campaigns p. 439), white phosphorus's too.
+  if (load.projectile === "smoke" || load.projectile === "whitePhosphorus") said.push(...(await exposeToGas(api, actor, actorsIn(api, id), ["smokeIrritant"], asked.seconds)));
   if (load.projectile === "poisonGas") said.push(...(await exposeToPoison(api, actor, actorsIn(api, id), load.poisonFiller)));
   await say(actor, title, said);
 }
@@ -258,6 +296,51 @@ function flaresOver(api: GWorldApi, tokenId: string): Illumination[] {
     if (inside.some((t) => t?.id === tokenId)) kinds.push(id.slice(prefix.length).split("-")[0] as Illumination);
   }
   return kinds;
+}
+
+const isActiveGm = (): boolean => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
+
+/** A token's centre where a movement started, in scene pixels. */
+function startedAt(token: any, movement: any): { x: number; y: number } | null {
+  const origin = movement?.origin;
+  if (!origin || !Number.isFinite(origin.x) || !Number.isFinite(origin.y)) return null;
+  const centre = token.getCenterPoint?.(origin);
+  if (centre && Number.isFinite(centre.x)) return centre;
+  const size = Number(token.parent?.grid?.size) || 100;
+  return { x: origin.x + ((Number(token.width) || 1) * size) / 2, y: origin.y + ((Number(token.height) || 1) * size) / 2 };
+}
+
+/**
+ * Rolls the gas of each cloud a token has just walked into (p. 171): one it
+ * stands in now and didn't where its move began, for the seconds of cloud
+ * left.
+ */
+async function walkIntoClouds(api: GWorldApi, token: any, movement: any): Promise<void> {
+  const scene = token.parent;
+  const now = worldNow();
+  const before = startedAt(token, movement);
+  for (const area of api.areas.list(scene) as any[]) {
+    const cloud = cloudOf(area?.id);
+    if (!cloud || (typeof area.expires === "number" && now >= area.expires)) continue;
+    const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
+    if (!inside.some((t) => t?.id === token.id)) continue;
+    const wasInside = before && area.center && Number(area.radius) > 0 && Math.hypot(before.x - area.center.x, before.y - area.center.y) <= Number(area.radius);
+    if (wasInside) continue;
+    const left = typeof area.expires === "number" ? Math.max(0, area.expires - now) : 0;
+    const lines = [F("WalkedIn", { name: token.actor.name, cloud: String(area.label ?? "") }), ...(await exposeToGas(api, null, [token.actor], cloudGases(cloud), left))];
+    await say(token.actor, String(area.label ?? ""), lines);
+  }
+}
+
+/**
+ * The goggles or visor a paint hit covers (p. 172): goggles on a hit at the
+ * eyes, a visor on one at the eyes or face; null where the paint hits
+ * nothing the wearer looks through.
+ */
+export function paintedLens(actor: any, hitLocation: string): any | null {
+  if (hitLocation !== "eye" && hitLocation !== "face") return null;
+  const lens = hitLocation === "eye" ? /goggles|visor/i : /visor/i;
+  return [...(actor?.items ?? [])].find((i: any) => i?.system?.equipped === true && lens.test(String(i.name ?? ""))) ?? null;
 }
 
 /** Whether a character still carries a scent marker's mark. */
@@ -298,6 +381,11 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     const actor = context.actor;
     if (!actor?.isOwner) return;
     const effect = gasEffect(gas, Number(context.margin) || 0, dosed.seconds);
+    // A vomiting agent forces off any gas mask donned after exposure, for as long as the retching lasts (p. 171).
+    if (gas === "vomitingAgent" && wearsIrritantMask(actor)) {
+      void actor.setFlag(MODULE_ID, MASK_OFF_FLAG, worldNow() + effect.seconds);
+      void say(actor, L(`Gas.${gas}`), [F("MaskOff", { name: actor.name })]);
+    }
     if (effect.condition === "blinded") {
       void api.actors.applyCondition(actor, {
         module: MODULE_ID, key: "htTearGasBlinded", label: L("Blinded"),
@@ -306,6 +394,13 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
       } as any);
     } else void api.actors.applyCondition(actor, { key: effect.condition, duration: { seconds: effect.seconds } });
     void say(actor, L(`Gas.${gas}`), [F("GasFailed", { name: actor.name, what: L(`GasEffect.${effect.condition}`), minutes: Math.ceil(effect.seconds / 60) })]);
+  });
+
+  // Walking into a cloud after it was released: the gas's rolls for the time left in it (p. 171).
+  // The active GM's client rolls them, for whoever's token it is; one already inside isn't rolled again.
+  Hooks.on("moveToken", (token: any, movement: any) => {
+    if (!gasOn() || !isActiveGm() || !token?.actor || !token.parent) return;
+    void walkIntoClouds(api, token, movement);
   });
 
   // A thermobaric blast is divided by twice the distance, not three times (p. 170).
@@ -331,13 +426,23 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     }
   });
 
-  // A scent marker's hit: the victim reeks for an hour (p. 172).
+  // A scent marker's hit: the victim reeks for an hour; a paint hit on goggles or a visor blinds (p. 172).
   Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
     if (!on.cargo() || !context?.item || !context.actor?.isOwner || !context.mode?.ranged) return;
     const load = loadOf(context.item, Number(context.mode.index) || 0);
-    if (load?.projectile !== "liquid" || load.liquid !== "scent") return;
-    void context.actor.setFlag(MODULE_ID, SCENT_FLAG, worldNow() + SCENT_MARKER.seconds);
-    void say(context.actor, L("Liquid.scent"), [F("ScentMarked", { name: context.actor.name })]);
+    if (load?.projectile !== "liquid") return;
+    if (load.liquid === "scent") {
+      void context.actor.setFlag(MODULE_ID, SCENT_FLAG, worldNow() + SCENT_MARKER.seconds);
+      void say(context.actor, L("Liquid.scent"), [F("ScentMarked", { name: context.actor.name })]);
+      return;
+    }
+    const lens = load.liquid === "paint" ? paintedLens(context.actor, String(context.damage?.hitLocation ?? "")) : null;
+    if (!lens) return;
+    void api.actors.applyCondition(context.actor, {
+      module: MODULE_ID, key: PAINT_BLINDED, label: L("PaintBlinded"),
+      effects: { modifiers: [{ label: L("PaintBlinded"), value: BLINDED_PENALTY, rolls: ["vision", "attack"] }] },
+    } as any);
+    void say(context.actor, L("Liquid.paint"), [F("PaintBlindedLine", { name: context.actor.name, lens: String(lens.name ?? "") })]);
   });
   Hooks.on(api.combat.hooks.reactionModifiers, (context: any) => {
     if (on.cargo() && scented(context?.actor)) context.modifiers.push({ label: L("Liquid.scent"), value: SCENT_MARKER.reaction });

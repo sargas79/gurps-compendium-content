@@ -7023,7 +7023,8 @@
         "Gas": {
           "tearGasCoughing": "Tear gas (coughing)",
           "tearGasBlinding": "Tear gas (blindness)",
-          "vomitingAgent": "Vomiting agent"
+          "vomitingAgent": "Vomiting agent",
+          "smokeIrritant": "Smoke (coughing)"
         },
         "GasEffect": {
           "coughing": "coughing",
@@ -7091,6 +7092,10 @@
         "GasFailed": "{name} is {what} for {minutes} minutes.",
         "UnderFlare": "under a flare",
         "ScentMarked": "{name} reeks of the scent marker for an hour.",
+        "MaskOff": "{name} has to take their gas mask off to retch, and it keeps nothing out until the retching stops.",
+        "WalkedIn": "{name} walks into {cloud}.",
+        "PaintBlinded": "Paint over the eyes",
+        "PaintBlindedLine": "Paint covers {name}'s {lens}: blind until it is wiped clean or taken off.",
         "BatchAdded": "{rounds} rounds put in the box: {total} now.",
         "Cast": "Cast the projectiles too",
         "CastHint": "Reloaders may cast their own bullets, and with the tools and knowledge even hollow-points, AP, APHC, frangible and multi-ball projectiles; the Armoury rolls take the GM's modifier. The book's examples are -1 for jacketed bullets (-3 in silver) and -2 for APHC; flechettes need an ammunition factory (High-Tech p. 174).",
