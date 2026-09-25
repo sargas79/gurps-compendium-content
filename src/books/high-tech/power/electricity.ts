@@ -13,7 +13,10 @@
  *     a lithium-ion battery's runaway (3d burning, a large-area injury from
  *     M up) and the car-battery recharger's high-amperage setting, whose
  *     critical failure blows the battery up with an acid splash; the
- *     voltaic pile's HT roll every half hour; and a confined lithium-ion
+ *     voltaic pile's HT roll every half hour; the two wet cells the book
+ *     names, the Daniell cell's -1 to Electrician and Electronics Operation
+ *     with what it powers and the gravity cell's daily upkeep roll (a failure
+ *     spends its power) and new cell; and a confined lithium-ion
  *     battery as an explosive, REF 0.25, for the Demolition tool.
  *   - **Energy storage (energyStorage):** capacitors and banks of them, a
  *     row that discharges one into someone as a nonlethal shock at its HT
@@ -35,6 +38,7 @@
 
 import { bookOf, isRuleOn } from "../../../shared/book-tables.js";
 import { cellOf, powerData, registerCellVariant, storePower, type CellVariant, type PowerData } from "../../../shared/power/data.js";
+import { enduranceLeft } from "../../../shared/power/index.js";
 import type { CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
@@ -42,13 +46,18 @@ import {
   CHARGER_SKILLS,
   CHEMISTRIES,
   CHEMISTRY_KEYS,
+  DANIELL_PENALTY,
+  GRAVITY_CELL,
   LITHIUM_ION_REF,
   PRINTED_CHEMISTRY,
   VOLTAIC_PILE,
   batteryInChemistry,
   chargerExplosion,
   chemistryFactors,
+  daniellSkill,
+  gravityCellSkills,
   isChemistry,
+  isWetCell,
   roundCost,
   roundWeight,
   runawayDamage,
@@ -183,7 +192,9 @@ function sectionContext(api: GWorldApi, item: any, figures: CellFigures, on: Ele
       }));
       if (size === "M" && chosen && chosen !== "alkaline") lines.push(L("MediumNote"));
       if (chosen === "lithiumIon") lines.push(L("LithiumIonHint"));
-      if (chosen === "wetCell") lines.push(L("WetCellHint"));
+      if (isWetCell(chosen)) lines.push(L("WetCellHint"));
+      if (chosen === "daniellCell") lines.push(F("DaniellHint", { penalty: DANIELL_PENALTY }));
+      if (chosen === "gravityCell") lines.push(L("GravityHint"));
     }
     if (chosen === SUPERCAPACITOR.key && offerSuper) {
       const next = supercapacitorStandsFor(size, figures.sizes);
@@ -351,6 +362,38 @@ export async function runVoltaicPile(api: GWorldApi, item: any, actor: any): Pro
   await say(actor, item.name, [result.success ? F("Pile.Runs", { minutes: VOLTAIC_PILE.minutes }) : L("Pile.Blocked")]);
 }
 
+// ── the gravity cell (HT:EE p. 17) ───────────────────────────────────────────
+
+/**
+ * Tending a gravity cell for the day, or setting up a new one (HT:EE p. 17):
+ * the best of the skills the character's TL allows. A failed day's tending
+ * loses the cell's power -- a gadget running on it has its endurance spent;
+ * a new cell set up gives full power, an hour later.
+ */
+export async function gravityCell(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const answer = await ask(L("Gravity.Title"),
+    `<p class="ihint">${esc(L("Gravity.Hint"))}</p>` + row(L("Gravity.Task"), select("task", [["tend", L("Gravity.tend")], ["setUp", F("Gravity.setUp", { hours: GRAVITY_CELL.setUpHours })]])),
+    (form) => ({ task: field(form, "task")?.value === "setUp" ? "setUp" as const : "tend" as const }));
+  if (!answer) return;
+  const tl = api.rules.parseTechLevel(String(actor.system?.tl ?? ""));
+  const skills = gravityCellSkills(answer.task, typeof tl === "number" && Number.isFinite(tl) ? tl : null);
+  const best = bestSkill(api, actor, skills);
+  if (!best) return void ui.notifications?.warn(F("Charger.NoSkill", { skills: skills.join(", ") }));
+  const result: any = await api.roll.success({ actor, base: best.level, skill: best.skill, item, label: F(`Gravity.${answer.task}Label`, { name: item.name }), modifiers: [], tags: ["gravityCell"] } as any);
+  if (!result || "refused" in result) return;
+  const left = enduranceLeft(powerData(item));
+  const tracked = left !== null && left !== "unlimited";
+  if (answer.task === "tend") {
+    if (result.success) return void (await say(actor, item.name, [L("Gravity.Tended")]));
+    if (tracked) await storePower(item, { hoursUsed: left.total } as never);
+    return void (await say(actor, item.name, [L(tracked ? "Gravity.Lost" : "Gravity.LostUntracked")]));
+  }
+  if (!result.success) return void (await say(actor, item.name, [L("Gravity.NotSetUp")]));
+  if (tracked) await storePower(item, { hoursUsed: 0 } as never);
+  await say(actor, item.name, [F("Gravity.SetUp", { hours: GRAVITY_CELL.setUpHours })]);
+}
+
 // ── discharging a capacitor (HT:EE p. 17) ────────────────────────────────────
 
 export async function dischargeCapacitor(api: GWorldApi, item: any, actor: any): Promise<void> {
@@ -429,6 +472,24 @@ export function readyElectricity(api: GWorldApi, figures: CellFigures, on: Elect
     icon: "fa-solid fa-flask",
     visible: (item) => on.chemistry() && isOwnGear(item) && PILE_NAME.test(String(item?.name ?? "")),
     run: (item, actor) => { void runVoltaicPile(api, item, actor); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ee-gravity-cell",
+    itemTypes: ["equipment"],
+    label: L("Gravity.Title"),
+    icon: "fa-solid fa-flask-vial",
+    visible: (item) => on.chemistry() && isOwnGear(item) && powerData(item).chemistry === "gravityCell",
+    run: (item, actor) => { void gravityCell(api, item, actor); },
+  });
+
+  // The Daniell cell's barrier weakens the current: -1 to Electrician or Electronics Operation with what it powers (HT:EE p. 17).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.chemistry() || !Array.isArray(context?.modifiers) || !isOwnGear(item) || powerData(item).chemistry !== "daniellCell") return;
+    if (powerData(item).external || !daniellSkill(context.skill)) return;
+    context.modifiers.push({ label: L("DaniellLine"), value: DANIELL_PENALTY });
   });
 
   api.sheets.registerRowAction({

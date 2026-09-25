@@ -13,8 +13,12 @@
  *     Seizure (Campaigns p. 429), rolls the healer's Physician for the course
  *     and the patient's HT-2 against the memory loss, and on success takes
  *     Chronic Depression or Manic-Depressive out of play for a year as a
- *     Mitigator would (`gworld.traitsInPlay`); and the laser scalpel's +2 to
- *     the carrier's Surgery rolls on an operation.
+ *     Mitigator would (`gworld.traitsInPlay`); the laser scalpel's +2 to
+ *     the carrier's Surgery rolls on an operation, for the specialty it is
+ *     designed for where the GM names one; and row actions on the
+ *     electrocautery and the cautery pen: the healer's Surgery roll stops
+ *     the patient's bleeding (`actors.stopBleeding`), the heat causes Severe
+ *     Pain without a local anaesthetic, and the pen is used up.
  *
  * The defibrillator is High-Tech's emergency medicine, which the supplement
  * revises (`../medicine`, decision E3 in #471).
@@ -24,6 +28,7 @@ import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { card } from "../../../shared/sensors/index.js";
 import { deviceData, isDevice, storeDevice } from "../devices/index.js";
 import {
+  CAUTERY,
   ECT,
   ECT_MITIGATES,
   EARLY_DIATHERMY,
@@ -32,7 +37,9 @@ import {
   PHYSICIAN_DEFAULT,
   easedPain,
   electromedicineOf,
+  scalpelFits,
   stillMitigated,
+  surgeryLevel,
   worstPain,
   type Electromedicine,
   type PainStep,
@@ -158,8 +165,52 @@ export async function electroconvulsive(api: GWorldApi, item: any, actor: any): 
   });
 }
 
-/** Whether the character carries a laser scalpel. */
-const laserScalpel = (actor: any) => [...(actor?.items ?? [])].find((i: any) => i?.type === "equipment" && i.system?.carried !== false && kindOf(i) === "laserScalpel") ?? null;
+/** A laser scalpel the character carries that is designed for the Surgery rolled (HT:EE p. 14). */
+const laserScalpel = (actor: any, skill: unknown) =>
+  [...(actor?.items ?? [])].find((i: any) => i?.type === "equipment" && i.system?.carried !== false && kindOf(i) === "laserScalpel" && scalpelFits(deviceData(i).specialty, skill)) ?? null;
+
+/**
+ * Cauterizing with the electrocautery or the cautery pen (HT:EE pp. 13-14):
+ * the healer's Surgery roll stops the targeted patient's superficial bleeding
+ * (Campaigns p. 420) or burns off a small growth; without a local
+ * anaesthetic the heat puts the patient in Severe Pain, which the GM takes
+ * off when the treatment ends. The pen is thrown away after use.
+ */
+export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<void> {
+  const patient = targetedActor() ?? actor;
+  if (!actor || !patient) return;
+  // Stopping the bleeding and the pain are written to the patient: a user who
+  // doesn't own the patient can't, and the module has no relay to the GM, so
+  // nothing is rolled and the GM is asked to run it (as for any change to a
+  // character this user can't edit).
+  if (!patient.isOwner) return void ui.notifications?.warn(F("NotYourPatient", { name: patient.name }));
+  const level = surgeryLevel((skill) => api.actors.skillLevel(actor, skill) ?? null);
+  if (level === null) return void ui.notifications?.warn(L("NoSurgery"));
+  const answer = await foundry.applications.api.DialogV2.prompt({
+    window: { title: String(item.name ?? "") },
+    content: `<div class="gworld"><p class="ihint">${foundry.utils.escapeHTML(L("CauteryHint"))}</p><label class="icheck"><input type="checkbox" name="anaesthetic" checked> ${foundry.utils.escapeHTML(L("Anaesthetic"))}</label></div>`,
+    ok: { label: L("CauteryAction"), callback: (_event: Event, button: HTMLElement) => ({ anaesthetic: button.closest<HTMLElement>(".application")?.querySelector<HTMLInputElement>('[name="anaesthetic"]')?.checked === true }) },
+    rejectClose: false,
+  }) as { anaesthetic: boolean } | null;
+  if (!answer) return;
+  const title = F("CauteryTitle", { name: item.name, patient: patient.name });
+  const result: any = await api.roll.success({ actor, base: level, skill: CAUTERY.skill, label: title, tags: ["cautery"], item, opponent: patient } as any);
+  if (!result || "refused" in result) return;
+  const lines: string[] = [];
+  if (!answer.anaesthetic) {
+    await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any);
+    lines.push(F("CauteryPain", { name: patient.name }));
+  }
+  if (result.success) {
+    await api.actors.stopBleeding(patient);
+    lines.push(F("Cauterized", { name: patient.name }));
+  } else lines.push(F("NotCauterized", { name: patient.name }));
+  if (kindOf(item) === "cauteryPen") {
+    await api.items.changeQuantity(item, -1, { reason: L("PenUsed") });
+    lines.push(L("PenUsed"));
+  }
+  await card(patient, title, lines);
+}
 
 // ── the item sheet ──
 
@@ -168,7 +219,9 @@ function itemLines(item: any): string[] {
     case "diathermy": return [F("DiathermyItem", { minutes: PAIN_TREATMENT_MINUTES }), ...(deviceData(item).earlyModel ? [F("EarlyItem", { penalty: EARLY_DIATHERMY.penalty, burn: EARLY_DIATHERMY.burn })] : [])];
     case "heatingPad": return [F("PadItem", { minutes: PAIN_TREATMENT_MINUTES })];
     case "ect": return [F("EctItem", { modifier: ECT.htModifier })];
-    case "laserScalpel": return [F("ScalpelItem", { bonus: LASER_SCALPEL })];
+    case "laserScalpel": return [F("ScalpelItem", { bonus: LASER_SCALPEL }), ...(deviceData(item).specialty ? [F("ScalpelSpecialty", { specialty: deviceData(item).specialty })] : [])];
+    case "cautery": return [L("CauteryItem")];
+    case "cauteryPen": return [L("CauteryItem"), L("PenItem")];
     default: return [];
   }
 }
@@ -184,10 +237,14 @@ export function readyElectromedicine(api: GWorldApi, on: () => boolean): void {
       editable: Boolean(item?.isOwner ?? true),
       lines: itemLines(item),
       early: kindOf(item) === "diathermy" ? { checked: deviceData(item).earlyModel } : null,
+      specialty: kindOf(item) === "laserScalpel" ? { value: deviceData(item).specialty } : null,
     }),
     listeners: (element, item) => {
       element.querySelector<HTMLInputElement>("[data-ee-electromedicine=earlyModel]")?.addEventListener("change", async (event) => {
         await storeDevice(item, { earlyModel: (event.currentTarget as HTMLInputElement).checked });
+      });
+      element.querySelector<HTMLInputElement>("[data-ee-electromedicine=specialty]")?.addEventListener("change", async (event) => {
+        await storeDevice(item, { specialty: String((event.currentTarget as HTMLInputElement).value ?? "").trim() });
       });
     },
   });
@@ -209,7 +266,7 @@ export function readyElectromedicine(api: GWorldApi, on: () => boolean): void {
     if (!on() || !Array.isArray(context?.modifiers)) return;
     const tags: string[] = Array.isArray(context.tags) ? context.tags : [];
     if (!tags.includes("surgery") || !/^surgery\b/i.test(String(context.skill ?? ""))) return;
-    const scalpel = laserScalpel(context.actor);
+    const scalpel = laserScalpel(context.actor, context.skill);
     if (scalpel) context.modifiers.push({ label: String(scalpel.name ?? ""), value: LASER_SCALPEL });
   });
 
@@ -218,4 +275,6 @@ export function readyElectromedicine(api: GWorldApi, on: () => boolean): void {
   action("ee-diathermy", "DiathermyAction", "fa-solid fa-wave-square", "diathermy", (item, actor) => diathermy(api, item, actor));
   action("ee-heating-pad", "PadAction", "fa-solid fa-temperature-arrow-up", "heatingPad", (item, actor) => heatingPad(api, item, actor));
   action("ee-electroconvulsive", "EctAction", "fa-solid fa-brain", "ect", (item, actor) => electroconvulsive(api, item, actor));
+  action("ee-cautery", "CauteryAction", "fa-solid fa-fire-flame-simple", "cautery", (item, actor) => cauterize(api, item, actor));
+  action("ee-cautery-pen", "CauteryAction", "fa-solid fa-fire-flame-simple", "cauteryPen", (item, actor) => cauterize(api, item, actor));
 }

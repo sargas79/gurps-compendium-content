@@ -13,6 +13,9 @@
  *     Housekeeping and -2 to Cooking; an induction cooker's control is
  *     precise, +1 to both, once the cook is used to it; a hot plate is
  *     improvised equipment for either.
+ *   - **Hazards (HT:EE p. 21):** an early resistance wire heater, poorly
+ *     screened, burns 1d-3 a second at a touch; the induction furnace's
+ *     molten metal burns 3d at first contact.
  *   - **Shredders and vacuums (HT:EE p. 23):** reconstructing shredded
  *     documents is a Forensics roll, -5 for a cross-cut shredder's confetti; a
  *     crime scene cleaned with a shopvac, the bag carried away, leaves -2 to
@@ -193,12 +196,41 @@ export const POWER_TOOLS: readonly PowerTool[] = Object.freeze([
   { pattern: /^hot plate$/i, work: perSecond("1d-3", "burn") },
   // A resistance-heated tip, and the smaller TL7 iron (HT:EE p. 14).
   { pattern: /^soldering iron$/i, work: perSecond("1", "burn") },
+  // Cuts electric wire, and can cut a power line: a cut each use (HT:EE p. 14).
+  { pattern: /^wire cutters$/i, work: { ...perSecond("2d", "cut", 2), every: 0 } },
 ]);
 
 export function powerToolOf(name: unknown): PowerTool | null {
   const base = baseName(name);
   return POWER_TOOLS.find((t) => t.pattern.test(base)) ?? null;
 }
+
+// ── appliance hazards (HT:EE p. 21) ──
+
+/** What an appliance does to someone who touches it: burning damage, once or each second. */
+export interface ApplianceHazard {
+  pattern: RegExp;
+  damage: string;
+  perSecond: boolean;
+  /** Only early models do it: inadequate screening. */
+  earlyOnly?: boolean;
+}
+
+export const APPLIANCE_HAZARDS: readonly ApplianceHazard[] = Object.freeze([
+  // Early models' inadequate screening: 1d-3 burn a second (HT:EE p. 21).
+  { pattern: /^resistance wire heater$/i, damage: "1d-3", perSecond: true, earlyOnly: true },
+  // The molten metal in its crucible: 3d burning at first contact (HT:EE p. 21).
+  { pattern: /^handheld induction furnace$/i, damage: "3d", perSecond: false },
+]);
+
+/** An appliance's hazard by its name, where the book gives one: an early-only one whatever the model, for the sheet to offer the choice. */
+export function applianceHazardOf(name: unknown): ApplianceHazard | null {
+  const base = baseName(name);
+  return APPLIANCE_HAZARDS.find((h) => h.pattern.test(base)) ?? null;
+}
+
+/** Whether the hazard applies to this appliance: an early-only one on an early model. */
+export const hazardApplies = (hazard: ApplianceHazard | null, early: boolean): hazard is ApplianceHazard => hazard !== null && (!hazard.earlyOnly || early);
 
 /** The work the tool does with its blade: the diamond blade's divisor and material where one is fitted. */
 export function powerToolWork(tool: PowerTool, diamond: boolean): Work {

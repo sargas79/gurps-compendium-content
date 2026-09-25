@@ -11,7 +11,9 @@
  *     (HT:EE p. 8). A prototype's complexity and the year it was first built
  *     (in brackets), and the year it came on the market, on the item sheet,
  *     with what inventing it takes under the Basic Set's rules (Campaigns
- *     pp. 473-474), a grade easier for a carrier of a later TL.
+ *     pp. 473-474), a grade easier for a carrier of a later TL. A device
+ *     bought used, at the percentage of the new price the GM sets (50-80%
+ *     for a recent model, 10% or less for an old one, p. 8).
  *   - **Breakable parts (breakableComponents):** a device's HP, HT and DR
  *     where its record states none -- HP from its weight as an Unliving
  *     object, 1 at negligible weight, HT 10, DR 2 or 0 for a fragile one --
@@ -21,7 +23,11 @@
  *     at its speed, rolled once, taken whole
  *     by each part with no DR, the parts at -1xHP rolling HT or breaking, and
  *     the device's own injury past its DR (HT:EE pp. 8-9), put on the item
- *     through `items.applyDamage` (#549).
+ *     through `items.applyDamage` (#549). A broken part stops the device:
+ *     a roll made with it is refused until the parts are replaced. Parts
+ *     left at 0 HP or less work, but roll HT for each second of use
+ *     (Campaigns p. 484) -- after each roll made with the device, or from a
+ *     row action for a use no roll covers -- and each that fails stops.
  *   - **Kits (kitBuilding):** a device bought as a kit at a quarter of its
  *     price (20% for the parts, 5% for the instructions), and a row action
  *     that builds it as a single copy, rolled against IQ or a Hobby Skill as
@@ -50,9 +56,15 @@ import {
   kitBuilder,
   kitGrade,
   kitPrice,
+  USED_OLD,
+  USED_RECENT,
   partOutcome,
   partsBroken,
+  partsFailing,
+  partsStopping,
   unavailableWhileNew,
+  usedPercent,
+  usedPrice,
   yearOf,
   type Complexity,
   type GradeRow,
@@ -93,8 +105,10 @@ export interface DeviceData {
   hp: number | null;
   ht: number | null;
   dr: number | null;
-  /** The fragile parts inside it, their HP and HT, and how many are broken. */
-  parts: { count: number; label: string; hp: number; ht: number; broken: number };
+  /** The fragile parts inside it, their HP and HT, how many are broken, and how many work below 0 HP. */
+  parts: { count: number; label: string; hp: number; ht: number; broken: number; failing: number };
+  /** Bought used, at this percentage of the new price; 0 for new (HT:EE p. 8). */
+  used: number;
   /** Audio gear (HT:EE pp. 30-32): the link's sound quality where the GM states one, null to read it from the grade. */
   soundQuality: number | null;
   /** A carbon microphone: improvised for high fidelity, and tougher (HT:EE p. 31). */
@@ -117,6 +131,8 @@ export interface DeviceData {
   military: boolean;
   /** A surveillance camera with pan, tilt and zoom (HT:EE p. 45). */
   panTiltZoom: boolean;
+  /** The specialty a device is designed for, blank for none: a laser scalpel's Surgery (HT:EE p. 14). */
+  specialty: string;
 }
 
 /** Adds the device fields to this module's data on equipment and armour. */
@@ -142,7 +158,9 @@ export function initDevices(): void {
         hp: count(1, 1),
         ht: count(10, 1),
         broken: count(),
+        failing: count(),
       }),
+      used: new f.NumberField({ required: true, nullable: false, integer: true, initial: 0, min: 0, max: 100 }),
       soundQuality: new f.NumberField({ required: true, nullable: true, integer: true, initial: null, min: -10, max: 10 }),
       carbonMicrophone: new f.BooleanField({ initial: false }),
       inexpensive: new f.BooleanField({ initial: false }),
@@ -158,6 +176,7 @@ export function initDevices(): void {
       }),
       military: new f.BooleanField({ initial: false }),
       panTiltZoom: new f.BooleanField({ initial: false }),
+      specialty: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
     }),
   });
 }
@@ -169,6 +188,7 @@ export function deviceData(item: any): DeviceData {
   const stated = (v: unknown) => (typeof v === "number" && Number.isFinite(v) && v >= 0 ? Math.floor(v) : null);
   const p = d.parts ?? {};
   const count = whole(p.count);
+  const broken = Math.min(count, whole(p.broken));
   return {
     complexity: complexityOf(d.complexity),
     prototypeYear: yearOf(d.prototypeYear),
@@ -180,7 +200,8 @@ export function deviceData(item: any): DeviceData {
     hp: stated(d.hp),
     ht: stated(d.ht),
     dr: stated(d.dr),
-    parts: { count, label: String(p.label ?? "").trim(), hp: whole(p.hp, 1), ht: Number(p.ht) >= 1 ? whole(p.ht, 1) : DEVICE_HT, broken: Math.min(count, whole(p.broken)) },
+    parts: { count, label: String(p.label ?? "").trim(), hp: whole(p.hp, 1), ht: Number(p.ht) >= 1 ? whole(p.ht, 1) : DEVICE_HT, broken, failing: Math.min(count - broken, whole(p.failing)) },
+    used: usedPercent(d.used),
     soundQuality: typeof d.soundQuality === "number" && Number.isFinite(d.soundQuality) ? Math.max(-10, Math.min(10, Math.trunc(d.soundQuality))) : null,
     carbonMicrophone: d.carbonMicrophone === true,
     inexpensive: d.inexpensive === true,
@@ -196,6 +217,7 @@ export function deviceData(item: any): DeviceData {
     },
     military: d.military === true,
     panTiltZoom: d.panTiltZoom === true,
+    specialty: String(d.specialty ?? "").trim(),
   };
 }
 
@@ -320,6 +342,11 @@ function itemContext(api: GWorldApi, item: any, on: DeviceSwitches): Record<stri
     broken: breakable && data.parts.broken > 0
       ? F("Broken", { broken: data.parts.broken, count: data.parts.count, label: data.parts.label || L("PartsDefault") })
       : "",
+    failing: breakable && data.parts.failing > 0
+      ? F("Failing", { failing: data.parts.failing, label: data.parts.label || L("PartsDefault"), ht: data.parts.ht })
+      : "",
+    usedHint: F("UsedHint", { min: USED_RECENT.min, max: USED_RECENT.max, old: USED_OLD }),
+    usedLine: cutting && data.used ? F("UsedLine", { percent: data.used }) : "",
     // The kit's price as the character pays it, after cutting edge and the rest; its list figure where none is worked out.
     kitLine: kits && data.kit ? F("KitLine", { price: Number(item?.effectivePrice?.cost ?? kitPrice(retailOf(item))), time: kitTime(api, item, data).text }) : "",
   };
@@ -336,11 +363,13 @@ function itemListeners(element: HTMLElement, item: any): void {
       const value = Math.max(0, Math.floor(Number(input.value) || 0));
       if (field === "parts.hp" || field === "parts.ht") return void (await storeDevice(item, { [field]: Math.max(1, value) }));
       if (field === "parts.label") return void (await storeDevice(item, { "parts.label": String(input.value).trim() }));
+      if (field === "used") return void (await storeDevice(item, { used: usedPercent(value) }));
       if (["prototypeYear", "marketYear", "parts.count"].includes(field)) await storeDevice(item, { [field]: value });
     });
   });
+  // New parts in place of the broken ones, and of the ones left below 0 HP.
   element.querySelector<HTMLElement>("[data-ht-device-replace]")?.addEventListener("click", async () => {
-    await storeDevice(item, { "parts.broken": 0 });
+    await storeDevice(item, { "parts.broken": 0, "parts.failing": 0 });
   });
 }
 
@@ -433,10 +462,11 @@ export async function dropDevice(api: GWorldApi, item: any, actor: any): Promise
     }
     const broken = partsBroken(outcome.state, whole, htRolls, data.parts.ht);
     lines.push(F(`Drop.Parts.${outcome.state}`, { count: whole, label, hp: outcome.hpLeft, ht: data.parts.ht, rolls: htRolls.join(", "), broken }));
-    if (broken > 0) {
-      await storeDevice(item, { "parts.broken": data.parts.broken + broken });
-      lines.push(F("Drop.Replace", { broken: data.parts.broken + broken, label }));
-    }
+    // The parts left at 0 HP or less roll HT each second the device is used from now on.
+    const failing = partsFailing(outcome.state, whole, broken, data.parts.failing);
+    if (broken > 0 || failing !== data.parts.failing) await storeDevice(item, { "parts.broken": data.parts.broken + broken, "parts.failing": failing });
+    if (broken > 0) lines.push(F("Drop.Replace", { broken: data.parts.broken + broken, label }));
+    if (outcome.state === "breaking" && failing > 0) lines.push(F("Drop.Survivors", { failing, label, ht: data.parts.ht }));
   }
   const injury = deviceInjury(rolled, dr);
   // The system puts the blow on a thing that keeps hit points, rolling its HT
@@ -449,6 +479,48 @@ export async function dropDevice(api: GWorldApi, item: any, actor: any): Promise
       : F("Drop.Injured", { injury, dr, state: L(`State.${state}`) }));
   await say(actor, F("Drop.Card", { name: item.name }), lines, rolls);
   if (recorded) await api.items.applyDamage({ item, damage: rolled, type: "cr", label: F("Drop.DamageLabel", { name: item.name }) });
+}
+
+// ── parts below 0 HP in use (HT:EE p. 8; Campaigns p. 484) ─────────────────
+
+/** Whether the device won't work: a broken part in it, until replaced. */
+export function partsOut(item: any): boolean {
+  return deviceData(item).parts.broken > 0;
+}
+
+/** Another carried piece of gear, with no broken parts, that serves the skill rolled. */
+export function otherToolFor(api: GWorldApi, actor: any, item: any, skill: unknown): any {
+  const wanted = api.rules.toolSkillKey(String(skill ?? ""));
+  if (!wanted) return null;
+  return [...(actor?.items ?? [])].find((other: any) => other !== item && other?.id !== item?.id
+    && other?.type === "equipment" && other.system?.carried !== false && !partsOut(other)
+    && (other.system?.forSkills ?? []).some((s: unknown) => api.rules.toolSkillKey(String(s ?? "")) === wanted)) ?? null;
+}
+
+/**
+ * A second of use with parts below 0 HP: each rolls HT, and each that fails
+ * stops working, out until replaced as a broken part is. Rolled for each
+ * roll made with the device, and from the row action for a use no roll
+ * covers (a lamp left on, a radio listened to).
+ */
+export async function runFailingParts(item: any, actor: any): Promise<number> {
+  const data = deviceData(item);
+  const failing = data.parts.failing;
+  if (failing <= 0) return 0;
+  const label = data.parts.label || L("PartsDefault");
+  const htRolls: number[] = [];
+  const rolls: any[] = [];
+  for (let i = 0; i < failing; i += 1) {
+    const ht = await rollDice("3d6");
+    htRolls.push(ht.total);
+    rolls.push(ht.roll);
+  }
+  const stopped = partsStopping(htRolls, failing, data.parts.ht);
+  if (stopped > 0) await storeDevice(item, { "parts.broken": data.parts.broken + stopped, "parts.failing": failing - stopped });
+  const lines = [F("Run.Rolls", { count: failing, label, ht: data.parts.ht, rolls: htRolls.join(", ") })];
+  lines.push(stopped > 0 ? F("Run.Stopped", { stopped, label }) : L("Run.Kept"));
+  await say(actor, F("Run.Card", { name: item.name }), lines, rolls);
+  return stopped;
 }
 
 // ── building a kit (HT:EE p. 15) ────────────────────────────────────────────
@@ -520,6 +592,37 @@ export function readyDevices(api: GWorldApi, on: DeviceSwitches): void {
     },
   });
 
+  // Bought used: from 50-80% of new for a recent model to 10% or less for an old one (HT:EE p. 8).
+  api.data.registerPriceModifier({
+    module: MODULE_ID,
+    key: "ht-used",
+    types: ["equipment"],
+    apply: (item, price) => {
+      if (!on.cuttingEdge() || !isDevice(item)) return null;
+      const percent = deviceData(item).used;
+      return percent ? { cost: usedPrice(price.cost, percent), weight: price.weight, label: F("UsedPrice", { percent }) } : null;
+    },
+  });
+
+  // A broken part stops the device; parts below 0 HP roll HT for each use (HT:EE p. 8; Campaigns p. 484).
+  // `context.item` is the tool the roll is made with, never a device under repair.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.breakable() || !isDevice(item) || !partsOut(item)) return;
+    // The system picks the roll's item itself: where the character carries another,
+    // unbroken piece of gear for the same skill, the roll can be made with that one,
+    // so it isn't refused. The clean fix is a system way to mark a tool unusable,
+    // so the system passes the broken one over when it chooses.
+    if (otherToolFor(api, context.actor, item, context.skill)) return;
+    const data = deviceData(item);
+    context.refusal ??= F("BrokenRefusal", { name: item.name, broken: data.parts.broken, label: data.parts.label || L("PartsDefault") });
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    const item = context?.item;
+    if (!on.breakable() || !isDevice(item) || deviceData(item).parts.failing <= 0) return;
+    void runFailingParts(item, context.actor);
+  });
+
   // A kit: the parts and the instructions, a quarter of the price (HT:EE p. 15).
   api.data.registerPriceModifier({
     module: MODULE_ID,
@@ -549,6 +652,16 @@ export function readyDevices(api: GWorldApi, on: DeviceSwitches): void {
     icon: "fa-solid fa-arrow-down",
     visible: (item) => on.breakable() && isDevice(item) && deviceData(item).parts.count > deviceData(item).parts.broken,
     run: (item, actor) => { void dropDevice(api, item, actor); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-device-run",
+    itemTypes: ["equipment"],
+    label: L("Run.Title"),
+    icon: "fa-solid fa-plug-circle-exclamation",
+    visible: (item) => on.breakable() && isDevice(item) && !partsOut(item) && deviceData(item).parts.failing > 0,
+    run: (item, actor) => { void runFailingParts(item, actor); },
   });
 
   api.sheets.registerRowAction({
