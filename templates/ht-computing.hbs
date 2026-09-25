@@ -20,6 +20,7 @@
     <div class="ichecks">
       {{#if interfaces.touch}}
         <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.MultitouchHint'}}"><input type="checkbox" data-ht-computing="multitouch" {{#if setup.multitouch}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.Multitouch"}}</label>
+        <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.EarlyTouchHint'}}"><input type="checkbox" data-ht-computing="earlyTouch" {{#if setup.earlyTouch}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.EarlyTouch"}}</label>
       {{/if}}
       {{#if interfaces.voice}}
         <label class="icheck" data-tooltip="{{localize 'GCC.HT.Computing.VoiceTrainedHint'}}"><input type="checkbox" data-ht-computing="voiceTrained" {{#if setup.voiceTrained}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Computing.VoiceTrained"}}</label>

@@ -157,6 +157,13 @@ describe("detecting and measuring (HT:EE p. 10)", () => {
     form = { skill: "0", task: "detect", source: "weak", time: "1" };
     await action("ht-instrument-use").run(meter, tech);
     expect(values(rolls[0])).toEqual([-4, 1]);
+
+    // A professional's routine check, the month's job roll made: found, no roll.
+    rolls.length = 0;
+    form = { skill: "0", task: "detect", source: "weak", time: "1", routine: true };
+    await action("ht-instrument-use").run(meter, tech);
+    expect(rolls).toHaveLength(0);
+    expect(cards.at(-1)).toContain("RoutineFound");
   });
 
   it("puts a failed measurement off by 5% a point, narrowed by quality; a critical failure breaks the reading", async () => {

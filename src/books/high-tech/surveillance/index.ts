@@ -62,6 +62,8 @@ import {
   EW,
   HOMEMADE,
   CELL_PHONE_HEARING,
+  ADAPTED_JAMMER,
+  RADIO_GEAR,
   JAMMER_SHADOW,
   JAMMER_VARIETY_PENALTIES,
   LASER_MIKE_RANGE,
@@ -110,8 +112,10 @@ import {
   type SpotWay,
   type SweepKind,
 } from "./rules.js";
-import { ISOLATOR, SPREAD_SPECTRUM, WHITE_NOISE, guardsOf } from "../covert-listening/rules.js";
+import { SPREAD_SPECTRUM, WHITE_NOISE, guardsOf } from "../covert-listening/rules.js";
 import { deviceData, storeDevice } from "../devices/index.js";
+import { instrumentOf } from "../instruments/rules.js";
+import { sparkGapTransmitter } from "../sensors/index.js";
 
 const NS = "GCC.HT";
 const L = (key: string) => game.i18n.localize(`${NS}.Surveillance.${key}`);
@@ -162,6 +166,8 @@ const options = (values: readonly string[], label: (v: string) => string, select
 export function jammerFor(item: any, switches: JammingSwitches): Jammer | null {
   if (!isGear(item)) return null;
   const name = nameOf(item);
+  const adapted = isRuleOn(switches.jammerKinds) ? adaptedJammer(item) : null;
+  if (adapted) return { range: adapted.range, skill: null, hinders: RADIO_GEAR, variety: "broad", operatorLines: [{ label: L("Jammer.AdaptedLine"), value: ADAPTED_JAMMER.modifier }] };
   const own = jammerByName(name);
   if (own) {
     if (own.skill === null && !own.blocks && isRuleOn(switches.jammerKinds)) return { ...own, variety: "choose" };
@@ -172,6 +178,55 @@ export function jammerFor(item: any, switches: JammingSwitches): Jammer | null {
   if (!supplement || !isRuleOn(switches[supplement.rule])) return null;
   const { range, skill, hinders, variety, spoofs } = supplement;
   return { range, skill, ...(hinders ? { hinders } : {}), ...(variety ? { variety } : {}), ...(spoofs ? { spoofs } : {}) };
+}
+
+/** The flag a Tesla coil or spark-gap transmitter adapted to jam carries: `{ range }`, the range a Tesla coil was given. */
+export const ADAPTED_FLAG = "eeAdaptedJammer";
+
+/** A Tesla coil by its record (HT:EE p. 12). */
+const isTeslaCoil = (item: any): boolean => instrumentOf(nameOf(item))?.kind === "teslaCoil";
+
+/** What can be adapted to jam: a Tesla coil, or a spark-gap transmitter where `radioDesign` is on (HT:EE p. 49). */
+export const adaptable = (item: any): boolean => isGear(item) && (isTeslaCoil(item) || sparkGapTransmitter(item) !== null);
+
+/**
+ * A device adapted to jam, and how far it reaches (HT:EE p. 49): a spark-gap
+ * transmitter as far as it sends; a Tesla coil, which prints no range, as far
+ * as the GM set when it was adapted. Null for anything not adapted.
+ */
+export function adaptedJammer(item: any): { range: number } | null {
+  const flag = item?.flags?.[MODULE_ID]?.[ADAPTED_FLAG];
+  if (!flag || !isGear(item)) return null;
+  const spark = sparkGapTransmitter(item);
+  if (spark) return spark.range > 0 ? { range: spark.range } : null;
+  const range = Number(flag.range);
+  return isTeslaCoil(item) && range > 0 ? { range } : null;
+}
+
+/**
+ * Adapts a Tesla coil or a spark-gap transmitter to jam (HT:EE p. 49): 4
+ * hours in a workshop, or with a tool kit and a Scrounging roll (Per-4,
+ * p. B218). A Tesla coil's reach is asked, as the book prints none.
+ */
+export async function adaptToJam(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const tesla = !sparkGapTransmitter(item);
+  const answer = await ask(F("Jammer.AdaptTitle", { name: item.name }),
+    row(L("Jammer.AdaptWhere"), `<select name="where"><option value="workshop">${esc(L("Jammer.Workshop"))}</option><option value="kit">${esc(L("Jammer.ToolKit"))}</option></select>`)
+    + (tesla ? row(L("Jammer.AdaptRange"), `<input type="number" name="range" value="100" min="1" step="1" style="width:80px" />`) : ""),
+    (form) => ({ where: value(form, "where") === "kit" ? "kit" : "workshop", range: number(form, "range") }));
+  if (!answer) return;
+  if (tesla && !(answer.range > 0)) return void ui.notifications?.warn(L("Jammer.AdaptNoRange"));
+  const label = F("Jammer.AdaptTitle", { name: item.name });
+  if (answer.where === "kit") {
+    const result: any = await api.roll.success({
+      actor, base: api.actors.skillLevel(actor, "Scrounging") ?? (api.actors.attribute(actor, "Per") ?? 10) - 4, skill: "Scrounging", label, tags: ["jamming"], item,
+    } as any);
+    if (!result) return;
+    if (!result.success) return void (await card(actor, label, [L("Jammer.AdaptFailed")]));
+  }
+  await item.setFlag(MODULE_ID, ADAPTED_FLAG, tesla ? { range: Math.floor(answer.range) } : { range: 0 });
+  await card(actor, label, [F("Jammer.Adapted", { hours: ADAPTED_JAMMER.hours, modifier: ADAPTED_JAMMER.modifier })]);
 }
 
 /** A High-Tech jammer's range: a cell-phone jammer built with double the radius reaches twice as far (HT:EE p. 50). */
@@ -234,6 +289,8 @@ export function highTechJammers(switches: JammingSwitches): JammerTable {
     varieties: JAMMER_VARIETY_PENALTIES,
     operatorModifiers: (actor) => analyzerLines(actor, switches.jammerKinds),
     gearModifiers: (item, variety) => spreadLines(item, variety, switches.spreadSpectrum),
+    // A frequency-hopping radio (High-Tech's ECCM, p. 39) has no fixed frequency to know (HT:EE pp. 46, 49).
+    frequencyMoves: (item) => radioByName(nameOf(item), itemTl(item)) !== null && itemTl(item) >= FREQUENCY_HOPPING.tl && sensorData(item).options.eccm === true,
   };
 }
 
@@ -245,7 +302,7 @@ export function initSurveillance(switches: JammingSwitches): void {
 // ── what the gear's sheet says ──
 
 /** The lines on a record's sheet, under the switches that are on. */
-export function surveillanceLines(item: any, on: { screening: boolean; surveillance: boolean; jamming: boolean; jammerKinds?: boolean; radarJamming?: boolean }): string[] {
+export function surveillanceLines(item: any, on: { screening: boolean; surveillance: boolean; jamming: boolean; jammerKinds?: boolean; radarJamming?: boolean; covert?: boolean }): string[] {
   if (!isGear(item)) return [];
   const name = nameOf(item);
   const tl = itemTl(item);
@@ -271,7 +328,8 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
     if (levels) lines.push(F("Mike.Spike", { levels, factor: 2 ** levels }));
     if (isPinheadMike(name)) lines.push(L("Mike.Pinhead"));
     if (isContactMike(name)) lines.push(L("Mike.Contact"));
-    if (/^laser mike$/i.test(name)) lines.push(F(tl >= 8 ? "Mike.LaserTl8" : "Mike.LaserTl7", { range: LASER_MIKE_RANGE[Math.min(8, Math.max(7, tl))] }));
+    // Under the supplement's covert listening, white noise is -4 to the laser mike rather than defeating it (HT:EE p. 44), and its sheet says so.
+    if (/^laser mike$/i.test(name)) lines.push(F(on.covert ? "Mike.LaserRange" : tl >= 8 ? "Mike.LaserTl8" : "Mike.LaserTl7", { range: LASER_MIKE_RANGE[Math.min(8, Math.max(7, tl))] }));
     const bug = bugOf(name);
     if (bug?.sweep === "undetectable") lines.push(L("Bug.Undetectable"));
     if (bug?.sweep === "noisy") lines.push(F("Bug.Noisy", { bonus: signed(NOISY_BUG) }));
@@ -290,7 +348,7 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
     else if (jammer) lines.push(F(jammer.skill === null ? "Jammer.Operated" : "Jammer.Unmanned", { range: jammer.range, skill: jammer.skill ?? 0, shadow: JAMMER_SHADOW }));
     if (isCellPhoneJammer(name) && deviceData(item).doubleRadius) lines.push(F("Jammer.DoubleRadius", DOUBLE_RADIUS));
     if (jammableByName(name, tl)) lines.push(F("Jammer.Hindered", { shadow: JAMMER_SHADOW }));
-    if (isWhiteNoise(name)) lines.push(L("Jammer.WhiteNoise"));
+    if (isWhiteNoise(name) && !on.covert) lines.push(L("Jammer.WhiteNoise"));
   }
   if (on.jammerKinds) {
     const own = jammerByName(name);
@@ -299,6 +357,9 @@ export function surveillanceLines(item: any, on: { screening: boolean; surveilla
     if (range !== null) lines.push(F("Jammer.Varieties", { range: distanceText(NS, range), shadow: JAMMER_SHADOW }));
     if (isSpectrumAnalyzer(name)) lines.push(F("Jammer.Analyzer", { bonus: signed(SPECTRUM_ANALYZER) }));
     if (jammableByName(name, tl)) lines.push(L("Jammer.HinderedVarieties"));
+    const adapted = adaptedJammer(item);
+    if (adapted) lines.push(F("Jammer.AdaptedSheet", { range: distanceText(NS, adapted.range), modifier: ADAPTED_JAMMER.modifier, shadow: JAMMER_SHADOW }));
+    else if (adaptable(item)) lines.push(F("Jammer.Adaptable", { hours: ADAPTED_JAMMER.hours, modifier: ADAPTED_JAMMER.modifier }));
   }
   if (on.radarJamming) {
     const supplement = supplementJammerByName(name, tl);
@@ -553,26 +614,27 @@ async function homemadeBug(api: GWorldApi, item: any, actor: any): Promise<void>
  * 100 square feet, at the detector's quality (good +1, fine +2); +4 for a
  * radio beacon (p. 210); a phone tap, laser mike or laser pinhead mike it
  * can't sense at all (pp. 208-209). With the supplement's covert listening,
- * -5 for a bug using spread spectrum and -2 for one an isolator guards,
- * ticked to start with where the targeted hider carries such a bug or an
- * isolator (HT:EE p. 44).
+ * -5 for a bug using spread spectrum, ticked to start with where the
+ * targeted hider carries such a bug (HT:EE p. 44). An isolator guards a bug
+ * only against a nonlinear junction detector (HT:EE p. 44): it bleeds off
+ * the radio waves that detector sends in, not the bug's own transmission,
+ * which is what this detector picks up.
  */
 export async function sweepForBugs(api: GWorldApi, item: any, actor: any, covert = false): Promise<void> {
   if (!actor) return;
   const target = picked().target;
   const hiderLevel = target ? skillBase(api, target, SURVEILLANCE) : 12;
-  const guards = covert && target ? guardsOf(target) : { spreadSpectrum: false, isolator: false };
+  const guards = covert && target ? guardsOf(target) : { spreadSpectrum: false };
   const answer = await ask(L("Sweep.Title"),
     row(target ? F("Sweep.HiderIs", { name: target.name }) : L("Sweep.Hider"), `<input type="number" name="hider" value="${hiderLevel}" min="0" step="1" style="width:70px" />`)
     + row(L("Sweep.KindLabel"), `<select name="kind">${options(SWEEP_KINDS, (k) => F(`Sweep.Kind.${k}`, { bonus: signed(NOISY_BUG) }))}</select>`)
     + row(L("Sweep.Area"), `<input type="number" name="area" value="100" min="0" step="10" style="width:90px" />`)
     + (covert
       ? row(F("Covert.SpreadRow", { modifier: SPREAD_SPECTRUM }), `<input type="checkbox" name="spread" ${guards.spreadSpectrum ? "checked" : ""} />`)
-        + row(F("Covert.IsolatorRow", { modifier: ISOLATOR }), `<input type="checkbox" name="isolator" ${guards.isolator ? "checked" : ""} />`)
       : ""),
     (form) => ({
       hider: number(form, "hider"), kind: (value(form, "kind") || "normal") as SweepKind, area: number(form, "area"),
-      spread: covert && check(form, "spread"), isolator: covert && check(form, "isolator"),
+      spread: covert && check(form, "spread"),
     }));
   if (!answer) return;
   const label = F("Sweep.Label", { name: item.name });
@@ -585,7 +647,6 @@ export async function sweepForBugs(api: GWorldApi, item: any, actor: any, covert
     ...(quality ? [{ label: F("Sweep.Quality", { name: item.name }), value: quality }] : []),
     ...(answer.kind === "noisy" ? [{ label: L("Sweep.NoisyLine"), value: NOISY_BUG }] : []),
     ...(covert && answer.spread ? [{ label: L("Covert.SpreadLine"), value: SPREAD_SPECTRUM }] : []),
-    ...(covert && answer.isolator ? [{ label: L("Covert.IsolatorLine"), value: ISOLATOR }] : []),
   ];
   const found = await bugSweepContest(api, {
     label,
@@ -597,7 +658,7 @@ export async function sweepForBugs(api: GWorldApi, item: any, actor: any, covert
 
 /** Registers the section, the buttons, the GM tool, the spike mike's hearing and the jammers. */
 export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): void {
-  const state = () => ({ screening: on.screening(), surveillance: on.surveillance(), jamming: on.jamming(), jammerKinds: on.jammerKinds(), radarJamming: on.radarJamming() });
+  const state = () => ({ screening: on.screening(), surveillance: on.surveillance(), jamming: on.jamming(), jammerKinds: on.jammerKinds(), radarJamming: on.radarJamming(), covert: on.covert?.() ?? false });
   api.sheets.registerSheetSection({
     module: MODULE_ID,
     key: "ht-surveillance-item",
@@ -636,6 +697,7 @@ export function readySurveillance(api: GWorldApi, on: SurveillanceSwitches): voi
 
   const named = (pattern: RegExp) => (item: any) => isGear(item) && pattern.test(nameOf(item));
   const actions: Array<{ key: string; label: string; icon: string; visible: (item: any) => boolean; run: (item: any, actor: any) => Promise<void> }> = [
+    { key: "ht-adapt-jammer", label: L("Jammer.AdaptAction"), icon: "fa-solid fa-tower-broadcast", visible: (item) => on.jammerKinds() && adaptable(item) && !adaptedJammer(item), run: (item, actor) => adaptToJam(api, item, actor) },
     { key: "ht-screen", label: L("Screen.Action"), icon: "fa-solid fa-magnifying-glass", visible: (item) => on.screening() && isGear(item) && screenerOf(nameOf(item)) !== null, run: (item, actor) => screen(api, item, actor) },
     { key: "ht-countersniper", label: L("Security.CountersniperTitle"), icon: "fa-solid fa-crosshairs", visible: (item) => on.screening() && named(/^acoustic countersniper system$/i)(item), run: (item, actor) => countersniper(api, item, actor) },
     { key: "ht-contact-mike", label: L("Mike.ContactTitle"), icon: "fa-solid fa-ear-listen", visible: (item) => on.surveillance() && isGear(item) && isContactMike(nameOf(item)), run: (item, actor) => contactMike(api, item, actor, on.covert?.() ?? false) },

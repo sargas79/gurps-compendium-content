@@ -113,6 +113,7 @@ export function initInformation(computerRule: string, erasRule?: string): void {
       touch: new f.StringField({ required: true, nullable: false, blank: false, initial: "desktop", choices: [...TOUCH_SIZES] }),
       multitouch: new f.BooleanField({ initial: true }),
       voiceTrained: flag(),
+      earlyTouch: flag(),
       language: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: [...LANGUAGES] }),
       burntOut: flag(),
     }),
@@ -138,6 +139,7 @@ export function computerSetup(item: any): ComputerSetup {
     touch: among(TOUCH_SIZES, data.touch, "desktop"),
     multitouch: data.multitouch !== false,
     voiceTrained: Boolean(data.voiceTrained),
+    earlyTouch: Boolean(data.earlyTouch),
     language: among(LANGUAGES, data.language, ""),
     burntOut: Boolean(data.burntOut),
   };

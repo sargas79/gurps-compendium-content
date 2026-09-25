@@ -33,7 +33,8 @@
  *     in the beam, free to move away, and a row action for victims leaving
  *     it, whose Agony then lasts a second (note [5]).
  *   - **Non-nuclear EMP (nonNuclearEmp):** a row action sets off an NNEMP at
- *     the targeted characters within 220 yards. The GM picks their gear and
+ *     the targeted characters within 220 yards, once its explosive charge is
+ *     set up on Explosives (Demolition) (a failure: it doesn't go off). The GM picks their gear and
  *     says what each is -- plain electronics, Hardened or purely electrical
  *     -- and each rolls its HT as an object (`items.equipmentFailure`, API
  *     1.118.0), +3 if Hardened or electrical. What fails is out of action
@@ -367,6 +368,11 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     controls.push(checkbox("spent", L("PulseSpent"), true));
     const value = await ask(L("Pulse"), controls.join(""), L("PulseGo"));
     if (!value) return;
+    // The explosive charge that compresses the coils is set up with Explosives (Demolition) (HT:EE p. 50):
+    // set up wrong, it doesn't go off, and the device is kept.
+    const setUp = await skillRoll(api, actor, [{ skill: "Explosives (Demolition)", modifier: 0 }], F("SetUpRoll", { name: nameOf(item) }), [], ["nnemp"]);
+    if (!setUp) return;
+    if (!setUp.success) return void (await say(actor, L("Pulse"), [F("NotSetUp", { name: nameOf(item) })]));
     const lines: string[] = [];
     for (const [v, victim] of victims.entries()) {
       for (const gear of electronicsOf(victim)) {

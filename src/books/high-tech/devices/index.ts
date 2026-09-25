@@ -137,6 +137,8 @@ export interface DeviceData {
   doubleRadius: boolean;
   /** The specialty a device is designed for, blank for none: a laser scalpel's Surgery (HT:EE p. 14). */
   specialty: string;
+  /** A flatscreen television's larger screen: wall-mounted up to 64", or larger; blank for the record's own (HT:EE p. 34). */
+  screen: "" | "wall" | "large";
 }
 
 /** Adds the device fields to this module's data on equipment and armour. */
@@ -182,6 +184,7 @@ export function initDevices(): void {
       panTiltZoom: new f.BooleanField({ initial: false }),
       doubleRadius: new f.BooleanField({ initial: false }),
       specialty: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
+      screen: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", "wall", "large"] }),
     }),
   });
 }
@@ -224,6 +227,7 @@ export function deviceData(item: any): DeviceData {
     panTiltZoom: d.panTiltZoom === true,
     doubleRadius: d.doubleRadius === true,
     specialty: String(d.specialty ?? "").trim(),
+    screen: d.screen === "wall" || d.screen === "large" ? d.screen : "",
   };
 }
 

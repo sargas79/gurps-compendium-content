@@ -331,3 +331,37 @@ describe("appliance hazards (HT:EE p. 21)", () => {
     expect(actions.get("ee-appliance-hazard").visible(early)).toBe(false);
   });
 });
+
+describe("printing and scanning (HT:EE pp. 23-24, 33)", () => {
+  it("makes a part on the better of Machinist and Artist (Sculpting), -2 until familiar", async () => {
+    const printer = record("3D Printer", { tl: "8" });
+    const maker = person([printer], { skills: { Machinist: 11, "Artist (Sculpting)": 13 } });
+    expect(actions.get("ee-3d-print").visible(printer)).toBe(false);
+    on.appliances = true;
+    expect(actions.get("ee-3d-print").visible(printer)).toBe(true);
+    await actions.get("ee-3d-print").run(printer, maker);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 13, skill: "Artist (Sculpting)", modifiers: [] });
+    familiar = false;
+    await actions.get("ee-3d-print").run(printer, person([printer]));
+    await flush();
+    // Machinist's IQ-5 beats Artist's IQ-6.
+    expect(successes[1]).toMatchObject({ base: 7, skill: "Machinist", modifiers: [{ value: -2 }] });
+  });
+
+  it("prints a picture on Artist with the printer's resolution, and scans art at -2", async () => {
+    on.appliances = true;
+    const dot = record("Dot Matrix Printer", { tl: "7" });
+    const laser = record("Laser Printer", { tl: "8" });
+    const artist = person([dot, laser], { items: [dot, laser, { type: "skill", name: "Artist (Illustration)" }], skills: { "Artist (Illustration)": 14 } });
+    await actions.get("ee-print-picture").run(dot, artist);
+    await actions.get("ee-print-picture").run(laser, artist);
+    await flush();
+    expect(successes.map((s) => [s.base, s.skill, s.modifiers.map((m: any) => m.value)])).toEqual([[14, "Artist (Illustration)", [-5]], [14, "Artist (Illustration)", [1]]]);
+    expect(actions.get("ee-print-picture").visible(record("Printer"))).toBe(false);
+    const scanner = record("Flatbed Scanner", { tl: "8" });
+    await actions.get("ee-scan-picture").run(scanner, person([scanner]));
+    await flush();
+    expect(successes[2]).toMatchObject({ base: 7, skill: "Electronics Operation (Media)", modifiers: [{ value: -2 }] });
+  });
+});

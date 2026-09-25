@@ -108,6 +108,12 @@ describe("digital interfaces (HT:EE pp. 39-41)", () => {
     expect(values(interfaceLines(setup({ touch: "desktop", multitouch: true }), 3, { computerOperation: true, stylus: true }, null))).toEqual([["touch", 1]]);
   });
 
+  it("puts an early touch screen, before 1988, at -2 on every roll through it (HT:EE p. 40)", () => {
+    expect(values(interfaceLines(setup({ touch: "desktop", multitouch: false, earlyTouch: true }), 3, { computerOperation: true, stylus: false }, null))).toEqual([["earlyTouch", -2]]);
+    expect(values(interfaceLines(setup({ touch: "tablet", multitouch: false, earlyTouch: true }), 3, { computerOperation: false, stylus: false }, null))).toEqual([["earlyTouch", -2]]);
+    expect(values(interfaceLines(setup({ interface: "voice", earlyTouch: true, voiceTrained: true }), 4, { computerOperation: true, stylus: false }, null))).toEqual([["voice", -2]]);
+  });
+
   it("puts voice control at -2, and -2 more until trained", () => {
     expect(values(interfaceLines(setup({ interface: "voice" }), 4, operation, null))).toEqual([["voice", -2], ["voiceUntrained", -2]]);
   });

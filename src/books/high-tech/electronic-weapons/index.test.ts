@@ -270,6 +270,12 @@ describe("non-nuclear EMP (HT:EE p. 50)", () => {
     expect(actions.get("ee-nnemp").visible(nnemp)).toBe(true);
     targets = [{ actor: victim, center: { x: 0, y: 0 } }];
     dialogAnswer = { "g0-Radio": "electronic", "g0-Hardened Radio": "hardened", spent: "on" };
+    // Its charge set up wrong, it doesn't go off, and isn't spent.
+    actions.get("ee-nnemp").run(nnemp, saboteur);
+    await flush();
+    expect(failures).toEqual([]);
+    expect(nnemp.update).not.toHaveBeenCalled();
+    successResult = { success: true };
     actions.get("ee-nnemp").run(nnemp, saboteur);
     await flush();
     expect(failures.map((f) => [f.item.name, f.modifier, f.apply])).toEqual([["Radio", 0, false], ["Hardened Radio", 3, false]]);
