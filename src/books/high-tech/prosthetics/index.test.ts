@@ -7,7 +7,10 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { setRuleReader } from "../../../shared/book-tables.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { CELL_TABLES } from "../../../shared/power/index.js";
+import { BATTERIES_RULE, EXTERNAL_POWER_RULE, highTechBatteries } from "../power/index.js";
 import { SURGERY_FLAG, operateElectively, readyProsthetics, recordOperation, sightCured } from "./index.js";
 
 type Listener = (...args: any[]) => void;
@@ -113,6 +116,22 @@ describe("prosthetics as Mitigators", () => {
   it("puts Ham-Fisted 2 back in place of One Arm under a basic arm prosthetic", () => {
     const traits = inPlay(person([item("One Arm", "trait"), item("Basic Arm Prosthetic")]));
     expect(traits[0]).toMatchObject({ inPlay: false, restores: [{ name: "Ham-Fisted", levels: 2 }] });
+  });
+
+  it("mitigates nothing once an advanced prosthetic's hours between recharges are spent (p. 226)", () => {
+    CELL_TABLES.register(highTechBatteries());
+    setRuleReader((key) => key === BATTERIES_RULE || key === EXTERNAL_POWER_RULE);
+    try {
+      const power = { draw: { cell: "", cells: 0, endurance: "8 hours", raw: "8 hours between recharges" }, rechargeable: true, hoursUsed: 7 };
+      const arm = { ...item("Advanced Arm Prosthetic", "equipment", { extensions: { [MODULE_ID]: { power } } }), flags: { [MODULE_ID]: { book: "high-tech" } } };
+      const pat = person([item("One Arm", "trait"), arm]);
+      expect(inPlay(pat)[0].inPlay).toBe(false);
+      power.hoursUsed = 8;
+      expect(inPlay(pat)[0].inPlay).toBe(true);
+    } finally {
+      CELL_TABLES.clear();
+      setRuleReader(() => false);
+    }
   });
 
   it("leaves alone a trait another listener already took out", () => {

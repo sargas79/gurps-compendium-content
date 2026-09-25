@@ -5,7 +5,7 @@
  */
 
 import { readFileSync } from "node:fs";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
 import { setRuleReader } from "../../../shared/book-tables.js";
@@ -14,8 +14,8 @@ import { isPluggable, isPowered, loadedCellWeight, powerData } from "../../../sh
 import { MODULE_ID } from "../../../shared/module.js";
 import { ultraTechCells } from "../../ultra-tech/power/index.js";
 import { BATTERIES_RULE, CHEMISTRY_RULE, EXTERNAL_POWER_RULE, HIGH_TECH_BATTERIES, generatorShown, highTechBatteries, hoursToRecharge } from "./index.js";
-import { CHEMISTRIES, batteryInChemistry, chargerExplosion, chemistryFactors, runawayDamage, runsAway } from "./chemistry.js";
-import { batteryRecordPrice, batterySizeOf, flywheelRecordPrice, registerChemistryVariant } from "./electricity.js";
+import { CHEMISTRIES, batteryInChemistry, chargerExplosion, chemistryFactors, gravityCellSkills, isWetCell, runawayDamage, runsAway } from "./chemistry.js";
+import { batteryRecordPrice, batterySizeOf, flywheelRecordPrice, readyElectricity, registerChemistryVariant } from "./electricity.js";
 import { GENERATORS, rechargeHours, rechargedShare } from "./generators.js";
 import { gradesOf } from "./grades.js";
 import { capacitorBankModifier, flywheelFigures, flywheelPrice, supercapacitorStandsFor } from "./storage.js";
@@ -238,5 +238,90 @@ describe("the grades of external power (HT:EE p. 9)", () => {
     expect(grades("Microwave Oven")).toEqual(["household"]);
     expect(grades("Arc Welder")).toEqual(["industrial"]);
     expect(grades("DVD Player")).toEqual(["household"]);
+  });
+});
+
+describe("the wet cells (HT:EE pp. 16-17)", () => {
+  let hooks: Map<string, Array<(context: any) => void>>;
+  let actions: Map<string, any>;
+  let successes: any[];
+  let results: any[];
+  let chat: string[];
+  let dialogAnswer: any;
+
+  const fakeApi = () => ({
+    rules: { parseTechLevel: (value: string) => (value === "" ? null : Number(value)), speedRangeModifier: () => 0 },
+    combat: { hooks: { successRollModifiers: "gworld.successRollModifiers" } },
+    data: { registerPriceModifier: () => undefined, registerExplosive: () => undefined },
+    sheets: { registerSheetSection: () => undefined, registerRowAction: (a: any) => actions.set(a.key, a) },
+    actors: { skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null },
+    roll: { success: async (o: any) => { successes.push(o); return results.shift() ?? { success: true }; } },
+  });
+  const fire = (name: string, context: any) => { for (const fn of hooks.get(name) ?? []) fn(context); return context; };
+  const flush = async () => { for (let i = 0; i < 20; i += 1) await Promise.resolve(); };
+  const sounder = (chemistry: string) => {
+    const item: any = gear("high-tech", { draw: { cell: "M", cells: 1, endurance: "100 hours" }, chemistry, hoursUsed: 2 }, "Sounder", "5");
+    item.update = async (patch: Record<string, unknown>) => {
+      for (const [path, value] of Object.entries(patch)) item.system.extensions[MODULE_ID].power[path.split(".").at(-1)!] = value;
+    };
+    return item;
+  };
+
+  beforeEach(() => {
+    hooks = new Map();
+    actions = new Map();
+    successes = [];
+    results = [];
+    chat = [];
+    dialogAnswer = { task: "tend" };
+    vi.stubGlobal("Hooks", { on: (name: string, fn: (context: any) => void) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
+    vi.stubGlobal("game", { i18n: { localize: (k: string) => k, format: (k: string, d: any) => `${k} ${JSON.stringify(d)}` } });
+    vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
+    vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
+    vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
+    readyElectricity(fakeApi() as never, HIGH_TECH_BATTERIES, switches("chemistry"));
+    only(BATTERIES_RULE, CHEMISTRY_RULE);
+  });
+
+  afterEach(() => vi.unstubAllGlobals());
+
+  it("rates the Daniell and gravity cells as wet cells: a quarter as long", () => {
+    expect(CHEMISTRIES.daniellCell).toEqual(CHEMISTRIES.wetCell);
+    expect(CHEMISTRIES.gravityCell).toEqual(CHEMISTRIES.wetCell);
+    expect(isWetCell("gravityCell")).toBe(true);
+    expect(isWetCell("alkaline")).toBe(false);
+  });
+
+  it("takes -1 off Electrician and Electronics Operation with what a Daniell cell powers", () => {
+    const roll = (item: any, skill: string) => fire("gworld.successRollModifiers", { item, skill, modifiers: [] }).modifiers;
+    expect(roll(sounder("daniellCell"), "Electronics Operation (Communications)")).toEqual([{ label: "GCC.HT.Energy.DaniellLine", value: -1 }]);
+    expect(roll(sounder("daniellCell"), "Electrician")).toEqual([{ label: "GCC.HT.Energy.DaniellLine", value: -1 }]);
+    expect(roll(sounder("daniellCell"), "Morse Code")).toEqual([]);
+    expect(roll(sounder("gravityCell"), "Electrician")).toEqual([]);
+  });
+
+  it("offers the Communications skills only at TL5-7", () => {
+    expect(gravityCellSkills("tend", 6)).toEqual(["Electronics Operation (Communications)", "Chemistry"]);
+    expect(gravityCellSkills("setUp", 8)).toEqual(["Chemistry"]);
+    expect(gravityCellSkills("setUp", null)).toEqual(["Electronics Repair (Communications)", "Chemistry"]);
+  });
+
+  it("loses a gravity cell's power on a failed day's upkeep, and gives it back with a new cell", async () => {
+    const item = sounder("gravityCell");
+    const actor = { name: "Operator", system: { tl: "6" }, skills: { "Electronics Operation (Communications)": 12, Chemistry: 10, "Electronics Repair (Communications)": 11 } };
+    expect(actions.get("ee-gravity-cell").visible(item)).toBe(true);
+    expect(actions.get("ee-gravity-cell").visible(sounder("wetCell"))).toBe(false);
+    results = [{ success: false }];
+    actions.get("ee-gravity-cell").run(item, actor);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 12, skill: "Electronics Operation (Communications)", tags: ["gravityCell"] });
+    expect(enduranceLeft(powerData(item))).toMatchObject({ left: 0 });
+    expect(chat[0]).toContain("Gravity.Lost");
+    dialogAnswer = { task: "setUp" };
+    actions.get("ee-gravity-cell").run(item, actor);
+    await flush();
+    expect(successes[1]).toMatchObject({ base: 11, skill: "Electronics Repair (Communications)" });
+    expect(enduranceLeft(powerData(item))).toMatchObject({ left: 25 });
+    expect(chat[1]).toContain("Gravity.SetUp");
   });
 });

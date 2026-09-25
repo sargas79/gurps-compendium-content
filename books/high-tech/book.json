@@ -4027,6 +4027,22 @@
           "system.extensions.gurps-compendium-content.power.rechargeable": true
         },
         "reason": "built-in rechargeable batteries for 3 hours, as High-Tech: Electricity and Electronics p. 43 prints them (overlap-ee.txt) (#488)"
+      },
+      {
+        "pattern": "^Advanced Arm Prosthetic$",
+        "set": {
+          "system.extensions.gurps-compendium-content.power.draw": { "cell": "", "cells": 0, "endurance": "8 hours", "raw": "8 hours between recharges" },
+          "system.extensions.gurps-compendium-content.power.rechargeable": true
+        },
+        "reason": "8 hours between recharges (p. 226), as built-in rechargeable batteries (#510)"
+      },
+      {
+        "pattern": "^Advanced Leg Prosthetic$",
+        "set": {
+          "system.extensions.gurps-compendium-content.power.draw": { "cell": "", "cells": 0, "endurance": "30 hours", "raw": "30 hours between recharges" },
+          "system.extensions.gurps-compendium-content.power.rechargeable": true
+        },
+        "reason": "30 hours between recharges (p. 226), as built-in rechargeable batteries (#510)"
       }
     ]
   },
@@ -4051,7 +4067,11 @@
           "Hot Stick (Fiberglass)": "Hot Stick",
           "Small Tesla Coil": "Tesla Coil",
           "Large Tesla Coil": "Tesla Coil",
-          "Electrobat II": "Electrobat"
+          "Electrobat II": "Electrobat",
+          "Ethernet Adapter (Coaxial Cable)": "Ethernet Adapter",
+          "Ethernet Adapter (Twisted Pair)": "Ethernet Adapter",
+          "Ethernet Adapter (Fiber-Optic Cable)": "Ethernet Adapter",
+          "Green Laser Pointer": "Laser Pointer"
         },
         "families": [
           { "pattern": "^Compact Digital Oscilloscope$", "replace": "Digital Oscilloscope" },
@@ -4096,6 +4116,10 @@
           {
             "pattern": "^Reconnaissance UAVs$",
             "reason": "the two UAVs are kept by hand as vehicles from the Reconnaissance UAVs Table; the entry's price is two T-Hawks and their controller (HT:EE p. 46)"
+          },
+          {
+            "pattern": "^Ethernet Adapter$",
+            "reason": "the entry names three media, each with its own years; one record a medium is kept by hand (HT:EE p. 41)"
           }
         ],
         "set": [
@@ -5295,6 +5319,15 @@
         "system.rangedModes.0.bulk": -2
       },
       "reason": "the same grenade with the sleeve taken off, a concussion grenade (p. 192 note 6, p. 193)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Schermuly Stun$",
+      "set": {
+        "system.rangedModes.0.areaAttack": true,
+        "system.rangedModes.0.radius": 10
+      },
+      "reason": "a Vision- and Hearing-Based affliction over a 10-yard radius (p. 192 note 7), as the Basic Set's stun grenade (Characters p. 277) (#510)"
     },
     {
       "pack": "equipment",

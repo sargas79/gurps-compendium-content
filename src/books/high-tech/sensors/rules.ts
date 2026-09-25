@@ -242,6 +242,12 @@ export interface ActiveFigures {
   modes: Readonly<Partial<Record<"tactical" | "lpi" | "imaging", number>>>;
   /** What a successful roll with it gives a skill it serves, where the record says (HT:EE p. 35). */
   survey?: number;
+  /**
+   * A second antenna the operator may sweep with, and how far it reaches in
+   * yards: the supplement's GPR's high-frequency antenna (HT:EE p. 35).
+   * `range` is the other, standard one's.
+   */
+  highFrequency?: number;
 }
 
 const SONAR = "Electronics Operation (Sonar)";
@@ -267,9 +273,10 @@ export const ACTIVE_SENSORS: Readonly<Record<string, ActiveFigures>> = Object.fr
   // The Electricity and Electronics supplement's (HT:EE p. 35): a handheld
   // sonar reaching 10 yards; a TL7 ground-penetrating radar on a tricycle
   // base, its low-frequency antenna reaching 50 yards down, whose successful
-  // roll is +2 to a skill it serves.
+  // roll is +2 to a skill it serves; its high-frequency antenna reaches 10
+  // yards, for a finer image.
   "Handheld Sonar": { kind: "sonar", size: "small", range: () => 10, skill: SONAR, modes: {} },
-  "Ground-Penetrating Radar": { kind: "gpr", range: () => 50, skill: "Electronics Operation (Scientific)", modes: {}, survey: GPR_SURVEY },
+  "Ground-Penetrating Radar": { kind: "gpr", range: () => 50, skill: "Electronics Operation (Scientific)", modes: {}, survey: GPR_SURVEY, highFrequency: 10 },
 });
 
 /** The modes a sensor of this TL may have. */

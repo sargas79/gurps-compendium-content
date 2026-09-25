@@ -29,6 +29,7 @@ let derived: Map<string, any>;
 let tools: Map<string, any>;
 let successes: any[];
 let failures: any[];
+let damages: any[];
 let chat: string[];
 let on: { appliances: boolean; powerTools: boolean };
 let familiar: boolean | null;
@@ -59,7 +60,7 @@ function fakeApi() {
       isFamiliar: () => familiar,
     },
     items: { equipmentFailure: async (o: any) => { failures.push(o); return { outcome: "success" }; } },
-    roll: { success: async (o: any) => { successes.push(o); return { success: true }; } },
+    roll: { success: async (o: any) => { successes.push(o); return { success: true }; }, damage: async (o: any) => { damages.push(o); return {}; } },
   };
 }
 
@@ -100,6 +101,7 @@ beforeEach(() => {
   tools = new Map();
   successes = [];
   failures = [];
+  damages = [];
   chat = [];
   on = { appliances: false, powerTools: false };
   familiar = true;
@@ -293,8 +295,39 @@ describe("power tools (HT:EE pp. 14, 21, 24)", () => {
 
   it("offers the early model and the diamond blade on the item sheet", () => {
     const context = (item: any) => sections.get("ee-appliances-item").context(item);
-    expect(context(record("Power Drill")).early).toEqual({ checked: false });
+    expect(context(record("Power Drill")).early).toEqual({ checked: false, hint: "GCC.HT.Appliances.EarlyHint" });
     expect(context(record("Circular Saw")).diamond).toEqual({ checked: false });
     expect(context(record("Arc Welder")).diamond).toBeNull();
+  });
+
+  it("cuts with wire cutters, 2d(2) each use (HT:EE p. 14)", () => {
+    expect(mode(record("Wire Cutters", { weight: 0 }))).toMatchObject({ damage: "2d", damageType: "cut", armorDivisor: 2, notes: [{ label: "GCC.HT.Tools.PerUse" }] });
+  });
+});
+
+describe("appliance hazards (HT:EE p. 21)", () => {
+  beforeEach(() => { on.appliances = true; });
+
+  it("burns 3d at a touch of the induction furnace's molten metal", async () => {
+    const furnace = record("Handheld Induction Furnace");
+    const smith = person([furnace]);
+    expect(actions.get("ee-appliance-hazard").visible(furnace)).toBe(true);
+    expect(sections.get("ee-appliances-item").context(furnace).lines).toContain('GCC.HT.Appliances.HazardLine {"damage":"3d"}');
+    actions.get("ee-appliance-hazard").run(furnace, smith);
+    await flush();
+    expect(damages[0]).toMatchObject({ actor: smith, item: furnace, formula: "3d", damageType: "burn", label: 'GCC.HT.Appliances.HazardLabel {"name":"Handheld Induction Furnace"}' });
+  });
+
+  it("burns 1d-3 a second only from an early resistance wire heater", async () => {
+    const heater = record("Resistance Wire Heater");
+    expect(actions.get("ee-appliance-hazard").visible(heater)).toBe(false);
+    expect(sections.get("ee-appliances-item").context(heater).early).toEqual({ checked: false, hint: "GCC.HT.Appliances.EarlyHeaterHint" });
+    const early = record("Resistance Wire Heater", {}, { device: { earlyModel: true } });
+    expect(actions.get("ee-appliance-hazard").visible(early)).toBe(true);
+    actions.get("ee-appliance-hazard").run(early, person([early]));
+    await flush();
+    expect(damages[0]).toMatchObject({ formula: "1d-3", label: 'GCC.HT.Appliances.HazardPerSecond {"name":"Resistance Wire Heater"}' });
+    on.appliances = false;
+    expect(actions.get("ee-appliance-hazard").visible(early)).toBe(false);
   });
 });

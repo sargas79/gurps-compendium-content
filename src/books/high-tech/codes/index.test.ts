@@ -12,6 +12,7 @@ const poisons: any[] = [];
 const contests: any[] = [];
 const rolls: any[] = [];
 const doses: any[] = [];
+const conditions: any[] = [];
 let nextRoll: any = { success: true, criticalFailure: false };
 let nextContest: any = { outcome: "first", marginOfVictory: 2 };
 let targets: any[] = [];
@@ -23,6 +24,7 @@ const api: any = {
     attribute: (actor: any, name: string) => actor.attributes?.[name] ?? 10,
     skillLevel: (actor: any, skill: string) => actor.skills?.[skill] ?? null,
     dosePoison: async (actor: any, poison: any) => { doses.push({ actor: actor.name, ...poison }); return { id: "d1" }; },
+    applyCondition: async (actor: any, c: any) => { conditions.push({ actor: actor.name, ...c }); actor.statuses?.add?.(c.key); return c.key; },
   },
   roll: {
     success: async (options: any) => { rolls.push(options); return nextRoll; },
@@ -36,7 +38,7 @@ const action = (key: string) => rowActions.find((a) => a.key === key);
 const tool = (key: string) => gmTools.find((t) => t.key === key);
 
 function character(name: string, options: { skills?: Record<string, number>; attributes?: Record<string, number>; items?: any[] } = {}): any {
-  return { id: name, name, skills: options.skills ?? {}, attributes: options.attributes ?? {}, items: options.items ?? [] };
+  return { id: name, name, skills: options.skills ?? {}, attributes: options.attributes ?? {}, items: options.items ?? [], statuses: new Set<string>() };
 }
 const gear = (name: string, extra: Record<string, unknown> = {}) => ({ name, type: "equipment", system: { carried: true, tl: "8", quantity: 1, ...extra }, flags: { [MODULE_ID]: { book: "high-tech" } } });
 
@@ -178,17 +180,26 @@ describe("disguise and smuggling (pp. 214-215)", () => {
   it("rolls a mule's HT at -1 per 50 pellets, and doses a burst packet on a critical failure", async () => {
     const pills = gear("Mule Pill", { quantity: 120 });
     const mule = character("Mule", { attributes: { HT: 12 }, items: [pills] });
-    nextRoll = { success: false, criticalFailure: true };
+    nextRoll = { success: false, criticalFailure: true, margin: 7 };
+    conditions.length = 0;
     await action("ht-mule-run").run(pills, mule);
     expect(rolls[0]).toMatchObject({ base: 12, kind: "attribute" });
+    // The cramps, and the overdose's hours out cold (Campaigns p. 441).
+    expect(conditions).toEqual([
+      expect.objectContaining({ actor: "Mule", key: "moderatePain" }),
+      expect.objectContaining({ actor: "Mule", key: "unconscious", duration: { seconds: 7 * 3600 } }),
+    ]);
     expect(rolls[0].modifiers.map((m: any) => m.value)).toEqual([-2]);
     expect(doses).toEqual([expect.objectContaining({ actor: "Mule", source: `${MODULE_ID}.mulePillBurst`, resistanceModifier: -4, cycles: 24 })]);
     expect(poisons).toEqual([expect.objectContaining({ module: MODULE_ID, key: "mulePillBurst" })]);
 
     doses.length = 0;
+    conditions.length = 0;
     nextRoll = { success: false, criticalFailure: false };
     await action("ht-mule-run").run(pills, mule);
     expect(doses).toEqual([]);
+    // Already in pain: the cramps add nothing.
+    expect(conditions).toEqual([]);
   });
 
   it("spots a mule in a Quick Contest of Search or Observation against Acting", async () => {

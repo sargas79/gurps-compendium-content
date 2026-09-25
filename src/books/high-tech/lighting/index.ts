@@ -11,7 +11,8 @@
  *     token's own light where its character carries one. The least
  *     darkness a light leaves wins, and none makes the spot darker than it
  *     was. A GM tool reads the light at the selected tokens, and whether it
- *     is bright enough for reading or surgery (-2 without). A row action aims
+ *     is bright enough for reading or surgery (-2 without); Sewing and
+ *     Surgery rolls take that -2 from the light at the roller's token. A row action aims
  *     a beam: DX at the darkness where it is aimed, drifting left or right on
  *     a miss.
  *   - **Glare (lightDazzle):** light five steps above what the eyes are
@@ -41,6 +42,7 @@ import {
   actualWatts,
   batteryMultiplier,
   beamDrift,
+  brightTaskOf,
   brightTaskPenalty,
   darknessLux,
   flashbulbStepAt,
@@ -438,6 +440,17 @@ export function readyLighting(api: GWorldApi, on: LightingSwitches): void {
       return lamp !== null && isBeam(lamp);
     },
     run: (item, actor) => { void aimBeam(api, item, actor); },
+  });
+
+  // Sewing and Surgery in less light than they need: -2, read at the roller's token (HT:EE p. 20).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.illumination() || !Array.isArray(context?.modifiers)) return;
+    const task = brightTaskOf(context.skill);
+    const token = task ? context.actor?.getActiveTokens?.()?.[0] : null;
+    if (!task || !token) return;
+    const here = lightAt(api, token, context.actor);
+    const penalty = here ? brightTaskPenalty(here.lux, BRIGHT_TASKS[task]) : 0;
+    if (penalty) context.modifiers.push({ label: F("DimTask", { task: L(`Task.${task}`), lux: formatLux(here!.lux) }), value: penalty });
   });
 
   // A light on the map is marked as a lamp in its own configuration sheet.

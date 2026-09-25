@@ -11,7 +11,8 @@
  *   - **Oscillators and receivers** (HT:EE p. 29, TL6): quartz-crystal
  *     tuning (cutting edge at TL6, and no drift), and the audio receivers:
  *     grid-leak, regenerative (which may oscillate and jam its neighbours)
- *     and superheterodyne (tuned by a Hearing roll).
+ *     and superheterodyne (tuned by a Hearing roll), which from TL7 every
+ *     audio or video receiver is.
  *   - **Audio, FM, Video and Digital Video** (HT:EE pp. 32, 34): what the
  *     set carries. The supplement prints its radios for code alone, at half
  *     High-Tech's price (HT:EE p. 27); audio doubles it back. High-Tech's
@@ -202,6 +203,24 @@ export function designFactors(input: DesignInput): { cost: number; weight: numbe
   return factors;
 }
 
+/** From TL7 (1940) a five-tube superheterodyne is standard for audio, and it is standard in video receivers (HT:EE p. 29). */
+export const SUPERHET_STANDARD_TL = 7;
+
+/**
+ * Whether a set receives as a superheterodyne (HT:EE p. 29): built with the
+ * option at TL6, or at TL7 and up any set that receives audio or video, whose
+ * standard design it is by then. A send-only set receives nothing.
+ */
+export function isSuperheterodyne(input: DesignInput): boolean {
+  const active = designActive(input);
+  if (active.includes("superheterodyne")) return true;
+  if (input.tl < SUPERHET_STANDARD_TL || input.commMode === "transmitter") return false;
+  return carriesAudio(input, isSparkGap(input)) || carriesVideo(active);
+}
+
+/** Whether the set is a superheterodyne only by its TL, not by the option. */
+export const superheterodyneByDefault = (input: DesignInput): boolean => isSuperheterodyne(input) && !designActive(input).includes("superheterodyne");
+
 /** The quality bonus to Electronics Operation (Communications) a rotary spark gap gives its transmitter (HT:EE p. 28). */
 export function qualityBonus(active: readonly DesignKey[]): number {
   return active.reduce((best, key) => Math.max(best, DESIGN[key].quality ?? 0), 0);
@@ -233,6 +252,18 @@ export function regenerativeAdjustment(result: { success?: boolean; criticalFail
 
 /** An oscillating regenerative receiver jams others: -4 within 440 yards, 1 less for each doubling of the distance (HT:EE p. 29). */
 export const OSCILLATION = Object.freeze({ penalty: -4, yards: 440 });
+
+/**
+ * What an oscillating regenerative receiver this many yards off costs a
+ * receiver to receive (HT:EE p. 29): -4 within 440 yards, -3 within 880, -2
+ * within 1,760, -1 within 3,520, and nothing further.
+ */
+export function oscillationPenalty(yards: number): number {
+  const distance = Math.max(0, Number(yards) || 0);
+  if (distance <= OSCILLATION.yards) return OSCILLATION.penalty;
+  const doublings = Math.ceil(Math.log2(distance / OSCILLATION.yards) - 1e-9);
+  return Math.min(0, OSCILLATION.penalty + doublings);
+}
 
 /** An ultra-high-speed rotary spark gap's audio is distorted: -5 to understand speech, and to Connoisseur (Music) (HT:EE pp. 28, 32). */
 export const DISTORTED_AUDIO = -5;

@@ -957,7 +957,9 @@
           "mount": "",
           "bulk": -2,
           "recoil": 0,
-          "malfunction": 17
+          "malfunction": 17,
+          "areaAttack": true,
+          "radius": 10
         }
       ]
     }

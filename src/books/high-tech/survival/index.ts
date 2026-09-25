@@ -232,11 +232,12 @@ function targetedActor(): any {
   return targets.length === 1 ? targets[0]?.actor ?? null : null;
 }
 
-/** Takes one off a consumable's count; false where there is none left. */
-async function useOne(item: any): Promise<boolean> {
+/** Takes one off a consumable's count (`items.changeQuantity`); false where there is none left. */
+async function useOne(api: GWorldApi, item: any): Promise<boolean> {
   const quantity = Number(item?.system?.quantity);
-  if (Number.isFinite(quantity) && quantity <= 0) return false;
-  if (Number.isFinite(quantity)) await item.update({ "system.quantity": quantity - 1 });
+  if (!Number.isFinite(quantity)) return true;
+  if (quantity <= 0) return false;
+  await api.items.changeQuantity(item, -1, { reason: String(item?.name ?? "") });
   return true;
 }
 
@@ -425,8 +426,8 @@ function dyeActive(actor: any): boolean {
   return Number(actor?.getFlag?.(MODULE_ID, DYE_FLAG)) > worldNow();
 }
 
-async function releaseDye(item: any, actor: any): Promise<void> {
-  if (!(await useOne(item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
+async function releaseDye(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!(await useOne(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
   await actor.setFlag(MODULE_ID, DYE_FLAG, worldNow() + DYE_MARKER_SECONDS);
   await say(actor, String(item.name ?? ""), [F("DyeReleased", { name: actor.name, bonus: SIGNAL_VISION, minutes: DYE_MARKER_SECONDS / 60 })]);
 }
@@ -559,7 +560,7 @@ async function eat(api: GWorldApi, item: any, actor: any): Promise<void> {
     rejectClose: false,
   });
   if (!answer) return;
-  if (!(await useOne(item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
+  if (!(await useOne(api, item))) return void ui.notifications?.warn(F("NoneLeft", { name: item.name }));
   const data = survivalData(item);
   const lines: string[] = [];
   if (answer.moving) {
@@ -856,7 +857,7 @@ export function readySurvival(api: GWorldApi, on: SurvivalSwitches): void {
   action("ht-desalinate", "PumpAction", "fa-solid fa-droplet", (item) => on.survival() && kindIs("desalinator")(item), (item, actor) => pumpWater(api, item, actor));
   action("ht-solar-still", "StillAction", "fa-solid fa-sun", (item) => on.survival() && kindIs("solarStill")(item), (item, actor) => useStill(api, item, actor));
   action("ht-whistle", "WhistleAction", "fa-solid fa-ear-listen", (item) => on.survival() && kindIs("whistle")(item), async (item, actor) => hearSound(api, actor, { name: String(item.name ?? ""), heardAt: WHISTLE_HEARD_AT }));
-  action("ht-dye-marker", "DyeAction", "fa-solid fa-fill-drip", (item) => on.maritime() && kindIs("dyeMarker")(item), (item, actor) => releaseDye(item, actor));
+  action("ht-dye-marker", "DyeAction", "fa-solid fa-fill-drip", (item) => on.maritime() && kindIs("dyeMarker")(item), (item, actor) => releaseDye(api, item, actor));
   action("ht-jump", "JumpAction", "fa-solid fa-parachute-box", (item) => on.parachuting() && kindIs("parachute")(item), (item, actor) => jump(api, item, actor));
   action("ht-eat", "EatAction", "fa-solid fa-utensils", (item) => on.rations() && (kindIs("snack")(item) || kindIs("sportsDrink")(item)), (item, actor) => eat(api, item, actor));
   action("ht-forage", "ForageAction", "fa-solid fa-fish", (item) => on.survival() && (kindIs("fishing")(item) || kindIs("trap")(item)), (item, actor) => forage(api, item, actor));

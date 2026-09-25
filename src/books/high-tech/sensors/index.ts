@@ -192,6 +192,10 @@ import {
   designFactors,
   designOffered,
   isSparkGap,
+  isSuperheterodyne,
+  oscillationPenalty,
+  superheterodyneByDefault,
+  SUPERHET_STANDARD_TL,
   qualityBonus,
   regenerativeAdjustment,
   type DesignInput,
@@ -448,8 +452,7 @@ function drifts(item: any, data: SensorData = sensorData(item)): boolean {
   if (peripheralOf(item) || !driftsByDefault(itemTl(item))) return false;
   const input = designOf(item, data);
   if (!input) return true;
-  const active = designActive(input);
-  return !isSparkGap(input) && !active.includes("quartzTuning") && !active.includes("superheterodyne");
+  return !isSparkGap(input) && !designActive(input).includes("quartzTuning") && !isSuperheterodyne(input);
 }
 
 /** What `radioDesign` adds to a radio's sheet: the options its TL, size and build offer, and what those it has do (HT:EE pp. 28-30, 32, 34). */
@@ -467,11 +470,15 @@ function designLines(item: any, data: SensorData, lines: string[], options: stri
   } else if (input.codePrinted) lines.push(L(active.some((k) => k === "audio" || k === "video" || k === "digitalVideo") ? "CarriesAudio" : "CodePrinted"));
   for (const key of active) {
     if (key === "sparkGap" || key === "audio") continue;
-    if (key === "regenerative") lines.push(F("RegenerativeLine", { penalty: OSCILLATION.penalty, yards: OSCILLATION.yards }));
+    if (key === "regenerative") {
+      lines.push(F("RegenerativeLine", { penalty: OSCILLATION.penalty, yards: OSCILLATION.yards }));
+      if (isOscillating(item)) lines.push(F("OscillatingNow", { penalty: OSCILLATION.penalty, yards: OSCILLATION.yards }));
+    }
     else if (key === "ultraRotarySparkGap") lines.push(F("UltraRotaryLine", { bonus: qualityBonus([key]), penalty: DISTORTED_AUDIO }));
     else if (key === "rotarySparkGap") lines.push(F("RotaryLine", { bonus: qualityBonus([key]) }));
     else lines.push(L(`Design.${key}`));
   }
+  if (superheterodyneByDefault(input)) lines.push(F("SuperhetStandard", { tl: SUPERHET_STANDARD_TL }));
   if (cuttingEdgeDesign(input)) lines.push(L(deviceData(item).cuttingEdge ? "DesignCuttingEdgeMarked" : "DesignCuttingEdge"));
 }
 
@@ -796,7 +803,9 @@ interface SetUp {
  * crystal's sensitive spot (+2 to receive, -2 on a failure, nothing on a
  * critical failure), a regenerative receiver's adjustment (a fifth the range
  * on a failure; on a critical failure it oscillates, hears nothing and jams
- * receivers nearby); and a ground aerial's -2.
+ * receivers nearby until it is adjusted again); and a ground aerial's -2.
+ * Any oscillating set on the map within reach costs the listener's set its
+ * interference (HT:EE p. 29).
  */
 async function setUpReceiver(api: GWorldApi, item: any, actor: any): Promise<SetUp> {
   const out: SetUp = { rangeFactor: 1, modifiers: [], blocked: false, lines: [] };
@@ -814,6 +823,8 @@ async function setUpReceiver(api: GWorldApi, item: any, actor: any): Promise<Set
   }
   if (active.includes("regenerative")) {
     const state = regenerativeAdjustment(await roll(F("RegenerativeAdjust", { name: item.name }), "regenerative"));
+    // An oscillating set keeps jamming its neighbours until it is adjusted again.
+    await markOscillating(item, state === "oscillating");
     if (state === "missed") {
       out.rangeFactor *= REGENERATIVE_MISS;
       out.lines.push(F("RegenerativeMissed", { name: item.name, divisor: Math.round(1 / REGENERATIVE_MISS) }));
@@ -824,7 +835,46 @@ async function setUpReceiver(api: GWorldApi, item: any, actor: any): Promise<Set
   }
   const wire = radioOf(item) ? carriedAntenna(item.actor) : null;
   if (wire && sensorData(wire).options.groundAerial) out.modifiers.push({ key: "groundAerial", value: GROUND_AERIAL });
+  const oscillator = nearestOscillator(item, actor);
+  if (oscillator) {
+    out.modifiers.push({ key: "oscillation", value: oscillator.penalty });
+    out.lines.push(F("OscillationLine", { name: oscillator.item.name, holder: oscillator.holder.name, penalty: oscillator.penalty }));
+  }
   return out;
+}
+
+/** The item flag an oscillating regenerative receiver carries (HT:EE p. 29). */
+const OSCILLATING_FLAG = "eeOscillating";
+
+const isOscillating = (item: any): boolean => Boolean(item?.getFlag?.(MODULE_ID, OSCILLATING_FLAG) ?? item?.flags?.[MODULE_ID]?.[OSCILLATING_FLAG]);
+
+/** Marks a regenerative receiver oscillating, or clears the mark once it is adjusted again. */
+async function markOscillating(item: any, oscillating: boolean): Promise<void> {
+  if (!item?.isOwner || isOscillating(item) === oscillating) return;
+  await (oscillating ? item.setFlag(MODULE_ID, OSCILLATING_FLAG, true) : item.unsetFlag(MODULE_ID, OSCILLATING_FLAG));
+}
+
+/**
+ * The worst interference an oscillating regenerative receiver puts on a
+ * listener's set (HT:EE p. 29): any such set carried on the map, the
+ * listener's own others among them, at -4 within 440 yards and 1 less for
+ * each doubling of the distance. Null where none reaches the listener.
+ */
+function nearestOscillator(item: any, actor: any): { item: any; holder: any; penalty: number } | null {
+  if (!supplementOn("design") || !radioOf(item) || !actor) return null;
+  const tokens: any[] = (globalThis as any).canvas?.tokens?.placeables ?? [];
+  const holders = new Set<any>([actor, ...tokens.map((t) => t?.actor).filter(Boolean)]);
+  let worst: { item: any; holder: any; penalty: number } | null = null;
+  for (const holder of holders) {
+    const yards = holder === actor ? 0 : yardsBetween(actor, holder);
+    if (yards === null) continue;
+    for (const other of holder.items ?? []) {
+      if (other === item || !carried(other) || !isOscillating(other) || !designed(other).includes("regenerative")) continue;
+      const penalty = oscillationPenalty(yards);
+      if (penalty < (worst?.penalty ?? 0)) worst = { item: other, holder, penalty };
+    }
+  }
+  return worst;
 }
 
 /** The comm tool's rows for the supplement's rules: each dipole's bearing, aiming each directional antenna, the tuning roll's conditions, shortwave's (HT:EE pp. 27-30). */
@@ -892,10 +942,11 @@ function listen(input: Listening): CommReception | null {
   const stretch = Number.isFinite(input.range) ? rangeExtensionModifier(input.yards, input.range) : 0;
   const skipped = input.skip ? skipLines(input.yards, input.skip) : null;
   const skip = skipped && Number.isFinite(input.range) && skipApplies(input.yards, input.range, stretch, skipped) ? skipped : undefined;
-  const design = input.design ?? [];
-  if (!tuning && !skip && !design.length) return null;
-  // A superheterodyne is tuned with a simple Hearing roll, whose score already holds the Hearing modifiers (HT:EE p. 29).
-  const superhet = tuning && designed(input.item).includes("superheterodyne");
+  const setUp = input.design ?? [];
+  if (!tuning && !skip && !setUp.length) return null;
+  // A superheterodyne -- every audio set from TL7 -- is tuned with a simple Hearing roll, whose score already holds the Hearing modifiers (HT:EE p. 29).
+  const design = designOf(input.item);
+  const superhet = tuning && design !== null && isSuperheterodyne(design);
   const lines: string[] = [];
   if (skip) lines.push(F("SkipLine", { skips: skipsFor(input.yards) }));
   const roll = tuningRoll({
@@ -905,7 +956,7 @@ function listen(input: Listening): CommReception | null {
     galvanometer: tuning && !superhet && input.galvanometer,
     enhanced: tuning && Boolean(peripheralOf(input.item)),
     ...(skip ? { skip } : {}),
-    ...(design.length ? { extra: design } : {}),
+    ...(setUp.length ? { extra: setUp } : {}),
   });
   // Direct sequence filters out other signals on the band: +4 against the interference (HT:EE p. 47).
   const filtered = tuning && roll?.needed && spreadOf(input.item).direct ? directSequenceTuning(input.conditions) : 0;
@@ -962,6 +1013,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
     + (kinds.has("sonar") ? row(L("Noise"), `<select name="noise">${SONAR_NOISE.map((n) => `<option value="${n}">${n === 0 ? esc(L("NoNoise")) : n}</option>`).join("")}</select>`) : "")
     + (imagingAny ? row(L("ImagingMode"), `<input type="checkbox" name="imaging" />`) : "")
     + (kinds.has("gpr") ? row(L("MediumLabel"), `<select name="medium">${Object.keys(GPR_MEDIUM).map((m) => `<option value="${m}">${esc(L(`Medium.${m}`))}</option>`).join("")}</select>`) : "")
+    + (sensors.some((s) => activeFigures(s.item)?.highFrequency) ? row(L("GprAntenna"), `<select name="antenna"><option value="low">${esc(L("GprAntennaLow"))}</option><option value="high">${esc(L("GprAntennaHigh"))}</option></select>`) : "")
     + (kinds.has("radar") && target ? row(L("Countermeasures"), `<select name="counter"><option value="">${esc(L("Counter.none"))}</option>${Object.keys(COUNTERMEASURES).map((c) => `<option value="${c}">${esc(L(`Counter.${c}`))}</option>`).join("")}</select>`) : "")
     + (refined ? row(L("TargetSm"), `<input type="number" name="sm" value="${Number(target?.system?.sm) || 0}" step="1" style="width:70px" />`) + dwellRow() : "")
     + (surveying ? surveyRow() : ""),
@@ -973,6 +1025,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
       noise: Number(form.querySelector<HTMLSelectElement>("[name=noise]")?.value) || 0,
       imaging: Boolean(form.querySelector<HTMLInputElement>("[name=imaging]")?.checked),
       medium: (form.querySelector<HTMLSelectElement>("[name=medium]")?.value ?? "soil") as keyof typeof GPR_MEDIUM,
+      highFrequency: form.querySelector<HTMLSelectElement>("[name=antenna]")?.value === "high",
       counter: (form.querySelector<HTMLSelectElement>("[name=counter]")?.value ?? "") as "" | keyof typeof COUNTERMEASURES,
       sm: Number(form.querySelector<HTMLInputElement>("[name=sm]")?.value) || 0,
       dwell: readDwell(form),
@@ -984,7 +1037,9 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
   const title = F("SweepLabel", { sensor: chosen.item.name });
   // Only targets within the sensor's arc (p. 45).
   if (answer.arc) return void card(selected, title, [F("ArcMiss", { arc: SENSOR_ARC })]);
-  let base = figures.range(itemTl(chosen.item));
+  // The supplement's GPR swept with its high-frequency antenna reaches less far (HT:EE p. 35).
+  const highFrequency = answer.highFrequency === true && Boolean(figures.highFrequency);
+  let base = highFrequency ? figures.highFrequency! : figures.range(itemTl(chosen.item));
   if (answer.imaging && data.options.imaging) base *= IMAGING_RANGE;
   if (figures.kind === "gpr") base *= GPR_MEDIUM[answer.medium] ?? 1;
   const lpi = data.options.lpi === true;
@@ -1000,6 +1055,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
   if (size) modifiers.push({ label: F("SizeLine", { sm: answer.sm }), value: size });
   const lines: string[] = [];
   if (dwell) lines.push(F("DwellLine", { time: DWELL[dwell].time, bonus: signed(DWELL[dwell].detect) }));
+  if (highFrequency) lines.push(F("GprHighLine", { range: distance(figures.highFrequency!) }));
   if (figures.kind === "gpr" && answer.medium !== "soil") lines.push(F("MediumLine", { medium: L(`Medium.${answer.medium}`), range: distance(base) }));
   if (data.options.tactical) lines.push(F(figures.kind === "radar" ? "TacticalRadar" : "TacticalSonar", { range: distance(figures.range(itemTl(chosen.item)) * TACTICAL_IDENTIFY) }));
   const tags = ["detection", figures.kind];
@@ -1027,7 +1083,7 @@ async function sweep({ api, selected, target, sensors, measured }: SweepContext)
 }
 
 /** The skills the book names a ground-penetrating radar's survey serving (HT:EE p. 35), offered for the one it helps. */
-const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (EOD)"] as const;
+const SURVEY_SKILLS = ["Archaeology", "Prospecting", "Engineer", "Explosives (Explosive Ordnance Disposal)"] as const;
 
 /** The dialog row naming the skill a survey helps: blank leaves the bonus to the GM. */
 function surveyRow(): string {

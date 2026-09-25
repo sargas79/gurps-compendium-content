@@ -16,7 +16,7 @@
     <div class="ichecks">
       {{#if remote}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.RemoteHint'}}"><input type="checkbox" data-ee-appliance="remoteControl" {{#if remote.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Remote"}}</label>{{/if}}
       {{#if stop}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.StopHint'}}"><input type="checkbox" data-ee-appliance="emergencyStop" {{#if stop.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Stop"}}</label>{{/if}}
-      {{#if early}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.EarlyHint'}}"><input type="checkbox" data-ee-appliance="earlyModel" {{#if early.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Early"}}</label>{{/if}}
+      {{#if early}}<label class="icheck" data-tooltip="{{early.hint}}"><input type="checkbox" data-ee-appliance="earlyModel" {{#if early.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Early"}}</label>{{/if}}
       {{#if diamond}}<label class="icheck" data-tooltip="{{localize 'GCC.HT.Appliances.DiamondHint'}}"><input type="checkbox" data-ee-appliance="diamondBlade" {{#if diamond.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Appliances.Diamond"}}</label>{{/if}}
     </div>
   {{/if}}

@@ -211,6 +211,18 @@ export type BrightTask = keyof typeof BRIGHT_TASKS;
 /** A task in less light than it needs is at -2 (HT:EE p. 20). */
 export const DIM_TASK_PENALTY = -2;
 
+/**
+ * The skills whose rolls are the book's bright-light tasks (HT:EE p. 20):
+ * Sewing, as reading light's task, and Surgery, the surgical theater's. Other
+ * reading is left to the GM, as no one skill is reading.
+ */
+export function brightTaskOf(skill: unknown): BrightTask | null {
+  const text = String(skill ?? "").trim();
+  if (/^surgery\b/i.test(text)) return "surgery";
+  if (/^sewing\b/i.test(text)) return "reading";
+  return null;
+}
+
 /** The penalty for a task needing this much light, in this much: 0 or -2. */
 export function brightTaskPenalty(lux: number, needed: number): number {
   return luxStep(lux) >= luxStep(needed) ? 0 : DIM_TASK_PENALTY;

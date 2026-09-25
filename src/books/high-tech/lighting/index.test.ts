@@ -52,6 +52,7 @@ function darknessAt(_scene: any, _at: any, options: any = {}): any {
 function fakeApi() {
   return {
     registry: { isRuleOn: () => false },
+    combat: { hooks: { successRollModifiers: "gworld.successRollModifiers" } },
     areas: { registerLightLevel: (r: any) => { levels.push(r); return `${r.module}.${r.key}`; }, darknessAt },
     sheets: {
       registerSheetSection: (s: any) => sections.set(s.key, s),
@@ -245,6 +246,25 @@ describe("the light at a token (HT:EE p. 20)", () => {
     expect(chat[0]).toContain("GCC.HT.Lighting.ReadLine");
     expect(chat[0]).toContain('"lux":"100"');
     expect(chat[0]).toContain('GCC.HT.Lighting.TaskShort {"task":"GCC.HT.Lighting.Task.reading","lux":"500","penalty":-2}');
+  });
+
+  it("puts -2 on Surgery and Sewing rolled in less light than they need, at the roller's token", () => {
+    const roll = (actor: any, skill: string) => fire("gworld.successRollModifiers", { actor, skill, modifiers: [] }).modifiers;
+    const ann = person("Ann");
+    tokenAt("t1", 0, ann);
+    lightsHere = [{ light: ambientLight({ lamp: "Table Lamp", watts: 100 }), distance: 1 }];
+    expect(roll(ann, "Surgery")).toEqual([]);
+    on.illumination = true;
+    expect(roll(ann, "Surgery")).toEqual([{ label: 'GCC.HT.Lighting.DimTask {"task":"GCC.HT.Lighting.Task.surgery","lux":"100"}', value: -2 }]);
+    expect(roll(ann, "Sewing")).toEqual([{ label: 'GCC.HT.Lighting.DimTask {"task":"GCC.HT.Lighting.Task.reading","lux":"100"}', value: -2 }]);
+    expect(roll(ann, "First Aid")).toEqual([]);
+    // Daylight is enough to sew by, not to operate by.
+    lightsHere = [];
+    daylight = true;
+    expect(roll(ann, "Sewing")).toEqual([]);
+    expect(roll(ann, "Surgery")).toHaveLength(1);
+    // No token on the map: nothing to read.
+    expect(roll(person("Bob"), "Surgery")).toEqual([]);
   });
 
   it("offers the tools and sheet only with the switch on", () => {

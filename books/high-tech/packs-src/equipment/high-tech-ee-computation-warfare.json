@@ -1470,33 +1470,6 @@
     }
   },
   {
-    "_id": "5b5eea5bad913cc8",
-    "name": "Ethernet Adapter",
-    "type": "equipment",
-    "system": {
-      "quantity": 1,
-      "weight": 0,
-      "cost": 10,
-      "carried": true,
-      "equipped": false,
-      "tl": "8",
-      "lc": null,
-      "costOfLivingPercent": 0,
-      "description": "",
-      "reference": "High-Tech: Electricity and Electronics p. 41",
-      "category": "misc",
-      "equipmentQuality": "basic",
-      "forSkills": [],
-      "quality": "good",
-      "material": "",
-      "weaponClass": "",
-      "listCost": 10,
-      "hpLost": 0,
-      "meleeModes": [],
-      "rangedModes": []
-    }
-  },
-  {
     "_id": "34cef13cc6a86bd5",
     "name": "Router",
     "type": "equipment",
