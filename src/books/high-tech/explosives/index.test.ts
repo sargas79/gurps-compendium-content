@@ -237,6 +237,25 @@ describe("demolition charges (pp. 182-183)", () => {
     expect(rolledFormulas).toEqual(["6dx2"]);
   });
 
+  it("doubles a tamped charge's effect on the structure it is packed against, and nothing else (p. 182)", async () => {
+    const tnt = record("TNT (per pound)", "TNT");
+    const sapper = actorWith("Sapper", [tnt]);
+    dialog = { pounds: "1", placement: "contact", distance: "1", structure: "custom", dr: "10", hp: "60", taken: "0", shaped: "", tamped: "on" };
+    actions.get("ht-detonate").run(tnt, sapper);
+    await flush();
+    expect(detonations[0]).toMatchObject({ structureMultiplier: 2, structure: { dr: 10, hp: 60 } });
+    expect(detonations[0].label).toContain("TampedTag");
+    // The people's blast is as before.
+    expect(rolledFormulas).toEqual(["6dx2"]);
+    // Not set nearby, nor with a shaped charge, nor with no structure.
+    for (const patch of [{ placement: "nearby" }, { shaped: "on" }, { structure: "" }]) {
+      dialog = { pounds: "1", placement: "contact", distance: "1", structure: "custom", dr: "10", hp: "60", taken: "0", shaped: "", tamped: "on", ...patch };
+      actions.get("ht-detonate").run(tnt, sapper);
+      await flush();
+      expect(detonations.at(-1).structureMultiplier).toBeUndefined();
+    }
+  });
+
   it("divides the structure's DR by 10 for a shaped charge", async () => {
     const c4 = record("Plastic Explosive (per pound)", "Composition C4");
     dialog = { pounds: "1", placement: "contact", distance: "1", structure: "custom", dr: "56", hp: "60", taken: "0", shaped: "on" };

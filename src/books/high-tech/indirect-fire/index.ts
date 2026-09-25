@@ -22,7 +22,8 @@
  *     time of flight, and on a miss the scatter, squared as for an Artillery
  *     shot at a target the gunner can't see (Campaigns p. 414); for a smart
  *     round on the FO's laser designator, his DX-based Forward Observer roll
- *     in its place;
+ *     in its place; each shot spends a round from the gun's mode
+ *     (`items.spendShots`, API 1.155.0), and an empty gun fires none;
  *   - each correction after a shot: another Forward Observer roll and 2d+5
  *     seconds, its margin added on.
  */
@@ -400,6 +401,14 @@ export async function fire(api: GWorldApi, data: MissionData): Promise<MissionDa
     ui.notifications?.warn(L("NoGun"));
     return data;
   }
+  // Each shot fires a round from the gun (`items.spendShots`, API 1.155.0): none left, none fired.
+  // A mode that keeps no count, or a gun this user doesn't own, spends nothing here.
+  const item = gunner.items?.get?.(data.itemId) ?? null;
+  const loaded = item ? await api.items.spendShots(item, data.modeIndex, 0) : null;
+  if (loaded === 0) {
+    ui.notifications?.warn(F("NoRounds", { weapon: data.weapon }));
+    return data;
+  }
   const modifiers: Array<{ label: string; value: number }> = [];
   if (data.mission === "observed") {
     // Blind, and no Acc; the FO's adjustment brings the -10 back toward 0.
@@ -432,6 +441,7 @@ export async function fire(api: GWorldApi, data: MissionData): Promise<MissionDa
       tags: ["indirectFire"],
     } as any);
   if (!outcome) return data;
+  if (item && loaded !== null) await api.items.spendShots(item, data.modeIndex, 1, { reason: F("SpendReason", { weapon: data.weapon }) });
 
   const shot = data.shots + 1;
   const explosive = Boolean(row.explosive || row.followUp?.explosive);

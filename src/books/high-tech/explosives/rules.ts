@@ -237,6 +237,19 @@ export function chargeFor(options: { job: DemolitionJob; size: JobSize; ref: num
   return (base.pounds * base.ref) / ref / (halved ? 2 : 1);
 }
 
+/** Well-tamped explosives have about twice the shattering power of untamped ones (p. 182). */
+export const TAMPED_SHATTER = 2;
+
+/**
+ * What a charge set off does to the structure it is against, as a multiple
+ * (p. 182): twice as much tamped, packed against it; once otherwise. A
+ * shaped charge's saving is the same as tamping's and not added to it
+ * (p. 183), and a charge set nearby isn't packed against anything.
+ */
+export function structureMultiplier(options: { tamped: boolean; placement: "contact" | "nearby"; shaped: boolean }): number {
+  return options.tamped && options.placement === "contact" && !options.shaped ? TAMPED_SHATTER : 1;
+}
+
 /**
  * Setting a shaped charge: at TL6 Explosives (Demolition) at -4 to remember
  * the effect, then at -5 to make one; from TL7 one roll at no penalty

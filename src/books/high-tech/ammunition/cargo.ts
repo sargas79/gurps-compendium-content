@@ -4,9 +4,11 @@
  * `index.ts`'s; the rules are `explosive.ts`'s.
  *
  *   - **Explosive rounds:** early SAPLE rolls 1d as it is fired and is a dud
- *     above TL-2; a thermobaric blast is divided by twice the distance
- *     (`gworld.explosionFalloff`).
- *   - **Cargo rounds:** a shot leaves its cloud or light where it lands, as a
+ *     above TL-2, whose follow-up blast is then left unrolled for that attack
+ *     (`dropLines`, API 1.154.0; one roll for every target of a Spraying Fire
+ *     burst); a thermobaric blast is divided by twice the
+ *     distance (`gworld.explosionFalloff`).
+ *   - **Cargo rounds:** a shot (or a fire mission's shell) leaves its cloud or light where it lands, as a
  *     modifier area (the shared `areas.ts`): smoke by High-Tech's smoke table
  *     through the shared smoke engine; tear gas opaque at -3 a yard, its two
  *     HT-2 rolls (and a vomiting agent's) rolled for everyone standing in it;
@@ -89,6 +91,11 @@ export interface CargoSwitches {
 const AREA_CARGO: readonly string[] = ["smoke", "tearGas", "poisonGas", "whitePhosphorus", "illumination"];
 
 const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+const d6 = (): number => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
+
+/** Whether rounds a module spent are the indirect-fire card's shot with this gun (its `spendShots` reason). */
+const isFireMission = (reason: unknown, item: any): boolean =>
+  typeof reason === "string" && reason !== "" && reason === game.i18n.format("GCC.HT.IndirectFire.SpendReason", { weapon: String(item?.name ?? "") });
 
 async function say(actor: any, title: string, lines: string[], rolls: any[] = []): Promise<void> {
   if (!lines.length) return;
@@ -384,19 +391,47 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     api.data.registerPoison({ module: MODULE_ID, key: gas, label: `GCC.HT.Ammunition.Gas.${gas}`, poison: GAS_POISONS[gas] as any, available: gasOn });
   }
 
-  // As the round is fired: early SAPLE's dud roll (p. 169), and a cargo round's cloud or light (pp. 171-172).
+  // Early SAPLE's dud roll (p. 169), made as the attack is: a dud's follow-up blast is left
+  // unrolled for this attack (`dropLines`, API 1.154.0), and the card follows once it is fired.
+  // One roll for a Spraying Fire burst: its later targets reuse the first's. Kept by item and mode.
+  const sapleRolls = new Map<string, { roll: number; bursts: boolean; tl: number }>();
+  const sapleKey = (item: any, modeIndex: unknown) => `${String(item?.uuid ?? "")}#${Number(modeIndex) || 0}`;
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.explosive() || !item?.uuid || !context.ranged || context.rollType !== "attack" || context.mode?.derived) return;
+    const key = sapleKey(item, context.mode?.index);
+    const later = Number(context.spraying?.index) > 0;
+    // A new attack starts afresh: no roll is left over from one that was refused or never fired.
+    if (!later) sapleRolls.delete(key);
+    if (context.refusal) return;
+    const load = loadOf(item, Number(context.mode?.index) || 0);
+    if (load?.projectile !== "saple" || !sapleMayDud(load.tl)) return;
+    let rolled = later ? sapleRolls.get(key) : undefined;
+    if (!rolled) {
+      const roll = d6();
+      rolled = { roll, bursts: sapleExplodes(load.tl, roll), tl: load.tl };
+      sapleRolls.set(key, rolled);
+    }
+    if (!rolled.bursts && context.dropLines) context.dropLines.followUp = true;
+  });
+
+  // As the round is fired: the SAPLE roll's card, and a cargo round's cloud or light (pp. 171-172).
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
     if (!item || !(on.explosive() || on.cargo())) return;
     const load = loadOf(item, Number(context.modeIndex) || 0);
     if (!load) return;
-    if (on.explosive() && load.projectile === "saple" && sapleMayDud(load.tl) && item.isOwner) {
-      void (async () => {
-        const roll = new Roll("1d6");
-        await roll.evaluate();
-        const bursts = sapleExplodes(load.tl, Number(roll.total));
-        await say(context.actor, String(item.name ?? ""), [F(bursts ? "SapleBursts" : "SapleDud", { roll: roll.total, need: load.tl - 2 })], [roll]);
-      })();
+    // Rounds a module's own procedure spent (API 1.155.0) are no attack; but a fire
+    // mission's shell is fired at the target all the same, and leaves its cloud or light.
+    if (context.kind === "module") {
+      if (on.cargo() && AREA_CARGO.includes(load.projectile) && isFireMission(context.reason, item)) void releaseCargo(api, context.actor, load);
+      return;
+    }
+    const key = sapleKey(item, context.modeIndex);
+    const saple = sapleRolls.get(key);
+    sapleRolls.delete(key);
+    if (on.explosive() && saple && item.isOwner) {
+      void say(context.actor, String(item.name ?? ""), [F(saple.bursts ? "SapleBursts" : "SapleDud", { roll: saple.roll, need: saple.tl - 2 })]);
     }
     if (on.cargo() && AREA_CARGO.includes(load.projectile)) void releaseCargo(api, context.actor, load);
   });

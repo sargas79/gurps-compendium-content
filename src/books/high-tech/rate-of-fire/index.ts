@@ -24,7 +24,10 @@
  *     thumbed at RoF 2, with their penalties, the no-aiming rule and the
  *     critical failures, whose rounds, never fired, go back in the gun
  *     (`items.refundShots`); a tied-back or removed trigger leaves nothing
- *     else.
+ *     else. Thumbing is one-handed, so two revolvers may be thumbed at once
+ *     as a Dual-Weapon Attack (the system's `dualWeapon`, API 1.153.0);
+ *     fanning, and fast-firing a single-action revolver with the off thumb,
+ *     take the other hand, and are refused for either hand of one.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
@@ -265,6 +268,9 @@ function itemListeners(element: HTMLElement, item: any): void {
   });
 }
 
+/** Whether the attack is one hand of a Dual-Weapon Attack (`dualWeapon`, API 1.153.0). */
+const dualWeaponIn = (context: any): boolean => Boolean(context?.dualWeapon?.hand);
+
 /** What an attack with fanning or thumbing leaves to follow its roll (p. 83), by actor. */
 const pending = new Map<string, { kind: "fanning" | "thumbing"; gun: string; item: any; modeIndex: number }>();
 
@@ -444,6 +450,12 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
         context.refusal = L("FanningNoAim");
         return;
       }
+      // Fanning takes the other hand to the hammer; thumbing is one-handed, so two revolvers
+      // may be thumbed at once, a Dual-Weapon Attack (p. 83; API 1.153.0).
+      if (fanRof && dualWeaponIn(context)) {
+        context.refusal = L("FanningNotDual");
+        return;
+      }
       pending.set(key, { kind: fanRof ? "fanning" : "thumbing", gun: String(item.name ?? ""), item, modeIndex: index });
     } else if (on.fanning() && rateOfFireData(item).triggerTie && isRevolver(item)) {
       context.refusal = F("TiedRefusal", { tie: L(`Tie.${rateOfFireData(item).triggerTie}`) });
@@ -451,6 +463,11 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
     }
     if (on.fastFiring() && fastRof && !fastRates(api, item, index).includes(fastRof)) {
       context.refusal = F("FastFiringRefusal", { rof: fastRof, rates: fastRates(api, item, index).join(", ") || "-" });
+      return;
+    }
+    // A single-action revolver fast-fired is cocked by the off thumb, the gun in both hands (p. 84).
+    if (on.fastFiring() && fastRof && singleActionRevolver(item, index) && dualWeaponIn(context)) {
+      context.refusal = L("TwoHandedNotDual");
       return;
     }
     if (on.triggers() && !fanRof && !thumbing) {
@@ -488,7 +505,8 @@ export function readyRateOfFire(api: GWorldApi, on: RateOfFireSwitches, helpers:
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
     const id = String(item?.uuid ?? "");
-    if (!id || !unfired.has(id)) return;
+    // Only the attack that failed to fire: rounds a module's procedure spent (API 1.155.0) are spent.
+    if (!id || !unfired.has(id) || context.kind === "module") return;
     unfired.delete(id);
     const shots = Math.max(0, Math.floor(Number(context.shots) || 0));
     if (item.isOwner && shots > 0) void api.items.refundShots(item, Number(context.modeIndex) || 0, shots);

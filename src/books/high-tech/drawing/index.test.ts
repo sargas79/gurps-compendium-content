@@ -30,7 +30,7 @@ function fakeApi() {
     registry: { isRuleOn: () => false },
     rules: { weaponClassOf: () => "firearm" },
     combat: {
-      hooks: { successRollModifiers: "gworld.successRollModifiers", attackModifiers: "gworld.attackModifiers" },
+      hooks: { successRollModifiers: "gworld.successRollModifiers", attackModifiers: "gworld.attackModifiers", equipmentFailure: "gworld.equipmentFailure" },
       getWeaponState: (item: any) => weaponState.get(item.id) ?? {},
       setWeaponState: async (item: any, _m: string, patch: any) => { weaponState.set(item.id, { ...(weaponState.get(item.id) ?? {}), ...patch }); },
       getCombatState: () => undefined,
@@ -163,6 +163,55 @@ describe("a retention holster", () => {
     };
     expect(roll(kept)).toEqual([{ label: "Retention Holster", value: 2 }]);
     expect(roll(loose)).toEqual([]);
+  });
+});
+
+describe("hiding and protecting a holstered gun (p. 154; API 1.152.0)", () => {
+  const holdout = (actor: any, item: any, skill = "Holdout") => {
+    const context = { actor, skill, item, tags: ["skill", "holdout"], modifiers: [] as any[] };
+    for (const l of hooks.get("gworld.successRollModifiers") ?? []) l(context);
+    return context.modifiers;
+  };
+  const exposure = (actor: any, item: any, isExposure = true) => {
+    const context: any = { actor, item, modifiers: [], exposure: isExposure, cancel: false, cancelLabel: "" };
+    for (const l of hooks.get("gworld.equipmentFailure") ?? []) l(context);
+    return context;
+  };
+
+  it("gives an undercover holster +1 and a sleeve holster -2 on the gun's Holdout roll, not the searcher's", () => {
+    readyDrawing(fakeApi() as never, { drawing: () => true, standoff: () => false });
+    const hidden = pistol("colt", { holster: { item: "uc" } });
+    const actor = gunman("Doc", hidden, [holster("uc", "Undercover Holster")]);
+    expect(holdout(actor, hidden)).toEqual([{ label: "Undercover Holster", value: 1, key: key("holsterHoldout") }]);
+    expect(holdout(actor, hidden, "Search")).toEqual([]);
+    weaponState.set("colt", { drawn: true });
+    expect(holdout(actor, hidden)).toEqual([]);
+    const sleeved = pistol("sw", { holster: { item: "sl" } }, -1);
+    const other = gunman("Jim", sleeved, [holster("sl", "Sleeve Holster")]);
+    expect(holdout(other, sleeved)).toEqual([{ label: "Sleeve Holster", value: -2, key: key("holsterHoldout") }]);
+    // A belt holster does nothing for Holdout.
+    const belted = pistol("colt", { holster: { item: "bh" } });
+    weaponState.clear();
+    expect(holdout(gunman("Wes", belted, [holster("bh", "Belt Holster")]), belted)).toEqual([]);
+  });
+
+  it("calls a holstered gun's exposure check off in a closed military holster or a scabbard, not with the flap tucked", () => {
+    readyDrawing(fakeApi() as never, { drawing: () => true, standoff: () => false });
+    const gun = pistol("colt", { holster: { item: "mh" } });
+    const actor = gunman("Doc", gun, [holster("mh", "Military Holster")]);
+    expect(exposure(actor, gun)).toMatchObject({ cancel: true, cancelLabel: expect.stringContaining("GCC.HT.Drawing.Weather.Kept") });
+    // Only the item sheet's exposure check, never a module's own equipment failure roll.
+    expect(exposure(actor, gun, false).cancel).toBe(false);
+    gun.system.extensions[MODULE_ID].holster.flapTucked = true;
+    expect(exposure(actor, gun).cancel).toBe(false);
+    gun.system.extensions[MODULE_ID].holster.flapTucked = false;
+    weaponState.set("colt", { drawn: true });
+    expect(exposure(actor, gun).cancel).toBe(false);
+    const rifle = { id: "m1", name: "Winchester M1894", type: "equipment", system: { carried: true, weaponClass: "firearm", meleeModes: [], rangedModes: [{ skill: "Guns (Rifle)", bulk: -5 }], extensions: { [MODULE_ID]: { holster: { item: "sc" } } } } };
+    const rider = gunman("Rider", rifle, [holster("sc", "Scabbard")]);
+    expect(exposure(rider, rifle).cancel).toBe(true);
+    const slung = { ...rifle, id: "m2", system: { ...rifle.system, extensions: { [MODULE_ID]: { holster: { item: "rs" } } } } };
+    expect(exposure(gunman("Other", slung, [holster("rs", "Rifle Sling")]), slung).cancel).toBe(false);
   });
 });
 

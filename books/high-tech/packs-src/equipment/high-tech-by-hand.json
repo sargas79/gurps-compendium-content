@@ -10494,7 +10494,8 @@
             "affliction": true,
             "afflictionAttribute": "HT",
             "afflictionModifier": -5,
-            "label": "Linked"
+            "label": "Linked",
+            "radius": 10
           }
         }
       ]

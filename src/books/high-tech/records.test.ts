@@ -462,6 +462,13 @@ describe("High-Tech's explosives, mines, bombs and melee weapons (#349)", () => 
     expect(ranged("Little Boy (12.5 kt)").linked).toMatchObject({ damage: "6dx6500", damageType: "burn", radiation: true, surge: true, explosive: true });
   });
 
+  it("gives the stun grenades' linked HT-5 stun its 10-yard radius (p. 192, note 7; API 1.155.0)", () => {
+    const grenades = [...read(join(PACKS, "equipment/high-tech-gear.json")), ...byHand("equipment")];
+    for (const name of ["M452 Stingball", "M452C Comboball"]) {
+      expect(named(grenades, name).system.rangedModes[0].linked).toMatchObject({ affliction: true, afflictionModifier: -5, radius: 10 });
+    }
+  });
+
   it("gives sprays and lasers their afflictions, the dazzler a cone (pp. 180-181)", () => {
     expect(melee("Pepper Spray")).toMatchObject({ reach: "1,2", affliction: true, afflictionAttribute: "HT", afflictionModifier: -4 });
     expect(ranged("NORINCO QXJ04")).toMatchObject({ afflictionModifier: -5, accuracy: 6, scopeBonus: 1, areaAttack: true, coneMaxWidth: 3, shots: "100(3)" });

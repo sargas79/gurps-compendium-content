@@ -16,6 +16,8 @@ let outcomes: any[];
 let damageRolls: any[];
 let dice: number[];
 let actors: Map<string, any>;
+let spent: any[];
+let loadedCount: number | null;
 
 const mortar = {
   itemId: "m2",
@@ -57,6 +59,14 @@ function fakeApi() {
       success: async (options: any) => { successes.push(options); return outcomes.shift() ?? null; },
       damage: async (options: any) => { damageRolls.push(options); return 10; },
     },
+    items: {
+      spendShots: async (item: any, modeIndex: number, shots: number, options: any = {}) => {
+        if (loadedCount === null) return null;
+        if (shots > 0) spent.push({ item: item.id, modeIndex, shots, reason: options.reason });
+        loadedCount = Math.max(0, loadedCount - shots);
+        return loadedCount;
+      },
+    },
     sheets: { registerRowAction: vi.fn() },
     chat: { registerChatCard: vi.fn(), update: vi.fn(async () => true), post: vi.fn() },
   };
@@ -68,6 +78,8 @@ beforeEach(() => {
   damageRolls = [];
   dice = [];
   actors = new Map();
+  spent = [];
+  loadedCount = 10;
   vi.stubGlobal("game", { i18n: { localize: (key: string) => key, format: (key: string, data: any) => `${key} ${JSON.stringify(data)}` } });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
   vi.stubGlobal("fromUuidSync", (uuid: string) => actors.get(uuid) ?? null);
@@ -193,6 +205,27 @@ describe("running the mission", () => {
     outcomes.push({ success: true, margin: 0, criticalSuccess: true });
     data = await observe(api as never, { ...data, shotsSinceCorrection: 1 }, true);
     expect(data.adjustment).toBe(10);
+  });
+
+  it("spends a round from the gun for each shot, and fires none from an empty one (API 1.155.0)", async () => {
+    const api = fakeApi();
+    let data = mission(api, { mission: "predicted" });
+    loadedCount = 1;
+    outcomes.push({ success: true, margin: 2 });
+    data = await fire(api as never, data);
+    expect(spent).toEqual([{ item: "m2", modeIndex: 0, shots: 1, reason: expect.stringContaining("SpendReason") }]);
+    expect(data.shots).toBe(1);
+    // Empty: no roll, no shot.
+    outcomes.push({ success: true, margin: 2 });
+    const after = await fire(api as never, data);
+    expect(after).toBe(data);
+    expect(successes).toHaveLength(1);
+    expect((globalThis as any).ui.notifications.warn).toHaveBeenCalledWith(expect.stringContaining("NoRounds"));
+    // A mode that keeps no count fires on, spending nothing.
+    loadedCount = null;
+    outcomes.push({ success: true, margin: 2 });
+    expect((await fire(api as never, data)).shots).toBe(2);
+    expect(spent).toHaveLength(1);
   });
 
   it("gives predicted fire the Basic Set's +4 for an area and no -10", async () => {

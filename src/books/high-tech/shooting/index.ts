@@ -16,7 +16,9 @@
  *     All-Out Attack.
  *   - **Gun techniques:** Close-Quarters Battle on Move and Attack within
  *     Per yards; Targeted Attacks with guns, "TA (Pistol/Skull)", on the
- *     shared Targeted Attack engine with this book's table; Instant Arsenal
+ *     shared Targeted Attack engine with this book's table ("TA
+ *     (Pistol/Weapon)" on a shot at a foe's weapon, the system's
+ *     `weaponStrike`); Instant Arsenal
  *     Disarm from its technique's row; Mounted Shooting, which keeps the
  *     keyed `movingPlatform` line (Campaigns p. 548) from taking a handheld
  *     weapon's skill below the technique's level; and Weapon Bond's +1 on
@@ -39,6 +41,7 @@ import {
   PRECISION_PENALTY,
   RANGED_RAPID_STRIKE_PENALTY,
   RANGED_RAPID_STRIKE_ROF_SHARE,
+  aimedAtWeapon,
   aimedWhereTaAims,
   closeQuartersLine,
   gunTargetedAttackLevel,
@@ -401,12 +404,15 @@ export function readyShooting(api: GWorldApi, on: ShootingSwitches, fitted?: Acc
         }
       }
 
-      // A Targeted Attack with a gun: the levels bought in it, for a shot aimed where it aims (p. 252).
+      // A Targeted Attack with a gun: the levels bought in it, for a shot aimed where it aims (p. 252) --
+      // a location, or a foe's weapon, which a shot may strike at (Campaigns p. 400; `weaponStrike`, API 1.153.0).
       const shot = context.calledShot;
-      if (shot?.hitLocation) {
+      const atWeapon = Boolean(context.weaponStrike);
+      if (shot?.hitLocation || atWeapon) {
         const own = techniques(actor).find((t: any) => {
           const ta = gunTa(t);
-          return ta && aimedWhereTaAims(ta, skill, shot.hitLocation, shot.chink === true);
+          if (!ta) return false;
+          return atWeapon ? aimedAtWeapon(ta, skill) : aimedWhereTaAims(ta, skill, shot.hitLocation, shot.chink === true);
         });
         const ta = own ? gunTa(own) : null;
         if (ta) {

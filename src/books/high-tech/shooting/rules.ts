@@ -192,6 +192,11 @@ export function gunTargetedAttackLevel(ta: GunTargetedAttack, skill: number | nu
   return targetedAttackBounds([skill === null ? null : skill + penalty], buyOff(penalty), points);
 }
 
+/** Whether a TA is for a shot at a foe's weapon with this skill, "TA (Pistol/Weapon)". */
+export function aimedAtWeapon(ta: GunTargetedAttack, skill: string): boolean {
+  return String(skill ?? "").trim().toLowerCase() === ta.skill.toLowerCase() && ta.target === "weapon";
+}
+
 /** Whether a TA is for a shot at this location with this skill. */
 export function aimedWhereTaAims(ta: GunTargetedAttack, skill: string, location: string | null, chinks: boolean): boolean {
   if (String(skill ?? "").trim().toLowerCase() !== ta.skill.toLowerCase()) return false;

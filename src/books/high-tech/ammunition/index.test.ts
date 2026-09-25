@@ -233,6 +233,12 @@ describe("misloading (p. 178)", () => {
     attack(special);
     await flush();
     expect(special.flags.htMisloadJam).toBe(0);
+    // Rounds a module's procedure spent (API 1.155.0) aren't the attack that misloaded.
+    const before = malfunctions.length;
+    fire(HOOKS.afterShots, { actor: special.actor, item: special, modeIndex: 0, shots: 1, kind: "module" });
+    await flush();
+    expect(malfunctions).toHaveLength(before);
+    expect(special.flags.htMisloadJam).toBe(0);
     fire(HOOKS.afterShots, { actor: special.actor, item: special, modeIndex: 0, shots: 1 });
     await flush();
     expect(malfunctions.at(-1)).toMatchObject({ kind: "stoppage" });

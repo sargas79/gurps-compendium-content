@@ -15,7 +15,10 @@
  *     holster's own outcomes, a retention holster's +2 to Retain Weapon.
  *     Quick-Sheathe stows a gun as fast as Fast-Draw draws it. An undercover
  *     holster at the ankle takes only a gun of Bulk -1 or 0, and a rifle
- *     sling braces a long arm for an aimed shot, a Ready per -1 Bulk.
+ *     sling braces a long arm for an aimed shot, a Ready per -1 Bulk. On the
+ *     system's Holdout roll for the gun (API 1.152.0), an undercover holster
+ *     gives +1 and a sleeve holster -2; a military holster with its flap
+ *     closed, or a scabbard, calls the exposure check off.
  *   - **Who Draws First? with guns:** a GM tool settles a standoff between
  *     two gunfighters, with a hand on the gun, the worse Bulk, Combat Reflexes
  *     for the ready one, and the odd positions.
@@ -37,9 +40,11 @@ import {
   gunReadyModifiers,
   gunSpecialty,
   holsterFits,
+  holsterHoldout,
   holsterKindOf,
   holsterModifier,
   isLanyard,
+  keepsOutWeather,
   quickSheatheSpecialties,
   readiesAfterFastDraw,
   SLING_BRACE_BONUS,
@@ -60,6 +65,8 @@ const FIELD = "holster";
 const DRAWS = "ht-draws";
 /** A Ready spent this turn on a sling brace. */
 const SLING_TURN = "ht-sling-brace";
+/** The key of a holster's line on a Holdout roll. */
+const HOLDOUT_KEY = `${MODULE_ID}.holsterHoldout`;
 
 export interface DrawingSwitches {
   drawing: () => boolean;
@@ -422,6 +429,31 @@ export function readyDrawing(api: GWorldApi, on: DrawingSwitches): void {
       ? (inRetention(named) ? named : null)
       : gunsOf(api, context.actor).find((gun: any) => inRetention(gun) && (!wanted || !["pistol", "longarm"].includes(wanted) || wanted === specialtyOfGun(gun)));
     if (kept) context.modifiers.push({ label: String(holsterOf(kept)!.item.name), value: HOLSTERS[holsterOf(kept)!.kind].retain });
+  });
+
+  // Hiding a gun in its holster: an undercover holster's +1, a sleeve holster's -2 (p. 154), on
+  // the system's Holdout roll for one item (`roll.holdout`, tagged `holdout`, API 1.152.0). The
+  // hider's side only: a searcher's Search is left alone.
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    const gun = context?.item;
+    if (!on.drawing() || !(context.tags ?? []).includes("holdout") || !/^holdout\b/i.test(String(context.skill ?? ""))) return;
+    if (!isFirearm(api, gun) || gunState(api, gun).drawn) return;
+    const holster = holsterOf(gun);
+    const value = holsterHoldout(holster?.kind ?? null);
+    if (value && !(context.modifiers ?? []).some((l: any) => l?.key === HOLDOUT_KEY)) {
+      context.modifiers.push({ label: String(holster!.item.name), value, key: HOLDOUT_KEY });
+    }
+  });
+
+  // A military holster with its flap closed, or a scabbard, keeps the weather off the gun in
+  // it: the item sheet's exposure check is called off (`cancel`, API 1.152.0; p. 154).
+  Hooks.on(api.combat.hooks.equipmentFailure, (context: any) => {
+    const gun = context?.item;
+    if (!on.drawing() || context?.exposure !== true || !isFirearm(api, gun) || gunState(api, gun).drawn) return;
+    const holster = holsterOf(gun);
+    if (!holster || !keepsOutWeather(holster.kind, holsterData(gun))) return;
+    context.cancel = true;
+    context.cancelLabel = F("Weather.Kept", { holster: String(holster.item.name ?? "") });
   });
 
   // ── Who Draws First? with guns (p. 82) ──

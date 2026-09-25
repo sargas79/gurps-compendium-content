@@ -14,7 +14,9 @@
  *     foe has time to pick it up and throw it back (p. B410); a critical
  *     failure drops it at the thrower's feet, where it goes off by itself
  *     when its fuse runs out unless a row action picks it up again. One held
- *     past its fuse goes off in the hand.
+ *     past its fuse goes off in the hand. An impact fuse goes off where the
+ *     grenade lands (`gworld.landed`, API 1.154.0): on its target, or where
+ *     the Scatter roll puts a miss.
  *   - **Booby traps and improvised grenades** (pp. 190-191): the rolls to rig
  *     one and to make one.
  *   - **A Molotov cocktail through an engine grating** (p. 191): an attack
@@ -189,6 +191,8 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
 
   /** The throw in flight: what the card after the roll says. */
   const pending = new Map<string, { item: any; facts: GrenadeFacts; burned: number }>();
+  /** Impact-fused grenades dropped on a critical failure, by uuid, whose landing the drop's card has told. */
+  const impactDropped = new Set<string>();
 
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
@@ -224,14 +228,38 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
       await setState(item, dropped ? { htArmed: false, htLit: null, htDroppedLit: stateOf(item).htLit ?? clockNow(actor) } : { htArmed: false, htLit: null });
       const lines: string[] = [];
       if (context.outcome?.criticalFailure) lines.push(F("Dropped", { name }));
-      if (facts.impact) lines.push(L(context.outcome?.criticalFailure ? "ImpactDropped" : "Impact"));
-      else if (!fuse.left) lines.push(L("FuseUnknown"));
+      // An impact fuse's landing is `gworld.landed`'s to tell, but for one dropped at the thrower's feet.
+      if (facts.impact) {
+        if (context.outcome?.criticalFailure) {
+          impactDropped.add(String(item.uuid ?? ""));
+          lines.push(L("ImpactDropped"));
+        }
+      } else if (!fuse.left) lines.push(L("FuseUnknown"));
       else {
         lines.push(F("FuseLeft", { burned, least: fuse.left[0], most: fuse.left[1] }));
         lines.push(L(context.outcome?.criticalFailure ? (fuse.throwBack ? "DroppedPickUp" : "DroppedNoTime") : fuse.throwBack ? "ThrowBack" : "NoThrowBack"));
       }
       await say(actor, name, lines);
     })();
+  });
+
+  // An impact fuse goes off where the grenade lands (`gworld.landed`, API 1.154.0): on its
+  // target on a hit, and on a miss where the Scatter roll puts it (Campaigns p. 414). One
+  // dropped on a critical failure goes off at the thrower's feet, as its card said.
+  Hooks.on(api.combat.hooks.landed, (context: any) => {
+    const item = context?.item;
+    const facts = on() ? grenadeOf(item) : null;
+    if (!facts?.impact || context.thrown === false || !context.actor?.isOwner) return;
+    const id = String(item.uuid ?? "");
+    if (impactDropped.has(id)) {
+      impactDropped.delete(id);
+      return;
+    }
+    const target = String(context.target?.name ?? context.target?.actor?.name ?? "");
+    const line = context.scatter
+      ? F("ImpactScattered", { yards: Number(context.scatter.yards) || 0, direction: Number(context.scatter.direction) || 0 })
+      : context.hit ? (target ? F("ImpactHit", { target }) : L("Impact")) : L("ImpactMissed");
+    void say(context.actor, String(item.name ?? ""), [line]);
   });
 
   // Picking up a grenade dropped with its fuse running, to throw it again or away (p. 190; p. B410).
@@ -415,7 +443,8 @@ export function readyGrenades(api: GWorldApi, on: () => boolean): void {
   Hooks.on(api.combat.hooks.afterShots, (context: any) => {
     const item = context?.item;
     const facts = on() ? grenadeOf(item) : null;
-    if (!facts?.cloud || !item?.isOwner) return;
+    // A throw, not rounds a module's procedure spent (API 1.155.0).
+    if (!facts?.cloud || !item?.isOwner || context.kind === "module") return;
     const name = String(item.name ?? "");
     const hot = facts.hotCanister ? [F("HotCanister", { dice: facts.hotCanister })] : [];
     if (facts.tearGas) {
