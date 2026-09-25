@@ -39,6 +39,13 @@ export interface CellTable extends BookTable {
    * a book that prints neither.
    */
   externalRule?: string;
+  /**
+   * The grade a book's own statistics print for gear that runs on external
+   * power, which its cell switch alone lets be plugged in: High-Tech's
+   * "external power" (p. 14), kept as the grade "external". None for a book
+   * that prints none.
+   */
+  ownGrade?: string;
 }
 
 /**
@@ -48,11 +55,19 @@ export interface CellTable extends BookTable {
  * factor stands in for the book's own multiplier for rechargeable cells.
  */
 export interface CellVariant {
+  /** A text key, formatted with `labelData` where it names more than the kind. */
   label: string;
+  labelData?: Record<string, unknown>;
   endurance: number;
   cost: number;
   weight: number;
   rechargeable: boolean;
+  /**
+   * Hours the gadget runs on them whatever its own endurance, for a store
+   * that gives a larger battery's output for a fixed time (a supercapacitor,
+   * HT:EE p. 18); none for cells that scale the endurance.
+   */
+  fixedHours?: number;
 }
 
 /** A rule that says what chemistry an item's cells are, or null for the table's own. */
@@ -78,6 +93,18 @@ function variantOf(item: any, cell: { size: string; cells: number } | null, figu
 function externalOn(item: any): boolean {
   const table = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule));
   return Boolean(table?.externalRule && isRuleOn(table.externalRule));
+}
+
+/**
+ * Whether gear printed with grades of external power can be plugged in as
+ * printed: any grade under the switch for them, and the book's own grade
+ * under its cell switch alone.
+ */
+function gradesPlug(item: any, grades: readonly string[]): boolean {
+  if (!grades.length) return false;
+  if (externalOn(item)) return true;
+  const table = CELL_TABLES.figuresFor(item, (t) => isRuleOn(t.rule));
+  return Boolean(table?.ownGrade && grades.includes(table.ownGrade));
 }
 
 /** What an energy store is, where the record is one. */
@@ -137,6 +164,13 @@ export interface PowerData extends Required<CellKind> {
   inverter: boolean;
   /** Whether a gadget with an adapter or inverter, or printed with a grade of external power, is plugged in right now. */
   external: boolean;
+  /**
+   * The id of the carried item it is plugged into -- a generator, a store --
+   * where one is named; "" for external power from nowhere in particular.
+   */
+  source: string;
+  /** What the batteries swapped in multiply the endurance by, against the table's own; 1 for none. */
+  swapRatio: number;
   /** The chemistry of the cells, as the book's table names it; "" for the table's own. */
   chemistry: string;
   /** The chemistry a registered rule gives the cells, or null for the table's own. */
@@ -208,6 +242,7 @@ export function registerPowerData(): void {
       adapter: flag(),
       inverter: flag(),
       external: flag(),
+      source: text(),
       chemistry: text(),
       grades: new f.ArrayField(text()),
       storage: new f.SchemaField({
@@ -245,7 +280,7 @@ export function powerData(item: any): PowerData {
   const external = externalOn(item);
   const endurance = String(draw.endurance ?? "");
   const builtIn = external && Boolean(d.rechargeable) && !cell && !drawCell && (enduranceHours(endurance) !== null || enduranceUsesOf(endurance) !== null);
-  const pluggable = Boolean(figures?.adapters && (d.adapter || d.inverter)) || (external && grades.length > 0);
+  const pluggable = Boolean(figures?.adapters && (d.adapter || d.inverter)) || gradesPlug(item, grades);
   const s = d.storage ?? {};
   return {
     cell,
@@ -271,6 +306,8 @@ export function powerData(item: any): PowerData {
     adapter: Boolean(figures?.adapters && d.adapter),
     inverter: Boolean(figures?.adapters && d.inverter),
     external: pluggable && Boolean(d.external),
+    source: pluggable && d.external ? String(d.source ?? "") : "",
+    swapRatio: swapRatio ?? 1,
     chemistry: String(d.chemistry ?? ""),
     variant,
     grades,
@@ -287,7 +324,7 @@ export function powerData(item: any): PowerData {
 
 /** Whether a gadget can be plugged into external power: through an adapter or inverter, or as printed. */
 export function isPluggable(item: any, data: PowerData = powerData(item)): boolean {
-  return data.adapter || data.inverter || (data.grades.length > 0 && externalOn(item));
+  return data.adapter || data.inverter || gradesPlug(item, data.grades);
 }
 
 /**

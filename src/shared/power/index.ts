@@ -24,9 +24,11 @@
  * weight, for a book to register as a price modifier.
  */
 
+import { bookOf } from "../book-tables.js";
 import { isProgram } from "../computers/data.js";
 import { MODULE_ID, type GWorldApi } from "../module.js";
 import { CELL_TABLES, cellOf, cellTableOf, isPluggable, isPowered, powerData, registerPowerData, storePower, tableCellOf, usesLeft, type CellTable, type PowerData } from "./data.js";
+import { linkedSource, powerSources, sourceFits, type PowerSource } from "./sources.js";
 import {
   cellCost,
   cellLegality,
@@ -42,6 +44,7 @@ import {
 } from "./rules.js";
 
 export { CELL_TABLES, cellTableOf, type CellTable };
+export { registerPowerSource, type PowerSource, type PowerStore } from "./sources.js";
 
 /**
  * A new cell's price: the size's, times its chemistry's factor where a rule
@@ -86,12 +89,18 @@ function isSoftware(item: any): boolean {
 /**
  * Gear with no cells that an inverter could run on them: equipment that isn't
  * a weapon or a program, from a book whose table has inverters, with its
- * switch on.
+ * switch on. A book's record must be printed as running on external power
+ * (High-Tech p. 14) -- a grade of it in its power data -- so the gear that
+ * needs no power at all isn't offered one; gear that names no book, made by
+ * hand, is offered one.
  */
 export function tableForInverter(item: any): CellTable | null {
   if (item?.type !== "equipment" || (item.system?.rangedModes ?? []).length || (item.system?.meleeModes ?? []).length || isSoftware(item)) return null;
   const table = cellTableOf(item);
-  return table?.figures.adapters && !isPowered(powerData(item)) ? table : null;
+  if (!table?.figures.adapters) return null;
+  const data = powerData(item);
+  if (isPowered(data)) return null;
+  return bookOf(item) === null || data.grades.length > 0 ? table : null;
 }
 
 /**
@@ -142,7 +151,7 @@ function supplyText(ns: string, data: PowerData): string {
   if (cell) {
     const one = cell.cells === 1;
     const text = F(ns, data.backpack ? (one ? "SupplyPack" : "SupplyPacks") : one ? "Supply" : "Supplies", { cells: cell.cells, size: cell.size });
-    return data.variant ? `${text} (${game.i18n.localize(data.variant.label)})` : text;
+    return data.variant ? `${text} (${game.i18n.format(data.variant.label, data.variant.labelData ?? {})})` : text;
   }
   if (data.packWeight) return F(ns, "SupplyWeight", { weight: data.packWeight });
   if (data.builtIn) return L(ns, "BuiltIn");
@@ -167,7 +176,9 @@ export function enduranceLeft(data: PowerData): { total: number; left: number } 
   if (hours === null || !data.figures) return null;
   const multiplier = enduranceMultiplier(data.figures, data);
   if (multiplier === null) return "unlimited";
-  const total = hours * multiplier * (data.enduranceFactor ?? 1);
+  // A store that gives a larger battery's output runs for its own time, whatever the gadget's endurance.
+  const fixed = data.variant?.fixedHours;
+  const total = fixed !== undefined ? fixed : hours * multiplier * (data.enduranceFactor ?? 1);
   return { total, left: Math.max(0, total - data.hoursUsed) };
 }
 
@@ -198,7 +209,7 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
   else if (table.figures.rechargeable && cell) {
     if (data.rechargeable) lines[0] = F(ns, "Recharged", { supply: supplyText(ns, data) });
     else {
-      const spares = await useSpares(item.actor, table.figures.spareRecord, cell);
+      const spares = await useSpares(item.actor, table.figures.spareRecord, cell, data.variant ? data.chemistry : null);
       lines.push(spares ? F(ns, "SparesUsed", { cells: cell.cells, name: spares.name, left: spares.left }) : F(ns, "NewCellsCost", { cost: Math.round(cellPrice(table.figures, cell.size, data) * cell.cells * 100) / 100 }));
     }
   }
@@ -207,16 +218,24 @@ async function changeCells(item: any, table: CellTable): Promise<void> {
 
 /**
  * Takes the new cells from the spares the actor carries, where the book has
- * a record for them and there are enough: what was used, or null.
+ * a record for them and there are enough: what was used, or null. Where a
+ * rule gives the gadget's cells a chemistry (`chemistry`, "" for the table's
+ * own), only spares of the same chemistry will do; null takes any.
  */
-async function useSpares(actor: any, record: string | undefined, cell: { size: string; cells: number }): Promise<{ name: string; left: number } | null> {
+export async function useSpares(actor: any, record: string | undefined, cell: { size: string; cells: number }, chemistry: string | null = null): Promise<{ name: string; left: number } | null> {
   if (!actor || !record) return null;
   const name = record.replace("{size}", cell.size);
-  const spare = [...(actor.items ?? [])].find((i: any) => i.name === name && i.system?.carried !== false && (Number(i.system?.quantity) || 0) >= cell.cells);
+  const spare = [...(actor.items ?? [])].find((i: any) => i.name === name && i.system?.carried !== false && (Number(i.system?.quantity) || 0) >= cell.cells
+    && (chemistry === null || spareChemistry(i) === chemistry));
   if (!spare) return null;
   const left = (Number(spare.system.quantity) || 0) - cell.cells;
   await spare.update({ "system.quantity": left });
   return { name, left };
+}
+
+/** The chemistry a spare cell's record keeps, "" for its table's own. */
+export function spareChemistry(item: any): string {
+  return String(item?.system?.extensions?.[MODULE_ID]?.power?.chemistry ?? "");
 }
 
 /**
@@ -283,7 +302,9 @@ function itemContext(item: any, table: CellTable): Record<string, unknown> {
     ranged,
     kinds,
     price: cell ? F(ns, "CellPrice", { size: cell.size, cost: cellPrice(figures, cell.size, data), lc: lc === null ? L(ns, "NoLc") : `LC${lc}` }) : "",
-    endurance: data.draw?.endurance ? F(ns, data.enduranceFactor !== 1 ? "EnduranceScaled" : "Endurance", { endurance: data.draw.endurance, factor: Math.round(data.enduranceFactor * 100) / 100 }) : "",
+    endurance: !data.draw?.endurance ? ""
+      : data.variant?.fixedHours !== undefined ? F(ns, "EnduranceFixed", { minutes: Math.round(data.variant.fixedHours * 600) / 10 })
+      : F(ns, data.enduranceFactor !== 1 ? "EnduranceScaled" : "Endurance", { endurance: data.draw.endurance, factor: Math.round(data.enduranceFactor * 100) / 100 }),
     shots: ranged ? (shots === null ? L(ns, "ShotsUnlimited") : shots !== 1 ? F(ns, "ShotsTimes", { times: shots }) : "") : "",
     blast: blast ? F(ns, "Blast", { dice: blast.dice, ref: blast.ref, tl }) : "",
     tlField: hasCellRef(figures),
@@ -349,6 +370,48 @@ function poweredGear(actor: any): Array<{ item: any; table: CellTable }> {
 }
 
 /**
+ * The carried gear the Gear tab's card lists: what runs on cells, and gear
+ * with no cells that can be plugged in as printed (a device printed with a
+ * grade of external power), so it can be plugged into a source.
+ */
+function gearTabGear(actor: any): Array<{ item: any; table: CellTable }> {
+  return [...(actor?.items ?? [])]
+    .filter((item: any) => item.system?.carried !== false && isGear(item))
+    .map((item: any) => {
+      const table = cellTableOf(item);
+      if (!table) return { item, table: null };
+      const data = powerData(item);
+      return { item, table: isPowered(data) || isPluggable(item, data) ? table : null };
+    })
+    .filter((row): row is { item: any; table: CellTable } => row.table !== null);
+}
+
+/** What the table's cells in a gadget weigh, for matching it to a source that stands in for batteries; null for none. */
+function tableCellWeight(data: PowerData): number | null {
+  const usual = tableCellOf(data);
+  return usual && data.figures ? cellsWeight(data.figures, usual.size, usual.cells) : null;
+}
+
+/** The sources an actor carries that fit a gadget. */
+export function fittingSources(actor: any, item: any, data: PowerData = powerData(item)): PowerSource[] {
+  const weight = tableCellWeight(data);
+  return powerSources(actor, item).filter((source) => sourceFits(data, weight, source));
+}
+
+/** The choice of power on a pluggable gadget's row: its cells, external power from nowhere named, or a source. */
+function powerChoices(ns: string, actor: any, item: any, data: PowerData): Array<{ value: string; label: string; selected: boolean }> {
+  const current = !data.external ? "cells" : data.source ? `source:${data.source}` : "external";
+  const choices = [
+    { value: "cells", label: L(ns, isPowered(data) ? "OnCells" : "Unplugged") },
+    { value: "external", label: L(ns, "External") },
+    ...fittingSources(actor, item, data).map((source) => ({ value: `source:${source.item.id}`, label: String(source.item.name ?? "") })),
+  ];
+  // A source no longer carried, or no longer fitting, still shows as chosen until something else is.
+  if (!choices.some((c) => c.value === current)) choices.push({ value: current, label: F(ns, "SourceGone", {}), selected: true } as never);
+  return choices.map((c) => ({ ...c, selected: c.value === current }));
+}
+
+/**
  * The carried gadgets whose cells can be recharged, with what is left of each
  * and what its cells weigh: what a generator or recharger can top up.
  */
@@ -377,10 +440,12 @@ export async function recharge(item: any, hours: number): Promise<number> {
  * ("Batteries", "Power cells"), in the order the gadgets are listed.
  */
 export function powerGearContext(actor: any): Record<string, unknown> {
-  const gear = poweredGear(actor);
+  const gear = gearTabGear(actor);
   const rows = gear.map(({ item, table }) => {
     const ns = table.i18n;
     const data = powerData(item);
+    const source = linkedSource(actor, item, data);
+    const store = source?.available ? source.store ?? null : null;
     const left = enduranceLeft(data);
     const weapon = (item.system?.rangedModes ?? []).length > 0;
     const pluggable = isPluggable(item, data);
@@ -388,7 +453,16 @@ export function powerGearContext(actor: any): Record<string, unknown> {
     let charge = "";
     let fraction: number | null = null;
     const uses = usesLeft(data);
-    if (data.external) charge = L(ns, "OnExternal");
+    if (source && !source.available) {
+      charge = F(ns, "NoPowerFrom", { name: source.item.name, status: source.status });
+      fraction = 0;
+    } else if (store) {
+      const shown = hoursText(store.left);
+      const whole = hoursText(store.total);
+      charge = F(ns, "OnStore", { name: source!.item.name, value: shown.value, unit: L(ns, `Unit.${shown.unit}`), endurance: `${whole.value} ${L(ns, `Unit.${whole.unit}`)}` });
+      fraction = store.total ? store.left / store.total : 0;
+    } else if (source) charge = source.status ? F(ns, "OnSourceStatus", { name: source.item.name, status: source.status }) : F(ns, "OnSource", { name: source.item.name });
+    else if (data.external) charge = L(ns, "OnExternal");
     else if (uses && !data.cosmic) {
       charge = uses.unit === "uses"
         ? F(ns, "UsesLeft", { left: uses.left, total: uses.total })
@@ -413,6 +487,9 @@ export function powerGearContext(actor: any): Record<string, unknown> {
       tracksHours: Boolean(left && left !== "unlimited") && !uses,
       tracksUses: Boolean(uses) && !data.cosmic && !data.external,
       pluggable,
+      choices: pluggable ? powerChoices(ns, actor, item, data) : [],
+      store: store ? { used: Math.round((store.total - store.left) * 100) / 100, step: store.total < 1 ? 0.01 : 0.5 } : null,
+      hasCells: isPowered(data),
       external: data.external,
       recharge: Boolean(table.figures.rechargeable && data.rechargeable),
       usesUsed: data.usesUsed,
@@ -445,10 +522,24 @@ function gearListeners(element: HTMLElement, actor: any): void {
       if (item) await storePower(item, { usesUsed: Math.max(0, Math.floor(Number(input.value) || 0)) });
     });
   });
-  element.querySelectorAll<HTMLInputElement>("[data-gcc-power-external]").forEach((input) => {
+  element.querySelectorAll<HTMLSelectElement>("[data-gcc-power-source]").forEach((select) => {
+    select.addEventListener("change", async () => {
+      const item = itemOf(select);
+      const value = String(select.value ?? "");
+      if (!item) return;
+      if (value === "cells") await storePower(item, { external: false, source: "" });
+      else if (value === "external") await storePower(item, { external: true, source: "" });
+      else if (value.startsWith("source:")) await storePower(item, { external: true, source: value.slice("source:".length) });
+    });
+  });
+  // Hours of a gadget's use drawn from the store it is plugged into.
+  element.querySelectorAll<HTMLInputElement>("[data-gcc-power-store-used]").forEach((input) => {
     input.addEventListener("change", async () => {
       const item = itemOf(input);
-      if (item) await storePower(item, { external: input.checked });
+      const source = item ? linkedSource(actor, item, powerData(item)) : null;
+      if (!source?.store) return;
+      const used = Math.max(0, Number(input.value) || 0);
+      await source.store.spend(used - (source.store.total - source.store.left));
     });
   });
   element.querySelectorAll<HTMLButtonElement>("[data-gcc-power-change]").forEach((button) => {
@@ -458,6 +549,17 @@ function gearListeners(element: HTMLElement, actor: any): void {
       if (item && table) await changeCells(item, table);
     });
   });
+}
+
+/**
+ * What a battery weapon's shots are multiplied by for the batteries loaded:
+ * those swapped in, by their weight against the table's (High-Tech pp. 10,
+ * 13), and those of another chemistry, by its endurance. A store that runs
+ * for a fixed time counts no shots of its own.
+ */
+export function shotsScale(data: PowerData): number {
+  const variant = data.variant && data.variant.fixedHours === undefined ? data.variant.endurance : 1;
+  return data.swapRatio * variant;
 }
 
 let readied = false;
@@ -479,7 +581,9 @@ export function readyPower(api: GWorldApi): void {
       context.entry.capacity = null;
       return;
     }
-    if (multiplier !== 1) context.entry.capacity = context.entry.capacity * multiplier;
+    // Batteries swapped in, or of another chemistry, give shots as they give endurance: in proportion (High-Tech pp. 10, 13).
+    const scale = multiplier * shotsScale(data);
+    if (scale !== 1) context.entry.capacity = Math.max(scale > 0 ? 1 : 0, Math.floor(context.entry.capacity * scale + 1e-9));
     // A table line with no reload time takes the cell's, where the book gives one.
     const cell = cellOf(data);
     const seconds = cell ? replacementSeconds(table.figures, cell.size) : null;
@@ -506,7 +610,7 @@ export function readyPower(api: GWorldApi): void {
     tab: "gear",
     position: "start",
     template: `modules/${MODULE_ID}/templates/power-gear.hbs`,
-    visible: (actor) => poweredGear(actor).length > 0,
+    visible: (actor) => gearTabGear(actor).length > 0,
     context: (actor) => powerGearContext(actor),
     listeners: (element, actor) => gearListeners(element, actor),
   });

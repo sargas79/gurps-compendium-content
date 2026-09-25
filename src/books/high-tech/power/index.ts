@@ -28,12 +28,14 @@
  */
 
 import { CELL_TABLES, initPower, powerPriceChange, readyPower, recharge, rechargeableGear, type CellTable } from "../../../shared/power/index.js";
-import { storePower } from "../../../shared/power/data.js";
+import { powerData, storePower } from "../../../shared/power/data.js";
 import type { Cell, CellFigures } from "../../../shared/power/rules.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import { bookOf } from "../../../shared/book-tables.js";
 import { crankFatigue, crankedShare, fuelOf, generatorOf, palmCrankMinutes, rechargeHours, rechargedShare, solarPowered, tankLeft, type GeneratorFigures, type WindSpeed } from "./generators.js";
-import { readyElectricity, registerChemistryVariant, type ElectricSwitches } from "./electricity.js";
+import { readyElectricity, registerChemistryVariant, registerSupercapacitorVariant, type ElectricSwitches } from "./electricity.js";
+import { advanceGenerators, generatorState, registerHighTechSources, runs, storeGeneratorState, type Availability } from "./sources.js";
+import { flywheelFigures } from "./storage.js";
 
 /** The battery sizes the book lists, smallest first (p. 13). */
 export const BATTERY_SIZES = ["T", "XS", "S", "M", "L", "VL"] as const;
@@ -83,14 +85,16 @@ export const BATTERIES_RULE = `${MODULE_ID}.batteries`;
 /** The supplement's switches for chemistries and for the grades of external power (HT:EE pp. 9, 16-18). */
 export const CHEMISTRY_RULE = `${MODULE_ID}.batteryChemistry`;
 export const EXTERNAL_POWER_RULE = `${MODULE_ID}.externalPower`;
+export const ENERGY_STORAGE_RULE = `${MODULE_ID}.energyStorage`;
 
 /**
  * High-Tech's battery table, for the book's gear at TL5-8. Its grades of
  * external power and built-in rechargeable batteries are the supplement's
- * (HT:EE p. 9), under that switch.
+ * (HT:EE p. 9), under that switch; gear High-Tech itself prints as running
+ * on "external power" (p. 14) is plugged in under the book's own switch.
  */
 export function highTechBatteries(): CellTable {
-  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT", externalRule: EXTERNAL_POWER_RULE };
+  return { book: "high-tech", tls: { min: 5, max: 8 }, figures: HIGH_TECH_BATTERIES, rule: BATTERIES_RULE, i18n: "GCC.HT", externalRule: EXTERNAL_POWER_RULE, ownGrade: "external" };
 }
 
 let variantRegistered = false;
@@ -102,6 +106,7 @@ export function initHighTechPower(): void {
   if (!variantRegistered) {
     variantRegistered = true;
     registerChemistryVariant(HIGH_TECH_BATTERIES, CHEMISTRY_RULE);
+    registerSupercapacitorVariant(HIGH_TECH_BATTERIES, ENERGY_STORAGE_RULE);
   }
 }
 
@@ -188,25 +193,73 @@ function highTechDoes(figures: GeneratorFigures): string {
   return L(`Source.${figures.source}`);
 }
 
+const isHighTechOrNone = (item: any) => item?.type === "equipment" && (bookOf(item) === null || bookOf(item) === "high-tech");
+
+/** The carried flywheels, under the supplement's energyStorage switch (HT:EE p. 18). */
+function flywheels(actor: any, on: PowerSwitches): any[] {
+  if (!on.storage()) return [];
+  return [...(actor?.items ?? [])].filter((item: any) => item.system?.carried !== false && isHighTechOrNone(item) && powerData(item).storage.kind === "flywheel");
+}
+
+/** A source's status on a gadget's row, in the book's words. */
+export function statusText(reading: Availability): string {
+  return F(`SourceStatus.${reading.status}`, reading.data ?? {});
+}
+
+/** A flywheel's charge, as a share of a full store. */
+function flywheelStatus(drawn: number): string {
+  return drawn >= 1 ? L("SourceStatus.spunDown") : F("SourceStatus.flywheel", { percent: Math.round((1 - drawn) * 100) });
+}
+
+/** The wind a wind-driven source's row offers: the supplement's three speeds under its switch, High-Tech's windy or calm (p. 15; HT:EE p. 17). */
+function windChoices(figures: GeneratorFigures, wind: string, on: PowerSwitches): Array<{ value: string; label: string; selected: boolean }> | null {
+  if (figures.source !== "wind") return null;
+  const speeds = figures.ee?.wind && on.storage();
+  const chosen = !speeds && wind === "low" ? "high" : wind;
+  return (speeds ? ["high", "low", "calm"] : ["high", "calm"]).map((value) => ({ value, label: L(speeds ? `Wind.${value}` : `Windmill.${value}`), selected: chosen === value }));
+}
+
 /** The Gear tab section's data. */
 function generatorContext(actor: any, on: PowerSwitches): Record<string, unknown> {
-  return {
-    rows: generators(actor, on).map(({ item, figures }) => {
-      const tank = figures.tank;
-      const left = tank ? tankLeft(tank, hoursRun(item)) : null;
-      return {
-        id: item.id,
-        name: item.name,
-        does: whatItDoes(figures, on),
-        tank: Boolean(tank),
-        left: left === null ? "" : F("TankLeft", { left: Math.round(left * 10) / 10, hours: tank!.hours }),
-        run: Math.round(hoursRun(item) * 10) / 10,
-        crank: Boolean(figures.cranked || figures.palmCrank || (figures.source === "muscle" && figures.ee?.recharges && on.storage())),
-        recharger: Boolean(figures.recharger || (figures.source === "solar" && figures.ee?.recharges && on.storage())),
-        wind: Boolean(figures.ee?.wind && on.storage()),
-      };
-    }),
-  };
+  const rows: Array<Record<string, unknown>> = generators(actor, on).map(({ item, figures }) => {
+    const tank = figures.tank;
+    const left = tank ? tankLeft(tank, hoursRun(item)) : null;
+    const state = generatorState(item);
+    return {
+      id: item.id,
+      name: item.name,
+      does: whatItDoes(figures, on),
+      tank: Boolean(tank),
+      left: left === null ? "" : F("TankLeft", { left: Math.round(left * 10) / 10, hours: tank!.hours }),
+      run: Math.round(hoursRun(item) * 10) / 10,
+      // Switched on and off, where it isn't worked by muscle; world time runs a tank or a firebox down.
+      switchable: runs(figures),
+      running: state.running,
+      firebox: figures.burns ? F("Firebox", { wood: Math.round(state.wood), water: Math.round(state.water * 10) / 10 }) : "",
+      windChoices: windChoices(figures, state.wind, on),
+      crank: Boolean(figures.cranked || figures.palmCrank || (figures.source === "muscle" && figures.ee?.recharges && on.storage())),
+      recharger: Boolean(figures.recharger || (figures.source === "solar" && figures.ee?.recharges && on.storage())),
+      wind: Boolean(figures.ee?.wind && on.storage()),
+    };
+  });
+  for (const item of flywheels(actor, on)) {
+    const storage = powerData(item).storage;
+    const f = flywheelFigures(storage.size, storage.material);
+    rows.push({
+      id: item.id,
+      name: item.name,
+      does: f ? F(f.grade ? "FlywheelDoes" : "FlywheelDoesNoGrade", { energy: Math.round(f.energy * 100) / 100, size: storage.size, grade: f.grade ? game.i18n.localize(`GCC.HT.Energy.Grade.${f.grade}`) : "", minutes: f.minutes }) : "",
+      left: flywheelStatus(generatorState(item).drawn),
+      flywheel: true,
+    });
+  }
+  return { rows };
+}
+
+/** Spins a flywheel up again on external power: a full store (HT:EE p. 18). */
+async function spinUp(item: any): Promise<void> {
+  await storeGeneratorState(item, { drawn: 0 });
+  await say(item.actor, item.name, [L("SpunUp")]);
 }
 
 /** Fills a generator's tank, taking the fuel from what the actor carries where it has enough. */
@@ -382,10 +435,12 @@ async function runWind(api: GWorldApi, item: any, figures: GeneratorFigures): Pr
   const asked = await ask(F("WindTitle", { name: item.name }), targets, labelled(L("Hours"), hoursInput("amount", 1, 0.5)) + labelled(L("WindSpeed"), `<select name="extra">${speeds}</select>`));
   if (!asked || asked.amount <= 0) return;
   if (asked.extra !== "high" && asked.extra !== "low") {
+    await storeGeneratorState(item, { wind: "calm" });
     await say(actor, item.name, [L("Wind.None")]);
     return;
   }
   const speed = asked.extra as WindSpeed;
+  await storeGeneratorState(item, { wind: speed });
   const skill = figures.ee?.skill;
   if (skill) {
     const own = api.actors.skillLevel(actor, skill);
@@ -398,6 +453,8 @@ async function runWind(api: GWorldApi, item: any, figures: GeneratorFigures): Pr
     const result: any = await api.roll.success({ actor, base: level, skill, item, label: F("WindRoll", { name: item.name }), modifiers: [], tags: ["machineOperation"] } as any);
     if (!result || "refused" in result) return;
     if (!result.success) {
+      // Not kept up with the wind: no power for the spell, to the gadgets plugged in too.
+      await storeGeneratorState(item, { wind: "calm" });
       await say(actor, item.name, [L("Wind.Failed")]);
       return;
     }
@@ -427,6 +484,25 @@ function generatorListeners(api: GWorldApi, element: HTMLElement, actor: any, sw
       const row = rowOf(button);
       if (row) void run(row);
     }));
+  element.querySelectorAll<HTMLInputElement>("[data-gcc-generator-running]").forEach((input) => {
+    input.addEventListener("change", async () => {
+      const row = rowOf(input);
+      if (row) await storeGeneratorState(row.item, { running: input.checked });
+    });
+  });
+  element.querySelectorAll<HTMLSelectElement>("[data-gcc-generator-wind-now]").forEach((select) => {
+    select.addEventListener("change", async () => {
+      const row = rowOf(select);
+      const value = String(select.value);
+      if (row && (value === "high" || value === "low" || value === "calm")) await storeGeneratorState(row.item, { wind: value });
+    });
+  });
+  element.querySelectorAll<HTMLButtonElement>("[data-gcc-flywheel-spin]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = actor.items.get(button.closest<HTMLElement>("[data-item-id]")?.dataset.itemId ?? "");
+      if (item) void spinUp(item);
+    });
+  });
   on("[data-gcc-generator-refuel]", ({ item, figures }) => refuel(item, figures));
   on("[data-gcc-generator-crank]", ({ item, figures }) => crank(api, item, figures, switches));
   on("[data-gcc-generator-solar]", ({ item, figures }) => solarRecharge(api, item, figures, switches));
@@ -469,9 +545,33 @@ export function readyHighTechPower(api: GWorldApi, switches: PowerSwitches): voi
     tab: "gear",
     position: "start",
     template: `modules/${MODULE_ID}/templates/ht-generators.hbs`,
-    visible: (actor) => generators(actor, switches).length > 0,
+    visible: (actor) => generators(actor, switches).length > 0 || flywheels(actor, switches).length > 0,
     context: (actor) => generatorContext(actor, switches),
     listeners: (element, actor) => generatorListeners(api, element, actor, switches),
+  });
+
+  // Generators, collectors and flywheels as what a gadget is plugged into (pp. 14-15; HT:EE pp. 17-18).
+  const shown = (figures: GeneratorFigures) => generatorShown(figures, switches);
+  registerHighTechSources({
+    generatorFor,
+    shown,
+    storageOn: switches.storage,
+    darkness: (actor) => darknessAtCarrier(api, actor),
+    statusText,
+    flywheelStatus,
+  }, () => on() || switches.storage());
+
+  // A running generator burns its fuel as world time passes: the active GM's client keeps the count (pp. 14, 16).
+  const isActiveGm = () => (game as any).user?.isGM === true && (game as any).users?.activeGM?.id === (game as any).user?.id;
+  Hooks.on("updateWorldTime", (_time: number, delta: number) => {
+    if (!(on() || switches.storage()) || !isActiveGm() || !(Number(delta) > 0)) return;
+    const unlinked = [...((game as any).scenes ?? [])].flatMap((scene: any) => [...(scene.tokens ?? [])].filter((t: any) => !t.actorLink && t.actor).map((t: any) => t.actor));
+    for (const actor of [...((game as any).actors ?? []), ...unlinked]) {
+      void advanceGenerators(actor, Number(delta) / 3600, { generatorFor, shown }, (a, item, line) => say(a, item.name, [line]), api, {
+        empty: (item) => F("RanDry", { name: item.name }),
+        noWood: (item) => F("RanOutOfWood", { name: item.name }),
+      });
+    }
   });
 
   api.data.registerPriceModifier({

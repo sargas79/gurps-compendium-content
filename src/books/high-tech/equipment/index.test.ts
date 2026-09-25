@@ -197,6 +197,8 @@ describe("combination gadgets (p. 10)", () => {
       // One S battery for both: the GPS's XS battery weighed 0.1 lb., the S 0.33, so it runs 3.3 times as long.
       expect(source.system.extensions[MODULE_ID].ultraTech.cellWeight).toBe(0.33);
       expect(source.flags[MODULE_ID].combination.endurance).toEqual([{ name: "GPS", hours: 33 }, { name: "Thermograph", hours: 5 }]);
+      // It carries the shared S battery as its own, counted down for its hungriest part.
+      expect(source.system.extensions[MODULE_ID].power).toMatchObject({ draw: { cell: "S", cells: 1, endurance: "5 hr.", raw: "S/5 hr." }, rechargeable: false });
 
       on.combination = true;
       const sections: any[] = [];

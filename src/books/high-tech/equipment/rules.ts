@@ -134,6 +134,8 @@ export interface CombinationPart {
   weight: number;
   /** The batteries in its weight, which the combination leaves out and puts back once. */
   cellWeight: number;
+  /** The ammunition loaded in its weight, which the combination leaves out and puts back: each weapon keeps its own. */
+  ammoWeight?: number;
   lc: number | null;
   tl: number | null;
 }
@@ -155,30 +157,36 @@ function combinedFigure(values: number[], share: number): number {
 
 /**
  * A combination gadget (p. 10). Its weight is the heaviest part's empty
- * weight and a share of the others', and its cost the costliest part's and a
- * share of the others'. It runs on one set of batteries -- here the heaviest
- * set any part carried -- and takes the lowest LC of its parts. The book
- * gives no TL for it; it takes its most advanced part's.
+ * weight -- without its batteries and ammunition -- and a share of the
+ * others', and its cost the costliest part's and a share of the others'. It
+ * runs on one set of batteries -- here the heaviest set any part carried --
+ * and each weapon in it keeps its own loaded ammunition, put back on the
+ * empty weight. It takes the lowest LC of its parts. The book gives no TL
+ * for it; it takes its most advanced part's.
  */
 export function combineGadgets(parts: readonly CombinationPart[], allAtOnce: boolean): {
   cost: number;
   weight: number;
   emptyWeight: number;
   cellWeight: number;
+  ammoWeight: number;
   lc: number | null;
   tl: number | null;
 } {
   const share = allAtOnce ? COMBINATION_SHARE.allAtOnce : COMBINATION_SHARE.oneAtATime;
-  const empty = parts.map((p) => Math.max(0, (Number(p.weight) || 0) - Math.max(0, Number(p.cellWeight) || 0)));
+  const ammo = (p: CombinationPart) => Math.max(0, Number(p.ammoWeight) || 0);
+  const empty = parts.map((p) => Math.max(0, (Number(p.weight) || 0) - Math.max(0, Number(p.cellWeight) || 0) - ammo(p)));
   const emptyWeight = combinedFigure(empty, share);
   const cellWeight = Math.max(0, ...parts.map((p) => Math.max(0, Number(p.cellWeight) || 0)));
+  const ammoWeight = Math.round(parts.reduce((sum, p) => sum + ammo(p), 0) * 1000) / 1000;
   const classes = parts.map((p) => p.lc).filter((lc): lc is number => typeof lc === "number" && Number.isFinite(lc));
   const levels = parts.map((p) => p.tl).filter((tl): tl is number => typeof tl === "number" && Number.isFinite(tl));
   return {
     cost: combinedFigure(parts.map((p) => p.cost), share),
-    weight: Math.round((emptyWeight + cellWeight) * 100) / 100,
+    weight: Math.round((emptyWeight + cellWeight + ammoWeight) * 100) / 100,
     emptyWeight,
     cellWeight,
+    ammoWeight,
     lc: classes.length ? Math.min(...classes) : null,
     tl: levels.length ? Math.max(...levels) : null,
   };
@@ -194,6 +202,33 @@ export function sharedBatteryEndurance(endurance: number, fromWeight: number, to
   // The battery engine's sum; a part that had no battery keeps its endurance, and no battery at all gives none.
   if (!((Number(fromWeight) || 0) > 0)) return hours;
   return Math.round(hours * (enduranceByWeight(fromWeight, toWeight) ?? 0) * 100) / 100;
+}
+
+/**
+ * A weapon's loaded ammunition, in pounds, which its weight includes: the
+ * largest of its modes' reloads -- the table's reload weight, else the
+ * rounds a magazine holds at the calibre's weight per shot (p. 155) -- as
+ * the modes of one gun share its magazine. Zero for gear that fires nothing.
+ */
+export function loadedAmmoWeight(modes: ReadonlyArray<{ reloadWeight?: unknown; shots?: unknown }>, wps: number | null): number {
+  let most = 0;
+  for (const mode of modes) {
+    const reload = Number(mode?.reloadWeight) || 0;
+    const rounds = Number(/^\s*(\d+)/.exec(String(mode?.shots ?? ""))?.[1]) || 0;
+    const weight = reload > 0 ? reload : wps && wps > 0 ? rounds * wps : 0;
+    most = Math.max(most, weight);
+  }
+  return Math.round(most * 1000) / 1000;
+}
+
+/**
+ * How long the shared batteries run a combination: its hungriest part's
+ * endurance on them, which the Gear tab counts down; each part's own is kept
+ * beside it. Null where no part has one.
+ */
+export function combinedEndurance(parts: ReadonlyArray<{ hours: number }>): number | null {
+  const hours = parts.map((p) => Number(p.hours)).filter((h) => Number.isFinite(h) && h > 0);
+  return hours.length ? Math.min(...hours) : null;
 }
 
 // ── equipment bonuses (pp. 7, 11) ────────────────────────────────────────────

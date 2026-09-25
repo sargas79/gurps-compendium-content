@@ -1,6 +1,8 @@
 {{!-- The character's gear that runs on cells, and what is left in each
      (Ultra-Tech pp. 18-19; High-Tech pp. 13-14): a card for each book whose cell table
-     applies, in that book's words (`g.ns`). --}}
+     applies, in that book's words (`g.ns`). Gear that can be plugged in chooses
+     its cells, external power, or a source carried that fits it (`r.choices`);
+     one plugged into a store spends the store's hours (`r.store`). --}}
 {{#each groups as |g|}}
 <section class="card" data-gcc-power-gear>
   <div class="card-head"><h3>{{localize (concat g.ns ".Power.GearTitle")}}</h3></div>
@@ -21,7 +23,16 @@
           <td>
             {{r.charge}}
             {{#if r.pluggable}}
-              <label data-tooltip="{{localize (concat g.ns ".Power.ExternalHint")}}"><input type="checkbox" data-gcc-power-external {{#if r.external}}checked{{/if}} {{#unless @root.editable}}disabled{{/unless}} /> {{localize (concat g.ns ".Power.External")}}</label>
+              <label data-tooltip="{{localize (concat g.ns ".Power.ExternalHint")}}">
+                <select data-gcc-power-source {{#unless @root.editable}}disabled{{/unless}}>
+                  {{#each r.choices as |c|}}<option value="{{c.value}}" {{#if c.selected}}selected{{/if}}>{{c.label}}</option>{{/each}}
+                </select>
+              </label>
+            {{/if}}
+            {{#if r.store}}
+              <label data-tooltip="{{localize (concat g.ns ".Power.StoreUsedHint")}}">{{localize (concat g.ns ".Power.Used")}}
+                <input type="number" data-gcc-power-store-used value="{{r.store.used}}" step="{{r.store.step}}" min="0" style="width:60px" {{#unless @root.editable}}disabled{{/unless}} />
+              </label>
             {{/if}}
             {{#if r.tracksHours}}
               <label data-tooltip="{{localize (concat g.ns ".Power.UsedHint")}}">{{localize (concat g.ns ".Power.Used")}}
@@ -36,6 +47,7 @@
           </td>
           <td>
             {{#if r.cosmic}}
+            {{else unless r.hasCells}}
             {{else if r.weapon}}
               <span class="ihint" data-tooltip="{{localize (concat g.ns ".Power.WeaponHint")}}">{{localize (concat g.ns ".Power.ReloadOnCombat")}}</span>
             {{else}}

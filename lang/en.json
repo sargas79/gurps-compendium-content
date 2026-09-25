@@ -2189,6 +2189,7 @@
         "ShotsLeft": "{loaded}/{capacity} shots",
         "Unlimited": "Unlimited (cosmic)",
         "Unit": {
+          "min": "min.",
           "hr": "hr.",
           "day": "days",
           "wk": "wk."
@@ -7119,6 +7120,7 @@
         "ShotsLeft": "{loaded}/{capacity} shots",
         "Unlimited": "Unlimited",
         "Unit": {
+          "min": "min.",
           "hr": "hr.",
           "day": "days",
           "wk": "wk."
@@ -7140,7 +7142,7 @@
         "ReloadOnCombat": "Reload on the Combat tab",
         "WeaponHint": "A weapon's batteries are changed with its Reload button.",
         "External": "external power",
-        "ExternalHint": "Plugged into building, vehicle or generator power through its adapter or inverter: it runs as long as the power lasts (High-Tech p. 14).",
+        "ExternalHint": "Its batteries, or external power: building or vehicle power, or a generator, collector or flywheel the character carries that supplies what it runs on. It runs as long as the power lasts (High-Tech p. 14; HT:EE p. 9).",
         "OnExternal": "On external power",
         "GeneratorsTitle": "Generators and collectors",
         "RunsOn": "Runs on",
@@ -7226,7 +7228,46 @@
         },
         "NoWindSkill": "Nobody here has {skill}, or Electrician or Mechanic to default from.",
         "WindRoll": "{name}: keeping up with the wind",
-        "WindPowered": "{hours} hr. of {grades}."
+        "WindPowered": "{hours} hr. of {grades}.",
+        "EnduranceFixed": "runs {minutes} minute on it, at the next size's output",
+        "OnCells": "On its batteries",
+        "Unplugged": "Unplugged",
+        "SourceGone": "A source no longer carried",
+        "NoPowerFrom": "No power from the {name}: {status}",
+        "OnStore": "{value} {unit} of {endurance} on the {name}",
+        "OnSource": "On the {name}",
+        "OnSourceStatus": "On the {name}: {status}",
+        "StoreUsedHint": "Hours of this gadget's use drawn from the flywheel it is plugged into.",
+        "Running": "Running",
+        "RunningHint": "Switched on: the gear plugged into it has power while its fuel, wind, water or light holds out, and a tank or firebox runs down as world time passes (High-Tech pp. 14-15).",
+        "WindNowHint": "The wind it turns in: no power on a calm day (High-Tech p. 15; HT:EE p. 17).",
+        "Windmill": {
+          "high": "Windy",
+          "calm": "Calm"
+        },
+        "Firebox": "{wood} lbs. of wood in the firebox; {water} gal. of water used",
+        "FlywheelDoes": "stores {energy}× the energy of one {size} battery; peak output equals {grade} for up to {minutes} minutes",
+        "FlywheelDoesNoGrade": "stores {energy}× the energy of one {size} battery; peak output 100 times a battery's for up to {minutes} minutes",
+        "SpinUp": "Spin up",
+        "SpunUp": "Spun up again on external power: a full store.",
+        "RanDry": "The {name}'s tank runs dry: it stops.",
+        "RanOutOfWood": "The {name} has burned the last of its wood: it stops.",
+        "SourceStatus": {
+          "cranked": "while someone cranks it",
+          "off": "not running",
+          "fuel": "{left} of {hours} hr. of fuel left",
+          "empty": "out of fuel",
+          "burning": "burning wood",
+          "noWood": "no wood carried for the firebox",
+          "calm": "no wind",
+          "wind": "in the wind",
+          "lowWind": "in low wind",
+          "dark": "too dark ({darkness} to Vision)",
+          "sun": "in the light",
+          "running": "running",
+          "spunDown": "spun down",
+          "flywheel": "{percent}% of a full store"
+        }
       },
       "Computer": {
         "Title": "Computer",
@@ -10373,6 +10414,8 @@
         "GravityHint": "A stronger current, but the solution must be watched: its row action rolls the day's upkeep, or sets up a new cell (HT:EE p. 17).",
         "SupercapacitorLine": "Gives the output of one {size} battery for {minutes} minute, at twenty times the price.",
         "SupercapacitorLargest": "Gives ten times the output of one {size} battery for {minutes} minute, at twenty times the price.",
+        "SupercapacitorFor": "{size} supercapacitor",
+        "SupercapacitorGadget": "Runs {minutes} minute on a supercapacitor of size {size} in place of its {usual} batteries: the weight of a battery of that size, at twenty times the price.",
         "MaterialLabel": "Material",
         "MaterialHint": "Carbon fibre is the printed flywheel. Steel (x4.5 weight, a third the cost) and titanium (a third more energy, x3 weight, two-thirds the cost) come only in L and VL, at TL7 (High-Tech: Electricity and Electronics p. 18).",
         "MaterialOption": "{material} (TL{tl})",
@@ -10436,7 +10479,15 @@
           "RollLabel": "{name}: high-amperage charge",
           "Explodes": "The {size} battery explodes.",
           "Acid": "Everyone within {yards} yd. is splashed with strong acid.",
-          "BlastLabel": "Exploding {size} battery"
+          "BlastLabel": "Exploding {size} battery",
+          "Target": "Charge",
+          "NoTarget": "A battery not in a gadget",
+          "TargetOption": "{name} ({left} of {total} hr. left)",
+          "GadgetCharged": "The {name}'s batteries are charged in {hours} hr.",
+          "GadgetChargedNoTime": "The {name}'s batteries are charged.",
+          "LithiumTitle": "Charge a lithium-ion battery",
+          "LithiumHint": "Recharges a lithium-ion battery plugged into it. Household power.",
+          "NoLithiumIon": "Nobody here carries gear on lithium-ion batteries that can be recharged."
         },
         "Pile": {
           "Title": "Run for half an hour",

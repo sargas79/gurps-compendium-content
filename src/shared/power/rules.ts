@@ -189,10 +189,11 @@ export function enduranceHours(text: string | null | undefined): number | null {
   return amount * unit[1];
 }
 
-/** How long is left, in the books' own terms. */
-export function hoursText(hours: number): { value: number; unit: "hr" | "day" | "wk" } {
+/** How long is left, in the books' own terms: minutes under an hour, for a store that runs for one (HT:EE p. 18). */
+export function hoursText(hours: number): { value: number; unit: "min" | "hr" | "day" | "wk" } {
   if (hours >= 24 * 7 * 2) return { value: Math.round((hours / (24 * 7)) * 10) / 10, unit: "wk" };
   if (hours >= 48) return { value: Math.round((hours / 24) * 10) / 10, unit: "day" };
+  if (hours > 0 && hours < 1) return { value: Math.round(hours * 600) / 10, unit: "min" };
   return { value: Math.round(hours * 10) / 10, unit: "hr" };
 }
 

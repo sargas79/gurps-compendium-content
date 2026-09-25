@@ -12,7 +12,9 @@
  *     the rest, and gives the system the antique's raised Legality Class.
  *   - **Combination gadgets** (combinationGadgets): a row action that builds
  *     one gadget from several of the character's, each part's endurance
- *     worked out again for the batteries they now share.
+ *     worked out again for the batteries they now share. The parts' weights
+ *     leave out their batteries and loaded ammunition; the combination
+ *     carries the shared batteries as its own, for the Gear tab to count.
  *   - **Equipment bonuses** (equipmentBonuses): a tool's intrinsic bonus and
  *     the Equipment Bond perk's +1, as lines on the skill beside quality's.
  *   - **TL and familiarity** (tlFamiliarity): a DX-based skill's TL penalty,
@@ -25,11 +27,12 @@
 import { addExtensionFields, ITEM_EXTENSION_TYPES } from "../../../shared/extensions.js";
 import { GADGET_TABLES, antiqueClassOf, gadgetTables, initGadgets, readyGadgets, stylingLine, type GadgetTable } from "../../../shared/gadgets/index.js";
 import { gadgetItem } from "../../../shared/gadgets/data.js";
-import { loadedCellWeight, powerData } from "../../../shared/power/data.js";
+import { cellOf, loadedCellWeight, powerData } from "../../../shared/power/data.js";
 import { enduranceLeft } from "../../../shared/power/index.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { calibreRowOf } from "../ammunition/calibres.js";
 import { expeditionData } from "../expedition/index.js";
-import { HIGH_TECH_GADGETS, bondedName, combineGadgets, equipmentBonusLines, familiarityOffset, sharedBatteryEndurance, type CombinationPart } from "./rules.js";
+import { HIGH_TECH_GADGETS, bondedName, combineGadgets, combinedEndurance, equipmentBonusLines, familiarityOffset, loadedAmmoWeight, sharedBatteryEndurance, type CombinationPart } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Equipment.${key}`);
 const F = (key: string, data: Record<string, unknown>) => game.i18n.format(`GCC.HT.Equipment.${key}`, data);
@@ -137,6 +140,16 @@ export function successRollFamiliarity(api: GWorldApi, context: any): { label: s
   return familiarityLine(api, context.actor, String(context.skill ?? ""), context.item, lines);
 }
 
+/** A weapon's loaded ammunition, in pounds: its reload weight, else its magazine at the calibre's weight per shot (p. 155). */
+function ammoWeightOf(item: any): number {
+  const modes: any[] = item?.system?.rangedModes ?? [];
+  if (!modes.length) return 0;
+  const name = String(item?.name ?? "");
+  const skill = String(modes.find((m) => m?.skill)?.skill ?? "");
+  const wps = name.includes(",") ? calibreRowOf(name, skill)?.wps ?? null : null;
+  return loadedAmmoWeight(modes, wps);
+}
+
 /** The gear that goes into a combination, as the rules read it. */
 function partOf(item: any): CombinationPart {
   const tl = /-?\d+/.exec(String(item?.system?.tl ?? ""));
@@ -146,6 +159,7 @@ function partOf(item: any): CombinationPart {
     weight: Number(item?.effectivePrice?.weight ?? item?.system?.weight) || 0,
     // The batteries in it as it is, which its effective weight holds, where the batteries rule knows them.
     cellWeight: loadedCellWeight(item) ?? gadgetItem(item).cellWeight,
+    ammoWeight: ammoWeightOf(item),
     lc: typeof item?.system?.lc === "number" ? item.system.lc : null,
     tl: tl ? Number(tl[0]) : null,
   };
@@ -161,6 +175,7 @@ export function combinationSource(parts: any[], name: string, allAtOnce: boolean
     return [{ name: String(p.name ?? ""), hours: sharedBatteryEndurance(left.total, partOf(p).cellWeight, made.cellWeight) }];
   });
   const skills = [...new Set(parts.flatMap((p) => (p.system?.forSkills ?? []).map(String)).filter(Boolean))];
+  const power = sharedPower(parts, endurance);
   return {
     name,
     type: "equipment",
@@ -171,9 +186,34 @@ export function combinationSource(parts: any[], name: string, allAtOnce: boolean
       lc: made.lc,
       forSkills: skills,
       category: parts.some((p) => p.system?.category === "tool") ? "tool" : "misc",
-      extensions: { [MODULE_ID]: { ultraTech: { cellWeight: made.cellWeight } } },
+      extensions: { [MODULE_ID]: { ultraTech: { cellWeight: made.cellWeight }, ...(power ? { power } : {}) } },
     },
     flags: { [MODULE_ID]: { book: "high-tech", combination: { parts: parts.map((p) => String(p.name ?? "")), allAtOnce, endurance } } },
+  };
+}
+
+/**
+ * The shared batteries a combination carries as its own power data (p. 10):
+ * the heaviest set a part had -- its size, number, and whether they are
+ * rechargeable and of what chemistry -- running for its hungriest part's
+ * endurance on them. Null where no part had batteries the rule knows.
+ */
+function sharedPower(parts: any[], endurance: ReadonlyArray<{ hours: number }>): Record<string, unknown> | null {
+  let best: { part: any; weight: number; cell: { size: string; cells: number } } | null = null;
+  for (const part of parts) {
+    const cell = cellOf(powerData(part));
+    const weight = loadedCellWeight(part);
+    if (cell && weight !== null && (!best || weight > best.weight)) best = { part, weight, cell };
+  }
+  if (!best) return null;
+  const data = powerData(best.part);
+  const hours = combinedEndurance(endurance);
+  const raw = `${best.cell.cells > 1 ? `${best.cell.cells}×` : ""}${best.cell.size}${hours === null ? "" : `/${hours} hr.`}`;
+  return {
+    draw: { cell: best.cell.size, cells: best.cell.cells, endurance: hours === null ? "" : `${hours} hr.`, raw },
+    rechargeable: data.rechargeable,
+    chemistry: data.variant ? data.chemistry : "",
+    raw,
   };
 }
 

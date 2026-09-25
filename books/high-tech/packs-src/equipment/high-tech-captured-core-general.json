@@ -563,7 +563,17 @@
       "listCost": 15000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -590,7 +600,17 @@
       "listCost": 30000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -617,7 +637,17 @@
       "listCost": 30000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -752,7 +782,17 @@
       "listCost": 300,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1130,7 +1170,17 @@
       "listCost": 250,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1157,7 +1207,17 @@
       "listCost": 750,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1184,7 +1244,17 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1211,7 +1281,17 @@
       "listCost": 15000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1238,7 +1318,17 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1265,7 +1355,17 @@
       "listCost": 6500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1409,7 +1509,17 @@
       "listCost": 10000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1436,7 +1546,17 @@
       "listCost": 100000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1463,7 +1583,17 @@
       "listCost": 1000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1517,7 +1647,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1544,7 +1684,17 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1625,7 +1775,17 @@
       "listCost": 2500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1652,7 +1812,17 @@
       "listCost": 100,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1679,7 +1849,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -1706,7 +1886,17 @@
       "listCost": 25,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -2014,6 +2204,12 @@
         "gurps-compendium-content": {
           "tool": {
             "kit": "workshop"
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3019,7 +3215,17 @@
       "listCost": 250,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -3060,6 +3266,12 @@
               "stRoll": null,
               "carbideBonus": 0
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3089,7 +3301,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -3116,7 +3338,17 @@
       "listCost": 7500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -3297,6 +3529,12 @@
               "stRoll": null,
               "carbideBonus": 0
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3426,6 +3664,12 @@
               "stRoll": null,
               "carbideBonus": 0
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3479,6 +3723,12 @@
         "gurps-compendium-content": {
           "tool": {
             "use": "nailGun"
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3621,6 +3871,12 @@
         "gurps-compendium-content": {
           "tool": {
             "partsPerHour": 10
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3657,6 +3913,12 @@
         "gurps-compendium-content": {
           "tool": {
             "partsPerHour": 0.5
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3693,6 +3955,12 @@
         "gurps-compendium-content": {
           "tool": {
             "partsPerHour": 1
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3729,6 +3997,12 @@
         "gurps-compendium-content": {
           "tool": {
             "partsPerHour": 0.1
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -3760,7 +4034,17 @@
       "listCost": 1000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -3787,7 +4071,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -5042,7 +5336,17 @@
       "listCost": 3000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -5069,7 +5373,17 @@
       "listCost": 800,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -5145,6 +5459,12 @@
               "upTo": "2d",
               "perSecond": true
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5250,6 +5570,12 @@
               "upTo": "",
               "perSecond": true
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5289,6 +5615,12 @@
               "upTo": "",
               "perSecond": true
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5328,6 +5660,12 @@
               "upTo": "",
               "perSecond": false
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5367,6 +5705,12 @@
               "upTo": "",
               "perSecond": false
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5406,6 +5750,12 @@
               "upTo": "",
               "perSecond": false
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5472,6 +5822,12 @@
               "upTo": "",
               "perSecond": false
             }
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
@@ -5501,7 +5857,17 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -5663,7 +6029,17 @@
       "listCost": 250,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -6109,7 +6485,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -6136,7 +6522,17 @@
       "listCost": 7500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -6163,7 +6559,17 @@
       "listCost": 3000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -6325,7 +6731,17 @@
       "listCost": 1000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7045,7 +7461,17 @@
       "listCost": 10000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7136,7 +7562,17 @@
       "listCost": 3000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7283,7 +7719,17 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7364,7 +7810,17 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7391,7 +7847,17 @@
       "listCost": 1500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7418,7 +7884,17 @@
       "listCost": 8500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7521,7 +7997,17 @@
       "listCost": 6000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -7626,7 +8112,17 @@
       "listCost": 900,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8016,7 +8512,17 @@
       "listCost": 2500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8648,7 +9154,17 @@
       "listCost": 1500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8792,7 +9308,17 @@
       "listCost": 4000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8819,7 +9345,17 @@
       "listCost": 500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8873,7 +9409,17 @@
       "listCost": 1500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8927,7 +9473,17 @@
       "listCost": 3500,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -8954,7 +9510,17 @@
       "listCost": 5000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9018,7 +9584,17 @@
       "listCost": 200,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9045,7 +9621,17 @@
       "listCost": 50,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9072,7 +9658,17 @@
       "listCost": 2000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9177,7 +9773,17 @@
       "listCost": 1000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9204,7 +9810,17 @@
       "listCost": 50000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9231,7 +9847,17 @@
       "listCost": 10000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9777,7 +10403,17 @@
       "listCost": 40000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -9921,7 +10557,17 @@
       "listCost": 7000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -10053,7 +10699,17 @@
       "listCost": 1000000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -10080,7 +10736,17 @@
       "listCost": 50000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -10290,7 +10956,17 @@
       "listCost": 10000,
       "hpLost": 0,
       "meleeModes": [],
-      "rangedModes": []
+      "rangedModes": [],
+      "extensions": {
+        "gurps-compendium-content": {
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
+          }
+        }
+      }
     }
   },
   {
@@ -10429,6 +11105,12 @@
         "gurps-compendium-content": {
           "tool": {
             "setupSeconds": 900
+          },
+          "power": {
+            "raw": "External power",
+            "grades": [
+              "external"
+            ]
           }
         }
       }
