@@ -420,17 +420,18 @@ describe("the laboratory instruments (HT:EE pp. 10-13)", () => {
     expect(shocks[0]).toMatchObject({ actor: victim, kind: "lethal", formula: "5d", continuous: true, source: "geigerSupply" });
   });
 
-  it("shocks no one the user doesn't own, from the Geiger supply or the Van de Graaff, and warns", async () => {
+  it("shocks one the user doesn't own through the GM, from the Geiger supply or the Van de Graaff (API 1.149.0)", async () => {
     const stranger = { ...character("Stranger"), isOwner: false };
     targets = [stranger];
     const tube = gear("Geiger-Müller Tube");
-    await action("ht-geiger-supply").run(tube, character("Physicist", { items: [tube] }));
+    const physicist = character("Physicist", { items: [tube] });
+    await action("ht-geiger-supply").run(tube, physicist);
     const generator = gear("Van de Graaff Generator");
+    const teacher = character("Teacher", { items: [generator] });
     form = { sphere: "9" };
-    await action("ht-instrument-discharge").run(generator, character("Teacher", { items: [generator] }));
-    expect(shocks).toEqual([]);
-    expect(ui.notifications!.warn).toHaveBeenCalledTimes(2);
-    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourVictim"));
+    await action("ht-instrument-discharge").run(generator, teacher);
+    expect(shocks.map((s) => [s.actor.name, s.sourceActor])).toEqual([["Stranger", physicist], ["Stranger", teacher]]);
+    expect(ui.notifications!.warn).not.toHaveBeenCalled();
   });
 
   it("builds an analog computer from Mechanic (Analog Computers)-6 for one without the Engineer skill", async () => {

@@ -179,11 +179,6 @@ const laserScalpel = (actor: any, skill: unknown) =>
 export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<void> {
   const patient = targetedActor() ?? actor;
   if (!actor || !patient) return;
-  // Stopping the bleeding and the pain are written to the patient: a user who
-  // doesn't own the patient can't, and the module has no relay to the GM, so
-  // nothing is rolled and the GM is asked to run it (as for any change to a
-  // character this user can't edit).
-  if (!patient.isOwner) return void ui.notifications?.warn(F("NotYourPatient", { name: patient.name }));
   const level = surgeryLevel((skill) => api.actors.skillLevel(actor, skill) ?? null);
   if (level === null) return void ui.notifications?.warn(L("NoSurgery"));
   const answer = await foundry.applications.api.DialogV2.prompt({
@@ -198,11 +193,12 @@ export async function cauterize(api: GWorldApi, item: any, actor: any): Promise<
   if (!result || "refused" in result) return;
   const lines: string[] = [];
   if (!answer.anaesthetic) {
-    await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any);
+    // A patient the healer's user doesn't own is changed through the GM's client (API 1.149.0).
+    await api.actors.applyCondition(patient, { key: CAUTERY.pain } as any, { source: actor });
     lines.push(F("CauteryPain", { name: patient.name }));
   }
   if (result.success) {
-    await api.actors.stopBleeding(patient);
+    await api.actors.stopBleeding(patient, { source: actor });
     lines.push(F("Cauterized", { name: patient.name }));
   } else lines.push(F("NotCauterized", { name: patient.name }));
   if (kindOf(item) === "cauteryPen") {

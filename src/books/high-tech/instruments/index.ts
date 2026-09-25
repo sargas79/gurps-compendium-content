@@ -410,14 +410,13 @@ async function compareSignals(api: GWorldApi, item: any, actor: any): Promise<vo
 /**
  * A shock from the Geiger-Müller tube's high-voltage supply (HT:EE p. 12):
  * 5d lethal electrical damage to the targeted character, or the one holding
- * the tube, through the system's shock.
+ * the tube, through the system's shock -- given by the GM's client where the
+ * user doesn't own the victim (`sourceActor`, API 1.149.0).
  */
 async function supplyShock(api: GWorldApi, actor: any): Promise<void> {
   const victim = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean)[0] ?? actor;
   if (!victim) return;
-  // The shock is written to the victim: only their owner (or the GM) can run it.
-  if (!victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
-  await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply" } as any);
+  await api.hazards.shock({ actor: victim, kind: "lethal", modifier: 0, continuous: true, formula: GEIGER_SUPPLY.damage, metalArmor: false, source: "geigerSupply", sourceActor: actor } as any);
 }
 
 /** The spectrum analyzer's uses (HT:EE p. 11). */
@@ -474,19 +473,22 @@ async function connect(api: GWorldApi, item: any, actor: any): Promise<void> {
   }
 }
 
-/** A Van de Graaff generator's charge, discharged into whoever touches it: a nonlethal shock (HT:EE p. 11; Campaigns p. 432). */
+/**
+ * A Van de Graaff generator's charge, discharged into whoever touches it: a
+ * nonlethal shock (HT:EE p. 11; Campaigns p. 432), given by the GM's client
+ * where the user doesn't own the victim (`sourceActor`, API 1.149.0).
+ */
 async function discharge(api: GWorldApi, item: any, actor: any): Promise<void> {
   const inst = instrumentItem(item);
   if (!inst?.sphere) return;
   const targets = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter(Boolean);
   const victim = targets[0] ?? actor;
-  if (victim && !victim.isOwner) return void ui.notifications?.warn(F("NotYourVictim", { name: victim.name }));
   const answer = await ask(F("DischargeTitle", { name: nameOf(item) }),
     `<p class="ihint">${esc(F("DischargeVictim", { name: victim?.name ?? "" }))}</p>`
     + row(L("Sphere"), `<input type="number" name="sphere" value="${inst.sphere}" min="${inst.sphere}" step="1" style="width:70px" />`),
     (form) => ({ sphere: number(form, "sphere") || inst.sphere! }));
   if (!answer || !victim) return;
-  await api.hazards.shock({ actor: victim, kind: "nonlethal", modifier: vanDeGraaffModifier(answer.sphere, inst.sphere), continuous: false, metalArmor: false } as any);
+  await api.hazards.shock({ actor: victim, kind: "nonlethal", modifier: vanDeGraaffModifier(answer.sphere, inst.sphere), continuous: false, metalArmor: false, sourceActor: actor } as any);
 }
 
 /**

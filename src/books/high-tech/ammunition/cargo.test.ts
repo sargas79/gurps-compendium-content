@@ -30,6 +30,8 @@ const HOOKS = {
 let hooks: Map<string, Listener[]>;
 let on: Record<string, boolean>;
 let areas: any[];
+let placed: any[];
+let advanced: any[];
 let inArea: any[];
 let litFor: Map<string, (observer: any) => boolean>;
 let doses: any[];
@@ -50,7 +52,7 @@ function fakeApi() {
     data: { registerPriceModifier: () => undefined, registerPoison: (p: any) => poisons.push(p) },
     items: { setMalfunction: async () => undefined },
     areas: {
-      add: async (_scene: any, area: any) => { areas.push(area); return area.id; },
+      add: async (scene: any, area: any, options?: any) => { areas.push(area); placed.push({ scene, source: options?.source }); return area.id; },
       list: () => areas,
       standsIn: () => inArea,
       registerLitFor: (r: any) => { litFor.set(`${r.module}.${r.key}`, r.test); return `${r.module}.${r.key}`; },
@@ -59,8 +61,8 @@ function fakeApi() {
       skillLevel: () => null,
       attribute: () => 10,
       derived: (actor: any) => actor.derived ?? {},
-      dosePoison: async (actor: any, poison: any) => { doses.push({ actor: actor.name, ...poison }); return { id: `d${doses.length}`, delaySeconds: poison.delaySeconds ?? 0 }; },
-      advancePoison: async () => undefined,
+      dosePoison: async (actor: any, poison: any, options?: any) => { doses.push({ actor: actor.name, ...poison, by: options?.source?.name }); return { id: `d${doses.length}`, delaySeconds: poison.delaySeconds ?? 0 }; },
+      advancePoison: async (actor: any, id: string, options?: any) => { advanced.push({ actor: actor.name, id, by: options?.source?.name }); },
       applyCondition: async (actor: any, application: any) => { conditions.push({ actor: actor.name, ...application }); return "c1"; },
       pendingModifiers: () => pending,
       addPendingModifier: async (_actor: any, bonus: any) => { pending.push({ id: `p${pending.length + 1}`, ...bonus }); return `p${pending.length}`; },
@@ -133,6 +135,8 @@ beforeEach(() => {
   hooks = new Map();
   on = {};
   areas = [];
+  placed = [];
+  advanced = [];
   inArea = [];
   litFor = new Map();
   doses = [];
@@ -258,6 +262,34 @@ describe("cargo rounds (pp. 143, 171-172)", () => {
     fire(HOOKS.afterShots, { actor: shell.actor, item: shell, modeIndex: 0 });
     await flush();
     expect(doses[0]).toMatchObject({ actor: "Soldier", name: "Mustard Gas", source: `${MODULE_ID}.poisonGas` });
+  });
+
+  it("places a round's cloud on the viewed scene by its id and doses those in it from the shooter, for a player (API 1.149.0, 1.150.0)", async () => {
+    on.cargoProjectiles = true;
+    inArea = [{ actor: { id: "v1", name: "Rioter", isOwner: false, derived: {} } }];
+    const gas = m79([load({ projectile: "tearGas" })]);
+    fire(HOOKS.afterShots, { actor: gas.actor, item: gas, modeIndex: 0 });
+    await flush();
+    expect(placed).toEqual([{ scene: "s1", source: gas.actor }]);
+    expect(doses.map((d) => d.by)).toEqual(["Shooter", "Shooter"]);
+    expect(advanced.map((a) => a.by)).toEqual(["Shooter", "Shooter"]);
+    doses = [];
+    inArea = [{ actor: { id: "v2", name: "Soldier", isOwner: false } }];
+    const shell = hotchkiss([load({ projectile: "poisonGas", poisonFiller: "Mustard Gas", radius: 5, seconds: 60 })]);
+    fire(HOOKS.afterShots, { actor: shell.actor, item: shell, modeIndex: 0 });
+    await flush();
+    expect(doses[0]).toMatchObject({ actor: "Soldier", by: "Shooter" });
+  });
+
+  it("times a player's cloud on the GM's client off the map, where it wasn't dosed there (API 1.149.0)", () => {
+    on.cargoProjectiles = true;
+    const token = { id: "tok9" };
+    const victim = { id: "v9", name: "Bystander", isOwner: true, derived: {}, getActiveTokens: () => [token] };
+    areas = [{ id: `${MODULE_ID}-ht-cloud-tearGas-x`, expires: 1040 }, { id: `${MODULE_ID}-ht-cloud-smoke-y`, expires: 2000 }];
+    inArea = [token];
+    fire(HOOKS.poisonCycle, { actor: victim, source: `${MODULE_ID}.tearGasCoughing`, resisted: false, margin: 1 });
+    // 40 seconds of cloud left, and the margin's minute.
+    expect(conditions[0]).toMatchObject({ actor: "Bystander", key: "coughing", duration: { seconds: 40 + 60 } });
   });
 
   it("bursts white phosphorus into burning fragments that linger, and leaves its minute of smoke", async () => {

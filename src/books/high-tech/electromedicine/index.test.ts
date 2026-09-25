@@ -26,6 +26,7 @@ let on: boolean;
 let targets: any[];
 let worldTime: number;
 let stopped: any[];
+let sources: any[];
 let quantities: any[];
 let dialogAnswer: any;
 
@@ -40,10 +41,11 @@ function fakeApi() {
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 10,
       skillLevel: (actor: any, name: string) => actor?.skills?.[name] ?? null,
       applyInjury: async (actor: any, o: any) => { injuries.push({ actor, ...o }); return {}; },
-      stopBleeding: async (actor: any) => { stopped.push(actor.name); },
+      stopBleeding: async (actor: any, options?: any) => { stopped.push(actor.name); sources.push(["stopBleeding", options?.source]); },
       conditions: (actor: any) => actor.entries,
       // As the system does: a system condition's entry, and its token status.
-      applyCondition: async (actor: any, o: any) => {
+      applyCondition: async (actor: any, o: any, options?: any) => {
+        if (options?.source) sources.push(["applyCondition", options.source]);
         conditions.push({ actor, apply: o.key, duration: o.duration });
         actor.entries = [...actor.entries.filter((c: any) => c.id !== o.key), { id: o.key, untilTime: o.duration?.seconds ? worldTime + o.duration.seconds : null }];
         actor.statuses.add(o.key);
@@ -113,6 +115,7 @@ beforeEach(() => {
   targets = [];
   worldTime = 1000;
   stopped = [];
+  sources = [];
   quantities = [];
   dialogAnswer = { anaesthetic: true };
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
@@ -286,17 +289,17 @@ describe("electrocautery and the cautery pen (HT:EE pp. 13-14)", () => {
     expect(chat[0]).toContain("NotCauterized");
   });
 
-  it("rolls nothing and claims nothing on a patient the healer doesn't own, and warns", async () => {
+  it("cauterizes a patient the healer's user doesn't own through the GM, the healer as the source (API 1.149.0)", async () => {
     on = true;
     const cautery = record("Electrocautery");
     const doctor = person("Doctor", [cautery], { skills: { Surgery: 13 } });
     targets = [person("Stranger", [], { isOwner: false })];
+    dialogAnswer = { anaesthetic: false };
     await run("ee-cautery", cautery, doctor);
-    expect(successes).toEqual([]);
-    expect(stopped).toEqual([]);
-    expect(conditions).toEqual([]);
-    expect(chat).toEqual([]);
-    expect(ui.notifications!.warn).toHaveBeenCalledWith(expect.stringContaining("NotYourPatient"));
+    expect(successes).toHaveLength(1);
+    expect(stopped).toEqual(["Stranger"]);
+    expect(sources).toEqual([["applyCondition", doctor], ["stopBleeding", doctor]]);
+    expect(ui.notifications!.warn).not.toHaveBeenCalled();
   });
 
   it("wants some Surgery skill or default", async () => {

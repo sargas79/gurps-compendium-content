@@ -147,14 +147,38 @@ function actorsIn(api: GWorldApi, id: string): any[] {
 /** The seconds of cloud each actor was left in when last dosed from one, for how long the effect lasts. */
 const cloudLeft = new Map<string, number>();
 
+/**
+ * The seconds left of the tear-gas cloud an actor stands in, read off the
+ * map: for a dose the GM's client runs for a player's cloud (API 1.149.0),
+ * where `cloudLeft` was kept on the player's.
+ */
+function cloudSecondsAround(api: GWorldApi, actor: any): number {
+  const scene = (globalThis as any).canvas?.scene;
+  const token = actor?.getActiveTokens?.()?.[0];
+  if (!scene || !token) return 0;
+  const now = worldNow();
+  const prefix = `${MODULE_ID}-${areaKey({ projectile: "tearGas" } as CargoLoad)}-`;
+  let left = 0;
+  for (const area of api.areas.list(scene) as any[]) {
+    if (!String(area?.id ?? "").startsWith(prefix) || typeof area.expires !== "number" || area.expires <= now) continue;
+    const inside: any[] = (api.areas as any).standsIn?.(scene, area) ?? [];
+    if (inside.some((t) => t?.id === token.id || t?.id === token.document?.id)) left = Math.max(left, area.expires - now);
+  }
+  return left;
+}
+
 /** Whether a body keeps a gas out (Campaigns pp. 82, 429). */
 function victimOf(api: GWorldApi, actor: any): { sealed: boolean; doesntBreathe: boolean; filterLungs: boolean; irritantImmune: boolean } {
   const effects = (api.actors.derived(actor) as any)?.traitEffects ?? {};
   return { sealed: effects.sealed === true, doesntBreathe: effects.doesntBreathe === true, filterLungs: effects.filterLungs === true, irritantImmune: wearsIrritantMask(actor) };
 }
 
-/** Rolls the gases of a cloud for everyone standing in it (p. 171). */
-async function exposeToGas(api: GWorldApi, victims: any[], gases: Gas[], seconds: number): Promise<string[]> {
+/**
+ * Rolls the gases of a cloud for everyone standing in it (p. 171), dosed from
+ * the one who released it: a player's cloud doses tokens they don't own
+ * through the GM's client (API 1.149.0).
+ */
+async function exposeToGas(api: GWorldApi, source: any, victims: any[], gases: Gas[], seconds: number): Promise<string[]> {
   const lines: string[] = [];
   for (const actor of victims) {
     for (const gas of gases) {
@@ -163,8 +187,8 @@ async function exposeToGas(api: GWorldApi, victims: any[], gases: Gas[], seconds
         continue;
       }
       cloudLeft.set(String(actor.id), seconds);
-      const dose: any = await api.actors.dosePoison(actor, { ...GAS_POISONS[gas], name: L(`Gas.${gas}`), source: `${MODULE_ID}.${gas}` } as any);
-      if (dose) await api.actors.advancePoison(actor, dose.id);
+      const dose: any = await api.actors.dosePoison(actor, { ...GAS_POISONS[gas], name: L(`Gas.${gas}`), source: `${MODULE_ID}.${gas}` } as any, { source });
+      if (dose) await api.actors.advancePoison(actor, dose.id, { source });
       else lines.push(F("GasNoDose", { name: actor.name }));
     }
   }
@@ -172,14 +196,14 @@ async function exposeToGas(api: GWorldApi, victims: any[], gases: Gas[], seconds
 }
 
 /** Doses everyone in a poison-gas burst with its Basic Set filler (p. 172; Campaigns p. 439). */
-async function exposeToPoison(api: GWorldApi, victims: any[], filler: string): Promise<string[]> {
+async function exposeToPoison(api: GWorldApi, source: any, victims: any[], filler: string): Promise<string[]> {
   const poison: any = (api.rules as any).poisonNamed?.(filler) ?? null;
   if (!poison) return [L("NoFillerChosen")];
   const lines: string[] = [];
   for (const actor of victims) {
-    const dose: any = await api.actors.dosePoison(actor, { ...poison, source: `${MODULE_ID}.poisonGas` });
+    const dose: any = await api.actors.dosePoison(actor, { ...poison, source: `${MODULE_ID}.poisonGas` }, { source });
     if (!dose) lines.push(F("GasNoDose", { name: actor.name }));
-    else if (!dose.delaySeconds) await api.actors.advancePoison(actor, dose.id);
+    else if (!dose.delaySeconds) await api.actors.advancePoison(actor, dose.id, { source });
     else lines.push(F("PoisonDelayed", { name: actor.name, seconds: dose.delaySeconds }));
   }
   return lines;
@@ -197,7 +221,7 @@ export async function releaseTearGas(api: GWorldApi, actor: any, title: string, 
   return [
     F("CloudPlaced", { radius, seconds }),
     F("CloudForms", { seconds: smokeFormSeconds(radius) }),
-    ...(await exposeToGas(api, actorsIn(api, id), gasesOf(false), seconds)),
+    ...(await exposeToGas(api, actor, actorsIn(api, id), gasesOf(false), seconds)),
   ];
 }
 
@@ -217,8 +241,8 @@ async function releaseCargo(api: GWorldApi, actor: any, load: CargoLoad): Promis
   const said = [F(load.projectile === "illumination" ? "LightPlaced" : "CloudPlaced", { radius: asked.radius, seconds: asked.seconds })];
   if (load.projectile !== "illumination") said.push(F("CloudForms", { seconds: smokeFormSeconds(asked.radius) }));
   if (load.projectile === "smoke" && HT_SMOKE_TABLE[load.smoke].blocks.includes("lasers")) said.push(L("PrismLasers"));
-  if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actorsIn(api, id), gasesOf(load.vomiting), asked.seconds)));
-  if (load.projectile === "poisonGas") said.push(...(await exposeToPoison(api, actorsIn(api, id), load.poisonFiller)));
+  if (load.projectile === "tearGas") said.push(...(await exposeToGas(api, actor, actorsIn(api, id), gasesOf(load.vomiting), asked.seconds)));
+  if (load.projectile === "poisonGas") said.push(...(await exposeToPoison(api, actor, actorsIn(api, id), load.poisonFiller)));
   await say(actor, title, said);
 }
 
@@ -273,9 +297,10 @@ export function readyCargo(api: GWorldApi, on: CargoSwitches, loadOf: (item: any
     if (!gasOn() || !source.startsWith(`${MODULE_ID}.`) || context.resisted !== false) return;
     const gas = source.slice(MODULE_ID.length + 1) as Gas;
     if (!(GASES as readonly string[]).includes(gas)) return;
+    // A player's cloud dosing a token they don't own runs here on the GM's client (API 1.149.0).
     const actor = context.actor;
     if (!actor?.isOwner) return;
-    const effect = gasEffect(gas, Number(context.margin) || 0, cloudLeft.get(String(actor.id)) ?? 0);
+    const effect = gasEffect(gas, Number(context.margin) || 0, cloudLeft.get(String(actor.id)) ?? cloudSecondsAround(api, actor));
     if (effect.condition === "blinded") {
       void api.actors.applyCondition(actor, {
         module: MODULE_ID, key: "htTearGasBlinded", label: L("Blinded"),

@@ -46,13 +46,17 @@ export interface AreaLight {
  * what it is. An area with no lines is refused unless `bare` says it is kept
  * only to be found again (a flare's light). With `light` it also lights its
  * radius. Returns its id or null.
+ *
+ * The area goes on the scene being viewed, named by its id, with the actor
+ * as its source: a player, who can't write a scene, has the GM's client
+ * place it (API 1.150.0).
  */
 export async function placeArea(api: GWorldApi, options: { key: string; label: string; actor: any; radiusYards: number; lines: AreaLine[]; seconds: number | null; bare?: boolean; light?: AreaLight }): Promise<string | null> {
   const scene = sceneNow();
   const center = areaCentre(options.actor);
   if (!scene || !center || !(options.radiusYards > 0) || (!options.lines.length && !options.bare)) return null;
   const now = Number((game as any).time?.worldTime) || 0;
-  return api.areas.add(scene, {
+  return api.areas.add(scene.id ?? scene, {
     id: `${MODULE_ID}-${options.key}-${foundry.utils.randomID(8)}`,
     label: options.label,
     center,
@@ -66,7 +70,7 @@ export async function placeArea(api: GWorldApi, options: { key: string; label: s
         ...(options.light.litFor ? { litFor: options.light.litFor } : {}),
       },
     } : {}),
-  } as any);
+  } as any, options.actor ? { source: options.actor } : undefined);
 }
 
 /** Whether an actor's token stands in an unexpired area whose id carries the key. */
