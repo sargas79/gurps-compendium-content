@@ -117,6 +117,16 @@ export const SMART_FENCE_MODIFIER = -4;
 /** A spike strip's deflated tire: -4 to Driving and half Top Speed, flat in five seconds (p. 204). */
 export const SPIKE_STRIP = Object.freeze({ driving: -4, topSpeed: 0.5, seconds: 5 });
 
+/** Whether a tire a spike strip punctured at `at` (world seconds) is flat by `now` (p. 204). */
+export function spikeStripFlat(at: number, now: number): boolean {
+  return (Number(now) || 0) - (Number(at) || 0) >= SPIKE_STRIP.seconds;
+}
+
+/** A vehicle's Top Speed on a spike strip's flat tire: halved, rounded down (p. 204). */
+export function spikeStripTopSpeed(topSpeed: number): number {
+  return Math.floor(Math.max(0, Number(topSpeed) || 0) * SPIKE_STRIP.topSpeed);
+}
+
 // ── traps (p. 203) ──
 
 /** A tripwire of fishing line is -2 more to spot; one unseen trips the victim unless they make DX-2 (p. 203). */

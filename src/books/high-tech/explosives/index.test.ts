@@ -36,6 +36,7 @@ let registered: any[];
 let detonations: any[];
 let rolledFormulas: string[];
 let injuries: any[];
+let worn: any[];
 let conditions: Map<string, any[]>;
 let weaponState: Map<any, any>;
 let derived: any;
@@ -110,6 +111,17 @@ function fakeApi() {
       post: async (key: string, data: any, opts: any) => { posted.push({ key, data, options: opts }); },
       update: async (message: any, data: any) => { message.data = data; return true; },
     },
+    items: {
+      // Wears the piece down, and the DR at the place with it, as the system's pipeline would show it.
+      wearDr: async (item: any, amount: number, o: any) => {
+        const from = Number(item.system.drLost) || 0;
+        const to = Math.min(Number(item.system.dr) || 0, from + amount);
+        item.system.drLost = to;
+        derived.drByLocation[o.location] -= to - from;
+        worn.push({ item: item.name, amount, ...o });
+        return { itemId: item.id, from, to, location: o.location, reason: o.reason };
+      },
+    },
     actors: {
       derived: () => derived,
       attribute: (actor: any, key: string) => actor?.attributes?.[key] ?? 12,
@@ -150,6 +162,7 @@ beforeEach(() => {
   detonations = [];
   rolledFormulas = [];
   injuries = [];
+  worn = [];
   conditions = new Map();
   weaponState = new Map();
   derived = { drByLocation: { torso: 4 }, traitEffects: { protectedSense: {} } };
@@ -338,6 +351,18 @@ describe("side effects of explosions (pp. 181-182)", () => {
     // With the sense protected, recovery is automatic: no roll offered.
   });
 
+  it("leaves the card as it was when the system refuses the roll (GWorldVTT #753)", async () => {
+    const victim = actorWith("Victim");
+    // A refused roll (effective HT below 3) comes back empty; `false` stands in for the system's null here.
+    outcomes = [false, false];
+    const data = { name: "Victim", concussion: { modifier: -12 }, flash: { modifier: -12 } };
+    const message: any = { data };
+    await cards.get("ht-blast-effects").actions.concussion({ message, data, actor: victim });
+    await cards.get("ht-blast-effects").actions.flash({ message, data, actor: victim });
+    expect(message.data).toBe(data);
+    expect(conditions.get("Victim") ?? []).toEqual([]);
+  });
+
   it("blinds on a flash failed by 10", async () => {
     const victim = actorWith("Victim");
     outcomes = [{ success: false, criticalFailure: false, margin: 10 }];
@@ -477,6 +502,42 @@ describe("incendiaries (p. 188)", () => {
     fire(HOOKS.turnStart, null, { actor: victim });
     await flush();
     expect(injuries[1].amount).toBe(7);
+  });
+
+  it("wears the armour it burns through for good, 1 DR in 10 points", async () => {
+    const vest = { id: "v", name: "Vest", type: "armor", system: { dr: 4, drLost: 0, equipped: true, locations: ["torso"] } };
+    const victim = actorWith("Victim", [vest]);
+    targets = [{ actor: victim }];
+    // DR 4 from the vest and 2 of the victim's own.
+    derived.drByLocation = { torso: 6 };
+    dialog = { pounds: "1", on: "actor", location: "torso", structure: "custom", dr: "0", hp: "0" };
+    actions.get("ht-thermite").run(thermiteRecord(), actorWith("Saboteur"));
+    await flush();
+    dice = [4, 4, 4];
+    fire(HOOKS.turnStart, null, { actor: victim });
+    await flush();
+    expect(worn).toEqual([{ item: "Vest", amount: 1, location: "torso", reason: "GCC.HT.Explosives.Thermite.Title" }]);
+    expect(vest.system.drLost).toBe(1);
+    expect(victim.flags.htThermite).toEqual({ seconds: 24, damage: 12, location: "torso", worn: 1 });
+    // DR 5 now, the vest's lost point already out of it: 12 - 5 = 7.
+    dice = [4, 4, 4];
+    fire(HOOKS.turnStart, null, { actor: victim });
+    await flush();
+    expect(injuries[1].amount).toBe(7);
+    // 24 damage: the second point; the vest runs out after its 4, and the victim's own DR goes after.
+    for (let i = 0; i < 4; i += 1) {
+      dice = [6, 6, 6];
+      fire(HOOKS.turnStart, null, { actor: victim });
+      await flush();
+    }
+    expect(vest.system.drLost).toBe(4);
+    expect(victim.flags.htThermite).toMatchObject({ damage: 96, worn: 4 });
+    expect(derived.drByLocation.torso).toBe(2);
+    // 96 damage has destroyed 9: the vest's 4 and the victim's own 2, so nothing stops the seventh second.
+    dice = [3, 3, 3];
+    fire(HOOKS.turnStart, null, { actor: victim });
+    await flush();
+    expect(injuries.at(-1).amount).toBe(9);
   });
 
   it("works thermite on an object all at once", async () => {

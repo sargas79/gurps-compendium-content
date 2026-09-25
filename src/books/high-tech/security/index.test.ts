@@ -28,11 +28,13 @@ let dialogAnswer: any;
 let targets: any[];
 let equipmentUse: any;
 let hooks: Map<string, Array<(...args: any[]) => void>>;
+let worldTime: number;
 
 function fakeApi() {
   return {
     rules,
-    data: { hooks: { objectStats: "gworld.objectStats" }, registerPriceModifier: (m: any) => prices.push(m) },
+    data: { hooks: { objectStats: "gworld.objectStats", vehicleStats: "gworld.vehicleStats" }, registerPriceModifier: (m: any) => prices.push(m) },
+    combat: { hooks: { successRollModifiers: "gworld.successRollModifiers" } },
     sheets: {
       registerGmTool: (t: any) => tools.set(t.key, t),
       registerSheetSection: (s: any) => sections.set(s.key, s),
@@ -77,6 +79,22 @@ const person = (name: string, more: Record<string, any> = {}) => ({
   ...more,
 });
 
+/** A vehicle actor, as the traps tool meets one. */
+function vehicle(name: string): any {
+  const flags: Record<string, unknown> = {};
+  return {
+    name, type: "vehicle", isOwner: true, items: [], system: { tl: "8", ht: 11 }, attributes: { HT: 11 }, flags,
+    getFlag: (_scope: string, key: string) => flags[key],
+    setFlag: async (_scope: string, key: string, value: unknown) => { flags[key] = value; },
+    unsetFlag: async (_scope: string, key: string) => { delete flags[key]; },
+  };
+}
+
+const fireHook = (name: string, context: any): any => {
+  for (const fn of hooks.get(name) ?? []) fn(context);
+  return context;
+};
+
 function ready(): void {
   const rule = (key: string) => () => on[key] === true;
   readyHighTechSecurity(fakeApi() as never, { locks: rule("locksAndSafes"), traps: rule("trapsAndBarriers") });
@@ -102,10 +120,12 @@ beforeEach(() => {
   targets = [];
   equipmentUse = { lines: [], tags: [], impossible: null };
   hooks = new Map();
+  worldTime = 1000;
   vi.stubGlobal("Hooks", { on: (name: string, fn: (...args: any[]) => void) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
     user: { get targets() { return new Set(targets.map((actor) => ({ actor }))); } },
+    time: { get worldTime() { return worldTime; } },
   });
   vi.stubGlobal("foundry", {
     utils: { escapeHTML: (s: string) => s },
@@ -286,6 +306,40 @@ describe("traps and barriers, with only High-Tech's switch on", () => {
     await runTrapOn(fakeApi() as never, [person("Walker")], answer("carStopper"));
     expect(successes).toHaveLength(0);
     expect(chat[0]).toContain("GCC.HT.Security.Barrier.Unaffected");
+  });
+
+  it("flattens a vehicle's tire five seconds after a spike strip: -4 to control rolls and half Top Speed, until changed", async () => {
+    const car = vehicle("Sedan");
+    await runTrapOn(fakeApi() as never, [car, person("Walker")], answer("spikeStrip"));
+    expect(car.flags.htSpikeStrip).toEqual({ at: 1000 });
+    expect(chat[0]).toContain("Barrier.Punctured");
+    expect(chat[1]).toContain("Barrier.NoTires");
+    const stats = () => fireHook("gworld.vehicleStats", { vehicle: car, handling: 0, stability: 3, acceleration: 5, topSpeed: 55, lines: [] });
+    const control = () => fireHook("gworld.successRollModifiers", { vehicle: car, tags: ["vehicleControl"], modifiers: [] }).modifiers;
+    // Still deflating.
+    expect(stats().topSpeed).toBe(55);
+    expect(control()).toEqual([]);
+    worldTime = 1005;
+    expect(stats()).toMatchObject({ topSpeed: 27, lines: [{ label: "GCC.HT.Security.Trap.FlatTire", stat: "topSpeed" }] });
+    expect(control()).toEqual([{ label: "GCC.HT.Security.Trap.FlatTire", value: -4 }]);
+    await runTrapOn(fakeApi() as never, [car], answer("tiresChanged"));
+    expect(car.flags.htSpikeStrip).toBeUndefined();
+    expect(stats().topSpeed).toBe(55);
+    on = {};
+    car.flags.htSpikeStrip = { at: 0 };
+    expect(stats().topSpeed).toBe(55);
+  });
+
+  it("stops a TL8 vehicle's engine for the car stopper's seconds", async () => {
+    const car = vehicle("Sedan");
+    successResults = [{ success: false, margin: -4 }];
+    await runTrapOn(fakeApi() as never, [car], answer("carStopper"));
+    expect(car.flags.htCarStopped).toEqual({ until: 1004 });
+    expect(conditions).toEqual([]);
+    const stats = () => fireHook("gworld.vehicleStats", { vehicle: car, handling: 0, stability: 3, acceleration: 5, topSpeed: 55, lines: [] });
+    expect(stats()).toMatchObject({ acceleration: 0, topSpeed: 55 });
+    worldTime = 1004;
+    expect(stats().acceleration).toBe(5);
   });
 
   it("registers this book's table with the shared engine at init", () => {
