@@ -28,7 +28,7 @@
  *     fitted one's moderate pain after a day's hiking); TL8 packs weigh half
  *     and backpacks cost double; the hourly march.
  *   - **Climbing gear (climbingGear):** the fall to twice the distance past
- *     the last fastener, shooting while rappelling (-4, -2 with Sure-Footed),
+ *     the last fastener, rolled by the system's falling procedure, shooting while rappelling (-4, -2 with Sure-Footed),
  *     throwing a grapnel and who hears it land (a padded one, +1 lb., at
  *     -2), snowshoes' -1 Move, and crampons' +2 to a kick
  *     (beside the system's +1 for boots, which they are worn over); an
@@ -707,7 +707,10 @@ export function readyExpedition(api: GWorldApi, on: ExpeditionSwitches): void {
           rejectClose: false,
         });
         if (!asked) return;
-        await say(actor, String(item.name ?? ""), [F("FallLine", { name: actor?.name ?? "", above: asked.yards, yards: anchoredFall(asked.yards) })]);
+        const yards = anchoredFall(asked.yards);
+        await say(actor, String(item.name ?? ""), [F("FallLine", { name: actor?.name ?? "", above: asked.yards, yards })]);
+        // The fall itself, as the system's falling procedure rolls it (Campaigns pp. 430-431).
+        if (yards > 0 && actor) await api.hazards.fall(actor, { yards });
       })();
     },
   });

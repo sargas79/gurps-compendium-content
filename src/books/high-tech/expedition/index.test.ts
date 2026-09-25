@@ -20,6 +20,7 @@ let cards: Map<string, any>;
 let options: Map<string, any>;
 let prices: any[];
 let successes: any[];
+let falls: any[];
 let conditions: any[];
 let posted: any[];
 let updated: any[];
@@ -35,6 +36,7 @@ let tokens: any[];
 function fakeApi() {
   return {
     registry: { isRuleOn: () => false },
+    hazards: { fall: async (actor: any, o: any) => { falls.push({ actor: actor.name, ...o }); return 0; } },
     areas: {
       list: () => areas,
       add: (_scene: any, area: any) => { areas.push(area); return area.id; },
@@ -134,6 +136,7 @@ beforeEach(() => {
   options = new Map();
   prices = [];
   successes = [];
+  falls = [];
   conditions = [];
   posted = [];
   updated = [];
@@ -374,13 +377,19 @@ describe("climbing gear (High-Tech pp. 55-56)", () => {
     expect(option.apply({ actor: climber }, false)).toBeNull();
   });
 
-  it("works out a roped fall, and throws a grapnel at DX-3 or Throwing", async () => {
+  it("rolls a roped fall at twice the distance past the fastener, and throws a grapnel at DX-3 or Throwing", async () => {
     const harness = gear("Harness", { climbing: "harness" });
     const climber = person("Climber", [harness], { skills: { Throwing: 13 } });
     dialogAnswer = { yards: 4 };
     actions.get("ht-climb-fall").run(harness, climber);
     await flush();
     expect(chat.at(-1)).toContain('"yards":8');
+    expect(falls).toEqual([{ actor: "Climber", yards: 8 }]);
+    dialogAnswer = { yards: 0 };
+    actions.get("ht-climb-fall").run(harness, climber);
+    await flush();
+    expect(falls).toHaveLength(1);
+    dialogAnswer = { yards: 4 };
     const hook = gear("Grappling Hook", { climbing: "grapnel" }, { tl: "5" });
     actions.get("ht-grapnel").run(hook, climber);
     await flush();

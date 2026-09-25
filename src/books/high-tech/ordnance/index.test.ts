@@ -11,6 +11,7 @@ import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import * as rules from "../../../../system/src/rules/index.js";
+import { inCone } from "../../../../system/src/rules/modifier-areas.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { readyExplosives } from "../explosives/index.js";
 import { ordnanceExtras, readyOrdnance } from "./index.js";
@@ -51,6 +52,7 @@ let conditions: Map<string, any[]>;
 let weaponState: Map<any, any>;
 let dialog: Record<string, string> | null;
 let targets: any[];
+let cones: any[];
 let irradiated: any[];
 let malfunctions: Map<any, any>;
 let postures: Array<[string, string]>;
@@ -94,7 +96,12 @@ function fakeApi() {
     registry: { isRuleOn: (key: string) => key === "explosions" || on[key] === true },
     data: { registerExplosive: (r: any) => `${r.module}.${r.key}`, registerPoison: () => null },
     hazards: { detonate: async () => null, irradiate: async (o: any) => { irradiated.push(o); } },
-    areas: { add: () => "area", list: () => [] },
+    areas: {
+      add: () => "area",
+      list: () => [],
+      // The system's own cone test, on the targets as the scene's tokens.
+      standsIn: (_scene: any, area: any) => { cones.push(area); return targets.filter((t) => t.center && inCone(t.center, area.center, area.cone)).map((t) => t.document); },
+    },
     items: {
       objectStats: () => ({ ht: 10, dr: 0 }),
       malfunction: (i: any) => malfunctions.get(i) ?? null,
@@ -153,6 +160,7 @@ beforeEach(() => {
   weaponState = new Map();
   dialog = null;
   targets = [];
+  cones = [];
   irradiated = [];
   malfunctions = new Map();
   postures = [];
@@ -401,6 +409,33 @@ describe("land mines (p. 189)", () => {
     expect(damage.slice(before)).toHaveLength(3);
     expect(damage.at(-1)).toMatchObject({ formula: "2d", damageType: "pi-", armorDivisor: 0.5, halfDamage: false });
     expect(message.data.rows[0].rolled).toBe(true);
+  });
+
+  it("attacks only those in a Claymore's 60-degree cone, facing the targets to start with", async () => {
+    const claymore = item("M18A1 Claymore");
+    const placer = actorWith("Placer", [claymore], { getActiveTokens: () => [{ center: { x: 0, y: 0 } }] });
+    vi.stubGlobal("canvas", { scene: { grid: { size: 100, distance: 1 } } });
+    const token = (name: string, x: number, y: number) => ({ name, center: { x, y }, document: { id: name }, actor: actorWith(name) });
+    // East of the mine: 10 yards ahead, 5 yards ahead and 1 to the side, and 5 yards off at right angles.
+    targets = [token("Ahead", 1000, 0), token("Near", 500, 100), token("Aside", 0, 500)];
+    dialog = { d0: "10", d1: "5", d2: "5", facing: "0" };
+    dice = [3, 3, 4, 2, 3, 3, 3, 3, 3];
+    actions.get("ht-mine-set-off").run(claymore, placer);
+    await flush();
+    const cone = cones.at(-1);
+    expect(cone.center).toEqual({ x: 0, y: 0 });
+    expect(cone.cone).toMatchObject({ direction: 0, length: 27000, base: 100 });
+    expect(cone.cone.width).toBeCloseTo(31177, 0);
+    const card = posted.find((p) => p.key === `${MODULE_ID}.ht-directional-mine`);
+    expect(card.data.rows.map((r: any) => r.name)).toEqual(["Near", "Ahead", "Aside"]);
+    expect(card.data.rows[2]).toMatchObject({ hits: 0, line: "GCC.HT.Ordnance.Mine.Missed.cone", index: 2 });
+    // Turned to face south, the one at right angles is the only one in it.
+    posted = [];
+    dialog = { d0: "10", d1: "5", d2: "5", facing: "90" };
+    actions.get("ht-mine-set-off").run(claymore, placer);
+    await flush();
+    const turned = posted.find((p) => p.key === `${MODULE_ID}.ht-directional-mine`);
+    expect(turned.data.rows.filter((r: any) => r.line !== "GCC.HT.Ordnance.Mine.Missed.cone").map((r: any) => r.name)).toEqual(["Aside"]);
   });
 });
 

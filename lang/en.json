@@ -8218,6 +8218,9 @@
           "NoTargets": "Target those in the mine's cone first.",
           "VolleyTitle": "{name}: who is in the cone",
           "VolleyHint": "Yards from the mine to each (the mine's token, where it has one). Past {max} yards nothing is hit.",
+          "Facing": "Facing (degrees)",
+          "FacingHint": "Which way the mine faces, in degrees clockwise from east, as a template measures it; to start with, toward the targets. Only those in its {degrees}-degree cone are attacked.",
+          "RowOutside": "{distance} yd.",
           "Fire": "Fire",
           "Row": "{distance} yd, skill {skill}, rolled {roll}",
           "RowHalf": "{distance} yd (past 1/2D), skill {skill}, rolled {roll}",
@@ -8225,7 +8228,8 @@
           "Miss": "missed (by {margin})",
           "Missed": {
             "range": "out of range",
-            "spent": "the pellets are spent"
+            "spent": "the pellets are spent",
+            "cone": "outside the cone"
           },
           "VolleyCard": "Pellets left:",
           "RollDamage": "Roll hits",
@@ -8392,9 +8396,9 @@
         "Rappelling": "Shooting while rappelling",
         "RappellingSure": "Shooting while rappelling (Sure-Footed)",
         "FallAction": "Fall on the rope",
-        "FallHint": "A roped climber falls at most twice the distance between the last fastener and where they were.",
+        "FallHint": "A roped climber falls at most twice the distance between the last fastener and where they were. The fall is rolled at that distance, as the sheet's Fall rolls one.",
         "FallYards": "Yards above the last fastener",
-        "FallLine": "{name}, {above} yards past the last fastener, falls at most {yards} yards: roll it with the sheet's Fall.",
+        "FallLine": "{name}, {above} yards past the last fastener, falls at most {yards} yards.",
         "GrapnelAction": "Throw the grapnel",
         "GrapnelLine": "Reaches {yards} yards at most; holds {lbs} lbs.",
         "GrapnelRing": "On stone or concrete it rings: an unmodified Hearing roll at 1 yard (-2 for a padded grapnel).",

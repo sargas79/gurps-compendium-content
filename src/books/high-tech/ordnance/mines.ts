@@ -13,14 +13,17 @@
  *     card's button drops the targeted tokens flat). The system's own row
  *     leaves those fragments to this action.
  *   - **Directional mines:** the Claymore (and the Stingmore) attack everyone
- *     targeted at basic skill 9, plus the rapid-fire bonus for their pellets,
- *     less the range penalty for their distance from the mine, nearest first,
- *     until the pellets are spent; the card rolls each target's hits once its
- *     Dodge is known. The system's pellet row is at skill 9 too.
+ *     targeted in their 60-degree cone at basic skill 9, plus the rapid-fire
+ *     bonus for their pellets, less the range penalty for their distance
+ *     from the mine, nearest first, until the pellets are spent; the card
+ *     rolls each target's hits once its Dodge is known. Where the mine has a
+ *     token, the cone is the system's (`areas.standsIn`), facing the way the
+ *     dialog says (toward the targets, to start with), and a target outside
+ *     it is missed. The system's pellet row is at skill 9 too.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
-import { MINE_TASKS, avoidsBoundingFragments, directionalVolley, mineFacts, type MineFacts, type MineTask } from "./rules.js";
+import { DIRECTIONAL_CONE_DEGREES, MINE_TASKS, avoidsBoundingFragments, bearingToward, coneWidth, directionalVolley, mineFacts, type MineFacts, type MineTask } from "./rules.js";
 import { F, L, ask, checkbox, hint, mainMode, formulaOf, number, roll3d, row, say, select, skillRoll, targetedTokens, yardsBetween } from "./common.js";
 
 const BOUNDING_SOURCE = `${MODULE_ID}.bounding`;
@@ -149,14 +152,30 @@ export function readyMines(api: GWorldApi, on: () => boolean): void {
     const origin = actor?.getActiveTokens?.()?.[0] ?? null;
     const tokens = targetedTokens();
     if (!tokens.length) return void ui.notifications?.warn(L("Mine.NoTargets"));
+    // The cone, where the mine's token is on the scene: it faces the targets unless the dialog says otherwise.
+    const scene = (globalThis as any).canvas?.scene ?? null;
+    const facing = scene && origin?.center ? bearingToward(origin.center, tokens.map((t) => t?.center).filter(Boolean)) : null;
     const value = await ask(F("Mine.VolleyTitle", { name }), [
       hint(F("Mine.VolleyHint", { max: spec.max })),
+      ...(facing === null ? [] : [row(L("Mine.Facing"), number("facing", facing, "1")), hint(F("Mine.FacingHint", { degrees: DIRECTIONAL_CONE_DEGREES }))]),
       ...tokens.map((t, i) => row(String(t.name ?? t.actor?.name ?? ""), number(`d${i}`, yardsBetween(origin, t) ?? 10))),
     ].join(""), L("Mine.Fire"));
     if (!value) return;
+    let inCone = (_token: any) => true;
+    if (facing !== null) {
+      const perYard = (Number(scene.grid?.size) || 100) / (Number(scene.grid?.distance) || 1);
+      const direction = ((Number(value("facing")) || 0) % 360 + 360) % 360;
+      // As `areas.list` gives a cone: scene pixels and degrees, a yard wide at the apex (API 1.89.0).
+      const cone = {
+        id: `${MODULE_ID}-directional-cone`, label: name, center: { x: origin.center.x, y: origin.center.y }, radius: null, region: null, lines: [], expires: null,
+        cone: { direction, length: spec.max * perYard, width: coneWidth(spec.max) * perYard, base: perYard },
+      };
+      const inside = new Set((api.areas.standsIn(scene, cone as any) ?? []).map((doc: any) => String(doc?.id ?? "")));
+      inCone = (token: any) => inside.has(String(token?.document?.id ?? token?.id ?? ""));
+    }
     const rules = api.rules as any;
     const resolved = directionalVolley(
-      tokens.map((t, i) => ({ id: String(i), distance: Math.max(0, Number(value(`d${i}`)) || 0), roll: roll3d() })),
+      tokens.flatMap((t, i) => (inCone(t) ? [{ id: String(i), distance: Math.max(0, Number(value(`d${i}`)) || 0), roll: roll3d() }] : [])),
       spec,
       { rofBonus: Number(rules.rapidFireBonus?.(spec.count)) || 0, rangePenalty: (yards) => Number(rules.speedRangeModifier?.(yards)) || 0 },
     );
@@ -170,6 +189,14 @@ export function readyMines(api: GWorldApi, on: () => boolean): void {
         line: r.missed ? L(`Mine.Missed.${r.missed}`) : r.hits > 0 ? F("Mine.Hits", { hits: r.hits, margin: r.margin }) : F("Mine.Miss", { margin: Math.abs(r.margin) }),
         rolled: false,
       };
+    });
+    // Those targeted outside the cone: missed, with no roll.
+    tokens.forEach((t, i) => {
+      if (inCone(t)) return;
+      rows.push({
+        index: rows.length, name: String(t?.name ?? t?.actor?.name ?? ""), hits: 0, halfDamage: false,
+        summary: F("Mine.RowOutside", { distance: Math.max(0, Number(value(`d${i}`)) || 0) }), line: L("Mine.Missed.cone"), rolled: false,
+      });
     });
     await api.chat.post(`${MODULE_ID}.${VOLLEY_CARD}`, {
       name, itemUuid: String(item.uuid ?? ""), modeIndex: pellets.index,
