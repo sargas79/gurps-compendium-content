@@ -85,7 +85,8 @@ import {
   shockDetonates,
   shockNumber,
   skimOutcome,
-  thermiteDr,
+  thermiteDrDestroyed,
+  thermiteDrOnVictim,
   thermiteOnObject,
   thermiteSeconds,
   type DemolitionJob,
@@ -576,6 +577,18 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
   });
 
   // ── incendiaries (p. 188) ──
+  // The DR thermite destroys, off the armour worn over the place it burns; what it
+  // returns is the points worn off, which may be fewer where the armour runs out.
+  const wearArmor = async (actor: any, location: string, points: number): Promise<number> => {
+    let left = points;
+    for (const item of [...(actor?.items ?? [])] as any[]) {
+      if (left <= 0) break;
+      if (item?.type !== "armor" || item.system?.equipped !== true || item.system?.carried === false) continue;
+      const worn = await api.items.wearDr(item, left, { location, reason: L("Thermite.Title") });
+      if (worn) left -= Math.max(0, worn.to - worn.from);
+    }
+    return points - left;
+  };
   const thermite: LingeringBurn = {
     flag: THERMITE_FLAG,
     condition: THERMITE_CONDITION,
@@ -583,8 +596,15 @@ export function readyExplosives(api: GWorldApi, on: ExplosiveSwitches, extras: E
     title: () => L("Thermite.Title"),
     conditionLabel: (seconds) => F("Thermite.Burning", { seconds }),
     dice: { dice: THERMITE.dice, adds: THERMITE.adds },
-    dr: (a, actor, state) => thermiteDr(Number((a.actors.derived(actor) as any)?.drByLocation?.[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0),
-    after: (state, rolled) => ({ ...state, damage: (Number(state.damage) || 0) + rolled }),
+    dr: (a, actor, state) => thermiteDrOnVictim(Number((a.actors.derived(actor) as any)?.drByLocation?.[String(state.location ?? "torso")]) || 0, Number(state.damage) || 0, Number(state.worn) || 0),
+    // Every 10 points destroy a point of DR for good, even on armour (p. 188): worn off the
+    // armour on the spot (`items.wearDr`), and counted against the rest of the DR there.
+    after: async (state, rolled, actor) => {
+      const before = Number(state.damage) || 0;
+      const destroyed = thermiteDrDestroyed(before, before + rolled);
+      const worn = destroyed > 0 ? await wearArmor(actor, String(state.location ?? "torso"), destroyed) : 0;
+      return { ...state, damage: before + rolled, ...(worn > 0 ? { worn: (Number(state.worn) || 0) + worn } : {}) };
+    },
     secondLine: ({ name, roll, dr, injury, state }) => F("Thermite.Second", { name, roll, dr, injury, location: String(state.location ?? "torso") }),
     burnedOutLine: (name) => F("Thermite.BurnedOut", { name }),
   };

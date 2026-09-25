@@ -18,6 +18,7 @@ const HOOKS = {
   weaponAttacks: "gworld.weaponAttacks",
   attackModifiers: "gworld.attackModifiers",
   afterDamage: "gworld.afterDamage",
+  afterSuccessRoll: "gworld.afterSuccessRoll",
   poisonCycle: "gworld.poisonCycle",
 };
 
@@ -248,6 +249,27 @@ describe("forced-entry tools (High-Tech pp. 25-30)", () => {
     }
     expect(chat.at(-1)).toContain("ReadyDone");
     expect(attack(opener, actor).refusal).toBeNull();
+    fire(HOOKS.afterSuccessRoll, { actor, item: opener, tags: ["attack"], outcome: { success: true } });
+    await flush();
+    expect(attack(opener, actor).refusal).toContain("ReadiesRefusal");
+  });
+
+  it("keeps the Ready count when the attack is refused after the tool allowed it", async () => {
+    const opener = equipment("Hydraulic Door Opener", { readies: 3 });
+    const actor = worker([opener]);
+    for (let i = 0; i < 3; i += 1) {
+      actions.get("ht-tool-ready").run(opener, actor);
+      await flush();
+    }
+    // Refused below skill 3: no gworld.afterSuccessRoll follows.
+    expect(attack(opener, actor).refusal).toBeNull();
+    await flush();
+    expect(attack(opener, actor).refusal).toBeNull();
+    // Another roll the actor makes isn't the attack.
+    fire(HOOKS.afterSuccessRoll, { actor, tags: ["skill"], outcome: { success: true } });
+    await flush();
+    expect(attack(opener, actor).refusal).toBeNull();
+    fire(HOOKS.afterSuccessRoll, { actor, item: opener, tags: ["attack"], outcome: { success: false } });
     await flush();
     expect(attack(opener, actor).refusal).toContain("ReadiesRefusal");
   });

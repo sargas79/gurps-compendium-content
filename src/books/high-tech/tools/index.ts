@@ -611,9 +611,14 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
   });
 
   // A stalled or broken saw doesn't cut; a tool short of its Ready maneuvers isn't ready.
+  // The count starts again once the attack is rolled (`gworld.afterSuccessRoll`), which an
+  // attack refused afterwards (by another rule, or below skill 3) never reaches.
+  const spending = new Map<string, any>();
   Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
     const item = context?.item;
-    if (!item || context.refusal) return;
+    if (!item) return;
+    spending.delete(String(context.actor?.uuid ?? ""));
+    if (context.refusal) return;
     const data = toolData(item);
     if (on.chainsaws() && data.use === "chainsaw") {
       const state = sawState(api, item);
@@ -630,8 +635,16 @@ export function readyTools(api: GWorldApi, on: ToolSwitches): void {
         context.refusal = F("ReadiesRefusal", { name: item.name, done, needed });
         return;
       }
-      if (needed && item.isOwner) void api.combat.setWeaponState(item, MODULE_ID, { readied: 0 });
+      if (needed && item.isOwner) spending.set(String(context.actor?.uuid ?? ""), item);
     }
+  });
+  Hooks.on(api.combat.hooks.afterSuccessRoll, (context: any) => {
+    const key = String(context?.actor?.uuid ?? "");
+    const item = spending.get(key);
+    if (!item || !(context?.tags ?? []).includes("attack")) return;
+    spending.delete(key);
+    if (context.item && context.item !== item && String(context.item.id ?? "") !== String(item.id ?? "")) return;
+    void api.combat.setWeaponState(item, MODULE_ID, { readied: 0 });
   });
 
   // A blow from the hard-material row that got nowhere (p. 27).

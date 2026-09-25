@@ -35,8 +35,11 @@ export interface LingeringBurn {
   dice: { dice: number; adds: number };
   /** The DR the fire meets this second. */
   dr: (api: GWorldApi, actor: any, state: BurnState) => number;
-  /** The state after a second that rolled `roll`, before the count-down. */
-  after?: (state: BurnState, roll: number) => BurnState;
+  /**
+   * The state after a second that rolled `roll`, before the count-down. It may
+   * change the victim too: thermite wears down the armour it burns through.
+   */
+  after?: (state: BurnState, roll: number, actor: any) => BurnState | Promise<BurnState>;
   /** The card's line for the second. */
   secondLine: (data: { name: string; roll: number; dr: number; injury: number; state: BurnState }) => string;
   /** The card's line when it burns out. */
@@ -80,7 +83,7 @@ async function tick(api: GWorldApi, actor: any, burn: LingeringBurn): Promise<vo
   const dr = Math.max(0, Math.floor(burn.dr(api, actor, state)));
   const injury = Math.max(0, roll - dr);
   if (injury > 0) await api.actors.applyInjury(actor, { amount: injury, label: burn.title() });
-  const next = burn.after ? burn.after(state, roll) : state;
+  const next = burn.after ? await burn.after(state, roll, actor) : state;
   const left = Math.max(0, (Number(state.seconds) || 0) - 1);
   const name = String(actor.name ?? "");
   const lines = [burn.secondLine({ name, roll, dr, injury, state })];

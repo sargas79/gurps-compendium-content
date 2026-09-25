@@ -6186,6 +6186,8 @@
         "LimbTitle": "Realistic limb wound",
         "LimbPermanent": "{name}'s {part}: {injury} injury, at least twice the {least} that cripples it: crippled for good, with no HT roll for how long.",
         "LimbSevered": "{name}'s {part}: {injury} injury, enough to sever it.",
+        "PermanentLabel": "{part}: crippled for good (High-Tech p. 162)",
+        "SeveredLabel": "{part}: severed (High-Tech p. 162)",
         "FrightTitle": "\"You shot me, Mister!\"",
         "FrightText": "{name} took a serious wound: a Fright Check ({modifier}) this turn. The GM may make it worse for a wound that spurts blood or breaks a bone, or better for someone used to injuries.",
         "FrightRoll": "Fright Check ({modifier})",
