@@ -19,6 +19,7 @@ type Listener = (...args: any[]) => unknown;
 const LIES = `${MODULE_ID}.lieDetection`;
 const RESTRAINTS = `${MODULE_ID}.restraintDevices`;
 const HOOKS = { successRollModifiers: "srm", attackModifiers: "am" };
+const OBJECT_STATS = "os";
 
 const hooks = new Map<string, Listener[]>();
 const actions = new Map<string, any>();
@@ -36,9 +37,14 @@ let successResult: any;
 let successCalls: any[];
 let contestResult: any;
 let contestCalls: any[];
+let applied: any[];
+let appliedResult: any;
+let dialogAnswer: any;
 
 const api: any = {
   combat: { hooks: HOOKS },
+  data: { hooks: { objectStats: OBJECT_STATS } },
+  items: { applyDamage: async (o: any) => { applied.push(o); return appliedResult; } },
   sheets: {
     registerSheetSection: (s: any) => sections.set(s.key, s),
     registerRowAction: (a: any) => actions.set(a.key, a),
@@ -82,7 +88,7 @@ beforeAll(() => {
     user: { get targets() { return new Set(targets.map((actor) => ({ actor }))); } },
     get actors() { return actors; },
   });
-  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s } });
+  vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), getWhisperRecipients: () => [{ id: "gm" }], create: async (m: any) => { chat.push(m.whisper ? `whisper:${m.whisper.join()} ${m.content}` : m.content); } } });
   vi.stubGlobal("ui", { notifications: { warn: vi.fn() } });
   LIE_DETECTOR_TABLES.clear();
@@ -101,6 +107,9 @@ beforeEach(() => {
   successCalls = [];
   contestResult = null;
   contestCalls = [];
+  applied = [];
+  appliedResult = null;
+  dialogAnswer = null;
 });
 
 afterAll(() => {
@@ -206,6 +215,20 @@ describe("a straitjacket and leg irons (p. 217)", () => {
     expect(actions.get("restraint-escape").visible(jacket)).toBe(true);
   });
 
+  it("leaves a straitjacket's wearer no hands: a hands-only skill is refused, not penalized", () => {
+    const jacket = gear("Straitjacket", { tl: "5", flags: { restraint: "on" } });
+    const patient = person("Patient", [jacket]);
+    const picking = fire(HOOKS.successRollModifiers, { actor: patient, kind: "skill", skill: "Lockpicking", tags: ["skill"], modifiers: [], refusal: null });
+    expect(picking.refusal).toContain("Restraints.NoHands");
+    expect(picking.modifiers).toEqual([]);
+    // Cuffs behind the back are only -4 on the same task, and the jacket's own Escape roll is left alone.
+    const cuffs = gear("Handcuffs", { flags: { restraint: "behind" } });
+    const cuffed = fire(HOOKS.successRollModifiers, { actor: person("Prisoner", [cuffs]), kind: "skill", skill: "Lockpicking", tags: ["skill"], modifiers: [], refusal: null });
+    expect(cuffed.refusal).toBeNull();
+    expect(cuffed.modifiers.map((l: any) => l.value)).toEqual([-4]);
+    expect(fire(HOOKS.successRollModifiers, { actor: patient, kind: "skill", skill: "Escape", tags: ["restraintEscape"], modifiers: [], refusal: null }).refusal).toBeNull();
+  });
+
   it("makes leg irons Crippled Legs", () => {
     const irons = gear("Leg Irons (Ball and Chain)", { tl: "5", flags: { restraint: "on" } });
     const prisoner = person("Prisoner", [irons]);
@@ -256,6 +279,26 @@ describe("getting out (p. 217)", () => {
     expect(successCalls[0]).toMatchObject({ base: 13, skill: "Acrobatics" });
     expect(cuffs.flags[MODULE_ID].restraint).toBe("front");
     expect(actions.get("restraint-slip").visible(cuffs)).toBe(false);
+  });
+
+  it("breaks handcuffs struck to 0 HP at their DR 4, HP 6, and frees the prisoner", async () => {
+    const cuffs = gear("Handcuffs", { flags: { restraint: "behind" } });
+    const prisoner = person("Prisoner", [cuffs]);
+    expect(fire(OBJECT_STATS, { item: cuffs, dr: 0, hp: 1 })).toMatchObject({ dr: 4, hp: 6 });
+    expect(actions.get("restraint-break").visible(cuffs)).toBe(true);
+    // Bolt cutters: 12d(2) cut.
+    dialogAnswer = { damage: 5, type: "cut", divisor: 2 };
+    appliedResult = { hp: 6, to: 4 };
+    await actions.get("restraint-break").run(cuffs, prisoner);
+    expect(applied[0]).toMatchObject({ item: cuffs, damage: 5, type: "cut", armorDivisor: 2 });
+    expect(chat.at(-1)).toContain("Restraints.Unbroken");
+    expect(cuffs.flags[MODULE_ID].restraint).toBe("behind");
+    appliedResult = { hp: 6, to: 7 };
+    await actions.get("restraint-break").run(cuffs, prisoner);
+    expect(chat.at(-1)).toContain("Restraints.Broken");
+    expect(cuffs.flags[MODULE_ID].restraint).toBe("off");
+    // A straitjacket has no DR or HP printed: nothing to break.
+    expect(actions.get("restraint-break").visible(gear("Straitjacket", { flags: { restraint: "on" } }))).toBe(false);
   });
 
   it("puts a restraint on from its sheet section", () => {

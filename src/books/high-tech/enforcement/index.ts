@@ -15,6 +15,9 @@
  *     tasks with no weapon use, in front -1 on hands-only tasks and no
  *     one-handed blows; leg irons as Crippled Legs; Escape at each one's
  *     modifier, and Acrobatics or Escape to bring cuffed wrists to the front.
+ *     A straitjacket leaves no hands for the hands-only skills; shackles,
+ *     cuffs and leg irons are objects of their DR and HP, and a blow that
+ *     brings one to 0 HP frees the prisoner.
  */
 
 import { LIE_DETECTOR_TABLES, readyLieDetectors, type LieDetectorTable } from "../../../shared/interrogation/index.js";

@@ -5362,7 +5362,7 @@
         },
         "restraintDevices": {
           "Name": "Restraints",
-          "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10) and Acrobatics or Escape to bring cuffed wrists to the front (High-Tech p. 217)."
+          "Hint": "Shackles, handcuffs, flex cuffs, leg irons and the straitjacket are put on from the item's sheet, on the prisoner's own sheet. Cuffed behind the back: -1 DX, -4 on tasks done with the hands alone, and no weapon use; in front: -1 on hands-only tasks and no one-handed blows. A straitjacket is cuffed behind with no slipping the arms round, and leaves no hands for hands-only tasks. Leg irons are Crippled Legs. Row buttons roll Escape at the restraint's modifier (shackles 0, handcuffs -5, flex cuffs -1, leg irons 0 or -5 ratcheting, straitjacket -10), Acrobatics or Escape to bring cuffed wrists to the front, and a blow at a restraint's DR and HP that frees the prisoner once it is at 0 HP (High-Tech p. 217)."
         },
         "prosthetics": {
           "Name": "Prosthetics and elective surgery",
@@ -9819,9 +9819,18 @@
         "Toughness": "DR {dr}, HP {hp}.",
         "Behind": "Cuffed behind: {dx} DX, {hands} on tasks done with the hands alone (worked blind behind the back), and nothing that needs the arms free. Acrobatics or Escape brings the wrists to the front.",
         "Front": "Cuffed in front: {hands} on hands-only tasks; one-handed blows are impossible, two-handed weapons and guns unhindered, other weapons -1 to -4 (the GM's call).",
-        "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves and no slipping the arms round to the front.",
+        "Straitjacket": "As cuffed behind the back ({dx} DX, no weapon use), with the hands useless in the sleeves -- no task done with the hands alone -- and no slipping the arms round to the front.",
         "LegIrons": "Crippled Legs: Move is half Basic Speed, -3 on skills that need the legs; kicking is impossible. TL5 leg irons don't ratchet (Escape unmodified); TL6-8 ones do (Escape-5).",
-        "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance."
+        "Ball": "The prisoner carries the {weight}-lb. iron ball, which counts toward encumbrance.",
+        "NoHands": "In {name}, the hands are useless in the sleeves: no task done with the hands alone (High-Tech p. 217).",
+        "Break": "Break the restraint",
+        "BreakHint": "The blow's basic damage goes on the restraint at DR {dr}, HP {hp}; brought to 0 HP or less, it no longer holds (High-Tech p. 217; Campaigns p. 483).",
+        "BreakDamage": "Damage",
+        "BreakType": "Type",
+        "BreakDivisor": "Armor divisor",
+        "BreakLabel": "{name} is struck",
+        "Unbroken": "{restraint} still holds: {left} HP left.",
+        "Broken": "{restraint} breaks: {name} is free of it."
       },
       "Prosthetics": {
         "Mitigated": "Mitigated by {item} (High-Tech pp. 225-226)",
