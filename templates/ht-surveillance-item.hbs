@@ -1,8 +1,11 @@
-{{!-- Security screening, surveillance gear and jammers (High-Tech pp. 205-213, 217). --}}
+{{!-- Security screening, surveillance gear and jammers (High-Tech pp. 205-213, 215, 217). --}}
 <div class="isub" data-gcc-ht-surveillance-section>
   <div class="isub-head">{{localize "GCC.HT.Surveillance.Title"}}</div>
   {{#if cellJammer}}<div class="ichecks">
     <label class="icheck" data-tooltip="{{doubleRadiusHint}}"><input type="checkbox" data-ht-surveillance="doubleRadius" {{#if doubleRadius}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Surveillance.Jammer.DoubleRadiusCheck"}}</label>
+  </div>{{/if}}
+  {{#if camera}}<div class="ichecks">
+    <label class="icheck" data-tooltip="{{wirelessHint}}"><input type="checkbox" data-ht-surveillance="wireless" {{#if wireless}}checked{{/if}} {{#unless editable}}disabled{{/unless}}> {{localize "GCC.HT.Surveillance.Camera.WirelessCheck"}}</label>
   </div>{{/if}}
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

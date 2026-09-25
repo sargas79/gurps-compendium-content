@@ -8,6 +8,7 @@ let answer: any = null;
 let switches: { encryption: boolean; disguise: boolean; cipher?: boolean } = { encryption: true, disguise: true };
 const rowActions: any[] = [];
 const gmTools: any[] = [];
+const sections: any[] = [];
 const poisons: any[] = [];
 const contests: any[] = [];
 const rolls: any[] = [];
@@ -31,7 +32,7 @@ const api: any = {
     quickContest: async (options: any) => { contests.push(options); return nextContest; },
   },
   data: { registerPoison: (p: any) => poisons.push(p) },
-  sheets: { registerRowAction: (a: any) => rowActions.push(a), registerGmTool: (t: any) => gmTools.push(t) },
+  sheets: { registerRowAction: (a: any) => rowActions.push(a), registerGmTool: (t: any) => gmTools.push(t), registerSheetSection: (s: any) => sections.push(s) },
 };
 
 const action = (key: string) => rowActions.find((a) => a.key === key);
@@ -105,7 +106,7 @@ describe("breaking codes (pp. 210-211)", () => {
     expect(contests).toHaveLength(0);
 
     const program = gear("Fine Code-Breaking Program");
-    const expert = character("Expert", { skills: { Cryptography: 15 }, items: [program] });
+    const expert = character("Expert", { skills: { Cryptography: 15 }, items: [program, gear("Macroframe Computer", { complexity: 7 })] });
     answer = { code: "basic8", maker: 0, helpers: 3, apparatus: 1, spent: 4 };
     await action("ht-break-code").run(program, expert);
     // No team for a computer's work; four times the base day is +2.
@@ -215,4 +216,105 @@ describe("disguise and smuggling (pp. 214-215)", () => {
     expect(contests[0].secret).toBe(true);
     expect((ChatMessage as any).implementation.create.mock.calls.at(-1)[0].whisper).toEqual(["gm"]);
   });
+});
+
+describe("code-breaking computers and encryption gear (p. 211)", () => {
+  const said = () => (ChatMessage.implementation.create as any).mock.calls.at(-1)[0].content as string;
+
+  it("runs the program only on a computer of the standard's Complexity and the program's own", async () => {
+    const program = gear("Good Code-Breaking Program");
+    const breaker = character("Breaker", { skills: { Cryptography: 14 }, items: [program] });
+    answer = { code: "basic7", maker: 0, helpers: 0, apparatus: 1, spent: 1 };
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(0);
+    expect(said()).toContain("NeedsComputer");
+    // TL7 basic encryption needs Complexity 3, the good program 5: a Complexity 4 computer won't do.
+    breaker.items.push(gear("Small Computer", { complexity: 4 }));
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(0);
+    expect(said()).toContain("ComputerTooSmall");
+    expect(said()).toContain('"complexity":5');
+    breaker.items.push(gear("Mainframe Computer", { complexity: 5 }));
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(1);
+    // A computer left behind doesn't count.
+    rolls.length = 0;
+    breaker.items.forEach((i: any) => { if (/Computer/.test(i.name)) i.system.carried = false; });
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(0);
+  });
+
+  it("lets through a computer whose Complexity can't be measured, and counts the program's host wherever it is", async () => {
+    const program: any = gear("Good Code-Breaking Program");
+    const breaker = character("Breaker", { skills: { Cryptography: 14 }, items: [program] });
+    answer = { code: "basic7", maker: 0, helpers: 0, apparatus: 1, spent: 1 };
+    // An ordinary computer record that states no Complexity: the roll is made, and the card leaves it to the GM.
+    breaker.items.push(gear("Office Computer"));
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(1);
+    expect(said()).toContain("ComplexityUnknown");
+    // The mainframe the program is installed on counts though nobody carries it.
+    rolls.length = 0;
+    breaker.items.length = 1;
+    const host: any = { ...gear("Mainframe Computer", { complexity: 5, carried: false }), id: "host" };
+    breaker.items.push(host);
+    program.system.extensions = { [MODULE_ID]: { computer: { runsOn: "host" } } };
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(1);
+    expect(said()).not.toContain("ComplexityUnknown");
+    program.system.extensions = {};
+    rolls.length = 0;
+    await action("ht-break-code").run(program, breaker);
+    expect(rolls).toHaveLength(0);
+  });
+
+  it("says what each piece of encryption gear makes and needs, under the encryption switch", () => {
+    const section = sections.find((s) => s.key === "ht-codes-item");
+    const lines = (name: string) => section.context(gear(name)).lines.join(" ");
+    expect(lines("Cipher Wheel")).toContain('"minutes":2');
+    expect(lines("Cipher Machine")).toContain("Gear.Machine");
+    expect(lines("Basic Encryption (TL7)")).toContain('"complexity":3');
+    expect(lines("Basic Encryption Unit")).toContain('"complexity":5');
+    expect(lines("Secure Encryption (TL7)")).toContain("Gear.Delay.minutes");
+    expect(lines("Secure Encryption Unit")).toContain("Gear.Delay.seconds");
+    expect(lines("Fine Code-Breaking Program")).toContain('"complexity":7');
+    expect(section.visible(gear("Crowbar"))).toBe(false);
+    expect(section.visible(gear("Cipher Wheel"))).toBe(true);
+    switches.encryption = false;
+    expect(section.visible(gear("Cipher Wheel"))).toBe(false);
+  });
+});
+
+describe("counterfeiting at TL8 (p. 214)", () => {
+  it("rolls Counterfeiting in secret the first time a printer is used, and keeps the answer on it", async () => {
+    const forge = action("forge");
+    const tools = gear("Counterfeiting Tools", { tl: "8" });
+    const printer: any = { ...gear("Desktop Printer"), setFlag: vi.fn(async (_scope: string, key: string, value: unknown) => { printer.flags[MODULE_ID][key] = value; }) };
+    const counterfeiter = character("Counterfeiter", { skills: { Counterfeiting: 12 }, items: [tools, gear("Small Computer"), printer] });
+    answer = { skill: "Counterfeiting", tl: 8 };
+    nextRoll = { success: false, criticalFailure: false };
+    await forge.run(tools, counterfeiter);
+    expect(rolls).toHaveLength(2);
+    expect(rolls[1]).toMatchObject({ base: 12, skill: "Counterfeiting", secret: true });
+    expect(printer.flags[MODULE_ID].htTracedPrinter).toBe(true);
+    expect(said()).toContain("PrinterChecked");
+    rolls.length = 0;
+    await forge.run(tools, counterfeiter);
+    expect(rolls).toHaveLength(1);
+    // The forger's card says only that it was settled; the answer goes to the GMs alone.
+    expect(said()).toContain("PrinterChecked");
+    expect(said()).not.toContain("PrinterTraced");
+    const whisper = (ChatMessage.implementation.create as any).mock.calls.at(-2)[0];
+    expect(whisper.content).toContain("PrinterTraced");
+    expect(whisper.whisper).toEqual(["gm"]);
+    // A TL7 note or plain forgery rolls nothing more.
+    rolls.length = 0;
+    answer = { skill: "Counterfeiting", tl: 7 };
+    await forge.run(tools, counterfeiter);
+    expect(rolls).toHaveLength(1);
+  });
+
+  function said(): string {
+    return (ChatMessage.implementation.create as any).mock.calls.at(-1)[0].content as string;
+  }
 });

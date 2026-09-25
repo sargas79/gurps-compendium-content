@@ -2,8 +2,8 @@
  * High-Tech's vehicle components, protection and crew (pp. 228-229,
  * 234-235), registered with the system through the add-on API under three
  * switches. The rules are in `rules.ts`; what each of the chapter's vehicles
- * is fitted with is `HT_VEHICLES`, by its record's name, and a GM fits any
- * other from the tool. A vehicle's state -- flat tyres, hatches, motor, the
+ * is fitted with is in its record's own data (`htVehicleFit`, from
+ * `HT_VEHICLES`), and a GM fits any other from the tool. A vehicle's state -- flat tyres, hatches, motor, the
  * GM's fittings -- is this module's flag on the vehicle actor (or on the
  * vehicle equipment, on a Gear tab).
  *
@@ -39,6 +39,7 @@
  *     and the tool charges the ride's 1 FP an hour.
  */
 
+import { ITEM_EXTENSION_TYPES, addExtensionFields } from "../../../shared/extensions.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
 import {
   RESTRAINT_TABLES,
@@ -81,6 +82,7 @@ import {
   combatFatigue,
   crewArmourDr,
   extinguishTarget,
+  fitFromData,
   fitWith,
   fitsGunPort,
   flatTyres,
@@ -138,9 +140,29 @@ export function stateOf(vehicle: any): VehicleState {
 }
 const storeState = (vehicle: any, patch: Partial<VehicleState>) => vehicle.setFlag(MODULE_ID, FLAG, { ...stateOf(vehicle), ...patch });
 
+/** The field a vehicle record keeps the components its text gives it in. */
+const FIT_FIELD = "htVehicleFit";
+
+/**
+ * The components a vehicle's record gives it: its own data, which a vehicle
+ * put on the road takes with it; for a copy of a record made before the
+ * records carried it, the book's table by its name.
+ */
+export function recordFit(vehicle: any): VehicleFit | null {
+  return fitFromData(vehicle?.system?.extensions?.[MODULE_ID]?.[FIT_FIELD]) ?? HT_VEHICLES[String(vehicle?.name ?? "")] ?? null;
+}
+
 /** What a vehicle is fitted with: its record's components and the GM's. */
 export function fitOf(vehicle: any): VehicleFit {
-  return fitWith(HT_VEHICLES[String(vehicle?.name ?? "")] ?? {}, stateOf(vehicle).fittings);
+  return fitWith(recordFit(vehicle) ?? {}, stateOf(vehicle).fittings);
+}
+
+/** Adds the field a vehicle record keeps its components in, on vehicle items and actors. */
+export function initVehicleFits(): void {
+  const f = foundry.data.fields as any;
+  const field = () => new f.ObjectField({ required: false, nullable: true, initial: null });
+  addExtensionFields("Item", ITEM_EXTENSION_TYPES, { [FIT_FIELD]: field() });
+  addExtensionFields("Actor", ["vehicle"], { [FIT_FIELD]: field() });
 }
 
 const tlOf = (vehicle: any) => Number(/\d+/.exec(String(vehicle?.system?.tl ?? ""))?.[0]) || 0;

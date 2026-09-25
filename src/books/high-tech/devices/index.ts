@@ -135,6 +135,8 @@ export interface DeviceData {
   panTiltZoom: boolean;
   /** A cell-phone jammer built with double the radius, at 4 times the cost and weight (HT:EE p. 50). */
   doubleRadius: boolean;
+  /** A surveillance camera built wireless, at $100 more (High-Tech p. 206). */
+  wireless: boolean;
   /** The specialty a device is designed for, blank for none: a laser scalpel's Surgery (HT:EE p. 14). */
   specialty: string;
   /** A flatscreen television's larger screen: wall-mounted up to 64", or larger; blank for the record's own (HT:EE p. 34). */
@@ -183,6 +185,7 @@ export function initDevices(): void {
       military: new f.BooleanField({ initial: false }),
       panTiltZoom: new f.BooleanField({ initial: false }),
       doubleRadius: new f.BooleanField({ initial: false }),
+      wireless: new f.BooleanField({ initial: false }),
       specialty: new f.StringField({ required: true, nullable: false, blank: true, initial: "" }),
       screen: new f.StringField({ required: true, nullable: false, blank: true, initial: "", choices: ["", "wall", "large"] }),
     }),
@@ -226,6 +229,7 @@ export function deviceData(item: any): DeviceData {
     military: d.military === true,
     panTiltZoom: d.panTiltZoom === true,
     doubleRadius: d.doubleRadius === true,
+    wireless: d.wireless === true,
     specialty: String(d.specialty ?? "").trim(),
     screen: d.screen === "wall" || d.screen === "large" ? d.screen : "",
   };

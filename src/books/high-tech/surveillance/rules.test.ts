@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  CELL_MONITOR_CALLS,
   EOD,
+  computerMonitoringPenalty,
+  isCallPhone,
+  monitorPhone,
   JAMMER_VARIETY_PENALTIES,
   bugOf,
   contactMikePenalty,
@@ -157,5 +161,26 @@ describe("optical recognition (p. 207)", () => {
     expect(recognitionCover(14, null)).toEqual({ skill: "Disguise", level: 14 });
     expect(recognitionCover(12, 12)).toEqual({ skill: "Disguise", level: 12 });
     expect(recognitionCover(null, null)).toBeNull();
+  });
+});
+
+describe("cellular monitoring and computer intrusion (pp. 209, 215)", () => {
+  it("follows four phones at most, changing a followed phone's mode in place", () => {
+    const entry = (phone: string, mode: "log" | "block" | "jam" = "log") => ({ phone, name: "Cell Phone", holder: "X", mode });
+    const three = [entry("a"), entry("b"), entry("c")];
+    expect(monitorPhone(three, entry("d"))).toHaveLength(CELL_MONITOR_CALLS);
+    expect(monitorPhone([...three, entry("d")], entry("e"))).toBeNull();
+    expect(monitorPhone([...three, entry("d")], entry("b", "jam"))!.find((m) => m.phone === "b")!.mode).toBe("jam");
+    expect(isCallPhone("Cellular Phone", 8)).toBe(true);
+    expect(isCallPhone("Cellular Beacon", 8)).toBe(false);
+  });
+
+  it("takes -1 per 100 yards past 300 to 1,000 (-7), and 100 yards at most in a city", () => {
+    expect(computerMonitoringPenalty(300, false)).toBe(0);
+    expect(computerMonitoringPenalty(301, false)).toBe(-1);
+    expect(computerMonitoringPenalty(1000, false)).toBe(-7);
+    expect(computerMonitoringPenalty(1001, false)).toBeNull();
+    expect(computerMonitoringPenalty(100, true)).toBe(0);
+    expect(computerMonitoringPenalty(101, true)).toBeNull();
   });
 });
