@@ -13969,7 +13969,9 @@
       "extensions": {
         "gurps-compendium-content": {
           "firearm": {
-            "mechanicalMg": true
+            "mechanicalMg": true,
+            "drumCells": 20,
+            "drumCellRounds": 20
           }
         }
       }
@@ -14049,7 +14051,15 @@
       "extensions": {
         "gurps-compendium-content": {
           "firearm": {
-            "mechanicalMg": true
+            "mechanicalMg": true,
+            "canister": {
+              "damage": "1d+1",
+              "accuracy": 3,
+              "halfDamageRange": 60,
+              "maxRange": 1200,
+              "projectiles": 75,
+              "rateOfFire": 1
+            }
           }
         }
       }

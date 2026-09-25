@@ -4931,7 +4931,7 @@
         },
         "mechanicalMachineGuns": {
           "Name": "Mechanical machine guns",
-          "Hint": "A hand-cranked or lever-worked machine gun is at -5 for unfamiliarity rather than -2, at a further -1 to fix a malfunction for one who hasn't used the model, and at -8 fired off its mount (High-Tech p. 127)."
+          "Hint": "A hand-cranked or lever-worked machine gun is at -5 for unfamiliarity rather than -2, at a further -1 to fix a malfunction for one who hasn't used the model, and at -8 fired off its mount. A Gatling with its Broadwell drum fitted holds the drum's rounds, fires them a cell at a time and turns the drum from its row; a gun that fires canister, as the Hotchkiss 1-pdr, gets a canister row from the same feed (High-Tech pp. 127-128)."
         },
         "backblast": {
           "Name": "Backblast",
@@ -6329,6 +6329,16 @@
         "MechanicalLine": "Mechanical machine gun: unfamiliarity {unfamiliar} rather than -2, {clearing} more to fix a malfunction for one unfamiliar with it, {offMount} fired off its mount (High-Tech p. 127).",
         "MechanicalUnfamiliar": "{label} (mechanical machine gun)",
         "MechanicalClearing": "Unfamiliar mechanical machine gun",
+        "DrumLine": "Takes a Broadwell drum: {rounds} rounds in {cells} cells of {cell}. Turning to the next cell takes {rotate} Ready maneuvers ({assisted} with an assistant); a new drum goes in in {fit} seconds.",
+        "DrumFitted": "Broadwell drum fitted",
+        "DrumFittedHint": "Fed from its Broadwell drum rather than its hopper: the drum's rounds, a cell at a time (High-Tech p. 127).",
+        "DrumTurn": "The drum's cell is fired out: turn the drum from the gun's row first ({readies} Ready maneuvers, {assisted} with an assistant).",
+        "DrumCellShort": "Only {left} rounds are left in the drum's cell: fire no more than that, or turn the drum.",
+        "DrumTurnAction": "Turn the drum",
+        "DrumTurned": "The drum turned to a fresh cell of {cell} rounds: {readies} Ready maneuvers, {assisted} with an assistant.",
+        "CanisterLine": "Fires canister from the same feed: {damage} x{projectiles}, Acc {acc}, Range {half}/{max}, Rcl 1.",
+        "CanisterMode": "Canister",
+        "CanisterHint": "Canister from the gun's own feed, spending its rounds (High-Tech pp. 127-128).",
         "OffMount": "Off its mount ({penalty})",
         "OffMountLine": "Mechanical machine gun off its mount",
         "BackblastLine": "Backblast: {damage} burning, full damage to {full} yards and half to {half} yards behind, in a 60-degree cone (High-Tech p. 147).",

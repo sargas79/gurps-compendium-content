@@ -6663,6 +6663,30 @@
         "system.extensions.gurps-compendium-content.firearm.spareMagazine": true
       },
       "reason": "its magazine detaches, though it is normally charged in place: with a spare, a reload is three Ready maneuvers (p. 112) (#369)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Gatling M1874, \\.45-70$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.drumCells": 20,
+        "system.extensions.gurps-compendium-content.firearm.drumCellRounds": 20
+      },
+      "reason": "takes the 400-round Broadwell drum, 20 cells of 20 (p. 127) (#370)"
+    },
+    {
+      "pack": "equipment",
+      "pattern": "^Hotchkiss 1-pdr, 37x94mmR$",
+      "set": {
+        "system.extensions.gurps-compendium-content.firearm.canister": {
+          "damage": "1d+1",
+          "accuracy": 3,
+          "halfDamageRange": 60,
+          "maxRange": 1200,
+          "projectiles": 75,
+          "rateOfFire": 1
+        }
+      },
+      "reason": "fires canister: Dmg 1d+1 pi++, Acc 3, Range 60/1,200, RoF 1x75, Rcl 1 (p. 128) (#370)"
     }
   ]
 }
