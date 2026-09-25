@@ -87,7 +87,7 @@ async function load(): Promise<void> {
     radarJamming: () => on.has(key("radarJamming")),
     covert: () => on.has(key("covertListening")),
   });
-  covert.readyCovertListening(api as never, () => on.has(key("covertListening")));
+  covert.readyCovertListening(api as never, () => on.has(key("covertListening")), () => on.has(key("surveillanceGear")));
 }
 
 beforeEach(async () => {
@@ -158,6 +158,30 @@ describe("High-Tech's bug sweep and contact mike, with the supplement's lines", 
     on.add(key("covertListening"));
     await actions.get("ht-bug-sweep").run(detector, sweeper);
     expect(lines(contests[1].first.modifiers)).toEqual([-5]);
+  });
+
+  it("sweeps the supplement's way with only its own switch on: Electronics Operation (Security), -5 against spread spectrum (HT:EE p. 44)", async () => {
+    on.add(key("covertListening"));
+    const detector = gear("Bug Detector");
+    const sweep = actions.get("ht-detector-sweep");
+    expect(sweep.visible(detector)).toBe(true);
+    expect(sweep.visible(gear("Crowbar"))).toBe(false);
+    const sweeper = character("Sweeper", [detector], { skills: { "Electronics Operation (Security)": 14 } });
+    dialogAnswer = { area: 300, spread: true, recordsOnly: false };
+    await sweep.run(detector, sweeper);
+    expect(successes[0]).toMatchObject({ base: 14, skill: "Electronics Operation (Security)", tags: ["surveillance", "bugSweep"] });
+    expect(lines(successes[0].modifiers)).toEqual([-5]);
+    expect(chat.at(-1).content).toContain("DetectorFound");
+    expect(chat.at(-1).content).toContain('"minutes":3');
+    // A device that only records can't be found this way.
+    dialogAnswer = { area: 100, spread: false, recordsOnly: true };
+    await sweep.run(detector, sweeper);
+    expect(successes).toHaveLength(1);
+    expect(chat.at(-1).content).toContain("RecorderUnseen");
+    // With High-Tech's surveillance gear on, its own Quick Contest runs instead.
+    on.add(key("surveillanceGear"));
+    expect(sweep.visible(detector)).toBe(false);
+    expect(actions.get("ht-bug-sweep").visible(detector)).toBe(true);
   });
 
   it("ticks the boxes where the targeted hider carries a hopping bug and an isolator", async () => {

@@ -325,6 +325,71 @@ describe("amplifiers (HT:EE p. 32)", () => {
     expect(rollLines(person([record("Bullhorn", { equipped: false })]), { skill: "Intimidation", subject: person([], { x: 1 }) })).toEqual([]);
   });
 
+  it("reads each listener's arc from the speaker's facing on the map: the bullhorn's side and rear, the hailing device's cone", async () => {
+    on.amplification = true;
+    // The speaker's token faces down the map (Foundry's rotation 0).
+    const at = (x: number, y: number, rotation = 0) => ({ getActiveTokens: () => [{ center: { x, y }, document: { rotation } }] });
+    const horn = record("Bullhorn");
+    const speaker = person([horn], at(0, 0));
+    const ahead = person([], { name: "Ahead", ...at(0, 10) });
+    const beside = person([], { name: "Beside", ...at(10, -5) });
+    const behind = person([], { name: "Behind", ...at(0, -10) });
+    targets = [ahead, beside, behind];
+    // The dialog's arc is for listeners off the map: the facing overrides it here.
+    dialogAnswer = { arc: "front", task: "hear", yards: 0 };
+    await actions.get("ht-audio-address").run(horn, speaker);
+    await flush();
+    expect(successes.map((r) => r.distance.baseYards)).toEqual([16, 8, 4]);
+    // The hailing device's 60-degree cone: 45 degrees off is outside it.
+    successes = [];
+    const lrad = record("Acoustic Hailing Device", { tl: "8" });
+    targets = [person([], { name: "Aside", ...at(10, 10) }), person([], { name: "Aimed", ...at(1, 20) })];
+    await actions.get("ht-audio-address").run(lrad, person([lrad], at(0, 0)));
+    await flush();
+    expect(successes).toHaveLength(1);
+    expect(successes[0].actor.name).toBe("Aimed");
+    expect(chat.join()).toContain('OutsideConeOf {"name":"Aside"}');
+  });
+
+  it("gives the bullhorn's +1 to Intimidation out to 2 yards in front but only 1 to the side, by the facing", () => {
+    on.amplification = true;
+    const at = (x: number, y: number) => ({ getActiveTokens: () => [{ center: { x, y }, document: { rotation: 0 } }] });
+    const actor = person([record("Bullhorn")], at(0, 0));
+    // Measured along the map's x here: 2 yards in front, then 2 and 1 yards to the side.
+    expect(rollLines(actor, { skill: "Intimidation", subject: person([], at(2, 4)) }).map((l) => l.value)).toEqual([1]);
+    expect(rollLines(actor, { skill: "Intimidation", subject: person([], at(2, -1)) })).toEqual([]);
+    expect(rollLines(actor, { skill: "Intimidation", subject: person([], at(1, -0.5)) }).map((l) => l.value)).toEqual([1]);
+  });
+
+  it("plays through the TL6 guitar amplifier: set up on Electronics Operation (Media), -2 with distortion; later ones free", async () => {
+    on.amplification = true;
+    const amp = record("Guitar Amplifier (TL6)", { tl: "6" });
+    const player = person([amp, { id: "mi", name: "Musical Instrument (Guitar)", type: "skill", system: {} }], { skills: { "Musical Instrument (Guitar)": 13, "Electronics Operation (Media)": 11 } });
+    dialogAnswer = { skill: "Musical Instrument (Guitar)", distortion: true, setUp: true };
+    await actions.get("ht-audio-play").run(amp, player);
+    await flush();
+    expect(successes[0]).toMatchObject({ base: 11, skill: "Electronics Operation (Media)", tags: ["audioSetUp"] });
+    expect(successes[1]).toMatchObject({ base: 13, skill: "Musical Instrument (Guitar)" });
+    expect(successes[1].modifiers.map((m: any) => m.value)).toEqual([-2]);
+    // Set up wrong: no playing.
+    successes = [];
+    successResult = { success: false };
+    await actions.get("ht-audio-play").run(amp, player);
+    await flush();
+    expect(successes).toHaveLength(1);
+    expect(chat.at(-1)).toContain("NotSetUp");
+    // The TL7 amplifier: no set-up roll, no penalty.
+    successes = [];
+    successResult = { success: true };
+    const later = record("Guitar Amplifier (TL7)");
+    dialogAnswer = { skill: "Musical Instrument (Guitar)", distortion: true, setUp: false };
+    await actions.get("ht-audio-play").run(later, person([later, { id: "mi", name: "Musical Instrument (Guitar)", type: "skill", system: {} }], { skills: { "Musical Instrument (Guitar)": 13 } }));
+    await flush();
+    expect(successes).toHaveLength(1);
+    expect(successes[0].modifiers).toEqual([]);
+    expect(actions.get("ht-audio-play").visible(record("Bullhorn"))).toBe(false);
+  });
+
   it("price a public address system's extra speakers", () => {
     const pa = record("Public Address System", { tl: "6", cost: 150, weight: 15 }, { extraSpeakers: 2 });
     expect(price("ht-pa-speakers", pa)).toBeNull();
@@ -340,6 +405,34 @@ describe("amplifiers (HT:EE p. 32)", () => {
     expect(context.lines[0]).toContain('"front":16');
     expect(context.quality).toBeNull();
     expect(section.context(record("Public Address System", { tl: "6" })).speakers).toEqual({ value: 0 });
+  });
+});
+
+describe("recording and playback (HT:EE p. 33)", () => {
+  it("holds a narrow cassette to basic quality, and keeps the weakest link a recording was made through", async () => {
+    on.fidelity = true;
+    const api: any = fakeApi();
+    const deck = record("Cassette Recorder", { equipmentQuality: "fine" });
+    expect(qualityOf(api, deck)).toBe(0);
+    expect(qualityOf(api, record("Reel-to-Reel Tape Recorder", { equipmentQuality: "fine" }))).toBe(2);
+    expect(sections.get("ht-audio-item").context(deck).lines.join(" ")).toContain("CassetteLine");
+    // Recorded through a carbon microphone: the recording keeps its -5.
+    const mike = record("Microphone", { tl: "6" }, { carbonMicrophone: true });
+    const flags = deck.flags[MODULE_ID];
+    deck.setFlag = async (scope: string, k: string, v: unknown) => { if (scope === MODULE_ID) flags[k] = v; };
+    const actor = person([deck, mike]);
+    dialogAnswer = { links: ["Microphone"], other: null };
+    await actions.get("ht-audio-record").run(deck, actor);
+    await flush();
+    expect(flags.htRecording).toEqual({ quality: -5, from: "Microphone" });
+    expect(qualityOf(api, deck)).toBe(-5);
+    expect(chat.at(-1)).toContain('"value":"-5"');
+    expect(sections.get("ht-audio-item").context(deck).lines.join(" ")).toContain("RecordingLine");
+    // A player plays back; only a recorder records.
+    expect(actions.get("ht-audio-record").visible(record("CD Player", { tl: "8" }))).toBe(false);
+    expect(actions.get("ht-audio-listen").visible(record("CD Player", { tl: "8" }))).toBe(true);
+    on.fidelity = false;
+    expect(actions.get("ht-audio-record").visible(deck)).toBe(false);
   });
 });
 

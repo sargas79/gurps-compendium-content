@@ -30,7 +30,9 @@
  *     cutters (a cut each use), with
  *     Forced Entry as High-Tech's forced-entry tools have (High-Tech pp.
  *     25-30); an early drill's -2. The weapon-table rows the supplement gives
- *     some of them (HT:EE pp. 50-51) are the records' own attacks.
+ *     some of them (HT:EE pp. 50-51) are the records' own attacks; a circular
+ *     saw's blow that cripples an arm or leg amputates it, a permanent
+ *     crippling on the victim's sheet (`actors.cripple`, note [5]).
  *
  * These read the supplement's records (decision E1 in #471), and gear that
  * names no book by the same names. A High-Tech record with forced-entry work
@@ -45,6 +47,7 @@ import { toolData } from "../tools/index.js";
 import { workDamage, type Work } from "../tools/rules.js";
 import {
   EMERGENCY_STOP_PER,
+  amputatesAt,
   MAGNET_CORES,
   REMOTE_CONTROL_PRICE,
   SHREDDED,
@@ -347,6 +350,14 @@ export async function scanPicture(api: GWorldApi, item: any, actor: any): Promis
   await api.roll.success({ actor, base, skill, label: F("ScanLabel", { name: item.name }), item, modifiers: [{ label: L("ScanArtLine"), value: FLATBED_SCANNER }], tags: ["scanning"] } as any);
 }
 
+// ── amputation (HT:EE p. 51) ──
+
+/** Records a limb a circular saw crippled as lost for good, and says so. */
+export async function amputate(api: GWorldApi, actor: any, location: string, item: any): Promise<void> {
+  const part = await api.actors.cripple(actor, location, { duration: "permanent", label: F("AmputatedLabel", { name: String(item?.name ?? "") }) } as any);
+  if (part) await card(actor, String(item?.name ?? ""), [F("Amputated", { name: actor?.name ?? "", location: L(`Limb.${location}`) })]);
+}
+
 // ── registration ──
 
 export function readyAppliances(api: GWorldApi, on: ApplianceSwitches): void {
@@ -445,6 +456,15 @@ export function readyAppliances(api: GWorldApi, on: ApplianceSwitches): void {
   } as any);
 
   // ── power tools (HT:EE pp. 14, 21, 24) ──
+
+  // A circular saw's blow that cripples a limb amputates it (HT:EE p. 51, note [5]): lost for good.
+  Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
+    const actor = context?.actor;
+    const result = context?.result;
+    if (!on.powerTools() || !actor?.isOwner || !result?.crippled || context.mode?.ranged === true) return;
+    if (!amputatesAt(context.item?.name, result.hitLocation)) return;
+    void amputate(api, actor, String(result.hitLocation), context.item);
+  });
   api.combat.registerDerivedAttackMode({
     module: MODULE_ID,
     key: WORK_MODE,

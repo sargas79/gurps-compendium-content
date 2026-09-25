@@ -31,6 +31,7 @@ let actions: Map<string, any>;
 let sections: Map<string, any>;
 let tools: Map<string, any>;
 let prices: any[];
+let grades: any[];
 let successes: any[];
 let contests: any[];
 let chat: string[];
@@ -54,7 +55,7 @@ function fakeApi() {
   return {
     rules,
     registry: { isRuleOn: (k: string) => on.has(k) },
-    data: { registerPriceModifier: (m: any) => prices.push(m) },
+    data: { registerPriceModifier: (m: any) => prices.push(m), registerToolGrade: (g: any) => grades.push(g) },
     combat: {
       hooks: HOOKS,
       setCombatState: async (actor: any, _m: string, k: string, value: any) => { combatState.set(`${actor.uuid}:${k}`, value); },
@@ -121,6 +122,7 @@ async function reload(change: (api: any) => void): Promise<void> {
   sections = new Map();
   tools = new Map();
   prices = [];
+  grades = [];
   await load(change);
 }
 
@@ -146,6 +148,7 @@ beforeEach(async () => {
   sections = new Map();
   tools = new Map();
   prices = [];
+  grades = [];
   successes = [];
   contests = [];
   chat = [];
@@ -372,6 +375,39 @@ describe("the supplement's radio reception, antennas and shortwave (HT:EE pp. 27
       // To a medium TL8 set (35 miles): the same range.
       await link(peripheral, gear("Medium Radio (TL8)"), 40, { conditions: 0 });
       expect(values(successes[0])).toEqual([-2, 4]);
+    });
+
+    it("adapts a digital TV tuner into a radio peripheral on a Computer Operation roll: it receives, with no +4 (HT:EE p. 30)", async () => {
+      const tuner: any = gear("Digital TV Tuner");
+      Object.assign(tuner, {
+        isOwner: true,
+        getFlag: (scope: string, k: string): unknown => tuner.flags[scope]?.[k],
+        setFlag: async (scope: string, k: string, v: unknown) => { (tuner.flags[scope] ??= {})[k] = v; },
+      });
+      // Not a radio until adapted.
+      expect(section().visible(tuner)).toBe(false);
+      const action = actions.get("ht-adapt-tuner");
+      expect(action.visible(tuner)).toBe(true);
+      const owner = character("Geek", [tuner], { skills: { "Computer Operation": 13 } });
+      successResult = { success: false, margin: -1 };
+      await action.run(tuner, owner);
+      expect(successes[0]).toMatchObject({ base: 13, skill: "Computer Operation", tags: ["adaptTuner"] });
+      expect(chat.at(-1)).toContain("GCC.HT.Sensor.TunerNotAdapted");
+      expect(action.visible(tuner)).toBe(true);
+      successResult = { success: true, margin: 2 };
+      await action.run(tuner, owner);
+      expect(action.visible(tuner)).toBe(false);
+      const lines = section().context(tuner).lines.join(" ");
+      expect(lines).toContain("GCC.HT.Sensor.AdaptedTunerLine");
+      expect(lines).not.toContain("GCC.HT.Sensor.EnhancedTuningLine");
+      // To a medium TL8 set at 40 miles: -2 for the range, and no +4.
+      successes = [];
+      await link(tuner, gear("Medium Radio (TL8)"), 40, { conditions: 0 });
+      expect(values(successes[0])).toEqual([-2]);
+      expect(chat.at(-1)).toContain('GCC.HT.Sensor.ReceiveOnly {"name":"Digital TV Tuner"}');
+      // With the tuning rules off, the tuner is no radio.
+      on = new Set([HT.radios]);
+      expect(section().visible(tuner)).toBe(false);
     });
 
     it("tunes in from a radio's row with only the tuning switch on", async () => {
@@ -607,6 +643,19 @@ describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
       dialogAnswer = { task: "send", cipher: false };
       await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary]));
       expect(successes[0].modifiers).toEqual([{ label: expect.stringContaining("GCC.HT.Sensor.QualityLine"), value: 1 }]);
+      // The set is a tool for Electronics Operation (Communications) at its quality (HT:EE p. 28), over its own grade.
+      const grade = grades.find((g) => g.key === "ht-rotary-spark-gap").grade;
+      expect(grade(rotary, "Electronics Operation (Communications)")).toEqual({ modifier: 1 });
+      const ultra = transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, ultraRotarySparkGap: true });
+      ultra.system.equipmentQuality = "good";
+      expect(grade(ultra, "Electronics Operation (Communications)")).toEqual({ modifier: 3 });
+      expect(grade(rotary, "Electronics Operation (EW)")).toBeNull();
+      expect(grade(transmitter(), "Electronics Operation (Communications)")).toBeNull();
+      // Where the preparation picked the set as the skill's tool, the skill carries it already: no second line.
+      successes = [];
+      const skill = { type: "skill", name: "Electronics Operation (Communications)", system: { derived: { toolItemId: rotary.id } } };
+      await actions.get("ht-telegraphy").run(rotary, character("Sparks", [rotary, skill]));
+      expect(successes[0].modifiers).toEqual([]);
       successResult = { success: true, margin: 3 };
       await link([gear("Large Radio (TL6)", {}, { tl: "6" })], [transmitter({ commMode: "transmitter", sparkGap: true, wideband: true, ultraRotarySparkGap: true })], 10);
       expect(chat.join(" ")).toContain("GCC.HT.Sensor.DistortedAudio");
@@ -616,6 +665,63 @@ describe("radioDesign: how a radio is built (HT:EE pp. 28-30, 32, 34)", () => {
       const power = await import("../../../shared/power/data.js");
       expect(power.powerData(gear("Large Radio (TL6)", { commMode: "transmitter", sparkGap: true, wideband: true }, { tl: "6" })).enduranceFactor).toBeCloseTo(0.2);
       expect(power.powerData(transmitter()).enduranceFactor).toBe(1);
+    });
+
+    it("runs a crystal set on no power, and a diode set on one M cell for 14 hours (HT:EE p. 28)", async () => {
+      const power = await import("../../../shared/power/data.js");
+      const printed = (name: string, cells: number, hours: number, sensor: Record<string, unknown>) =>
+        gear(name, {}, { tl: "6", extensions: { [MODULE_ID]: { sensor, power: { draw: { cell: "M", cells, endurance: `${hours} hours`, raw: `${cells}xM/${hours} hours` } } } } });
+      const crystal = power.powerData(printed("Medium Radio (TL6)", 4, 14, { commMode: "receiver", sparkGap: true, crystalDetector: true }));
+      expect(crystal.draw).toBeNull();
+      expect(crystal.cell).toBeNull();
+      // A large set's 3xM/3 hours: one M cell, 14 hours.
+      const diode = power.powerData(printed("Large Radio (TL6)", 3, 3, { commMode: "receiver", sparkGap: true, diodeDetector: true }));
+      expect(diode.draw?.cells).toBe(1);
+      expect(diode.enduranceFactor).toBeCloseTo(14 / 3);
+      // Nothing changes with the design rules off.
+      on = new Set([HT.radios]);
+      expect(power.powerData(printed("Medium Radio (TL6)", 4, 14, { commMode: "receiver", sparkGap: true, crystalDetector: true })).draw?.cells).toBe(4);
+    });
+
+    it("sends no speech to a coherer set, which detects code alone (HT:EE p. 28)", async () => {
+      const coherer = () => gear("Medium Radio (TL6)", { commMode: "receiver", sparkGap: true, coherer: true }, { tl: "6" });
+      await link([coherer()], [transmitter()], 1, { speech: true });
+      expect(chat[0]).toContain("GCC.HT.Sensor.CohererCodeOnly");
+      expect(chat[0]).toContain("GCC.HT.Sensor.OutOfRange");
+      await link([coherer()], [transmitter()], 1, { speech: false });
+      expect(chat[1]).not.toContain("GCC.HT.Sensor.CohererCodeOnly");
+      expect(dialogs.at(-1)).toContain("GCC.HT.Sensor.SendsSpeech");
+    });
+
+    it("lets FM shrug off static, and blocks it under an equal or stronger signal (HT:EE p. 32)", async () => {
+      on = new Set([HT.radios, EE.radioDesign, EE.radioTuning]);
+      const fm = () => gear("Small Radio (TL7)", { fm: true }, { tl: "7" });
+      await link([fm()], [gear("Small Radio (TL7)", {}, { tl: "7" })], 0.5, { conditions: -3, fm: "static" });
+      expect(successes).toEqual([]);
+      expect(chat[0]).toContain("GCC.HT.Sensor.ClearSignal");
+      expect(dialogs.at(-1)).toContain("GCC.HT.Sensor.FmInterference");
+      await link([fm()], [gear("Small Radio (TL7)", {}, { tl: "7" })], 0.5, { conditions: -3, fm: "weaker" });
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-3]);
+      await link([fm()], [gear("Small Radio (TL7)", {}, { tl: "7" })], 0.5, { conditions: 0, fm: "stronger" });
+      expect(chat[2]).toContain("GCC.HT.Sensor.FmBlocked");
+      // An AM set takes the static.
+      successes = [];
+      await link([gear("Small Radio (TL7)", {}, { tl: "7" })], [gear("Small Radio (TL7)", {}, { tl: "7" })], 0.5, { conditions: -3, fm: "static" });
+      expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-3]);
+    });
+
+    it("sends live video only from a set that sends it to one that receives it (HT:EE p. 34)", async () => {
+      const set = (sensor: Record<string, unknown>) => gear("Medium Radio (TL7)", sensor, { tl: "7" });
+      await link([set({ video: true, commMode: "receiver" })], [set({})], 1, { video: true });
+      expect(chat[0]).toContain("GCC.HT.Sensor.NoVideoSent");
+      await link([set({ video: true, commMode: "transmitter" })], [set({ video: true, commMode: "transmitter" })], 1, { video: true });
+      expect(chat[1]).toContain("GCC.HT.Sensor.NoVideoReceived");
+      await link([set({ video: true, commMode: "receiver" })], [set({ video: true, commMode: "transmitter" })], 1, { video: true });
+      expect(chat[2]).not.toContain("NoVideo");
+      expect(chat[2]).not.toContain("GCC.HT.Sensor.OutOfRange");
+      // Sound alone goes through.
+      await link([set({ video: true, commMode: "receiver" })], [set({})], 1, { video: false });
+      expect(chat[3]).not.toContain("NoVideo");
     });
   });
 });
@@ -732,8 +838,8 @@ describe("active rangefinding (HT:EE p. 35)", () => {
     expect(lines.some((l) => l.includes("GCC.HT.Sensor.Rangefinding"))).toBe(true);
     // 30 miles at TL8, read to four times that: 120 miles.
     expect(lines.find((l) => l.includes("GCC.HT.Sensor.EmissionReach"))).toContain('Miles {\\"value\\":120}');
-    // No emissions to reach on a GPR.
-    expect(section().context(gear("Portable GPR")).lines.some((l: string) => l.includes("EmissionReach"))).toBe(false);
+    // A GPR's radio waves carry too (HT:EE p. 35): its 10 yards, read to 40.
+    expect(section().context(gear("Portable GPR")).lines.find((l: string) => l.includes("EmissionReach"))).toContain('Yards {\\"value\\":40}');
   });
 
   // A fixture shaped as the supplement's catalogue will write the record (#479): named as printed, High-Tech's book flag, its TL.
@@ -822,11 +928,27 @@ describe("detecting a sensor's emissions (HT:EE p. 35), with only the supplement
     expect(chat.at(-1)).toContain("GCC.HT.Sensor.EmissionsOut");
   });
 
-  it("wants a target carrying a sonar or radar", async () => {
+  it("wants a target carrying an active rangefinder", async () => {
     controlled = [character("Listener", [])];
-    targets = [character("Digger", [gear("Portable GPR")])];
+    targets = [character("Watcher", [gear("Binoculars")])];
     await tools.get("ht-emissions").open();
     expect(ui.notifications!.warn).toHaveBeenCalledWith("GCC.HT.Sensor.NoEmitter");
+  });
+
+  it("detects a GPR's radio waves and a laser measuring tool's lidar as well (HT:EE p. 35)", async () => {
+    controlled = [character("Listener", [], { skills: { "Electronics Operation (EW)": 13, "Electronics Operation (Sensors)": 12 } })];
+    targets = [character("Digger", [gear("Portable GPR")])];
+    // The portable GPR reaches 10 yards: 20 free, and 12 yards past it is -6.
+    dialogAnswer = { index: 0, yards: 32, arc: false, dwell: "", skill: "Electronics Operation (EW)" };
+    await tools.get("ht-emissions").open();
+    expect(successes[0]).toMatchObject({ tags: ["detection", "emissions", "gpr"] });
+    expect(successes[0].modifiers.map((m: any) => m.value)).toEqual([-6]);
+    // The laser measuring tool's 100 yards: 250 yards is 50 past 200, -3.
+    targets = [character("Surveyor", [gear("Laser Measuring Tool")])];
+    dialogAnswer = { index: 0, yards: 250, arc: false, dwell: "", skill: "Electronics Operation (Sensors)" };
+    await tools.get("ht-emissions").open();
+    expect(successes[1]).toMatchObject({ skill: "Electronics Operation (Sensors)", tags: ["detection", "emissions", "lidar"] });
+    expect(successes[1].modifiers.map((m: any) => m.value)).toEqual([-3]);
   });
 });
 

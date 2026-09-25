@@ -129,6 +129,29 @@ describe("signalsIntelligence alone (HT:EE pp. 47-48)", () => {
     expect(chat.at(-1)).toContain("GCC.HT.Sigint.RareWatch");
   });
 
+  it("finds a T-Hawk's spread-spectrum control link at -4, the drone targeted or carried by its operator (HT:EE p. 46)", async () => {
+    const unit = gear("Large Radio (TL8)", { intercept: true });
+    const listener = character("Ear", [unit], { "Electronics Operation (EW)": 14 });
+    const hawk = gear("RQ-16A T-Hawk", {}, { extensions: { [MODULE_ID]: { drone: { autopilot: 10, remoteBonus: 2, controlRangeMiles: 7, ceilingFeet: 10500, spreadSpectrum: true } } } });
+    const detect = { transmission: "ongoing", frequency: "known", channels: 1, antenna: "whip", yards: 100, range: 0, conditions: 0, avoiding: false };
+    targets = [character("Operator", [hawk])];
+    answers = [{ task: "detect" }, detect];
+    await actions.get("ht-sigint").run(unit, listener);
+    expect(values(successes[0])).toEqual([-4]);
+    expect(successes[0].modifiers[0].label).toContain("RQ-16A T-Hawk");
+    // The drone itself, a vehicle actor with the same data.
+    const drone: any = { name: "Hawk One", uuid: "Actor.hawk", type: "vehicle", items: [], system: { extensions: { [MODULE_ID]: { drone: { autopilot: 10, spreadSpectrum: true } } } }, flags: {} };
+    targets = [drone];
+    answers = [{ task: "detect" }, detect];
+    await actions.get("ht-sigint").run(unit, listener);
+    expect(values(successes[1])).toEqual([-4]);
+    // The Phantom's link isn't spread spectrum: no -4.
+    targets = [character("Pilot", [gear("Phantom 4 Pro", {}, { extensions: { [MODULE_ID]: { drone: { autopilot: 14, spreadSpectrum: false } } } })])];
+    answers = [{ task: "detect" }, detect];
+    await actions.get("ht-sigint").run(unit, listener);
+    expect(values(successes[2])).toEqual([]);
+  });
+
   it("picks up a continuous signal with no roll where nothing penalizes it, and makes it a Quick Contest against an operator avoiding interception", async () => {
     const unit = gear("Large Radio (TL8)", { intercept: true });
     const listener = character("Ear", [unit], { "Electronics Operation (EW)": 14 });

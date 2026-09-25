@@ -30,6 +30,13 @@
  *     Intimidation close in front; the acoustic hailing device's cone and its
  *     +1 to Intimidation out to 32 yards; a public address system's extra
  *     speakers.
+ *   - **Recording and playback** (HT:EE p. 33; High-Tech p. 42): a recorder
+ *     or player is a link in the chain like any other; what a recorder took
+ *     down keeps the weakest link of the chain it was recorded through, and
+ *     a narrow cassette can't be better than basic.
+ *   - **Where a listener stands** (HT:EE p. 32; Campaigns p. 385): the
+ *     speaker's facing on the map puts him in its front, side or rear, or
+ *     outside a cone.
  *   - **The hydrophone** (HT:EE p. 31): the supplement's basic, non-tactical
  *     design, heard through Electronics Operation (Sonar) at +2 at TL7 and
  *     +4 at TL8, detecting a moving object with High-Tech's Size and
@@ -41,7 +48,7 @@ export function baseName(name: unknown): string {
   return String(name ?? "").trim().replace(/\s*\(TL\d+\)\s*$/i, "");
 }
 
-export type AudioKind = "microphone" | "parabolic" | "shotgun" | "headphones" | "earbuds" | "speaker" | "headset" | "amplifier" | "hearingAid";
+export type AudioKind = "microphone" | "parabolic" | "shotgun" | "headphones" | "earbuds" | "speaker" | "headset" | "amplifier" | "hearingAid" | "recorder" | "player";
 
 /**
  * The audio records by base name (HT:EE pp. 31-32; High-Tech pp. 39, 41,
@@ -59,6 +66,9 @@ const KINDS: ReadonlyArray<[RegExp, AudioKind]> = [
   [/^tactical headset$/i, "headset"],
   [/^(public address system|guitar amplifier|bullhorn|acoustic hailing device)$/i, "amplifier"],
   [/^hearing aid$/i, "hearingAid"],
+  // Recording gear (HT:EE p. 33; High-Tech p. 42), and what only plays back.
+  [/^(reel-to-reel tape recorder\b.*|(handheld )?cassette recorder|dictation machine\b.*|answering machine|digital voice recorder)$/i, "recorder"],
+  [/^((pocket |portable )?phonograph|personal cassette player|cd player|digital music player)$/i, "player"],
 ];
 
 /** What sort of audio gear a record is, or null. */
@@ -70,6 +80,11 @@ export function audioKind(name: unknown): AudioKind | null {
 /** Whether a kind picks up sound: every microphone (HT:EE p. 31). */
 export function isMicrophone(kind: AudioKind | null): boolean {
   return kind === "microphone" || kind === "parabolic" || kind === "shotgun";
+}
+
+/** Whether a kind records or plays recorded sound (HT:EE p. 33). */
+export function isRecording(kind: AudioKind | null): boolean {
+  return kind === "recorder" || kind === "player";
 }
 
 /** Whether a kind puts sound in the ear: earphones and speakers (HT:EE p. 31). */
@@ -100,14 +115,24 @@ export function printedQuality(name: unknown, tl: number): number {
 }
 
 /**
+ * The best a record's make lets its grade be: a narrow cassette tape can't
+ * be good or fine quality (HT:EE p. 33), so its grade counts no better than
+ * basic. Null where nothing caps it.
+ */
+export function gradeCap(name: unknown): number | null {
+  return /cassette/i.test(baseName(name)) ? 0 : null;
+}
+
+/**
  * One link's sound quality (HT:EE p. 31): the GM's figure where one is set
  * (an early model, a cheap microphone), a carbon microphone's -5 as
- * improvised gear, or else its equipment grade's modifier and its make's.
+ * improvised gear, or else its equipment grade's modifier (held to what its
+ * make allows) and its make's. A recorder playing back what it took down is
+ * no better than the chain it was recorded through (HT:EE pp. 31, 33).
  */
-export function linkQuality(link: { grade: number; stated: number | null; carbon: boolean; printed: number }): number {
-  if (link.stated !== null) return link.stated;
-  if (link.carbon) return CARBON_QUALITY;
-  return link.grade + link.printed;
+export function linkQuality(link: { grade: number; stated: number | null; carbon: boolean; printed: number; cap?: number | null; recorded?: number | null }): number {
+  const own = link.stated !== null ? link.stated : link.carbon ? CARBON_QUALITY : Math.min(link.grade, link.cap ?? Infinity) + link.printed;
+  return link.recorded !== null && link.recorded !== undefined ? Math.min(own, link.recorded) : own;
 }
 
 /** The chain's sound quality: no better than its weakest link (HT:EE p. 31); 0 with no links. */
@@ -201,10 +226,33 @@ export function amplifiedRange(amp: Amplifier, arc: Arc | "outside"): number | n
   return arc === "side" ? (amp.side ?? amp.front) : arc === "rear" ? (amp.rear ?? amp.front) : amp.front;
 }
 
+/**
+ * Where a listener stands from a speaker, by the listener's bearing from the
+ * speaker's facing in degrees (HT:EE p. 32): inside or outside a cone, or
+ * taken to the nearest hex side, the one faced and the two beside it the
+ * front, one to each side, the one behind the rear (Campaigns p. 385).
+ */
+export function listenerArc(amp: Amplifier, relative: number): Arc | "outside" {
+  const bearing = ((((Number(relative) || 0) % 360) + 540) % 360) - 180;
+  if (amp.cone) return Math.abs(bearing) <= amp.cone / 2 + 1e-9 ? "front" : "outside";
+  const hex = ((Math.round(bearing / 60) % 6) + 6) % 6;
+  return hex === 0 || hex === 1 || hex === 5 ? "front" : hex === 3 ? "rear" : "side";
+}
+
 /** The +1 to Intimidation of a subject this close (HT:EE p. 32); the side's reach where the arc is known. */
 export function intimidationBonus(amp: Amplifier, yards: number, arc: Arc = "front"): number {
   const reach = amp.intimidation ? (arc === "side" ? (amp.intimidation.side ?? 0) : arc === "front" ? amp.intimidation.front : 0) : 0;
   return reach > 0 && yards >= 0 && yards <= reach ? 1 : 0;
+}
+
+/**
+ * The earliest guitar amplifier (HT:EE p. 32): Electronics Operation (Media)
+ * to set up, and playing with distortion is -2 to effective skill; later
+ * amplifiers make distortion with no extra penalty.
+ */
+export const EARLY_GUITAR_DISTORTION = -2;
+export function guitarDistortion(name: unknown, tl: number): number {
+  return /^guitar amplifier$/i.test(baseName(name)) && tl <= 6 ? EARLY_GUITAR_DISTORTION : 0;
 }
 
 /** A public address system's extra speaker: $20 and 3 lbs. each, and the battery life shared among the speakers (HT:EE p. 32). */

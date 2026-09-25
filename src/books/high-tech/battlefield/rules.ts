@@ -67,6 +67,54 @@ export const PTZ_COST = 300;
 /** The skills that hide someone from a watcher: the guard's roll is a Quick Contest against the best of them (HT:EE p. 45). */
 export const HIDING_SKILLS = ["Stealth", "Shadowing", "Camouflage"] as const;
 
+// ── surveillance and countersurveillance (HT:EE p. 45) ───────────────────────
+
+/**
+ * What the general surveillance rules roll (HT:EE p. 45): spotting an
+ * intrusion or approach -- Observation on a visual system, Electronics
+ * Operation (Security) on one with an electronic readout, and a Quick Contest
+ * against the intruders' best of Stealth, Shadowing or Camouflage where they
+ * hide; keeping watch on adversaries in a known place, Observation or
+ * Electronics Operation (Surveillance); reading new data, Intelligence
+ * Analysis; and active countersurveillance, a Quick Contest of Electronics
+ * Operation (EW) against the observer's skill.
+ */
+export const SURVEILLANCE_TASKS = ["intrusion", "watch", "interpret", "counter"] as const;
+export type SurveillanceTask = (typeof SURVEILLANCE_TASKS)[number];
+export type Readout = "visual" | "electronic";
+
+export const SECURITY = "Electronics Operation (Security)";
+export const EW = "Electronics Operation (EW)";
+export const INTELLIGENCE_ANALYSIS = "Intelligence Analysis";
+
+/** The skills a task is rolled with, the best of them counting; for countersurveillance, the operator's. */
+export function surveillanceSkills(task: SurveillanceTask, readout: Readout = "visual"): readonly string[] {
+  switch (task) {
+    case "intrusion":
+      return readout === "electronic" ? [SECURITY] : [OBSERVATION];
+    case "watch":
+      return [OBSERVATION, SURVEILLANCE];
+    case "interpret":
+      return [INTELLIGENCE_ANALYSIS];
+    case "counter":
+      return [EW];
+  }
+}
+
+/** The observer's skills a countersurveillance operator is contested against: whatever he watches with. */
+export const OBSERVER_SKILLS = [OBSERVATION, SURVEILLANCE, SECURITY] as const;
+
+/**
+ * A skill's default where the character hasn't it (Characters pp. 211, 189,
+ * 201): Observation Per-5, Electronics Operation IQ-5, Intelligence Analysis
+ * IQ-6.
+ */
+export function skillDefault(skill: string): { attribute: "Per" | "IQ"; modifier: number } {
+  if (skill === OBSERVATION) return { attribute: "Per", modifier: -5 };
+  if (skill === INTELLIGENCE_ANALYSIS) return { attribute: "IQ", modifier: -6 };
+  return { attribute: "IQ", modifier: -5 };
+}
+
 // ── the seismic ground sensor (HT:EE p. 45) ─────────────────────────────────
 
 /** The record the seismic rule reads. */
@@ -114,6 +162,8 @@ export interface DroneData {
   remoteBonus: number;
   controlRangeMiles: number;
   ceilingFeet: number;
+  /** The control link is spread-spectrum radio: -4 to detect it (HT:EE pp. 46-47). */
+  spreadSpectrum: boolean;
 }
 
 /** A drone's data with nothing missing. */
@@ -126,6 +176,7 @@ export function droneOf(value: unknown): DroneData {
     remoteBonus: whole(d.remoteBonus),
     controlRangeMiles: Math.max(0, Number(d.controlRangeMiles) || 0),
     ceilingFeet: whole(d.ceilingFeet),
+    spreadSpectrum: d.spreadSpectrum === true,
   };
 }
 
@@ -136,9 +187,9 @@ export const isDrone = (data: DroneData): boolean =>
 /** The two UAVs as the table prints them (HT:EE p. 46), for the records. */
 export const UAV_RECORDS: Readonly<Record<string, DroneData>> = Object.freeze({
   // Piloting (Helicopter)-14 and Dodge-9 for avoiding obstacles, +1 from the touch screen, 4 miles, 1,640 feet.
-  "Phantom 4 Pro": { autopilot: 14, autopilotDodge: 9, remoteBonus: 1, controlRangeMiles: 4, ceilingFeet: 1640 },
-  // Piloting (Vertol)-10 and Dodge-8, +2 from the touch screen and track pen, 7 miles, 10,500 feet.
-  "RQ-16A T-Hawk": { autopilot: 10, autopilotDodge: 8, remoteBonus: 2, controlRangeMiles: 7, ceilingFeet: 10500 },
+  "Phantom 4 Pro": { autopilot: 14, autopilotDodge: 9, remoteBonus: 1, controlRangeMiles: 4, ceilingFeet: 1640, spreadSpectrum: false },
+  // Piloting (Vertol)-10 and Dodge-8, +2 from the touch screen and track pen, 7 miles, 10,500 feet; the control link is spread spectrum, -4 to detect.
+  "RQ-16A T-Hawk": { autopilot: 10, autopilotDodge: 8, remoteBonus: 2, controlRangeMiles: 7, ceilingFeet: 10500, spreadSpectrum: true },
 });
 
 const MILE = 1760;

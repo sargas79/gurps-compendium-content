@@ -94,7 +94,7 @@ describe("audio (HT:EE pp. 30-32)", () => {
 
   it("reads every kind from some record", () => {
     const kinds = new Set(equipment.map(audioKind).filter(Boolean));
-    expect([...kinds].sort()).toEqual(["amplifier", "earbuds", "headphones", "headset", "hearingAid", "microphone", "parabolic", "shotgun", "speaker"]);
+    expect([...kinds].sort()).toEqual(["amplifier", "earbuds", "headphones", "headset", "hearingAid", "microphone", "parabolic", "player", "recorder", "shotgun", "speaker"]);
   });
 });
 

@@ -25,13 +25,15 @@
  *     Blindness (API 1.120.0), fighting at -10 as someone not used to it --
  *     for minutes equal to the margin, but only where the darkness at the
  *     victim is -2 or worse (notes [1]-[3]). The acoustic hailing device's
- *     row: Moderate Pain while the sound lasts; after a minute of it, a row
- *     action gives tinnitus (imposed Hard of Hearing) for a minute a point of
- *     failure and the HT roll that makes it 1d months, or permanent on a
- *     critical failure; Protected Hearing +5 against both and no permanent
- *     loss, Deafness immune (note [4]). The Active Denial System: Agony while
- *     in the beam, free to move away, and a row action for victims leaving
- *     it, whose Agony then lasts a second (note [5]).
+ *     row: Moderate Pain while the sound lasts; after a minute of it by the
+ *     world's clock -- or at once from a row action -- tinnitus (imposed
+ *     Hard of Hearing) for a minute a point of failure and the HT roll that
+ *     makes it 1d months, or permanent on a critical failure; Protected
+ *     Hearing +5 against both and no permanent loss, Deafness immune (note
+ *     [4]). The Active Denial System: Agony while in the beam, free to move
+ *     away; a victim whose token moves more than 5 yards from where the beam
+ *     came down (`gworld.landed`) is out of it, as is one a row action names,
+ *     and the Agony then lasts a second (note [5]).
  *   - **Non-nuclear EMP (nonNuclearEmp):** a row action sets off an NNEMP at
  *     the targeted characters within 220 yards, once its explosive charge is
  *     set up on Explosives (Demolition) (a failure: it doesn't go off). The GM picks their gear and
@@ -39,7 +41,8 @@
  *     -- and each rolls its HT as an object (`items.equipmentFailure`, API
  *     1.118.0), +3 if Hardened or electrical. What fails is out of action
  *     until repaired, a row action with Electronics Repair, -6 for plain
- *     electronics. The NNEMP is spent (HT:EE p. 50). This follows High-Tech's
+ *     electronics, the best specialty the repairer knows or Electronics
+ *     Repair's IQ-5 default. The NNEMP is spent (HT:EE p. 50). This follows High-Tech's
  *     nuclear EMP (`../ordnance/nuclear.ts`), which is its own switch's.
  */
 
@@ -57,6 +60,8 @@ import {
   NNEMP,
   PULSE_KINDS,
   darkAdapted,
+  heardAMinute,
+  outOfBeam,
   fromSupplement,
   hearingLoss,
   isActiveDenial,
@@ -97,9 +102,13 @@ const TINNITUS = "ee-tinnitus";
 const DENIAL = "ee-active-denial";
 /** The actor flag a hailing device's victim carries while the sound lasts: the margin the roll failed by. */
 const HAILED_FLAG = "eeHailed";
+/** The actor flag an Active Denial System's victim carries: where the beam came down, to leave (scene pixels). */
+const BEAM_FLAG = "eeDenialBeam";
 /** The item flag gear the pulse knocked out carries: its repair penalty. */
 const PULSE_FLAG = "eeNnemp";
 const PULSE_KIND = `${MODULE_ID}.nnemp`;
+/** Electronics Repair defaults to IQ-5 (Characters p. 190). */
+const ER_DEFAULT = -5;
 
 /** This book's gear, or gear from no book. */
 const ownBook = (item: any): boolean => item?.type === "equipment" && [null, "high-tech"].includes(bookOf(item));
@@ -112,6 +121,16 @@ const isEyeLaserItem = (item: any) => supplement(item) && isEyeLaser(nameOf(item
 const isHailing = (item: any) => ownBook(item) && isHailingDevice(nameOf(item));
 const isDenial = (item: any) => ownBook(item) && isActiveDenial(nameOf(item));
 const isNnempItem = (item: any) => ownBook(item) && isNnemp(nameOf(item));
+
+const worldNow = (): number => Number((game as any).time?.worldTime) || 0;
+const isActiveGm = (): boolean => Boolean((game as any).users?.activeGM?.isSelf ?? (game as any).user?.isGM);
+
+/** The characters on the map and in the world, each once: the world's, and unlinked tokens' own. */
+function charactersAround(): any[] {
+  const found = new Set<any>([...(((game as any).actors ?? []) as any[])]);
+  for (const token of (globalThis as any).canvas?.tokens?.placeables ?? []) if (token?.actor) found.add(token.actor);
+  return [...found];
+}
 
 const conditionIds = (api: GWorldApi, actor: any): string[] => ((api.actors.conditions(actor) ?? []) as any[]).map((c) => String(c?.id ?? ""));
 const hasCondition = (api: GWorldApi, actor: any, key: string): boolean => conditionIds(api, actor).includes(`${MODULE_ID}.${key}`);
@@ -234,11 +253,14 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
     } else if (isHailing(item)) {
       if (effects.deafness === true) return void say(actor, nameOf(item), [F("Deaf", { name })]);
       context.effects.push({ key: "moderatePain" });
-      if (actor.isOwner) void actor.setFlag(MODULE_ID, HAILED_FLAG, { margin: Math.abs(margin) });
+      if (actor.isOwner) void actor.setFlag(MODULE_ID, HAILED_FLAG, { margin: Math.abs(margin), since: worldNow() });
       void say(actor, nameOf(item), [F("HailedLine", { name })]);
     } else if (isDenial(item)) {
       context.effects.push({ key: "agony" });
       context.effects.push({ module: MODULE_ID, key: DENIAL, label: L("DenialCondition") });
+      // Where the beam came down, for the victim who moves out of it.
+      const beam = stateOf(api, item).beam;
+      if (beam && actor.isOwner) void actor.setFlag(MODULE_ID, BEAM_FLAG, beam);
       void say(actor, nameOf(item), [F("DenialLine", { name })]);
     }
   });
@@ -265,6 +287,73 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
 
   const hailed = (): any[] => targetedTokens().map((t) => t?.actor).filter((a: any) => a && itemFlag(a, HAILED_FLAG));
 
+  // The Active Denial System's beam comes down where it was aimed (API 1.154.0): its victims are in it there.
+  Hooks.on(api.combat.hooks.landed, (context: any) => {
+    const item = context?.item;
+    if (!on.directed() || !isDenial(item) || !item?.isOwner || !context.point) return;
+    const scene = context.target?.parent?.id ?? (globalThis as any).canvas?.scene?.id ?? "";
+    void api.combat.setWeaponState(item, MODULE_ID, { ...stateOf(api, item), beam: { x: Number(context.point.x) || 0, y: Number(context.point.y) || 0, scene: String(scene) } });
+  });
+
+  // A victim whose token moves more than the beam's radius from where it came down is out of it (note [5]).
+  Hooks.on("updateToken", (moved: any, changes: any) => {
+    if (!on.directed() || !isActiveGm() || !changes || (changes.x === undefined && changes.y === undefined)) return;
+    const victim = moved?.actor;
+    const beam = victim ? itemFlag(victim, BEAM_FLAG) : null;
+    if (!beam || !hasCondition(api, victim, DENIAL) || String(beam.scene ?? "") !== String(moved.parent?.id ?? "")) return;
+    const size = Number(moved.parent?.grid?.size) || 100;
+    const perYard = size / (Number(moved.parent?.grid?.distance) || 1);
+    const x = Number(changes.x ?? moved.x) + ((Number(moved.width) || 1) * size) / 2;
+    const y = Number(changes.y ?? moved.y) + ((Number(moved.height) || 1) * size) / 2;
+    const yards = Math.hypot(x - Number(beam.x), y - Number(beam.y)) / perYard;
+    if (outOfBeam(yards)) void leaveBeam([victim], null, victim);
+  });
+
+  /** Victims out of the beam: the Agony lasts a second more (note [5]). */
+  const leaveBeam = async (victims: any[], item: any, speaker: any) => {
+    for (const victim of victims) {
+      await api.actors.removeCondition(victim, `${MODULE_ID}.${DENIAL}`);
+      if (conditionIds(api, victim).includes("agony")) await api.actors.removeCondition(victim, "agony");
+      await api.actors.applyCondition(victim, { key: "agony", duration: { seconds: ACTIVE_DENIAL.afterSeconds } } as any);
+      await victim.unsetFlag?.(MODULE_ID, BEAM_FLAG);
+    }
+    await say(speaker, item ? nameOf(item) : L("DenialCondition"), [F("DenialLeft", { names: victims.map((v) => v.name).join(", "), seconds: ACTIVE_DENIAL.afterSeconds })]);
+  };
+
+  // A minute of the hailing device's sound, by the world's clock: the tinnitus roll comes by itself (note [4]).
+  Hooks.on("updateWorldTime", () => {
+    if (!on.directed() || !isActiveGm()) return;
+    const now = worldNow();
+    for (const victim of charactersAround()) {
+      const flag = itemFlag(victim, HAILED_FLAG);
+      if (!flag || flag.rolled || !conditionIds(api, victim).includes("moderatePain") || !heardAMinute(Number(flag.since), now)) continue;
+      void (async () => {
+        const line = await tinnitus(victim);
+        if (line) await say(victim, L("HailMinute"), [line]);
+      })();
+    }
+  });
+
+  /** The tinnitus a minute of the sound leaves one victim, and the HT roll against lasting loss; the line saying so. */
+  const tinnitus = async (victim: any): Promise<string | null> => {
+    const flag = itemFlag(victim, HAILED_FLAG) ?? {};
+    // Marked first, so the clock and the row don't both roll it.
+    await victim.setFlag?.(MODULE_ID, HAILED_FLAG, { ...flag, rolled: true });
+    const name = String(victim.name ?? "");
+    const minutes = tinnitusMinutes(Number(flag.margin) || 1);
+    const shielded = traitEffectsOf(api, victim).protectedSense?.hearing === true;
+    const outcome: any = await api.roll.success({
+      actor: victim, base: Number(api.actors.attribute(victim, "HT")) || 10, label: F("TinnitusRoll", { name }), skill: "HT", kind: "attribute",
+      modifiers: shielded ? [{ label: L("ProtectedHearing"), value: HAILING.protectedHearing }] : [], tags: ["hearing", "tinnitus"],
+    } as any);
+    if (!outcome) return null;
+    const loss = hearingLoss({ success: outcome.success === true, criticalFailure: outcome.criticalFailure === true }, shielded);
+    const months = loss === "months" ? d6() : 0;
+    const seconds = loss === "passes" ? minutes * 60 : loss === "months" ? months * DAYS_PER_MONTH * 86400 : null;
+    await api.actors.applyCondition(victim, { module: MODULE_ID, key: TINNITUS, label: L("Tinnitus"), ...(seconds === null ? {} : { duration: { seconds } }) } as any);
+    return loss === "passes" ? F("TinnitusMinutes", { name, minutes }) : loss === "months" ? F("TinnitusMonths", { name, months }) : F("TinnitusPermanent", { name });
+  };
+
   // A minute of the hailing device's sound: tinnitus, then the HT roll that keeps it (note [4]).
   api.sheets.registerRowAction({
     module: MODULE_ID,
@@ -277,23 +366,12 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
   } as any);
 
   const hailMinute = async (item: any, actor: any) => {
-    const victims = hailed();
+    const victims = hailed().filter((v: any) => !itemFlag(v, HAILED_FLAG)?.rolled);
     if (!victims.length) return void ui.notifications?.warn(L("NoHailed"));
     const lines: string[] = [];
     for (const victim of victims) {
-      const name = String(victim.name ?? "");
-      const minutes = tinnitusMinutes(Number(itemFlag(victim, HAILED_FLAG)?.margin) || 1);
-      const shielded = traitEffectsOf(api, victim).protectedSense?.hearing === true;
-      const outcome: any = await api.roll.success({
-        actor: victim, base: Number(api.actors.attribute(victim, "HT")) || 10, label: F("TinnitusRoll", { name }), skill: "HT", kind: "attribute",
-        modifiers: shielded ? [{ label: L("ProtectedHearing"), value: HAILING.protectedHearing }] : [], tags: ["hearing", "tinnitus"],
-      } as any);
-      if (!outcome) continue;
-      const loss = hearingLoss({ success: outcome.success === true, criticalFailure: outcome.criticalFailure === true }, shielded);
-      const months = loss === "months" ? d6() : 0;
-      const seconds = loss === "passes" ? minutes * 60 : loss === "months" ? months * DAYS_PER_MONTH * 86400 : null;
-      await api.actors.applyCondition(victim, { module: MODULE_ID, key: TINNITUS, label: L("Tinnitus"), ...(seconds === null ? {} : { duration: { seconds } }) } as any);
-      lines.push(loss === "passes" ? F("TinnitusMinutes", { name, minutes }) : loss === "months" ? F("TinnitusMonths", { name, months }) : F("TinnitusPermanent", { name }));
+      const line = await tinnitus(victim);
+      if (line) lines.push(line);
     }
     await say(actor, nameOf(item), lines);
   };
@@ -331,12 +409,7 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
       void (async () => {
         const victims = targetedTokens().map((t) => t?.actor).filter((a: any) => a && hasCondition(api, a, DENIAL));
         if (!victims.length) return void ui.notifications?.warn(L("NoDenied"));
-        for (const victim of victims) {
-          await api.actors.removeCondition(victim, `${MODULE_ID}.${DENIAL}`);
-          if (conditionIds(api, victim).includes("agony")) await api.actors.removeCondition(victim, "agony");
-          await api.actors.applyCondition(victim, { key: "agony", duration: { seconds: ACTIVE_DENIAL.afterSeconds } } as any);
-        }
-        await say(actor, nameOf(item), [F("DenialLeft", { names: victims.map((v) => v.name).join(", "), seconds: ACTIVE_DENIAL.afterSeconds })]);
+        await leaveBeam(victims, item, actor);
       })();
     },
   } as any);
@@ -415,7 +488,11 @@ export function readyElectronicWeapons(api: GWorldApi, on: ElectronicWeaponSwitc
         const penalty = Math.min(0, Number(itemFlag(item, PULSE_FLAG)?.penalty) || 0);
         const repairs = [...(actor?.items ?? [])].filter((i: any) => i?.type === "skill" && /^electronics repair\b/i.test(String(i.name ?? ""))).map((i: any) => ({ skill: String(i.name).replace(/\/TL\d+/i, ""), modifier: 0 }));
         const extra = penalty ? [{ label: L("RepairLine"), value: penalty }] : [];
-        const outcome = await skillRoll(api, actor, repairs.length ? repairs : [{ skill: "Electronics Repair", modifier: 0 }], F("RepairRoll", { gear: nameOf(item) }), extra, ["repair", "nnemp"]);
+        const label = F("RepairRoll", { gear: nameOf(item) });
+        // The best specialty the repairer knows; with none, Electronics Repair's default, IQ-5 (Characters p. 190).
+        const outcome: any = repairs.length
+          ? await skillRoll(api, actor, repairs, label, extra, ["repair", "nnemp"])
+          : actor ? await api.roll.success({ actor, base: (Number(api.actors.attribute(actor, "IQ")) || 10) + ER_DEFAULT, skill: "Electronics Repair", label, modifiers: extra, tags: ["ordnance", "repair", "nnemp"] } as any) : null;
         if (!outcome) return;
         if (outcome.success) {
           await item.unsetFlag(MODULE_ID, PULSE_FLAG);

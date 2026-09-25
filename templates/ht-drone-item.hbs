@@ -1,4 +1,4 @@
-{{!-- A reconnaissance drone's autopilot, remote control, controller range and ceiling (High-Tech: Electricity and Electronics p. 46). --}}
+{{!-- A reconnaissance drone's autopilot, remote control, controller range, ceiling and spread-spectrum link (High-Tech: Electricity and Electronics p. 46). --}}
 <div class="isub" data-gcc-ht-drone-section>
   <div class="isub-head">{{localize "GCC.HT.Battlefield.DroneTitle"}}</div>
   <div class="ifields">
@@ -7,6 +7,9 @@
     <label data-tooltip="{{localize 'GCC.HT.Battlefield.RemoteHint'}}">{{localize "GCC.HT.Battlefield.Remote"}} <input type="number" data-ht-drone="remoteBonus" value="{{data.remoteBonus}}" min="0" step="1" {{#unless editable}}disabled{{/unless}} /></label>
     <label>{{localize "GCC.HT.Battlefield.ControlRange"}} <input type="number" data-ht-drone="controlRangeMiles" value="{{data.controlRangeMiles}}" min="0" step="any" {{#unless editable}}disabled{{/unless}} /></label>
     <label>{{localize "GCC.HT.Battlefield.Ceiling"}} <input type="number" data-ht-drone="ceilingFeet" value="{{data.ceilingFeet}}" min="0" step="10" {{#unless editable}}disabled{{/unless}} /></label>
+  </div>
+  <div class="ichecks">
+    <label class="icheck" data-tooltip="{{localize 'GCC.HT.Battlefield.SpreadHint'}}"><input type="checkbox" data-ht-drone="spreadSpectrum" {{#if data.spreadSpectrum}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Battlefield.Spread"}}</label>
   </div>
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

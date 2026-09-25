@@ -29,6 +29,8 @@ let darkness: number | null;
 let targets: any[];
 let dialogAnswer: any;
 let hitLocations: boolean;
+let rolls: any[];
+let worldTime: number;
 
 function fakeApi() {
   return {
@@ -38,6 +40,7 @@ function fakeApi() {
         afflictionEffect: "gworld.afflictionEffect",
         attackModifiers: "gworld.attackModifiers",
         clearMalfunction: "gworld.clearMalfunction",
+        landed: "gworld.landed",
       },
       registerAttackOption: (o: any) => options.set(o.key, o),
       getWeaponState: (item: any) => state.get(item.id),
@@ -59,7 +62,7 @@ function fakeApi() {
       setMalfunction: vi.fn(async () => {}),
       malfunction: () => null,
     },
-    roll: { success: async () => successResult },
+    roll: { success: async (o: any) => { rolls.push(o); return successResult; } },
   };
 }
 
@@ -119,10 +122,14 @@ beforeEach(() => {
   targets = [];
   dialogAnswer = null;
   hitLocations = false;
+  rolls = [];
+  worldTime = 1000;
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
   vi.stubGlobal("game", {
     i18n: { localize: (key: string) => key, format: (key: string, data: Record<string, unknown>) => `${key} ${JSON.stringify(data)}` },
-    get user() { return { targets: new Set(targets) }; },
+    get user() { return { targets: new Set(targets), isGM: true }; },
+    get time() { return { worldTime }; },
+    actors: [],
   });
   vi.stubGlobal("foundry", { utils: { escapeHTML: (s: string) => s }, applications: { api: { DialogV2: { prompt: async () => dialogAnswer } } } });
   vi.stubGlobal("ChatMessage", { implementation: { getSpeaker: () => ({}), create: async (m: any) => { chat.push(m.content); } } });
@@ -231,12 +238,75 @@ describe("directed-energy weapons (HT:EE pp. 50-51)", () => {
     actions.get("ee-hailing-minute").run(lrad, operator);
     await flush();
     expect(applied[0][1]).toMatchObject({ key: "ee-tinnitus", duration: { seconds: 4 * 30 * 86400 } });
+    // Rolled once: the row has nothing more to roll for him.
+    actions.get("ee-hailing-minute").run(lrad, operator);
+    await flush();
+    expect(applied).toHaveLength(1);
+    const other = person("Bystander");
+    effectsOf(other, lrad, -4);
+    await flush();
+    targets = [{ actor: other }];
     successResult = { success: false, criticalFailure: true };
     actions.get("ee-hailing-minute").run(lrad, operator);
     await flush();
     expect(applied[1][1].duration).toBeUndefined();
     conditions.set(victim, [{ id: `${MODULE_ID}.ee-tinnitus` }]);
     expect(fire("gworld.traitEffects", { actor: victim, effects: {}, sources: [] }).effects.hardOfHearing).toBe(true);
+  });
+
+  it("the hailing device: a minute of its sound by the world's clock brings the tinnitus roll by itself", async () => {
+    const lrad = record("Acoustic Hailing Device", { reference: "High-Tech: Electricity and Electronics p. 32" });
+    const victim = person("Rioter");
+    (globalThis as any).game.actors.push(victim);
+    on.directed = true;
+    effectsOf(victim, lrad, -3);
+    await flush();
+    expect(victim.flags[MODULE_ID].eeHailed).toEqual({ margin: 3, since: 1000 });
+    conditions.set(victim, [{ id: "moderatePain" }]);
+    worldTime = 1030;
+    fire("updateWorldTime", {});
+    await flush();
+    expect(rolls).toEqual([]);
+    worldTime = 1060;
+    fire("updateWorldTime", {});
+    await flush();
+    expect(rolls[0]).toMatchObject({ actor: victim, tags: ["hearing", "tinnitus"] });
+    expect(applied[0][1]).toMatchObject({ key: "ee-tinnitus" });
+    // Once only; and not for a victim whose pain the sound stopping took away.
+    fire("updateWorldTime", {});
+    await flush();
+    expect(rolls).toHaveLength(1);
+    const quiet = person("Quiet");
+    (globalThis as any).game.actors.push(quiet);
+    effectsOf(quiet, lrad, -3);
+    await flush();
+    worldTime = 2000;
+    fire("updateWorldTime", {});
+    await flush();
+    expect(rolls).toHaveLength(1);
+  });
+
+  it("the Active Denial System: a victim whose token moves out of the beam's 5 yards is out of it", async () => {
+    const ads = record("Active Denial System", { reference: "High-Tech: Electricity and Electronics p. 50" });
+    on.directed = true;
+    // The beam comes down on the targeted token's centre.
+    fire("gworld.landed", { item: ads, hit: true, point: { x: 500, y: 500 }, target: { parent: { id: "scene1" } } });
+    await flush();
+    const victim = person("Rioter");
+    effectsOf(victim, ads);
+    await flush();
+    expect(victim.flags[MODULE_ID].eeDenialBeam).toEqual({ x: 500, y: 500, scene: "scene1" });
+    conditions.set(victim, [{ id: `${MODULE_ID}.ee-active-denial` }, { id: "agony" }]);
+    const token = { actor: victim, x: 450, y: 450, width: 1, height: 1, parent: { id: "scene1", grid: { size: 100, distance: 1 } } };
+    // Four yards off: still in it.
+    for (const fn of hooks.get("updateToken") ?? []) fn(token, { x: 850 });
+    await flush();
+    expect(applied).toEqual([]);
+    // Six yards off: out, the Agony for a second more.
+    for (const fn of hooks.get("updateToken") ?? []) fn(token, { x: 1050 });
+    await flush();
+    expect(applied).toEqual([["Rioter", { key: "agony", duration: { seconds: 1 } }]]);
+    expect(victim.flags[MODULE_ID].eeDenialBeam).toBeUndefined();
   });
 
   it("the Active Denial System: agony while in the beam, free to flee, a second after leaving", async () => {
@@ -283,6 +353,18 @@ describe("non-nuclear EMP (HT:EE p. 50)", () => {
     expect(armour.setFlag).toHaveBeenCalledWith(MODULE_ID, "eeNnemp", { penalty: 0 });
     expect(nnemp.update).toHaveBeenCalledWith({ "system.quantity": 0 });
     expect(actions.get("ee-nnemp-repair").visible(radio)).toBe(true);
+  });
+
+  it("repairs on Electronics Repair's IQ-5 default where the repairer knows no specialty", async () => {
+    on.emp = true;
+    const radio = record("Radio");
+    radio.flags[MODULE_ID].eeNnemp = { penalty: -6 };
+    const tech = person("Tech", [radio]);
+    successResult = { success: true };
+    actions.get("ee-nnemp-repair").run(radio, tech);
+    await flush();
+    expect(rolls[0]).toMatchObject({ base: 5, skill: "Electronics Repair", modifiers: [{ value: -6 }] });
+    expect(radio.unsetFlag).toHaveBeenCalledWith(MODULE_ID, "eeNnemp");
   });
 
   it("leaves out characters past 220 yards", async () => {

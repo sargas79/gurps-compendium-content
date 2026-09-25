@@ -26,7 +26,17 @@
  *     device's +1 to Intimidation close in; a public address system's extra
  *     speakers priced and sharing its battery; and a worn hearing aid taking
  *     Hard of Hearing out of play as a Mitigator (`gworld.traitsInPlay`), an
- *     early aid's poor sound on its wearer's Hearing rolls.
+ *     early aid's poor sound on its wearer's Hearing rolls. The listeners'
+ *     arcs come from the speaker's facing on the map, where both have
+ *     tokens: the bullhorn's side and rear, the hailing device's cone, and
+ *     the +1 to Intimidation's reach to the side. A guitar amplifier's row
+ *     plays through it: Musical Instrument, the TL6 amplifier's set-up roll
+ *     (Electronics Operation (Media)) and its -2 to play with distortion.
+ *
+ * Under audioFidelity, recording and playback gear (HT:EE p. 33; High-Tech p.
+ * 42) are links in a chain: a narrow cassette no better than basic, and a
+ * recorder's row records through a chain, so what it plays back keeps that
+ * chain's weakest link.
  *
  * These read High-Tech's records and the supplement's alike (decision E1 in
  * #471): the supplement's audio records (#479), and High-Tech's Microphone,
@@ -43,6 +53,10 @@ import {
   CARBON_HT,
   EARPHONE_AS_MICROPHONE,
   HARD_OF_HEARING,
+  gradeCap,
+  guitarDistortion,
+  isRecording,
+  listenerArc,
   INEXPENSIVE_PRICE,
   MICROPHONE_OPERATION,
   SHOTGUN_AIMING,
@@ -73,6 +87,14 @@ const signed = (value: number) => (value > 0 ? `+${value}` : String(value));
 
 /** Whether a pair of headphones or earbuds is playing, and how loud: a flag, as it is play and not the record. */
 export const LISTENING_FLAG = "htListening";
+/** What a recorder took down: the weakest link of the chain it was recorded through, a flag, as it is use and not the record. */
+export const RECORDING_FLAG = "htRecording";
+
+/** The quality and source a recorder's recording keeps, or null where it holds none. */
+export function recordingOf(item: any): { quality: number; from: string } | null {
+  const value = item?.flags?.[MODULE_ID]?.[RECORDING_FLAG];
+  return value && Number.isFinite(Number(value.quality)) ? { quality: Number(value.quality), from: String(value.from ?? "") } : null;
+}
 
 export interface AudioSwitches {
   fidelity: () => boolean;
@@ -104,6 +126,8 @@ export function qualityOf(api: GWorldApi, item: any): number {
     stated: data.soundQuality,
     carbon: isMicrophone(kindOf(item)) && data.carbonMicrophone,
     printed: printedQuality(item?.name, itemTl(item)),
+    cap: gradeCap(item?.name),
+    recorded: kindOf(item) === "recorder" ? recordingOf(item)?.quality ?? null : null,
   });
 }
 
@@ -146,6 +170,9 @@ function itemLines(api: GWorldApi, item: any, on: AudioSwitches): string[] {
     if (kind === "earbuds") lines.push(L("EarbudsLine"));
     if (kind === "speaker") lines.push(L("SpeakerLine"));
     if (kind === "headset") lines.push(L("HeadsetLine"));
+    if (gradeCap(item?.name) !== null) lines.push(L("CassetteLine"));
+    const recording = kind === "recorder" ? recordingOf(item) : null;
+    if (recording) lines.push(F("RecordingLine", { value: signed(recording.quality), from: recording.from }));
   }
   if (on.fidelity() && basicHydrophoneBonus(item?.name, tl) !== null) lines.push(F("HydrophoneLine", { bonus: signed(basicHydrophoneBonus(item?.name, tl)!) }));
   if (on.amplification()) {
@@ -285,7 +312,91 @@ function operationSkill(api: GWorldApi, actor: any): string {
   return (api.actors.skillLevel(actor, surveillance) ?? -Infinity) > (api.actors.skillLevel(actor, media) ?? -Infinity) ? surveillance : media;
 }
 
+// ── recording (HT:EE p. 33) ──
+
+/**
+ * Records through a chain of gear: the recorder keeps the chain's weakest
+ * link (the recorder itself among them), so what it plays back sounds no
+ * better than what it was recorded through (HT:EE pp. 31, 33).
+ */
+export async function record(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const gear = audioGear(actor).filter((g) => g.id !== item.id && !isRecording(kindOf(g)));
+  const checks = gear.map((g) => `<label style="display:flex;gap:6px;align-items:center"><input type="checkbox" name="link" value="${esc(g.id)}" ${isMicrophone(kindOf(g)) && worn(g) ? "checked" : ""}/> ${esc(F("Link", { name: g.name, value: signed(qualityOf(api, g)) }))}</label>`).join("");
+  const answer = await ask<{ links: string[]; other: number | null }>(F("RecordTitle", { name: item.name }),
+    `<p class="ihint">${esc(L("RecordHint"))}</p>${checks}`
+    + row(F("OtherLink", { value: EARPHONE_AS_MICROPHONE }), `<input type="number" name="other" value="" min="-10" max="10" step="1" style="width:70px" />`),
+    (form) => {
+      const text = String(form.querySelector<HTMLInputElement>("[name=other]")?.value ?? "").trim();
+      return { links: [...form.querySelectorAll<HTMLInputElement>("[name=link]")].filter((i) => i.checked).map((i) => i.value), other: text === "" ? null : Math.trunc(Number(text) || 0) };
+    });
+  if (!answer) return;
+  const chain = gear.filter((g) => answer.links.includes(String(g.id)));
+  // The recorder's own quality, before any recording it held.
+  const own = linkQuality({ grade: gradeOf(api, item), stated: deviceData(item).soundQuality, carbon: false, printed: printedQuality(item?.name, itemTl(item)), cap: gradeCap(item?.name) });
+  const links = [own, ...chain.map((g) => qualityOf(api, g)), ...(answer.other !== null ? [answer.other] : [])];
+  const quality = chainQuality(links);
+  const from = chain.map((g) => String(g.name ?? "")).join(", ") || String(item.name ?? "");
+  if (item?.isOwner) await item.setFlag(MODULE_ID, RECORDING_FLAG, { quality, from });
+  await card(actor, F("RecordTitle", { name: item.name }), [F("Recorded", { name: item.name, value: signed(quality), count: links.length })]);
+}
+
+// ── playing through a guitar amplifier (HT:EE p. 32) ──
+
+/** The Musical Instrument skills a character knows. */
+const instrumentSkills = (actor: any): string[] => [...(actor?.items ?? [])].filter((i: any) => i?.type === "skill" && /^musical instrument\b/i.test(String(i.name ?? ""))).map((i: any) => String(i.name).replace(/\/TL\d+/i, ""));
+
+/**
+ * Plays through a guitar amplifier: the TL6 amplifier set up first on
+ * Electronics Operation (Media), then the character's Musical Instrument, -2
+ * to play with distortion through the TL6 amplifier (HT:EE p. 32).
+ */
+export async function playThrough(api: GWorldApi, item: any, actor: any): Promise<void> {
+  if (!actor) return;
+  const skills = instrumentSkills(actor);
+  if (!skills.length) return void ui.notifications?.warn(L("NoInstrument"));
+  const tl = itemTl(item);
+  const penalty = guitarDistortion(item?.name, tl);
+  const answer = await ask<{ skill: string; distortion: boolean; setUp: boolean }>(F("PlayTitle", { name: item.name }),
+    row(L("InstrumentSkill"), `<select name="skill">${skills.map((s) => `<option value="${esc(s)}">${esc(s)}</option>`).join("")}</select>`)
+    + row(penalty ? F("DistortionPenalty", { value: penalty }) : L("DistortionFree"), `<input type="checkbox" name="distortion" />`)
+    + (penalty ? row(L("SetUpFirst"), `<input type="checkbox" name="setUp" checked />`) : ""),
+    (form) => ({
+      skill: form.querySelector<HTMLSelectElement>("[name=skill]")?.value ?? skills[0]!,
+      distortion: Boolean(form.querySelector<HTMLInputElement>("[name=distortion]")?.checked),
+      setUp: Boolean(form.querySelector<HTMLInputElement>("[name=setUp]")?.checked),
+    }));
+  if (!answer) return;
+  if (penalty && answer.setUp) {
+    const media = "Electronics Operation (Media)";
+    const set: any = await api.roll.success({ actor, base: skillBase(api, actor, media), skill: media, label: F("SetUpRoll", { name: item.name }), item, tags: ["audioSetUp"] } as any);
+    if (!set || "refused" in set) return;
+    if (!set.success) return void (await card(actor, F("PlayTitle", { name: item.name }), [F("NotSetUp", { name: item.name })]));
+  }
+  const modifiers = answer.distortion && penalty ? [{ label: F("DistortionPlay", { name: item.name }), value: penalty }] : [];
+  // Musical Instrument has no attribute default (Characters p. 211): only a skill the character knows is offered.
+  await api.roll.success({ actor, base: api.actors.skillLevel(actor, answer.skill) ?? 0, skill: answer.skill, label: F("PlayTitle", { name: item.name }), item, modifiers, tags: ["music"] } as any);
+}
+
 // ── addressing listeners through an amplifier (HT:EE p. 32) ──
+
+/**
+ * The listener's bearing from where the speaker's token faces, in degrees,
+ * or null where either has no token on the map (Foundry's rotation 0 faces
+ * down the map; a bearing of 0 is straight ahead).
+ */
+export function bearingFromFacing(speaker: any, listener: any): number | null {
+  const own = speaker?.getActiveTokens?.()?.[0];
+  const other = listener?.getActiveTokens?.()?.[0];
+  const from = own?.center;
+  const to = other?.center;
+  if (!from || !to) return null;
+  const rotation = Number(own.document?.rotation ?? own.rotation);
+  if (!Number.isFinite(rotation)) return null;
+  if (from.x === to.x && from.y === to.y) return 0;
+  const toward = (Math.atan2(to.y - from.y, to.x - from.x) * 180) / Math.PI;
+  return toward - (rotation + 90);
+}
 
 interface AddressAnswer {
   arc: Arc | "outside";
@@ -314,6 +425,7 @@ export async function address(api: GWorldApi, item: any, actor: any): Promise<vo
     + (targets.length ? "" : row(L("Yards"), `<input type="number" name="yards" value="${amp.front}" min="0" step="any" style="width:80px" />`)),
     (form) => {
       const arc = String(form.querySelector<HTMLSelectElement>("[name=arc]")?.value ?? "front");
+      // (The arc asked is for listeners off the map: the speaker's facing reads it for those on it.)
       return {
         arc: (["front", "side", "rear", "outside"].includes(arc) ? arc : "front") as Arc | "outside",
         task: form.querySelector<HTMLSelectElement>("[name=task]")?.value === "understand" ? "understand" : "hear",
@@ -323,10 +435,10 @@ export async function address(api: GWorldApi, item: any, actor: any): Promise<vo
   if (!answer) return;
   const title = F("AddressRoll", { name: item.name });
   const range = amplifiedRange(amp, answer.arc);
-  if (range === null) return void (await card(actor, title, [L("OutsideCone")]));
+  if (range === null && !targets.length) return void (await card(actor, title, [L("OutsideCone")]));
   const modifiers = answer.task === "understand" && amp.distortion ? [{ label: F("Distorted", { name: item.name }), value: amp.distortion }] : [];
   if (!targets.length) {
-    const value = api.rules.hearingDistanceModifier(answer.yards, range);
+    const value = api.rules.hearingDistanceModifier(answer.yards, range!);
     return void (await card(actor, title, [F("AtDistance", { yards: answer.yards, range, value: signed(value) })]));
   }
   for (const listener of targets) {
@@ -335,9 +447,17 @@ export async function address(api: GWorldApi, item: any, actor: any): Promise<vo
       await card(listener, title, [F("Deaf", { name: listener.name })]);
       continue;
     }
+    // Where both are on the map, the speaker's facing says the listener's arc; the dialog's answer otherwise.
+    const bearing = bearingFromFacing(actor, listener);
+    const arc = bearing === null ? answer.arc : listenerArc(amp, bearing);
+    const reach = amplifiedRange(amp, arc);
+    if (reach === null) {
+      await card(listener, title, [F("OutsideConeOf", { name: listener.name })]);
+      continue;
+    }
     // To a tenth of a yard, as the card shows it.
-    const yards = Math.max(0.1, Math.round((yardsBetween(actor, listener) ?? range) * 10) / 10);
-    await api.roll.success({ actor: listener, base, kind: "attribute", skill: "Hearing", label: title, modifiers, tags: ["hearing", "amplified"], item, distance: { yards, baseYards: range } } as any);
+    const yards = Math.max(0.1, Math.round((yardsBetween(actor, listener) ?? reach) * 10) / 10);
+    await api.roll.success({ actor: listener, base, kind: "attribute", skill: "Hearing", label: title, modifiers, tags: ["hearing", "amplified"], item, distance: { yards, baseYards: reach } } as any);
   }
 }
 
@@ -405,9 +525,12 @@ export function readyAudio(api: GWorldApi, on: AudioSwitches): void {
       const subject = context.subject;
       if (subject && /^intimidation\b/i.test(skill)) {
         const yards = yardsBetween(actor, subject);
+        // The subject's arc from the speaker's facing where both are on the map: the bullhorn reaches less far to the side (HT:EE p. 32).
+        const bearing = bearingFromFacing(actor, subject);
         for (const item of [...(actor.items ?? [])].filter((i: any) => worn(i))) {
           const amp = item.type === "equipment" ? amplifierOf(item.name, itemTl(item)) : null;
-          if (amp && yards !== null && intimidationBonus(amp, yards)) {
+          const arc = amp && bearing !== null ? listenerArc(amp, bearing) : "front";
+          if (amp && yards !== null && arc !== "outside" && intimidationBonus(amp, yards, arc)) {
             context.modifiers.push({ label: F("IntimidationBonus", { name: item.name }), value: 1 });
             break;
           }
@@ -482,6 +605,26 @@ export function readyAudio(api: GWorldApi, on: AudioSwitches): void {
     icon: "fa-solid fa-water",
     visible: (item) => on.fidelity() && basicHydrophoneBonus(item?.name, itemTl(item)) !== null,
     run: (item, actor) => { void hydrophoneRoll(api, item, actor, { bonus: basicHydrophoneBonus(item.name, itemTl(item)) ?? 0, fix: false }); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-audio-record",
+    itemTypes: ["equipment"],
+    label: L("RecordAction"),
+    icon: "fa-solid fa-record-vinyl",
+    visible: (item) => on.fidelity() && kindOf(item) === "recorder",
+    run: (item, actor) => { void record(api, item, actor); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-audio-play",
+    itemTypes: ["equipment"],
+    label: L("PlayAction"),
+    icon: "fa-solid fa-guitar",
+    visible: (item) => on.amplification() && item?.type === "equipment" && /^guitar amplifier$/i.test(baseName(item.name)),
+    run: (item, actor) => { void playThrough(api, item, actor); },
   });
 
   api.sheets.registerRowAction({

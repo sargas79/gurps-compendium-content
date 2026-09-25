@@ -197,6 +197,20 @@ export const VOICE_UNTRAINED = -2;
 /** A noninvasive brain-computer interface's weak signals are -2, which time spent can win back (HT:EE p. 41). */
 export const BCI_PENALTY = -2;
 
+/** Navigating a display with the arrow keys alone, as on a text interface: -1, which extra time can make up (HT:EE p. 40). */
+export const ARROW_KEYS = -1;
+/** Typing on a touch screen: -1, unless a separate keyboard is used with it (HT:EE p. 40). */
+export const TOUCH_TYPING = -1;
+/** A VR headset offsets up to -2 of the penalties on a Computer Operation task it helps with (HT:EE p. 41). */
+export const VR_OFFSET = 2;
+/** Prototype wired gloves in virtual reality: -2 to skills based on manual dexterity (HT:EE p. 41). */
+export const WIRED_GLOVES = -2;
+
+/** Whether a record is a keyboard of its own, which a touch screen can be used with (HT:EE p. 40). */
+export function isKeyboard(name: string): boolean {
+  return /^(wireless )?keyboard$|^portable terminal$/i.test(String(name ?? "").trim());
+}
+
 /** What a computer is worked through, as its sheet sets it. */
 export interface InterfaceSetup {
   interface: Interface;
@@ -205,11 +219,13 @@ export interface InterfaceSetup {
   voiceTrained: boolean;
   /** A touch screen from before 1988, which can't tell exactly where a finger is (HT:EE p. 40). */
   earlyTouch?: boolean;
+  /** Prototype wired gloves worn with a VR interface (HT:EE p. 41). */
+  wiredGloves?: boolean;
 }
 
 /** One line an interface puts on a roll. */
 export interface InterfaceLine {
-  key: "unfamiliar" | "touch" | "earlyTouch" | "stylus" | "voice" | "voiceUntrained" | "bci";
+  key: "unfamiliar" | "touch" | "earlyTouch" | "stylus" | "voice" | "voiceUntrained" | "bci" | "arrowKeys" | "touchTyping" | "vr" | "wiredGloves";
   value: number;
 }
 
@@ -220,12 +236,17 @@ export interface InterfaceLine {
  * modifier on Computer Operation, or with a stylus the single-touch figure
  * +1, and an early screen's -2 on every roll; voice control's -2, and -2 more before it is trained; a
  * brain-computer interface's -2. None where the computer's Complexity is too
- * low to drive the interface at all.
+ * low to drive the interface at all. And what the supplement prints for the
+ * tasks themselves (HT:EE pp. 40-41): a text interface's -1 on Computer
+ * Operation, its display navigated with the arrow keys alone; a touch
+ * screen's -1 to typing without a keyboard of its own; a VR headset
+ * offsetting up to 2 of the penalties already on a Computer Operation roll;
+ * and wired gloves' -2 to a skill of manual dexterity worked in VR.
  */
 export function interfaceLines(
   setup: InterfaceSetup,
   complexity: number,
-  roll: { computerOperation: boolean; stylus: boolean },
+  roll: { computerOperation: boolean; stylus: boolean; typing?: boolean; keyboard?: boolean; dexterity?: boolean; penalties?: number },
   familiar: ((name: string) => boolean) | null,
 ): InterfaceLine[] {
   const kind = setup.interface;
@@ -249,6 +270,13 @@ export function interfaceLines(
     if (!setup.voiceTrained) lines.push({ key: "voiceUntrained", value: VOICE_UNTRAINED });
   }
   if (kind === "bci") lines.push({ key: "bci", value: BCI_PENALTY });
+  if (kind === "text" && roll.computerOperation) lines.push({ key: "arrowKeys", value: ARROW_KEYS });
+  if (kind === "touch" && roll.typing && !roll.keyboard) lines.push({ key: "touchTyping", value: TOUCH_TYPING });
+  if (kind === "vr" && roll.computerOperation) {
+    const offset = Math.min(VR_OFFSET, Math.max(0, -(roll.penalties ?? 0)));
+    if (offset) lines.push({ key: "vr", value: offset });
+  }
+  if (kind === "vr" && setup.wiredGloves && roll.dexterity) lines.push({ key: "wiredGloves", value: WIRED_GLOVES });
   return lines;
 }
 

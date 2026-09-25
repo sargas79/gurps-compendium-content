@@ -266,6 +266,38 @@ describe("computerInterfaces (HT:EE pp. 39-41)", () => {
     expect(fire("gworld.successRollModifiers", { actor: small.actor, item: small, skill: "Computer Operation", modifiers: [] }).modifiers).toEqual([]);
   });
 
+  it("puts the tasks' own lines on the roll: arrow keys, touch typing, the VR headset and wired gloves (HT:EE pp. 40-41)", () => {
+    on = new Set([key("computerInterfaces")]);
+    const lines = (actor: any, item: any, skill: string, modifiers: any[] = []) =>
+      fire("gworld.successRollModifiers", { actor, item, skill, modifiers: [...modifiers] }).modifiers.slice(modifiers.length).map((l: any) => [l.key, l.value]);
+    // A text interface navigated by the arrow keys: -1 on Computer Operation.
+    const terminal = record("Medium Computer", { tl: "8" }, {}, { interface: "text" });
+    expect(lines(character([terminal]), terminal, "Computer Operation")).toEqual([["ht.interface.arrowKeys", -1]]);
+    // Typing on a desktop touch screen: -1, unless a keyboard is carried.
+    const pad = record("Medium Computer", { tl: "8" }, {}, { interface: "touch", touch: "desktop", multitouch: true });
+    const typist = character([pad]);
+    expect(lines(typist, pad, "Typing")).toEqual([["ht.interface.touchTyping", -1]]);
+    const keyboard = record("Keyboard", { tl: "8" });
+    const withKeys = record("Medium Computer", { tl: "8" }, {}, { interface: "touch", touch: "desktop", multitouch: true });
+    expect(lines(character([withKeys, keyboard]), withKeys, "Typing")).toEqual([]);
+    // A Typing roll with no computer named takes the touch-screen computer in use.
+    pad.system.equipped = true;
+    expect(lines(typist, null, "Typing")).toEqual([["ht.interface.touchTyping", -1]]);
+    // The VR headset offsets up to -2 of the penalties already on a Computer Operation roll.
+    const rig = record("Medium Computer", { tl: "8" }, {}, { interface: "vr", wiredGloves: true });
+    const user = character([rig, { id: "pilot", name: "Piloting (Vertol)", type: "skill", system: { attribute: "DX" } }]);
+    expect(lines(user, rig, "Computer Operation", [{ value: -3 }])).toEqual([["ht.interface.vr", 2]]);
+    expect(lines(user, rig, "Computer Operation", [{ value: -1 }])).toEqual([["ht.interface.vr", 1]]);
+    expect(lines(user, rig, "Computer Operation")).toEqual([]);
+    // Wired gloves: -2 to a DX-based skill worked through it.
+    expect(lines(user, rig, "Piloting (Vertol)")).toEqual([["ht.interface.wiredGloves", -2]]);
+    rig.system.extensions[MODULE_ID].htComputer.wiredGloves = false;
+    expect(lines(user, rig, "Piloting (Vertol)")).toEqual([]);
+    // Nothing with the switch off.
+    on = new Set();
+    expect(lines(character([terminal]), terminal, "Computer Operation")).toEqual([]);
+  });
+
   it("shows the interface section on a High-Tech computer with only its switch on", () => {
     on = new Set([key("computerInterfaces")]);
     const section = registered.section!.find((s) => s.key === "ht-computing");

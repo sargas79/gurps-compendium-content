@@ -18,7 +18,12 @@
  *     Complexity it needs, with a touch screen's, a stylus's, voice control's
  *     and a brain-computer interface's modifiers on rolls made with the
  *     computer or a program on it; and a light pen's HT roll every 10 minutes
- *     (HT:EE pp. 39-41).
+ *     (HT:EE pp. 39-41). The tasks take what the supplement prints for them:
+ *     a text interface's -1 to navigate by the arrow keys, typing on a touch
+ *     screen -1 without a keyboard carried (a Typing roll with no computer
+ *     named takes the touch-screen computer in use), a VR headset offsetting
+ *     up to -2 of a Computer Operation roll's penalties, and wired gloves,
+ *     ticked on a VR computer, -2 to a DX-based skill worked through it.
  *   - **programmingLanguages:** on a Computer Programming roll made with a
  *     High-Tech computer or a program on it, machine code's -5 (not for
  *     Eidetic Memory), and a high-level language lifting the penalty for an
@@ -55,6 +60,7 @@ import {
   WIRING_SKILL,
   complementaryModifier,
   interfaceLines,
+  isKeyboard,
   isLightPen,
   isOperation,
   isProgramming,
@@ -142,11 +148,27 @@ function familiarity(api: GWorldApi, actor: any): ((name: string) => boolean) | 
   return api.registry.isRuleOn("familiarity") && Array.isArray(list) ? (name: string) => api.rules.isFamiliar(list.map(String), name) : null;
 }
 
-/** The interface lines a roll with a computer takes, labelled (HT:EE pp. 39-41). */
-export function interfaceRollLines(api: GWorldApi, actor: any, computer: any, skill: string): Array<{ key: string; label: string; value: number }> {
+/** Whether the character carries a keyboard to type with. */
+function carriesKeyboard(actor: any): boolean {
+  return [...(actor?.items ?? [])].some((item: any) => item.type === "equipment" && item.system?.carried !== false && isKeyboard(item.name));
+}
+
+/** Whether a skill is Typing. */
+const isTyping = (skill: string) => /^typing\b/i.test(String(skill ?? "").trim());
+
+/** Whether the character's skill of this name is based on DX: manual dexterity, as wired gloves hamper it (HT:EE p. 41). */
+function dexterityBased(actor: any, skill: string): boolean {
+  const name = String(skill ?? "").trim().toLowerCase();
+  const own = [...(actor?.items ?? [])].find((i: any) => i?.type === "skill" && String(i.name ?? "").trim().toLowerCase().replace(/\/tl\d+/i, "") === name);
+  return own?.system?.attribute === "DX";
+}
+
+/** The interface lines a roll with a computer takes, labelled (HT:EE pp. 39-41); `penalties` is what the roll already carries. */
+export function interfaceRollLines(api: GWorldApi, actor: any, computer: any, skill: string, penalties = 0): Array<{ key: string; label: string; value: number }> {
   const setup = computerSetup(computer);
   if (!setup.interface) return [];
-  const lines = interfaceLines(setup, complexityOf(computer) ?? 0, { computerOperation: isOperation(skill), stylus: carriesStylus(actor) }, familiarity(api, actor));
+  const roll = { computerOperation: isOperation(skill), stylus: carriesStylus(actor), typing: isTyping(skill), keyboard: carriesKeyboard(actor), dexterity: dexterityBased(actor, skill), penalties };
+  const lines = interfaceLines(setup, complexityOf(computer) ?? 0, roll, familiarity(api, actor));
   const name = L(`Interface.${setup.interface}`);
   // With a stylus the screen is worked single-touch.
   const multitouch = setup.multitouch && !lines.some((line) => line.key === "stylus");
@@ -296,6 +318,7 @@ function sectionContext(api: GWorldApi, item: any, on: ComputingSwitches): Recor
       })),
       touch: kind === "touch",
       voice: kind === "voice",
+      vr: kind === "vr",
       sizes: TOUCH_SIZES.map((value) => ({ value, selected: value === setup.touch, label: L(`Touch.${value}`) })),
       tooLow: kind && complexity < needs ? F("TooLow", { name: L(`Interface.${kind}`), needs, complexity }) : "",
       note: kind ? L(`Note.${kind}`) : "",
@@ -344,6 +367,13 @@ export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
     },
   });
 
+  // A Typing roll named with no computer: the touch-screen computer the typist has in use, typed on without a keyboard (HT:EE p. 40).
+  Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
+    if (!on.interfaces() || context?.item || !isTyping(String(context?.skill ?? "")) || !Array.isArray(context?.modifiers)) return;
+    const computer = [...(context.actor?.items ?? [])].find((i: any) => i?.system?.equipped === true && isHighTechComputer(i) && computerSetup(i).interface === "touch");
+    if (computer && !isBurntOut(computer, on)) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, String(context.skill)).filter((l) => l.key === "ht.interface.touchTyping"));
+  });
+
   // After High-Tech's own computer lines (information/), which a high-level language may lift.
   Hooks.on(api.combat.hooks.successRollModifiers, (context: any) => {
     if (!context?.item || !(on.eras() || on.interfaces() || on.languages())) return;
@@ -357,7 +387,8 @@ export function readyComputing(api: GWorldApi, on: ComputingSwitches): void {
     }
     if (!(on.interfaces() || on.languages())) return;
     const skill = String(context.skill ?? "");
-    if (on.interfaces()) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, skill));
+    const penalties = (context.modifiers as any[]).reduce((sum, m) => sum + Math.min(0, Number(m?.value) || 0), 0);
+    if (on.interfaces()) context.modifiers.push(...interfaceRollLines(api, context.actor, computer, skill, penalties));
     if (on.languages() && isProgramming(skill)) {
       const { lines, lift } = languageLines(context.actor, computer);
       for (let i = context.modifiers.length - 1; i >= 0; i -= 1) if (lift.includes(context.modifiers[i]?.key)) context.modifiers.splice(i, 1);
