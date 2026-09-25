@@ -14,16 +14,25 @@
  *     groin and face hits (the knockdown roll's `blow`); the mouthguard's
  *     speech as Disturbing Voice; eyeglasses' DR 1 on the eyes
  *     (`gworld.armorDr`), and a head hit that breaks them on a 1 or knocks
- *     them off on 2-3 (`gworld.afterDamage`); and a row action that makes
- *     homemade armour with Armoury (Body Armor).
+ *     them off on 2-3 (`gworld.afterDamage`); a row action that makes
+ *     homemade armour with Armoury (Body Armor); tinted plain goggles giving
+ *     Protected Vision; electronic ear protection with its cells spent
+ *     muffling as the plain kind does; and a row action that puts goggles or
+ *     glasses on or takes them off, a Ready maneuver in combat.
  *   - **Portable cover (portableCover):** a row action on an explosives or
  *     radiation blanket that sets off a charge beneath it, the blanket's DR
  *     25 coming off the charge's damage roll (`hazards.detonate`,
- *     `gworld.damageModifiers`); and a radiation blanket in use giving PF 3
- *     against a dose (`gworld.radiationDose`).
+ *     `gworld.damageModifiers`); a row action that holds a blanket up as
+ *     cover for its bearer and the targeted characters, its DR 25 a line on
+ *     each one's blows from the front (`gworld.armorDr`); and a radiation
+ *     blanket giving PF 3 against a dose (`gworld.radiationDose`) to whoever
+ *     has it in use, or to everyone while a row action has it laid over the
+ *     source.
  */
 
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { powerData } from "../../../shared/power/data.js";
+import { enduranceLeft } from "../../../shared/power/index.js";
 import { formatDamage, parseDamage } from "../explosives/rules.js";
 import {
   ARMOURY_BODY_ARMOR,
@@ -31,8 +40,10 @@ import {
   CUSTOM_FOOTWEAR,
   DAY_SECONDS,
   DISTURBING_VOICE,
+  ELECTRONIC_EARS,
   EYEGLASSES,
   EYEGLASSES_DR,
+  EYE_PROTECTION,
   HAM_FISTED_MAX,
   HEAD_LOCATIONS,
   MEMBRANE_IS_THE_DR,
@@ -42,6 +53,7 @@ import {
   blanketOf,
   breakInPain,
   breakInRoll,
+  coverMeets,
   eyeglassesOnHeadHit,
   gearGrant,
   homemadeArmor,
@@ -51,7 +63,9 @@ import {
   smothered,
   stealthOf,
   tlOf,
+  TINTABLE,
   type CustomFootwear,
+  type GearGrant,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Oddments.${key}`);
@@ -62,6 +76,12 @@ const esc = (text: unknown) => foundry.utils.escapeHTML(String(text ?? ""));
 export const BROKEN_FLAG = "htBroken";
 /** Footwear already broken in (p. 69). */
 export const BROKEN_IN_FLAG = "htBrokenIn";
+/** Plain goggles with tinted lenses (p. 71). */
+export const TINTED_FLAG = "htTinted";
+/** A blanket held up as cover: the uuids of the actors behind it (p. 72). */
+export const COVER_FLAG = "htCover";
+/** A radiation blanket laid over the source of the radiation (p. 72). */
+export const LAID_FLAG = "htLaidOver";
 
 export interface OddmentSwitches {
   oddments: () => boolean;
@@ -92,6 +112,49 @@ const named = (item: any, pattern: RegExp): boolean => pattern.test(baseName(ite
 /** Worn eyeglasses that are whole. */
 const wornEyeglasses = (actor: any): any[] => wornItems(actor).filter((i) => named(i, EYEGLASSES) && !flag(i, BROKEN_FLAG));
 
+/** Whether a gadget has run through the endurance its cells give. */
+function outOfPower(item: any): boolean {
+  const left = enduranceLeft(powerData(item));
+  return Boolean(left && left !== "unlimited" && left.left <= 0);
+}
+
+/** What a piece grants as it is: its tint, and its cells for electronic ear protection. */
+function grantOf(item: any): GearGrant | null {
+  return gearGrant(item?.name, tlOf(item?.system?.tl), { tinted: flag(item, TINTED_FLAG), unpowered: named(item, ELECTRONIC_EARS) && outOfPower(item) });
+}
+
+const inCombat = (actor: any): boolean => Boolean((game as any).combat?.started) && Boolean((game as any).combat?.combatants?.some?.((c: any) => c?.actor?.id === actor?.id));
+
+/** Every actor a blanket's bearer might be: the world's, and the scene's unlinked tokens. */
+function everyActor(): any[] {
+  const found = new Set<any>();
+  for (const actor of (game as any).actors ?? []) found.add(actor);
+  for (const token of (globalThis as any).canvas?.tokens?.placeables ?? []) if (token?.actor) found.add(token.actor);
+  return [...found];
+}
+
+/** The blanket held up as cover for this character, and who holds it, or null (p. 72). */
+function coverFor(actor: any): { item: any; bearer: any } | null {
+  const uuid = String(actor?.uuid ?? "");
+  if (!uuid) return null;
+  for (const bearer of everyActor()) {
+    for (const item of bearer?.items ?? []) {
+      const behind = item?.flags?.[MODULE_ID]?.[COVER_FLAG];
+      if (item.system?.carried !== false && blanketOf(item.name) && Array.isArray(behind) && behind.includes(uuid)) return { item, bearer };
+    }
+  }
+  return null;
+}
+
+/** A radiation blanket laid over the source, anywhere in the world, or null (p. 72). */
+function laidBlanket(): any {
+  for (const bearer of everyActor()) {
+    const item = [...(bearer?.items ?? [])].find((i: any) => flag(i, LAID_FLAG) && (blanketOf(i.name)?.protectionFactor ?? 1) > 1);
+    if (item) return item;
+  }
+  return null;
+}
+
 async function say(actor: any, title: string, lines: string[], rolls: any[] = []): Promise<void> {
   await ChatMessage.implementation.create({
     speaker: ChatMessage.implementation.getSpeaker({ actor }),
@@ -109,7 +172,7 @@ function traitEffects(context: any): void {
   let hamFisted: { label: string } | null = null;
   for (const item of wornItems(context.actor)) {
     const label = String(item.name ?? "");
-    const grant = gearGrant(item.name, tlOf(item.system?.tl));
+    const grant = grantOf(item);
     if (grant?.hamFisted) hamFisted ??= { label };
     if (grant?.protectedHearing) {
       effects.protectedSense = { ...(effects.protectedSense ?? {}), hearing: true };
@@ -192,14 +255,34 @@ async function makeArmor(api: GWorldApi, item: any, actor: any): Promise<void> {
   await say(actor, String(item.name ?? ""), lines);
 }
 
+/** Puts goggles or glasses on, or takes them off: in combat, only on a Ready maneuver (p. 71). */
+async function putOnOrTakeOff(item: any, actor: any): Promise<void> {
+  if (!item?.isOwner) return;
+  if (inCombat(actor) && String(actor?.system?.maneuver ?? "") !== "ready") return void ui.notifications?.warn(F("DonNeedsReady", { name: item.name }));
+  const wearing = item.system?.equipped !== true;
+  await item.update({ "system.equipped": wearing });
+  await say(actor, String(item.name ?? ""), [F(wearing ? "Donned" : "Doffed", { name: actor?.name ?? "", item: item.name })]);
+}
+
+/** Holds a blanket up as cover for its bearer and the characters the user targets (p. 72). */
+async function holdUp(item: any, actor: any): Promise<void> {
+  const blanket = blanketOf(item?.name);
+  if (!item?.isOwner || !blanket) return;
+  const behind = [actor, ...[...((game as any).user?.targets ?? [])].map((t: any) => t?.actor)]
+    .filter((a: any, i: number, all: any[]) => a?.uuid && all.findIndex((b: any) => b?.uuid === a.uuid) === i);
+  await item.setFlag(MODULE_ID, COVER_FLAG, behind.map((a: any) => String(a.uuid)));
+  await say(actor, String(item.name ?? ""), [F("CoverHeld", { names: behind.map((a: any) => a.name).join(", "), dr: blanket.dr })]);
+}
+
 // ── the item sheet ──
 
 function itemLines(item: any, on: OddmentSwitches): string[] {
   const lines: string[] = [];
   if (on.oddments()) {
-    const grant = gearGrant(item?.name, tlOf(item?.system?.tl));
+    const grant = grantOf(item);
     if (grant?.hamFisted) lines.push(L("HamFistedItem"));
-    if (grant?.protectedHearing) lines.push(L(grant.hardOfHearing ? "EarsBlockedItem" : "EarsItem"));
+    if (grant?.protectedHearing) lines.push(L(named(item, ELECTRONIC_EARS) && grant.hardOfHearing ? "EarsFlatItem" : grant.hardOfHearing ? "EarsBlockedItem" : "EarsItem"));
+    if (named(item, EYE_PROTECTION)) lines.push(L("DonItem"));
     if (grant?.nictitatingMembrane) lines.push(F("MembraneItem", { levels: grant.nictitatingMembrane }));
     if (grant?.protectedVision) lines.push(L("ProtectedVisionItem"));
     const stealth = stealthOf([{ name: String(item?.name ?? "") }]);
@@ -218,6 +301,9 @@ function itemLines(item: any, on: OddmentSwitches): string[] {
   if (on.cover()) {
     const blanket = blanketOf(item?.name);
     if (blanket) lines.push(F(blanket.protectionFactor > 1 ? "RadiationBlanketItem" : "BlanketItem", { dr: blanket.dr, pf: blanket.protectionFactor }));
+    const behind = item?.flags?.[MODULE_ID]?.[COVER_FLAG];
+    if (blanket && Array.isArray(behind) && behind.length) lines.push(F("CoverItem", { n: behind.length }));
+    if (blanket && flag(item, LAID_FLAG)) lines.push(F("LaidItem", { pf: blanket.protectionFactor }));
   }
   return lines;
 }
@@ -233,6 +319,7 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
       lines: itemLines(item, on),
       broken: on.oddments() && named(item, EYEGLASSES) ? { checked: flag(item, BROKEN_FLAG) } : null,
       brokenIn: on.oddments() && isFootwear(item) ? { checked: flag(item, BROKEN_IN_FLAG) } : null,
+      tinted: on.oddments() && named(item, TINTABLE) ? { checked: flag(item, TINTED_FLAG) } : null,
       editable: item.isOwner,
     }),
     listeners: (element, item) => {
@@ -321,6 +408,17 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     run: (item, actor) => { void makeArmor(api, item, actor); },
   });
 
+  // Goggles and glasses: a Ready maneuver to put on or take off (p. 71).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-eye-protection",
+    itemTypes: ["equipment", "armor"],
+    label: L("DonTitle"),
+    icon: "fa-solid fa-glasses",
+    visible: (item) => on.oddments() && named(item, EYE_PROTECTION) && item.system?.carried !== false,
+    run: (item, actor) => { void putOnOrTakeOff(item, actor); },
+  });
+
   // ── portable cover (p. 72) ──
 
   /** The charge a blanket is smothering, for the damage roll `detonate` makes straight away. */
@@ -382,13 +480,93 @@ export function readyOddments(api: GWorldApi, on: OddmentSwitches, dice: Oddment
     },
   });
 
-  // A radiation blanket in use: PF 3 (p. 72; Characters p. 436).
+  // A blanket held up as cover for several people (p. 72; Characters p. 407).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-blanket-cover",
+    itemTypes: ["equipment"],
+    label: L("CoverTitle"),
+    icon: "fa-solid fa-people-group",
+    visible: (item) => on.cover() && blanketOf(item?.name) !== null && !(item?.flags?.[MODULE_ID]?.[COVER_FLAG]?.length > 0),
+    run: (item, actor) => { void holdUp(item, actor); },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-blanket-lower",
+    itemTypes: ["equipment"],
+    label: L("LowerTitle"),
+    icon: "fa-solid fa-person-arrow-down-to-line",
+    visible: (item) => on.cover() && blanketOf(item?.name) !== null && item?.flags?.[MODULE_ID]?.[COVER_FLAG]?.length > 0,
+    run: (item, actor) => {
+      if (!item?.isOwner) return;
+      void (async () => {
+        await item.unsetFlag(MODULE_ID, COVER_FLAG);
+        await say(actor, String(item.name ?? ""), [F("CoverLowered", { name: item.name })]);
+      })();
+    },
+  });
+
+  // The blanket's DR between each one behind it and a blow from the front.
+  // Cover isn't armour worn, so the sheet's figures leave it out.
+  Hooks.on(api.combat.hooks.armorDr, (context: any) => {
+    if (!on.cover() || context?.preview === true || !context?.actor || !Array.isArray(context.lines)) return;
+    const cover = coverFor(context.actor);
+    if (!cover) return;
+    const meets = coverMeets(context.arc);
+    context.lines.push({
+      label: F("CoverLine", { name: cover.item.name }),
+      dr: blanketOf(cover.item.name)!.dr,
+      applies: meets,
+      forceField: false,
+      flexible: true,
+      hardened: 0,
+      source: "armor",
+      reason: meets ? F("CoverReason", { bearer: cover.bearer?.name ?? "" }) : L("CoverBehind"),
+    });
+  });
+
+  // A radiation blanket laid over the source: PF 3 for everyone exposed to it (p. 72).
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-blanket-lay",
+    itemTypes: ["equipment"],
+    label: L("LayTitle"),
+    icon: "fa-solid fa-radiation",
+    visible: (item) => on.cover() && (blanketOf(item?.name)?.protectionFactor ?? 1) > 1 && !flag(item, LAID_FLAG),
+    run: (item, actor) => {
+      if (!item?.isOwner) return;
+      void (async () => {
+        await item.setFlag(MODULE_ID, LAID_FLAG, true);
+        await say(actor, String(item.name ?? ""), [F("Laid", { name: item.name, pf: blanketOf(item.name)!.protectionFactor })]);
+      })();
+    },
+  });
+
+  api.sheets.registerRowAction({
+    module: MODULE_ID,
+    key: "ht-blanket-lift",
+    itemTypes: ["equipment"],
+    label: L("LiftTitle"),
+    icon: "fa-solid fa-arrow-up-from-bracket",
+    visible: (item) => on.cover() && blanketOf(item?.name) !== null && flag(item, LAID_FLAG),
+    run: (item, actor) => {
+      if (!item?.isOwner) return;
+      void (async () => {
+        await item.unsetFlag(MODULE_ID, LAID_FLAG);
+        await say(actor, String(item.name ?? ""), [F("Lifted", { name: item.name })]);
+      })();
+    },
+  });
+
+  // A radiation blanket in use, or laid over the source: PF 3 (p. 72; Characters p. 436), once.
   Hooks.on("gworld.radiationDose", (context: any) => {
     if (!on.cover() || !context?.actor) return;
-    const blanket = wornItems(context.actor).find((i) => (blanketOf(i.name)?.protectionFactor ?? 1) > 1);
+    const worn = wornItems(context.actor).find((i) => (blanketOf(i.name)?.protectionFactor ?? 1) > 1);
+    const blanket = worn ?? laidBlanket();
     if (!blanket) return;
     const pf = blanketOf(blanket.name)!.protectionFactor;
     context.rads = shieldedRads(Number(context.rads) || 0, pf);
-    context.sources?.push?.(F("RadiationLine", { name: blanket.name, pf }));
+    context.sources?.push?.(F(worn ? "RadiationLine" : "RadiationLaidLine", { name: blanket.name, pf }));
   });
 }

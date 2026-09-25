@@ -12,6 +12,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { setRuleReader } from "../../../shared/book-tables.js";
 import { CLIMATE_TABLES, resetClimate } from "../../../shared/climate/index.js";
 import { CELL_TABLES } from "../../../shared/power/data.js";
+import { CAMOUFLAGE_TABLES } from "../../../shared/stealth/data.js";
+import { highTechCamouflage } from "../camouflage/index.js";
 import { MODULE_ID } from "../../../shared/module.js";
 import { highTechBatteries } from "../power/index.js";
 import { suitClimateGear } from "../breathing/index.js";
@@ -87,7 +89,7 @@ const flush = async () => { for (let i = 0; i < 10; i += 1) await Promise.resolv
 
 function ready(): void {
   const rule = (k: string) => () => on[k] === true;
-  readyClothing(fakeApi() as never, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl") });
+  readyClothing(fakeApi() as never, { clothing: rule("clothingAndWeather"), frostbite: rule("frostbite"), climate: rule("climateControl"), ghillie: rule("camouflageGear") });
 }
 
 beforeEach(() => {
@@ -104,6 +106,8 @@ beforeEach(() => {
   CLIMATE_TABLES.register({ book: "high-tech", tls: { min: 5, max: 8 }, rule: key("climateControl"), gear: clothingClimateGear(suitClimateGear(key("environmentSuits"))) });
   CELL_TABLES.clear();
   CELL_TABLES.register(highTechBatteries());
+  CAMOUFLAGE_TABLES.clear();
+  CAMOUFLAGE_TABLES.register(highTechCamouflage(key("camouflageGear")));
   // Only High-Tech's switches: no Ultra-Tech table is registered at all.
   setRuleReader((k) => on[k.replace(`${MODULE_ID}.`, "")] === true);
   vi.stubGlobal("Hooks", { on: (name: string, fn: Listener) => hooks.set(name, [...(hooks.get(name) ?? []), fn]) });
@@ -375,5 +379,30 @@ describe("environment suits' climate control (High-Tech pp. 74-76)", () => {
     expect(tolerance(person([suit("Bomb Disposal Suit", { htClimateFitted: true })])).effects.temperatureTolerance).toEqual({ coldF: 60, heatF: 60 });
     on = {};
     expect(march(person([suit("Space Suit, EVA")]))).toBe(12);
+  });
+});
+
+describe("a ghillie suit as an overcoat (High-Tech p. 77)", () => {
+  const ghillie = (more: Record<string, unknown> = {}) => ({ id: "g", type: "equipment", name: "Ghillie Suit", system: { equipped: true, carried: true, extensions: { [MODULE_ID]: { camouflage: { pattern: "ghillie", ...more } } } } });
+  const flak = { type: "armor", name: "Flak Jacket", system: { equipped: true, locations: ["torso"] } };
+  const battle = (actor: any, hot = true) => fire(HOOKS.fatigueCost, { actor, fp: 1, reason: "battle", exertion: true, details: { seconds: 30, hot }, sources: [] });
+
+  it("costs a hot day's battle the overcoat's 2 FP, under the camouflage switch", () => {
+    on = { camouflageGear: true };
+    ready();
+    expect(battle(person([ghillie()]))).toMatchObject({ fp: 3, sources: [expect.stringContaining("HotGhillieLine")] });
+    expect(battle(person([ghillie()]), false).fp).toBe(1);
+    expect(battle(person([ghillie({ net: true })])).fp).toBe(1);
+    expect(battle(person([{ ...ghillie(), system: { ...ghillie().system, equipped: false } }])).fp).toBe(1);
+    // Without the clothing switch, body armour alone costs nothing here.
+    expect(battle(person([flak])).fp).toBe(1);
+  });
+
+  it("counts once beside body armour, and not at all with the switch off", () => {
+    on = { camouflageGear: true, clothingAndWeather: true };
+    ready();
+    expect(battle(person([flak, ghillie()])).fp).toBe(3);
+    on = { clothingAndWeather: true };
+    expect(battle(person([ghillie()])).fp).toBe(1);
   });
 });

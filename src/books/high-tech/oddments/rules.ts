@@ -10,10 +10,12 @@
  *     (or, at the GM's word, a crippled foot).
  *   - A hockey glove (p. 69): Ham-Fisted 1 for fine work with that hand.
  *   - Ear protection (p. 70): Protected Hearing while worn; ordinary earmuffs
- *     and earplugs are Hard of Hearing too, the electronic ones are not.
+ *     and earplugs are Hard of Hearing too, the electronic ones are not while
+ *     their cells last.
  *   - Goggles and glasses (p. 71): Nictitating Membrane from goggles and a
- *     dive mask, Protected Vision from anti-laser goggles and from tinted
- *     (TL6+) and ballistic sunglasses.
+ *     dive mask, Protected Vision from anti-laser goggles, tinted goggles, and
+ *     tinted (TL6+) and ballistic sunglasses; a Ready maneuver to put any of
+ *     them on or take it off.
  *   - A cup and a mouthguard (p. 71): +2 to knockdown rolls for groin hits,
  *     +1 for face hits; the mouthguard's speech as Disturbing Voice.
  *   - Eyeglasses (p. 225): they correct Bad Sight and protect the eyes as
@@ -23,8 +25,9 @@
  *   - Homemade armour (p. 71): paper and tape at Armoury (Body Armor)+5, a
  *     plastic bucket at +3.
  *   - Portable cover (p. 72): an explosives blanket takes its DR 25 off the
- *     damage roll of a charge it smothers; a radiation blanket does the same
- *     and gives PF 3.
+ *     damage roll of a charge it smothers, and held up it is cover for
+ *     several people; a radiation blanket does the same and gives PF 3 to
+ *     those exposed.
  */
 
 import type { DiceAdds } from "../explosives/rules.js";
@@ -130,15 +133,32 @@ const GEAR: ReadonlyArray<[RegExp, GearGrant]> = [
   [/^ballistic sunglasses$/i, { protectedVision: true }],
 ];
 
-/** What a worn piece grants, at its TL, or null for a piece these rules don't know. */
-export function gearGrant(name: unknown, tl: number): GearGrant | null {
+/**
+ * What a worn piece grants, at its TL, or null for a piece these rules don't
+ * know. `state` says what the item's own data adds: plain goggles with tinted
+ * lenses give Protected Vision too (p. 71), and electronic ear protection
+ * whose cells are spent is no more than the plain kind, muffling everything
+ * (p. 70).
+ */
+export function gearGrant(name: unknown, tl: number, state: { tinted?: boolean; unpowered?: boolean } = {}): GearGrant | null {
   const base = baseName(name);
+  if (state.unpowered && ELECTRONIC_EARS.test(base)) return { protectedHearing: true, hardOfHearing: true };
   const grant = GEAR.find(([pattern]) => pattern.test(base))?.[1];
   if (!grant) return null;
   const { protectedVisionFromTl, ...rest } = grant;
+  if (state.tinted && TINTABLE.test(base)) return { ...rest, protectedVision: true };
   if (protectedVisionFromTl !== undefined && tl < protectedVisionFromTl) return { ...rest, protectedVision: false };
   return rest;
 }
+
+/** Ear protection that filters noise electronically, on cells (p. 70). */
+export const ELECTRONIC_EARS = /^electronic (earmuffs|earplugs)$/i;
+
+/** Goggles that may have tinted lenses, which then give Protected Vision against bright ordinary light (p. 71). */
+export const TINTABLE = /^goggles$/i;
+
+/** The goggles and glasses that take a Ready maneuver to put on or take off (p. 71). */
+export const EYE_PROTECTION = /^(dive mask|goggles|anti-laser goggles|tactical goggles|sunglasses|ballistic sunglasses)$/i;
 
 /**
  * Goggles whose record is armour with DR on the eyes: that DR is the
@@ -252,6 +272,15 @@ export function blanketOf(name: unknown): Blanket | null {
 export function smothered(damage: DiceAdds, dr: number): { dice: DiceAdds; less: number } {
   const times = damage.multiplier && damage.multiplier > 0 ? damage.multiplier : 1;
   return { dice: { dice: Math.round(damage.dice * times), adds: Math.round(damage.adds * times) }, less: -Math.max(0, dr) };
+}
+
+/**
+ * A blanket held up as portable cover for several people (p. 72; Characters
+ * p. 407): its DR stands between each of them and a blow from the side it
+ * faces -- the front, or a blow from no known side, as for the system's "F".
+ */
+export function coverMeets(arc: string | null | undefined): boolean {
+  return !arc || arc === "front";
 }
 
 /** Radiation through a blanket's PF: the dose it lets through (Characters p. 436). */

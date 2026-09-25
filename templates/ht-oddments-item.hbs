@@ -11,5 +11,10 @@
       <label class="icheck" data-tooltip="{{localize 'GCC.HT.Oddments.BrokenHint'}}"><input type="checkbox" data-gcc-ht-oddment="htBroken" {{#if broken.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Oddments.BrokenLabel"}}</label>
     </div>
   {{/if}}
+  {{#if tinted}}
+    <div class="ichecks">
+      <label class="icheck" data-tooltip="{{localize 'GCC.HT.Oddments.TintedHint'}}"><input type="checkbox" data-gcc-ht-oddment="htTinted" {{#if tinted.checked}}checked{{/if}} {{#unless editable}}disabled{{/unless}} /> {{localize "GCC.HT.Oddments.TintedLabel"}}</label>
+    </div>
+  {{/if}}
   {{#each lines as |line|}}<p class="ihint">{{line}}</p>{{/each}}
 </div>

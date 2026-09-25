@@ -9,7 +9,10 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
+import { setRuleReader } from "../../../shared/book-tables.js";
 import { MODULE_ID } from "../../../shared/module.js";
+import { CELL_TABLES } from "../../../shared/power/data.js";
+import { highTechBatteries } from "../power/index.js";
 import { BROKEN_FLAG, BROKEN_IN_FLAG, readyOddments } from "./index.js";
 
 type Listener = (...args: any[]) => unknown;
@@ -77,6 +80,7 @@ function gear(name: string, more: Record<string, any> = {}, flags: Record<string
     }
   };
   item.setFlag = async (_scope: string, key: string, value: unknown) => { item.flags[MODULE_ID][key] = value; };
+  item.unsetFlag = async (_scope: string, key: string) => { delete item.flags[MODULE_ID][key]; };
   return item;
 }
 const boots = (name: string, flags: Record<string, unknown> = {}) => gear(name, { type: "armor", system: { locations: ["foot"] } }, flags);
@@ -303,5 +307,104 @@ describe("portable cover (High-Tech p. 72)", () => {
     expect(dose.sources).toEqual([expect.stringContaining("Radiation Blanket")]);
     expect(fire("gworld.radiationDose", { actor: person([gear("Explosives Blanket")]), rads: 300, protectionFactor: 1, sources: [] }).rads).toBe(300);
     expect(fire("gworld.radiationDose", { actor: person([gear("Radiation Blanket", { system: { equipped: false } })]), rads: 300, protectionFactor: 1, sources: [] }).rads).toBe(300);
+  });
+
+  it("holds a blanket up as cover for its bearer and the targeted characters, from the front", async () => {
+    const blanket = gear("Explosives Blanket", { system: { equipped: false } });
+    const bearer = { ...person([blanket]), name: "Bearer", uuid: "Actor.bearer" };
+    const officer = { ...person([]), name: "Officer", uuid: "Actor.officer" };
+    const bystander = { ...person([]), name: "Bystander", uuid: "Actor.bystander" };
+    (globalThis as any).game.actors = [bearer, officer, bystander];
+    (globalThis as any).game.user = { targets: new Set([{ actor: officer }, { actor: bearer }]) };
+    expect(row("ht-blanket-lower").visible(blanket)).toBe(false);
+    row("ht-blanket-cover").run(blanket, bearer);
+    await flush();
+    expect(blanket.flags[MODULE_ID].htCover).toEqual(["Actor.bearer", "Actor.officer"]);
+    expect(chat[0]).toContain("Officer");
+    expect(row("ht-blanket-cover").visible(blanket)).toBe(false);
+
+    const blow = (actor: any, arc: string | null, preview = false) => fire(HOOKS.armorDr, { actor, hitLocation: "torso", arc, preview, lines: [] }).lines;
+    expect(blow(officer, "front")).toEqual([expect.objectContaining({ dr: 25, applies: true, flexible: true, reason: expect.stringContaining("Bearer") })]);
+    expect(blow(bearer, null)).toEqual([expect.objectContaining({ dr: 25, applies: true })]);
+    expect(blow(officer, "back")).toEqual([expect.objectContaining({ applies: false })]);
+    expect(blow(bystander, "front")).toEqual([]);
+    // Cover isn't armour worn: the sheet's figures leave it out.
+    expect(blow(officer, null, true)).toEqual([]);
+
+    row("ht-blanket-lower").run(blanket, bearer);
+    await flush();
+    expect(blow(officer, "front")).toEqual([]);
+  });
+
+  it("gives PF 3 to everyone exposed while a radiation blanket is laid over the source, once", async () => {
+    const blanket = gear("Radiation Blanket", { system: { tl: "8", equipped: false } });
+    const tech = { ...person([blanket]), uuid: "Actor.tech" };
+    const bystander = { ...person([]), uuid: "Actor.bystander" };
+    (globalThis as any).game.actors = [tech, bystander];
+    const dose = (actor: any) => fire("gworld.radiationDose", { actor, rads: 300, protectionFactor: 1, sources: [] });
+    expect(dose(bystander).rads).toBe(300);
+    expect(row("ht-blanket-lay").visible(gear("Explosives Blanket"))).toBe(false);
+    row("ht-blanket-lay").run(blanket, tech);
+    await flush();
+    expect(dose(bystander)).toMatchObject({ rads: 100, sources: [expect.stringContaining("RadiationLaidLine")] });
+    // Worn by one of them as well, it counts once.
+    expect(dose(person([gear("Radiation Blanket", { system: { tl: "8" } })])).rads).toBe(100);
+    row("ht-blanket-lift").run(blanket, tech);
+    await flush();
+    expect(dose(bystander).rads).toBe(300);
+  });
+});
+
+describe("protective oddments' own states (High-Tech pp. 70-71)", () => {
+  beforeEach(() => { on = { protectiveOddments: true }; ready(); });
+
+  it("gives tinted plain goggles Protected Vision", () => {
+    expect(effectsOf(person([gear("Goggles", { type: "armor", system: { tl: "6" } })])).effects.protectedSense.vision).toBe(false);
+    expect(effectsOf(person([gear("Goggles", { type: "armor", system: { tl: "6" } }, { htTinted: true })])).effects).toMatchObject({ nictitatingMembrane: 1, protectedSense: { vision: true } });
+    // Only plain goggles take the tint.
+    expect(effectsOf(person([gear("Tactical Goggles", { system: { tl: "8" } }, { htTinted: true })])).effects.protectedSense.vision).toBe(false);
+    expect(sections[0].context(gear("Goggles", { type: "armor" })).tinted).toEqual({ checked: false });
+    expect(sections[0].context(gear("Dive Mask")).tinted).toBeNull();
+  });
+
+  it("muffles like plain ear protection once electronic ear protection's cells are spent", () => {
+    CELL_TABLES.clear();
+    CELL_TABLES.register(highTechBatteries());
+    setRuleReader((k) => k === `${MODULE_ID}.batteries`);
+    try {
+      const muffs = (hoursUsed: number) => gear("Electronic Earmuffs", { system: { tl: "8", extensions: { [MODULE_ID]: { power: { draw: { cell: "XS", cells: 1, endurance: "100 hrs.", raw: "XS/100 hrs." }, hoursUsed } } } } });
+      expect(effectsOf(person([muffs(40)])).effects).toMatchObject({ protectedSense: { hearing: true }, hardOfHearing: false });
+      expect(effectsOf(person([muffs(100)])).effects).toMatchObject({ protectedSense: { hearing: true }, hardOfHearing: true });
+      expect(sections[0].context(muffs(100)).lines).toContain("GCC.HT.Oddments.EarsFlatItem");
+    } finally {
+      setRuleReader(() => false);
+      CELL_TABLES.clear();
+    }
+  });
+
+  it("puts goggles on or takes them off, on a Ready maneuver in combat", async () => {
+    const warn = vi.fn();
+    vi.stubGlobal("ui", { notifications: { warn } });
+    const goggles = gear("Tactical Goggles", { system: { equipped: false } });
+    const soldier: any = { ...person([goggles]), id: "soldier", system: { maneuver: "move" } };
+    const action = row("ht-eye-protection");
+    expect(action.visible(goggles)).toBe(true);
+    expect(action.visible(gear("Cup"))).toBe(false);
+    // Out of combat: at once.
+    action.run(goggles, soldier);
+    await flush();
+    expect(goggles.system.equipped).toBe(true);
+    expect(chat[0]).toContain("Donned");
+    // In combat, not on a Ready maneuver: refused.
+    (globalThis as any).game.combat = { started: true, combatants: [{ actor: soldier }] };
+    action.run(goggles, soldier);
+    await flush();
+    expect(goggles.system.equipped).toBe(true);
+    expect(warn).toHaveBeenCalled();
+    soldier.system.maneuver = "ready";
+    action.run(goggles, soldier);
+    await flush();
+    expect(goggles.system.equipped).toBe(false);
+    expect(chat[1]).toContain("Doffed");
   });
 });

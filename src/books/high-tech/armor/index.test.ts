@@ -281,6 +281,45 @@ describe("partial coverage (High-Tech p. 69)", () => {
     expect(at("torso", "back")).toBe(5);
     expect(at("arm", "front")).toBe(5);
   });
+
+  it("turns a one-sided piece worn at the back to meet blows from behind (p. 67)", () => {
+    const front = piece("Trauma Plate", { dr: 25, locations: ["torso", "vitals"], frontOnly: true });
+    const back = piece("Trauma Plate (back)", { dr: 25, locations: ["torso", "vitals"], frontOnly: true }, { back: true });
+    const cop = person("Cop", [front, back]);
+    // From behind the system has turned both away; the back plate comes back.
+    const behind: any[] = [];
+    fire(HOOKS.armorDr, { actor: cop, hitLocation: "torso", damageType: "pi", arc: "back", lines: behind });
+    expect(behind).toEqual([expect.objectContaining({ itemId: "Trauma Plate (back)", dr: 25, applies: true, reason: expect.stringContaining("BackReason") })]);
+    // From the front, or from nowhere in particular, the system hands it over and it is refused.
+    for (const arc of ["front", null]) {
+      const lines = [line(front), line(back)];
+      fire(HOOKS.armorDr, { actor: cop, hitLocation: "torso", damageType: "pi", arc, lines });
+      expect(lines.map((l) => l.applies)).toEqual([true, false]);
+    }
+    // Where it doesn't reach, nothing is added.
+    const arm: any[] = [];
+    fire(HOOKS.armorDr, { actor: cop, hitLocation: "arm", damageType: "pi", arc: "back", lines: arm });
+    expect(arm).toEqual([]);
+    // Not a one-sided piece: the mark means nothing.
+    const vest = piece("Vest", { dr: 12, locations: ["torso"] }, { back: true });
+    const lines = [line(vest)];
+    fire(HOOKS.armorDr, { actor: person("Guard", [vest]), hitLocation: "torso", damageType: "pi", arc: "front", lines });
+    expect(lines[0]!.applies).toBe(true);
+  });
+});
+
+describe("a plate worn at the back, with the switch off", () => {
+  it("is left to the system's front-only reading", () => {
+    on = { armorMaterials: true };
+    ready();
+    const back = piece("Trauma Plate", { dr: 25, locations: ["torso"], frontOnly: true }, { back: true });
+    const lines = [line(back)];
+    fire(HOOKS.armorDr, { actor: person("Cop", [back]), hitLocation: "torso", damageType: "pi", arc: "front", lines });
+    expect(lines[0]!.applies).toBe(true);
+    const behind: any[] = [];
+    fire(HOOKS.armorDr, { actor: person("Cop", [back]), hitLocation: "torso", damageType: "pi", arc: "back", lines: behind });
+    expect(behind).toEqual([]);
+  });
 });
 
 describe("concealing armour (High-Tech pp. 64, 66)", () => {
@@ -319,6 +358,19 @@ describe("concealing armour (High-Tech pp. 64, 66)", () => {
     // The coat counts at default, since the skill's lines don't reach it.
     expect(contests[0].first.modifiers.map((m: any) => m.value)).toEqual([-5, 4]);
     expect(contests[0].second.base).toBe(7);
+  });
+
+  it("rolls a contest against each of several searchers, each named on the card", async () => {
+    const vest = piece("Concealable Vest", { dr: 12, flexible: true, locations: ["torso"] });
+    const spy = person("Spy", [vest], { skills: { Holdout: 14 } });
+    const first = person("First", [], { skills: { Search: 12 } });
+    const second = person("Second", [], { skills: { Search: 15 } });
+    (globalThis as any).game.user.targets = new Set([{ actor: first }, { actor: second }, { actor: spy }, { actor: first }]);
+    await concealFromSearch(fakeApi() as never, vest, spy, { partial: () => false, conceal: () => true, materials: () => false });
+    expect(contests.map((c) => c.second.actor)).toEqual([first, second]);
+    const card = (ChatMessage as any).implementation.create.mock.calls[0][0].content;
+    expect(card).toContain("First");
+    expect(card).toContain("Second");
   });
 });
 
@@ -359,5 +411,17 @@ describe("materials (High-Tech pp. 65, 67)", () => {
     expect(replace.visible(plate)).toBe(true);
     await replace.run(plate, cop);
     expect(plate.getFlag(MODULE_ID, "htPlateLost")).toBeUndefined();
+  });
+
+  it("wears a plate worn at the back only from behind, with partial coverage on", async () => {
+    on = { armorMaterials: true, partialCoverage: true };
+    const plate = piece("Trauma Plate", { dr: 25, locations: ["torso", "vitals"], frontOnly: true }, { semiAblative: true, back: true });
+    const cop = person("Cop", [plate]);
+    fire(HOOKS.afterDamage, { actor: cop, damage: { arc: "front" }, result: { hitLocation: "torso", basicDamage: 30, refusedPieces: [] } });
+    await flush();
+    expect(plate.getFlag(MODULE_ID, "htPlateLost")).toBeUndefined();
+    fire(HOOKS.afterDamage, { actor: cop, damage: { arc: "back" }, result: { hitLocation: "torso", basicDamage: 30, refusedPieces: [] } });
+    await flush();
+    expect(plate.getFlag(MODULE_ID, "htPlateLost")).toBe(3);
   });
 });

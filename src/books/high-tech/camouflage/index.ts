@@ -14,7 +14,10 @@
  *   - A reversible piece's other pattern is a second field, and a row button
  *     turns it inside out; both patterns are priced.
  *   - A ghillie suit's row button customises it: a Camouflage roll whose
- *     margin adds to its bonus, to +8.
+ *     margin adds to its bonus, to +8. With teammates targeted who carry
+ *     suits, the best Camouflage among them rolls once for all.
+ *   - A worn ghillie suit is an overcoat for a hot day's battle fatigue
+ *     (the clothing rules' listener, under this switch).
  *   - A net's row button hides gear: the deployer's Camouflage with the net's
  *     pattern for the terrain.
  *   - Scent masking worn is -4 to Tracking to follow the wearer.

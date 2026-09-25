@@ -10,14 +10,16 @@
  *     better than -1), which the blow then passes; a steel toe box's DR on 2
  *     in 6 foot hits; high boots with their tops turned up over 3 in 6 of the
  *     legs; and the better DR a piece gives some locations from the front (the
- *     TL7 fragmentation vest's vitals, the bomb disposal suit's torso), all
- *     through `gworld.armorDr` (p. 69; pp. 66-68, 75), none of them rolled
- *     for the sheet's figures; and shoulder pads' +1 to a slam's damage and DR
- *     3 against what the slammer takes back (p. 66 note 4).
+ *     TL7 fragmentation vest's vitals, the bomb disposal suit's torso); a
+ *     one-sided piece worn at the back, as a trauma plate may be, meeting
+ *     blows from behind in place of the front (p. 67); all through
+ *     `gworld.armorDr` (p. 69; pp. 66-68, 75), none of them rolled for the
+ *     sheet's figures; and shoulder pads' +1 to a slam's damage and DR 3
+ *     against what the slammer takes back (p. 66 note 4).
  *   - **Concealing armour (concealedArmor):** a row action on a worn piece
  *     rolls a Quick Contest of Holdout, less the piece's DR (a third of it for
  *     flexible armour) and plus up to 4 for a concealable design, against the
- *     targeted searcher's Search at the range penalty; and a long coat's,
+ *     Search of each targeted searcher, at the range penalty; and a long coat's,
  *     poncho's or undercover clothing's bonus on Holdout while worn (pp. 64,
  *     66).
  *   - **Materials (armorMaterials):** steel, smart foam and titanium as a
@@ -46,9 +48,12 @@ import {
   materialDr,
   materialPrice,
   partialStands,
+  pieceDrAt,
   plateLoss,
+  sideMeets,
   strikeAroundPenalty,
   type ArmorMaterial,
+  type WornSide,
 } from "./rules.js";
 
 const L = (key: string) => game.i18n.localize(`GCC.HT.Armor.${key}`);
@@ -89,6 +94,8 @@ export interface HtArmorData {
   topsUp: boolean;
   /** Worn to slam with: +1 to the slam's damage, DR 3 against what the slammer takes back (p. 66 note 4). */
   slamPads: boolean;
+  /** A one-sided piece (the system's "F") worn at the back: it meets blows from behind (p. 67). */
+  back: boolean;
 }
 
 /** Registers the fields this module keeps on armour and on shields. */
@@ -107,6 +114,7 @@ export function initHighTechArmor(): void {
       semiAblative: new f.BooleanField({ initial: false }),
       topsUp: new f.BooleanField({ initial: false }),
       slamPads: new f.BooleanField({ initial: false }),
+      back: new f.BooleanField({ initial: false }),
     }),
   });
   addExtensionFields("Item", ["shield"], { [SHIELD_FIELD]: material() });
@@ -128,6 +136,7 @@ export function htArmorData(item: any): HtArmorData {
     semiAblative: d.semiAblative === true,
     topsUp: d.topsUp === true,
     slamPads: d.slamPads === true,
+    back: d.back === true,
   };
 }
 
@@ -138,6 +147,11 @@ const slamPadsOn = (actor: any): any => [...(actor?.items ?? [])].find((i: any) 
 const locationsOf = (item: any): string[] => item?.system?.locations ?? [];
 /** Whether a piece covers a location by its own list (an empty list is the whole body). */
 const covers = (item: any, location: string) => locationsOf(item).length === 0 || locationsOf(item).includes(location);
+/** The side a one-sided piece is worn on, or null for a piece that armours all round. */
+export function sideOf(item: any): WornSide | null {
+  if (item?.system?.frontOnly !== true) return null;
+  return htArmorData(item).back ? "back" : "front";
+}
 const plateLost = (item: any): number => Math.max(0, Math.floor(Number(item?.getFlag?.(MODULE_ID, PLATE_FLAG) ?? item?.flags?.[MODULE_ID]?.[PLATE_FLAG]) || 0));
 const d6 = () => Math.floor(CONFIG.Dice.randomUniform() * 6) + 1;
 
@@ -220,11 +234,15 @@ function yardsBetween(a: any, b: any): number | null {
   return Number.isFinite(distance) ? distance : null;
 }
 
-/** Quick Contest of Holdout against the targeted searcher's Search, to keep a worn piece hidden (p. 66). */
+/**
+ * Quick Contests of Holdout against the Search of each targeted searcher, to
+ * keep a worn piece hidden (p. 66): each looks for himself, so the piece stays
+ * hidden only from those it wins against.
+ */
 export async function concealFromSearch(api: GWorldApi, item: any, actor: any, on: ArmorSwitches): Promise<void> {
   if (!actor?.isOwner) return;
-  const searcher = [...((game as any).user?.targets ?? [])].map((t: any) => t.actor).find((a: any) => a && a !== actor);
-  if (!searcher) return void ui.notifications?.warn(L("ConcealPick"));
+  const searchers = [...new Set([...((game as any).user?.targets ?? [])].map((t: any) => t.actor).filter((a: any) => a && a !== actor))];
+  if (!searchers.length) return void ui.notifications?.warn(L("ConcealPick"));
   const data = htArmorData(item);
   const dr = concealedDr(item, on);
   const flexible = item.system?.flexible === true;
@@ -239,17 +257,22 @@ export async function concealFromSearch(api: GWorldApi, item: any, actor: any, o
     const clothes = clothingConcealment(actor);
     if (clothes.holdout) hiding.push({ label: F("ClothesLine", { name: clothes.source }), value: clothes.holdout });
   }
-  const search = api.actors.skillLevel(searcher, "Search");
-  const yards = yardsBetween(actor, searcher);
-  const range = yards !== null ? Number(api.rules.speedRangeModifier(yards)) || 0 : 0;
-  const result: any = await api.roll.quickContest({
-    label: F("ConcealLabel", { item: item.name }),
-    first: { actor, base: holdout ?? (Number(api.actors.attribute(actor, "IQ")) || 10) - 5, modifiers: hiding, note: "Holdout" },
-    second: { actor: searcher, base: search ?? (Number(api.actors.attribute(searcher, "Per")) || 10) - 5, modifiers: range ? [{ label: F("RangeLine", { yards: Math.round((yards ?? 0) * 10) / 10 }), value: range }] : [], note: "Search" },
-    tags: ["holdout", "search", "concealArmor"],
-  } as any);
-  if (!result) return;
-  await say(actor, String(item.name), [F(result.outcome === "first" ? "ConcealHidden" : "ConcealSeen", { item: item.name, searcher: searcher.name })]);
+  const outcomes: string[] = [];
+  for (const searcher of searchers) {
+    const search = api.actors.skillLevel(searcher, "Search");
+    const yards = yardsBetween(actor, searcher);
+    const range = yards !== null ? Number(api.rules.speedRangeModifier(yards)) || 0 : 0;
+    const result: any = await api.roll.quickContest({
+      label: F("ConcealLabel", { item: item.name }),
+      first: { actor, base: holdout ?? (Number(api.actors.attribute(actor, "IQ")) || 10) - 5, modifiers: hiding, note: "Holdout" },
+      second: { actor: searcher, base: search ?? (Number(api.actors.attribute(searcher, "Per")) || 10) - 5, modifiers: range ? [{ label: F("RangeLine", { yards: Math.round((yards ?? 0) * 10) / 10 }), value: range }] : [], note: "Search" },
+      tags: ["holdout", "search", "concealArmor"],
+    } as any);
+    // A contest closed unrolled: the rest aren't asked either.
+    if (!result) break;
+    outcomes.push(F(result.outcome === "first" ? "ConcealHidden" : "ConcealSeen", { item: item.name, searcher: searcher.name }));
+  }
+  await say(actor, String(item.name), outcomes);
 }
 
 // ── the sheet ────────────────────────────────────────────────────────────────
@@ -262,6 +285,7 @@ function itemLines(item: any, on: ArmorSwitches): string[] {
     if (data.frontDr && data.frontLocations.length) lines.push(F("FrontItem", { dr: data.frontDr, locations: data.frontLocations.map((l) => game.i18n.localize(`GCC.HT.Armor.Location.${l}`)).join(", ") }));
     if (data.toeDr) lines.push(F("ToeItem", { dr: data.toeDr, n: TOE_BOX_SIXTHS }));
     if (data.topsUp && canTurnUpTops(item.name)) lines.push(F("TopsUpItem", { n: TOPS_UP.sixths }));
+    if (sideOf(item) === "back") lines.push(L("BackItem"));
   }
   if (on.conceal()) {
     if (isArmor(item)) {
@@ -290,6 +314,7 @@ function itemContext(item: any, on: ArmorSwitches): Record<string, unknown> {
       ? [0, 1, 2, 3, 4, 5].map((n) => ({ value: n, label: n ? F("CoverageSixths", { n }) : L("CoverageWhole"), selected: data.coverage === n }))
       : null,
     topsUp: armor && on.partial() && canTurnUpTops(item?.name) ? { checked: data.topsUp } : null,
+    back: armor && on.partial() && sideOf(item) !== null ? { checked: data.back } : null,
     concealment: armor && on.conceal()
       ? Array.from({ length: DESIGN_MAX + 1 }, (_, n) => ({ value: n, label: n ? `+${n}` : L("DesignNone"), selected: data.concealment === n }))
       : null,
@@ -350,7 +375,7 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     visible: (item) => {
       if (!anyOn() || !["armor", "shield", "equipment"].includes(item?.type)) return false;
       const context = itemContext(item, on);
-      return (context.lines as string[]).length > 0 || Boolean(context.coverage || context.concealment || context.materials);
+      return (context.lines as string[]).length > 0 || Boolean(context.coverage || context.back || context.concealment || context.materials);
     },
     context: (item) => itemContext(item, on),
     listeners: (element, item) => itemListeners(element, item),
@@ -427,12 +452,37 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     if (pads && !context.lines.some((l: any) => l.itemId === pads.id)) {
       context.lines.push({ label: String(pads.name ?? ""), dr: SLAM_PADS.dr, applies: true, forceField: false, flexible: false, hardened: 0, itemId: pads.id, source: "armor", reason: L("SlamPadsReason") });
     }
+    // A one-sided piece worn at the back meets a blow from behind, which the
+    // system's "F" turns away (p. 67); the loop below reads it as any other.
+    if (on.partial() && context.arc === "back") {
+      for (const item of actor.items ?? []) {
+        if (!isWorn(item) || sideOf(item) !== "back" || !covers(item, location) || context.lines.some((l: any) => l.itemId === item.id)) continue;
+        context.lines.push({
+          label: String(item.name ?? ""),
+          dr: pieceDrAt(item.system ?? {}, damageType, location),
+          applies: true,
+          forceField: false,
+          flexible: item.system?.flexible === true,
+          hardened: Math.max(0, Math.floor(Number(item.system?.hardened) || 0)),
+          itemId: item.id,
+          source: "armor",
+          reason: L("BackReason"),
+        });
+      }
+    }
 
     for (const line of context.lines) {
       if (line.source === "natural" || !line.itemId) continue;
       const item = actor.items?.get?.(line.itemId);
       if (!isArmor(item)) continue;
       const data = htArmorData(item);
+      // Worn at the back, it doesn't meet a blow from the front or the side, or
+      // one from nowhere in particular (the sheet's figures among them).
+      if (on.partial() && sideOf(item) === "back" && !sideMeets("back", context.arc)) {
+        line.applies = false;
+        note(line, L("BackRefused"));
+        continue;
+      }
       if (pads && item.id === pads.id) {
         // All of the pads, whatever their coverage, at their DR against crushing.
         if (line.dr < SLAM_PADS.dr) line.dr = SLAM_PADS.dr;
@@ -497,8 +547,10 @@ export function readyHighTechArmor(api: GWorldApi, on: ArmorSwitches): void {
     const cards: string[] = [];
     for (const item of actor.items ?? []) {
       if (!isWorn(item) || !covers(item, location) || refused.includes(item.id) || !htArmorData(item).semiAblative) continue;
-      // A plate at the front alone isn't struck from behind (Characters p. 282).
-      if (item.system?.frontOnly === true && arc && arc !== "front") continue;
+      // A plate at the front alone isn't struck from behind (Characters p. 282),
+      // and one worn at the back only from behind (p. 67).
+      const side = sideOf(item);
+      if (side === "back" && on.partial() ? arc !== "back" : side !== null && arc && arc !== "front") continue;
       const already = plateLost(item);
       const lost = plateLoss(basic, Math.max(0, Math.floor(Number(item.system?.dr) || 0) - already));
       if (lost <= 0) continue;
