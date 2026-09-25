@@ -360,6 +360,61 @@ describe("suppressors (pp. 158-159)", () => {
   });
 });
 
+describe("the follow-ups (#372)", () => {
+  it("gives an add-on night sight its vision only in front of a scope or collimating sight", async () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    accessory(actor, "Advanced Night Sight, Add-On", rifle);
+    await actions.find((a) => a.key === "ht-sight").run(rifle, actor);
+    const effects = () => fire("gworld.traitEffects", { actor, effects: { nightVision: 0, infravision: false, restrictedVision: null, colorblindness: false }, sources: [] }).effects;
+    expect(effects().nightVision).toBe(0);
+    accessory(actor, "Reflex Sight", rifle);
+    expect(effects().nightVision).toBe(7);
+  });
+
+  it("fits a shoulder arm's laser to no pistol", () => {
+    on = { gunSights: true };
+    ready();
+    const actor = character();
+    const pistol = gun(actor);
+    accessory(actor, "Targeting Laser (Shoulder Arm)", pistol);
+    expect(fittedTo(pistol, switches())).toEqual([]);
+    const rifle = gun(actor, { skill: "Guns (Rifle)" });
+    accessory(actor, "Targeting Laser (Shoulder Arm)", rifle);
+    expect(fittedTo(rifle, switches())).toHaveLength(1);
+  });
+
+  it("braces a shooter who isn't prone on an open bipod rested on a wall, as the GM allows", async () => {
+    on = { stocksAndMounts: true };
+    ready();
+    const actor = character();
+    const rifle = gun(actor, { skill: "Guns (Rifle)", accuracy: 4 });
+    accessory(actor, "Bipod", rifle);
+    await actions.find((a) => a.key === "ht-bipod").run(rifle, actor);
+    const rest = options.get("ht-bipod-rest");
+    expect(rest.available({ actor, item: rifle })).toBe(true);
+    expect(attack(rifle, aimedAt(4)).modifiers.some((m: any) => m.key === "braced")).toBe(false);
+    expect(attack(rifle, aimedAt(4), { options: { [`${MODULE_ID}.ht-bipod-rest`]: true } }).modifiers.some((m: any) => m.key === "braced")).toBe(true);
+  });
+
+  it("rolls the Malfunction Table on the first shot through a botched home-built suppressor", async () => {
+    on = { suppressors: true };
+    const set: any[] = [];
+    const api: any = { ...fakeApi(), items: { setMalfunction: async (_g: any, m: any) => { set.push(m); } } };
+    readyAccessories(api, switches());
+    vi.stubGlobal("Roll", class { total = 18; async evaluate() { return this; } });
+    const actor = character();
+    const pistol = gun(actor);
+    const can = accessory(actor, "Detachable Baffle Suppressor, Pistol or SMG", pistol, { grade: "average", level: 2, lifetime: 10, buildFailed: true });
+    fire(HOOKS.afterShots, { actor, item: pistol, modeIndex: 0, shots: 1, fired: 1 });
+    await new Promise((r) => setTimeout(r, 0));
+    expect(set).toHaveLength(1);
+    expect(can.system.extensions[MODULE_ID].gunAccessory.buildFailed).toBe(false);
+  });
+});
+
 describe("stocks and bipods (p. 160)", () => {
   it("folds a fitted stock: -1 Acc, +1 Recoil, ST x1.2 and Bulk a step better", async () => {
     on = { stocksAndMounts: true };

@@ -4943,11 +4943,11 @@
         },
         "gunMagazines": {
           "Name": "Gun magazines",
-          "Hint": "Extended, high-density and drum magazines worked out on the gun: capacity, weight and cost from the calibre's weight per shot, -1 Bulk past 1.5 (extended) or 3 (drum) times the normal capacity, and -1 Malf. for a drum or where the GM marks one unreliable; no high-density magazine in a pistol's grip (High-Tech p. 155)."
+          "Hint": "Extended, high-density and drum magazines worked out on the gun: capacity, weight and cost from the calibre's weight per shot, -1 Bulk past 1.5 (extended) or 3 (drum) times the normal capacity, and -1 Malf. for a drum or where the GM marks one unreliable; no high-density magazine in a pistol's grip unless the gun was designed for one there (High-Tech p. 155)."
         },
         "gunSights": {
           "Name": "Sights and aiming aids",
-          "Hint": "Scopes, night, thermal and computer sights, reflex sights, targeting lasers and tactical lights fitted to a gun: the best magnifying sight is the gun's scope on its rows (a fixed-power one gives its bonus only after as many seconds of Aim), and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed. Darkness penalties lose a point to a TL7+ scope on an aimed shot (two with an illuminated reticle), a point to improved-visibility sights, three to a reflex sight; a tactical light switched on for the shot leaves no worse than -3 within its beam. A targeting laser reaches as far as its colour does in daylight or low light, an infrared dot only for a shooter with Night Vision, Infravision or Hyperspectral Vision, and a reflex sight gives nothing while the laser is on. Looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision. A targeting laser's colour prices it (High-Tech pp. 155-157)."
+          "Hint": "Scopes, night, thermal and computer sights, reflex sights, targeting lasers and tactical lights fitted to a gun: the best magnifying sight is the gun's scope on its rows (a fixed-power one gives its bonus only after as many seconds of Aim), and the combined bonus of all a gun's sights can't exceed its base Acc; a scope over 4x is -1 Bulk unaimed. Darkness penalties lose a point to a TL7+ scope on an aimed shot (two with an illuminated reticle), a point to improved-visibility sights, three to a reflex sight; a tactical light switched on for the shot leaves no worse than -3 within its beam. A targeting laser reaches as far as its colour does in daylight or low light, an infrared dot only for a shooter with Night Vision, Infravision or Hyperspectral Vision, and a reflex sight gives nothing while the laser is on. Looking through a night, thermal or computer sight gives its vision but leaves the shooter colorblind with tunnel vision; an add-on night sight works only in front of a scope or collimating sight on the same gun. Gear made for a sidearm fits only a pistol, and gear for a shoulder arm no pistol. A targeting laser's colour prices it (High-Tech pp. 155-157)."
         },
         "suppressors": {
           "Name": "Sound suppressors",
@@ -4959,7 +4959,7 @@
         },
         "stocksAndMounts": {
           "Name": "Stocks, bipods and mounts",
-          "Hint": "A pistol stock (Guns (Rifle), +1 Acc, -1 Bulk, ST x0.8); a folding stock folded from the gun's row (Bulk a step better, -1 Acc, +1 Recoil, ST x1.2); a bipod opened from the row, bracing a prone shooter at two-thirds the ST; shooting sticks bracing a sitting one. A gun whose record keeps \"Folded Stock\" or \"w/ Bipod\" modes fires the one its state picks (High-Tech p. 160)."
+          "Hint": "A pistol stock (Guns (Rifle), +1 Acc, -1 Bulk, ST x0.8); a folding stock folded from the gun's row (Bulk a step better, -1 Acc, +1 Recoil, ST x1.2); a bipod opened from the row, bracing a prone shooter at two-thirds the ST, or one who isn't prone where the GM lets it rest on a wall or sandbags (an attack option); shooting sticks bracing a sitting one. A gun whose record keeps \"Folded Stock\" or \"w/ Bipod\" modes fires the one its state picks (High-Tech p. 160)."
         },
         "zenMarksmanship": {
           "Name": "Zen Marksmanship (cinematic)",
@@ -6516,6 +6516,29 @@
         "MagazineNoCalibre": "The gun's name gives no calibre from the ammunition tables, so the magazine can't be weighed or priced.",
         "MagazineHint": "A {rounds}-round magazine (High-Tech p. 155).",
         "HighDensityGrip": "A high-density magazine can't go in a pistol's grip (High-Tech p. 155).",
+        "Build": "Design and build",
+        "BuildHint": "Design it (Engineer (Small Arms), or Research at TL7-8), then build it (Armoury (Small Arms), or Machinist-5) at the grade's modifier. Add the GM's: up to +2 for blueprints or a working sample, the tools' quality, +1 to +5 for extra time (High-Tech p. 159).",
+        "BuildTitle": "Making {name}",
+        "BuildModifier": "Blueprints, tools, time (GM)",
+        "DesignRoll": "Designing {name}",
+        "BuildRoll": "Building {name} ({skill})",
+        "BuildNoSkill": "Nobody here can make that roll: {skills}.",
+        "DesignFailed": "The design doesn't work out: start again.",
+        "Built": "It works.",
+        "BuiltPoor": "Knocked together from tape and plastic bottles: no roll needed from someone who knows guns.",
+        "BuildFailed": "Botched: the first shot through it rolls the Firearm Malfunction Table.",
+        "BuildDamaged": "Critical failure: the first shot through it rolls the Firearm Malfunction Table, and the gun is damaged (the GM says how).",
+        "BuildFailedLine": "Botched build: the first shot through it rolls the Firearm Malfunction Table.",
+        "BotchedShot": "The first shot through the botched suppressor: the Malfunction Table rolls {roll}, {kind} for the {gun}.",
+        "InGrip": "In the grip by design",
+        "InGripHint": "A high-density magazine can go in the grip where it is part of the gun's original design (High-Tech p. 155).",
+        "AddOnNeedsSight": "Works only in front of a scope or collimating sight fitted to the same gun: fit one, or it gives nothing.",
+        "BipodRest": "Bipod rested on a wall or sandbags (GM)",
+        "BipodRestNote": "The open bipod set on something stable: braced though not prone, as the GM allows (High-Tech p. 160).",
+        "Fits": {
+          "sidearm": "This is made for a sidearm: it fits only a pistol.",
+          "shoulder": "This is made for a shoulder arm: it doesn't fit a pistol."
+        },
         "ReportLabel": "Report",
         "ReportTooltip": "How loud the gun is, by the Hearing Distance Table (High-Tech p. 158).",
         "ReportAuto": "Worked out ({report})",
