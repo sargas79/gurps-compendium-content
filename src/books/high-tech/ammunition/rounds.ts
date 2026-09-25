@@ -25,10 +25,18 @@
  *     A tracer burns out at 1/2D: a blow at or past it isn't incendiary
  *     (`incendiary` on `gworld.damageModifiers`, API 1.152.0) unless something
  *     else about the round is.
+ *   - **Depleted uranium** (p. 169): an APDU, APDSDU or APFSDSDU blow that
+ *     gets through rigid armour of DR 10 or more is incendiary, decided once
+ *     the DR it met is known (`damage.incendiary` on `gworld.afterDamage`,
+ *     API 1.156.0); whether the armour it met was rigid is the worn pieces'.
+ *   - **Buck-and-ball** (p. 173): the first hit is the ball, halved -- or
+ *     not -- by the ball's own 1/2D rather than the buckshot's the row shows
+ *     (`halfDamage` on `gworld.damageModifiers`, API 1.156.0).
  */
 
 import { stepPiercing } from "../../../shared/loads/dice.js";
 import { MODULE_ID, type GWorldApi } from "../../../shared/module.js";
+import { rigidDrMet } from "../armor/index.js";
 import { HT_POISONS, type HtPoison } from "../drugs/rules.js";
 import { isExplosiveProjectile, type ProjectileGun, type ProjectileLoad } from "./projectiles.js";
 
@@ -48,6 +56,8 @@ export interface FiredRound {
   gun: ProjectileGun;
   /** A poison bullet's poison: a Basic Set name, or `ht:<key>` for one of High-Tech's. */
   poison: string;
+  /** Buck-and-ball's ball's 1/2D, beside the buckshot's the row takes (p. 173); null for any other load. */
+  ball?: { half: number; buckHalf: number } | null;
 }
 
 export interface RoundSwitches {
@@ -123,6 +133,33 @@ export function tracerBurnsOut(distanceYards: unknown, halfDamage: number): bool
   if (distanceYards === null || distanceYards === undefined || distanceYards === "") return false;
   const at = Number(distanceYards);
   return Number.isFinite(at) && halfDamage > 0 && at >= halfDamage;
+}
+
+/** The depleted-uranium penetrators (p. 169). */
+export const isDepletedUranium = (projectile: string): boolean => projectile === "apdu" || projectile === "apdsdu" || projectile === "apfsdsdu";
+
+/** The rigid armour's DR at which a DU penetrator that gets through it is incendiary (p. 169). */
+export const DU_RIGID_DR = 10;
+
+/**
+ * Whether a DU penetrator's blow is incendiary (p. 169): it got through, and
+ * the non-flexible armour it met had DR 10 or more -- the rigid pieces' DR,
+ * no more than the armour's DR as the blow met it (a chink, a refused piece).
+ */
+export function depletedUraniumIgnites(blow: { penetrating: number; rigidDr: number; armourDr: number }): boolean {
+  if (!(Number(blow.penetrating) > 0)) return false;
+  return Math.min(Number(blow.rigidDr) || 0, Number(blow.armourDr) || 0) >= DU_RIGID_DR;
+}
+
+/**
+ * Buck-and-ball's ball's 1/2D as the attack met the row (p. 173): the ball's
+ * own, moved as the row's buckshot 1/2D was by whatever changed the row after
+ * the load (underwater, a steep shot); the ball's own where that isn't known.
+ */
+export function ballHalfDamage(ball: { half: number; buckHalf: number }, shownHalf: number | undefined): number {
+  const shown = Number(shownHalf) || 0;
+  if (shown > 0 && ball.buckHalf > 0 && shown !== ball.buckHalf) return Math.round(ball.half * shown / ball.buckHalf);
+  return ball.half;
 }
 
 // ── in play ──
@@ -203,6 +240,21 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
     })();
   });
 
+  // A DU penetrator is incendiary where it gets through rigid armour of DR 10 or more (p. 169):
+  // decided once the DR the blow met is known (`damage.incendiary` on `gworld.afterDamage`, API
+  // 1.156.0). Which of the pieces it met are rigid is the worn armour's at the location.
+  Hooks.on(api.combat.hooks.afterDamage, (context: any) => {
+    const damage = context?.damage;
+    const result = context?.result;
+    if (!on.projectiles() || !damage || !result || damage.incendiary === true || damage.line || !context.mode?.ranged) return;
+    const round = firedIn(context.item, context.mode);
+    if (!round || !isDepletedUranium(round.fired.projectile)) return;
+    const location = String(result.hitLocation ?? damage.hitLocation ?? "");
+    const rigidDr = rigidDrMet(context.actor, location, damage.arc ?? null, result.refusedPieces ?? [], String(damage.type ?? ""));
+    const armourDr = (Number(result.wornDr) || 0) - (Number(result.naturalDr) || 0);
+    if (depletedUraniumIgnites({ penetrating: Number(result.penetrating) || 0, rigidDr, armourDr })) damage.incendiary = true;
+  });
+
   // Airburst: Attacking an Area at +4, +3 on a time fuse, +1 at a flier (pp. 174-175).
   api.combat.registerAttackOption({
     module: MODULE_ID,
@@ -253,6 +305,27 @@ export function readyRounds(api: GWorldApi, on: RoundSwitches, firedOf: (item: a
     if (!round || !flameOnlyFromTracer(round.fired, mode)) return;
     const reach = tracerReach.get(rowKey(item, context.mode.index));
     if (tracerBurnsOut(context.distanceYards, reach ?? 0)) context.incendiary = false;
+  });
+
+  // Buck-and-ball's first hit is the ball, whose range is its own, not the buckshot's the row
+  // shows (p. 173): that roll is halved, or not, by the ball's 1/2D against the shot's range
+  // (`halfDamage` on `gworld.damageModifiers`, API 1.156.0). The row's 1/2D as the attack saw it.
+  const buckReach = new Map<string, number>();
+  Hooks.on(api.combat.hooks.attackModifiers, (context: any) => {
+    if (!on.multiple() || !context?.item || !context.ranged) return;
+    const round = firedIn(context.item, { index: context.mode?.index, ranged: true });
+    if (!round?.ball) return;
+    const half = Number(context.dataset?.halfDamageRange) || 0;
+    if (half > 0) buckReach.set(rowKey(context.item, context.mode?.index), half);
+  });
+  Hooks.on(api.combat.hooks.damageModifiers, (context: any) => {
+    const item = context?.item;
+    if (!on.multiple() || !item || context.mode?.ranged !== true || context.line || context.hit?.first !== true) return;
+    const ball = firedIn(item, context.mode)?.ball;
+    const at = context.distanceYards;
+    if (!ball || at === null || at === undefined || at === "" || !Number.isFinite(Number(at))) return;
+    const half = ballHalfDamage(ball, buckReach.get(rowKey(item, context.mode.index)));
+    context.halfDamage = half > 0 && Number(at) >= half;
   });
 
   // Tracers: +1 on the turn after a long burst, not cumulative; and the firer is seen (p. 175).

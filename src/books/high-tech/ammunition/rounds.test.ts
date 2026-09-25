@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { POISON_EXAMPLES } from "../../../../system/src/rules/poison.js";
-import { airburstBonus, airbursts, bulletPoisons, expands, longBurst, mayFailToExpand, selfDestructRange, unexpanded } from "./rounds.js";
+import { airburstBonus, airbursts, ballHalfDamage, bulletPoisons, depletedUraniumIgnites, expands, isDepletedUranium, longBurst, mayFailToExpand, selfDestructRange, unexpanded } from "./rounds.js";
 
 const gun = (cls: string, tl = 7): any => ({ calibre: { class: cls }, tl });
 const fired = (patch: Record<string, unknown>): any => ({ projectile: "", material: "", projectileUpgrades: [], shotMm: 0, shotCount: 0, poisonCost: 0, ...patch });
@@ -56,5 +56,23 @@ describe("the other projectiles and upgrades (pp. 167, 174-175)", () => {
     expect(longBurst({ kind: "rapidFire", fired: 4 }, 10)).toBe(false);
     expect(longBurst({ kind: "suppression", fired: 5 }, 10)).toBe(true);
     expect(longBurst({ kind: "single", fired: 1 }, 1)).toBe(false);
+  });
+});
+
+describe("depleted uranium and buck-and-ball's ball (pp. 169, 173)", () => {
+  it("makes a DU blow incendiary through rigid DR 10 or more that it gets through", () => {
+    expect(["apdu", "apdsdu", "apfsdsdu"].every(isDepletedUranium)).toBe(true);
+    expect(isDepletedUranium("apds")).toBe(false);
+    expect(depletedUraniumIgnites({ penetrating: 1, rigidDr: 10, armourDr: 10 })).toBe(true);
+    expect(depletedUraniumIgnites({ penetrating: 0, rigidDr: 20, armourDr: 20 })).toBe(false);
+    expect(depletedUraniumIgnites({ penetrating: 4, rigidDr: 9, armourDr: 30 })).toBe(false);
+    // The rigid pieces' DR, no more than the armour the blow met.
+    expect(depletedUraniumIgnites({ penetrating: 4, rigidDr: 12, armourDr: 6 })).toBe(false);
+  });
+
+  it("moves the ball's 1/2D as the row's buckshot 1/2D was moved", () => {
+    expect(ballHalfDamage({ half: 90, buckHalf: 42 }, undefined)).toBe(90);
+    expect(ballHalfDamage({ half: 90, buckHalf: 42 }, 42)).toBe(90);
+    expect(ballHalfDamage({ half: 90, buckHalf: 42 }, 84)).toBe(180);
   });
 });
